@@ -49,15 +49,15 @@ header.header .header-nav:not(:has(.lcv-header-banner)) {
   padding-bottom: 8px;
   gap: .4rem;
 }
-header.header .header-nav:not(:has(.lcv-header-banner)) .logo a img { height: 62px !important; }
+header.header .header-nav:not(:has(.lcv-header-banner)) .logo a img { height: 74px !important; }
 @media (max-width: 960px) {
-  header.header .header-nav:not(:has(.lcv-header-banner)) .logo a img { height: 54px !important; }
+  header.header .header-nav:not(:has(.lcv-header-banner)) .logo a img { height: 65px !important; }
   header.header .header-nav:not(:has(.lcv-header-banner)) .logo { margin-top: 4px; }
 }
 
 header.header .logo { width: auto; }
 header.header .logo a { display: flex; justify-content: center; gap: 0; }
-header.header .logo a img { height: 101px !important; width: auto; border-radius: 0; }
+header.header .logo a img { height: 121px !important; width: auto; border-radius: 0; }
 header.header #menu {
   display: flex !important;
   justify-content: center;
@@ -805,7 +805,7 @@ table.lcv-compare td a { font-weight: 600; }
   header.header .header-nav.nav-open #menu .submenu a { padding: .55rem 0; border-top: 1px solid var(--border); background: #f7f9fc; }
 
   /* Logo un peu plus petit et abaissé pour dégager le hamburger */
-  header.header .logo a img { height: 91px !important; }
+  header.header .logo a img { height: 109px !important; }
   header.header .logo { margin-top: 14px; }
   .lcv-burger { top: 14px; }
 }
