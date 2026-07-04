@@ -1,7 +1,7 @@
 ---
 title: "Flying With Your Dog on Vueling: Cabin, Fees, Restrictions (2026)"
 seoTitle: "Vueling Dog Policy: Cabin, Fees 2026"
-description: "Vueling dog policy: cabin up to 10 kg (22 lb) from €30 (~$35), carrier 45×39×21 cm, no hold, no pets to the UK, Ireland or Iceland. Verified 2026."
+description: "Vueling dog policy: cabin up to 10 kg (22 lb) from €30 (~$35), carrier 45×39×21 cm (18×15×8 in), no hold, no pets to the UK, Ireland or Iceland. Verified 2026."
 faq:
   - q: "What is the maximum weight for a dog in the cabin on Vueling?"
     a: "10 kg (22 lb), carrier included — one of the most generous limits on the market, versus 8 kg (18 lb) at most airlines."

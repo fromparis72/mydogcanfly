@@ -1,7 +1,7 @@
 ---
 title: "Flying With Your Dog on Transavia: Cabin, Hold, Fees (2026)"
 seoTitle: "Transavia Dog Policy: Cabin, Hold, Fees 2026"
-description: "Transavia dog policy: cabin up to 8 kg (18 lb), carrier 40×30×24 cm, and a heated hold from ~€77 (~$90) — rare for a low-cost airline. Verified 2026."
+description: "Transavia dog policy: cabin up to 8 kg (18 lb), carrier 40×30×24 cm (16×12×9.5 in), heated hold from ~€77 (~$90). Verified 2026."
 faq:
   - q: "Does Transavia accept dogs in the hold?"
     a: "Yes, in a heated, pressurized hold — a rarity among low-cost airlines. Expect about €77 (~$90) per crate with Transavia France."
@@ -21,7 +21,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Transavia", "low-cost", "airlines"]
 author: "Camille Roussel"
 images: ["/images/transavia-amsterdam.jpg"]
-summary: "Transavia accepts dogs up to 8 kg (18 lb) in the cabin (40 × 30 × 24 cm carrier, 2 per flight) and — rare for a low-cost carrier — in a heated hold from about €77 (~$90) per crate."
+summary: "Transavia accepts dogs up to 8 kg (18 lb) in the cabin (40 × 30 × 24 cm / 16 × 12 × 9.5 in carrier, 2 per flight) and — rare for a low-cost carrier — in a heated hold from about €77 (~$90) per crate."
 cover:
     image: "/images/transavia-amsterdam.jpg"
     alt: "Amsterdam, Netherlands"
