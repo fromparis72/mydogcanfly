@@ -1,0 +1,6 @@
+{{- /* Meta bar: reading time, last update, difficulty. Usage: {{< meta niveau="Beginner" >}} or {{< meta level="Beginner" >}} */ -}}
+<div class="lcv-meta">
+  {{- with .Page.ReadingTime }}<span>⏱️ Reading time&nbsp;: <b>{{ . }}&nbsp;min</b></span>{{ end }}
+  <span>🔄 Updated&nbsp;: <b>{{ .Page.Lastmod | time.Format ":date_long" }}</b></span>
+  {{- $lvl := or (.Get "level") (.Get "niveau") }}{{- with $lvl }}<span>📊 Difficulty&nbsp;: <b>{{ . }}</b></span>{{ end }}
+</div>

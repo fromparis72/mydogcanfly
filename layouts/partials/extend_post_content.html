@@ -1,0 +1,4 @@
+{{- /* Repli : bloc produits en fin d'article si aucune section « Sources » n'a déclenché l'insertion */ -}}
+{{- if and (eq .Type "posts") (not (.Store.Get "affilDone")) }}
+{{- partial "affil-block.html" . }}
+{{- end }}

@@ -1,0 +1,13 @@
+{{- /* Visible FAQ block. The FAQPage schema (JSON-LD) is generated in
+       extend_head.html from the same `faq` front matter. */ -}}
+{{- with .Page.Params.faq }}
+<section class="lcv-faq" aria-labelledby="lcv-faq-title">
+  <h2 id="lcv-faq-title">Frequently asked questions</h2>
+  {{- range . }}
+  <details class="lcv-faq-item">
+    <summary>{{ .q }}</summary>
+    <div class="lcv-faq-a">{{ .a | markdownify }}</div>
+  </details>
+  {{- end }}
+</section>
+{{- end -}}

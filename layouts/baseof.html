@@ -1,0 +1,41 @@
+{{- if lt hugo.Version "0.146.0" }}
+{{- errorf "=> hugo v0.146.0 or greater is required for hugo-PaperMod to build " }}
+{{- end -}}
+
+<!DOCTYPE html>
+{{- $theme := site.Params.defaultTheme | default "auto" }}
+{{- if eq $theme "dark" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="dark">
+{{- else if eq $theme "light" }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="light">
+{{- else }}
+<html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="auto">
+{{- end }}
+
+<head>
+    {{- partial "head.html" . }}
+</head>
+
+{{- if (or (ne .Kind `page` ) (eq .Layout `archives`) (eq .Layout `search`)) }}
+<body class="list" id="top">
+{{- else }}
+<body id="top">
+{{- end }}
+    {{ partialCached "header.html" . .Page -}}
+    <main class="main">
+        {{- block "main" . }}{{ end }}
+    </main>
+    {{- /* Footer illustration by transport mode (cache key = $fmode) */ -}}
+    {{- $fmode := index (slice "duo" "duo-femme" "sepia" "campagne" "longuevue" "prince" "aqua" "frisco" "egypte") (mod (len .RelPermalink) 9) -}}
+    {{- $fslug := path.Base .RelPermalink -}}
+    {{- $fav := slice "flying-with-a-dog" "flying-with-a-dog-cabin-hold-cargo" "airline-pet-policies" -}}
+    {{- $ftr := slice "train-travel-with-a-dog" "public-transit-with-a-dog" -}}
+    {{- $fvo := slice "traveling-by-car-with-a-dog" "road-trip-with-a-dog" "dog-friendly-rest-stops" -}}
+    {{- $fmex := slice "traveling-to-mexico-with-a-dog" "traveling-to-brazil-with-a-dog" "aeromexico-dog-policy" "avianca-dog-policy" "copa-airlines-dog-policy" "latam-dog-policy" -}}
+    {{- $fpar := slice "weekend-near-paris-with-a-dog" "city-trips-with-a-dog" "public-transit-with-a-dog" -}}
+    {{- $fbeach := slice "dog-friendly-beaches" "traveling-to-greece-with-a-dog" "traveling-to-thailand-with-a-dog" "traveling-to-singapore-with-a-dog" "first-vacation-with-your-dog" -}}
+    {{- if in $fmex $fslug }}{{ $fmode = "mexico" }}{{ else if in $fpar $fslug }}{{ $fmode = "paris" }}{{ else if in $fbeach $fslug }}{{ $fmode = "beach" }}{{ else if or (in .Params.categories "Airlines") (in $fav $fslug) }}{{ $fmode = "avion" }}{{ else if in $ftr $fslug }}{{ $fmode = "train" }}{{ else if in $fvo $fslug }}{{ $fmode = "voiture" }}{{ end -}}
+    {{ partialCached "footer.html" . .Layout .Kind (.Param "hideFooter") (.Param "ShowCodeCopyButtons") $fmode -}}
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+{{- $img := .Params.cover.image }}
+{{- $alt := .Params.cover.alt | default .Title }}
+<a class="lcv-row" href="{{ .Permalink }}" aria-label="{{ .Title }}">
+  {{- with $img }}<span class="lcv-row-img"><img loading="lazy" src="{{ replaceRE `w=\d+` `w=300&h=200` . }}" alt="{{ $alt }}" width="150" height="100"></span>{{ end }}
+  <span class="lcv-row-body">
+    <h3 class="lcv-row-title">{{ .Title }}</h3>
+    <p class="lcv-row-excerpt">{{ .Summary | plainify | htmlUnescape | truncate 160 }}</p>
+    <time class="lcv-date">{{ .Date | time.Format ":date_long" }}</time>
+  </span>
+</a>

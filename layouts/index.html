@@ -1,0 +1,244 @@
+{{- define "main" }}
+
+{{- /* Published posts, newest first */ -}}
+{{- $posts := where site.RegularPages "Type" "posts" }}
+{{- $posts = where $posts "Params.hiddenInHomeList" "!=" "true" }}
+{{- $paginator := .Paginate $posts 19 }}
+{{- $pages := $paginator.Pages }}
+{{- $isFirst := eq $paginator.PageNumber 1 }}
+
+{{- /* Brand hero banner only on page 1 */ -}}
+{{- if $isFirst }}
+<div class="lcv-home-hero">
+  <h1 class="lcv-hero-promise">The reference guide to traveling with your dog</h1>
+  <p class="lcv-hero-sub">Compare airline pet policies, check entry rules for every country, find the right gear and avoid bad surprises — wherever you fly from.</p>
+
+  <form class="lcv-search" action="/tools/can-my-dog-fly/" method="get">
+    <div class="lcv-search-h">✈️ Find the best airline for your dog</div>
+    <div class="lcv-search-grid">
+      <label class="lcv-field"><span>From</span><input type="text" name="from" class="lcv-ac" placeholder="City or airport" autocomplete="off"></label>
+      <label class="lcv-field"><span>To</span><input type="text" name="to" class="lcv-ac" placeholder="City or airport" autocomplete="off"></label>
+      <label class="lcv-field"><span>Dog breed</span><input type="text" name="breed" class="lcv-ac-breed" placeholder="e.g. Golden Retriever" autocomplete="off" required></label>
+      <label class="lcv-field lcv-field--w"><span>Dog's weight</span><input type="number" name="w" min="1" max="260" placeholder="lb"></label>
+      <input type="hidden" name="unit" value="lb">
+      <div class="lcv-seg" role="group" aria-label="Cabin or hold">
+        <input type="radio" name="mode" id="m-cab" value="cabin" checked><label for="m-cab">Cabin</label>
+        <input type="radio" name="mode" id="m-soute" value="hold"><label for="m-soute">Hold</label>
+      </div>
+      <button type="submit" class="lcv-search-btn">Compare</button>
+    </div>
+    <a class="lcv-search-link" href="/tools/can-my-dog-fly/">or open the full flight checker (62 airlines) →</a>
+  </form>
+
+  <script>
+  function nrm(s){return (s||"").toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  (function(){
+    var DATA = {{ site.Data.aeroports | jsonify | safeJS }};
+    var ITEMS = DATA.map(function(a){return {label:a[1]+" ("+a[0]+")", code:(a[0]||"").toLowerCase(), name:nrm(a[1])};});
+    document.querySelectorAll('input.lcv-ac').forEach(function(inp){
+      var box = inp.closest('.lcv-field'); if(!box) return;
+      var list = document.createElement('ul'); list.className = 'lcv-ac-list'; list.hidden = true;
+      box.appendChild(list);
+      var cur = [], active = -1;
+      function close(){ list.hidden = true; list.innerHTML = ''; active = -1; }
+      function show(q){
+        q = nrm((q||'').trim());
+        if(q.length < 1){ close(); return; }
+        cur = ITEMS.filter(function(it){ return it.name.indexOf(q) >= 0 || it.code.indexOf(q) >= 0; }).slice(0, 8);
+        if(!cur.length){ close(); return; }
+        list.innerHTML = cur.map(function(it,i){ return '<li data-i="'+i+'">'+it.label+'</li>'; }).join('');
+        list.hidden = false; active = -1;
+      }
+      inp.addEventListener('input', function(){ show(inp.value); });
+      inp.addEventListener('focus', function(){ if(inp.value) show(inp.value); });
+      inp.addEventListener('keydown', function(e){
+        if(list.hidden) return;
+        var lis = list.querySelectorAll('li');
+        if(e.key === 'ArrowDown'){ e.preventDefault(); active = Math.min(active+1, lis.length-1); }
+        else if(e.key === 'ArrowUp'){ e.preventDefault(); active = Math.max(active-1, 0); }
+        else if(e.key === 'Enter'){ if(active >= 0){ e.preventDefault(); inp.value = cur[active].label; close(); } return; }
+        else if(e.key === 'Escape'){ close(); return; }
+        else return;
+        lis.forEach(function(li,i){ li.classList.toggle('on', i === active); });
+        if(lis[active]) lis[active].scrollIntoView({block:'nearest'});
+      });
+      list.addEventListener('mousedown', function(e){ var li = e.target.closest('li'); if(li){ inp.value = cur[+li.dataset.i].label; close(); } });
+      document.addEventListener('click', function(e){ if(!box.contains(e.target)) close(); });
+    });
+  })();
+  (function(){
+    var RACES = {{ site.Data.races | jsonify | safeJS }};
+    var inp = document.querySelector('input.lcv-ac-breed'); if(!inp) return;
+    var box = inp.closest('.lcv-field'); var wInp = document.querySelector('input[name="w"]');
+    var list = document.createElement('ul'); list.className = 'lcv-ac-list'; list.hidden = true; box.appendChild(list);
+    var cur = [], active = -1;
+    function close(){ list.hidden = true; list.innerHTML = ''; active = -1; }
+    function pick(i){ var r = cur[i]; inp.value = r[0]; if(wInp && !wInp.value) wInp.value = Math.round(r[1]*2.20462); close(); }
+    function show(q){
+      q = nrm((q||'').trim());
+      if(q.length < 1){ close(); return; }
+      cur = RACES.filter(function(r){ return nrm(r[0]).indexOf(q) >= 0; }).slice(0, 8);
+      if(!cur.length){ close(); return; }
+      list.innerHTML = cur.map(function(r,i){ return '<li data-i="'+i+'">'+r[0]+(r[2]?' 🐽':'')+'</li>'; }).join('');
+      list.hidden = false; active = -1;
+    }
+    inp.addEventListener('input', function(){ show(inp.value); });
+    inp.addEventListener('focus', function(){ if(inp.value) show(inp.value); });
+    inp.addEventListener('keydown', function(e){
+      if(list.hidden) return;
+      var lis = list.querySelectorAll('li');
+      if(e.key === 'ArrowDown'){ e.preventDefault(); active = Math.min(active+1, lis.length-1); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); active = Math.max(active-1, 0); }
+      else if(e.key === 'Enter'){ if(active >= 0){ e.preventDefault(); pick(active); } return; }
+      else if(e.key === 'Escape'){ close(); return; }
+      else return;
+      lis.forEach(function(li,i){ li.classList.toggle('on', i === active); });
+      if(lis[active]) lis[active].scrollIntoView({block:'nearest'});
+    });
+    list.addEventListener('mousedown', function(e){ var li = e.target.closest('li'); if(li) pick(+li.dataset.i); });
+    document.addEventListener('click', function(e){ if(!box.contains(e.target)) close(); });
+    inp.addEventListener('input', function(){ inp.setCustomValidity(''); });
+    if(inp.form) inp.form.addEventListener('submit', function(e){
+      var ok = RACES.some(function(r){ return r[0].toLowerCase() === inp.value.trim().toLowerCase(); });
+      if(!ok){ e.preventDefault(); inp.setCustomValidity('Please pick a breed from the list.'); inp.reportValidity(); }
+    });
+  })();
+  </script>
+
+
+  <a class="lcv-rss" href="/index.xml" title="RSS feed" aria-label="RSS feed">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+  </a>
+</div>
+
+<nav class="lcv-portals" aria-label="Browse by topic">
+  <a class="lcv-portal" href="/airline-pet-policies/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><span class="lcv-portal-t">Plane</span><span class="lcv-portal-d">Flying with a dog: 62 airlines</span></a>
+  <a class="lcv-portal" href="/traveling-by-car-with-a-dog/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span><span class="lcv-portal-t">Car</span><span class="lcv-portal-d">Safety, breaks, road trips</span></a>
+  <a class="lcv-portal" href="/train-travel-with-a-dog/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16"/><circle cx="8.5" cy="14" r="1"/><circle cx="15.5" cy="14" r="1"/><path d="M7 17l-2 4"/><path d="M17 17l2 4"/></svg></span><span class="lcv-portal-t">Train</span><span class="lcv-portal-d">Tickets and rail rules</span></a>
+  <a class="lcv-portal" href="/categories/destinations/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></span><span class="lcv-portal-t">Destinations</span><span class="lcv-portal-d">Beaches, cities, mountains</span></a>
+  <a class="lcv-portal" href="/dog-travel-requirements-by-country/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg></span><span class="lcv-portal-t">Country rules</span><span class="lcv-portal-d">Paperwork, vaccines, lead times</span></a>
+  <a class="lcv-portal" href="/dog-friendly-accommodation/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><path d="M9 6h.01M15 6h.01M12 6h.01M12 10h.01M12 14h.01M15 10h.01M15 14h.01M9 10h.01M9 14h.01"/></svg></span><span class="lcv-portal-t">Places to stay</span><span class="lcv-portal-d">Dog-friendly hotels & rentals</span></a>
+  <a class="lcv-portal" href="/categories/gear/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M8 21v-5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v5"/><path d="M8 11h8"/></svg></span><span class="lcv-portal-t">Gear</span><span class="lcv-portal-d">Crates, harnesses, GPS</span></a>
+  <a class="lcv-portal" href="/tools/"><span class="lcv-portal-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="lcv-portal-t">Tools</span><span class="lcv-portal-d">Flight checker & calculators</span></a>
+</nav>
+
+<div class="lcv-popular" aria-label="Most popular searches">
+  <span class="lcv-popular-h">🔥 Most popular right now</span>
+  <a href="/flying-with-a-dog/">Flying with a dog</a>
+  <a href="/traveling-to-japan-with-a-dog/">Taking a dog to Japan</a>
+  <a href="/traveling-to-the-uk-with-a-dog/">United Kingdom</a>
+  <a href="/traveling-to-the-usa-with-a-dog/">United States</a>
+  <a href="/tools/iata-dog-crate-calculator/">IATA crate size</a>
+  <a href="/airline-pet-policies/">Large-dog airlines</a>
+</div>
+
+<ul class="lcv-stats" aria-label="My Dog Can Fly in numbers">
+  <li><strong>62</strong><span>airlines analyzed</span></li>
+  <li><strong>140+</strong><span>practical guides</span></li>
+  <li><strong>100%</strong><span>verified data</span></li>
+  <li><strong>July 2026</strong><span>last updated</span></li>
+</ul>
+{{- end }}
+
+{{- if and $isFirst (gt (len $pages) 0) }}
+  {{- $feature := index $pages 0 }}
+  {{- $side := slice }}
+  {{- if gt (len $pages) 1 }}{{ $side = first (math.Min 6 (sub (len $pages) 1)) (after 1 $pages) }}{{ end }}
+  {{- $rest := slice }}
+  {{- if gt (len $pages) 7 }}{{ $rest = after 7 $pages }}{{ end }}
+
+  <h2 class="lcv-section-title">Plan your trip</h2>
+  <section class="lcv-mag">
+    <div class="lcv-mag-left">
+      {{- range first (math.Min 3 (len $side)) $side }}{{ partial "lcv_card.html" . }}{{ end }}
+    </div>
+
+    <div class="lcv-mag-feature">
+      {{- with $feature }}
+      {{- $img := .Params.cover.image }}
+      {{- $alt := .Params.cover.alt | default .Title }}
+      <article>
+        {{- with $img }}<a class="lcv-feature-img" href="{{ $feature.Permalink }}" aria-label="{{ $feature.Title }}"><img loading="eager" src="{{ replaceRE `w=\d+` `w=800&h=500` . }}" alt="{{ $alt }}" width="800" height="500"></a>{{ end }}
+        {{- with .Params.categories }}<a class="lcv-kicker" href="{{ (index $feature.Params.categories 0 | urlize | printf "/categories/%s/") }}">{{ index . 0 }}</a>{{ end }}
+        <h2 class="lcv-feature-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+        <p class="lcv-feature-excerpt">{{ .Summary | plainify | htmlUnescape | truncate 200 }}</p>
+        <time class="lcv-date">{{ .Date | time.Format ":date_long" }}</time>
+      </article>
+      {{- end }}
+    </div>
+
+    <div class="lcv-mag-right">
+      {{- range after 3 $side }}{{ partial "lcv_card.html" . }}{{ end }}
+    </div>
+  </section>
+
+  {{- if gt (len $rest) 0 }}
+  <section class="lcv-news">
+    <h2 class="lcv-section-title">Latest guides</h2>
+    {{- range $rest }}{{ partial "lcv_row.html" . }}{{ end }}
+  </section>
+  {{- end }}
+
+{{- else }}
+  <section class="lcv-news">
+    <h2 class="lcv-section-title">Articles</h2>
+    {{- range $pages }}{{ partial "lcv_row.html" . }}{{ end }}
+  </section>
+{{- end }}
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}<a class="prev" href="{{ $paginator.Prev.URL | absURL }}">«&nbsp;Previous</a>{{ end }}
+    {{- if $paginator.HasNext }}<a class="next" href="{{ $paginator.Next.URL | absURL }}">Next&nbsp;»</a>{{ end }}
+  </nav>
+</footer>
+{{- end }}
+
+{{- if $isFirst }}
+<section class="lcv-faq lcv-home-faq" aria-labelledby="lcv-home-faq-title">
+  <h2 id="lcv-home-faq-title">Traveling with your dog: frequently asked questions</h2>
+
+  <details class="lcv-faq-item">
+    <summary>Which airlines allow dogs in the cabin?</summary>
+    <div class="lcv-faq-a"><p>Many airlines accept a small dog in the cabin, usually up to 8 kg / 17–20 lb including the carrier. In North America: Delta, United, American, Alaska, JetBlue, Air Canada and WestJet. In Europe: Air France, Lufthansa, KLM, Iberia, ITA Airways, SWISS or TAP Air Portugal. Above the weight limit, dogs travel in the hold in an IATA-compliant crate.</p></div>
+  </details>
+
+  <details class="lcv-faq-item">
+    <summary>Cabin or hold: how do I choose for my dog's flight?</summary>
+    <div class="lcv-faq-a"><p>Weight decides. Under roughly 8 kg / 17–20 lb (dog + carrier), the cabin is possible on most airlines; above that, the dog flies in the hold in an IATA-compliant crate. Snub-nosed (brachycephalic) breeds are often banned from the hold for health reasons, and heat embargoes apply in summer. Our flight checker shows cabin, hold and fees for each airline.</p></div>
+  </details>
+
+  <details class="lcv-faq-item">
+    <summary>What paperwork does my dog need to travel internationally?</summary>
+    <div class="lcv-faq-a"><p>At minimum: an ISO microchip, a valid rabies vaccination and a health certificate issued shortly before departure. Depending on the destination, you may also need a rabies titer test, an import permit, tapeworm treatment or quarantine. Requirements depend on both your destination and your country of origin — check them early, as some lead times run 3 to 7 months.</p></div>
+  </details>
+
+  <details class="lcv-faq-item">
+    <summary>How should I prepare a car trip with my dog?</summary>
+    <div class="lcv-faq-a"><p>Always secure your dog with a crate, a crash-tested harness or a cargo barrier. Take a break every two hours, offer water, and never leave a dog alone in the car in warm weather. Good preparation limits motion sickness and makes the ride safer and calmer for everyone.</p></div>
+  </details>
+
+  <details class="lcv-faq-item">
+    <summary>Can large dogs fly at all?</summary>
+    <div class="lcv-faq-a"><p>Yes. Dogs too big for the cabin can fly in the pressurized, temperature-controlled hold of many airlines — often up to 32–75 kg (70–165 lb) including the crate — or as manifest cargo with specialist carriers. The crate must meet IATA standards, and snub-nosed breeds are usually excluded. Our checker lists every airline's limits and fees.</p></div>
+  </details>
+
+  <details class="lcv-faq-item">
+    <summary>Plane, train or car: which is best for my dog?</summary>
+    <div class="lcv-faq-a"><p>It depends on distance and your dog's size. For short trips, the car offers the most freedom; trains are ideal for city breaks and low stress where dogs are allowed on board; flying is the answer for long distances — cabin for small dogs, hold for large ones. In every case, compare airlines and check the rules before booking.</p></div>
+  </details>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Which airlines allow dogs in the cabin?","acceptedAnswer":{"@type":"Answer","text":"Many airlines accept a small dog in the cabin, usually up to 8 kg / 17–20 lb including the carrier. In North America: Delta, United, American, Alaska, JetBlue, Air Canada and WestJet. In Europe: Air France, Lufthansa, KLM, Iberia, ITA Airways, SWISS or TAP Air Portugal. Above the weight limit, dogs travel in the hold in an IATA-compliant crate."}},
+{"@type":"Question","name":"Cabin or hold: how do I choose for my dog's flight?","acceptedAnswer":{"@type":"Answer","text":"Weight decides. Under roughly 8 kg / 17–20 lb (dog + carrier), the cabin is possible on most airlines; above that, the dog flies in the hold in an IATA-compliant crate. Snub-nosed breeds are often banned from the hold for health reasons, and heat embargoes apply in summer. Our flight checker shows cabin, hold and fees for each airline."}},
+{"@type":"Question","name":"What paperwork does my dog need to travel internationally?","acceptedAnswer":{"@type":"Answer","text":"At minimum: an ISO microchip, a valid rabies vaccination and a health certificate issued shortly before departure. Depending on the destination, you may also need a rabies titer test, an import permit, tapeworm treatment or quarantine. Requirements depend on both your destination and your country of origin — check them early, as some lead times run 3 to 7 months."}},
+{"@type":"Question","name":"How should I prepare a car trip with my dog?","acceptedAnswer":{"@type":"Answer","text":"Always secure your dog with a crate, a crash-tested harness or a cargo barrier. Take a break every two hours, offer water, and never leave a dog alone in the car in warm weather. Good preparation limits motion sickness and makes the ride safer and calmer for everyone."}},
+{"@type":"Question","name":"Can large dogs fly at all?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dogs too big for the cabin can fly in the pressurized, temperature-controlled hold of many airlines — often up to 32–75 kg (70–165 lb) including the crate — or as manifest cargo with specialist carriers. The crate must meet IATA standards, and snub-nosed breeds are usually excluded."}},
+{"@type":"Question","name":"Plane, train or car: which is best for my dog?","acceptedAnswer":{"@type":"Answer","text":"It depends on distance and your dog's size. For short trips, the car offers the most freedom; trains are ideal for city breaks and low stress where dogs are allowed on board; flying is the answer for long distances — cabin for small dogs, hold for large ones. In every case, compare airlines and check the rules before booking."}}
+]}
+</script>
+{{- end }}
+
+{{- end }}{{- /* end main */ -}}

@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IATA Dog Crate Size Calculator: What Size Does Your Dog Need?</title>
+<meta name="description" content="Calculate the right IATA-compliant travel crate size for your dog from their measurements or breed. Official IATA formula, standard sizes n°100 to n°700."><link rel="canonical" href="https://mydogcanfly.com/tools/iata-dog-crate-calculator/"><meta name="robots" content="index, follow"><meta property="og:type" content="website"><meta property="og:site_name" content="My Dog Can Fly"><meta property="og:locale" content="en_US"><meta property="og:title" content="IATA Dog Crate Size Calculator: What Size Does Your Dog Need?"><meta property="og:description" content="Calculate the right IATA-compliant travel crate size for your dog from their measurements or breed. Official IATA formula, standard sizes n°100 to n°700."><meta property="og:url" content="https://mydogcanfly.com/tools/iata-dog-crate-calculator/"><meta property="og:image" content="https://mydogcanfly.com/images/cage-iata.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="IATA Dog Crate Size Calculator: What Size Does Your Dog Need?"><meta name="twitter:description" content="Calculate the right IATA-compliant travel crate size for your dog from their measurements or breed. Official IATA formula, standard sizes n°100 to n°700."><meta name="twitter:image" content="https://mydogcanfly.com/images/cage-iata.png"><meta name="theme-color" content="#14294B">
+<style>
+:root{--navy:#14294B;--gold:#C89048;--teal:#1D4E82;--line:#e8ebef;--mut:#6b7280;--okbg:#e1f5ee;--ok:#0f6e56;--warnbg:#faeeda;--warn:#854f0b}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#2d3748;background:#fff;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 60px}
+.tool-foot{margin:36px auto 0;max-width:1000px;line-height:0;position:relative}.tool-foot::before{content:"";position:absolute;top:-1px;left:0;right:0;height:40px;background:linear-gradient(#fff,rgba(255,255,255,0));z-index:1}.tool-foot img{width:100%;height:auto;display:block}
+h1{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;color:var(--navy);font-size:40px;margin:.2rem 0 .3rem}
+.lede{color:var(--mut);margin:0 0 1.2rem}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tab{flex:1;padding:11px;border:1.5px solid var(--line);background:#f7f9fc;border-radius:10px;font-weight:600;color:var(--navy);cursor:pointer;text-align:center}
+.tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.unit-tg{display:flex;justify-content:flex-end;gap:6px;margin:0 0 12px}
+.unit-tg button{padding:6px 14px;border:1.5px solid var(--line);background:#f7f9fc;border-radius:999px;font-weight:600;font-size:.85rem;color:var(--navy);cursor:pointer}
+.unit-tg button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card{border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+label{display:block;font-weight:600;color:var(--navy);font-size:.9rem;margin:0 0 4px}
+.hint{font-weight:400;color:var(--mut);font-size:.82rem}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+input,select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:9px;font-size:1rem}
+input:focus,select:focus{outline:none;border-color:var(--teal)}
+.btn{display:block;width:100%;margin-top:8px;padding:13px;background:var(--gold);color:#fff;border:0;border-radius:999px;font-size:1rem;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--navy)}
+.res{display:none;margin-top:6px}
+.res.show{display:block}
+.size-box{background:#f6f8fb;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.size-box .big{font-family:"Playfair Display",Georgia,serif;color:var(--navy);font-size:1.5rem;margin:.1rem 0}
+.dims{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.dim{flex:1;min-width:120px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:center}
+.dim b{display:block;color:var(--navy);font-size:1.25rem}
+.dim span{font-size:.78rem;color:var(--mut)}
+.note{font-size:.86rem;border-radius:10px;padding:10px 12px;margin:8px 0}
+.note.warn{background:var(--warnbg);color:var(--warn)}
+.note.ok{background:var(--okbg);color:var(--ok)}
+.muted{color:var(--mut);font-size:.82rem}
+.diag{margin:18px 0;text-align:center}
+svg{max-width:100%;height:auto}
+.diag img{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block;margin:0 auto}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:6px}
+th,td{padding:8px 10px;border-top:1px solid var(--line);text-align:left}
+th{background:var(--navy);color:#fff}
+.foot{margin-top:26px;font-size:.82rem;color:var(--mut);border-top:1px solid var(--line);padding-top:14px}
+a{color:var(--teal)}
+
+.site-hd{border-bottom:1px solid var(--line);padding:10px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:.55rem;margin-bottom:8px}
+.site-hd a.site-logo{display:block;line-height:0}
+.site-hd .site-logo img{height:62px;width:auto;display:block}
+.site-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.28rem}
+.site-nav a{color:var(--navy);text-decoration:none;font-weight:500;font-size:.9rem;padding:6px 11px;border-radius:999px;transition:background .2s ease,color .2s ease}
+.site-nav a:hover{background:var(--teal);color:#fff}
+@media(max-width:960px){.site-hd .site-logo img{height:54px}}
+.lcv-toolfooter{max-width:1000px;margin:0 auto;padding:22px 14px 34px}.lcv-tagline{text-align:center;font-family:'Quicksand',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;color:#C89048;font-size:1.25rem;margin:1.9rem auto 0}.lcv-heart{color:var(--gold);font-style:normal}.lcv-copyright{text-align:center;color:#8a93a0;font-size:.85rem;margin:2.4rem auto .2rem}.lcv-copyright a{color:#8a93a0;text-decoration:underline}.lcv-copyright a:hover{color:var(--teal)}.seo{max-width:820px;margin:48px auto 0;line-height:1.7;color:#2b3648;font-size:1rem}.seo h2{font-size:1.35rem;color:var(--navy);font-weight:700;margin:2rem 0 .5rem}.seo h3{font-size:1.05rem;color:var(--navy);font-weight:700;margin:1.3rem 0 .3rem}.seo p{margin:.55rem 0}.seo ul{margin:.4rem 0 .9rem;padding-left:1.15rem}.seo li{margin:.28rem 0}.seo a{color:var(--teal);text-decoration:underline}.seo .seo-lead{font-size:1.06rem}</style><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"IATA Dog Crate Size Calculator","url":"https://mydogcanfly.com/tools/iata-dog-crate-calculator/","description":"Calculate the right IATA-compliant travel crate size for your dog from their measurements or breed, using the official IATA formula.","applicationCategory":"TravelApplication","operatingSystem":"Web","inLanguage":"en-US","image":"https://mydogcanfly.com/images/cage-iata.png","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"My Dog Can Fly","url":"https://mydogcanfly.com/","logo":{"@type":"ImageObject","url":"https://mydogcanfly.com/images/lechienvoyageur_slogan_services.png"}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mydogcanfly.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://mydogcanfly.com/tools/"},{"@type":"ListItem","position":3,"name":"IATA Dog Crate Size Calculator","item":"https://mydogcanfly.com/tools/iata-dog-crate-calculator/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What size crate does my dog need?","acceptedAnswer":{"@type":"Answer","text":"It depends on your dog's measurements, not just their weight. Enter your dog's dimensions in the calculator to get the right approved crate size, with enough room for comfort."}},{"@type":"Question","name":"How do I know if a crate is IATA-compliant?","acceptedAnswer":{"@type":"Answer","text":"A compliant crate is rigid, well ventilated on at least three sides, with a lockable metal door and a leak-proof floor."}},{"@type":"Question","name":"Should my dog get used to the crate before the trip?","acceptedAnswer":{"@type":"Answer","text":"Yes: introduce the crate several days ahead so your dog feels safe inside it, which greatly reduces stress on flight day."}}]}]}</script></head>
+<body><header class="site-hd"><a class="site-logo" href="/" title="Le Chien Voyageur"><img src="/images/lechienvoyageur_slogan_services.png" alt="Le Chien Voyageur"></a><nav class="site-nav"><a href="/comparatif-compagnies-aeriennes-chien/">Avion</a><a href="/voyager-voiture-avec-chien/">Voiture</a><a href="/prendre-le-train-avec-chien/">Train</a><a href="/categories/destinations/">Destinations</a><a href="/voyager-chien-etranger-pays/">Formalités</a><a href="/choisir-hebergement-dog-friendly/">Hébergements</a><a href="/categories/equipement/">Équipements</a><a href="/categories/sante/">Santé</a><a href="/outils/">Outils</a></nav></header><div class="wrap">
+<h1>Calculateur de caisse de transport IATA</h1>
+<p class="lede">Trouvez la taille de caisse homologuée <strong>IATA</strong> adaptée à votre chien — indispensable pour un voyage en soute. Calcul à partir des mesures de votre chien (méthode officielle IATA) ou d'une estimation par race.</p>
+
+<div class="tabs">
+  <div class="tab on" id="tab-mes" onclick="setMode('mes')">📏 Par mesures</div>
+  <div class="tab" id="tab-race" onclick="setMode('race')">🐕 Par race (estimation)</div>
+</div>
+
+<div class="diag">
+<img src="/images/mesurer-chien-caisse-iata.jpg" alt="Comment mesurer son chien pour sa caisse de transport IATA : hauteur du sol au sommet de la tête (oreilles dressées) et longueur du nez à la base de la queue" loading="lazy">
+</div>
+
+<div class="card" id="card-mes">
+  <div class="grid">
+    <div><label>A — Longueur <span class="hint">du bout du museau à la base de la queue (cm)</span></label><input type="number" id="A" min="1" placeholder="ex. 60"></div>
+    <div><label>B — Hauteur des pattes <span class="hint">du sol au coude (cm)</span></label><input type="number" id="B" min="1" placeholder="ex. 28"></div>
+    <div><label>C — Largeur <span class="hint">au point le plus large (cm)</span></label><input type="number" id="C" min="1" placeholder="ex. 22"></div>
+    <div><label>D — Hauteur totale <span class="hint">du sol au sommet de la tête/oreilles, debout (cm)</span></label><input type="number" id="D" min="1" placeholder="ex. 50"></div>
+  </div>
+  <button class="btn" onclick="calcMes()">Calculer la taille de caisse</button>
+</div>
+
+<div class="card" id="card-race" style="display:none">
+  <label for="breed">Race (valeurs adultes indicatives)</label>
+  <select id="breed"><option value="">— Choisir une race —</option></select>
+  <p class="muted" style="margin:.6rem 0 0">⚠️ Les mesures par race sont des moyennes indicatives. Pour un résultat fiable, <strong>mesurez votre chien</strong> (onglet « Par mesures »).</p>
+  <button class="btn" onclick="calcRace()">Estimer la taille de caisse</button>
+</div>
+
+<div class="res" id="res">
+  <div class="size-box">
+    <div class="muted">Taille de caisse recommandée</div>
+    <div class="big" id="r-size">—</div>
+    <div class="muted" id="r-weight"></div>
+    <div class="dims">
+      <div class="dim"><b id="r-l">—</b><span>Longueur min. (cm)</span></div>
+      <div class="dim"><b id="r-w">—</b><span>Largeur min. (cm)</span></div>
+      <div class="dim"><b id="r-h">—</b><span>Hauteur min. (cm)</span></div>
+    </div>
+    <p class="muted" style="margin:.2rem 0 0">Dimensions <strong>intérieures minimales</strong> calculées selon la formule IATA. Choisissez une caisse dont l'intérieur est au moins égal à ces valeurs.</p>
+  </div>
+  <div id="r-notes"></div>
+</div>
+
+<h3 style="color:var(--navy)">Repère rapide par poids</h3>
+<table>
+<thead><tr><th>Poids du chien</th><th>Taille usuelle</th><th>Exemple de races</th></tr></thead>
+<tbody>
+<tr><td>jusqu'à 5 kg</td><td>XS (n°100)</td><td>Chihuahua, Yorkshire</td></tr>
+<tr><td>5–10 kg</td><td>S (n°200)</td><td>Cavalier King Charles, Teckel</td></tr>
+<tr><td>10–18 kg</td><td>M (n°300)</td><td>Cocker, Beagle, Border Collie</td></tr>
+<tr><td>18–27 kg</td><td>L (n°400)</td><td>Berger australien, Springer</td></tr>
+<tr><td>27–39 kg</td><td>XL (n°500)</td><td>Labrador, Golden Retriever</td></tr>
+<tr><td>39–50 kg</td><td>XXL (n°500/700)</td><td>Berger allemand, Boxer</td></tr>
+<tr><td>50 kg et +</td><td>Géant (n°700)</td><td>Dogue, Montagne des Pyrénées</td></tr>
+</tbody>
+</table>
+
+<div class="foot">
+<p><strong>Méthode IATA :</strong> Longueur de caisse = A + ½B · Largeur = C × 2 · Hauteur = D (tête dressée, sans toucher le toit). Le chien doit pouvoir se tenir debout, se retourner et se coucher naturellement.</p>
+<p>Les tailles standard et leurs dimensions sont indicatives et varient selon les fabricants (Petmate Sky Kennel/Vari Kennel, Skudo…). Vérifiez les dimensions intérieures réelles avant l'achat, et confirmez les exigences auprès de votre compagnie aérienne. En savoir plus : <a href="https://lechienvoyageur.com/caisse-transport-avion-homologuee-chien/">choisir une caisse homologuée IATA</a> · <a href="https://lechienvoyageur.com/comparatif-compagnies-aeriennes-chien/">comparatif des compagnies aériennes</a>.</p>
+<p class="muted">Outil fourni à titre indicatif par Le Chien Voyageur — ne remplace pas les consignes officielles de la compagnie.</p>
+</div>
+</div>
+
+<script>
+// Tailles standard : [nom, Lint, Wint, Hint, poids]
+var SIZES=[
+ ["XS — n°100",48,32,31,"jusqu'à ~5 kg"],
+ ["S — n°200",61,40,39,"~5 à 10 kg"],
+ ["M — n°300",68,48,46,"~10 à 18 kg"],
+ ["L — n°400",81,56,58,"~18 à 27 kg"],
+ ["XL — n°500",91,64,66,"~27 à 39 kg"],
+ ["XXL — n°550",102,69,76,"~39 à 50 kg"],
+ ["Géant — n°700",122,81,89,"~50 kg et +"]
+];
+// Races : A(longueur museau→base queue), B(sol→coude), C(largeur), D(sol→sommet tête debout) — moyennes indicatives (cm)
+var BREEDS={
+ "Chihuahua":[28,12,12,22],"Yorkshire Terrier":[30,13,13,24],"Spitz nain (Poméranien)":[30,14,14,25],
+ "Bichon frisé":[34,16,16,28],"Jack Russell":[40,20,18,33],"Teckel":[48,14,16,30],
+ "Cavalier King Charles":[40,18,18,33],"Carlin (brachy)":[38,20,22,30],
+ "Bouledogue français (brachy)":[44,22,26,33],"Shih Tzu (brachy)":[36,18,18,28],
+ "Cocker Spaniel":[52,24,22,42],"Beagle":[55,26,22,42],"Border Collie":[62,30,24,52],
+ "Berger australien":[64,32,26,54],"Boxer (brachy)":[68,36,28,57],
+ "Labrador Retriever":[72,36,30,58],"Golden Retriever":[72,36,30,58],
+ "Berger allemand":[78,38,30,62],"Husky sibérien":[68,34,28,56],
+ "Dogue allemand":[95,52,38,82],"Montagne des Pyrénées":[90,46,40,75]
+};
+var BRACHY=["Carlin","Bouledogue","Boxer","Shih Tzu","Pékinois","Boston","Cavalier"];
+function setMode(m){
+ document.getElementById('tab-mes').classList.toggle('on',m=='mes');
+ document.getElementById('tab-race').classList.toggle('on',m=='race');
+ document.getElementById('card-mes').style.display=m=='mes'?'block':'none';
+ document.getElementById('card-race').style.display=m=='race'?'block':'none';
+}
+function pickSize(L,W,H){
+ for(var i=0;i<SIZES.length;i++){if(SIZES[i][1]>=L&&SIZES[i][2]>=W&&SIZES[i][3]>=H)return SIZES[i];}
+ return null;
+}
+function render(L,W,H,brachy,approx,breedName){
+ var s=pickSize(L,W,H);
+ document.getElementById('r-l').textContent=Math.ceil(L);
+ document.getElementById('r-w').textContent=Math.ceil(W);
+ document.getElementById('r-h').textContent=Math.ceil(H);
+ var notes="";
+ if(s){document.getElementById('r-size').textContent=s[0];document.getElementById('r-weight').textContent="Convient en général aux chiens de "+s[4];}
+ else{document.getElementById('r-size').textContent="Hors gabarit standard";document.getElementById('r-weight').textContent="Caisse sur mesure ou transport en fret à prévoir.";}
+ if(approx){notes+='<div class="note warn">Estimation par race ('+breedName+') à partir de moyennes. Mesurez votre chien pour confirmer la taille avant l\'achat.</div>';}
+ if(brachy){notes+='<div class="note warn">🐽 Race brachycéphale (face plate) : la plupart des compagnies l\'<strong>interdisent en soute</strong>. Privilégiez la cabine si le poids le permet, et choisissez une caisse <strong>une taille au-dessus</strong> pour une meilleure ventilation.</div>';}
+ notes+='<div class="note ok">✔ La caisse doit permettre au chien de se tenir <strong>debout (oreilles ne touchant pas le toit)</strong>, de se <strong>retourner</strong> et de se <strong>coucher</strong>. Ventilation sur au moins 3 côtés (4 pour l\'international).</div>';
+ document.getElementById('r-notes').innerHTML=notes;
+ document.getElementById('res').classList.add('show');
+ document.getElementById('res').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function calcMes(){
+ var A=+document.getElementById('A').value,B=+document.getElementById('B').value,C=+document.getElementById('C').value,D=+document.getElementById('D').value;
+ if(!(A>0&&B>0&&C>0&&D>0)){alert("Renseignez les 4 mesures (A, B, C, D) en centimètres.");return;}
+ render(A+B/2, C*2, D, false, false, "");
+}
+function calcRace(){
+ var b=document.getElementById('breed').value;
+ if(!b){alert("Choisissez une race.");return;}
+ var m=BREEDS[b],br=BRACHY.some(function(x){return b.indexOf(x)>=0;});
+ render(m[0]+m[1]/2, m[2]*2, m[3], br, true, b);
+}
+(function(){var sel=document.getElementById('breed');Object.keys(BREEDS).sort().forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=k;sel.appendChild(o);});})();
+</script>
+<section class="seo">
+<h2>Bien choisir la caisse de transport de son chien pour l'avion</h2>
+<p class="seo-lead">Pour voyager en avion avec un chien qui part en soute, la caisse de transport homologu&eacute;e <strong>IATA</strong> est obligatoire. Encore faut-il choisir la bonne taille&nbsp;: ni trop petite (interdite &agrave; l'embarquement et inconfortable), ni trop grande (surco&ucirc;t et instabilit&eacute;). Ce calculateur vous aide &agrave; trouver la taille de caisse adapt&eacute;e &agrave; votre chien, &agrave; partir de ses mesures ou de sa race, selon la formule officielle IATA.</p>
+<p>Une caisse bien dimensionn&eacute;e est la condition d'un voyage s&ucirc;r et serein&nbsp;: votre chien doit pouvoir s'y tenir debout sans toucher le toit, se retourner et se coucher naturellement. Les compagnies a&eacute;riennes refusent l'embarquement d'un animal dont la caisse ne respecte pas ces r&egrave;gles.</p>
+<h2>Comment mesurer son chien pour trouver la bonne taille de caisse&nbsp;?</h2>
+<p>La m&eacute;thode IATA repose sur quatre mesures de votre chien, prises debout&nbsp;:</p>
+<ul>
+<li><strong>A &mdash; Longueur</strong>&nbsp;: du bout du museau &agrave; la base de la queue.</li>
+<li><strong>B &mdash; Hauteur des pattes</strong>&nbsp;: du sol au coude.</li>
+<li><strong>C &mdash; Largeur</strong>&nbsp;: au point le plus large du corps.</li>
+<li><strong>D &mdash; Hauteur totale</strong>&nbsp;: du sol au sommet de la t&ecirc;te (oreilles dress&eacute;es).</li>
+</ul>
+<p>Le calculateur applique la formule officielle&nbsp;: longueur de caisse = A + &frac12;B, largeur = C &times; 2, hauteur = D. Vous obtenez les dimensions int&eacute;rieures minimales, puis la taille standard correspondante (n&deg;100 &agrave; n&deg;700).</p>
+<h2>Les tailles de caisses IATA, du n&deg;100 au n&deg;700</h2>
+<p>Les caisses de transport homologu&eacute;es existent en tailles standard, du n&deg;100 (tr&egrave;s petits chiens, type Chihuahua) au n&deg;700 (chiens g&eacute;ants, type Dogue). Le poids donne un premier rep&egrave;re, mais seules les mesures garantissent le bon choix&nbsp;: deux chiens de m&ecirc;me poids peuvent avoir besoin de caisses diff&eacute;rentes. En cas de doute entre deux tailles, choisissez la plus grande.</p>
+<h2>Cabine ou soute&nbsp;: quand la caisse est-elle n&eacute;cessaire&nbsp;?</h2>
+<p>Un petit chien (jusqu'&agrave; environ 8&nbsp;kg, sac inclus) voyage le plus souvent en cabine, dans un sac souple. Au-del&agrave;, il part en soute, dans une caisse rigide homologu&eacute;e IATA. Pour savoir quelles compagnies acceptent votre chien en cabine ou en soute selon votre trajet, utilisez notre <a href="/outils/comparateur-vol-chien/">comparateur de vols pour chien</a> et consultez le <a href="/comparatif-compagnies-aeriennes-chien/">comparatif des 62&nbsp;compagnies a&eacute;riennes</a>.</p>
+<h2>Questions fr&eacute;quentes sur la caisse de transport IATA</h2>
+<h3>Quelle taille de caisse pour mon chien&nbsp;?</h3>
+<p>Elle d&eacute;pend des mesures de votre chien, pas seulement de son poids. Entrez ses dimensions dans le calculateur pour obtenir la taille homologu&eacute;e adapt&eacute;e, avec une marge de confort suffisante.</p>
+<h3>Comment savoir si une caisse est homologu&eacute;e IATA&nbsp;?</h3>
+<p>Une caisse conforme est rigide, bien ventil&eacute;e sur au moins trois c&ocirc;t&eacute;s, avec une porte m&eacute;tallique verrouillable et un fond &eacute;tanche. Voir notre guide pour <a href="/caisse-transport-avion-homologuee-chien/">choisir une caisse homologu&eacute;e</a>.</p>
+<h3>Mon chien doit-il s'habituer &agrave; sa caisse avant le voyage&nbsp;?</h3>
+<p>Oui&nbsp;: pr&eacute;sentez la caisse plusieurs jours &agrave; l'avance pour que votre chien s'y sente en s&eacute;curit&eacute;, ce qui r&eacute;duit fortement le stress le jour du vol.</p>
+<h2>Voyager sereinement avec son chien</h2>
+<p>Bien choisir la caisse de transport est une &eacute;tape cl&eacute; pour voyager en avion avec son chien en toute s&eacute;curit&eacute;. Une fois la taille d&eacute;termin&eacute;e, v&eacute;rifiez les <a href="/outils/formalites-chien-par-pays/">formalit&eacute;s de votre destination</a> et pr&eacute;parez votre compagnon au voyage&nbsp;: votre chien voyagera plus d&eacute;tendu, et vous aussi.</p>
+</section>
+<footer class="tool-foot"><picture><source srcset="/images/duo.webp" type="image/webp"><img src="/images/duo.png" alt="Le Chien Voyageur — voyager avec son chien" loading="lazy" decoding="async"></picture></footer>
+<div class="lcv-toolfooter"><p class="lcv-tagline">Le monde est plus beau quand on le partage avec son chien <span class="lcv-heart">&#9825;</span></p><p class="lcv-copyright">&copy; 2026 <a href="https://lechienvoyageur.com/">Le Chien Voyageur</a> &middot; Powered by <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &amp; <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a> &middot; <a href="/a-propos/">&Agrave; propos</a> &middot; <a href="/auteur/">L'auteure</a></p></div></body></html>

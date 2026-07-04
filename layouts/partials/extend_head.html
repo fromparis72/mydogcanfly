@@ -1,0 +1,60 @@
+{{/* Slogan font: Playfair Display (italic) */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+{{/* Sitewide JSON-LD: Organization + WebSite + Person (E-E-A-T / GEO) */}}
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://mydogcanfly.com/#organization",
+      "name": "My Dog Can Fly",
+      "url": "https://mydogcanfly.com/",
+      "logo": "https://mydogcanfly.com/images/mydogcanfly_logo.png",
+      "description": "The reference guide to traveling the world with your dog — by plane, train and car.",
+      "founder": { "@id": "https://mydogcanfly.com/author/#person" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mydogcanfly.com/#website",
+      "url": "https://mydogcanfly.com/",
+      "name": "My Dog Can Fly",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://mydogcanfly.com/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mydogcanfly.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mydogcanfly.com/author/#person",
+      "name": "Camille Roussel",
+      "url": "https://mydogcanfly.com/author/",
+      "jobTitle": "Founder & editor",
+      "worksFor": { "@id": "https://mydogcanfly.com/#organization" },
+      "knowsAbout": ["traveling with a dog", "flying with a dog", "dog-friendly travel", "dog health on the road"]
+    }
+  ]
+}
+</script>
+{{ end }}
+
+{{/* FAQPage JSON-LD (GEO) — from the `faq` front matter */}}
+{{ with .Params.faq }}
+{{- $items := slice -}}
+{{- range . -}}{{- $items = $items | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" .a)) -}}{{- end -}}
+<script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $items) | jsonify | safeJS }}</script>
+{{ end }}
+
+{{/* hreflang to the French sister site — set `frUrl: "/slug-fr/"` in front matter */}}
+{{ with .Params.frUrl }}<link rel="alternate" hreflang="fr" href="https://lechienvoyageur.com{{ . }}">{{ end }}
+
+{{/* Extra GEO/SEO meta */}}
+<meta name="author" content="Camille Roussel">
+<meta property="og:site_name" content="My Dog Can Fly">

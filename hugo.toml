@@ -1,0 +1,129 @@
+baseURL = "https://mydogcanfly.com/"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+title = "My Dog Can Fly"
+theme = "PaperMod"
+enableRobotsTXT = true
+# Hugo does NOT publish future-dated posts (default behavior).
+# With a daily rebuild (cron + Deploy Hook), each article goes live on its date.
+buildFuture = false
+removePathAccents = true
+
+[pagination]
+  pagerSize = 9
+
+[markup.goldmark.renderer]
+  unsafe = true   # needed for JSON-LD <script> + HTML hero/title
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[params]
+  # SEO title of the home page (~56 chars). The brand "My Dog Can Fly" remains the title of other pages.
+  homeTitle = "Traveling with your dog: airlines, crates & country rules"
+  # Home meta description (~150 chars)
+  description = "The reference guide to traveling with your dog: compare 62 airlines' pet policies, check entry rules for 79 countries and pick the right gear."
+  author = "Camille Roussel"
+  defaultTheme = "light"
+  disableThemeToggle = true
+  # "Recommended products" affiliate block: set to true to re-enable everywhere.
+  affiliationActive = false
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowBreadCrumbs = true
+  ShowPostNavLinks = true
+  ShowToc = true
+  TocOpen = false
+  ShowCodeCopyButtons = false
+  DateFormat = "January 2, 2006"
+
+  # Header: official logo (paw + mydogcanfly.com), centered above the menu, no text.
+  [params.label]
+    text = " "
+    icon = "/images/mydogcanfly_logo.png"
+    iconHeight = 101
+
+  # Home: hero (full-width banner, centered) + title, then description.
+  [params.homeInfoParams]
+    Title = ""
+    Content = """
+<div class="lcv-hero-wrap"><img class="lcv-hero" src="/images/mydogcanfly_hero_banner.png" alt="Traveling with your dog: a dog, a Greek village, a suitcase and a plane"></div>
+
+<h1 class="lcv-hero-title">The world is more beautiful when shared with your dog 🐾</h1>
+
+Practical guides, dog-friendly destinations and health tips to travel the world with your dog — by plane, train or car.
+"""
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:fromparis+mydogcanfly@gmail.com"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  [params.assets]
+    favicon = "/images/favicon.ico"
+    favicon16x16 = "/images/favicon-16x16.png"
+    favicon32x32 = "/images/favicon-32x32.png"
+    apple_touch_icon = "/images/apple-touch-icon.png"
+    theme_color = "#14294B"
+
+# Navigation menu — knowledge-base sections (silos)
+# "Transport" groups Plane / Car / Train in a dropdown.
+[[menu.main]]
+  identifier = "transport"
+  name = "Transport"
+  url = "#"
+  weight = 10
+[[menu.main]]
+  identifier = "plane"
+  parent = "transport"
+  name = "Plane"
+  url = "/airline-pet-policies/"
+  weight = 11
+[[menu.main]]
+  identifier = "car"
+  parent = "transport"
+  name = "Car"
+  url = "/traveling-by-car-with-a-dog/"
+  weight = 12
+[[menu.main]]
+  identifier = "train"
+  parent = "transport"
+  name = "Train"
+  url = "/train-travel-with-a-dog/"
+  weight = 13
+[[menu.main]]
+  identifier = "requirements"
+  name = "Country rules"
+  url = "/dog-travel-requirements-by-country/"
+  weight = 30
+[[menu.main]]
+  identifier = "stays"
+  name = "Places to stay"
+  url = "/dog-friendly-accommodation/"
+  weight = 40
+[[menu.main]]
+  identifier = "destinations"
+  name = "Destinations"
+  url = "/categories/destinations/"
+  weight = 20
+[[menu.main]]
+  identifier = "gear"
+  name = "Gear"
+  url = "/categories/gear/"
+  weight = 50
+[[menu.main]]
+  identifier = "tools"
+  name = "Tools"
+  url = "/tools/"
+  weight = 60
+[[menu.main]]
+  identifier = "health"
+  name = "Health"
+  url = "/categories/health/"
+  weight = 55
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

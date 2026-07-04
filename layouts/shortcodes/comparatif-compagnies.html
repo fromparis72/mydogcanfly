@@ -1,0 +1,28 @@
+{{- /* Airline comparison table, fed by data/compagnies.json.
+       Logo via Clearbit (hidden fallback). Cargo column + "cargo only" distinction. */ -}}
+{{- $cies := sort site.Data.compagnies "n" -}}
+<div class="lcv-table-wrap"><table class="lcv-compare"><thead><tr><th>Airline</th><th>Country</th><th>Cabin</th><th>Hold</th><th>Cargo</th><th>Snub-nosed</th><th>Details</th></tr></thead><tbody>
+{{- range $cies }}
+  {{- $cab := "✗" }}
+  {{- if .cabin.ok }}{{ $cab = "✓" }}{{ with .cabin.max }}{{ $cab = printf "✓ ≤%v kg / %v lb" . (math.Round (mul . 2.20462)) }}{{ end }}{{ end }}
+  {{- /* Hold = accompanied checked baggage (not cargo) */ -}}
+  {{- $soute := "✗" }}
+  {{- if and .hold.ok (not .hold.cargoOnly) }}{{ $soute = "✓" }}{{ with .hold.max }}{{ $soute = printf "✓ ≤%v kg / %v lb" . (math.Round (mul . 2.20462)) }}{{ end }}{{ end }}
+  {{- /* Cargo = freight; cargoOnly = only option (no cabin, no accompanied hold) */ -}}
+  {{- $fret := "—" }}{{ $fretOnly := false }}
+  {{- if .hold.cargoOnly }}{{ $fret = "✓" }}{{ if not .cabin.ok }}{{ $fretOnly = true }}{{ end }}{{ end }}
+  {{- /* Snub-nosed breeds: "—" if the airline carries no dogs at all (service animals aside) */ -}}
+  {{- $br := "—" }}{{ if or .cabin.ok .hold.ok }}{{ if eq .snub true }}{{ $br = "Restricted" }}{{ else if eq .snub false }}{{ $br = "Accepted" }}{{ end }}{{ end }}
+  {{- $p := site.GetPage (printf "/posts/%s" .slug) }}
+  {{- $link := "" }}{{ with $p }}{{ $link = .RelPermalink }}{{ end }}
+  <tr>
+    <td data-l="Airline"><img class="lcv-logo" src="https://logo.clearbit.com/{{ .domain }}" alt="{{ .n }} logo" loading="lazy" width="22" height="22" onerror="this.style.display='none'">{{ if $link }}<a href="{{ $link }}"><strong>{{ .n }}</strong></a>{{ else }}<strong>{{ .n }}</strong>{{ end }}</td>
+    <td data-l="Country">{{ .c }}</td>
+    <td data-l="Cabin">{{ $cab }}</td>
+    <td data-l="Hold">{{ $soute }}</td>
+    <td data-l="Cargo">{{ if $fretOnly }}<span class="lcv-fret-badge">Only option</span>{{ else }}{{ $fret }}{{ end }}</td>
+    <td data-l="Snub-nosed">{{ $br }}</td>
+    <td data-l="Details">{{ with $p }}<a href="{{ .RelPermalink }}">Guide</a>{{ else }}<span class="lcv-soon">coming soon</span>{{ end }}</td>
+  </tr>
+{{- end }}
+</tbody></table></div>

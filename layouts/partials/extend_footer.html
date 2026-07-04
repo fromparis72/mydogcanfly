@@ -1,0 +1,67 @@
+{{- $img := index (slice "duo" "duo-femme" "sepia" "campagne" "longuevue" "prince" "aqua" "frisco" "egypte") (mod (len .RelPermalink) 9) -}}
+{{- $slug := path.Base .RelPermalink -}}
+{{- $avion := slice "flying-with-a-dog" "flying-with-a-dog-cabin-hold-cargo" "airline-pet-policies" -}}
+{{- $train := slice "train-travel-with-a-dog" "public-transit-with-a-dog" -}}
+{{- $voiture := slice "traveling-by-car-with-a-dog" "road-trip-with-a-dog" "dog-friendly-rest-stops" -}}
+{{- $mexique := slice "traveling-to-mexico-with-a-dog" "traveling-to-brazil-with-a-dog" "aeromexico-dog-policy" "avianca-dog-policy" "copa-airlines-dog-policy" "latam-dog-policy" -}}
+{{- $paris := slice "weekend-near-paris-with-a-dog" "city-trips-with-a-dog" "public-transit-with-a-dog" -}}
+{{- $beach := slice "dog-friendly-beaches" "traveling-to-greece-with-a-dog" "traveling-to-thailand-with-a-dog" "traveling-to-singapore-with-a-dog" "first-vacation-with-your-dog" -}}
+{{- if in $mexique $slug }}{{ $img = "mexico" }}
+{{- else if in $paris $slug }}{{ $img = "paris" }}
+{{- else if in $beach $slug }}{{ $img = "beach" }}
+{{- else if or (in .Params.categories "Airlines") (in $avion $slug) }}{{ $img = "avion" }}
+{{- else if in $train $slug }}{{ $img = "train" }}
+{{- else if in $voiture $slug }}{{ $img = "voiture" }}{{ end -}}
+<div class="lcv-foot-illus"><picture><source srcset="/images/{{ $img }}.webp" type="image/webp"><img src="/images/{{ $img }}.png" alt="My Dog Can Fly — traveling with your dog" width="1600" height="192" loading="lazy" decoding="async"></picture></div>
+
+<div class="lcv-footer-wrap">
+  <p class="lcv-tagline">The world is more beautiful when shared with your dog <span class="lcv-heart">&#9825;</span></p>
+
+  <p class="lcv-copyright">
+    &copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a>
+    &middot; Powered by
+    <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &amp;
+    <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    &middot; <a href="/about/">About</a>
+    &middot; <a href="/author/">The author</a>
+  </p>
+</div>
+
+{{/* Mobile hamburger menu (progressive enhancement) */}}
+<script>
+(function () {
+  var nav = document.querySelector('header.header .header-nav');
+  var menu = document.getElementById('menu');
+  if (!nav || !menu) return;
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'lcv-burger';
+  btn.setAttribute('aria-label', 'Open menu');
+  btn.setAttribute('aria-expanded', 'false');
+  btn.setAttribute('aria-controls', 'menu');
+  btn.innerHTML = '<span></span><span></span><span></span>';
+  nav.insertBefore(btn, nav.firstChild);
+  function setOpen(open) {
+    nav.classList.toggle('nav-open', open);
+    btn.classList.toggle('is-x', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  btn.addEventListener('click', function () { setOpen(!nav.classList.contains('nav-open')); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+
+  // Dropdown submenu: opens on click/tap on mobile (≤960px)
+  menu.querySelectorAll('.sub-toggle').forEach(function (t) {
+    var li = t.closest('.has-sub');
+    t.addEventListener('click', function () {
+      if (window.matchMedia('(max-width: 960px)').matches) {
+        var open = li.classList.toggle('open');
+        t.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+    });
+    t.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.click(); }
+    });
+  });
+})();
+</script>

@@ -1,0 +1,114 @@
+# Affiliate product catalog — La Compagnie des Animaux (Awin mid 11539)
+# Adding a product here automatically displays it on articles whose
+# category (categories) or slug (slugs) matches. Max 2 per page.
+
+- id: caisse-sky-kennel
+  nom: "Airline travel crate (IATA-compliant)"
+  marque: "Petmate / Skudo"
+  prix: "from €68 (~$74)"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/cage-chien.html"
+  image: ""
+  phare: true
+  categories: ["Travel", "Gear"]
+  slugs: ["flying-with-a-dog", "dog-carriers-and-crates", "international-travel-with-a-dog", "airline-approved-dog-crate", "dog-travel-accessories", "airline-pet-policies", "air-france-dog-policy", "klm-dog-policy", "transavia-dog-policy", "lufthansa-dog-policy", "vueling-dog-policy", "iberia-dog-policy", "swiss-air-dog-policy", "tap-air-portugal-dog-policy", "ita-airways-dog-policy", "turkish-airlines-dog-policy", "brussels-airlines-dog-policy", "austrian-airlines-dog-policy", "royal-air-maroc-dog-policy", "emirates-dog-policy", "qatar-airways-dog-policy", "british-airways-dog-policy", "easyjet-dog-policy", "ryanair-dog-policy", "wizz-air-dog-policy", "norwegian-dog-policy", "sas-dog-policy", "finnair-dog-policy", "air-europa-dog-policy", "volotea-dog-policy", "corsair-dog-policy", "air-caraibes-dog-policy", "french-bee-dog-policy", "eurowings-dog-policy", "air-transat-dog-policy", "air-canada-dog-policy", "westjet-dog-policy", "american-airlines-dog-policy", "delta-dog-policy", "united-airlines-dog-policy", "jetblue-dog-policy", "alaska-airlines-dog-policy", "singapore-airlines-dog-policy", "cathay-pacific-dog-policy", "ana-dog-policy", "japan-airlines-dog-policy", "korean-air-dog-policy", "china-airlines-dog-policy", "eva-air-dog-policy", "thai-airways-dog-policy", "vietnam-airlines-dog-policy", "air-india-dog-policy", "etihad-airways-dog-policy", "saudia-dog-policy", "egyptair-dog-policy", "ethiopian-airlines-dog-policy", "aegean-airlines-dog-policy", "lot-polish-airlines-dog-policy", "latam-dog-policy", "aeromexico-dog-policy", "avianca-dog-policy", "copa-airlines-dog-policy", "air-algerie-dog-policy", "tunisair-dog-policy", "air-mauritius-dog-policy", "air-tahiti-nui-dog-policy", "iberia-express-dog-policy"]
+
+- id: gps-weenect
+  nom: "Weenect GPS dog tracker"
+  marque: "Weenect"
+  prix: "€49.99 (~$54)"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/anti-fugue-chien.html"
+  image: ""
+  phare: true
+  categories: ["Gear", "Destinations"]
+  slugs: ["dog-gps-trackers", "mountain-vacations-with-a-dog", "countryside-weekend-with-a-dog", "dog-friendly-rest-stops", "dog-travel-accessories"]
+
+- id: harnais-securite-auto
+  nom: "Car safety harness & seat belt"
+  marque: "Kurgo"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/harnais-chien.html"
+  image: ""
+  categories: ["Travel", "Gear"]
+  slugs: ["traveling-by-car-with-a-dog", "dog-car-harness", "road-trip-with-a-dog", "car-travel-dog-gear"]
+
+- id: harnais-anti-traction
+  nom: "No-pull harness"
+  marque: "Julius-K9 / Ruffwear"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/harnais-chien.html"
+  image: ""
+  categories: ["Gear"]
+  slugs: ["no-pull-dog-harness"]
+
+- id: sac-a-dos-ruffwear
+  nom: "Ruffwear dog hiking pack"
+  marque: "Ruffwear"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/harnais-chien.html"
+  image: ""
+  categories: ["Destinations"]
+  slugs: ["mountain-vacations-with-a-dog"]
+
+- id: adaptil-transport
+  nom: "Adaptil Transport calming spray"
+  marque: "Adaptil"
+  prix: "€13.79 (~$15)"
+  url: "https://www.lacompagniedesanimaux.com/chien/hygiene-soin-chien/anti-stress-calmant-chien.html"
+  image: ""
+  phare: true
+  categories: ["Health"]
+  slugs: ["dog-travel-anxiety", "dog-motion-sickness", "traveling-with-a-puppy", "first-vacation-with-your-dog"]
+
+- id: gamelle-nomade
+  nom: "Collapsible bowl & travel water bottle"
+  marque: "Kurgo / H2O4K9"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/gamelle-chien.html"
+  image: ""
+  categories: ["Gear", "Health"]
+  slugs: ["portable-dog-feeding-gear", "feeding-your-dog-while-traveling", "dog-travel-gear", "best-travel-dog-bowls"]
+
+- id: fontaine-eau
+  nom: "Dog water fountain"
+  marque: "Catit / PetSafe Drinkwell"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/fontaine-a-eau-chien.html"
+  image: ""
+  categories: ["Gear", "Health"]
+  slugs: ["best-dog-water-fountains-2026", "feeding-your-dog-while-traveling"]
+
+- id: tapis-rafraichissant
+  nom: "Cooling mat"
+  marque: "Trixie / Flamingo"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/couchage-chien.html"
+  image: ""
+  categories: ["Gear", "Health"]
+  slugs: ["best-dog-cooling-mats", "dog-heatstroke"]
+
+- id: baume-coussinets
+  nom: "Paw pad protection balm"
+  marque: "—"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/hygiene-soin-chien/soins-coussinet-chien.html"
+  image: ""
+  categories: ["Health"]
+  slugs: ["protecting-dog-paw-pads", "hot-pavement-dog-paws", "dog-coats-and-boots", "dog-injury-first-aid"]
+
+- id: sac-transport-petit
+  nom: "Soft-sided carrier (small dogs)"
+  marque: "Trixie / Sleepypod"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/cage-chien.html"
+  image: ""
+  categories: ["Gear", "Travel"]
+  slugs: ["small-dog-carriers", "airline-pet-policies", "air-france-dog-policy", "klm-dog-policy", "transavia-dog-policy", "lufthansa-dog-policy", "vueling-dog-policy", "iberia-dog-policy", "swiss-air-dog-policy", "tap-air-portugal-dog-policy", "ita-airways-dog-policy", "turkish-airlines-dog-policy", "brussels-airlines-dog-policy", "austrian-airlines-dog-policy", "royal-air-maroc-dog-policy", "emirates-dog-policy", "qatar-airways-dog-policy", "british-airways-dog-policy", "easyjet-dog-policy", "ryanair-dog-policy", "wizz-air-dog-policy", "norwegian-dog-policy", "sas-dog-policy", "finnair-dog-policy", "air-europa-dog-policy", "volotea-dog-policy", "corsair-dog-policy", "air-caraibes-dog-policy", "french-bee-dog-policy", "eurowings-dog-policy", "air-transat-dog-policy", "air-canada-dog-policy", "westjet-dog-policy", "american-airlines-dog-policy", "delta-dog-policy", "united-airlines-dog-policy", "jetblue-dog-policy", "alaska-airlines-dog-policy", "singapore-airlines-dog-policy", "cathay-pacific-dog-policy", "ana-dog-policy", "japan-airlines-dog-policy", "korean-air-dog-policy", "china-airlines-dog-policy", "eva-air-dog-policy", "thai-airways-dog-policy", "vietnam-airlines-dog-policy", "air-india-dog-policy", "etihad-airways-dog-policy", "saudia-dog-policy", "egyptair-dog-policy", "ethiopian-airlines-dog-policy", "aegean-airlines-dog-policy", "lot-polish-airlines-dog-policy", "latam-dog-policy", "aeromexico-dog-policy", "avianca-dog-policy", "copa-airlines-dog-policy", "air-algerie-dog-policy", "tunisair-dog-policy", "air-mauritius-dog-policy", "air-tahiti-nui-dog-policy", "iberia-express-dog-policy"]
+
+- id: couchage-voyage
+  nom: "Travel mat & bedding"
+  marque: "—"
+  prix: "see the range"
+  url: "https://www.lacompagniedesanimaux.com/chien/accessoires-chien/couchage-chien.html"
+  image: ""
+  categories: ["Destinations", "Gear"]
+  slugs: ["camping-with-a-dog", "dog-friendly-accommodation", "weekend-near-paris-with-a-dog"]

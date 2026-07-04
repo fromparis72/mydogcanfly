@@ -1,0 +1,36 @@
+{{- /* Bloc "Recommended products" (max 2, ciblés par thème). Contexte = la page. */ -}}
+{{- if and site.Params.affiliationActive (eq .Type "posts") site.Data.produits }}
+{{- $cats := .Params.categories }}
+{{- $slug := .Params.slug | default (path.Base .RelPermalink) }}
+{{- $bySlug := slice }}{{- $byCat := slice }}
+{{- range site.Data.produits }}
+  {{- $hitSlug := false }}{{- $hitCat := false }}
+  {{- with .slugs }}{{- if in . $slug }}{{- $hitSlug = true }}{{- end }}{{- end }}
+  {{- with .categories }}{{- range . }}{{- if in $cats . }}{{- $hitCat = true }}{{- end }}{{- end }}{{- end }}
+  {{- if $hitSlug }}{{- $bySlug = $bySlug | append . }}{{- else if $hitCat }}{{- $byCat = $byCat | append . }}{{- end }}
+{{- end }}
+{{- $sel := first 2 ($bySlug | append $byCat) }}
+{{- if $sel }}
+{{- $mid := site.Params.awinMid }}{{- $aff := site.Params.awinAffid }}
+<aside class="lcv-affil">
+  <h3 class="lcv-affil-title">Recommended products</h3>
+  <div class="lcv-affil-grid">
+  {{- range $sel }}
+    {{- $alt := .nom }}
+    {{- $href := .url }}
+    {{- if $aff }}{{- $href = printf "https://www.awin1.com/cread.php?awinmid=%s&awinaffid=%s&ued=%s" $mid $aff (.url | urlquery) }}{{- end }}
+    <a class="lcv-prod" href="{{ $href }}" rel="sponsored noopener nofollow" target="_blank">
+      {{- with .image }}<span class="lcv-prod-img"><img loading="lazy" src="{{ . }}" alt="{{ $alt }}"></span>{{- end }}
+      <span class="lcv-prod-body">
+        {{- with .marque }}{{ if ne . "—" }}<span class="lcv-prod-brand">{{ . }}</span>{{ end }}{{- end }}
+        <span class="lcv-prod-name">{{ .nom }}</span>
+        <span class="lcv-prod-price">{{ .prix }}</span>
+        <span class="lcv-prod-cta">View product ↗</span>
+      </span>
+    </a>
+  {{- end }}
+  </div>
+  <p class="lcv-affil-note">Affiliate links — buying through them supports the site at no extra cost to you.</p>
+</aside>
+{{- end }}
+{{- end }}

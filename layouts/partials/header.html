@@ -1,0 +1,64 @@
+<header class="header">
+    <nav class="header-nav">
+        {{- if .IsHome }}
+        <div class="lcv-hero-wrap lcv-header-banner"><img class="lcv-hero" src="/images/paysage.jpg" alt="Travel landscape with a dog" fetchpriority="high"></div>
+        {{- end }}
+        <div class="logo">
+            {{- $label_text := (site.Params.label.text | default site.Title) }}
+            {{- if site.Title }}
+            <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
+                {{- if site.Params.label.icon }}
+                {{- $img := resources.Get site.Params.label.icon }}
+                {{- if $img }}
+                    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+                    {{- if hugo.IsExtended -}}
+                        {{- $processableFormats = $processableFormats | append "webp" -}}
+                    {{- end -}}
+                    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+                    {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                        {{- if site.Params.label.iconHeight }}
+                            {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
+                        {{ else }}
+                            {{- $img = $img.Resize "x30" }}
+                        {{- end }}
+                    {{- end }}
+                    <img src="{{ $img.Permalink }}" alt="{{ site.Title }}" aria-label="logo"
+                        height="{{- site.Params.label.iconHeight | default "30" -}}">
+                {{- else }}
+                <img src="{{- site.Params.label.icon | absURL -}}" alt="{{ site.Title }}" aria-label="logo"
+                    height="{{- site.Params.label.iconHeight | default "30" -}}">
+                {{- end -}}
+                {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
+                    {{ site.Params.label.iconSVG | safeHTML }}
+                {{- end -}}
+                {{- $label_text -}}
+            </a>
+            {{- end }}
+        </div>
+        {{- $currentPage := . }}
+        {{- if not .IsHome }}
+        <ul id="menu" class="menu">
+            {{- range site.Menus.main }}
+            {{- if .HasChildren }}
+            <li class="has-sub">
+                <span class="sub-toggle" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false">{{ .Pre }}{{ .Name }}{{ .Post }} <i class="lcv-caret" aria-hidden="true">▾</i></span>
+                <ul class="submenu">
+                    {{- range .Children }}
+                    <li><a href="{{ .URL | absLangURL }}"><span>{{ .Pre }}{{ .Name }}{{ .Post }}</span></a></li>
+                    {{- end }}
+                </ul>
+            </li>
+            {{- else }}
+            {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | absLangURL }}
+            {{- $page_url := $currentPage.Permalink | absLangURL }}
+            <li>
+                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}">
+                    <span {{- if eq $menu_item_url $page_url }} class="active"{{- end }}>{{ .Pre }}{{ .Name }}{{ .Post }}</span>
+                </a>
+            </li>
+            {{- end }}
+            {{- end }}
+        </ul>
+        {{- end }}
+    </nav>
+</header>

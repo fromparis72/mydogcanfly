@@ -1,0 +1,7 @@
+{{- /* Callout box. Usage: {{< alerte type="obligatoire|verifier|attention" >}}text{{< /alerte >}}
+       EN aliases accepted: required | check | warning */ -}}
+{{- $t := .Get "type" | default "verifier" -}}
+{{- $cls := "is-warn" }}{{ $ic := "🟠" }}{{ $lbl := "Double-check" -}}
+{{- if or (eq $t "obligatoire") (eq $t "required") }}{{ $cls = "is-ok" }}{{ $ic = "🟢" }}{{ $lbl = "Required" }}{{ end -}}
+{{- if or (eq $t "attention") (eq $t "warning") }}{{ $cls = "is-alert" }}{{ $ic = "🔴" }}{{ $lbl = "Warning" }}{{ end -}}
+<div class="lcv-callout {{ $cls }}"><span class="lcv-callout-ic">{{ $ic }}</span><div class="lcv-callout-body"><strong>{{ $lbl }}.</strong> {{ .Inner | markdownify }}</div></div>

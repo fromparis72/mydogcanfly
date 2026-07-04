@@ -1,0 +1,9 @@
+{{- $img := .Params.cover.image }}
+{{- $alt := .Params.cover.alt | default .Title }}
+<a class="lcv-card" href="{{ .Permalink }}" aria-label="{{ .Title }}">
+  {{- with $img }}<span class="lcv-card-img"><img loading="lazy" src="{{ replaceRE `w=\d+` `w=640&h=400` . }}" alt="{{ $alt }}" width="640" height="400"></span>{{ end }}
+  <span class="lcv-card-body">
+    <h3 class="lcv-card-title">{{ .Title }}</h3>
+    <time class="lcv-date">{{ .Date | time.Format ":date_long" }}</time>
+  </span>
+</a>

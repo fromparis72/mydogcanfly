@@ -1,0 +1,7 @@
+{{- /* Insère le bloc produits juste AVANT le titre « Sources » des articles */ -}}
+{{- $t := lower (.PlainText | default .Text) -}}
+{{- if and (eq .Page.Type "posts") (eq .Level 2) (in $t "source") -}}
+  {{- .Page.Store.Set "affilDone" true -}}
+  {{- partial "affil-block.html" .Page -}}
+{{- end -}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}</h{{ .Level }}>

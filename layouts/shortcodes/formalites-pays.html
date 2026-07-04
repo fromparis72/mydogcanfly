@@ -1,0 +1,15 @@
+{{- /* Entry-requirements table (main destinations), from data/formalites.json. */ -}}
+{{- $niv := slice "" "Easy" "Moderate" "Demanding" "Very demanding" -}}
+<div class="lcv-table-wrap"><table class="lcv-compare"><thead><tr><th>Destination</th><th>Difficulty</th><th>Lead time</th><th>Guide</th></tr></thead><tbody>
+{{- range site.Data.formalites }}
+{{- if .hub }}
+  <tr>
+    <td data-l="Destination">{{ .drapeau }} <strong>{{ .nom }}</strong></td>
+    <td data-l="Difficulty">{{ index $niv (int .niveau) }}</td>
+    <td data-l="Lead time">{{ .delai }}</td>
+    <td data-l="Guide">{{ with .fiche }}<a href="{{ . }}">Read</a>{{ else }}—{{ end }}</td>
+  </tr>
+{{- end }}
+{{- end }}
+</tbody></table></div>
+<p style="font-size:.85rem;color:#8a93a0;margin-top:.4rem">➕ The full list (79 countries and counting) is available in the <a href="/tools/dog-entry-requirements-by-country/">entry-requirements checker</a>.</p>

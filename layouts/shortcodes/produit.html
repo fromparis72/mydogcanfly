@@ -1,0 +1,18 @@
+{{- /* Produit phare à insérer dans le corps : {{< produit id="gps-weenect" >}} */ -}}
+{{- $id := .Get "id" }}
+{{- $match := where site.Data.produits "id" $id }}
+{{- with index $match 0 }}
+{{- $mid := site.Params.awinMid }}{{- $aff := site.Params.awinAffid }}
+{{- $href := .url }}
+{{- if $aff }}{{- $href = printf "https://www.awin1.com/cread.php?awinmid=%s&awinaffid=%s&ued=%s" $mid $aff (.url | urlquery) }}{{- end }}
+<a class="lcv-prod lcv-prod--featured" href="{{ $href }}" rel="sponsored noopener nofollow" target="_blank">
+  {{- with .image }}<span class="lcv-prod-img"><img loading="lazy" src="{{ . }}" alt="{{ (index $match 0).nom }}"></span>{{- end }}
+  <span class="lcv-prod-body">
+    <span class="lcv-prod-tag">Our pick</span>
+    {{- with .marque }}{{ if ne . "—" }}<span class="lcv-prod-brand">{{ . }}</span>{{ end }}{{- end }}
+    <span class="lcv-prod-name">{{ .nom }}</span>
+    <span class="lcv-prod-price">{{ .prix }}</span>
+    <span class="lcv-prod-cta">View product ↗</span>
+  </span>
+</a>
+{{- end }}
