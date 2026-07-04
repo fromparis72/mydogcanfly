@@ -1,8 +1,9 @@
 <header class="header">
     <nav class="header-nav">
         {{- if .IsHome }}
-        <div class="lcv-hero-wrap lcv-header-banner"><img class="lcv-hero" src="/images/paysage.jpg" alt="Travel landscape with a dog" fetchpriority="high"></div>
+        <div class="lcv-hero-wrap lcv-header-banner"><img class="lcv-hero" src="/images/mydogcanfly_hero_banner.webp" alt="MyDogCanFly.com — traveling with your dog: airport, crate, passport and plane" fetchpriority="high"></div>
         {{- end }}
+        {{- if not .IsHome }}
         <div class="logo">
             {{- $label_text := (site.Params.label.text | default site.Title) }}
             {{- if site.Title }}
@@ -35,6 +36,7 @@
             </a>
             {{- end }}
         </div>
+        {{- end }}
         {{- $currentPage := . }}
         {{- if not .IsHome }}
         <ul id="menu" class="menu">
