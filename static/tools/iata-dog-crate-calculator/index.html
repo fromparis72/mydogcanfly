@@ -68,13 +68,14 @@ a{color:var(--teal)}
 </div>
 
 <div class="card" id="card-mes">
+  <div class="unit-row"><div class="unit-tg" id="mUnitTg"><span class="unit-lbl">Units</span><button type="button" class="on" data-u="cm" onclick="setMUnit('cm')">cm</button><button type="button" data-u="in" onclick="setMUnit('in')">inch</button></div></div>
   <div class="grid">
-    <div><label>A — Length <span class="hint">from tip of nose to base of tail (cm)</span></label><input type="number" id="A" min="1" placeholder="e.g. 60"></div>
-    <div><label>B — Leg height <span class="hint">from floor to elbow (cm)</span></label><input type="number" id="B" min="1" placeholder="e.g. 28"></div>
-    <div><label>C — Width <span class="hint">at the widest point (cm)</span></label><input type="number" id="C" min="1" placeholder="e.g. 22"></div>
-    <div><label>D — Total height <span class="hint">from floor to top of head/ears, standing (cm)</span></label><input type="number" id="D" min="1" placeholder="e.g. 50"></div>
+    <div><label>A — Length <span class="hint">from tip of nose to base of tail (<span class="mu">cm</span>)</span></label><input type="number" id="A" min="1" placeholder="e.g. 60"></div>
+    <div><label>B — Leg height <span class="hint">from floor to elbow (<span class="mu">cm</span>)</span></label><input type="number" id="B" min="1" placeholder="e.g. 28"></div>
+    <div><label>C — Width <span class="hint">at the widest point (<span class="mu">cm</span>)</span></label><input type="number" id="C" min="1" placeholder="e.g. 22"></div>
+    <div><label>D — Total height <span class="hint">from floor to top of head/ears, standing (<span class="mu">cm</span>)</span></label><input type="number" id="D" min="1" placeholder="e.g. 50"></div>
   </div>
-  <p class="muted" style="margin:.6rem 0 0">Enter all measurements in <strong>centimeters</strong> (1 in = 2.54 cm). Results are shown in both cm and inches.</p>
+  <p class="muted" style="margin:.6rem 0 0">Enter all measurements in the selected unit (<strong><span class="mu">cm</span></strong>) — 1 in = 2.54 cm. Results are always shown in both cm and inches.</p>
   <button class="btn" onclick="calcMes()">Calculate crate size</button>
 </div>
 
@@ -170,9 +171,18 @@ function render(L,W,H,brachy,approx,breedName){
  document.getElementById('res').classList.add('show');
  document.getElementById('res').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+var mUnit='cm';var MES_EX={A:60,B:28,C:22,D:50};
+function setMUnit(u){
+ if(u===mUnit)return;var f=2.54;
+ ['A','B','C','D'].forEach(function(id){var el=document.getElementById(id);var v=parseFloat(el.value);if(!isNaN(v)&&v>0){var c=(u==='in')?v/f:v*f;el.value=(Math.round(c*10)/10).toString();}el.setAttribute('placeholder','e.g. '+((u==='in')?Math.round(MES_EX[id]/f):MES_EX[id]));});
+ mUnit=u;
+ Array.prototype.forEach.call(document.querySelectorAll('#mUnitTg button'),function(b){b.classList.toggle('on',b.getAttribute('data-u')===u);});
+ Array.prototype.forEach.call(document.querySelectorAll('.mu'),function(s){s.textContent=u;});
+}
 function calcMes(){
  var A=+document.getElementById('A').value,B=+document.getElementById('B').value,C=+document.getElementById('C').value,D=+document.getElementById('D').value;
- if(!(A>0&&B>0&&C>0&&D>0)){alert("Please fill in all 4 measurements (A, B, C, D) in centimeters.");return;}
+ if(!(A>0&&B>0&&C>0&&D>0)){alert("Please fill in all 4 measurements (A, B, C, D) in "+((mUnit==='in')?'inches':'centimeters')+".");return;}
+ var f=(mUnit==='in')?2.54:1;A*=f;B*=f;C*=f;D*=f;
  render(A+B/2, C*2, D, false, false, "");
 }
 function calcRace(){
