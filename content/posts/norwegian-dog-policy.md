@@ -26,7 +26,7 @@ cover:
     caption: "Photo: [Benoît Deschasaux](https://unsplash.com/@benowa?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
-<div class="lcv-fiche-logo"><img class="lcv-logo-img" src="https://logo.clearbit.com/norwegian.com" alt="Norwegian logo" width="52" height="52" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="lcv-logo-mono" aria-hidden="true">DY</span><span class="lcv-fiche-logo-txt"><b>Norwegian</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
+<div class="lcv-fiche-logo"><span class="lcv-logo-mono" style="display:flex" aria-hidden="true">DY</span><span class="lcv-fiche-logo-txt"><b>Norwegian</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
 
 {{< meta >}}
 

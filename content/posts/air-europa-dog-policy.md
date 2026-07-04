@@ -26,7 +26,7 @@ cover:
     caption: "Photo: [Ahmed Salem](https://unsplash.com/@mozarty?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
-<div class="lcv-fiche-logo"><img class="lcv-logo-img" src="https://logo.clearbit.com/aireuropa.com" alt="Air Europa logo" width="52" height="52" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="lcv-logo-mono" aria-hidden="true">UX</span><span class="lcv-fiche-logo-txt"><b>Air Europa</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
+<div class="lcv-fiche-logo"><span class="lcv-logo-mono" style="display:flex" aria-hidden="true">UX</span><span class="lcv-fiche-logo-txt"><b>Air Europa</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
 
 {{< meta >}}
 

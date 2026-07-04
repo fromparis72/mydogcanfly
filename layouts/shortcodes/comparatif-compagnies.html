@@ -16,7 +16,7 @@
   {{- $p := site.GetPage (printf "/posts/%s" .slug) }}
   {{- $link := "" }}{{ with $p }}{{ $link = .RelPermalink }}{{ end }}
   <tr>
-    <td data-l="Airline"><img class="lcv-logo" src="https://logo.clearbit.com/{{ .domain }}" alt="{{ .n }} logo" loading="lazy" width="22" height="22" onerror="this.style.display='none'">{{ if $link }}<a href="{{ $link }}"><strong>{{ .n }}</strong></a>{{ else }}<strong>{{ .n }}</strong>{{ end }}</td>
+    <td data-l="Airline">{{ if $link }}<a href="{{ $link }}"><strong>{{ .n }}</strong></a>{{ else }}<strong>{{ .n }}</strong>{{ end }}</td>
     <td data-l="Country">{{ .c }}</td>
     <td data-l="Cabin">{{ $cab }}</td>
     <td data-l="Hold">{{ $soute }}</td>

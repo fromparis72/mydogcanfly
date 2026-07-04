@@ -26,7 +26,7 @@ cover:
     caption: "Photo: [Paul Macallan](https://unsplash.com/@pemacallan?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
-<div class="lcv-fiche-logo"><img class="lcv-logo-img" src="https://logo.clearbit.com/royalairmaroc.com" alt="Royal Air Maroc logo" width="52" height="52" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="lcv-logo-mono" aria-hidden="true">AT</span><span class="lcv-fiche-logo-txt"><b>Royal Air Maroc</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
+<div class="lcv-fiche-logo"><span class="lcv-logo-mono" style="display:flex" aria-hidden="true">AT</span><span class="lcv-fiche-logo-txt"><b>Royal Air Maroc</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
 
 {{< meta >}}
 

@@ -24,7 +24,7 @@ cover:
     caption: "Photo: [Bhargava Marripati](https://unsplash.com/@bk_advtravlr?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
-<div class="lcv-fiche-logo"><img class="lcv-logo-img" src="https://logo.clearbit.com/aeromexico.com" alt="Aeromexico logo" width="52" height="52" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="lcv-logo-mono" aria-hidden="true">AM</span><span class="lcv-fiche-logo-txt"><b>Aeromexico</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
+<div class="lcv-fiche-logo"><span class="lcv-logo-mono" style="display:flex" aria-hidden="true">AM</span><span class="lcv-fiche-logo-txt"><b>Aeromexico</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>
 
 {{< meta >}}
 
