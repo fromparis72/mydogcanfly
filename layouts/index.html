@@ -19,8 +19,11 @@
       <label class="lcv-field"><span>From</span><input type="text" name="from" class="lcv-ac" placeholder="City or airport" autocomplete="off"></label>
       <label class="lcv-field"><span>To</span><input type="text" name="to" class="lcv-ac" placeholder="City or airport" autocomplete="off"></label>
       <label class="lcv-field"><span>Dog breed</span><input type="text" name="breed" class="lcv-ac-breed" placeholder="e.g. Golden Retriever" autocomplete="off" required></label>
-      <label class="lcv-field lcv-field--w"><span>Dog's weight</span><input type="number" name="w" min="1" max="260" placeholder="lb"></label>
-      <input type="hidden" name="unit" value="lb">
+      <label class="lcv-field lcv-field--w"><span>Dog's weight</span><input type="number" name="w" min="1" max="260" placeholder="kg"></label>
+      <div class="lcv-seg lcv-seg--unit" role="group" aria-label="Weight unit">
+        <input type="radio" name="unit" id="u-kg" value="kg" checked><label for="u-kg">kg</label>
+        <input type="radio" name="unit" id="u-lb" value="lb"><label for="u-lb">lb</label>
+      </div>
       <div class="lcv-seg" role="group" aria-label="Cabin or hold">
         <input type="radio" name="mode" id="m-cab" value="cabin" checked><label for="m-cab">Cabin</label>
         <input type="radio" name="mode" id="m-soute" value="hold"><label for="m-soute">Hold</label>
@@ -29,6 +32,7 @@
     </div>
     <a class="lcv-search-link" href="/tools/can-my-dog-fly/">or open the full flight checker (62 airlines) →</a>
   </form>
+  <script>(function(){var f=document.querySelector('.lcv-search');if(!f)return;var w=f.querySelector('input[name=w]');Array.prototype.forEach.call(f.querySelectorAll('input[name=unit]'),function(r){r.addEventListener('change',function(){if(r.checked)w.setAttribute('placeholder',r.value);});});})();</script>
 
   <script>
   function nrm(s){return (s||"").toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}

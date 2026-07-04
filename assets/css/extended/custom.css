@@ -246,6 +246,8 @@ header.header #menu .submenu a:hover { background: var(--lcv-teal); color: #fff;
 .lcv-seg label { display: flex; align-items: center; padding: 0 16px; font-weight: 600; color: var(--lcv-navy); cursor: pointer; font-size: .92rem; }
 .lcv-seg label + input + label { border-left: 1.5px solid var(--border); }
 .lcv-seg input:checked + label { background: var(--lcv-navy); color: #fff; }
+.lcv-seg--unit { border-color: var(--lcv-gold); box-shadow: 0 2px 8px rgba(200,144,72,.28); }
+.lcv-seg--unit input:checked + label { background: var(--lcv-gold); color: #fff; }
 .lcv-search-btn {
   flex: 0 0 auto; height: 44px; padding: 0 28px; border: 0; border-radius: 999px;
   background: var(--lcv-gold); color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer;

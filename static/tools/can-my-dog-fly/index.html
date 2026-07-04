@@ -13,10 +13,11 @@ h1{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,
 .disc{background:#f6f7f9;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-size:12.5px;line-height:1.5;margin:30px 0 22px;text-align:center}.disc b{color:var(--navy)}
 .panel{position:relative;background:#fff;border:1px solid var(--gold);border-radius:14px;padding:18px;margin-bottom:18px}
 .row{display:flex;gap:16px;flex-wrap:wrap}.field{flex:1 1 180px;min-width:150px}
-.wlab{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 6px}
-.wlab label{margin:0}
+.row .field>label{min-height:34px;display:flex;align-items:flex-end;margin:0 0 6px}
+.wlab{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;min-height:34px;margin:0 0 6px}
+.wlab label{margin:0;min-height:0}
 .unit-tg{display:inline-flex;align-items:center;gap:3px;background:#fff;border:2px solid var(--gold);border-radius:999px;padding:3px;box-shadow:0 2px 8px rgba(200,144,72,.28)}
-.unit-tg button{padding:4px 13px;border:0;background:transparent;border-radius:999px;font-weight:700;font-size:.82rem;color:var(--navy);cursor:pointer;transition:background .15s,color .15s}
+.unit-tg button{padding:3px 13px;border:0;background:transparent;border-radius:999px;font-weight:700;font-size:.82rem;color:var(--navy);cursor:pointer;transition:background .15s,color .15s}
 .unit-tg button.on{background:var(--gold);color:#fff}
 label{display:block;font-size:13px;font-weight:600;margin:0 0 5px}
 input,select{width:100%;height:42px;border:1px solid #d8dee6;border-radius:9px;padding:0 12px;font-size:15px;font-family:inherit;color:var(--navy);background:#fff}
@@ -193,6 +194,6 @@ const pays=arr?AP_PAYS[arr]:null,fm=pays?FORM[pays]:null,cg=cageSize(w||0),holdU
  var cEl=$('#count');cEl.innerHTML=both?('<b>'+nd+'</b> likely direct flight'+(nd>1?'s':'')+' · <b>'+n+'</b> airline'+(n>1?'s':'')):(dep?('<b>'+n+'</b> airline'+(n>1?'s':'')+' serving '+depName):('<b>'+n+'</b> airline'+(n>1?'s':'')+' shown / '+AIRLINES.length));cEl.style.animation='none';void cEl.offsetWidth;cEl.style.animation='';
 }
 fillBreeds();loadProf();
-(function(){var p=new URLSearchParams(location.search);function pick(sel,q){if(!q)return;var el=$(sel);q=(q+'').trim();var m=q.match(/\(([A-Za-z]{3})\)\s*$/);var code=m?m[1].toUpperCase():'';var hit=null;if(code){hit=AIRPORTS.find(function(a){return a[0]===code;});}if(!hit){var lq=nrm(q);hit=AIRPORTS.find(function(a){return a[0].toLowerCase()===lq||nrm(a[1])===lq||nrm(a[1]).indexOf(lq)>=0;});}if(hit)el.value=hit[1]+" ("+hit[0]+")";}pick('#from',p.get('from'));pick('#to',p.get('to'));var w=p.get('w');if(w&&!isNaN(parseFloat(w)))$('#w').value=parseFloat(w);var br=p.get('breed');if(br){$('#breed').value=br;var bb=BREEDW[br];if(bb){if(!w)$('#w').value=bb[0];}}saveProf();})();
+(function(){var p=new URLSearchParams(location.search);function pick(sel,q){if(!q)return;var el=$(sel);q=(q+'').trim();var m=q.match(/\(([A-Za-z]{3})\)\s*$/);var code=m?m[1].toUpperCase():'';var hit=null;if(code){hit=AIRPORTS.find(function(a){return a[0]===code;});}if(!hit){var lq=nrm(q);hit=AIRPORTS.find(function(a){return a[0].toLowerCase()===lq||nrm(a[1])===lq||nrm(a[1]).indexOf(lq)>=0;});}if(hit)el.value=hit[1]+" ("+hit[0]+")";}pick('#from',p.get('from'));pick('#to',p.get('to'));var un=p.get('unit');if(un==='kg'||un==='lb'){wUnit=un;$('#w').step=(wUnit==='lb')?1:0.5;Array.prototype.forEach.call(document.querySelectorAll('#wUnitTg button'),function(b){b.classList.toggle('on',b.getAttribute('data-u')===wUnit);});}var w=p.get('w');if(w&&!isNaN(parseFloat(w)))$('#w').value=parseFloat(w);var br=p.get('breed');if(br){$('#breed').value=br;var bb=BREEDW[br];if(bb){if(!w)$('#w').value=(wUnit==='lb'?Math.round(bb[0]*LBF*10)/10:bb[0]);}}saveProf();})();
 ['#w','#from','#to','#hideNo','#showAll'].forEach(s=>$(s).addEventListener('input',function(){saveProf();render();}));$('#breed').addEventListener('change',onBreed);render();
 </script></body></html>
