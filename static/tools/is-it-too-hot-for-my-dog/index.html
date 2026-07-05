@@ -110,6 +110,7 @@ h3.sec{color:var(--navy);margin-top:26px}
 <script>
 var UNIT='f';           // display unit: 'f' or 'c' (US-first default)
 var DATA=null;          // {tempC, feelsC, hum, isDay, place}
+var API_BASE='https://api.mydogcanfly.com';  // Cloudflare Worker: cached weather proxy
 function setUnit(u){if(u===UNIT)return;UNIT=u;document.querySelectorAll('#unitTg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-u')===u);});if(DATA)render();}
 function c2f(c){return c*9/5+32;}
 function fmt(c){var v=(UNIT==='f')?c2f(c):c;return Math.round(v)+' °'+(UNIT==='f'?'F':'C');}
@@ -150,11 +151,11 @@ function reverseName(la,lo){
 }
 function loadWeather(la,lo,place){
   setStatus('Reading the weather…');
-  fetch('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day')
+  fetch(API_BASE+'/api/weather?lat='+la+'&lon='+lo)
     .then(function(r){return r.json();})
     .then(function(j){
-      if(!j.current){setStatus('Could not read the weather — try again.');return;}
-      DATA={tempC:j.current.temperature_2m,feelsC:(j.current.apparent_temperature!=null?j.current.apparent_temperature:j.current.temperature_2m),hum:j.current.relative_humidity_2m,isDay:j.current.is_day,place:place||window._pendingPlace||'Your location'};
+      if(j.tempC==null){setStatus('Could not read the weather — try again.');return;}
+      DATA={tempC:j.tempC,feelsC:(j.feelsC!=null?j.feelsC:j.tempC),hum:j.hum,isDay:j.isDay,place:place||window._pendingPlace||'Your location'};
       setStatus('');render();
     }).catch(function(){setStatus('Network error — please try again.');});
 }

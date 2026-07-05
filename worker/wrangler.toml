@@ -6,14 +6,21 @@ compatibility_date = "2024-11-01"
 # Create with: wrangler kv namespace create WX_CACHE
 [[kv_namespaces]]
 binding = "WX_CACHE"
-id = "REPLACE_WITH_KV_ID"
+id = "000166c4cf944aecac2ab079c2385a6b"
 
 # ---- D1: subscribers ---------------------------------------------------------
 # Create with: wrangler d1 create mydogcanfly
 [[d1_databases]]
 binding = "DB"
 database_name = "mydogcanfly"
-database_id = "REPLACE_WITH_D1_ID"
+database_id = "4a0e2131-ed9e-4049-bbe4-6a0eccd58aad"
+
+# ---- Custom domain: api.mydogcanfly.com --------------------------------------
+# Requires mydogcanfly.com to be an active zone on this Cloudflare account.
+# wrangler will create the DNS record + managed certificate on deploy.
+[[routes]]
+pattern = "api.mydogcanfly.com"
+custom_domain = true
 
 # ---- Cron: hourly evaluation (alerts + reminders) ----------------------------
 [triggers]
