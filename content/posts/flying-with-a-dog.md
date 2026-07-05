@@ -74,7 +74,7 @@ Here is the sequence to follow so nothing gets forgotten:
 
 1. **Microchip your dog**: it's a mandatory prerequisite for all travel.
 2. **Vaccinate against rabies**: the vaccine must be valid and given at least 21 days before departure.
-3. **Get the travel document**: the EU pet passport from your veterinarian if your dog is based in the EU, or the health certificates required by your destination country.
+3. **Get the travel document**: the EU pet passport from your veterinarian if your dog is living in the EU, or the health certificates required by your destination country.
 4. **Check the arrival country's requirements**: some require a rabies titer test, a quarantine or parasite treatments.
 5. **Contact the airline** to reserve your pet's spot and confirm the permitted weight and crate type.
 6. **Get a compliant IATA crate** and train your dog to use it.

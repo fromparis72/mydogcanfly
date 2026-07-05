@@ -8,7 +8,7 @@ faq:
   - q: "Does LATAM carry dogs in the hold?"
     a: "Yes, up to 45 kg (99 lb) (dog + crate), in an IATA-compliant crate — except brachycephalic breeds in most cases."
   - q: "How much does it cost to fly a dog on LATAM?"
-    a: "As a guide: cabin €33–230 (~$38–265). The final fee depends on the itinerary and is confirmed at booking."
+    a: "As a guide: cabin $38–265. The final fee depends on the itinerary and is confirmed at booking."
 date: 2026-06-30T00:46:00+02:00
 lastmod: 2026-06-30T00:46:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "LATAM", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1558517286-8a9cb0b8c793?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDaGlsZSUyMFBhdGFnb25pYXxlbnwxfDB8fHwxNzgyOTEyNzAxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "LATAM accepts dogs in the cabin up to 7 kg (15 lb) (€33–230 / ~$38–265) and in the hold up to 45 kg (99 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "LATAM accepts dogs in the cabin up to 7 kg (15 lb) ($38–265) and in the hold up to 45 kg (99 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1558517286-8a9cb0b8c793?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDaGlsZSUyMFBhdGFnb25pYXxlbnwxfDB8fHwxNzgyOTEyNzAxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Chile — view of the country"
@@ -42,7 +42,7 @@ LATAM (Chile) is one of the airlines that accepts dogs **both in the cabin and i
 
 ## In the cabin
 
-LATAM accepts a dog in the cabin if its weight, carrier included, does not exceed **7 kg (15 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **€33–230 (~$38–265)**.
+LATAM accepts a dog in the cabin if its weight, carrier included, does not exceed **7 kg (15 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **$38–265**.
 
 *Airline's stated conditions:* dog + carrier max 7 kg (15 lb); Economy/Premium cabins only.
 

@@ -40,7 +40,7 @@ On British Airways (United Kingdom), dogs are **not allowed in the cabin** (exce
 
 ## In the cabin: no
 
-British Airways does not allow dogs in the cabin (except assistance dogs). Assistance dogs only in the cabin.
+British Airways does not allow dogs in the cabin (except assistance dogs).
 
 ## In the hold: cargo service only
 

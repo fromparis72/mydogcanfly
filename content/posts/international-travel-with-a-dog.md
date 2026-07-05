@@ -4,7 +4,7 @@ seoTitle: "International Travel with a Dog: Documents & Vaccines"
 description: "International travel with a dog: microchip, rabies vaccination, EU pet passport or health certificate, rabies titer test — what to prepare, in what order."
 faq:
   - q: "Can my dog travel in the EU without an EU pet passport?"
-    a: "No. For dogs based in the EU, the EU pet passport is mandatory for crossing a border within the European Union: it certifies the animal's identification and the validity of its rabies vaccination. Dogs arriving from outside the EU travel on an equivalent document, the EU animal health certificate. Without the right document, boarding or border crossing can be refused."
+    a: "No. For dogs living in the EU, the EU pet passport is mandatory for crossing a border within the European Union: it certifies the animal's identification and the validity of its rabies vaccination. Dogs arriving from outside the EU travel on an equivalent document, the EU animal health certificate. Without the right document, boarding or border crossing can be refused."
   - q: "At what age can my puppy travel internationally?"
     a: "A puppy generally must be at least 12 weeks old to receive the rabies vaccine, then wait 21 days after the injection. That sets a minimum age of about 15 weeks for travel within the EU. Some countries refuse entry to animals not vaccinated against rabies, whatever their age."
   - q: "What is a rabies titer test?"
@@ -45,7 +45,7 @@ To travel within the European Union, your dog needs three inseparable things: id
 Concretely, here is what you need to put together:
 
 - **Microchip identification** compliant with the ISO standard, implanted by a veterinarian. Tattoos are only recognized for international travel in rare, older cases where they remain legible.
-- **The travel document**: for dogs based in the EU, the **EU pet passport**, issued by an authorized veterinarian, which records the animal's identity, its vaccines and the owner's contact details. Dogs entering the EU from outside travel on an **EU animal health certificate** instead.
+- **The travel document**: for dogs living in the EU, the **EU pet passport**, issued by an authorized veterinarian, which records the animal's identity, its vaccines and the owner's contact details. Dogs entering the EU from outside travel on an **EU animal health certificate** instead.
 - **A valid rabies vaccination**, with the initial vaccination given at least 21 days before the border crossing.
 
 To prepare the trip itself once these documents are in hand, see our guide to [flying with a dog](/flying-with-a-dog/), which covers crates, cargo holds and cabins airline by airline.

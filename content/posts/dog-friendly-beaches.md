@@ -45,7 +45,7 @@ The first step is checking the local rules, because beach access for dogs is reg
 
 In peak summer season, many busy beaches ban dogs during the day for hygiene and safety reasons. Access is often allowed early in the morning, in the evening, off-season, or on beaches specifically designated for pets.
 
-- Check the website of the local town hall or tourist office, or call them directly.
+- Check the website of your local town or city office, or the tourist board, or call them directly.
 - Look for the information signs at beach entrances: they spell out the permitted hours and zones.
 - Seek out beaches labeled "dog-friendly" or unsupervised stretches of coastline, which are often more relaxed.
 - Respect off-limits zones: fines are real, and enforcement is frequent in summer.
@@ -90,6 +90,7 @@ To find seaside accommodation that welcomes your dog, specialized platforms like
 
 ## Sources
 
+- [ASPCA (US) — Hot Weather Safety Tips](https://www.aspca.org/pet-care/general-pet-care/hot-weather-safety-tips)
 - [Service-Public.fr — local regulations and municipal authority (France)](https://www.service-public.fr/)
 - [Atout France — tourism and destinations](https://www.atout-france.fr/)
 - [Western France Animal Poison Control Center (CAPAE)](https://www.centre-antipoison-animal.com/)

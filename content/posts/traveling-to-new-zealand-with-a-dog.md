@@ -41,7 +41,7 @@ New Zealand runs one of the **strictest and longest** import procedures in the w
 
 | Requirement | Details |
 |---|---|
-| 📝 Import permit (MPI) | Apply at least 6 weeks in advance. Your country of origin determines the category (France, for example, is category 3). |
+| 📝 Import permit (MPI) | Apply at least 6 weeks in advance. Your country of origin determines the category — check yours with MPI. |
 | 💉 Microchip + rabies vaccination | Identification and up-to-date vaccination. |
 | 🧪 Serological rabies titer test (FAVN/RFFIT) | ≥ 0.5 IU/ml at an approved laboratory. |
 | 🏥 Mandatory quarantine | Minimum 10 days at an MPI-approved facility. |

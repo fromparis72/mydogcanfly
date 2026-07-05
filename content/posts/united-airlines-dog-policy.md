@@ -8,7 +8,7 @@ faq:
   - q: "How does a large dog travel on United Airlines?"
     a: "Only through the airline's cargo/freight service, priced by quote."
   - q: "How much does it cost to fly a dog on United Airlines?"
-    a: "As a guideline: cabin about $150 (≈€138) per segment. The final fee depends on the route and is confirmed at booking."
+    a: "As a guideline: cabin about $150 per segment. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:27:00+02:00
 lastmod: 2026-06-30T00:27:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "United Airlines", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1684575571081-d6abda485519?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "United Airlines accepts dogs in the cabin up to 9 kg (20 lb) (about $150 / ≈€138) and in the hold via the cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "United Airlines accepts dogs in the cabin up to 9 kg (20 lb) (about $150) and in the hold via the cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1684575571081-d6abda485519?w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Las Vegas at night — the Strip, United States"
@@ -42,7 +42,7 @@ United Airlines (United States) carries dogs **in the cabin only**: convenient f
 
 ## In the cabin
 
-United Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **9 kg (20 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect about **$150 (≈€138)** per segment.
+United Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **9 kg (20 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect about **$150** per segment.
 
 *Airline conditions:* dog + carrier max 9 kg (20 lb); ~$150 per segment; max 2 pets.
 

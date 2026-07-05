@@ -8,7 +8,7 @@ faq:
   - q: "Does Saudia transport dogs in the hold?"
     a: "Yes, in an IATA-compliant crate — except brachycephalic breeds in most cases."
   - q: "How much does it cost to fly a dog on Saudia?"
-    a: "As a guide: hold €138–276 (~$160–320). The final fee depends on the route and is confirmed at booking."
+    a: "As a guide: hold $160–320. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:41:00+02:00
 lastmod: 2026-06-30T00:41:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Saudia", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1612899326681-66508905b4ce?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTYXVkaSUyMEFyYWJpYSUyMGRlc2VydHxlbnwxfDB8fHwxNzgyOTEyNzE0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Saudia accepts dogs in the hold (€138–276 / ~$160–320)."
+summary: "Saudia accepts dogs in the hold ($160–320)."
 cover:
     image: "https://images.unsplash.com/photo-1612899326681-66508905b4ce?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTYXVkaSUyMEFyYWJpYSUyMGRlc2VydHxlbnwxfDB8fHwxNzgyOTEyNzE0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Saudi Arabia — view of the country"
@@ -46,7 +46,7 @@ Saudia does not allow dogs in the cabin — assistance dogs are the only excepti
 
 ## In the hold
 
-Above the cabin limit, your dog travels in a pressurized, heated hold, inside an [IATA-compliant crate](/airline-approved-dog-crate/). Indicative fee: **€138–276 (~$160–320)**.
+Above the cabin limit, your dog travels in a pressurized, heated hold, inside an [IATA-compliant crate](/airline-approved-dog-crate/). Indicative fee: **$160–320**.
 
 *Airline conditions:* hold transport as checked baggage.
 

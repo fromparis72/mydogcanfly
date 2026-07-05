@@ -8,7 +8,7 @@ faq:
   - q: "Does Air Transat transport dogs in the hold?"
     a: "Yes, up to 45 kg (99 lb) (dog + crate), in an IATA-compliant crate — except snub-nosed (brachycephalic) breeds in most cases."
   - q: "How much does it cost to fly a dog on Air Transat?"
-    a: "As a guide: cabin €35–50 (~$40–60) · hold €65–200 (~$75–230). The final fee depends on the route and is confirmed at booking."
+    a: "As a guide: cabin $40–60 · hold $75–230. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:22:00+02:00
 lastmod: 2026-06-30T00:22:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Transat", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1610141353646-14306dc6a9ab?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Air Transat accepts dogs in the cabin up to 8 kg (18 lb) for €35–50 (~$40–60) and in the hold up to 45 kg (99 lb) for €65–200 (~$75–230). Brachycephalic breeds are restricted (usually banned from the hold)."
+summary: "Air Transat accepts dogs in the cabin up to 8 kg (18 lb) for $40–60 and in the hold up to 45 kg (99 lb) for $75–230. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1610141353646-14306dc6a9ab?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Canada — view of the country"
@@ -42,13 +42,13 @@ Air Transat (Canada) is one of the carriers that accepts dogs **both in the cabi
 
 ## In the cabin
 
-Air Transat accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect to pay around **€35–50 (~$40–60)**.
+Air Transat accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect to pay around **$40–60**.
 
 *Airline conditions:* Up to 8 kg (18 lb) including the carrier (43 × 24 × 25 cm / 17 × 9.5 × 10 in); book at least 24 hours before departure.
 
 ## In the hold
 
-Above the cabin limit, your dog travels in the pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **€65–200 (~$75–230)**.
+Above the cabin limit, your dog travels in the pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **$75–230**.
 
 *Airline conditions:* Up to 45 kg (99 lb) as checked baggage.
 

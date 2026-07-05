@@ -8,7 +8,7 @@ faq:
   - q: "Does EgyptAir carry dogs in the hold?"
     a: "Yes, up to 32 kg (70 lb) for dog + crate combined, in an IATA-compliant crate — but brachycephalic breeds are usually excluded."
   - q: "How much does it cost to fly a dog on EgyptAir?"
-    a: "As a guide: cabin €28 to €414 (~$32–480) · hold €28 to €828 (~$32–950). The final fee depends on the route and is confirmed at booking."
+    a: "As a guide: cabin $32–480 · hold $32–950. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:42:00+02:00
 lastmod: 2026-06-30T00:42:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "EgyptAir", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1600520611035-84157ad4084d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxFZ3lwdCUyMHB5cmFtaWRzfGVufDF8MHx8fDE3ODI5MTI2OTd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "EgyptAir accepts dogs in the cabin up to 8 kg (18 lb) for €28 to €414 (~$32–480) and in the hold up to 32 kg (70 lb) for €28 to €828 (~$32–950). Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "EgyptAir accepts dogs in the cabin up to 8 kg (18 lb) for $32–480 and in the hold up to 32 kg (70 lb) for $32–950. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1600520611035-84157ad4084d?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxFZ3lwdCUyMHB5cmFtaWRzfGVufDF8MHx8fDE3ODI5MTI2OTd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Egypt — view of the country"
@@ -42,13 +42,13 @@ EgyptAir (Egypt) is one of the airlines that accepts dogs **both in the cabin an
 
 ## In the cabin
 
-EgyptAir accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **€28 to €414 (~$32–480)**.
+EgyptAir accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **$32–480**.
 
 *Airline conditions:* ≤ 8 kg (18 lb); charged as excess baggage.
 
 ## In the hold
 
-Above the cabin limit, your dog travels in the pressurized, heated hold in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **32 kg (70 lb)**. Indicative fee: **€28 to €828 (~$32–950)**.
+Above the cabin limit, your dog travels in the pressurized, heated hold in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **32 kg (70 lb)**. Indicative fee: **$32–950**.
 
 *Airline conditions:* AVIH ≤ 32 kg (70 lb).
 

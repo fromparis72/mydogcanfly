@@ -8,7 +8,7 @@ faq:
   - q: "How does a large dog travel on Copa Airlines?"
     a: "Only via the airline's cargo/freight service, priced by quote."
   - q: "How much does it cost to fly a dog on Copa Airlines?"
-    a: "As a guide: cabin €23 to €115 (~$27–132) · hold €115 to €184 (~$132–212). The final fee depends on the route and is confirmed at booking."
+    a: "As a guide: cabin $27–132 · hold $132–212. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:49:00+02:00
 lastmod: 2026-06-30T00:49:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Copa Airlines", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1598041543955-0d88c390f3b5?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxQYW5hbWElMjBDaXR5JTIwc2t5bGluZXxlbnwxfDB8fHwxNzgyOTEyNjk3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Copa Airlines accepts dogs in the cabin up to 10 kg (22 lb) for €23 to €115 (~$27–132), and in the hold via the cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "Copa Airlines accepts dogs in the cabin up to 10 kg (22 lb) for $27–132, and in the hold via the cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1598041543955-0d88c390f3b5?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxQYW5hbWElMjBDaXR5JTIwc2t5bGluZXxlbnwxfDB8fHwxNzgyOTEyNjk3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Panama City skyline"
@@ -42,7 +42,7 @@ Copa Airlines (Panama) is one of the airlines that accepts dogs **both in the ca
 
 ## In the cabin
 
-Copa Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **10 kg (22 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **€23 to €115 (~$27–132)**.
+Copa Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **10 kg (22 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **$27–132**.
 
 *Airline conditions:* ≤ 10 kg (22 lb).
 

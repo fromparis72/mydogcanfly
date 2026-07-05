@@ -8,7 +8,7 @@ faq:
   - q: "Does Air Canada transport dogs in the hold?"
     a: "Yes, in an IATA-compliant crate — except snub-nosed (brachycephalic) breeds in most cases."
   - q: "How much does it cost to fly a dog on Air Canada?"
-    a: "As a guide: cabin €34–80 (~$40–90) · hold €71–184 (~$80–210). The final fee depends on the route and is confirmed at booking."
+    a: "As a guide: cabin $40–90 · hold $80–210. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:23:00+02:00
 lastmod: 2026-06-30T00:23:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Canada", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1506104489822-562ca25152fe?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Air Canada accepts dogs in the cabin up to 10 kg (22 lb) for €34–80 (~$40–90) and in the hold for €71–184 (~$80–210). Brachycephalic breeds are restricted (usually banned from the hold)."
+summary: "Air Canada accepts dogs in the cabin up to 10 kg (22 lb) for $40–90 and in the hold for $80–210. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1506104489822-562ca25152fe?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Canada — view of the country"
@@ -42,13 +42,13 @@ Air Canada (Canada) is one of the carriers that accepts dogs **both in the cabin
 
 ## In the cabin
 
-Air Canada accepts a dog in the cabin if its weight, carrier included, does not exceed **10 kg (22 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect to pay around **€34–80 (~$40–90)**.
+Air Canada accepts a dog in the cabin if its weight, carrier included, does not exceed **10 kg (22 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect to pay around **$40–90**.
 
 *Airline conditions:* Dog + carrier max 10 kg (22 lb); soft-sided carrier required.
 
 ## In the hold
 
-Above the cabin limit, your dog travels in the pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/). Indicative fee: **€71–184 (~$80–210)**.
+Above the cabin limit, your dog travels in the pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/). Indicative fee: **$80–210**.
 
 *Airline conditions:* Checked-baggage hold; rigid crate; brachycephalic breeds banned from the hold and cargo.
 

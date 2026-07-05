@@ -141,6 +141,8 @@ In the car, when a trip can't be avoided, plan it for the cooler hours (before 9
 
 ## Sources
 
+- [ASPCA (US) — Hot Weather Safety Tips](https://www.aspca.org/pet-care/general-pet-care/hot-weather-safety-tips)
+- [AVMA (US) — Pet owner resources](https://www.avma.org/resources-tools/pet-owners)
 - [ANSES — French Agency for Food, Environmental and Occupational Health & Safety](https://www.anses.fr)
 - [French National Order of Veterinarians](https://www.veterinaire.fr)
 - [French Ministry of Agriculture](https://agriculture.gouv.fr)

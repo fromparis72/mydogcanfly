@@ -34,7 +34,7 @@ cover:
 
 {{< enbref >}}
 - 🧳 **Cabin**: dog ≤ **8 kg (18 lb)** carrier included — **€70–250 (~$80–290)**
-- 📦 **Hold**: dog ≤ **75 kg (165 lb)** with the crate — **€100–750 (~$115–860)** depending on the zone
+- 📦 **Hold**: dog + crate combined up to **75 kg (165 lb)** — **€100–750 (~$115–860)** depending on the zone
 - 🚫 **Brachycephalic breeds banned** from the hold
 - 🌡️ Possible restrictions in **hot weather**
 - ☎️ Booking **by phone** (limited spots)

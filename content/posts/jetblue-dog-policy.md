@@ -8,7 +8,7 @@ faq:
   - q: "Can I put my dog in the hold on JetBlue?"
     a: "No, JetBlue does not offer hold transport for dogs."
   - q: "How much does it cost to fly a dog on JetBlue?"
-    a: "As a guide: $125 each way in the cabin (about €115). The final fee depends on the itinerary and is confirmed at booking."
+    a: "As a guide: $125 each way in the cabin. The final fee depends on the itinerary and is confirmed at booking."
 date: 2026-06-30T00:28:00+02:00
 lastmod: 2026-06-30T00:28:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "JetBlue", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1687806465114-93d0ac1fd199?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHw0fHxVbml0ZWQlMjBTdGF0ZXMlMjBsYW5kbWFyayUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "JetBlue accepts dogs in the cabin only, up to 9 kg (20 lb) carrier included, for $125 each way (about €115)."
+summary: "JetBlue accepts dogs in the cabin only, up to 9 kg (20 lb) carrier included, for $125 each way."
 cover:
     image: "https://images.unsplash.com/photo-1687806465114-93d0ac1fd199?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHw0fHxVbml0ZWQlMjBTdGF0ZXMlMjBsYW5kbWFyayUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "United States — view of the country"
@@ -42,7 +42,7 @@ JetBlue (United States) carries dogs **in the cabin only**: convenient for small
 
 ## In the cabin
 
-JetBlue accepts a dog in the cabin if its weight, carrier included, does not exceed **9 kg (20 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect about **$125 each way (~€115)**.
+JetBlue accepts a dog in the cabin if its weight, carrier included, does not exceed **9 kg (20 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect about **$125 each way**.
 
 *Airline's stated conditions:* dog + carrier max 9 kg (20 lb); $125 each way; max 2 pets.
 

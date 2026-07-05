@@ -8,7 +8,7 @@ faq:
   - q: "Does ANA (All Nippon Airways) transport dogs in the hold?"
     a: "Yes, up to 45 kg (99 lb) (dog + crate), in an IATA-compliant crate — but snub-nosed (brachycephalic) breeds are usually excluded."
   - q: "How much does it cost to fly a dog on ANA (All Nippon Airways)?"
-    a: "As a guideline: €200–400 (~$230–460) in the hold. The final fee depends on your route and is confirmed at booking."
+    a: "As a guideline: $230–460 in the hold. The final fee depends on your route and is confirmed at booking."
 date: 2026-06-30T00:32:00+02:00
 lastmod: 2026-06-30T00:32:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "ANA (All Nippon Airways)", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1705202225132-82e59d5c6893?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxKYXBhbiUyME1vdW50JTIwRnVqaSUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNjkwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "ANA (All Nippon Airways) accepts dogs in the hold up to 45 kg / 99 lb (€200–400, ~$230–460). Snub-nosed breeds are restricted (most often banned from the hold)."
+summary: "ANA (All Nippon Airways) accepts dogs in the hold up to 45 kg / 99 lb ($230–460). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1705202225132-82e59d5c6893?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxKYXBhbiUyME1vdW50JTIwRnVqaSUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNjkwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Japan — view of the country"
@@ -46,7 +46,7 @@ ANA (All Nippon Airways) does not allow dogs in the cabin (except assistance dog
 
 ## In the hold
 
-Your dog travels in the pressurized, heated hold in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **€200–400 (~$230–460)**.
+Your dog travels in the pressurized, heated hold in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **$230–460**.
 
 *Airline conditions:* Checked baggage, dog + crate max 45 kg (99 lb); max 3 pets per flight; snub-nosed breed embargo from May 1 to October 31.
 

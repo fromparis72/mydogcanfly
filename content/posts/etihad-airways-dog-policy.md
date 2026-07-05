@@ -8,7 +8,7 @@ faq:
   - q: "How does a large dog travel on Etihad Airways?"
     a: "Only via the airline's cargo/freight service, priced by individual quote."
   - q: "How much does it cost to fly a dog on Etihad Airways?"
-    a: "As a guideline: cabin €399 to €1,500 (~$430 to $1,650). The final fee depends on the route and is confirmed at booking."
+    a: "As a guideline: cabin $430 to $1,650. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:40:00+02:00
 lastmod: 2026-06-30T00:40:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Etihad Airways", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxEdWJhaSUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Etihad Airways accepts dogs in the cabin up to 8 kg (18 lb) (€399–1,500, ~$430–1,650) and in the hold via its cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "Etihad Airways accepts dogs in the cabin up to 8 kg (18 lb) ($430–1,650) and in the hold via its cargo service only. Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxEdWJhaSUyMHNreWxpbmV8ZW58MXwwfHx8MTc4MjkxMjY4OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "United Arab Emirates — view of the country"
@@ -42,7 +42,7 @@ Etihad Airways (United Arab Emirates) is one of the airlines that accepts dogs *
 
 ## In the cabin
 
-Etihad Airways accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **€399 to €1,500 (~$430 to $1,650)**.
+Etihad Airways accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **$430 to $1,650**.
 
 *Airline conditions:* Cabin only on flights to/from Abu Dhabi; dog + carrier max 8 kg (18 lb).
 

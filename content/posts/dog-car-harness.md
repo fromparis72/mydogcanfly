@@ -97,7 +97,7 @@ For a detailed comparison of containers, see our guide to [dog carriers and crat
 
 ## What do traffic laws say?
 
-Rules vary by country — and in the US, by state — but the underlying principle is the same almost everywhere: nothing may impede the driver, block visibility or restrict freedom of movement. In France, for example, the highway code treats a loose dog moving around the cabin as a punishable distraction, and several other jurisdictions have similar or stricter rules. By restraining your dog with a crash-tested harness or a crate, you satisfy that obligation and dramatically reduce the risks. It's also plain insurance sense: an unrestrained animal can complicate a claim after an accident.
+Rules vary by country — and in the US, by state — but the underlying principle is the same almost everywhere: nothing may impede the driver, block visibility or restrict freedom of movement. In the US, many states treat a loose dog that distracts the driver as a violation, and other countries have similar or stricter rules. By restraining your dog with a crash-tested harness or a crate, you satisfy that obligation and dramatically reduce the risks. It's also plain insurance sense: an unrestrained animal can complicate a claim after an accident.
 
 ## Sources
 

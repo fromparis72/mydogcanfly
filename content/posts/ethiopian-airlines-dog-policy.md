@@ -8,7 +8,7 @@ faq:
   - q: "Does Ethiopian Airlines transport dogs in the cargo hold?"
     a: "Yes, up to 45 kg (99 lb) (dog + crate), in an IATA-compliant crate — except brachycephalic breeds in most cases."
   - q: "How much does it cost to fly a dog on Ethiopian Airlines?"
-    a: "As a guideline: cabin €92 to €276 (~$100 to $300) · hold €340 to €460 (~$370 to $500). The final fee depends on the route and is confirmed at booking."
+    a: "As a guideline: cabin $100 to $300 · hold $370 to $500. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:43:00+02:00
 lastmod: 2026-06-30T00:43:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Ethiopian Airlines", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1572888195250-3037a59d3578?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxFdGhpb3BpYSUyMG1vdW50YWlucyUyMGxhbmRzY2FwZXxlbnwxfDB8fHwxNzgyOTEyNjk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Ethiopian Airlines accepts dogs in the cabin up to 8 kg (18 lb) (€92–276, ~$100–300) and in the hold up to 45 kg (99 lb) (€340–460, ~$370–500). Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "Ethiopian Airlines accepts dogs in the cabin up to 8 kg (18 lb) ($100–300) and in the hold up to 45 kg (99 lb) ($370–500). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1572888195250-3037a59d3578?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxFdGhpb3BpYSUyMG1vdW50YWlucyUyMGxhbmRzY2FwZXxlbnwxfDB8fHwxNzgyOTEyNjk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Ethiopia — view of the country"
@@ -42,13 +42,13 @@ Ethiopian Airlines (Ethiopia) is one of the airlines that accepts dogs **both in
 
 ## In the cabin
 
-Ethiopian Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **€92 to €276 (~$100 to $300)**.
+Ethiopian Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **8 kg (18 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **$100 to $300**.
 
 *Airline conditions:* ≤ 8 kg (18 lb).
 
 ## In the cargo hold
 
-Above the cabin limit, your dog travels in the pressurized, temperature-controlled hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **€340 to €460 (~$370 to $500)**.
+Above the cabin limit, your dog travels in the pressurized, temperature-controlled hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **$370 to $500**.
 
 *Airline conditions:* 8–45 kg (18–99 lb) as checked baggage; brachycephalic breeds not accepted.
 

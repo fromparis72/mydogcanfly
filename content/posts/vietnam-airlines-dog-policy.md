@@ -8,7 +8,7 @@ faq:
   - q: "Does Vietnam Airlines carry dogs in the hold?"
     a: "Yes, up to 32 kg (70 lb) (dog + crate), in an IATA-compliant crate — brachycephalic breeds are usually excluded."
   - q: "How much does it cost to fly a dog on Vietnam Airlines?"
-    a: "As a guideline: cabin €46–184 (~$53–210) · hold €92–506 (~$105–580). The final fee depends on the route and is confirmed at booking."
+    a: "As a guideline: cabin $53–210 · hold $105–580. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:38:00+02:00
 lastmod: 2026-06-30T00:38:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Vietnam Airlines", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1528127269322-539801943592?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxWaWV0bmFtJTIwSGFsb25nJTIwQmF5fGVufDF8MHx8fDE3ODI5MTI3MTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Vietnam Airlines accepts dogs in the cabin up to 6 kg (13 lb) (€46–184 / ~$53–210) and in the hold up to 32 kg (70 lb) (€92–506 / ~$105–580). Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "Vietnam Airlines accepts dogs in the cabin up to 6 kg (13 lb) ($53–210) and in the hold up to 32 kg (70 lb) ($105–580). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1528127269322-539801943592?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxWaWV0bmFtJTIwSGFsb25nJTIwQmF5fGVufDF8MHx8fDE3ODI5MTI3MTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Vietnam — view of the country"
@@ -42,13 +42,13 @@ Vietnam Airlines (Vietnam) is among the airlines that accept dogs **both in the 
 
 ## In the cabin
 
-Vietnam Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **6 kg (13 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect about **€46–184 (~$53–210)**.
+Vietnam Airlines accepts a dog in the cabin if its weight, carrier included, does not exceed **6 kg (13 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect about **$53–210**.
 
 *Airline conditions:* ≤ 6 kg (13 lb).
 
 ## In the hold
 
-Above the cabin limit, your dog travels in a pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **32 kg (70 lb)**. Indicative fee: **€92–506 (~$105–580)**.
+Above the cabin limit, your dog travels in a pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **32 kg (70 lb)**. Indicative fee: **$105–580**.
 
 *Airline conditions:* AVIH priced by zone/weight; not available between Vietnam and the US.
 

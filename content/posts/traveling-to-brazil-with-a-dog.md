@@ -6,7 +6,7 @@ faq:
   - q: "Is there a quarantine in Brazil?"
     a: "No. In principle there is no quarantine and no rabies titer test, but you need an endorsed export health certificate and your dog is inspected on arrival."
   - q: "Who endorses the health certificate?"
-    a: "Your country's official veterinary authority — the DDPP in France, for example — validates the certificate issued by your veterinarian before departure."
+    a: "Your country's official veterinary authority — USDA APHIS in the US, the DDPP in France, for example — validates the certificate issued by your veterinarian before departure."
 date: 2026-06-26T08:00:00+02:00
 lastmod: 2026-06-26T08:00:00+02:00
 draft: false
@@ -34,14 +34,14 @@ cover:
 - ⏳ Lead time: **a few weeks**
 {{< /enbref >}}
 
-Brazil takes a bit more planning than Mexico: the **health certificate** must be **endorsed by your country's official veterinary authority** (the DDPP in France) before departure, and your dog is inspected on arrival (VIGIAGRO). In principle, there is no rabies titer test and no quarantine.
+Brazil takes a bit more planning than Mexico: the **health certificate** must be **endorsed by your country's official veterinary authority** (USDA APHIS in the US, the DDPP in France) before departure, and your dog is inspected on arrival (VIGIAGRO). In principle, there is no rabies titer test and no quarantine.
 
 ## Entry requirements
 
 | Requirement | Details |
 |---|---|
 | 💉 Microchip + rabies vaccine | Inactivated vaccine for dogs over 3 months old, given ≥ 21 days after the primary vaccination. |
-| 📄 Export health certificate | Issued by a veterinarian and endorsed by the official authority (the DDPP in France) before departure. |
+| 📄 Export health certificate | Issued by a veterinarian and endorsed by the official authority (USDA APHIS in the US, the DDPP in France) before departure. |
 | 🪱 Parasite treatments | Internal and external, given shortly before departure and listed on the certificate. |
 
 {{< alerte type="check" >}}

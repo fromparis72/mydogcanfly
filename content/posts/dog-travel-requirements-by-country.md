@@ -44,7 +44,7 @@ Whatever the destination, three fundamentals come up almost every time:
 
 - **Microchip identification** (ISO standard), implanted *before* the rabies vaccination.
 - **A valid rabies vaccination**: initial vaccination from 12 weeks of age, then a waiting period of at least 21 days before travel.
-- **A travel document**: the EU pet passport, issued by a veterinarian, for dogs based in the EU — it records identification and vaccination. Dogs traveling from outside the EU use the equivalent official health certificate required for their route.
+- **A travel document**: the EU pet passport, issued by a veterinarian, for dogs living in the EU — it records identification and vaccination. Dogs traveling from outside the EU use the equivalent official health certificate required for their route.
 
 Beyond this foundation, each country adds its own requirements (rabies titer test, tapeworm treatment, permits…), summarized below.
 

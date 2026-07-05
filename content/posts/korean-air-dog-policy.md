@@ -8,7 +8,7 @@ faq:
   - q: "Does Korean Air carry dogs in the hold?"
     a: "Yes, up to 45 kg (99 lb) (dog + crate), in an IATA-compliant crate — brachycephalic breeds are usually excluded."
   - q: "How much does it cost to fly a dog on Korean Air?"
-    a: "As a guide: cabin €138–276 (~$160–320) · hold €138–552 (~$160–635). The final fee depends on the route and is confirmed at booking."
+    a: "As a guide: cabin $160–320 · hold $160–635. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:34:00+02:00
 lastmod: 2026-06-30T00:34:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Korean Air", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1448523183439-d2ac62aca997?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTb3V0aCUyMEtvcmVhJTIwU2VvdWwlMjBwYWxhY2V8ZW58MXwwfHx8MTc4MjkxMjcwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Korean Air accepts dogs in the cabin up to 7 kg (15 lb) (€138–276 / ~$160–320) and in the hold up to 45 kg (99 lb) (€138–552 / ~$160–635). Brachycephalic breeds are restricted (usually banned from the hold)."
+summary: "Korean Air accepts dogs in the cabin up to 7 kg (15 lb) ($160–320) and in the hold up to 45 kg (99 lb) ($160–635). Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1448523183439-d2ac62aca997?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxTb3V0aCUyMEtvcmVhJTIwU2VvdWwlMjBwYWxhY2V8ZW58MXwwfHx8MTc4MjkxMjcwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "South Korea — view of the country"
@@ -42,13 +42,13 @@ South Korea's flag carrier, flying worldwide from its **Seoul Incheon** hub, Kor
 
 ## In the cabin
 
-Korean Air accepts a dog in the cabin if its weight, carrier included, does not exceed **7 kg (15 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **€138–276 (~$160–320)** depending on the route.
+Korean Air accepts a dog in the cabin if its weight, carrier included, does not exceed **7 kg (15 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect roughly **$160–320** depending on the route.
 
 *Airline conditions:* ≤7 kg (15 lb) with carrier.
 
 ## In the hold
 
-Above the cabin limit, your dog travels in a pressurized, heated hold, inside an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **€138–552 (~$160–635)**.
+Above the cabin limit, your dog travels in a pressurized, heated hold, inside an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **$160–635**.
 
 *Airline conditions:* ≤45 kg (99 lb); brachycephalic breeds banned from the hold.
 

@@ -8,7 +8,7 @@ faq:
   - q: "Does Thai Airways carry dogs in the hold?"
     a: "Yes, up to 32 kg (70 lb) (dog + crate), in an IATA-compliant crate — brachycephalic breeds are usually excluded."
   - q: "How much does it cost to fly a dog on Thai Airways?"
-    a: "As a guideline: hold €100–150 (~$115–170). The final fee depends on the route and is confirmed at booking."
+    a: "As a guideline: hold $115–170. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:37:00+02:00
 lastmod: 2026-06-30T00:37:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Thai Airways", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1528181304800-259b08848526?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxUaGFpbGFuZCUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNzE1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Thai Airways accepts dogs in the hold up to 32 kg (70 lb) (€100–150 / ~$115–170). Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "Thai Airways accepts dogs in the hold up to 32 kg (70 lb) ($115–170). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1528181304800-259b08848526?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxUaGFpbGFuZCUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNzE1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Thailand — view of the country"
@@ -46,7 +46,7 @@ Thai Airways does not allow dogs in the cabin — the cabin is off-limits except
 
 ## In the hold
 
-Above the cabin limit, your dog travels in a pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **32 kg (70 lb)**. Indicative fee: **€100–150 (~$115–170)**.
+Above the cabin limit, your dog travels in a pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **32 kg (70 lb)**. Indicative fee: **$115–170**.
 
 *Airline conditions:* checked baggage (AVIH) if under 32 kg (70 lb); otherwise via Thai Cargo.
 

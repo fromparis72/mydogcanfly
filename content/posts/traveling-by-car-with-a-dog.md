@@ -98,7 +98,7 @@ Hydrate little but often: a big bowl all at once, especially in hot weather, enc
 
 ## What does the law say, and what are the risks if you're stopped?
 
-In many countries, traffic law requires the driver to remain in full control of the vehicle at all times, with nothing obstructing their visibility or freedom of movement. In France, for example, article R412-6 of the traffic code covers exactly this: an unrestrained dog moving around the cabin, climbing onto your lap or blocking the rear window falls under that rule. If you're stopped, the violation is generally punished with a fine and, depending on the jurisdiction, points on your license — not to mention your liability in a crash. Beyond the penalty, it's above all your insurer that can turn against you: a loose animal deemed an aggravating factor in an accident can reduce your compensation. Restraining your dog isn't just a matter of comfort — it's a genuine point of legal compliance and protection.
+In many countries, traffic law requires the driver to remain in full control of the vehicle at all times, with nothing obstructing their visibility or freedom of movement. In the US, distracted-driving laws vary by state, but an unrestrained dog moving around the cabin, climbing onto your lap or blocking the rear window is widely treated as a driver distraction. If you're stopped, it can mean a fine and, depending on the state, points on your license — not to mention your liability in a crash. Beyond the penalty, it's above all your insurer that can turn against you: a loose animal deemed an aggravating factor in an accident can reduce your compensation. Restraining your dog isn't just a matter of comfort — it's a genuine point of legal compliance and protection.
 
 ## What should you do on arrival?
 
@@ -106,6 +106,7 @@ As soon as you arrive, take the dog out on a leash so they can relieve themselve
 
 ## Sources
 
+- [Center for Pet Safety (US) — crash-tested pet restraints](https://www.centerforpetsafety.org/)
 - [Sécurité routière — official French road safety site](https://www.securite-routiere.gouv.fr)
 - [Service-public.fr — transporting animals](https://www.service-public.fr)
 - [French national order of veterinarians](https://www.veterinaire.fr)

@@ -8,7 +8,7 @@ faq:
   - q: "Does WestJet carry dogs in the hold?"
     a: "Yes, up to 45 kg (99 lb) (dog + crate), in an IATA-compliant crate — brachycephalic breeds are usually excluded."
   - q: "How much does it cost to fly a dog on WestJet?"
-    a: "As a guideline: cabin €34–80 (~$40–90) · hold €68–160 (~$80–185). The final fee depends on the route and is confirmed at booking."
+    a: "As a guideline: cabin $40–90 · hold $80–185. The final fee depends on the route and is confirmed at booking."
 date: 2026-06-30T00:24:00+02:00
 lastmod: 2026-06-30T00:24:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "WestJet", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1507409613952-518459ac866e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwzfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "WestJet accepts dogs in the cabin (€34–80 / ~$40–90) and in the hold up to 45 kg (99 lb) (€68–160 / ~$80–185). Brachycephalic breeds are restricted (most often banned from the hold)."
+summary: "WestJet accepts dogs in the cabin ($40–90) and in the hold up to 45 kg (99 lb) ($80–185). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1507409613952-518459ac866e?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwzfHxDYW5hZGElMjBsYW5kc2NhcGUlMjBtb3VudGFpbnN8ZW58MXwwfHx8MTc4MjkxMjY4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Canada — view of the country"
@@ -42,13 +42,13 @@ WestJet (Canada) is among the airlines that accept dogs **both in the cabin and 
 
 ## In the cabin
 
-WestJet accepts a dog in the cabin (the weight limit depends on the aircraft and class). The carrier must be soft-sided and fit under the seat in front of you. Expect about **€34–80 (~$40–90)**.
+WestJet accepts a dog in the cabin (the weight limit depends on the aircraft and class). The carrier must be soft-sided and fit under the seat in front of you. Expect about **$40–90**.
 
 *Airline conditions:* soft carrier max 41 × 21 × 25 cm (16 × 8 × 10 in).
 
 ## In the hold
 
-Above the cabin limit, your dog travels in a pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **€68–160 (~$80–185)**.
+Above the cabin limit, your dog travels in a pressurized, heated hold, in an [IATA-compliant crate](/airline-approved-dog-crate/), for a combined dog + crate weight of up to **45 kg (99 lb)**. Indicative fee: **$80–185**.
 
 *Airline conditions:* hold open to the public; max dog + crate 45 kg (99 lb); brachycephalic breeds restricted; heat embargo around 24 °C (75 °F).
 

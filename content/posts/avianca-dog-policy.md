@@ -8,7 +8,7 @@ faq:
   - q: "Does Avianca transport dogs in the hold?"
     a: "Yes, up to 70 kg (154 lb) (dog + crate), in an IATA-compliant crate — but snub-nosed (brachycephalic) breeds are usually excluded."
   - q: "How much does it cost to fly a dog on Avianca?"
-    a: "As a guideline: cabin €41–202 (~$45–230), hold €64–267 (~$75–305). The final fee depends on your route and is confirmed at booking."
+    a: "As a guideline: cabin $45–230, hold $75–305. The final fee depends on your route and is confirmed at booking."
 date: 2026-06-30T00:48:00+02:00
 lastmod: 2026-06-30T00:48:00+02:00
 draft: false
@@ -19,7 +19,7 @@ categories: ["Travel", "Airlines"]
 tags: ["dog", "airplane", "Avianca", "airlines"]
 author: "Camille Roussel"
 images: ["https://images.unsplash.com/photo-1583531352515-8884af319dc1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDb2xvbWJpYSUyMENhcnRhZ2VuYXxlbnwxfDB8fHwxNzgyOTEyNjk2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
-summary: "Avianca accepts dogs in the cabin up to 10 kg / 22 lb (€41–202, ~$45–230) and in the hold up to 70 kg / 154 lb (€64–267, ~$75–305). Snub-nosed breeds are restricted (most often banned from the hold)."
+summary: "Avianca accepts dogs in the cabin up to 10 kg / 22 lb ($45–230) and in the hold up to 70 kg / 154 lb ($75–305). Snub-nosed breeds are restricted (most often banned from the hold)."
 cover:
     image: "https://images.unsplash.com/photo-1583531352515-8884af319dc1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxDb2xvbWJpYSUyMENhcnRhZ2VuYXxlbnwxfDB8fHwxNzgyOTEyNjk2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
     alt: "Colombia — view of the country"
@@ -42,13 +42,13 @@ Avianca (Colombia) is one of the carriers that accepts dogs **both in the cabin 
 
 ## In the cabin
 
-Avianca accepts a dog in the cabin if its weight, carrier included, does not exceed **10 kg (22 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect around **€41–202 (~$45–230)** depending on the route.
+Avianca accepts a dog in the cabin if its weight, carrier included, does not exceed **10 kg (22 lb)**. The carrier must be soft-sided and fit under the seat in front of you. Expect around **$45–230** depending on the route.
 
 *Airline conditions:* ≤10 kg (22 lb) with carrier.
 
 ## In the hold
 
-Above the cabin limit, your dog travels in the pressurized, heated hold in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **70 kg (154 lb)**. Indicative fee: **€64–267 (~$75–305)**.
+Above the cabin limit, your dog travels in the pressurized, heated hold in an [IATA-compliant crate](/airline-approved-dog-crate/), with a combined dog + crate weight of up to **70 kg (154 lb)**. Indicative fee: **$75–305**.
 
 *Airline conditions:* ≤70 kg (154 lb); brachycephalic breeds banned from the hold.
 

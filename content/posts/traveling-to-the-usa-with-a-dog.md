@@ -6,7 +6,7 @@ faq:
   - q: "How far in advance should I prepare my dog's trip to the USA?"
     a: "A few days (online form). Start the process as early as possible."
   - q: "Is a rabies titer test required?"
-    a: "No. For this destination, no rabies titer test is required on the way in from a rabies-free or low-risk country such as France. Always check the requirements for your return trip — for example if you're returning to the EU."
+    a: "No. No rabies titer test is required to enter the US from a rabies-free or low-risk country (such as most of Europe, the UK or Canada). Always check the rules for your return trip — for example, a titer test may be required to re-enter the EU or the UK."
 date: 2026-06-30T08:49:00+02:00
 lastmod: 2026-06-30T08:49:00+02:00
 draft: false
@@ -36,7 +36,7 @@ cover:
 - ⏱️ Lead time: **A few days (online form)**
 {{< /enbref >}}
 
-*These rules apply to dogs arriving from a rabies-free or low-risk rabies country (France, for example, is low-risk).*
+*These rules apply to dogs entering the US from a rabies-free or low-risk country (most of Europe, the UK, Canada, Australia and Japan count as low-risk; the CDC publishes the full high-risk list). Dogs arriving from a high-risk country face stricter rules.*
 
 ## Entry requirements
 
@@ -48,7 +48,7 @@ cover:
 | 🩺 Apparent good health | On arrival. |
 
 {{< alerte type="verifier" >}}
-Since August 2024, the CDC has simplified the rules for low-risk countries such as France: no rabies certificate and no quarantine.
+Since August 2024, the CDC has simplified the rules for dogs arriving from low-risk countries (such as most of Europe, the UK and Canada): no rabies certificate and no quarantine.
 {{< /alerte >}}
 
 👉 Check your situation and compare with other destinations using our **[dog entry requirements checker by country](/tools/dog-entry-requirements-by-country/)**.
