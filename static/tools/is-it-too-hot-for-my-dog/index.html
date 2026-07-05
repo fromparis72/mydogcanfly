@@ -59,6 +59,16 @@ h1{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,
 .ac-list li.on,.ac-list li:hover{background:#f0f6f5}
 .wlab{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin:0 0 4px}
 .wlab label{margin:0}
+.title-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:.2rem 0 .3rem}
+.title-row h1{margin:0}
+.sunny{width:54px;height:54px;flex:0 0 auto;filter:drop-shadow(0 0 6px rgba(245,158,11,.65));animation:sunglow 3s ease-in-out infinite}
+.sunny .rays{transform-origin:32px 32px;animation:sunspin 16s linear infinite}
+@keyframes sunspin{to{transform:rotate(360deg)}}
+@keyframes sunglow{0%,100%{filter:drop-shadow(0 0 5px rgba(245,158,11,.5))}50%{filter:drop-shadow(0 0 13px rgba(245,158,11,.92))}}
+.check-row{display:flex;justify-content:flex-end;margin-top:16px}
+.btn-check{padding:13px 30px;border:0;border-radius:999px;font-size:1.06rem;font-weight:800;color:#fff;cursor:pointer;background:linear-gradient(135deg,#FB923C,#F59E0B);box-shadow:0 6px 20px rgba(245,158,11,.45);transition:transform .15s ease,box-shadow .15s ease}
+.btn-check:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(245,158,11,.62)}
+@media(prefers-reduced-motion:reduce){.sunny,.sunny .rays{animation:none}}
 .disc{font-size:.82rem;color:var(--mut);font-style:italic;border-top:1px solid var(--line);margin-top:22px;padding-top:12px}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
 .cta a{flex:1;min-width:180px;text-align:center;padding:11px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.92rem;border:1.5px solid var(--navy);color:var(--navy)}
@@ -78,7 +88,7 @@ h3.sec{color:var(--navy);margin-top:26px}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Is It Too Hot for Your Dog? Heat & Pavement Checker","url":"https://mydogcanfly.com/tools/is-it-too-hot-for-my-dog/","description":"Live, location-based heat safety check for dogs: heatstroke risk, pavement temperature and airline hold embargoes today.","applicationCategory":"HealthApplication","operatingSystem":"Web","inLanguage":"en-US","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"My Dog Can Fly","url":"https://mydogcanfly.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mydogcanfly.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://mydogcanfly.com/tools/"},{"@type":"ListItem","position":3,"name":"Is It Too Hot for Your Dog?","item":"https://mydogcanfly.com/tools/is-it-too-hot-for-my-dog/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"At what temperature is it too hot to walk a dog?","acceptedAnswer":{"@type":"Answer","text":"Caution starts around 77–85 °F (25–29 °C), and above roughly 90 °F (32 °C) walks become risky — especially for flat-faced, large, senior or overweight dogs. Humidity makes it worse because dogs cool themselves by panting. Walk early or late, keep it short, and carry water."}},{"@type":"Question","name":"How hot is pavement compared to the air?","acceptedAnswer":{"@type":"Answer","text":"In full sun, asphalt runs far hotter than the air: about 125 °F (52 °C) when the air is 77 °F (25 °C), and 143 °F (62 °C) when the air is 87 °F (31 °C). A dog's paw pads can burn above about 125 °F (52 °C). Use the 5-second test: if you can't hold the back of your hand on the ground for 5 seconds, it's too hot for their paws."}},{"@type":"Question","name":"What temperature is too hot to fly a dog in the cargo hold?","acceptedAnswer":{"@type":"Answer","text":"Most airlines suspend hold and cargo pet transport when the temperature at any point of the journey is above about 85 °F (29.4 °C), and some apply seasonal summer embargoes. Cabin travel for small dogs is usually still possible. Check each airline's rule with our flight checker."}}]}]}</script></head>
 <body><header class="site-hd"><a class="site-logo" href="/" title="My Dog Can Fly"><img src="/images/mydogcanfly_logo.png" alt="My Dog Can Fly"></a><nav class="site-nav"><a href="/airline-pet-policies/">Flying</a><a href="/traveling-by-car-with-a-dog/">Car</a><a href="/train-travel-with-a-dog/">Train</a><a href="/categories/destinations/">Destinations</a><a href="/dog-travel-requirements-by-country/">Requirements</a><a href="/dog-friendly-accommodation/">Accommodation</a><a href="/categories/gear/">Gear</a><a href="/categories/health/">Health</a><a href="/tools/">Tools</a></nav></header><div class="wrap">
-<h1>Is it too hot for your dog?</h1>
+<div class="title-row"><svg class="sunny" viewBox="0 0 64 64" aria-hidden="true"><g class="rays" stroke="#F59E0B" stroke-width="4" stroke-linecap="round"><line x1="32" y1="3" x2="32" y2="13"/><line x1="32" y1="51" x2="32" y2="61"/><line x1="3" y1="32" x2="13" y2="32"/><line x1="51" y1="32" x2="61" y2="32"/><line x1="11" y1="11" x2="18" y2="18"/><line x1="46" y1="46" x2="53" y2="53"/><line x1="53" y1="11" x2="46" y2="18"/><line x1="18" y1="46" x2="11" y2="53"/></g><circle cx="32" cy="32" r="12" fill="#FBBF24" stroke="#F59E0B" stroke-width="2"/></svg><h1>Is it too hot for your dog?</h1></div>
 <p class="lede">Check the heat risk for your dog right now, from your location: risk of heatstroke on a walk, how hot the pavement is for their paws, and whether airlines would fly your dog in the hold today.</p>
 <div class="note">ℹ️ This tool uses the current air temperature at your location and is for guidance only — it doesn't replace common sense or your veterinarian's advice. Tarmac and cargo holds can be hotter than the outside air.</div>
 
@@ -86,14 +96,14 @@ h3.sec{color:var(--navy);margin-top:26px}
   <div class="unit-row"><div class="unit-tg" id="unitTg"><button type="button" class="on" data-u="f" onclick="setUnit('f')">°F</button><button type="button" data-u="c" onclick="setUnit('c')">°C</button></div></div>
   <button class="btn" id="geoBtn" onclick="useLocation()">📍 Use my location</button>
   <div class="or">— or —</div>
-  <div class="cityrow"><input id="city" type="text" placeholder="Enter a city (e.g. Phoenix, Miami, Austin)" autocomplete="off"><button type="button" onclick="useCity()">Check</button></div>
+  <div class="cityrow"><input id="city" type="text" placeholder="Enter a city (e.g. Phoenix, Miami, Austin)" autocomplete="off"></div>
   <div class="opts">
     <div class="field" style="position:relative"><label for="breed">Dog breed (optional)</label><input id="breed" type="text" autocomplete="off" placeholder="Start typing… e.g. Bulldog"></div>
     <div class="field"><div class="wlab"><label for="w">Weight</label><div class="unit-tg" id="wUnitTg"><button type="button" data-u="kg" onclick="setWUnit('kg')">kg</button><button type="button" class="on" data-u="lb" onclick="setWUnit('lb')">lb</button></div></div><input id="w" type="number" min="0" step="0.5" placeholder="optional" onchange="recompute()" inputmode="decimal"></div>
-    <label class="chk"><input type="checkbox" id="brachy" onchange="recompute()"> Flat-faced breed (bulldog, pug, boxer…)</label>
     <label class="chk"><input type="checkbox" id="risk" onchange="recompute()"> Senior, overweight or thick-coated</label>
   </div>
   <div class="status" id="status"></div>
+  <div class="check-row"><button class="btn-check" id="checkBtn" onclick="checkNow()">☀️ Check the heat</button></div>
 </div>
 
 <div class="loc" id="loc"><div><span class="place" id="place"></span><br><span class="now" id="now"></span></div><div class="big" id="temp"></div></div>
@@ -127,6 +137,7 @@ h3.sec{color:var(--navy);margin-top:26px}
 <script>
 var UNIT='f';           // display unit: 'f' or 'c' (US-first default)
 var DATA=null;          // {tempC, feelsC, hum, isDay, place}
+var breedBrachy=false;  // deduced from the selected breed
 var API_BASE='https://api.mydogcanfly.com';  // Cloudflare Worker: cached weather proxy
 var wUnit='lb';var LBF=2.2046226;
 var RACES=[["Affenpinscher",4,1],["Airedale Terrier",25,0],["American Akita",45,0],["Akita Inu",38,0],["American Staffordshire Terrier",25,0],["Barbet",20,0],["Borzoi (Russian Wolfhound)",38,0],["Basenji",11,0],["Alpine Dachsbracke",8,0],["Basset Hound",25,0],["Beagle",12,0],["German Shepherd",34,0],["Long-Haired German Shepherd",34,0],["Australian Shepherd",25,0],["Belgian Sheepdog (Groenendael)",28,0],["Belgian Malinois",28,0],["Belgian Tervuren",28,0],["White Swiss Shepherd",33,0],["Anatolian Shepherd",50,0],["Central Asian Shepherd",55,0],["Beauceron",38,0],["Briard",34,0],["Maremma Sheepdog",40,0],["Pyrenean Shepherd",12,0],["Shetland Sheepdog",9,0],["Caucasian Shepherd",60,0],["Finnish Lapphund",20,0],["Dutch Shepherd",30,0],["Polish Lowland Sheepdog",18,0],["Shetland Sheepdog (Sheltie)",9,0],["Bichon Frise",6,0],["Havanese",5,0],["Maltese",3,0],["Boerboel",70,1],["Bolognese",4,0],["Border Collie",18,0],["Border Terrier",6,0],["Continental Bulldog",22,1],["French Bulldog",11,1],["Australian Cattle Dog (Blue Heeler)",18,0],["Bernese Mountain Dog",45,0],["Bouvier des Flandres",38,0],["Boxer",30,1],["German Shorthaired Pointer",28,0],["Ariege Pointer",28,0],["Weimaraner (Braque de Weimar)",32,0],["Vizsla",25,0],["Bull Terrier",27,0],["Miniature Bull Terrier",8,0],["American Bulldog",35,1],["English Bulldog",24,1],["Bullmastiff",55,1],["Ca de Bou (Majorca Mastiff)",35,1],["Cairn Terrier",7,0],["Cane Corso",45,1],["Medium Poodle",12,0],["Miniature Poodle",6,0],["Toy Poodle",3,0],["Pug",8,1],["Cavalier King Charles Spaniel",8,1],["Chesapeake Bay Retriever",32,0],["Spanish Water Dog",18,0],["Portuguese Water Dog",22,0],["Canaan Dog",20,0],["Czechoslovakian Wolfdog",26,0],["Chihuahua",3,0],["Chow Chow",25,1],["Cirneco dell'Etna",11,0],["American Cocker Spaniel",11,0],["English Cocker Spaniel",13,0],["Collie (Rough Collie)",25,0],["Pembroke Welsh Corgi",11,0],["Coton de Tulear",5,0],["Mixed breed (large)",30,0],["Mixed breed (medium)",15,0],["Mixed breed (small)",8,0],["Dalmatian",27,0],["Scottish Deerhound",40,0],["Doberman Pinscher",38,0],["Great Dane",65,0],["Dogo Argentino",42,0],["Dogue de Bordeaux",50,1],["Eurasier",25,0],["Fila Brasileiro",50,1],["Flat-Coated Retriever",30,0],["Fox Terrier",8,0],["Spanish Galgo",27,0],["Golden Retriever",32,0],["Greater Swiss Mountain Dog",55,0],["Large Munsterlander",28,0],["Greyhound",30,0],["Brussels Griffon",4,1],["Hovawart",35,0],["Siberian Husky",25,0],["Irish Wolfhound",55,0],["Jack Russell Terrier",7,0],["Kangal Shepherd Dog",55,0],["Australian Kelpie",16,0],["Kerry Blue Terrier",16,0],["King Charles Spaniel",6,1],["Kokoni",6,0],["Komondor",50,0],["Kuvasz",45,0],["Labrador Retriever",32,0],["Landseer",60,0],["Lhasa Apso",7,1],["Pomeranian",3,0],["Leonberger",60,0],["Afghan Hound",27,0],["Alaskan Malamute",38,0],["English Mastiff",80,1],["Great Pyrenees",50,0],["Great Pyrenees (Patou)",50,0],["Spanish Mastiff",65,1],["Neapolitan Mastiff",65,1],["Norfolk Terrier",5,0],["Norwich Terrier",5,0],["Nova Scotia Duck Tolling Retriever",20,0],["Olde English Bulldogge",30,1],["Papillon (Continental Toy Spaniel)",4,0],["Parson Russell Terrier",7,0],["Petit Basset Griffon Vendeen",16,0],["Lowchen (Little Lion Dog)",6,0],["Italian Greyhound",4,0],["German Pinscher",7,0],["Miniature Pinscher",5,0],["Podenco",22,0],["English Pointer",25,0],["Presa Canario (Dogo Canario)",50,1],["Pekingese",5,1],["Prague Ratter",2,0],["Rhodesian Ridgeback",34,0],["Rhodesian Ridgeback (African Lion Hound)",34,0],["Rottweiler",50,0],["Saint Bernard",75,1],["Saluki",25,0],["Samoyed",22,0],["Schipperke",6,0],["Miniature Schnauzer",7,0],["Scottish Terrier",9,0],["Sealyham Terrier",9,0],["English Setter",25,0],["Gordon Setter",27,0],["Irish Setter",27,0],["Shar-Pei",22,1],["Shiba Inu",10,0],["Shih Tzu",6,1],["Dwarf Spitz (Pomeranian)",3,0],["English Springer Spaniel",20,0],["Staffordshire Bull Terrier",14,0],["Dachshund",9,0],["Miniature Dachshund",5,0],["Newfoundland",60,0],["Boston Terrier",8,1],["Tibetan Terrier",11,0],["Weimaraner",32,0],["Cardigan Welsh Corgi",13,0],["West Highland White Terrier",8,0],["Wheaten Terrier",18,0],["Whippet",12,0],["Yorkshire Terrier",3,0],["Blue Picardy Spaniel",22,0],["Brittany Spaniel",16,0],["Cavalier Spaniel",8,1],["Irish Water Spaniel",26,0],["Small Munsterlander",22,0],["Japanese Chin",4,1],["Continental Toy Spaniel",5,0],["Picardy Spaniel",22,0]];
@@ -232,7 +243,7 @@ function render(){
   document.getElementById('place').textContent=DATA.place;
   document.getElementById('now').textContent='Now · feels like '+fmt(DATA.feelsC)+' · humidity '+Math.round(DATA.hum)+'%'+(DATA.isDay?'':' · after dark');
   document.getElementById('temp').textContent=fmt(DATA.tempC);
-  var size=sizeFromKg(wkg()), brachy=document.getElementById('brachy').checked, atRisk=document.getElementById('risk').checked;
+  var size=sizeFromKg(wkg()), brachy=breedBrachy, atRisk=document.getElementById('risk').checked;
   var wl=walkRisk(DATA.tempC,DATA.hum,size,brachy,atRisk);
   var pC=pavementC(DATA.tempC,DATA.isDay), pl=paveLevel(pC);
   var fl=flightLevel(DATA.tempC);
@@ -246,6 +257,7 @@ function render(){
   cards.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function recompute(){ if(DATA)render(); }
+function checkNow(){var c=document.getElementById('city').value.trim();if(c){useCity();return;}if(DATA){render();return;}useLocation();}
 document.getElementById('city').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();useCity();}});
 (function(){
   var inp=document.getElementById('breed'); if(!inp) return;
@@ -254,14 +266,14 @@ document.getElementById('city').addEventListener('keydown',function(e){if(e.key=
   var cur=[], active=-1;
   function nrm(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
   function close(){list.hidden=true;list.innerHTML='';active=-1;}
-  function pick(i){var r=cur[i]; inp.value=r[0]; document.getElementById('brachy').checked=!!r[2]; wEl.value=(wUnit==='lb')?Math.round(r[1]*LBF):r[1]; close(); recompute();}
+  function pick(i){var r=cur[i]; inp.value=r[0]; breedBrachy=!!r[2]; wEl.value=(wUnit==='lb')?Math.round(r[1]*LBF):r[1]; close(); recompute();}
   function show(q){q=nrm((q||'').trim()); if(q.length<1){close();return;} cur=RACES.filter(function(r){return nrm(r[0]).indexOf(q)>=0;}).slice(0,8); if(!cur.length){close();return;} list.innerHTML=cur.map(function(r,i){return '<li data-i="'+i+'">'+r[0]+(r[2]?' \ud83d\udc3d':'')+'</li>';}).join(''); list.hidden=false; active=-1;}
-  inp.addEventListener('input',function(){show(inp.value);});
+  inp.addEventListener('input',function(){if(!inp.value.trim()){breedBrachy=false;recompute();}show(inp.value);});
   inp.addEventListener('focus',function(){if(inp.value)show(inp.value);});
   inp.addEventListener('keydown',function(e){if(list.hidden)return;var lis=list.querySelectorAll('li');if(e.key==='ArrowDown'){e.preventDefault();active=Math.min(active+1,lis.length-1);}else if(e.key==='ArrowUp'){e.preventDefault();active=Math.max(active-1,0);}else if(e.key==='Enter'){if(active>=0){e.preventDefault();pick(active);}return;}else if(e.key==='Escape'){close();return;}else return;Array.prototype.forEach.call(lis,function(li,i){li.classList.toggle('on',i===active);});});
   list.addEventListener('mousedown',function(e){var li=e.target.closest('li');if(li)pick(+li.dataset.i);});
   document.addEventListener('click',function(e){if(!box.contains(e.target))close();});
-  try{var pv=new URLSearchParams(location.search).get('breed'); if(pv){var mm=RACES.find(function(r){return nrm(r[0])===nrm(pv);}); if(mm){inp.value=mm[0];document.getElementById('brachy').checked=!!mm[2];wEl.value=(wUnit==='lb')?Math.round(mm[1]*LBF):mm[1];}}}catch(e){}
+  try{var pv=new URLSearchParams(location.search).get('breed'); if(pv){var mm=RACES.find(function(r){return nrm(r[0])===nrm(pv);}); if(mm){inp.value=mm[0];breedBrachy=!!mm[2];wEl.value=(wUnit==='lb')?Math.round(mm[1]*LBF):mm[1];}}}catch(e){}
 })();
 </script>
 </body></html>
