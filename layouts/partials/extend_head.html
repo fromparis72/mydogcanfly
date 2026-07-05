@@ -52,9 +52,14 @@
 <script type="application/ld+json">{{ (dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $items) | jsonify | safeJS }}</script>
 {{ end }}
 
-{{/* hreflang to the French sister site — set `frUrl: "/slug-fr/"` in front matter */}}
-{{ with .Params.frUrl }}<link rel="alternate" hreflang="fr" href="https://lechienvoyageur.com{{ . }}">{{ end }}
+{{/* hreflang to the French sister site — `frUrl` (path) in front matter; the home defaults to the FR homepage */}}
+{{- $frUrl := .Params.frUrl | default (cond .IsHome "/" "") }}
+{{- with $frUrl }}<link rel="alternate" hreflang="fr" href="https://lechienvoyageur.com{{ . }}">{{ end }}
 
 {{/* Extra GEO/SEO meta */}}
 <meta name="author" content="Camille Roussel">
 <meta property="og:site_name" content="My Dog Can Fly">
+{{- /* Default social share image for the home page (no cover in front matter) */}}
+{{- if and .IsHome (not .Params.cover.image) }}
+<meta property="og:image" content="{{ "images/og-home.jpg" | absURL }}">
+{{- end }}
