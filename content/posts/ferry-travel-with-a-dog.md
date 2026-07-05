@@ -20,12 +20,12 @@ frUrl: "/voyager-ferry-bateau-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "ferry", "boat", "crossing"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1769183562619-d6e1a6590eb3?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBib2F0JTIwc2VhJTIwc2FpbGluZ3xlbnwxfDB8fHwxNzgyNDk3NDE0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1670750399400-05d905aec576?w=1600&h=900&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "On most ferries, dogs travel in a pet-friendly cabin, an onboard kennel or the car, depending on the operator. Book early, plan water and a potty break before boarding, and be ready for seasickness."
 cover:
-    image: "https://images.unsplash.com/photo-1769183562619-d6e1a6590eb3?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBib2F0JTIwc2VhJTIwc2FpbGluZ3xlbnwxfDB8fHwxNzgyNDk3NDE0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Sailboat anchored in a bay with people swimming"
-    caption: "Photo: [Leticia Golubov](https://unsplash.com/@leticiagolubov?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1670750399400-05d905aec576?w=1600&h=900&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A large passenger ferry on the water"
+    caption: "Photo: [Irina Chishkova](https://unsplash.com/@mutecevvil?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}
