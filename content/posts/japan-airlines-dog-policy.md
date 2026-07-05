@@ -16,12 +16,12 @@ frUrl: "/japan-airlines-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Japan Airlines (JAL)", "airlines"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1762018824220-d4a9ebda2b28?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxKYXBhbiUyME1vdW50JTIwRnVqaSUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNjkwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Japan Airlines (JAL) accepts dogs in the hold up to 32 kg (70 lb). Brachycephalic breeds are restricted (most often banned from the hold)."
 cover:
-    image: "https://images.unsplash.com/photo-1762018824220-d4a9ebda2b28?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxKYXBhbiUyME1vdW50JTIwRnVqaSUyMHRlbXBsZXxlbnwxfDB8fHwxNzgyOTEyNjkwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Japan — view of the country"
-    caption: "Photo: [Fabio Montello](https://unsplash.com/@fabiomontello?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "Tokyo Tower illuminated at dusk above the city skyline"
+    caption: "Photo: [Louie Martinez](https://unsplash.com/@thetalkinglens?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 <div class="lcv-fiche-logo"><span class="lcv-logo-mono" style="display:flex" aria-hidden="true">JL</span><span class="lcv-fiche-logo-txt"><b>Japan Airlines (JAL)</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>

@@ -22,11 +22,11 @@ frUrl: "/mal-des-transports-chien/"
 categories: ["Health"]
 tags: ["dog", "health", "transport", "car"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1711654783635-c65873cdae66?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBsb29raW5nJTIwb3V0JTIwY2FyJTIwd2luZG93fGVufDF8MHx8fDE3ODI0ODEzMDN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1762222924495-6112f7636404?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog motion sickness often comes from an immature inner ear or stress. Gradual conditioning, good ventilation and veterinary advice reduce it."
 cover:
-    image: "https://images.unsplash.com/photo-1711654783635-c65873cdae66?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBsb29raW5nJTIwb3V0JTIwY2FyJTIwd2luZG93fGVufDF8MHx8fDE3ODI0ODEzMDN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Dog with its head out of a car window"
+    image: "https://images.unsplash.com/photo-1762222924495-6112f7636404?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A subdued brown dog resting its head against a car window"
     caption: "Photo: [Jaz Blakeston-Petch](https://unsplash.com/@shotbyjaz?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 

@@ -20,12 +20,12 @@ frUrl: "/blessure-chien-balade-premiers-gestes/"
 categories: ["Health"]
 tags: ["dog", "first aid", "injury", "walks"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1624623534997-c7e88952cd68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwYXclMjBjYXJlfGVufDF8MHx8fDE3ODI0OTc0MzR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1700665537604-412e89a285c3?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Faced with a cut, a foxtail or a limp: clean, protect and assess the severity before heading to the vet. A canine first aid kit lets you act quickly and effectively in the field."
 cover:
-    image: "https://images.unsplash.com/photo-1624623534997-c7e88952cd68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwYXclMjBjYXJlfGVufDF8MHx8fDE3ODI0OTc0MzR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "white and brown fur textile"
-    caption: "Photo: [Natalie Parham](https://unsplash.com/@natalieparham?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1700665537604-412e89a285c3?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "Two people tending to a dog on an examination table"
+    caption: "Photo: [Jonatan Bustos](https://unsplash.com/@jonatanbustos25?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}

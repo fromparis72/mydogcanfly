@@ -22,12 +22,12 @@ frUrl: "/proteger-coussinets-chien-ete/"
 categories: ["Gear"]
 tags: ["dog", "paw pads", "summer", "gear"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1624623534997-c7e88952cd68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwYXclMjBwYWQlMjBjbG9zZSUyMHVwfGVufDF8MHx8fDE3ODI4MjM4NDN8MA&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1590218698340-28071ee6ab2d?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Protect your dog's paw pads in summer: scorching asphalt, the 7-second test, paw balm and boots. Full guide and recommended products."
 cover:
-    image: "https://images.unsplash.com/photo-1624623534997-c7e88952cd68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwYXclMjBwYWQlMjBjbG9zZSUyMHVwfGVufDF8MHx8fDE3ODI4MjM4NDN8MA&ixlib=rb-4.1.0&w=1200&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "White and brown fur textile"
-    caption: "Photo: [Natalie Parham](https://unsplash.com/@natalieparham?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1590218698340-28071ee6ab2d?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A dog lying on hot grey pavement in full sun"
+    caption: "Photo: [Surya Teja](https://unsplash.com/@suryadoingstuff?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}

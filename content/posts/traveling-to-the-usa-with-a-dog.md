@@ -16,12 +16,12 @@ frUrl: "/voyager-chien-etats-unis/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "international travel", "USA"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1632236519667-29b4b78da232?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxwdXBweSUyMHRyYXZlbCUyMGNyYXRlfGVufDF8MHx8fDE3ODI4MjgwMTd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1589314126779-44d8f89f5eee?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to the United States: easy level, lead time a few days (online form)."
 cover:
-    image: "https://images.unsplash.com/photo-1632236519667-29b4b78da232?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxwdXBweSUyMHRyYXZlbCUyMGNyYXRlfGVufDF8MHx8fDE3ODI4MjgwMTd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Traveling with a dog — United States"
-    caption: "Photo: [Ayla Verschueren](https://unsplash.com/@moob?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1589314126779-44d8f89f5eee?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "An open desert highway leading toward the buttes of the American West"
+    caption: "Photo: [Gantavya Bhatt](https://unsplash.com/@gbhatt_2?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta level="Easy" >}}

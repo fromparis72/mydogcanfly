@@ -18,12 +18,12 @@ frUrl: "/voyager-chien-etranger-pays/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "international travel", "countries"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1696875135742-c3044510c9e2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBhaXJwb3J0JTIwdHJhdmVsfGVufDF8MHx8fDE3ODI4MjYxODB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1580795478762-1f6b61f2fae7?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Every country sets its own entry requirements for a dog. This hub recaps, country by country and from official sources, the microchip, vaccine, travel documents, rabies titer test, tapeworm treatment, permits and timelines."
 cover:
-    image: "https://images.unsplash.com/photo-1696875135742-c3044510c9e2?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBhaXJwb3J0JTIwdHJhdmVsfGVufDF8MHx8fDE3ODI4MjYxODB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Traveling abroad with a dog: requirements by country"
-    caption: "Photo: [Jeswin Thomas](https://unsplash.com/@jeswinthomas?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1580795478762-1f6b61f2fae7?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A detector dog and customs officers inspecting luggage at airport border control"
+    caption: "Photo: [Kit](https://unsplash.com/@kit?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}

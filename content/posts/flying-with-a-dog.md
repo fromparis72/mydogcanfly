@@ -22,12 +22,12 @@ frUrl: "/voyager-avion-avec-chien/"
 categories: ["Travel"]
 tags: ["dog", "airplane", "international travel"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1661322563051-15248c0568a1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGRvZyUyMGNhcnJpZXIlMjBiYWd8ZW58MXwwfHx8MTc4MjQ4MTM1MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1580076333794-4b99c0b93850?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Flying with a dog means an IATA crate, a weight within your airline's limit and health paperwork started several weeks before departure."
 cover:
-    image: "https://images.unsplash.com/photo-1661322563051-15248c0568a1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxzbWFsbCUyMGRvZyUyMGNhcnJpZXIlMjBiYWd8ZW58MXwwfHx8MTc4MjQ4MTM1MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Small dog in a travel carrier bag"
-    caption: "Photo: [Dex Ezekiel](https://unsplash.com/@dexezekiel?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1580076333794-4b99c0b93850?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A calm labrador lying down and waiting before a flight"
+    caption: "Photo: [Jeswin Thomas](https://unsplash.com/@jeswinthomas?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}

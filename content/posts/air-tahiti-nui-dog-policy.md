@@ -18,12 +18,12 @@ frUrl: "/air-tahiti-nui-chien/"
 categories: ["Travel", "Airlines"]
 tags: ["dog", "air travel", "Air Tahiti Nui", "airlines"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1738762932370-468a90e0ff68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxCb3JhJTIwQm9yYSUyMGxhZ29vbnxlbnwxfDB8fHwxNzgyOTEyNjk1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1665904457714-df18e8c142a1?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Air Tahiti Nui accepts dogs in the cabin up to 8 kg (18 lb) for €117–201 (~$135–230); hold transport goes through the cargo service only. Brachycephalic breeds are restricted (usually banned from the hold)."
 cover:
-    image: "https://images.unsplash.com/photo-1738762932370-468a90e0ff68?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxCb3JhJTIwQm9yYSUyMGxhZ29vbnxlbnwxfDB8fHwxNzgyOTEyNjk1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "French Polynesia — view of the islands"
-    caption: "Photo: [Roméo A.](https://unsplash.com/@gronemo?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1665904457714-df18e8c142a1?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "An outrigger canoe on a turquoise Polynesian lagoon"
+    caption: "Photo: [Nico Smit](https://unsplash.com/@nicosmit99?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 <div class="lcv-fiche-logo"><span class="lcv-logo-mono" style="display:flex" aria-hidden="true">TN</span><span class="lcv-fiche-logo-txt"><b>Air Tahiti Nui</b> — airline fact sheet: dog transport conditions verified on the official website.</span></div>

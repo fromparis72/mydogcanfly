@@ -16,12 +16,12 @@ frUrl: "/voyager-chien-irlande-finlande-malte-norvege/"
 categories: ["Destinations"]
 tags: ["dog", "requirements", "international travel", "Ireland, Finland, Malta, Norway"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1661322563051-15248c0568a1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwZXQlMjBjYXJyaWVyJTIwYmFnfGVufDF8MHx8fDE3ODI4MjgwMTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1605822640211-55f4a9f04cbd?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to these countries: moderate difficulty, 21-day wait plus a tapeworm treatment 1 to 5 days before arrival."
 cover:
-    image: "https://images.unsplash.com/photo-1661322563051-15248c0568a1?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBwZXQlMjBjYXJyaWVyJTIwYmFnfGVufDF8MHx8fDE3ODI4MjgwMTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Traveling with a dog — Ireland, Finland, Malta, Norway"
-    caption: "Photo: [Dex Ezekiel](https://unsplash.com/@dexezekiel?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1605822640211-55f4a9f04cbd?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "Dramatic sea cliffs along the Irish Atlantic coast"
+    caption: "Photo: [Sylvia Szekely](https://unsplash.com/@sylviacreate?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta level="Moderate" >}}

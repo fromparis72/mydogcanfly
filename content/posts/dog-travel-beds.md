@@ -16,11 +16,11 @@ frUrl: "/couchage-tapis-voyage-chien/"
 categories: ["Gear"]
 tags: ["dog", "gear", "bedding", "comfort"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1581888227599-779811939961?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBiZWQlMjBjb3p5JTIwYmxhbmtldHxlbnwxfDB8fHwxNzgyOTM5NDI0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1653638390484-bc1c263ce9e4?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Dog travel beds and mats: roll-up mattress, waterproof mat, familiar scent. A portable bed that reassures your dog anywhere."
 cover:
-    image: "https://images.unsplash.com/photo-1581888227599-779811939961?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBiZWQlMjBjb3p5JTIwYmxhbmtldHxlbnwxfDB8fHwxNzgyOTM5NDI0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Brown short coated dog on gray couch"
+    image: "https://images.unsplash.com/photo-1653638390484-bc1c263ce9e4?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A golden retriever puppy resting in a soft, cozy dog bed"
     caption: "Photo: [Jamie Street](https://unsplash.com/@jamie452?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 

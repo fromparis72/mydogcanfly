@@ -16,12 +16,12 @@ frUrl: "/voyager-chien-royaume-uni/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "United Kingdom"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1613029226625-45c9b5f6c61a?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxzbWFsbCUyMGRvZyUyMHN1aXRjYXNlfGVufDF8MHx8fDE3ODI4MjgwMTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for bringing your dog to the UK: moderate difficulty, allow 21 days plus a tapeworm treatment 1 to 5 days before arrival."
 cover:
-    image: "https://images.unsplash.com/photo-1613029226625-45c9b5f6c61a?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwyfHxzbWFsbCUyMGRvZyUyMHN1aXRjYXNlfGVufDF8MHx8fDE3ODI4MjgwMTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Traveling with a dog — United Kingdom"
-    caption: "Photo: [TA-WEI LIN](https://unsplash.com/@davidkingnfs?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "Tower Bridge over the Thames with the London skyline behind"
+    caption: "Photo: [Benjamin Davies](https://unsplash.com/@bendavisual?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta level="Moderate" >}}

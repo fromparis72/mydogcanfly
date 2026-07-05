@@ -16,12 +16,12 @@ frUrl: "/voyager-chien-suisse/"
 categories: ["Destinations"]
 tags: ["dog", "entry requirements", "international travel", "Switzerland"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1578346693440-3dcedf4b7b81?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB3aW5kb3clMjBzZWF0JTIwY2FyfGVufDF8MHx8fDE3ODI4MjgwMTR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1622307053412-5404f0c427c0?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Verified requirements for taking your dog to Switzerland: easy level, allow 21 days minimum (for a first rabies vaccination)."
 cover:
-    image: "https://images.unsplash.com/photo-1578346693440-3dcedf4b7b81?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjB3aW5kb3clMjBzZWF0JTIwY2FyfGVufDF8MHx8fDE3ODI4MjgwMTR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "Traveling with a dog — Switzerland"
-    caption: "Photo: [Ignacio Amenábar](https://unsplash.com/@amenabarladrondeguevara?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1622307053412-5404f0c427c0?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A turquoise alpine lake ringed by pines and snow-capped peaks in Switzerland"
+    caption: "Photo: [Timon Studler](https://unsplash.com/@derstudi?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta level="Easy" >}}

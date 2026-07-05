@@ -20,12 +20,12 @@ frUrl: "/voyager-avec-chiot/"
 categories: ["Health"]
 tags: ["dog", "puppy", "health", "travel"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1578346693440-3dcedf4b7b81?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxwdXBweSUyMGNhciUyMHRyYXZlbHxlbnwxfDB8fHwxNzgyNDk3NDM2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1534361960057-19889db9621e?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "A puppy travels once its vaccines are in place: short trips, frequent breaks, a reassuring familiar item and strict hygiene. First trips, done well, lay the foundation for a calm adult travel companion."
 cover:
-    image: "https://images.unsplash.com/photo-1578346693440-3dcedf4b7b81?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxwdXBweSUyMGNhciUyMHRyYXZlbHxlbnwxfDB8fHwxNzgyNDk3NDM2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "dog leaning his head on car window"
-    caption: "Photo: [Ignacio Amenábar](https://unsplash.com/@amenabarladrondeguevara?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1534361960057-19889db9621e?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "A fluffy white puppy running happily across the grass"
+    caption: "Photo: [Karsten Winegeart](https://unsplash.com/@_karsten?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}
