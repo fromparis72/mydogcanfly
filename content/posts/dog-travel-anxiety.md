@@ -20,12 +20,12 @@ frUrl: "/anxiete-chien-transport/"
 categories: ["Health"]
 tags: ["dog", "anxiety", "stress", "travel"]
 author: "Camille Roussel"
-images: ["https://images.unsplash.com/photo-1711654783635-c65873cdae66?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBsb29raW5nJTIwY2FyJTIwd2luZG93fGVufDF8MHx8fDE3ODI0OTc0MzB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"]
+images: ["https://images.unsplash.com/photo-1455103493930-a116f655b6c5?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"]
 summary: "Panting, trembling, drooling, whining: travel stress can be worked on through gradual desensitization, positive associations and comfort. For severe anxiety, a veterinarian can offer tailored support."
 cover:
-    image: "https://images.unsplash.com/photo-1711654783635-c65873cdae66?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBsb29raW5nJTIwY2FyJTIwd2luZG93fGVufDF8MHx8fDE3ODI0OTc0MzB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg&fit=crop&crop=entropy"
-    alt: "a brown and white dog sitting in the passenger seat of a car"
-    caption: "Photo: [Jaz Blakeston-Petch](https://unsplash.com/@shotbyjaz?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
+    image: "https://images.unsplash.com/photo-1455103493930-a116f655b6c5?w=1600&h=1000&q=80&fm=jpg&fit=crop&crop=entropy"
+    alt: "An anxious dog peeking out from under a table"
+    caption: "Photo: [Mike Burke](https://unsplash.com/@themikeburke?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 ---
 
 {{< meta >}}
