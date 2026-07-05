@@ -56,6 +56,9 @@
 {{- $frUrl := .Params.frUrl | default (cond .IsHome "/" "") }}
 {{- with $frUrl }}<link rel="alternate" hreflang="fr" href="https://lechienvoyageur.com{{ . }}">{{ end }}
 
+{{/* Google Search Console verification */}}
+<meta name="google-site-verification" content="0CU8tUfYN4XGeWEqw4S-weSMbVGNpN4_WmyHtNzZu0Q">
+
 {{/* Extra GEO/SEO meta */}}
 <meta name="author" content="Camille Roussel">
 <meta property="og:site_name" content="My Dog Can Fly">
