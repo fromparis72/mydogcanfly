@@ -43,6 +43,8 @@ cover:
 
 Every summer, veterinary emergency rooms see a surge of dogs suffering from heatstroke — a condition that can develop in just minutes. Unlike us, dogs barely sweat: they regulate their temperature almost entirely by panting. When the air gets too hot, that mechanism stops working and their core temperature climbs dangerously. This guide is for every dog owner who wants to recognize the early signs, respond correctly and, above all, prevent disaster — whether you're at home, out on a walk or on the road for vacation.
 
+👉 **Wondering whether it's too hot right now?** Check the live heat risk where you are with our free **[Is it too hot for your dog? checker](/tools/is-it-too-hot-for-my-dog/)**.
+
 *This article is for informational purposes and does not replace advice from a veterinarian.*
 
 ## Why are dogs so vulnerable to heat?

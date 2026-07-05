@@ -42,6 +42,8 @@ cover:
 
 In summer, we think of sunscreen, a hat and a water bottle for ourselves, but we often forget that our dog walks barefoot on surfaces that can reach brutal temperatures. Asphalt, sand and even some paving slabs can cause real burns to the paw pads, sometimes in less than a minute of exposure. The good news: protecting your dog's paws in summer mostly comes down to simple reflexes and a bit of good gear. Here's how to anticipate the danger, choose the right balm or boots, and recognize the warning signs.
 
+👉 **Not sure if the ground is safe today?** Check the pavement and heat risk from your location with our free **[Is it too hot for your dog? tool](/tools/is-it-too-hot-for-my-dog/)**.
+
 *This article is for information only and does not replace advice from a veterinarian.*
 
 ## Why is hot ground dangerous for paw pads?
