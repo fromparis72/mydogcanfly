@@ -43,6 +43,22 @@ h1{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,
 .card a{color:var(--teal)}
 .n1{background:#0f6e56}.n2{background:#2E7E7B}.n3{background:#b06d12}.n4{background:#a32d2d}
 .card.n1{border-color:#0f6e56;background:#e6f5ee}.card.n2{border-color:#2E7E7B;background:#e2f1ef}.card.n3{border-color:#b06d12;background:#fbeed8}.card.n4{border-color:#a32d2d;background:#f8dcdc}
+.card.n1{box-shadow:0 0 0 2px #0f6e56,0 10px 34px rgba(15,110,86,.30)}
+.card.n2{box-shadow:0 0 0 2px #2E7E7B,0 10px 34px rgba(46,126,123,.30)}
+.card.n3{box-shadow:0 0 0 2px #b06d12,0 10px 34px rgba(176,109,18,.34)}
+.card.n4{box-shadow:0 0 0 2px #a32d2d,0 12px 38px rgba(163,45,45,.42)}
+@keyframes cardpop{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.cards.show .card{animation:cardpop .4s cubic-bezier(.2,.7,.2,1) both}
+.cards.show .card:nth-child(2){animation-delay:.06s}
+.cards.show .card:nth-child(3){animation-delay:.12s}
+@keyframes dangerpulse{0%,100%{box-shadow:0 0 0 2px #a32d2d,0 12px 38px rgba(163,45,45,.42)}50%{box-shadow:0 0 0 2px #a32d2d,0 12px 46px rgba(163,45,45,.66)}}
+.cards.show .card.n4{animation:cardpop .4s cubic-bezier(.2,.7,.2,1) both,dangerpulse 2.4s ease-in-out 1s infinite}
+@media(prefers-reduced-motion:reduce){.cards.show .card,.cards.show .card.n4{animation:none}}
+.ac-list{position:absolute;left:0;right:0;top:100%;z-index:20;list-style:none;margin:4px 0 0;padding:4px;background:#fff;border:1.5px solid var(--line);border-radius:10px;box-shadow:0 12px 30px rgba(20,41,75,.16);max-height:240px;overflow:auto}
+.ac-list li{padding:8px 10px;border-radius:7px;cursor:pointer;font-size:.95rem}
+.ac-list li.on,.ac-list li:hover{background:#f0f6f5}
+.wlab{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin:0 0 4px}
+.wlab label{margin:0}
 .disc{font-size:.82rem;color:var(--mut);font-style:italic;border-top:1px solid var(--line);margin-top:22px;padding-top:12px}
 .cta{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
 .cta a{flex:1;min-width:180px;text-align:center;padding:11px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.92rem;border:1.5px solid var(--navy);color:var(--navy)}
@@ -72,7 +88,8 @@ h3.sec{color:var(--navy);margin-top:26px}
   <div class="or">— or —</div>
   <div class="cityrow"><input id="city" type="text" placeholder="Enter a city (e.g. Phoenix, Miami, Austin)" autocomplete="off"><button type="button" onclick="useCity()">Check</button></div>
   <div class="opts">
-    <div class="field"><label for="size">Dog size</label><select id="size" onchange="recompute()"><option value="m">Medium</option><option value="s">Small</option><option value="l">Large / giant</option></select></div>
+    <div class="field" style="position:relative"><label for="breed">Dog breed (optional)</label><input id="breed" type="text" autocomplete="off" placeholder="Start typing… e.g. Bulldog"></div>
+    <div class="field"><div class="wlab"><label for="w">Weight</label><div class="unit-tg" id="wUnitTg"><button type="button" data-u="kg" onclick="setWUnit('kg')">kg</button><button type="button" class="on" data-u="lb" onclick="setWUnit('lb')">lb</button></div></div><input id="w" type="number" min="0" step="0.5" placeholder="optional" onchange="recompute()" inputmode="decimal"></div>
     <label class="chk"><input type="checkbox" id="brachy" onchange="recompute()"> Flat-faced breed (bulldog, pug, boxer…)</label>
     <label class="chk"><input type="checkbox" id="risk" onchange="recompute()"> Senior, overweight or thick-coated</label>
   </div>
@@ -111,7 +128,14 @@ h3.sec{color:var(--navy);margin-top:26px}
 var UNIT='f';           // display unit: 'f' or 'c' (US-first default)
 var DATA=null;          // {tempC, feelsC, hum, isDay, place}
 var API_BASE='https://api.mydogcanfly.com';  // Cloudflare Worker: cached weather proxy
-function setUnit(u){if(u===UNIT)return;UNIT=u;document.querySelectorAll('#unitTg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-u')===u);});if(DATA)render();}
+var wUnit='lb';var LBF=2.2046226;
+var RACES=[["Affenpinscher",4,1],["Airedale Terrier",25,0],["American Akita",45,0],["Akita Inu",38,0],["American Staffordshire Terrier",25,0],["Barbet",20,0],["Borzoi (Russian Wolfhound)",38,0],["Basenji",11,0],["Alpine Dachsbracke",8,0],["Basset Hound",25,0],["Beagle",12,0],["German Shepherd",34,0],["Long-Haired German Shepherd",34,0],["Australian Shepherd",25,0],["Belgian Sheepdog (Groenendael)",28,0],["Belgian Malinois",28,0],["Belgian Tervuren",28,0],["White Swiss Shepherd",33,0],["Anatolian Shepherd",50,0],["Central Asian Shepherd",55,0],["Beauceron",38,0],["Briard",34,0],["Maremma Sheepdog",40,0],["Pyrenean Shepherd",12,0],["Shetland Sheepdog",9,0],["Caucasian Shepherd",60,0],["Finnish Lapphund",20,0],["Dutch Shepherd",30,0],["Polish Lowland Sheepdog",18,0],["Shetland Sheepdog (Sheltie)",9,0],["Bichon Frise",6,0],["Havanese",5,0],["Maltese",3,0],["Boerboel",70,1],["Bolognese",4,0],["Border Collie",18,0],["Border Terrier",6,0],["Continental Bulldog",22,1],["French Bulldog",11,1],["Australian Cattle Dog (Blue Heeler)",18,0],["Bernese Mountain Dog",45,0],["Bouvier des Flandres",38,0],["Boxer",30,1],["German Shorthaired Pointer",28,0],["Ariege Pointer",28,0],["Weimaraner (Braque de Weimar)",32,0],["Vizsla",25,0],["Bull Terrier",27,0],["Miniature Bull Terrier",8,0],["American Bulldog",35,1],["English Bulldog",24,1],["Bullmastiff",55,1],["Ca de Bou (Majorca Mastiff)",35,1],["Cairn Terrier",7,0],["Cane Corso",45,1],["Medium Poodle",12,0],["Miniature Poodle",6,0],["Toy Poodle",3,0],["Pug",8,1],["Cavalier King Charles Spaniel",8,1],["Chesapeake Bay Retriever",32,0],["Spanish Water Dog",18,0],["Portuguese Water Dog",22,0],["Canaan Dog",20,0],["Czechoslovakian Wolfdog",26,0],["Chihuahua",3,0],["Chow Chow",25,1],["Cirneco dell'Etna",11,0],["American Cocker Spaniel",11,0],["English Cocker Spaniel",13,0],["Collie (Rough Collie)",25,0],["Pembroke Welsh Corgi",11,0],["Coton de Tulear",5,0],["Mixed breed (large)",30,0],["Mixed breed (medium)",15,0],["Mixed breed (small)",8,0],["Dalmatian",27,0],["Scottish Deerhound",40,0],["Doberman Pinscher",38,0],["Great Dane",65,0],["Dogo Argentino",42,0],["Dogue de Bordeaux",50,1],["Eurasier",25,0],["Fila Brasileiro",50,1],["Flat-Coated Retriever",30,0],["Fox Terrier",8,0],["Spanish Galgo",27,0],["Golden Retriever",32,0],["Greater Swiss Mountain Dog",55,0],["Large Munsterlander",28,0],["Greyhound",30,0],["Brussels Griffon",4,1],["Hovawart",35,0],["Siberian Husky",25,0],["Irish Wolfhound",55,0],["Jack Russell Terrier",7,0],["Kangal Shepherd Dog",55,0],["Australian Kelpie",16,0],["Kerry Blue Terrier",16,0],["King Charles Spaniel",6,1],["Kokoni",6,0],["Komondor",50,0],["Kuvasz",45,0],["Labrador Retriever",32,0],["Landseer",60,0],["Lhasa Apso",7,1],["Pomeranian",3,0],["Leonberger",60,0],["Afghan Hound",27,0],["Alaskan Malamute",38,0],["English Mastiff",80,1],["Great Pyrenees",50,0],["Great Pyrenees (Patou)",50,0],["Spanish Mastiff",65,1],["Neapolitan Mastiff",65,1],["Norfolk Terrier",5,0],["Norwich Terrier",5,0],["Nova Scotia Duck Tolling Retriever",20,0],["Olde English Bulldogge",30,1],["Papillon (Continental Toy Spaniel)",4,0],["Parson Russell Terrier",7,0],["Petit Basset Griffon Vendeen",16,0],["Lowchen (Little Lion Dog)",6,0],["Italian Greyhound",4,0],["German Pinscher",7,0],["Miniature Pinscher",5,0],["Podenco",22,0],["English Pointer",25,0],["Presa Canario (Dogo Canario)",50,1],["Pekingese",5,1],["Prague Ratter",2,0],["Rhodesian Ridgeback",34,0],["Rhodesian Ridgeback (African Lion Hound)",34,0],["Rottweiler",50,0],["Saint Bernard",75,1],["Saluki",25,0],["Samoyed",22,0],["Schipperke",6,0],["Miniature Schnauzer",7,0],["Scottish Terrier",9,0],["Sealyham Terrier",9,0],["English Setter",25,0],["Gordon Setter",27,0],["Irish Setter",27,0],["Shar-Pei",22,1],["Shiba Inu",10,0],["Shih Tzu",6,1],["Dwarf Spitz (Pomeranian)",3,0],["English Springer Spaniel",20,0],["Staffordshire Bull Terrier",14,0],["Dachshund",9,0],["Miniature Dachshund",5,0],["Newfoundland",60,0],["Boston Terrier",8,1],["Tibetan Terrier",11,0],["Weimaraner",32,0],["Cardigan Welsh Corgi",13,0],["West Highland White Terrier",8,0],["Wheaten Terrier",18,0],["Whippet",12,0],["Yorkshire Terrier",3,0],["Blue Picardy Spaniel",22,0],["Brittany Spaniel",16,0],["Cavalier Spaniel",8,1],["Irish Water Spaniel",26,0],["Small Munsterlander",22,0],["Japanese Chin",4,1],["Continental Toy Spaniel",5,0],["Picardy Spaniel",22,0]];
+function wkg(){var r=parseFloat(document.getElementById('w').value);if(isNaN(r))return 0;return wUnit==='lb'?r/LBF:r;}
+function sizeFromKg(kg){return kg?(kg<10?'s':(kg<25?'m':'l')):'m';}
+function applyTemp(u){if(u===UNIT)return;UNIT=u;Array.prototype.forEach.call(document.querySelectorAll('#unitTg button'),function(b){b.classList.toggle('on',b.getAttribute('data-u')===u);});}
+function applyWeight(u){if(u===wUnit)return;var el=document.getElementById('w');var r=parseFloat(el.value);if(!isNaN(r)){var c=(u==='lb')?r*LBF:r/LBF;el.value=Math.round(c*10)/10;}wUnit=u;el.step=(u==='lb')?1:0.5;Array.prototype.forEach.call(document.querySelectorAll('#wUnitTg button'),function(b){b.classList.toggle('on',b.getAttribute('data-u')===u);});}
+function setWUnit(u){applyWeight(u);applyTemp(u==='kg'?'c':'f');if(DATA)render();}
+function setUnit(u){applyTemp(u);applyWeight(u==='c'?'kg':'lb');if(DATA)render();}
 function c2f(c){return c*9/5+32;}
 function fmt(c){var v=(UNIT==='f')?c2f(c):c;return Math.round(v)+' °'+(UNIT==='f'?'F':'C');}
 function fmtBoth(c){var f=Math.round(c2f(c)),cc=Math.round(c);return (UNIT==='f')?(f+' °F ('+cc+' °C)'):(cc+' °C ('+f+' °F)');}
@@ -208,7 +232,7 @@ function render(){
   document.getElementById('place').textContent=DATA.place;
   document.getElementById('now').textContent='Now · feels like '+fmt(DATA.feelsC)+' · humidity '+Math.round(DATA.hum)+'%'+(DATA.isDay?'':' · after dark');
   document.getElementById('temp').textContent=fmt(DATA.tempC);
-  var size=document.getElementById('size').value, brachy=document.getElementById('brachy').checked, atRisk=document.getElementById('risk').checked;
+  var size=sizeFromKg(wkg()), brachy=document.getElementById('brachy').checked, atRisk=document.getElementById('risk').checked;
   var wl=walkRisk(DATA.tempC,DATA.hum,size,brachy,atRisk);
   var pC=pavementC(DATA.tempC,DATA.isDay), pl=paveLevel(pC);
   var fl=flightLevel(DATA.tempC);
@@ -223,5 +247,21 @@ function render(){
 }
 function recompute(){ if(DATA)render(); }
 document.getElementById('city').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();useCity();}});
+(function(){
+  var inp=document.getElementById('breed'); if(!inp) return;
+  var box=inp.closest('.field'); var wEl=document.getElementById('w');
+  var list=document.createElement('ul'); list.className='ac-list'; list.hidden=true; box.appendChild(list);
+  var cur=[], active=-1;
+  function nrm(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  function close(){list.hidden=true;list.innerHTML='';active=-1;}
+  function pick(i){var r=cur[i]; inp.value=r[0]; document.getElementById('brachy').checked=!!r[2]; wEl.value=(wUnit==='lb')?Math.round(r[1]*LBF):r[1]; close(); recompute();}
+  function show(q){q=nrm((q||'').trim()); if(q.length<1){close();return;} cur=RACES.filter(function(r){return nrm(r[0]).indexOf(q)>=0;}).slice(0,8); if(!cur.length){close();return;} list.innerHTML=cur.map(function(r,i){return '<li data-i="'+i+'">'+r[0]+(r[2]?' \ud83d\udc3d':'')+'</li>';}).join(''); list.hidden=false; active=-1;}
+  inp.addEventListener('input',function(){show(inp.value);});
+  inp.addEventListener('focus',function(){if(inp.value)show(inp.value);});
+  inp.addEventListener('keydown',function(e){if(list.hidden)return;var lis=list.querySelectorAll('li');if(e.key==='ArrowDown'){e.preventDefault();active=Math.min(active+1,lis.length-1);}else if(e.key==='ArrowUp'){e.preventDefault();active=Math.max(active-1,0);}else if(e.key==='Enter'){if(active>=0){e.preventDefault();pick(active);}return;}else if(e.key==='Escape'){close();return;}else return;Array.prototype.forEach.call(lis,function(li,i){li.classList.toggle('on',i===active);});});
+  list.addEventListener('mousedown',function(e){var li=e.target.closest('li');if(li)pick(+li.dataset.i);});
+  document.addEventListener('click',function(e){if(!box.contains(e.target))close();});
+  try{var pv=new URLSearchParams(location.search).get('breed'); if(pv){var mm=RACES.find(function(r){return nrm(r[0])===nrm(pv);}); if(mm){inp.value=mm[0];document.getElementById('brachy').checked=!!mm[2];wEl.value=(wUnit==='lb')?Math.round(mm[1]*LBF):mm[1];}}}catch(e){}
+})();
 </script>
 </body></html>

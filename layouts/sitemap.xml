@@ -12,7 +12,7 @@
   {{ end }}
   {{- /* Static tools (in static/, outside the Hugo pipeline) */ -}}
   {{- $now := now.Format "2006-01-02T15:04:05-07:00" -}}
-  {{- $outils := slice "tools/can-my-dog-fly/" "tools/iata-dog-crate-calculator/" "tools/dog-entry-requirements-by-country/" -}}
+  {{- $outils := slice "tools/can-my-dog-fly/" "tools/iata-dog-crate-calculator/" "tools/dog-entry-requirements-by-country/" "tools/is-it-too-hot-for-my-dog/" -}}
   {{ range $outils }}
   <url>
     <loc>{{ printf "%s%s" $.Site.BaseURL . }}</loc>
