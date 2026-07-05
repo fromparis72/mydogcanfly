@@ -1,0 +1,4 @@
+# Copy to .dev.vars for local `wrangler dev` (never commit .dev.vars)
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
+# Optional — only if you move to Open-Meteo's commercial tier:
+# OPEN_METEO_KEY=xxxxxxxx

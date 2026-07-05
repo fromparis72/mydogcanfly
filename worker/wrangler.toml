@@ -1,0 +1,32 @@
+name = "mydogcanfly-api"
+main = "src/worker.js"
+compatibility_date = "2024-11-01"
+
+# ---- KV: weather cache -------------------------------------------------------
+# Create with: wrangler kv namespace create WX_CACHE
+[[kv_namespaces]]
+binding = "WX_CACHE"
+id = "REPLACE_WITH_KV_ID"
+
+# ---- D1: subscribers ---------------------------------------------------------
+# Create with: wrangler d1 create mydogcanfly
+[[d1_databases]]
+binding = "DB"
+database_name = "mydogcanfly"
+database_id = "REPLACE_WITH_D1_ID"
+
+# ---- Cron: hourly evaluation (alerts + reminders) ----------------------------
+[triggers]
+crons = ["0 * * * *"]
+
+# ---- Public, non-secret config ----------------------------------------------
+[vars]
+ALLOWED_ORIGIN = "https://mydogcanfly.com"
+SITE_URL       = "https://mydogcanfly.com"
+API_URL        = "https://api.mydogcanfly.com"
+FROM_EMAIL     = "My Dog Can Fly <alerts@mydogcanfly.com>"
+HEAT_MIN_LEVEL = "3"          # send heat alert when risk level >= this (1..4)
+
+# ---- Secrets (DO NOT put here) ----------------------------------------------
+# wrangler secret put RESEND_API_KEY
+# wrangler secret put OPEN_METEO_KEY   # optional, only for the commercial tier

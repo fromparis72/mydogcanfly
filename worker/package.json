@@ -1,0 +1,14 @@
+{
+  "name": "mydogcanfly-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute mydogcanfly --file=./schema.sql",
+    "db:init:remote": "wrangler d1 execute mydogcanfly --remote --file=./schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}
