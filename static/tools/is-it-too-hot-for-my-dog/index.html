@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is It Too Hot for Your Dog? Heat &amp; Pavement Checker</title>
+<meta name="description" content="Check the heat risk for your dog right now, from your location: heatstroke risk, pavement temperature for their paws, and whether airlines would fly your dog in the hold today."><link rel="canonical" href="https://mydogcanfly.com/tools/is-it-too-hot-for-my-dog/"><meta name="robots" content="index, follow"><meta property="og:type" content="website"><meta property="og:site_name" content="My Dog Can Fly"><meta property="og:locale" content="en_US"><meta property="og:title" content="Is It Too Hot for Your Dog? Heat &amp; Pavement Checker"><meta property="og:description" content="Live, location-based heat safety check for your dog: heatstroke risk, pavement temperature and airline hold embargoes today."><meta property="og:url" content="https://mydogcanfly.com/tools/is-it-too-hot-for-my-dog/"><meta property="og:image" content="https://mydogcanfly.com/images/og-home.jpg"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Is It Too Hot for Your Dog?"><meta name="twitter:description" content="Live heat safety check for your dog: heatstroke risk, pavement temperature and airline hold embargoes today."><meta name="twitter:image" content="https://mydogcanfly.com/images/og-home.jpg"><meta name="theme-color" content="#14294B">
+<style>
+:root{--navy:#14294B;--gold:#C89048;--teal:#1D4E82;--line:#e8ebef;--mut:#6b7280;--okbg:#e1f5ee;--ok:#0f6e56;--warnbg:#faeeda;--warn:#854f0b}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#2d3748;background:#fff;line-height:1.5}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 16px 60px}
+h1{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;color:var(--navy);font-size:40px;margin:.2rem 0 .3rem}
+.lede{color:var(--mut);margin:0 0 1.1rem}
+.note{background:var(--warnbg);color:var(--warn);border-radius:10px;padding:11px 14px;margin:14px 0;font-size:.9rem}
+.panel{background:#fff;border:1px solid var(--gold);border-radius:14px;padding:18px;margin-bottom:18px}
+.btn{display:block;width:100%;padding:13px;background:var(--gold);color:#fff;border:0;border-radius:999px;font-size:1.02rem;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--navy)}
+.or{text-align:center;color:var(--mut);font-size:.85rem;margin:12px 0 8px}
+.cityrow{display:flex;gap:8px}
+.cityrow input{flex:1;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;font-size:1rem}
+.cityrow button{padding:0 16px;border:1.5px solid var(--navy);background:#fff;color:var(--navy);border-radius:10px;font-weight:600;cursor:pointer}
+.opts{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;margin-top:14px}
+.field{flex:1 1 150px;min-width:130px}
+.field label{display:block;font-weight:600;color:var(--navy);font-size:.82rem;margin:0 0 4px;text-transform:uppercase;letter-spacing:.03em}
+.field select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;font-size:1rem}
+.chk{display:flex;align-items:center;gap:7px;font-size:.92rem;color:var(--navy);font-weight:600;cursor:pointer;flex:1 1 100%}
+.unit-row{display:flex;justify-content:flex-end;margin:0 0 10px}
+.unit-tg{display:inline-flex;align-items:center;gap:3px;background:#fff;border:2px solid var(--gold);border-radius:999px;padding:3px;box-shadow:0 2px 8px rgba(200,144,72,.28)}
+.unit-tg button{padding:5px 15px;border:0;background:transparent;border-radius:999px;font-weight:700;font-size:.9rem;color:var(--navy);cursor:pointer;transition:background .15s,color .15s}
+.unit-tg button.on{background:var(--gold);color:#fff}
+.status{color:var(--mut);font-size:.92rem;margin:6px 0}
+.loc{display:none;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:#f6f8fb;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:16px}
+.loc.show{display:flex}
+.loc .place{font-weight:700;color:var(--navy);font-size:1.05rem}
+.loc .now{color:var(--mut);font-size:.9rem}
+.loc .big{font-family:"Playfair Display",Georgia,serif;color:var(--navy);font-size:2rem;line-height:1}
+.cards{display:none;gap:14px;grid-template-columns:1fr}
+.cards.show{display:grid}
+@media(min-width:720px){.cards.show{grid-template-columns:1fr 1fr 1fr}}
+.card{border:2.5px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 8px 24px rgba(20,41,75,.08)}
+.card .ic{font-size:1.8rem;line-height:1}
+.card h3{margin:.4rem 0 .2rem;color:var(--navy);font-size:1.08rem}
+.card .lvl{display:inline-block;padding:3px 11px;border-radius:999px;font-size:.8rem;font-weight:700;color:#fff;margin:.2rem 0 .5rem}
+.card p{margin:.35rem 0;font-size:.92rem}
+.card .tip{color:var(--mut);font-size:.86rem}
+.card a{color:var(--teal)}
+.n1{background:#0f6e56}.n2{background:#2E7E7B}.n3{background:#b06d12}.n4{background:#a32d2d}
+.card.n1{border-color:#0f6e56;background:#e6f5ee}.card.n2{border-color:#2E7E7B;background:#e2f1ef}.card.n3{border-color:#b06d12;background:#fbeed8}.card.n4{border-color:#a32d2d;background:#f8dcdc}
+.disc{font-size:.82rem;color:var(--mut);font-style:italic;border-top:1px solid var(--line);margin-top:22px;padding-top:12px}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+.cta a{flex:1;min-width:180px;text-align:center;padding:11px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.92rem;border:1.5px solid var(--navy);color:var(--navy)}
+.cta a:hover{background:var(--navy);color:#fff}
+a{color:var(--teal)}
+h3.sec{color:var(--navy);margin-top:26px}
+.site-hd{border-bottom:1px solid var(--line);padding:10px 16px 8px;display:flex;flex-direction:column;align-items:center;gap:.55rem;margin-bottom:8px}
+.site-hd a.site-logo{display:block;line-height:0}
+.site-hd .site-logo img{height:74px;width:auto;display:block}
+.site-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.28rem}
+.site-nav a{color:var(--navy);text-decoration:none;font-weight:500;font-size:.9rem;padding:6px 11px;border-radius:999px;transition:background .2s ease,color .2s ease}
+.site-nav a:hover{background:var(--teal);color:#fff}
+@media(max-width:960px){.site-hd .site-logo img{height:65px}}
+.tool-foot{margin:36px auto 0;max-width:1000px;line-height:0;position:relative}.tool-foot::before{content:"";position:absolute;top:-1px;left:0;right:0;height:40px;background:linear-gradient(#fff,rgba(255,255,255,0));z-index:1}.tool-foot img{width:100%;height:auto;display:block}
+.lcv-toolfooter{max-width:1000px;margin:0 auto;padding:22px 14px 34px}.lcv-tagline{text-align:center;font-family:'Quicksand',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-weight:600;color:#C89048;font-size:1.25rem;margin:1.9rem auto 0}.lcv-heart{color:var(--gold);font-style:normal}.lcv-copyright{text-align:center;color:#8a93a0;font-size:.85rem;margin:2.4rem auto .2rem}.lcv-copyright a{color:#8a93a0;text-decoration:underline}.lcv-copyright a:hover{color:var(--teal)}
+.seo{max-width:820px;margin:48px auto 0;line-height:1.7;color:#2b3648;font-size:1rem}.seo h2{font-size:1.35rem;color:var(--navy);font-weight:700;margin:2rem 0 .5rem}.seo h3{font-size:1.05rem;color:var(--navy);font-weight:700;margin:1.3rem 0 .3rem}.seo p{margin:.55rem 0}.seo ul{margin:.4rem 0 .9rem;padding-left:1.15rem}.seo li{margin:.28rem 0}.seo a{color:var(--teal);text-decoration:underline}.seo .seo-lead{font-size:1.06rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Is It Too Hot for Your Dog? Heat & Pavement Checker","url":"https://mydogcanfly.com/tools/is-it-too-hot-for-my-dog/","description":"Live, location-based heat safety check for dogs: heatstroke risk, pavement temperature and airline hold embargoes today.","applicationCategory":"HealthApplication","operatingSystem":"Web","inLanguage":"en-US","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"My Dog Can Fly","url":"https://mydogcanfly.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mydogcanfly.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://mydogcanfly.com/tools/"},{"@type":"ListItem","position":3,"name":"Is It Too Hot for Your Dog?","item":"https://mydogcanfly.com/tools/is-it-too-hot-for-my-dog/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"At what temperature is it too hot to walk a dog?","acceptedAnswer":{"@type":"Answer","text":"Caution starts around 77–85 °F (25–29 °C), and above roughly 90 °F (32 °C) walks become risky — especially for flat-faced, large, senior or overweight dogs. Humidity makes it worse because dogs cool themselves by panting. Walk early or late, keep it short, and carry water."}},{"@type":"Question","name":"How hot is pavement compared to the air?","acceptedAnswer":{"@type":"Answer","text":"In full sun, asphalt runs far hotter than the air: about 125 °F (52 °C) when the air is 77 °F (25 °C), and 143 °F (62 °C) when the air is 87 °F (31 °C). A dog's paw pads can burn above about 125 °F (52 °C). Use the 5-second test: if you can't hold the back of your hand on the ground for 5 seconds, it's too hot for their paws."}},{"@type":"Question","name":"What temperature is too hot to fly a dog in the cargo hold?","acceptedAnswer":{"@type":"Answer","text":"Most airlines suspend hold and cargo pet transport when the temperature at any point of the journey is above about 85 °F (29.4 °C), and some apply seasonal summer embargoes. Cabin travel for small dogs is usually still possible. Check each airline's rule with our flight checker."}}]}]}</script></head>
+<body><header class="site-hd"><a class="site-logo" href="/" title="My Dog Can Fly"><img src="/images/mydogcanfly_logo.png" alt="My Dog Can Fly"></a><nav class="site-nav"><a href="/airline-pet-policies/">Flying</a><a href="/traveling-by-car-with-a-dog/">Car</a><a href="/train-travel-with-a-dog/">Train</a><a href="/categories/destinations/">Destinations</a><a href="/dog-travel-requirements-by-country/">Requirements</a><a href="/dog-friendly-accommodation/">Accommodation</a><a href="/categories/gear/">Gear</a><a href="/categories/health/">Health</a><a href="/tools/">Tools</a></nav></header><div class="wrap">
+<h1>Is it too hot for your dog?</h1>
+<p class="lede">Check the heat risk for your dog right now, from your location: risk of heatstroke on a walk, how hot the pavement is for their paws, and whether airlines would fly your dog in the hold today.</p>
+<div class="note">ℹ️ This tool uses the current air temperature at your location and is for guidance only — it doesn't replace common sense or your veterinarian's advice. Tarmac and cargo holds can be hotter than the outside air.</div>
+
+<div class="panel">
+  <div class="unit-row"><div class="unit-tg" id="unitTg"><button type="button" class="on" data-u="f" onclick="setUnit('f')">°F</button><button type="button" data-u="c" onclick="setUnit('c')">°C</button></div></div>
+  <button class="btn" id="geoBtn" onclick="useLocation()">📍 Use my location</button>
+  <div class="or">— or —</div>
+  <div class="cityrow"><input id="city" type="text" placeholder="Enter a city (e.g. Phoenix, Miami, Austin)" autocomplete="off"><button type="button" onclick="useCity()">Check</button></div>
+  <div class="opts">
+    <div class="field"><label for="size">Dog size</label><select id="size" onchange="recompute()"><option value="m">Medium</option><option value="s">Small</option><option value="l">Large / giant</option></select></div>
+    <label class="chk"><input type="checkbox" id="brachy" onchange="recompute()"> Flat-faced breed (bulldog, pug, boxer…)</label>
+    <label class="chk"><input type="checkbox" id="risk" onchange="recompute()"> Senior, overweight or thick-coated</label>
+  </div>
+  <div class="status" id="status"></div>
+</div>
+
+<div class="loc" id="loc"><div><span class="place" id="place"></span><br><span class="now" id="now"></span></div><div class="big" id="temp"></div></div>
+
+<div class="cards" id="cards"></div>
+
+<div class="cta"><a href="/dog-heatstroke/">🌡️ Dog heatstroke: signs &amp; first aid</a><a href="/tools/can-my-dog-fly/">✈️ Which airlines fly dogs today</a></div>
+
+<p class="disc">Estimates based on the current air temperature from Open-Meteo and general veterinary guidance. Pavement temperatures assume full sun and vary with surface and cloud cover; airline hold embargoes vary by carrier and route. Always confirm with your airline and your veterinarian. My Dog Can Fly cannot be held responsible for decisions made from this tool.</p>
+
+<section class="seo">
+<h2>How hot is too hot for a dog?</h2>
+<p class="seo-lead">Dogs don't cool down the way we do. They sweat only through their paw pads and rely mostly on panting, so heat builds up fast — especially in flat-faced (brachycephalic) breeds, large dogs, puppies, seniors, and overweight or thick-coated dogs. This tool reads the current temperature where you are and turns it into three plain answers: is it safe to walk, is the pavement safe for their paws, and would an airline fly your dog in the hold today.</p>
+<h2>Walking your dog in the heat</h2>
+<p>As a rule of thumb, caution starts around 77–85 °F (25–29 °C) and walks become risky above roughly 90 °F (32 °C). Humidity matters too: the more humid it is, the less effective panting becomes. On hot days, walk early in the morning or late in the evening, keep it short, stay on grass and in the shade, and carry water. Learn to spot the warning signs in our guide to <a href="/dog-heatstroke/">dog heatstroke</a>.</p>
+<h2>The pavement test: protect your dog's paws</h2>
+<p>In full sun, asphalt runs far hotter than the air — about 125 °F (52 °C) when the air is only 77 °F (25 °C), and 143 °F (62 °C) at 87 °F (31 °C). A dog's paw pads can burn above about 125 °F (52 °C). The simplest check is the <strong>5-second test</strong>: press the back of your hand to the ground for five seconds — if you can't hold it there, it's too hot for their paws. See how to <a href="/hot-pavement-dog-paws/">protect your dog's paws from hot pavement</a> and how to <a href="/dog-paw-pad-care/">care for injured pads</a>.</p>
+<h2>Flying with a dog in summer: heat embargoes</h2>
+<p>Heat is also the number-one reason a dog is turned away at the airport. Most airlines suspend transport in the cargo hold when the temperature at departure, connection or arrival is above about 85 °F (29.4 °C), and several apply blanket summer embargoes on hold and cargo travel. Small dogs flying in the cabin are usually unaffected. To see which of 62 airlines accept your dog — and which apply heat embargoes — use our <a href="/tools/can-my-dog-fly/">dog flight checker</a>.</p>
+<h2>Frequently asked questions</h2>
+<h3>At what temperature is it too hot to walk a dog?</h3>
+<p>Caution starts around 77–85 °F (25–29 °C), and above roughly 90 °F (32 °C) walks become risky — especially for flat-faced, large, senior or overweight dogs. Humidity makes it worse. Walk early or late, keep it short, and carry water.</p>
+<h3>How hot is pavement compared to the air?</h3>
+<p>In full sun, asphalt is far hotter than the air: about 125 °F (52 °C) when the air is 77 °F (25 °C), and 143 °F (62 °C) at 87 °F (31 °C). Paw pads can burn above about 125 °F (52 °C). Use the 5-second hand test.</p>
+<h3>What temperature is too hot to fly a dog in the cargo hold?</h3>
+<p>Most airlines suspend hold and cargo pet transport above about 85 °F (29.4 °C) at any point of the trip, and some apply seasonal summer embargoes. Cabin travel for small dogs is usually still possible — check each airline with our flight checker.</p>
+</section>
+</div>
+<footer class="tool-foot"><picture><source srcset="/images/duo.webp" type="image/webp"><img src="/images/duo.png" alt="My Dog Can Fly — traveling with your dog" loading="lazy" decoding="async"></picture></footer>
+<div class="lcv-toolfooter"><p class="lcv-tagline">The world is more beautiful when you share it with your dog <span class="lcv-heart">&#9825;</span></p><p class="lcv-copyright">&copy; 2026 <a href="https://mydogcanfly.com/">My Dog Can Fly</a> &middot; <a href="/about/">About</a> &middot; <a href="/author/">The author</a></p></div>
+<script>
+var UNIT='f';           // display unit: 'f' or 'c' (US-first default)
+var DATA=null;          // {tempC, feelsC, hum, isDay, place}
+function setUnit(u){if(u===UNIT)return;UNIT=u;document.querySelectorAll('#unitTg button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-u')===u);});if(DATA)render();}
+function c2f(c){return c*9/5+32;}
+function fmt(c){var v=(UNIT==='f')?c2f(c):c;return Math.round(v)+' °'+(UNIT==='f'?'F':'C');}
+function fmtBoth(c){var f=Math.round(c2f(c)),cc=Math.round(c);return (UNIT==='f')?(f+' °F ('+cc+' °C)'):(cc+' °C ('+f+' °F)');}
+function setStatus(t){document.getElementById('status').textContent=t||'';}
+
+function useLocation(){
+  if(!navigator.geolocation){setStatus('Geolocation is not available — enter a city instead.');return;}
+  setStatus('Getting your location…');
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var la=pos.coords.latitude, lo=pos.coords.longitude;
+    reverseName(la,lo);
+    loadWeather(la,lo,null);
+  },function(){setStatus('Location blocked — enter a city instead.');},{timeout:10000});
+}
+function useCity(){
+  var q=document.getElementById('city').value.trim();
+  if(!q){setStatus('Type a city name first.');return;}
+  setStatus('Finding “'+q+'”…');
+  fetch('https://geocoding-api.open-meteo.com/v1/search?name='+encodeURIComponent(q)+'&count=1&language=en&format=json')
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(!j.results||!j.results.length){setStatus('City not found — try another spelling.');return;}
+      var g=j.results[0];
+      var place=g.name+(g.admin1?', '+g.admin1:'')+(g.country_code?' ('+g.country_code+')':'');
+      loadWeather(g.latitude,g.longitude,place);
+    }).catch(function(){setStatus('Network error — please try again.');});
+}
+function reverseName(la,lo){
+  fetch('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='+la+'&longitude='+lo+'&localityLanguage=en')
+    .then(function(r){return r.json();})
+    .then(function(j){
+      var name=j.city||j.locality||j.principalSubdivision||'Your location';
+      var place=name+(j.principalSubdivision&&j.principalSubdivision!==name?', '+j.principalSubdivision:'')+(j.countryCode?' ('+j.countryCode+')':'');
+      if(DATA){DATA.place=place;document.getElementById('place').textContent=place;}
+      else{window._pendingPlace=place;}
+    }).catch(function(){});
+}
+function loadWeather(la,lo,place){
+  setStatus('Reading the weather…');
+  fetch('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+'&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day')
+    .then(function(r){return r.json();})
+    .then(function(j){
+      if(!j.current){setStatus('Could not read the weather — try again.');return;}
+      DATA={tempC:j.current.temperature_2m,feelsC:(j.current.apparent_temperature!=null?j.current.apparent_temperature:j.current.temperature_2m),hum:j.current.relative_humidity_2m,isDay:j.current.is_day,place:place||window._pendingPlace||'Your location'};
+      setStatus('');render();
+    }).catch(function(){setStatus('Network error — please try again.');});
+}
+
+// ---- risk logic ----
+function pavementC(airC,isDay){ // full-sun estimate; cooler when not daytime
+  if(!isDay) return airC+6;
+  // anchored on published air->asphalt figures (25->52, 31->62)
+  return airC + 22 + Math.max(0,(airC-20))*0.55;
+}
+function walkRisk(airC,hum,size,brachy,atRisk){
+  var s;                       // base score from air temp
+  if(airC<20)s=0; else if(airC<25)s=1; else if(airC<29)s=2; else if(airC<32)s=3; else s=4;
+  if(airC>=25 && hum>=60)s+=1; // humid heat is harder to shed
+  if(brachy)s+=1;
+  if(size==='l')s+=1;
+  if(atRisk)s+=1;
+  if(s<1)s=1; if(s>4)s=4; return s;
+}
+function walkText(l){
+  return [ '',
+    'Comfortable for a normal walk. Bring water on longer outings.',
+    'Generally fine — keep an eye on at-risk dogs and offer water and shade.',
+    'Risky. Walk early or late, keep it short, stay on grass and in the shade.',
+    'Dangerous. Skip the walk or keep it to a quick potty break in the shade; watch for heatstroke.'][l];
+}
+function paveText(l){
+  return [ '',
+    'Cool enough for their paws.',
+    'Usually fine — favor grass and shade at midday.',
+    'Hot. Favor grass, walk in the shade, or use booties. Try the 5-second hand test.',
+    'Burn risk for paw pads. Avoid asphalt and concrete — stick to grass, or skip it.'][l];
+}
+function paveLevel(pC){ if(pC<40)return 1; if(pC<50)return 2; if(pC<58)return 3; return 4; }
+function flightLevel(airC){ if(airC<24)return 1; if(airC<27)return 2; if(airC<29.4)return 3; return 4; }
+function flightText(l){
+  return [ '',
+    'Well within airline limits — hold and cargo travel generally allowed today.',
+    'Fine for now, but close to summer thresholds — book and confirm early.',
+    'Borderline. Some airlines restrict hold travel near 85 °F (29.4 °C); confirm your route.',
+    'Above ~85 °F (29.4 °C): most airlines would suspend hold/cargo travel today. Cabin travel for small dogs is usually still OK.'][l];
+}
+
+function card(cls,ic,title,level,lvlLabel,body,tip){
+  return '<div class="card n'+cls+'"><div class="ic">'+ic+'</div><h3>'+title+'</h3><span class="lvl n'+level+'">'+lvlLabel+'</span><p>'+body+'</p><p class="tip">'+tip+'</p></div>';
+}
+function render(){
+  if(!DATA)return;
+  document.getElementById('loc').classList.add('show');
+  document.getElementById('place').textContent=DATA.place;
+  document.getElementById('now').textContent='Now · feels like '+fmt(DATA.feelsC)+' · humidity '+Math.round(DATA.hum)+'%'+(DATA.isDay?'':' · after dark');
+  document.getElementById('temp').textContent=fmt(DATA.tempC);
+  var size=document.getElementById('size').value, brachy=document.getElementById('brachy').checked, atRisk=document.getElementById('risk').checked;
+  var wl=walkRisk(DATA.tempC,DATA.hum,size,brachy,atRisk);
+  var pC=pavementC(DATA.tempC,DATA.isDay), pl=paveLevel(pC);
+  var fl=flightLevel(DATA.tempC);
+  var lbl=['','Low','Watch','High','Danger'];
+  var cards=document.getElementById('cards');
+  cards.innerHTML=
+    card(wl,'🐕','Walking &amp; heatstroke',wl,lbl[wl],walkText(wl),'<a href="/dog-heatstroke/">Signs of heatstroke →</a>')+
+    card(pl,'🐾','Pavement for their paws',pl,lbl[pl],paveText(pl)+' Estimated surface in full sun: <b>'+fmtBoth(pC)+'</b>.','<a href="/hot-pavement-dog-paws/">Protect their paws →</a>')+
+    card(fl,'✈️','Flying in the hold today',fl,lbl[fl],flightText(fl),'<a href="/tools/can-my-dog-fly/">Check airlines →</a>');
+  cards.classList.add('show');
+  cards.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function recompute(){ if(DATA)render(); }
+document.getElementById('city').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();useCity();}});
+</script>
+</body></html>
