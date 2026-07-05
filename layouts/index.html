@@ -32,7 +32,23 @@
     </div>
     <a class="lcv-search-link" href="/tools/can-my-dog-fly/">or open the full flight checker (62 airlines) →</a>
   </form>
-  <script>(function(){var f=document.querySelector('.lcv-search');if(!f)return;var w=f.querySelector('input[name=w]');Array.prototype.forEach.call(f.querySelectorAll('input[name=unit]'),function(r){r.addEventListener('change',function(){if(r.checked)w.setAttribute('placeholder',r.value);});});})();</script>
+  <script>(function(){
+    var f=document.querySelector('.lcv-search'); if(!f) return;
+    var w=f.querySelector('input[name=w]'); var LBF=2.2046226;
+    var prev=(f.querySelector('input[name=unit]:checked')||{value:'kg'}).value;
+    Array.prototype.forEach.call(f.querySelectorAll('input[name=unit]'),function(r){
+      r.addEventListener('change',function(){
+        if(!r.checked) return;
+        var u=r.value;
+        if(u!==prev){
+          var v=parseFloat(w.value);
+          if(!isNaN(v)){ var c=(u==='lb')? v*LBF : v/LBF; w.value=Math.round(c*10)/10; }
+          prev=u;
+        }
+        w.setAttribute('placeholder',u);
+      });
+    });
+  })();</script>
 
   <script>
   function nrm(s){return (s||"").toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
@@ -77,7 +93,7 @@
     var list = document.createElement('ul'); list.className = 'lcv-ac-list'; list.hidden = true; box.appendChild(list);
     var cur = [], active = -1;
     function close(){ list.hidden = true; list.innerHTML = ''; active = -1; }
-    function pick(i){ var r = cur[i]; inp.value = r[0]; if(wInp && !wInp.value) wInp.value = Math.round(r[1]*2.20462); close(); }
+    function pick(i){ var r = cur[i]; inp.value = r[0]; if(wInp && !wInp.value){ var u=(document.querySelector('input[name=unit]:checked')||{value:'kg'}).value; wInp.value = (u==='lb') ? Math.round(r[1]*2.20462) : r[1]; } close(); }
     function show(q){
       q = nrm((q||'').trim());
       if(q.length < 1){ close(); return; }
