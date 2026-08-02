@@ -1,0 +1,835 @@
+[
+ {
+  "iata": "6E",
+  "name": "IndiGo",
+  "hubs": [
+   "DEL",
+   "BOM",
+   "BLR",
+   "HYD",
+   "MAA",
+   "CCU"
+  ],
+  "direct_now": 94,
+  "seasonal_now": 11
+ },
+ {
+  "iata": "A3",
+  "name": "Aegean Airlines",
+  "hubs": [
+   "ATH",
+   "SKG"
+  ],
+  "direct_now": 81,
+  "seasonal_now": 21
+ },
+ {
+  "iata": "AA",
+  "name": "American Airlines",
+  "hubs": [
+   "DFW",
+   "CLT",
+   "ORD",
+   "MIA",
+   "PHX",
+   "PHL",
+   "LAX",
+   "JFK"
+  ],
+  "direct_now": 223,
+  "seasonal_now": 43
+ },
+ {
+  "iata": "AC",
+  "name": "Air Canada",
+  "hubs": [
+   "YYZ",
+   "YUL",
+   "YVR",
+   "YYC"
+  ],
+  "direct_now": 75,
+  "seasonal_now": 49
+ },
+ {
+  "iata": "AF",
+  "name": "Air France",
+  "hubs": [
+   "CDG",
+   "ORY"
+  ],
+  "direct_now": 154,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "AH",
+  "name": "Air Algérie",
+  "hubs": [
+   "ALG",
+   "ORN",
+   "CZL"
+  ],
+  "direct_now": 51,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "AI",
+  "name": "Air India",
+  "hubs": [
+   "DEL",
+   "BOM"
+  ],
+  "direct_now": 61,
+  "seasonal_now": 7
+ },
+ {
+  "iata": "AM",
+  "name": "Aeromexico",
+  "hubs": [
+   "MEX",
+   "MTY"
+  ],
+  "direct_now": 31,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "AS",
+  "name": "Alaska Airlines",
+  "hubs": [
+   "SEA",
+   "PDX",
+   "SFO",
+   "LAX",
+   "PHX"
+  ],
+  "direct_now": 82,
+  "seasonal_now": 7
+ },
+ {
+  "iata": "AT",
+  "name": "Royal Air Maroc",
+  "hubs": [
+   "CMN"
+  ],
+  "direct_now": 50,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "AV",
+  "name": "Avianca",
+  "hubs": [
+   "BOG"
+  ],
+  "direct_now": 34,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "AY",
+  "name": "Finnair",
+  "hubs": [
+   "HEL"
+  ],
+  "direct_now": 47,
+  "seasonal_now": 18
+ },
+ {
+  "iata": "AZ",
+  "name": "ITA Airways",
+  "hubs": [
+   "FCO",
+   "LIN"
+  ],
+  "direct_now": 42,
+  "seasonal_now": 13
+ },
+ {
+  "iata": "B6",
+  "name": "JetBlue",
+  "hubs": [
+   "JFK",
+   "BOS",
+   "EWR"
+  ],
+  "direct_now": 73,
+  "seasonal_now": 9
+ },
+ {
+  "iata": "BA",
+  "name": "British Airways",
+  "hubs": [
+   "LHR",
+   "LGW"
+  ],
+  "direct_now": 133,
+  "seasonal_now": 8
+ },
+ {
+  "iata": "BF",
+  "name": "French Bee",
+  "hubs": [
+   "ORY"
+  ],
+  "direct_now": 7,
+  "seasonal_now": 3
+ },
+ {
+  "iata": "BR",
+  "name": "EVA Air",
+  "hubs": [
+   "TPE"
+  ],
+  "direct_now": 38,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "CA",
+  "name": "Air China",
+  "hubs": [
+   "PEK",
+   "PKX"
+  ],
+  "direct_now": 53,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "CI",
+  "name": "China Airlines",
+  "hubs": [
+   "TPE",
+   "KHH"
+  ],
+  "direct_now": 48,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "CM",
+  "name": "Copa Airlines",
+  "hubs": [
+   "PTY"
+  ],
+  "direct_now": 42,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "CX",
+  "name": "Cathay Pacific",
+  "hubs": [
+   "HKG"
+  ],
+  "direct_now": 54,
+  "seasonal_now": 3
+ },
+ {
+  "iata": "CZ",
+  "name": "China Southern Airlines",
+  "hubs": [
+   "CAN"
+  ],
+  "direct_now": 50,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "DE",
+  "name": "Condor",
+  "hubs": [
+   "FRA"
+  ],
+  "direct_now": 28,
+  "seasonal_now": 15
+ },
+ {
+  "iata": "DL",
+  "name": "Delta Air Lines",
+  "hubs": [
+   "ATL",
+   "DTW",
+   "MSP",
+   "JFK",
+   "SLC",
+   "SEA",
+   "LAX",
+   "BOS"
+  ],
+  "direct_now": 192,
+  "seasonal_now": 39
+ },
+ {
+  "iata": "DY",
+  "name": "Norwegian",
+  "hubs": [
+   "OSL",
+   "CPH",
+   "ARN",
+   "BGO"
+  ],
+  "direct_now": 50,
+  "seasonal_now": 57
+ },
+ {
+  "iata": "EI",
+  "name": "Aer Lingus",
+  "hubs": [
+   "DUB",
+   "ORK"
+  ],
+  "direct_now": 49,
+  "seasonal_now": 28
+ },
+ {
+  "iata": "EK",
+  "name": "Emirates",
+  "hubs": [
+   "DXB"
+  ],
+  "direct_now": 114,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "ET",
+  "name": "Ethiopian Airlines",
+  "hubs": [
+   "ADD"
+  ],
+  "direct_now": 55,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "EW",
+  "name": "Eurowings",
+  "hubs": [
+   "DUS",
+   "CGN",
+   "HAM",
+   "STR",
+   "BER"
+  ],
+  "direct_now": 228,
+  "seasonal_now": 16
+ },
+ {
+  "iata": "EY",
+  "name": "Etihad Airways",
+  "hubs": [
+   "AUH"
+  ],
+  "direct_now": 72,
+  "seasonal_now": 4
+ },
+ {
+  "iata": "FI",
+  "name": "Icelandair",
+  "hubs": [
+   "KEF"
+  ],
+  "direct_now": 31,
+  "seasonal_now": 14
+ },
+ {
+  "iata": "FR",
+  "name": "Ryanair",
+  "hubs": [
+   "STN",
+   "DUB",
+   "BGY",
+   "CRL",
+   "BCN",
+   "CGN",
+   "BER",
+   "OPO",
+   "MAN",
+   "EDI",
+   "PMI"
+  ],
+  "direct_now": 616,
+  "seasonal_now": 155
+ },
+ {
+  "iata": "GA",
+  "name": "Garuda Indonesia",
+  "hubs": [
+   "CGK",
+   "DPS"
+  ],
+  "direct_now": 21,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "I2",
+  "name": "Iberia Express",
+  "hubs": [
+   "MAD"
+  ],
+  "direct_now": 11,
+  "seasonal_now": 3
+ },
+ {
+  "iata": "IB",
+  "name": "Iberia",
+  "hubs": [
+   "MAD"
+  ],
+  "direct_now": 53,
+  "seasonal_now": 7
+ },
+ {
+  "iata": "JL",
+  "name": "Japan Airlines (JAL)",
+  "hubs": [
+   "HND",
+   "NRT"
+  ],
+  "direct_now": 39,
+  "seasonal_now": 8
+ },
+ {
+  "iata": "KE",
+  "name": "Korean Air",
+  "hubs": [
+   "ICN",
+   "GMP"
+  ],
+  "direct_now": 49,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "KL",
+  "name": "KLM Royal Dutch Airlines",
+  "hubs": [
+   "AMS"
+  ],
+  "direct_now": 83,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "KM",
+  "name": "KM Malta Airlines",
+  "hubs": [
+   "MLA"
+  ],
+  "direct_now": 19,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "LA",
+  "name": "LATAM",
+  "hubs": [
+   "SCL",
+   "LIM",
+   "GRU",
+   "BOG"
+  ],
+  "direct_now": 52,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "LH",
+  "name": "Lufthansa",
+  "hubs": [
+   "FRA",
+   "MUC"
+  ],
+  "direct_now": 193,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "LO",
+  "name": "LOT Polish Airlines",
+  "hubs": [
+   "WAW"
+  ],
+  "direct_now": 65,
+  "seasonal_now": 15
+ },
+ {
+  "iata": "LX",
+  "name": "SWISS",
+  "hubs": [
+   "ZRH",
+   "GVA"
+  ],
+  "direct_now": 86,
+  "seasonal_now": 15
+ },
+ {
+  "iata": "LY",
+  "name": "EL AL Israel Airlines",
+  "hubs": [
+   "TLV"
+  ],
+  "direct_now": 40,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "MH",
+  "name": "Malaysia Airlines",
+  "hubs": [
+   "KUL"
+  ],
+  "direct_now": 39,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "MK",
+  "name": "Air Mauritius",
+  "hubs": [
+   "MRU"
+  ],
+  "direct_now": 11,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "MS",
+  "name": "EgyptAir",
+  "hubs": [
+   "CAI"
+  ],
+  "direct_now": 57,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "MU",
+  "name": "China Eastern Airlines",
+  "hubs": [
+   "PVG"
+  ],
+  "direct_now": 63,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "NH",
+  "name": "ANA (All Nippon Airways)",
+  "hubs": [
+   "HND",
+   "NRT"
+  ],
+  "direct_now": 50,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "NZ",
+  "name": "Air New Zealand",
+  "hubs": [
+   "AKL",
+   "CHC"
+  ],
+  "direct_now": 23,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "OS",
+  "name": "Austrian Airlines",
+  "hubs": [
+   "VIE"
+  ],
+  "direct_now": 63,
+  "seasonal_now": 11
+ },
+ {
+  "iata": "PR",
+  "name": "Philippine Airlines",
+  "hubs": [
+   "MNL",
+   "CEB"
+  ],
+  "direct_now": 32,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "QF",
+  "name": "Qantas",
+  "hubs": [
+   "SYD",
+   "MEL",
+   "BNE",
+   "PER"
+  ],
+  "direct_now": 43,
+  "seasonal_now": 4
+ },
+ {
+  "iata": "QR",
+  "name": "Qatar Airways",
+  "hubs": [
+   "DOH"
+  ],
+  "direct_now": 109,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "QS",
+  "name": "Smartwings",
+  "hubs": [
+   "PRG"
+  ],
+  "direct_now": 8,
+  "seasonal_now": 14
+ },
+ {
+  "iata": "SK",
+  "name": "SAS Scandinavian",
+  "hubs": [
+   "CPH",
+   "OSL",
+   "ARN"
+  ],
+  "direct_now": 126,
+  "seasonal_now": 47
+ },
+ {
+  "iata": "SN",
+  "name": "Brussels Airlines",
+  "hubs": [
+   "BRU"
+  ],
+  "direct_now": 40,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "SQ",
+  "name": "Singapore Airlines",
+  "hubs": [
+   "SIN"
+  ],
+  "direct_now": 63,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "SS",
+  "name": "Corsair",
+  "hubs": [
+   "ORY"
+  ],
+  "direct_now": 8,
+  "seasonal_now": 3
+ },
+ {
+  "iata": "SV",
+  "name": "Saudia",
+  "hubs": [
+   "JED",
+   "RUH",
+   "DMM"
+  ],
+  "direct_now": 111,
+  "seasonal_now": 11
+ },
+ {
+  "iata": "TG",
+  "name": "Thai Airways",
+  "hubs": [
+   "BKK"
+  ],
+  "direct_now": 43,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "TK",
+  "name": "Turkish Airlines",
+  "hubs": [
+   "IST"
+  ],
+  "direct_now": 144,
+  "seasonal_now": 6
+ },
+ {
+  "iata": "TN",
+  "name": "Air Tahiti Nui",
+  "hubs": [
+   "PPT"
+  ],
+  "direct_now": 3,
+  "seasonal_now": 1
+ },
+ {
+  "iata": "TO",
+  "name": "Transavia",
+  "hubs": [
+   "ORY",
+   "AMS",
+   "NTE",
+   "LYS",
+   "MRS",
+   "EIN"
+  ],
+  "direct_now": 91,
+  "seasonal_now": 28
+ },
+ {
+  "iata": "TP",
+  "name": "TAP Air Portugal",
+  "hubs": [
+   "LIS",
+   "OPO"
+  ],
+  "direct_now": 52,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "TS",
+  "name": "Air Transat",
+  "hubs": [
+   "YYZ",
+   "YUL",
+   "YVR",
+   "YYC"
+  ],
+  "direct_now": 6,
+  "seasonal_now": 62
+ },
+ {
+  "iata": "TU",
+  "name": "Tunisair",
+  "hubs": [
+   "TUN",
+   "DJE"
+  ],
+  "direct_now": 36,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "TX",
+  "name": "Air Caraïbes",
+  "hubs": [
+   "ORY"
+  ],
+  "direct_now": 7,
+  "seasonal_now": 2
+ },
+ {
+  "iata": "U2",
+  "name": "easyJet",
+  "hubs": [
+   "LGW",
+   "STN",
+   "MAN",
+   "EDI",
+   "CDG",
+   "ORY",
+   "GVA",
+   "BSL",
+   "MXP",
+   "LIN",
+   "BCN",
+   "LIS",
+   "BER",
+   "AMS",
+   "PMI",
+   "NAP"
+  ],
+  "direct_now": 282,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "UA",
+  "name": "United Airlines",
+  "hubs": [
+   "ORD",
+   "EWR",
+   "IAD",
+   "DEN",
+   "SFO",
+   "IAH",
+   "LAX"
+  ],
+  "direct_now": 246,
+  "seasonal_now": 49
+ },
+ {
+  "iata": "UX",
+  "name": "Air Europa",
+  "hubs": [
+   "MAD"
+  ],
+  "direct_now": 29,
+  "seasonal_now": 7
+ },
+ {
+  "iata": "V7",
+  "name": "Volotea",
+  "hubs": [
+   "NTE",
+   "VCE",
+   "BOD",
+   "MRS",
+   "LYS",
+   "PMI",
+   "ATH"
+  ],
+  "direct_now": 61,
+  "seasonal_now": 22
+ },
+ {
+  "iata": "VA",
+  "name": "Virgin Australia",
+  "hubs": [
+   "SYD",
+   "MEL",
+   "BNE",
+   "PER"
+  ],
+  "direct_now": 13,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "VN",
+  "name": "Vietnam Airlines",
+  "hubs": [
+   "HAN",
+   "SGN",
+   "DAD"
+  ],
+  "direct_now": 63,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "VS",
+  "name": "Virgin Atlantic",
+  "hubs": [
+   "LHR",
+   "MAN"
+  ],
+  "direct_now": 23,
+  "seasonal_now": 5
+ },
+ {
+  "iata": "VY",
+  "name": "Vueling",
+  "hubs": [
+   "BCN",
+   "ORY",
+   "CDG",
+   "MAD",
+   "FCO"
+  ],
+  "direct_now": 435,
+  "seasonal_now": 31
+ },
+ {
+  "iata": "W6",
+  "name": "Wizz Air",
+  "hubs": [
+   "BUD",
+   "OTP",
+   "WAW",
+   "KRK",
+   "GDN",
+   "TIA",
+   "SOF",
+   "BEG"
+  ],
+  "direct_now": 398,
+  "seasonal_now": 0
+ },
+ {
+  "iata": "WS",
+  "name": "WestJet",
+  "hubs": [
+   "YYC",
+   "YYZ",
+   "YVR",
+   "YEG"
+  ],
+  "direct_now": 57,
+  "seasonal_now": 35
+ }
+]

@@ -1,0 +1,316 @@
+id: airline_ana
+mono: NH
+name: ANA (All Nippon Airways)
+titleH1:
+  en: Flying with a dog on ANA
+  fr: Voyager avec un chien sur ANA
+  es: Viajar con perro en ANA
+  pt: "Viajar com um cachorro pela ANA"
+metaDesc:
+  en: "ANA pet policy: hold-only carriage, summer snub-nosed embargo, fares, restrictions and official sources."
+  fr: "Politique animaux ANA : transport en soute uniquement, embargo brachy l'été, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de ANA: transporte solo en bodega, embargo de razas de hocico chato en verano, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da ANA: transporte somente no porão, embargo de verão para raças de focinho achatado, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Japan · HND / NRT
+      fr: Japon · HND / NRT
+      es: Japón · HND / NRT
+      pt: "Japão · HND / NRT"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: Pets travel only in the hold (no cabin), phone booking only, with a summer snub-nosed embargo.
+  fr: Les animaux ne voyagent qu'en soute (pas de cabine), réservation par téléphone, avec un embargo brachy l'été.
+  es: Las mascotas viajan solo en bodega (sin cabina), reserva únicamente por teléfono, con un embargo de razas de hocico chato en verano.
+  pt: "Os animais viajam somente no porão (sem cabine), reserva apenas por telefone, com embargo de verão para raças de focinho achatado."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK/HK/AU
+      fr: R.-U./HK/AU
+      es: RU/HK/AU
+      pt: "RU/HK/AU"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets can't enter the cabin — only assistance dogs. Cats & dogs travel in the hold.
+      fr: Les animaux ne peuvent pas entrer en cabine — seulement les chiens d'assistance. Chats et chiens voyagent en soute.
+      es: Las mascotas no pueden entrar en cabina, solo los perros de asistencia. Gatos y perros viajan en bodega.
+      pt: "Os animais não podem entrar na cabine — somente cães de assistência. Gatos e cachorros viajam no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Pets as checked baggage (pet + cage ≤ 45 kg) on your ANA flight; min 4 months, not sedated. Not into UK/Hong Kong/Australia.
+      fr: Animaux en bagage enregistré (animal + cage ≤ 45 kg) sur ton vol ANA ; min 4 mois, non sédatés. Pas vers R.-U./Hong Kong/Australie.
+      es: Mascotas como equipaje facturado (mascota + jaula ≤ 45 kg) en tu vuelo de ANA; mín. 4 meses, sin sedar. No hacia RU/Hong Kong/Australia.
+      pt: "Animais como bagagem despachada (animal + caixa de transporte ≤ 45 kg) no seu voo da ANA; mín. 4 meses, sem sedação. Não para o Reino Unido/Hong Kong/Austrália."
+    fee:
+      en: ¥6,000 / $250–400
+      fr: 6 000 ¥ / 250–400 $
+      es: 6000 ¥ / 250–400 $
+      pt: "¥6.000 / $250–400"
+  - icon: ✈️
+    name:
+      en: ANA Cargo
+      fr: ANA Cargo
+      es: ANA Cargo
+      pt: "ANA Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Mediante agente
+      pt: "Via agente"
+    detail:
+      en: Required for pets entering the UK, Hong Kong or Australia; via a cargo agent.
+      fr: Obligatoire pour les animaux entrant au R.-U., à Hong Kong ou en Australie ; via un agent de fret.
+      es: Obligatorio para mascotas que entran al RU, Hong Kong o Australia; mediante un agente de carga.
+      pt: "Obrigatório para animais que entram no Reino Unido, Hong Kong ou Austrália; via um agente de carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold — Japan domestic
+        fr: Soute — national Japon
+        es: Bodega — nacional Japón
+        pt: "Porão — Japão doméstico"
+      value:
+        en: ¥4,000–6,000 / cage
+        fr: 4 000–6 000 ¥ / cage
+        es: 4000–6000 ¥ / jaula
+        pt: "¥4.000–6.000 / caixa"
+    - label:
+        en: Hold — international (1 area)
+        fr: Soute — international (1 zone)
+        es: Bodega — internacional (1 zona)
+        pt: "Porão — internacional (1 área)"
+      value:
+        en: ¥25,000 / $250
+        fr: 25 000 ¥ / 250 $
+        es: 25 000 ¥ / 250 $
+        pt: "¥25.000 / $250"
+    - label:
+        en: Hold — international (2 areas)
+        fr: Soute — international (2 zones)
+        es: Bodega — internacional (2 zonas)
+        pt: "Porão — internacional (2 áreas)"
+      value:
+        en: ¥40,000 / $400
+        fr: 40 000 ¥ / 400 $
+        es: 40 000 ¥ / 400 $
+        pt: "¥40.000 / $400"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: JPY domestic / USD international, per cage. Domestic fee ¥6,000 (¥4,000 on some routes) from 19 May 2026.
+    fr: JPY national / USD international, par cage. Tarif national 6 000 ¥ (4 000 ¥ sur certaines routes) dès le 19 mai 2026.
+    es: JPY nacional / USD internacional, por jaula. Tarifa nacional 6000 ¥ (4000 ¥ en algunas rutas) desde el 19 may 2026.
+    pt: "JPY doméstico / USD internacional, por caixa. Tarifa doméstica de ¥6.000 (¥4.000 em algumas rotas) a partir de 19 mai. 2026."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: No hold May–Oct
+          fr: Pas de soute mai–oct.
+          es: Sin bodega may–oct
+          pt: "Sem porão mai.–out."
+    note:
+      en: "Snub-nosed dog breeds aren't accepted every year from 1 May to 31 October (heatstroke/breathing risk): bulldog, French bulldog, boxer, Shih Tzu, Boston terrier, Bull Terrier, King Charles/Tibetan spaniel, Brussels Griffon, chow chow, pug, Chin, Pekingese."
+      fr: "Les chiens au nez écrasé sont refusés chaque année du 1er mai au 31 octobre (risque de coup de chaleur/respiration) : bouledogue, bouledogue français, boxer, Shih Tzu, Boston terrier, Bull Terrier, King Charles/épagneul tibétain, Griffon bruxellois, chow chow, carlin, Chin, pékinois."
+      es: "Las razas de perro de hocico chato no se aceptan cada año del 1 de mayo al 31 de octubre (riesgo de golpe de calor/respiración): bulldog, bulldog francés, bóxer, Shih Tzu, Boston terrier, Bull Terrier, King Charles/spaniel tibetano, Grifón de Bruselas, chow chow, carlino, Chin, pequinés."
+      pt: "As raças de cachorro de focinho achatado não são aceitas todos os anos de 1º de maio a 31 de outubro (risco de insolação/respiração): buldogue, Buldogue Francês, boxer, Shih Tzu, Boston Terrier, Bull Terrier, King Charles/spaniel tibetano, Grifon de Bruxelas, Chow Chow, pug, Chin, pequinês."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+      - cls: warn
+        label:
+          en: Min. 4 months
+          fr: 4 mois min.
+          es: Mín. 4 meses
+          pt: "Mín. 4 meses"
+    note:
+      en: "Pets must not be sedated; pregnant animals, those under 4 months, and pets with heart or respiratory disease aren't accepted. From May–Oct: no nested cages or cage covers (ventilation)."
+      fr: "Les animaux ne doivent pas être sédatés ; les femelles gestantes, les animaux de moins de 4 mois et ceux souffrant du cœur ou des voies respiratoires sont refusés. De mai à oct. : ni cage dans une cage ni housse (ventilation)."
+      es: "Las mascotas no deben estar sedadas; no se aceptan hembras gestantes, animales menores de 4 meses ni mascotas con enfermedad cardíaca o respiratoria. De may a oct: sin jaulas anidadas ni fundas de jaula (ventilación)."
+      pt: "Os animais não devem ser sedados; animais prenhes, com menos de 4 meses, ou com doença cardíaca ou respiratória não são aceitos. De maio a outubro: sem caixas encaixadas nem capas de caixa (ventilação)."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Air-conditioned, humidity-controlled hold
+        fr: Soute climatisée, humidité contrôlée
+        es: Bodega climatizada, con humedad controlada
+        pt: "Porão climatizado, com umidade controlada"
+    - cls: no
+      label:
+        en: Snub-nosed embargo May–Oct
+        fr: Embargo brachy mai–oct.
+        es: Embargo de hocico chato may–oct
+        pt: "Embargo de focinho achatado mai.–out."
+  note:
+    en: ANA publishes no numeric limit but embargoes snub-nosed breeds every year 1 May–31 Oct. The cargo hold is air-conditioned with humidity control (lights off), but conditions can differ from the cabin and the hold can get very hot in summer.
+    fr: ANA ne publie pas de limite chiffrée mais met sous embargo les races au nez écrasé chaque année du 1er mai au 31 oct. La soute est climatisée avec contrôle de l'humidité (lumières éteintes), mais les conditions peuvent différer de la cabine et la soute peut devenir très chaude l'été.
+    es: ANA no publica un límite numérico, pero pone bajo embargo las razas de hocico chato cada año del 1 may al 31 oct. La bodega de carga está climatizada con control de humedad (luces apagadas), pero las condiciones pueden diferir de la cabina y la bodega puede calentarse mucho en verano.
+    pt: "A ANA não divulga um limite numérico, mas coloca sob embargo as raças de focinho achatado todos os anos de 1º de maio a 31 de outubro. O porão de carga é climatizado com controle de umidade (luzes apagadas), mas as condições podem diferir da cabine e o porão pode ficar muito quente no verão."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide, hearing and mobility assistance dogs travel free in the cabin on all flights.
+      fr: Chiens guides, d'écoute et d'assistance à la mobilité voyagent gratuitement en cabine sur tous les vols.
+      es: Los perros guía, de señal y de asistencia a la movilidad viajan gratis en cabina en todos los vuelos.
+      pt: "Cães-guia e de assistência auditiva e de mobilidade viajam gratuitamente na cabine em todos os voos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "US routes: DOT form 48 h prior; Canada: 2 documents 96 h; Mexico: 48 h. Notify the ANA Disability Desk."
+      fr: "Vols USA : formulaire DOT 48 h avant ; Canada : 2 documents 96 h ; Mexique : 48 h. Prévenir l'ANA Disability Desk."
+      es: "Rutas a EE. UU.: formulario del DOT 48 h antes; Canadá: 2 documentos 96 h; México: 48 h. Avisa al ANA Disability Desk."
+      pt: "Rotas para os EUA: formulário do DOT 48 h antes; Canadá: 2 documentos 96 h; México: 48 h. Avise a ANA Disability Desk."
+goodToKnow:
+  - icon: 📞
+    label:
+      en: Phone booking only
+      fr: Réservation par téléphone
+      es: Reserva solo por teléfono
+      pt: "Reserva somente por telefone"
+    value:
+      en: Pets must be booked by phone — not online — on ANA-operated flights only.
+      fr: Les animaux se réservent par téléphone — pas en ligne — sur les vols opérés par ANA uniquement.
+      es: Las mascotas deben reservarse por teléfono, no en línea, y solo en vuelos operados por ANA.
+      pt: "Os animais devem ser reservados por telefone — não on-line — somente em voos operados pela ANA."
+  - icon: 🚱
+    label:
+      en: No feeding once checked
+      fr: Pas de repas après enregistrement
+      es: Sin alimentar tras facturar
+      pt: "Sem alimentação após o check-in"
+    value:
+      en: A nozzle water dispenser is required; pets can't be fed after check-in, including connections.
+      fr: Un abreuvoir à bec est requis ; les animaux ne peuvent pas être nourris après l'enregistrement, correspondances comprises.
+      es: Se requiere un bebedero de boquilla; las mascotas no pueden alimentarse tras la facturación, incluidas las conexiones.
+      pt: "É exigido um bebedouro de bico; os animais não podem ser alimentados após o check-in, incluindo conexões."
+  - icon: 📄
+    label:
+      en: Japan import
+      fr: Import Japon
+      es: Importación a Japón
+      pt: "Importação para o Japão"
+    value:
+      en: Importing dogs/cats to Japan requires advance quarantine notification ≥ 40 days ahead.
+      fr: Importer un chien/chat au Japon exige une notification de quarantaine ≥ 40 jours à l'avance.
+      es: Importar perros/gatos a Japón exige una notificación de cuarentena con ≥ 40 días de antelación.
+      pt: "A importação de cachorros/gatos para o Japão exige uma notificação prévia de quarentena com ≥ 40 dias de antecedência."
+book:
+  host: ana.co.jp
+  url: https://www.ana.co.jp/
+sources:
+  en: 5 ANA & ANA Cargo sources · last verified 11 July 2026
+  fr: 5 sources ANA & ANA Cargo · dernière vérification 11 juillet 2026
+  es: 5 fuentes de ANA y ANA Cargo · última verificación 11 julio 2026
+  pt: "5 fontes da ANA e ANA Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

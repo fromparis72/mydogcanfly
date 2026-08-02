@@ -1,0 +1,386 @@
+# Country Entry Guide — Lebanon (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_lb
+iso2: "LB"
+name: { en: "Lebanon", fr: "Liban", es: "Líbano", pt: "Líbano" }
+region: { en: "Middle East / Mediterranean", fr: "Moyen-Orient / Méditerranée", es: "Oriente Medio / Mediterráneo", pt: "Oriente Médio / Mediterrâneo" }
+
+
+regime: non_listed
+exit:
+  authority: Ministère de l'Agriculture
+  authorityUrl: https://www.agriculture.gov.lb
+  intro:
+    en: "Lebanon is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate signed and stamped by a government veterinarian of the Ministry of Agriculture."
+    fr: "Le Liban est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire signé et tamponné par un vétérinaire officiel du ministère de l'Agriculture."
+    es: "Líbano no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario firmado y sellado por un veterinario oficial del Ministerio de Agricultura."
+    pt: "O Líbano não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde assinado e carimbado por um veterinário do governo do Ministério da Agricultura."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Under the Ministry of Agriculture's veterinary quarantine rules, the travel health certificate must be signed and stamped by an official government veterinarian before departure."
+        fr: "Selon les règles de quarantaine vétérinaire du ministère de l'Agriculture, le certificat sanitaire de voyage doit être signé et tamponné par un vétérinaire officiel avant le départ."
+        es: "Según las reglas de cuarentena veterinaria del Ministerio de Agricultura, el certificado sanitario de viaje debe ser firmado y sellado por un veterinario oficial antes de salir."
+        pt: "Segundo as normas de quarentena veterinária do Ministério da Agricultura, o atestado de saúde de viagem deve ser assinado e carimbado por um veterinário oficial do governo antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Lebanon with your dog", fr: "Voyager au Liban avec ton chien", es: "Viajar al Líbano con tu perro", pt: "Viajar para o Líbano com seu cachorro" }
+  intro:
+    en: >-
+      Lebanon admits pet dogs, but entry runs through its own veterinary framework, managed by the
+      Ministry of Agriculture's veterinary services, not the EU pet-passport scheme. The legal basis is
+      Decree No. 12301 on veterinary quarantine, which subjects animals arriving in Lebanon to
+      veterinary health control at the border and requires a veterinary health certificate from the
+      country of origin. In practice, the core documents are a microchip, up-to-date vaccinations
+      (rabies plus the usual canine vaccines), and an official veterinary health certificate issued by
+      a licensed vet within about 10 days before travel; an import clearance is obtained from customs on
+      arrival. Lebanon is a rabies-endemic country and publishes very little of its detailed import
+      procedure in a stable, public form, so several specifics — exact rabies timing, any antibody test,
+      parasite treatment, minimum age and breed rules — are not officially confirmed. This guide states
+      clearly what is documented and what is not.
+    fr: >-
+      Le Liban admet les chiens de compagnie, mais l'entrée passe par son propre cadre vétérinaire, géré
+      par les services vétérinaires du ministère de l'Agriculture, et non par le passeport européen. La
+      base légale est le décret n° 12301 sur la quarantaine vétérinaire, qui soumet les animaux arrivant
+      au Liban à un contrôle sanitaire vétérinaire à la frontière et exige un certificat sanitaire du
+      pays d'origine. En pratique, les documents de base sont une puce électronique, des vaccinations à
+      jour (rage et vaccins canins habituels) et un certificat vétérinaire officiel établi par un
+      vétérinaire agréé dans les 10 jours environ avant le voyage ; un dédouanement est obtenu auprès de
+      la douane à l'arrivée. Le Liban est un pays d'endémie rabique et publie très peu sa procédure
+      d'importation détaillée sous une forme stable et publique ; plusieurs points — délais exacts de la
+      rage, éventuel titrage, traitement antiparasitaire, âge minimum et règles de races — ne sont donc
+      pas confirmés officiellement. Ce guide indique clairement ce qui est documenté et ce qui ne l'est pas.
+    es: >-
+      El Líbano admite perros de compañía, pero la entrada se gestiona a través de su propio marco
+      veterinario, administrado por los servicios veterinarios del Ministerio de Agricultura, y no por el
+      sistema del pasaporte europeo para mascotas. La base legal es el Decreto n.º 12301 sobre cuarentena
+      veterinaria, que somete a los animales que llegan al Líbano a un control sanitario veterinario en la
+      frontera y exige un certificado sanitario veterinario del país de origen. En la práctica, los
+      documentos básicos son un microchip, las vacunas al día (la rabia más las vacunas caninas
+      habituales) y un certificado sanitario veterinario oficial expedido por un veterinario autorizado en
+      torno a los 10 días previos al viaje; a la llegada se obtiene un despacho de importación en aduanas.
+      El Líbano es un país con rabia endémica y publica muy poco de su procedimiento de importación
+      detallado de forma estable y pública, por lo que varios aspectos concretos — el plazo exacto de la
+      rabia, una posible prueba de titulación, el tratamiento antiparasitario, la edad mínima y las normas
+      de razas — no están confirmados oficialmente. Esta guía indica claramente lo que está documentado y
+      lo que no.
+
+    pt: "O Líbano admite cachorros de estimação, mas a entrada segue o próprio regime veterinário, administrado pelos serviços veterinários do Ministério da Agricultura, e não o esquema de passaporte europeu para animais de estimação. A base legal é o Decreto nº 12301 sobre quarentena veterinária, que submete os animais que chegam ao Líbano a um controle sanitário veterinário na fronteira e exige um atestado de saúde veterinário do país de origem. Na prática, os documentos centrais são um microchip, vacinas em dia (antirrábica mais as vacinas caninas usuais) e um atestado de saúde veterinário oficial emitido por um veterinário licenciado dentro de cerca de 10 dias antes da viagem; uma liberação de importação é obtida junto à alfândega na chegada. O Líbano é um país endêmico para raiva e publica muito pouco do seu procedimento de importação detalhado de forma estável e pública, portanto vários detalhes — o prazo exato da vacinação antirrábica, um eventual teste sorológico, o tratamento antiparasitário, a idade mínima e as normas de raça — não são oficialmente confirmados. Este guia indica claramente o que é documentado e o que não é."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — core rules known, several details unpublished", fr: "Modérée — règles de base connues, plusieurs détails non publiés", es: "Moderado — normas básicas conocidas, varios detalles no publicados", pt: "Moderado — normas centrais conhecidas, vários detalhes não publicados" }
+
+prepTime:
+  eu:
+    en: "From the EU: allow a few weeks. Identification and rabies vaccination should already be in order; the official veterinary health certificate is issued by a licensed vet within about 10 days of departure."
+    fr: "Depuis l'UE : prévois quelques semaines. L'identification et la vaccination antirabique doivent déjà être en règle ; le certificat vétérinaire officiel est établi par un vétérinaire agréé dans les 10 jours environ avant le départ."
+    es: "Desde la UE: prevé unas semanas. La identificación y la vacunación antirrábica deberían estar ya en regla; el certificado sanitario veterinario oficial lo expide un veterinario autorizado en torno a los 10 días previos a la salida."
+    pt: "Da UE: conte algumas semanas. A identificação e a vacinação antirrábica já devem estar em dia; o atestado de saúde veterinário oficial é emitido por um veterinário licenciado dentro de cerca de 10 dias antes da partida."
+  listed:
+    en: "From another third country: similar timing. If the first rabies shot is still needed, allow several extra weeks; the exact post-vaccination waiting period is not officially published by Lebanon."
+    fr: "Depuis un autre pays tiers : délais comparables. S'il faut encore faire le premier vaccin antirabique, prévois plusieurs semaines de plus ; le délai exact après vaccination n'est pas publié officiellement par le Liban."
+    es: "Desde otro país tercero: plazos similares. Si aún falta la primera vacuna antirrábica, prevé varias semanas más; el Líbano no publica oficialmente el periodo exacto de espera posterior a la vacunación."
+    pt: "De outro país terceiro: prazo semelhante. Se a primeira dose da vacina antirrábica ainda for necessária, conte várias semanas extras; o período exato de espera após a vacinação não é publicado oficialmente pelo Líbano."
+  nonListed:
+    en: "From a high-rabies-risk origin: plan conservatively. Lebanon does not publish whether a rabies antibody test is required, so confirm the current procedure with the Ministry of Agriculture veterinary services or a Lebanese consulate well ahead."
+    fr: "Depuis une origine à haut risque rabique : prévois large. Le Liban ne publie pas si un titrage antirabique est exigé ; confirme la procédure à jour auprès des services vétérinaires du ministère de l'Agriculture ou d'un consulat libanais bien à l'avance."
+    es: "Desde un origen de alto riesgo de rabia: planifica con margen. El Líbano no publica si se exige una prueba de titulación de rabia, así que confirma el procedimiento vigente con los servicios veterinarios del Ministerio de Agricultura o un consulado libanés con mucha antelación."
+    pt: "De uma origem de alto risco de raiva: planeje com margem de segurança. O Líbano não publica se o teste sorológico antirrábico é exigido, portanto confirme o procedimento atual com os serviços veterinários do Ministério da Agricultura ou um consulado libanês com bastante antecedência."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Other canine vaccinations", fr: "Autres vaccins canins", es: "Otras vacunas caninas", pt: "Outras vacinações caninas" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (within ~10 days)", fr: "Requis (dans ~10 jours)", es: "Obligatorio (en ~10 días)", pt: "Obrigatório (dentro de cerca de 10 dias)" }
+    cls: warn
+  - requirement: { en: "Arrival veterinary control", fr: "Contrôle vétérinaire à l'arrivée", es: "Control veterinario a la llegada", pt: "Controle veterinário na chegada" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Possible under decree", fr: "Possible selon le décret", es: "Posible según el decreto", pt: "Possível segundo o decreto" }
+    cls: neutral
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Lebanon publishes little of its detailed import procedure; several points below are marked as not officially confirmed. Verify current rules with the Ministry of Agriculture veterinary services or a Lebanese consulate before booking."
+    fr: "Le Liban publie peu sa procédure d'importation détaillée ; plusieurs points ci-dessous sont indiqués comme non confirmés officiellement. Vérifie les règles à jour auprès des services vétérinaires du ministère de l'Agriculture ou d'un consulat libanais avant de réserver."
+    es: "El Líbano publica poco de su procedimiento de importación detallado; varios puntos siguientes se indican como no confirmados oficialmente. Verifica las normas vigentes con los servicios veterinarios del Ministerio de Agricultura o un consulado libanés antes de reservar."
+    pt: "O Líbano publica pouco do seu procedimento de importação detalhado; vários pontos abaixo estão marcados como não oficialmente confirmados. Verifique as normas atuais com os serviços veterinários do Ministério da Agricultura ou um consulado libanês antes de reservar."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Lebanon (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Liban (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — el Líbano (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Líbano (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Lebanon", fr: "Pays de destination — Liban", es: "País de destino — Líbano", pt: "País de destino — Líbano" }
+      text:
+        en: "Lebanon applies Decree No. 12301 on veterinary quarantine: every arriving animal is subject to veterinary health control at the border and must carry a veterinary health certificate from the country of origin. A microchip, rabies vaccination and other canine vaccines are the documented core."
+        fr: "Le Liban applique le décret n° 12301 sur la quarantaine vétérinaire : tout animal arrivant est soumis à un contrôle sanitaire vétérinaire à la frontière et doit être accompagné d'un certificat sanitaire du pays d'origine. Puce, vaccination antirabique et autres vaccins canins constituent le socle documenté."
+        es: "El Líbano aplica el Decreto n.º 12301 sobre cuarentena veterinaria: todo animal que llega está sujeto a un control sanitario veterinario en la frontera y debe llevar un certificado sanitario veterinario del país de origen. Un microchip, la vacunación antirrábica y otras vacunas caninas constituyen la base documentada."
+        pt: "O Líbano aplica o Decreto nº 12301 sobre quarentena veterinária: todo animal que chega é submetido a controle sanitário veterinário na fronteira e deve levar um atestado de saúde veterinário do país de origem. Um microchip, a vacinação antirrábica e outras vacinas caninas formam a base documentada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Because Lebanon is rabies-endemic and does not publish origin-specific certificate models, the disease status of your departure country and what your official vet can certify matter. There is no EU pet-passport shortcut into Lebanon."
+        fr: "Le Liban étant en endémie rabique et ne publiant pas de modèles de certificat par origine, la situation sanitaire du pays de départ et ce que ton vétérinaire officiel peut certifier importent. Aucun raccourci « passeport européen » n'existe pour entrer au Liban."
+        es: "Como el Líbano tiene rabia endémica y no publica modelos de certificado por origen, importan la situación sanitaria de tu país de salida y lo que tu veterinario oficial pueda certificar. No hay atajo de «pasaporte europeo» para entrar en el Líbano."
+        pt: "Como o Líbano é endêmico para raiva e não publica modelos de atestado específicos por origem, a situação sanitária do seu país de partida e o que o seu veterinário oficial pode atestar são importantes. Não há atalho de passaporte europeu para entrar no Líbano."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Decree No. 12301 sets specific import procedures for animals coming from countries where disease is endemic, so a recent stay in a high-risk area can affect the checks and possible quarantine on arrival. Your dog's real history counts — not only the last airport."
+        fr: "Le décret n° 12301 prévoit des procédures d'importation particulières pour les animaux provenant de pays où des maladies sont endémiques ; un séjour récent dans une zone à risque peut donc influer sur les contrôles et une éventuelle quarantaine à l'arrivée. L'historique réel du chien compte — pas seulement le dernier aéroport."
+        es: "El Decreto n.º 12301 establece procedimientos de importación específicos para los animales procedentes de países donde una enfermedad es endémica, por lo que una estancia reciente en una zona de alto riesgo puede afectar a los controles y a una posible cuarentena a la llegada. Lo que cuenta es el historial real de tu perro — no solo el último aeropuerto."
+        pt: "O Decreto nº 12301 estabelece procedimentos de importação específicos para animais vindos de países onde a doença é endêmica, portanto uma estadia recente em uma área de alto risco pode afetar os controles e uma eventual quarentena na chegada. O histórico real do seu cachorro conta — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Lebanon's framework, then confirm your dog's exact origin, history and the current procedure with your vet and the Lebanese authorities before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre libanais, puis confirme l'origine et l'historique exacts de ton chien ainsi que la procédure à jour avec ton vétérinaire et les autorités libanaises avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco del Líbano y luego confirma el origen y el historial exactos de tu perro y el procedimiento vigente con tu veterinario y las autoridades libanesas antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o regime do Líbano e depois confirme a origem exata, o histórico e o procedimento atual do seu cachorro com o seu veterinário e as autoridades libanesas antes de reservar."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Pets must be microchipped for identification; an ISO 11784/11785 chip implanted before the rabies vaccination is the international standard and should match the health certificate.", fr: "Les animaux doivent être identifiés par puce ; une puce ISO 11784/11785 posée avant la vaccination antirabique est la norme internationale et doit correspondre au certificat sanitaire.", es: "Las mascotas deben llevar microchip para su identificación; un chip ISO 11784/11785 implantado antes de la vacunación antirrábica es la norma internacional y debe coincidir con el certificado sanitario.", pt: "Os animais de estimação devem ter microchip para identificação; um chip ISO 11784/11785 implantado antes da vacinação antirrábica é o padrão internacional e deve coincidir com o atestado de saúde." }
+    exceptions: { en: "Lebanon states pets must be microchipped but does not officially publish the exact chip standard; a reader for non-ISO chips cannot be assumed. Unknown.", fr: "Le Liban indique que les animaux doivent être pucés mais ne publie pas officiellement la norme exacte de puce ; ne présume pas d'un lecteur pour puces non ISO. Non communiqué.", es: "El Líbano indica que las mascotas deben llevar microchip, pero no publica oficialmente la norma exacta del chip; no des por hecho que haya un lector para chips no ISO. No publicado.", pt: "O Líbano declara que os animais de estimação devem ter microchip, mas não publica oficialmente o padrão exato do chip; não se pode presumir a existência de um leitor para chips não ISO. Não comunicado." }
+    ref: { en: "Consulate General of Lebanon (New York) — Shipping of Pets", fr: "Consulat général du Liban (New York) — Expédition d'animaux", es: "Consulado General del Líbano (Nueva York) — Envío de mascotas", pt: "Consulado-Geral do Líbano (Nova York) — Envio de Animais de Estimação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be vaccinated against rabies, recorded with vaccine, dates and lot on the health certificate.", fr: "Le chien doit être vacciné contre la rage, avec vaccin, dates et lot consignés sur le certificat sanitaire.", es: "El perro debe estar vacunado contra la rabia, registrada con vacuna, fechas y lote en el certificado sanitario.", pt: "O cachorro deve ser vacinado contra a raiva, registrada com a vacina, as datas e o lote no atestado de saúde." }
+    exceptions: { en: "The exact post-vaccination waiting period and validity window are not officially published by Lebanon. Lebanon is rabies-endemic. Timing: Unknown — confirm with your vet.", fr: "Le délai exact après vaccination et la fenêtre de validité ne sont pas publiés officiellement par le Liban. Le Liban est en endémie rabique. Délais : non communiqués — à confirmer avec ton vétérinaire.", es: "El Líbano no publica oficialmente el periodo exacto de espera posterior a la vacunación ni la ventana de valide. El Líbano tiene rabia endémica. Plazos: no publicado — confírmalo con tu veterinario.", pt: "O período exato de espera após a vacinação e a janela de validade não são publicados oficialmente pelo Líbano. O Líbano é endêmico para raiva. Prazo: Não comunicado — confirme com o seu veterinário." }
+    ref: { en: "Consulate General of Lebanon (New York); Decree No. 12301 (veterinary quarantine)", fr: "Consulat général du Liban (New York) ; décret n° 12301 (quarantaine vétérinaire)", es: "Consulado General del Líbano (Nueva York); Decreto n.º 12301 (cuarentena veterinaria)", pt: "Consulado-Geral do Líbano (Nova York); Decreto nº 12301 (quarentena veterinária)" }
+  - item: { en: "Other canine vaccinations", fr: "Autres vaccins canins", es: "Otras vacunas caninas", pt: "Outras vacinações caninas" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated against other contagious diseases — distemper, hepatitis, parvovirus and leptospirosis — recorded in the vaccination booklet and on the certificate.", fr: "Les chiens doivent être vaccinés contre d'autres maladies contagieuses — maladie de Carré, hépatite, parvovirose et leptospirose — consignées dans le carnet et sur le certificat.", es: "Los perros deben estar vacunados contra otras enfermedades contagiosas — moquillo, hepatitis, parvovirus y leptospirosis — registradas en la cartilla de vacunación y en el certificado.", pt: "Os cachorros devem ser vacinados contra outras doenças contagiosas — cinomose, hepatite, parvovirose e leptospirose — registradas na carteira de vacinação e no atestado." }
+    exceptions: { en: "None published.", fr: "Aucune publiée.", es: "Ninguna publicada.", pt: "Nenhuma publicada." }
+    ref: { en: "Consulate General of Lebanon (New York) — Shipping of Pets", fr: "Consulat général du Liban (New York) — Expédition d'animaux", es: "Consulado General del Líbano (Nueva York) — Envío de mascotas", pt: "Consulado-Geral do Líbano (Nova York) — Envio de Animais de Estimação" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Lebanon does not officially publish whether a rabies antibody test is required to enter. Its status is Unknown — do not assume it is or is not required; confirm with the Ministry of Agriculture veterinary services or a Lebanese consulate.", fr: "Le Liban ne publie pas officiellement si un titrage antirabique est exigé à l'entrée. Son statut est inconnu — ne présume ni qu'il est requis ni le contraire ; confirme auprès des services vétérinaires du ministère de l'Agriculture ou d'un consulat libanais.", es: "El Líbano no publica oficialmente si se exige una prueba de titulación de rabia para entrar. Su situación es desconocida — no des por hecho que se exige o no; confírmalo con los servicios veterinarios del Ministerio de Agricultura o un consulado libanés.", pt: "O Líbano não publica oficialmente se o teste sorológico antirrábico é exigido para entrar. Sua situação é Não comunicado — não presuma que ele é ou não exigido; confirme com os serviços veterinários do Ministério da Agricultura ou um consulado libanês." }
+    ref: { en: "Ministry of Agriculture — veterinary services (procedure not published)", fr: "Ministère de l'Agriculture — services vétérinaires (procédure non publiée)", es: "Ministerio de Agricultura — servicios veterinarios (procedimiento no publicado)", pt: "Ministério da Agricultura — serviços veterinários (procedimento não publicado)" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A health certificate issued by a licensed veterinarian confirming the dog is healthy, free of infectious disease and has completed the required vaccinations, completed within about 10 days before travel.", fr: "Un certificat établi par un vétérinaire agréé attestant que le chien est sain, indemne de maladie infectieuse et à jour des vaccinations requises, établi dans les 10 jours environ avant le voyage.", es: "Un certificado sanitario expedido por un veterinario autorizado que confirme que el perro está sano, libre de enfermedades infecciosas y ha completado las vacunas requeridas, cumplimentado en torno a los 10 días previos al viaje.", pt: "Um atestado de saúde emitido por um veterinário licenciado, confirmando que o cachorro está saudável, livre de doença infecciosa e com as vacinas exigidas em dia, concluído dentro de cerca de 10 dias antes da viagem." }
+    exceptions: { en: "Decree No. 12301 requires a veterinary health certificate from the country of origin. Endorsement by the origin country's government veterinary authority is standard international practice but not separately detailed by Lebanon.", fr: "Le décret n° 12301 exige un certificat sanitaire du pays d'origine. Le visa par l'autorité vétérinaire gouvernementale du pays d'origine est une pratique internationale courante mais non détaillée séparément par le Liban.", es: "El Decreto n.º 12301 exige un certificado sanitario veterinario del país de origen. El refrendo por la autoridad veterinaria gubernamental del país de origen es una práctica internacional habitual, pero el Líbano no lo detalla por separado.", pt: "O Decreto nº 12301 exige um atestado de saúde veterinário do país de origem. O endosso pela autoridade veterinária governamental do país de origem é prática internacional padrão, mas não é detalhado separadamente pelo Líbano." }
+    ref: { en: "Consulate General of Lebanon (New York); Decree No. 12301", fr: "Consulat général du Liban (New York) ; décret n° 12301", es: "Consulado General del Líbano (Nueva York); Decreto n.º 12301", pt: "Consulado-Geral do Líbano (Nova York); Decreto nº 12301" }
+  - item: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Lebanon does not officially publish a mandatory tapeworm or ecto-parasite treatment for dog entry. Status Unknown; a treatment recorded by your vet before travel is nonetheless good practice.", fr: "Le Liban ne publie pas officiellement de traitement obligatoire contre le ténia ou les ectoparasites pour l'entrée d'un chien. Statut inconnu ; un traitement consigné par ton vétérinaire avant le départ reste une bonne pratique.", es: "El Líbano no publica oficialmente un tratamiento obligatorio contra la tenia o los ectoparásitos para la entrada de un perro. Situación desconocida; no obstante, un tratamiento registrado por tu veterinario antes del viaje es una buena práctica.", pt: "O Líbano não publica oficialmente um tratamento obrigatório contra tênia ou ectoparasitas para a entrada de cachorros. Situação Não comunicado; ainda assim, um tratamento registrado pelo seu veterinário antes da viagem é boa prática." }
+    ref: { en: "Ministry of Agriculture — veterinary services (not specified)", fr: "Ministère de l'Agriculture — services vétérinaires (non précisé)", es: "Ministerio de Agricultura — servicios veterinarios (no especificado)", pt: "Ministério da Agricultura — serviços veterinários (não especificado)" }
+  - item: { en: "Import permit / advance approval", fr: "Permis d'importation / autorisation préalable", es: "Permiso de importación / autorización previa", pt: "Autorização de importação / aprovação prévia" }
+    required: { en: "On arrival (from customs)", fr: "À l'arrivée (auprès de la douane)", es: "A la llegada (en aduanas)", pt: "Na chegada (pela alfândega)" }
+    when: { en: "On arrival, the owner obtains an import permit/clearance from a customs officer at the point of entry. No advance import permit is documented for a personal pet dog.", fr: "À l'arrivée, le propriétaire obtient un permis/dédouanement d'importation auprès d'un agent des douanes au point d'entrée. Aucun permis d'importation préalable n'est documenté pour un chien de compagnie personnel.", es: "A la llegada, el propietario obtiene un permiso/despacho de importación de un agente de aduanas en el punto de entrada. No hay documentado ningún permiso de importación previo para un perro de compañía personal.", pt: "Na chegada, o dono obtém uma autorização/liberação de importação junto a um agente da alfândega no ponto de entrada. Nenhuma autorização de importação prévia é documentada para um cachorro de estimação pessoal." }
+    exceptions: { en: "Whether prior approval is ever needed (for example multiple animals) is not officially published. Confirm with the airline and Lebanese customs before travel.", fr: "La nécessité éventuelle d'une autorisation préalable (par exemple pour plusieurs animaux) n'est pas publiée officiellement. À confirmer avec la compagnie et la douane libanaise avant le voyage.", es: "Si alguna vez se necesita una autorización previa (por ejemplo, para varios animales) no se publica oficialmente. Confírmalo con la aerolínea y la aduana libanesa antes del viaje.", pt: "Se uma aprovação prévia é necessária em algum caso (por exemplo, para vários animais) não é publicado oficialmente. Confirme com a companhia aérea e a alfândega libanesa antes de viajar." }
+    ref: { en: "Consulate General of Lebanon (New York) — Shipping of Pets", fr: "Consulat général du Liban (New York) — Expédition d'animaux", es: "Consulado General del Líbano (Nueva York) — Envío de mascotas", pt: "Consulado-Geral do Líbano (Nova York) — Envio de Animais de Estimação" }
+  - item: { en: "Arrival veterinary control", fr: "Contrôle vétérinaire à l'arrivée", es: "Control veterinario a la llegada", pt: "Controle veterinário na chegada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Under Decree No. 12301 all animals entering Lebanon are subject to veterinary health control at the border to prevent introduction of disease; documents are checked and the animal is inspected.", fr: "En vertu du décret n° 12301, tous les animaux entrant au Liban sont soumis à un contrôle sanitaire vétérinaire à la frontière pour empêcher l'introduction de maladies ; les documents sont vérifiés et l'animal inspecté.", es: "En virtud del Decreto n.º 12301, todos los animales que entran en el Líbano están sujetos a un control sanitario veterinario en la frontera para evitar la introducción de enfermedades; se revisan los documentos y se inspecciona al animal.", pt: "Segundo o Decreto nº 12301, todos os animais que entram no Líbano são submetidos a controle sanitário veterinário na fronteira para evitar a introdução de doenças; os documentos são conferidos e o animal é inspecionado." }
+    exceptions: { en: "Entry is through designated border points; the exact designated points and office hours are not published on the portal.", fr: "L'entrée se fait par des points frontière désignés ; les points exacts et les horaires ne sont pas publiés sur le portail.", es: "La entrada se realiza por puntos fronterizos designados; los puntos designados exactos y el horario de oficina no se publican en el portal.", pt: "A entrada é feita por pontos de fronteira designados; os pontos exatos designados e o horário de expediente não são publicados no portal." }
+    ref: { en: "Decree No. 12301 (veterinary quarantine)", fr: "Décret n° 12301 (quarantaine vétérinaire)", es: "Decreto n.º 12301 (cuarentena veterinaria)", pt: "Decreto nº 12301 (quarentena veterinária)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Possible under decree", fr: "Possible selon le décret", es: "Posible según el decreto", pt: "Possível segundo o decreto" }
+    when: { en: "Decree No. 12301 provides for veterinary quarantine, sets quarantine premises and a quarantine duration, and defines special procedures for animals from endemic countries and steps if disease appears.", fr: "Le décret n° 12301 prévoit la quarantaine vétérinaire, fixe les locaux et une durée de quarantaine, et définit des procédures particulières pour les animaux provenant de pays endémiques ainsi que les mesures en cas d'apparition de maladie.", es: "El Decreto n.º 12301 prevé la cuarentena veterinaria, fija los locales de cuarentena y una duración de cuarentena, y define procedimientos especiales para los animales procedentes de países endémicos y las medidas si aparece una enfermedad.", pt: "O Decreto nº 12301 prevê a quarentena veterinária, estabelece instalações de quarentena e uma duração de quarentena, e define procedimentos especiais para animais vindos de países endêmicos e as medidas a tomar caso surja doença." }
+    exceptions: { en: "Whether a healthy, fully documented personal pet is routinely quarantined, and the exact duration, are not clearly published. Status Unknown; expect discretion of the veterinary authority.", fr: "La mise en quarantaine systématique d'un animal de compagnie sain et bien documenté, ainsi que la durée exacte, ne sont pas clairement publiées. Statut inconnu ; attends-toi à l'appréciation de l'autorité vétérinaire.", es: "No se publica claramente si una mascota personal sana y con toda la documentación se pone en cuarentena de forma rutinaria, ni la duración exacta. Situación desconocida; cuenta con la discrecionalidad de la autoridad veterinaria.", pt: "Se um animal de estimação pessoal saudável e com toda a documentação em dia é colocado em quarentena de rotina, e a duração exata, não são claramente publicados. Situação Não comunicado; espere que fique a critério da autoridade veterinária." }
+    ref: { en: "Decree No. 12301 (veterinary quarantine)", fr: "Décret n° 12301 (quarantaine vétérinaire)", es: "Decreto n.º 12301 (cuarentena veterinaria)", pt: "Decreto nº 12301 (quarentena veterinária)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Lebanon does not officially publish a minimum travelling age. In practice a puppy must be old enough to be validly vaccinated against rabies, but no stand-alone age is confirmed. Unknown.", fr: "Le Liban ne publie pas officiellement d'âge minimum pour voyager. En pratique, un chiot doit être en âge d'être valablement vacciné contre la rage, mais aucun âge distinct n'est confirmé. Non communiqué.", es: "El Líbano no publica oficialmente una edad mínima para viajar. En la práctica, un cachorro debe tener edad suficiente para ser vacunado válidamente contra la rabia, pero no hay confirmada ninguna edad independiente. No publicado.", pt: "O Líbano não publica oficialmente uma idade mínima de viagem. Na prática, um filhote deve ter idade suficiente para ser validamente vacinado contra a raiva, mas nenhuma idade isolada é confirmada. Não comunicado." }
+    ref: { en: "Ministry of Agriculture — veterinary services (not specified)", fr: "Ministère de l'Agriculture — services vétérinaires (non précisé)", es: "Ministerio de Agricultura — servicios veterinarios (no especificado)", pt: "Ministério da Agricultura — serviços veterinários (não especificado)" }
+  - item: { en: "Restricted / dangerous breeds", fr: "Races restreintes / dangereuses", es: "Razas restringidas / peligrosas", pt: "Raças restritas / perigosas" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "Lebanon's Animal Protection and Welfare Law No. 47/2017 allows the Minister of Agriculture to designate dangerous animals by ministerial order, but no public list of banned or restricted dog breeds for import is officially confirmed.", fr: "La loi n° 47/2017 sur la protection et le bien-être animal permet au ministre de l'Agriculture de désigner par arrêté les animaux dangereux, mais aucune liste publique de races de chiens interdites ou restreintes à l'importation n'est confirmée officiellement.", es: "La Ley de Protección y Bienestar Animal del Líbano n.º 47/2017 permite al Ministro de Agricultura designar animales peligrosos por orden ministerial, pero no hay confirmada oficialmente ninguna lista pública de razas de perros prohibidas o restringidas para la importación.", pt: "A Lei de Proteção e Bem-Estar Animal do Líbano nº 47/2017 permite que o Ministro da Agricultura designe animais perigosos por decreto ministerial, mas nenhuma lista pública de raças de cachorros proibidas ou restritas para importação é oficialmente confirmada." }
+    exceptions: { en: "Because a designation by order is possible and may change, confirm your dog's breed status with the Ministry of Agriculture or a Lebanese consulate before travelling. Unknown.", fr: "Une désignation par arrêté étant possible et susceptible d'évoluer, confirme le statut de la race de ton chien auprès du ministère de l'Agriculture ou d'un consulat libanais avant de voyager. Non communiqué.", es: "Como una designación por orden es posible y puede cambiar, confirma la situación de la raza de tu perro con el Ministerio de Agricultura o un consulado libanés antes de viajar. No publicado.", pt: "Como uma designação por decreto é possível e pode mudar, confirme a situação da raça do seu cachorro com o Ministério da Agricultura ou um consulado libanês antes de viajar. Não comunicado." }
+    ref: { en: "Law No. 47/2017 (Animal Protection and Welfare), Article 7", fr: "Loi n° 47/2017 (protection et bien-être animal), article 7", es: "Ley n.º 47/2017 (Protección y Bienestar Animal), artículo 7", pt: "Lei nº 47/2017 (Proteção e Bem-Estar Animal), artigo 7" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Lebanon: the EU passport is not a Lebanese document. A dog from Europe needs a microchip, a valid rabies vaccination, the other canine vaccinations and an official veterinary health certificate issued within about 10 days before travel. Keep in mind that Lebanon is not on the EU's list of listed third countries, so a dog later returning to the EU from Lebanon faces the stricter non-listed re-entry procedure (including a rabies antibody test carried out before leaving the EU)."
+      fr: "Aucun raccourci « passeport européen » pour entrer au Liban : le passeport UE n'est pas un document libanais. Un chien venant d'Europe a besoin d'une puce, d'une vaccination antirabique valide, des autres vaccins canins et d'un certificat vétérinaire officiel établi dans les 10 jours environ avant le voyage. Note que le Liban ne figure pas sur la liste UE des pays tiers listés ; un chien revenant ensuite dans l'UE depuis le Liban est donc soumis à la procédure de réintroduction non listée plus stricte (dont un titrage antirabique réalisé avant de quitter l'UE)."
+      es: "No hay atajo de «pasaporte europeo» para entrar en el Líbano: el pasaporte de la UE no es un documento libanés. Un perro procedente de Europa necesita un microchip, una vacunación antirrábica válida, las demás vacunas caninas y un certificado sanitario veterinario oficial expedido en torno a los 10 días previos al viaje. Ten en cuenta que el Líbano no figura en la lista de la UE de países terceros listados, por lo que un perro que regrese después a la UE desde el Líbano se enfrenta al procedimiento de reentrada no listado más estricto (que incluye una prueba de titulación de rabia realizada antes de salir de la UE)."
+      pt: "Não há atalho de passaporte europeu para entrar no Líbano: o passaporte da UE não é um documento libanês. Um cachorro vindo da Europa precisa de microchip, vacinação antirrábica válida, as demais vacinas caninas e um atestado de saúde veterinário oficial emitido dentro de cerca de 10 dias antes da viagem. Tenha em mente que o Líbano não está na lista de países terceiros listados da UE, portanto um cachorro que depois voltar à UE vindo do Líbano enfrenta o procedimento mais rigoroso de reentrada para países não listados (incluindo um teste sorológico antirrábico realizado antes de sair da UE)."
+    cls: warn
+  listed:
+    title: { en: "From another third country", fr: "Depuis un autre pays tiers", es: "Desde otro país tercero", pt: "De outro país terceiro" }
+    body:
+      en: "From the United States, Canada, the Gulf and other third countries, the same documented core applies: microchip, rabies vaccination, other canine vaccines and a veterinary health certificate close to departure. Note that USDA/APHIS reports it has not been officially informed of Lebanon's dog and cat requirements, so no country-specific agreed certificate exists for the US — travellers rely on a standard international health certificate and Lebanese consular guidance."
+      fr: "Depuis les États-Unis, le Canada, le Golfe et d'autres pays tiers, le même socle documenté s'applique : puce, vaccination antirabique, autres vaccins canins et certificat sanitaire vétérinaire peu avant le départ. Note que l'USDA/APHIS indique ne pas avoir été officiellement informé des exigences libanaises pour chiens et chats ; aucun certificat convenu propre au pays n'existe pour les USA — les voyageurs s'appuient sur un certificat sanitaire international standard et les indications consulaires libanaises."
+      es: "Desde Estados Unidos, Canadá, el Golfo y otros países terceros se aplica la misma base documentada: microchip, vacunación antirrábica, otras vacunas caninas y un certificado sanitario veterinario poco antes de la salida. Ten en cuenta que el USDA/APHIS informa de que no ha sido informado oficialmente de los requisitos del Líbano para perros y gatos, por lo que no existe un certificado acordado específico por país para Estados Unidos — los viajeros se basan en un certificado sanitario internacional estándar y en las indicaciones consulares libanesas."
+      pt: "Vindo dos Estados Unidos, do Canadá, do Golfo e de outros países terceiros, aplica-se a mesma base documentada: microchip, vacinação antirrábica, outras vacinas caninas e um atestado de saúde veterinário próximo à partida. Observe que o USDA/APHIS informa não ter sido oficialmente comunicado das exigências do Líbano para cachorros e gatos, portanto não existe um atestado específico acordado com os EUA — os viajantes contam com um atestado de saúde internacional padrão e a orientação consular libanesa."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país de alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "Lebanon is itself rabies-endemic, and Decree No. 12301 sets special import procedures for animals coming from countries where disease is endemic. Whether a rabies antibody test or additional measures apply is not officially published, and quarantine is possible under the decree. Expect closer scrutiny, carry original documents, and confirm the current procedure with the Ministry of Agriculture veterinary services before booking."
+      fr: "Le Liban est lui-même en endémie rabique, et le décret n° 12301 prévoit des procédures d'importation particulières pour les animaux provenant de pays où des maladies sont endémiques. L'application d'un titrage antirabique ou de mesures supplémentaires n'est pas publiée officiellement, et une quarantaine est possible selon le décret. Attends-toi à un contrôle renforcé, munis-toi des originaux et confirme la procédure à jour auprès des services vétérinaires du ministère de l'Agriculture avant de réserver."
+      es: "El propio Líbano tiene rabia endémica, y el Decreto n.º 12301 establece procedimientos de importación especiales para los animales procedentes de países donde una enfermedad es endémica. Si se aplica una prueba de titulación de rabia o medidas adicionales no se publica oficialmente, y la cuarentena es posible según el decreto. Espera un control más estricto, lleva los documentos originales y confirma el procedimiento vigente con los servicios veterinarios del Ministerio de Agricultura antes de reservar."
+      pt: "O próprio Líbano é endêmico para raiva, e o Decreto nº 12301 estabelece procedimentos de importação especiais para animais vindos de países onde a doença é endêmica. Se um teste sorológico antirrábico ou medidas adicionais se aplicam não é publicado oficialmente, e a quarentena é possível segundo o decreto. Espere um controle mais rigoroso, leve os documentos originais e confirme o procedimento atual com os serviços veterinários do Ministério da Agricultura antes de reservar."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Lebanon, the veterinary services carry out the health control at the border and customs handles the import clearance."
+    fr: "À l'arrivée de ton chien au Liban, les services vétérinaires effectuent le contrôle sanitaire à la frontière et la douane gère le dédouanement à l'importation."
+    es: "Cuando tu perro llega al Líbano, los servicios veterinarios realizan el control sanitario en la frontera y la aduana se encarga del despacho de importación."
+    pt: "Quando o seu cachorro chega ao Líbano, os serviços veterinários realizam o controle sanitário na fronteira e a alfândega cuida da liberação da importação."
+  points:
+    - en: "Under Decree No. 12301, every arriving animal undergoes veterinary health control to prevent the introduction of disease; entry is through designated border points."
+      fr: "En vertu du décret n° 12301, tout animal arrivant subit un contrôle sanitaire vétérinaire pour empêcher l'introduction de maladies ; l'entrée se fait par des points frontière désignés."
+      es: "En virtud del Decreto n.º 12301, todo animal que llega se somete a un control sanitario veterinario para evitar la introducción de enfermedades; la entrada se realiza por puntos fronterizos designados."
+      pt: "Segundo o Decreto nº 12301, todo animal que chega passa por controle sanitário veterinário para evitar a introdução de doenças; a entrada é feita por pontos de fronteira designados."
+    - en: "Present original documents: the microchip record, proof of rabies and other vaccinations, and the veterinary health certificate — carry originals, not copies."
+      fr: "Présente les documents originaux : le justificatif de puce, la preuve de vaccination antirabique et des autres vaccins, et le certificat sanitaire vétérinaire — munis-toi des originaux, pas de copies."
+      es: "Presenta los documentos originales: el registro del microchip, la prueba de la rabia y de las demás vacunas, y el certificado sanitario veterinario — lleva los originales, no copias."
+      pt: "Apresente os documentos originais: o registro do microchip, o comprovante da vacinação antirrábica e das demais vacinas, e o atestado de saúde veterinário — leve originais, não cópias."
+    - en: "Obtain the import permit/clearance from the customs officer on arrival at the airport."
+      fr: "Obtiens le permis/dédouanement d'importation auprès de l'agent des douanes à l'arrivée à l'aéroport."
+      es: "Obtén el permiso/despacho de importación del agente de aduanas a la llegada al aeropuerto."
+      pt: "Obtenha a autorização/liberação de importação junto ao agente da alfândega na chegada ao aeroporto."
+    - en: "The decree provides for quarantine premises and a quarantine duration; a healthy, fully documented pet is normally cleared, but the veterinary authority may hold an animal if disease is suspected or documents are deficient."
+      fr: "Le décret prévoit des locaux et une durée de quarantaine ; un animal sain et bien documenté passe normalement, mais l'autorité vétérinaire peut retenir un animal en cas de suspicion de maladie ou de documents incomplets."
+      es: "El decreto prevé locales de cuarentena y una duración de cuarentena; una mascota sana y con toda la documentación se despacha normalmente, pero la autoridad veterinaria puede retener a un animal si se sospecha una enfermedad o los documentos son deficientes."
+      pt: "O decreto prevê instalações de quarentena e uma duração de quarentena; um animal de estimação saudável e com toda a documentação em dia normalmente é liberado, mas a autoridade veterinária pode reter um animal se houver suspeita de doença ou se os documentos forem deficientes."
+    - en: "If documents are missing or invalid, the animal may be refused, returned or placed under veterinary control — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé, renvoyé ou placé sous contrôle vétérinaire — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado, devuelto o puesto bajo control veterinario — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, o animal pode ter a entrada recusada, ser devolvido ou colocado sob controle veterinário — às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Lebanon's Animal Protection and Welfare Law No. 47/2017 is the national framework for keeping animals. Article 7 lets the Minister of Agriculture designate 'dangerous animals' by ministerial order, in addition to CITES-listed wild animals. This is a legal mechanism rather than a published breed list."
+    fr: "La loi n° 47/2017 sur la protection et le bien-être animal constitue le cadre national de détention des animaux. L'article 7 permet au ministre de l'Agriculture de désigner par arrêté des « animaux dangereux », en plus des animaux sauvages inscrits à la CITES. Il s'agit d'un mécanisme légal plutôt que d'une liste de races publiée."
+    es: "La Ley de Protección y Bienestar Animal del Líbano n.º 47/2017 es el marco nacional para la tenencia de animales. El artículo 7 permite al Ministro de Agricultura designar «animales peligrosos» por orden ministerial, además de los animales silvestres incluidos en CITES. Se trata de un mecanismo legal más que de una lista de razas publicada."
+    pt: "A Lei de Proteção e Bem-Estar Animal do Líbano nº 47/2017 é o marco nacional para a posse de animais. O artigo 7 permite que o Ministro da Agricultura designe 'animais perigosos' por decreto ministerial, além dos animais silvestres listados pela CITES. Trata-se de um mecanismo legal, e não de uma lista de raças publicada."
+  cat1:
+    en: "Banned breeds: no official public list of dog breeds banned from import into Lebanon is confirmed. Status Unknown — do not assume any particular breed is either freely allowed or prohibited without checking."
+    fr: "Races interdites : aucune liste publique officielle de races de chiens interdites à l'importation au Liban n'est confirmée. Statut inconnu — ne présume pas qu'une race donnée est librement admise ou interdite sans vérification."
+    es: "Razas prohibidas: no hay confirmada ninguna lista pública oficial de razas de perros prohibidas para la importación al Líbano. Situación desconocida — no des por hecho que una raza concreta esté libremente permitida o prohibida sin comprobarlo."
+    pt: "Raças proibidas: nenhuma lista pública oficial de raças de cachorros proibidas para importação no Líbano é confirmada. Situação Não comunicado — não presuma que uma raça específica é livremente permitida ou proibida sem verificar."
+  cat2:
+    en: "Restricted / licensed breeds: likewise not officially published. Because the Minister of Agriculture may designate dangerous animals by order, the situation can change without wide notice."
+    fr: "Races restreintes / sous licence : de même, non publiées officiellement. Le ministre de l'Agriculture pouvant désigner des animaux dangereux par arrêté, la situation peut évoluer sans large publicité."
+    es: "Razas restringidas / con licencia: igualmente no publicadas oficialmente. Como el Ministro de Agricultura puede designar animales peligrosos por orden, la situación puede cambiar sin gran publicidad."
+    pt: "Raças restritas / com exigência de licença: também não publicado oficialmente. Como o Ministro da Agricultura pode designar animais perigosos por decreto, a situação pode mudar sem ampla divulgação."
+  note:
+    en: "Before booking, confirm your dog's breed status directly with the Ministry of Agriculture veterinary services or a Lebanese consulate, as any designation is made by ministerial order and may be updated."
+    fr: "Avant de réserver, confirme le statut de la race de ton chien directement auprès des services vétérinaires du ministère de l'Agriculture ou d'un consulat libanais, toute désignation étant faite par arrêté et pouvant être mise à jour."
+    es: "Antes de reservar, confirma la situación de la raza de tu perro directamente con los servicios veterinarios del Ministerio de Agricultura o un consulado libanés, ya que cualquier designación se hace por orden ministerial y puede actualizarse."
+    pt: "Antes de reservar, confirme a situação da raça do seu cachorro diretamente com os serviços veterinários do Ministério da Agricultura ou um consulado libanês, já que qualquer designação é feita por decreto ministerial e pode ser atualizada."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785 recommended) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785 recommandée) posée avant la vaccination antirabique"
+    es: "Microchip (se recomienda ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785 recomendado) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination recorded with vaccine, dates and lot"
+    fr: "Vaccination antirabique valide consignée avec vaccin, dates et lot"
+    es: "Vacunación antirrábica válida registrada con vacuna, fechas y lote"
+    pt: "Vacinação antirrábica válida, registrada com a vacina, as datas e o lote"
+  - en: "Other canine vaccinations (distemper, hepatitis, parvovirus, leptospirosis)"
+    fr: "Autres vaccins canins (Carré, hépatite, parvovirose, leptospirose)"
+    es: "Otras vacunas caninas (moquillo, hepatitis, parvovirus, leptospirosis)"
+    pt: "Outras vacinações caninas (cinomose, hepatite, parvovirose, leptospirose)"
+  - en: "Official veterinary health certificate issued within about 10 days before travel"
+    fr: "Certificat vétérinaire officiel établi dans les 10 jours environ avant le voyage"
+    es: "Certificado sanitario veterinario oficial expedido en torno a los 10 días previos al viaje"
+    pt: "Atestado de saúde veterinário oficial emitido dentro de cerca de 10 dias antes da viagem"
+  - en: "Original vaccination booklet and microchip record (not copies)"
+    fr: "Carnet de vaccination et justificatif de puce originaux (pas de copies)"
+    es: "Cartilla de vacunación y registro del microchip originales (no copias)"
+    pt: "Carteira de vacinação e comprovante do microchip originais (não cópias)"
+  - en: "Confirm current procedure (antibody test, parasite treatment, minimum age, breeds) with the Ministry of Agriculture veterinary services or a Lebanese consulate"
+    fr: "Confirme la procédure à jour (titrage, traitement antiparasitaire, âge minimum, races) auprès des services vétérinaires du ministère de l'Agriculture ou d'un consulat libanais"
+    es: "Confirma el procedimiento vigente (prueba de titulación, tratamiento antiparasitario, edad mínima, razas) con los servicios veterinarios del Ministerio de Agricultura o un consulado libanés"
+    pt: "Confirme o procedimento atual (teste sorológico, tratamento antiparasitário, idade mínima, raças) com os serviços veterinários do Ministério da Agricultura ou um consulado libanês"
+  - en: "Plan for the import clearance obtained from customs on arrival"
+    fr: "Prévois le dédouanement d'importation obtenu auprès de la douane à l'arrivée"
+    es: "Prevé el despacho de importación que se obtiene en aduanas a la llegada"
+    pt: "Planeje a liberação de importação obtida junto à alfândega na chegada"
+  - en: "Airline reservation confirming your dog's travel option and IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport du chien et caisse IATA si voyage en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
+
+sources:
+  - label: { en: "Ministry of Agriculture (regulations portal) — Decree No. 12301: Veterinary Quarantine", fr: "Ministère de l'Agriculture (portail réglementaire) — Décret n° 12301 : quarantaine vétérinaire", es: "Ministerio de Agricultura (portal normativo) — Decreto n.º 12301: cuarentena veterinaria", pt: "Ministério da Agricultura (portal de regulamentos) — Decreto nº 12301: Quarentena Veterinária" }
+    url: "https://regulations.agriculture.gov.lb/en/legislation/523"
+  - label: { en: "Consulate General of Lebanon in New York — Shipping of Pets", fr: "Consulat général du Liban à New York — Expédition d'animaux", es: "Consulado General del Líbano en Nueva York — Envío de mascotas", pt: "Consulado-Geral do Líbano em Nova York — Envio de Animais de Estimação" }
+    url: "https://nylebcons.org/shipping-of-pets/"
+  - label: { en: "Ministry of Agriculture of Lebanon — official website", fr: "Ministère de l'Agriculture du Liban — site officiel", es: "Ministerio de Agricultura del Líbano — sitio web oficial", pt: "Ministério da Agricultura do Líbano — site oficial" }
+    url: "https://www.agriculture.gov.lb/"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Lebanon (dog/cat requirements not officially provided)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Liban (exigences chiens/chats non fournies officiellement)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos al Líbano (requisitos para perros/gatos no facilitados oficialmente)", pt: "USDA APHIS — Viagem de Animais de Estimação dos Estados Unidos para o Líbano (exigências para cachorros/gatos não fornecidas oficialmente)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-lebanon"
+  - label: { en: "UNEP Law & Environment Assistance Platform — Lebanon Law No. 47/2017 (Animal Protection and Welfare)", fr: "Plateforme d'assistance droit & environnement du PNUE — Loi libanaise n° 47/2017 (protection et bien-être animal)", es: "Plataforma de asistencia sobre derecho y medio ambiente del PNUMA — Ley libanesa n.º 47/2017 (Protección y Bienestar Animal)", pt: "UNEP Law & Environment Assistance Platform — Lei nº 47/2017 do Líbano (Proteção e Bem-Estar Animal)" }
+    url: "https://leap.unep.org/en/countries/lb/national-legislation/law-no-47-2017-animal-protection-and-welfare"
+
+seo:
+  title: { en: "Lebanon Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Liban — Guide", es: "Requisitos de entrada de perros en el Líbano — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Líbano — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Lebanon With Your Dog: Entry Requirements (2026)", fr: "Voyager au Liban avec ton chien : formalités (2026)", es: "Viajar al Líbano con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Líbano: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official framework for bringing a dog into Lebanon: microchip, rabies and canine vaccinations. Several details unpublished — sourced and dated."
+    fr: "Cadre officiel pour faire entrer un chien au Liban : puce, vaccins rage et canins, certificat sanitaire vétérinaire. Plusieurs détails non publiés — sourcé et daté."
+    es: "Marco oficial para traer un perro al Líbano: microchip, vacunas de la rabia y caninas. Varios detalles no publicados — con fuentes y fecha."
+    pt: "Marco oficial para levar um cachorro para o Líbano: microchip, vacinação antirrábica e vacinas caninas. Vários detalhes não publicados — com fontes e data."
+  slug: "lebanon"
+  shortDesc:
+    en: "What is documented to bring a dog into Lebanon — microchip, rabies and canine vaccines, health certificate and arrival veterinary control — with several details officially unpublished."
+    fr: "Ce qui est documenté pour faire entrer un chien au Liban — puce, vaccins rage et canins, certificat sanitaire et contrôle vétérinaire à l'arrivée — plusieurs détails restant non publiés."
+    es: "Lo que está documentado para traer un perro al Líbano — microchip, vacunas de la rabia y caninas, certificado sanitario y control veterinario a la llegada — con varios detalles sin publicar oficialmente."
+    pt: "O que é documentado para levar um cachorro para o Líbano — microchip, vacinas antirrábica e caninas, atestado de saúde e controle veterinário na chegada — com vários detalhes não publicados oficialmente."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

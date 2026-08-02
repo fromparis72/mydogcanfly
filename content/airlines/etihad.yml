@@ -1,0 +1,320 @@
+id: airline_etihad
+mono: EY
+name: Etihad Airways
+titleH1:
+  en: Flying with a dog on Etihad Airways
+  fr: Voyager avec un chien sur Etihad Airways
+  es: Volar con un perro en Etihad Airways
+  pt: "Voar com um cachorro na Etihad Airways"
+metaDesc:
+  en: "Etihad Airways pet policy: cabin pets to/from Abu Dhabi, Etihad Cargo, fares, breed limits and official sources."
+  fr: "Politique animaux Etihad Airways : cabine de/vers Abu Dhabi, Etihad Cargo, tarifs, restrictions de races et sources officielles."
+  es: "Política de mascotas de Etihad Airways: mascotas en cabina hacia/desde Abu Dabi, Etihad Cargo, tarifas, límites de raza y fuentes oficiales."
+  pt: "Política de animais da Etihad Airways: animais em cabine de/para Abu Dhabi, Etihad Cargo, tarifas, limites de raça e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: United Arab Emirates · AUH
+      fr: Émirats arabes unis · AUH
+      es: Emiratos Árabes Unidos · AUH
+      pt: "Emirados Árabes Unidos · AUH"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small cats, dogs & falcons fly in the cabin to/from Abu Dhabi — but many routes are excluded.
+  fr: Petits chats, chiens et faucons en cabine de/vers Abu Dhabi — mais de nombreuses routes sont exclues.
+  es: Perros, gatos y halcones pequeños viajan en cabina hacia/desde Abu Dabi, pero muchas rutas quedan excluidas.
+  pt: "Gatos, cachorros e falcões pequenos voam na cabine de/para Abu Dhabi — mas muitas rotas ficam de fora."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 12
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: large
+      fr: grands
+      es: grandes
+      pt: "grande porte"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small cats & dogs (min. 16 weeks, ≤ 8 kg incl. carrier) under the seat, to/from Abu Dhabi; falcons too. Many route exclusions.
+      fr: Petits chats et chiens (min. 16 semaines, ≤ 8 kg avec sac) sous le siège, de/vers Abu Dhabi ; faucons aussi. Nombreuses exclusions de routes.
+      es: Perros y gatos pequeños (mín. 16 semanas, ≤ 8 kg con jaula) bajo el asiento, hacia/desde Abu Dabi; también halcones. Muchas rutas excluidas.
+      pt: "Gatos e cachorros pequenos (mín. 16 semanas, ≤ 8 kg com a bolsa) embaixo do assento, de/para Abu Dhabi; falcões também. Muitas rotas excluídas."
+    fee:
+      en: $399
+      fr: 399 $
+      es: 399 $
+      pt: "US$ 399"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: "Cats & dogs aren't carried as checked baggage (falcons: $500/cage). Service dogs fly in the cabin."
+      fr: "Chats et chiens non transportés en bagage enregistré (faucons : 500 $/cage). Les chiens d'assistance voyagent en cabine."
+      es: "Perros y gatos no se transportan como equipaje facturado (halcones: 500 $/jaula). Los perros de servicio viajan en cabina."
+      pt: "Gatos e cachorros não são transportados como bagagem despachada (falcões: US$ 500/caixa). Cães de assistência viajam na cabine."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Etihad Cargo
+      fr: Etihad Cargo
+      es: Etihad Cargo
+      pt: "Etihad Cargo"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo petición
+      pt: "Sob consulta"
+    detail:
+      en: Cats, dogs & small pets in climate-controlled, pressurised holds via Etihad Cargo LiveAnimals.
+      fr: Chats, chiens et petits animaux dans des soutes climatisées et pressurisées via Etihad Cargo LiveAnimals.
+      es: Perros, gatos y mascotas pequeñas en bodegas climatizadas y presurizadas por Etihad Cargo LiveAnimals.
+      pt: "Gatos, cachorros e animais pequenos em porões climatizados e pressurizados pela Etihad Cargo LiveAnimals."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Economy (≤ 8 kg)
+        fr: Cabine — Économique (≤ 8 kg)
+        es: Cabina — Economy (≤ 8 kg)
+        pt: "Cabine — Econômica (≤ 8 kg)"
+      value:
+        en: $399
+        fr: 399 $
+        es: 399 $
+        pt: "US$ 399"
+    - label:
+        en: Cabin — Business
+        fr: Cabine — Business
+        es: Cabina — Business
+        pt: "Cabine — Executiva"
+      value:
+        en: $399 + extra seat
+        fr: 399 $ + siège suppl.
+        es: 399 $ + asiento extra
+        pt: "US$ 399 + assento extra"
+    - label:
+        en: Falcon (checked)
+        fr: Faucon (soute)
+        es: Halcón (facturado)
+        pt: "Falcão (despachado)"
+      value:
+        en: $500 / cage
+        fr: 500 $ / cage
+        es: 500 $ / jaula
+        pt: "US$ 500 / caixa"
+    - label:
+        en: Etihad Cargo
+        fr: Etihad Cargo
+        es: Etihad Cargo
+        pt: "Etihad Cargo"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD, to/from Abu Dhabi. Only dry pet food is allowed in the cabin.
+    fr: USD, de/vers Abu Dhabi. Seule la nourriture sèche est admise en cabine.
+    es: USD, hacia/desde Abu Dabi. En cabina solo se admite comida seca para mascotas.
+    pt: "USD, de/para Abu Dhabi. Somente ração seca é permitida na cabine."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: "Cargo: seasonal only"
+          fr: "Fret : saisonnier"
+          es: "Carga: solo estacional"
+          pt: "Carga: somente sazonal"
+    note:
+      en: The cabin sets no snub-nosed rule; via Etihad Cargo, brachycephalic breeds are accepted only seasonally (1 Nov–1 Mar) with extra checks and Live Animals approval.
+      fr: La cabine ne fixe pas de règle nez écrasé ; via Etihad Cargo, les races brachycéphales ne sont acceptées qu'en saison (1er nov.–1er mars) avec contrôles supplémentaires et accord Live Animals.
+      es: La cabina no fija normas de hocico chato; por Etihad Cargo, las razas braquicéfalas solo se aceptan en temporada (1 nov–1 mar) con controles adicionales y aprobación de Live Animals.
+      pt: "A cabine não define regra sobre focinho achatado; pela Etihad Cargo, as raças braquicefálicas são aceitas apenas na temporada (1º nov.–1º mar.) com verificações extras e aprovação do Live Animals."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas vetadas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Refusées
+          es: No aceptadas
+          pt: "Não aceitas"
+      - cls: warn
+        label:
+          en: No pregnancy
+          fr: Pas de gestation
+          es: Sin gestación
+          pt: "Sem gestação"
+    note:
+      en: Pit bull, American Staffordshire, American Bully, Fila Brasileiro, Dogo Argentino, mastiffs, Tosa, Rottweiler, Doberman, Presa Canario, boxer & hybrids aren't accepted. Sedation only under veterinary supervision; pregnant pets refused.
+      fr: Pit-bull, American Staffordshire, American Bully, Fila Brasileiro, Dogo Argentino, mastiffs, Tosa, Rottweiler, Doberman, Presa Canario, boxer et croisés refusés. Sédation uniquement sous contrôle vétérinaire ; animaux gestants refusés.
+      es: Pit bull, American Staffordshire, American Bully, fila brasileiro, dogo argentino, mastines, tosa, rottweiler, doberman, presa canario, bóxer y cruces no se aceptan. Sedación solo bajo supervisión veterinaria; no se admiten mascotas gestantes.
+      pt: "Pit bull, American Staffordshire, American Bully, Fila Brasileiro, Dogo Argentino, mastins, Tosa, Rottweiler, Doberman, Presa Canario, boxer e cruzas não são aceitos. Sedação somente sob supervisão veterinária; animais gestantes são recusados."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Climate-controlled, pressurised (cargo)
+        fr: Climatisée, pressurisée (fret)
+        es: Climatizada y presurizada (carga)
+        pt: "Climatizado e pressurizado (carga)"
+    - cls: warn
+      label:
+        en: "Cabin temperature: not disclosed"
+        fr: "Température cabine : non communiqué"
+        es: "Temperatura de cabina: no divulgada"
+        pt: "Temperatura da cabine: não divulgada"
+  note:
+    en: Etihad Cargo LiveAnimals uses climate-controlled, pressurised hold compartments, with maximum pet transport time extended to 24 h. No numeric temperature limit is published.
+    fr: Etihad Cargo LiveAnimals utilise des compartiments de soute climatisés et pressurisés, avec une durée de transport portée à 24 h maximum. Aucune limite chiffrée de température n'est publiée.
+    es: Etihad Cargo LiveAnimals usa compartimentos de bodega climatizados y presurizados, con un tiempo máximo de transporte ampliado a 24 h. No se publica ningún límite numérico de temperatura.
+    pt: "A Etihad Cargo LiveAnimals usa compartimentos de porão climatizados e pressurizados, com tempo máximo de transporte ampliado para 24 h. Nenhum limite numérico de temperatura é divulgado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: One trained service dog free (two from the US); ADI/IGDF certification required (not on direct US flights).
+      fr: Un chien d'assistance dressé gratuit (deux depuis les USA) ; certification ADI/IGDF requise (sauf vols directs USA).
+      es: Un perro de servicio adiestrado gratis (dos desde EE. UU.); se exige certificación ADI/IGDF (salvo en vuelos directos a EE. UU.).
+      pt: "Um cão de assistência adestrado viaja de graça (dois a partir dos EUA); é exigida certificação ADI/IGDF (exceto em voos diretos para os EUA)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Book via form + call ≥ 48 h ahead. US: DOT forms + CDC Dog Import Form. Not permitted from China."
+      fr: "Réserver via le formulaire + appeler ≥ 48 h à l'avance. USA : formulaires DOT + CDC Dog Import Form. Interdit au départ de Chine."
+      es: "Reserva con el formulario + llama ≥ 48 h antes. EE. UU.: formularios DOT + CDC Dog Import Form. No permitido desde China."
+      pt: "Reserve pelo formulário + ligue com ≥ 48 h de antecedência. EUA: formulários do DOT + CDC Dog Import Form. Não permitido saindo da China."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Route exclusions
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    value:
+      en: "Pets banned on many routes: USA, London, Manchester, Sydney, Bali, Hong Kong, Malé, Johannesburg."
+      fr: "Animaux interdits sur de nombreuses routes : USA, Londres, Manchester, Sydney, Bali, Hong Kong, Malé, Johannesburg."
+      es: "Mascotas vetadas en muchas rutas: EE. UU., Londres, Mánchester, Sídney, Bali, Hong Kong, Malé, Johannesburgo."
+      pt: "Animais proibidos em muitas rotas: EUA, Londres, Manchester, Sydney, Bali, Hong Kong, Malé, Joanesburgo."
+  - icon: 🧳
+    label:
+      en: Carrier size
+      fr: Taille du sac
+      es: Tamaño de la jaula
+      pt: "Tamanho da bolsa de transporte"
+    value:
+      en: Under-seat carrier max 40 × 40 × 22 cm (50 × 43 × 50 cm with an extra seat).
+      fr: Sac sous le siège max 40 × 40 × 22 cm (50 × 43 × 50 cm avec un siège supplémentaire).
+      es: Jaula bajo el asiento máx. 40 × 40 × 22 cm (50 × 43 × 50 cm con un asiento extra).
+      pt: "Bolsa para debaixo do assento com no máx. 40 × 40 × 22 cm (50 × 43 × 50 cm com um assento extra)."
+  - icon: 🐾
+    label:
+      en: Two pets
+      fr: Deux animaux
+      es: Dos mascotas
+      pt: "Dois animais"
+    value:
+      en: Two pets only if from the same household and known to each other, each with its own form.
+      fr: Deux animaux seulement s'ils sont du même foyer et se connaissent, chacun avec son propre formulaire.
+      es: Dos mascotas solo si son del mismo hogar y se conocen entre sí, cada una con su propio formulario.
+      pt: "Dois animais somente se forem do mesmo domicílio e se conhecerem entre si, cada um com seu próprio formulário."
+book:
+  host: etihad.com
+  url: https://www.etihad.com/
+sources:
+  en: 3 Etihad & Etihad Cargo sources · last verified 11 July 2026
+  fr: 3 sources Etihad & Etihad Cargo · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Etihad y Etihad Cargo · última verificación 11 de julio de 2026
+  pt: "3 fontes da Etihad e da Etihad Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

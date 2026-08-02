@@ -1,0 +1,286 @@
+id: airline_vueling
+mono: VY
+name: Vueling
+titleH1:
+  en: Flying with a dog on Vueling
+  fr: Voyager avec un chien sur Vueling
+  es: Volar con un perro en Vueling
+  pt: "Viajar com um cachorro na Vueling"
+metaDesc:
+  en: "Vueling pet policy: cabin-only pets, no hold or cargo, UK/Iceland exclusion, restrictions and official sources."
+  fr: "Politique animaux Vueling : animaux en cabine seulement, pas de soute ni fret, exclusion R.-U./Islande, restrictions et sources officielles."
+  es: "Política de mascotas de Vueling: mascotas solo en cabina, sin bodega ni carga, exclusión de Reino Unido/Islandia, restricciones y fuentes oficiales."
+  pt: "Política de animais da Vueling: animais somente na cabine, sem porão nem carga, exclusão de Reino Unido/Islândia, restrições e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Spain · BCN
+      fr: Espagne · BCN
+      es: España · BCN
+      pt: "Espanha · BCN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin only — no hold or cargo, and no service to the UK or Iceland.
+  fr: Petits animaux en cabine seulement — pas de soute ni fret, et pas de service vers le R.-U. ou l'Islande.
+  es: Mascotas pequeñas solo en cabina; sin bodega ni carga, y sin servicio a Reino Unido ni Islandia.
+  pt: "Animais pequenos somente na cabine — sem porão nem carga, e sem serviço para o Reino Unido ou a Islândia."
+ladder:
+  - flex: 24
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 76
+    color: "#8a94a3"
+    label:
+      en: Hold / cargo
+      fr: Soute / fret
+      es: Bodega / carga
+      pt: "Porão / carga"
+    sub:
+      en: not carried
+      fr: non transporté
+      es: no se transporta
+      pt: "não transportado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats, birds & tortoises ≤ 10 kg incl. carrier in a soft carrier under the seat (max 45 × 39 × 21 cm); 1 per passenger, max 5/flight.
+      fr: Chiens, chats, oiseaux et tortues ≤ 10 kg avec le sac dans un sac souple sous le siège (max 45 × 39 × 21 cm) ; 1 par passager, max 5/vol.
+      es: Perros, gatos, aves y tortugas ≤ 10 kg con la jaula en una jaula blanda bajo el asiento (máx. 45 × 39 × 21 cm); 1 por pasajero, máx. 5 por vuelo.
+      pt: "Cachorros, gatos, aves e tartarugas ≤ 10 kg com a bolsa, em uma bolsa flexível sob o assento (máx. 45 × 39 × 21 cm); 1 por passageiro, máx. 5 por voo."
+    fee:
+      en: Fly Light fare
+      fr: Formule Fly Light
+      es: Tarifa Fly Light
+      pt: "Tarifa Fly Light"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: Under no circumstances are animals carried in the hold.
+      fr: Les animaux ne sont en aucun cas transportés en soute.
+      es: En ningún caso se transportan animales en la bodega.
+      pt: "Em nenhuma circunstância os animais são transportados no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No disponible
+      pt: "Não oferecido"
+    detail:
+      en: No pet cargo service — cabin only.
+      fr: Pas de service fret animalier — cabine uniquement.
+      es: Sin servicio de carga de mascotas; solo cabina.
+      pt: "Nenhum serviço de carga de animais — somente cabine."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 10 kg)
+        fr: Cabine (≤ 10 kg)
+        es: Cabina (≤ 10 kg)
+        pt: "Cabine (≤ 10 kg)"
+      value:
+        en: Fly Light fare (per leg)
+        fr: Formule Fly Light (par tronçon)
+        es: Tarifa Fly Light (por tramo)
+        pt: "Tarifa Fly Light (por trecho)"
+    - label:
+        en: Hold / cargo
+        fr: Soute / fret
+        es: Bodega / carga
+        pt: "Porão / carga"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Vueling requires the Fly Light bundle for a cabin pet and doesn't publish a flat pet price.
+    fr: Vueling exige la formule Fly Light pour un animal en cabine et ne publie pas de tarif animal fixe.
+    es: Vueling exige la tarifa Fly Light para una mascota en cabina y no publica un precio fijo por mascota.
+    pt: "A Vueling exige o pacote Fly Light para um animal na cabine e não publica um preço fixo por animal."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Cabin only
+      fr: Cabine uniquement
+      es: Solo cabina
+      pt: "Somente cabine"
+    pills:
+      - cls: no
+        label:
+          en: No hold or cargo
+          fr: Pas de soute ni fret
+          es: Sin bodega ni carga
+          pt: "Sem porão nem carga"
+    note:
+      en: "Under no circumstances are pets carried in the hold. Prohibited animals: rodents, rabbits, ferrets, birds of prey, fish and reptiles."
+      fr: "Les animaux ne sont en aucun cas transportés en soute. Animaux interdits : rongeurs, lapins, furets, rapaces, poissons et reptiles."
+      es: "En ningún caso se transportan mascotas en la bodega. Animales prohibidos: roedores, conejos, hurones, aves rapaces, peces y reptiles."
+      pt: "Em nenhuma circunstância os animais são transportados no porão. Animais proibidos: roedores, coelhos, furões, aves de rapina, peixes e répteis."
+  - icon: 📄
+    title:
+      en: Health & routes
+      fr: Santé & routes
+      es: Salud y rutas
+      pt: "Saúde e rotas"
+    pills:
+      - cls: warn
+        label:
+          en: Microchip + rabies
+          fr: Puce + rage
+          es: Microchip + rabia
+          pt: "Microchip + raiva"
+      - cls: no
+        label:
+          en: Not to UK / Iceland
+          fr: Pas UK / Islande
+          es: No a Reino Unido / Islandia
+          pt: "Não para Reino Unido / Islândia"
+    note:
+      en: Cats/dogs must be microchipped with rabies vaccination ≥ 21 days before the flight. Pet service is unavailable to/from the UK and Iceland.
+      fr: Chats/chiens doivent être pucés avec vaccination antirabique ≥ 21 jours avant le vol. Le service animal est indisponible de/vers le R.-U. et l'Islande.
+      es: Los gatos y perros deben llevar microchip y la vacuna antirrábica ≥ 21 días antes del vuelo. El servicio de mascotas no está disponible desde/hacia Reino Unido ni Islandia.
+      pt: "Gatos e cachorros devem ter microchip e vacinação antirrábica ≥ 21 dias antes do voo. O serviço de animais não está disponível de/para o Reino Unido e a Islândia."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Cabin-only — no hold policy
+        fr: Cabine seule — pas de soute
+        es: Solo cabina — sin norma de bodega
+        pt: "Somente cabine — sem norma de porão"
+  note:
+    en: Vueling carries pets in the cabin only, so no hold-temperature policy applies.
+    fr: "Vueling ne transporte les animaux qu'en cabine : aucune règle de température de soute ne s'applique."
+    es: Vueling transporta mascotas solo en cabina, por lo que no se aplica ninguna norma de temperatura de bodega.
+    pt: "A Vueling transporta animais somente na cabine, portanto nenhuma norma de temperatura de porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance/guide dogs travel free in the cabin (booked via 'Passenger with Special Needs'), on the floor with a harness.
+      fr: Chiens d'assistance/guides gratuits en cabine (via « Passager à besoins spécifiques »), au sol avec un harnais.
+      es: Los perros de asistencia/guía viajan gratis en cabina (se reservan mediante «Pasajero con necesidades especiales»), en el suelo con un arnés.
+      pt: "Cães de assistência/guia viajam gratuitamente na cabine (reservados via 'Passageiro com Necessidades Especiais'), no chão com um peitoral."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Official assistance-dog certificate (ADI/IGDF for the UK); min 3 months, microchipped, rabies ≥ 21 days. Notify ≥ 48 h. Emotional-support animals not accepted.
+      fr: Certificat officiel de chien d'assistance (ADI/IGDF pour le R.-U.) ; min 3 mois, pucé, rage ≥ 21 jours. Prévenir ≥ 48 h. Chiens de soutien émotionnel non acceptés.
+      es: Certificado oficial de perro de asistencia (ADI/IGDF para el Reino Unido); mín. 3 meses, con microchip, rabia ≥ 21 días. Avisa ≥ 48 h. No se aceptan animales de apoyo emocional.
+      pt: "Certificado oficial de cão de assistência (ADI/IGDF para o Reino Unido); mín. 3 meses, com microchip, raiva ≥ 21 dias. Avise com ≥ 48 h de antecedência. Animais de apoio emocional não são aceitos."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cabin only
+      fr: Cabine uniquement
+      es: Solo cabina
+      pt: "Somente cabine"
+    value:
+      en: No hold or cargo — pets fly only in the cabin, on the Fly Light fare.
+      fr: Pas de soute ni fret — les animaux ne volent qu'en cabine, avec la formule Fly Light.
+      es: Sin bodega ni carga; las mascotas vuelan solo en cabina, con la tarifa Fly Light.
+      pt: "Sem porão nem carga — os animais voam somente na cabine, na tarifa Fly Light."
+  - icon: 🚫
+    label:
+      en: Not to UK / Iceland
+      fr: Pas UK / Islande
+      es: No a Reino Unido / Islandia
+      pt: "Não para Reino Unido / Islândia"
+    value:
+      en: Pet service is unavailable to/from the UK and Iceland.
+      fr: Le service animal est indisponible de/vers le R.-U. et l'Islande.
+      es: El servicio de mascotas no está disponible desde/hacia Reino Unido ni Islandia.
+      pt: "O serviço de animais não está disponível de/para o Reino Unido e a Islândia."
+  - icon: 🎫
+    label:
+      en: Airport seat
+      fr: Siège au comptoir
+      es: Asiento en el aeropuerto
+      pt: "Assento no aeroporto"
+    value:
+      en: The seat is assigned at check-in on the day; you fly in a window seat.
+      fr: Le siège est attribué à l'enregistrement le jour même ; tu voyages côté hublot.
+      es: El asiento se asigna en la facturación el mismo día; viaja en un asiento de ventanilla.
+      pt: "O assento é atribuído no check-in no mesmo dia; você viaja na janela."
+book:
+  host: vueling.com
+  url: https://www.vueling.com/
+sources:
+  en: 4 Vueling sources · last verified 11 July 2026
+  fr: 4 sources Vueling · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Vueling · última verificación 11 de julio de 2026
+  pt: "4 fontes da Vueling · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

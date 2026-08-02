@@ -1,0 +1,410 @@
+# Country Entry Guide — Australia (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_au
+iso2: "AU"
+name: { en: "Australia", fr: "Australie", es: "Australia", pt: "Austrália" }
+region: { en: "Oceania", fr: "Océanie", es: "Oceanía", pt: "Oceania" }
+
+
+regime: island_strict
+domestic:
+  intro:
+    en: "Domestic flight in Australia: nothing is required between mainland states — but Tasmania and the external territories are real biosecurity borders."
+    fr: "Vol intérieur en Australie : rien n'est exigé entre États du continent — mais la Tasmanie et les territoires extérieurs constituent de véritables frontières de biosécurité."
+    es: "Vuelo nacional en Australia: nada se exige entre estados continentales — pero Tasmania y los territorios exteriores son verdaderas fronteras de bioseguridad."
+    pt: "Voo doméstico na Austrália: nada é exigido entre os estados do continente — mas a Tasmânia e os territórios externos são fronteiras de biossegurança de verdade."
+  points:
+    - en: "Australia is rabies-free, so no rabies vaccination applies. Microchipping is required to register a dog in most states, but it is never a boarding condition."
+      fr: "L'Australie est indemne de rage, aucune vaccination antirabique ne s'applique donc. La puce est exigée pour enregistrer un chien dans la plupart des États, mais n'est jamais une condition d'embarquement."
+      es: "Australia está libre de rabia, así que no aplica vacuna antirrábica. El microchip es obligatorio para registrar al perro en la mayoría de estados, pero nunca es condición de embarque."
+      pt: "A Austrália é livre de raiva, então não há vacinação antirrábica a cumprir. O microchip é obrigatório para registrar um cachorro na maioria dos estados, mas nunca é condição de embarque."
+    - en: "Western Australia runs biosecurity checkpoints but imposes no dog-specific entry condition. Restricted breeds are controlled by the destination council, not at the airport."
+      fr: "L'Australie-Occidentale tient des postes de biosécurité mais n'impose aucune condition d'entrée propre aux chiens. Les races réglementées sont contrôlées par la commune de destination, pas à l'aéroport."
+      es: "Australia Occidental tiene puestos de bioseguridad pero no impone condición de entrada específica para perros. Las razas restringidas las controla el municipio de destino, no el aeropuerto."
+      pt: "A Austrália Ocidental mantém postos de controle de biossegurança, mas não impõe nenhuma condição de entrada específica para cachorros. As raças restritas são controladas pelo município de destino, não no aeroporto."
+    - en: "Carrier rules matter more than law here: one major airline refuses pets entirely, another is the only one allowing cabin travel, and heat and cold limits apply to hold carriage."
+      fr: "Les règles des compagnies comptent ici plus que la loi : une grande compagnie refuse totalement les animaux, une autre est la seule à autoriser la cabine, et des limites de chaleur et de froid s'appliquent à la soute."
+      es: "Aquí las reglas de las aerolíneas pesan más que la ley: una gran aerolínea rechaza las mascotas por completo, otra es la única que permite cabina, y hay límites de calor y frío para la bodega."
+      pt: "Aqui as regras das companhias aéreas pesam mais que a lei: uma grande companhia aérea recusa animais de estimação por completo, outra é a única que permite viagem na cabine, e há limites de calor e de frio para o transporte no porão."
+  territories:
+    - name: { en: "Tasmania", fr: "Tasmanie", es: "Tasmania", pt: "Tasmânia" }
+      note:
+        en: "The one genuine interstate requirement: praziquantel treatment at 5 mg/kg within 14 days before entry, against hydatid disease, plus a tick-freedom declaration. Proof can be a vet statement, a statutory declaration or the pill packet. Without it the tablet is given at the port, at your cost."
+        fr: "La seule véritable exigence entre États : un traitement au praziquantel à 5 mg/kg dans les 14 jours précédant l'entrée, contre l'échinococcose, plus une déclaration d'absence de tiques. La preuve peut être une attestation vétérinaire, une déclaration sur l'honneur ou la boîte du médicament. À défaut, le comprimé est administré au port, à tes frais."
+        es: "El único requisito real entre estados: tratamiento con prazicuantel a 5 mg/kg en los 14 días previos a la entrada, contra la hidatidosis, más una declaración de ausencia de garrapatas. La prueba puede ser un certificado veterinario, una declaración jurada o el envase del medicamento. Si no, la pastilla se administra en el puerto, a tu costa."
+        pt: "A única exigência interestadual de verdade: tratamento com praziquantel a 5 mg/kg nos 14 dias anteriores à entrada, contra a hidatidose, mais uma declaração de ausência de carrapatos. A prova pode ser uma declaração do veterinário, uma declaração juramentada (statutory declaration) ou a própria cartela do comprimido. Sem isso, o comprimido é administrado no porto, às suas custas."
+      url: https://nre.tas.gov.au/biosecurity-tasmania/biosecurity/importing-animals/dogs
+    - name: { en: "Christmas Island", fr: "Île Christmas", es: "Isla de Navidad", pt: "Ilha Christmas" }
+      note:
+        en: "Dogs and cats are banned outright from Christmas Island. Only an assistance animal may be approved, on written application to the Administrator."
+        fr: "Les chiens et chats sont purement interdits sur l'île Christmas. Seul un animal d'assistance peut être autorisé, sur demande écrite à l'Administrateur."
+        es: "Los perros y gatos están totalmente prohibidos en la Isla de Navidad. Solo puede autorizarse un animal de asistencia, mediante solicitud escrita al Administrador."
+        pt: "Cachorros e gatos são totalmente proibidos na Ilha Christmas. Só um animal de assistência pode ser autorizado, mediante pedido por escrito ao Administrator (administrador do território)."
+      url: https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/christmas-island/travel-information
+    - name: { en: "Norfolk Island", fr: "Île Norfolk", es: "Isla Norfolk", pt: "Ilha Norfolk" }
+      note:
+        en: "A full international-style protocol applies from the mainland: microchip, core vaccinations at least 14 days before, continuous parasite cover, a negative Ehrlichia canis test within 45 days, negative heartworm and leptospirosis tests, and a vet health certificate within 5 days. The return leg is unrestricted."
+        fr: "Un protocole de type international s'applique depuis le continent : puce, vaccins de base au moins 14 jours avant, couverture antiparasitaire continue, test Ehrlichia canis négatif dans les 45 jours, tests dirofilariose et leptospirose négatifs, et certificat vétérinaire de moins de 5 jours. Le retour, lui, est libre."
+        es: "Se aplica un protocolo de tipo internacional desde el continente: microchip, vacunas básicas al menos 14 días antes, cobertura antiparasitaria continua, test de Ehrlichia canis negativo en 45 días, pruebas negativas de dirofilariosis y leptospirosis, y certificado veterinario de menos de 5 días. La vuelta es libre."
+        pt: "Vindo do continente, aplica-se um protocolo completo, nos moldes internacionais: microchip, vacinas essenciais pelo menos 14 dias antes, proteção antiparasitária contínua, teste negativo para Ehrlichia canis nos 45 dias anteriores, testes negativos para dirofilariose e leptospirose e um atestado de saúde veterinário emitido nos 5 dias anteriores. O trajeto de volta não tem restrições."
+      url: https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/norfolk-island-from-mainland-australia
+exit:
+  authority: DAFF (Australie)
+  authorityUrl: https://micor.agriculture.gov.au/live-animals/Pages/european_union/dogs.aspx
+  intro:
+    en: "Leaving Australia with your dog, the export health certificate must be endorsed by the Department of Agriculture (DAFF) through an accredited veterinarian."
+    fr: "Pour sortir d'Australie avec ton chien, le certificat sanitaire d'export doit être endossé par le Department of Agriculture (DAFF) via un vétérinaire accrédité."
+    es: "Para salir de Australia con tu perro, el certificado sanitario de exportación debe ser validado por el Department of Agriculture (DAFF) a través de un veterinario acreditado."
+    pt: "Na saída da Austrália com seu cachorro, o atestado de saúde de exportação precisa ser endossado pelo Department of Agriculture (DAFF) por meio de um veterinário credenciado."
+  steps:
+    - timing: window
+      text:
+        en: "An accredited vet prepares the EU health certificate; DAFF officers endorse it before departure."
+        fr: "Un vétérinaire accrédité prépare le certificat sanitaire UE ; les agents du DAFF l'endossent avant le départ."
+        es: "Un veterinario acreditado prepara el certificado sanitario de la UE; los agentes del DAFF lo validan antes de la salida."
+        pt: "Um veterinário credenciado prepara o atestado de saúde da UE; os agentes do DAFF o endossam antes da partida."
+  onSiteNote:
+    en: "Start well ahead — endorsement and supporting documents take time."
+    fr: "Lance la démarche bien à l'avance — l'endossement et les documents justificatifs prennent du temps."
+    es: "Inicia el trámite con mucha antelación — la validación y los documentos justificativos llevan tiempo."
+    pt: "Comece bem antes — o endosso e os documentos comprobatórios levam tempo."
+
+hero:
+  h1: { en: "Traveling to Australia with your dog", fr: "Voyager en Australie avec ton chien", es: "Viajar a Australia con tu perro", pt: "Viajar para a Austrália com seu cachorro" }
+  intro:
+    en: >-
+      Australia has one of the strictest dog-import schemes in the world, run by the Department of
+      Agriculture, Fisheries and Forestry (DAFF) to keep the country rabies-free. Your dog can only be
+      imported directly from an approved country, must hold a biosecurity import permit obtained in
+      advance, and must complete a mandatory stay at the Mickleham post-entry quarantine facility near
+      Melbourne. What you prepare depends heavily on where your dog is coming from: approved countries
+      are grouped by rabies risk (Group 1, 2 and 3), and a dog from a non-approved country must first
+      live in an approved country before it can qualify. Plan on at least six months of veterinary
+      preparation. This guide explains each step so you know exactly what to prepare before you book.
+    fr: >-
+      L'Australie applique l'un des régimes d'importation de chiens les plus stricts au monde, géré par
+      le Department of Agriculture, Fisheries and Forestry (DAFF) pour rester indemne de rage. Ton
+      chien ne peut être importé que directement depuis un pays approuvé, doit disposer d'un permis
+      d'importation biosécurité obtenu à l'avance, et doit effectuer un séjour obligatoire au centre de
+      quarantaine post-entrée de Mickleham, près de Melbourne. Ce qu'il faut préparer dépend fortement
+      du pays de provenance : les pays approuvés sont classés par risque rabique (groupes 1, 2 et 3), et
+      un chien venant d'un pays non approuvé doit d'abord résider dans un pays approuvé pour devenir
+      éligible. Compte au moins six mois de préparation vétérinaire. Ce guide détaille chaque étape.
+    es: >-
+      Australia aplica uno de los regímenes de importación de perros más estrictos del mundo, gestionado
+      por el Department of Agriculture, Fisheries and Forestry (DAFF) para mantener al país libre de
+      rabia. Tu perro solo puede importarse directamente desde un país aprobado, debe disponer de un
+      permiso de importación de bioseguridad obtenido con antelación y debe cumplir una estancia
+      obligatoria en el centro de cuarentena posterior a la entrada de Mickleham, cerca de Melbourne. Lo
+      que debes preparar depende en gran medida del lugar del que venga tu perro: los países aprobados se
+      clasifican por riesgo de rabia (grupos 1, 2 y 3), y un perro de un país no aprobado debe residir
+      primero en un país aprobado para poder ser elegible. Cuenta con al menos seis meses de preparación
+      veterinaria. Esta guía explica cada paso para que sepas exactamente qué preparar antes de reservar.
+
+    pt: "A Austrália tem um dos regimes de importação de cachorros mais rigorosos do mundo, conduzido pelo Department of Agriculture, Fisheries and Forestry (DAFF) para manter o país livre de raiva. Seu cachorro só pode ser importado diretamente de um país aprovado, precisa ter uma autorização de importação de biossegurança obtida com antecedência e cumprir uma estadia obrigatória na unidade de quarentena pós-entrada de Mickleham, perto de Melbourne. O que você precisa preparar depende muito de onde seu cachorro está vindo: os países aprovados são divididos por risco de raiva (grupos 1, 2 e 3), e um cachorro que vem de um país não aprovado precisa antes morar em um país aprovado para poder se qualificar. Conte com pelo menos seis meses de preparação veterinária. Este guia explica cada etapa para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — permit, tests and quarantine required", fr: "Difficile — permis, tests et quarantaine exigés", es: "Difícil — se exigen permiso, pruebas y cuarentena", pt: "Difícil — exige autorização, exames e quarentena" }
+
+prepTime:
+  eu:
+    en: "Group 1 (e.g. New Zealand): the simplest path, but still weeks of preparation and certification before export."
+    fr: "Groupe 1 (ex. Nouvelle-Zélande) : le parcours le plus simple, mais plusieurs semaines de préparation et de certification restent nécessaires."
+    es: "Grupo 1 (p. ej. Nueva Zelanda): el camino más sencillo, pero aun así requiere semanas de preparación y certificación antes de la exportación."
+    pt: "Grupo 1 (por exemplo, Nova Zelândia): o caminho mais simples, mas ainda assim semanas de preparação e certificação antes da exportação."
+  listed:
+    en: "Group 2 (rabies-free approved countries): allow ~6 months — import permit, tests, treatments, then quarantine in Australia."
+    fr: "Groupe 2 (pays approuvés indemnes de rage) : compte ~6 mois — permis d'importation, tests, traitements, puis quarantaine en Australie."
+    es: "Grupo 2 (países aprobados libres de rabia): cuenta con ~6 meses — permiso de importación, pruebas, tratamientos y luego cuarentena en Australia."
+    pt: "Grupo 2 (países aprovados livres de raiva): reserve ~6 meses — autorização de importação, exames, tratamentos e depois quarentena na Austrália."
+  nonListed:
+    en: "Group 3 (rabies-present approved countries) or non-approved origin: 6+ months — rabies test with a 180-day wait, permit, tests, then quarantine."
+    fr: "Groupe 3 (pays approuvés où la rage est présente) ou pays non approuvé : 6 mois et plus — titrage avec 180 jours d'attente, permis, tests, puis quarantaine."
+    es: "Grupo 3 (países aprobados con presencia de rabia) u origen no aprobado: más de 6 meses — prueba de titulación de rabia con una espera de 180 días, permiso, pruebas y luego cuarentena."
+    pt: "Grupo 3 (países aprovados onde há raiva) ou origem não aprovada: mais de 6 meses — teste sorológico antirrábico com espera de 180 dias, autorização, exames e depois quarentena."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — from approved countries only", fr: "Oui — depuis les pays approuvés uniquement", es: "Sí — solo desde países aprobados", pt: "Sim — somente de países aprovados" }
+    cls: neutral
+  - requirement: { en: "Import permit (BICON)", fr: "Permis d'importation (BICON)", es: "Permiso de importación (BICON)", pt: "Autorização de importação (BICON)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test (RNATT)", fr: "Titrage antirabique (RNATT)", es: "Prueba de titulación de rabia (RNATT)", pt: "Teste sorológico antirrábico (RNATT)" }
+    status: { en: "Required — 180-day waiting period", fr: "Requis — délai d'attente de 180 jours", es: "Obligatoria — periodo de espera de 180 días", pt: "Obrigatório — período de espera de 180 dias" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine (Mickleham, Melbourne)", fr: "Quarantaine (Mickleham, Melbourne)", es: "Cuarentena (Mickleham, Melbourne)", pt: "Quarentena (Mickleham, Melbourne)" }
+    status: { en: "Required — minimum 10 days", fr: "Requise — minimum 10 jours", es: "Obligatoria — mínimo 10 días", pt: "Obrigatória — mínimo de 10 dias" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and DAFF's import conditions (via BICON) can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire et les conditions d'importation du DAFF (via BICON) peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y las condiciones de importación del DAFF (a través de BICON) pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário e as condições de importação do DAFF (via BICON) podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin and its group, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine et de son groupe, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen y su grupo, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem: do país de origem e do grupo dele, do histórico de viagens anteriores, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Australia (your destination) sets a strict national scheme, but your dog's origin decides the detail."
+    fr: "Les étapes exactes dépendent de trois éléments — l'Australie (ta destination) impose un régime national strict, mais l'origine de ton chien en détermine le détail."
+    es: "Los pasos exactos dependen de tres factores — Australia (tu destino) impone un régimen nacional estricto, pero el origen de tu perro determina los detalles."
+    pt: "As etapas exatas dependem de três fatores — a Austrália (seu destino) define um regime nacional rigoroso, mas é a origem do seu cachorro que decide os detalhes."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Australia", fr: "Pays de destination — Australie", es: "País de destino — Australia", pt: "País de destino — Austrália" }
+      text:
+        en: "Australia's own biosecurity scheme applies to every dog: an import permit, an ISO microchip, rabies protection, several disease tests and treatments, and a mandatory post-entry quarantine at Mickleham near Melbourne."
+        fr: "Le régime de biosécurité propre à l'Australie s'applique à tout chien : permis d'importation, puce ISO, protection antirabique, plusieurs tests et traitements, et une quarantaine post-entrée obligatoire à Mickleham, près de Melbourne."
+        es: "El régimen de bioseguridad propio de Australia se aplica a todo perro: permiso de importación, microchip ISO, protección antirrábica, varias pruebas y tratamientos de enfermedades, y una cuarentena posterior a la entrada obligatoria en Mickleham, cerca de Melbourne."
+        pt: "O regime de biossegurança da própria Austrália vale para todo cachorro: autorização de importação, microchip ISO, proteção contra a raiva, vários exames e tratamentos de doenças e uma quarentena pós-entrada obrigatória em Mickleham, perto de Melbourne."
+    - stars: 5
+      label: { en: "Country of departure and its group", fr: "Pays de départ et son groupe", es: "País de salida y su grupo", pt: "País de partida e seu grupo" }
+      text:
+        en: "Dogs may only be imported directly from an approved country. Approved countries are graded by rabies risk into Group 1, 2 and 3, which decides whether a rabies antibody test and its 180-day wait apply."
+        fr: "Un chien ne peut être importé que directement depuis un pays approuvé. Les pays approuvés sont classés par risque rabique en groupes 1, 2 et 3, ce qui détermine si un titrage antirabique et son délai de 180 jours s'appliquent."
+        es: "Los perros solo pueden importarse directamente desde un país aprobado. Los países aprobados se clasifican por riesgo de rabia en grupos 1, 2 y 3, lo que determina si se aplican una prueba de titulación de rabia y su espera de 180 días."
+        pt: "Os cachorros só podem ser importados diretamente de um país aprovado. Os países aprovados são classificados por risco de raiva nos grupos 1, 2 e 3, o que define se o teste sorológico antirrábico e sua espera de 180 dias se aplicam."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog must have lived in an approved country for at least 180 days before export. A dog coming from a non-approved country must first relocate to an approved country and complete that residency before it can qualify."
+        fr: "Ton chien doit avoir vécu dans un pays approuvé pendant au moins 180 jours avant l'export. Un chien venant d'un pays non approuvé doit d'abord s'installer dans un pays approuvé et y accomplir cette résidence pour devenir éligible."
+        es: "Tu perro debe haber vivido en un país aprobado durante al menos 180 días antes de la exportación. Un perro que llega de un país no aprobado debe trasladarse primero a un país aprobado y completar allí esa residencia antes de poder ser elegible."
+        pt: "Seu cachorro precisa ter morado em um país aprovado por pelo menos 180 dias antes da exportação. Um cachorro que vem de um país não aprovado precisa primeiro se mudar para um país aprovado e cumprir esse período de residência para poder se qualificar."
+  note:
+    en: "So read the requirements below as Australia's framework, then confirm your dog's group, origin and history against your BICON import permit and your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre australien, puis confirme le groupe, l'origine et l'historique de ton chien avec ton permis d'importation BICON et ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Australia y luego confirma el grupo, el origen y el historial de tu perro con tu permiso de importación BICON y tu veterinario."
+    pt: "Então leia as exigências abaixo como o marco geral da Austrália e depois confirme o grupo, a origem e o histórico do seu cachorro na sua autorização de importação do BICON e com seu veterinário."
+
+requirements:
+  - item: { en: "Import permit (BICON)", fr: "Permis d'importation (BICON)", es: "Permiso de importación (BICON)", pt: "Autorização de importação (BICON)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply in advance through DAFF's Biosecurity Import Conditions system after rabies steps; most permits issue in 20–40 business days (up to 123).", fr: "À demander à l'avance via le système BICON du DAFF après les étapes rage ; la plupart des permis sont délivrés en 20 à 40 jours ouvrés (jusqu'à 123).", es: "Solicítalo con antelación a través del sistema BICON de condiciones de importación de bioseguridad del DAFF después de los pasos de rabia; la mayoría de los permisos se expiden en 20 a 40 días hábiles (hasta 123).", pt: "Solicite com antecedência pelo sistema Biosecurity Import Conditions (BICON) do DAFF, depois das etapas ligadas à raiva; a maioria das autorizações sai em 20–40 dias úteis (até 123)." }
+    exceptions: { en: "Cats and dogs from some Group 1 territories may not need a permit — check the country-specific guide.", fr: "Les chiens de certains territoires du groupe 1 peuvent ne pas nécessiter de permis — vérifie le guide propre au pays.", es: "Los perros de algunos territorios del grupo 1 pueden no necesitar permiso — consulta la guía específica del país.", pt: "Gatos e cachorros de alguns territórios do grupo 1 podem não precisar de autorização — confira o guia específico do país." }
+    ref: { en: "DAFF — Import permits for cats and dogs", fr: "DAFF — Permis d'importation pour chats et chiens", es: "DAFF — Permisos de importación para gatos y perros", pt: "DAFF — autorizações de importação para cães e gatos" }
+  - item: { en: "Approved country of origin", fr: "Pays d'origine approuvé", es: "País de origen aprobado", pt: "País de origem aprovado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Dog must have lived in an approved (Group 1/2/3) country for at least 180 days before export, counted from when the RNATT sample reaches the lab.", fr: "Le chien doit avoir vécu dans un pays approuvé (groupe 1/2/3) au moins 180 jours avant l'export, comptés à partir de l'arrivée de l'échantillon RNATT au laboratoire.", es: "El perro debe haber vivido en un país aprobado (grupo 1/2/3) al menos 180 días antes de la exportación, contados desde que la muestra del RNATT llega al laboratorio.", pt: "O cachorro precisa ter morado em um país aprovado (grupo 1/2/3) por pelo menos 180 dias antes da exportação, contados a partir da chegada da amostra do RNATT ao laboratório." }
+    exceptions: { en: "A dog from a non-approved country must first relocate to an approved country and complete the residency there.", fr: "Un chien venant d'un pays non approuvé doit d'abord s'installer dans un pays approuvé et y accomplir la résidence.", es: "Un perro de un país no aprobado debe trasladarse primero a un país aprobado y completar allí la residencia.", pt: "Um cachorro que vem de um país não aprovado precisa primeiro se mudar para um país aprovado e cumprir lá o período de residência." }
+    ref: { en: "DAFF — Bringing cats and dogs to Australia", fr: "DAFF — Importer chats et chiens en Australie", es: "DAFF — Traer gatos y perros a Australia", pt: "DAFF — trazer cães e gatos para a Austrália" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO-compliant (usually 10 or 15 digits), scanned at every vet visit and before every blood sample; the only accepted identification.", fr: "Conforme ISO (généralement 10 ou 15 chiffres), scannée à chaque visite et avant chaque prélèvement ; seule identification acceptée.", es: "Conforme a la ISO (normalmente 10 o 15 dígitos), escaneado en cada visita veterinaria y antes de cada extracción de sangre; la única identificación aceptada.", pt: "Em conformidade com a norma ISO (normalmente 10 ou 15 dígitos), lido em toda consulta veterinária e antes de cada coleta de sangue; é a única identificação aceita." }
+    exceptions: { en: "Microchips starting with 999 are not accepted (not unique). If the chip cannot be read on arrival, the dog cannot be imported.", fr: "Les puces commençant par 999 sont refusées (non uniques). Si la puce est illisible à l'arrivée, le chien ne peut être importé.", es: "Los microchips que empiezan por 999 no se aceptan (no son únicos). Si el microchip no puede leerse a la llegada, el perro no puede importarse.", pt: "Microchips que começam com 999 não são aceitos (não são únicos). Se o chip não puder ser lido na chegada, o cachorro não pode ser importado." }
+    ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 3)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 3)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 3)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 3)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Approved vaccine given when the dog was at least 84 days old; must stay valid continuously from the RNATT up to the date of export.", fr: "Vaccin approuvé administré quand le chien avait au moins 84 jours ; doit rester valide en continu du RNATT jusqu'à la date d'export.", es: "Vacuna aprobada administrada cuando el perro tenía al menos 84 días; debe mantenerse válida de forma continua desde el RNATT hasta la fecha de exportación.", pt: "Vacina aprovada aplicada quando o cachorro tinha pelo menos 84 dias de vida; precisa permanecer válida sem interrupção desde o RNATT até a data da exportação." }
+    exceptions: { en: "If the vaccination lapses, the dog is ineligible: it must be re-vaccinated, re-tested and the 180-day wait restarts.", fr: "Si la vaccination expire, le chien est inéligible : il faut revacciner, retester et le délai de 180 jours redémarre.", es: "Si la vacunación caduca, el perro no es elegible: hay que revacunar, volver a hacer la prueba y la espera de 180 días vuelve a empezar.", pt: "Se a vacinação vencer, o cachorro fica inelegível: precisa ser revacinado, testado de novo, e a espera de 180 dias recomeça." }
+    ref: { en: "DAFF — Rabies vaccination and tests (Step 4)", fr: "DAFF — Vaccination et tests antirabiques (étape 4)", es: "DAFF — Vacunación y pruebas antirrábicas (paso 4)", pt: "DAFF — vacinação antirrábica e testes (etapa 4)" }
+  - item: { en: "Rabies antibody test (RNATT)", fr: "Titrage antirabique (RNATT)", es: "Prueba de titulación de rabia (RNATT)", pt: "Teste sorológico antirrábico (RNATT)" }
+    required: { en: "Required (Group 3 / rabies-present origins)", fr: "Requis (groupe 3 / origines où la rage est présente)", es: "Obligatoria (grupo 3 / orígenes con presencia de rabia)", pt: "Obrigatório (grupo 3 / origens onde há raiva)" }
+    when: { en: "Blood taken ≥3–4 weeks after vaccination; FAVN or RFFIT result ≥0.5 IU/ml; sample taken between 12 months and 180 days before export.", fr: "Sang prélevé ≥3–4 semaines après le vaccin ; résultat FAVN ou RFFIT ≥0,5 UI/ml ; prélèvement entre 12 mois et 180 jours avant l'export.", es: "Sangre extraída ≥3–4 semanas después de la vacuna; resultado FAVN o RFFIT ≥0,5 UI/ml; muestra tomada entre 12 meses y 180 días antes de la exportación.", pt: "Sangue coletado ≥3–4 semanas depois da vacinação; resultado FAVN ou RFFIT ≥0,5 UI/ml; amostra colhida entre 12 meses e 180 dias antes da exportação." }
+    exceptions: { en: "A mandatory 180-day residency wait runs from the date the sample reaches the lab — no exceptions. Group 1/2 (rabies-free) origins do not require the RNATT.", fr: "Un délai de résidence obligatoire de 180 jours court dès l'arrivée de l'échantillon au labo — sans exception. Les origines groupe 1/2 (indemnes de rage) n'exigent pas le RNATT.", es: "Una espera de residencia obligatoria de 180 días corre desde la fecha en que la muestra llega al laboratorio — sin excepciones. Los orígenes del grupo 1/2 (libres de rabia) no exigen el RNATT.", pt: "Uma espera obrigatória de residência de 180 dias corre a partir da data em que a amostra chega ao laboratório — sem exceções. As origens dos grupos 1/2 (livres de raiva) não exigem o RNATT." }
+    ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 4)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 4)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 4)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 4)" }
+  - item: { en: "Disease tests & treatments", fr: "Tests et traitements de maladies", es: "Pruebas y tratamientos de enfermedades", pt: "Exames e tratamentos de doenças" }
+    required: { en: "Required (vary by origin)", fr: "Requis (variables selon l'origine)", es: "Obligatorios (varían según el origen)", pt: "Obrigatórios (variam conforme a origem)" }
+    when: { en: "Group 3: Leptospira canicola (vaccinate or test), Leishmania infantum, Brucella canis (if not desexed), internal & external parasite treatments; canine influenza for USA/South Korea/Canada.", fr: "Groupe 3 : Leptospira canicola (vacciner ou tester), Leishmania infantum, Brucella canis (si non stérilisé), traitements antiparasitaires internes et externes ; grippe canine pour USA/Corée du Sud/Canada.", es: "Grupo 3: Leptospira canicola (vacunar o analizar), Leishmania infantum, Brucella canis (si no está esterilizado), tratamientos antiparasitarios internos y externos; gripe canina para EE. UU./Corea del Sur/Canadá.", pt: "Grupo 3: Leptospira canicola (vacinar ou testar), Leishmania infantum, Brucella canis (se não for castrado), tratamentos contra parasitas internos e externos; influenza canina para EUA/Coreia do Sul/Canadá." }
+    exceptions: { en: "Most disease tests must be done within 45 days of export by a government-approved vet; exact list is set on your import permit.", fr: "La plupart des tests doivent être réalisés dans les 45 jours avant l'export par un vétérinaire agréé ; la liste exacte figure sur ton permis.", es: "La mayoría de las pruebas deben realizarse dentro de los 45 días previos a la exportación por un veterinario autorizado por el gobierno; la lista exacta figura en tu permiso de importación.", pt: "A maioria dos exames precisa ser feita nos 45 dias anteriores à exportação por um veterinário aprovado pelo governo; a lista exata consta na sua autorização de importação." }
+    ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 7)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 7)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 7)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 7)" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Completed by a government-approved vet, then endorsed (signed and stamped on every page) by an official government veterinarian within 5 days before export.", fr: "Rempli par un vétérinaire agréé, puis visé (signé et tamponné sur chaque page) par un vétérinaire officiel dans les 5 jours avant l'export.", es: "Cumplimentado por un veterinario autorizado por el gobierno y luego refrendado (firmado y sellado en cada página) por un veterinario oficial del gobierno dentro de los 5 días previos a la exportación.", pt: "Preenchido por um veterinário aprovado pelo governo e depois endossado (assinado e carimbado em todas as páginas) por um veterinário oficial do governo nos 5 dias anteriores à exportação." }
+    exceptions: { en: "Must be an original document with wet-ink stamps; copies are not accepted. It travels with the dog.", fr: "Doit être un original avec tampons à l'encre ; les copies sont refusées. Il voyage avec le chien.", es: "Debe ser un documento original con sellos de tinta húmeda; no se aceptan copias. Viaja con el perro.", pt: "Precisa ser um documento original, com carimbos em tinta; cópias não são aceitas. Ele viaja junto com o cachorro." }
+    ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 8)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 8)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 8)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 8)" }
+  - item: { en: "Entry point & transport", fr: "Point d'entrée et transport", es: "Punto de entrada y transporte", pt: "Ponto de entrada e transporte" }
+    required: { en: "Melbourne only", fr: "Melbourne uniquement", es: "Solo Melbourne", pt: "Somente Melbourne" }
+    when: { en: "Dog must arrive directly at Melbourne International Airport as manifested cargo in an IATA-approved crate; no cabin travel, no domestic transfers.", fr: "Le chien doit arriver directement à l'aéroport international de Melbourne en fret manifesté, dans une caisse IATA ; pas de cabine, pas de transfert domestique.", es: "El perro debe llegar directamente al aeropuerto internacional de Melbourne como carga manifestada en una jaula aprobada por la IATA; sin viaje en cabina, sin transbordos nacionales.", pt: "O cachorro precisa chegar diretamente ao aeroporto internacional de Melbourne como carga manifestada, em caixa de transporte aprovada pela IATA; nada de viagem na cabine nem de conexões domésticas." }
+    exceptions: { en: "Transit (staying on the plane) is allowed anywhere; transhipment is allowed only in approved countries under competent-authority supervision.", fr: "Le transit (rester dans l'avion) est autorisé partout ; le transbordement n'est autorisé que dans les pays approuvés sous supervision de l'autorité compétente.", es: "El tránsito (permanecer en el avión) se permite en cualquier lugar; el transbordo solo se permite en países aprobados bajo supervisión de la autoridad competente.", pt: "O trânsito (permanecer dentro do avião) é permitido em qualquer lugar; o transbordo só é permitido em países aprovados, sob supervisão da autoridade competente." }
+    ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 6)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 6)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 6)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 6)" }
+  - item: { en: "Quarantine (Mickleham, Melbourne)", fr: "Quarantaine (Mickleham, Melbourne)", es: "Cuarentena (Mickleham, Melbourne)", pt: "Quarentena (Mickleham, Melbourne)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Minimum 30 days at the Mickleham post-entry quarantine facility, reduced to a minimum of 10 days if identity was officially verified before the RNATT blood was taken.", fr: "Minimum 30 jours au centre de quarantaine post-entrée de Mickleham, réduit à un minimum de 10 jours si l'identité a été vérifiée officiellement avant le prélèvement RNATT.", es: "Mínimo 30 días en el centro de cuarentena posterior a la entrada de Mickleham, reducido a un mínimo de 10 días si la identidad se verificó oficialmente antes de la extracción de sangre del RNATT.", pt: "Mínimo de 30 dias na unidade de quarentena pós-entrada de Mickleham, reduzido para no mínimo 10 dias se a identidade tiver sido verificada oficialmente antes da coleta de sangue do RNATT." }
+    exceptions: { en: "Booking and full payment are required; non-compliance can mean a longer stay, extra testing, re-export or euthanasia at the owner's cost.", fr: "Réservation et paiement intégral exigés ; une non-conformité peut entraîner un séjour prolongé, des tests supplémentaires, une réexpédition ou l'euthanasie aux frais du propriétaire.", es: "Se exigen reserva y pago completo; el incumplimiento puede suponer una estancia más larga, pruebas adicionales, reexportación o eutanasia a cargo del propietario.", pt: "A reserva e o pagamento integral são obrigatórios; o descumprimento pode significar estadia mais longa, exames extras, reexportação ou eutanásia, às custas do dono." }
+    ref: { en: "DAFF — Post entry quarantine facility (Mickleham)", fr: "DAFF — Centre de quarantaine post-entrée (Mickleham)", es: "DAFF — Centro de cuarentena posterior a la entrada (Mickleham)", pt: "DAFF — unidade de quarentena pós-entrada (Mickleham)" }
+  - item: { en: "Age & pregnancy limits", fr: "Limites d'âge et de gestation", es: "Límites de edad y gestación", pt: "Limites de idade e de gestação" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "The dog must not be under quarantine restrictions, more than 30 days pregnant, or nursing puppies at export.", fr: "Le chien ne doit pas être sous restriction de quarantaine, gestant de plus de 30 jours, ni allaitant au moment de l'export.", es: "El perro no debe estar bajo restricciones de cuarentena, con más de 30 días de gestación, ni amamantando cachorros en el momento de la exportación.", pt: "No momento da exportação, o cachorro não pode estar sob restrições de quarentena, com mais de 30 dias de gestação nem amamentando filhotes." }
+    exceptions: { en: "Because rabies vaccination needs the dog to be ≥84 days old plus the tests and 180-day wait, imported dogs are effectively well over 7 months old.", fr: "Comme le vaccin exige un chien ≥84 jours, plus les tests et les 180 jours d'attente, un chien importé a en pratique bien plus de 7 mois.", es: "Como la vacunación antirrábica exige que el perro tenga ≥84 días, más las pruebas y la espera de 180 días, los perros importados tienen en la práctica bastante más de 7 meses.", pt: "Como a vacinação antirrábica exige que o cachorro tenha ≥84 dias de vida, somados os exames e a espera de 180 dias, na prática os cachorros importados têm bem mais de 7 meses." }
+    ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 2)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 2)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 2)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 2)" }
+
+origin:
+  eu:
+    title: { en: "Group 1 — rabies-free, simplest path", fr: "Groupe 1 — indemne de rage, parcours le plus simple", es: "Grupo 1 — libre de rabia, el camino más sencillo", pt: "Grupo 1 — livre de raiva, o caminho mais simples" }
+    body:
+      en: "Group 1 covers New Zealand, Norfolk Island and Cocos (Keeling) Islands — recognised as rabies-free. This is the simplest pathway: no rabies antibody test, and some Group 1 territories may not require an import permit. Follow the country-specific DAFF guide, as conditions and quarantine differ from other groups."
+      fr: "Le groupe 1 couvre la Nouvelle-Zélande, l'île Norfolk et les îles Cocos (Keeling) — reconnues indemnes de rage. C'est le parcours le plus simple : pas de titrage antirabique, et certains territoires du groupe 1 peuvent ne pas exiger de permis. Suis le guide DAFF propre au pays, car les conditions et la quarantaine diffèrent des autres groupes."
+      es: "El grupo 1 abarca Nueva Zelanda, la isla Norfolk y las islas Cocos (Keeling) — reconocidas como libres de rabia. Es el camino más sencillo: sin prueba de titulación de rabia, y algunos territorios del grupo 1 pueden no exigir permiso de importación. Sigue la guía del DAFF específica del país, ya que las condiciones y la cuarentena difieren de las de otros grupos."
+      pt: "O grupo 1 abrange Nova Zelândia, Ilha Norfolk e Ilhas Cocos (Keeling) — reconhecidas como livres de raiva. É o caminho mais simples: sem teste sorológico antirrábico, e alguns territórios do grupo 1 podem não exigir autorização de importação. Siga o guia do DAFF específico do país, já que as condições e a quarentena são diferentes das dos outros grupos."
+    cls: ok
+  listed:
+    title: { en: "Group 2 — rabies-free approved countries", fr: "Groupe 2 — pays approuvés indemnes de rage", es: "Grupo 2 — países aprobados libres de rabia", pt: "Grupo 2 — países aprovados livres de raiva" }
+    body:
+      en: "Group 2 covers approved countries recognised as rabies-free (such as Japan, Singapore, Hawaii, Fiji and others). No rabies antibody test is required, but you still need a BICON import permit, veterinary tests and treatments, a health certificate, and quarantine at Mickleham. Official identity verification before preparation can shorten quarantine to a minimum of 10 days."
+      fr: "Le groupe 2 couvre les pays approuvés reconnus indemnes de rage (Japon, Singapour, Hawaï, Fidji, etc.). Aucun titrage antirabique n'est requis, mais il faut tout de même un permis BICON, des tests et traitements vétérinaires, un certificat sanitaire et une quarantaine à Mickleham. Une vérification officielle d'identité avant la préparation peut réduire la quarantaine à 10 jours minimum."
+      es: "El grupo 2 abarca países aprobados reconocidos como libres de rabia (como Japón, Singapur, Hawái, Fiyi y otros). No se exige prueba de titulación de rabia, pero aun así necesitas un permiso de importación BICON, pruebas y tratamientos veterinarios, un certificado sanitario y cuarentena en Mickleham. La verificación oficial de la identidad antes de la preparación puede acortar la cuarentena a un mínimo de 10 días."
+      pt: "O grupo 2 abrange países aprovados reconhecidos como livres de raiva (como Japão, Singapura, Havaí, Fiji e outros). Não é preciso teste sorológico antirrábico, mas você ainda precisa da autorização de importação pelo BICON, de exames e tratamentos veterinários, de atestado de saúde e de quarentena em Mickleham. A verificação oficial de identidade antes da preparação pode encurtar a quarentena para no mínimo 10 dias."
+    cls: warn
+  nonListed:
+    title: { en: "Group 3 or non-approved — antibody test + 180-day wait", fr: "Groupe 3 ou non approuvé — titrage + 180 jours d'attente", es: "Grupo 3 o no aprobado — prueba de titulación + espera de 180 días", pt: "Grupo 3 ou não aprovado — teste sorológico + espera de 180 dias" }
+    body:
+      en: "Group 3 covers approved countries where rabies is present but well controlled (including the USA, UK, Canada, EU countries and many more). Add a rabies antibody test (RNATT ≥0.5 IU/ml) with a mandatory 180-day residency wait, plus disease tests, before the permit, certificate and quarantine. A dog from a non-approved country cannot be imported directly — it must first live in an approved country for at least 180 days."
+      fr: "Le groupe 3 couvre les pays approuvés où la rage est présente mais bien maîtrisée (USA, Royaume-Uni, Canada, pays de l'UE et bien d'autres). Ajoute un titrage antirabique (RNATT ≥0,5 UI/ml) avec un délai de résidence obligatoire de 180 jours, plus des tests de maladies, avant le permis, le certificat et la quarantaine. Un chien venant d'un pays non approuvé ne peut être importé directement — il doit d'abord vivre dans un pays approuvé au moins 180 jours."
+      es: "El grupo 3 abarca países aprobados donde la rabia está presente pero bien controlada (incluidos EE. UU., Reino Unido, Canadá, países de la UE y muchos más). Añade una prueba de titulación de rabia (RNATT ≥0,5 UI/ml) con una espera de residencia obligatoria de 180 días, más pruebas de enfermedades, antes del permiso, el certificado y la cuarentena. Un perro de un país no aprobado no puede importarse directamente — debe vivir primero en un país aprobado durante al menos 180 días."
+      pt: "O grupo 3 abrange países aprovados onde a raiva existe, mas está bem controlada (incluindo EUA, Reino Unido, Canadá, países da UE e muitos outros). Acrescente um teste sorológico antirrábico (RNATT ≥0,5 UI/ml) com espera obrigatória de residência de 180 dias, além dos exames de doenças, antes da autorização, do certificado e da quarentena. Um cachorro que vem de um país não aprovado não pode ser importado diretamente — precisa antes morar em um país aprovado por pelo menos 180 dias."
+    cls: no
+
+arrival:
+  intro:
+    en: "Every dog arrives the same way: directly into Melbourne, then to the Mickleham quarantine facility."
+    fr: "Tout chien arrive de la même manière : directement à Melbourne, puis au centre de quarantaine de Mickleham."
+    es: "Todo perro llega de la misma manera: directamente a Melbourne y luego al centro de cuarentena de Mickleham."
+    pt: "Todo cachorro chega da mesma forma: direto em Melbourne e depois para a unidade de quarentena de Mickleham."
+  points:
+    - en: "Your dog must arrive directly at Melbourne International Airport as manifested cargo — domestic transfers (e.g. arriving in Sydney then flying to Melbourne) are not permitted."
+      fr: "Ton chien doit arriver directement à l'aéroport international de Melbourne en fret manifesté — les transferts domestiques (ex. arrivée à Sydney puis vol vers Melbourne) sont interdits."
+      es: "Tu perro debe llegar directamente al aeropuerto internacional de Melbourne como carga manifestada — los transbordos nacionales (p. ej. llegar a Sídney y luego volar a Melbourne) no están permitidos."
+      pt: "Seu cachorro precisa chegar diretamente ao aeroporto internacional de Melbourne como carga manifestada — conexões domésticas (por exemplo, chegar em Sydney e depois voar para Melbourne) não são permitidas."
+    - en: "A biosecurity officer collects your dog on arrival and transports it to the Mickleham post-entry quarantine facility; you are notified by email within 24 hours."
+      fr: "Un agent de biosécurité récupère ton chien à l'arrivée et le conduit au centre de quarantaine de Mickleham ; tu es prévenu par e-mail sous 24 heures."
+      es: "Un agente de bioseguridad recoge a tu perro a la llegada y lo traslada al centro de cuarentena posterior a la entrada de Mickleham; se te notifica por correo electrónico en un plazo de 24 horas."
+      pt: "Um agente de biossegurança recebe seu cachorro na chegada e o leva até a unidade de quarentena pós-entrada de Mickleham; você é avisado por e-mail em até 24 horas."
+    - en: "Officers check your dog's health and assess all import documents against the permit conditions to confirm compliance."
+      fr: "Les agents vérifient la santé de ton chien et contrôlent tous les documents d'importation au regard des conditions du permis pour confirmer la conformité."
+      es: "Los agentes comprueban la salud de tu perro y examinan todos los documentos de importación frente a las condiciones del permiso para confirmar el cumplimiento."
+      pt: "Os agentes verificam a saúde do seu cachorro e conferem todos os documentos de importação com as condições da autorização para confirmar a conformidade."
+    - en: "Quarantine lasts a minimum of 30 days, or a minimum of 10 days if identity was officially verified before the RNATT blood was taken; you must book and pay in full before release."
+      fr: "La quarantaine dure au minimum 30 jours, ou au minimum 10 jours si l'identité a été vérifiée officiellement avant le prélèvement RNATT ; tu dois réserver et payer intégralement avant la sortie."
+      es: "La cuarentena dura un mínimo de 30 días, o un mínimo de 10 días si la identidad se verificó oficialmente antes de la extracción de sangre del RNATT; debes reservar y pagar en su totalidad antes de la salida."
+      pt: "A quarentena dura no mínimo 30 dias, ou no mínimo 10 dias se a identidade tiver sido verificada oficialmente antes da coleta de sangue do RNATT; você precisa reservar e pagar integralmente antes da liberação."
+    - en: "Only original documents with wet-ink stamps are accepted; no toys, medication or personal items may travel in the crate (they are destroyed as biosecurity waste)."
+      fr: "Seuls les documents originaux à tampons encre sont acceptés ; aucun jouet, médicament ou objet personnel ne peut voyager dans la caisse (détruits comme déchets de biosécurité)."
+      es: "Solo se aceptan documentos originales con sellos de tinta húmeda; ningún juguete, medicamento u objeto personal puede viajar en la jaula (se destruyen como residuos de bioseguridad)."
+      pt: "Só são aceitos documentos originais com carimbos em tinta; nenhum brinquedo, medicamento ou objeto pessoal pode viajar na caixa de transporte (são destruídos como resíduo de biossegurança)."
+    - en: "If your dog does not comply with the permit, it may be held longer, subjected to extra testing, re-exported or euthanised — all at the owner's expense."
+      fr: "Si ton chien n'est pas conforme au permis, il peut être retenu plus longtemps, soumis à des tests supplémentaires, réexpédié ou euthanasié — le tout aux frais du propriétaire."
+      es: "Si tu perro no cumple con el permiso, puede ser retenido más tiempo, sometido a pruebas adicionales, reexportado o sacrificado — todo a cargo del propietario."
+      pt: "Se seu cachorro não cumprir a autorização, ele pode ficar retido por mais tempo, passar por exames extras, ser reexportado ou sofrer eutanásia — tudo às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Australia bans the import of certain dog breeds under customs and environment law (separate from the biosecurity rules). These prohibitions apply on top of the import scheme, and a mixed-breed dog may be investigated on arrival if it appears to be a prohibited breed."
+    fr: "L'Australie interdit l'importation de certaines races de chiens au titre du droit douanier et environnemental (distinct des règles de biosécurité). Ces interdictions s'ajoutent au régime d'importation, et un chien croisé peut faire l'objet d'une enquête à l'arrivée s'il semble être une race interdite."
+    es: "Australia prohíbe la importación de ciertas razas de perros en virtud del derecho aduanero y medioambiental (independiente de las normas de bioseguridad). Estas prohibiciones se suman al régimen de importación, y un perro mestizo puede ser investigado a la llegada si parece ser una raza prohibida."
+    pt: "A Austrália proíbe a importação de certas raças de cachorro pela legislação aduaneira e ambiental (separada das regras de biossegurança). Essas proibições valem além do regime de importação, e um cachorro sem raça definida pode ser investigado na chegada se parecer ser de uma raça proibida."
+  cat1:
+    en: "Pure-breed dogs banned from import: dogo Argentino, fila Brasileiro, Japanese tosa, American pit bull terrier (or pit bull terrier), and Perro de Presa Canario (Presa Canario). These are prohibited under customs law — contact the Department of Home Affairs (+61 2 6264 1111) for details."
+    fr: "Races pures interdites d'importation : dogo Argentino, fila Brasileiro, tosa japonais, American pit bull terrier (ou pit bull terrier) et Perro de Presa Canario (Presa Canario). Interdites au titre du droit douanier — contacte le Department of Home Affairs (+61 2 6264 1111) pour les détails."
+    es: "Perros de raza pura prohibidos para la importación: dogo Argentino, fila Brasileiro, tosa japonés, American pit bull terrier (o pit bull terrier) y Perro de Presa Canario (Presa Canario). Están prohibidos en virtud del derecho aduanero — contacta con el Department of Home Affairs (+61 2 6264 1111) para más detalles."
+    pt: "Raças puras proibidas de importação: dogo argentino, fila brasileiro, tosa japonês, american pit bull terrier (ou pit bull terrier) e perro de presa canario (presa canario). São proibidas pela legislação aduaneira — entre em contato com o Department of Home Affairs (+61 2 6264 1111) para mais detalhes."
+  cat2:
+    en: "Banned hybrid (wolf-cross) dogs: Czechoslovakian wolfdog (Vlcak), Saarloos wolfdog (wolfhound), Lupo Italiano (Italian wolfdog) and Kunming wolfdog. These fall under environment law — contact the Department of Climate Change, Energy, the Environment and Water (Exotic.Species@dcceew.gov.au)."
+    fr: "Chiens hybrides (croisés loup) interdits : chien-loup tchécoslovaque (Vlcak), chien-loup de Saarloos, Lupo Italiano (chien-loup italien) et chien-loup de Kunming. Relèvent du droit environnemental — contacte le Department of Climate Change, Energy, the Environment and Water (Exotic.Species@dcceew.gov.au)."
+    es: "Perros híbridos (cruces de lobo) prohibidos: perro lobo checoslovaco (Vlcak), perro lobo de Saarloos, Lupo Italiano (perro lobo italiano) y perro lobo de Kunming. Están sujetos al derecho medioambiental — contacta con el Department of Climate Change, Energy, the Environment and Water (Exotic.Species@dcceew.gov.au)."
+    pt: "Raças híbridas (cruzadas com lobo) proibidas: cão-lobo-da-checoslováquia (Vlcak), cão-lobo-de-saarloos (wolfhound), lupo italiano (cão-lobo italiano) e cão-lobo de Kunming. Essas entram na legislação ambiental — entre em contato com o Department of Climate Change, Energy, the Environment and Water (Exotic.Species@dcceew.gov.au)."
+  note:
+    en: "Mixed-breed dogs are allowed if they meet all other import conditions. If an imported dog is later identified as possibly a prohibited breed, the Department of Home Affairs may investigate further."
+    fr: "Les chiens croisés sont admis s'ils remplissent toutes les autres conditions d'importation. Si un chien importé est ensuite identifié comme possible race interdite, le Department of Home Affairs peut mener une enquête."
+    es: "Los perros mestizos se admiten si cumplen todas las demás condiciones de importación. Si un perro importado se identifica posteriormente como posible raza prohibida, el Department of Home Affairs puede investigar más a fondo."
+    pt: "Cachorros sem raça definida são permitidos se cumprirem todas as demais condições de importação. Se depois se identificar que um cachorro importado pode ser de uma raça proibida, o Department of Home Affairs pode aprofundar a investigação."
+
+checklist:
+  - en: "Confirm your dog's origin is an approved country and identify its group (1, 2 or 3)"
+    fr: "Vérifie que l'origine de ton chien est un pays approuvé et identifiez son groupe (1, 2 ou 3)"
+    es: "Confirma que el origen de tu perro es un país aprobado e identifica su grupo (1, 2 o 3)"
+    pt: "Confirme que a origem do seu cachorro é um país aprovado e identifique o grupo dele (1, 2 ou 3)"
+  - en: "ISO-compliant microchip that scans reliably (not starting with 999)"
+    fr: "Puce conforme ISO qui se lit de façon fiable (ne commençant pas par 999)"
+    es: "Microchip conforme a la ISO que se lea de forma fiable (que no empiece por 999)"
+    pt: "Microchip em conformidade com a norma ISO e de leitura confiável (que não comece com 999)"
+  - en: "Valid rabies vaccination (dog ≥84 days old at the shot), kept valid until export"
+    fr: "Vaccination antirabique valide (chien ≥84 jours au vaccin), maintenue jusqu'à l'export"
+    es: "Vacunación antirrábica válida (perro ≥84 días en el momento de la vacuna), mantenida válida hasta la exportación"
+    pt: "Vacinação antirrábica válida (cachorro com ≥84 dias de vida na aplicação), mantida válida até a exportação"
+  - en: "Rabies antibody test (RNATT) ≥0.5 IU/ml, then the mandatory 180-day wait — Group 3 origins"
+    fr: "Titrage antirabique (RNATT) ≥0,5 UI/ml, puis le délai obligatoire de 180 jours — origines groupe 3"
+    es: "Prueba de titulación de rabia (RNATT) ≥0,5 UI/ml, y luego la espera obligatoria de 180 días — orígenes del grupo 3"
+    pt: "Teste sorológico antirrábico (RNATT) ≥0,5 UI/ml e depois a espera obrigatória de 180 dias — origens do grupo 3"
+  - en: "Optional official identity verification before the RNATT to cut quarantine to 10 days"
+    fr: "Vérification officielle d'identité facultative avant le RNATT pour réduire la quarantaine à 10 jours"
+    es: "Verificación oficial de la identidad opcional antes del RNATT para reducir la cuarentena a 10 días"
+    pt: "Verificação oficial de identidade antes do RNATT, opcional, para reduzir a quarentena a 10 dias"
+  - en: "Import permit obtained via BICON before export"
+    fr: "Permis d'importation obtenu via BICON avant l'export"
+    es: "Permiso de importación obtenido a través de BICON antes de la exportación"
+    pt: "Autorização de importação obtida pelo BICON antes da exportação"
+  - en: "Required disease tests and parasite treatments completed within the correct windows"
+    fr: "Tests de maladies et traitements antiparasitaires exigés réalisés dans les délais corrects"
+    es: "Pruebas de enfermedades y tratamientos antiparasitarios exigidos realizados dentro de los plazos correctos"
+    pt: "Exames de doenças e tratamentos antiparasitários obrigatórios feitos dentro dos prazos corretos"
+  - en: "Endorsed original veterinary health certificate travelling with the dog"
+    fr: "Certificat sanitaire vétérinaire original visé voyageant avec le chien"
+    es: "Certificado sanitario veterinario original refrendado que viaja con el perro"
+    pt: "Atestado de saúde veterinário original endossado viajando com o cachorro"
+  - en: "Mickleham quarantine booked and paid; flight arriving directly into Melbourne as cargo in an IATA crate"
+    fr: "Quarantaine de Mickleham réservée et payée ; vol arrivant directement à Melbourne en fret, dans une caisse IATA"
+    es: "Cuarentena de Mickleham reservada y pagada; vuelo que llega directamente a Melbourne como carga en una jaula IATA"
+    pt: "Quarentena de Mickleham reservada e paga; voo chegando diretamente a Melbourne como carga, em caixa de transporte IATA"
+  - en: "Confirm your dog is not a prohibited breed (pure-breed or wolf-hybrid list)"
+    fr: "Vérifie que ton chien n'est pas une race interdite (liste races pures ou hybrides loup)"
+    es: "Confirma que tu perro no es una raza prohibida (lista de razas puras o híbridos de lobo)"
+    pt: "Confirme que seu cachorro não é de uma raça proibida (lista de raças puras ou de híbridos com lobo)"
+
+sources:
+  - label: { en: "DAFF — Bringing cats and dogs to Australia", fr: "DAFF — Importer chats et chiens en Australie", es: "DAFF — Traer gatos y perros a Australia", pt: "DAFF — trazer cães e gatos para a Austrália" }
+    url: "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs"
+  - label: { en: "DAFF — How to bring your dog to Australia from a Group 3 country", fr: "DAFF — Importer ton chien depuis un pays du groupe 3", es: "DAFF — Cómo traer tu perro a Australia desde un país del grupo 3", pt: "DAFF — como trazer seu cachorro para a Austrália desde um país do grupo 3" }
+    url: "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs"
+  - label: { en: "DAFF — Step-by-step guides to bring your cat or dog to Australia", fr: "DAFF — Guides étape par étape pour importer chat ou chien", es: "DAFF — Guías paso a paso para traer tu gato o perro a Australia", pt: "DAFF — guias passo a passo para trazer seu gato ou cachorro para a Austrália" }
+    url: "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides"
+  - label: { en: "DAFF — Import permits for cats and dogs coming to Australia", fr: "DAFF — Permis d'importation pour chats et chiens", es: "DAFF — Permisos de importación para gatos y perros que llegan a Australia", pt: "DAFF — autorizações de importação para cães e gatos que chegam à Austrália" }
+    url: "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/permit"
+  - label: { en: "DAFF — Rabies vaccination and tests for cats and dogs", fr: "DAFF — Vaccination et tests antirabiques pour chats et chiens", es: "DAFF — Vacunación y pruebas antirrábicas para gatos y perros", pt: "DAFF — vacinação antirrábica e testes para cães e gatos" }
+    url: "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/rabies-neutralising-antibody"
+  - label: { en: "DAFF — Cats and dogs frequently asked questions", fr: "DAFF — Foire aux questions chats et chiens", es: "DAFF — Preguntas frecuentes sobre gatos y perros", pt: "DAFF — perguntas frequentes sobre cães e gatos" }
+    url: "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/frequently-asked-questions"
+
+seo:
+  title: { en: "Australia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Australie — Guide", es: "Requisitos de entrada de perros en Australia — Guía de viaje", pt: "Entrada de cachorro na Austrália — guia de viagem" }
+  metaTitle: { en: "Traveling to Australia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Australie avec ton chien : formalités (2026)", es: "Viajar a Australia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Austrália com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official DAFF rules for bringing a dog into Australia: import permit, approved countries, rabies test with 180-day wait, and Mickleham quarantine. Sourced and dated."
+    fr: "Règles officielles DAFF pour faire entrer un chien en Australie : permis, pays approuvés, titrage avec 180 jours d'attente, quarantaine de Mickleham. Sourcé et daté."
+    es: "Normas oficiales del DAFF para traer un perro a Australia: permiso, país aprobado, titulación antirrábica con espera de 180 días y cuarentena en Mickleham."
+    pt: "Regras oficiais do DAFF para levar um cachorro à Austrália: autorização, país aprovado, titulação antirrábica com espera de 180 dias e quarentena em Mickleham."
+  slug: "australia"
+  shortDesc:
+    en: "What you need to bring a dog into Australia: permit, approved-country origin, rabies test and mandatory quarantine."
+    fr: "Ce qu'il faut pour faire entrer un chien en Australie : permis, origine approuvée, titrage et quarantaine obligatoire."
+    es: "Lo que necesitas para traer un perro a Australia: permiso, origen de país aprobado, prueba de titulación de rabia y cuarentena obligatoria."
+    pt: "O que você precisa para levar um cachorro à Austrália: autorização, origem em país aprovado, teste antirrábico e quarentena obrigatória."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

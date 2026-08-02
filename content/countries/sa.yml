@@ -1,0 +1,388 @@
+# Country Entry Guide — Saudi Arabia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_sa
+iso2: "SA"
+name: { en: "Saudi Arabia", fr: "Arabie saoudite", es: "Arabia Saudí", pt: "Arábia Saudita" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Saudi Arabia: no domestic movement rule is published — the quarantine framework covers import, export and transit only."
+    fr: "Vol intérieur en Arabie saoudite : aucune règle de mouvement intérieur n'est publiée — le cadre de quarantaine ne couvre que l'import, l'export et le transit."
+    es: "Vuelo nacional en Arabia Saudí: no se publica ninguna regla de movimiento nacional — el marco de cuarentena solo cubre importación, exportación y tránsito."
+    pt: "Voo doméstico na Arábia Saudita: nenhuma norma para deslocamento doméstico é publicada — o regime de quarentena cobre apenas importação, exportação e trânsito."
+  points:
+    - en: "No document is required by the State for a domestic flight."
+      fr: "Aucun document n'est exigé par l'État pour un vol intérieur."
+      es: "El Estado no exige ningún documento para un vuelo nacional."
+      pt: "Nenhum documento é exigido pelo Estado para um voo doméstico."
+    - en: "Aviation regulation only obliges carriers to publish their animal rules; acceptance is left entirely to them. One national carrier takes small dogs in the cabin, another refuses animals altogether."
+      fr: "La réglementation aérienne oblige seulement les compagnies à publier leurs règles animaux ; l'acceptation leur est entièrement laissée. Une compagnie nationale accepte les petits chiens en cabine, une autre refuse tout animal."
+      es: "La normativa aérea solo obliga a las aerolíneas a publicar sus reglas de animales; la aceptación queda enteramente en sus manos. Una aerolínea nacional acepta perros pequeños en cabina, otra rechaza todo animal."
+      pt: "A regulamentação de aviação apenas obriga as companhias aéreas a publicar as próprias normas para animais; a aceitação fica inteiramente a critério delas. Uma companhia nacional aceita cachorros pequenos na cabine, outra recusa animais por completo."
+    - en: "Assistance animals travel free on domestic flights with a letter from the competent authority."
+      fr: "Les animaux d'assistance voyagent gratuitement sur les vols intérieurs avec une attestation de l'autorité compétente."
+      es: "Los animales de asistencia viajan gratis en vuelos nacionales con una carta de la autoridad competente."
+      pt: "Animais de assistência viajam gratuitamente em voos domésticos com uma carta da autoridade competente."
+exit:
+  authority: MEWA
+  authorityUrl: https://www.mewa.gov.sa
+  intro:
+    en: "Saudi Arabia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a MEWA export health certificate."
+    fr: "L'Arabie saoudite est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export MEWA."
+    es: "Arabia Saudí no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación de MEWA."
+    pt: "A Arábia Saudita não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação da MEWA."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Apply through MEWA's online platform Anaam; a certificate from a MEWA-accredited clinic is approved at the MEWA branch after clinical and lab examination, and the export permission is valid 30 days."
+        fr: "Fais la demande sur la plateforme en ligne Anaam du MEWA ; un certificat d'une clinique agréée MEWA est validé au bureau MEWA après examen clinique et de laboratoire, et l'autorisation d'export est valable 30 jours."
+        es: "Solicítalo en la plataforma en línea Anaam de MEWA; un certificado de una clínica acreditada por MEWA se aprueba en la oficina de MEWA tras examen clínico y de laboratorio, y el permiso de exportación es válido 30 días."
+        pt: "Solicite pela plataforma on-line da MEWA, a Anaam; um atestado de uma clínica credenciada pela MEWA é aprovado na filial da MEWA após exame clínico e laboratorial, e a autorização de exportação é válida por 30 dias."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Saudi Arabia with your dog", fr: "Voyager en Arabie saoudite avec ton chien", es: "Viajar a Arabia Saudí con tu perro", pt: "Viajar para a Arábia Saudita com seu cachorro" }
+  intro:
+    en: >-
+      Saudi Arabia does not run the EU pet-travel framework — it applies its own scheme through the
+      Ministry of Environment, Water and Agriculture (MEWA) and its Anaam electronic platform. Importantly,
+      dogs are not freely admitted: MEWA's guidance limits dog import to hunting, guarding and guide dogs
+      for people with disabilities, and pets cannot be brought in on a tourist visa. Every dog needs an
+      import permit obtained in advance through Anaam before it travels, plus an ISO microchip, a valid
+      rabies vaccination (with at least six months of validity remaining), other vaccinations and an
+      official government veterinary health certificate. Several dangerous breeds are barred. This guide
+      explains the permit, the documents, the age and quantity limits, and the breed rules so you know
+      exactly what to prepare — and whether import is possible at all — before you book.
+    fr: >-
+      L'Arabie saoudite n'applique pas le cadre européen — elle a son propre dispositif, géré par le
+      ministère de l'Environnement, de l'Eau et de l'Agriculture (MEWA) via sa plateforme électronique
+      Anaam. Point important : les chiens ne sont pas librement admis. Les consignes du MEWA limitent
+      l'importation de chiens à la chasse, au gardiennage et aux chiens guides pour personnes handicapées,
+      et un animal ne peut pas entrer sous visa touristique. Chaque chien doit disposer d'un permis
+      d'importation obtenu à l'avance via Anaam avant de voyager, ainsi que d'une puce ISO, d'une
+      vaccination antirabique valide (avec au moins six mois de validité restante), d'autres vaccinations
+      et d'un certificat vétérinaire officiel. Plusieurs races dangereuses sont interdites. Ce guide
+      détaille le permis, les documents, les limites d'âge et de nombre, et les règles de race pour savoir
+      quoi préparer — et si l'importation est même possible — avant de réserver.
+    es: >-
+      Arabia Saudí no aplica el marco europeo de viaje de mascotas — utiliza su propio sistema a través
+      del Ministerio de Medio Ambiente, Agua y Agricultura (MEWA) y su plataforma electrónica Anaam. Es
+      importante saber que los perros no se admiten libremente: las directrices del MEWA limitan la
+      importación de perros a la caza, la guarda y los perros guía para personas con discapacidad, y las
+      mascotas no pueden entrar con un visado de turista. Cada perro necesita un permiso de importación
+      obtenido con antelación a través de Anaam antes de viajar, además de un microchip ISO, una
+      vacunación antirrábica válida (con al menos seis meses de valide restante), otras vacunaciones y un
+      certificado sanitario veterinario oficial del gobierno. Varias razas peligrosas están prohibidas.
+      Esta guía explica el permiso, los documentos, los límites de edad y de cantidad, y las normas sobre
+      razas para que sepas exactamente qué preparar — y si la importación es siquiera posible — antes de
+      reservar.
+
+    pt: "A Arábia Saudita não utiliza o regime europeu de viagens com animais de estimação — aplica o próprio sistema, por meio do Ministério do Meio Ambiente, Água e Agricultura (MEWA) e da sua plataforma eletrônica Anaam. É importante notar que os cachorros não são admitidos livremente: as orientações da MEWA limitam a importação de cachorros aos de caça, de guarda e cães-guia para pessoas com deficiência, e animais de estimação não podem ser trazidos com visto de turista. Todo cachorro precisa de uma autorização de importação obtida com antecedência pela Anaam antes de viajar, além de um microchip ISO, uma vacinação antirrábica válida (com pelo menos seis meses de validade restante), outras vacinas e um atestado de saúde veterinário oficial do governo. Várias raças perigosas são proibidas. Este guia explica a autorização, os documentos, os limites de idade e de quantidade, e as normas de raça para você saber exatamente o que preparar — e se a importação é sequer possível — antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance MEWA permit, dogs admitted only for specific uses", fr: "Modéré — permis MEWA préalable, chiens admis pour usages précis", es: "Moderado — permiso previo del MEWA, perros admitidos solo para usos específicos", pt: "Moderado — autorização da MEWA obrigatória com antecedência, cachorros admitidos apenas para usos específicos" }
+
+prepTime:
+  eu:
+    en: "Once the microchip, an in-date rabies vaccination (≥6 months validity left) and the health certificate are ready, the Anaam import permit is issued for a 30-day window — plan several weeks overall."
+    fr: "Une fois la puce, une vaccination antirabique à jour (≥6 mois de validité restante) et le certificat sanitaire prêts, le permis Anaam est délivré pour une fenêtre de 30 jours — compte plusieurs semaines au total."
+    es: "Una vez listos el microchip, una vacunación antirrábica en vigor (≥6 meses de valide restante) y el certificado sanitario, el permiso de importación Anaam se expide con una vigencia de 30 días — prevé varias semanas en total."
+    pt: "Depois que o microchip, uma vacinação antirrábica em dia (com ≥6 meses de validade restante) e o atestado de saúde estiverem prontos, a autorização de importação da Anaam é emitida com uma janela de 30 dias — planeje várias semanas no total."
+  listed:
+    en: "Import is allowed only from the countries shown as permitted on the Anaam platform; check your dog's origin against that list before making any plans."
+    fr: "L'importation n'est autorisée que depuis les pays affichés comme autorisés sur la plateforme Anaam ; vérifie l'origine de ton chien sur cette liste avant tout projet."
+    es: "La importación solo se permite desde los países que figuran como autorizados en la plataforma Anaam; comprueba el origen de tu perro en esa lista antes de hacer cualquier plan."
+    pt: "A importação só é permitida de países mostrados como autorizados na plataforma Anaam; verifique a origem do seu cachorro nessa lista antes de fazer qualquer plano."
+  nonListed:
+    en: "From a country not permitted on Anaam, or on a tourist visa, import is refused — timing cannot be assumed and eligibility must be confirmed first."
+    fr: "Depuis un pays non autorisé sur Anaam, ou sous visa touristique, l'importation est refusée — les délais ne peuvent être présumés et l'éligibilité doit d'abord être confirmée."
+    es: "Desde un país no autorizado en Anaam, o con un visado de turista, la importación se deniega — los plazos no pueden darse por supuestos y primero hay que confirmar la elegibilidad."
+    pt: "De um país não autorizado na Anaam, ou com visto de turista, a importação é recusada — o prazo não pode ser presumido e a elegibilidade precisa ser confirmada antes."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Restricted — hunting, guarding, guide dogs only", fr: "Restreint — chasse, gardiennage, chiens guides seulement", es: "Restringido — solo caza, guarda y perros guía", pt: "Restrito — somente cães de caça, de guarda ou cães-guia" }
+    cls: warn
+  - requirement: { en: "Import permit (MEWA / Anaam)", fr: "Permis d'importation (MEWA / Anaam)", es: "Permiso de importación (MEWA / Anaam)", pt: "Autorização de importação (MEWA / Anaam)" }
+    status: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio con antelación", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (≥6 months validity left)", fr: "Requise (≥6 mois de validité restante)", es: "Obligatoria (≥6 meses de valide restante)", pt: "Obrigatória (≥6 meses de validade restante)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not published by MEWA — may depend on origin", fr: "Non publié par le MEWA — peut dépendre de l'origine", es: "No publicado por el MEWA — puede depender del origen", pt: "Não publicado pela MEWA — pode depender da origem" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (plus certificate of origin)", fr: "Requis (plus certificat d'origine)", es: "Obligatorio (más certificado de origen)", pt: "Obrigatório (mais certificado de origem)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Possible — MEWA schedules per capacity", fr: "Possible — le MEWA planifie selon la capacité", es: "Posible — el MEWA lo programa según la capacidad", pt: "Possível — a MEWA agenda conforme a capacidade" }
+    cls: neutral
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "Several breeds prohibited", fr: "Plusieurs races interdites", es: "Varias razas prohibidas", pt: "Várias raças proibidas" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Saudi Arabia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Arabie saoudite (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Arabia Saudí (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Arábia Saudita (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Saudi Arabia", fr: "Pays de destination — Arabie saoudite", es: "País de destino — Arabia Saudí", pt: "País de destino — Arábia Saudita" }
+      text:
+        en: "Saudi Arabia runs its own MEWA scheme: an advance Anaam import permit, an ISO microchip, a valid rabies vaccination, an official government health certificate and a certificate of origin are always required. Dogs are admitted only for hunting, guarding or as guide dogs, and several breeds are banned."
+        fr: "L'Arabie saoudite applique son propre dispositif MEWA : permis d'importation Anaam préalable, puce ISO, vaccination antirabique valide, certificat vétérinaire officiel et certificat d'origine toujours exigés. Les chiens ne sont admis que pour la chasse, le gardiennage ou comme chiens guides, et plusieurs races sont interdites."
+        es: "Arabia Saudí aplica su propio sistema del MEWA: siempre se exigen un permiso de importación Anaam previo, un microchip ISO, una vacunación antirrábica válida, un certificado sanitario oficial del gobierno y un certificado de origen. Los perros solo se admiten para la caza, la guarda o como perros guía, y varias razas están prohibidas."
+        pt: "A Arábia Saudita aplica o próprio sistema da MEWA: uma autorização de importação da Anaam obtida com antecedência, um microchip ISO, uma vacinação antirrábica válida, um atestado de saúde oficial do governo e um certificado de origem são sempre exigidos. Os cachorros são admitidos apenas para caça, guarda ou como cães-guia, e várias raças são proibidas."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Import is only allowed from countries MEWA shows as permitted on the Anaam platform. If your dog leaves a country that is not on that list, import is refused, whatever the paperwork."
+        fr: "L'importation n'est autorisée que depuis les pays affichés comme autorisés par le MEWA sur la plateforme Anaam. Si ton chien part d'un pays non listé, l'importation est refusée, quels que soient les documents."
+        es: "La importación solo se permite desde los países que el MEWA muestra como autorizados en la plataforma Anaam. Si tu perro sale de un país que no está en esa lista, la importación se deniega, sea cual sea la documentación."
+        pt: "A importação só é permitida de países que a MEWA mostra como autorizados na plataforma Anaam. Se o seu cachorro parte de um país que não está nessa lista, a importação é recusada, independentemente da documentação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a country MEWA does not permit, or one flagged by the World Organisation for Animal Health, can block import even if you fly in from an eligible country. Your dog's real origin and history count — not only the last airport."
+        fr: "Un séjour récent dans un pays non autorisé par le MEWA, ou signalé par l'Organisation mondiale de la santé animale, peut bloquer l'importation même si tu arrives d'un pays éligible. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país no autorizado por el MEWA, o señalado por la Organización Mundial de Sanidad Animal, puede bloquear la importación aunque llegues desde un país elegible. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país não autorizado pela MEWA, ou sinalizado pela Organização Mundial de Saúde Animal, pode bloquear a importação, mesmo que você chegue voando de um país elegível. A origem real e o histórico do seu cachorro contam — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Saudi Arabia's framework, then confirm your dog's exact origin, eligibility and history with your vet before applying for the Anaam permit."
+    fr: "Lis donc les exigences ci-dessous comme le cadre saoudien, puis confirme l'origine, l'éligibilité et l'historique exacts de ton chien avec ton vétérinaire avant de demander le permis Anaam."
+    es: "Así que lee los requisitos siguientes como el marco de Arabia Saudí y luego confirma el origen, la elegibilidad y el historial exactos de tu perro con tu veterinario antes de solicitar el permiso Anaam."
+    pt: "Portanto, leia as exigências abaixo como o regime da Arábia Saudita e depois confirme a origem exata, a elegibilidade e o histórico do seu cachorro com o seu veterinário antes de solicitar a autorização da Anaam."
+
+requirements:
+  - item: { en: "MEWA import permit (Anaam)", fr: "Permis d'importation MEWA (Anaam)", es: "Permiso de importación del MEWA (Anaam)", pt: "Autorização de importação da MEWA (Anaam)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Applied for via the Anaam platform (anaam.mewa.sa) before the dog travels; valid 30 days from issue. Entry must be through the port named on the permit.", fr: "Demandé via la plateforme Anaam (anaam.mewa.sa) avant le voyage du chien ; valable 30 jours à compter de la délivrance. L'entrée doit se faire par le port indiqué sur le permis.", es: "Se solicita a través de la plataforma Anaam (anaam.mewa.sa) antes de que el perro viaje; válido 30 días desde su expedición. La entrada debe realizarse por el puerto indicado en el permiso.", pt: "Solicitada pela plataforma Anaam (anaam.mewa.sa) antes de o cachorro viajar; válida por 30 dias a partir da emissão. A entrada deve ser feita pelo ponto de entrada indicado na autorização." }
+    exceptions: { en: "No dog may enter without a valid permit; pets cannot be imported on a tourist visa.", fr: "Aucun chien ne peut entrer sans permis valide ; un animal ne peut être importé sous visa touristique.", es: "Ningún perro puede entrar sin un permiso válido; las mascotas no pueden importarse con un visado de turista.", pt: "Nenhum cachorro pode entrar sem uma autorização válida; animais de estimação não podem ser importados com visto de turista." }
+    ref: { en: "MEWA — Pets importing procedures; my.gov.sa", fr: "MEWA — Procédures d'importation d'animaux ; my.gov.sa", es: "MEWA — Procedimientos de importación de mascotas; my.gov.sa", pt: "MEWA — Procedimentos de importação de animais de estimação; my.gov.sa" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be identified by an electronic microchip; the chip number must match the passport and health certificate.", fr: "Le chien doit être identifié par une puce électronique ; le numéro de puce doit correspondre au passeport et au certificat sanitaire.", es: "El perro debe estar identificado con un microchip electrónico; el número del microchip debe coincidir con el pasaporte y el certificado sanitario.", pt: "O cachorro deve ser identificado por um microchip eletrônico; o número do chip deve coincidir com o passaporte e o atestado de saúde." }
+    exceptions: { en: "MEWA accepts an electronic chip or other approved identification means.", fr: "Le MEWA accepte une puce électronique ou un autre moyen d'identification agréé.", es: "El MEWA acepta un microchip electrónico u otro medio de identificación aprobado.", pt: "A MEWA aceita um chip eletrônico ou outro meio de identificação aprovado." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Must be valid, with at least six months of validity remaining at the time of import; validity is checked when the permit and the entry/return permit are issued.", fr: "Doit être valide, avec au moins six mois de validité restante au moment de l'importation ; la validité est vérifiée à la délivrance du permis et du permis d'entrée/retour.", es: "Debe estar en vigor, con al menos seis meses de valide restante en el momento de la importación; la valide se comprueba al expedir el permiso y el permiso de entrada/regreso.", pt: "Deve estar válida, com pelo menos seis meses de validade restante no momento da importação; a validade é conferida quando a autorização e a autorização de entrada/retorno são emitidas." }
+    exceptions: { en: "The microchip must already be in place for the vaccination to be recognised.", fr: "La puce doit déjà être posée pour que la vaccination soit reconnue.", es: "El microchip debe estar ya implantado para que la vacunación sea reconocida.", pt: "O microchip já deve estar implantado para que a vacinação seja reconhecida." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published", fr: "Non publié", es: "No publicado", pt: "Não publicado" }
+    when: { en: "MEWA's published import rules do not require a rabies antibody test; the health certificate has a field where any origin-country test can be recorded.", fr: "Les règles d'importation publiées par le MEWA n'exigent pas de titrage antirabique ; le certificat sanitaire comporte un champ où un éventuel test du pays d'origine peut être consigné.", es: "Las normas de importación publicadas por el MEWA no exigen una prueba de titulación de rabia; el certificado sanitario tiene un campo donde puede registrarse cualquier prueba del país de origen.", pt: "As normas de importação publicadas pela MEWA não exigem teste sorológico antirrábico; o atestado de saúde tem um campo onde qualquer teste do país de origem pode ser registrado." }
+    exceptions: { en: "The origin country's own export rules may still impose one — confirm before travel.", fr: "Les règles d'exportation du pays d'origine peuvent toutefois en imposer un — à confirmer avant le voyage.", es: "Las normas de exportación del propio país de origen pueden imponerla de todos modos — confírmalo antes de viajar.", pt: "As próprias normas de exportação do país de origem ainda podem impor um — confirme antes de viajar." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+  - item: { en: "Other vaccinations", fr: "Autres vaccinations", es: "Otras vacunaciones", pt: "Outras vacinações" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Pets must be vaccinated against rabies and other diseases according to the vaccination programme approved in the exporting country, recorded in the passport or vaccination record.", fr: "Les animaux doivent être vaccinés contre la rage et d'autres maladies selon le programme de vaccination approuvé dans le pays exportateur, consigné au passeport ou carnet de vaccination.", es: "Las mascotas deben estar vacunadas contra la rabia y otras enfermedades según el programa de vacunación aprobado en el país exportador, registrado en el pasaporte o la cartilla de vacunación.", pt: "Os animais de estimação devem ser vacinados contra a raiva e outras doenças de acordo com o programa de vacinação aprovado no país exportador, registrado no passaporte ou na carteira de vacinação." }
+    exceptions: { en: "The animal must be free of external diseases and parasites.", fr: "L'animal doit être exempt de maladies et de parasites externes.", es: "El animal debe estar libre de enfermedades y parásitos externos.", pt: "O animal deve estar livre de doenças e parasitas externos." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Original government health certificate approved by the exporting country's veterinary authority, plus the original certificate of origin and the passport or vaccination record.", fr: "Certificat sanitaire gouvernemental original approuvé par l'autorité vétérinaire du pays exportateur, plus le certificat d'origine original et le passeport ou carnet de vaccination.", es: "Certificado sanitario oficial original aprobado por la autoridad veterinaria del país exportador, más el certificado de origen original y el pasaporte o la cartilla de vacunación.", pt: "Atestado de saúde oficial original, aprovado pela autoridade veterinária do país exportador, além do certificado de origem original e do passaporte ou da carteira de vacinação." }
+    exceptions: { en: "If original documents are missing, the consignment is rejected.", fr: "En l'absence des documents originaux, l'envoi est rejeté.", es: "Si faltan los documentos originales, el envío se rechaza.", pt: "Se faltarem documentos originais, a remessa é rejeitada." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Pets must be at least 4 months old to be imported.", fr: "Les animaux doivent avoir au moins 4 mois pour être importés.", es: "Las mascotas deben tener al menos 4 meses para poder importarse.", pt: "Os animais de estimação devem ter pelo menos 4 meses de idade para serem importados." }
+    exceptions: { en: "Younger animals may not be exported to Saudi Arabia.", fr: "Les animaux plus jeunes ne peuvent être exportés vers l'Arabie saoudite.", es: "Los animales más jóvenes no pueden exportarse a Arabia Saudí.", pt: "Animais mais novos não podem ser exportados para a Arábia Saudita." }
+    ref: { en: "MEWA — Revised pets import requirements", fr: "MEWA — Exigences révisées d'importation d'animaux", es: "MEWA — Requisitos revisados de importación de mascotas", pt: "MEWA — Exigências revisadas de importação de animais de estimação" }
+  - item: { en: "Importer conditions & quota", fr: "Conditions et quota de l'importateur", es: "Condiciones y cupo del importador", pt: "Condições do importador e cota" }
+    required: { en: "Limited", fr: "Limité", es: "Limitado", pt: "Limitado" }
+    when: { en: "An individual importer must be at least 30 years old (diplomats exempt with proof), and may import a maximum of 2 dogs (or 2 cats) every six months. Dogs cannot be imported commercially.", fr: "Un importateur particulier doit avoir au moins 30 ans (diplomates exemptés sur justificatif), et peut importer au maximum 2 chiens (ou 2 chats) tous les six mois. Les chiens ne peuvent être importés à titre commercial.", es: "Un importador particular debe tener al menos 30 años (los diplomáticos quedan exentos con justificante) y puede importar un máximo de 2 perros (o 2 gatos) cada seis meses. Los perros no pueden importarse con fines comerciales.", pt: "Um importador individual deve ter pelo menos 30 anos de idade (diplomatas isentos, mediante comprovação) e pode importar no máximo 2 cachorros (ou 2 gatos) a cada seis meses. Cachorros não podem ser importados comercialmente." }
+    exceptions: { en: "Companies and institutions may import for security-guarding purposes under commercial rules.", fr: "Les entreprises et institutions peuvent importer à des fins de gardiennage de sécurité selon les règles commerciales.", es: "Las empresas e instituciones pueden importar con fines de guarda de seguridad según las normas comerciales.", pt: "Empresas e instituições podem importar para fins de segurança e guarda segundo normas comerciais." }
+    ref: { en: "MEWA — Revised pets import requirements", fr: "MEWA — Exigences révisées d'importation d'animaux", es: "MEWA — Requisitos revisados de importación de mascotas", pt: "MEWA — Exigências revisadas de importação de animais de estimação" }
+  - item: { en: "Border check / port examination", fr: "Contrôle frontalier / examen au port", es: "Control fronterizo / examen en el puerto", pt: "Controle de fronteira / exame no ponto de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Animals are examined at the specified port of entry against the permit, microchip, certificates and vaccination record.", fr: "Les animaux sont examinés au port d'entrée indiqué au regard du permis, de la puce, des certificats et du carnet de vaccination.", es: "Los animales se examinan en el puerto de entrada indicado cotejándolos con el permiso, el microchip, los certificados y la cartilla de vacunación.", pt: "Os animais são examinados no ponto de entrada especificado, em relação à autorização, ao microchip, aos certificados e à carteira de vacinação." }
+    exceptions: { en: "None — every imported dog is checked at the entry port.", fr: "Aucune — tout chien importé est contrôlé au port d'entrée.", es: "Ninguna — todo perro importado se controla en el puerto de entrada.", pt: "Nenhuma — todo cachorro importado é conferido no ponto de entrada." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Possible", fr: "Possible", es: "Posible", pt: "Possível" }
+    when: { en: "MEWA may schedule the arrival date and hold consignments according to quarantine capacity at the entry ports; the exact duration is not published.", fr: "Le MEWA peut planifier la date d'arrivée et retenir les envois selon la capacité de quarantaine aux ports d'entrée ; la durée exacte n'est pas publiée.", es: "El MEWA puede programar la fecha de llegada y retener los envíos según la capacidad de cuarentena en los puertos de entrada; la duración exacta no se publica.", pt: "A MEWA pode agendar a data de chegada e reter remessas de acordo com a capacidade de quarentena nos pontos de entrada; a duração exata não é publicada." }
+    exceptions: { en: "Non-compliant animals may be held, refused or returned at the owner's expense.", fr: "Les animaux non conformes peuvent être retenus, refusés ou renvoyés aux frais du propriétaire.", es: "Los animales no conformes pueden ser retenidos, rechazados o devueltos a cargo del propietario.", pt: "Animais em não conformidade podem ser retidos, recusados ou devolvidos às custas do dono." }
+    ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
+
+origin:
+  eu:
+    title: { en: "Eligible origin — full document set", fr: "Origine éligible — dossier complet", es: "Origen elegible — expediente completo", pt: "Origem elegível — conjunto completo de documentos" }
+    body:
+      en: "If your dog leaves a country MEWA shows as permitted on Anaam and it is being imported for an allowed purpose (hunting, guarding or as a guide dog), you need the advance Anaam import permit, an ISO microchip, a valid rabies vaccination with at least six months of validity left, other vaccinations per the exporting country's programme, an original government health certificate and a certificate of origin. The dog must be at least 4 months old."
+      fr: "Si ton chien part d'un pays affiché comme autorisé par le MEWA sur Anaam et qu'il est importé pour un usage admis (chasse, gardiennage ou chien guide), il faut le permis d'importation Anaam préalable, une puce ISO, une vaccination antirabique valide avec au moins six mois de validité restante, les autres vaccinations selon le programme du pays exportateur, un certificat sanitaire gouvernemental original et un certificat d'origine. Le chien doit avoir au moins 4 mois."
+      es: "Si tu perro sale de un país que el MEWA muestra como autorizado en Anaam y se importa para un uso permitido (caza, guarda o como perro guía), necesitas el permiso de importación Anaam previo, un microchip ISO, una vacunación antirrábica válida con al menos seis meses de valide restante, otras vacunaciones según el programa del país exportador, un certificado sanitario oficial original y un certificado de origen. El perro debe tener al menos 4 meses."
+      pt: "Se o seu cachorro parte de um país que a MEWA mostra como autorizado na Anaam e está sendo importado para um propósito permitido (caça, guarda ou como cão-guia), você precisa da autorização de importação da Anaam obtida com antecedência, de um microchip ISO, de uma vacinação antirrábica válida com pelo menos seis meses de validade restante, de outras vacinas segundo o programa do país exportador, de um atestado de saúde oficial original e de um certificado de origem. O cachorro deve ter pelo menos 4 meses de idade."
+    cls: ok
+  listed:
+    title: { en: "Permitted-countries list on Anaam", fr: "Liste des pays autorisés sur Anaam", es: "Lista de países autorizados en Anaam", pt: "Lista de países autorizados na Anaam" }
+    body:
+      en: "MEWA only authorises imports from the countries shown as permitted on the Anaam platform, and it may reject applications from countries flagged by the World Organisation for Animal Health. The list changes with the global animal-health situation, so confirm your dog's origin is currently accepted before you plan the move."
+      fr: "Le MEWA n'autorise l'importation que depuis les pays affichés comme autorisés sur la plateforme Anaam, et peut rejeter les demandes provenant de pays signalés par l'Organisation mondiale de la santé animale. La liste évolue selon la situation sanitaire mondiale ; confirme donc que l'origine de ton chien est actuellement acceptée avant de planifier le déménagement."
+      es: "El MEWA solo autoriza las importaciones desde los países que figuran como autorizados en la plataforma Anaam, y puede rechazar las solicitudes de países señalados por la Organización Mundial de Sanidad Animal. La lista cambia según la situación sanitaria animal mundial, así que confirma que el origen de tu perro está aceptado actualmente antes de planificar el traslado."
+      pt: "A MEWA só autoriza importações de países mostrados como autorizados na plataforma Anaam, e pode rejeitar solicitações de países sinalizados pela Organização Mundial de Saúde Animal. A lista muda de acordo com a situação sanitária animal global, portanto confirme se a origem do seu cachorro é aceita atualmente antes de planejar a mudança."
+    cls: warn
+  nonListed:
+    title: { en: "Not eligible — import refused", fr: "Non éligible — importation refusée", es: "No elegible — importación denegada", pt: "Não elegível — importação recusada" }
+    body:
+      en: "If your dog travels from a country not permitted on Anaam, is a banned breed, is under 4 months old, or you are entering on a tourist visa, import is refused. Dogs are not freely admitted to Saudi Arabia — MEWA restricts them to hunting, guarding and guide dogs for people with disabilities — so confirm eligibility before anything else."
+      fr: "Si ton chien voyage depuis un pays non autorisé sur Anaam, appartient à une race interdite, a moins de 4 mois, ou si tu entre sous visa touristique, l'importation est refusée. Les chiens ne sont pas librement admis en Arabie saoudite — le MEWA les limite à la chasse, au gardiennage et aux chiens guides pour personnes handicapées — confirme donc l'éligibilité avant toute chose."
+      es: "Si tu perro viaja desde un país no autorizado en Anaam, es de una raza prohibida, tiene menos de 4 meses, o entras con un visado de turista, la importación se deniega. Los perros no se admiten libremente en Arabia Saudí — el MEWA los limita a la caza, la guarda y los perros guía para personas con discapacidad — así que confirma la elegibilidad antes que nada."
+      pt: "Se o seu cachorro viaja de um país não autorizado na Anaam, é de uma raça proibida, tem menos de 4 meses de idade, ou você está entrando com visto de turista, a importação é recusada. Os cachorros não são admitidos livremente na Arábia Saudita — a MEWA os restringe a cães de caça, de guarda e cães-guia para pessoas com deficiência — portanto confirme a elegibilidade antes de qualquer outra coisa."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Saudi Arabia depends on your Anaam permit and the port named on it."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Arabie saoudite dépend de ton permis Anaam et du port qui y est indiqué."
+    es: "Lo que ocurre cuando tu perro llega a Arabia Saudí depende de tu permiso Anaam y del puerto indicado en él."
+    pt: "O que acontece quando o seu cachorro chega à Arábia Saudita depende da sua autorização da Anaam e do ponto de entrada indicado nela."
+  points:
+    - en: "The import permit must be issued by MEWA through Anaam before travel and still be valid (30 days) on the day of entry."
+      fr: "Le permis d'importation doit être délivré par le MEWA via Anaam avant le voyage et être encore valide (30 jours) le jour de l'entrée."
+      es: "El permiso de importación debe ser expedido por el MEWA a través de Anaam antes del viaje y seguir siendo válido (30 días) el día de la entrada."
+      pt: "A autorização de importação deve ser emitida pela MEWA por meio da Anaam antes da viagem e continuar válida (30 dias) no dia da entrada."
+    - en: "Entry must be through the specific port shown on the permit; the animal is examined there against the permit, microchip and certificates."
+      fr: "L'entrée doit se faire par le port précis indiqué sur le permis ; l'animal y est examiné au regard du permis, de la puce et des certificats."
+      es: "La entrada debe realizarse por el puerto concreto indicado en el permiso; allí se examina al animal cotejándolo con el permiso, el microchip y los certificados."
+      pt: "A entrada deve ser feita pelo ponto de entrada específico indicado na autorização; o animal é examinado lá em relação à autorização, ao microchip e aos certificados."
+    - en: "Carry the originals: the government veterinary health certificate, the certificate of origin and the passport or vaccination record — copies alone are rejected."
+      fr: "Munis-toi des originaux : le certificat vétérinaire officiel, le certificat d'origine et le passeport ou carnet de vaccination — les copies seules sont rejetées."
+      es: "Lleva los originales: el certificado sanitario veterinario oficial, el certificado de origen y el pasaporte o la cartilla de vacunación — las copias por sí solas se rechazan."
+      pt: "Leve os originais: o atestado de saúde veterinário oficial, o certificado de origem e o passaporte ou a carteira de vacinação — cópias sozinhas são rejeitadas."
+    - en: "MEWA may hold or schedule the consignment according to quarantine capacity at the port."
+      fr: "Le MEWA peut retenir ou planifier l'envoi selon la capacité de quarantaine au port."
+      es: "El MEWA puede retener o programar el envío según la capacidad de cuarentena en el puerto."
+      pt: "A MEWA pode reter ou agendar a remessa de acordo com a capacidade de quarentena no ponto de entrada."
+    - en: "If documents are missing or invalid, the breed is banned, or the dog is ineligible, the animal may be held, refused entry or returned — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, si la race est interdite, ou si le chien est inéligible, l'animal peut être retenu, refusé ou renvoyé — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, la raza está prohibida, o el perro no es elegible, el animal puede ser retenido, rechazado en la entrada o devuelto — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, se a raça for proibida ou se o cachorro não for elegível, o animal pode ser retido, ter a entrada recusada ou ser devolvido — às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Saudi Arabia's MEWA import rules ban a list of dangerous dog breeds and any crossbreeds of them. Beyond breed rules, dogs are not freely admitted at all: import is limited to hunting, guarding and guide dogs for people with disabilities, and social attitudes to pet dogs are more reserved than in Europe."
+    fr: "Les règles d'importation du MEWA interdisent une liste de races de chiens dangereux et tout croisement de celles-ci. Au-delà des races, les chiens ne sont pas librement admis : l'importation est limitée à la chasse, au gardiennage et aux chiens guides pour personnes handicapées, et le rapport social au chien de compagnie y est plus réservé qu'en Europe."
+    es: "Las normas de importación del MEWA de Arabia Saudí prohíben una lista de razas de perros peligrosos y cualquier cruce de ellas. Más allá de las normas sobre razas, los perros no se admiten libremente en absoluto: la importación se limita a la caza, la guarda y los perros guía para personas con discapacidad, y la actitud social hacia los perros de compañía es más reservada que en Europa."
+    pt: "As normas de importação da MEWA na Arábia Saudita proíbem uma lista de raças de cachorros perigosas e qualquer cruzamento delas. Além das normas de raça, os cachorros não são admitidos livremente de forma alguma: a importação é limitada a cães de caça, de guarda e cães-guia para pessoas com deficiência, e as atitudes sociais em relação aos cachorros de estimação são mais reservadas do que na Europa."
+  cat1:
+    en: "Banned from import (breeds and their crossbreeds): Pit Bull, Rottweiler, Boxer, Mastiff, Tosa, Bulldog and Perro de Presa Canario. A dog of, or crossed with, any of these breeds is refused import under MEWA's requirements."
+    fr: "Interdits à l'importation (races et leurs croisements) : Pit Bull, Rottweiler, Boxer, Mastiff, Tosa, Bulldog et Perro de Presa Canario. Un chien de ces races, ou croisé avec l'une d'elles, est refusé à l'importation selon les exigences du MEWA."
+    es: "Prohibidos para la importación (razas y sus cruces): Pit Bull, Rottweiler, Boxer, Mastiff, Tosa, Bulldog y Perro de Presa Canario. Un perro de estas razas, o cruzado con alguna de ellas, es rechazado en la importación según los requisitos del MEWA."
+    pt: "Proibidas para importação (raças e seus cruzamentos): Pit Bull, Rottweiler, Boxer, Mastim, Tosa, Bulldog e Perro de Presa Canario. Um cachorro de qualquer uma dessas raças, ou cruzado com elas, tem a importação recusada segundo as exigências da MEWA."
+  cat2:
+    en: "A separate 'Import fierce animals permit (dogs)' service exists on the national portal listing similar breeds, so treatment of these breeds is not fully consistent across official sources. Guide dogs for people with disabilities are a recognised exception to the general restriction on dogs."
+    fr: "Un service distinct « Permis d'importation d'animaux féroces (chiens) » existe sur le portail national et liste des races similaires ; le traitement de ces races n'est donc pas totalement cohérent entre les sources officielles. Les chiens guides pour personnes handicapées constituent une exception reconnue à la restriction générale sur les chiens."
+    es: "En el portal nacional existe un servicio aparte de «permiso de importación de animales feroces (perros)» que enumera razas similares, por lo que el tratamiento de estas razas no es del todo coherente entre las fuentes oficiales. Los perros guía para personas con discapacidad son una excepción reconocida a la restricción general sobre los perros."
+    pt: "Existe um serviço separado, 'Autorização de importação de animais ferozes (cachorros)', no portal nacional, listando raças semelhantes, portanto o tratamento dessas raças não é totalmente consistente entre as fontes oficiais. Cães-guia para pessoas com deficiência são uma exceção reconhecida à restrição geral sobre cachorros."
+  note:
+    en: "Because the breed rules and the 'fierce animals' permit appear to conflict, confirm your dog's breed and eligibility directly with MEWA before applying for a permit or booking travel."
+    fr: "Les règles de race et le permis « animaux féroces » semblant se contredire, confirme la race et l'éligibilité de ton chien directement auprès du MEWA avant toute demande de permis ou réservation."
+    es: "Como las normas sobre razas y el permiso de «animales feroces» parecen contradecirse, confirma la raza y la elegibilidad de tu perro directamente con el MEWA antes de solicitar un permiso o reservar el viaje."
+    pt: "Como as normas de raça e a autorização de 'animais ferozes' parecem entrar em conflito, confirme a raça e a elegibilidade do seu cachorro diretamente com a MEWA antes de solicitar uma autorização ou reservar a viagem."
+
+checklist:
+  - en: "Confirm your dog is eligible (hunting, guarding or guide dog) and not on a tourist visa"
+    fr: "Vérifie que ton chien est éligible (chasse, gardiennage ou chien guide) et pas sous visa touristique"
+    es: "Confirma que tu perro es elegible (caza, guarda o perro guía) y no viaja con un visado de turista"
+    pt: "Confirme que o seu cachorro é elegível (caça, guarda ou cão-guia) e que você não está com visto de turista"
+  - en: "Anaam import permit obtained before travel (valid 30 days), entry via the named port"
+    fr: "Permis d'importation Anaam obtenu avant le voyage (valable 30 jours), entrée par le port indiqué"
+    es: "Permiso de importación Anaam obtenido antes del viaje (válido 30 días), entrada por el puerto indicado"
+    pt: "Autorização de importação da Anaam obtida antes da viagem (válida por 30 dias), entrada pelo ponto de entrada indicado"
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination with at least 6 months of validity remaining"
+    fr: "Vaccination antirabique valide avec au moins 6 mois de validité restante"
+    es: "Vacunación antirrábica válida con al menos 6 meses de valide restante"
+    pt: "Vacinação antirrábica válida, com pelo menos 6 meses de validade restante"
+  - en: "Other vaccinations current per the exporting country's programme"
+    fr: "Autres vaccinations à jour selon le programme du pays exportateur"
+    es: "Otras vacunaciones al día según el programa del país exportador"
+    pt: "Outras vacinas em dia segundo o programa do país exportador"
+  - en: "Original government veterinary health certificate + certificate of origin + passport"
+    fr: "Certificat vétérinaire officiel original + certificat d'origine + passeport"
+    es: "Certificado sanitario veterinario oficial original + certificado de origen + pasaporte"
+    pt: "Atestado de saúde veterinário oficial original + certificado de origem + passaporte"
+  - en: "Dog at least 4 months old and within the 2-per-6-months quota"
+    fr: "Chien d'au moins 4 mois et dans le quota de 2 par 6 mois"
+    es: "Perro de al menos 4 meses y dentro del cupo de 2 cada 6 meses"
+    pt: "Cachorro com pelo menos 4 meses de idade e dentro da cota de 2 a cada 6 meses"
+  - en: "Confirm your dog is not a banned breed (Pit Bull, Rottweiler, Boxer, Mastiff, Tosa, Bulldog, Presa Canario)"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite (Pit Bull, Rottweiler, Boxer, Mastiff, Tosa, Bulldog, Presa Canario)"
+    es: "Confirma que tu perro no es de una raza prohibida (Pit Bull, Rottweiler, Boxer, Mastiff, Tosa, Bulldog, Presa Canario)"
+    pt: "Confirme que o seu cachorro não é de uma raça proibida (Pit Bull, Rottweiler, Boxer, Mastim, Tosa, Bulldog, Presa Canario)"
+
+sources:
+  - label: { en: "MEWA — Pets importing procedures (import mechanism)", fr: "MEWA — Procédures d'importation d'animaux (mécanisme d'importation)", es: "MEWA — Procedimientos de importación de mascotas (mecanismo de importación)", pt: "MEWA — Procedimentos de importação de animais de estimação (mecanismo de importação)" }
+    url: "https://www.mewa.gov.sa/en/InformationCenter/DocsCenter/RulesLibrary/Docs/Pet%20import%20mechanism.pdf"
+  - label: { en: "MEWA — Revised pets import requirements (April 2021)", fr: "MEWA — Exigences révisées d'importation d'animaux (avril 2021)", es: "MEWA — Requisitos revisados de importación de mascotas (abril de 2021)", pt: "MEWA — Exigências revisadas de importação de animais de estimação (abril de 2021)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/saudi-arabia-imports-requirements.pdf"
+  - label: { en: "my.gov.sa — Import fierce animals permit (dogs)", fr: "my.gov.sa — Permis d'importation d'animaux féroces (chiens)", es: "my.gov.sa — Permiso de importación de animales feroces (perros)", pt: "my.gov.sa — Autorização de importação de animais ferozes (cachorros)" }
+    url: "https://my.gov.sa/en/services/153108"
+  - label: { en: "my.gov.sa — Pet exit and entry permit", fr: "my.gov.sa — Permis de sortie et d'entrée d'animaux", es: "my.gov.sa — Permiso de salida y entrada de mascotas", pt: "my.gov.sa — Autorização de saída e entrada de animais de estimação" }
+    url: "https://my.gov.sa/en/services/318190"
+  - label: { en: "MEWA — Conditions for exporting pets", fr: "MEWA — Conditions d'exportation des animaux", es: "MEWA — Condiciones para la exportación de mascotas", pt: "MEWA — Condições para exportar animais de estimação" }
+    url: "https://www.mewa.gov.sa/en/InformationCenter/DocsCenter/RulesLibrary/Docs/Conditions%20for%20exporting%20pets.pdf"
+
+seo:
+  title: { en: "Saudi Arabia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Arabie saoudite — Guide", es: "Requisitos de entrada de perros en Arabia Saudí — Guía de viaje", pt: "Arábia Saudita: exigências de entrada para cachorros" }
+  metaTitle: { en: "Saudi Arabia Dog Entry Requirements (2026)", fr: "Voyager en Arabie saoudite avec ton chien : formalités (2026)", es: "Viajar a Arabia Saudí con tu perro: requisitos de entrada (2026)", pt: "Exigências de Entrada de Cachorros na Arábia Saudita (2026)" }
+  metaDesc:
+    en: "Official MEWA/Anaam import permit, microchip, rabies and health-certificate rules for bringing a dog into Saudi Arabia, plus banned breeds. Sourced and dated."
+    fr: "Règles officielles MEWA/Anaam : permis d'importation, puce, rage et certificat sanitaire pour faire entrer un chien en Arabie saoudite. Sourcé et daté."
+    es: "Normas oficiales del MEWA/Anaam sobre permiso de importación, microchip, rabia y certificado sanitario para traer un perro a Arabia Saudí. Con fuentes y fecha."
+    pt: "Autorização de importação da MEWA/Anaam, microchip, vacinação antirrábica e atestado de saúde para levar um cachorro para a Arábia Saudita, além das raças proibidas."
+  slug: "saudi-arabia"
+  shortDesc:
+    en: "What you need to bring a dog into Saudi Arabia — MEWA permit, microchip, rabies, health certificate and banned breeds."
+    fr: "Ce qu'il faut pour faire entrer un chien en Arabie saoudite — permis MEWA, puce, rage, certificat sanitaire et races interdites."
+    es: "Lo que necesitas para traer un perro a Arabia Saudí — permiso del MEWA, microchip, rabia, certificado sanitario y razas prohibidas."
+    pt: "O que você precisa para levar um cachorro para a Arábia Saudita — autorização da MEWA, microchip, vacinação antirrábica, atestado de saúde e raças proibidas."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

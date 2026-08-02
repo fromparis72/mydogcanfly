@@ -1,0 +1,344 @@
+# Country Entry Guide — Slovenia (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_si
+iso2: "SI"
+name: { en: "Slovenia", fr: "Slovénie", es: "Eslovenia", pt: "Eslovênia" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Slovenia with your dog", fr: "Voyager en Slovénie avec ton chien", es: "Viajar a Eslovenia con tu perro", pt: "Viajar para a Eslovênia com seu cachorro" }
+  intro:
+    en: >-
+      Slovenia welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Slovenia itself. As an EU member, Slovenia applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from another
+      EU country simply needs an EU pet passport. A dog from a listed non-EU country (such as the United
+      States, Canada or the United Kingdom) needs an EU animal health certificate but no blood test. A dog
+      from a non-listed country faces the longest path, including a rabies antibody test and a three-month
+      wait. No tapeworm treatment is required to enter Slovenia. This guide explains each case so you know
+      exactly what to prepare before you book your flight.
+    fr: >-
+      La Slovénie accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton chien
+      voyage — pas seulement de la Slovénie. En tant qu'État membre de l'UE, la Slovénie applique les règles
+      européennes de mouvement des animaux : une puce ISO et une vaccination antirabique valide sont toujours
+      exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un passeport européen. Un chien
+      en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…) a besoin d'un certificat sanitaire
+      européen mais pas de prise de sang. Un chien venant d'un pays non listé suit le parcours le plus long,
+      avec un titrage antirabique et un délai de trois mois. Aucun traitement contre l'échinococcose n'est
+      exigé pour entrer en Slovénie. Ce guide détaille chaque cas pour savoir exactement quoi préparer avant
+      de réserver ton vol.
+    es: >-
+      Eslovenia acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Eslovenia. Como Estado miembro de la UE, Eslovenia aplica las normas
+      europeas de movimiento de animales de compañía: siempre se exigen un microchip ISO y una vacunación
+      antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte europeo para
+      mascotas. Un perro procedente de un país tercero listado (como Estados Unidos, Canadá o el Reino
+      Unido) necesita un certificado sanitario europeo, pero no una prueba de sangre. Un perro de un país
+      no listado se enfrenta al camino más largo, que incluye una prueba de titulación de rabia y una
+      espera de tres meses. No se exige tratamiento contra la tenia para entrar en Eslovenia. Esta guía
+      explica cada caso para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Eslovênia recebe bem os cachorros, mas o que você precisa preparar depende sobretudo do país de onde o seu cachorro viaja — e não só da Eslovênia. Como Estado-membro da UE, a Eslovênia aplica as regras europeias de circulação de animais de companhia: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro que vem de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro de um país não listado enfrenta o percurso mais longo, com teste sorológico antirrábico e espera de três meses. Nenhum tratamento contra a tênia é exigido para entrar na Eslovênia. Este guia explica cada caso para você saber exatamente o que preparar antes de reservar o voo."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate valid 10 days."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario válido 10 días."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Slovenia", fr: "Non requis pour la Slovénie", es: "No obligatorio para Eslovenia", pt: "Não obrigatório para a Eslovênia" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Slovenia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Slovénie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Eslovenia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Eslovênia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Slovenia", fr: "Pays de destination — Slovénie", es: "País de destino — Eslovenia", pt: "País de destino — Eslovênia" }
+      text:
+        en: "Slovenia applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed to enter Slovenia."
+        fr: "La Slovénie applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer en Slovénie."
+        es: "Eslovenia aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en Eslovenia."
+        pt: "A Eslovênia aplica o marco europeu de circulação de animais de companhia: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido para entrar na Eslovênia."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Slovenia's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre slovène, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Eslovenia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o marco regulatório da Eslovênia e depois confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination.", fr: "Doit être posée avant la vaccination antirabique.", es: "Debe implantarse antes de la vacunación antirrábica.", pt: "Deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; gov.si (UVHVVR)", fr: "Règl. UE 576/2013 ; gov.si (UVHVVR)", es: "Regl. UE 576/2013; gov.si (UVHVVR)", pt: "Regulamento UE 576/2013; gov.si (UVHVVR)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; otherwise re-vaccination is needed.", fr: "La puce doit déjà être posée ; sinon il faut revacciner.", es: "El microchip debe estar ya implantado; de lo contrario, hay que revacunar.", pt: "O microchip já deve estar implantado; caso contrário, é preciso revacinar." }
+    ref: { en: "EU Reg. 576/2013, Annex III", fr: "Règl. UE 576/2013, annexe III", es: "Regl. UE 576/2013, anexo III", pt: "Regulamento UE 576/2013, anexo III" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-designated lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório designado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; gov.si (UVHVVR)", fr: "Règl. UE 2020/692 ; gov.si (UVHVVR)", es: "Regl. UE 2020/692; gov.si (UVHVVR)", pt: "Regulamento UE 2020/692; gov.si (UVHVVR)" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e, depois, por até 4 meses para circular pela UE." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV", fr: "Règl. UE 577/2013, annexe IV", es: "Regl. UE 577/2013, anexo IV", pt: "Regulamento UE 577/2013, anexo IV" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only Finland, Ireland, Malta, N. Ireland and Norway require it — not Slovenia.", fr: "Seuls la Finlande, l'Irlande, Malte, l'Irlande du Nord et la Norvège l'exigent — pas la Slovénie.", es: "Solo lo exigen Finlandia, Irlanda, Malta, Irlanda del Norte y Noruega — no Eslovenia.", pt: "Apenas Finlândia, Irlanda, Malta, Irlanda do Norte e Noruega o exigem — a Eslovênia, não." }
+    ref: { en: "European Commission — pet travel", fr: "Commission européenne — voyage animaux", es: "Comisión Europea — viaje de animales", pt: "Comissão Europeia — viagens com animais de estimação" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Slovenia issues no import permit for non-commercial pet movements and requires no prior customs appointment.", fr: "La Slovénie ne délivre aucun permis d'import pour les mouvements non commerciaux et n'exige aucun rendez-vous douanier préalable.", es: "Eslovenia no expide permiso de importación para los movimientos no comerciales y no exige cita previa en aduanas.", pt: "A Eslovênia não emite autorização de importação para a circulação não comercial de animais de companhia nem exige agendamento prévio na alfândega." }
+    ref: { en: "FURS — Import of pet animals", fr: "FURS — Importation d'animaux de compagnie", es: "FURS — Importación de animales de compañía", pt: "FURS — Importação de animais de estimação" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Non-EU arrivals", fr: "Arrivées hors UE", es: "Llegadas de fuera de la UE", pt: "Chegadas de fora da UE" }
+    when: { en: "At a designated travellers' point of entry (Ljubljana Airport / Brnik); present the documents to customs.", fr: "À un point d'entrée voyageurs désigné (aéroport de Ljubljana / Brnik) ; présente les documents à la douane.", es: "En un punto de entrada de viajeros designado (aeropuerto de Liubliana / Brnik); presenta los documentos a la aduana.", pt: "Em um ponto de entrada de viajantes designado (Aeroporto de Liubliana / Brnik); apresente os documentos à alfândega." }
+    exceptions: { en: "No systematic check for intra-EU (Schengen) arrivals.", fr: "Pas de contrôle systématique pour les arrivées intra-UE (Schengen).", es: "Sin control sistemático para las llegadas intracomunitarias (Schengen).", pt: "Sem controle sistemático para as chegadas de dentro da UE (Schengen)." }
+    ref: { en: "EU Reg. 576/2013; FURS", fr: "Règl. UE 576/2013 ; FURS", es: "Regl. UE 576/2013; FURS", pt: "Regulamento UE 576/2013; FURS" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter from outside the EU.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer depuis hors UE.", es: "Un cachorro de menos de 12 semanas no puede vacunarse, así que no puede entrar desde fuera de la UE.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não podem entrar vindos de fora da UE." }
+    ref: { en: "EU Reg. 576/2013; gov.si (UVHVVR)", fr: "Règl. UE 576/2013 ; gov.si (UVHVVR)", es: "Regl. UE 576/2013; gov.si (UVHVVR)", pt: "Regulamento UE 576/2013; gov.si (UVHVVR)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — non-compliant animals may be refused entry at the point of entry.", fr: "Uniquement en cas de non-conformité — un animal non conforme peut être refusé au point d'entrée.", es: "Solo en caso de incumplimiento — un animal no conforme puede ser rechazado en el punto de entrada.", pt: "Apenas em caso de descumprimento das regras — animais em situação irregular podem ter a entrada recusada no ponto de entrada." }
+    ref: { en: "FURS — Import of pet animals", fr: "FURS — Importation d'animaux de compagnie", es: "FURS — Importación de animales de compañía", pt: "FURS — Importação de animais de estimação" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and normally no border check."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et normalement pas de contrôle frontalier."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y normalmente sin control fronterizo."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e, normalmente, sem controle de fronteira."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by an official vet before departure. No antibody test is required; enter via a designated travellers' point of entry (Ljubljana Airport / Brnik)."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par un vétérinaire officiel avant le départ. Pas de titrage ; entre par un point d'entrée voyageurs désigné (aéroport de Ljubljana / Brnik)."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por un veterinario oficial antes de la salida. No se exige prueba de titulación; entra por un punto de entrada de viajeros designado (aeropuerto de Liubliana / Brnik)."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e certificado sanitário europeu endossado por um veterinário oficial antes da partida. Não é exigido teste sorológico; a entrada deve ser feita por um ponto de entrada de viajantes designado (Aeroporto de Liubliana / Brnik)."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-designated laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate is also required."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé est également requis."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige un certificado sanitario animal de la UE refrendado."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório designado pela UE, e depois 3 meses obrigatórios de espera antes da entrada. Também é exigido um certificado sanitário europeu endossado."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Slovenia depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Slovénie dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Eslovenia depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega à Eslovênia depende do país de onde você veio."
+  points:
+    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+      fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
+      es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
+      pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
+    - en: "From outside the EU: live animals may enter only via a designated point of entry — in Slovenia this is Ljubljana Airport (Brnik) — where UVHVVR officers carry out veterinary checks."
+      fr: "Depuis hors UE : les animaux vivants ne peuvent entrer que par un point d'entrée désigné — en Slovénie l'aéroport de Ljubljana (Brnik) — où les agents de l'UVHVVR réalisent les contrôles vétérinaires."
+      es: "Desde fuera de la UE: los animales vivos solo pueden entrar por un punto de entrada designado — en Eslovenia, el aeropuerto de Liubliana (Brnik) — donde los agentes de la UVHVVR realizan los controles veterinarios."
+      pt: "De fora da UE: animais vivos só podem entrar por um ponto de entrada designado — na Eslovênia, o Aeroporto de Liubliana (Brnik) —, onde os agentes da UVHVVR fazem os controles veterinários."
+    - en: "Present the accompanying documents to the customs authority (FURS) at the point of entry and allow any check to be carried out."
+      fr: "Présente les documents d'accompagnement à la douane (FURS) au point d'entrée et permets tout contrôle éventuel."
+      es: "Presenta los documentos de acompañamiento a la autoridad aduanera (FURS) en el punto de entrada y permite que se realice cualquier control."
+      pt: "Apresente os documentos que acompanham o cachorro à autoridade aduaneira (FURS) no ponto de entrada e permita a realização de qualquer controle."
+    - en: "No import permit is issued and no prior appointment is needed for a non-commercial movement of up to five pets."
+      fr: "Aucun permis d'import n'est délivré et aucun rendez-vous préalable n'est nécessaire pour un mouvement non commercial d'au plus cinq animaux."
+      es: "No se expide permiso de importación ni se necesita cita previa para un movimiento no comercial de hasta cinco mascotas."
+      pt: "Não é emitida autorização de importação e não é preciso agendamento prévio para a circulação não comercial de até cinco animais de estimação."
+    - en: "Carry original documents (not copies); an official translation may be requested if they are not in Slovene or English."
+      fr: "Munis-toi des documents originaux (pas de copies) ; une traduction officielle peut être demandée s'ils ne sont pas en slovène ou en anglais."
+      es: "Lleva los documentos originales (no copias); puede solicitarse una traducción oficial si no están en esloveno o en inglés."
+      pt: "Leve os documentos originais (não cópias); pode ser exigida uma tradução oficial se eles não estiverem em esloveno ou inglês."
+    - en: "If documents are missing or invalid, animals that do not pass the checks are not allowed to enter the customs territory of the Union."
+      fr: "Si les documents manquent ou sont invalides, un animal qui ne passe pas les contrôles n'est pas autorisé à entrer sur le territoire douanier de l'Union."
+      es: "Si faltan documentos o no son válidos, los animales que no superan los controles no pueden entrar en el territorio aduanero de la Unión."
+      pt: "Se faltarem documentos ou eles não forem válidos, os animais que não passarem nos controles não podem entrar no território aduaneiro da União."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Slovenia has no breed-specific ban and no official list of dangerous breeds. Under the Animal Protection Act (Zakon o zaščiti živali, ZZZiv), 'dangerous dog' status is decided by an individual dog's behaviour, not by its breed. So no breed is prohibited from entering Slovenia on breed grounds."
+    fr: "La Slovénie n'applique aucune interdiction visant une race et ne tient aucune liste officielle de races dangereuses. Selon la loi sur la protection des animaux (Zakon o zaščiti živali, ZZZiv), le statut de « chien dangereux » dépend du comportement individuel du chien, pas de sa race. Aucune race n'est donc interdite d'entrée en Slovénie pour un motif racial."
+    es: "Eslovenia no aplica ninguna prohibición por raza ni mantiene ninguna lista oficial de razas peligrosas. Según la Ley de Protección de los Animales (Zakon o zaščiti živali, ZZZiv), la condición de «perro peligroso» se decide por el comportamiento individual del perro, no por su raza. Por tanto, ninguna raza tiene prohibida la entrada en Eslovenia por motivos de raza."
+    pt: "A Eslovênia não tem proibição por raça nem lista oficial de raças perigosas. Segundo a Lei de Proteção Animal (Zakon o zaščiti živali, ZZZiv), a condição de “cachorro perigoso” é definida pelo comportamento de cada cachorro, e não pela sua raça. Portanto, nenhuma raça está proibida de entrar na Eslovênia por motivo de raça."
+  cat1:
+    en: "No breed ban: unlike some EU countries, Slovenia does not prohibit or restrict any breed by name (no pit-bull, Rottweiler, Tosa or similar list). Every dog is welcome subject only to the EU pet-movement rules above. All dogs must be entered in the central dog register and kept on a lead in public places."
+    fr: "Aucune interdiction de race : contrairement à certains pays de l'UE, la Slovénie n'interdit ni ne restreint aucune race nommément (pas de liste pit-bull, Rottweiler, Tosa ou similaire). Tout chien est admis sous réserve des seules règles européennes ci-dessus. Tout chien doit être inscrit au registre central des chiens et tenu en laisse dans les lieux publics."
+    es: "Sin prohibición de raza: a diferencia de algunos países de la UE, Eslovenia no prohíbe ni restringe ninguna raza por su nombre (sin lista de pit bull, Rottweiler, Tosa o similares). Todo perro es bienvenido con sujeción únicamente a las normas europeas de movimiento de animales anteriores. Todos los perros deben inscribirse en el registro central de perros y mantenerse con correa en los lugares públicos."
+    pt: "Sem proibição de raças: diferentemente de alguns países da UE, a Eslovênia não proíbe nem restringe nenhuma raça pelo nome (não há lista de pit bull, rottweiler, tosa ou semelhantes). Todo cachorro é bem-vindo, sujeito apenas às regras europeias de circulação de animais indicadas acima. Todos os cachorros devem ser inscritos no registro central de cães e mantidos na coleira em locais públicos."
+  cat2:
+    en: "Dangerous-dog conditions (any breed): a dog legally classed as dangerous — one that has bitten a person or animal (excluding service dogs on duty and dogs biting an intruder) — must in public be on a lead AND muzzled, or kept in an enclosure fenced at least 1.8 m high with a warning sign. It may not be handled by anyone under 16, and mandatory behavioural training applies after a bite."
+    fr: "Conditions pour chien dangereux (toute race) : un chien légalement classé dangereux — ayant mordu une personne ou un animal (hors chiens de service en fonction et chiens mordant un intrus) — doit en public être tenu en laisse ET muselé, ou gardé dans un enclos clôturé d'au moins 1,8 m avec un panneau d'avertissement. Il ne peut être confié à une personne de moins de 16 ans, et une rééducation comportementale obligatoire s'applique après une morsure."
+    es: "Condiciones para perro peligroso (cualquier raza): un perro clasificado legalmente como peligroso — que haya mordido a una persona o a un animal (salvo los perros de servicio en funciones y los perros que muerden a un intruso) — debe llevar en público correa Y bozal, o mantenerse en un recinto vallado de al menos 1,8 m de altura con una señal de advertencia. No puede confiarse a nadie menor de 16 años, y tras una mordedura se aplica una reeducación conductual obligatoria."
+    pt: "Condições para cachorro perigoso (qualquer raça): um cachorro classificado legalmente como perigoso — aquele que mordeu uma pessoa ou um animal (excluídos os cães de serviço em atividade e os cachorros que mordem um invasor) — deve, em local público, estar na coleira E com focinheira, ou ficar em um recinto cercado com pelo menos 1,8 m de altura e placa de advertência. Não pode ser conduzido por menores de 16 anos, e um treinamento comportamental obrigatório se aplica depois de uma mordida."
+  note:
+    en: "Because the classification is behaviour-based, a dog is only declared dangerous after a documented bite — not on arrival for how it looks. For confirmation, contact the Administration for Food Safety, Veterinary Sector and Plant Protection (UVHVVR)."
+    fr: "La classification étant comportementale, un chien n'est déclaré dangereux qu'après une morsure documentée — pas à l'arrivée selon son apparence. Pour confirmation, contacte l'Administration pour la sécurité alimentaire, le secteur vétérinaire et la protection des végétaux (UVHVVR)."
+    es: "Como la clasificación se basa en el comportamiento, un perro solo se declara peligroso tras una mordedura documentada — no a la llegada por su aspecto. Para confirmarlo, ponte en contacto con la Administración para la Seguridad Alimentaria, el Sector Veterinario y la Protección Vegetal (UVHVVR)."
+    pt: "Como a classificação se baseia no comportamento, um cachorro só é declarado perigoso depois de uma mordida documentada — nunca na chegada, por causa da aparência. Para confirmar, entre em contato com a Administração de Segurança dos Alimentos, Setor Veterinário e Proteção Vegetal (Uprava za varno hrano, veterinarstvo in varstvo rastlin — UVHVVR)."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Original documents in Slovene or English (official translation if needed)"
+    fr: "Documents originaux en slovène ou en anglais (traduction officielle si besoin)"
+    es: "Documentos originales en esloveno o en inglés (traducción oficial si es necesario)"
+    pt: "Documentos originais em esloveno ou inglês (tradução oficial, se necessário)"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "For non-EU arrivals, plan to enter via Ljubljana Airport (Brnik)"
+    fr: "Pour les arrivées hors UE, prévois d'entrer par l'aéroport de Ljubljana (Brnik)"
+    es: "Para las llegadas de fuera de la UE, prevé entrar por el aeropuerto de Liubliana (Brnik)"
+    pt: "Nas chegadas de fora da UE, planeje entrar pelo Aeroporto de Liubliana (Brnik)"
+
+sources:
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Travelling with a pet within the EU", fr: "Commission européenne — Voyager avec un animal dans l'UE", es: "Comisión Europea — Viajar con una mascota dentro de la UE", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - label: { en: "European Commission — Listing of non-EU countries (antibody-test exemption)", fr: "Commission européenne — Liste des pays tiers (dispense de titrage)", es: "Comisión Europea — Lista de países no pertenecientes a la UE (exención de la prueba de titulación)", pt: "Comissão Europeia — Lista dos países terceiros (isenção de teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en"
+  - label: { en: "GOV.SI (UVHVVR) — Travelling with pets", fr: "GOV.SI (UVHVVR) — Voyager avec des animaux de compagnie", es: "GOV.SI (UVHVVR) — Viajar con animales de compañía", pt: "GOV.SI (UVHVVR) — Viajar com animais de estimação" }
+    url: "https://www.gov.si/en/policies/agriculture-forestry-and-food/import-export-and-trade-in-animals-plants-and-plant-and-animal-products/travelling-with-pets/"
+  - label: { en: "GOV.SI (UVHVVR) — Travelling with a dog, cat or ferret to Slovenia from third countries", fr: "GOV.SI (UVHVVR) — Entrer en Slovénie avec un chien, chat ou furet depuis un pays tiers", es: "GOV.SI (UVHVVR) — Entrar en Eslovenia con un perro, gato o hurón desde países terceros", pt: "GOV.SI (UVHVVR) — Viajar com cão, gato ou furão para a Eslovênia a partir de países terceiros" }
+    url: "https://www.gov.si/en/topics/travelling-or-returning-with-a-dog-cat-or-ferret-to-slovenia-from-third-countries/"
+  - label: { en: "Financial Administration (FURS) — Import of pet animals", fr: "Administration financière (FURS) — Importation d'animaux de compagnie", es: "Administración Financiera (FURS) — Importación de animales de compañía", pt: "Administração Financeira (FURS) — Importação de animais de estimação" }
+    url: "https://www.fu.gov.si/en/life_events_individuals/import_of_pet_animals/"
+  - label: { en: "Animal Protection Act (ZZZiv) — dangerous dogs (PISRS)", fr: "Loi sur la protection des animaux (ZZZiv) — chiens dangereux (PISRS)", es: "Ley de Protección de los Animales (ZZZiv) — perros peligrosos (PISRS)", pt: "Lei de Proteção Animal (ZZZiv) — cachorros perigosos (PISRS)" }
+    url: "https://pisrs.si/pregledPredpisa?id=ZAKO1353"
+
+seo:
+  title: { en: "Slovenia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Slovénie — Guide", es: "Requisitos de entrada de perros en Eslovenia — Guía de viaje", pt: "Entrada de cachorros na Eslovênia — Guia de viagem" }
+  metaTitle: { en: "Traveling to Slovenia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Slovénie avec ton chien : formalités (2026)", es: "Viajar a Eslovenia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Eslovênia: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Slovenia — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Slovénie — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Eslovenia — según origen UE, listado o no listado. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro à Eslovênia — por origem UE, listada e não listada. Com fonte e data."
+  slug: "slovenia"
+  shortDesc:
+    en: "What you need to bring a dog into Slovenia, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Slovénie, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Eslovenia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Eslovênia, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

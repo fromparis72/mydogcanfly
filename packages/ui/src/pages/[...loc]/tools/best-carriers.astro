@@ -1,0 +1,39 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const fr = locale === "fr";
+const es = locale === "es";
+const title = T("The best cabin carriers 2026", "Les meilleurs sacs de transport cabine 2026", "Los mejores bolsos de transporte para cabina 2026");
+const blurb = T("Our ranking of the best soft cabin carriers is coming soon: a selection based on comfort, ventilation, under-seat compliance and airline acceptance — with verified sources.", "Notre classement des meilleurs sacs de transport souples pour la cabine arrive bientôt : sélection basée sur le confort, la ventilation, la conformité sous le siège et l'acceptation des compagnies — avec sources vérifiées.", "Nuestra clasificación de los mejores bolsos de transporte flexibles para cabina llegará pronto: una selección basada en la comodidad, la ventilación, el cumplimiento debajo del asiento y la aceptación de las aerolíneas — con fuentes verificadas.");
+const crateHref = (locale === "en" ? "" : `/${locale}`) + "/tools/crate/";
+const metaDesc = T("The best soft cabin carriers for dogs: comfort, ventilation, under-seat compliance and airline acceptance. Ranking coming soon.", "Les meilleurs sacs de transport souples pour la cabine : confort, ventilation, conformité sous le siège et acceptation par les compagnies.", "Los mejores bolsos de transporte flexibles para cabina: comodidad, ventilación, medidas bajo el asiento y aceptación de las aerolíneas.");
+---
+<Base locale={locale} title={`${title}`} description={metaDesc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="bc-blurb">{blurb}</p>
+      <div class="bc-soon">
+        <p>{T("🏆 Ranking in preparation — we will only publish models that are genuinely reviewed and sourced (no fabricated recommendations).", "🏆 Classement en préparation — nous ne publierons que des modèles réellement évalués et sourcés (aucune recommandation fabriquée).", "🏆 Clasificación en preparación — solo publicaremos modelos realmente evaluados y con fuentes (sin recomendaciones inventadas).")}</p>
+        <a class="bc-cta" href={crateHref}>📦 {T("In the meantime, check whether your dog is cabin-eligible", "En attendant, vérifiez si votre chien est éligible cabine", "Mientras tanto, comprueba si tu perro puede viajar en cabina")} →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .bc-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }
+  .bc-soon { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 20px; background: var(--mdcf-surface); max-width: 720px; }
+  .bc-soon p { margin: 0 0 14px; line-height: 1.55; }
+  .bc-cta { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; background: linear-gradient(180deg,var(--mdcf-accent,#f2700f),var(--mdcf-accent-hover,#d95f08)); color: #fff; font-weight: 700; text-decoration: none; }
+</style>

@@ -1,0 +1,359 @@
+# Country Entry Guide — Iceland (source of truth, bilingual EN/FR).
+# Iceland is EEA (EFTA) but NOT in the EU: it runs its own strict national import scheme (MAST),
+# not the EU pet-passport framework. Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_is
+iso2: "IS"
+name: { en: "Iceland", fr: "Islande", es: "Islandia", pt: "Islândia" }
+region: { en: "Europe (EEA, non-EU)", fr: "Europe (EEE, hors UE)", es: "Europa (EEE, fuera de la UE)", pt: "Europa (EEE, fora da UE)" }
+
+
+regime: island_strict
+
+hero:
+  h1: { en: "Traveling to Iceland with your dog", fr: "Voyager en Islande avec ton chien", es: "Viajar a Islandia con tu perro", pt: "Viajar para a Islândia com seu cachorro" }
+  intro:
+    en: >-
+      Iceland has one of the strictest pet-import regimes in the world, and it is not the EU system.
+      Although Iceland is part of the EEA, it is not an EU member and does not use the EU pet passport.
+      Every dog — even for a two-week holiday — is treated as an import: it needs an import permit from
+      MAST (the Icelandic Food and Veterinary Authority), may come only from an approved country, must
+      complete a long list of vaccinations, a rabies antibody test and parasite treatments, and must
+      then spend at least 14 days in a government quarantine station on arrival. There is no way around
+      the quarantine for ordinary pets. Preparation takes months, so start early. This guide explains
+      the whole path so you know exactly what to arrange before you book your flight to Keflavík.
+    fr: >-
+      L'Islande applique l'un des régimes d'importation d'animaux les plus stricts au monde, et ce n'est
+      pas le système de l'UE. Bien que l'Islande fasse partie de l'EEE, elle n'est pas membre de l'UE et
+      n'utilise pas le passeport européen. Tout chien — même pour deux semaines de vacances — est
+      considéré comme une importation : il faut un permis d'importation de MAST (l'Autorité islandaise
+      de l'alimentation et vétérinaire), l'animal ne peut venir que d'un pays approuvé, doit recevoir une
+      longue liste de vaccinations, un titrage antirabique et des traitements antiparasitaires, puis
+      passer au moins 14 jours en station de quarantaine officielle à l'arrivée. Il n'existe aucune
+      dérogation à la quarantaine pour les animaux ordinaires. La préparation prend des mois : anticipe.
+      Ce guide détaille tout le parcours pour savoir exactement quoi organiser avant de réserver ton
+      vol vers Keflavík.
+    es: >-
+      Islandia tiene uno de los regímenes de importación de mascotas más estrictos del mundo, y no es el
+      sistema de la UE. Aunque Islandia forma parte del EEE, no es miembro de la UE y no utiliza el
+      pasaporte europeo para mascotas. Todo perro —incluso para unas vacaciones de dos semanas— se trata
+      como una importación: necesita un permiso de importación de MAST (la Autoridad Islandesa de
+      Alimentación y Veterinaria), solo puede proceder de un país aprobado, debe completar una larga
+      lista de vacunas, una prueba de titulación de rabia y tratamientos antiparasitarios, y luego debe
+      pasar al menos 14 días en una estación de cuarentena gubernamental a su llegada. No existe forma de
+      evitar la cuarentena para mascotas ordinarias. La preparación lleva meses, así que empieza pronto.
+      Esta guía explica todo el recorrido para que sepas exactamente qué organizar antes de reservar tu
+      vuelo a Keflavík.
+
+    pt: "A Islândia tem um dos regimes de importação de animais de estimação mais rigorosos do mundo, e ele não é o sistema da UE. Embora a Islândia faça parte do EEE, ela não é membro da UE e não usa o passaporte europeu para animais. Todo cachorro — mesmo para umas férias de duas semanas — é tratado como importação: precisa de uma autorização de importação da MAST (a Icelandic Food and Veterinary Authority, autoridade islandesa de alimentos e veterinária), só pode vir de um país aprovado, precisa cumprir uma longa lista de vacinações, um teste sorológico antirrábico e tratamentos antiparasitários e, depois, passar pelo menos 14 dias em uma estação de quarentena do governo na chegada. Não há como escapar da quarentena para os animais de estimação comuns. A preparação leva meses, então comece cedo. Este guia explica todo o percurso para você saber exatamente o que providenciar antes de comprar a passagem para Keflavík."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — import permit and mandatory quarantine", fr: "Difficile — permis d'importation et quarantaine obligatoire", es: "Difícil — permiso de importación y cuarentena obligatoria", pt: "Difícil — autorização de importação e quarentena obrigatória" }
+
+prepTime:
+  eu:
+    en: "Category 1 (rabies-free approved country): ~1.5–3 months — microchip, rabies vaccination, antibody test at least 30 days later (no waiting after result), other vaccines, two parasite treatments, plus a booked quarantine slot."
+    fr: "Catégorie 1 (pays approuvé indemne de rage) : ~1,5 à 3 mois — puce, vaccin antirabique, titrage au moins 30 jours après (sans attente après le résultat), autres vaccins, deux traitements antiparasitaires, plus un créneau de quarantaine réservé."
+    es: "Categoría 1 (país aprobado libre de rabia): ~1,5–3 meses — microchip, vacunación antirrábica, prueba de titulación al menos 30 días después (sin espera tras el resultado), otras vacunas, dos tratamientos antiparasitarios, más una plaza de cuarentena reservada."
+    pt: "Categoria 1 (país aprovado livre de raiva): ~1,5–3 meses — microchip, vacinação antirrábica, teste sorológico pelo menos 30 dias depois (sem espera após o resultado), outras vacinas, dois tratamentos antiparasitários, mais uma vaga de quarentena reservada."
+  listed:
+    en: "Category 2 (approved, rabies controlled): ~4–5 months — the same steps plus a compulsory 90-day wait counted from the antibody blood sampling before the dog may enter."
+    fr: "Catégorie 2 (approuvé, rage maîtrisée) : ~4 à 5 mois — les mêmes étapes plus un délai obligatoire de 90 jours compté depuis la prise de sang du titrage avant l'entrée du chien."
+    es: "Categoría 2 (aprobado, rabia controlada): ~4–5 meses — los mismos pasos más una espera obligatoria de 90 días contada desde la extracción de sangre para la prueba de titulación antes de que el perro pueda entrar."
+    pt: "Categoria 2 (aprovado, raiva controlada): ~4–5 meses — as mesmas etapas mais uma espera obrigatória de 90 dias contada a partir da coleta de sangue do teste sorológico antes de o cachorro poder entrar."
+  nonListed:
+    en: "Non-approved country: ~6+ months and only for a resident moving to Iceland who has owned the dog abroad for at least 6 months; Category 2 conditions apply, including canine influenza vaccination."
+    fr: "Pays non approuvé : ~6 mois et plus, et uniquement pour un résident s'installant en Islande ayant possédé le chien à l'étranger depuis au moins 6 mois ; conditions de catégorie 2, y compris vaccination contre la grippe canine."
+    es: "País no aprobado: ~6 meses o más, y solo para un residente que se traslada a Islandia y que ha tenido al perro en el extranjero durante al menos 6 meses; se aplican las condiciones de la categoría 2, incluida la vacunación contra la gripe canina."
+    pt: "País não aprovado: ~6 meses ou mais, e somente para um residente que está se mudando para a Islândia e que teve o cachorro no exterior por pelo menos 6 meses; aplicam-se as condições da categoria 2, incluindo a vacinação contra a gripe canina."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — from approved countries only", fr: "Oui — depuis les pays approuvés uniquement", es: "Sí — solo desde países aprobados", pt: "Sim — somente de países aprovados" }
+    cls: neutral
+  - requirement: { en: "Import permit (MAST)", fr: "Permis d'importation (MAST)", es: "Permiso de importación (MAST)", pt: "Autorização de importação (MAST)" }
+    status: { en: "Required — apply in advance", fr: "Requis — à demander à l'avance", es: "Obligatorio — solicitar con antelación", pt: "Obrigatória — solicite com antecedência" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required — always", fr: "Requis — dans tous les cas", es: "Obligatoria — en todos los casos", pt: "Obrigatório — em todos os casos" }
+    cls: warn
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (D1/D2 health & origin certificate)", fr: "Requis (certificat sanitaire et d'origine D1/D2)", es: "Obligatorio (certificado sanitario y de origen D1/D2)", pt: "Obrigatório (certificado sanitário e de origem D1/D2)" }
+    cls: warn
+  - requirement: { en: "Tapeworm / parasite treatments", fr: "Traitements antiparasitaires (dont échinococcose)", es: "Tratamientos antiparasitarios (incl. tenia)", pt: "Tratamentos antiparasitários (incl. tênia)" }
+    status: { en: "Required — two treatments", fr: "Requis — deux traitements", es: "Obligatorios — dos tratamientos", pt: "Obrigatórios — dois tratamentos" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Required — min. 14 days at a station", fr: "Requise — min. 14 jours en station", es: "Obligatoria — mín. 14 días en una estación", pt: "Obrigatória — mín. 14 dias em uma estação" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian, together with MAST, can confirm the exact procedure and timing for your individual dog."
+    fr: "Seul un vétérinaire, avec MAST, peut confirmer la procédure et le calendrier exacts pour ton chien."
+    es: "Solo un veterinario, junto con MAST, puede confirmar el procedimiento y el calendario exactos para tu perro."
+    pt: "Só um médico-veterinário, junto com a MAST, pode confirmar o procedimento e os prazos exatos para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Iceland (your destination) sets the scheme, but your dog's origin and history decide the timeline."
+    fr: "Les étapes exactes dépendent de trois éléments — l'Islande (ta destination) fixe le régime, mais l'origine et l'historique de ton chien déterminent le calendrier."
+    es: "Los pasos exactos dependen de tres factores — Islandia (tu destino) fija el régimen, pero el origen y el historial de tu perro determinan el calendario."
+    pt: "As etapas exatas dependem de três fatores — a Islândia (seu destino) define o regime, mas a origem e o histórico do seu cachorro determinam o calendário."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Iceland", fr: "Pays de destination — Islande", es: "País de destino — Islandia", pt: "País de destino — Islândia" }
+      text:
+        en: "Iceland runs its own national scheme, not the EU one: an import permit from MAST, entry only from approved countries, entry only via Keflavík Airport, and a mandatory quarantine of at least 14 days on arrival for every dog."
+        fr: "L'Islande applique son propre régime national, pas celui de l'UE : permis d'importation de MAST, entrée uniquement depuis les pays approuvés, entrée uniquement par l'aéroport de Keflavík, et quarantaine obligatoire d'au moins 14 jours à l'arrivée pour tout chien."
+        es: "Islandia aplica su propio régimen nacional, no el de la UE: un permiso de importación de MAST, entrada solo desde países aprobados, entrada solo por el aeropuerto de Keflavík, y una cuarentena obligatoria de al menos 14 días a la llegada para todo perro."
+        pt: "A Islândia aplica seu próprio regime nacional, e não o da UE: autorização de importação da MAST, entrada apenas a partir de países aprovados, entrada apenas pelo aeroporto de Keflavík e quarentena obrigatória de pelo menos 14 dias na chegada para todo cachorro."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The dog may leave only from an approved exporting country. Category 1 (rabies-free) countries have no waiting period after the antibody test; Category 2 countries add a compulsory 90-day wait. A non-approved country is refused except for residents relocating."
+        fr: "Le chien ne peut partir que d'un pays exportateur approuvé. Les pays de catégorie 1 (indemnes de rage) n'imposent aucune attente après le titrage ; ceux de catégorie 2 ajoutent un délai obligatoire de 90 jours. Un pays non approuvé est refusé, sauf pour les résidents en cours d'installation."
+        es: "El perro solo puede salir de un país exportador aprobado. Los países de categoría 1 (libres de rabia) no imponen ningún periodo de espera tras la prueba de titulación; los de categoría 2 añaden una espera obligatoria de 90 días. Un país no aprobado se rechaza, salvo para residentes que se trasladan."
+        pt: "O cachorro só pode partir de um país exportador aprovado. Os países de categoria 1 (livres de raiva) não impõem nenhum período de espera depois do teste sorológico; os de categoria 2 acrescentam uma espera obrigatória de 90 dias. Um país não aprovado é recusado, exceto para residentes que estão se mudando."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "The dog must have stayed in an approved country (or another country of the same rabies category) for the 6 months before import, or since birth. A recent stay in a lower-category or non-approved country can block entry or force a change of route."
+        fr: "Le chien doit avoir séjourné dans un pays approuvé (ou un autre pays de la même catégorie de rage) pendant les 6 mois précédant l'importation, ou depuis la naissance. Un séjour récent dans un pays de catégorie inférieure ou non approuvé peut bloquer l'entrée ou imposer un changement d'itinéraire."
+        es: "El perro debe haber permanecido en un país aprobado (u otro país de la misma categoría de rabia) durante los 6 meses previos a la importación, o desde su nacimiento. Una estancia reciente en un país de categoría inferior o no aprobado puede bloquear la entrada u obligar a cambiar de ruta."
+        pt: "O cachorro precisa ter permanecido em um país aprovado (ou em outro país da mesma categoria de raiva) durante os 6 meses anteriores à importação, ou desde o nascimento. Uma estadia recente em um país de categoria inferior ou não aprovado pode bloquear a entrada ou obrigar a mudar de rota."
+  note:
+    en: "So read the requirements below as Iceland's framework, then confirm your dog's exact origin, history and timeline with your vet and with MAST before you commit to dates."
+    fr: "Lis donc les exigences ci-dessous comme le cadre islandais, puis confirme l'origine, l'historique et le calendrier exacts de ton chien avec ton vétérinaire et MAST avant de fixer des dates."
+    es: "Así que lee los requisitos siguientes como el marco de Islandia y luego confirma el origen, el historial y el calendario exactos de tu perro con tu veterinario y con MAST antes de fijar fechas."
+    pt: "Então leia as exigências abaixo como o marco geral da Islândia e depois confirme a origem, o histórico e o calendário exatos do seu cachorro com seu veterinário e com a MAST antes de fechar datas."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted and readable before the rabies vaccination and all sampling; the same number must appear on every document.", fr: "Doit être posée et lisible avant la vaccination antirabique et tous les prélèvements ; le même numéro doit figurer sur tous les documents.", es: "Debe implantarse y ser legible antes de la vacunación antirrábica y de todas las extracciones; el mismo número debe figurar en todos los documentos.", pt: "Precisa estar implantado e legível antes da vacinação antirrábica e de todas as coletas; o mesmo número deve constar em todos os documentos." }
+    exceptions: { en: "No exceptions — a dog with no readable microchip is rejected on arrival.", fr: "Aucune exception — un chien sans puce lisible est refusé à l'arrivée.", es: "Sin excepciones — un perro sin microchip legible es rechazado a su llegada.", pt: "Sem exceções — um cachorro sem microchip legível é recusado na chegada." }
+    ref: { en: "MAST — Import of live animals (dogs)", fr: "MAST — Importation d'animaux vivants (chiens)", es: "MAST — Importación de animales vivos (perros)", pt: "MAST — Importação de animais vivos (cachorros)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A valid rabies vaccination is compulsory even from rabies-free countries; must precede the antibody test.", fr: "Une vaccination antirabique valide est obligatoire même depuis les pays indemnes de rage ; doit précéder le titrage.", es: "Una vacunación antirrábica válida es obligatoria incluso desde países libres de rabia; debe preceder a la prueba de titulación.", pt: "Uma vacinação antirrábica válida é obrigatória mesmo vindo de países livres de raiva; precisa ser anterior ao teste sorológico." }
+    exceptions: { en: "None — required for every dog regardless of the country's rabies status.", fr: "Aucune — exigée pour tout chien quel que soit le statut rabique du pays.", es: "Ninguna — obligatoria para todo perro, sea cual sea el estatus rábico del país.", pt: "Nenhuma — exigida para todo cachorro, seja qual for a situação da raiva no país." }
+    ref: { en: "MAST — Guidance notes D1/D2; FAQ (rabies)", fr: "MAST — Notes d'orientation D1/D2 ; FAQ (rage)", es: "MAST — Notas orientativas D1/D2; preguntas frecuentes (rabia)", pt: "MAST — Notas de orientação D1/D2; FAQ (raiva)" }
+  - item: { en: "Rabies antibody test (titer)", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Blood taken at least 30 days after vaccination, result ≥0.5 IU/ml, at an EU-approved laboratory. Category 1: no wait after the result. Category 2: at least 90 days must pass from sampling before import.", fr: "Sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml, dans un laboratoire agréé UE. Catégorie 1 : aucune attente après le résultat. Catégorie 2 : au moins 90 jours doivent s'écouler depuis le prélèvement avant l'importation.", es: "Sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml, en un laboratorio aprobado por la UE. Categoría 1: sin espera tras el resultado. Categoría 2: deben transcurrir al menos 90 días desde la extracción antes de la importación.", pt: "Sangue coletado no mínimo 30 dias depois da vacinação, resultado ≥0,5 UI/ml, em laboratório aprovado pela UE. Categoria 1: sem espera depois do resultado. Categoria 2: pelo menos 90 dias precisam se passar desde a coleta antes da importação." }
+    exceptions: { en: "No exemption — the antibody test is required from every approved country, including rabies-free ones.", fr: "Aucune dispense — le titrage est exigé depuis tout pays approuvé, y compris ceux indemnes de rage.", es: "Sin exención — la prueba de titulación se exige desde todo país aprobado, incluidos los libres de rabia.", pt: "Sem isenção — o teste sorológico é exigido de todo país aprovado, inclusive dos livres de raiva." }
+    ref: { en: "MAST — FAQ (Category 1/2); EU-approved lab list", fr: "MAST — FAQ (catégorie 1/2) ; liste des laboratoires agréés UE", es: "MAST — Preguntas frecuentes (categoría 1/2); lista de laboratorios aprobados por la UE", pt: "MAST — FAQ (categoria 1/2); lista de laboratórios aprovados pela UE" }
+  - item: { en: "Other vaccinations", fr: "Autres vaccinations", es: "Otras vacunas", pt: "Outras vacinações" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Leptospirosis, canine distemper, infectious canine hepatitis, canine parvovirus and canine parainfluenza — each at least 14 days before entry. A restarted leptospirosis course needs two doses 3–4 weeks apart.", fr: "Leptospirose, maladie de Carré, hépatite de Rubarth, parvovirose et para-influenza canine — chacune au moins 14 jours avant l'entrée. Une primo-vaccination leptospirose nécessite deux doses à 3–4 semaines d'intervalle.", es: "Leptospirosis, moquillo canino, hepatitis infecciosa canina, parvovirus canino y parainfluenza canina — cada una al menos 14 días antes de la entrada. Una pauta de leptospirosis reiniciada requiere dos dosis con 3–4 semanas de diferencia.", pt: "Leptospirose, cinomose canina, hepatite infecciosa canina, parvovirose canina e parainfluenza canina — cada uma pelo menos 14 dias antes da entrada. Um esquema de leptospirose reiniciado exige duas doses com 3–4 semanas de intervalo." }
+    exceptions: { en: "Dogs from a non-approved country must also be vaccinated against canine influenza.", fr: "Les chiens venant d'un pays non approuvé doivent aussi être vaccinés contre la grippe canine.", es: "Los perros procedentes de un país no aprobado también deben vacunarse contra la gripe canina.", pt: "Os cachorros vindos de um país não aprovado também precisam ser vacinados contra a gripe canina." }
+    ref: { en: "MAST — Guidance notes D1/D2; leptospirosis timeline", fr: "MAST — Notes D1/D2 ; calendrier leptospirose", es: "MAST — Notas orientativas D1/D2; calendario de leptospirosis", pt: "MAST — Notas de orientação D1/D2; calendário da leptospirose" }
+  - item: { en: "Parasite treatments (incl. Echinococcus)", fr: "Traitements antiparasitaires (dont échinococcose)", es: "Tratamientos antiparasitarios (incl. Echinococcus)", pt: "Tratamentos antiparasitários (incl. Echinococcus)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorios", pt: "Obrigatório" }
+    when: { en: "Two internal and external parasite treatments before import (at 21–28 days and again at 5–10 days before travel) using approved products; also lab tests (Brucella, Leishmania, Angiostrongylus vasorum) that must be negative.", fr: "Deux traitements antiparasitaires internes et externes avant l'importation (à 21–28 jours puis à 5–10 jours avant le voyage) avec des produits agréés ; également des tests de laboratoire (Brucella, Leishmania, Angiostrongylus vasorum) qui doivent être négatifs.", es: "Dos tratamientos antiparasitarios internos y externos antes de la importación (a los 21–28 días y de nuevo a los 5–10 días antes del viaje) con productos aprobados; también pruebas de laboratorio (Brucella, Leishmania, Angiostrongylus vasorum) que deben ser negativas.", pt: "Dois tratamentos antiparasitários internos e externos antes da importação (de 21 a 28 dias e novamente de 5 a 10 dias antes da viagem) com produtos aprovados; além de exames de laboratório (Brucella, Leishmania, Angiostrongylus vasorum) que precisam dar negativo." }
+    exceptions: { en: "Use only products covering all required parasites; incorrect products are a common cause of rejection.", fr: "N'utilise que des produits couvrant tous les parasites requis ; des produits inadaptés sont une cause fréquente de refus.", es: "Usa solo productos que cubran todos los parásitos exigidos; los productos incorrectos son una causa frecuente de rechazo.", pt: "Use apenas produtos que cubram todos os parasitas exigidos; produtos inadequados são uma causa frequente de recusa." }
+    ref: { en: "MAST — Parasite treatment guidance (dogs)", fr: "MAST — Notes traitement antiparasitaire (chiens)", es: "MAST — Guía de tratamiento antiparasitario (perros)", pt: "MAST — Orientações sobre tratamento antiparasitário (cachorros)" }
+  - item: { en: "Health & origin certificate (D1/D2)", fr: "Certificat sanitaire et d'origine (D1/D2)", es: "Certificado sanitario y de origen (D1/D2)", pt: "Certificado sanitário e de origem (D1/D2)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Official MAST certificate (D1 for Category 1, D2 for Category 2), completed and signed by an authorised vet in the country of export; every box must be filled and documents in English.", fr: "Certificat officiel MAST (D1 pour catégorie 1, D2 pour catégorie 2), complété et signé par un vétérinaire habilité du pays d'export ; toutes les cases doivent être remplies et les documents en anglais.", es: "Certificado oficial de MAST (D1 para categoría 1, D2 para categoría 2), cumplimentado y firmado por un veterinario autorizado en el país de exportación; deben rellenarse todas las casillas y los documentos deben estar en inglés.", pt: "Certificado oficial da MAST (D1 para a categoria 1, D2 para a categoria 2), preenchido e assinado por um veterinário habilitado no país de exportação; todos os campos precisam estar preenchidos e os documentos, em inglês." }
+    exceptions: { en: "Paperwork submitted late (less than 5 days before import) or with missing lab reports is rejected.", fr: "Un dossier soumis en retard (moins de 5 jours avant l'importation) ou avec des rapports de laboratoire manquants est refusé.", es: "La documentación presentada tarde (menos de 5 días antes de la importación) o con informes de laboratorio faltantes es rechazada.", pt: "Documentação enviada com atraso (menos de 5 dias antes da importação) ou com laudos de laboratório faltando é recusada." }
+    ref: { en: "MAST — Certificate D1/D2", fr: "MAST — Certificat D1/D2", es: "MAST — Certificado D1/D2", pt: "MAST — Certificado D1/D2" }
+  - item: { en: "Import permit (MAST)", fr: "Permis d'importation (MAST)", es: "Permiso de importación (MAST)", pt: "Autorização de importação (MAST)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply to MAST before import (online via the MAST portal with an Icelandic ID, or by form). Permit fee ISK 39,633. A quarantine place must be booked at the same time.", fr: "À demander à MAST avant l'importation (en ligne via le portail MAST avec un identifiant islandais, ou par formulaire). Frais de permis : 39 633 ISK. Une place de quarantaine doit être réservée en même temps.", es: "Solicítalo a MAST antes de la importación (en línea a través del portal de MAST con una identificación islandesa, o mediante formulario). La tasa del permiso es de 39.633 ISK. Debe reservarse una plaza de cuarentena al mismo tiempo.", pt: "Solicite à MAST antes da importação (pela internet, no portal da MAST, com uma identificação islandesa, ou por formulário). Taxa da autorização: ISK 39.633. Uma vaga de quarentena precisa ser reservada ao mesmo tempo." }
+    exceptions: { en: "A dog imported without a permit is illegal and may be euthanised or returned at the owner's expense.", fr: "Un chien importé sans permis est illégal et peut être euthanasié ou refoulé aux frais du propriétaire.", es: "Un perro importado sin permiso es ilegal y puede ser sacrificado o devuelto a cargo del propietario.", pt: "Um cachorro importado sem autorização está em situação ilegal e pode ser sacrificado ou devolvido às custas do dono." }
+    ref: { en: "MAST — Import permit applications; Skatturinn (Customs)", fr: "MAST — Demandes de permis ; Skatturinn (Douane)", es: "MAST — Solicitudes de permiso de importación; Skatturinn (Aduanas)", pt: "MAST — Pedidos de autorização de importação; Skatturinn (Alfândega)" }
+  - item: { en: "Approved country of export", fr: "Pays d'export approuvé", es: "País de exportación aprobado", pt: "País de exportação aprovado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Dogs may be imported only from a MAST-approved country (Category 1 or 2), where the dog has stayed for the last 6 months or since birth.", fr: "Les chiens ne peuvent être importés que depuis un pays approuvé par MAST (catégorie 1 ou 2), où le chien a séjourné les 6 derniers mois ou depuis la naissance.", es: "Los perros solo pueden importarse desde un país aprobado por MAST (categoría 1 o 2), donde el perro haya permanecido los últimos 6 meses o desde su nacimiento.", pt: "Os cachorros só podem ser importados de um país aprovado pela MAST (categoria 1 ou 2), onde o cachorro tenha permanecido nos últimos 6 meses ou desde o nascimento." }
+    exceptions: { en: "From a non-approved country only if the owner is a resident there, has owned the dog ≥6 months and is relocating to Iceland (Category 2 conditions apply).", fr: "Depuis un pays non approuvé seulement si le propriétaire y réside, possède le chien depuis ≥6 mois et s'installe en Islande (conditions de catégorie 2).", es: "Desde un país no aprobado solo si el propietario reside allí, ha tenido al perro durante ≥6 meses y se traslada a Islandia (se aplican las condiciones de categoría 2).", pt: "De um país não aprovado, somente se o dono for residente lá, tiver o cachorro há ≥6 meses e estiver se mudando para a Islândia (aplicam-se as condições da categoria 2)." }
+    ref: { en: "MAST — Approved / non-approved exporting countries", fr: "MAST — Pays d'export approuvés / non approuvés", es: "MAST — Países exportadores aprobados / no aprobados", pt: "MAST — Países exportadores aprovados / não aprovados" }
+  - item: { en: "Border check & point of entry", fr: "Contrôle frontalier et point d'entrée", es: "Control fronterizo y punto de entrada", pt: "Controle de fronteira e ponto de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Entry only via Keflavík International Airport, on predetermined quarantine-station arrival days, 06:00–17:00 (no weekends). No ferry, cruise, private plane or other airport is allowed.", fr: "Entrée uniquement par l'aéroport international de Keflavík, aux dates d'arrivée prédéfinies des stations de quarantaine, de 06h00 à 17h00 (pas le week-end). Ni ferry, ni croisière, ni avion privé, ni autre aéroport.", es: "Entrada únicamente por el aeropuerto internacional de Keflavík, en los días de llegada predeterminados de la estación de cuarentena, de 06:00 a 17:00 (no fines de semana). No se permite ferry, crucero, avión privado ni ningún otro aeropuerto.", pt: "Entrada apenas pelo aeroporto internacional de Keflavík, nos dias de chegada predeterminados da estação de quarentena, das 06:00 às 17:00 (nunca nos fins de semana). Não são permitidos balsa, cruzeiro, avião particular nem qualquer outro aeroporto." }
+    exceptions: { en: "Certified service dogs may travel in cabin and, in some cases, transit — with prior MAST approval only.", fr: "Les chiens d'assistance certifiés peuvent voyager en cabine et, dans certains cas, transiter — uniquement avec l'accord préalable de MAST.", es: "Los perros de asistencia certificados pueden viajar en cabina y, en algunos casos, hacer tránsito — solo con la aprobación previa de MAST.", pt: "Cachorros de assistência certificados podem viajar na cabine e, em alguns casos, fazer trânsito — somente com aprovação prévia da MAST." }
+    ref: { en: "MAST — Transportation of pets (Keflavík)", fr: "MAST — Transport des animaux (Keflavík)", es: "MAST — Transporte de mascotas (Keflavík)", pt: "MAST — Transporte de animais de estimação (Keflavík)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Minimum 14 days at one of two approved government quarantine stations, booked in advance; stations operate on an all-in/all-out basis, so arrival dates are fixed.", fr: "Au minimum 14 jours dans l'une des deux stations de quarantaine agréées, réservée à l'avance ; les stations fonctionnent en tout-plein/tout-vide, donc les dates d'arrivée sont fixes.", es: "Mínimo 14 días en una de las dos estaciones de cuarentena gubernamentales aprobadas, reservada con antelación; las estaciones funcionan con un sistema de entrada y salida conjuntas, por lo que las fechas de llegada son fijas.", pt: "No mínimo 14 dias em uma das duas estações de quarentena do governo aprovadas, reservada com antecedência; as estações funcionam em regime de entrada e saída conjuntas, então as datas de chegada são fixas." }
+    exceptions: { en: "Home quarantine is possible only for certified assistance/service dogs, with an application to MAST at least one month before import.", fr: "La quarantaine à domicile n'est possible que pour les chiens d'assistance certifiés, sur demande à MAST au moins un mois avant l'importation.", es: "La cuarentena en casa solo es posible para perros de asistencia certificados, con una solicitud a MAST al menos un mes antes de la importación.", pt: "A quarentena domiciliar só é possível para cachorros de assistência certificados, mediante pedido à MAST pelo menos um mês antes da importação." }
+    ref: { en: "MAST — Quarantine in Iceland (FAQ); quarantine stations", fr: "MAST — Quarantaine en Islande (FAQ) ; stations de quarantaine", es: "MAST — Cuarentena en Islandia (preguntas frecuentes); estaciones de cuarentena", pt: "MAST — Quarentena na Islândia (FAQ); estações de quarentena" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "No fixed age, set by the steps", fr: "Pas d'âge fixe, imposé par les étapes", es: "Sin edad fija, la determinan los pasos", pt: "Sem idade fixa, definida pelas etapas" }
+    when: { en: "No formal minimum, but the requirements mean a dog is at least ~4.5 months from a Category 1 country and ~7 months from a Category 2 country.", fr: "Aucun minimum formel, mais les exigences impliquent un chien d'au moins ~4,5 mois depuis un pays de catégorie 1 et ~7 mois depuis un pays de catégorie 2.", es: "No hay un mínimo formal, pero los requisitos implican que un perro tiene al menos ~4,5 meses desde un país de categoría 1 y ~7 meses desde un país de categoría 2.", pt: "Não há mínimo formal, mas as exigências implicam um cachorro de pelo menos ~4,5 meses vindo de um país de categoria 1 e ~7 meses vindo de um país de categoria 2." }
+    exceptions: { en: "Pregnant or lactating bitches, and dogs recently injured or with major surgery needing special care, are not permitted (except by special MAST permission).", fr: "Les chiennes gestantes ou allaitantes, et les chiens récemment blessés ou opérés nécessitant des soins particuliers, ne sont pas admis (sauf autorisation spéciale de MAST).", es: "No se permiten perras gestantes o lactantes, ni perros recientemente heridos u operados que necesiten cuidados especiales (salvo permiso especial de MAST).", pt: "Cadelas gestantes ou lactantes e cachorros recentemente feridos ou submetidos a cirurgia de grande porte que precisem de cuidados especiais não são admitidos (salvo autorização especial da MAST)." }
+    ref: { en: "MAST — FAQ (age); non-permitted importation", fr: "MAST — FAQ (âge) ; importation non autorisée", es: "MAST — Preguntas frecuentes (edad); importación no permitida", pt: "MAST — FAQ (idade); importação não permitida" }
+
+origin:
+  eu:
+    title: { en: "Category 1 — approved rabies-free country", fr: "Catégorie 1 — pays approuvé indemne de rage", es: "Categoría 1 — país aprobado libre de rabia", pt: "Categoria 1 — país aprovado livre de raiva" }
+    body:
+      en: "From a Category 1 country (e.g. most EU/EEA states, UK, Japan, Australia, Switzerland, UAE, Singapore, Faroe Islands), the dog still needs a MAST import permit, microchip, rabies vaccination, an antibody test at least 30 days later (≥0.5 IU/ml, EU-approved lab), the other vaccines, two parasite treatments and a D1 certificate. There is no waiting period after the antibody result — but the 14-day quarantine on arrival still applies."
+      fr: "Depuis un pays de catégorie 1 (la plupart des États UE/EEE, RU, Japon, Australie, Suisse, EAU, Singapour, îles Féroé…), le chien a tout de même besoin d'un permis MAST, d'une puce, d'un vaccin antirabique, d'un titrage au moins 30 jours plus tard (≥0,5 UI/ml, labo agréé UE), des autres vaccins, de deux traitements antiparasitaires et d'un certificat D1. Aucune attente après le résultat du titrage — mais la quarantaine de 14 jours à l'arrivée s'applique quand même."
+      es: "Desde un país de categoría 1 (por ejemplo, la mayoría de los estados de la UE/EEE, el Reino Unido, Japón, Australia, Suiza, los EAU, Singapur, las islas Feroe), el perro sigue necesitando un permiso de importación de MAST, microchip, vacunación antirrábica, una prueba de titulación al menos 30 días después (≥0,5 UI/ml, laboratorio aprobado por la UE), las demás vacunas, dos tratamientos antiparasitarios y un certificado D1. No hay periodo de espera tras el resultado de la titulación — pero la cuarentena de 14 días a la llegada sigue aplicándose."
+      pt: "Vindo de um país de categoria 1 (por exemplo, a maioria dos Estados da UE/EEE, Reino Unido, Japão, Austrália, Suíça, Emirados Árabes Unidos, Singapura, Ilhas Faroé), o cachorro ainda assim precisa de autorização de importação da MAST, microchip, vacinação antirrábica, teste sorológico pelo menos 30 dias depois (≥0,5 UI/ml, laboratório aprovado pela UE), as outras vacinas, dois tratamentos antiparasitários e um certificado D1. Não há período de espera depois do resultado do teste sorológico — mas a quarentena de 14 dias na chegada continua valendo."
+    cls: warn
+  listed:
+    title: { en: "Category 2 — approved, rabies controlled (+90-day wait)", fr: "Catégorie 2 — approuvé, rage maîtrisée (+90 jours d'attente)", es: "Categoría 2 — aprobado, rabia controlada (+90 días de espera)", pt: "Categoria 2 — aprovado, raiva controlada (+90 dias de espera)" }
+    body:
+      en: "From a Category 2 country (e.g. USA, Canada, Poland, Hungary, Romania, Serbia, Slovakia, Turkey, Greenland, Taiwan, Bosnia-Herzegovina), all the same steps apply, plus a compulsory 90-day wait counted from the day the antibody blood sample was taken before the dog may enter. The 14-day quarantine still applies. In practice, plan around 4–5 months of preparation."
+      fr: "Depuis un pays de catégorie 2 (USA, Canada, Pologne, Hongrie, Roumanie, Serbie, Slovaquie, Turquie, Groenland, Taïwan, Bosnie-Herzégovine…), toutes les mêmes étapes s'appliquent, plus un délai obligatoire de 90 jours compté depuis la prise de sang du titrage avant l'entrée du chien. La quarantaine de 14 jours s'applique toujours. En pratique, prévois environ 4 à 5 mois de préparation."
+      es: "Desde un país de categoría 2 (por ejemplo, EE. UU., Canadá, Polonia, Hungría, Rumanía, Serbia, Eslovaquia, Turquía, Groenlandia, Taiwán, Bosnia y Herzegovina), se aplican los mismos pasos, más una espera obligatoria de 90 días contada desde el día en que se tomó la muestra de sangre para la titulación antes de que el perro pueda entrar. La cuarentena de 14 días sigue aplicándose. En la práctica, prevé unos 4–5 meses de preparación."
+      pt: "Vindo de um país de categoria 2 (por exemplo, EUA, Canadá, Polônia, Hungria, Romênia, Sérvia, Eslováquia, Turquia, Groenlândia, Taiwan, Bósnia-Herzegovina), aplicam-se todas as mesmas etapas, mais uma espera obrigatória de 90 dias contada a partir do dia da coleta da amostra de sangue do teste sorológico antes de o cachorro poder entrar. A quarentena de 14 dias continua valendo. Na prática, planeje cerca de 4–5 meses de preparação."
+    cls: no
+  nonListed:
+    title: { en: "Non-approved country — residents relocating only", fr: "Pays non approuvé — uniquement résidents en installation", es: "País no aprobado — solo residentes que se trasladan", pt: "País não aprovado — apenas residentes que estão se mudando" }
+    body:
+      en: "Iceland does not accept dogs from non-approved countries as ordinary imports. MAST may authorise entry only if the owner is a resident there, has owned and cared for the dog for at least 6 months and is moving to Iceland; the dog must then meet Category 2 conditions, including a canine influenza vaccination, and complete the 14-day quarantine. Otherwise the dog must first spend 6 months in an approved country."
+      fr: "L'Islande n'accepte pas les chiens des pays non approuvés en importation ordinaire. MAST peut autoriser l'entrée uniquement si le propriétaire y réside, possède et soigne le chien depuis au moins 6 mois et s'installe en Islande ; le chien doit alors remplir les conditions de catégorie 2, dont un vaccin contre la grippe canine, et effectuer la quarantaine de 14 jours. Sinon, le chien doit d'abord séjourner 6 mois dans un pays approuvé."
+      es: "Islandia no acepta perros de países no aprobados como importaciones ordinarias. MAST solo puede autorizar la entrada si el propietario reside allí, ha tenido y cuidado al perro durante al menos 6 meses y se traslada a Islandia; el perro debe entonces cumplir las condiciones de categoría 2, incluida una vacunación contra la gripe canina, y completar la cuarentena de 14 días. En caso contrario, el perro debe pasar primero 6 meses en un país aprobado."
+      pt: "A Islândia não aceita cachorros vindos de países não aprovados como importação comum. A MAST só pode autorizar a entrada se o dono for residente lá, tiver a posse do cachorro e cuidado dele por pelo menos 6 meses e estiver se mudando para a Islândia; o cachorro precisa então cumprir as condições da categoria 2, incluindo a vacinação contra a gripe canina, e completar a quarentena de 14 dias. Caso contrário, o cachorro precisa antes passar 6 meses em um país aprovado."
+    cls: no
+
+arrival:
+  intro:
+    en: "Arrival is tightly controlled: every dog goes straight from the plane into quarantine, and there is no meeting your dog at the airport."
+    fr: "L'arrivée est strictement encadrée : chaque chien passe directement de l'avion en quarantaine, et il n'est pas possible de récupérer son chien à l'aéroport."
+    es: "La llegada está estrictamente controlada: todo perro pasa directamente del avión a la cuarentena, y no es posible recoger a tu perro en el aeropuerto."
+    pt: "A chegada é rigorosamente controlada: todo cachorro vai direto do avião para a quarentena, e não é possível encontrar seu cachorro no aeroporto."
+  points:
+    - en: "Entry is allowed only through Keflavík International Airport, on the quarantine station's predetermined arrival days, between 06:00 and 17:00, never on weekends."
+      fr: "L'entrée n'est autorisée que par l'aéroport international de Keflavík, aux dates d'arrivée prédéfinies de la station de quarantaine, entre 06h00 et 17h00, jamais le week-end."
+      es: "La entrada solo está permitida por el aeropuerto internacional de Keflavík, en los días de llegada predeterminados de la estación de cuarentena, entre las 06:00 y las 17:00, nunca en fin de semana."
+      pt: "A entrada só é permitida pelo aeroporto internacional de Keflavík, nos dias de chegada predeterminados da estação de quarentena, entre 06:00 e 17:00, nunca nos fins de semana."
+    - en: "On arrival the dog is checked (permit, microchip, documents) and transferred directly to the booked quarantine station for at least 14 days — the owner cannot take the dog home first."
+      fr: "À l'arrivée, le chien est contrôlé (permis, puce, documents) puis transféré directement vers la station de quarantaine réservée pour au moins 14 jours — le propriétaire ne peut pas emmener le chien chez lui d'abord."
+      es: "A la llegada, el perro es examinado (permiso, microchip, documentos) y trasladado directamente a la estación de cuarentena reservada durante al menos 14 días — el propietario no puede llevarse al perro a casa antes."
+      pt: "Na chegada, o cachorro é conferido (autorização, microchip, documentos) e transferido diretamente para a estação de quarentena reservada, por pelo menos 14 dias — o dono não pode levar o cachorro para casa antes."
+    - en: "A dog in the cabin must be handed to a MAST-approved airport service provider (Aviör at Keflavík), paid in advance, who takes it to the pet reception."
+      fr: "Un chien en cabine doit être remis à un prestataire agréé par MAST à l'aéroport (Aviör à Keflavík), payé à l'avance, qui l'amène à la réception des animaux."
+      es: "Un perro en cabina debe entregarse a un proveedor de servicios aeroportuarios aprobado por MAST (Aviör en Keflavík), pagado por adelantado, que lo lleva a la recepción de mascotas."
+      pt: "Um cachorro na cabine precisa ser entregue a um prestador de serviços do aeroporto aprovado pela MAST (a Aviör, em Keflavík), pago com antecedência, que o leva até a recepção de animais."
+    - en: "Carry the original documents in English; missing lab reports, an unreadable microchip or a banned breed lead to rejection on arrival."
+      fr: "Munis-toi des documents originaux en anglais ; des rapports de laboratoire manquants, une puce illisible ou une race interdite entraînent un refus à l'arrivée."
+      es: "Lleva los documentos originales en inglés; los informes de laboratorio faltantes, un microchip ilegible o una raza prohibida provocan el rechazo a la llegada."
+      pt: "Leve os documentos originais em inglês; laudos de laboratório faltando, um microchip ilegível ou uma raça proibida levam à recusa na chegada."
+    - en: "A dog imported without a valid permit is an illegal import — it may be euthanised or returned, and all costs fall on the owner."
+      fr: "Un chien importé sans permis valide est une importation illégale — il peut être euthanasié ou refoulé, et tous les frais incombent au propriétaire."
+      es: "Un perro importado sin un permiso válido es una importación ilegal — puede ser sacrificado o devuelto, y todos los costes recaen en el propietario."
+      pt: "Um cachorro importado sem autorização válida é uma importação ilegal — ele pode ser sacrificado ou devolvido, e todos os custos ficam por conta do dono."
+    - en: "Pets may not disembark from cruise ships or ferries, and may not transit through any other Icelandic airport."
+      fr: "Les animaux ne peuvent pas débarquer des navires de croisière ou ferries, ni transiter par un autre aéroport islandais."
+      es: "Las mascotas no pueden desembarcar de cruceros o ferris, ni transitar por ningún otro aeropuerto islandés."
+      pt: "Os animais de estimação não podem desembarcar de navios de cruzeiro nem de balsas, e não podem fazer trânsito por nenhum outro aeroporto islandês."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Beyond health rules, Iceland bans the import of several dog types entirely. These breeds cannot enter, even in transit, and are refused on arrival."
+    fr: "Au-delà des règles sanitaires, l'Islande interdit totalement l'importation de plusieurs types de chiens. Ces races ne peuvent pas entrer, même en transit, et sont refusées à l'arrivée."
+    es: "Más allá de las normas sanitarias, Islandia prohíbe totalmente la importación de varios tipos de perros. Estas razas no pueden entrar, ni siquiera en tránsito, y son rechazadas a su llegada."
+    pt: "Além das regras sanitárias, a Islândia proíbe totalmente a importação de vários tipos de cachorro. Essas raças não podem entrar, nem mesmo em trânsito, e são recusadas na chegada."
+  cat1:
+    en: "Banned breeds and their cross-breeds (for at least 5 generations): Pit Bull Terrier / American Staffordshire Terrier / Staffordshire Bull Terrier / American Bulldog, Fila Brasileiro, Tosa Inu, Dogo Argentino, Cane Corso, Presa Canario and Boerboel. Wolf-dog hybrids are also banned unless the dog is at least 10 generations removed from a wolf."
+    fr: "Races interdites et leurs croisements (sur au moins 5 générations) : Pit Bull Terrier / American Staffordshire Terrier / Staffordshire Bull Terrier / American Bulldog, Fila Brasileiro, Tosa Inu, Dogo Argentino, Cane Corso, Presa Canario et Boerboel. Les hybrides loup-chien sont aussi interdits sauf si le chien est éloigné du loup d'au moins 10 générations."
+    es: "Razas prohibidas y sus cruces (durante al menos 5 generaciones): Pit Bull Terrier / American Staffordshire Terrier / Staffordshire Bull Terrier / American Bulldog, Fila Brasileiro, Tosa Inu, Dogo Argentino, Cane Corso, Presa Canario y Boerboel. Los híbridos de lobo también están prohibidos, salvo que el perro esté a al menos 10 generaciones de distancia de un lobo."
+    pt: "Raças proibidas e seus cruzamentos (por pelo menos 5 gerações): Pit Bull Terrier / American Staffordshire Terrier / Staffordshire Bull Terrier / American Bulldog, Fila Brasileiro, Tosa Inu, Dogo Argentino, Cane Corso, Presa Canario e Boerboel. Os híbridos de cachorro com lobo também são proibidos, a menos que o cachorro esteja a pelo menos 10 gerações de distância de um lobo."
+  cat2:
+    en: "MAST may also reject any other dog whose breed, physique, temperament or origin it considers comparable to a banned breed, or otherwise a risk. Breeds closely related to those listed have already been refused. If in doubt, contact MAST before making any plans."
+    fr: "MAST peut aussi refuser tout autre chien dont la race, le physique, le tempérament ou l'origine sont jugés comparables à une race interdite, ou présentant un risque. Des races proches de celles listées ont déjà été refusées. En cas de doute, contacte MAST avant tout projet."
+    es: "MAST también puede rechazar cualquier otro perro cuya raza, físico, temperamento u origen considere comparable a una raza prohibida, o que suponga un riesgo. Ya se han rechazado razas estrechamente emparentadas con las listadas. En caso de duda, contacta con MAST antes de hacer cualquier plan."
+    pt: "A MAST também pode recusar qualquer outro cachorro cuja raça, físico, temperamento ou origem ela considere comparáveis aos de uma raça proibida, ou que represente risco de outra forma. Raças próximas das listadas já foram recusadas. Em caso de dúvida, entre em contato com a MAST antes de fazer qualquer plano."
+  note:
+    en: "There is no waiver for banned breeds — arriving with one is treated as an illegal import. Always confirm your dog's eligibility with MAST in writing before you prepare or book anything."
+    fr: "Aucune dérogation n'existe pour les races interdites — arriver avec l'une d'elles est traité comme une importation illégale. Confirme toujours l'éligibilité de ton chien auprès de MAST par écrit avant toute préparation ou réservation."
+    es: "No existe excepción alguna para las razas prohibidas — llegar con una de ellas se trata como una importación ilegal. Confirma siempre por escrito con MAST la elegibilidad de tu perro antes de preparar o reservar nada."
+    pt: "Não existe dispensa para as raças proibidas — chegar com uma delas é tratado como importação ilegal. Confirme sempre por escrito com a MAST se o seu cachorro é elegível antes de preparar ou reservar qualquer coisa."
+
+checklist:
+  - en: "Confirm your dog is not a banned breed and comes from an approved country"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite et vient d'un pays approuvé"
+    es: "Confirma que tu perro no es de una raza prohibida y procede de un país aprobado"
+    pt: "Confirme que seu cachorro não é de raça proibida e vem de um país aprovado"
+  - en: "Apply to MAST for an import permit and book a quarantine slot in advance"
+    fr: "Demande à MAST un permis d'importation et réserve un créneau de quarantaine à l'avance"
+    es: "Solicita a MAST un permiso de importación y reserva una plaza de cuarentena con antelación"
+    pt: "Peça à MAST a autorização de importação e reserve uma vaga de quarentena com antecedência"
+  - en: "ISO microchip implanted and readable before all vaccinations and tests"
+    fr: "Puce ISO posée et lisible avant toutes les vaccinations et tous les tests"
+    es: "Microchip ISO implantado y legible antes de todas las vacunas y pruebas"
+    pt: "Microchip ISO implantado e legível antes de todas as vacinações e exames"
+  - en: "Rabies vaccination, then antibody test ≥30 days later (≥0.5 IU/ml, EU-approved lab)"
+    fr: "Vaccination antirabique, puis titrage ≥30 jours après (≥0,5 UI/ml, labo agréé UE)"
+    es: "Vacunación antirrábica y luego prueba de titulación ≥30 días después (≥0,5 UI/ml, laboratorio aprobado por la UE)"
+    pt: "Vacinação antirrábica e, depois, teste sorológico ≥30 dias mais tarde (≥0,5 UI/ml, laboratório aprovado pela UE)"
+  - en: "Category 2 origin: respect the compulsory 90-day wait from blood sampling"
+    fr: "Origine catégorie 2 : respecte le délai obligatoire de 90 jours après la prise de sang"
+    es: "Origen de categoría 2: respeta la espera obligatoria de 90 días desde la extracción de sangre"
+    pt: "Origem de categoria 2: respeite a espera obrigatória de 90 dias a partir da coleta de sangue"
+  - en: "Leptospirosis, distemper, hepatitis, parvovirus, parainfluenza vaccines ≥14 days before entry"
+    fr: "Vaccins leptospirose, Carré, hépatite, parvovirose, para-influenza ≥14 jours avant l'entrée"
+    es: "Vacunas de leptospirosis, moquillo, hepatitis, parvovirus y parainfluenza ≥14 días antes de la entrada"
+    pt: "Vacinas de leptospirose, cinomose, hepatite, parvovirose e parainfluenza ≥14 dias antes da entrada"
+  - en: "Two parasite treatments (21–28 days and 5–10 days before travel) and required negative lab tests"
+    fr: "Deux traitements antiparasitaires (21–28 jours et 5–10 jours avant le voyage) et tests de laboratoire négatifs requis"
+    es: "Dos tratamientos antiparasitarios (21–28 días y 5–10 días antes del viaje) y las pruebas de laboratorio negativas requeridas"
+    pt: "Dois tratamentos antiparasitários (21–28 dias e 5–10 dias antes da viagem) e os exames de laboratório negativos exigidos"
+  - en: "D1/D2 health & origin certificate fully completed, in English, submitted to MAST in time"
+    fr: "Certificat sanitaire et d'origine D1/D2 entièrement rempli, en anglais, transmis à MAST à temps"
+    es: "Certificado sanitario y de origen D1/D2 completamente cumplimentado, en inglés, presentado a MAST a tiempo"
+    pt: "Certificado sanitário e de origem D1/D2 totalmente preenchido, em inglês, enviado à MAST no prazo"
+  - en: "Flight into Keflavík only, on an approved arrival day and time; suitable IATA crate"
+    fr: "Vol vers Keflavík uniquement, à une date et une heure d'arrivée approuvées ; caisse IATA adaptée"
+    es: "Vuelo únicamente a Keflavík, en un día y hora de llegada aprobados; jaula IATA adecuada"
+    pt: "Voo somente para Keflavík, em dia e horário de chegada aprovados; caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "MAST — Import of live animals (dogs and cats)", fr: "MAST — Importation d'animaux vivants (chiens et chats)", es: "MAST — Importación de animales vivos (perros y gatos)", pt: "MAST — Importação de animais vivos (cães e gatos)" }
+    url: "https://www.mast.is/en/import-export/import-of-live-animals"
+  - label: { en: "MAST — Import of live animals: Frequently asked questions", fr: "MAST — Importation d'animaux vivants : questions fréquentes", es: "MAST — Importación de animales vivos: preguntas frecuentes", pt: "MAST — Importação de animais vivos: perguntas frequentes" }
+    url: "https://www.mast.is/en/import-export/import-of-live-animals/frequently-asked-questions"
+  - label: { en: "MAST — Guidance notes D1: importing dogs from Category 1 countries", fr: "MAST — Notes d'orientation D1 : importation de chiens depuis les pays de catégorie 1", es: "MAST — Notas orientativas D1: importación de perros desde países de categoría 1", pt: "MAST — Notas de orientação D1: importação de cachorros de países de categoria 1" }
+    url: "https://www.mast.is/static/files/innflutningur_hdkt20/leidbein_d1_en.pdf"
+  - label: { en: "MAST — Guidance notes D2: importing dogs from Category 2 countries", fr: "MAST — Notes d'orientation D2 : importation de chiens depuis les pays de catégorie 2", es: "MAST — Notas orientativas D2: importación de perros desde países de categoría 2", pt: "MAST — Notas de orientação D2: importação de cachorros de países de categoria 2" }
+    url: "https://www.mast.is/static/files/innflutningur_hdkt20/leidbein_d2_en.pdf"
+  - label: { en: "MAST — Guidance notes: parasite treatment of dogs before import", fr: "MAST — Notes : traitement antiparasitaire des chiens avant importation", es: "MAST — Notas orientativas: tratamiento antiparasitario de perros antes de la importación", pt: "MAST — Notas de orientação: tratamento antiparasitário de cachorros antes da importação" }
+    url: "https://www.mast.is/static/files/innflutningur_hdkt20/guide_parasite_treatment_dogs.pdf"
+  - label: { en: "MAST — Certificate D1: import of a dog from Category 1 countries", fr: "MAST — Certificat D1 : importation d'un chien depuis les pays de catégorie 1", es: "MAST — Certificado D1: importación de un perro desde países de categoría 1", pt: "MAST — Certificado D1: importação de um cachorro de países de categoria 1" }
+    url: "https://www.mast.is/static/files/innflutningur_hdkt20/vottord_d1_w.pdf"
+  - label: { en: "Skatturinn (Iceland Revenue and Customs) — Import restrictions", fr: "Skatturinn (Administration fiscale et douanière d'Islande) — Restrictions à l'importation", es: "Skatturinn (Hacienda y Aduanas de Islandia) — Restricciones de importación", pt: "Skatturinn (Receita e Alfândega da Islândia) — Restrições à importação" }
+    url: "https://www.skatturinn.is/english/individuals/customs-matters/moving-to-iceland/import-restrictions/import-restrictions"
+
+seo:
+  title: { en: "Iceland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Islande — Guide", es: "Requisitos de entrada de perros en Islandia — Guía de viaje", pt: "Islândia: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Iceland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Islande avec ton chien : formalités (2026)", es: "Viajar a Islandia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Islândia: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official MAST rules for Iceland: import permit, approved countries, rabies antibody test, vaccinations and a mandatory 14-day quarantine. Sourced and dated."
+    fr: "Règles officielles MAST pour un chien entrant en Islande : permis d'importation, pays approuvés, titrage antirabique et quarantaine obligatoire de 14 jours."
+    es: "Normas oficiales de MAST para traer un perro a Islandia: permiso de importación, países aprobados, titulación de rabia y cuarentena obligatoria de 14 días."
+    pt: "Regras oficiais da MAST para a Islândia: autorização de importação, países aprovados, teste sorológico antirrábico, vacinas e quarentena obrigatória de 14 dias."
+  slug: "iceland"
+  shortDesc:
+    en: "What you need to bring a dog into Iceland: import permit, approved-country rules, tests and mandatory quarantine."
+    fr: "Ce qu'il faut pour faire entrer un chien en Islande : permis d'importation, règles de pays approuvés, tests et quarantaine obligatoire."
+    es: "Lo que necesitas para traer un perro a Islandia: permiso de importación, normas de países aprobados, pruebas y cuarentena obligatoria."
+    pt: "O que você precisa para levar um cachorro à Islândia: autorização de importação, regras de países aprovados, exames e quarentena obrigatória."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

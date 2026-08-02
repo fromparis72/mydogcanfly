@@ -1,0 +1,29 @@
+---
+import EntityIndex from "../../../components/EntityIndex.astro";
+import { loadKB, t, inlineT } from "@mydogcanfly/knowledge";
+import { petReliefIndexItems } from "../../../lib/pagedata";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const items = petReliefIndexItems(loadKB(), locale);
+const seoTitle = T("Airports with dog relief areas (potty stops)", "Aéroports avec zone de soulagement pour chien (pause pipi)", "Aeropuertos con zonas de alivio para perros");
+---
+<EntityIndex seoTitle={seoTitle}
+  kind={t(locale, "kind.airport")}
+  title={t(locale, "index.petrelief.title")}
+  blurb={t(locale, "index.petrelief.blurb")}
+  metaDesc={t(locale, "index.petrelief.metadesc")}
+  items={items}
+  locale={locale}
+  link={{
+    href: (locale === "en" ? "" : `/${locale}`) + "/tools/pet-relief/",
+    label: T("🔎 Search your airport directly with the interactive finder →", "🔎 Chercher directement ton aéroport avec l'outil interactif →", "🔎 Busca directamente tu aeropuerto con la herramienta interactiva →"),
+  }}
+/>

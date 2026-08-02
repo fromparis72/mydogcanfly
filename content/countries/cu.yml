@@ -1,0 +1,378 @@
+# Country Entry Guide — Cuba (bilingual EN/FR).
+# Cuba is NOT in the EU. This encodes Cuba's own CENASA / border veterinary scheme.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_cu
+iso2: "CU"
+name: { en: "Cuba", fr: "Cuba", es: "Cuba", pt: "Cuba" }
+region: { en: "Caribbean", fr: "Caraïbes", es: "Caribe", pt: "Caribe" }
+
+
+regime: non_listed
+exit:
+  authority: IMV
+  authorityUrl: https://www.minag.gob.cu/noticias/sobre-la-importacion-y-exportacion-de-mascotas-perros-y-gatos/
+  intro:
+    en: "Cuba is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Instituto de Medicina Veterinaria (IMV)."
+    fr: "Cuba est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par l'Instituto de Medicina Veterinaria (IMV)."
+    es: "Cuba no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Instituto de Medicina Veterinaria (IMV)."
+    pt: "Cuba é um país não listado, então uma titulação de anticorpos antirrábicos válida é obrigatória para voltar à UE — além de um atestado de saúde de exportação endossado pelo Instituto de Medicina Veterinaria (IMV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The IMV (Havana quarantine clinic or provincial offices) issues the official export zoosanitary certificate after a clinical inspection."
+        fr: "L'IMV (clinique de quarantaine de La Havane ou bureaux provinciaux) délivre le certificat zoosanitaire d'export officiel après inspection clinique."
+        es: "El IMV (clínica de cuarentena de La Habana u oficinas provinciales) emite el certificado zoosanitario de exportación oficial tras una inspección clínica."
+        pt: "O IMV (clínica de quarentena de Havana ou escritórios provinciais) emite o certificado zoossanitário oficial de exportação após uma inspeção clínica."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Cuba with your dog", fr: "Voyager à Cuba avec ton chien", es: "Viajar a Cuba con tu perro", pt: "Viajar para Cuba com o seu cachorro" }
+  intro:
+    en: >-
+      Cuba welcomes dogs, but it runs its own scheme through the National Centre for Animal Health
+      (CENASA) and the Ministry of Agriculture (MINAG), not the EU pet-passport system. Only dogs and
+      cats are recognised as pets. Your dog must travel with a veterinary health certificate issued by
+      the official veterinary authority of the country of departure, and the rabies vaccination details
+      must appear on it. On arrival, the Border Veterinary Service inspects the dog at the airport and,
+      if the animal is healthy and the papers are in order, issues a release certificate authorising
+      entry — usually with no quarantine. A follow-up home visit is carried out within 15 days as part
+      of routine epidemiological surveillance. What exactly you must prepare still depends on your dog's
+      country of departure, its age and its rabies history. This guide explains what to organise before
+      you book your flight.
+    fr: >-
+      Cuba accueille les chiens, mais applique son propre dispositif via le Centre national de santé
+      animale (CENASA) et le ministère de l'Agriculture (MINAG), et non le système du passeport
+      européen. Seuls les chiens et les chats sont reconnus comme animaux de compagnie. Ton chien doit
+      voyager avec un certificat sanitaire vétérinaire établi par l'autorité vétérinaire officielle du
+      pays de départ, sur lequel doivent figurer les données de la vaccination antirabique. À l'arrivée,
+      le Service vétérinaire de frontière inspecte le chien à l'aéroport et, si l'animal est sain et les
+      documents en règle, délivre un certificat de libération autorisant l'entrée — généralement sans
+      quarantaine. Une visite à domicile est réalisée dans les 15 jours au titre de la surveillance
+      épidémiologique de routine. Ce qu'il faut préparer dépend tout de même du pays de départ, de l'âge
+      du chien et de son historique antirabique. Ce guide détaille quoi organiser avant de réserver.
+    es: >-
+      Cuba acoge a los perros, pero aplica su propio sistema a través del Centro Nacional de Sanidad
+      Animal (CENASA) y el Ministerio de la Agricultura (MINAG), y no el sistema del pasaporte europeo.
+      Solo se reconocen como mascotas los perros y los gatos. Tu perro debe viajar con un certificado
+      sanitario veterinario expedido por la autoridad veterinaria oficial del país de salida, en el que
+      deben figurar los datos de la vacunación antirrábica. A la llegada, el Servicio Veterinario de
+      Frontera inspecciona al perro en el aeropuerto y, si el animal está sano y los documentos están en
+      regla, expide un certificado de liberación que autoriza la entrada — normalmente sin cuarentena. Se
+      realiza una visita domiciliaria de seguimiento dentro de los 15 días como parte de la vigilancia
+      epidemiológica rutinaria. Lo que exactamente debas preparar depende igualmente del país de salida
+      del perro, de su edad y de su historial de rabia. Esta guía explica qué organizar antes de reservar
+      tu vuelo.
+
+    pt: "Cuba recebe cachorros, mas aplica o seu próprio sistema, conduzido pelo Centro Nacional de Sanidad Animal (CENASA) e pelo Ministério da Agricultura (MINAG), e não o sistema do passaporte europeu para animais de companhia. Apenas cachorros e gatos são reconhecidos como animais de companhia. O seu cachorro precisa viajar com um atestado de saúde veterinário emitido pela autoridade veterinária oficial do país de partida, e os dados da vacinação antirrábica precisam constar nele. Na chegada, o Serviço Veterinário de Fronteira inspeciona o cachorro no aeroporto e, se o animal estiver saudável e os documentos em ordem, emite um certificado de liberação que autoriza a entrada — normalmente sem quarentena. Uma visita domiciliar de acompanhamento é feita em até 15 dias, como vigilância epidemiológica de rotina. O que exatamente você precisa preparar ainda depende do país de partida do seu cachorro, da idade dele e do histórico de vacinação antirrábica. Este guia explica o que organizar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — health certificate, arrival inspection and a follow-up home visit", fr: "Modéré — certificat sanitaire, inspection à l'arrivée et visite à domicile", es: "Moderado — certificado sanitario, inspección a la llegada y visita domiciliaria de seguimiento", pt: "Moderado — atestado de saúde, inspeção na chegada e visita domiciliar de acompanhamento" }
+
+prepTime:
+  eu:
+    en: "A few days if the rabies vaccine is already valid — the departure-country veterinary health certificate is generally issued shortly before travel (about 10 days' validity for entry checks)."
+    fr: "Quelques jours si le vaccin antirabique est déjà valide — le certificat sanitaire vétérinaire du pays de départ est généralement établi peu avant le voyage (validité d'environ 10 jours pour les contrôles à l'entrée)."
+    es: "Unos días si la vacuna antirrábica ya está vigente — el certificado sanitario veterinario del país de salida se expide generalmente poco antes del viaje (unos 10 días de valide para los controles de entrada)."
+    pt: "Alguns dias se a vacina antirrábica já estiver válida — o atestado de saúde veterinário do país de partida costuma ser emitido pouco antes da viagem (validade de cerca de 10 dias para o controle de entrada)."
+  listed:
+    en: "About a month if a first rabies shot is still needed: the first dose is given from 3 months of age and immunity builds after ~30 days, so a first-time-vaccinated dog is roughly 4 months old at travel."
+    fr: "Environ un mois si une première vaccination antirabique reste à faire : la première dose s'administre à partir de 3 mois et l'immunité s'installe après ~30 jours ; un chien primo-vacciné a donc environ 4 mois au voyage."
+    es: "Alrededor de un mes si aún falta la primera vacuna antirrábica: la primera dosis se administra a partir de los 3 meses de edad y la inmunidad se establece tras ~30 días, por lo que un perro con primovacunación tiene unos 4 meses en el momento del viaje."
+    pt: "Cerca de um mês se ainda faltar a primeira dose antirrábica: a primeira dose é aplicada a partir dos 3 meses de idade e a imunidade se estabelece depois de ~30 dias, então um cachorro primovacinado tem por volta de 4 meses na viagem."
+  nonListed:
+    en: "Plan ahead if you will stay over 30 days: leaving Cuba again requires a Cuban export certificate processed at a provincial quarantine clinic and CENASA."
+    fr: "Anticipe si tu séjourne plus de 30 jours : ressortir de Cuba exige un certificat d'exportation cubain traité dans une clinique de quarantaine provinciale et au CENASA."
+    es: "Anticípate si vas a quedarte más de 30 días: salir de nuevo de Cuba requiere un certificado de exportación cubano tramitado en una clínica de cuarentena provincial y en el CENASA."
+    pt: "Planeje com antecedência se você for ficar mais de 30 dias: sair de Cuba de novo exige um certificado cubano de exportação tramitado em uma clínica provincial de quarentena e no CENASA."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not required by Cuba (tag, tattoo or microchip accepted)", fr: "Non exigée par Cuba (chapa, tatouage ou puce acceptés)", es: "No exigido por Cuba (se acepta chapa, tatuaje o microchip)", pt: "Não obrigatório em Cuba (aceita-se placa, tatuagem ou microchip)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in Cuba's published import requirements", fr: "Absent des exigences d'importation publiées par Cuba", es: "No figura en los requisitos de importación publicados por Cuba", pt: "Não consta nos requisitos de importação publicados por Cuba" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Arrival veterinary inspection", fr: "Inspection vétérinaire à l'arrivée", es: "Inspección veterinaria a la llegada", pt: "Inspeção veterinária na chegada" }
+    status: { en: "Required (release certificate issued)", fr: "Requise (certificat de libération délivré)", es: "Obligatoria (se expide certificado de liberación)", pt: "Obrigatória (certificado de liberação emitido)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not routine for a healthy, documented dog", fr: "Non systématique pour un chien sain et documenté", es: "No rutinaria para un perro sano y documentado", pt: "Não é rotina para um cachorro saudável e com documentação em ordem" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Cuba (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — Cuba (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Cuba (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Cuba (o seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Cuba", fr: "Pays de destination — Cuba", es: "País de destino — Cuba", pt: "País de destino — Cuba" }
+      text:
+        en: "Cuba runs a certificate-based scheme through CENASA: a veterinary health certificate with rabies-vaccination details is always required, the dog is inspected at the border, and a release certificate is issued before entry. No EU pet passport is used."
+        fr: "Cuba applique un dispositif fondé sur un certificat via le CENASA : un certificat sanitaire vétérinaire mentionnant la vaccination antirabique est toujours exigé, le chien est inspecté à la frontière et un certificat de libération est délivré avant l'entrée. Aucun passeport européen n'est utilisé."
+        es: "Cuba aplica un sistema basado en un certificado a través del CENASA: siempre se exige un certificado sanitario veterinario con los datos de la vacunación antirrábica, se inspecciona al perro en la frontera y se expide un certificado de liberación antes de la entrada. No se utiliza el pasaporte europeo para mascotas."
+        pt: "Cuba aplica um sistema baseado em certificado, conduzido pelo CENASA: um atestado de saúde veterinário com os dados da vacinação antirrábica é sempre obrigatório, o cachorro é inspecionado na fronteira e um certificado de liberação é emitido antes da entrada. O passaporte europeu para animais de companhia não é utilizado."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The certificate is issued by the official veterinary authority of the departure country and must confirm the dog is clinically healthy. The Cuban border vet takes the departure country's health status into account when exempting the animal from quarantine."
+        fr: "Le certificat est établi par l'autorité vétérinaire officielle du pays de départ et doit confirmer que le chien est cliniquement sain. Le vétérinaire cubain de frontière tient compte du statut sanitaire du pays de départ pour exempter l'animal de quarantaine."
+        es: "El certificado lo expide la autoridad veterinaria oficial del país de salida y debe confirmar que el perro está clínicamente sano. El veterinario cubano de frontera tiene en cuenta el estado sanitario del país de salida a la hora de eximir al animal de la cuarentena."
+        pt: "O certificado é emitido pela autoridade veterinária oficial do país de partida e deve confirmar que o cachorro está clinicamente saudável. O veterinário de fronteira cubano leva em conta a situação sanitária do país de partida ao dispensar o animal da quarentena."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's real age and rabies history determine whether its vaccination is valid for the trip, and shape your return: staying over 30 days means processing a Cuban export certificate before you leave again."
+        fr: "L'âge réel et l'historique antirabique du chien déterminent si sa vaccination est valide pour le voyage, et conditionnent le retour : au-delà de 30 jours, il faut traiter un certificat d'exportation cubain avant de repartir."
+        es: "La edad real y el historial de rabia de tu perro determinan si su vacunación es válida para el viaje y condicionan tu regreso: quedarte más de 30 días implica tramitar un certificado de exportación cubano antes de salir de nuevo."
+        pt: "A idade real do seu cachorro e o histórico de vacinação antirrábica determinam se a vacinação é válida para a viagem e moldam o seu retorno: ficar mais de 30 dias significa ter de tramitar um certificado cubano de exportação antes de sair de novo."
+  note:
+    en: "So read the requirements below as Cuba's framework, then confirm your dog's exact origin, age and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre cubain, puis confirme l'origine, l'âge et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Cuba y luego confirma el origen, la edad y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia os requisitos abaixo como o marco regulatório de Cuba e depois confirme com o seu veterinário a origem, a idade e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Identification (tag, tattoo or microchip)", fr: "Identification (chapa, tatouage ou puce)", es: "Identificación (chapa, tatuaje o microchip)", pt: "Identificação (placa, tatuagem ou microchip)" }
+    required: { en: "Required on the certificate; no microchip mandated", fr: "Requise sur le certificat ; puce non imposée", es: "Obligatoria en el certificado; no se exige microchip", pt: "Obrigatória no certificado; microchip não exigido" }
+    when: { en: "The health certificate must carry the animal's identification. Cuba's official requirements accept a tag (chapilla), tattoo or microchip; an ISO microchip is not specifically mandated for entry into Cuba.", fr: "Le certificat sanitaire doit porter l'identification de l'animal. Les exigences officielles cubaines acceptent une chapa (chapilla), un tatouage ou une puce ; une puce ISO n'est pas spécifiquement imposée pour l'entrée à Cuba.", es: "El certificado sanitario debe llevar la identificación del animal. Los requisitos oficiales cubanos aceptan una chapa (chapilla), un tatuaje o un microchip; no se exige específicamente un microchip ISO para la entrada a Cuba.", pt: "O atestado de saúde deve conter a identificação do animal. Os requisitos oficiais cubanos aceitam uma placa (chapilla), uma tatuagem ou um microchip; um microchip ISO não é especificamente exigido para a entrada em Cuba." }
+    exceptions: { en: "A microchip is still recommended and is required by most airlines and for the return trip to the EU or the US.", fr: "Une puce reste recommandée et est exigée par la plupart des compagnies et pour le retour vers l'UE ou les États-Unis.", es: "Un microchip sigue siendo recomendable y lo exigen la mayoría de las aerolíneas y para el viaje de regreso a la UE o a EE. UU.", pt: "Mesmo assim, o microchip é recomendado e é exigido pela maioria das companhias aéreas e para a viagem de volta à UE ou aos EUA." }
+    ref: { en: "MINAG/CENASA — import and export of pets; Argentina SENASA — Cuba destination requirements", fr: "MINAG/CENASA — importation et exportation d'animaux ; SENASA Argentine — exigences destination Cuba", es: "MINAG/CENASA — importación y exportación de mascotas; SENASA Argentina — requisitos de destino Cuba", pt: "MINAG/CENASA — importação e exportação de animais de companhia; SENASA Argentina — requisitos de destino Cuba" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The certificate must record the rabies vaccination: vaccine type/brand, dose, date applied, validity and lot number. The vaccination must be current for the trip.", fr: "Le certificat doit consigner la vaccination antirabique : type/marque du vaccin, dose, date d'administration, validité et numéro de lot. La vaccination doit être en cours de validité pour le voyage.", es: "El certificado debe registrar la vacunación antirrábica: tipo/marca de la vacuna, dosis, fecha de aplicación, vigencia y número de lote. La vacunación debe estar vigente para el viaje.", pt: "O certificado deve registrar a vacinação antirrábica: tipo/marca da vacina, dose, data de aplicação, validade e número do lote. A vacinação precisa estar em dia na data da viagem." }
+    exceptions: { en: "Animals under 3 months of age cannot yet be vaccinated against rabies; where they are permitted to travel, the age is recorded on the certificate.", fr: "Les animaux de moins de 3 mois ne peuvent pas encore être vaccinés contre la rage ; lorsqu'ils sont autorisés à voyager, l'âge est consigné sur le certificat.", es: "Los animales menores de 3 meses aún no pueden vacunarse contra la rabia; cuando se les permite viajar, la edad se registra en el certificado.", pt: "Animais com menos de 3 meses de idade ainda não podem ser vacinados contra a raiva; quando têm permissão para viajar, a idade é registrada no certificado." }
+    ref: { en: "Granma/CENASA — import-export procedure for pets (2022); MINAG — export requirements update", fr: "Granma/CENASA — procédure d'importation-exportation des animaux (2022) ; MINAG — mise à jour des exigences d'exportation", es: "Granma/CENASA — procedimiento de importación-exportación de mascotas (2022); MINAG — actualización de los requisitos de exportación", pt: "Granma/CENASA — procedimento de importação-exportação de animais de companhia (2022); MINAG — atualização dos requisitos de exportação" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Effectively ~4 months for a first-time-vaccinated dog", fr: "En pratique ~4 mois pour un chien primo-vacciné", es: "En la práctica ~4 meses para un perro con primovacunación", pt: "Na prática, ~4 meses para um cachorro primovacinado" }
+    when: { en: "The first rabies dose is given from 3 months (90 days) of age and immunity builds after ~30 days, so a first-time-vaccinated dog is about 4 months old at travel.", fr: "La première dose antirabique s'administre à partir de 3 mois (90 jours) et l'immunité s'installe après ~30 jours ; un chien primo-vacciné a donc environ 4 mois au voyage.", es: "La primera dosis antirrábica se administra a partir de los 3 meses (90 días) de edad y la inmunidad se establece tras ~30 días, por lo que un perro con primovacunación tiene unos 4 meses en el momento del viaje.", pt: "A primeira dose antirrábica é aplicada a partir dos 3 meses (90 dias) de idade e a imunidade se estabelece depois de ~30 dias, então um cachorro primovacinado tem cerca de 4 meses na viagem." }
+    exceptions: { en: "Some official veterinary authorities allow puppies under 3 months to travel without rabies vaccination; the certificate must state the age. Airline age rules may be stricter.", fr: "Certaines autorités vétérinaires officielles autorisent les chiots de moins de 3 mois à voyager sans vaccination antirabique ; le certificat doit indiquer l'âge. Les règles d'âge des compagnies peuvent être plus strictes.", es: "Algunas autoridades veterinarias oficiales permiten que los cachorros menores de 3 meses viajen sin vacunación antirrábica; el certificado debe indicar la edad. Las normas de edad de las aerolíneas pueden ser más estrictas.", pt: "Algumas autoridades veterinárias oficiais permitem que filhotes com menos de 3 meses viajem sem vacinação antirrábica; o certificado deve indicar a idade. As regras de idade das companhias aéreas podem ser mais rígidas." }
+    ref: { en: "MINAG/CENASA — export requirements update; Argentina SENASA — Cuba destination requirements", fr: "MINAG/CENASA — mise à jour des exigences d'exportation ; SENASA Argentine — exigences destination Cuba", es: "MINAG/CENASA — actualización de los requisitos de exportación; SENASA Argentina — requisitos de destino Cuba", pt: "MINAG/CENASA — atualização dos requisitos de exportação; SENASA Argentina — requisitos de destino Cuba" }
+  - item: { en: "General health & parasite condition", fr: "État de santé & parasites", es: "Estado de salud y parásitos", pt: "Estado geral de saúde e parasitas" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The certificate must state the animal's general health and any preventive vaccinations and deworming. At inspection the dog must be healthy, with no fresh or healing wounds and free of external parasites.", fr: "Le certificat doit indiquer l'état de santé général de l'animal ainsi que les vaccinations préventives et la vermifugation. À l'inspection, le chien doit être sain, sans plaies fraîches ou en cicatrisation et exempt de parasites externes.", es: "El certificado debe indicar el estado de salud general del animal y cualquier vacunación preventiva y desparasitación. En la inspección, el perro debe estar sano, sin heridas frescas o en cicatrización y libre de parásitos externos.", pt: "O certificado deve declarar o estado geral de saúde do animal e as vacinas preventivas e a vermifugação. Na inspeção, o cachorro deve estar saudável, sem feridas recentes ou em cicatrização e livre de parasitas externos." }
+    exceptions: { en: "Cuba does not publish a specific tapeworm (Echinococcus) treatment window for entry.", fr: "Cuba ne publie pas de délai spécifique de traitement contre l'échinococcose pour l'entrée.", es: "Cuba no publica un plazo específico de tratamiento contra la tenia (Echinococcus) para la entrada.", pt: "Cuba não publica um prazo específico de tratamento contra tênias (Echinococcus) para a entrada." }
+    ref: { en: "MINAG/CENASA — export requirements update; Granma/CENASA — procedure (2022)", fr: "MINAG/CENASA — mise à jour des exigences d'exportation ; Granma/CENASA — procédure (2022)", es: "MINAG/CENASA — actualización de los requisitos de exportación; Granma/CENASA — procedimiento (2022)", pt: "MINAG/CENASA — atualização dos requisitos de exportação; Granma/CENASA — procedimento (2022)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Cuba's published requirements to import a dog do not include a rabies antibody test. (Cuba requires an antibody test only for its own residents exporting dogs to the EU or the US.)", fr: "Les exigences publiées par Cuba pour importer un chien ne comprennent pas de titrage antirabique. (Cuba n'exige un titrage que pour ses propres résidents exportant un chien vers l'UE ou les États-Unis.)", es: "Los requisitos publicados por Cuba para importar un perro no incluyen una prueba de titulación de rabia. (Cuba solo exige una prueba de titulación a sus propios residentes que exportan perros a la UE o a EE. UU.)", pt: "Os requisitos publicados por Cuba para importar um cachorro não incluem teste sorológico antirrábico. (Cuba exige o teste sorológico apenas dos seus próprios residentes que exportam cachorros para a UE ou os EUA.)" }
+    ref: { en: "MINAG/CENASA — import and export of pets; Argentina SENASA — Cuba destination requirements", fr: "MINAG/CENASA — importation et exportation d'animaux ; SENASA Argentine — exigences destination Cuba", es: "MINAG/CENASA — importación y exportación de mascotas; SENASA Argentina — requisitos de destino Cuba", pt: "MINAG/CENASA — importação e exportação de animais de companhia; SENASA Argentina — requisitos de destino Cuba" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat sanitaire vétérinaire international", es: "Certificado sanitario veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the official veterinary authority of the departure country in the name of the person travelling with the animal. It records species, breed, name, age, sex, colour, identification, general health, deworming/vaccinations and the rabies-vaccination data.", fr: "Établi par l'autorité vétérinaire officielle du pays de départ au nom de la personne voyageant avec l'animal. Il consigne espèce, race, nom, âge, sexe, couleur, identification, état de santé général, vermifugation/vaccinations et les données de la vaccination antirabique.", es: "Expedido por la autoridad veterinaria oficial del país de salida a nombre de la persona que viaja con el animal. Registra especie, raza, nombre, edad, sexo, color, identificación, estado de salud general, desparasitación/vacunaciones y los datos de la vacunación antirrábica.", pt: "Emitido pela autoridade veterinária oficial do país de partida em nome da pessoa que viaja com o animal. Registra espécie, raça, nome, idade, sexo, cor, identificação, estado geral de saúde, vermifugação/vacinas e os dados da vacinação antirrábica." }
+    exceptions: { en: "Reference authorities give the certificate about 10 days' validity for entry checks; some Cuban consulates abroad have required consular legalisation — confirm with the Cuban consulate in your country before travel.", fr: "Les autorités de référence accordent au certificat une validité d'environ 10 jours pour les contrôles à l'entrée ; certains consulats cubains à l'étranger ont exigé une légalisation consulaire — vérifie auprès du consulat cubain de ton pays avant le voyage.", es: "Las autoridades de referencia otorgan al certificado unos 10 días de valide para los controles de entrada; algunos consulados cubanos en el extranjero han exigido la legalización consular — confírmalo con el consulado cubano de tu país antes de viajar.", pt: "As autoridades de referência atribuem ao certificado uma validade de cerca de 10 dias para o controle de entrada; alguns consulados cubanos no exterior já exigiram legalização consular — confirme com o consulado de Cuba no seu país antes de viajar." }
+    ref: { en: "Granma/CENASA — procedure (2022); Argentina SENASA — Cuba destination requirements", fr: "Granma/CENASA — procédure (2022) ; SENASA Argentine — exigences destination Cuba", es: "Granma/CENASA — procedimiento (2022); SENASA Argentina — requisitos de destino Cuba", pt: "Granma/CENASA — procedimento (2022); SENASA Argentina — requisitos de destino Cuba" }
+  - item: { en: "Import authorization / permit", fr: "Autorisation / permis d'importation", es: "Autorización / permiso de importación", pt: "Autorização / permissão de importação" }
+    required: { en: "No prior permit", fr: "Pas de permis préalable", es: "Sin permiso previo", pt: "Sem autorização prévia" }
+    when: { en: "No advance import permit is described for a personal pet. The Border Veterinary Service authorises entry at the port or airport after reviewing the certificate and inspecting the animal.", fr: "Aucun permis d'importation préalable n'est décrit pour un animal de compagnie. Le Service vétérinaire de frontière autorise l'entrée au port ou à l'aéroport après examen du certificat et inspection de l'animal.", es: "No se describe ningún permiso de importación previo para una mascota personal. El Servicio Veterinario de Frontera autoriza la entrada en el puerto o el aeropuerto tras revisar el certificado e inspeccionar al animal.", pt: "Nenhuma autorização de importação prévia é descrita para um animal de companhia particular. O Serviço Veterinário de Fronteira autoriza a entrada no porto ou no aeroporto depois de analisar o certificado e inspecionar o animal." }
+    exceptions: { en: "Only dogs and cats are recognised as pets for this procedure.", fr: "Seuls les chiens et les chats sont reconnus comme animaux de compagnie pour cette procédure.", es: "Solo los perros y los gatos se reconocen como mascotas para este procedimiento.", pt: "Apenas cachorros e gatos são reconhecidos como animais de companhia nesse procedimento." }
+    ref: { en: "MINAG/CENASA — import and export of pets; Granma/CENASA — procedure (2022)", fr: "MINAG/CENASA — importation et exportation d'animaux ; Granma/CENASA — procédure (2022)", es: "MINAG/CENASA — importación y exportación de mascotas; Granma/CENASA — procedimiento (2022)", pt: "MINAG/CENASA — importação e exportação de animais de companhia; Granma/CENASA — procedimento (2022)" }
+  - item: { en: "Arrival veterinary inspection & release certificate", fr: "Inspection vétérinaire à l'arrivée & certificat de libération", es: "Inspección veterinaria a la llegada y certificado de liberación", pt: "Inspeção veterinária na chegada e certificado de liberação" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Border Veterinary Service vets at the international airport physically inspect the dog and check the certificate. If the health documents and physical exam show a healthy animal, a release certificate (Certificado de Liberación) is issued authorising entry.", fr: "Les vétérinaires du Service vétérinaire de frontière à l'aéroport international inspectent physiquement le chien et vérifient le certificat. Si les documents sanitaires et l'examen physique montrent un animal sain, un certificat de libération (Certificado de Liberación) est délivré autorisant l'entrée.", es: "Los veterinarios del Servicio Veterinario de Frontera en el aeropuerto internacional inspeccionan físicamente al perro y revisan el certificado. Si los documentos sanitarios y el examen físico muestran un animal sano, se expide un certificado de liberación (Certificado de Liberación) que autoriza la entrada.", pt: "Os veterinários do Serviço Veterinário de Fronteira no aeroporto internacional inspecionam fisicamente o cachorro e conferem o certificado. Se os documentos sanitários e o exame físico mostrarem um animal saudável, é emitido um certificado de liberação (Certificado de Liberación) autorizando a entrada." }
+    exceptions: { en: "Whether Cuba charges a veterinary inspection fee on arrival, and its amount, is not published in a stable official source — Unknown / confirm at the airport.", fr: "L'existence et le montant d'une éventuelle redevance d'inspection vétérinaire à l'arrivée à Cuba ne sont pas publiés dans une source officielle stable — Non communiqué / à confirmer à l'aéroport.", es: "Si Cuba cobra una tasa de inspección veterinaria a la llegada, y su importe, no se publica en una fuente oficial estable — Desconocido / confírmalo en el aeropuerto.", pt: "Se Cuba cobra uma taxa de inspeção veterinária na chegada, e de quanto ela seria, não está publicado em fonte oficial estável — Desconhecido / confirme no aeroporto." }
+    ref: { en: "MINAG/CENASA — import and export of pets; Granma/CENASA — procedure (2022)", fr: "MINAG/CENASA — importation et exportation d'animaux ; Granma/CENASA — procédure (2022)", es: "MINAG/CENASA — importación y exportación de mascotas; Granma/CENASA — procedimiento (2022)", pt: "MINAG/CENASA — importação e exportação de animais de companhia; Granma/CENASA — procedimento (2022)" }
+  - item: { en: "Follow-up home visit", fr: "Visite à domicile de suivi", es: "Visita domiciliaria de seguimiento", pt: "Visita domiciliar de acompanhamento" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The residence or lodging address is recorded on arrival. Municipal animal-health specialists carry out a home visit within 15 days to verify the dog's health matches the certificate, as routine epidemiological surveillance.", fr: "L'adresse de résidence ou d'hébergement est consignée à l'arrivée. Des spécialistes municipaux de la santé animale effectuent une visite à domicile dans les 15 jours pour vérifier que l'état du chien correspond au certificat, au titre de la surveillance épidémiologique de routine.", es: "La dirección de residencia o alojamiento se registra a la llegada. Especialistas municipales de sanidad animal realizan una visita domiciliaria dentro de los 15 días para verificar que el estado del perro coincide con el certificado, como vigilancia epidemiológica rutinaria.", pt: "O endereço de residência ou hospedagem é registrado na chegada. Especialistas municipais de sanidade animal fazem uma visita domiciliar em até 15 dias para verificar se a saúde do cachorro corresponde ao certificado, como vigilância epidemiológica de rotina." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Granma/CENASA — procedure (2022)", fr: "Granma/CENASA — procédure (2022)", es: "Granma/CENASA — procedimiento (2022)", pt: "Granma/CENASA — procedimento (2022)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routine", fr: "Non systématique", es: "No rutinaria", pt: "Não sistemática" }
+    when: { en: "The border vet may exempt a healthy, well-documented dog from quarantine, taking into account the certificate, the animal's condition and the country of origin.", fr: "Le vétérinaire de frontière peut exempter de quarantaine un chien sain et bien documenté, compte tenu du certificat, de l'état de l'animal et du pays d'origine.", es: "El veterinario de frontera puede eximir de la cuarentena a un perro sano y bien documentado, teniendo en cuenta el certificado, el estado del animal y el país de origen.", pt: "O veterinário de fronteira pode dispensar da quarentena um cachorro saudável e bem documentado, levando em conta o certificado, o estado do animal e o país de origem." }
+    exceptions: { en: "There is no published fixed quarantine period for a compliant pet; a non-compliant or unhealthy animal may be held.", fr: "Aucune durée de quarantaine fixe n'est publiée pour un animal conforme ; un animal non conforme ou malade peut être retenu.", es: "No se publica un periodo de cuarentena fijo para una mascota que cumple los requisitos; un animal no conforme o enfermo puede quedar retenido.", pt: "Não há período fixo de quarentena publicado para um animal de companhia em conformidade; um animal fora das regras ou doente pode ficar retido." }
+    ref: { en: "MINAG/CENASA — import and export of pets", fr: "MINAG/CENASA — importation et exportation d'animaux", es: "MINAG/CENASA — importación y exportación de mascotas", pt: "MINAG/CENASA — importação e exportação de animais de companhia" }
+
+origin:
+  eu:
+    title: { en: "Standard — a pet travelling with its owner", fr: "Standard — un animal voyageant avec son propriétaire", es: "Estándar — una mascota que viaja con su dueño", pt: "Padrão — um animal de companhia viajando com o dono" }
+    body:
+      en: "A dog accompanying its owner needs a veterinary health certificate from the official veterinary authority of the departure country, showing the animal's identification, general health and rabies-vaccination details (vaccine, date, validity, lot). No EU pet passport is used and no prior import permit is required. On arrival, the Border Veterinary Service inspects the dog and, if all is in order, issues a release certificate authorising entry. A home visit follows within 15 days."
+      fr: "Un chien accompagnant son propriétaire a besoin d'un certificat sanitaire vétérinaire de l'autorité vétérinaire officielle du pays de départ, indiquant l'identification de l'animal, son état de santé général et les données de la vaccination antirabique (vaccin, date, validité, lot). Aucun passeport européen n'est utilisé et aucun permis d'importation préalable n'est requis. À l'arrivée, le Service vétérinaire de frontière inspecte le chien et, si tout est en règle, délivre un certificat de libération autorisant l'entrée. Une visite à domicile suit dans les 15 jours."
+      es: "Un perro que acompaña a su dueño necesita un certificado sanitario veterinario de la autoridad veterinaria oficial del país de salida, que muestre la identificación del animal, su estado de salud general y los datos de la vacunación antirrábica (vacuna, fecha, vigencia, lote). No se utiliza pasaporte europeo para mascotas ni se exige permiso de importación previo. A la llegada, el Servicio Veterinario de Frontera inspecciona al perro y, si todo está en regla, expide un certificado de liberación que autoriza la entrada. Una visita domiciliaria se realiza dentro de los 15 días."
+      pt: "Um cachorro que acompanha o dono precisa de um atestado de saúde veterinário da autoridade veterinária oficial do país de partida, mostrando a identificação do animal, o estado geral de saúde e os dados da vacinação antirrábica (vacina, data, validade, lote). O passaporte europeu para animais de companhia não é utilizado e nenhuma autorização de importação prévia é exigida. Na chegada, o Serviço Veterinário de Fronteira inspeciona o cachorro e, se estiver tudo em ordem, emite um certificado de liberação autorizando a entrada. Uma visita domiciliar acontece em até 15 dias."
+    cls: ok
+  listed:
+    title: { en: "Puppies and first-time vaccination", fr: "Chiots et primo-vaccination", es: "Cachorros y primovacunación", pt: "Filhotes e primeira vacinação" }
+    body:
+      en: "A dog cannot be vaccinated against rabies before 3 months (90 days), and immunity builds after about 30 days, so a first-time-vaccinated dog is roughly 4 months old at travel. The certificate must show the rabies-vaccination data and the dog's age. Some official veterinary authorities allow puppies under 3 months to travel without rabies vaccination, with the age recorded — but airline rules and your home country's return rules may be stricter, so confirm both."
+      fr: "Un chien ne peut être vacciné contre la rage avant 3 mois (90 jours), et l'immunité s'installe après environ 30 jours ; un chien primo-vacciné a donc environ 4 mois au voyage. Le certificat doit indiquer les données de la vaccination antirabique et l'âge du chien. Certaines autorités vétérinaires officielles autorisent les chiots de moins de 3 mois à voyager sans vaccination antirabique, l'âge étant consigné — mais les règles des compagnies et de retour de ton pays peuvent être plus strictes ; vérifie les deux."
+      es: "Un perro no puede vacunarse contra la rabia antes de los 3 meses (90 días), y la inmunidad se establece tras unos 30 días, por lo que un perro con primovacunación tiene unos 4 meses en el momento del viaje. El certificado debe mostrar los datos de la vacunación antirrábica y la edad del perro. Algunas autoridades veterinarias oficiales permiten que los cachorros menores de 3 meses viajen sin vacunación antirrábica, con la edad registrada — pero las normas de las aerolíneas y las de regreso de tu país pueden ser más estrictas, así que confirma ambas."
+      pt: "Um cachorro não pode ser vacinado contra a raiva antes dos 3 meses (90 dias), e a imunidade se estabelece depois de cerca de 30 dias, então um cachorro primovacinado tem por volta de 4 meses na viagem. O certificado deve mostrar os dados da vacinação antirrábica e a idade do cachorro. Algumas autoridades veterinárias oficiais permitem que filhotes com menos de 3 meses viajem sem vacinação antirrábica, com a idade registrada — mas as regras da companhia aérea e as regras de retorno do seu país podem ser mais rígidas, então confirme as duas."
+    cls: warn
+  nonListed:
+    title: { en: "Stays over 30 days & the return trip", fr: "Séjours de plus de 30 jours & voyage de retour", es: "Estancias de más de 30 días y el viaje de regreso", pt: "Estadias de mais de 30 dias e a viagem de volta" }
+    body:
+      en: "If your dog returns to its country of origin within 30 days of arrival, the same certificate can serve for the exit. If the stay in Cuba exceeds 30 days, you must process a Cuban export certificate at a provincial quarantine clinic of the animal-health system, endorsed by CENASA. Exports to the EU or the US require additional steps (microchip, rabies antibody test and, for the US, a CDC authorization) — plan these well ahead if Cuba is a stop on a longer journey."
+      fr: "Si ton chien retourne dans son pays d'origine dans les 30 jours suivant l'arrivée, le même certificat peut servir pour la sortie. Si le séjour à Cuba dépasse 30 jours, tu dois traiter un certificat d'exportation cubain dans une clinique de quarantaine provinciale du système de santé animale, visé par le CENASA. Les exportations vers l'UE ou les États-Unis exigent des étapes supplémentaires (puce, titrage antirabique et, pour les États-Unis, une autorisation du CDC) — anticipe si Cuba est une étape d'un voyage plus long."
+      es: "Si tu perro regresa a su país de origen dentro de los 30 días posteriores a la llegada, el mismo certificado puede servir para la salida. Si la estancia en Cuba supera los 30 días, debes tramitar un certificado de exportación cubano en una clínica de cuarentena provincial del sistema de sanidad animal, refrendado por el CENASA. Las exportaciones a la UE o a EE. UU. requieren pasos adicionales (microchip, prueba de titulación de rabia y, para EE. UU., una autorización de los CDC) — planifícalos con mucha antelación si Cuba es una escala de un viaje más largo."
+      pt: "Se o seu cachorro voltar ao país de origem em até 30 dias após a chegada, o mesmo certificado pode servir para a saída. Se a estadia em Cuba passar de 30 dias, você precisa tramitar um certificado cubano de exportação em uma clínica provincial de quarentena do sistema de sanidade animal, endossado pelo CENASA. Exportações para a UE ou os EUA exigem etapas adicionais (microchip, teste sorológico antirrábico e, para os EUA, uma autorização do CDC) — planeje isso com bastante antecedência se Cuba for uma parada de uma viagem mais longa."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Cuba depends on whether its documents are complete and the animal is healthy."
+    fr: "Ce qui se passe à l'arrivée de ton chien à Cuba dépend de la complétude de ses documents et de son état de santé."
+    es: "Lo que ocurre cuando tu perro llega a Cuba depende de si sus documentos están completos y de si el animal está sano."
+    pt: "O que acontece quando o seu cachorro chega a Cuba depende de os documentos estarem completos e de o animal estar saudável."
+  points:
+    - en: "At the international airport, the Border Veterinary Service checks the health certificate and physically inspects the dog against the details recorded on it."
+      fr: "À l'aéroport international, le Service vétérinaire de frontière vérifie le certificat sanitaire et inspecte physiquement le chien au regard des données qui y figurent."
+      es: "En el aeropuerto internacional, el Servicio Veterinario de Frontera revisa el certificado sanitario e inspecciona físicamente al perro cotejándolo con los datos que figuran en él."
+      pt: "No aeroporto internacional, o Serviço Veterinário de Fronteira confere o atestado de saúde e inspeciona fisicamente o cachorro, comparando-o com os dados registrados no documento."
+    - en: "If the papers and the physical exam show a healthy animal, a release certificate (Certificado de Liberación) is issued and the dog may enter."
+      fr: "Si les documents et l'examen physique montrent un animal sain, un certificat de libération (Certificado de Liberación) est délivré et le chien peut entrer."
+      es: "Si los documentos y el examen físico muestran un animal sano, se expide un certificado de liberación (Certificado de Liberación) y el perro puede entrar."
+      pt: "Se os documentos e o exame físico mostrarem um animal saudável, é emitido um certificado de liberação (Certificado de Liberación) e o cachorro pode entrar."
+    - en: "Your residence or lodging address in Cuba is recorded for a follow-up home visit within 15 days by municipal animal-health specialists."
+      fr: "Ton adresse de résidence ou d'hébergement à Cuba est consignée pour une visite à domicile de suivi dans les 15 jours par des spécialistes municipaux de la santé animale."
+      es: "Tu dirección de residencia o alojamiento en Cuba se registra para una visita domiciliaria de seguimiento dentro de los 15 días por parte de especialistas municipales de sanidad animal."
+      pt: "O seu endereço de residência ou hospedagem em Cuba é registrado para uma visita domiciliar de acompanhamento em até 15 dias, feita por especialistas municipais de sanidade animal."
+    - en: "A healthy, well-documented dog is normally exempted from quarantine; an unhealthy or undocumented animal may be held."
+      fr: "Un chien sain et bien documenté est normalement exempté de quarantaine ; un animal malade ou non documenté peut être retenu."
+      es: "Un perro sano y bien documentado normalmente queda exento de cuarentena; un animal enfermo o sin documentación puede quedar retenido."
+      pt: "Um cachorro saudável e bem documentado normalmente é dispensado da quarentena; um animal doente ou sem documentação pode ficar retido."
+    - en: "Carry the original certificate (not a copy). Whether a veterinary inspection fee is charged on arrival is not published officially — be prepared to confirm it at the airport."
+      fr: "Munis-toi du certificat original (pas d'une copie). L'existence d'une redevance d'inspection vétérinaire à l'arrivée n'est pas publiée officiellement — sois prêt à la vérifier à l'aéroport."
+      es: "Lleva el certificado original (no una copia). Si se cobra una tasa de inspección veterinaria a la llegada no se publica oficialmente — prepárate para confirmarlo en el aeropuerto."
+      pt: "Leve o certificado original (não uma cópia). Se há cobrança de taxa de inspeção veterinária na chegada não está publicado oficialmente — esteja preparado para confirmar no aeroporto."
+    - en: "Airlines have their own crate, breed and booking rules — confirm them separately before you fly."
+      fr: "Les compagnies ont leurs propres règles de caisse, de race et de réservation — vérifie-les séparément avant de voler."
+      es: "Las aerolíneas tienen sus propias normas de jaula, raza y reserva — confírmalas por separado antes de volar."
+      pt: "As companhias aéreas têm as próprias regras de caixa de transporte, raça e reserva — confirme-as separadamente antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Cuba has no published breed-specific import ban. Reference official veterinary authorities list no restriction on dog breeds considered dangerous for entry into Cuba."
+    fr: "Cuba n'a aucune interdiction d'importation visant une race publiée. Les autorités vétérinaires officielles de référence n'indiquent aucune restriction sur les races de chiens considérées dangereuses pour l'entrée à Cuba."
+    es: "Cuba no tiene ninguna prohibición de importación por raza publicada. Las autoridades veterinarias oficiales de referencia no indican ninguna restricción sobre las razas de perros consideradas peligrosas para la entrada a Cuba."
+    pt: "Cuba não tem nenhuma proibição de importação publicada por raça. As autoridades veterinárias oficiais de referência não listam nenhuma restrição a raças de cachorro consideradas perigosas para a entrada em Cuba."
+  cat1:
+    en: "No banned category: no dog breed is recorded as prohibited from entering Cuba. Any dog meeting the health-certificate, rabies-vaccination and arrival-inspection requirements may be imported regardless of breed."
+    fr: "Aucune catégorie interdite : aucune race de chien n'est enregistrée comme interdite d'entrée à Cuba. Tout chien répondant aux exigences (certificat sanitaire, vaccination antirabique, inspection à l'arrivée) peut être importé, quelle que soit sa race."
+    es: "Sin categoría prohibida: ninguna raza de perro figura como prohibida para la entrada a Cuba. Cualquier perro que cumpla los requisitos de certificado sanitario, vacunación antirrábica e inspección a la llegada puede importarse independientemente de la raza."
+    pt: "Nenhuma categoria proibida: nenhuma raça de cachorro consta como proibida de entrar em Cuba. Qualquer cachorro que cumpra os requisitos de atestado de saúde, vacinação antirrábica e inspeção na chegada pode ser importado, seja qual for a raça."
+  cat2:
+    en: "No dangerous-breed list: reference authorities note that breed-based restrictions are 'not contemplated to date' for Cuba. If this changes, the restriction would be published by the Cuban veterinary authority — check before travel."
+    fr: "Aucune liste de races dangereuses : les autorités de référence notent que les restrictions par race ne sont « pas prévues à ce jour » pour Cuba. En cas de changement, la restriction serait publiée par l'autorité vétérinaire cubaine — vérifie avant de voyager."
+    es: "Sin lista de razas peligrosas: las autoridades de referencia señalan que las restricciones por raza «no están contempladas hasta la fecha» para Cuba. Si esto cambia, la restricción la publicaría la autoridad veterinaria cubana — compruébalo antes de viajar."
+    pt: "Sem lista de raças perigosas: as autoridades de referência observam que restrições por raça 'não estão contempladas até o momento' em Cuba. Se isso mudar, a restrição seria publicada pela autoridade veterinária cubana — confira antes de viajar."
+  note:
+    en: "Because there is no national breed ban, focus on the health certificate and arrival inspection. Confirm your airline's own breed and crate policy before booking."
+    fr: "Comme il n'existe pas d'interdiction nationale de race, concentre-toi sur le certificat sanitaire et l'inspection à l'arrivée. Vérifie la politique de race et de caisse de ta compagnie avant de réserver."
+    es: "Como no existe una prohibición nacional por raza, céntrate en el certificado sanitario y la inspección a la llegada. Confirma la política de razas y jaula de tu aerolínea antes de reservar."
+    pt: "Como não existe proibição nacional por raça, concentre-se no atestado de saúde e na inspeção de chegada. Confirme a política de raças e de caixa de transporte da sua companhia aérea antes de reservar."
+
+checklist:
+  - en: "Veterinary health certificate from the departure country's official authority, in your name"
+    fr: "Certificat sanitaire vétérinaire de l'autorité officielle du pays de départ, à ton nom"
+    es: "Certificado sanitario veterinario de la autoridad oficial del país de salida, a tu nombre"
+    pt: "Atestado de saúde veterinário da autoridade oficial do país de partida, em seu nome"
+  - en: "Rabies vaccination recorded (vaccine type/brand, dose, date, validity, lot number)"
+    fr: "Vaccination antirabique consignée (type/marque du vaccin, dose, date, validité, numéro de lot)"
+    es: "Vacunación antirrábica registrada (tipo/marca de la vacuna, dosis, fecha, vigencia, número de lote)"
+    pt: "Vacinação antirrábica registrada (tipo/marca da vacina, dose, data, validade, número do lote)"
+  - en: "Animal identification on the certificate (tag, tattoo or microchip — microchip advised for the return)"
+    fr: "Identification de l'animal sur le certificat (chapa, tatouage ou puce — puce conseillée pour le retour)"
+    es: "Identificación del animal en el certificado (chapa, tatuaje o microchip — microchip recomendado para el regreso)"
+    pt: "Identificação do animal no certificado (placa, tatuagem ou microchip — microchip recomendado para a volta)"
+  - en: "Dog clinically healthy, no fresh wounds, free of external parasites"
+    fr: "Chien cliniquement sain, sans plaies fraîches, exempt de parasites externes"
+    es: "Perro clínicamente sano, sin heridas frescas, libre de parásitos externos"
+    pt: "Cachorro clinicamente saudável, sem feridas recentes, livre de parasitas externos"
+  - en: "Original documents carried with you (not copies)"
+    fr: "Documents originaux transportés avec toi (pas de copies)"
+    es: "Documentos originales que lleves contigo (no copias)"
+    pt: "Documentos originais levados com você (não cópias)"
+  - en: "Check whether the Cuban consulate in your country requires certificate legalisation"
+    fr: "Vérifie si le consulat cubain de ton pays exige une légalisation du certificat"
+    es: "Comprueba si el consulado cubano de tu país exige la legalización del certificado"
+    pt: "Verifique se o consulado de Cuba no seu país exige a legalização do certificado"
+  - en: "Note your Cuban residence/lodging address for the 15-day follow-up visit"
+    fr: "Note ton adresse de résidence/hébergement à Cuba pour la visite de suivi à 15 jours"
+    es: "Anota tu dirección de residencia/alojamiento en Cuba para la visita de seguimiento a los 15 días"
+    pt: "Anote o seu endereço de residência/hospedagem em Cuba para a visita de acompanhamento em 15 dias"
+  - en: "If staying over 30 days, plan the Cuban export certificate for the return"
+    fr: "En cas de séjour de plus de 30 jours, planifie le certificat d'exportation cubain pour le retour"
+    es: "Si te quedas más de 30 días, planifica el certificado de exportación cubano para el regreso"
+    pt: "Se for ficar mais de 30 dias, planeje o certificado cubano de exportação para a volta"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation compagnie et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "MINAG (Ministry of Agriculture of Cuba) — On the import and export of pets, dogs and cats", fr: "MINAG (ministère de l'Agriculture de Cuba) — Sur l'importation et l'exportation d'animaux de compagnie, chiens et chats", es: "MINAG (Ministerio de la Agricultura de Cuba) — Sobre la importación y exportación de mascotas, perros y gatos", pt: "MINAG (Ministério da Agricultura de Cuba) — Sobre a importação e a exportação de animais de companhia, cães e gatos" }
+    url: "https://www.minag.gob.cu/noticias/sobre-la-importacion-y-exportacion-de-mascotas-perros-y-gatos/"
+  - label: { en: "MINAG / CENASA — Update: requirements to export pets", fr: "MINAG / CENASA — Mise à jour : exigences pour exporter des animaux de compagnie", es: "MINAG / CENASA — Actualización: requisitos para exportar mascotas", pt: "MINAG / CENASA — Atualização: requisitos para exportar animais de companhia" }
+    url: "https://www.minag.gob.cu/noticias/actualizacion-cuales-son-los-requisitos-para-exportar-mascotas/"
+  - label: { en: "Granma (official PCC organ) / CENASA-MINAG — Procedure to import or export pets (2022)", fr: "Granma (organe officiel du PCC) / CENASA-MINAG — Procédure pour importer ou exporter des animaux (2022)", es: "Granma (órgano oficial del PCC) / CENASA-MINAG — Procedimiento para importar o exportar mascotas (2022)", pt: "Granma (órgão oficial do PCC) / CENASA-MINAG — Procedimento para importar ou exportar animais de companhia (2022)" }
+    url: "https://www.granma.cu/cuba/2022-05-10/detallan-procedimiento-para-importar-o-exportar-mascotas"
+  - label: { en: "Granma (official PCC organ) / CENASA — Update on requirements to export pets (2024)", fr: "Granma (organe officiel du PCC) / CENASA — Mise à jour des exigences d'exportation d'animaux (2024)", es: "Granma (órgano oficial del PCC) / CENASA — Actualización de los requisitos para exportar mascotas (2024)", pt: "Granma (órgão oficial do PCC) / CENASA — Atualização sobre os requisitos para exportar animais de companhia (2024)" }
+    url: "https://www.granma.cu/cuba/2024-05-09/actualizan-sobre-requisitos-para-exportar-mascotas"
+  - label: { en: "General Customs of the Republic of Cuba — Pets", fr: "Douane générale de la République de Cuba — Animaux de compagnie", es: "Aduana General de la República de Cuba — Mascotas", pt: "Aduana General de la República de Cuba — Animais de companhia" }
+    url: "http://www.aduana.gob.cu/index.php/mascotas"
+  - label: { en: "Argentina SENASA (official veterinary authority) — Cuba destination requirements for dogs/cats", fr: "SENASA Argentine (autorité vétérinaire officielle) — Exigences destination Cuba pour chiens/chats", es: "SENASA Argentina (autoridad veterinaria oficial) — Requisitos de destino Cuba para perros/gatos", pt: "SENASA Argentina (autoridade veterinária oficial) — Requisitos de destino Cuba para cães/gatos" }
+    url: "https://www.argentina.gob.ar/senasa/requisitos-particulares-por-destino/cuba"
+
+seo:
+  title: { en: "Cuba Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Cuba — Guide", es: "Requisitos de entrada de perros en Cuba — Guía de viaje", pt: "Entrada de cachorros em Cuba — Guia de viagem" }
+  metaTitle: { en: "Traveling to Cuba With Your Dog: Entry Requirements (2026)", fr: "Voyager à Cuba avec ton chien : formalités (2026)", es: "Viajar a Cuba con tu perro: requisitos de entrada (2026)", pt: "Viajar para Cuba com seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official CENASA/MINAG rules for a dog entering Cuba: vet health certificate, rabies vaccination, arrival inspection and a 15-day home visit. Sourced and dated."
+    fr: "Règles officielles CENASA/MINAG pour un chien entrant à Cuba : certificat vétérinaire, vaccination antirabique, contrôle à l'arrivée et visite à 15 jours."
+    es: "Normas oficiales CENASA/MINAG para traer un perro a Cuba: certificado veterinario, vacunación antirrábica, inspección al llegar y visita a los 15 días."
+    pt: "Regras oficiais CENASA/MINAG para levar um cachorro para Cuba: atestado de saúde veterinário, vacinação antirrábica e visita em 15 dias. Com fontes e data."
+  slug: "cuba"
+  shortDesc:
+    en: "What you need to bring a dog into Cuba, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien à Cuba, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Cuba, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para Cuba, dependendo de onde você vem."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

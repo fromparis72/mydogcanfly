@@ -1,0 +1,387 @@
+# Country Entry Guide — Turkey / Türkiye (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_tr
+iso2: "TR"
+name: { en: "Turkey", fr: "Turquie", es: "Turquía", pt: "Turquia" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Turkey: the pet passport is compulsory even inside the country — but no health certificate is needed."
+    fr: "Vol intérieur en Turquie : le passeport pour animal est obligatoire même à l'intérieur du pays — mais aucun certificat sanitaire n'est requis."
+    es: "Vuelo nacional en Turquía: el pasaporte para mascotas es obligatorio incluso dentro del país — pero no se exige certificado sanitario."
+    pt: "Voo doméstico na Turquia: o passaporte do animal é obrigatório mesmo dentro do país — mas não é preciso atestado de saúde."
+  points:
+    - en: "Carrying the pet passport is compulsory for domestic movements of dogs, cats and ferrets. It is issued by an authorised vet or the provincial agriculture directorate."
+      fr: "Le port du passeport pour animal est obligatoire pour les mouvements intérieurs de chiens, chats et furets. Il est délivré par un vétérinaire agréé ou la direction provinciale de l'agriculture."
+      es: "Llevar el pasaporte de mascota es obligatorio para los movimientos nacionales de perros, gatos y hurones. Lo emite un veterinario autorizado o la dirección provincial de agricultura."
+      pt: "Levar o passaporte do animal é obrigatório nos deslocamentos internos de cachorros, gatos e furões. Ele é emitido por um veterinário autorizado ou pela diretoria provincial de agricultura."
+    - en: "Conversely, non-commercial pets are expressly exempt from the veterinary health report. Rabies vaccination is compulsory annually from 3 months, and an ISO microchip is mandatory — both as general ownership duties."
+      fr: "À l'inverse, les animaux de compagnie non commerciaux sont expressément dispensés du rapport sanitaire vétérinaire. La vaccination antirabique est obligatoire chaque année dès 3 mois, et la puce ISO est obligatoire — l'une et l'autre au titre des obligations générales du détenteur."
+      es: "En cambio, las mascotas no comerciales están expresamente exentas del informe sanitario veterinario. La vacuna antirrábica es obligatoria anualmente desde los 3 meses, y el microchip ISO es obligatorio — ambas como obligaciones generales del propietario."
+      pt: "Em compensação, os animais de estimação em circulação não comercial estão expressamente dispensados do relatório veterinário de saúde. A vacinação antirrábica é obrigatória todo ano a partir dos 3 meses, e o microchip ISO é obrigatório — os dois como deveres gerais de quem tem o animal."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+exit:
+  authority: Tarım ve Orman Bakanlığı
+  authorityUrl: https://www.tarimorman.gov.tr
+  intro:
+    en: "Turkey is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a government-issued veterinary health certificate."
+    fr: "La Turquie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire vétérinaire délivré par l'administration."
+    es: "Turquía no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario veterinario emitido por la administración."
+    pt: "A Turquia é um país não listado, então um teste sorológico antirrábico válido é obrigatório para voltar à UE — além de um certificado veterinário de saúde emitido pelo governo."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Since 2024 the export health certificate is issued by the District Agriculture and Forestry Directorate of your place of residence (a government vet, not a private one) — apply in person with the dog and documents."
+        fr: "Depuis 2024, le certificat sanitaire d'export est délivré par la Direction de district de l'Agriculture et des Forêts de ton lieu de résidence (un vétérinaire officiel, pas privé) — présente-toi en personne avec le chien et les documents."
+        es: "Desde 2024 el certificado sanitario de exportación lo emite la Dirección de Distrito de Agricultura y Bosques de tu lugar de residencia (un veterinario oficial, no privado) — preséntate en persona con el perro y los documentos."
+        pt: "Desde 2024, o certificado sanitário de exportação é emitido pela Diretoria Distrital de Agricultura e Florestas do seu local de residência (um veterinário do governo, não um particular) — o pedido é feito presencialmente, com o cachorro e os documentos."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Turkey with your dog", fr: "Voyager en Turquie avec ton chien", es: "Viajar a Turquía con tu perro", pt: "Viajar para a Turquia com seu cachorro" }
+  intro:
+    en: >-
+      Turkey (officially Türkiye) is not part of the EU: it applies its own scheme through the Ministry of Agriculture and
+      Forestry (Tarım ve Orman Bakanlığı) and Turkish Customs (Ticaret Bakanlığı). A traveller may bring
+      up to two pets for personal, non-commercial use. Every dog needs an ISO microchip, a valid rabies
+      vaccination, a rabies antibody (titration) test and an official veterinary health certificate from
+      the country of dispatch. Because the antibody test is followed by a compulsory three-month wait, what
+      you prepare depends heavily on your dog's origin and vaccination history — a dog that already holds
+      a passport documenting an acceptable antibody test is not re-tested. Four dog breeds are banned from entering
+      the country. This guide explains each path so you know exactly what to organise before you fly.
+    fr: >-
+      La Turquie ne fait pas partie de l'UE : elle applique son propre régime via le ministère de
+      l'Agriculture et des Forêts (Tarım ve Orman Bakanlığı) et la douane turque (Ticaret Bakanlığı). Un
+      voyageur peut amener jusqu'à deux animaux à titre personnel et non commercial. Chaque chien doit avoir
+      une puce ISO, une vaccination antirabique valide, un test de titrage des anticorps antirabiques et un
+      certificat vétérinaire officiel du pays d'expédition. Comme le titrage est suivi d'un délai obligatoire
+      de trois mois, ce qu'il faut préparer dépend fortement de l'origine et de l'historique vaccinal du chien
+      — un chien dont le passeport atteste déjà un titre acceptable n'est pas retesté. Quatre races de chiens
+      sont interdites d'entrée. Ce guide détaille chaque cas pour savoir quoi préparer avant de réserver.
+    es: >-
+      Turquía (oficialmente Türkiye) no forma parte de la UE: aplica su propio régimen a través del Ministerio de Agricultura y
+      Bosques (Tarım ve Orman Bakanlığı) y la aduana turca (Ticaret Bakanlığı). Un viajero puede llevar
+      hasta dos mascotas para uso personal y no comercial. Todo perro necesita un microchip ISO, una
+      vacunación antirrábica válida, una prueba de titulación de anticuerpos contra la rabia y un
+      certificado sanitario veterinario oficial del país de expedición. Como la prueba de titulación va
+      seguida de una espera obligatoria de tres meses, lo que debes preparar depende en gran medida del
+      origen de tu perro y de su historial de vacunación — un perro que ya tiene un pasaporte que documenta
+      una prueba de titulación aceptable no se vuelve a analizar. Cuatro razas de perros tienen prohibida
+      la entrada al país. Esta guía explica cada caso para que sepas exactamente qué preparar antes de volar.
+
+    pt: "A Turquia (oficialmente Türkiye) não faz parte da UE: ela aplica o próprio esquema por meio do Ministério da Agricultura e Florestas (Tarım ve Orman Bakanlığı) e da alfândega turca (Ticaret Bakanlığı). Cada viajante pode levar até dois animais de estimação para uso pessoal, não comercial. Todo cachorro precisa de microchip ISO, vacinação antirrábica válida, teste sorológico antirrábico (titulação) e certificado veterinário de saúde oficial do país de expedição. Como o teste sorológico é seguido de uma espera obrigatória de três meses, o que você precisa preparar depende muito da origem e do histórico de vacinação do seu cachorro — um cachorro que já tem um passaporte documentando um teste sorológico aceitável não é testado de novo. Quatro raças de cachorro são proibidas de entrar no país. Este guia explica cada caminho para você saber exatamente o que organizar antes de voar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate (antibody test + 3-month wait)", fr: "Modéré (titrage + 3 mois d'attente)", es: "Moderada (prueba de titulación + espera de 3 meses)", pt: "Moderada (teste sorológico + 3 meses de espera)" }
+
+prepTime:
+  eu:
+    en: "Dog already holding a passport that documents an acceptable rabies antibody test with regular vaccination: a few weeks — no new blood test, just the veterinary health certificate."
+    fr: "Chien disposant déjà d'un passeport attestant un titre antirabique acceptable avec vaccination régulière : quelques semaines — pas de nouvelle prise de sang, seulement le certificat sanitaire."
+    es: "Perro que ya dispone de un pasaporte que documenta una prueba de titulación de rabia aceptable con vacunación regular: unas semanas — sin nueva prueba de sangre, solo el certificado sanitario."
+    pt: "Cachorro que já tem um passaporte documentando um teste sorológico antirrábico aceitável e vacinação em dia: algumas semanas — sem nova coleta de sangue, apenas o certificado veterinário de saúde."
+  listed:
+    en: "Turkey-origin dog returning home with an antibody test taken before it left: the compulsory 3-month wait is waived — a few weeks to arrange the certificate."
+    fr: "Chien d'origine turque qui revient avec un titrage effectué avant son départ : le délai obligatoire de 3 mois est levé — quelques semaines pour préparer le certificat."
+    es: "Perro de origen turco que regresa a casa con una prueba de titulación realizada antes de salir: se exime la espera obligatoria de 3 meses — unas semanas para preparar el certificado."
+    pt: "Cachorro de origem turca voltando para casa com um teste sorológico feito antes de sair: a espera obrigatória de 3 meses é dispensada — algumas semanas para providenciar o certificado."
+  nonListed:
+    en: "First-time antibody test: about 4 months — blood drawn at least 30 days after rabies vaccination, then a compulsory 3-month wait before entry."
+    fr: "Premier titrage : environ 4 mois — sang prélevé au moins 30 jours après le vaccin antirabique, puis délai obligatoire de 3 mois avant l'entrée."
+    es: "Primera prueba de titulación: unos 4 meses — sangre extraída al menos 30 días después de la vacunación antirrábica, y luego una espera obligatoria de 3 meses antes de la entrada."
+    pt: "Primeiro teste sorológico: cerca de 4 meses — sangue coletado no mínimo 30 dias depois da vacinação antirrábica e, em seguida, 3 meses obrigatórios de espera antes da entrada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (4 breeds banned)", fr: "Oui (4 races interdites)", es: "Sí (4 razas prohibidas)", pt: "Sim (4 raças proibidas)" }
+    cls: ok
+  - requirement: { en: "Pets per traveller", fr: "Animaux par voyageur", es: "Mascotas por viajero", pt: "Animais por viajante" }
+    status: { en: "Up to 2", fr: "2 maximum", es: "Hasta 2", pt: "Até 2" }
+    cls: neutral
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required (ISO 11784/11785)", fr: "Requise (ISO 11784/11785)", es: "Obligatorio (ISO 11784/11785)", pt: "Obrigatório (ISO 11784/11785)" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required — waived if antibody test already documented", fr: "Requis — levé si titre déjà attesté", es: "Obligatoria — se exime si la prueba de titulación ya está documentada", pt: "Obrigatório — dispensado se o teste sorológico já estiver documentado" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Tick / tapeworm treatment", fr: "Traitement tiques / échinococcose", es: "Tratamiento contra garrapatas / tenia", pt: "Tratamento contra carrapatos / tênia" }
+    status: { en: "Only when requested", fr: "Uniquement si demandé", es: "Solo si se solicita", pt: "Apenas quando solicitado" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Turkey (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Turquie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Turquía (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Turquia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Turkey", fr: "Pays de destination — Turquie", es: "País de destino — Turquía", pt: "País de destino — Turquia" }
+      text:
+        en: "Turkey applies its own national scheme under Law No. 5996: an ISO microchip, a valid rabies vaccination, a rabies antibody test of at least 0.5 IU/ml and an official veterinary health certificate are the core requirements, with at most two pets per traveller."
+        fr: "La Turquie applique son propre régime national (loi n° 5996) : puce ISO, vaccination antirabique valide, titre antirabique d'au moins 0,5 UI/ml et certificat sanitaire vétérinaire officiel sont les exigences de base, avec deux animaux maximum par voyageur."
+        es: "Turquía aplica su propio régimen nacional (Ley n.º 5996): un microchip ISO, una vacunación antirrábica válida, una prueba de titulación de rabia de al menos 0,5 UI/ml y un certificado sanitario veterinario oficial son los requisitos básicos, con un máximo de dos mascotas por viajero."
+        pt: "A Turquia aplica seu próprio esquema nacional, previsto na Lei nº 5996: microchip ISO, vacinação antirrábica válida, teste sorológico antirrábico de pelo menos 0,5 UI/ml e certificado veterinário de saúde oficial são as exigências centrais, com no máximo dois animais por viajante."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog already holds a passport documenting an acceptable rabies antibody test decides if a fresh blood test — and its compulsory 3-month wait — is needed. Dogs with a regular vaccination record and a documented antibody test are not re-tested."
+        fr: "Le fait que ton chien dispose déjà d'un passeport attestant un titre antirabique acceptable détermine si une nouvelle prise de sang — et son délai obligatoire de 3 mois — est nécessaire. Les chiens à vaccination régulière et titre attesté ne sont pas retestés."
+        es: "Que tu perro ya tenga un pasaporte que documente una prueba de titulación de rabia aceptable determina si se necesita una nueva prueba de sangre — y su espera obligatoria de 3 meses. Los perros con un registro de vacunación regular y una prueba de titulación documentada no se vuelven a analizar."
+        pt: "O fato de o seu cachorro já ter ou não um passaporte que documente um teste sorológico antirrábico aceitável decide se será preciso uma nova coleta de sangue — e a espera obrigatória de 3 meses que vem junto. Cachorros com histórico de vacinação em dia e teste sorológico documentado não são testados de novo."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "The rabies situation of your dog's real origin matters. A Turkey-origin pet that travelled abroad and returns keeps the benefit of an antibody test taken before it left, skipping the 3-month wait — but it is the dog's true history that counts, not only the last airport."
+        fr: "La situation rabique de l'origine réelle du chien compte. Un animal d'origine turque parti à l'étranger et qui revient conserve le bénéfice d'un titrage effectué avant son départ, évitant le délai de 3 mois — mais c'est l'historique réel du chien qui compte, pas seulement l'aéroport de destination finale."
+        es: "La situación de rabia del origen real de tu perro importa. Una mascota de origen turco que viajó al extranjero y regresa conserva el beneficio de una prueba de titulación realizada antes de salir, evitando la espera de 3 meses — pero lo que cuenta es el historial real del perro, no solo el último aeropuerto."
+        pt: "A situação da raiva na verdadeira origem do seu cachorro conta. Um animal de origem turca que viajou para o exterior e volta mantém o benefício de um teste sorológico feito antes de sair, pulando a espera de 3 meses — mas o que vale é o histórico real do cachorro, não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Turkey's framework, then confirm your dog's exact origin, antibody-test history and breed with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre turc, puis confirme l'origine exacte, l'historique de titrage et la race de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Turquía y luego confirma con tu veterinario el origen exacto de tu perro, su historial de pruebas de titulación y su raza."
+    pt: "Então leia as exigências abaixo como o quadro geral da Turquia e depois confirme com seu veterinário a origem exata, o histórico de testes sorológicos e a raça do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must comply with ISO 11784 (HDX or FDX-B) and be readable with an ISO 11785 reader; implanted before the rabies vaccination.", fr: "Doit être conforme à l'ISO 11784 (HDX ou FDX-B) et lisible par un lecteur ISO 11785 ; posée avant la vaccination antirabique.", es: "Debe cumplir la norma ISO 11784 (HDX o FDX-B) y ser legible con un lector ISO 11785; implantado antes de la vacunación antirrábica.", pt: "Precisa estar em conformidade com a ISO 11784 (HDX ou FDX-B) e ser legível por um leitor ISO 11785; implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A clearly legible tattoo is accepted as identification; if the chip is non-standard, the owner must supply a compatible reader.", fr: "Un tatouage clairement lisible est accepté comme identification ; si la puce n'est pas normalisée, le propriétaire doit fournir un lecteur compatible.", es: "Un tatuaje claramente legible se acepta como identificación; si el chip no es estándar, el propietario debe proporcionar un lector compatible.", pt: "Uma tatuagem claramente legível é aceita como identificação; se o chip não for padrão, o dono precisa fornecer um leitor compatível." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), Law No. 5996", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), loi n° 5996", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), Ley n.º 5996", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), Lei nº 5996" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "An inactivated or recombinant vaccine listed in the WOAH (OIE) manual; given after microchipping and still valid. A booster given outside the previous vaccine's validity counts as a first vaccination.", fr: "Vaccin inactivé ou recombinant figurant au manuel WOAH (OIE) ; fait après la pose de la puce et toujours valide. Un rappel effectué hors validité du vaccin précédent compte comme une primo-vaccination.", es: "Una vacuna inactivada o recombinante que figure en el manual de la WOAH (OIE); administrada después del microchip y aún válida. Un refuerzo administrado fuera de la valide de la vacuna anterior cuenta como primovacunación.", pt: "Vacina inativada ou recombinante listada no manual da WOAH (OIE); aplicada depois do microchip e ainda dentro da validade. Um reforço aplicado fora da validade da vacina anterior conta como primeira vacinação." }
+    exceptions: { en: "The vaccination date cannot be earlier than the microchipping date, or the vaccine is invalid.", fr: "La date de vaccination ne peut être antérieure à la pose de la puce, sinon le vaccin est invalide.", es: "La fecha de vacunación no puede ser anterior a la del implante del microchip; de lo contrario, la vacuna no es válida.", pt: "A data da vacinação não pode ser anterior à data de implantação do microchip; caso contrário, a vacina não vale." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), art. 3", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), art. 3", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), art. 3", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), art. 3" }
+  - item: { en: "Rabies antibody (titration) test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Blood taken by an authorised vet at least 30 days after the last rabies vaccination and at least 3 months before travel; tested in an EU-approved laboratory; result ≥0.5 IU/ml. Entry is possible only 3 months after the blood draw.", fr: "Sang prélevé par un vétérinaire habilité au moins 30 jours après le dernier vaccin antirabique et au moins 3 mois avant le voyage ; analysé dans un laboratoire agréé UE ; résultat ≥0,5 UI/ml. Entrée possible seulement 3 mois après le prélèvement.", es: "Sangre extraída por un veterinario autorizado al menos 30 días después de la última vacunación antirrábica y al menos 3 meses antes del viaje; analizada en un laboratorio autorizado por la UE; resultado ≥0,5 UI/ml. La entrada solo es posible 3 meses después de la extracción de sangre.", pt: "Sangue coletado por um veterinário autorizado no mínimo 30 dias depois da última vacinação antirrábica e no mínimo 3 meses antes da viagem; analisado em laboratório aprovado pela UE; resultado ≥0,5 UI/ml. A entrada só é possível 3 meses depois da coleta." }
+    exceptions: { en: "Not re-requested for a dog whose passport already documents an acceptable antibody test and a regular vaccination record; a Turkey-origin dog returning after travel is exempt from the 3-month wait if it was tested before leaving.", fr: "Non redemandé pour un chien dont le passeport atteste déjà un titre acceptable et une vaccination régulière ; un chien d'origine turque qui revient est dispensé du délai de 3 mois s'il a été testé avant son départ.", es: "No se vuelve a exigir a un perro cuyo pasaporte ya documenta una prueba de titulación aceptable y un registro de vacunación regular; un perro de origen turco que regresa tras un viaje está exento de la espera de 3 meses si se analizó antes de salir.", pt: "Não é pedido de novo para um cachorro cujo passaporte já documenta um teste sorológico aceitável e um histórico de vacinação em dia; um cachorro de origem turca que volta depois de uma viagem fica dispensado da espera de 3 meses se tiver sido testado antes de sair." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), art. 4-6", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), art. 4-6", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), art. 4-6", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), art. 4-6" }
+  - item: { en: "Pet passport", fr: "Passeport pour animal", es: "Pasaporte para animal", pt: "Passaporte para animais" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by an authorised vet; must confirm the rabies vaccination is valid and record the microchip, identity and any species-specific treatments.", fr: "Délivré par un vétérinaire habilité ; doit confirmer que la vaccination antirabique est valide et consigner la puce, l'identité et les traitements propres à l'espèce.", es: "Expedido por un veterinario autorizado; debe confirmar que la vacunación antirrábica es válida y registrar el microchip, la identidad y cualquier tratamiento propio de la especie.", pt: "Emitido por um veterinário autorizado; deve confirmar que a vacinação antirrábica está válida e registrar o microchip, a identidade e os eventuais tratamentos específicos da espécie." }
+    exceptions: { en: "The passport accompanies the animal alongside the veterinary health certificate.", fr: "Le passeport accompagne l'animal aux côtés du certificat sanitaire vétérinaire.", es: "El pasaporte acompaña al animal junto con el certificado sanitario veterinario.", pt: "O passaporte acompanha o animal junto com o certificado veterinário de saúde." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), art. 8", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), art. 8", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), art. 8", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), art. 8" }
+  - item: { en: "Veterinary health certificate (Origin & Health)", fr: "Certificat sanitaire vétérinaire (origine & santé)", es: "Certificado sanitario veterinario (origen y salud)", pt: "Certificado veterinário de saúde (origem e saúde)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Ministry model certificate, issued and endorsed by the official veterinary authority of the country of dispatch; a separate certificate is drawn up for each animal.", fr: "Certificat modèle du Ministère, établi et visé par l'autorité vétérinaire officielle du pays d'expédition ; un certificat distinct est établi pour chaque animal.", es: "Certificado según el modelo del Ministerio, expedido y refrendado por la autoridad veterinaria oficial del país de expedición; se emite un certificado independiente para cada animal.", pt: "Certificado no modelo do Ministério, emitido e endossado pela autoridade veterinária oficial do país de expedição; é feito um certificado separado para cada animal." }
+    exceptions: { en: "Valid for 4 months after signature/endorsement, or until the rabies vaccination expires, whichever is earlier.", fr: "Valable 4 mois après signature/visa, ou jusqu'à l'expiration de la vaccination antirabique, selon la première échéance.", es: "Válido durante 4 meses tras la firma/refrendo, o hasta que caduque la vacunación antirrábica, lo que ocurra primero.", pt: "Válido por 4 meses depois da assinatura/endosso, ou até a vacinação antirrábica vencer, o que ocorrer primeiro." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), art. 7, Annex EK-2", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), art. 7, annexe EK-2", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), art. 7, anexo EK-2", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), art. 7, Anexo EK-2" }
+  - item: { en: "Tick / tapeworm (Echinococcus) treatment", fr: "Traitement tiques / échinococcose", es: "Tratamiento contra garrapatas / tenia (Echinococcus)", pt: "Tratamento contra carrapatos / tênia (Echinococcus)" }
+    required: { en: "Only when requested", fr: "Uniquement si demandé", es: "Solo si se solicita", pt: "Apenas quando solicitado" }
+    when: { en: "The certificate has optional sections for a tick treatment and an Echinococcus treatment, completed only where required.", fr: "Le certificat comporte des sections facultatives pour un traitement anti-tiques et un traitement contre l'échinococcose, remplies uniquement si requis.", es: "El certificado tiene secciones opcionales para un tratamiento contra garrapatas y un tratamiento contra Echinococcus, que se rellenan solo cuando es necesario.", pt: "O certificado tem campos opcionais para um tratamento contra carrapatos e um tratamento contra Echinococcus, preenchidos apenas quando exigidos." }
+    exceptions: { en: "Not a systematic requirement for standard passenger movements.", fr: "Non exigé systématiquement pour les mouvements ordinaires de voyageurs.", es: "No es un requisito sistemático para los movimientos ordinarios de viajeros.", pt: "Não é uma exigência sistemática nos deslocamentos comuns de passageiros." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), Annex EK-2 (VI-VII)", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), annexe EK-2 (VI-VII)", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), anexo EK-2 (VI-VII)", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), Anexo EK-2 (VI-VII)" }
+  - item: { en: "Number of pets per traveller", fr: "Nombre d'animaux par voyageur", es: "Número de mascotas por viajero", pt: "Número de animais por viajante" }
+    required: { en: "Maximum 2", fr: "Maximum 2", es: "Máximo 2", pt: "No máximo 2" }
+    when: { en: "At most two accompanying pets may be brought (e.g. 2 cats, or 1 cat and 1 dog); documents are drawn up separately for each.", fr: "Deux animaux d'accompagnement maximum (ex. 2 chats, ou 1 chat et 1 chien) ; les documents sont établis séparément pour chacun.", es: "Se pueden llevar como máximo dos mascotas acompañantes (p. ej. 2 gatos, o 1 gato y 1 perro); los documentos se emiten por separado para cada una.", pt: "É possível levar no máximo dois animais de estimação acompanhados (por exemplo, 2 gatos, ou 1 gato e 1 cachorro); os documentos são feitos separadamente para cada um." }
+    exceptions: { en: "More animals or a commercial consignment fall outside the passenger (non-commercial) scheme.", fr: "Un plus grand nombre d'animaux ou un envoi commercial sortent du régime voyageur (non commercial).", es: "Un número mayor de animales o un envío comercial quedan fuera del régimen de viajero (no comercial).", pt: "Mais animais do que isso, ou uma remessa comercial, ficam fora do regime de passageiros (não comercial)." }
+    ref: { en: "Ministry of Agriculture and Forestry — entry conditions for cats/dogs", fr: "Ministère de l'Agriculture et des Forêts — conditions d'entrée chats/chiens", es: "Ministerio de Agricultura y Bosques — condiciones de entrada para gatos/perros", pt: "Ministério da Agricultura e Florestas — condições de entrada de gatos e cães" }
+  - item: { en: "Customs declaration on arrival", fr: "Déclaration en douane à l'arrivée", es: "Declaración en aduanas a la llegada", pt: "Declaração aduaneira na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "On entry, present the pet passport, the original antibody-test result and the veterinary health certificate to Turkish Customs / the veterinary border service.", fr: "À l'entrée, présente le passeport, l'original du résultat de titrage et le certificat sanitaire vétérinaire à la douane turque / au service vétérinaire frontalier.", es: "A la entrada, presenta el pasaporte, el resultado original de la prueba de titulación y el certificado sanitario veterinario a la aduana turca / al servicio veterinario fronterizo.", pt: "Na entrada, apresente o passaporte do animal, o resultado original do teste sorológico e o certificado veterinário de saúde à alfândega turca / ao serviço veterinário de fronteira." }
+    exceptions: { en: "If documents are incomplete, the pet may be refused, quarantined or returned at the owner's expense.", fr: "Si les documents sont incomplets, l'animal peut être refusé, mis en quarantaine ou réexpédié aux frais du propriétaire.", es: "Si los documentos están incompletos, la mascota puede ser rechazada, puesta en cuarentena o devuelta a cargo del propietario.", pt: "Se os documentos estiverem incompletos, o animal pode ser recusado, colocado em quarentena ou devolvido às custas do dono." }
+    ref: { en: "Ministry of Trade (Customs) — animals brought by passengers", fr: "Ministère du Commerce (Douane) — animaux amenés par les voyageurs", es: "Ministerio de Comercio (Aduana) — animales traídos por los viajeros", pt: "Ministério do Comércio (Alfândega) — animais trazidos pelos viajantes" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Unvaccinated cats, dogs and ferrets under 3 months may be admitted only subject to the health conditions set by the Ministry, judged on the rabies situation of the origin country.", fr: "Les chats, chiens et furets non vaccinés de moins de 3 mois ne peuvent être admis que sous réserve des conditions sanitaires fixées par le Ministère, appréciées selon la situation rabique du pays d'origine.", es: "Los gatos, perros y hurones no vacunados de menos de 3 meses solo pueden ser admitidos con sujeción a las condiciones sanitarias establecidas por el Ministerio, evaluadas según la situación de rabia del país de origen.", pt: "Gatos, cachorros e furões não vacinados com menos de 3 meses só podem ser admitidos mediante as condições sanitárias definidas pelo Ministério, avaliadas conforme a situação da raiva no país de origem." }
+    exceptions: { en: "In practice a dog cannot complete the rabies-vaccination and titre timeline before roughly 7 months of age.", fr: "En pratique, un chien ne peut achever le calendrier vaccination-titrage avant environ 7 mois.", es: "En la práctica, un perro no puede completar el calendario de vacunación y titulación antes de unos 7 meses de edad.", pt: "Na prática, um cachorro não consegue cumprir o calendário de vacinação antirrábica e titulação antes de mais ou menos 7 meses de idade." }
+    ref: { en: "Reg. on non-commercial movement of pets (RG 05.12.2011-28133), art. 9", fr: "Règl. mouvements non commerciaux d'animaux (JO 05.12.2011-28133), art. 9", es: "Regl. sobre movimientos no comerciales de mascotas (RG 05.12.2011-28133), art. 9", pt: "Reg. sobre a circulação não comercial de animais de estimação (RG 05.12.2011-28133), art. 9" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "No import quarantine for a compliant pet travelling with its owner.", fr: "Aucune quarantaine à l'import pour un animal conforme voyageant avec son propriétaire.", es: "Sin cuarentena de importación para una mascota que cumple los requisitos y viaja con su propietario.", pt: "Não há quarentena de importação para um animal em conformidade que viaja com o dono." }
+    exceptions: { en: "Only if rules are breached — customs may then order quarantine, return or refusal.", fr: "Uniquement en cas de non-conformité — la douane peut alors ordonner quarantaine, réexpédition ou refus.", es: "Solo en caso de incumplimiento — la aduana puede entonces ordenar cuarentena, devolución o denegación.", pt: "Só se as regras forem descumpridas — a alfândega pode então determinar quarentena, devolução ou recusa." }
+    ref: { en: "Ministry of Trade (Customs) — animals brought by passengers", fr: "Ministère du Commerce (Douane) — animaux amenés par les voyageurs", es: "Ministerio de Comercio (Aduana) — animales traídos por los viajeros", pt: "Ministério do Comércio (Alfândega) — animais trazidos pelos viajantes" }
+
+origin:
+  eu:
+    title: { en: "Antibody test already documented — no new test", fr: "Titre déjà attesté — pas de nouveau test", es: "Prueba de titulación ya documentada — sin nueva prueba", pt: "Teste sorológico já documentado — sem novo teste" }
+    body:
+      en: "A dog whose passport already documents an acceptable rabies antibody test (≥0.5 IU/ml) and a regular, unbroken vaccination record is not re-tested. You still need the ISO microchip, an in-date rabies vaccination and an official veterinary health certificate from the country of dispatch, plus the passport. This is the fastest path."
+      fr: "Un chien dont le passeport atteste déjà un titre antirabique acceptable (≥0,5 UI/ml) et une vaccination régulière et ininterrompue n'est pas retesté. Il faut tout de même la puce ISO, une vaccination antirabique à jour et un certificat sanitaire vétérinaire officiel du pays d'expédition, ainsi que le passeport. C'est le parcours le plus rapide."
+      es: "Un perro cuyo pasaporte ya documenta una prueba de titulación de rabia aceptable (≥0,5 UI/ml) y un registro de vacunación regular e ininterrumpido no se vuelve a analizar. Aun así necesitas el microchip ISO, una vacunación antirrábica en vigor y un certificado sanitario veterinario oficial del país de expedición, además del pasaporte. Este es el camino más rápido."
+      pt: "Um cachorro cujo passaporte já documenta um teste sorológico antirrábico aceitável (≥0,5 UI/ml) e um histórico de vacinação regular e sem interrupções não é testado de novo. Você ainda precisa do microchip ISO, da vacinação antirrábica dentro da validade e de um certificado veterinário de saúde oficial do país de expedição, além do passaporte. Este é o caminho mais rápido."
+    cls: ok
+  listed:
+    title: { en: "Turkey-origin dog returning home", fr: "Chien d'origine turque de retour", es: "Perro de origen turco que regresa a casa", pt: "Cachorro de origem turca voltando para casa" }
+    body:
+      en: "A Turkey-origin pet that travelled abroad and comes back is exempt from the compulsory 3-month wait if it holds an acceptable antibody test result obtained before it left Turkey. Microchip, valid rabies vaccination, veterinary health certificate and passport are still required, and you present all documents to customs on arrival."
+      fr: "Un animal d'origine turque parti à l'étranger et qui revient est dispensé du délai obligatoire de 3 mois s'il détient un résultat de titrage acceptable obtenu avant son départ de Turquie. Puce, vaccination antirabique valide, certificat sanitaire vétérinaire et passeport restent exigés, et tu présente tous les documents à la douane à l'arrivée."
+      es: "Una mascota de origen turco que viajó al extranjero y regresa está exenta de la espera obligatoria de 3 meses si tiene un resultado de prueba de titulación aceptable obtenido antes de salir de Turquía. Siguen siendo obligatorios el microchip, una vacunación antirrábica válida, el certificado sanitario veterinario y el pasaporte, y presentas todos los documentos a la aduana a la llegada."
+      pt: "Um animal de origem turca que viajou para o exterior e volta fica dispensado da espera obrigatória de 3 meses se tiver um resultado de teste sorológico aceitável obtido antes de sair da Turquia. Microchip, vacinação antirrábica válida, certificado veterinário de saúde e passaporte continuam obrigatórios, e você apresenta todos os documentos à alfândega na chegada."
+    cls: warn
+  nonListed:
+    title: { en: "First-time antibody test + 3-month wait", fr: "Premier titrage + 3 mois d'attente", es: "Primera prueba de titulación + espera de 3 meses", pt: "Primeiro teste sorológico + 3 meses de espera" }
+    body:
+      en: "A dog that has never been antibody-tested follows the longest path: after the rabies vaccination, blood is drawn at least 30 days later and tested in an EU-approved laboratory (result ≥0.5 IU/ml), then a compulsory 3-month wait runs from the blood-draw date before the dog may enter. A microchip, an endorsed veterinary health certificate and the passport are also required."
+      fr: "Un chien jamais titré suit le parcours le plus long : après la vaccination antirabique, le sang est prélevé au moins 30 jours plus tard et analysé dans un laboratoire agréé UE (résultat ≥0,5 UI/ml), puis un délai obligatoire de 3 mois court à compter du prélèvement avant l'entrée. Une puce, un certificat sanitaire vétérinaire visé et le passeport sont également exigés."
+      es: "Un perro que nunca ha pasado una prueba de titulación sigue el camino más largo: tras la vacunación antirrábica, la sangre se extrae al menos 30 días después y se analiza en un laboratorio autorizado por la UE (resultado ≥0,5 UI/ml), y luego corre una espera obligatoria de 3 meses desde la fecha de extracción antes de que el perro pueda entrar. También se exigen un microchip, un certificado sanitario veterinario refrendado y el pasaporte."
+      pt: "Um cachorro que nunca fez teste sorológico segue o caminho mais longo: depois da vacinação antirrábica, o sangue é coletado no mínimo 30 dias mais tarde e analisado em um laboratório aprovado pela UE (resultado ≥0,5 UI/ml); em seguida corre uma espera obrigatória de 3 meses, contada da data da coleta, antes de o cachorro poder entrar. Microchip, certificado veterinário de saúde endossado e passaporte também são obrigatórios."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Turkey depends on its documents and breed."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Turquie dépend de ses documents et de sa race."
+    es: "Lo que ocurre cuando tu perro llega a Turquía depende de sus documentos y de su raza."
+    pt: "O que acontece quando seu cachorro chega à Turquia depende dos documentos e da raça dele."
+  points:
+    - en: "Declare the pet to Turkish Customs and the veterinary border service, presenting the passport, the original antibody-test result and the veterinary health certificate."
+      fr: "Déclare l'animal à la douane turque et au service vétérinaire frontalier, en présentant le passeport, l'original du résultat de titrage et le certificat sanitaire vétérinaire."
+      es: "Declara la mascota a la aduana turca y al servicio veterinario fronterizo, presentando el pasaporte, el resultado original de la prueba de titulación y el certificado sanitario veterinario."
+      pt: "Declare o animal à alfândega turca e ao serviço veterinário de fronteira, apresentando o passaporte, o resultado original do teste sorológico e o certificado veterinário de saúde."
+    - en: "A separate set of documents must be shown for each animal; at most two pets may be brought per traveller."
+      fr: "Un jeu de documents distinct doit être présenté pour chaque animal ; deux animaux maximum par voyageur."
+      es: "Debe presentarse un juego de documentos independiente para cada animal; se pueden llevar como máximo dos mascotas por viajero."
+      pt: "É preciso mostrar um conjunto separado de documentos para cada animal; no máximo dois animais de estimação podem ser levados por viajante."
+    - en: "Officers verify the microchip (or tattoo) against the documents; the owner must be able to provide a reader for a non-standard chip."
+      fr: "Les agents vérifient la puce (ou le tatouage) par rapport aux documents ; le propriétaire doit pouvoir fournir un lecteur pour une puce non normalisée."
+      es: "Los agentes verifican el microchip (o el tatuaje) frente a los documentos; el propietario debe poder proporcionar un lector para un chip no estándar."
+      pt: "Os agentes conferem o microchip (ou a tatuagem) com os documentos; o dono precisa poder fornecer um leitor se o chip não for padrão."
+    - en: "Carry original documents, not copies; an official translation is advisable where they are not in Turkish or English."
+      fr: "Munis-toi des documents originaux, pas de copies ; une traduction officielle est conseillée s'ils ne sont ni en turc ni en anglais."
+      es: "Lleva los documentos originales, no copias; se recomienda una traducción oficial cuando no estén en turco ni en inglés."
+      pt: "Leve os documentos originais, não cópias; uma tradução oficial é recomendável quando eles não estiverem em turco ou inglês."
+    - en: "If documents are missing or invalid, customs may order quarantine, return or refusal of entry at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, la douane peut ordonner quarantaine, réexpédition ou refus d'entrée aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, la aduana puede ordenar cuarentena, devolución o denegación de entrada a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, a alfândega pode determinar quarentena, devolução ou recusa de entrada às custas do dono."
+    - en: "Banned breeds (Pit Bull Terrier, Japanese Tosa, Dogo Argentino, Fila Brasileiro) are refused entry."
+      fr: "Les races interdites (Pit Bull Terrier, Tosa japonais, Dogo Argentino, Fila Brasileiro) sont refusées à l'entrée."
+      es: "Las razas prohibidas (Pit Bull Terrier, Tosa japonés, Dogo Argentino, Fila Brasileiro) tienen la entrada denegada."
+      pt: "Raças proibidas (Pit Bull Terrier, Tosa Japonês, Dogo Argentino, Fila Brasileiro) têm a entrada recusada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Turkey bans certain dogs as 'dangerous animals' under Law No. 5199 on the Protection of Animals, amended by Law No. 7332 (14 July 2021) and Circular No. 2021-48 (in force 7 December 2021). Bringing these breeds into the country is prohibited."
+    fr: "La Turquie interdit certains chiens comme « animaux dangereux » au titre de la loi n° 5199 sur la protection des animaux, modifiée par la loi n° 7332 (14 juillet 2021) et la circulaire n° 2021-48 (en vigueur le 7 décembre 2021). L'entrée de ces races dans le pays est interdite."
+    es: "Turquía prohíbe ciertos perros como «animales peligrosos» en virtud de la Ley n.º 5199 sobre la Protección de los Animales, modificada por la Ley n.º 7332 (14 de julio de 2021) y la Circular n.º 2021-48 (en vigor el 7 de diciembre de 2021). Está prohibido introducir estas razas en el país."
+    pt: "A Turquia proíbe certos cachorros como “animais perigosos” pela Lei nº 5199 de Proteção dos Animais, alterada pela Lei nº 7332 (14 de julho de 2021) e pela Circular nº 2021-48 (em vigor desde 7 de dezembro de 2021). Levar essas raças para dentro do país é proibido."
+  cat1:
+    en: "Prohibited breeds: American Pit Bull Terrier, Japanese Tosa, Dogo Argentino and Fila Brasileiro. Under Article 14(l) of Law No. 5199 it is forbidden to breed, own, shelter, exchange, exhibit, gift these dogs and to bring them into the country, sell or advertise them — so their import/entry is banned. The American Staffordshire Terrier and American Bully were later added to the dangerous-breed list."
+    fr: "Races interdites : American Pit Bull Terrier, Tosa japonais, Dogo Argentino et Fila Brasileiro. Selon l'article 14(l) de la loi n° 5199, il est interdit d'élever, de détenir, d'héberger, d'échanger, d'exposer, d'offrir ces chiens et de les faire entrer dans le pays, de les vendre ou d'en faire la publicité — leur importation/entrée est donc interdite. L'American Staffordshire Terrier et l'American Bully ont ensuite été ajoutés à la liste des races dangereuses."
+    es: "Razas prohibidas: American Pit Bull Terrier, Tosa japonés, Dogo Argentino y Fila Brasileiro. Según el artículo 14(l) de la Ley n.º 5199, está prohibido criar, poseer, albergar, intercambiar, exhibir y regalar estos perros, así como introducirlos en el país, venderlos o anunciarlos — por lo que su importación/entrada está prohibida. El American Staffordshire Terrier y el American Bully se añadieron después a la lista de razas peligrosas."
+    pt: "Raças proibidas: American Pit Bull Terrier, Tosa Japonês, Dogo Argentino e Fila Brasileiro. Pelo Artigo 14(l) da Lei nº 5199, é proibido criar, ter, abrigar, trocar, exibir e presentear esses cachorros, além de trazê-los para o país, vendê-los ou anunciá-los — ou seja, sua importação/entrada é proibida. O American Staffordshire Terrier e o American Bully foram acrescentados depois à lista de raças perigosas."
+  cat2:
+    en: "Transitional regime: dogs of these breeds already owned before 14 July 2021 could be kept only if neutered and registered (microchipped, entered in the PETVET system) by 14 January 2022. Such dogs may not be walked without their registration document, a muzzle and a lead, and are barred from crowded places, playgrounds and parks; breaches carry administrative fines and seizure."
+    fr: "Régime transitoire : les chiens de ces races déjà détenus avant le 14 juillet 2021 ne pouvaient être conservés que s'ils étaient stérilisés et enregistrés (pucés, inscrits au système PETVET) avant le 14 janvier 2022. Ces chiens ne peuvent circuler sans leur document d'enregistrement, une muselière et une laisse, et sont interdits dans les lieux bondés, les aires de jeux et les parcs ; les infractions entraînent des amendes administratives et la saisie."
+    es: "Régimen transitorio: los perros de estas razas que ya se poseían antes del 14 de julio de 2021 solo podían conservarse si estaban esterilizados y registrados (con microchip, inscritos en el sistema PETVET) antes del 14 de enero de 2022. Estos perros no pueden pasearse sin su documento de registro, un bozal y una correa, y tienen prohibido el acceso a lugares concurridos, zonas de juego y parques; las infracciones conllevan multas administrativas e incautación."
+    pt: "Regime de transição: cachorros dessas raças que já pertenciam a alguém antes de 14 de julho de 2021 só podiam ser mantidos se fossem castrados e registrados (com microchip, cadastrados no sistema PETVET) até 14 de janeiro de 2022. Esses cachorros não podem passear sem o documento de registro, focinheira e guia, e estão proibidos em locais de grande movimento, playgrounds e parques; o descumprimento leva a multas administrativas e apreensão."
+  note:
+    en: "The transitional regime applies only to dogs already owned in Turkey before the ban — it does not open any route to import a banned breed. Only the official law and circular are authoritative; confirm your dog's breed status before you travel."
+    fr: "Le régime transitoire ne concerne que les chiens déjà détenus en Turquie avant l'interdiction — il n'ouvre aucune voie pour importer une race interdite. Seuls la loi et la circulaire officielles font foi ; confirme le statut de race de ton chien avant de voyager."
+    es: "El régimen transitorio se aplica únicamente a los perros que ya se poseían en Turquía antes de la prohibición — no abre ninguna vía para importar una raza prohibida. Solo la ley y la circular oficiales tienen valor legal; confirma el estado de raza de tu perro antes de viajar."
+    pt: "O regime de transição vale apenas para cachorros que já pertenciam a alguém na Turquia antes da proibição — ele não abre nenhuma via para importar uma raça proibida. Só a lei e a circular oficiais fazem fé; confirme a situação da raça do seu cachorro antes de viajar."
+
+checklist:
+  - en: "ISO 11784/11785 microchip implanted before the rabies vaccination"
+    fr: "Puce ISO 11784/11785 posée avant la vaccination antirabique"
+    es: "Microchip ISO 11784/11785 implantado antes de la vacunación antirrábica"
+    pt: "Microchip ISO 11784/11785 implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (inactivated or recombinant, WOAH-listed)"
+    fr: "Vaccination antirabique valide (inactivée ou recombinante, listée WOAH)"
+    es: "Vacunación antirrábica válida (inactivada o recombinante, listada por la WOAH)"
+    pt: "Vacinação antirrábica válida (inativada ou recombinante, listada pela WOAH)"
+  - en: "Rabies antibody test ≥0.5 IU/ml — blood ≥30 days after the shot, then a 3-month wait"
+    fr: "Titrage antirabique ≥0,5 UI/ml — sang ≥30 jours après le vaccin, puis 3 mois d'attente"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml — sangre ≥30 días después de la vacuna, y luego una espera de 3 meses"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml — sangue coletado ≥30 dias depois da dose e, em seguida, 3 meses de espera"
+  - en: "Original antibody-test result to show at the border"
+    fr: "Original du résultat de titrage à présenter à la frontière"
+    es: "Resultado original de la prueba de titulación para presentar en la frontera"
+    pt: "Resultado original do teste sorológico para apresentar na fronteira"
+  - en: "Official veterinary health certificate (Ministry model) endorsed in the country of dispatch"
+    fr: "Certificat sanitaire vétérinaire officiel (modèle du Ministère) visé dans le pays d'expédition"
+    es: "Certificado sanitario veterinario oficial (modelo del Ministerio) refrendado en el país de expedición"
+    pt: "Certificado veterinário de saúde oficial (modelo do Ministério) endossado no país de expedição"
+  - en: "Pet passport confirming the vaccination and identity"
+    fr: "Passeport confirmant la vaccination et l'identité"
+    es: "Pasaporte que confirme la vacunación y la identidad"
+    pt: "Passaporte que confirme a vacinação e a identidade"
+  - en: "Separate documents for each animal (max 2 pets per traveller)"
+    fr: "Documents distincts pour chaque animal (2 animaux maximum par voyageur)"
+    es: "Documentos independientes para cada animal (máximo 2 mascotas por viajero)"
+    pt: "Documentos separados para cada animal (máximo de 2 animais por viajante)"
+  - en: "Confirm your dog is not a banned breed (Pit Bull, Tosa, Dogo Argentino, Fila Brasileiro)"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite (Pit Bull, Tosa, Dogo Argentino, Fila Brasileiro)"
+    es: "Confirma que tu perro no es de una raza prohibida (Pit Bull, Tosa, Dogo Argentino, Fila Brasileiro)"
+    pt: "Confirme que seu cachorro não é de uma raça proibida (Pit Bull, Tosa, Dogo Argentino, Fila Brasileiro)"
+
+sources:
+  - label: { en: "Ministry of Agriculture and Forestry — Entry conditions for cats and dogs into Turkey (Border Veterinary Control)", fr: "Ministère de l'Agriculture et des Forêts — Conditions d'entrée des chats et chiens en Turquie (contrôle vétérinaire frontalier)", es: "Ministerio de Agricultura y Bosques — Condiciones de entrada de gatos y perros en Turquía (control veterinario fronterizo)", pt: "Ministério da Agricultura e Florestas — Condições de entrada de gatos e cães na Turquia (controle veterinário de fronteira)" }
+    url: "https://vskn.tarimorman.gov.tr/trabzon/Duyuru/14/Turkiye-%E2%80%98ye-Kedi-Kopek-Girisi-Icin-Gerekli-Sartlar"
+  - label: { en: "Ministry of Agriculture and Forestry — Conditions for the movement of passenger-accompanied cats, dogs and ferrets (PDF, incl. certificate EK-2)", fr: "Ministère de l'Agriculture et des Forêts — Conditions de mouvement des chats, chiens et furets accompagnés (PDF, avec certificat EK-2)", es: "Ministerio de Agricultura y Bosques — Condiciones para el movimiento de gatos, perros y hurones acompañados por viajeros (PDF, incl. certificado EK-2)", pt: "Ministério da Agricultura e Florestas — Condições para a circulação de gatos, cães e furões acompanhados por viajantes (PDF, com o certificado EK-2)" }
+    url: "https://vskn.tarimorman.gov.tr/antalya/Belgeler/YOLCU%20BERABER%C4%B0%20KED%C4%B0%20K%C3%96PEK%20VE%20GEL%C4%B0NC%C4%B0KLER%C4%B0N%20HAREKET%C4%B0NDE%20UYULMASI%20GEREKEN%20%C5%9EARTLAR.pdf"
+  - label: { en: "Official Gazette — Regulation on animal-health conditions for non-commercial movement of pets (05.12.2011, No. 28133; Law No. 5996)", fr: "Journal officiel — Règlement sur les conditions sanitaires des mouvements non commerciaux d'animaux de compagnie (05.12.2011, n° 28133 ; loi n° 5996)", es: "Boletín Oficial — Reglamento sobre las condiciones de sanidad animal para el movimiento no comercial de mascotas (05.12.2011, n.º 28133; Ley n.º 5996)", pt: "Diário Oficial — Regulamento sobre as condições de sanidade animal para a circulação não comercial de animais de estimação (05.12.2011, nº 28133; Lei nº 5996)" }
+    url: "https://www.mevzuat.gov.tr/anasayfa/MevzuatFihristDetayIframe?MevzuatTur=7&MevzuatNo=15541&MevzuatTertip=5"
+  - label: { en: "Ministry of Agriculture and Forestry (DKMP) — Circular on dangerous animals (Law No. 5199, Circular 2021-48)", fr: "Ministère de l'Agriculture et des Forêts (DKMP) — Circulaire sur les animaux dangereux (loi n° 5199, circulaire 2021-48)", es: "Ministerio de Agricultura y Bosques (DKMP) — Circular sobre animales peligrosos (Ley n.º 5199, Circular 2021-48)", pt: "Ministério da Agricultura e Florestas (DKMP) — Circular sobre animais perigosos (Lei nº 5199, Circular 2021-48)" }
+    url: "https://www.tarimorman.gov.tr/DKMP/Haber/209/Tehlike-Arz-Eden-Hayvanlara-Iliskin-Genelge"
+  - label: { en: "Ministry of Trade (Customs) — Animals brought by passengers (FAQ)", fr: "Ministère du Commerce (Douane) — Animaux amenés par les voyageurs (FAQ)", es: "Ministerio de Comercio (Aduana) — Animales traídos por los viajeros (preguntas frecuentes)", pt: "Ministério do Comércio (Alfândega) — Animais trazidos pelos viajantes (perguntas frequentes)" }
+    url: "https://ticaret.gov.tr/gumruk-islemleri/sikca-sorulan-sorular/bireysel/yolcu-beraberinde-getirilen-hayvanlar"
+
+seo:
+  title: { en: "Turkey Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Turquie — Guide", es: "Requisitos de entrada de perros en Turquía — Guía de viaje", pt: "Turquia: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Turkey With Your Dog: Entry Requirements (2026)", fr: "Voyager en Turquie avec ton chien : formalités (2026)", es: "Viajar a Turquía con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Turquia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official Ministry of Agriculture and Customs rules for bringing a dog into Turkey: microchip, rabies vaccination, antibody test. Sourced and dated."
+    fr: "Règles officielles du ministère de l'Agriculture et de la douane pour faire entrer un chien en Turquie : puce, vaccination antirabique, titrage. Sourcé et daté."
+    es: "Normas oficiales del Ministerio de Agricultura y de la aduana para traer un perro a Turquía: microchip, vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais do Ministério da Agricultura e da alfândega para levar um cachorro à Turquia: microchip, vacinação antirrábica, teste sorológico. Com fonte e data."
+  slug: "turkey"
+  shortDesc:
+    en: "What you need to bring a dog into Turkey, depending on your dog's origin and antibody-test history."
+    fr: "Ce qu'il faut pour faire entrer un chien en Turquie, selon l'origine et l'historique de titrage du chien."
+    es: "Lo que necesitas para traer un perro a Turquía, según el origen de tu perro y su historial de pruebas de titulación."
+    pt: "O que você precisa para levar um cachorro à Turquia, dependendo da origem do seu cachorro e do histórico de testes sorológicos."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

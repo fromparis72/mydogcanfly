@@ -1,0 +1,382 @@
+# Country Entry Guide — Senegal (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_sn
+iso2: "SN"
+name: { en: "Senegal", fr: "Sénégal", es: "Senegal", pt: "Senegal" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: DSV
+  authorityUrl: https://elevage.sec.gouv.sn/
+  intro:
+    en: "Senegal is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export authorization from the Veterinary Services (DSV)."
+    fr: "Le Sénégal est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus une autorisation d'export des Services vétérinaires (DSV)."
+    es: "Senegal no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más una autorización de exportación de los Servicios Veterinarios (DSV)."
+    pt: "O Senegal é um país não listado: por isso, um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de uma autorização de exportação dos Services Vétérinaires (DSV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Request the export authorization from the Director of Veterinary Services; an international zoosanitary certificate is then issued and certified by an official veterinarian, with veterinary inspection for pets flying out."
+        fr: "Demande l'autorisation d'export au Directeur des Services vétérinaires ; un certificat zoosanitaire international est ensuite délivré et certifié par un vétérinaire officiel, avec inspection vétérinaire pour les animaux qui prennent l'avion."
+        es: "Solicita la autorización de exportación al Director de los Servicios Veterinarios; después se emite y certifica un certificado zoosanitario internacional por un veterinario oficial, con inspección veterinaria para las mascotas que vuelan."
+        pt: "Peça a autorização de exportação ao Directeur des Services Vétérinaires (Diretor dos Serviços Veterinários); em seguida, um certificado zoossanitário internacional é emitido e certificado por um veterinário oficial, com inspeção veterinária para os animais de estimação que embarcam."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Senegal with your dog", fr: "Voyager au Sénégal avec ton chien", es: "Viajar a Senegal con tu perro", pt: "Viajar para o Senegal com seu cachorro" }
+  intro:
+    en: >-
+      Senegal welcomes pet dogs, but entry runs through the country's own scheme managed by the
+      Direction des Services Vétérinaires (DSV) of the Ministry responsible for livestock, not the
+      EU framework. Before you travel you must obtain an import authorization ("autorisation
+      d'introduction d'animaux de compagnie") from the DSV: it is requested in advance, is valid for
+      three months, and must be presented on arrival. Every dog also needs a permanent identification
+      (microchip or tattoo), a valid rabies vaccination and an original international veterinary health
+      certificate issued shortly before departure by a government-mandated vet of the country of
+      origin, along with an up-to-date vaccination booklet. On arrival, the animal and its documents
+      are checked by the official veterinary services. This guide explains the import authorization,
+      the rabies rule, the certificate and the border check so you know exactly what to prepare before
+      you book your flight.
+    fr: >-
+      Le Sénégal accueille les chiens, mais l'entrée passe par le dispositif propre au pays, géré par
+      la Direction des Services Vétérinaires (DSV) du ministère chargé de l'élevage, et non par le
+      cadre de l'UE. Avant de voyager, tu dois obtenir une autorisation d'introduction d'animaux de
+      compagnie auprès de la DSV : elle se demande à l'avance, est valable trois mois et doit être
+      présentée à l'arrivée. Chaque chien doit aussi disposer d'une identification permanente (puce
+      électronique ou tatouage), d'une vaccination antirabique valide et de l'original d'un certificat
+      vétérinaire international établi peu avant le départ par un vétérinaire mandaté du pays d'origine,
+      ainsi que d'un carnet de vaccination à jour. À l'arrivée, l'animal et ses documents sont
+      contrôlés par les services vétérinaires officiels. Ce guide détaille l'autorisation
+      d'importation, la règle antirabique, le certificat et le contrôle à la frontière, pour savoir
+      exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Senegal acoge a los perros de compañía, pero la entrada se rige por el sistema propio del país,
+      gestionado por la Direction des Services Vétérinaires (DSV) del Ministerio responsable de la
+      ganadería, y no por el marco de la UE. Antes de viajar debes obtener una autorización de
+      importación («autorisation d'introduction d'animaux de compagnie») de la DSV: se solicita con
+      antelación, es válida durante tres meses y debe presentarse a la llegada. Cada perro necesita
+      además una identificación permanente (microchip o tatuaje), una vacunación antirrábica válida y
+      el original de un certificado sanitario veterinario internacional emitido poco antes de la salida
+      por un veterinario habilitado del país de origen, junto con una cartilla de vacunación
+      actualizada. A la llegada, el animal y sus documentos son revisados por los servicios
+      veterinarios oficiales. Esta guía explica la autorización de importación, la regla antirrábica, el
+      certificado y el control fronterizo para que sepas exactamente qué preparar antes de reservar tu
+      vuelo.
+
+    pt: "O Senegal recebe cachorros de estimação, mas a entrada segue o sistema próprio do país, gerido pela Direction des Services Vétérinaires (DSV) do Ministério responsável pela pecuária, e não o marco da UE. Antes de viajar, você precisa obter uma autorização de importação (\"autorisation d'introduction d'animaux de compagnie\") junto à DSV: ela é solicitada com antecedência, vale três meses e deve ser apresentada na chegada. Todo cachorro também precisa de uma identificação permanente (microchip ou tatuagem), de uma vacinação antirrábica válida e do original de um certificado veterinário internacional emitido pouco antes da partida por um veterinário credenciado pelo governo do país de origem, além de uma carteira de vacinação atualizada. Na chegada, o animal e seus documentos são verificados pelos serviços veterinários oficiais. Este guia explica a autorização de importação, a regra sobre a raiva, o certificado e o controle na fronteira, para você saber exatamente o que preparar antes de reservar o voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance import authorization + veterinary certificate", fr: "Modéré — autorisation d'importation préalable + certificat vétérinaire", es: "Moderado — autorización de importación previa + certificado veterinario", pt: "Moderado — autorização de importação prévia + certificado veterinário" }
+
+prepTime:
+  eu:
+    en: "From the EU: allow one to two weeks — request the DSV import authorization in advance, and have an official vet issue the international veterinary certificate close to departure if identification and rabies vaccination are already in order."
+    fr: "Depuis l'UE : prévois une à deux semaines — demande l'autorisation d'importation de la DSV à l'avance, et fais établir le certificat vétérinaire international par un vétérinaire officiel peu avant le départ si l'identification et la vaccination antirabique sont déjà en règle."
+    es: "Desde la UE: cuenta con una o dos semanas — solicita con antelación la autorización de importación de la DSV y haz que un veterinario oficial emita el certificado veterinario internacional poco antes de la salida si la identificación y la vacunación antirrábica ya están en regla."
+    pt: "Da UE: conte de uma a duas semanas — peça a autorização de importação da DSV com antecedência e peça a um veterinário oficial que emita o certificado veterinário internacional perto da data de partida, se a identificação e a vacinação antirrábica já estiverem em ordem."
+  listed:
+    en: "From another third country: similar timing using that country's official export certificate model; allow about 3 weeks if the first rabies shot is still needed, since the vaccination must precede the certificate."
+    fr: "Depuis un autre pays tiers : délais comparables avec le modèle de certificat d'exportation officiel du pays ; prévois environ 3 semaines s'il faut encore faire le premier vaccin antirabique, car la vaccination doit précéder le certificat."
+    es: "Desde otro país tercero: plazos similares usando el modelo de certificado de exportación oficial de ese país; cuenta con unas 3 semanas si aún falta la primera vacuna antirrábica, ya que la vacunación debe preceder al certificado."
+    pt: "De outro país terceiro: prazos parecidos, usando o modelo oficial de certificado de exportação desse país; conte cerca de 3 semanas se a primeira dose da vacina antirrábica ainda for necessária, já que a vacinação precisa ser anterior ao certificado."
+  nonListed:
+    en: "Whatever the origin, the limiting step is the advance import authorization and the rabies vaccination itself — plan around requesting the DSV authorization early rather than around a long list of tests."
+    fr: "Quelle que soit l'origine, l'étape limitante est l'autorisation d'importation préalable et la vaccination antirabique elle-même — organise-toi autour de la demande anticipée de l'autorisation DSV plutôt qu'autour d'une longue liste de tests."
+    es: "Sea cual sea el origen, el paso limitante es la autorización de importación previa y la propia vacunación antirrábica — organízate en torno a solicitar pronto la autorización de la DSV, más que en torno a una larga lista de pruebas."
+    pt: "Seja qual for a origem, a etapa limitante é a autorização de importação prévia e a própria vacinação antirrábica — organize-se para pedir cedo a autorização da DSV, e não em torno de uma longa lista de exames."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import authorization)", fr: "Oui (avec autorisation d'importation)", es: "Sí (con autorización de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Import authorization (DSV)", fr: "Autorisation d'importation (DSV)", es: "Autorización de importación (DSV)", pt: "Autorização de importação (DSV)" }
+    status: { en: "Required in advance", fr: "Requise à l'avance", es: "Obligatoria con antelación", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Identification (microchip or tattoo)", fr: "Identification (puce ou tatouage)", es: "Identificación (microchip o tatuaje)", pt: "Identificação (microchip ou tatuagem)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not part of published entry rules", fr: "Non prévu par les règles d'entrée publiées", es: "No previsto en las reglas de entrada publicadas", pt: "Não consta nas regras de entrada publicadas" }
+    cls: ok
+  - requirement: { en: "International veterinary certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Certificado veterinário internacional" }
+    status: { en: "Required (original)", fr: "Requis (original)", es: "Obligatorio (original)", pt: "Obrigatório (original)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    cls: ok
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "No published breed-specific import ban", fr: "Aucune interdiction d'importation par race publiée", es: "Ninguna prohibición de importación por raza publicada", pt: "Nenhuma proibição de importação por raça publicada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and the DSV sets the exact conditions on your import authorization."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et la DSV fixe les conditions exactes sur ton autorisation d'importation."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y la DSV fija las condiciones exactas en tu autorización de importación."
+    pt: "Somente um veterinário pode confirmar o procedimento exato para o seu cachorro, e é a DSV que define as condições exatas da sua autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Senegal (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Sénégal (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Senegal (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Senegal (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Senegal", fr: "Pays de destination — Sénégal", es: "País de destino — Senegal", pt: "País de destino — Senegal" }
+      text:
+        en: "Senegal runs its own DSV scheme: an advance import authorization, a permanent identification (microchip or tattoo), a valid rabies vaccination and an original international veterinary certificate are always required, and the animal is checked by the official veterinary services on arrival."
+        fr: "Le Sénégal applique son propre dispositif DSV : une autorisation d'importation préalable, une identification permanente (puce ou tatouage), une vaccination antirabique valide et l'original d'un certificat vétérinaire international sont toujours exigés, et l'animal est contrôlé par les services vétérinaires officiels à l'arrivée."
+        es: "Senegal aplica su propio sistema DSV: siempre se exigen una autorización de importación previa, una identificación permanente (microchip o tatuaje), una vacunación antirrábica válida y el original de un certificado veterinario internacional, y el animal es revisado por los servicios veterinarios oficiales a la llegada."
+        pt: "O Senegal aplica o sistema próprio da DSV: uma autorização de importação prévia, uma identificação permanente (microchip ou tatuagem), uma vacinação antirrábica válida e o original de um certificado veterinário internacional são sempre obrigatórios, e o animal é verificado pelos serviços veterinários oficiais na chegada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The international veterinary certificate is issued by a government-mandated vet in the country of departure, using that country's official model. The country of departure decides who signs your certificate and shapes the rabies-vaccination evidence the Senegalese authorities expect."
+        fr: "Le certificat vétérinaire international est établi par un vétérinaire mandaté du pays de départ, selon le modèle officiel de ce pays. Le pays de départ détermine qui signe ton certificat et conditionne les preuves de vaccination antirabique attendues par les autorités sénégalaises."
+        es: "El certificado veterinario internacional lo emite un veterinario habilitado del país de salida, usando el modelo oficial de ese país. El país de salida determina quién firma tu certificado y condiciona las pruebas de vacunación antirrábica que esperan las autoridades senegalesas."
+        pt: "O certificado veterinário internacional é emitido por um veterinário credenciado pelo governo do país de partida, no modelo oficial desse país. O país de partida determina quem assina o seu certificado e molda os comprovantes de vacinação antirrábica que as autoridades senegalesas esperam."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's rabies history and recent country of residence matter to the veterinary services, not only the last airport. A stay in a rabies-risk country can affect what the DSV asks for, so confirm your dog's full history with your vet and the DSV. Note that Senegal is itself a rabies-endemic country, which matters for any later return to the EU."
+        fr: "L'historique antirabique et le pays de résidence récent de ton chien comptent pour les services vétérinaires, pas seulement l'aéroport de destination finale. Un séjour dans un pays à risque rabique peut influer sur ce que demande la DSV ; confirme donc l'historique complet de ton chien avec ton vétérinaire et la DSV. Note que le Sénégal est lui-même un pays où la rage est endémique, ce qui compte pour un éventuel retour ultérieur vers l'UE."
+        es: "El historial de rabia y el país de residencia reciente de tu perro importan a los servicios veterinarios, no solo el último aeropuerto. Una estancia en un país con riesgo de rabia puede influir en lo que pide la DSV, así que confirma el historial completo de tu perro con tu veterinario y la DSV. Ten en cuenta que Senegal es en sí mismo un país donde la rabia es endémica, lo que importa para un posible regreso posterior a la UE."
+        pt: "O histórico de raiva do seu cachorro e o país onde ele morou recentemente importam para os serviços veterinários, e não apenas o último aeroporto. Uma estadia em um país de risco de raiva pode influenciar o que a DSV vai pedir, então confirme o histórico completo do seu cachorro com o seu veterinário e com a DSV. Observe que o próprio Senegal é um país de raiva endêmica, o que conta para qualquer retorno posterior à UE."
+  note:
+    en: "So read the requirements below as Senegal's framework, then confirm your dog's exact origin, length of stay and history with your vet and the DSV before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre sénégalais, puis confirme l'origine, la durée du séjour et l'historique exacts de ton chien avec ton vétérinaire et la DSV avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Senegal y luego confirma el origen, la duración de la estancia y el historial exactos de tu perro con tu veterinario y la DSV antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral do Senegal e depois confirme a origem exata, a duração da estadia e o histórico do seu cachorro com o seu veterinário e com a DSV antes de reservar."
+
+requirements:
+  - item: { en: "Import authorization (DSV)", fr: "Autorisation d'importation (DSV)", es: "Autorización de importación (DSV)", pt: "Autorização de importação (DSV)" }
+    required: { en: "Required (in advance)", fr: "Requise (à l'avance)", es: "Obligatoria (con antelación)", pt: "Obrigatória (com antecedência)" }
+    when: { en: "Request an 'autorisation d'introduction d'animaux de compagnie' from the Director of Veterinary Services before travel, stating the country of origin, the species/breed, and the traveller's name. It is valid for three months from issuance and must be presented on arrival.", fr: "Demande une « autorisation d'introduction d'animaux de compagnie » au Directeur des Services Vétérinaires avant le voyage, en précisant le pays d'origine, l'espèce/la race et le nom du voyageur. Elle est valable trois mois à compter de sa délivrance et doit être présentée à l'arrivée.", es: "Solicita una «autorisation d'introduction d'animaux de compagnie» al Director de los Servicios Veterinarios antes del viaje, indicando el país de origen, la especie/raza y el nombre del viajero. Es válida durante tres meses desde su expedición y debe presentarse a la llegada.", pt: "Peça uma 'autorisation d'introduction d'animaux de compagnie' (autorização de introdução de animais de estimação) ao Directeur des Services Vétérinaires antes da viagem, indicando o país de origem, a espécie/raça e o nome do viajante. Ela é válida por três meses a partir da emissão e deve ser apresentada na chegada." }
+    exceptions: { en: "No exceptions published — a dog without an approved authorization risks refusal at the border.", fr: "Aucune exception publiée — un chien sans autorisation approuvée risque le refus à la frontière.", es: "Ninguna excepción publicada — un perro sin una autorización aprobada corre el riesgo de ser rechazado en la frontera.", pt: "Nenhuma exceção publicada — um cachorro sem autorização aprovada corre o risco de ser recusado na fronteira." }
+    ref: { en: "Sénégal Services / Ministère de l'Élevage (DSV) — import authorization for pets", fr: "Sénégal Services / Ministère de l'Élevage (DSV) — autorisation d'importation d'animaux de compagnie", es: "Sénégal Services / Ministère de l'Élevage (DSV) — autorización de importación de animales de compañía", pt: "Sénégal Services / Ministère de l'Élevage (DSV) — autorização de importação de animais de estimação" }
+  - item: { en: "Identification (microchip or tattoo)", fr: "Identification (puce ou tatouage)", es: "Identificación (microchip o tatuaje)", pt: "Identificação (microchip ou tatuagem)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A permanent identification (electronic microchip or legible tattoo) must identify the animal and match the veterinary certificate; place it before the rabies vaccination. An ISO microchip is the standard and is needed for a later return to the EU.", fr: "Une identification permanente (puce électronique ou tatouage lisible) doit identifier l'animal et correspondre au certificat vétérinaire ; posez-la avant la vaccination antirabique. Une puce ISO est le standard et est nécessaire pour un retour ultérieur vers l'UE.", es: "Una identificación permanente (microchip electrónico o tatuaje legible) debe identificar al animal y coincidir con el certificado veterinario; colócala antes de la vacunación antirrábica. Un microchip ISO es el estándar y es necesario para un regreso posterior a la UE.", pt: "Uma identificação permanente (microchip eletrônico ou tatuagem legível) deve identificar o animal e coincidir com o certificado veterinário; aplique-a antes da vacinação antirrábica. O microchip ISO é o padrão e é necessário para um retorno posterior à UE." }
+    exceptions: { en: "None published — the identification is part of the required documents.", fr: "Aucune publiée — l'identification fait partie des documents exigés.", es: "Ninguna publicada — la identificación forma parte de los documentos exigidos.", pt: "Nenhuma publicada — a identificação faz parte dos documentos obrigatórios." }
+    ref: { en: "Sénégal Services (DSV) — required documents for pet import", fr: "Sénégal Services (DSV) — documents exigés pour l'importation d'animaux de compagnie", es: "Sénégal Services (DSV) — documentos exigidos para la importación de animales de compañía", pt: "Sénégal Services (DSV) — documentos obrigatórios para a importação de animais de estimação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A valid rabies vaccination is mandatory and recorded in the vaccination booklet and on the certificate. Where it is a primary vaccination, it should be given at least 21 days before travel; confirm the exact validity window with the DSV.", fr: "Une vaccination antirabique valide est obligatoire et consignée dans le carnet de vaccination et sur le certificat. Lorsqu'il s'agit d'une primo-vaccination, elle doit être faite au moins 21 jours avant le voyage ; confirme la fenêtre de validité exacte auprès de la DSV.", es: "Una vacunación antirrábica válida es obligatoria y se registra en la cartilla de vacunación y en el certificado. Cuando se trata de una primovacunación, debe administrarse al menos 21 días antes del viaje; confirma la ventana de valide exacta con la DSV.", pt: "A vacinação antirrábica válida é obrigatória e fica registrada na carteira de vacinação e no certificado. Quando se trata de primovacinação, ela deve ser aplicada pelo menos 21 dias antes da viagem; confirme com a DSV a janela exata de validade." }
+    exceptions: { en: "A dog too young to be validly vaccinated cannot meet the rabies requirement.", fr: "Un chien trop jeune pour être valablement vacciné ne peut satisfaire l'exigence antirabique.", es: "Un perro demasiado joven para ser vacunado válidamente no puede cumplir el requisito antirrábico.", pt: "Um cachorro jovem demais para ser validamente vacinado não pode cumprir a exigência relativa à raiva." }
+    ref: { en: "Sénégal Services (DSV); USDA APHIS — Pet Travel to Senegal", fr: "Sénégal Services (DSV) ; USDA APHIS — voyage d'animaux vers le Sénégal", es: "Sénégal Services (DSV); USDA APHIS — Pet Travel to Senegal", pt: "Sénégal Services (DSV); USDA APHIS — Pet Travel to Senegal" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published", fr: "Non prévu", es: "No previsto", pt: "Não publicado" }
+    when: { en: "Senegal's published entry rules for personal pets do not require a rabies antibody test for import into the country. (A titration may still be relevant for a later return to the EU, because Senegal is rabies-endemic.)", fr: "Les règles d'entrée publiées pour les animaux personnels n'exigent pas de titrage antirabique pour l'importation au Sénégal. (Un titrage peut toutefois rester pertinent pour un retour ultérieur vers l'UE, le Sénégal étant un pays à rage endémique.)", es: "Las reglas de entrada publicadas para mascotas personales no exigen una prueba de titulación de rabia para la importación al país. (Una titulación puede seguir siendo relevante para un regreso posterior a la UE, porque en Senegal la rabia es endémica.)", pt: "As regras de entrada publicadas pelo Senegal para animais de estimação particulares não exigem teste sorológico antirrábico para a importação no país. (A titulação pode, ainda assim, ser relevante para um retorno posterior à UE, porque no Senegal a raiva é endêmica.)" }
+    exceptions: { en: "Unknown for special cases — confirm with the DSV, as conditions can differ by the dog's origin and rabies history.", fr: "Non communiqué pour les cas particuliers — à confirmer auprès de la DSV, les conditions pouvant varier selon l'origine et l'historique rabique du chien.", es: "No comunicado para casos particulares — confírmalo con la DSV, ya que las condiciones pueden variar según el origen y el historial de rabia del perro.", pt: "Desconhecido para casos particulares — confirme com a DSV, pois as condições podem variar conforme a origem e o histórico de raiva do cachorro." }
+    ref: { en: "Sénégal Services (DSV) — published pet import requirements", fr: "Sénégal Services (DSV) — exigences publiées d'importation d'animaux de compagnie", es: "Sénégal Services (DSV) — requisitos publicados de importación de animales de compañía", pt: "Sénégal Services (DSV) — exigências publicadas para a importação de animais de estimação" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required (original)", fr: "Requis (original)", es: "Obligatorio (original)", pt: "Obrigatório (original)" }
+    when: { en: "An original international veterinary certificate must be issued shortly before departure by a government-mandated vet of the country of origin and validated by the official veterinary authority. The Senegalese portal references issuance within the week before departure; check the exact window with your official vet.", fr: "Un certificat vétérinaire international original doit être établi peu avant le départ par un vétérinaire mandaté du pays d'origine et validé par l'autorité vétérinaire officielle. Le portail sénégalais évoque une délivrance dans la semaine précédant le départ ; vérifie la fenêtre exacte avec ton vétérinaire officiel.", es: "Un certificado veterinario internacional original debe emitirse poco antes de la salida por un veterinario habilitado del país de origen y ser validado por la autoridad veterinaria oficial. El portal senegalés menciona una expedición en la semana previa a la salida; comprueba la ventana exacta con tu veterinario oficial.", pt: "O original do certificado veterinário internacional deve ser emitido pouco antes da partida por um veterinário credenciado pelo governo do país de origem e validado pela autoridade veterinária oficial. O portal senegalês menciona a emissão na semana anterior à partida; verifique a janela exata com o seu veterinário oficial." }
+    exceptions: { en: "None — an original official certificate must accompany every dog.", fr: "Aucune — un certificat officiel original doit accompagner chaque chien.", es: "Ninguna — un certificado oficial original debe acompañar a cada perro.", pt: "Nenhuma — um certificado oficial original deve acompanhar todo cachorro." }
+    ref: { en: "Sénégal Services (DSV) — international veterinary certificate; USDA APHIS", fr: "Sénégal Services (DSV) — certificat vétérinaire international ; USDA APHIS", es: "Sénégal Services (DSV) — certificado veterinario internacional; USDA APHIS", pt: "Sénégal Services (DSV) — certificado veterinário internacional; USDA APHIS" }
+  - item: { en: "Vaccination booklet", fr: "Carnet de vaccination", es: "Cartilla de vacunación", pt: "Carteira de vacinação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Carry an up-to-date vaccination booklet (carnet de vaccination) recording identification and vaccinations, including rabies; it is exchanged for the introduction authorization together with the international veterinary certificate.", fr: "Munis-toi d'un carnet de vaccination à jour consignant l'identification et les vaccinations, dont la rage ; il est présenté en échange de l'autorisation d'introduction avec le certificat vétérinaire international.", es: "Lleva una cartilla de vacunación (carnet de vaccination) actualizada que registre la identificación y las vacunas, incluida la rabia; se presenta a cambio de la autorización de introducción junto con el certificado veterinario internacional.", pt: "Leve uma carteira de vacinação (carnet de vaccination) atualizada, com o registro da identificação e das vacinas, inclusive a antirrábica; ela é trocada pela autorização de introdução junto com o certificado veterinário internacional." }
+    exceptions: { en: "None published.", fr: "Aucune publiée.", es: "Ninguna publicada.", pt: "Nenhuma publicada." }
+    ref: { en: "Sénégal Services (DSV) — required documents for pet import", fr: "Sénégal Services (DSV) — documents exigés pour l'importation d'animaux de compagnie", es: "Sénégal Services (DSV) — documentos exigidos para la importación de animales de compañía", pt: "Sénégal Services (DSV) — documentos obrigatórios para a importação de animais de estimação" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / échinocoque", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not published", fr: "Non prévu", es: "No previsto", pt: "Não publicado" }
+    when: { en: "Senegal does not publish a mandatory internal or external parasite treatment for personal pet dogs on its official entry pages.", fr: "Le Sénégal ne publie pas de traitement antiparasitaire interne ou externe obligatoire pour les chiens de compagnie personnels sur ses pages d'entrée officielles.", es: "Senegal no publica ningún tratamiento antiparasitario interno o externo obligatorio para perros de compañía personales en sus páginas oficiales de entrada.", pt: "O Senegal não publica, em suas páginas oficiais de entrada, nenhum tratamento antiparasitário interno ou externo obrigatório para cachorros de estimação particulares." }
+    exceptions: { en: "Unknown — a vet may recommend treatments; confirm any requirement with the DSV.", fr: "Non communiqué — un vétérinaire peut recommander des traitements ; confirme toute exigence auprès de la DSV.", es: "No comunicado — un veterinario puede recomendar tratamientos; confirma cualquier requisito con la DSV.", pt: "Desconhecido — um veterinário pode recomendar tratamentos; confirme qualquer exigência com a DSV." }
+    ref: { en: "Sénégal Services (DSV) — published pet import requirements", fr: "Sénégal Services (DSV) — exigences publiées d'importation d'animaux de compagnie", es: "Sénégal Services (DSV) — requisitos publicados de importación de animales de compañía", pt: "Sénégal Services (DSV) — exigências publicadas para a importação de animais de estimação" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Linked to rabies vaccination", fr: "Lié à la vaccination antirabique", es: "Vinculada a la vacunación antirrábica", pt: "Vinculada à vacinação antirrábica" }
+    when: { en: "A puppy must be old enough to be validly vaccinated against rabies (generally about 3 months / 12 weeks) with the vaccination taking effect before travel. No separate stand-alone minimum age is published.", fr: "Un chiot doit être en âge d'être valablement vacciné contre la rage (généralement environ 3 mois / 12 semaines), la vaccination devant produire ses effets avant le voyage. Aucun âge minimum distinct spécifique n'est publié.", es: "Un cachorro debe tener edad suficiente para ser vacunado válidamente contra la rabia (generalmente unos 3 meses / 12 semanas), y la vacunación debe surtir efecto antes del viaje. No se publica ninguna edad mínima independiente aparte.", pt: "O filhote precisa ter idade suficiente para ser validamente vacinado contra a raiva (em geral cerca de 3 meses / 12 semanas), com a vacinação já em vigor antes da viagem. Nenhuma idade mínima independente é publicada." }
+    exceptions: { en: "Puppies too young to be vaccinated cannot meet the rabies requirement — confirm with the DSV.", fr: "Les chiots trop jeunes pour être vaccinés ne peuvent satisfaire l'exigence antirabique — à confirmer auprès de la DSV.", es: "Los cachorros demasiado jóvenes para ser vacunados no pueden cumplir el requisito antirrábico — confírmalo con la DSV.", pt: "Filhotes jovens demais para serem vacinados não podem cumprir a exigência relativa à raiva — confirme com a DSV." }
+    ref: { en: "Sénégal Services (DSV) — rabies vaccination requirement", fr: "Sénégal Services (DSV) — exigence de vaccination antirabique", es: "Sénégal Services (DSV) — requisito de vacunación antirrábica", pt: "Sénégal Services (DSV) — exigência de vacinação antirrábica" }
+  - item: { en: "Border veterinary inspection & customs", fr: "Inspection vétérinaire frontalière et douane", es: "Inspección veterinaria fronteriza y aduanas", pt: "Inspeção veterinária de fronteira e alfândega" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "On arrival (e.g. at Blaise Diagne International Airport), present the import authorization, the international veterinary certificate, the vaccination booklet and proof of identification and rabies vaccination to the official veterinary services alongside customs.", fr: "À l'arrivée (par exemple à l'aéroport international Blaise Diagne), présente l'autorisation d'importation, le certificat vétérinaire international, le carnet de vaccination et la preuve d'identification et de vaccination antirabique aux services vétérinaires officiels, aux côtés de la douane.", es: "A la llegada (por ejemplo, en el Aeropuerto Internacional Blaise Diagne), presenta la autorización de importación, el certificado veterinario internacional, la cartilla de vacunación y la prueba de identificación y vacunación antirrábica a los servicios veterinarios oficiales, junto a las aduanas.", pt: "Na chegada (por exemplo, no Aeroporto Internacional Blaise Diagne), apresente aos serviços veterinários oficiais, junto com a alfândega, a autorização de importação, o certificado veterinário internacional, a carteira de vacinação e os comprovantes de identificação e de vacinação antirrábica." }
+    exceptions: { en: "Animals in international transit without unloading are outside these formalities.", fr: "Les animaux en transit international sans rupture de charge sont hors de ces formalités.", es: "Los animales en tránsito internacional sin desembarque quedan fuera de estas formalidades.", pt: "Animais em trânsito internacional sem desembarque ficam fora dessas formalidades." }
+    ref: { en: "Sénégal Services (DSV) — authorization presented on arrival", fr: "Sénégal Services (DSV) — autorisation présentée à l'arrivée", es: "Sénégal Services (DSV) — autorización presentada a la llegada", pt: "Sénégal Services (DSV) — autorização apresentada na chegada" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Non-compliant animals may be refused, returned or held under veterinary control at the owner's expense.", fr: "Les animaux non conformes peuvent être refusés, renvoyés ou placés sous contrôle vétérinaire aux frais du propriétaire.", es: "Los animales que no cumplan los requisitos pueden ser rechazados, devueltos o retenidos bajo control veterinario a cargo del propietario.", pt: "Animais em situação irregular podem ser recusados, devolvidos ou retidos sob controle veterinário às custas do dono." }
+    ref: { en: "Sénégal Services (DSV) — pet import procedure", fr: "Sénégal Services (DSV) — procédure d'importation d'animaux de compagnie", es: "Sénégal Services (DSV) — procedimiento de importación de animales de compañía", pt: "Sénégal Services (DSV) — procedimento de importação de animais de estimação" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "No published breed ban", fr: "Aucune interdiction par race publiée", es: "Ninguna prohibición por raza publicada", pt: "Nenhuma proibição de raça publicada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Senegal publishes no breed-specific import ban for dogs on its official pages. This is an absence of published rule, not a guarantee — confirm your dog's breed with the DSV before travel.", fr: "Le Sénégal ne publie aucune interdiction d'importation par race pour les chiens sur ses pages officielles. C'est une absence de règle publiée, non une garantie — confirme la race de ton chien auprès de la DSV avant de voyager.", es: "Senegal no publica ninguna prohibición de importación por raza para perros en sus páginas oficiales. Esto es una ausencia de regla publicada, no una garantía — confirma la raza de tu perro con la DSV antes de viajar.", pt: "O Senegal não publica, em suas páginas oficiais, nenhuma proibição de importação específica por raça de cachorro. Isso é a ausência de regra publicada, não uma garantia — confirme a raça do seu cachorro com a DSV antes de viajar." }
+    ref: { en: "No breed-specific import legislation found on official Senegalese sources", fr: "Aucune législation d'importation par race trouvée sur les sources officielles sénégalaises", es: "No se encontró legislación de importación por raza en las fuentes oficiales senegalesas", pt: "Nenhuma legislação de importação específica por raça encontrada em fontes oficiais senegalesas" }
+
+origin:
+  eu:
+    title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
+    body:
+      en: "For a dog leaving the EU, first obtain the DSV import authorization, then have an official EU vet issue the international veterinary certificate close to departure. Your dog needs a permanent identification (an ISO microchip in practice), a valid rabies vaccination recorded in the passport / vaccination booklet, and the certificate validated by the official authority. No rabies antibody test is published for entry into Senegal. On arrival, the official veterinary services check the dog and its documents with customs."
+      fr: "Pour un chien quittant l'UE, obtiens d'abord l'autorisation d'importation de la DSV, puis fais établir le certificat vétérinaire international par un vétérinaire officiel de l'UE peu avant le départ. Ton chien a besoin d'une identification permanente (une puce ISO en pratique), d'une vaccination antirabique valide consignée dans le passeport / carnet de vaccination, et du certificat validé par l'autorité officielle. Aucun titrage antirabique n'est publié pour l'entrée au Sénégal. À l'arrivée, les services vétérinaires officiels contrôlent le chien et ses documents avec la douane."
+      es: "Para un perro que sale de la UE, obtén primero la autorización de importación de la DSV y luego haz que un veterinario oficial de la UE emita el certificado veterinario internacional poco antes de la salida. Tu perro necesita una identificación permanente (un microchip ISO en la práctica), una vacunación antirrábica válida registrada en el pasaporte / cartilla de vacunación, y el certificado validado por la autoridad oficial. No se publica ninguna prueba de titulación de rabia para la entrada en Senegal. A la llegada, los servicios veterinarios oficiales revisan al perro y sus documentos junto a las aduanas."
+      pt: "Para um cachorro que sai da UE, obtenha primeiro a autorização de importação da DSV e depois peça a um veterinário oficial da UE que emita o certificado veterinário internacional perto da data de partida. Seu cachorro precisa de uma identificação permanente (na prática, um microchip ISO), de uma vacinação antirrábica válida registrada no passaporte / na carteira de vacinação e do certificado validado pela autoridade oficial. Nenhum teste sorológico antirrábico é publicado para a entrada no Senegal. Na chegada, os serviços veterinários oficiais verificam o cachorro e seus documentos junto com a alfândega."
+    cls: warn
+  listed:
+    title: { en: "From another third country", fr: "Depuis un autre pays tiers", es: "Desde otro país tercero", pt: "De outro país terceiro" }
+    body:
+      en: "From a non-EU country, the core requirements are the same: the DSV import authorization, a permanent identification, a valid rabies vaccination and an original international veterinary certificate issued by the government veterinary services of the country of origin, plus the vaccination booklet. Use your country's official export certificate model and have it signed by a government-mandated vet close to departure. (For travellers from the United States, USDA APHIS accepts the APHIS 7001 certificate issued within 21 days of travel.)"
+      fr: "Depuis un pays hors UE, les exigences de base sont identiques : l'autorisation d'importation de la DSV, une identification permanente, une vaccination antirabique valide et l'original d'un certificat vétérinaire international établi par les services vétérinaires gouvernementaux du pays d'origine, ainsi que le carnet de vaccination. Utilise le modèle de certificat d'exportation officiel de ton pays et fais-le signer par un vétérinaire mandaté peu avant le départ. (Pour les voyageurs des États-Unis, l'USDA APHIS accepte le certificat APHIS 7001 établi dans les 21 jours précédant le voyage.)"
+      es: "Desde un país no perteneciente a la UE, los requisitos básicos son los mismos: la autorización de importación de la DSV, una identificación permanente, una vacunación antirrábica válida y el original de un certificado veterinario internacional emitido por los servicios veterinarios gubernamentales del país de origen, más la cartilla de vacunación. Usa el modelo de certificado de exportación oficial de tu país y haz que lo firme un veterinario habilitado poco antes de la salida. (Para los viajeros de Estados Unidos, la USDA APHIS acepta el certificado APHIS 7001 emitido en los 21 días previos al viaje.)"
+      pt: "Vindo de um país fora da UE, as exigências centrais são as mesmas: a autorização de importação da DSV, uma identificação permanente, uma vacinação antirrábica válida e o original de um certificado veterinário internacional emitido pelos serviços veterinários governamentais do país de origem, além da carteira de vacinação. Use o modelo oficial de certificado de exportação do seu país e peça que ele seja assinado por um veterinário credenciado pelo governo perto da data de partida. (Para viajantes que partem dos Estados Unidos, o USDA APHIS aceita o certificado APHIS 7001 emitido no prazo de 21 dias antes da viagem.)"
+    cls: warn
+  nonListed:
+    title: { en: "Rabies history & special cases", fr: "Historique rabique et cas particuliers", es: "Historial de rabia y casos particulares", pt: "Histórico de raiva e casos particulares" }
+    body:
+      en: "Senegal does not publish a separate at-risk-country track or a rabies antibody test for personal pets entering the country, but the DSV can attach conditions to your import authorization based on the dog's origin and rabies history. If your dog has stayed in a high-risk country, confirm directly with the DSV what evidence will be required before you travel. Because Senegal is itself rabies-endemic, plan the rabies antibody test now if you intend to bring the dog back into the EU later."
+      fr: "Le Sénégal ne publie pas de parcours distinct pour les pays à risque ni de titrage antirabique pour les animaux personnels entrant dans le pays, mais la DSV peut assortir ton autorisation d'importation de conditions selon l'origine et l'historique rabique du chien. Si ton chien a séjourné dans un pays à haut risque, confirme directement auprès de la DSV les preuves exigées avant de voyager. Le Sénégal étant lui-même à rage endémique, prévois dès maintenant le titrage antirabique si tu compte ramener le chien dans l'UE plus tard."
+      es: "Senegal no publica un itinerario aparte para países de riesgo ni una prueba de titulación de rabia para mascotas personales que entran en el país, pero la DSV puede añadir condiciones a tu autorización de importación según el origen y el historial de rabia del perro. Si tu perro ha estado en un país de alto riesgo, confirma directamente con la DSV qué pruebas se exigirán antes de viajar. Como en Senegal la rabia es endémica, planifica ya la prueba de titulación de rabia si tienes previsto traer al perro de vuelta a la UE más adelante."
+      pt: "O Senegal não publica um percurso separado para países de risco nem exige teste sorológico antirrábico para animais de estimação particulares que entram no país, mas a DSV pode vincular condições à sua autorização de importação com base na origem e no histórico de raiva do cachorro. Se o seu cachorro esteve em um país de alto risco, confirme diretamente com a DSV quais comprovantes serão exigidos antes de você viajar. Como no próprio Senegal a raiva é endêmica, programe desde já o teste sorológico antirrábico se você pretende levar o cachorro de volta à UE mais tarde."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Senegal depends on your import authorization and your documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Sénégal dépend de ton autorisation d'importation et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a Senegal depende de tu autorización de importación y de tus documentos."
+    pt: "O que acontece quando o seu cachorro chega ao Senegal depende da sua autorização de importação e dos seus documentos."
+  points:
+    - en: "At the point of entry (e.g. Blaise Diagne International Airport), your dog is checked by the official veterinary services alongside customs."
+      fr: "Au point d'entrée (par exemple l'aéroport international Blaise Diagne), ton chien est contrôlé par les services vétérinaires officiels, aux côtés de la douane."
+      es: "En el punto de entrada (por ejemplo, el Aeropuerto Internacional Blaise Diagne), tu perro es revisado por los servicios veterinarios oficiales, junto a las aduanas."
+      pt: "No ponto de entrada (por exemplo, o Aeroporto Internacional Blaise Diagne), o seu cachorro é verificado pelos serviços veterinários oficiais junto com a alfândega."
+    - en: "Present the originals: the DSV import authorization, the international veterinary certificate, the vaccination booklet and proof of identification and rabies vaccination."
+      fr: "Présente les originaux : l'autorisation d'importation de la DSV, le certificat vétérinaire international, le carnet de vaccination et la preuve d'identification et de vaccination antirabique."
+      es: "Presenta los originales: la autorización de importación de la DSV, el certificado veterinario internacional, la cartilla de vacunación y la prueba de identificación y vacunación antirrábica."
+      pt: "Apresente os originais: a autorização de importação da DSV, o certificado veterinário internacional, a carteira de vacinação e os comprovantes de identificação e de vacinação antirrábica."
+    - en: "The import authorization must still be valid (three months from issuance) on the day of arrival."
+      fr: "L'autorisation d'importation doit être encore valable (trois mois à compter de sa délivrance) le jour de l'arrivée."
+      es: "La autorización de importación debe seguir siendo válida (tres meses desde su expedición) el día de la llegada."
+      pt: "A autorização de importação ainda precisa estar válida (três meses a partir da emissão) no dia da chegada."
+    - en: "If documents are missing or invalid, the animal may be refused entry, returned or held under veterinary control — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé, renvoyé ou placé sous contrôle vétérinaire — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado, devuelto o retenido bajo control veterinario — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, o animal pode ter a entrada recusada, ser devolvido ou ficar retido sob controle veterinário — às custas do dono."
+    - en: "Keep a full set of original documents with you throughout the journey."
+      fr: "Garde un jeu complet de documents originaux sur toi durant tout le trajet."
+      es: "Mantén contigo un juego completo de documentos originales durante todo el trayecto."
+      pt: "Mantenha com você um conjunto completo de documentos originais durante toda a viagem."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No breed-specific import ban for dogs is published on Senegal's official veterinary or government-service pages. Entry is controlled by the import authorization and the health requirements, not by a national list of prohibited breeds."
+    fr: "Aucune interdiction d'importation par race pour les chiens n'est publiée sur les pages officielles vétérinaires ou de service public du Sénégal. L'entrée est encadrée par l'autorisation d'importation et les exigences sanitaires, non par une liste nationale de races interdites."
+    es: "No se publica ninguna prohibición de importación por raza para perros en las páginas oficiales veterinarias o de servicio público de Senegal. La entrada se controla mediante la autorización de importación y los requisitos sanitarios, no por una lista nacional de razas prohibidas."
+    pt: "Nenhuma proibição de importação específica por raça de cachorro está publicada nas páginas veterinárias oficiais ou de serviços públicos do Senegal. A entrada é controlada pela autorização de importação e pelas exigências sanitárias, e não por uma lista nacional de raças proibidas."
+  cat1:
+    en: "We found no official Senegalese instrument banning breeds such as pit bull types from import. This is an absence of published rule rather than a positive authorisation of any specific breed."
+    fr: "Nous n'avons trouvé aucun texte officiel sénégalais interdisant à l'importation des races comme les types pit-bull. Il s'agit d'une absence de règle publiée, et non d'une autorisation expresse d'une race précise."
+    es: "No encontramos ningún texto oficial senegalés que prohíba la importación de razas como los tipos pit bull. Se trata de una ausencia de regla publicada, y no de una autorización expresa de ninguna raza concreta."
+    pt: "Não encontramos nenhum instrumento oficial senegalês que proíba a importação de raças como os tipos pit bull. Isso é a ausência de regra publicada, e não uma autorização expressa de qualquer raça específica."
+  cat2:
+    en: "There is likewise no published lighter 'permitted with conditions' breed category at the border. Local ownership or public-order rules could still exist; they are not part of the published import procedure."
+    fr: "Il n'existe de même aucune catégorie allégée « autorisée sous conditions » publiée à la frontière. Des règles locales de détention ou d'ordre public pourraient exister ; elles ne font pas partie de la procédure d'importation publiée."
+    es: "Tampoco existe ninguna categoría más ligera de raza «autorizada con condiciones» publicada en la frontera. Podrían existir normas locales de tenencia o de orden público; no forman parte del procedimiento de importación publicado."
+    pt: "Também não existe, na fronteira, nenhuma categoria intermediária publicada de raças 'permitidas com condições'. Podem existir regras locais de posse ou de ordem pública; elas não fazem parte do procedimento de importação publicado."
+  note:
+    en: "Because rules can change and may not be fully published online, confirm your dog's breed and any cross with the DSV before you travel."
+    fr: "Les règles pouvant évoluer et n'étant pas toujours entièrement publiées en ligne, confirme la race de ton chien et tout croisement auprès de la DSV avant de voyager."
+    es: "Como las normas pueden cambiar y no siempre se publican por completo en línea, confirma la raza de tu perro y cualquier cruce con la DSV antes de viajar."
+    pt: "Como as regras podem mudar e nem sempre são publicadas por completo on-line, confirme a raça do seu cachorro e qualquer cruzamento com a DSV antes de viajar."
+
+checklist:
+  - en: "Request the DSV import authorization in advance (state country of origin, species/breed, traveller's name)"
+    fr: "Demande l'autorisation d'importation de la DSV à l'avance (précise pays d'origine, espèce/race, nom du voyageur)"
+    es: "Solicita la autorización de importación de la DSV con antelación (indica país de origen, especie/raza, nombre del viajero)"
+    pt: "Peça a autorização de importação da DSV com antecedência (indique país de origem, espécie/raça, nome do viajante)"
+  - en: "Permanent identification (ISO microchip or legible tattoo) placed before the rabies vaccination"
+    fr: "Identification permanente (puce ISO ou tatouage lisible) posée avant la vaccination antirabique"
+    es: "Identificación permanente (microchip ISO o tatuaje legible) colocada antes de la vacunación antirrábica"
+    pt: "Identificação permanente (microchip ISO ou tatuagem legível) aplicada antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination recorded in the vaccination booklet (primary shot at least 21 days before travel)"
+    fr: "Vaccination antirabique valide consignée dans le carnet de vaccination (primo-vaccination au moins 21 jours avant le voyage)"
+    es: "Vacunación antirrábica válida registrada en la cartilla de vacunación (primovacunación al menos 21 días antes del viaje)"
+    pt: "Vacinação antirrábica válida registrada na carteira de vacinação (primovacinação pelo menos 21 dias antes da viagem)"
+  - en: "Original international veterinary certificate issued shortly before departure and validated by the official authority"
+    fr: "Original du certificat vétérinaire international établi peu avant le départ et validé par l'autorité officielle"
+    es: "Original del certificado veterinario internacional emitido poco antes de la salida y validado por la autoridad oficial"
+    pt: "Original do certificado veterinário internacional emitido pouco antes da partida e validado pela autoridade oficial"
+  - en: "Up-to-date vaccination booklet (carnet de vaccination) carried with you"
+    fr: "Carnet de vaccination à jour emporté avec toi"
+    es: "Cartilla de vacunación (carnet de vaccination) actualizada que lleves contigo"
+    pt: "Carteira de vacinação (carnet de vaccination) atualizada levada com você"
+  - en: "Check that the import authorization is still valid (3 months) on your arrival date"
+    fr: "Vérifie que l'autorisation d'importation est encore valable (3 mois) à ta date d'arrivée"
+    es: "Comprueba que la autorización de importación sigue siendo válida (3 meses) en tu fecha de llegada"
+    pt: "Verifique se a autorização de importação ainda é válida (3 meses) na sua data de chegada"
+  - en: "Original documents ready for the border veterinary check and customs"
+    fr: "Documents originaux prêts pour le contrôle vétérinaire frontalier et la douane"
+    es: "Documentos originales listos para el control veterinario fronterizo y las aduanas"
+    pt: "Documentos originais prontos para o controle veterinário de fronteira e a alfândega"
+  - en: "If you will return to the EU, plan the rabies antibody test (Senegal is rabies-endemic)"
+    fr: "Si tu rentre dans l'UE, prévois le titrage antirabique (le Sénégal est à rage endémique)"
+    es: "Si vas a regresar a la UE, planifica la prueba de titulación de rabia (en Senegal la rabia es endémica)"
+    pt: "Se você for voltar à UE, programe o teste sorológico antirrábico (no Senegal a raiva é endêmica)"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "Sénégal Services (official portal) — Request authorization to import pets", fr: "Sénégal Services (portail officiel) — Demander l'autorisation d'importer des animaux de compagnie", es: "Sénégal Services (portal oficial) — Solicitar la autorización para importar animales de compañía", pt: "Sénégal Services (portal oficial) — Solicitar a autorização de importar animais de estimação" }
+    url: "https://senegalservices.sn/demarche/demander-lautorisation-dimporter-des-animaux-de-compagnie"
+  - label: { en: "Sénégal Services (official portal) — Import authorization for domestic and/or wild animals", fr: "Sénégal Services (portail officiel) — Autorisation d'importation d'animaux domestiques et/ou sauvages", es: "Sénégal Services (portal oficial) — Autorización de importación de animales domésticos y/o salvajes", pt: "Sénégal Services (portal oficial) — Autorização de importação de animais domésticos e/ou selvagens" }
+    url: "https://senegalservices.sn/demarche/comment-obtenir-une-autorisation-dimportation-danimaux-domestiques-et-ou-danimaux-sauvages"
+  - label: { en: "Ministère de l'Élevage et des Productions Animales — Administrative procedures (import authorization)", fr: "Ministère de l'Élevage et des Productions Animales — Démarches administratives (autorisation d'importation)", es: "Ministère de l'Élevage et des Productions Animales — Trámites administrativos (autorización de importación)", pt: "Ministère de l'Élevage et des Productions Animales — Procedimentos administrativos (autorização de importação)" }
+    url: "https://elevage.sec.gouv.sn/documentations/demarches-administratives"
+  - label: { en: "Service Public du Sénégal — Administrative procedures", fr: "Service Public du Sénégal — Démarches administratives", es: "Service Public du Sénégal — Trámites administrativos", pt: "Service Public du Sénégal — Procedimentos administrativos" }
+    url: "http://www.servicepublic.gouv.sn/index.php/demarche_administrative/demarche/1/979"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Senegal (dog requirements)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Sénégal (exigences chiens)", es: "USDA APHIS — Pet Travel From the United States to Senegal (requisitos para perros)", pt: "USDA APHIS — Pet Travel From the United States to Senegal (exigências para cachorros)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-senegal"
+
+seo:
+  title: { en: "Senegal Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Sénégal — Guide", es: "Requisitos de entrada de perros en Senegal — Guía de viaje", pt: "Entrada de cachorros no Senegal — Guia de viagem" }
+  metaTitle: { en: "Traveling to Senegal With Your Dog: Entry Requirements (2026)", fr: "Voyager au Sénégal avec ton chien : formalités (2026)", es: "Viajar a Senegal con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Senegal com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official DSV rules for bringing a dog into Senegal: advance import authorization, identification, rabies vaccination and veterinary certificate. Sourced and dated."
+    fr: "Règles officielles DSV pour le Sénégal : autorisation d'importation préalable, identification, vaccination antirabique et certificat vétérinaire. Sourcé et daté."
+    es: "Normas oficiales de la DSV para Senegal: autorización de importación previa, identificación, vacunación antirrábica y certificado veterinario. Con fuentes y fecha."
+    pt: "Regras oficiais da DSV para levar um cachorro ao Senegal: autorização de importação prévia, identificação, vacinação antirrábica e certificado veterinário."
+  slug: "senegal"
+  shortDesc:
+    en: "What you need to bring a dog into Senegal — an advance DSV import authorization, identification, rabies vaccination and an international veterinary certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien au Sénégal — autorisation d'importation DSV préalable, identification, vaccination antirabique et certificat vétérinaire international."
+    es: "Lo que necesitas para traer un perro a Senegal — una autorización de importación previa de la DSV, identificación, vacunación antirrábica y un certificado veterinario internacional."
+    pt: "Para levar um cachorro ao Senegal: autorização de importação prévia da DSV, identificação, vacinação antirrábica e certificado veterinário internacional."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

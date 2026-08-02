@@ -1,0 +1,367 @@
+# Country Entry Guide — Hong Kong (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_hk
+iso2: "HK"
+name: { en: "Hong Kong", fr: "Hong Kong", es: "Hong Kong", pt: "Hong Kong" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: listed
+exit:
+  authority: AFCD
+  authorityUrl: https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_eapao/qua_ie_eapao_ioahc/qua_ie_eapao_ioahc_eu_uk.html
+  intro:
+    en: "Hong Kong is a listed country, so no rabies titer is needed to return to the EU — the AFCD officially certifies the EU-format health documentation for your dog."
+    fr: "Hong Kong est un pays listé : pas de titrage pour rentrer dans l'UE — l'AFCD certifie officiellement les documents sanitaires au format UE pour ton chien."
+    es: "Hong Kong es un país listado: no hace falta titulación para volver a la UE — el AFCD certifica oficialmente la documentación sanitaria en formato UE para tu perro."
+    pt: "Hong Kong é um país listado: não é preciso titulação antirrábica para voltar à UE — o AFCD certifica oficialmente a documentação sanitária em formato UE do seu cachorro."
+  steps:
+    - timing: window
+      text:
+        en: "The dog must be microchipped, rabies-vaccinated (at least 21 days after the primary shot) and examined by an approved vet; the AFCD then officially endorses the EU-format certificate, valid 10 days in the EU."
+        fr: "Le chien doit être pucé, vacciné contre la rage (au moins 21 jours après la primo-vaccination) et examiné par un vétérinaire agréé ; l'AFCD vise ensuite officiellement le certificat au format UE, valable 10 jours dans l'UE."
+        es: "El perro debe estar microchipado, vacunado contra la rabia (al menos 21 días tras la primovacunación) y examinado por un veterinario aprobado; luego el AFCD refrenda oficialmente el certificado en formato UE, válido 10 días en la UE."
+        pt: "O cachorro precisa ter microchip, estar com a vacinação antirrábica em dia (pelo menos 21 dias depois da dose inicial) e ser examinado por um veterinário credenciado; em seguida o AFCD chancela oficialmente o certificado em formato UE, válido por 10 dias na UE."
+  onSiteNote:
+    en: "For Finland, Ireland, Malta or Norway, dogs must be treated against tapeworm 24–120 hours before EU arrival."
+    fr: "Pour la Finlande, l'Irlande, Malte ou la Norvège, les chiens doivent être traités contre le ténia 24 à 120 h avant l'arrivée dans l'UE."
+    es: "Para Finlandia, Irlanda, Malta o Noruega, los perros deben recibir tratamiento contra la tenia 24–120 h antes de llegar a la UE."
+    pt: "Para Finlândia, Irlanda, Malta ou Noruega, os cachorros precisam ser tratados contra a tênia entre 24 e 120 horas antes da chegada à UE."
+
+hero:
+  h1: { en: "Traveling to Hong Kong with your dog", fr: "Voyager à Hong Kong avec ton chien", es: "Viajar a Hong Kong con tu perro", pt: "Viajar para Hong Kong com o seu cachorro" }
+  intro:
+    en: >-
+      Hong Kong welcomes dogs, but every dog needs a Special Permit issued in advance by the
+      Agriculture, Fisheries and Conservation Department (AFCD) before it can be brought in — no
+      permit, no entry. What else you must prepare depends mainly on where your dog is coming from.
+      AFCD sorts countries and places into groups by rabies risk: Group I (rabies-free places such as
+      Australia, New Zealand, the United Kingdom, Ireland and Japan) and Group II (most of Europe, the
+      United States, Canada) allow entry without quarantine when the permit conditions are met. Group
+      IIIA adds a rabies antibody test and a 30-day quarantine, and Group IIIB (all other places)
+      requires a 120-day quarantine. This guide explains each case so you know exactly what to prepare
+      before you book your flight.
+    fr: >-
+      Hong Kong accueille les chiens, mais chaque chien doit obtenir à l'avance un permis spécial
+      délivré par l'Agriculture, Fisheries and Conservation Department (AFCD) avant de pouvoir entrer —
+      pas de permis, pas d'entrée. Ce qu'il faut préparer par ailleurs dépend surtout du lieu de
+      provenance de ton chien. L'AFCD classe les pays et territoires en groupes selon le risque
+      rabique : le groupe I (lieux indemnes de rage comme l'Australie, la Nouvelle-Zélande, le
+      Royaume-Uni, l'Irlande et le Japon) et le groupe II (la plupart de l'Europe, les États-Unis, le
+      Canada) permettent l'entrée sans quarantaine si les conditions du permis sont remplies. Le groupe
+      IIIA ajoute un test d'anticorps antirabiques et une quarantaine de 30 jours, et le groupe IIIB
+      (tous les autres lieux) impose une quarantaine de 120 jours. Ce guide détaille chaque cas pour
+      savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Hong Kong acoge a los perros, pero cada perro necesita un permiso especial expedido por
+      adelantado por el Agriculture, Fisheries and Conservation Department (AFCD) antes de poder entrar —
+      sin permiso, no hay entrada. Lo demás que debes preparar depende sobre todo del lugar de
+      procedencia de tu perro. El AFCD clasifica los países y territorios en grupos según el riesgo de
+      rabia: el grupo I (lugares libres de rabia como Australia, Nueva Zelanda, el Reino Unido, Irlanda
+      y Japón) y el grupo II (la mayor parte de Europa, Estados Unidos, Canadá) permiten la entrada sin
+      cuarentena cuando se cumplen las condiciones del permiso. El grupo IIIA añade una prueba de
+      titulación de rabia y una cuarentena de 30 días, y el grupo IIIB (todos los demás lugares) exige
+      una cuarentena de 120 días. Esta guía explica cada caso para que sepas exactamente qué preparar
+      antes de reservar tu vuelo.
+
+    pt: "Hong Kong recebe bem os cachorros, mas todo cachorro precisa de uma Permissão Especial (Special Permit) emitida com antecedência pelo Agriculture, Fisheries and Conservation Department (AFCD) para poder entrar — sem permissão, sem entrada. O restante do preparo depende principalmente de onde o seu cachorro vem. O AFCD organiza países e territórios em grupos conforme o risco de raiva: o grupo I (lugares livres de raiva, como Austrália, Nova Zelândia, Reino Unido, Irlanda e Japão) e o grupo II (a maior parte da Europa, os Estados Unidos e o Canadá) permitem a entrada sem quarentena quando as condições da permissão são cumpridas. O grupo IIIA acrescenta um teste sorológico antirrábico (titulação) e uma quarentena de 30 dias, e o grupo IIIB (todos os demais lugares) exige uma quarentena de 120 dias. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "Group I & II: a few weeks — obtain the Special Permit (about 5 working days) plus the pre-export vaccinations and health certificate; no quarantine."
+    fr: "Groupes I & II : quelques semaines — obtention du permis spécial (environ 5 jours ouvrés) plus les vaccinations et le certificat sanitaire avant départ ; sans quarantaine."
+    es: "Grupos I y II: unas semanas — obtén el permiso especial (unos 5 días hábiles) más las vacunaciones y el certificado sanitario previos a la exportación; sin cuarentena."
+    pt: "Grupos I e II: algumas semanas — obter a Permissão Especial (cerca de 5 dias úteis), além das vacinas e do atestado de saúde antes da exportação; sem quarentena."
+  listed:
+    en: "Group IIIA: ~4–6 months — rabies vaccination, a rabies antibody test with blood drawn 90 days to 1 year before export, then a 30-day quarantine on arrival."
+    fr: "Groupe IIIA : ~4–6 mois — vaccination antirabique, test d'anticorps antirabiques avec prise de sang 90 jours à 1 an avant l'export, puis quarantaine de 30 jours à l'arrivée."
+    es: "Grupo IIIA: ~4–6 meses — vacunación antirrábica, una prueba de titulación de rabia con sangre extraída de 90 días a 1 año antes de la exportación, y luego una cuarentena de 30 días a la llegada."
+    pt: "Grupo IIIA: cerca de 4 a 6 meses — vacinação antirrábica, teste sorológico antirrábico com coleta de sangue de 90 dias a 1 ano antes da exportação e, na chegada, uma quarentena de 30 dias."
+  nonListed:
+    en: "Group IIIB: several months to over a year — a quarantine space must be booked well ahead, followed by a minimum 120-day quarantine on arrival."
+    fr: "Groupe IIIB : de plusieurs mois à plus d'un an — une place de quarantaine doit être réservée très en avance, suivie d'une quarantaine minimale de 120 jours à l'arrivée."
+    es: "Grupo IIIB: de varios meses a más de un año — debe reservarse con mucha antelación una plaza de cuarentena, seguida de una cuarentena mínima de 120 días a la llegada."
+    pt: "Grupo IIIB: de vários meses a mais de um ano — é preciso reservar uma vaga de quarentena com bastante antecedência e cumprir, na chegada, uma quarentena mínima de 120 dias."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with a Special Permit", fr: "Oui — avec un permis spécial", es: "Sí — con un permiso especial", pt: "Sim — com Permissão Especial" }
+    cls: ok
+  - requirement: { en: "Special import permit", fr: "Permis spécial d'importation", es: "Permiso especial de importación", pt: "Permissão especial de importação" }
+    status: { en: "Always required (obtain before travel)", fr: "Toujours requis (à obtenir avant le voyage)", es: "Siempre obligatorio (obtener antes del viaje)", pt: "Sempre obrigatória (obter antes da viagem)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required for Group IIIA/IIIB origins", fr: "Requise pour les origines groupe IIIA/IIIB", es: "Obligatoria para orígenes del grupo IIIA/IIIB", pt: "Obrigatória para origens dos grupos IIIA/IIIB" }
+    cls: neutral
+  - requirement: { en: "Rabies antibody test", fr: "Test d'anticorps antirabiques", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — Group IIIA origins only", fr: "Conditionnel — origines groupe IIIA uniquement", es: "Condicional — solo orígenes del grupo IIIA", pt: "Condicional — somente origens do grupo IIIA" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "None (Group I/II); 30 days (IIIA); 120 days (IIIB)", fr: "Aucune (groupe I/II) ; 30 jours (IIIA) ; 120 jours (IIIB)", es: "Ninguna (grupo I/II); 30 días (IIIA); 120 días (IIIB)", pt: "Nenhuma (grupos I/II); 30 dias (IIIA); 120 dias (IIIB)" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact procedure depends on three things — Hong Kong (your destination) is only the first."
+    fr: "La procédure exacte dépend de trois éléments — Hong Kong (ta destination) n'est que le premier."
+    es: "El procedimiento exacto depende de tres factores — Hong Kong (tu destino) es solo el primero."
+    pt: "O procedimento exato depende de três coisas — Hong Kong (o seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Hong Kong", fr: "Pays de destination — Hong Kong", es: "País de destino — Hong Kong", pt: "País de destino — Hong Kong" }
+      text:
+        en: "Hong Kong applies its own scheme under AFCD: a Special Permit must always be obtained in advance, and dogs over 5 months must be licensed and vaccinated against rabies after arrival."
+        fr: "Hong Kong applique son propre régime sous l'AFCD : un permis spécial doit toujours être obtenu à l'avance, et les chiens de plus de 5 mois doivent être licenciés et vaccinés contre la rage après l'arrivée."
+        es: "Hong Kong aplica su propio régimen bajo el AFCD: siempre debe obtenerse por adelantado un permiso especial, y los perros de más de 5 meses deben tener licencia y estar vacunados contra la rabia tras la llegada."
+        pt: "Hong Kong aplica o seu próprio sistema, sob responsabilidade do AFCD: a Permissão Especial precisa sempre ser obtida com antecedência, e os cachorros com mais de 5 meses precisam ser licenciados e vacinados contra a raiva depois da chegada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "AFCD groups the place of export as I, II, IIIA or IIIB by rabies risk. This decides whether a rabies antibody test is needed and whether quarantine applies — from none, to 30 days, to 120 days."
+        fr: "L'AFCD classe le lieu d'export en groupe I, II, IIIA ou IIIB selon le risque rabique. Cela détermine si un test d'anticorps antirabiques est requis et si une quarantaine s'applique — de aucune, à 30 jours, à 120 jours."
+        es: "El AFCD clasifica el lugar de exportación como grupo I, II, IIIA o IIIB según el riesgo de rabia. Esto determina si se necesita una prueba de titulación de rabia y si se aplica cuarentena — desde ninguna, a 30 días, a 120 días."
+        pt: "O AFCD classifica o local de exportação como I, II, IIIA ou IIIB conforme o risco de raiva. É isso que define se o teste sorológico antirrábico é necessário e se há quarentena — de nenhuma a 30 dias ou 120 dias."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "AFCD normally expects the dog to have resided in the exporting place; a recent stay in a higher-risk place can change your group. A Residence Certification Waiver Scheme exists for some cases."
+        fr: "L'AFCD attend normalement que le chien ait résidé dans le lieu d'export ; un séjour récent dans un lieu à risque plus élevé peut changer ton groupe. Un Residence Certification Waiver Scheme existe pour certains cas."
+        es: "El AFCD normalmente espera que el perro haya residido en el lugar de exportación; una estancia reciente en un lugar de mayor riesgo puede cambiar tu grupo. Existe un Residence Certification Waiver Scheme para algunos casos."
+        pt: "Normalmente o AFCD espera que o cachorro tenha residido no local de exportação; uma estadia recente em um lugar de risco maior pode mudar o seu grupo. Existe um Residence Certification Waiver Scheme (dispensa da comprovação de residência) para alguns casos."
+  note:
+    en: "So read the requirements below as Hong Kong's framework, then confirm your dog's exact group and history with AFCD and your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre hongkongais, puis confirme le groupe exact et l'historique de ton chien auprès de l'AFCD et de ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Hong Kong y luego confirma el grupo exacto y el historial de tu perro con el AFCD y tu veterinario."
+    pt: "Portanto, leia os requisitos abaixo como o quadro geral de Hong Kong e depois confirme com o AFCD e com o seu veterinário o grupo e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Special Permit (import/transit)", fr: "Permis spécial (import/transit)", es: "Permiso especial (importación/tránsito)", pt: "Permissão Especial (importação/trânsito)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be obtained from AFCD before travel; single consignment, valid 6 months. Fee HK$432 (first animal) + HK$102 each extra.", fr: "À obtenir auprès de l'AFCD avant le voyage ; un envoi, valable 6 mois. Frais 432 HK$ (premier animal) + 102 HK$ par animal supplémentaire.", es: "Debe obtenerse del AFCD antes del viaje; un solo envío, válido 6 meses. Tasa de 432 HK$ (primer animal) + 102 HK$ por cada animal adicional.", pt: "Precisa ser obtida junto ao AFCD antes da viagem; vale para um único embarque e tem validade de 6 meses. Taxa de 432 dólares de Hong Kong (primeiro animal) + 102 dólares de Hong Kong por animal adicional." }
+    exceptions: { en: "No exceptions — no dog may be imported or transhipped without a permit.", fr: "Aucune exception — aucun chien ne peut être importé ou transbordé sans permis.", es: "Sin excepciones — ningún perro puede importarse ni transbordarse sin permiso.", pt: "Sem exceções — nenhum cachorro pode ser importado ou transbordado sem permissão." }
+    ref: { en: "Public Health (Animals & Birds) Ordinance Cap. 139; Rabies Ordinance Cap. 421; AFCD", fr: "Public Health (Animals & Birds) Ordinance Cap. 139 ; Rabies Ordinance Cap. 421 ; AFCD", es: "Public Health (Animals & Birds) Ordinance Cap. 139; Rabies Ordinance Cap. 421; AFCD", pt: "Public Health (Animals & Birds) Ordinance Cap. 139; Rabies Ordinance Cap. 421; AFCD" }
+  - item: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be readable by an AVID or ISO scanner; for Group IIIA/IIIB it must be implanted before rabies vaccination and blood sampling.", fr: "Doit être lisible par un scanner AVID ou ISO ; pour les groupes IIIA/IIIB, posée avant la vaccination antirabique et la prise de sang.", es: "Debe poder leerse con un escáner AVID o ISO; para los grupos IIIA/IIIB debe implantarse antes de la vacunación antirrábica y la extracción de sangre.", pt: "Precisa ser legível por um leitor AVID ou ISO; para os grupos IIIA/IIIB, precisa ser implantado antes da vacinação antirrábica e da coleta de sangue." }
+    exceptions: { en: "The microchip number must appear on the vaccination and health documents.", fr: "Le numéro de puce doit figurer sur les documents de vaccination et le certificat sanitaire.", es: "El número de microchip debe figurar en los documentos de vacunación y en el certificado sanitario.", pt: "O número do microchip precisa constar nos documentos de vacinação e de saúde." }
+    ref: { en: "AFCD permit terms DC-06 (Group IIIA) / DC-03 (Group IIIB)", fr: "Termes de permis AFCD DC-06 (groupe IIIA) / DC-03 (groupe IIIB)", es: "Términos del permiso AFCD DC-06 (grupo IIIA) / DC-03 (grupo IIIB)", pt: "Condições da permissão do AFCD DC-06 (grupo IIIA) / DC-03 (grupo IIIB)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Group IIIA/IIIB", fr: "Groupe IIIA/IIIB", es: "Grupo IIIA/IIIB", pt: "Grupos IIIA/IIIB" }
+    when: { en: "Group IIIA: inactivated or recombinant vaccine 30 days to 1 year before export; primary shot at ≥90 days old.", fr: "Groupe IIIA : vaccin inactivé ou recombinant 30 jours à 1 an avant l'export ; primo-vaccination à ≥90 jours.", es: "Grupo IIIA: vacuna inactivada o recombinante de 30 días a 1 año antes de la exportación; primovacunación a ≥90 días de edad.", pt: "Grupo IIIA: vacina inativada ou recombinante de 30 dias a 1 ano antes da exportação; dose inicial com ≥90 dias de idade." }
+    exceptions: { en: "For Group I/II a pre-export rabies vaccination is not part of the standard procedure; dogs are vaccinated after arrival under Hong Kong licensing.", fr: "Pour les groupes I/II, une vaccination antirabique avant départ ne fait pas partie de la procédure standard ; les chiens sont vaccinés après l'arrivée dans le cadre de la licence hongkongaise.", es: "Para los grupos I/II, una vacunación antirrábica previa a la exportación no forma parte del procedimiento estándar; los perros se vacunan tras la llegada en el marco de la licencia de Hong Kong.", pt: "Para os grupos I/II, a vacinação antirrábica antes da exportação não faz parte do procedimento padrão; os cachorros são vacinados depois da chegada, no âmbito do licenciamento de Hong Kong." }
+    ref: { en: "AFCD permit terms DC-06V03", fr: "Termes de permis AFCD DC-06V03", es: "Términos del permiso AFCD DC-06V03", pt: "Condições da permissão do AFCD DC-06V03" }
+  - item: { en: "Rabies antibody test (RNATT)", fr: "Test d'anticorps antirabiques (RNATT)", es: "Prueba de titulación de rabia (RNATT)", pt: "Teste sorológico antirrábico (RNATT)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Group IIIA only: blood drawn 90 days to 1 year before export (≥30 days after a primary vaccination), FAVN or RFFIT at an AFCD-approved lab, result ≥0.5 IU/ml.", fr: "Groupe IIIA uniquement : sang prélevé 90 jours à 1 an avant l'export (≥30 jours après une primo-vaccination), FAVN ou RFFIT dans un labo agréé AFCD, résultat ≥0,5 UI/ml.", es: "Solo grupo IIIA: sangre extraída de 90 días a 1 año antes de la exportación (≥30 días después de una primovacunación), FAVN o RFFIT en un laboratorio autorizado por el AFCD, resultado ≥0,5 UI/ml.", pt: "Somente grupo IIIA: coleta de sangue de 90 dias a 1 ano antes da exportação (≥30 dias após uma vacinação inicial), FAVN ou RFFIT em laboratório aprovado pelo AFCD, resultado ≥0,5 UI/ml." }
+    exceptions: { en: "Not required for Group I, Group II or Group IIIB origins.", fr: "Non requis pour les origines groupe I, groupe II ou groupe IIIB.", es: "No obligatoria para orígenes del grupo I, grupo II o grupo IIIB.", pt: "Não obrigatório para origens dos grupos I, II ou IIIB." }
+    ref: { en: "AFCD permit terms DC-06V03", fr: "Termes de permis AFCD DC-06V03", es: "Términos del permiso AFCD DC-06V03", pt: "Condições da permissão do AFCD DC-06V03" }
+  - item: { en: "Vaccination against other diseases", fr: "Vaccination contre d'autres maladies", es: "Vacunación contra otras enfermedades", pt: "Vacinação contra outras doenças" }
+    required: { en: "Group IIIA/IIIB", fr: "Groupe IIIA/IIIB", es: "Grupo IIIA/IIIB", pt: "Grupos IIIA/IIIB" }
+    when: { en: "Full vaccination against canine distemper, infectious canine hepatitis and canine parvovirus, 14 days to 1 year before export.", fr: "Vaccination complète contre la maladie de Carré, l'hépatite de Rubarth et la parvovirose, 14 jours à 1 an avant l'export.", es: "Vacunación completa contra el moquillo canino, la hepatitis infecciosa canina y el parvovirus canino, de 14 días a 1 año antes de la exportación.", pt: "Vacinação completa contra cinomose, hepatite infecciosa canina e parvovirose canina, de 14 dias a 1 ano antes da exportação." }
+    exceptions: { en: "See AFCD guideline G122 for the definition of full vaccination.", fr: "Voir la directive AFCD G122 pour la définition de la vaccination complète.", es: "Consulta la directriz G122 del AFCD para la definición de vacunación completa.", pt: "Consulte a diretriz G122 do AFCD para a definição de vacinação completa." }
+    ref: { en: "AFCD guideline G122; permit terms DC-03/DC-06", fr: "Directive AFCD G122 ; termes de permis DC-03/DC-06", es: "Directriz AFCD G122; términos del permiso DC-03/DC-06", pt: "Diretriz G122 do AFCD; condições da permissão DC-03/DC-06" }
+  - item: { en: "Animal health certificate", fr: "Certificat sanitaire animal", es: "Certificado sanitario animal", pt: "Atestado de saúde animal" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by a government or registered vet in the exporting place; Group IIIA within 7 days of export and endorsed by a government vet; Group IIIB within 14 days.", fr: "Établi par un vétérinaire officiel ou agréé du lieu d'export ; groupe IIIA dans les 7 jours avant l'export et visé par un vétérinaire officiel ; groupe IIIB dans les 14 jours.", es: "Expedido por un veterinario oficial o registrado del lugar de exportación; grupo IIIA en los 7 días previos a la exportación y refrendado por un veterinario oficial; grupo IIIB en los 14 días.", pt: "Emitido por um veterinário oficial ou registrado no local de exportação; grupo IIIA, nos 7 dias anteriores à exportação e chancelado por um veterinário oficial; grupo IIIB, nos 14 dias anteriores." }
+    exceptions: { en: "AFCD provides templates VC-DC1/DC2/DC3A/DC3B per group; the microchip number must appear on it.", fr: "L'AFCD fournit les modèles VC-DC1/DC2/DC3A/DC3B selon le groupe ; le numéro de puce doit y figurer.", es: "El AFCD proporciona las plantillas VC-DC1/DC2/DC3A/DC3B según el grupo; el número de microchip debe figurar en él.", pt: "O AFCD disponibiliza os modelos VC-DC1/DC2/DC3A/DC3B conforme o grupo; o número do microchip precisa constar no documento." }
+    ref: { en: "AFCD forms VC-DC1/DC2/DC3A/DC3B", fr: "Formulaires AFCD VC-DC1/DC2/DC3A/DC3B", es: "Formularios AFCD VC-DC1/DC2/DC3A/DC3B", pt: "Formulários do AFCD VC-DC1/DC2/DC3A/DC3B" }
+  - item: { en: "Advance notification", fr: "Notification préalable", es: "Notificación previa", pt: "Aviso prévio" }
+    required: { en: "Group IIIA/IIIB", fr: "Groupe IIIA/IIIB", es: "Grupo IIIA/IIIB", pt: "Grupos IIIA/IIIB" }
+    when: { en: "Notify the AFCD Duty Officer of the Import & Export Section at least 24 hours before the dog's arrival.", fr: "Prévenir l'agent de service de la section Import & Export de l'AFCD au moins 24 heures avant l'arrivée du chien.", es: "Avisa al oficial de guardia de la sección de Importación y Exportación del AFCD al menos 24 horas antes de la llegada del perro.", pt: "Avise o Duty Officer da Import & Export Section do AFCD pelo menos 24 horas antes da chegada do cachorro." }
+    exceptions: { en: "The permit itself must already be granted before travel is finalised.", fr: "Le permis lui-même doit déjà être accordé avant de finaliser le voyage.", es: "El permiso en sí debe estar ya concedido antes de finalizar el viaje.", pt: "A permissão em si já precisa ter sido concedida antes de fechar a viagem." }
+    ref: { en: "AFCD Group IIIA/IIIB application procedure", fr: "Procédure de demande AFCD groupe IIIA/IIIB", es: "Procedimiento de solicitud AFCD grupo IIIA/IIIB", pt: "Procedimento de solicitação do AFCD para os grupos IIIA/IIIB" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Group IIIA/IIIB", fr: "Groupe IIIA/IIIB", es: "Grupo IIIA/IIIB", pt: "Grupos IIIA/IIIB" }
+    when: { en: "None for Group I/II; minimum 30 days for Group IIIA; minimum 120 days for Group IIIB, in an AFCD Animal Management Centre or a licensed quarantine centre at the owner's expense.", fr: "Aucune pour les groupes I/II ; minimum 30 jours pour le groupe IIIA ; minimum 120 jours pour le groupe IIIB, dans un Animal Management Centre de l'AFCD ou un centre de quarantaine agréé, aux frais du propriétaire.", es: "Ninguna para los grupos I/II; mínimo 30 días para el grupo IIIA; mínimo 120 días para el grupo IIIB, en un Animal Management Centre del AFCD o un centro de cuarentena autorizado, a cargo del propietario.", pt: "Nenhuma para os grupos I/II; mínimo de 30 dias para o grupo IIIA; mínimo de 120 dias para o grupo IIIB, em um Animal Management Centre do AFCD ou em um centro de quarentena licenciado, às custas do tutor." }
+    exceptions: { en: "A quarantine space must be booked in advance (recommended up to 12 months ahead).", fr: "Une place de quarantaine doit être réservée à l'avance (jusqu'à 12 mois recommandé).", es: "Debe reservarse una plaza de cuarentena por adelantado (se recomienda hasta 12 meses antes).", pt: "É preciso reservar uma vaga de quarentena com antecedência (recomenda-se até 12 meses antes)." }
+    ref: { en: "AFCD permit terms DC-06 (IIIA) / DC-03 (IIIB)", fr: "Termes de permis AFCD DC-06 (IIIA) / DC-03 (IIIB)", es: "Términos del permiso AFCD DC-06 (IIIA) / DC-03 (IIIB)", pt: "Condições da permissão do AFCD DC-06 (IIIA) / DC-03 (IIIB)" }
+  - item: { en: "Dog licence (after arrival)", fr: "Licence de chien (après l'arrivée)", es: "Licencia de perro (tras la llegada)", pt: "Licença para cachorro (após a chegada)" }
+    required: { en: "Dogs over 5 months", fr: "Chiens de plus de 5 mois", es: "Perros de más de 5 meses", pt: "Cachorros com mais de 5 meses" }
+    when: { en: "All dogs over 5 months in Hong Kong must be licensed and vaccinated against rabies; done on arrival at the permittee's expense.", fr: "Tout chien de plus de 5 mois à Hong Kong doit être licencié et vacciné contre la rage ; effectué à l'arrivée aux frais du titulaire du permis.", es: "Todo perro de más de 5 meses en Hong Kong debe tener licencia y estar vacunado contra la rabia; se hace a la llegada a cargo del titular del permiso.", pt: "Todos os cachorros com mais de 5 meses em Hong Kong precisam ter licença e ser vacinados contra a raiva; isso é feito na chegada, às custas do titular da permissão." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Rabies Ordinance Cap. 421; AFCD dog licensing", fr: "Rabies Ordinance Cap. 421 ; licence de chien AFCD", es: "Rabies Ordinance Cap. 421; licencia de perro del AFCD", pt: "Rabies Ordinance Cap. 421; licenciamento de cachorros do AFCD" }
+  - item: { en: "Prohibited / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "Applies", fr: "S'applique", es: "Se aplica", pt: "Aplica-se" }
+    when: { en: "Pit Bull Terrier, Japanese Tosa, Dogo Argentino, Fila Braziliero and their crossbreeds are banned; a Staffordshire Bull Terrier needs a statutory declaration.", fr: "Pit Bull Terrier, Tosa japonais, Dogo argentin, Fila Braziliero et leurs croisements sont interdits ; un Staffordshire Bull Terrier nécessite une déclaration solennelle.", es: "Pit Bull Terrier, Tosa Japonés, Dogo Argentino, Fila Braziliero y sus cruces están prohibidos; un Staffordshire Bull Terrier requiere una declaración jurada.", pt: "Pit Bull Terrier, Tosa Japonês, Dogo Argentino, Fila Braziliero e seus cruzamentos são proibidos; o Staffordshire Bull Terrier exige uma declaração juramentada (statutory declaration)." }
+    exceptions: { en: "When in doubt about a breed, seek advice directly from AFCD before travel.", fr: "En cas de doute sur une race, demande conseil directement à l'AFCD avant le voyage.", es: "En caso de duda sobre una raza, pide asesoramiento directamente al AFCD antes de viajar.", pt: "Na dúvida sobre uma raça, procure orientação diretamente com o AFCD antes da viagem." }
+    ref: { en: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, Schedule 1", fr: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, annexe 1", es: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, anexo 1", pt: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, Schedule 1" }
+
+origin:
+  eu:
+    title: { en: "Group I & II — no quarantine", fr: "Groupes I & II — sans quarantaine", es: "Grupos I y II — sin cuarentena", pt: "Grupos I e II — sem quarentena" }
+    body:
+      en: "From a Group I rabies-free place (Australia, New Zealand, United Kingdom, Ireland, Japan and others) or a Group II place (most of Europe, the United States, Canada and others), your dog is normally exempted from quarantine once the Special Permit conditions are met. You still need the permit, an animal health certificate on AFCD's form and full compliance with the permit terms. No rabies antibody test is required."
+      fr: "Depuis un lieu du groupe I indemne de rage (Australie, Nouvelle-Zélande, Royaume-Uni, Irlande, Japon…) ou un lieu du groupe II (la plupart de l'Europe, les États-Unis, le Canada…), ton chien est normalement dispensé de quarantaine dès lors que les conditions du permis spécial sont remplies. Il faut néanmoins le permis, un certificat sanitaire sur le formulaire de l'AFCD et le respect intégral des termes du permis. Aucun test d'anticorps antirabiques n'est requis."
+      es: "Desde un lugar del grupo I libre de rabia (Australia, Nueva Zelanda, Reino Unido, Irlanda, Japón y otros) o un lugar del grupo II (la mayor parte de Europa, Estados Unidos, Canadá y otros), tu perro queda normalmente exento de cuarentena una vez cumplidas las condiciones del permiso especial. Aun así necesitas el permiso, un certificado sanitario animal en el formulario del AFCD y el cumplimiento íntegro de los términos del permiso. No se exige prueba de titulación de rabia."
+      pt: "Se você vem de um lugar do grupo I, livre de raiva (Austrália, Nova Zelândia, Reino Unido, Irlanda, Japão e outros), ou de um lugar do grupo II (a maior parte da Europa, os Estados Unidos, o Canadá e outros), o seu cachorro normalmente fica isento de quarentena, desde que as condições da Permissão Especial sejam cumpridas. Ainda assim, você precisa da permissão, de um atestado de saúde animal no formulário do AFCD e do cumprimento integral das condições da permissão. Não é exigido teste sorológico antirrábico."
+    cls: ok
+  listed:
+    title: { en: "Group IIIA — antibody test + 30-day quarantine", fr: "Groupe IIIA — test d'anticorps + quarantaine de 30 jours", es: "Grupo IIIA — prueba de titulación + cuarentena de 30 días", pt: "Grupo IIIA — teste sorológico + quarentena de 30 dias" }
+    body:
+      en: "From a Group IIIA place (Chinese Mainland, Macao, Malaysia, Thailand, Hungary, Lithuania), your dog needs a microchip, rabies vaccination, other core vaccinations and a satisfactory rabies antibody test (RNATT ≥0.5 IU/ml) with blood drawn 90 days to 1 year before export. A quarantine space must be booked and a minimum 30-day quarantine served on arrival."
+      fr: "Depuis un lieu du groupe IIIA (Chine continentale, Macao, Malaisie, Thaïlande, Hongrie, Lituanie), ton chien a besoin d'une puce, d'une vaccination antirabique, des autres vaccins de base et d'un test d'anticorps antirabiques satisfaisant (RNATT ≥0,5 UI/ml) avec sang prélevé 90 jours à 1 an avant l'export. Une place de quarantaine doit être réservée et une quarantaine minimale de 30 jours effectuée à l'arrivée."
+      es: "Desde un lugar del grupo IIIA (China continental, Macao, Malasia, Tailandia, Hungría, Lituania), tu perro necesita un microchip, una vacunación antirrábica, las demás vacunas básicas y una prueba de titulación de rabia satisfactoria (RNATT ≥0,5 UI/ml) con sangre extraída de 90 días a 1 año antes de la exportación. Debe reservarse una plaza de cuarentena y cumplirse una cuarentena mínima de 30 días a la llegada."
+      pt: "Se você vem de um lugar do grupo IIIA (China continental, Macau, Malásia, Tailândia, Hungria, Lituânia), o seu cachorro precisa de microchip, vacinação antirrábica, das demais vacinas essenciais e de um teste sorológico antirrábico satisfatório (RNATT ≥0,5 UI/ml), com coleta de sangue de 90 dias a 1 ano antes da exportação. É preciso reservar uma vaga de quarentena e cumprir, na chegada, uma quarentena mínima de 30 dias."
+    cls: warn
+  nonListed:
+    title: { en: "Group IIIB — 120-day quarantine", fr: "Groupe IIIB — quarantaine de 120 jours", es: "Grupo IIIB — cuarentena de 120 días", pt: "Grupo IIIB — quarentena de 120 dias" }
+    body:
+      en: "From any place not in Group I, II or IIIA, your dog needs a microchip, full core vaccinations and an animal health certificate, and must serve a minimum 120-day quarantine in an AFCD Animal Management Centre or a licensed centre at your expense. A quarantine space must be booked well in advance (up to 12 months) as places are limited."
+      fr: "Depuis tout lieu ne relevant pas des groupes I, II ou IIIA, ton chien a besoin d'une puce, des vaccins de base complets et d'un certificat sanitaire, et doit effectuer une quarantaine minimale de 120 jours dans un Animal Management Centre de l'AFCD ou un centre agréé, à tes frais. Une place de quarantaine doit être réservée très en avance (jusqu'à 12 mois) car les places sont limitées."
+      es: "Desde cualquier lugar que no pertenezca a los grupos I, II o IIIA, tu perro necesita un microchip, las vacunas básicas completas y un certificado sanitario animal, y debe cumplir una cuarentena mínima de 120 días en un Animal Management Centre del AFCD o un centro autorizado, a tu cargo. Debe reservarse una plaza de cuarentena con mucha antelación (hasta 12 meses), ya que las plazas son limitadas."
+      pt: "Se você vem de qualquer lugar que não esteja nos grupos I, II ou IIIA, o seu cachorro precisa de microchip, das vacinas essenciais completas e de um atestado de saúde animal, e precisa cumprir uma quarentena mínima de 120 dias em um Animal Management Centre do AFCD ou em um centro licenciado, às suas custas. É preciso reservar uma vaga de quarentena com bastante antecedência (até 12 meses), porque as vagas são limitadas."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Hong Kong depends on the group of the place you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien à Hong Kong dépend du groupe du lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Hong Kong depende del grupo del lugar desde el que hayas volado."
+    pt: "O que acontece quando o seu cachorro chega a Hong Kong depende do grupo do lugar de onde você voou."
+  points:
+    - en: "Present the original (white copy) Special Permit at the AFCD office at Hong Kong International Airport, with the original vaccination and health documents."
+      fr: "Présente le permis spécial original (copie blanche) au bureau de l'AFCD à l'aéroport international de Hong Kong, avec les documents originaux de vaccination et de santé."
+      es: "Presenta el permiso especial original (copia blanca) en la oficina del AFCD del Aeropuerto Internacional de Hong Kong, con los documentos originales de vacunación y de salud."
+      pt: "Apresente a via original (cópia branca) da Permissão Especial no escritório do AFCD no Aeroporto Internacional de Hong Kong, junto com os documentos originais de vacinação e de saúde."
+    - en: "From Group I or II: your dog is normally released without quarantine once documents are verified."
+      fr: "Depuis le groupe I ou II : ton chien est normalement libéré sans quarantaine une fois les documents vérifiés."
+      es: "Desde el grupo I o II: tu perro se libera normalmente sin cuarentena una vez verificados los documentos."
+      pt: "Vindo dos grupos I ou II: normalmente o seu cachorro é liberado sem quarentena assim que os documentos são conferidos."
+    - en: "From Group IIIA or IIIB: AFCD staff escort your dog to the quarantine facility, and you arrange (and pay for) the transport and the 30-day or 120-day stay."
+      fr: "Depuis le groupe IIIA ou IIIB : le personnel de l'AFCD escorte ton chien jusqu'au centre de quarantaine, et tu organise (et paie) le transport et le séjour de 30 ou 120 jours."
+      es: "Desde el grupo IIIA o IIIB: el personal del AFCD acompaña a tu perro hasta el centro de cuarentena, y tú organizas (y pagas) el transporte y la estancia de 30 o 120 días."
+      pt: "Vindo dos grupos IIIA ou IIIB: a equipe do AFCD acompanha o seu cachorro até a instalação de quarentena, e você organiza (e paga) o transporte e a estadia de 30 ou 120 dias."
+    - en: "Dogs with doubtful history or clinical signs of disease may have their quarantine extended; dogs without proper documentation face at least 4 months' quarantine or return to origin."
+      fr: "Les chiens à l'historique douteux ou présentant des signes cliniques peuvent voir leur quarantaine prolongée ; les chiens sans documentation correcte risquent au moins 4 mois de quarantaine ou le renvoi à l'origine."
+      es: "Los perros con historial dudoso o signos clínicos de enfermedad pueden ver prolongada su cuarentena; los perros sin la documentación correcta se enfrentan a al menos 4 meses de cuarentena o a la devolución al origen."
+      pt: "Cachorros com histórico duvidoso ou sinais clínicos de doença podem ter a quarentena prorrogada; cachorros sem a documentação adequada enfrentam pelo menos 4 meses de quarentena ou a devolução à origem."
+    - en: "Dogs over 5 months are licensed and vaccinated against rabies on arrival at the permittee's expense."
+      fr: "Les chiens de plus de 5 mois sont licenciés et vaccinés contre la rage à l'arrivée aux frais du titulaire du permis."
+      es: "Los perros de más de 5 meses obtienen licencia y se vacunan contra la rabia a la llegada a cargo del titular del permiso."
+      pt: "Cachorros com mais de 5 meses são licenciados e vacinados contra a raiva na chegada, às custas do titular da permissão."
+    - en: "Prohibited fighting-dog breeds are refused entry, including in transit or transshipment."
+      fr: "Les races de chiens de combat interdites sont refusées à l'entrée, y compris en transit ou transbordement."
+      es: "Las razas de perros de pelea prohibidas son rechazadas a la entrada, incluso en tránsito o transbordo."
+      pt: "Raças proibidas de cachorros de briga têm a entrada recusada, inclusive em trânsito ou transbordo."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Hong Kong regulates fighting dogs under Schedule 1 of the Dangerous Dogs Regulation (Cap. 167, sub. leg. D). Certain breeds are banned from import and transshipment; others need extra documentation."
+    fr: "Hong Kong réglemente les chiens de combat en vertu de l'annexe 1 de la Dangerous Dogs Regulation (Cap. 167, sub. leg. D). Certaines races sont interdites à l'importation et au transbordement ; d'autres nécessitent des documents supplémentaires."
+    es: "Hong Kong regula los perros de pelea en virtud del anexo 1 de la Dangerous Dogs Regulation (Cap. 167, sub. leg. D). Determinadas razas están prohibidas para la importación y el transbordo; otras necesitan documentación adicional."
+    pt: "Hong Kong regula os cachorros de briga no Schedule 1 da Dangerous Dogs Regulation (Cap. 167, sub. leg. D). Algumas raças são proibidas de importação e transbordo; outras exigem documentação adicional."
+  cat1:
+    en: "Prohibited breeds: the Pit Bull Terrier (also known as the American Staffordshire Terrier), the Japanese Tosa, the Dogo Argentino, the Fila Braziliero and any of their crossbreeds are prohibited from being imported or transhipped into Hong Kong."
+    fr: "Races interdites : le Pit Bull Terrier (aussi appelé American Staffordshire Terrier), le Tosa japonais, le Dogo argentin, le Fila Braziliero et tous leurs croisements sont interdits d'importation ou de transbordement à Hong Kong."
+    es: "Razas prohibidas: el Pit Bull Terrier (también conocido como American Staffordshire Terrier), el Tosa Japonés, el Dogo Argentino, el Fila Braziliero y cualquiera de sus cruces están prohibidos para su importación o transbordo a Hong Kong."
+    pt: "Raças proibidas: o Pit Bull Terrier (também conhecido como American Staffordshire Terrier), o Tosa Japonês, o Dogo Argentino, o Fila Braziliero (fila brasileiro) e qualquer cruzamento dessas raças não podem ser importados nem transbordados para Hong Kong."
+  cat2:
+    en: "Extra documentation: for a Staffordshire Bull Terrier a statutory declaration must be submitted with the permit application. If you are unsure whether a breed can be imported, seek advice directly from AFCD before travel."
+    fr: "Documents supplémentaires : pour un Staffordshire Bull Terrier, une déclaration solennelle doit accompagner la demande de permis. En cas de doute sur l'admissibilité d'une race, demande conseil directement à l'AFCD avant le voyage."
+    es: "Documentación adicional: para un Staffordshire Bull Terrier debe presentarse una declaración jurada junto con la solicitud del permiso. Si no estás seguro de si una raza puede importarse, pide asesoramiento directamente al AFCD antes de viajar."
+    pt: "Documentação adicional: para o Staffordshire Bull Terrier, é preciso apresentar uma declaração juramentada (statutory declaration) junto com o pedido de permissão. Se você não tiver certeza de que uma raça pode ser importada, procure orientação diretamente com o AFCD antes da viagem."
+  note:
+    en: "Regardless of breed, every dog over 5 months living in Hong Kong must hold a dog licence and be vaccinated against rabies, arranged on arrival at the owner's expense."
+    fr: "Quelle que soit la race, tout chien de plus de 5 mois vivant à Hong Kong doit détenir une licence et être vacciné contre la rage, organisé à l'arrivée aux frais du propriétaire."
+    es: "Sea cual sea la raza, todo perro de más de 5 meses que viva en Hong Kong debe tener licencia y estar vacunado contra la rabia, gestionado a la llegada a cargo del propietario."
+    pt: "Independentemente da raça, todo cachorro com mais de 5 meses que more em Hong Kong precisa ter licença e ser vacinado contra a raiva, providenciado na chegada às custas do tutor."
+
+checklist:
+  - en: "Special Permit obtained from AFCD before booking final travel"
+    fr: "Permis spécial obtenu auprès de l'AFCD avant de finaliser le voyage"
+    es: "Permiso especial obtenido del AFCD antes de finalizar el viaje"
+    pt: "Permissão Especial obtida junto ao AFCD antes de fechar a viagem"
+  - en: "Microchip (AVID or ISO) implanted before vaccination and blood test"
+    fr: "Puce (AVID ou ISO) posée avant la vaccination et la prise de sang"
+    es: "Microchip (AVID o ISO) implantado antes de la vacunación y la prueba de sangre"
+    pt: "Microchip (AVID ou ISO) implantado antes da vacinação e da coleta de sangue"
+  - en: "Rabies vaccination and core vaccinations up to date (Group IIIA/IIIB)"
+    fr: "Vaccination antirabique et vaccins de base à jour (groupe IIIA/IIIB)"
+    es: "Vacunación antirrábica y vacunas básicas al día (grupo IIIA/IIIB)"
+    pt: "Vacinação antirrábica e vacinas essenciais em dia (grupos IIIA/IIIB)"
+  - en: "Rabies antibody test (RNATT ≥0.5 IU/ml) — Group IIIA origins only"
+    fr: "Test d'anticorps antirabiques (RNATT ≥0,5 UI/ml) — origines groupe IIIA uniquement"
+    es: "Prueba de titulación de rabia (RNATT ≥0,5 UI/ml) — solo orígenes del grupo IIIA"
+    pt: "Teste sorológico antirrábico (RNATT ≥0,5 UI/ml) — somente origens do grupo IIIA"
+  - en: "Quarantine space booked in advance (Group IIIA/IIIB)"
+    fr: "Place de quarantaine réservée à l'avance (groupe IIIA/IIIB)"
+    es: "Plaza de cuarentena reservada por adelantado (grupo IIIA/IIIB)"
+    pt: "Vaga de quarentena reservada com antecedência (grupos IIIA/IIIB)"
+  - en: "Animal health certificate on AFCD's form, with the microchip number"
+    fr: "Certificat sanitaire sur le formulaire de l'AFCD, avec le numéro de puce"
+    es: "Certificado sanitario animal en el formulario del AFCD, con el número de microchip"
+    pt: "Atestado de saúde animal no formulário do AFCD, com o número do microchip"
+  - en: "Original permit and documents carried for airport clearance"
+    fr: "Permis et documents originaux emportés pour le dédouanement à l'aéroport"
+    es: "Permiso y documentos originales que lleves para el despacho en el aeropuerto"
+    pt: "Permissão original e documentos levados para a liberação no aeroporto"
+  - en: "Confirm your dog is not a prohibited fighting-dog breed"
+    fr: "Vérifie que ton chien n'est pas d'une race de chien de combat interdite"
+    es: "Confirma que tu perro no es de una raza de perro de pelea prohibida"
+    pt: "Confirme que o seu cachorro não é de uma raça proibida de cachorro de briga"
+
+sources:
+  - label: { en: "AFCD — Import of Dogs and Cats (Special Permit, country groups)", fr: "AFCD — Importation de chiens et chats (permis spécial, groupes de pays)", es: "AFCD — Importación de perros y gatos (permiso especial, grupos de países)", pt: "AFCD — Importação de cães e gatos (Permissão Especial, grupos de países)" }
+    url: "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc.html"
+  - label: { en: "AFCD — Import from Group I countries/places", fr: "AFCD — Importation depuis les pays/lieux du groupe I", es: "AFCD — Importación desde países/lugares del grupo I", pt: "AFCD — Importação de países/lugares do grupo I" }
+    url: "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc_Group_I.html"
+  - label: { en: "AFCD — Import from Group II countries/places", fr: "AFCD — Importation depuis les pays/lieux du groupe II", es: "AFCD — Importación desde países/lugares del grupo II", pt: "AFCD — Importação de países/lugares do grupo II" }
+    url: "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc_Group_II.html"
+  - label: { en: "AFCD — Import from Group IIIA countries/places (antibody test + 30-day quarantine)", fr: "AFCD — Importation depuis les pays/lieux du groupe IIIA (test d'anticorps + quarantaine 30 jours)", es: "AFCD — Importación desde países/lugares del grupo IIIA (prueba de titulación + cuarentena de 30 días)", pt: "AFCD — Importação de países/lugares do grupo IIIA (teste sorológico + quarentena de 30 dias)" }
+    url: "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc_Group_IIIA.html"
+  - label: { en: "AFCD — Import from Group IIIB countries/places (120-day quarantine)", fr: "AFCD — Importation depuis les pays/lieux du groupe IIIB (quarantaine 120 jours)", es: "AFCD — Importación desde países/lugares del grupo IIIB (cuarentena de 120 días)", pt: "AFCD — Importação de países/lugares do grupo IIIB (quarentena de 120 dias)" }
+    url: "https://www.afcd.gov.hk/english/quarantine/qua_ie/qua_ie_ipab/qua_ie_ipab_idc/qua_ie_ipab_idc_Group_IIIB.html"
+  - label: { en: "Hong Kong e-Legislation — Dangerous Dogs Regulation (Cap. 167D)", fr: "Législation électronique de Hong Kong — Dangerous Dogs Regulation (Cap. 167D)", es: "Legislación electrónica de Hong Kong — Dangerous Dogs Regulation (Cap. 167D)", pt: "Legislação eletrônica de Hong Kong — Dangerous Dogs Regulation (Cap. 167D)" }
+    url: "https://www.elegislation.gov.hk/hk/cap167D"
+  - label: { en: "Hong Kong e-Legislation — Rabies Ordinance (Cap. 421)", fr: "Législation électronique de Hong Kong — Rabies Ordinance (Cap. 421)", es: "Legislación electrónica de Hong Kong — Rabies Ordinance (Cap. 421)", pt: "Legislação eletrônica de Hong Kong — Rabies Ordinance (Cap. 421)" }
+    url: "https://www.elegislation.gov.hk/hk/cap421"
+
+seo:
+  title: { en: "Hong Kong Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Hong Kong — Guide", es: "Requisitos de entrada de perros en Hong Kong — Guía de viaje", pt: "Requisitos de entrada de cachorros em Hong Kong — Guia" }
+  metaTitle: { en: "Traveling to Hong Kong With Your Dog: Entry Requirements (2026)", fr: "Voyager à Hong Kong avec ton chien : formalités (2026)", es: "Viajar a Hong Kong con tu perro: requisitos de entrada (2026)", pt: "Viajar para Hong Kong com seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official AFCD rules for bringing a dog into Hong Kong — Special Permit, country groups I/II/IIIA/IIIB, rabies antibody test and quarantine. Sourced and dated."
+    fr: "Règles officielles AFCD pour un chien à Hong Kong — permis spécial, groupes I/II/IIIA/IIIB, test d'anticorps antirabiques et quarantaine. Sourcé et daté."
+    es: "Normas oficiales del AFCD para traer un perro a Hong Kong — permiso especial, grupos I/II/IIIA/IIIB, prueba de titulación de rabia y cuarentena. Con fuentes y fecha."
+    pt: "Regras oficiais do AFCD para levar um cachorro para Hong Kong — Permissão Especial, grupos I/II/IIIA/IIIB, teste sorológico antirrábico e quarentena. Com fontes."
+  slug: "hong-kong"
+  shortDesc:
+    en: "What you need to bring a dog into Hong Kong: a Special Permit and, depending on origin, an antibody test and quarantine."
+    fr: "Ce qu'il faut pour faire entrer un chien à Hong Kong : un permis spécial et, selon l'origine, un test d'anticorps et une quarantaine."
+    es: "Lo que necesitas para traer un perro a Hong Kong: un permiso especial y, según el origen, una prueba de titulación y cuarentena."
+    pt: "O que você precisa para levar um cachorro para Hong Kong: uma Permissão Especial e, dependendo da origem, teste sorológico e quarentena."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

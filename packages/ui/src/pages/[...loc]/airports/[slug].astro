@@ -1,0 +1,56 @@
+---
+import { LOCALES } from "../../../lib/routes";
+import Base from "../../../layouts/Base.astro";
+import AirportReliefPage from "../../../components/AirportReliefPage.astro";
+import { loadKB, slugFor, cityName, inlineT, inlineF } from "@mydogcanfly/knowledge";
+import { shardPaths } from "../../../lib/buildShard";
+
+export function getStaticPaths() {
+  const kb: any = loadKB();
+  const out: any[] = [];
+  for (const loc of LOCALES)
+    for (const a of kb.airports.values())
+      out.push({ params: { loc: loc === "en" ? undefined : loc, slug: slugFor(a.id) }, props: { id: a.id, locale: loc } });
+  return shardPaths("airports", out);
+}
+
+const { id, locale } = Astro.props as { id: string; locale: string };
+const fr = locale === "fr";
+const es = locale === "es";
+const T = inlineT(locale);
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+const kb: any = loadKB();
+const a: any = kb.airports.get(id);
+const pick = (lt: any): string => (lt?.[locale] ?? lt?.en ?? "");
+const city = a ? cityName(a, locale) : "";
+const name = pick(a?.name) || city;
+// Lead with the airport name + IATA — that's what people actually search ("[airport] pet relief").
+// Budget : ≤ 65 caractères, sinon Google tronque. Si le nom officiel fait déborder le titre
+// (« Félix-Houphouët-Boigny International Airport »…), on bascule sur le nom de ville :
+// l'IATA désambiguïse déjà, et c'est la ville que les gens tapent.
+// « airport dog bathroom », « dog toilet » : synonymes très recherchés que « pet relief area »
+// seul ne capte pas (Search Console, juillet 2026). On garde l'expression qui fonctionne déjà
+// et on ajoute le synonyme grand public.
+const mkTitle = (n: string) =>
+  F("{0} ({1}): dog bathroom & relief", "{0} ({1}) : coins pipi chien", "{0} ({1}): baño para perros", n, a?.iata ?? "");
+let title = mkTitle(name);
+if (title.length > 65 && city && city !== name) title = mkTitle(city);
+// Budget : ≤ 165 caractères. L'espagnol débordait avec les noms de ville longs.
+const desc = F(
+  "Where is the dog bathroom at {0} ({1})? Pet relief areas, before or after security, and the official source.",
+  "Où ton chien peut-il faire pipi à {0} ({1}) ? Coins pipi et toilettes, avant ou après la sûreté, et source officielle.",
+  "¿Dónde puede hacer pis tu perro en {0} ({1})? Baños y zonas de alivio, antes o después del control, y fuente oficial.",
+  city, a?.iata ?? "");
+const webpageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description: desc,
+  inLanguage: locale,
+  isPartOf: { "@id": "https://mydogcanfly.com/#website" },
+  about: { "@type": "Airport", name, iataCode: a?.iata },
+};
+---
+<Base locale={locale} title={title} description={desc} ogType="article" jsonLd={[webpageLd]}>
+  <AirportReliefPage id={id} locale={locale} />
+</Base>

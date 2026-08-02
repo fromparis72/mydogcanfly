@@ -1,0 +1,790 @@
+---
+import { loadKB, t, breedName, cityName, inlineT } from "@mydogcanfly/knowledge";
+import { hrefFor } from "../lib/routes";
+import { countryData } from "../data/countries";
+
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const T = inlineT(locale);
+
+// Options generated from the Knowledge Base at build time (values = entity IDs).
+const kb = loadKB();
+// Localized country name, so the autocomplete also matches a country (type "France" → Orly + CDG; "Pérou" → Lima).
+const countryName = (id: string) => { const c = kb.countries.get(id); return c ? ((c.name as Record<string, string>)[locale] ?? c.name.en) : ""; };
+const airports = [...kb.airports.values()].map((a) => ({ id: a.id, iata: a.iata, label: `${a.iata} · ${cityName(a, locale)} · ${countryName(a.country_id)}` })).sort((x, y) => x.label.localeCompare(y.label));
+// Airport "popularity" (how many airlines reach it) — the busiest airport of a city becomes its representative.
+const airportPop = new Map<string, number>();
+for (const a of kb.airlines.values()) for (const id of ((a as { served_airport_ids?: string[] }).served_airport_ids ?? [])) airportPop.set(id, (airportPop.get(id) ?? 0) + 1);
+// Cities with several airports → a "City (all airports)" option so a search spans them (Paris = CDG + ORY).
+const allLabel = t(locale, "finder.all_airports");
+const cityGroups = new Map<string, { city: string; country: string; ids: string[] }>();
+for (const a of kb.airports.values()) {
+  const key = `${cityName(a, locale)}|${countryName(a.country_id)}`;
+  const g = cityGroups.get(key) ?? { city: cityName(a, locale), country: countryName(a.country_id), ids: [] };
+  g.ids.push(a.id); cityGroups.set(key, g);
+}
+const cities = [...cityGroups.values()].filter((g) => g.ids.length >= 2)
+  .map((g) => ({ label: `${g.city} · ${g.country} · ${allLabel}`, ids: [...g.ids].sort((x, y) => (airportPop.get(y) ?? 0) - (airportPop.get(x) ?? 0)) }))
+  .sort((x, y) => x.label.localeCompare(y.label));
+const breeds = [...kb.breeds.values()].map((b) => ({ id: b.id, label: breedName(b, locale), weight: b.weight_kg, brachy: b.brachycephalic })).sort((x, y) => x.label.localeCompare(y.label));
+// Map each airport of a multi-airport city → that city's "all airports" label. Used so the
+// geolocation prefill (and the SSR default) land on the CITY rather than a single airport —
+// otherwise the nearest airport can be a domestic-only one (Orly) and a long-haul search
+// silently returns zero results with no hint that the departure airport was the problem.
+const airCityLabel: Record<string, string> = {};
+for (const c of cities) for (const id of c.ids) airCityLabel[id] = c.label;
+const DEF = { origin: "airport_cdg", placement: "any" };
+const defOriginLabel = airCityLabel[DEF.origin] ?? (airports.find((a) => a.id === DEF.origin)?.label ?? "");
+// Deep-link ?to=<iso2> depuis une fiche pays : quel libellé écrire dans le champ « Arrivée ».
+// On vise l'aéroport le mieux desservi du pays ; si sa ville en compte plusieurs, on prend
+// l'entrée « ville · tous les aéroports » pour que la recherche les couvre tous.
+const destByCountry: Record<string, string> = {};
+{
+  const best = new Map<string, { id: string; pop: number }>();
+  for (const a of kb.airports.values()) {
+    const iso = ((kb.countries.get(a.country_id) as { iso2?: string } | undefined)?.iso2 ?? "").toLowerCase();
+    if (!iso) continue;
+    const pop = airportPop.get(a.id) ?? 0;
+    const cur = best.get(iso);
+    if (!cur || pop > cur.pop) best.set(iso, { id: a.id, pop });
+  }
+  for (const [iso, { id }] of best) {
+    const label = airCityLabel[id] ?? airports.find((a) => a.id === id)?.label;
+    if (label) destByCountry[iso] = label;
+  }
+}
+
+// Round-trip flag (client-side): per-country regime + whether it carries sourced exit formalities,
+// + page slug; and airport → country iso2, so the client can flag "outbound + return" at result level.
+const L3 = (en: string, f: string, es: string) => (locale === "fr" ? f : locale === "es" ? es : en);
+const RT_COUNTRY: Record<string, { regime: string; exit: boolean; name: string; slug: string }> = {};
+for (const [, g] of Object.entries(countryData as Record<string, any>)) {
+  if (!g.regime) continue;
+  RT_COUNTRY[g.iso2.toLowerCase()] = { regime: g.regime, exit: !!g.exit, name: (g.name[locale] ?? g.name.en), slug: g.iso2.toLowerCase() };
+}
+// Domestic travel (no border): what actually applies instead of the country's import rules, localized.
+const pickLT = (lt: Record<string, string> | undefined) => (lt ? (lt[locale] ?? lt.en) : "");
+const DOM_COUNTRY: Record<string, { intro: string; points: string[]; territories: { name: string; note: string; url?: string }[] }> = {};
+for (const [, g] of Object.entries(countryData as Record<string, any>)) {
+  if (!g.domestic) continue;
+  DOM_COUNTRY[g.iso2.toLowerCase()] = {
+    intro: pickLT(g.domestic.intro),
+    points: (g.domestic.points ?? []).map(pickLT),
+    territories: (g.domestic.territories ?? []).map((t: any) => ({ name: pickLT(t.name), note: pickLT(t.note), url: t.url })),
+  };
+}
+const airportCountry = Object.fromEntries([...kb.airports.values()].map((a) => [a.id, ((kb.countries.get(a.country_id) as { iso2?: string } | undefined)?.iso2 ?? "").toLowerCase()]));
+
+// Localized labels handed to the island as JSON (report rendering runs client-side).
+const labels = {
+  locale,
+  loading: t(locale, "finder.loading"),
+  answerQ: t(locale, "answer.question"),
+  compatibility: t(locale, "section.compatibility"),
+  why: t(locale, "section.why"),
+  before: t(locale, "report.before"),
+  warnings: t(locale, "section.warnings"),
+  risks: t(locale, "section.risks"),
+  alternatives: t(locale, "section.alternatives"),
+  sources: t(locale, "section.sources"),
+  partners: t(locale, "section.partners"),
+  airlines: t(locale, "section.airlines"),
+  direct: t(locale, "air.direct"),
+  connection: t(locale, "air.connection"),
+  noPets: t(locale, "air.no_pets"),
+  breedNo: T("Breed not accepted", "Race non acceptée", "Raza no aceptada"),
+  directCount: t(locale, "air.direct_count"),
+  directCountPlural: t(locale, "air.direct_count_plural"),
+  airlinesCount: t(locale, "air.airlines_count"),
+  airlinesCountOne: t(locale, "air.airlines_count_one"),
+  entryReq: t(locale, "air.entry_req"),
+  countryBase: locale === "en" ? "/countries/" : `/${locale}/countries/`,
+  cabinShort: t(locale, "placement.cabin"),
+  holdShort: t(locale, "placement.hold"),
+  cargoShort: t(locale, "placement.cargo"),
+  natlOrigin: t(locale, "air.national_origin"),
+  natlDest: t(locale, "air.national_dest"),
+  fromAirport: t(locale, "air.from_airport"),
+  toAirport: t(locale, "air.to_airport"),
+  climateTitle: t(locale, "report.climate_title"),
+  climateEst: t(locale, "report.climate_est"),
+  climateEstNote: t(locale, "report.climate_est_note"),
+  climateEmbargo: t(locale, "report.climate_embargo"),
+  climateOk: t(locale, "report.climate_ok"),
+  climateRiskTitle: t(locale, "report.climate_risk_title"),
+  climateRisk: t(locale, "report.climate_risk"),
+  heatEmbargo: t(locale, "air.heat_embargo"),
+  heatEmbargoShort: t(locale, "air.heat_embargo_short"),
+  confidence: T("confidence", "confiance", "confianza"),
+  answer: {
+    compatible: t(locale, "answer.compatible"),
+    conditional: t(locale, "answer.conditional"),
+    incompatible: t(locale, "answer.incompatible"),
+  },
+  // Breed lookup for the client: name (lowercased) → id, median weight (kg), snub-nosed flag.
+  breeds: Object.fromEntries(breeds.map((b) => [b.label.toLowerCase(), { id: b.id, w: b.weight, br: b.brachy }])),
+  breedById: Object.fromEntries(breeds.map((b) => [b.id, b.label])),   // for ?breed= deep-link prefill
+  brachyNote: t(locale, "finder.brachy_note"),
+  fillHint: t(locale, "finder.fill_hint"),
+  errorTitle: t(locale, "finder.error_title"),
+  errorBody: t(locale, "finder.error_body"),
+  airMap: Object.fromEntries(airports.map((a) => [a.label.toLowerCase(), a.id])),
+  airRev: Object.fromEntries(airports.map((a) => [a.id, a.label])),
+  airShort: Object.fromEntries(airports.map((a) => [a.id, a.iata])),
+  cityMap: Object.fromEntries(cities.map((c) => [c.label.toLowerCase(), c.ids])),
+  airCityLabel,   // airport id → "City · Country · all airports" label (multi-airport cities only)
+  destByCountry,  // iso2 → label to type into "To", for ?to=<iso> deep-links from country pages
+  // Round-trip "country formalities (outbound + return)" flag — data + localized copy.
+  countryRT: RT_COUNTRY,
+  countryDom: DOM_COUNTRY,
+  domTitle: L3("Domestic flight — no import formalities", "Vol intérieur — aucune formalité d'import", "Vuelo nacional — sin trámites de importación"),
+  domFallback: L3(
+    "No border is crossed, so no import formality applies. Check your airline's own conditions (health certificate, age, crate).",
+    "Aucune frontière n'est franchie, donc aucune formalité d'import ne s'applique. Vérifie les conditions propres à ta compagnie (certificat de santé, âge, caisse).",
+    "No se cruza ninguna frontera, así que no se aplica ningún trámite de importación. Consulta las condiciones de tu aerolínea (certificado de salud, edad, jaula)."),
+  domTerr: L3("Watch out — special territories", "Attention — territoires à régime particulier", "Atención — territorios con régimen especial"),
+  airportCountry,
+  rt: {
+    titleCrit: L3("Country formalities — plan before you leave", "Formalités pays — à anticiper avant de partir", "Trámites del país — anticípalos antes de salir"),
+    titleWarn: L3("Country formalities — outbound AND return", "Formalités pays — aller ET retour", "Trámites del país — ida Y vuelta"),
+    titleInfo: L3("Country formalities — outbound and return", "Formalités pays — aller et retour", "Trámites del país — ida y vuelta"),
+    bodyTiter: L3("The return needs a long procedure (rabies titer) started BEFORE you leave — not on the way back.", "Le retour impose une démarche longue (titrage antirabique) à lancer AVANT ton départ, pas au moment de rentrer.", "La vuelta exige un trámite largo (titulación antirrábica) que debes iniciar ANTES de salir, no al regresar."),
+    bodyIsland: L3("Entry requires an import permit and quarantine — plan several months ahead.", "L'entrée impose un permis d'importation et une quarantaine — compte plusieurs mois d'anticipation.", "La entrada exige un permiso de importación y cuarentena — cuenta con varios meses de antelación."),
+    bodyWarn: L3("Leaving the destination needs official steps arranged on site; the return isn't automatic.", "Sortir du pays de destination demande des démarches officielles à préparer sur place ; le retour n'est pas automatique.", "Salir del país de destino exige trámites oficiales que se preparan in situ; la vuelta no es automática."),
+    bodyInfo: L3("Formalities apply on entry and on return — plan a vet certificate each way.", "Des formalités s'appliquent à l'entrée et au retour — prévois un certificat vétérinaire dans chaque sens.", "Se aplican trámites a la entrada y a la vuelta — prevé un certificado veterinario en cada sentido."),
+    cta: L3("See the 4 steps", "Voir les 4 étapes", "Ver los 4 pasos"),
+  },
+  // Per-airline links for the result cards: our airline page + the official website (booking).
+  airlineHref: Object.fromEntries([...kb.airlines.values()].map((a) => [a.id, hrefFor(a.id, locale)])),
+  airlineSite: Object.fromEntries([...kb.airlines.values()].map((a) => [a.id, (a as { website?: string }).website ?? ""])),
+  airlineInfo: t(locale, "air.airline_info"),
+  bookLabel: t(locale, "air.book_official"),
+  nextTitle: t(locale, "air.next_title"),
+  step: t(locale, "air.step"),
+  actEntry: t(locale, "air.act_entry"),
+  actAirline: t(locale, "air.act_airline"),
+  actBook: t(locale, "air.act_book"),
+  crateBase: locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`,
+  heatBase: locale === "en" ? "/tools/heat/" : `/${locale}/tools/heat/`,
+  heatToolName: L3("Heat risk calculator", "Calculateur de risque chaleur", "Calculadora de riesgo de calor"),
+  heatToolWhy: L3(
+    "Check the expected temperature at both ends for your travel date — hold and cargo are suspended above the carriers' heat threshold.",
+    "Vérifie la température attendue au départ et à l'arrivée pour ta date — soute et fret sont suspendus au-delà du seuil de chaleur des compagnies.",
+    "Comprueba la temperatura prevista en origen y destino para tu fecha — bodega y carga se suspenden por encima del umbral de calor de las aerolíneas."),
+  actCrate: locale === "fr" ? "Vérifier la taille de la cage de transport" : "Verify travel crate size",
+  crateTgt: locale === "fr" ? "Calculateur de cage" : "Crate calculator",
+  ficheBase: locale === "en" ? "/tools/fiche/" : `/${locale}/tools/fiche/`,
+  ficheCta: T("See detailed requirements", "Voir modalités détaillées", "Ver trámites detallados"),
+};
+---
+<section id="flight-finder" class="finder" aria-label="Flight Finder">
+  <form id="mdcf-finder" class="finder__form">
+    <div class="finder__row">
+      <div class="finder__field">
+        <label for="f-origin">{t(locale, "finder.from")}</label>
+        <input id="f-origin" name="origin" data-ac="mdcf-airports" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" value={defOriginLabel} placeholder={t(locale, "finder.choose_airport")} />
+      </div>
+      <div class="finder__field">
+        <label for="f-dest">{t(locale, "finder.to")}</label>
+        <input id="f-dest" name="destination" data-ac="mdcf-airports" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={t(locale, "finder.choose_dest")} />
+      </div>
+      <datalist id="mdcf-airports">{cities.map((c) => <option value={c.label}></option>)}{airports.map((a) => <option value={a.label}></option>)}</datalist>
+      <div class="finder__field">
+        <label for="f-breed">{t(locale, "finder.breed")}</label>
+        <input id="f-breed" name="breed" data-ac="mdcf-breeds" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={t(locale, "finder.breed_ph")} />
+        <datalist id="mdcf-breeds">{breeds.map((b) => <option value={b.label}></option>)}</datalist>
+      </div>
+      <div class="finder__field finder__field--sm">
+        <label for="f-weight">{t(locale, "finder.weight")}</label>
+        <div class="finder__weight">
+          <input id="f-weight" name="weight" type="number" min="0" step="0.1" placeholder="—" />
+          <div class="finder__units" role="group" aria-label="unit">
+            <button type="button" id="u-kg" class="finder__unit is-on" data-u="kg">kg</button>
+            <button type="button" id="u-lb" class="finder__unit" data-u="lb">lb</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="finder__row finder__row--controls">
+      <div class="finder__field finder__field--sm">
+        <label for="f-placement">{t(locale, "finder.placement")}</label>
+        <select id="f-placement" name="placement">
+          <option value="any" selected={DEF.placement === "any"}>{t(locale, "placement.any")}</option>
+          <option value="cabin">{t(locale, "placement.cabin")}</option>
+          <option value="hold">{t(locale, "placement.hold")}</option>
+          <option value="cargo">{t(locale, "placement.cargo")}</option>
+        </select>
+      </div>
+      <div class="finder__field finder__field--sm">
+        <label for="f-date">{t(locale, "finder.date")}</label>
+        <input id="f-date" name="date" type="date" title={t(locale, "finder.date_hint")} />
+      </div>
+      <div class="finder__spacer">
+        <p id="f-muzzle" class="finder__muzzle" hidden></p>
+      </div>
+      <button class="mdcf-btn finder__submit" type="submit">{t(locale, "finder.submit")}</button>
+    </div>
+  </form>
+  <script type="application/json" id="mdcf-finder-labels" set:html={JSON.stringify(labels)} is:inline />
+  <div id="mdcf-finder-result" class="finder__result" aria-live="polite" hidden></div>
+</section>
+
+<script>
+  import type { DecisionReport, ReportItem, FinderRequest } from "@mydogcanfly/engine";
+  import { API_BASE } from "../lib/env";
+
+  const form = document.getElementById("mdcf-finder") as HTMLFormElement | null;
+  const out = document.getElementById("mdcf-finder-result") as HTMLDivElement | null;
+  const L = JSON.parse(document.getElementById("mdcf-finder-labels")?.textContent ?? "{}");
+
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] ?? c));
+  const host = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
+  const flag = (iso2: string) => iso2.length === 2
+    ? String.fromCodePoint(...[...iso2.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
+    : "";
+  const block = (title: string, items: ReportItem[]) =>
+    items.length ? `<h4>${esc(title)}</h4><ul>${items.map((i) => `<li>${esc(i.text)}</li>`).join("")}</ul>` : "";
+
+  // Makes the (default) seasonal temperature filter visible: shows the estimated destination heat and,
+  // when it's above the embargo threshold, warns that some airlines suspend hold/cargo.
+  function climateBanner(r: DecisionReport): string {
+    const c = r.climate;
+    if (!c) return "";
+    // Confirmed embargo: estimated temperature above the threshold → strong orange, glowing.
+    if (c.embargo) {
+      const est = (L.climateEst ?? "").replace("{temp}", String(c.temperature_c))
+        + (c.estimated ? ` ${L.climateEstNote ?? ""}` : "");
+      return `<div class="report__climate is-embargo">
+        <span class="rc-ic" aria-hidden="true">🌡️</span>
+        <div class="rc-body"><b>${esc(L.climateTitle ?? "")}</b> <span>${esc(est)} ${esc(L.climateEmbargo ?? "")}</span></div>
+      </div>`;
+    }
+    // Possible but unconfirmed: temperate region in peak-summer months (climate-change heat waves) → softer amber.
+    if (c.risk) {
+      return `<div class="report__climate is-risk">
+        <span class="rc-ic" aria-hidden="true">🌡️</span>
+        <div class="rc-body"><b>${esc(L.climateRiskTitle ?? "")}</b> <span>${esc(L.climateRisk ?? "")}</span></div>
+      </div>`;
+    }
+    // Otherwise (out of the hot season) the banner is hidden entirely.
+    return "";
+  }
+
+  // Round-trip flag: one route-level banner warning that country formalities apply BOTH ways,
+  // graduated by the origin/destination regimes (data-driven, no engine call). Links to the 4-step page.
+  function roundTripFlag(): string {
+    const dest = (L.countryRT ?? {})[lastDestIso];
+    if (!dest) return "";
+    const orig = (L.countryRT ?? {})[lastOriginIso];
+    const S = L.rt ?? {};
+    let sev = "info", title = S.titleInfo, body = S.bodyInfo;
+    if (orig && orig.regime === "eu" && dest.regime === "non_listed") { sev = "crit"; title = S.titleCrit; body = S.bodyTiter; }
+    else if (dest.regime === "island_strict") { sev = "crit"; title = S.titleCrit; body = S.bodyIsland; }
+    else if (dest.exit) { sev = "warn"; title = S.titleWarn; body = S.bodyWarn; }
+    const link = (L.countryBase ?? "/countries/") + dest.slug + "/";
+    return `<div class="rtflag rtflag--${sev}">
+      <div class="rtflag__t">⚠ ${esc(title)}</div>
+      <div class="rtflag__b">${esc(body)}</div>
+      <a class="rtflag__cta" href="${esc(link)}">${esc(S.cta)} · ${esc(dest.name)} →</a>
+    </div>`;
+  }
+
+  function render(r: DecisionReport): string {
+    const stars = "★".repeat(r.confidence) + "☆".repeat(Math.max(0, 5 - r.confidence));
+    const answer = (L.answer && L.answer[r.verdict]) || r.verdict;
+    const why = (r.positives && r.positives.length)
+      ? `<div class="report__sec"><h4>${esc(L.why)}</h4><ul class="checks">${r.positives.map((i) => `<li class="${i.tone === "negative" ? "is-neg" : ""}">${esc(i.text)}</li>`).join("")}</ul></div>`
+      : "";
+    return `
+      <div class="report report--${r.verdict}">
+        <p class="report__q">${esc(L.answerQ)}</p>
+        <p class="report__answer">${esc(answer)}</p>
+        <div class="report__score">
+          <div class="report__gauge"><span style="width:${r.score}%"></span></div>
+          <div class="report__score-meta"><strong>${r.score}%</strong> ${esc(L.compatibility)}</div>
+        </div>
+        ${climateBanner(r)}
+        ${why}
+        ${r.domestic ? (() => {
+          // Domestic: the country's import rules don't apply. Show what actually does, plus any
+          // same-country special territory (Guyane, Hawaii…). Honest fallback when we have no sourced data.
+          const d = (L.countryDom ?? {})[lastDestIso];
+          const body = d
+            ? `<p class="dom__intro">${esc(d.intro)}</p><ul>${d.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`
+              + (d.territories && d.territories.length
+                ? `<div class="dom__terr"><b>${esc(L.domTerr)}</b><ul>${d.territories.map((t) => `<li><b>${esc(t.name)}</b> — ${esc(t.note)}${t.url ? ` <a href="${esc(t.url)}" rel="nofollow noopener" target="_blank">↗</a>` : ""}</li>`).join("")}</ul></div>`
+                : "")
+            : `<p class="dom__intro">${esc(L.domFallback)}</p>`;
+          return `<div class="report__sec dom"><h4>${esc(L.domTitle)}</h4>${body}</div>`;
+        })() : block(L.before, r.conditions)}
+        ${r.airlines && r.airlines.length
+          ? `<div class="report__sec"><h4>${esc(L.airlines)}</h4>
+              <div class="acap">✈ <b>${r.airlines.filter((a) => a.direct).length}</b> ${esc(r.airlines.filter((a) => a.direct).length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>
+              <ul class="acards">${r.airlines.map((a) => `
+              <li class="acard ${a.cabin ? "acard--cabin" : a.hold ? "acard--hold" : a.cargo ? "acard--cargo" : "acard--no"}">
+                <div class="acard__main">
+                  ${(() => {
+                    const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !a.heat_embargo;
+                    const caps = [];
+                    if (structuralNoPets) {
+                      // Distinguish a low-cost that carries no pets at all ("No pets") from an airline that
+                      // does carry pets but rules out THIS dog (e.g. a snub-nosed breed → "Breed not accepted").
+                      if (a.carries_pets) caps.push({ cls: "breed", ic: "🐾", txt: L.breedNo });
+                      else caps.push({ cls: "nopets", ic: "🚫", txt: L.noPets });
+                    } else {
+                      const viaCode = a.connect_airport_id ? (AIRSHORT[a.connect_airport_id] || "") : "";
+                      caps.push(a.direct
+                        ? { cls: "direct", ic: "✈", txt: L.direct }
+                        : { cls: "conn", ic: "✈", txt: L.connection + (viaCode ? ` · via ${viaCode}` : "") });
+                      if (a.heat_embargo) caps.push({ cls: "heat", ic: "🌡️", txt: L.heatEmbargoShort });
+                    }
+                    return `<div class="acard__statusrow">${caps.map((s) => `<span class="acard__status acard__status--${s.cls}">${s.ic} ${esc(s.txt)}</span>`).join("")}</div>`;
+                  })()}
+                  <div class="acard__top"><b>${esc(a.name)}</b>${a.carrier_of_origin ? `<span class="acard__natl">★ ${esc(L.natlOrigin)}</span>` : a.carrier_of_destination ? `<span class="acard__natl">★ ${esc(L.natlDest)}</span>` : ""}</div>
+                  <div class="acard__badges"><span class="ab ${a.cabin ? "ab--ok" : "ab--no"}">${esc(L.cabinShort)}</span><span class="ab ${a.hold ? "ab--ok" : "ab--no"}">${esc(L.holdShort)}</span><span class="ab ${a.cargo ? "ab--ok" : "ab--no"}">${esc(L.cargoShort)}</span></div>
+                  <div class="acard__label">${esc(a.label)}${a.source_url ? ` · <a href="${esc(a.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(a.source_url))}</a>` : ""}</div>
+                  ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
+                  ${a.heat_embargo ? `<div class="acard__embargo">🌡️ ${esc(L.heatEmbargo)}</div>` : ""}
+                  ${a.fee ? `<div class="acard__fee">${esc(a.fee)}</div>` : ""}
+                </div>
+                <div class="acard__mid">${(() => {
+                  // One decisive action per airline: open the bespoke "Bible" sheet, carrying the whole
+                  // context (route, airline snapshot) in the URL so it's a shareable permalink.
+                  const p = new URLSearchParams();
+                  p.set("from", lastOriginIso); p.set("to", lastDestIso);
+                  p.set("air", a.airline_id); p.set("an", a.name);
+                  const site = (L.airlineSite ?? {})[a.airline_id]; if (site) p.set("as", site);
+                  const fiche = (L.airlineHref ?? {})[a.airline_id]; if (fiche) p.set("af", fiche);
+                  p.set("cab", a.cabin ? "1" : "0"); p.set("hold", a.hold ? "1" : "0"); p.set("cargo", a.cargo ? "1" : "0");
+                  p.set("direct", a.direct ? "1" : "0"); if (a.heat_embargo) p.set("emb", "1");
+                  if (a.fee) p.set("fee", a.fee);
+                  if (typeof r.score === "number") p.set("sc", String(r.score));
+                  const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
+                  if (lastBreedId) p.set("bid", lastBreedId);
+                  const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);
+                  const href = (L.ficheBase || "/tools/fiche/") + "?" + p.toString();
+                  return `<a class="mdcf-btn acard__fiche" href="${esc(href)}"><span>${esc(L.ficheCta)}</span><span class="acard__fiche-go">→</span></a>`;
+                })()}</div>
+              </li>`).join("")}</ul></div>`
+          : ""}
+        ${block(L.warnings, r.warnings)}
+        ${block(L.risks, r.risks)}
+        ${block(L.alternatives, r.alternatives)}
+        ${(() => {
+          // Only the crate recommendation is surfaced, and it points to our own crate calculator
+          // (internal tool, breed carried over) rather than any outbound partner link.
+          const crate = (r.partners ?? []).find((p) => (p as { vertical?: string }).vertical === "equipment");
+          if (!crate) return "";
+          const crateLink = L.crateBase + (lastBreedId ? "?breed=" + lastBreedId : "");
+          // Outil chaleur : service, pas modalité — il vit donc ici, en bas, et non dans le verdict.
+          // On lui passe le trajet et la date déjà saisis pour qu'il s'ouvre en contexte.
+          const iataOf = (id: string) => (L.airShort ?? {})[id] ?? "";
+          const dateVal = (byId("f-date") as HTMLInputElement | null)?.value ?? "";
+          const month = dateVal ? String(Number(dateVal.slice(5, 7))) : "";
+          const hq = [
+            iataOf(lastOriginId) ? "dep=" + iataOf(lastOriginId) : "",
+            iataOf(lastDestId) ? "arr=" + iataOf(lastDestId) : "",
+            month ? "month=" + month : "",
+            lastBreedId ? "breed=" + lastBreedId : "",
+          ].filter(Boolean).join("&");
+          const heatLink = L.heatBase + (hq ? "?" + hq : "");
+          const heatLi = `<li><a href="${esc(heatLink)}">${esc(L.heatToolName)}</a> — ${esc(L.heatToolWhy)}</li>`;
+          return `<div class="report__sec"><h4>${esc(L.partners)}</h4><ul class="report__partners"><li><a href="${esc(crateLink)}">${esc(crate.name)}</a> — ${esc(crate.reason)}</li>${heatLi}</ul></div>`;
+        })()}
+        <details class="report__sources"><summary>${esc(L.sources)} · ${esc(L.confidence)} ${stars}</summary>
+          <ul>${r.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.url)}</a></li>`).join("")}</ul>
+        </details>
+      </div>`;
+  }
+
+  // --- Breed autocomplete, median-weight autofill, kg/lb switch, snub-nosed note ---
+  const byId = (id: string) => document.getElementById(id);
+  const gv = (id: string) => (byId(id) as HTMLInputElement | HTMLSelectElement | null)?.value ?? "";
+  const breedEl = byId("f-breed") as HTMLInputElement | null;
+  const weightEl = byId("f-weight") as HTMLInputElement | null;
+  const muzzleEl = byId("f-muzzle") as HTMLElement | null;
+  const uKg = byId("u-kg"); const uLb = byId("u-lb");
+  // Accent-insensitive key: strip diacritics so "grece" matches "Grèce", "perou" → "Pérou", etc.
+  const norm = (s: string) => (s ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  const reKey = <V,>(m: Record<string, V>): Record<string, V> => {
+    const out: Record<string, V> = {};
+    for (const k in m) out[norm(k)] = m[k];
+    return out;
+  };
+  const BREEDS: Record<string, { id: string; w: number; br: boolean }> = reKey(L.breeds ?? {});
+  const LB = 2.20462;
+  let unit: "kg" | "lb" = "kg";
+
+  const resolveBreed = () => BREEDS[norm(breedEl?.value ?? "")];
+  function refreshMuzzle() {
+    const b = resolveBreed();
+    if (muzzleEl) { muzzleEl.hidden = !b?.br; if (b?.br) muzzleEl.textContent = L.brachyNote ?? ""; }
+  }
+  function fillWeight() {
+    const b = resolveBreed();
+    if (b && weightEl) weightEl.value = String(unit === "lb" ? +(b.w * LB).toFixed(1) : b.w);
+    refreshMuzzle();
+  }
+  function setUnit(u: "kg" | "lb") {
+    if (u === unit) return;
+    const v = parseFloat(weightEl?.value ?? "") || 0;
+    if (weightEl) weightEl.value = String(u === "lb" ? +(v * LB).toFixed(1) : +(v / LB).toFixed(1));
+    unit = u;
+    uKg?.classList.toggle("is-on", u === "kg"); uLb?.classList.toggle("is-on", u === "lb");
+  }
+  breedEl?.addEventListener("change", fillWeight);
+  breedEl?.addEventListener("input", refreshMuzzle);
+  uKg?.addEventListener("click", () => setUnit("kg"));
+  uLb?.addEventListener("click", () => setUnit("lb"));
+  refreshMuzzle();
+
+  // --- Custom autocomplete: replaces the native <datalist>, whose filtering is accent-SENSITIVE
+  // (typing "grece" would drop "Grèce" and surface "Zagreb"). This one matches on the accent-folded
+  // form, so "gre"/"grece" lists every Greek airport, "perou" finds Lima, etc. ---
+  function attachAC(input: HTMLInputElement) {
+    const listId = input.getAttribute("data-ac");
+    const dl = listId ? document.getElementById(listId) : null;
+    if (!dl) return;
+    const opts = [...dl.querySelectorAll("option")].map((o) => { const v = o.getAttribute("value") ?? ""; return { v, n: norm(v) }; });
+    const field = (input.closest(".finder__field") ?? input.parentElement) as HTMLElement | null;
+    if (!field) return;
+    field.classList.add("ac-host");
+    const box = document.createElement("ul");
+    box.className = "ac-list"; box.setAttribute("role", "listbox"); box.hidden = true;
+    field.appendChild(box);
+    let cur = -1;
+    let shown: { v: string; n: string }[] = [];
+    const esc2 = (s: string) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c] ?? c));
+    const close = () => { box.hidden = true; box.innerHTML = ""; cur = -1; input.setAttribute("aria-expanded", "false"); };
+    const mark = () => { [...box.children].forEach((el, i) => (el as HTMLElement).classList.toggle("is-cur", i === cur)); (box.children[cur] as HTMLElement | undefined)?.scrollIntoView({ block: "nearest" }); };
+    const openWith = (q: string) => {
+      const nq = norm(q);
+      shown = (nq ? opts.filter((o) => o.n.includes(nq)) : opts).slice(0, 60);
+      if (!shown.length) { close(); return; }
+      box.innerHTML = shown.map((o, i) => `<li class="ac-item" role="option" data-i="${i}">${esc2(o.v)}</li>`).join("");
+      box.hidden = false; cur = -1; input.setAttribute("aria-expanded", "true");
+    };
+    const choose = (i: number) => { const o = shown[i]; if (!o) return; input.value = o.v; close(); input.dispatchEvent(new Event("change", { bubbles: true })); };
+    input.addEventListener("input", () => openWith(input.value));
+    input.addEventListener("focus", () => openWith(input.value));
+    input.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (box.hidden) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); mark(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); mark(); }
+      else if (e.key === "Enter" && cur >= 0) { e.preventDefault(); choose(cur); }
+      else if (e.key === "Escape") { close(); }
+    });
+    box.addEventListener("mousedown", (e: MouseEvent) => { const li = (e.target as HTMLElement).closest(".ac-item") as HTMLElement | null; if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
+    document.addEventListener("click", (e) => { if (!field.contains(e.target as Node)) close(); });
+  }
+  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => attachAC(el));
+
+  const ctx = (window as { mdcfCtx?: { breed?: string; setBreed?: (v: string) => void } }).mdcfCtx;
+  /**
+   * La race n'est pré-remplie QUE depuis un « ?breed= » présent dans l'URL — jamais depuis la
+   * mémoire de session seule.
+   *
+   * Ce bloc lisait `ctx.breed`, qui mélange deux choses très différentes : un paramètre
+   * d'URL (le visiteur vient de cliquer un lien à propos d'une race précise : intention
+   * explicite) et une valeur mémorisée plus tôt dans la session (intention supposée). Le
+   * 30/07/2026, deux surprises en découlaient : lire la fiche du Jack Russell suffisait à
+   * voir « Jack Russell, 7 kg » pré-rempli au retour sur l'accueil, et un « Golden Retriever,
+   * 32 kg » traînant en mémoire s'affichait sur une page d'entrée sans que rien ne l'explique.
+   *
+   * Le risque n'est pas cosmétique : un visiteur qui ne remarque pas la race pré-remplie
+   * repart avec une réponse calculée pour un autre chien que le sien. La mémoire continue de
+   * servir les outils atteints par un lien porteur de contexte (`data-carry`), qui écrit le
+   * paramètre dans l'URL — donc l'intention reste vérifiable dans la barre d'adresse.
+   */
+  (function () {
+    const bid = new URLSearchParams(location.search).get("breed") || "";
+    const label = bid ? (L.breedById ?? {})[bid] : "";
+    if (label && breedEl) { breedEl.value = label; fillWeight(); }
+  })();
+
+  // ?to=<iso2> depuis une fiche pays : pré-remplit « Arrivée » avec l'aéroport le mieux
+  // desservi de ce pays (ou l'entrée « ville · tous les aéroports » si la ville en a plusieurs).
+  // Volontairement lu dans l'URL seulement, sans mémorisation : une destination est propre à
+  // une recherche, contrairement à la race ou à la compagnie qui suivent le visiteur.
+  const prefilledDest = (function () {
+    try {
+      const iso = new URLSearchParams(location.search).get("to");
+      const destEl = byId("f-dest") as HTMLInputElement | null;
+      if (!iso || !destEl) return false;
+      const label = ((L as { destByCountry?: Record<string, string> }).destByCountry ?? {})[iso.toLowerCase()];
+      if (!label) return false;
+      destEl.value = label;
+      return true;
+    } catch (e) { return false; }
+  })();
+
+  // Prefill "From" with the nearest airport, using Cloudflare's edge geolocation (no browser permission prompt).
+  (async () => {
+    try {
+      const r = await fetch(`${API_BASE}/v1/nearest-airport`);
+      if (!r.ok) return;
+      const { airport_id, unit } = (await r.json()) as { airport_id?: string; unit?: "kg" | "lb" };
+      const originEl = byId("f-origin") as HTMLInputElement | null;
+      // Prefer the city "all airports" label so a nearby domestic-only airport (e.g. Orly)
+      // doesn't silently exclude long-haul departures; fall back to the single airport label.
+      const label = airport_id
+        ? ((L.airCityLabel?.[airport_id] as string | undefined) ?? (L.airRev?.[airport_id] as string | undefined))
+        : undefined;
+      if (originEl && label) originEl.value = label;
+      if (unit === "lb") setUnit("lb");
+    } catch { /* keep the default origin */ }
+  })();
+
+  const AIRMAP: Record<string, string> = reKey(L.airMap ?? {});
+  const CITYMAP: Record<string, string[]> = reKey(L.cityMap ?? {});
+  const AIRSHORT: Record<string, string> = L.airShort ?? {};
+  // Resolve a field to a set of airport ids: a city option → all its airports; a single airport → [id].
+  const resolveEndpoint = (id: string): { ids: string[]; primary: string } => {
+    const v = norm(gv(id));
+    const cityIds = CITYMAP[v];
+    if (cityIds && cityIds.length) return { ids: cityIds, primary: cityIds[0] };
+    const aid = AIRMAP[v];
+    return aid ? { ids: [aid], primary: aid } : { ids: [], primary: "" };
+  };
+
+  let lastBreedId = "";
+  let lastOriginIso = "", lastDestIso = "";
+  let lastOriginId = "", lastDestId = "";
+  const AIRCOUNTRY: Record<string, string> = L.airportCountry ?? {};
+  function buildRequest(): FinderRequest {
+    const b = resolveBreed();
+    lastBreedId = b?.id ?? "";
+    if (lastBreedId) ctx?.setBreed?.(lastBreedId);   // remember the breed for the rest of the journey
+    const w = parseFloat(weightEl?.value ?? "");
+    const weight_kg = Number.isFinite(w) && w > 0 ? (unit === "lb" ? w / LB : w) : undefined;
+    const o = resolveEndpoint("f-origin"), d = resolveEndpoint("f-dest");
+    lastOriginIso = AIRCOUNTRY[o.primary] ?? "";
+    lastDestIso = AIRCOUNTRY[d.primary] ?? "";
+    lastOriginId = o.primary; lastDestId = d.primary;
+    return {
+      origin: o.primary,
+      destination: d.primary,
+      origins: o.ids.length > 1 ? o.ids : undefined,
+      destinations: d.ids.length > 1 ? d.ids : undefined,
+      dog: { breed_id: b?.id, weight_kg },
+      travel_type: "pet",
+      placement: (gv("f-placement") as FinderRequest["placement"]) || "any",
+      date: gv("f-date") || undefined,
+      locale: (L.locale as FinderRequest["locale"]) ?? "en",
+    };
+  }
+
+  /**
+   * POST vers le moteur. En cas d'échec, on lève : il n'y a PAS de repli.
+   *
+   * Ce code retombait auparavant sur un GET du même endpoint, qui renvoyait une démo
+   * « CDG → Tokyo, Golden Retriever ». Dès que le POST échouait — réseau coupé, requête
+   * bloquée, 5xx, endpoint absent en développement — le visiteur recevait donc un rapport
+   * complet et crédible sur le Japon à la place de sa propre recherche, sans le moindre
+   * avertissement. Un visiteur nous a signalé « du Tokyo qui apparaît sans raison » le
+   * 30/07/2026 ; c'était ça.
+   *
+   * Une seule nouvelle tentative, pour absorber le vrai cas transitoire (démarrage à froid
+   * du Worker, micro-coupure), puis on rend la main à l'appelant qui affichera une erreur.
+   */
+  async function fetchReport(req: FinderRequest): Promise<DecisionReport> {
+    let lastStatus = 0;
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const res = await fetch(`${API_BASE}/v1/finder`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(req) });
+        if (res.ok) {
+          const data = (await res.json()) as DecisionReport;
+          // Garde-fou de forme : un corps sans verdict n'est pas un rapport, quel que soit
+          // le code HTTP. On préfère une erreur visible à un rendu partiel muet.
+          if (data && typeof (data as { verdict?: unknown }).verdict === "string") return data;
+          throw new Error("malformed report");
+        }
+        lastStatus = res.status;
+        if (res.status >= 400 && res.status < 500) break; // requête refusée : réessayer n'aide pas
+      } catch { /* transitoire : on retente une fois */ }
+    }
+    throw new Error(`finder unavailable${lastStatus ? ` (${lastStatus})` : ""}`);
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!out) return;
+    const req = buildRequest();
+    if (!req.destination || !(req.dog.weight_kg && req.dog.weight_kg > 0)) {
+      out.hidden = false;
+      out.innerHTML = `<p class="finder__hint">${esc(L.fillHint ?? "Choose a destination and your dog's weight.")}</p>`;
+      return;
+    }
+    out.hidden = false;
+    out.innerHTML = `<p class="finder__loading">${esc(L.loading ?? "…")}</p>`;
+    try {
+      out.innerHTML = render(await fetchReport(req));
+    } catch (err) {
+      // Message explicite plutôt qu'un rapport inventé : le visiteur doit savoir qu'il n'a
+      // PAS de réponse, sans quoi il prend une démo pour son propre résultat.
+      out.innerHTML = `<p class="finder__error">${esc(L.errorTitle ?? "The engine didn't answer.")}<br><span>${esc(L.errorBody ?? "Please try again in a moment.")}</span></p>`;
+      // …mais la cause exacte va dans la console. Ce catch couvre DEUX familles de pannes très
+      // différentes — le moteur qui ne répond pas, et le rendu du rapport qui échoue. Sans
+      // cette trace, les deux se ressemblent, et on cherche du côté du serveur alors que le
+      // problème est dans la page. Le visiteur ne voit que le message ci-dessus.
+      console.error("[mdcf] finder failed:", err, "· request:", req);
+    }
+  });
+</script>
+
+<style>
+  .finder { border: 1px solid rgba(242, 112, 15, .35); border-radius: var(--mdcf-radius); padding: 16px; background: var(--mdcf-surface); box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06), 0 0 0 3px rgba(242, 112, 15, .06); }
+  .finder__form { display: flex; flex-direction: column; gap: 14px; }
+  .finder__row { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+  .finder__field { display: flex; flex-direction: column; gap: 6px; flex: 1 1 180px; }
+  .finder__field--sm { flex: 0 0 150px; }
+  .finder__spacer { flex: 1 1 40px; display: flex; align-items: center; min-width: 0; padding: 0 4px; }
+  .finder__submit { flex: 0 0 auto; padding: 12px 24px; font-size: 15px; }
+  @media (max-width: 640px) {
+    .finder__spacer:has(#f-muzzle[hidden]) { display: none; }
+    .finder__spacer { flex-basis: 100%; }
+    .finder__submit { flex: 1 1 100%; justify-content: center; }
+  }
+  .finder__field label { font-size: 12px; color: var(--mdcf-muted); font-weight: 600; }
+  .finder__field input, .finder__field select { box-sizing: border-box; height: 44px; padding: 10px 12px; border: 1px solid var(--mdcf-line); border-radius: 10px; font: inherit; line-height: 1.2; background: var(--mdcf-surface); }
+  .finder__field--sm { flex: 0 0 150px; }
+  .finder__weight { display: flex; gap: 6px; align-items: stretch; }
+  .finder__weight input { flex: 1 1 auto; min-width: 0; width: 100%; }
+  .finder__units { display: inline-flex; border: 1px solid var(--mdcf-line); border-radius: 10px; overflow: hidden; flex: 0 0 auto; }
+  .finder__unit { border: 0; background: var(--mdcf-surface); color: var(--mdcf-muted); font: inherit; font-weight: 700; font-size: 12px; padding: 0 10px; cursor: pointer; }
+  .finder__unit.is-on { background: var(--mdcf-accent); color: #fff; }
+  .finder__muzzle { margin: 0; font-size: 12px; line-height: 1.3; color: #dc2626; font-weight: 600; }
+  /* Custom accent-insensitive autocomplete dropdown.
+     :global() is required: the <ul>/<li> are created in JS at runtime and therefore lack Astro's
+     scoped data-attribute, so scoped rules would never match them (the box would render in-flow). */
+  :global(.ac-host) { position: relative; }
+  :global(.ac-list) { position: absolute; z-index: 40; top: calc(100% + 4px); left: 0; right: 0; margin: 0; padding: 4px;
+    list-style: none; max-height: 260px; overflow-y: auto; background: var(--mdcf-surface);
+    border: 1px solid var(--mdcf-line); border-radius: 10px; box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14); }
+  :global(.ac-item) { padding: 9px 10px; border-radius: 7px; font-size: 14px; color: var(--mdcf-ink); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  :global(.ac-item:hover), :global(.ac-item.is-cur) { background: var(--mdcf-accent-soft); }
+  .finder__result { margin-top: 16px; }
+  .finder__loading { color: var(--mdcf-muted); margin: 8px 0; }
+  .finder__hint { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
+  /* Panne du moteur : rouge, pas orange. Le visiteur doit comprendre qu'il n'a pas de réponse. */
+  .finder__error { color: #b3261e; background: #fee2e2; border: 1px solid rgba(179, 38, 30, .25); border-radius: 10px; padding: 12px 14px; margin: 8px 0; font-size: 14px; font-weight: 700; }
+  .finder__error span { display: inline-block; margin-top: 4px; font-weight: 500; color: #7f1d1d; }
+</style>
+
+<!-- The report is injected via innerHTML at runtime, so its styles must be global:
+     Astro's scoped styles cannot reach DOM created dynamically after render. -->
+<style is:global>
+  .report { border-top: 1px solid var(--mdcf-line); padding-top: 16px; }
+  .report__q { margin: 0 0 2px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--mdcf-muted); }
+  .report__answer { font-weight: 800; font-size: clamp(22px, 3vw, 30px); letter-spacing: -.01em; line-height: 1.1; margin: 0 0 14px; }
+  .report--incompatible .report__answer { color: var(--mdcf-risk); }
+  .report--conditional .report__answer { color: var(--mdcf-warn); }
+  .report--compatible .report__answer { color: var(--mdcf-ok); }
+  .report__score { display: flex; align-items: center; gap: 12px; margin: 0 0 4px; }
+  .report__gauge { flex: 1 1 auto; height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--mdcf-line) 70%, transparent); overflow: hidden; }
+  .report__gauge span { display: block; height: 100%; border-radius: 999px; background: var(--mdcf-warn); transition: width .5s ease; }
+  .report--incompatible .report__gauge span { background: var(--mdcf-risk); }
+  .report--compatible .report__gauge span { background: var(--mdcf-ok); }
+  .report__score-meta { font-size: 14px; color: var(--mdcf-muted); white-space: nowrap; }
+  .report__score-meta strong { color: var(--mdcf-ink); font-size: 16px; }
+  .report__sec { margin-top: 4px; }
+  .rtflag { border: 1px solid; border-left-width: 5px; border-radius: 0 10px 10px 0; padding: 12px 14px; margin: 14px 0; }
+  .rtflag__t { font-weight: 800; font-size: 14px; margin: 0 0 3px; }
+  .rtflag__b { font-size: 13.5px; line-height: 1.5; margin: 0 0 8px; }
+  .rtflag__cta { display: inline-block; font-size: 13px; font-weight: 700; text-decoration: none; }
+  .rtflag__cta:hover { text-decoration: underline; }
+  .rtflag--crit { background: #fef2f2; border-color: #fecaca; border-left-color: #dc2626; color: #7f1d1d; }
+  .rtflag--crit .rtflag__cta { color: #b91c1c; }
+  .rtflag--warn { background: #fffbeb; border-color: #fde68a; border-left-color: #d97706; color: #78350f; }
+  .rtflag--warn .rtflag__cta { color: #b45309; }
+  .rtflag--info { background: #eff6ff; border-color: #bfdbfe; border-left-color: #2563eb; color: #1e3a8a; }
+  .rtflag--info .rtflag__cta { color: #1d4ed8; }
+  .report h4 { margin: 32px 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; color: var(--mdcf-accent-ink); }
+  .report ul { margin: 0; padding-left: 18px; }
+  .report li { margin: 3px 0; }
+  .report .checks { list-style: none; padding-left: 0; }
+  .report .checks li { position: relative; padding-left: 24px; }
+  .report .checks li::before { content: "✓"; position: absolute; left: 4px; color: var(--mdcf-ok); font-weight: 800; }
+  .report .checks li.is-neg::before { content: "✗"; color: #dc2626; }
+  .report__partners a { color: var(--mdcf-link, #2563eb); }
+  .acards { list-style: none; padding-left: 0; display: grid; gap: 8px; }
+  .acard { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 20px; align-items: center;
+    border: 1px solid var(--mdcf-line); border-left: 3px solid var(--mdcf-line); border-radius: 12px; padding: 12px 14px; background: var(--mdcf-surface); }
+  .acard__main { min-width: 0; }
+  .acard__mid { min-width: 0; }
+  .acard__statusrow { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+  @media (max-width: 640px) { .acard { grid-template-columns: 1fr; gap: 10px; } }
+  .acard--cabin { border-left-color: var(--mdcf-ok); }
+  .acard--hold { border-left-color: var(--mdcf-warn); }
+  .acard--cargo { border-left-color: var(--mdcf-accent); }
+  .acard--no { border-left-color: var(--mdcf-risk); opacity: .68; }
+  .acard__top { display: flex; align-items: center; gap: 8px; }
+  .acard__natl { font-size: 11px; font-weight: 700; color: var(--mdcf-muted); background: var(--mdcf-subtle); padding: 2px 8px; border-radius: 999px; }
+  .acard__status { display: inline-block; font-size: 12px; font-weight: 800; padding: 3px 11px; border-radius: 999px; white-space: nowrap; }
+  .acard__status--direct { color: #065f46; background: #d1fae5; }
+  .acard__status--conn { color: #92400e; background: #fef0dc; }
+  .acard__status--heat { color: #9a3412; background: #ffe4cc; }
+  .acard__status--nopets { color: #991b1b; background: #fee2e2; }
+  .acard__status--breed { color: #92400e; background: #fef0dc; }
+  .dom .dom__intro { margin: 0 0 8px; }
+  .dom__terr { margin-top: 10px; background: #fff8ec; border: 1px solid #f0d9b8; border-radius: 10px; padding: 10px 13px; color: #7c4a12; font-size: 13.5px; }
+  .dom__terr ul { margin: 6px 0 0; padding-left: 18px; }
+  .dom__terr a { color: #b45309; text-decoration: none; }
+  .acard__badges { display: flex; gap: 6px; margin: 6px 0 4px; }
+  .ab { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+  .ab--ok { color: #065f46; background: #d1fae5; }
+  .ab--no { color: #991b1b; background: #fee2e2; text-decoration: line-through; }
+  .acard__label { font-size: 12.5px; color: var(--mdcf-muted); }
+  .acard__label a { color: var(--mdcf-accent); }
+  .acard__via { margin-top: 4px; font-size: 12px; font-weight: 650; color: var(--mdcf-accent-ink); }
+  .acard__embargo { margin-top: 6px; font-size: 12px; font-weight: 600; line-height: 1.3; color: #9a3412;
+    background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 4px 9px; }
+  .report__climate { display: flex; align-items: flex-start; gap: 10px; margin: 12px 0 16px; padding: 11px 13px; border-radius: 11px;
+    border: 1.5px solid rgba(180, 83, 10, .55);
+    box-shadow: 0 0 0 1px rgba(180, 83, 10, .16), 0 0 18px 2px rgba(234, 88, 12, .30);
+    animation: rcGlow 2.8s ease-in-out infinite; }
+  .report__climate .rc-ic { font-size: 16px; line-height: 1.3; flex: 0 0 auto; }
+  .report__climate .rc-body { font-size: 13.5px; line-height: 1.42; }
+  .report__climate.is-embargo { background: #fff7ed; color: #9a3412; }
+  .report__climate.is-risk { background: #fffbeb; color: #92400e; border-color: #fcd34d;
+    box-shadow: 0 0 0 1px rgba(217, 119, 6, .12); animation: none; }
+  .report__climate b { color: inherit; }
+  @keyframes rcGlow {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(180, 83, 10, .14), 0 0 12px 1px rgba(234, 88, 12, .22); }
+    50%      { box-shadow: 0 0 0 1px rgba(180, 83, 10, .30), 0 0 24px 5px rgba(234, 88, 12, .45); }
+  }
+  @media (prefers-reduced-motion: reduce) { .report__climate { animation: none; } }
+  .acap { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 10px 18px; padding: 6px 14px; border-radius: 999px;
+    background: #d1fae5; color: #065f46; font-size: 13px; font-weight: 650; }
+  .acap b { color: #065f46; }
+  .acard__fee { margin-top: 6px; font-size: 13px; font-weight: 650; color: var(--mdcf-ink); }
+  .acard__links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 8px; }
+  .acard__country { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 8px;
+    background: color-mix(in srgb, var(--mdcf-line) 25%, transparent); font-size: 12.5px; color: var(--mdcf-ink); text-decoration: none; }
+  .acard__country:hover { background: var(--mdcf-accent-soft); color: var(--mdcf-accent-ink); }
+  .acard__flag { font-size: 15px; line-height: 1; }
+  .acard__next { background: color-mix(in srgb, var(--mdcf-subtle) 60%, transparent); border-radius: 10px; padding: 8px 10px; }
+  .acard__next-h { font-size: 9.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted); margin: 0 0 6px; }
+  .acard__mid { display: flex; align-items: flex-end; justify-content: flex-end; }
+  .acard__fiche { font-size: 13px; }
+  .acard__fiche-go { margin-left: 2px; }
+  @media (max-width: 640px) { .acard__mid { justify-content: flex-start; align-items: flex-start; } }
+  .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .steps li { margin: 0; }
+  .step { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border-radius: 7px;
+    background: var(--mdcf-surface, #fff); text-decoration: none; color: var(--mdcf-ink);
+    transition: box-shadow .12s ease, transform .12s ease; }
+  .step:hover { box-shadow: 0 2px 8px rgba(15, 23, 42, .08); transform: translateY(-1px); }
+  .step__n { flex: 0 0 auto; font-size: 8.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
+    color: var(--mdcf-muted); background: color-mix(in srgb, var(--mdcf-line) 55%, transparent); padding: 2px 6px; border-radius: 999px; white-space: nowrap; }
+  .step__ic { flex: 0 0 auto; font-size: 12.5px; line-height: 1; }
+  .step__tx { display: flex; flex-direction: row; align-items: baseline; gap: 4px; flex-wrap: wrap; min-width: 0; line-height: 1.15; }
+  .step__tx b { font-size: 11.5px; font-weight: 700; color: var(--mdcf-ink); }
+  .step__sep { color: var(--mdcf-muted); font-size: 11px; }
+  .step__tgt { font-size: 10.5px; color: var(--mdcf-muted); }
+  .step__go { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--mdcf-muted); }
+  .step:hover .step__go { color: var(--mdcf-accent-ink); }
+  .report__sources { margin-top: 16px; }
+  .report__sources summary { cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted); }
+  .report__sources ul { margin-top: 6px; padding-left: 18px; }
+</style>

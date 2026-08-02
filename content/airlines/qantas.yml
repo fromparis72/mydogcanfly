@@ -1,0 +1,286 @@
+id: airline_qantas
+mono: QF
+name: Qantas
+titleH1:
+  en: Flying with a dog on Qantas
+  fr: Voyager avec un chien sur Qantas
+  es: Viajar con un perro en Qantas
+  pt: "Viajar com um cachorro na Qantas"
+metaDesc:
+  en: "Qantas pet policy: cargo-only via Qantas Freight, cabin service dogs, temperature limits, breed rules and official sources."
+  fr: "Politique animaux Qantas : fret uniquement via Qantas Freight, chiens d'assistance en cabine, limites de température, règles de races et sources officielles."
+  es: "Política de mascotas de Qantas: solo carga a través de Qantas Freight, perros de servicio en cabina, límites de temperatura, normas por raza y fuentes oficiales."
+  pt: "Política de animais da Qantas: somente carga via Qantas Freight, cães de serviço em cabine, limites de temperatura, regras por raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Australia · SYD
+      fr: Australie · SYD
+      es: Australia · SYD
+      pt: "Austrália · SYD"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No pets in the cabin except service dogs — all pets fly as freight via Qantas Freight.
+  fr: Pas d'animaux en cabine sauf chiens d'assistance — tous les animaux voyagent en fret via Qantas Freight.
+  es: No se admiten mascotas en cabina salvo perros de servicio; todas las mascotas viajan como carga a través de Qantas Freight.
+  pt: "Nenhum animal na cabine, exceto cães de serviço — todos os animais voam como carga via Qantas Freight."
+ladder:
+  - flex: 12
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 88
+    color: "#1f5fa8"
+    label:
+      en: Qantas Freight
+      fr: Qantas Freight
+      es: Qantas Freight
+      pt: "Qantas Freight"
+    sub:
+      en: all pets
+      fr: tous animaux
+      es: todas las mascotas
+      pt: "todos os animais"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No aceptado
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only accredited guide, hearing & assistance (service) dogs.
+      fr: Pas d'animaux en cabine — seulement les chiens guides, d'écoute et d'assistance accrédités.
+      es: No se admiten mascotas en cabina, solo perros guía, de señal y de asistencia (de servicio) acreditados.
+      pt: "Nenhum animal na cabine — somente cães-guia, de sinalização e de assistência (serviço) credenciados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Qantas Freight
+      fr: Qantas Freight
+      es: Qantas Freight
+      pt: "Qantas Freight"
+    cls: warn
+    statusLabel:
+      en: Via freight
+      fr: Via fret
+      es: A través de carga
+      pt: "Via carga"
+    detail:
+      en: All pets travel in a temperature- and noise-controlled hold area, booked as freight (Q-GO Pets). Owner-supplied IATA crate; min 12 weeks. Not on Jetstar.
+      fr: Tous les animaux voyagent dans une zone de soute à température et bruit contrôlés, réservée en fret (Q-GO Pets). Caisse IATA fournie par tu ; min 12 semaines. Pas sur Jetstar.
+      es: Todas las mascotas viajan en una zona de bodega con temperatura y ruido controlados, reservada como carga (Q-GO Pets). Jaula IATA aportada por el dueño; mín. 12 semanas. No en Jetstar.
+      pt: "Todos os animais viajam em uma área de porão com temperatura e ruído controlados, reservada como carga (Q-GO Pets). Caixa de transporte IATA fornecida pelo dono; mínimo de 12 semanas. Não disponível na Jetstar."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: Service dogs only
+        fr: Chiens d'assistance seuls
+        es: Solo perros de servicio
+        pt: "Somente cães de serviço"
+    - label:
+        en: Qantas Freight — domestic
+        fr: Qantas Freight — national
+        es: Qantas Freight — nacional
+        pt: "Qantas Freight — doméstico"
+      value:
+        en: Quote (weight & crate)
+        fr: Devis (poids & caisse)
+        es: Cotización (peso y jaula)
+        pt: "Cotação (peso e caixa)"
+    - label:
+        en: Qantas Freight — international
+        fr: Qantas Freight — international
+        es: Qantas Freight — internacional
+        pt: "Qantas Freight — internacional"
+      value:
+        en: Via a pet specialist
+        fr: Via un spécialiste
+        es: A través de un especialista en mascotas
+        pt: "Via um especialista em animais"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Domestic pet freight is booked online (Q-GO Pets); international goes through a Qantas Freight-approved specialist.
+    fr: Le fret animalier domestique se réserve en ligne (Q-GO Pets) ; l'international passe par un spécialiste agréé Qantas Freight.
+    es: La carga de mascotas nacional se reserva en línea (Q-GO Pets); la internacional pasa por un especialista autorizado por Qantas Freight.
+    pt: "A carga doméstica de animais é reservada on-line (Q-GO Pets); a internacional passa por um especialista aprovado pela Qantas Freight."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Specialist only
+          fr: Spécialiste requis
+          es: Solo con especialista
+          pt: "Somente com especialista"
+    note:
+      en: Brachycephalic (flat-faced) cats & dogs (French bulldog, pug, boxer, British bulldog, Persian, Himalayan) must be booked through a Qantas Freight pet specialist — BOAS health rules and flight restrictions apply.
+      fr: Chats et chiens brachycéphales (bouledogue français, carlin, boxer, bulldog anglais, persan, himalayen) doivent être réservés via un spécialiste Qantas Freight — règles de santé BOAS et restrictions de vol.
+      es: Los gatos y perros braquicéfalos (de hocico chato) (bulldog francés, carlino, bóxer, bulldog inglés, persa, himalayo) deben reservarse a través de un especialista en mascotas de Qantas Freight; se aplican las normas de salud BOAS y restricciones de vuelo.
+      pt: "Gatos e cachorros braquicéfalos (de focinho achatado) (bulldog francês, pug, boxer, bulldog inglês, persa, himalaio) devem ser reservados através de um especialista em animais da Qantas Freight — aplicam-se as regras de saúde BOAS e restrições de voo."
+  - icon: 🚫
+    title:
+      en: Restricted breeds
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: no
+        label:
+          en: Some breeds refused
+          fr: Certaines races refusées
+          es: Algunas razas rechazadas
+          pt: "Algumas raças recusadas"
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: "Not uplifted: active racing greyhounds, pit bull / American pit bull, Dogo Argentino, Japanese Tosa, Brazilian Fila, Presa Canario. American Staffordshire & working dogs need a reinforced guard-dog crate. Don't sedate — sedated pets may be refused."
+      fr: "Non transportés : lévriers de course actifs, pit-bull / American pit bull, Dogo Argentino, Tosa japonais, Fila brésilien, Presa Canario. American Staffordshire et chiens de travail : caisse renforcée. Ne pas sédater — les animaux sédatés peuvent être refusés."
+      es: "No se transportan: galgos de carreras en activo, pit bull / American pit bull, Dogo Argentino, Tosa japonés, Fila brasileño, Presa Canario. El American Staffordshire y los perros de trabajo necesitan una jaula reforzada para perros de guarda. No los sedes: las mascotas sedadas pueden ser rechazadas."
+      pt: "Não transportados: galgos de corrida em atividade, pit bull / American pit bull, Dogo Argentino, Tosa japonês, Fila brasileiro, Presa Canario. American Staffordshire e cães de trabalho precisam de uma caixa reforçada para cães de guarda. Não sede — animais sedados podem ser recusados."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Hold 18–22 °C
+        fr: Soute 18–22 °C
+        es: Bodega 18–22 °C
+        pt: "Porão 18–22 °C"
+    - cls: no
+      label:
+        en: No carriage above 35 °C / below 5 °C
+        fr: Pas de transport au-dessus de 35 °C / sous 5 °C
+        es: Sin transporte por encima de 35 °C / por debajo de 5 °C
+        pt: "Sem transporte acima de 35 °C / abaixo de 5 °C"
+  note:
+    en: Qantas Freight won't carry animals when temperatures are expected above 35 °C or below 5 °C (free rebooking). Pets travel in a hold area regulated to 18–22 °C with the lights off; avoid midday summer and early/late winter flights.
+    fr: Qantas Freight ne transporte pas d'animaux quand la température prévue dépasse 35 °C ou descend sous 5 °C (report gratuit). Les animaux voyagent dans une zone de soute régulée à 18–22 °C, lumières éteintes ; évite les vols de midi l'été et tôt/tard l'hiver.
+    es: Qantas Freight no transporta animales cuando se prevén temperaturas por encima de 35 °C o por debajo de 5 °C (reprogramación gratuita). Las mascotas viajan en una zona de bodega regulada a 18–22 °C con las luces apagadas; evite los vuelos de mediodía en verano y los de primera o última hora en invierno.
+    pt: "A Qantas Freight não transporta animais quando se preveem temperaturas acima de 35 °C ou abaixo de 5 °C (remarcação gratuita). Os animais viajam em uma área de porão regulada a 18–22 °C com as luzes apagadas; evite voos de meio-dia no verão e de horário inicial/final no inverno."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Accredited guide, hearing & assistance dogs (ADI/IGDF) travel free in the cabin, up to 45 kg.
+      fr: Chiens guides, d'écoute et d'assistance accrédités (ADI/IGDF) gratuits en cabine, jusqu'à 45 kg.
+      es: Los perros guía, de señal y de asistencia acreditados (ADI/IGDF) viajan gratis en cabina, hasta 45 kg.
+      pt: "Cães-guia, de sinalização e de assistência credenciados (ADI/IGDF) viajam gratuitamente na cabine, até 45 kg."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Submit the application form ≥ 14 days ahead (+ international declaration for overseas); meet the Criteria for Carriage & Public Access Test.
+      fr: Soumettre le formulaire ≥ 14 jours à l'avance (+ déclaration internationale pour l'étranger) ; respecter les critères de transport et le Public Access Test.
+      es: Envía el formulario de solicitud con ≥ 14 días de antelación (+ declaración internacional para el extranjero); cumple los criterios de transporte y el Public Access Test.
+      pt: "Envie o formulário de solicitação com ≥ 14 dias de antecedência (+ declaração internacional para o exterior); cumpra os Critérios de Transporte e o Public Access Test."
+goodToKnow:
+  - icon: 🎫
+    label:
+      en: Book pet first
+      fr: Réserver l'animal d'abord
+      es: Reserva primero la mascota
+      pt: "Reserve o animal primeiro"
+    value:
+      en: Not all aircraft carry pets and capacity is limited — book the pet up to 100 days ahead, before your own flight.
+      fr: Tous les avions ne transportent pas d'animaux et les places sont limitées — réserver l'animal jusqu'à 100 jours à l'avance, avant ton vol.
+      es: No todos los aviones transportan mascotas y la capacidad es limitada; reserva la mascota hasta con 100 días de antelación, antes que tu propio vuelo.
+      pt: "Nem todas as aeronaves transportam animais e a capacidade é limitada — reserve o animal com até 100 dias de antecedência, antes do seu próprio voo."
+  - icon: 🛡️
+    label:
+      en: No points / no insurance
+      fr: Ni points ni assurance
+      es: Sin puntos / sin seguro
+      pt: "Sem pontos / sem seguro"
+    value:
+      en: Pet travel earns no Qantas Points and Qantas Freight provides no pet insurance.
+      fr: Le transport animalier ne rapporte pas de Qantas Points et Qantas Freight ne fournit pas d'assurance.
+      es: El transporte de mascotas no acumula Qantas Points y Qantas Freight no ofrece seguro para mascotas.
+      pt: "O transporte de animais não acumula Qantas Points e a Qantas Freight não oferece seguro para animais."
+  - icon: 🌏
+    label:
+      en: International
+      fr: International
+      es: Internacional
+      pt: "Internacional"
+    value:
+      en: International and brachycephalic bookings must go through a pet travel specialist.
+      fr: Les réservations internationales et brachycéphales doivent passer par un spécialiste du transport animalier.
+      es: Las reservas internacionales y de razas braquicéfalas deben gestionarse a través de un especialista en transporte de mascotas.
+      pt: "As reservas internacionais e de raças braquicéfalas devem passar por um especialista em transporte de animais."
+book:
+  host: qantas.com
+  url: https://www.qantas.com/
+sources:
+  en: 5 Qantas & Qantas Freight sources · last verified 11 July 2026
+  fr: 5 sources Qantas & Qantas Freight · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Qantas y Qantas Freight · última verificación 11 de julio de 2026
+  pt: "5 fontes da Qantas e Qantas Freight · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

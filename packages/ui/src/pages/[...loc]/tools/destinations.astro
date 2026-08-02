@@ -1,0 +1,47 @@
+---
+import Base from "../../../layouts/Base.astro";
+import DestinationFinder from "../../../components/DestinationFinder.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const L = inlineT(locale);
+const title = L("Where can I take my dog?", "Où partir avec mon chien ?", "¿Adónde puedo llevar a mi perro?");
+const blurb = L(
+  "Discover the destinations best suited to your dog: we prioritise a pleasant, bearable temperature on arrival and a direct flight. The distance stays your choice.",
+  "Découvrez les destinations les plus adaptées à votre chien : nous privilégions une température agréable et supportable à l'arrivée et un vol direct. La distance reste votre choix.",
+  "Descubre los destinos más adecuados para tu perro: priorizamos una temperatura agradable y llevadera a la llegada y un vuelo directo. La distancia sigue siendo tu elección."
+);
+const metaDesc = fr
+  ? "Où ton chien peut-il voyager depuis ton aéroport ? Destinations classées par température agréable à l'arrivée et vol direct."
+  : locale === "es"
+    ? "¿Adónde puede viajar tu perro desde tu aeropuerto? Destinos ordenados por temperatura agradable a la llegada y vuelo directo."
+    : "Where can your dog travel from your airport? Destinations ranked by comfortable arrival temperature and direct flights.";
+---
+<Base locale={locale} title={`${title}`} description={metaDesc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <Breadcrumb locale={locale} items={[
+        { label: L("Home", "Accueil", "Inicio"), href: "/" },
+        { label: t(locale, "nav.tools"), href: "/tools/" },
+        { label: L("Where to go", "Où partir", "Adónde ir") },
+      ]} />
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="dfx-blurb">{blurb}</p>
+      <DestinationFinder locale={locale} />
+
+      <RelatedTools locale={locale} current="destinations" />
+    </div>
+  </section>
+</Base>
+<style>.dfx-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }</style>

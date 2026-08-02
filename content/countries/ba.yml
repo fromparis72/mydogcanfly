@@ -1,0 +1,357 @@
+# Country Entry Guide — Bosnia and Herzegovina (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ba
+iso2: "BA"
+name: { en: "Bosnia and Herzegovina", fr: "Bosnie-Herzégovine", es: "Bosnia y Herzegovina", pt: "Bósnia e Herzegovina" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: listed
+exit:
+  authority: Ured za veterinarstvo BiH
+  authorityUrl: https://www.vet.gov.ba/en/dokument/d346
+  intro:
+    en: "Bosnia and Herzegovina is a listed country, so no rabies titer is needed to return to the EU — the EU health certificate is issued by an official veterinarian of the Veterinary Office of BiH."
+    fr: "La Bosnie-Herzégovine est un pays listé : pas de titrage pour rentrer dans l'UE — le certificat sanitaire UE est délivré par un vétérinaire officiel de l'Office vétérinaire de BiH."
+    es: "Bosnia y Herzegovina es un país listado: no hace falta titulación para volver a la UE — el certificado sanitario UE lo emite un veterinario oficial de la Oficina Veterinaria de BiH."
+    pt: "A Bósnia e Herzegovina é um país listado: nenhum teste sorológico antirrábico é necessário para voltar à UE — o certificado sanitário da UE é emitido por um veterinário oficial do Escritório Veterinário da BiH."
+  steps:
+    - timing: window
+      text:
+        en: "With microchip and valid rabies vaccination (21-day wait), the EU-model animal health certificate is completed and issued by an official government veterinarian before departure."
+        fr: "Avec puce et vaccination antirabique valide (délai de 21 jours), le certificat sanitaire au modèle UE est rempli et délivré par un vétérinaire officiel avant le départ."
+        es: "Con microchip y vacuna antirrábica válida (espera de 21 días), el certificado sanitario en modelo UE lo rellena y emite un veterinario oficial antes de salir."
+        pt: "Com o microchip e a vacinação antirrábica válida (espera de 21 dias), o certificado sanitário no modelo da UE é preenchido e emitido por um veterinário oficial do governo antes da partida."
+  onSiteNote:
+    en: "A new EU certificate format applies since 22 April 2026 (Reg. (EU) 2026/131) — make sure your vet uses the current model."
+    fr: "Un nouveau format de certificat UE s'applique depuis le 22 avril 2026 (règlement (UE) 2026/131) — assure-toi que ton vétérinaire utilise le modèle en vigueur."
+    es: "Desde el 22 de abril de 2026 se aplica un nuevo formato de certificado UE (Reg. (UE) 2026/131) — asegúrate de que tu veterinario use el modelo vigente."
+    pt: "Um novo formato de certificado da UE se aplica desde 22 de abril de 2026 (Regl. (UE) 2026/131) — certifique-se de que seu veterinário use o modelo vigente."
+
+hero:
+  h1: { en: "Traveling to Bosnia and Herzegovina with your dog", fr: "Voyager en Bosnie-Herzégovine avec ton chien", es: "Viajar a Bosnia y Herzegovina con tu perro", pt: "Viajar para a Bósnia e Herzegovina com seu cachorro" }
+  intro:
+    en: >-
+      Bosnia and Herzegovina welcomes dogs, but what you need to prepare depends mainly on the country
+      your dog is travelling from — not only on Bosnia itself. Bosnia is not an EU member, yet its
+      Veterinary Office applies rules closely modelled on the EU pet-movement framework: an ISO
+      microchip and a valid rabies vaccination are always required. A dog coming from an EU or EFTA
+      country simply needs its EU pet passport. A dog from another listed country needs an official
+      animal health certificate but no blood test. A dog from a non-listed (rabies-risk) country faces
+      the longest path, including a rabies antibody test and a three-month wait. This guide explains
+      each case so you know exactly what to prepare before you book your flight.
+    fr: >-
+      La Bosnie-Herzégovine accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays
+      d'où ton chien voyage — pas seulement de la Bosnie. La Bosnie n'est pas membre de l'UE, mais son
+      Bureau vétérinaire applique des règles calquées sur le cadre européen : une puce ISO et une
+      vaccination antirabique valide sont toujours exigées. Un chien venant d'un pays de l'UE ou de
+      l'AELE a simplement besoin de son passeport européen. Un chien d'un autre pays listé a besoin d'un
+      certificat sanitaire officiel mais pas de prise de sang. Un chien venant d'un pays non listé (à
+      risque rabique) suit le parcours le plus long, avec un titrage antirabique et un délai de trois
+      mois. Ce guide détaille chaque cas pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Bosnia y Herzegovina acoge a los perros, pero lo que debes preparar depende sobre todo del país
+      desde el que viaja tu perro — no solo de Bosnia. Bosnia no es miembro de la UE, pero su Oficina
+      Veterinaria aplica normas estrechamente inspiradas en el marco europeo de movimiento de animales
+      de compañía: siempre se exigen un microchip ISO y una vacunación antirrábica válida. Un perro que
+      llega de un país de la UE o de la AELC solo necesita su pasaporte europeo para mascotas. Un perro
+      de otro país listado necesita un certificado sanitario animal oficial, pero no un análisis de
+      sangre. Un perro de un país no listado (con riesgo de rabia) se enfrenta al camino más largo, que
+      incluye una prueba de titulación de rabia y una espera de tres meses. Esta guía explica cada caso
+      para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Bósnia e Herzegovina recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Bósnia em si. A Bósnia não é membro da UE, mas seu Escritório Veterinário aplica regras bem próximas do marco europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de um país da UE ou da EFTA precisa apenas do seu passaporte europeu para animais. Um cachorro vindo de outro país listado precisa de um certificado sanitário animal oficial, mas não de exame de sangue. Um cachorro vindo de um país não listado (de risco de raiva) enfrenta o caminho mais longo, com teste sorológico antirrábico e três meses de espera. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the EU pet passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport européen est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte europeo está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte europeu estiver em dia, até ~3 semanas se a primeira vacina antirrábica ainda estiver pendente."
+  listed:
+    en: "~3–4 weeks: allow the rabies vaccination to become valid, plus an animal health certificate valid 10 days."
+    fr: "~3–4 semaines : le temps que la vaccination antirabique devienne valide, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: el tiempo para que la vacunación antirrábica pase a ser válida, más un certificado sanitario animal válido 10 días."
+    pt: "~3–4 semanas: o tempo para a vacinação antirrábica se tornar válida, mais um certificado sanitário animal válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait before entry."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois avant l'entrée."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses antes de la entrada."
+    pt: "~4–7 meses: teste sorológico antirrábico (titulação) pelo menos 30 dias após a vacinação, seguido de uma espera obrigatória de 3 meses antes da entrada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required — non-EU/EFTA origins", fr: "Requis — origines hors UE/AELE", es: "Obligatorio — orígenes fuera de la UE/AELC", pt: "Obrigatório — origens fora da UE/EFTA" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Bosnia and Herzegovina (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Bosnie-Herzégovine (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Bosnia y Herzegovina (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Bósnia e Herzegovina (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Bosnia and Herzegovina", fr: "Pays de destination — Bosnie-Herzégovine", es: "País de destino — Bosnia y Herzegovina", pt: "País de destino — Bósnia e Herzegovina" }
+      text:
+        en: "Bosnia applies an EU-modelled pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and non-commercial travel covers up to five pets accompanied by their owner."
+        fr: "La Bosnie applique un cadre calqué sur l'UE : puce ISO et vaccination antirabique valide toujours exigées, et le mouvement non commercial couvre jusqu'à cinq animaux accompagnés de leur propriétaire."
+        es: "Bosnia aplica un marco de movimiento de animales de compañía inspirado en el de la UE: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y el viaje no comercial abarca hasta cinco mascotas acompañadas por su propietario."
+        pt: "A Bósnia aplica um marco de circulação de animais inspirado no da UE: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e a viagem não comercial abrange até cinco animais acompanhados pelo dono."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU/EFTA country, another listed country or a non-listed country decides whether an EU passport, a health certificate or an additional antibody test is required."
+        fr: "Que ton chien parte d'un pays UE/AELE, d'un autre pays listé ou d'un pays non listé détermine si un passeport européen, un certificat sanitaire ou un titrage supplémentaire est exigé."
+        es: "Que tu perro salga de un país de la UE/AELC, de otro país listado o de un país no listado determina si se exige un pasaporte europeo, un certificado sanitario o una prueba de titulación adicional."
+        pt: "Se o seu cachorro parte de um país da UE/EFTA, de outro país listado ou de um país não listado é o que determina se é exigido um passaporte europeu, um certificado sanitário ou um teste sorológico adicional."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Bosnia's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre bosnien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Bosnia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral da Bósnia, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination and read at the border.", fr: "Doit être posée avant la vaccination antirabique et lue à la frontière.", es: "Debe implantarse antes de la vacunación antirrábica y leerse en la frontera.", pt: "Deve ser implantado antes da vacinação antirrábica e lido na fronteira." }
+    exceptions: { en: "A clearly readable tattoo is accepted only if applied before 3 July 2011.", fr: "Un tatouage clairement lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje claramente legible solo se acepta si se aplicó antes del 3 de julio de 2011.", pt: "Uma tatuagem claramente legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "Veterinary Office of BiH — conditions for non-commercial movement", fr: "Bureau vétérinaire de BiH — conditions de mouvement non commercial", es: "Oficina Veterinaria de BiH — condiciones para el movimiento no comercial", pt: "Escritório Veterinário da BiH — condições para o movimento não comercial" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; the vaccination date must not precede the microchip date; validity starts 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; la date du vaccin ne doit pas précéder la puce ; validité 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; la fecha de la vacunación no debe ser anterior a la del microchip; la valide empieza 21 días después de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; a data da vacinação não pode ser anterior à data do microchip; a validade começa 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; otherwise re-vaccination is needed.", fr: "La puce doit déjà être posée ; sinon il faut revacciner.", es: "El microchip debe estar ya implantado; de lo contrario, hay que revacunar.", pt: "O microchip já deve estar implantado; caso contrário, é preciso revacinar." }
+    ref: { en: "Veterinary Office of BiH — conditions for non-commercial movement", fr: "Bureau vétérinaire de BiH — conditions de mouvement non commercial", es: "Oficina Veterinaria de BiH — condiciones para el movimiento no comercial", pt: "Escritório Veterinário da BiH — condições para o movimento não comercial" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood taken ≥30 days after vaccination and ≥3 months before movement, result ≥0.5 IU/ml, approved laboratory.", fr: "Pays non listés : sang prélevé ≥30 jours après le vaccin et ≥3 mois avant le mouvement, résultat ≥0,5 UI/ml, laboratoire agréé.", es: "Solo orígenes no listados: sangre extraída ≥30 días después de la vacuna y ≥3 meses antes del desplazamiento, resultado ≥0,5 UI/ml, laboratorio autorizado.", pt: "Somente origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes do movimento, resultado ≥0,5 UI/ml, em laboratório aprovado." }
+    exceptions: { en: "Not required from EU/EFTA (Annex IV Part A) or from other listed countries (Annex IV Part B).", fr: "Non requis depuis l'UE/AELE (annexe IV partie A) ou les autres pays listés (annexe IV partie B).", es: "No se exige desde la UE/AELC (anexo IV parte A) ni desde otros países listados (anexo IV parte B).", pt: "Não exigido a partir da UE/EFTA (anexo IV parte A) nem de outros países listados (anexo IV parte B)." }
+    ref: { en: "Veterinary Office of BiH — Annex IV, non-listed countries", fr: "Bureau vétérinaire de BiH — annexe IV, pays non listés", es: "Oficina Veterinaria de BiH — anexo IV, países no listados", pt: "Escritório Veterinário da BiH — anexo IV, países não listados" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU/EFTA origins", fr: "Origines UE/AELE", es: "Orígenes de la UE/AELC", pt: "Origens UE/EFTA" }
+    when: { en: "Completed and issued by an authorised vet before leaving the EU/EFTA member; records the microchip and rabies vaccination.", fr: "Rempli et délivré par un vétérinaire agréé avant de quitter l'État UE/AELE ; consigne la puce et la vaccination.", es: "Cumplimentado y expedido por un veterinario autorizado antes de salir del Estado de la UE/AELC; registra el microchip y la vacunación antirrábica.", pt: "Preenchido e emitido por um veterinário autorizado antes de sair do Estado membro da UE/EFTA; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU/EFTA origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE/AELE.", es: "Se sustituye por un certificado sanitario animal para orígenes fuera de la UE/AELC.", pt: "Substituído por um certificado sanitário animal para origens fora da UE/EFTA." }
+    ref: { en: "Veterinary Office of BiH — Annex IV Part A", fr: "Bureau vétérinaire de BiH — annexe IV partie A", es: "Oficina Veterinaria de BiH — anexo IV parte A", pt: "Escritório Veterinário da BiH — anexo IV parte A" }
+  - item: { en: "Animal health certificate", fr: "Certificat sanitaire", es: "Certificado sanitario animal", pt: "Atestado de saúde animal" }
+    required: { en: "Non-EU/EFTA origins", fr: "Origines hors UE/AELE", es: "Orígenes fuera de la UE/AELC", pt: "Origens fora da UE/EFTA" }
+    when: { en: "Issued by an official vet; documents the microchip/tattoo code, rabies vaccination and blood sampling; valid 10 days from issue until the checks at the entry point (extended for sea transport).", fr: "Établi par un vétérinaire officiel ; documente le code puce/tatouage, la vaccination antirabique et la prise de sang ; valable 10 jours jusqu'aux contrôles au point d'entrée (prolongé pour le transport maritime).", es: "Expedido por un veterinario oficial; documenta el código del microchip/tatuaje, la vacunación antirrábica y la extracción de sangre; válido 10 días desde la emisión hasta los controles en el punto de entrada (ampliado para el transporte marítimo).", pt: "Emitido por um veterinário oficial; documenta o código do microchip/tatuagem, a vacinação antirrábica e a coleta de sangue; válido por 10 dias, da emissão até os controles no ponto de entrada (prazo estendido para o transporte marítimo)." }
+    exceptions: { en: "Not needed for EU/EFTA origins (EU pet passport instead).", fr: "Inutile pour les origines UE/AELE (passeport européen à la place).", es: "No necesario para orígenes de la UE/AELC (en su lugar, el pasaporte europeo para mascotas).", pt: "Não necessário para origens da UE/EFTA (nesse caso, vale o passaporte europeu para animais)." }
+    ref: { en: "Veterinary Office of BiH — Annex IV Part B / non-listed", fr: "Bureau vétérinaire de BiH — annexe IV partie B / non listés", es: "Oficina Veterinaria de BiH — anexo IV parte B / no listados", pt: "Escritório Veterinário da BiH — anexo IV parte B / não listados" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Bosnia's pet-movement rules do not require a tapeworm treatment for dogs.", fr: "Les règles bosniennes de mouvement n'exigent pas de traitement contre l'échinococcose pour les chiens.", es: "Las normas de movimiento de animales de Bosnia no exigen un tratamiento contra la tenia para los perros.", pt: "As regras bósnias de circulação de animais não exigem tratamento contra a tênia para cachorros." }
+    ref: { en: "Veterinary Office of BiH — conditions for non-commercial movement", fr: "Bureau vétérinaire de BiH — conditions de mouvement non commercial", es: "Oficina Veterinaria de BiH — condiciones para el movimiento no comercial", pt: "Escritório Veterinário da BiH — condições para o movimento não comercial" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required (up to 5 pets)", fr: "Non requis (jusqu'à 5 animaux)", es: "No obligatorio (hasta 5 mascotas)", pt: "Não obrigatória (até 5 animais)" }
+    when: { en: "Non-commercial travel with up to five pets needs no permit; contact the competent authority at the entry point on arrival.", fr: "Le voyage non commercial avec jusqu'à cinq animaux ne requiert aucun permis ; contacte l'autorité compétente au point d'entrée à l'arrivée.", es: "El viaje no comercial con hasta cinco mascotas no requiere permiso; contacta con la autoridad competente en el punto de entrada a la llegada.", pt: "A viagem não comercial com até cinco animais não precisa de autorização; contate a autoridade competente no ponto de entrada na chegada." }
+    exceptions: { en: "More than five pets are treated as a commercial import — contact info@vet.gov.ba beforehand.", fr: "Plus de cinq animaux relèvent de l'import commercial — contacte info@vet.gov.ba au préalable.", es: "Más de cinco mascotas se tratan como una importación comercial — contacta con info@vet.gov.ba de antemano.", pt: "Mais de cinco animais são tratados como importação comercial — entre em contato com info@vet.gov.ba com antecedência." }
+    ref: { en: "Veterinary Office of BiH — exceptions (number of animals)", fr: "Bureau vétérinaire de BiH — exceptions (nombre d'animaux)", es: "Oficina Veterinaria de BiH — excepciones (número de animales)", pt: "Escritório Veterinário da BiH — exceções (número de animais)" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Enter via a travellers' point of entry designated by BiH and present yourself to the competent authority for documentary and identity checks.", fr: "Entre par un point d'entrée voyageurs désigné par la BiH et présente-toi à l'autorité compétente pour les contrôles documentaires et d'identité.", es: "Entra por un punto de entrada de viajeros designado por BiH y preséntate ante la autoridad competente para los controles documentales y de identidad.", pt: "Entre por um ponto de entrada para viajantes designado pela BiH e se apresente à autoridade competente para os controles documentais e de identidade." }
+    exceptions: { en: "Sanitary and veterinary controls of imported goods and animals apply under BiH customs rules.", fr: "Les contrôles sanitaires et vétérinaires des marchandises et animaux importés s'appliquent selon les règles douanières de BiH.", es: "Los controles sanitarios y veterinarios de las mercancías y los animales importados se aplican según las normas aduaneras de BiH.", pt: "Controles sanitários e veterinários de mercadorias e animais importados se aplicam conforme as regras alfandegárias da BiH." }
+    ref: { en: "Veterinary Office of BiH; Indirect Taxation Authority (customs)", fr: "Bureau vétérinaire de BiH ; Administration des impôts indirects (douane)", es: "Oficina Veterinaria de BiH; Administración de Impuestos Indirectos (aduanas)", pt: "Escritório Veterinário da BiH; Administração de Impostos Indiretos (alfândega)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day validity (EU/EFTA and listed); about 7 months from a non-listed country because of the antibody test and 3-month wait.", fr: "Vaccin à 12 semaines + 21 jours de validité (UE/AELE et listés) ; environ 7 mois depuis un pays non listé à cause du titrage et du délai de 3 mois.", es: "Vacuna a las 12 semanas + 21 días de valide (UE/AELC y listados); unos 7 meses desde un país no listado por la prueba de titulación y la espera de 3 meses.", pt: "Vacina antirrábica a partir das 12 semanas + 21 dias de validade (UE/EFTA e países listados); cerca de 7 meses vindo de um país não listado, por causa do teste sorológico e dos 3 meses de espera." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot meet the rabies rule; non-commercial pets must be at least 3 months old.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut respecter la règle rage ; les animaux non commerciaux doivent avoir au moins 3 mois.", es: "Un cachorro de menos de 12 semanas no puede vacunarse, por lo que no puede cumplir la norma de la rabia; las mascotas no comerciales deben tener al menos 3 meses.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não conseguem cumprir a regra da raiva; animais não comerciais precisam ter pelo menos 3 meses." }
+    ref: { en: "Veterinary Office of BiH — conditions for non-commercial movement", fr: "Bureau vétérinaire de BiH — conditions de mouvement non commercial", es: "Oficina Veterinaria de BiH — condiciones para el movimiento no comercial", pt: "Escritório Veterinário da BiH — condições para o movimento não comercial" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if the rules are breached — border veterinary services may refuse entry or order corrective measures.", fr: "Uniquement en cas de non-conformité — les services vétérinaires frontaliers peuvent refuser l'entrée ou ordonner des mesures correctives.", es: "Solo en caso de incumplimiento — los servicios veterinarios fronterizos pueden denegar la entrada u ordenar medidas correctoras.", pt: "Somente em caso de descumprimento das regras — os serviços veterinários de fronteira podem recusar a entrada ou determinar medidas corretivas." }
+    ref: { en: "Veterinary Office of BiH; Indirect Taxation Authority (customs)", fr: "Bureau vétérinaire de BiH ; Administration des impôts indirects (douane)", es: "Oficina Veterinaria de BiH; Administración de Impuestos Indirectos (aduanas)", pt: "Escritório Veterinário da BiH; Administração de Impostos Indiretos (alfândega)" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from an EU or EFTA country (Annex IV Part A) needs a microchip, a valid rabies vaccination and its EU pet passport, completed by an authorised vet before leaving. No antibody test and no separate health certificate — just present yourself to the competent authority at a designated point of entry."
+      fr: "Un chien venant d'un pays de l'UE ou de l'AELE (annexe IV partie A) a besoin d'une puce, d'une vaccination antirabique valide et de son passeport européen, rempli par un vétérinaire agréé avant le départ. Pas de titrage ni de certificat séparé — présente-toi simplement à l'autorité compétente à un point d'entrée désigné."
+      es: "Un perro que llega de un país de la UE o de la AELC (anexo IV parte A) necesita un microchip, una vacunación antirrábica válida y su pasaporte europeo para mascotas, cumplimentado por un veterinario autorizado antes de salir. Sin prueba de titulación ni certificado sanitario aparte — solo tienes que presentarte ante la autoridad competente en un punto de entrada designado."
+      pt: "Um cachorro vindo de um país da UE ou da EFTA (anexo IV parte A) precisa de microchip, vacinação antirrábica válida e do seu passaporte europeu para animais, preenchido por um veterinário autorizado antes da partida. Sem teste sorológico e sem certificado sanitário separado — basta se apresentar à autoridade competente em um ponto de entrada designado."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From another listed country (Annex IV Part B), your dog needs a microchip, a valid rabies vaccination and an animal health certificate issued by an official vet, documenting the microchip code, vaccination and blood sampling, valid 10 days to the border. No antibody test is required."
+      fr: "Depuis un autre pays listé (annexe IV partie B), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire établi par un vétérinaire officiel, documentant le code puce, la vaccination et la prise de sang, valable 10 jours jusqu'à la frontière. Aucun titrage n'est requis."
+      es: "Desde otro país listado (anexo IV parte B), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal expedido por un veterinario oficial, que documente el código del microchip, la vacunación y la extracción de sangre, válido 10 días hasta la frontera. No se exige prueba de titulación."
+      pt: "De outro país listado (anexo IV parte B), seu cachorro precisa de microchip, vacinação antirrábica válida e de um certificado sanitário animal emitido por um veterinário oficial, documentando o código do microchip, a vacinação e a coleta de sangue, válido por 10 dias até a fronteira. Nenhum teste sorológico é exigido."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (rabies-risk) country, add a rabies antibody test: blood taken at least 30 days after vaccination and at least 3 months before movement, result ≥0.5 IU/ml at an approved laboratory. An official animal health certificate is also required, valid 10 days to the border."
+      fr: "Depuis un pays non listé (à risque rabique), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin et au moins 3 mois avant le mouvement, résultat ≥0,5 UI/ml dans un laboratoire agréé. Un certificat sanitaire officiel est également requis, valable 10 jours jusqu'à la frontière."
+      es: "Desde un país no listado (con riesgo de rabia), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna y al menos 3 meses antes del desplazamiento, resultado ≥0,5 UI/ml en un laboratorio autorizado. También se exige un certificado sanitario animal oficial, válido 10 días hasta la frontera."
+      pt: "De um país não listado (de risco de raiva), acrescente o teste sorológico antirrábico: sangue coletado pelo menos 30 dias após a vacinação e pelo menos 3 meses antes do movimento, resultado ≥0,5 UI/ml em laboratório aprovado. Um certificado sanitário animal oficial também é exigido, válido por 10 dias até a fronteira."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Bosnia and Herzegovina depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Bosnie-Herzégovine dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Bosnia y Herzegovina depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega à Bósnia e Herzegovina depende de onde você partiu."
+  points:
+    - en: "Enter via a travellers' point of entry designated by BiH and contact the competent authority there for documentary and identity checks."
+      fr: "Entre par un point d'entrée voyageurs désigné par la BiH et contacte-y l'autorité compétente pour les contrôles documentaires et d'identité."
+      es: "Entra por un punto de entrada de viajeros designado por BiH y contacta allí con la autoridad competente para los controles documentales y de identidad."
+      pt: "Entre por um ponto de entrada para viajantes designado pela BiH e contate ali a autoridade competente para os controles documentais e de identidade."
+    - en: "From an EU/EFTA country: carry the EU pet passport recording the microchip and valid rabies vaccination."
+      fr: "Depuis un pays UE/AELE : munis-toi du passeport européen consignant la puce et la vaccination antirabique valide."
+      es: "Desde un país de la UE/AELC: lleva el pasaporte europeo para mascotas que registra el microchip y la vacunación antirrábica válida."
+      pt: "De um país da UE/EFTA: leve o passaporte europeu registrando o microchip e a vacinação antirrábica válida."
+    - en: "From another listed or a non-listed country: carry the original animal health certificate (valid 10 days) and, for non-listed origins, the antibody-test result."
+      fr: "Depuis un autre pays listé ou un pays non listé : munis-toi du certificat sanitaire original (valable 10 jours) et, pour les origines non listées, du résultat du titrage."
+      es: "Desde otro país listado o un país no listado: lleva el certificado sanitario animal original (válido 10 días) y, para los orígenes no listados, el resultado de la prueba de titulación."
+      pt: "De outro país listado ou de um país não listado: leve o certificado sanitário animal original (válido por 10 dias) e, para origens não listadas, o resultado do teste sorológico."
+    - en: "Non-commercial travel covers up to five pets; more than five are handled as a commercial import."
+      fr: "Le voyage non commercial couvre jusqu'à cinq animaux ; au-delà de cinq, il s'agit d'un import commercial."
+      es: "El viaje no comercial abarca hasta cinco mascotas; más de cinco se tratan como una importación comercial."
+      pt: "A viagem não comercial abrange até cinco animais; mais de cinco são tratados como importação comercial."
+    - en: "Sanitary and veterinary controls of imported animals apply under BiH customs rules; the microchip is read to match the documents."
+      fr: "Les contrôles sanitaires et vétérinaires des animaux importés s'appliquent selon les règles douanières de BiH ; la puce est lue pour correspondre aux documents."
+      es: "Los controles sanitarios y veterinarios de los animales importados se aplican según las normas aduaneras de BiH; el microchip se lee para que coincida con los documentos."
+      pt: "Controles sanitários e veterinários de animais importados se aplicam conforme as regras alfandegárias da BiH; o microchip é lido para conferir com os documentos."
+    - en: "If documents are missing or invalid, border veterinary services may refuse entry or order corrective measures at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, les services vétérinaires frontaliers peuvent refuser l'entrée ou ordonner des mesures correctives aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, los servicios veterinarios fronterizos pueden denegar la entrada u ordenar medidas correctoras a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, os serviços veterinários de fronteira podem recusar a entrada ou determinar medidas corretivas às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Bosnia and Herzegovina's federal pet-movement rules published by the Veterinary Office do not list any breed as banned or restricted for import. Any dangerous-dog keeping rules exist at entity level (Republika Srpska, the Federation of BiH and Brčko District) rather than as a single national import ban."
+    fr: "Les règles fédérales de mouvement des animaux publiées par le Bureau vétérinaire de Bosnie-Herzégovine ne listent aucune race interdite ou restreinte à l'import. D'éventuelles règles de détention de chiens dangereux existent au niveau des entités (Republika Srpska, Fédération de BiH et district de Brčko) plutôt que comme une interdiction nationale unique d'importation."
+    es: "Las normas federales de movimiento de animales de compañía publicadas por la Oficina Veterinaria de Bosnia y Herzegovina no incluyen ninguna raza como prohibida o restringida para la importación. Las eventuales normas de tenencia de perros peligrosos existen a nivel de entidad (República Srpska, la Federación de BiH y el Distrito de Brčko) más que como una única prohibición nacional de importación."
+    pt: "As regras federais de circulação de animais da Bósnia e Herzegovina, publicadas pelo Escritório Veterinário, não listam nenhuma raça como banida ou restrita para importação. Eventuais regras de posse de cachorros perigosos existem em nível de entidade (Republika Srpska, Federação da BiH e Distrito de Brčko), e não como uma única proibição nacional de importação."
+  cat1:
+    en: "No nationally published category of prohibited breeds applies to import into Bosnia and Herzegovina. The Veterinary Office's non-commercial movement conditions set no breed exclusion."
+    fr: "Aucune catégorie nationale publiée de races interdites ne s'applique à l'entrée en Bosnie-Herzégovine. Les conditions de mouvement non commercial du Bureau vétérinaire ne prévoient aucune exclusion de race."
+    es: "Ninguna categoría de razas prohibidas publicada a nivel nacional se aplica a la importación a Bosnia y Herzegovina. Las condiciones de movimiento no comercial de la Oficina Veterinaria no establecen ninguna exclusión de razas."
+    pt: "Nenhuma categoria de raças proibidas publicada em nível nacional se aplica à importação para a Bósnia e Herzegovina. As condições de movimento não comercial do Escritório Veterinário não estabelecem nenhuma exclusão por raça."
+  cat2:
+    en: "Entity- and municipal-level rules on keeping dogs considered dangerous may impose local obligations (leash, muzzle, registration). The precise list of affected breeds is not centrally published — status: Unknown. Verify with local authorities for your destination city."
+    fr: "Des règles au niveau des entités et des municipalités sur la détention de chiens jugés dangereux peuvent imposer des obligations locales (laisse, muselière, enregistrement). La liste précise des races concernées n'est pas publiée de façon centralisée — statut : Non communiqué. Vérifie auprès des autorités locales de ta ville de destination."
+    es: "Las normas a nivel de entidad y municipal sobre la tenencia de perros considerados peligrosos pueden imponer obligaciones locales (correa, bozal, registro). La lista precisa de razas afectadas no se publica de forma centralizada — estado: no comunicado. Verifícalo con las autoridades locales de tu ciudad de destino."
+    pt: "Regras em nível de entidade e municipal sobre a posse de cachorros considerados perigosos podem impor obrigações locais (guia, focinheira, registro). A lista precisa das raças afetadas não é publicada de forma centralizada — status: não comunicado. Verifique com as autoridades locais da sua cidade de destino."
+  note:
+    en: "Because dangerous-dog rules are decentralised in Bosnia, confirm any local breed obligations directly with the destination municipality or the Veterinary Office (info@vet.gov.ba) before travelling."
+    fr: "Les règles sur les chiens dangereux étant décentralisées en Bosnie, confirme toute obligation locale de race directement auprès de la municipalité de destination ou du Bureau vétérinaire (info@vet.gov.ba) avant de voyager."
+    es: "Como las normas sobre perros peligrosos están descentralizadas en Bosnia, confirma cualquier obligación local por raza directamente con el municipio de destino o con la Oficina Veterinaria (info@vet.gov.ba) antes de viajar."
+    pt: "Como as regras sobre cachorros perigosos são descentralizadas na Bósnia, confirme qualquer obrigação local por raça diretamente com o município de destino ou com o Escritório Veterinário (info@vet.gov.ba) antes de viajar."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days validity)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours de validité)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días de valide)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias de validade)"
+  - en: "Rabies antibody test (≥0.5 IU/ml) — non-listed countries only"
+    fr: "Titrage antirabique (≥0,5 UI/ml) — pays non listés uniquement"
+    es: "Prueba de titulación de rabia (≥0,5 UI/ml) — solo países no listados"
+    pt: "Teste sorológico antirrábico (≥0,5 UI/ml) — apenas países não listados"
+  - en: "EU pet passport (EU/EFTA origin) or official animal health certificate (other origins)"
+    fr: "Passeport européen (origine UE/AELE) ou certificat sanitaire officiel (autres origines)"
+    es: "Pasaporte europeo para mascotas (origen UE/AELC) o certificado sanitario animal oficial (otros orígenes)"
+    pt: "Passaporte europeu para animais (origem UE/EFTA) ou certificado sanitário animal oficial (outras origens)"
+  - en: "Original documents carried to the border (certificate valid 10 days)"
+    fr: "Documents originaux emportés à la frontière (certificat valable 10 jours)"
+    es: "Documentos originales llevados a la frontera (certificado válido 10 días)"
+    pt: "Documentos originais levados à fronteira (certificado válido por 10 dias)"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "Plan to enter via a designated point of entry and contact the competent authority"
+    fr: "Prévois d'entrer par un point d'entrée désigné et de contacter l'autorité compétente"
+    es: "Planifica entrar por un punto de entrada designado y contactar con la autoridad competente"
+    pt: "Planeje entrar por um ponto de entrada designado e contatar a autoridade competente"
+
+sources:
+  - label: { en: "Veterinary Office of BiH — Pets non-commercial movement to Bosnia and Herzegovina", fr: "Bureau vétérinaire de BiH — Mouvement non commercial des animaux de compagnie vers la Bosnie-Herzégovine", es: "Oficina Veterinaria de BiH — Movimiento no comercial de animales de compañía a Bosnia y Herzegovina", pt: "Escritório Veterinário da BiH — Movimento não comercial de animais de estimação para a Bósnia e Herzegovina" }
+    url: "https://www.vet.gov.ba/en/dokument/d346"
+  - label: { en: "Veterinary Office of BiH — Annex IV Part A (listed EU/EFTA countries)", fr: "Bureau vétérinaire de BiH — Annexe IV partie A (pays UE/AELE listés)", es: "Oficina Veterinaria de BiH — Anexo IV parte A (países UE/AELC listados)", pt: "Escritório Veterinário da BiH — anexo IV parte A (países listados da UE/EFTA)" }
+    url: "https://vet.gov.ba/pdffiles/priloga.pdf"
+  - label: { en: "Veterinary Office of BiH — Annex IV Part B (other listed countries)", fr: "Bureau vétérinaire de BiH — Annexe IV partie B (autres pays listés)", es: "Oficina Veterinaria de BiH — Anexo IV parte B (otros países listados)", pt: "Escritório Veterinário da BiH — anexo IV parte B (outros países listados)" }
+    url: "https://vet.gov.ba/pdffiles/prilogb.pdf"
+  - label: { en: "Indirect Taxation Authority of BiH — Customs procedures", fr: "Administration des impôts indirects de BiH — Procédures douanières", es: "Administración de Impuestos Indirectos de BiH — Procedimientos aduaneros", pt: "Administração de Impostos Indiretos da BiH — Procedimentos alfandegários" }
+    url: "https://www.uino.gov.ba/portal/en/customs/customs-procedures/"
+
+seo:
+  title: { en: "Bosnia and Herzegovina Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Bosnie-Herzégovine — Guide", es: "Requisitos de entrada de perros en Bosnia y Herzegovina — Guía de viaje", pt: "Bósnia e Herzegovina: exigências de entrada para cachorros" }
+  metaTitle: { en: "Bosnia and Herzegovina Dog Entry Requirements (2026)", fr: "Voyager en Bosnie-Herzégovine avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Bosnia y Herzegovina (2026)", pt: "Exigências de entrada de cachorros na Bósnia e Herzegovina (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Bosnia and Herzegovina — by EU/EFTA, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Bosnie-Herzégovine — selon origine UE/AELE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Bosnia y Herzegovina — según origen UE/AELC. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro à Bósnia e Herzegovina — por origem UE/EFTA, listada e não listada. Com fontes e data."
+  slug: "bosnia-and-herzegovina"
+  shortDesc:
+    en: "What you need to bring a dog into Bosnia and Herzegovina, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Bosnie-Herzégovine, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Bosnia y Herzegovina, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Bósnia e Herzegovina, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

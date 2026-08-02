@@ -1,0 +1,397 @@
+# Country Entry Guide — Japan (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Japan is NOT in the EU. It runs its own scheme via the Animal Quarantine Service (AQS/MAFF):
+# microchip -> two rabies vaccinations -> rabies antibody test (>=0.5 IU/ml) -> 180-day wait
+# -> advance notification (>=40 days) -> pre-export clinical inspection -> government certificate
+# -> import inspection on arrival. The eu/listed/nonListed slots are repurposed to Japan's tiers:
+# eu = designated (rabies-free) regions; listed = non-designated regions with requirements completed;
+# nonListed = non-designated regions arriving non-compliant (detention quarantine up to 180 days).
+id: country_jp
+iso2: "JP"
+name: { en: "Japan", fr: "Japon", es: "Japón", pt: "Japão" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: island_strict
+domestic:
+  intro:
+    en: "Domestic flight in Japan: no quarantine or certificate for internal travel — animal quarantine applies only to international movement."
+    fr: "Vol intérieur au Japon : aucune quarantaine ni certificat pour un trajet interne — la quarantaine animale ne concerne que l'international."
+    es: "Vuelo nacional en Japón: ninguna cuarentena ni certificado para un trayecto interno — la cuarentena animal solo afecta a lo internacional."
+    pt: "Voo doméstico no Japão: nenhuma quarentena nem certificado para trajetos internos — a quarentena animal só se aplica à movimentação internacional."
+  points:
+    - en: "Every dog over 91 days must be registered and vaccinated against rabies annually — an ownership duty under the Rabies Prevention Act, independent of travel. Japan is rabies-free, so there is no internal zoning."
+      fr: "Tout chien de plus de 91 jours doit être enregistré et vacciné contre la rage chaque année — une obligation de détention, indépendante du voyage. Le Japon est indemne de rage, il n'existe donc aucun zonage interne."
+      es: "Todo perro de más de 91 días debe estar registrado y vacunado contra la rabia anualmente — un deber de tenencia, independiente del viaje. Japón está libre de rabia, por lo que no hay zonificación interna."
+      pt: "Todo cachorro com mais de 91 dias precisa ser registrado e vacinado contra a raiva todos os anos — um dever de quem tem o animal, previsto na Rabies Prevention Act (Lei de Prevenção da Raiva), independente de viagem. O Japão é livre de raiva, então não existe zoneamento interno."
+    - en: "Japanese carriers take pets in the hold only, never in the cabin, check the rabies record, and refuse snub-nosed breeds during the warm months."
+      fr: "Les compagnies japonaises n'acceptent les animaux qu'en soute, jamais en cabine, vérifient le carnet antirabique et refusent les races à nez court pendant les mois chauds."
+      es: "Las aerolíneas japonesas solo aceptan mascotas en bodega, nunca en cabina, comprueban la cartilla antirrábica y rechazan razas chatas durante los meses cálidos."
+      pt: "As companhias aéreas japonesas só aceitam animais no porão, nunca na cabine, conferem a carteira de vacinação antirrábica e recusam raças de focinho achatado nos meses quentes."
+exit:
+  authority: AQS (Japon)
+  authorityUrl: https://www.maff.go.jp/aqs/english/animal/dog/export.html
+  intro:
+    en: "Leaving Japan with your dog needs an export quarantine certificate from the Animal Quarantine Service (AQS) — apply at least 10 days ahead."
+    fr: "Sortir du Japon avec ton chien demande un certificat de quarantaine d'export de l'Animal Quarantine Service (AQS) — dépose la demande au moins 10 jours avant."
+    es: "Salir de Japón con tu perro requiere un certificado de cuarentena de exportación del Animal Quarantine Service (AQS) — solicítalo al menos 10 días antes."
+    pt: "Sair do Japão com seu cachorro exige um certificado de quarentena de exportação do Animal Quarantine Service (AQS) — faça o pedido com pelo menos 10 dias de antecedência."
+  steps:
+    - timing: before
+      text:
+        en: "Apply for export inspection to the AQS at least 10 days before, with the destination's entry documents attached."
+        fr: "Demande l'inspection d'export à l'AQS au moins 10 jours avant, avec les documents d'entrée de la destination joints."
+        es: "Solicita la inspección de exportación al AQS al menos 10 días antes, adjuntando los documentos de entrada del destino."
+        pt: "Peça a inspeção de exportação ao AQS com pelo menos 10 dias de antecedência, anexando os documentos de entrada do destino."
+    - timing: window
+      text:
+        en: "On departure day, the airport AQS office inspects the dog and issues the English export certificate (about 30–60 minutes)."
+        fr: "Le jour du départ, le bureau AQS de l'aéroport inspecte le chien et délivre le certificat d'export en anglais (environ 30 à 60 minutes)."
+        es: "El día de salida, la oficina del AQS del aeropuerto inspecciona al perro y emite el certificado de exportación en inglés (unos 30–60 minutos)."
+        pt: "No dia da partida, o escritório do AQS no aeroporto inspeciona o cachorro e emite o certificado de exportação em inglês (cerca de 30 a 60 minutos)."
+  onSiteNote:
+    en: "An ISO microchip is required; airport AQS offices operate 8:30–16:30."
+    fr: "Une puce ISO est exigée ; les bureaux AQS des aéroports ouvrent de 8h30 à 16h30."
+    es: "Se requiere un microchip ISO; las oficinas del AQS en los aeropuertos abren de 8:30 a 16:30."
+    pt: "É obrigatório um microchip ISO; os escritórios do AQS nos aeroportos funcionam das 8h30 às 16h30."
+
+hero:
+  h1: { en: "Traveling to Japan with your dog", fr: "Voyager au Japon avec ton chien", es: "Viajar a Japón con tu perro", pt: "Viajar para o Japão com seu cachorro" }
+  intro:
+    en: >-
+      Japan welcomes dogs, but it applies one of the world's strictest rabies-control schemes — not the
+      EU framework. For almost every country, the process is long and cannot be rushed: an ISO microchip,
+      then at least two rabies vaccinations, a rabies antibody test at a designated laboratory,
+      and a compulsory 180-day waiting period after the blood is drawn before your dog may arrive. You
+      must also notify the Animal Quarantine Service (AQS) at least 40 days before arrival. Only a short
+      list of rabies-free "designated regions" (Iceland, Australia, New Zealand, Fiji, Hawaii and Guam)
+      follows a simpler path. If every condition is met, quarantine on arrival is under 12 hours;
+      if not, your dog can be detained for up to 180 days. Start at least seven months ahead.
+    fr: >-
+      Le Japon accueille les chiens, mais applique l'un des régimes antirabiques les plus stricts au monde
+      — pas le cadre européen. Pour presque tous les pays, la procédure est longue et ne se précipite pas :
+      une puce ISO, puis au moins deux vaccinations antirabiques, un test de titrage des anticorps dans un
+      laboratoire agréé, et un délai d'attente obligatoire de 180 jours après la prise de sang avant que
+      ton chien puisse arriver. Tu dois aussi notifier le Service de quarantaine animale (AQS) au moins
+      40 jours avant l'arrivée. Seule une courte liste de « régions désignées » indemnes de rage (Islande,
+      Australie, Nouvelle-Zélande, Fidji, Hawaï et Guam) suit un parcours simplifié. Si toutes les
+      conditions sont remplies, la quarantaine à l'arrivée dure moins de 12 heures ; sinon, ton chien
+      peut être retenu jusqu'à 180 jours. Commence au moins sept mois à l'avance.
+    es: >-
+      Japón acoge a los perros, pero aplica uno de los regímenes de control de la rabia más estrictos del
+      mundo — no el marco de la UE. Para casi todos los países, el proceso es largo y no se puede acelerar:
+      un microchip ISO, luego al menos dos vacunaciones antirrábicas, una prueba de titulación de
+      anticuerpos contra la rabia en un laboratorio designado, y un periodo de espera obligatorio de 180
+      días tras la extracción de sangre antes de que tu perro pueda llegar. También debes notificar al
+      Servicio de Cuarentena Animal (AQS) al menos 40 días antes de la llegada. Solo una lista corta de
+      «regiones designadas» indemnes de rabia (Islandia, Australia, Nueva Zelanda, Fiyi, Hawái y Guam)
+      sigue un camino más simple. Si se cumplen todas las condiciones, la cuarentena a la llegada dura
+      menos de 12 horas; si no, tu perro puede quedar retenido hasta 180 días. Empieza con al menos siete
+      meses de antelación.
+
+    pt: "O Japão recebe bem os cachorros, mas aplica um dos regimes de controle da raiva mais rígidos do mundo — e não o quadro europeu. Para quase todos os países, o processo é longo e não dá para acelerar: um microchip ISO, depois pelo menos duas vacinações antirrábicas, um teste sorológico antirrábico em laboratório designado e um período de espera obrigatório de 180 dias após a coleta de sangue antes que seu cachorro possa chegar. Você também precisa notificar o Animal Quarantine Service (AQS) com pelo menos 40 dias de antecedência da chegada. Só uma lista curta de “regiões designadas” livres de raiva (Islândia, Austrália, Nova Zelândia, Fiji, Havaí e Guam) segue um caminho mais simples. Se todas as condições forem cumpridas, a quarentena na chegada dura menos de 12 horas; se não, seu cachorro pode ficar retido por até 180 dias. Comece com pelo menos sete meses de antecedência."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — long lead time and a fixed 180-day wait", fr: "Difficile — longue anticipation et délai fixe de 180 jours", es: "Difícil — mucha antelación y una espera fija de 180 días", pt: "Difícil — muita antecedência e espera fixa de 180 dias" }
+
+prepTime:
+  eu:
+    en: "Designated rabies-free regions: a few weeks — microchip, residence proof, government certificate, and the 40-day advance notification."
+    fr: "Régions désignées indemnes de rage : quelques semaines — puce, preuve de résidence, certificat officiel et notification préalable de 40 jours."
+    es: "Regiones designadas indemnes de rabia: unas semanas — microchip, prueba de residencia, certificado oficial y la notificación previa de 40 días."
+    pt: "Regiões designadas livres de raiva: algumas semanas — microchip, comprovante de residência, certificado oficial e a notificação prévia de 40 dias."
+  listed:
+    en: "All other regions (requirements completed): ~7+ months — two rabies shots 30 days apart, antibody test, then a compulsory 180-day wait before arrival."
+    fr: "Toutes les autres régions (exigences remplies) : ~7+ mois — deux vaccins à 30 jours d'écart, titrage, puis un délai obligatoire de 180 jours avant l'arrivée."
+    es: "Todas las demás regiones (requisitos completados): ~7 meses o más — dos vacunas antirrábicas con 30 días de diferencia, prueba de titulación y luego una espera obligatoria de 180 días antes de la llegada."
+    pt: "Todas as demais regiões (exigências cumpridas): ~7 meses ou mais — duas vacinas antirrábicas com 30 dias de intervalo, teste sorológico e, depois, uma espera obrigatória de 180 dias antes da chegada."
+  nonListed:
+    en: "All other regions (arriving non-compliant): detention quarantine in Japan for the missing days, up to 180 days, at the owner's expense."
+    fr: "Toutes les autres régions (arrivée non conforme) : quarantaine en détention au Japon pour les jours manquants, jusqu'à 180 jours, aux frais du propriétaire."
+    es: "Todas las demás regiones (llegada sin cumplir los requisitos): cuarentena en detención en Japón durante los días que falten, hasta 180 días, a cargo del propietario."
+    pt: "Todas as demais regiões (chegada fora de conformidade): quarentena em detenção no Japão pelos dias que faltarem, até 180 dias, às custas do proprietário."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination (twice or more)", fr: "Vaccination antirabique (deux fois ou plus)", es: "Vacunación antirrábica (dos veces o más)", pt: "Vacinação antirrábica (duas ou mais vezes)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test (≥0.5 IU/ml)", fr: "Titrage antirabique (≥0,5 UI/ml)", es: "Prueba de titulación de rabia (≥0,5 UI/ml)", pt: "Teste sorológico antirrábico (≥0,5 UI/ml)" }
+    status: { en: "Required (non-designated regions)", fr: "Requis (régions non désignées)", es: "Obligatoria (regiones no designadas)", pt: "Obrigatório (regiões não designadas)" }
+    cls: warn
+  - requirement: { en: "180-day waiting period", fr: "Délai d'attente de 180 jours", es: "Periodo de espera de 180 días", pt: "Período de espera de 180 dias" }
+    status: { en: "Required (non-designated regions)", fr: "Requis (régions non désignées)", es: "Obligatorio (regiones no designadas)", pt: "Obrigatório (regiões não designadas)" }
+    cls: warn
+  - requirement: { en: "Advance notification to AQS (≥40 days)", fr: "Notification préalable à l'AQS (≥40 jours)", es: "Notificación previa a la AQS (≥40 días)", pt: "Notificação prévia ao AQS (≥40 dias)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Government veterinary certificate", fr: "Certificat vétérinaire officiel", es: "Certificado veterinario oficial", pt: "Certificado veterinário oficial" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine on arrival", fr: "Quarantaine à l'arrivée", es: "Cuarentena a la llegada", pt: "Quarentena na chegada" }
+    status: { en: "≤12 h if compliant; up to 180 days if not", fr: "≤12 h si conforme ; jusqu'à 180 jours sinon", es: "≤12 h si se cumplen los requisitos; hasta 180 días si no", pt: "≤12 h se estiver tudo em conformidade; até 180 dias se não estiver" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and the Animal Quarantine Service (AQS) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le Service de quarantaine animale (AQS) peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y el Servicio de Cuarentena Animal (AQS) pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário e o Animal Quarantine Service (AQS) podem confirmar o procedimento exato para o seu cachorro."
+  - en: "The 180-day waiting period after the blood draw is fixed and cannot be shortened — plan at least seven months ahead."
+    fr: "Le délai de 180 jours après la prise de sang est fixe et ne peut être raccourci — prévois au moins sept mois à l'avance."
+    es: "El periodo de espera de 180 días tras la extracción de sangre es fijo y no se puede acortar — planifica con al menos siete meses de antelación."
+    pt: "O período de espera de 180 dias após a coleta de sangue é fixo e não pode ser encurtado — planeje com pelo menos sete meses de antecedência."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Japan (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — le Japon (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Japón (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três coisas — o Japão (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Japan", fr: "Pays de destination — Japon", es: "País de destino — Japón", pt: "País de destino — Japão" }
+      text:
+        en: "Japan runs its own scheme through the Animal Quarantine Service: ISO microchip, two rabies vaccinations, an antibody test ≥0.5 IU/ml, a 180-day wait and advance notification. It does not use the EU pet-passport system."
+        fr: "Le Japon applique son propre régime via le Service de quarantaine animale : puce ISO, deux vaccinations antirabiques, un titrage ≥0,5 UI/ml, un délai de 180 jours et une notification préalable. Il n'utilise pas le passeport européen."
+        es: "Japón aplica su propio régimen a través del Servicio de Cuarentena Animal: microchip ISO, dos vacunaciones antirrábicas, una prueba de titulación ≥0,5 UI/ml, una espera de 180 días y notificación previa. No utiliza el sistema de pasaporte europeo para mascotas."
+        pt: "O Japão aplica o próprio regime por meio do Animal Quarantine Service: microchip ISO, duas vacinações antirrábicas, um teste sorológico ≥0,5 UI/ml, uma espera de 180 dias e notificação prévia. Ele não usa o sistema europeu de passaporte para animais."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Departing from a rabies-free 'designated region' (Iceland, Australia, New Zealand, Fiji, Hawaii, Guam) skips the antibody test and the 180-day wait. Every other region follows the full scheme."
+        fr: "Un départ depuis une « région désignée » indemne de rage (Islande, Australie, Nouvelle-Zélande, Fidji, Hawaï, Guam) dispense du titrage et du délai de 180 jours. Toute autre région suit le régime complet."
+        es: "Salir desde una «región designada» indemne de rabia (Islandia, Australia, Nueva Zelanda, Fiyi, Hawái, Guam) evita la prueba de titulación y la espera de 180 días. Cualquier otra región sigue el régimen completo."
+        pt: "Partir de uma “região designada” livre de raiva (Islândia, Austrália, Nova Zelândia, Fiji, Havaí, Guam) dispensa o teste sorológico e a espera de 180 dias. Qualquer outra região segue o regime completo."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Designated-region rules require continuous residence (since birth, or at least 180 days before export). A recent stay elsewhere breaks that status and forces the full non-designated procedure."
+        fr: "Les règles des régions désignées exigent une résidence continue (depuis la naissance, ou au moins 180 jours avant l'export). Un séjour récent ailleurs rompt ce statut et impose la procédure complète des régions non désignées."
+        es: "Las normas de las regiones designadas exigen residencia continua (desde el nacimiento, o al menos 180 días antes de la exportación). Una estancia reciente en otro lugar rompe ese estatus y obliga a seguir el procedimiento completo de las regiones no designadas."
+        pt: "As regras das regiões designadas exigem residência contínua (desde o nascimento ou, no mínimo, 180 dias antes da exportação). Uma estadia recente em outro lugar quebra esse status e obriga a seguir o procedimento completo das regiões não designadas."
+  note:
+    en: "So read the requirements below as Japan's framework, then confirm your dog's exact origin, residence history and timeline with your vet and the AQS."
+    fr: "Lis donc les exigences ci-dessous comme le cadre japonais, puis confirme l'origine exacte, l'historique de résidence et le calendrier de ton chien avec ton vétérinaire et l'AQS."
+    es: "Así que lee los requisitos siguientes como el marco de Japón y luego confirma el origen exacto, el historial de residencia y el calendario de tu perro con tu veterinario y la AQS."
+    pt: "Leia então as exigências abaixo como o quadro geral do Japão e confirme com seu veterinário e com o AQS a origem exata, o histórico de residência e o calendário do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Implanted before the first rabies vaccination; ISO 11784/11785 (15-digit numeric code).", fr: "Posée avant la première vaccination antirabique ; ISO 11784/11785 (code numérique à 15 chiffres).", es: "Implantado antes de la primera vacunación antirrábica; ISO 11784/11785 (código numérico de 15 dígitos).", pt: "Implantado antes da primeira vacinação antirrábica; ISO 11784/11785 (código numérico de 15 dígitos)." }
+    exceptions: { en: "A non-ISO microchip is accepted only if you bring a reader that can read it; contact the AQS at the port of entry.", fr: "Une puce non ISO n'est acceptée que si tu apporte un lecteur compatible ; contacte l'AQS au point d'entrée.", es: "Un microchip no ISO solo se acepta si aportas un lector compatible; contacta con la AQS en el punto de entrada.", pt: "Um microchip fora do padrão ISO só é aceito se você levar um leitor capaz de lê-lo; entre em contato com o AQS no ponto de entrada." }
+    ref: { en: "AQS/MAFF — Import (Step 1)", fr: "AQS/MAFF — Importation (étape 1)", es: "AQS/MAFF — Importación (paso 1)", pt: "AQS/MAFF — Importação (etapa 1)" }
+  - item: { en: "Rabies vaccination (twice or more)", fr: "Vaccination antirabique (deux fois ou plus)", es: "Vacunación antirrábica (dos veces o más)", pt: "Vacinação antirrábica (duas ou mais vezes)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "1st shot: dog ≥91 days old and after the microchip. 2nd shot: ≥30 days after the 1st and within its validity. Inactivated or recombinant vaccine only.", fr: "1er vaccin : chien ≥91 jours et après la puce. 2e vaccin : ≥30 jours après le 1er et dans sa période de validité. Vaccin inactivé ou recombinant uniquement.", es: "1ª dosis: perro ≥91 días y después del microchip. 2ª dosis: ≥30 días después de la 1ª y dentro de su periodo de valide. Solo vacuna inactivada o recombinante.", pt: "1ª dose: cachorro com ≥91 dias e depois do microchip. 2ª dose: ≥30 dias após a 1ª e dentro do prazo de validade dela. Somente vacina inativada ou recombinante." }
+    exceptions: { en: "Live-virus and RNA rabies vaccines are NOT accepted. A vaccination before microchipping is invalid.", fr: "Les vaccins antirabiques à virus vivant et à ARN ne sont PAS acceptés. Une vaccination avant la pose de la puce est invalide.", es: "Las vacunas antirrábicas de virus vivo y de ARN NO se aceptan. Una vacunación antes de la implantación del microchip no es válida.", pt: "Vacinas antirrábicas de vírus vivo e de RNA NÃO são aceitas. Uma vacinação aplicada antes do microchip é inválida." }
+    ref: { en: "AQS/MAFF — Import (Step 2)", fr: "AQS/MAFF — Importation (étape 2)", es: "AQS/MAFF — Importación (paso 2)", pt: "AQS/MAFF — Importação (etapa 2)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required (non-designated regions)", fr: "Requis (régions non désignées)", es: "Obligatoria (regiones no designadas)", pt: "Obrigatório (regiões não designadas)" }
+    when: { en: "Blood drawn after the 2nd vaccination, at an AQS-designated laboratory; result ≥0.5 IU/ml; valid 2 years from sampling.", fr: "Sang prélevé après le 2e vaccin, dans un laboratoire agréé par l'AQS ; résultat ≥0,5 UI/ml ; valable 2 ans à compter du prélèvement.", es: "Sangre extraída después de la 2ª vacuna, en un laboratorio designado por la AQS; resultado ≥0,5 UI/ml; válida 2 años desde la toma de muestra.", pt: "Sangue coletado depois da 2ª vacinação, em laboratório designado pelo AQS; resultado ≥0,5 UI/ml; válido por 2 anos a contar da coleta." }
+    exceptions: { en: "Not required from designated regions (Iceland, Australia, New Zealand, Fiji, Hawaii, Guam).", fr: "Non requis depuis les régions désignées (Islande, Australie, Nouvelle-Zélande, Fidji, Hawaï, Guam).", es: "No se exige desde regiones designadas (Islandia, Australia, Nueva Zelanda, Fiyi, Hawái, Guam).", pt: "Não obrigatório para quem vem de regiões designadas (Islândia, Austrália, Nova Zelândia, Fiji, Havaí, Guam)." }
+    ref: { en: "AQS/MAFF — Import (Step 3); designated laboratories", fr: "AQS/MAFF — Importation (étape 3) ; laboratoires agréés", es: "AQS/MAFF — Importación (paso 3); laboratorios designados", pt: "AQS/MAFF — Importação (etapa 3); laboratórios designados" }
+  - item: { en: "180-day waiting period", fr: "Délai d'attente de 180 jours", es: "Periodo de espera de 180 días", pt: "Período de espera de 180 dias" }
+    required: { en: "Required (non-designated regions)", fr: "Requis (régions non désignées)", es: "Obligatorio (regiones no designadas)", pt: "Obrigatório (regiões não designadas)" }
+    when: { en: "Dog may arrive only after 180 days have passed from the date of blood sampling (day of sampling = day 0), and within vaccine and titre validity.", fr: "Le chien ne peut arriver qu'après 180 jours écoulés depuis la date de prélèvement (jour du prélèvement = jour 0), et dans la validité du vaccin et du titrage.", es: "El perro solo puede llegar una vez transcurridos 180 días desde la fecha de la toma de muestra de sangre (el día de la toma = día 0), y dentro de la valide de la vacuna y de la titulación.", pt: "O cachorro só pode chegar depois de transcorridos 180 dias desde a data da coleta de sangue (dia da coleta = dia 0) e dentro da validade da vacina e da titulação." }
+    exceptions: { en: "Not required from designated regions. Arriving early means detention quarantine for the missing days.", fr: "Non requis depuis les régions désignées. Une arrivée anticipée entraîne une quarantaine en détention pour les jours manquants.", es: "No se exige desde regiones designadas. Llegar antes de tiempo implica cuarentena en detención por los días que falten.", pt: "Não obrigatório para quem vem de regiões designadas. Chegar antes do prazo significa quarentena em detenção pelos dias que faltarem." }
+    ref: { en: "AQS/MAFF — Import (Step 4)", fr: "AQS/MAFF — Importation (étape 4)", es: "AQS/MAFF — Importación (paso 4)", pt: "AQS/MAFF — Importação (etapa 4)" }
+  - item: { en: "Advance notification to AQS", fr: "Notification préalable à l'AQS", es: "Notificación previa a la AQS", pt: "Notificação prévia ao AQS" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Notify the AQS at the expected port of entry at least 40 days before arrival, via NACCS online or the notification form by e-mail.", fr: "Notifier l'AQS au point d'entrée prévu au moins 40 jours avant l'arrivée, via le système en ligne NACCS ou le formulaire par e-mail.", es: "Notifica a la AQS en el punto de entrada previsto al menos 40 días antes de la llegada, mediante el sistema en línea NACCS o el formulario de notificación por correo electrónico.", pt: "Notifique o AQS do ponto de entrada previsto com pelo menos 40 dias de antecedência da chegada, pelo sistema on-line NACCS ou pelo formulário de notificação por e-mail." }
+    exceptions: { en: "A notification submitted less than 40 days before arrival is, in principle, not accepted.", fr: "Une notification déposée moins de 40 jours avant l'arrivée n'est, en principe, pas acceptée.", es: "En principio, no se acepta una notificación presentada con menos de 40 días de antelación a la llegada.", pt: "Em princípio, uma notificação enviada com menos de 40 dias de antecedência da chegada não é aceita." }
+    ref: { en: "AQS/MAFF — Import (Step 5)", fr: "AQS/MAFF — Importation (étape 5)", es: "AQS/MAFF — Importación (paso 5)", pt: "AQS/MAFF — Importação (etapa 5)" }
+  - item: { en: "Pre-export clinical inspection", fr: "Examen clinique avant export", es: "Inspección clínica previa a la exportación", pt: "Inspeção clínica antes da exportação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "By a veterinarian within 10 days before boarding; dog free of clinical signs of rabies and (for dogs) leptospirosis.", fr: "Par un vétérinaire dans les 10 jours avant l'embarquement ; chien exempt de signes cliniques de rage et (pour les chiens) de leptospirose.", es: "Realizada por un veterinario en los 10 días previos al embarque; el perro debe estar libre de signos clínicos de rabia y (en el caso de los perros) de leptospirosis.", pt: "Feita por um veterinário nos 10 dias anteriores ao embarque; cachorro sem sinais clínicos de raiva e (no caso dos cachorros) de leptospirose." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "AQS/MAFF — Import (Step 6)", fr: "AQS/MAFF — Importation (étape 6)", es: "AQS/MAFF — Importación (paso 6)", pt: "AQS/MAFF — Importação (etapa 6)" }
+  - item: { en: "Government veterinary certificate", fr: "Certificat vétérinaire officiel", es: "Certificado veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Certificate issued/endorsed by the exporting country's government agency (recommended Form AC / Form AB) recording microchip, vaccinations, titre and clinical exam.", fr: "Certificat délivré/visé par l'organisme gouvernemental du pays exportateur (formulaire AC / AB recommandé) consignant puce, vaccins, titrage et examen clinique.", es: "Certificado expedido/refrendado por el organismo gubernamental del país exportador (se recomienda el formulario AC / formulario AB) que registre el microchip, las vacunas, la titulación y el examen clínico.", pt: "Certificado emitido/endossado pelo órgão governamental do país exportador (recomenda-se o Form AC / Form AB), registrando microchip, vacinações, titulação e exame clínico." }
+    exceptions: { en: "Deficient certificates lead to detention quarantine (up to 180 days) or return of the animal.", fr: "Un certificat déficient entraîne une quarantaine en détention (jusqu'à 180 jours) ou le renvoi de l'animal.", es: "Los certificados deficientes conllevan cuarentena en detención (hasta 180 días) o la devolución del animal.", pt: "Certificados incompletos levam à quarentena em detenção (até 180 dias) ou à devolução do animal." }
+    ref: { en: "AQS/MAFF — Import (Step 7)", fr: "AQS/MAFF — Importation (étape 7)", es: "AQS/MAFF — Importación (paso 7)", pt: "AQS/MAFF — Importação (etapa 7)" }
+  - item: { en: "Import inspection on arrival", fr: "Inspection à l'importation à l'arrivée", es: "Inspección de importación a la llegada", pt: "Inspeção de importação na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Apply to the AQS on arrival; if all conditions are met, clearance is within 12 hours and an import quarantine certificate is issued.", fr: "Demande auprès de l'AQS à l'arrivée ; si toutes les conditions sont remplies, la mainlevée se fait sous 12 heures avec délivrance d'un certificat de quarantaine à l'importation.", es: "Solicítala a la AQS a la llegada; si se cumplen todas las condiciones, el despacho se realiza en un plazo de 12 horas y se expide un certificado de cuarentena de importación.", pt: "Faça o pedido ao AQS na chegada; se todas as condições forem cumpridas, a liberação ocorre em até 12 horas e é emitido um certificado de quarentena de importação." }
+    exceptions: { en: "Dogs may enter only through designated airports/seaports.", fr: "Les chiens ne peuvent entrer que par les aéroports/ports désignés.", es: "Los perros solo pueden entrar por aeropuertos/puertos designados.", pt: "Os cachorros só podem entrar pelos aeroportos/portos designados." }
+    ref: { en: "AQS/MAFF — Import (Step 8)", fr: "AQS/MAFF — Importation (étape 8)", es: "AQS/MAFF — Importación (paso 8)", pt: "AQS/MAFF — Importação (etapa 8)" }
+  - item: { en: "Detention quarantine", fr: "Quarantaine en détention", es: "Cuarentena en detención", pt: "Quarentena em detenção" }
+    required: { en: "Only if non-compliant", fr: "Seulement si non conforme", es: "Solo si no se cumplen los requisitos", pt: "Somente se não estiver em conformidade" }
+    when: { en: "Dogs that do not meet requirements (early arrival, deficient certificate) are detained at an AQS facility for the necessary period, up to 180 days, at the owner's cost.", fr: "Les chiens non conformes (arrivée anticipée, certificat déficient) sont retenus dans une installation de l'AQS pour la durée nécessaire, jusqu'à 180 jours, aux frais du propriétaire.", es: "Los perros que no cumplen los requisitos (llegada anticipada, certificado deficiente) quedan retenidos en una instalación de la AQS durante el periodo necesario, hasta 180 días, a cargo del propietario.", pt: "Cachorros que não cumprem as exigências (chegada antecipada, certificado incompleto) ficam retidos em uma instalação do AQS pelo período necessário, até 180 dias, às custas do proprietário." }
+    exceptions: { en: "Compliant dogs are cleared within 12 hours and are not quarantined.", fr: "Les chiens conformes sont libérés sous 12 heures et ne sont pas mis en quarantaine.", es: "Los perros que cumplen los requisitos son despachados en 12 horas y no se ponen en cuarentena.", pt: "Cachorros em conformidade são liberados em até 12 horas e não ficam de quarentena." }
+    ref: { en: "AQS/MAFF — Import inspection", fr: "AQS/MAFF — Inspection à l'importation", es: "AQS/MAFF — Inspección de importación", pt: "AQS/MAFF — Inspeção de importação" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ~9–10 months", fr: "En pratique ~9–10 mois", es: "En la práctica ~9–10 meses", pt: "Na prática, ~9–10 meses" }
+    when: { en: "1st rabies shot only valid at ≥91 days old; +30 days to the 2nd shot, +180-day wait — so a dog cannot complete the process much before ~9–10 months of age.", fr: "1er vaccin valable seulement à ≥91 jours ; +30 jours jusqu'au 2e vaccin, +180 jours d'attente — un chien ne peut donc guère finir la procédure avant ~9–10 mois.", es: "La 1ª vacuna antirrábica solo es válida a partir de los ≥91 días; +30 días hasta la 2ª dosis, +180 días de espera — así que un perro no puede completar el proceso mucho antes de los ~9–10 meses de edad.", pt: "A 1ª dose antirrábica só vale a partir de ≥91 dias de idade; +30 dias até a 2ª dose, +180 dias de espera — então um cachorro não consegue concluir o processo muito antes dos ~9–10 meses de idade." }
+    exceptions: { en: "A shot given under 91 days old is invalid under Japanese rules and the procedure must restart.", fr: "Un vaccin administré avant 91 jours est invalide selon la réglementation japonaise et la procédure doit recommencer.", es: "Una dosis administrada antes de los 91 días no es válida según la normativa japonesa y el procedimiento debe reiniciarse.", pt: "Uma dose aplicada antes dos 91 dias é inválida segundo as regras japonesas e o procedimento precisa recomeçar." }
+    ref: { en: "AQS/MAFF — Import (Steps 2–4)", fr: "AQS/MAFF — Importation (étapes 2–4)", es: "AQS/MAFF — Importación (pasos 2–4)", pt: "AQS/MAFF — Importação (etapas 2–4)" }
+
+origin:
+  eu:
+    title: { en: "Designated (rabies-free) regions — simplified", fr: "Régions désignées (indemnes de rage) — simplifié", es: "Regiones designadas (indemnes de rabia) — simplificado", pt: "Regiões designadas (livres de raiva) — simplificado" }
+    body:
+      en: "From Iceland, Australia, New Zealand, Fiji, Hawaii or Guam the process is simpler: ISO microchip, proof of continuous residence (since birth, or at least 180 days before export, or since import from Japan), a pre-export clinical inspection, a government certificate (Form AB) and the 40-day advance notification. No rabies vaccination, antibody test or 180-day wait is required, and compliant dogs clear in under 12 hours."
+      fr: "Depuis l'Islande, l'Australie, la Nouvelle-Zélande, les Fidji, Hawaï ou Guam, la procédure est simplifiée : puce ISO, preuve de résidence continue (depuis la naissance, ou au moins 180 jours avant l'export, ou depuis l'import du Japon), un examen clinique avant export, un certificat officiel (formulaire AB) et la notification préalable de 40 jours. Ni vaccination antirabique, ni titrage, ni délai de 180 jours ne sont exigés, et les chiens conformes sont libérés en moins de 12 heures."
+      es: "Desde Islandia, Australia, Nueva Zelanda, Fiyi, Hawái o Guam el proceso es más sencillo: microchip ISO, prueba de residencia continua (desde el nacimiento, o al menos 180 días antes de la exportación, o desde la importación desde Japón), una inspección clínica previa a la exportación, un certificado oficial (formulario AB) y la notificación previa de 40 días. No se exige vacunación antirrábica, prueba de titulación ni espera de 180 días, y los perros que cumplen los requisitos son despachados en menos de 12 horas."
+      pt: "Vindo da Islândia, da Austrália, da Nova Zelândia, de Fiji, do Havaí ou de Guam, o processo é mais simples: microchip ISO, comprovante de residência contínua (desde o nascimento, ou pelo menos 180 dias antes da exportação, ou desde a importação a partir do Japão), uma inspeção clínica antes da exportação, um certificado oficial (Form AB) e a notificação prévia de 40 dias. Não são exigidos vacinação antirrábica, teste sorológico nem espera de 180 dias, e os cachorros em conformidade são liberados em menos de 12 horas."
+    cls: ok
+  listed:
+    title: { en: "All other regions — full scheme completed", fr: "Toutes les autres régions — régime complet accompli", es: "Todas las demás regiones — régimen completo cumplido", pt: "Todas as demais regiões — regime completo cumprido" }
+    body:
+      en: "From every other country (including the EU, the US, Canada and the UK), your dog needs an ISO microchip, at least two rabies vaccinations, an antibody test ≥0.5 IU/ml at a designated laboratory, a compulsory 180-day wait after the blood draw, advance notification ≥40 days, a pre-export clinical inspection and a government certificate (Form AC). Done correctly and in advance, quarantine on arrival is under 12 hours — but it takes about seven months to prepare."
+      fr: "Depuis tout autre pays (y compris l'UE, les États-Unis, le Canada et le Royaume-Uni), ton chien a besoin d'une puce ISO, d'au moins deux vaccinations antirabiques, d'un titrage ≥0,5 UI/ml dans un laboratoire agréé, d'un délai obligatoire de 180 jours après la prise de sang, d'une notification préalable ≥40 jours, d'un examen clinique avant export et d'un certificat officiel (formulaire AC). Bien fait et anticipé, la quarantaine à l'arrivée dure moins de 12 heures — mais la préparation prend environ sept mois."
+      es: "Desde cualquier otro país (incluidos la UE, Estados Unidos, Canadá y el Reino Unido), tu perro necesita un microchip ISO, al menos dos vacunaciones antirrábicas, una prueba de titulación ≥0,5 UI/ml en un laboratorio designado, una espera obligatoria de 180 días tras la extracción de sangre, notificación previa ≥40 días, una inspección clínica previa a la exportación y un certificado oficial (formulario AC). Hecho correctamente y con antelación, la cuarentena a la llegada dura menos de 12 horas — pero la preparación lleva unos siete meses."
+      pt: "De qualquer outro país (incluindo a UE, os Estados Unidos, o Canadá e o Reino Unido), seu cachorro precisa de microchip ISO, pelo menos duas vacinações antirrábicas, um teste sorológico ≥0,5 UI/ml em laboratório designado, uma espera obrigatória de 180 dias após a coleta de sangue, notificação prévia com ≥40 dias de antecedência, uma inspeção clínica antes da exportação e um certificado oficial (Form AC). Feito corretamente e com antecedência, a quarentena na chegada dura menos de 12 horas — mas a preparação leva cerca de sete meses."
+    cls: warn
+  nonListed:
+    title: { en: "Arriving non-compliant — detention quarantine", fr: "Arrivée non conforme — quarantaine en détention", es: "Llegada sin cumplir los requisitos — cuarentena en detención", pt: "Chegada fora de conformidade — quarentena em detenção" }
+    body:
+      en: "If a dog from a non-designated region arrives before the 180-day wait is complete, with a missing antibody test, or with a deficient certificate, the AQS detains it at a quarantine facility for the necessary period — up to 180 days — at the owner's expense, or returns it to the exporting country. This is why the whole procedure must be finished before departure."
+      fr: "Si un chien d'une région non désignée arrive avant la fin du délai de 180 jours, sans titrage valide ou avec un certificat déficient, l'AQS le retient dans une installation de quarantaine pour la durée nécessaire — jusqu'à 180 jours — aux frais du propriétaire, ou le renvoie vers le pays exportateur. C'est pourquoi toute la procédure doit être terminée avant le départ."
+      es: "Si un perro procedente de una región no designada llega antes de completar la espera de 180 días, sin la prueba de titulación o con un certificado deficiente, la AQS lo retiene en una instalación de cuarentena durante el periodo necesario — hasta 180 días — a cargo del propietario, o lo devuelve al país exportador. Por eso todo el procedimiento debe completarse antes de la salida."
+      pt: "Se um cachorro vindo de uma região não designada chegar antes de completar a espera de 180 dias, sem o teste sorológico ou com um certificado incompleto, o AQS o retém em uma instalação de quarentena pelo período necessário — até 180 dias — às custas do proprietário, ou o devolve ao país exportador. É por isso que todo o procedimento precisa estar concluído antes da partida."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Japan depends entirely on whether every condition was completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Japon dépend entièrement du fait que toutes les conditions aient été remplies avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Japón depende por completo de si se cumplieron todas las condiciones antes de la salida."
+    pt: "O que acontece quando seu cachorro chega ao Japão depende inteiramente de todas as condições terem sido cumpridas antes da partida."
+  points:
+    - en: "Dogs may enter only through designated airports (New Chitose, Narita, Haneda, Chubu, Kansai, Osaka Itami, Kobe, Kitakyushu, Fukuoka, Kagoshima, Naha) and designated seaports."
+      fr: "Les chiens ne peuvent entrer que par les aéroports désignés (New Chitose, Narita, Haneda, Chubu, Kansai, Osaka Itami, Kobe, Kitakyushu, Fukuoka, Kagoshima, Naha) et les ports désignés."
+      es: "Los perros solo pueden entrar por aeropuertos designados (New Chitose, Narita, Haneda, Chubu, Kansai, Osaka Itami, Kobe, Kitakyushu, Fukuoka, Kagoshima, Naha) y puertos marítimos designados."
+      pt: "Os cachorros só podem entrar pelos aeroportos designados (New Chitose, Narita, Haneda, Chubu, Kansai, Osaka Itami, Kobe, Kitakyushu, Fukuoka, Kagoshima, Naha) e pelos portos designados."
+    - en: "Apply for import inspection with the AQS on arrival, presenting the original government certificate and the antibody-test result report."
+      fr: "Demande l'inspection à l'importation auprès de l'AQS à l'arrivée, en présentant le certificat officiel original et le rapport de résultat du titrage."
+      es: "Solicita la inspección de importación con la AQS a la llegada, presentando el certificado oficial original y el informe de resultado de la prueba de titulación."
+      pt: "Solicite a inspeção de importação ao AQS na chegada, apresentando o certificado oficial original e o laudo com o resultado do teste sorológico."
+    - en: "If all conditions are met, inspection takes under 12 hours and the AQS issues an import quarantine certificate — keep it, as it cannot be reissued."
+      fr: "Si toutes les conditions sont remplies, l'inspection dure moins de 12 heures et l'AQS délivre un certificat de quarantaine à l'importation — conserve-le, il ne peut être réédité."
+      es: "Si se cumplen todas las condiciones, la inspección dura menos de 12 horas y la AQS expide un certificado de cuarentena de importación — consérvalo, ya que no se puede volver a emitir."
+      pt: "Se todas as condições forem cumpridas, a inspeção leva menos de 12 horas e o AQS emite um certificado de quarentena de importação — guarde-o, porque ele não pode ser emitido de novo."
+    - en: "If conditions are not met, the dog is held in detention quarantine for up to 180 days at the owner's expense, or returned."
+      fr: "Si les conditions ne sont pas remplies, le chien est placé en quarantaine en détention jusqu'à 180 jours aux frais du propriétaire, ou renvoyé."
+      es: "Si no se cumplen las condiciones, el perro queda en cuarentena de detención hasta 180 días a cargo del propietario, o es devuelto."
+      pt: "Se as condições não forem cumpridas, o cachorro fica em quarentena em detenção por até 180 dias às custas do proprietário, ou é devolvido."
+    - en: "Failing to have a dog inspected is an offence punishable by up to 3 years' imprisonment or a fine of up to ¥3 million."
+      fr: "Ne pas faire inspecter un chien est une infraction passible de jusqu'à 3 ans d'emprisonnement ou d'une amende pouvant atteindre 3 millions de yens."
+      es: "No someter a un perro a inspección es una infracción sancionable con hasta 3 años de prisión o una multa de hasta 3 millones de yenes."
+      pt: "Deixar de submeter o cachorro à inspeção é infração punível com até 3 anos de prisão ou multa de até ¥3 milhões."
+    - en: "After entry, register the dog with the local municipality within 30 days and keep up the annual rabies vaccination required in Japan."
+      fr: "Après l'entrée, enregistre le chien auprès de la municipalité dans les 30 jours et maintiens la vaccination antirabique annuelle exigée au Japon."
+      es: "Tras la entrada, registra al perro en el municipio local en un plazo de 30 días y mantén al día la vacunación antirrábica anual exigida en Japón."
+      pt: "Depois da entrada, registre o cachorro na prefeitura local em até 30 dias e mantenha em dia a vacinação antirrábica anual exigida no Japão."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Japan has no breed-specific import ban: no dog breed is prohibited from entering the country, and requirements are the same for every breed provided the rabies scheme is completed."
+    fr: "Le Japon n'a aucune interdiction d'importation liée à la race : aucune race de chien n'est interdite d'entrée, et les exigences sont identiques pour toutes les races dès lors que le régime antirabique est accompli."
+    es: "Japón no tiene ninguna prohibición de importación por raza: ninguna raza de perro tiene prohibida la entrada al país, y los requisitos son los mismos para todas las razas siempre que se complete el régimen antirrábico."
+    pt: "O Japão não tem proibição de importação por raça: nenhuma raça de cachorro está proibida de entrar no país, e as exigências são as mesmas para toda raça, desde que o regime antirrábico seja cumprido."
+  cat1:
+    en: "There is no national list of banned or 'dangerous' breeds at import. Breeds restricted elsewhere (pit-bull types, Tosa, Rottweiler, etc.) are not prohibited from entering Japan — the Tosa is itself a Japanese breed."
+    fr: "Il n'existe aucune liste nationale de races interdites ou « dangereuses » à l'importation. Les races restreintes ailleurs (types pit-bull, Tosa, Rottweiler, etc.) ne sont pas interdites d'entrée au Japon — le Tosa est lui-même une race japonaise."
+    es: "No existe ninguna lista nacional de razas prohibidas o «peligrosas» a la importación. Las razas restringidas en otros lugares (tipos pit bull, Tosa, Rottweiler, etc.) no tienen prohibida la entrada en Japón — el Tosa es, de hecho, una raza japonesa."
+    pt: "Não existe lista nacional de raças proibidas ou “perigosas” na importação. Raças restringidas em outros lugares (tipos pit bull, Tosa, Rottweiler etc.) não estão proibidas de entrar no Japão — o Tosa é, aliás, uma raça japonesa."
+  cat2:
+    en: "Dangerous-dog control in Japan is handled locally: some prefectures and municipalities can designate an individual dog as dangerous (often after a biting incident) and impose keeping conditions. This is case-by-case conduct-based regulation, not a breed import restriction."
+    fr: "Le contrôle des chiens dangereux au Japon est géré localement : certaines préfectures et municipalités peuvent désigner un chien individuel comme dangereux (souvent après une morsure) et imposer des conditions de détention. Il s'agit d'une réglementation au cas par cas fondée sur le comportement, pas d'une restriction d'importation par race."
+    es: "El control de perros peligrosos en Japón se gestiona a nivel local: algunas prefecturas y municipios pueden designar a un perro concreto como peligroso (a menudo tras un incidente de mordedura) e imponer condiciones de tenencia. Se trata de una regulación caso por caso basada en el comportamiento, no de una restricción de importación por raza."
+    pt: "O controle de cachorros perigosos no Japão é feito localmente: algumas províncias e municípios podem declarar um cachorro específico como perigoso (muitas vezes depois de uma mordida) e impor condições de criação. É uma regulação caso a caso, baseada no comportamento, e não uma restrição de importação por raça."
+  note:
+    en: "Because rules can vary by prefecture and city, check the local municipality's ordinances for the place where the dog will live, and confirm airline breed policies separately."
+    fr: "Comme les règles varient selon la préfecture et la ville, vérifie les arrêtés de la municipalité du lieu où vivra le chien, et confirme séparément les politiques de race des compagnies aériennes."
+    es: "Como las normas pueden variar según la prefectura y la ciudad, consulta las ordenanzas del municipio local donde vivirá el perro, y confirma por separado las políticas de raza de la aerolínea."
+    pt: "Como as regras podem variar conforme a província e a cidade, consulte as normas do município onde o cachorro vai morar e confirme à parte as políticas de raça da companhia aérea."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before the first rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la première vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la primera vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da primeira vacinação antirrábica"
+  - en: "Two or more rabies vaccinations (1st at ≥91 days, 2nd ≥30 days later; inactivated/recombinant vaccine)"
+    fr: "Au moins deux vaccinations antirabiques (1er à ≥91 jours, 2e ≥30 jours après ; vaccin inactivé/recombinant)"
+    es: "Dos o más vacunaciones antirrábicas (1ª a los ≥91 días, 2ª ≥30 días después; vacuna inactivada/recombinante)"
+    pt: "Duas ou mais vacinações antirrábicas (1ª com ≥91 dias, 2ª ≥30 dias depois; vacina inativada/recombinante)"
+  - en: "Rabies antibody test ≥0.5 IU/ml at an AQS-designated laboratory (non-designated regions)"
+    fr: "Titrage antirabique ≥0,5 UI/ml dans un laboratoire agréé par l'AQS (régions non désignées)"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml en un laboratorio designado por la AQS (regiones no designadas)"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml em laboratório designado pelo AQS (regiões não designadas)"
+  - en: "Count the 180-day waiting period from the blood-draw date before booking arrival"
+    fr: "Compte le délai de 180 jours depuis la date de prélèvement avant de réserver l'arrivée"
+    es: "Cuenta el periodo de espera de 180 días desde la fecha de la extracción de sangre antes de reservar la llegada"
+    pt: "Conte o período de espera de 180 dias a partir da data da coleta de sangue antes de reservar a chegada"
+  - en: "Advance notification to the AQS at least 40 days before arrival (NACCS or e-mail)"
+    fr: "Notification préalable à l'AQS au moins 40 jours avant l'arrivée (NACCS ou e-mail)"
+    es: "Notificación previa a la AQS al menos 40 días antes de la llegada (NACCS o correo electrónico)"
+    pt: "Notificação prévia ao AQS com pelo menos 40 dias de antecedência da chegada (NACCS ou e-mail)"
+  - en: "Pre-export clinical inspection within 10 days and government certificate (Form AC/AB)"
+    fr: "Examen clinique avant export dans les 10 jours et certificat officiel (formulaire AC/AB)"
+    es: "Inspección clínica previa a la exportación en un plazo de 10 días y certificado oficial (formulario AC/AB)"
+    pt: "Inspeção clínica antes da exportação em até 10 dias e certificado oficial (Form AC/AB)"
+  - en: "Arrive through a designated airport or seaport; carry original documents"
+    fr: "Arrive par un aéroport ou port désigné ; munis-toi des documents originaux"
+    es: "Llega por un aeropuerto o puerto designado; lleva los documentos originales"
+    pt: "Chegue por um aeroporto ou porto designado; leve os documentos originais"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation aérienne et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "Animal Quarantine Service (MAFF) — Import and export quarantine of dogs and cats", fr: "Service de quarantaine animale (MAFF) — Quarantaine à l'importation et l'exportation des chiens et chats", es: "Servicio de Cuarentena Animal (MAFF) — Cuarentena de importación y exportación de perros y gatos", pt: "Animal Quarantine Service (MAFF) — Quarentena de importação e exportação de cães e gatos" }
+    url: "https://www.maff.go.jp/aqs/english/animal/dog/index.html"
+  - label: { en: "AQS (MAFF) — Import dogs and cats from Non-designated regions", fr: "AQS (MAFF) — Importation de chiens et chats depuis les régions non désignées", es: "AQS (MAFF) — Importación de perros y gatos desde regiones no designadas", pt: "AQS (MAFF) — Importação de cães e gatos de regiões não designadas" }
+    url: "https://www.maff.go.jp/aqs/english/animal/dog/import-other.html"
+  - label: { en: "AQS (MAFF) — Import dogs and cats from the designated regions", fr: "AQS (MAFF) — Importation de chiens et chats depuis les régions désignées", es: "AQS (MAFF) — Importación de perros y gatos desde las regiones designadas", pt: "AQS (MAFF) — Importação de cães e gatos das regiões designadas" }
+    url: "https://www.maff.go.jp/aqs/english/animal/dog/import-free.html"
+  - label: { en: "AQS (MAFF) — Designated regions (Iceland, Australia, New Zealand, Fiji, Hawaii, Guam)", fr: "AQS (MAFF) — Régions désignées (Islande, Australie, Nouvelle-Zélande, Fidji, Hawaï, Guam)", es: "AQS (MAFF) — Regiones designadas (Islandia, Australia, Nueva Zelanda, Fiyi, Hawái, Guam)", pt: "AQS (MAFF) — Regiões designadas (Islândia, Austrália, Nova Zelândia, Fiji, Havaí, Guam)" }
+    url: "https://www.maff.go.jp/aqs/english/animal/dog/designated-regions.html"
+  - label: { en: "AQS (MAFF) — Rabies antibody testing designated laboratories", fr: "AQS (MAFF) — Laboratoires agréés pour le titrage antirabique", es: "AQS (MAFF) — Laboratorios designados para la prueba de titulación de rabia", pt: "AQS (MAFF) — Laboratórios designados para o teste sorológico antirrábico" }
+    url: "https://www.maff.go.jp/aqs/animal/dog/lab.html"
+  - label: { en: "AQS (MAFF) — Frequently asked questions (dogs and cats)", fr: "AQS (MAFF) — Questions fréquentes (chiens et chats)", es: "AQS (MAFF) — Preguntas frecuentes (perros y gatos)", pt: "AQS (MAFF) — Perguntas frequentes (cães e gatos)" }
+    url: "https://www.maff.go.jp/aqs/english/qanda/dogcata.html"
+
+seo:
+  title: { en: "Japan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Japon — Guide", es: "Requisitos de entrada de perros en Japón — Guía de viaje", pt: "Japão: exigências de entrada para cachorros" }
+  metaTitle: { en: "Traveling to Japan With Your Dog: Entry Requirements (2026)", fr: "Voyager au Japon avec ton chien : formalités (2026)", es: "Viajar a Japón con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Japão com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official Japan (AQS/MAFF) rules for bringing a dog: microchip, two rabies shots, antibody test, a fixed 180-day wait and 40-day notice. Sourced and dated."
+    fr: "Règles officielles du Japon (AQS/MAFF) pour faire entrer un chien : puce, deux vaccins, titrage, délai fixe de 180 jours et préavis de 40 jours. Sourcé et daté."
+    es: "Normas oficiales de Japón (AQS/MAFF) para traer un perro: microchip, dos vacunas antirrábicas, titulación, espera de 180 días y aviso previo de 40 días."
+    pt: "Regras oficiais do Japão (AQS/MAFF) para levar um cachorro: microchip, duas vacinas antirrábicas, teste sorológico, espera fixa de 180 dias e aviso de 40 dias."
+  slug: "japan"
+  shortDesc:
+    en: "What you need to bring a dog into Japan: a strict rabies scheme with a compulsory 180-day wait."
+    fr: "Ce qu'il faut pour faire entrer un chien au Japon : un régime antirabique strict avec un délai obligatoire de 180 jours."
+    es: "Lo que necesitas para traer un perro a Japón: un régimen antirrábico estricto con una espera obligatoria de 180 días."
+    pt: "O que você precisa para levar um cachorro ao Japão: um regime antirrábico rígido com espera obrigatória de 180 dias."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

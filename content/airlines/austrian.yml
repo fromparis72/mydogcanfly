@@ -1,0 +1,330 @@
+id: airline_austrian
+mono: OS
+name: Austrian Airlines
+titleH1:
+  en: Flying with a dog on Austrian Airlines
+  fr: Voyager avec un chien sur Austrian Airlines
+  es: Viajar con perro en Austrian Airlines
+  pt: "Viajar com um cachorro pela Austrian Airlines"
+metaDesc:
+  en: "Austrian Airlines pet policy: cabin, hold and Lufthansa Cargo, fares by zone, snub-nosed hold ban and official sources."
+  fr: "Politique animaux Austrian Airlines : cabine, soute et Lufthansa Cargo, tarifs par zone, interdiction soute brachy et sources officielles."
+  es: "Política de mascotas de Austrian Airlines: cabina, bodega y Lufthansa Cargo, tarifas por zona, veto en bodega a razas de hocico chato y fuentes oficiales."
+  pt: "Política de animais da Austrian Airlines: cabine, porão e Lufthansa Cargo, tarifas por zona, proibição de raças de focinho achatado no porão e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Austria · VIE
+      fr: Autriche · VIE
+      es: Austria · VIE
+      pt: "Áustria · VIE"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in the hold — snub-nosed breeds barred from the hold, and the UK/South Africa are cargo-only.
+  fr: Petits animaux en cabine, plus grands en soute — races au nez écrasé interdites en soute, et R.-U./Afrique du Sud en fret.
+  es: Mascotas pequeñas en cabina, las más grandes en bodega; las razas de hocico chato están vetadas en bodega, y el RU/Sudáfrica son solo de carga.
+  pt: "Animais pequenos na cabine, os maiores no porão — as raças de focinho achatado são vetadas no porão, e o Reino Unido/África do Sul são somente via carga."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: ≤ 14 kg each
+      fr: ≤ 14 kg chacun
+      es: ≤ 14 kg cada uno
+      pt: "≤ 14 kg cada"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: unaccompanied / UK
+      fr: non accompagné / R.-U.
+      es: no acompañado / RU
+      pt: "desacompanhado / RU"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats (min 12 weeks) ≤ 8 kg incl. carrier in a soft carrier under the seat (max 55 × 40 × 23 cm); up to 2 per container. Bookable online (except US).
+      fr: Chiens et chats (min 12 semaines) ≤ 8 kg avec le sac dans un sac souple sous le siège (max 55 × 40 × 23 cm) ; jusqu'à 2 par contenant. Réservable en ligne (sauf USA).
+      es: Perros y gatos (mín. 12 semanas) ≤ 8 kg incl. jaula, en una jaula blanda bajo el asiento (máx. 55 × 40 × 23 cm); hasta 2 por contenedor. Reservable en línea (salvo EE. UU.).
+      pt: "Cachorros e gatos (mín. 12 semanas) ≤ 8 kg incl. bolsa de transporte, em uma bolsa de transporte flexível embaixo do assento (máx. 55 × 40 × 23 cm); até 2 por bolsa. Reservável on-line (exceto EUA)."
+    fee:
+      en: €65–125
+      fr: 65–125 €
+      es: 65–125 €
+      pt: "€65–125"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs in an IATA crate; up to 2 accustomed pets (≤ 14 kg each) per container. Stricter ventilation rules from May 2026.
+      fr: Chats et chiens en caisse IATA ; jusqu'à 2 animaux habitués (≤ 14 kg chacun) par contenant. Règles de ventilation renforcées dès mai 2026.
+      es: Gatos y perros en una jaula IATA; hasta 2 mascotas acostumbradas (≤ 14 kg cada una) por contenedor. Reglas de ventilación más estrictas desde mayo 2026.
+      pt: "Gatos e cachorros em uma caixa de transporte IATA; até 2 animais acostumados entre si (≤ 14 kg cada) por caixa. Regras de ventilação mais rígidas a partir de maio de 2026."
+    fee:
+      en: €80–380
+      fr: 80–380 €
+      es: 80–380 €
+      pt: "€80–380"
+  - icon: ✈️
+    name:
+      en: Lufthansa Cargo
+      fr: Lufthansa Cargo
+      es: Lufthansa Cargo
+      pt: "Lufthansa Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Mediante carga
+      pt: "Via carga"
+    detail:
+      en: Unaccompanied or oversize animals via Lufthansa Cargo — also for the UK and South Africa (freight only).
+      fr: Animaux non accompagnés ou hors gabarit via Lufthansa Cargo — aussi pour le R.-U. et l'Afrique du Sud (fret uniquement).
+      es: Animales no acompañados o de gran tamaño mediante Lufthansa Cargo, también para el RU y Sudáfrica (solo carga).
+      pt: "Animais desacompanhados ou fora do padrão via Lufthansa Cargo — também para o Reino Unido e a África do Sul (somente carga)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (domestic → long-haul)
+        fr: Cabine (domestique → long-courrier)
+        es: Cabina (nacional → larga distancia)
+        pt: "Cabine (doméstico → longa distância)"
+      value:
+        en: €65–125
+        fr: 65–125 €
+        es: 65–125 €
+        pt: "€65–125"
+    - label:
+        en: Hold — small crate
+        fr: Soute — petite caisse
+        es: Bodega — jaula pequeña
+        pt: "Porão — caixa pequena"
+      value:
+        en: €80–190
+        fr: 80–190 €
+        es: 80–190 €
+        pt: "€80–190"
+    - label:
+        en: Hold — large crate
+        fr: Soute — grande caisse
+        es: Bodega — jaula grande
+        pt: "Porão — caixa grande"
+      value:
+        en: €160–380
+        fr: 160–380 €
+        es: 160–380 €
+        pt: "€160–380"
+    - label:
+        en: Transfer surcharge (FRA/MUC/VIE/ZRH/GVA/BRU)
+        fr: Surcharge transfert (FRA/MUC/VIE/ZRH/GVA/BRU)
+        es: Recargo por conexión (FRA/MUC/VIE/ZRH/GVA/BRU)
+        pt: "Sobretaxa de conexão (FRA/MUC/VIE/ZRH/GVA/BRU)"
+      value:
+        en: €150 / $175
+        fr: 150 € / 175 $
+        es: 150 € / 175 $
+        pt: "€150 / $175"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR by zone; a transfer surcharge applies via certain hubs.
+    fr: EUR par zone ; une surcharge de transfert s'applique via certains hubs.
+    es: EUR por zona; se aplica un recargo por conexión a través de ciertos hubs.
+    pt: "EUR por zona; aplica-se uma sobretaxa de conexão via certos hubs."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats aren't allowed in the hold (constricted airways, heat/stress sensitivity): bulldogs (except American), pugs (all), Boston terrier, boxers, chow chow, Shih Tzu, Pekingese, Shar Pei, Lhasa Apso, and British Shorthair/Persian/Exotic/Himalayan/Scottish Fold cats. They may fly in the cabin."
+      fr: "Chiens et chats au nez écrasé interdits en soute (voies respiratoires étroites, sensibilité chaleur/stress) : bouledogues (sauf américain), carlins (tous), Boston terrier, boxers, chow chow, Shih Tzu, pékinois, Shar Pei, Lhasa Apso, et chats British Shorthair/persans/exotiques/himalayens/Scottish Fold. Ils peuvent voyager en cabine."
+      es: "Los perros y gatos de hocico chato no se admiten en bodega (vías respiratorias estrechas, sensibilidad al calor/estrés): bulldogs (salvo el americano), carlinos (todos), Boston terrier, bóxers, chow chow, Shih Tzu, pequinés, Shar Pei, Lhasa Apso, y gatos British Shorthair/persas/exóticos/himalayos/Scottish Fold. Pueden volar en cabina."
+      pt: "Cachorros e gatos de focinho achatado não são admitidos no porão (vias respiratórias estreitas, sensibilidade ao calor/estresse): buldogues (exceto o americano), pugs (todos), Boston Terrier, boxers, Chow Chow, Shih Tzu, pequinês, Shar Pei, Lhasa Apso, e gatos British Shorthair/persas/exóticos/himalaios/Scottish Fold. Podem voar na cabine."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: Special crate / cargo
+          fr: Caisse spéciale / fret
+          es: Jaula especial / carga
+          pt: "Caixa especial / carga"
+      - cls: warn
+        label:
+          en: No pregnancy
+          fr: Pas de gestation
+          es: Sin gestación
+          pt: "Sem gestação"
+    note:
+      en: "'Fighting dog' breeds (American Bully, American Bulldog, Dogo Argentino, Kangal, Caucasian Ovcharka, Rottweiler) only in special IATA crates in the hold. Sedation isn't recommended; pregnant animals aren't accepted."
+      fr: Les races de « chiens de combat » (American Bully, American Bulldog, Dogo Argentino, Kangal, berger du Caucase, Rottweiler) uniquement en caisses IATA spéciales en soute. Sédation déconseillée ; animaux gestants refusés.
+      es: "Las razas de «perro de pelea» (American Bully, American Bulldog, Dogo Argentino, Kangal, pastor del Cáucaso, Rottweiler) solo en jaulas IATA especiales en bodega. No se recomienda la sedación; no se aceptan animales gestantes."
+      pt: "As raças de \"cachorro de briga\" (American Bully, American Bulldog, Dogo Argentino, Kangal, Pastor do Cáucaso, Rottweiler) viajam somente em caixas IATA especiais no porão. A sedação não é recomendada; animais prenhes não são aceitos."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Austrian publishes no numeric temperature limit; some large animals can't be carried in the hold to certain destinations due to local conditions.
+    fr: Austrian ne publie pas de limite chiffrée ; certains grands animaux ne peuvent pas être transportés en soute vers certaines destinations en raison des conditions locales.
+    es: Austrian no publica un límite de temperatura numérico; algunos animales grandes no pueden transportarse en bodega hacia ciertos destinos por las condiciones locales.
+    pt: "A Austrian não divulga um limite numérico de temperatura; alguns animais grandes não podem ser transportados no porão para certos destinos devido às condições locais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: One trained assistance dog free (two on non-stop US flights), in the footwell, leashed to the seat belt; min 4 months (6 for the US).
+      fr: Un chien d'assistance dressé gratuit (deux sur les vols directs USA), dans l'espace au sol, attaché à la ceinture ; min 4 mois (6 pour les USA).
+      es: Un perro de asistencia adiestrado gratis (dos en vuelos directos a EE. UU.), en el espacio para los pies, atado al cinturón; mín. 4 meses (6 para EE. UU.).
+      pt: "Um cão de assistência treinado gratuito (dois em voos diretos para os EUA), no espaço para os pés, preso ao cinto de segurança; mín. 4 meses (6 para os EUA)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Accredited training certificate; US: DOT forms ≥ 48 h ahead. Emotional-support animals not accepted since Mar 2021."
+      fr: "Certificat de dressage accrédité ; USA : formulaires DOT ≥ 48 h à l'avance. Chiens de soutien émotionnel non acceptés depuis mars 2021."
+      es: "Certificado de adiestramiento acreditado; EE. UU.: formularios del DOT ≥ 48 h antes. Los animales de apoyo emocional no se aceptan desde marzo de 2021."
+      pt: "Certificado de treinamento credenciado; EUA: formulários do DOT com ≥ 48 h de antecedência. Animais de apoio emocional não são aceitos desde março de 2021."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Two per container
+      fr: Deux par contenant
+      es: Dos por contenedor
+      pt: "Dois por caixa de transporte"
+    value:
+      en: Up to 2 healthy pets may share one approved container; min 12 weeks; pregnant animals refused.
+      fr: Jusqu'à 2 animaux sains peuvent partager un contenant approuvé ; min 12 semaines ; animaux gestants refusés.
+      es: Hasta 2 mascotas sanas pueden compartir un contenedor aprobado; mín. 12 semanas; animales gestantes rechazados.
+      pt: "Até 2 animais saudáveis podem compartilhar uma caixa de transporte aprovada; mín. 12 semanas; animais prenhes são recusados."
+  - icon: 🚫
+    label:
+      en: Cargo-only countries
+      fr: Pays fret-seul
+      es: Países solo de carga
+      pt: "Países somente carga"
+    value:
+      en: Some countries (e.g. the UK, South Africa) require all animals to travel as freight, regardless of size.
+      fr: Certains pays (ex. R.-U., Afrique du Sud) imposent le transport en fret pour tous les animaux, quelle que soit leur taille.
+      es: Algunos países (p. ej. el RU, Sudáfrica) exigen que todos los animales viajen como carga, sin importar su tamaño.
+      pt: "Alguns países (por exemplo, o Reino Unido, a África do Sul) exigem que todos os animais viajem como carga, independentemente do tamanho."
+  - icon: ⏱️
+    label:
+      en: Check-in
+      fr: Enregistrement
+      es: Facturación
+      pt: "Check-in"
+    value:
+      en: Online/mobile check-in is possible, but collect the boarding pass at the desk and bring the pet 2–3 h ahead; pets in lounges only in their carrier.
+      fr: L'enregistrement en ligne/mobile est possible, mais récupère la carte au comptoir et présente l'animal 2–3 h à l'avance ; animaux en salon uniquement dans leur sac.
+      es: La facturación en línea/móvil es posible, pero recoge la tarjeta de embarque en el mostrador y presenta a la mascota 2–3 h antes; en las salas VIP las mascotas solo dentro de su jaula.
+      pt: "O check-in on-line/pelo celular é possível, mas retire o cartão de embarque no balcão e leve o animal com 2–3 h de antecedência; nas salas VIP, os animais só na sua caixa/bolsa de transporte."
+book:
+  host: austrian.com
+  url: https://www.austrian.com/
+sources:
+  en: Official Austrian Airlines pet policy · last verified 11 July 2026
+  fr: Politique animaux officielle Austrian Airlines · dernière vérification 11 juillet 2026
+  es: Política de mascotas oficial de Austrian Airlines · última verificación 11 julio 2026
+  pt: "Política de animais oficial da Austrian Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,324 @@
+id: airline_delta
+mono: DL
+name: Delta Air Lines
+titleH1:
+  en: Flying with a dog on Delta Air Lines
+  fr: Voyager avec un chien sur Delta Air Lines
+  es: Viajar con perro en Delta Air Lines
+  pt: "Voar com um cachorro na Delta Air Lines"
+metaDesc:
+  en: "Delta pet policy: cabin pets, military-only hold, suspended cargo, temperature limits, breed limits and official sources."
+  fr: "Politique animaux Delta : cabine, soute militaires, fret suspendu, limites de température, restrictions de races et sources officielles."
+  es: "Política de mascotas de Delta: mascotas en cabina, bodega solo para militares, carga suspendida, límites de temperatura, límites de raza y fuentes oficiales."
+  pt: "Política de animais da Delta: animais na cabine, porão somente para militares, carga suspensa, limites de temperatura, limites de raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: United States · ATL
+      fr: États-Unis · ATL
+      es: Estados Unidos · ATL
+      pt: "Estados Unidos · ATL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin for a fee; the hold is military-only and cargo is largely suspended.
+  fr: Petits animaux en cabine (payant) ; soute réservée aux militaires et fret largement suspendu.
+  es: Mascotas pequeñas en cabina con tarifa; la bodega es solo para militares y la carga está en gran parte suspendida.
+  pt: "Animais pequenos na cabine, mediante tarifa; o porão é somente para militares e a carga está, em grande parte, suspensa."
+ladder:
+  - flex: 22
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: under-seat
+      fr: sous le siège
+      es: bajo el asiento
+      pt: "sob o assento"
+  - flex: 40
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: military
+      fr: militaires
+      es: militares
+      pt: "militares"
+  - flex: 38
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: military
+      fr: militaires
+      es: militares
+      pt: "militares"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small dogs, cats & household birds in a kennel that fits fully under the seat; not in Delta One/Business/Premium Select. Min 8 weeks (domestic).
+      fr: Petits chiens, chats et oiseaux domestiques dans une caisse tenant entièrement sous le siège ; pas en Delta One/Business/Premium Select. Min 8 semaines (national).
+      es: Perros pequeños, gatos y aves domésticas en una jaula que quepa totalmente bajo el asiento; no en Delta One/Business/Premium Select. Mín. 8 semanas (nacional).
+      pt: "Cachorros pequenos, gatos e aves domésticas em uma caixa de transporte que caiba totalmente sob o assento; não na Delta One/Business/Premium Select. Mín. 8 semanas (doméstico)."
+    fee:
+      en: $95–200
+      fr: 95–200 $
+      es: 95–200 $
+      pt: "95–200 $"
+  - icon: 🎖️
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Military only
+      fr: Militaires uniquement
+      es: Solo militares
+      pt: "Somente militares"
+    detail:
+      en: Checked pets only for active US military & State Dept on transfer orders; not on flights over 12 h.
+      fr: Soute réservée au personnel militaire et diplomatique américain en mutation ; pas sur les vols de plus de 12 h.
+      es: Mascotas facturadas solo para militares en activo y personal del Departamento de Estado de EE. UU. con orden de traslado; no en vuelos de más de 12 h.
+      pt: "Animais despachados somente para militares dos EUA em serviço ativo e funcionários do Departamento de Estado em ordem de transferência; não em voos com mais de 12 h."
+    fee:
+      en: $200
+      fr: 200 $
+      es: 200 $
+      pt: "US$ 200"
+  - icon: ✈️
+    name:
+      en: Delta Cargo
+      fr: Delta Cargo
+      es: Delta Cargo
+      pt: "Delta Cargo"
+    cls: no
+    statusLabel:
+      en: Military only
+      fr: Militaires uniquement
+      es: Solo militares
+      pt: "Somente militares"
+    detail:
+      en: Pet shipping is suspended for the public — military & State Dept only.
+      fr: L'expédition d'animaux est suspendue pour le public — militaires et diplomates uniquement.
+      es: "El envío de mascotas está suspendido para el público: solo militares y personal del Departamento de Estado."
+      pt: "O envio de animais está suspenso para o público — somente militares e Departamento de Estado."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin — US / Canada
+        fr: Cabine — USA / Canada
+        es: Cabina — EE. UU. / Canadá
+        pt: "Cabine — EUA / Canadá"
+      value:
+        en: $95–150
+        fr: 95–150 $
+        es: 95–150 $
+        pt: "95–150 $"
+    - label:
+        en: Cabin — international
+        fr: Cabine — international
+        es: Cabina — internacional
+        pt: "Cabine — internacional"
+      value:
+        en: $200
+        fr: 200 $
+        es: 200 $
+        pt: "US$ 200"
+    - label:
+        en: Hold — US military / State Dept
+        fr: Soute — militaires / diplomates US
+        es: Bodega — militares / Departamento de Estado de EE. UU.
+        pt: "Porão — militares dos EUA / Departamento de Estado"
+      value:
+        en: $200 / way
+        fr: 200 $ / trajet
+        es: 200 $ / trayecto
+        pt: "200 $ / trajeto"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD. The cabin fee is $150 for tickets issued on/after 8 Apr 2025 ($95 before).
+    fr: USD. Le tarif cabine est de 150 $ pour les billets émis à partir du 8 avril 2025 (95 $ avant).
+    es: USD. La tarifa de cabina es de 150 $ para billetes emitidos a partir del 8 abr 2025 (95 $ antes).
+    pt: "USD. A tarifa de cabine é de $150 para bilhetes emitidos a partir de 8 de abr. de 2025 ($95 antes)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidas
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Snub-nosed dogs, cats & mixes aren't accepted as checked baggage or cargo: boxers, bulldogs (all), pugs (all), Boston terrier, Shih Tzu, Pekingese, chow chow, Cane Corso, mastiffs, and Persian/Himalayan/Exotic/British Shorthair/Burmese cats."
+      fr: "Chiens, chats et croisés au nez écrasé refusés en soute et en fret : boxers, bouledogues (tous), carlins (tous), Boston terrier, Shih Tzu, pékinois, chow chow, Cane Corso, mastiffs, et chats persans/himalayens/exotiques/British Shorthair/birmans."
+      es: "Los perros, gatos y cruces de hocico chato no se aceptan como equipaje facturado ni carga: bóxers, bulldogs (todos), carlinos (todos), Boston terrier, Shih Tzu, pequinés, chow chow, Cane Corso, mastines, y gatos persas/himalayos/exóticos/British Shorthair/birmanos."
+      pt: "Cachorros, gatos e mestiços de focinho achatado não são aceitos como bagagem despachada nem como carga: boxers, buldogues (todos), pugs (todos), Boston Terrier, Shih Tzu, Pequinês, Chow Chow, Cane Corso, mastins, e gatos Persa/Himalaia/Exótico/British Shorthair/Burmês."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Sedatives and tranquillisers are not permitted for dogs & cats, including any medication that causes sedation.
+      fr: Les sédatifs et tranquillisants sont interdits pour les chiens et chats, y compris tout médicament sédatif.
+      es: Los sedantes y tranquilizantes no se permiten para perros y gatos, incluido cualquier medicamento que provoque sedación.
+      pt: "Sedativos e tranquilizantes não são permitidos para cachorros e gatos, incluindo qualquer medicamento que provoque sedação."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Heat ceiling 27 °C (80 °F)
+        fr: Plafond chaleur 27 °C (80 °F)
+        es: Techo de calor 27 °C (80 °F)
+        pt: "Teto de calor de 27 °C (80 °F)"
+    - cls: no
+      label:
+        en: Cold floor −7 °C (20 °F)
+        fr: Plancher froid −7 °C (20 °F)
+        es: Piso de frío −7 °C (20 °F)
+        pt: "Piso de frio de −7 °C (20 °F)"
+  note:
+    en: For checked/cargo pets, Delta won't accept animals above 80 °F (27 °C) or below 20 °F (−7 °C) at any ground point; a Certificate of Acclimation is needed between −7 °C and 7 °C.
+    fr: Pour la soute et le fret, Delta refuse les animaux au-dessus de 27 °C (80 °F) ou en dessous de −7 °C (20 °F) à un point au sol ; un certificat d'acclimatation est requis entre −7 °C et 7 °C.
+    es: Para las mascotas facturadas/en carga, Delta no acepta animales por encima de 80 °F (27 °C) ni por debajo de 20 °F (−7 °C) en ningún punto en tierra; se necesita un certificado de aclimatación entre −7 °C y 7 °C.
+    pt: "Para animais despachados/em carga, a Delta não aceita animais acima de 80 °F (27 °C) nem abaixo de 20 °F (−7 °C) em nenhum ponto em solo; é exigido um Certificate of Acclimation (certificado de aclimatação) entre −7 °C e 7 °C."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs fly free in the cabin (max 2, min 4 months); emotional-support animals aren't recognised.
+      fr: Chiens d'assistance dressés gratuits en cabine (max 2, min 4 mois) ; chiens de soutien émotionnel non reconnus.
+      es: Los perros de asistencia adiestrados viajan gratis en cabina (máx. 2, mín. 4 meses); los animales de apoyo emocional no se reconocen.
+      pt: "Cães de assistência treinados voam gratuitamente na cabine (máx. 2, mín. 4 meses); animais de apoio emocional não são reconhecidos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: DOT Service Animal Air Travel Form; 8 h+ flights add the relief form. Submit ≥ 48 h ahead.
+      fr: "Formulaire DOT d'animal d'assistance ; vols de 8 h+ : formulaire de soulagement. À soumettre ≥ 48 h à l'avance."
+      es: Formulario del DOT de viaje aéreo de animal de asistencia; en vuelos de 8 h o más se añade el formulario de alivio. Presenta ≥ 48 h antes.
+      pt: "DOT Service Animal Air Travel Form; voos de 8 h ou mais acrescentam o formulário de alívio. Envie ≥ 48 h antes."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Excluded routes
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    value:
+      en: No cabin pets to/from Hawaii, Australia, NZ, UK, UAE, Iceland, Jamaica, Hong Kong, South Africa; can't originate in Brazil/Colombia/Dominican Rep.
+      fr: Pas d'animaux en cabine de/vers Hawaï, Australie, N.-Z., R.-U., Émirats, Islande, Jamaïque, Hong Kong, Afrique du Sud ; départ impossible du Brésil/Colombie/Rép. dominicaine.
+      es: Sin mascotas en cabina hacia/desde Hawái, Australia, NZ, RU, EAU, Islandia, Jamaica, Hong Kong, Sudáfrica; no pueden originarse en Brasil/Colombia/Rep. Dominicana.
+      pt: "Nenhum animal em cabine de/para Havaí, Austrália, Nova Zelândia, Reino Unido, Emirados Árabes Unidos, Islândia, Jamaica, Hong Kong, África do Sul; não pode ter origem no Brasil/Colômbia/Rep. Dominicana."
+  - icon: 🧳
+    label:
+      en: At the airport
+      fr: À l'aéroport
+      es: En el aeropuerto
+      pt: "No aeroporto"
+    value:
+      en: Check in at the Special Service Counter; remove the pet from its kennel at security.
+      fr: Enregistrement au Special Service Counter ; sortir l'animal de sa caisse au contrôle de sûreté.
+      es: Factura en el Special Service Counter; saca a la mascota de su jaula en el control de seguridad.
+      pt: "Faça o check-in no Special Service Counter; retire o animal da caixa de transporte no controle de segurança."
+  - icon: 📄
+    label:
+      en: US entry
+      fr: Entrée aux USA
+      es: Entrada a EE. UU.
+      pt: "Entrada nos EUA"
+    value:
+      en: Dogs to the US must be microchipped, 6 months+, with a CDC Dog Import Form receipt.
+      fr: Les chiens vers les USA doivent être pucés, 6 mois+, avec un reçu de formulaire CDC Dog Import.
+      es: Los perros hacia EE. UU. deben tener microchip, 6 meses o más, y un recibo del CDC Dog Import Form.
+      pt: "Cachorros com destino aos EUA precisam ter microchip, 6 meses ou mais, e um comprovante do CDC Dog Import Form."
+book:
+  host: delta.com
+  url: https://www.delta.com/
+sources:
+  en: 4 Delta sources · last verified 11 July 2026
+  fr: 4 sources Delta · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Delta · última verificación 11 julio 2026
+  pt: "4 fontes da Delta · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

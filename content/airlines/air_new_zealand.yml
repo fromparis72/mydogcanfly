@@ -1,0 +1,310 @@
+id: airline_air_new_zealand
+mono: NZ
+name: Air New Zealand
+titleH1:
+  en: Flying with a dog on Air New Zealand
+  fr: Voyager avec un chien sur Air New Zealand
+  es: Volar con un perro en Air New Zealand
+  pt: "Viajar com um cachorro pela Air New Zealand"
+metaDesc:
+  en: "Air New Zealand pet policy: no cabin pets, domestic hold, cargo pet services, snub-nosed 5-hour limit and official sources."
+  fr: "Politique animaux Air New Zealand : pas de cabine, soute domestique, services cargo, limite brachy 5 h et sources officielles."
+  es: "Política de mascotas de Air New Zealand: sin mascotas en cabina, bodega nacional, servicios de carga para mascotas, límite de 5 horas para hocico chato y fuentes…"
+  pt: "Política de animais da Air New Zealand: sem cabine, porão em voos domésticos, carga para animais, limite de 5 horas para focinho achatado e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: New Zealand · AKL
+      fr: Nouvelle-Zélande · AKL
+      es: Nueva Zelanda · AKL
+      pt: "Nova Zelândia · AKL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: No cabin pets (service dogs only); pets fly in the hold on NZ domestic flights, and internationally only via approved transporters.
+  fr: Pas d'animaux en cabine (chiens d'assistance seuls) ; les animaux volent en soute sur les vols domestiques NZ, et à l'international uniquement via des transporteurs agréés.
+  es: No se admiten mascotas en cabina (solo perros de asistencia); las mascotas vuelan en bodega en los vuelos nacionales de NZ, y a nivel internacional solo vía transportistas autorizados.
+  pt: "Nenhum animal na cabine (somente cães de serviço); os animais voam no porão nos voos domésticos da NZ e, internacionalmente, somente via transportadoras aprovadas."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 62
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: domestic ≤ 60 kg
+      fr: domestique ≤ 60 kg
+      es: nacional ≤ 60 kg
+      pt: "doméstico ≤ 60 kg"
+  - flex: 30
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: intl / solo
+      fr: intl / seul
+      es: intl / solo
+      pt: "intl / sozinho"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only accredited service dogs.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance accrédités.
+      es: No se admiten mascotas en cabina — solo perros de asistencia acreditados.
+      pt: "Nenhum animal na cabine — somente cães de serviço credenciados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Domestic
+      fr: Domestique
+      es: Nacional
+      pt: "Doméstico"
+    detail:
+      en: Cats, dogs & small caged birds as checked baggage on some NZ domestic flights (pet + carrier ≤ 60 kg) in a climate-controlled, pressurised hold.
+      fr: Chats, chiens et petits oiseaux en cage en bagage enregistré sur certains vols domestiques NZ (animal + sac ≤ 60 kg) dans une soute climatisée et pressurisée.
+      es: Gatos, perros y aves pequeñas enjauladas como equipaje facturado en algunos vuelos nacionales de NZ (mascota + jaula ≤ 60 kg) en una bodega climatizada y presurizada.
+      pt: "Cachorros, gatos e pequenas aves engaioladas como bagagem despachada em alguns voos domésticos da NZ (animal + caixa de transporte ≤ 60 kg) em um porão climatizado e pressurizado."
+    fee:
+      en: NZ$120
+      fr: 120 NZ$
+      es: 120 NZ$
+      pt: "NZ$120"
+  - icon: ✈️
+    name:
+      en: Cargo Pet Services
+      fr: Cargo Pet Services
+      es: Cargo Pet Services
+      pt: "Cargo Pet Services"
+    cls: warn
+    statusLabel:
+      en: Via transporter
+      fr: Via transporteur
+      es: Vía transportista
+      pt: "Via transportadora"
+    detail:
+      en: Solo pets, international, over 60 kg or oversize via an approved pet transporter (ANZ doesn't take direct public bookings).
+      fr: Animaux non accompagnés, international, plus de 60 kg ou hors gabarit via un transporteur agréé (ANZ ne prend pas de réservations directes du public).
+      es: Mascotas no acompañadas, internacionales, de más de 60 kg o fuera de medidas vía un transportista de mascotas autorizado (ANZ no acepta reservas directas del público).
+      pt: "Animais sozinhos, internacionais, com mais de 60 kg ou fora do padrão, via uma transportadora de animais aprovada (a ANZ não aceita reservas diretas do público)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold — NZ domestic
+        fr: Soute — domestique NZ
+        es: Bodega — nacional NZ
+        pt: "Porão — doméstico NZ"
+      value:
+        en: NZ$120 (flat)
+        fr: 120 NZ$ (forfait)
+        es: 120 NZ$ (fijo)
+        pt: "NZ$120 (fixo)"
+    - label:
+        en: Cargo — international / solo
+        fr: Fret — international / seul
+        es: Carga — internacional / solo
+        pt: "Carga — internacional / sozinho"
+      value:
+        en: Via transporter
+        fr: Via transporteur
+        es: Vía transportista
+        pt: "Via transportadora"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Flat NZ$120 domestic pet fee, paid at the airport; international is quoted by an approved transporter.
+    fr: Forfait animal domestique de 120 NZ$, payé à l'aéroport ; l'international est chiffré par un transporteur agréé.
+    es: Tarifa fija de mascota nacional de 120 NZ$, pagada en el aeropuerto; la internacional la presupuesta un transportista autorizado.
+    pt: "Tarifa fixa de animal doméstico de NZ$120, paga no aeroporto; a internacional é orçada por uma transportadora aprovada."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not over 5 h
+          fr: Pas au-delà de 5 h
+          es: No en más de 5 h
+          pt: "Não além de 5 h"
+    note:
+      en: "Snub-nosed breeds (and crosses) are only accepted on single-sector flights of 5 hours or less: bulldogs (all), boxers (all), pug (all), Boston terrier, chow chow, Cane Corso, mastiffs, Shih Tzu, Pekingese, and Burmese/British Shorthair/Exotic/Persian/Himalayan cats. Not on flights over 5 h."
+      fr: "Les races au nez écrasé (et croisés) ne sont acceptées que sur les vols d'un seul tronçon de 5 heures ou moins : bouledogues (tous), boxers (tous), carlin (tous), Boston terrier, chow chow, Cane Corso, mastiffs, Shih Tzu, pékinois, et chats birmans/British Shorthair/exotiques/persans/himalayens. Pas sur les vols de plus de 5 h."
+      es: "Las razas de hocico chato (y cruces) solo se aceptan en vuelos de un solo tramo de 5 horas o menos: bulldogs (todos), boxers (todos), carlino (todos), Boston terrier, chow chow, Cane Corso, mastines, Shih Tzu, pekinés y gatos birmanos/British Shorthair/exóticos/persas/himalayos. No en vuelos de más de 5 h."
+      pt: "As raças de focinho achatado (e seus cruzamentos) só são aceitas em voos de um único trecho de 5 horas ou menos: buldogues (todos), boxers (todos), pug (todos), Boston Terrier, Chow Chow, Cane Corso, mastins, Shih Tzu, pequinês, e gatos birmaneses/British Shorthair/exóticos/persas/himalaios. Não em voos de mais de 5 h."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation (MPI)
+          fr: Pas de sédation (MPI)
+          es: Sin sedación (MPI)
+          pt: "Sem sedação (MPI)"
+      - cls: warn
+        label:
+          en: Min. 8 weeks
+          fr: 8 semaines min.
+          es: Mín. 8 semanas
+          pt: "Mín. 8 semanas"
+    note:
+      en: Sedation is prohibited (NZ MPI rule). Racing/breeding greyhounds aren't accepted (family pets only by Cargo approval). Min 8 weeks.
+      fr: La sédation est interdite (règle MPI de Nouvelle-Zélande). Les lévriers de course/reproduction ne sont pas acceptés (animaux de famille uniquement sur accord Cargo). Min 8 semaines.
+      es: La sedación está prohibida (norma MPI de Nueva Zelanda). Los galgos de carreras/cría no se aceptan (mascotas familiares solo con aprobación de Cargo). Mín 8 semanas.
+      pt: "A sedação é proibida (regra do MPI da Nova Zelândia). Galgos de corrida ou de reprodução não são aceitos (somente animais de família, mediante aprovação da Cargo). Mín. 8 semanas."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Fully pressurised, temperature-controlled hold
+        fr: Soute pleinement pressurisée et tempérée
+        es: Bodega totalmente presurizada y con temperatura controlada
+        pt: "Porão totalmente pressurizado e com temperatura controlada"
+    - cls: no
+      label:
+        en: "Brachy: no flights over 5 h"
+        fr: "Brachy : pas de vols > 5 h"
+        es: "Braquicéfalos: sin vuelos de más de 5 h"
+        pt: "Focinho achatado: sem voos de mais de 5 h"
+  note:
+    en: The hold is fully pressurised (like the cabin) and temperature/ventilation-controlled, with dimmed lighting. There's no numeric limit, but snub-nosed breeds are barred from flights over 5 hours (heat/humidity/stress).
+    fr: La soute est pleinement pressurisée (comme la cabine) et sa température/ventilation est contrôlée, avec un éclairage tamisé. Pas de limite chiffrée, mais les races au nez écrasé sont interdites sur les vols de plus de 5 heures (chaleur/humidité/stress).
+    es: La bodega está totalmente presurizada (como la cabina) y con temperatura/ventilación controladas, con iluminación tenue. No hay límite numérico, pero las razas de hocico chato están vetadas en vuelos de más de 5 horas (calor/humedad/estrés).
+    pt: "O porão é totalmente pressurizado (como a cabine) e tem temperatura e ventilação controladas, com iluminação reduzida. Não há limite numérico, mas as raças de focinho achatado são vetadas em voos de mais de 5 horas (calor/umidade/estresse)."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Accredited service dogs (ADI/IGDF or NZ Dog Control Act) may travel in the cabin, with a free extra seat if space allows.
+      fr: Les chiens d'assistance accrédités (ADI/IGDF ou NZ Dog Control Act) peuvent voyager en cabine, avec un siège supplémentaire gratuit si l'espace le permet.
+      es: Los perros de asistencia acreditados (ADI/IGDF o NZ Dog Control Act) pueden viajar en cabina, con un asiento extra gratis si el espacio lo permite.
+      pt: "Cães de serviço credenciados (ADI/IGDF ou NZ Dog Control Act) podem viajar na cabine, com um assento extra gratuito se houver espaço."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Add via Special Assistance at booking; submit the route-specific forms (US, Australia–NZ, and other) before flying.
+      fr: Ajouter via Assistance spéciale à la réservation ; soumettre les formulaires selon la route (USA, Australie–NZ, et autres) avant de voler.
+      es: Añádelo a través de Asistencia especial al reservar; presenta los formularios específicos de la ruta (EE. UU., Australia–NZ y otros) antes de volar.
+      pt: "Adicione via Assistência Especial no momento da reserva; envie os formulários específicos da rota (EUA, Austrália–NZ e outras) antes de voar."
+goodToKnow:
+  - icon: 🧳
+    label:
+      en: Hold domestic only
+      fr: Soute domestique seule
+      es: Bodega solo nacional
+      pt: "Porão somente doméstico"
+    value:
+      en: Pets fly as checked baggage only on some NZ domestic flights; internationally, only via an approved transporter.
+      fr: Les animaux voyagent en bagage enregistré uniquement sur certains vols domestiques NZ ; à l'international, seulement via un transporteur agréé.
+      es: Las mascotas viajan como equipaje facturado solo en algunos vuelos nacionales de NZ; a nivel internacional, únicamente vía un transportista autorizado.
+      pt: "Os animais viajam como bagagem despachada somente em alguns voos domésticos da NZ; internacionalmente, apenas via uma transportadora aprovada."
+  - icon: 📄
+    label:
+      en: No domestic paperwork
+      fr: Pas de papiers en domestique
+      es: Sin papeleo en vuelos nacionales
+      pt: "Sem papelada em voos domésticos"
+    value:
+      en: No vaccination or vet paperwork is needed for pets on NZ domestic flights (international needs MPI export certification).
+      fr: Aucun document de vaccination ou vétérinaire n'est requis pour les animaux sur les vols domestiques NZ (l'international exige une certification d'export MPI).
+      es: No se necesita documentación de vacunación ni veterinaria para las mascotas en los vuelos nacionales de NZ (los internacionales requieren certificación de exportación del MPI).
+      pt: "Não é necessária nenhuma documentação de vacinação ou veterinária para animais nos voos domésticos da NZ (os internacionais exigem certificação de exportação do MPI)."
+  - icon: 🐾
+    label:
+      en: Shared carrier
+      fr: Sac partagé
+      es: Jaula compartida
+      pt: "Caixa de transporte compartilhada"
+    value:
+      en: Two adults (≤ 14 kg each) or three littermates may share a carrier; one animal per carrier over 14 kg.
+      fr: Deux adultes (≤ 14 kg chacun) ou trois de la même portée peuvent partager un sac ; un animal par sac au-delà de 14 kg.
+      es: Dos adultos (≤ 14 kg cada uno) o tres de la misma camada pueden compartir una jaula; un animal por jaula por encima de 14 kg.
+      pt: "Dois adultos (≤ 14 kg cada) ou três da mesma ninhada podem compartilhar uma caixa de transporte; um animal por caixa acima de 14 kg."
+book:
+  host: airnewzealand.com
+  url: https://www.airnewzealand.com/
+sources:
+  en: 7 Air New Zealand sources · last verified 11 July 2026
+  fr: 7 sources Air New Zealand · dernière vérification 11 juillet 2026
+  es: 7 fuentes de Air New Zealand · última verificación 11 de julio de 2026
+  pt: "7 fontes da Air New Zealand · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

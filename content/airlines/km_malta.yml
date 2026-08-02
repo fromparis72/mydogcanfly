@@ -1,0 +1,332 @@
+id: airline_km_malta
+mono: KM
+name: KM Malta Airlines
+titleH1:
+  en: Flying with a dog on KM Malta Airlines
+  fr: Voyager avec un chien sur KM Malta Airlines
+  es: Volar con un perro en KM Malta Airlines
+  pt: "Viajar com um cachorro pela KM Malta Airlines"
+metaDesc:
+  en: "KM Malta Airlines pet policy: cabin up to 10 kg, checked baggage (AVIH) up to 32 kg, cargo, fees, UK route limits and official sources."
+  fr: "Politique animaux KM Malta Airlines : cabine jusqu'à 10 kg, bagage accompagné (AVIH) jusqu'à 32 kg, fret, tarifs, limites vers le Royaume-Uni et sources officielles."
+  es: "Política de mascotas de KM Malta Airlines: cabina hasta 10 kg, equipaje facturado (AVIH) hasta 32 kg, carga, tarifas, límites al Reino Unido y fuentes oficiales."
+  pt: "Política de animais da KM Malta Airlines: cabine até 10 kg, bagagem despachada (AVIH) até 32 kg, carga, tarifas, limites nas rotas para o Reino Unido e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: Independent
+      fr: Indépendante
+      es: Independiente
+      pt: "Independente"
+  - icon: 📍
+    label:
+      en: Malta · MLA
+      fr: Malte · MLA
+      es: Malta · MLA
+      pt: "Malta · MLA"
+  - icon: ✓
+    label:
+      en: Verified 18 Jul 2026
+      fr: Vérifié le 18 juil. 2026
+      es: Verificado 18 jul 2026
+      pt: "Verificado em 18 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small dogs in the cabin (≤ 10 kg) and larger dogs in the hold (≤ 32 kg) on direct routes — but pets can't fly Malta–UK except London Heathrow into Malta.
+  fr: Petits chiens en cabine (≤ 10 kg) et plus grands en soute (≤ 32 kg) sur les vols directs — mais pas d'animaux Malte–Royaume-Uni, sauf Londres Heathrow vers Malte.
+  es: Perros pequeños en cabina (≤ 10 kg) y más grandes en bodega (≤ 32 kg) en rutas directas, pero sin mascotas Malta–Reino Unido, salvo Londres Heathrow hacia Malta.
+  pt: "Cachorros pequenos na cabine (≤ 10 kg) e cachorros maiores no porão (≤ 32 kg) em voos diretos — mas os animais não podem voar Malta–Reino Unido, exceto de Londres Heathrow para Malta."
+ladder:
+  - flex: 20
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 55
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 25
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 32 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin (PETC)
+      fr: Cabine (PETC)
+      es: Cabina (PETC)
+      pt: "Cabine (PETC)"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats up to 10 kg incl. a soft carrier (40 × 34 × 18 cm) under the seat. Min. 15 weeks old, 5 pets per flight. Book online or via +356 2135 6000.
+      fr: Chiens et chats jusqu'à 10 kg avec un sac souple (40 × 34 × 18 cm) sous le siège. Min. 15 semaines, 5 animaux par vol. Réservation en ligne ou au +356 2135 6000.
+      es: Perros y gatos hasta 10 kg con un transportín flexible (40 × 34 × 18 cm) bajo el asiento. Mín. 15 semanas, 5 mascotas por vuelo. Reserva en línea o al +356 2135 6000.
+      pt: "Cachorros e gatos até 10 kg incluindo uma bolsa de transporte macia (40 × 34 × 18 cm) sob o assento. Mín. 15 semanas de idade, 5 animais por voo. Reserve online ou pelo +356 2135 6000."
+    fee:
+      en: €85 each way
+      fr: 85 € par trajet
+      es: 85 € por trayecto
+      pt: "85 € por trajeto"
+  - icon: 🧳
+    name:
+      en: Checked baggage (AVIH)
+      fr: Bagage accompagné (AVIH)
+      es: Equipaje facturado (AVIH)
+      pt: "Bagagem despachada (AVIH)"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats up to 32 kg incl. an IATA crate (max height 100 cm) in the hold. Register at least 5 working days ahead; 2 pets per sector.
+      fr: Chiens et chats jusqu'à 32 kg avec une caisse IATA (hauteur max 100 cm) en soute. À réserver au moins 5 jours ouvrés avant ; 2 animaux par tronçon.
+      es: Perros y gatos hasta 32 kg con una jaula IATA (altura máx. 100 cm) en bodega. Reserva con al menos 5 días laborables de antelación; 2 mascotas por trayecto.
+      pt: "Cachorros e gatos até 32 kg incluindo uma caixa de transporte IATA (altura máx. 100 cm) no porão. Registre com pelo menos 5 dias úteis de antecedência; 2 animais por trajeto."
+    fee:
+      en: €90–160 + €10 admin
+      fr: 90–160 € + 10 € de dossier
+      es: 90–160 € + 10 € de gestión
+      pt: "90–160 € + 10 € de gestão"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Vía agente
+      pt: "Via agente"
+    detail:
+      en: For pets that don't qualify for cabin or checked baggage. Booked through the KM Malta Cargo department; drop-off/pick-up at the cargo centre. Max crate height 110 cm.
+      fr: Pour les animaux inéligibles à la cabine ou au bagage accompagné. Réservé via le service Cargo de KM Malta ; dépôt/retrait au centre de fret. Hauteur de caisse max 110 cm.
+      es: Para mascotas que no pueden viajar en cabina o como equipaje facturado. Se reserva a través del departamento de Carga de KM Malta; entrega/recogida en el centro de carga. Altura máx. de jaula 110 cm.
+      pt: "Para animais que não se qualificam para a cabine ou a bagagem despachada. Reservado pelo departamento de Carga da KM Malta; entrega/retirada no centro de carga. Altura máxima da caixa: 110 cm."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (PETC) ≤ 10 kg
+        fr: Cabine (PETC) ≤ 10 kg
+        es: Cabina (PETC) ≤ 10 kg
+        pt: "Cabine (PETC) ≤ 10 kg"
+      value:
+        en: €85
+        fr: 85 €
+        es: 85 €
+        pt: "85 €"
+    - label:
+        en: AVIH small (1–10 kg)
+        fr: AVIH petit (1–10 kg)
+        es: AVIH pequeño (1–10 kg)
+        pt: "AVIH pequeno (1–10 kg)"
+      value:
+        en: €90
+        fr: 90 €
+        es: 90 €
+        pt: "90 €"
+    - label:
+        en: AVIH medium (11–20 kg)
+        fr: AVIH moyen (11–20 kg)
+        es: AVIH mediano (11–20 kg)
+        pt: "AVIH médio (11–20 kg)"
+      value:
+        en: €125
+        fr: 125 €
+        es: 125 €
+        pt: "125 €"
+    - label:
+        en: AVIH large (21–32 kg)
+        fr: AVIH grand (21–32 kg)
+        es: AVIH grande (21–32 kg)
+        pt: "AVIH grande (21–32 kg)"
+      value:
+        en: €160
+        fr: 160 €
+        es: 160 €
+        pt: "160 €"
+    - label:
+        en: AVIH admin fee
+        fr: Frais de dossier AVIH
+        es: Tarifa de gestión AVIH
+        pt: "Taxa de gestão AVIH"
+      value:
+        en: €10
+        fr: 10 €
+        es: 10 €
+        pt: "10 €"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR, per carrier and each way, non-refundable. Pets are charged for the full pet + crate weight, outside the baggage allowance.
+    fr: EUR, par sac et par trajet, non remboursable. Les animaux sont facturés au poids total animal + caisse, hors franchise bagages.
+    es: EUR, por transportín y por trayecto, no reembolsable. Las mascotas se cobran por el peso total mascota + jaula, fuera de la franquicia de equipaje.
+    pt: "EUR, por bolsa/caixa de transporte e por trajeto, não reembolsável. Os animais são cobrados pelo peso total do animal + caixa de transporte, além da franquia de bagagem."
+restrictions:
+  - icon: 🇬🇧
+    title:
+      en: UK routes
+      fr: Vols Royaume-Uni
+      es: Rutas Reino Unido
+      pt: "Rotas para o Reino Unido"
+    pills:
+      - cls: no
+        label:
+          en: No cabin / checked
+          fr: Ni cabine ni soute
+          es: Ni cabina ni bodega
+          pt: "Nem cabine nem porão"
+      - cls: warn
+        label:
+          en: Cargo only
+          fr: Fret uniquement
+          es: Solo carga
+          pt: "Somente carga"
+    note:
+      en: On Malta–UK routes pets must travel as cargo; PETC and AVIH are not available — except from London Heathrow into Malta, where cabin and checked baggage are allowed.
+      fr: Sur les lignes Malte–Royaume-Uni, les animaux voyagent en fret ; PETC et AVIH indisponibles — sauf de Londres Heathrow vers Malte, où cabine et bagage accompagné sont autorisés.
+      es: En las rutas Malta–Reino Unido las mascotas viajan como carga; PETC y AVIH no están disponibles, salvo desde Londres Heathrow hacia Malta, donde se permiten cabina y equipaje facturado.
+      pt: "Nas rotas Malta–Reino Unido, os animais devem viajar como carga; PETC e AVIH não estão disponíveis — exceto de Londres Heathrow para Malta, onde cabine e bagagem despachada são permitidas."
+  - icon: 🐶
+    title:
+      en: Breed & destination rules
+      fr: Races et règles de destination
+      es: Razas y normas de destino
+      pt: "Regras de raça e destino"
+    pills:
+      - cls: neutral
+        label:
+          en: Depends on destination
+          fr: Selon la destination
+          es: Según el destino
+          pt: "Depende do destino"
+    note:
+      en: Some dog breeds are restricted or prohibited by the destination country's import rules. Pets can't transit through Malta. KM Malta isn't liable if a pet is refused entry.
+      fr: Certaines races sont restreintes ou interdites par les règles d'importation du pays de destination. Les animaux ne peuvent pas transiter par Malte. KM Malta n'est pas responsable d'un refus d'entrée.
+      es: Algunas razas están restringidas o prohibidas por las normas de importación del país de destino. Las mascotas no pueden hacer tránsito por Malta. KM Malta no se responsabiliza si se deniega la entrada.
+      pt: "Algumas raças de cachorro são restritas ou proibidas pelas regras de importação do país de destino. Os animais não podem fazer trânsito por Malta. A KM Malta não se responsabiliza caso um animal tenha a entrada recusada."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+    - cls: warn
+      label:
+        en: "Heat embargo: on high loads"
+        fr: "Embargo : en forte charge"
+        es: "Embargo: con carga alta"
+        pt: "Embargo: em cargas altas"
+  note:
+    en: KM Malta publishes no hold-temperature limits, but notes that on high-load flights pets may be embargoed and refused — you're told at booking.
+    fr: KM Malta ne publie pas de limites de température en soute, mais précise qu'en cas de forte charge les animaux peuvent être refusés (embargo) — tu es informé à la réservation.
+    es: KM Malta no publica límites de temperatura en bodega, pero indica que en vuelos con carga alta las mascotas pueden ser rechazadas (embargo); se le informa al reservar.
+    pt: "A KM Malta não divulga limites de temperatura no porão, mas informa que, em voos com carga elevada, os animais podem ser embargados e recusados — você é avisado no momento da reserva."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Recognised assistance & guide dogs travel free in the cabin, with their supplies, beyond the baggage allowance.
+      fr: Les chiens d'assistance et guides reconnus voyagent gratuitement en cabine, avec leurs accessoires, hors franchise bagages.
+      es: Los perros de asistencia y guía reconocidos viajan gratis en cabina, con sus accesorios, fuera de la franquicia de equipaje.
+      pt: "Cães de assistência e de guia reconhecidos viajam gratuitamente na cabine, com seus acessórios, além da franquia de bagagem."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: A vet must examine the pet within 3 days of travel (2 days to Turkey) and confirm fitness in the pet passport's clinical section.
+      fr: Un vétérinaire doit examiner l'animal dans les 3 jours avant le voyage (2 jours pour la Turquie) et attester son aptitude dans la section clinique du passeport.
+      es: Un veterinario debe examinar a la mascota en los 3 días previos al viaje (2 días para Turquía) y confirmar su aptitud en la sección clínica del pasaporte.
+      pt: "Um veterinário deve examinar o animal em até 3 dias antes da viagem (2 dias para a Turquia) e confirmar sua aptidão na seção clínica do passaporte do animal."
+goodToKnow:
+  - icon: 🏢
+    label:
+      en: Check-in at the airport
+      fr: Enregistrement à l'aéroport
+      es: Facturación en el aeropuerto
+      pt: "Check-in no aeroporto"
+    value:
+      en: Pet passengers must check in at the airport desk (not online), at least 2 hours before departure.
+      fr: Les passagers avec animal doivent s'enregistrer au comptoir de l'aéroport (pas en ligne), au moins 2 heures avant le départ.
+      es: Los pasajeros con mascota deben facturar en el mostrador del aeropuerto (no en línea), al menos 2 horas antes de la salida.
+      pt: "Passageiros com animais devem fazer check-in no balcão do aeroporto (não online), com pelo menos 2 horas de antecedência em relação à partida."
+  - icon: 🐕
+    label:
+      en: Direct routes only
+      fr: Vols directs uniquement
+      es: Solo rutas directas
+      pt: "Somente voos diretos"
+    value:
+      en: Pets are accepted on KM Malta's own direct routes only, and can't transit through Malta onto another flight.
+      fr: Les animaux ne sont acceptés que sur les vols directs propres à KM Malta, sans transit par Malte vers un autre vol.
+      es: Las mascotas solo se aceptan en las rutas directas propias de KM Malta, sin tránsito por Malta hacia otro vuelo.
+      pt: "Os animais são aceitos somente nas rotas diretas próprias da KM Malta, e não podem fazer trânsito por Malta rumo a outro voo."
+  - icon: 📞
+    label:
+      en: How to book
+      fr: Comment réserver
+      es: Cómo reservar
+      pt: "Como reservar"
+    value:
+      en: Add a cabin pet online at booking; for checked baggage (AVIH) fill the form and register at least 5 working days ahead, or call +356 2135 6000.
+      fr: Ajoute un animal en cabine en ligne à l'achat ; pour le bagage accompagné (AVIH), remplis le formulaire et réserve au moins 5 jours ouvrés avant, ou appelle le +356 2135 6000.
+      es: Añade una mascota en cabina en línea al reservar; para equipaje facturado (AVIH) rellena el formulario y regístrala con al menos 5 días laborables de antelación, o llama al +356 2135 6000.
+      pt: "Adicione um animal de cabine online no momento da reserva; para bagagem despachada (AVIH), preencha o formulário e registre com pelo menos 5 dias úteis de antecedência, ou ligue para +356 2135 6000."
+book:
+  host: kmmaltairlines.com
+  url: https://kmmaltairlines.com/en/travelling-with-pets
+sources:
+  en: KM Malta Airlines official pet policy · verified 18 July 2026
+  fr: Politique animaux officielle KM Malta Airlines · vérifiée le 18 juillet 2026
+  es: Política de mascotas oficial de KM Malta Airlines · verificada el 18 de julio de 2026
+  pt: "Política oficial de transporte de animais da KM Malta Airlines · verificada em 18 de julho de 2026"
+verified_date: 2026-07-18

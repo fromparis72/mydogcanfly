@@ -1,0 +1,388 @@
+# Country Entry Guide — Mexico (bilingual EN/FR).
+# Mexico is NOT in the EU. This encodes Mexico's own SENASICA/SADER scheme.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_mx
+iso2: "MX"
+name: { en: "Mexico", fr: "Mexique", es: "México", pt: "México" }
+region: { en: "North America", fr: "Amérique du Nord", es: "América del Norte", pt: "América do Norte" }
+
+# Round-trip layer: Mexico is an EU-listed third country (return needs a health certificate, no titer),
+# but LEAVING Mexico requires a SENASICA export endorsement — the often-forgotten step.
+regime: listed
+domestic:
+  intro:
+    en: "Domestic flight in Mexico: no federal formality — in practice it is the airlines that impose the paperwork."
+    fr: "Vol intérieur au Mexique : aucune formalité fédérale — en pratique, ce sont les compagnies qui imposent les documents."
+    es: "Vuelo nacional en México: ningún trámite federal — en la práctica son las aerolíneas las que imponen los documentos."
+    pt: "Voo doméstico no México: nenhuma formalidade federal — na prática, são as companhias aéreas que impõem os documentos."
+  points:
+    - en: "No federal rule requires rabies vaccination, a microchip or a sanitary certificate for a domestic flight, and SENASICA's certificate is not triggered for pet dogs."
+      fr: "Aucune règle fédérale n'impose vaccination antirabique, puce ou certificat sanitaire pour un vol intérieur, et le certificat du SENASICA ne s'applique pas aux chiens de compagnie."
+      es: "Ninguna norma federal exige vacuna antirrábica, microchip ni certificado sanitario para un vuelo nacional, y el certificado de SENASICA no aplica a perros de compañía."
+      pt: "Nenhuma regra federal exige vacinação antirrábica, microchip ou certificado sanitário para um voo doméstico, e o certificado do SENASICA não se aplica a cachorros de estimação."
+    - en: "Mexican carriers, however, commonly require a vaccination record plus a health certificate issued within about 5 days, with weight limits and long brachycephalic exclusion lists."
+      fr: "Les compagnies mexicaines exigent en revanche couramment un carnet de vaccination et un certificat de santé de moins de 5 jours environ, avec limites de poids et longues listes d'exclusion de races brachycéphales."
+      es: "Las aerolíneas mexicanas sí suelen exigir cartilla de vacunación y certificado de salud de unos 5 días, con límites de peso y largas listas de exclusión de razas braquicéfalas."
+      pt: "As companhias aéreas mexicanas, porém, costumam exigir carteira de vacinação e um atestado de saúde com no máximo cerca de 5 dias, além de limites de peso e longas listas de exclusão de raças braquicefálicas."
+exit:
+  authority: SENASICA
+  authorityUrl: https://www.gob.mx/senasica/documentos/viajas-a-la-union-europea
+  intro:
+    en: "Leaving Mexico with your dog needs a SENASICA export procedure — not just your dog's passport."
+    fr: "Sortir du Mexique avec ton chien demande une démarche d'export SENASICA — pas seulement le passeport de ton chien."
+    es: "Salir de México con tu perro requiere un trámite de exportación de SENASICA — no solo el pasaporte de tu perro."
+    pt: "Sair do México com seu cachorro exige um procedimento de exportação do SENASICA — não apenas o passaporte do seu cachorro."
+  steps:
+    - timing: window
+      text:
+        en: "Request the SENASICA export health certificate in advance (about 3 business days)."
+        fr: "Demande le certificat zoosanitaire d'exportation SENASICA en amont (environ 3 jours ouvrés)."
+        es: "Solicita el certificado zoosanitario de exportación de SENASICA con antelación (unos 3 días hábiles)."
+        pt: "Solicite com antecedência o certificado zoossanitário de exportação do SENASICA (cerca de 3 dias úteis)."
+    - timing: window
+      text:
+        en: "Have it endorsed at the SENASICA airport office on departure day: physical exam of the dog, second stamp and signature."
+        fr: "Fais-le endosser au bureau SENASICA de l'aéroport le jour du vol : examen du chien, 2ᵉ sceau et signature."
+        es: "Hazlo validar en la oficina de SENASICA del aeropuerto el día del vuelo: examen del perro, segundo sello y firma."
+        pt: "Peça o endosso no escritório do SENASICA no aeroporto no dia do embarque: exame físico do cachorro, segundo carimbo e assinatura."
+  onSiteNote:
+    en: "Arrange this during your stay, in Spanish; on departure day allow plenty of time at the airport."
+    fr: "À organiser pendant ton séjour, en espagnol ; le jour du départ, prévois large à l'aéroport."
+    es: "Organízalo durante tu estancia; el día de salida, prevé tiempo de sobra en el aeropuerto."
+    pt: "Organize isso durante sua estadia, em espanhol; no dia da partida, chegue ao aeroporto com bastante antecedência."
+
+hero:
+  h1: { en: "Traveling to Mexico with your dog", fr: "Voyager au Mexique avec ton chien", es: "Viajar a México con tu perro", pt: "Viajar ao México com seu cachorro" }
+  intro:
+    en: >-
+      Mexico is one of the easiest countries in the world to enter with a dog. In recent years
+      SENASICA (the national animal-health authority, part of SADER) simplified the procedure: a
+      healthy dog arriving from the United States or Canada no longer needs a health certificate or a
+      rabies vaccination card to enter — it is simply inspected on arrival. Dogs coming from any other
+      country still need a Certificate of Good Health issued shortly before travel. In every case your
+      dog's crate must be clean, and there is no quarantine for a healthy animal. This guide explains
+      each situation so you know exactly what to prepare before you book your flight — and reminds you
+      that a rabies vaccination, though not always demanded at the Mexican border, remains strongly
+      recommended and is usually required to bring your dog back home.
+    fr: >-
+      Le Mexique est l'un des pays les plus simples au monde où entrer avec un chien. Ces dernières
+      années, le SENASICA (l'autorité sanitaire animale nationale, rattachée au SADER) a simplifié la
+      procédure : un chien en bonne santé arrivant des États-Unis ou du Canada n'a plus besoin de
+      certificat sanitaire ni de carnet de vaccination antirabique pour entrer — il est simplement
+      inspecté à l'arrivée. Les chiens venant de tout autre pays doivent encore présenter un Certificat
+      de Bonne Santé établi peu avant le voyage. Dans tous les cas, la caisse de ton chien doit être
+      propre, et il n'y a pas de quarantaine pour un animal en bonne santé. Ce guide détaille chaque
+      cas afin de savoir exactement quoi préparer avant de réserver ton vol — et rappelle que la
+      vaccination antirabique, même si elle n'est pas toujours exigée à la frontière mexicaine, reste
+      fortement recommandée et généralement obligatoire pour ramener ton chien chez toi.
+    es: >-
+      México es uno de los países más fáciles del mundo para entrar con un perro. En los últimos años,
+      SENASICA (la autoridad nacional de sanidad animal, dependiente de SADER) simplificó el
+      procedimiento: un perro sano que llega de Estados Unidos o Canadá ya no necesita un certificado
+      sanitario ni una cartilla de vacunación antirrábica para entrar — simplemente se le inspecciona a
+      la llegada. Los perros que llegan de cualquier otro país todavía necesitan un Certificado de Buena
+      Salud expedido poco antes del viaje. En todos los casos, la jaula de tu perro debe estar
+      limpia, y no hay cuarentena para un animal sano. Esta guía explica cada situación para que sepas
+      exactamente qué preparar antes de reservar tu vuelo — y te recuerda que la vacunación antirrábica,
+      aunque no siempre se exija en la frontera mexicana, sigue siendo muy recomendable y suele ser
+      obligatoria para regresar con tu perro a casa.
+
+    pt: "O México é um dos países mais fáceis do mundo para entrar com um cachorro. Nos últimos anos, o SENASICA (a autoridade nacional de saúde animal, ligada ao SADER) simplificou o procedimento: um cachorro saudável que chega dos Estados Unidos ou do Canadá não precisa mais de atestado de saúde nem de carteira de vacinação antirrábica para entrar — ele é simplesmente inspecionado na chegada. Os cachorros que vêm de qualquer outro país ainda precisam de um Certificado de Boa Saúde emitido pouco antes da viagem. Em todos os casos, a caixa de transporte do seu cachorro precisa estar limpa, e não há quarentena para um animal saudável. Este guia explica cada situação para que você saiba exatamente o que preparar antes de comprar a passagem — e lembra que a vacinação antirrábica, embora nem sempre exigida na fronteira mexicana, continua fortemente recomendada e costuma ser obrigatória para levar seu cachorro de volta para casa."
+difficulty:
+  level: easy
+  label: { en: "Easy — inspection on arrival", fr: "Facile — inspection à l'arrivée", es: "Fácil — inspección a la llegada", pt: "Fácil — inspeção na chegada" }
+
+prepTime:
+  eu:
+    en: "From the USA or Canada: essentially none — a healthy dog is just inspected on arrival, with no certificate or vaccination card required."
+    fr: "Depuis les États-Unis ou le Canada : quasi rien — un chien en bonne santé est simplement inspecté à l'arrivée, sans certificat ni carnet de vaccination."
+    es: "Desde EE. UU. o Canadá: prácticamente nada — un perro sano solo se inspecciona a la llegada, sin necesidad de certificado ni cartilla de vacunación."
+    pt: "Dos EUA ou do Canadá: praticamente nenhuma — um cachorro saudável é apenas inspecionado na chegada, sem exigência de certificado nem de carteira de vacinação."
+  listed:
+    en: "From any other country: a few days to obtain a Certificate of Good Health, which must be issued within 15 days before travel."
+    fr: "Depuis tout autre pays : quelques jours pour obtenir un Certificat de Bonne Santé, qui doit être établi dans les 15 jours avant le voyage."
+    es: "Desde cualquier otro país: unos días para obtener un Certificado de Buena Salud, que debe expedirse dentro de los 15 días previos al viaje."
+    pt: "De qualquer outro país: alguns dias para obter um Certificado de Boa Saúde, que precisa ser emitido nos 15 dias anteriores à viagem."
+  nonListed:
+    en: "Plan the rabies vaccination in advance: not always checked at the Mexican border, but recommended and usually required to re-enter your home country."
+    fr: "Prévois la vaccination antirabique à l'avance : pas toujours contrôlée à la frontière mexicaine, mais recommandée et généralement exigée pour rentrer dans ton pays."
+    es: "Planifica la vacunación antirrábica con antelación: no siempre se controla en la frontera mexicana, pero es recomendable y suele exigirse para volver a entrar en tu país de origen."
+    pt: "Programe a vacinação antirrábica com antecedência: nem sempre é conferida na fronteira mexicana, mas é recomendada e costuma ser exigida para reentrar no seu país de origem."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not required", fr: "Non requise", es: "No obligatorio", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Recommended — required on the certificate from countries other than the US/Canada", fr: "Recommandée — exigée sur le certificat depuis les pays autres que USA/Canada", es: "Recomendada — obligatoria en el certificado desde países distintos de EE. UU./Canadá", pt: "Recomendada — obrigatória no certificado quando se vem de países que não sejam EUA/Canadá" }
+    cls: neutral
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Not required from the US/Canada — required from other countries", fr: "Non requis depuis USA/Canada — requis depuis les autres pays", es: "No obligatorio desde EE. UU./Canadá — obligatorio desde otros países", pt: "Não obrigatório vindo dos EUA/Canadá — obrigatório vindo de outros países" }
+    cls: neutral
+  - requirement: { en: "Deworming (internal & external)", fr: "Vermifugation (interne & externe)", es: "Desparasitación (interna y externa)", pt: "Vermifugação (interna e externa)" }
+    status: { en: "Within the previous 6 months (on the certificate from other countries)", fr: "Dans les 6 mois précédents (sur le certificat depuis les autres pays)", es: "Dentro de los 6 meses previos (en el certificado desde otros países)", pt: "Nos 6 meses anteriores (no certificado quando se vem de outros países)" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for a healthy dog", fr: "Non requise pour un chien en bonne santé", es: "No obligatoria para un perro sano", pt: "Não obrigatória para um cachorro saudável" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Mexico (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Mexique (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — México (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — o México (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Mexico", fr: "Pays de destination — Mexique", es: "País de destino — México", pt: "País de destino — México" }
+      text:
+        en: "Mexico applies its own simplified SENASICA scheme: a healthy dog is inspected on arrival, needs no microchip and no rabies antibody test, and faces no quarantine."
+        fr: "Le Mexique applique son propre régime SENASICA simplifié : un chien en bonne santé est inspecté à l'arrivée, sans puce ni titrage antirabique, et sans quarantaine."
+        es: "México aplica su propio régimen simplificado de SENASICA: un perro sano se inspecciona a la llegada, no necesita microchip ni prueba de titulación de rabia, y no se enfrenta a cuarentena."
+        pt: "O México aplica seu próprio esquema simplificado do SENASICA: um cachorro saudável é inspecionado na chegada, não precisa de microchip nem de teste sorológico antirrábico, e não enfrenta quarentena."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Arriving from the US or Canada means no health certificate at all; arriving from any other country means you must present a Certificate of Good Health issued within 15 days before travel."
+        fr: "Arriver des États-Unis ou du Canada signifie aucun certificat sanitaire ; arriver de tout autre pays impose de présenter un Certificat de Bonne Santé établi dans les 15 jours avant le voyage."
+        es: "Llegar de EE. UU. o Canadá significa que no se necesita ningún certificado sanitario; llegar de cualquier otro país significa que debes presentar un Certificado de Buena Salud expedido dentro de los 15 días previos al viaje."
+        pt: "Chegar dos EUA ou do Canadá significa nenhum atestado de saúde; chegar de qualquer outro país significa que você precisa apresentar um Certificado de Boa Saúde emitido nos 15 dias anteriores à viagem."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's real health history matters more than the last airport. It also shapes your return trip: most home countries demand a valid rabies vaccination to bring the dog back."
+        fr: "L'historique sanitaire réel du chien compte plus que le dernier aéroport. Il détermine aussi ton retour : la plupart des pays d'origine exigent une vaccination antirabique valide pour ramener le chien."
+        es: "El historial sanitario real de tu perro importa más que el último aeropuerto. También condiciona tu viaje de regreso: la mayoría de los países de origen exigen una vacunación antirrábica válida para traer de vuelta al perro."
+        pt: "O histórico real de saúde do seu cachorro pesa mais do que o último aeroporto. Ele também define sua viagem de volta: a maioria dos países de origem exige vacinação antirrábica válida para trazer o cachorro de volta."
+  note:
+    en: "So read the requirements below as Mexico's framework, then confirm your dog's exact origin, history and return route with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre mexicain, puis confirme l'origine, l'historique et l'itinéraire de retour de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de México y luego confirma el origen, el historial y la ruta de regreso exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro mexicano, e depois confirme com seu veterinário a origem exata, o histórico e a rota de volta do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Mexico has no microchip requirement for pet entry, but a chip is still strongly advised for identification and for the return trip.", fr: "Le Mexique n'impose pas de puce pour l'entrée, mais une puce reste fortement conseillée pour l'identification et le retour.", es: "México no exige microchip para la entrada de mascotas, pero un microchip sigue siendo muy aconsejable para la identificación y para el viaje de regreso.", pt: "O México não exige microchip para a entrada de animais de estimação, mas o microchip continua fortemente recomendado para a identificação e para a viagem de volta." }
+    ref: { en: "SENASICA — travelling with your pet", fr: "SENASICA — voyager avec ton animal", es: "SENASICA — viajar con tu mascota", pt: "SENASICA — viajar com seu animal de estimação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Conditional / recommended", fr: "Conditionnelle / recommandée", es: "Condicional / recomendada", pt: "Condicional / recomendada" }
+    when: { en: "Its application date and validity must appear on the Certificate of Good Health when arriving from a country other than the US or Canada.", fr: "Sa date d'application et sa validité doivent figurer sur le Certificat de Bonne Santé lors d'une arrivée depuis un pays autre que les USA ou le Canada.", es: "Su fecha de aplicación y su valide deben figurar en el Certificado de Buena Salud cuando se llega de un país distinto de EE. UU. o Canadá.", pt: "A data de aplicação e a validade precisam constar no Certificado de Boa Saúde quando a chegada for de um país que não seja os EUA ou o Canadá." }
+    exceptions: { en: "Not verified at entry from the US/Canada; animals under 3 months old are exempt. Still recommended, and usually required to return home.", fr: "Non vérifiée à l'entrée depuis USA/Canada ; les animaux de moins de 3 mois en sont exemptés. Reste recommandée, et généralement exigée pour rentrer.", es: "No se verifica a la entrada desde EE. UU./Canadá; los animales menores de 3 meses están exentos. Sigue siendo recomendable, y suele exigirse para regresar a casa.", pt: "Não é conferida na entrada vindo dos EUA/Canadá; animais com menos de 3 meses estão isentos. Continua recomendada e costuma ser exigida para voltar para casa." }
+    ref: { en: "SENASICA — requirements to enter Mexico", fr: "SENASICA — exigences pour entrer au Mexique", es: "SENASICA — requisitos para entrar a México", pt: "SENASICA — exigências para entrar no México" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Mexico does not require a rabies antibody test for any origin.", fr: "Le Mexique n'exige aucun titrage antirabique, quelle que soit l'origine.", es: "México no exige ninguna prueba de titulación de rabia sea cual sea el origen.", pt: "O México não exige teste sorológico antirrábico, qualquer que seja a origem." }
+    ref: { en: "SENASICA — requirements to enter Mexico", fr: "SENASICA — exigences pour entrer au Mexique", es: "SENASICA — requisitos para entrar a México", pt: "SENASICA — exigências para entrar no México" }
+  - item: { en: "Certificate of Good Health (Certificado de Buena Salud)", fr: "Certificat de Bonne Santé (Certificado de Buena Salud)", es: "Certificado de Buena Salud", pt: "Certificado de Boa Saúde (Certificado de Buena Salud)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Required only when arriving from a country other than the US/Canada: max 15 days old, original + copy, on official or licensed-vet letterhead with the professional licence number, stating exporter/importer details, the rabies vaccine date, that the dog is clinically healthy and dewormed.", fr: "Requis uniquement lors d'une arrivée depuis un pays autre que USA/Canada : max 15 jours, original + copie, sur papier officiel ou à en-tête d'un vétérinaire agréé avec numéro de licence, mentionnant exportateur/importateur, la date du vaccin antirabique, que le chien est cliniquement sain et vermifugé.", es: "Obligatorio solo cuando se llega de un país distinto de EE. UU./Canadá: máximo 15 días de antigüedad, original + copia, en papel oficial o con membrete de un veterinario acreditado con el número de cédula profesional, indicando los datos del exportador/importador, la fecha de la vacuna antirrábica, que el perro está clínicamente sano y desparasitado.", pt: "Obrigatório apenas na chegada de um país que não seja EUA/Canadá: no máximo 15 dias de emissão, original + cópia, em papel oficial ou timbrado de veterinário credenciado com o número da cédula profissional, informando os dados do exportador/importador, a data da vacina antirrábica e que o cachorro está clinicamente saudável e vermifugado." }
+    exceptions: { en: "Not required when the dog's origin and departure are Mexico, the US or Canada (inspection only).", fr: "Non requis lorsque l'origine et le départ du chien sont le Mexique, les USA ou le Canada (simple inspection).", es: "No obligatorio cuando el origen y la salida del perro son México, EE. UU. o Canadá (solo inspección).", pt: "Não obrigatório quando a origem e a partida do cachorro são o México, os EUA ou o Canadá (apenas inspeção)." }
+    ref: { en: "SENASICA — requirements to enter Mexico", fr: "SENASICA — exigences pour entrer au Mexique", es: "SENASICA — requisitos para entrar a México", pt: "SENASICA — exigências para entrar no México" }
+  - item: { en: "Internal & external deworming", fr: "Vermifugation interne & externe", es: "Desparasitación interna y externa", pt: "Vermifugação interna e externa" }
+    required: { en: "Conditional", fr: "Conditionnelle", es: "Condicional", pt: "Condicional" }
+    when: { en: "Must have been done within the previous 6 months and the dog be free of ectoparasites — stated on the certificate for arrivals from countries other than the US/Canada.", fr: "Doit avoir été effectuée dans les 6 mois précédents et le chien être exempt d'ectoparasites — mentionné sur le certificat pour les arrivées depuis les pays autres que USA/Canada.", es: "Debe haberse hecho dentro de los 6 meses previos y el perro estar libre de ectoparásitos — indicado en el certificado para las llegadas de países distintos de EE. UU./Canadá.", pt: "Precisa ter sido feita nos 6 meses anteriores e o cachorro estar livre de ectoparasitas — informado no certificado nas chegadas de países que não sejam EUA/Canadá." }
+    exceptions: { en: "For US/Canada arrivals, the dog is simply checked for ectoparasites on arrival.", fr: "Pour les arrivées depuis USA/Canada, le chien est simplement contrôlé pour les ectoparasites à l'arrivée.", es: "Para las llegadas desde EE. UU./Canadá, simplemente se revisa al perro en busca de ectoparásitos a la llegada.", pt: "Nas chegadas dos EUA/Canadá, o cachorro é apenas examinado em busca de ectoparasitas no momento da chegada." }
+    ref: { en: "SENASICA — requirements to enter Mexico", fr: "SENASICA — exigences pour entrer au Mexique", es: "SENASICA — requisitos para entrar a México", pt: "SENASICA — exigências para entrar no México" }
+  - item: { en: "Clean crate / carrier", fr: "Caisse / cage propre", es: "Jaula / transportadora limpia", pt: "Caixa / bolsa de transporte limpa" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The crate must be clean, with no bedding, toys, treats or objects made with ruminant-origin ingredients; it is given a preventive spray on arrival. Collar and leash are allowed.", fr: "La caisse doit être propre, sans litière, jouets, friandises ni objets à base d'ingrédients d'origine ruminante ; elle reçoit une pulvérisation préventive à l'arrivée. Collier et laisse sont autorisés.", es: "La jaula debe estar limpia, sin cama, juguetes, premios ni objetos elaborados con ingredientes de origen rumiante; recibe una fumigación preventiva a la llegada. Se permiten collar y correa.", pt: "A caixa de transporte precisa estar limpa, sem forração, brinquedos, petiscos nem objetos feitos com ingredientes de origem ruminante; ela recebe uma pulverização preventiva na chegada. Coleira e guia são permitidas." }
+    exceptions: { en: "Any prohibited items found inside are removed and destroyed.", fr: "Tout article interdit trouvé à l'intérieur est retiré et détruit.", es: "Cualquier artículo prohibido que se encuentre dentro se retira y se destruye.", pt: "Qualquer item proibido encontrado dentro dela é retirado e destruído." }
+    ref: { en: "SADER-SENASICA — general information", fr: "SADER-SENASICA — informations générales", es: "SADER-SENASICA — información general", pt: "SADER-SENASICA — informações gerais" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No prior permit is needed; SENASICA issues the free Import Zoosanitary Certificate at the point of entry.", fr: "Aucun permis préalable n'est nécessaire ; le SENASICA délivre gratuitement le Certificat Zoosanitaire d'Importation au point d'entrée.", es: "No se necesita permiso previo; SENASICA expide gratuitamente el Certificado Zoosanitario de Importación en el punto de entrada.", pt: "Não é preciso permissão prévia; o SENASICA emite gratuitamente o Certificado Zoossanitário de Importação no ponto de entrada." }
+    ref: { en: "SENASICA — travelling with your pet", fr: "SENASICA — voyager avec ton animal", es: "SENASICA — viajar con tu mascota", pt: "SENASICA — viajar com seu animal de estimação" }
+  - item: { en: "OISA border inspection", fr: "Inspection frontalière OISA", es: "Inspección fronteriza de la OISA", pt: "Inspeção de fronteira da OISA" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "At the point of entry, SENASICA's OISA staff carry out a physical inspection (plus a documentary review for arrivals from other countries) to confirm the dog shows no signs of disease, fresh wounds or ectoparasites.", fr: "Au point d'entrée, le personnel OISA du SENASICA effectue une inspection physique (plus un examen documentaire pour les arrivées d'autres pays) afin de vérifier l'absence de signes de maladie, de plaies fraîches et d'ectoparasites.", es: "En el punto de entrada, el personal de la OISA de SENASICA realiza una inspección física (más una revisión documental para las llegadas de otros países) para confirmar que el perro no presenta signos de enfermedad, heridas frescas ni ectoparásitos.", pt: "No ponto de entrada, a equipe da OISA do SENASICA faz uma inspeção física (mais uma conferência documental nas chegadas de outros países) para confirmar que o cachorro não apresenta sinais de doença, feridas recentes nem ectoparasitas." }
+    exceptions: { en: "From the US/Canada it is a brief physical check only.", fr: "Depuis les USA/Canada, il s'agit d'un simple contrôle physique bref.", es: "Desde EE. UU./Canadá se trata solo de una breve revisión física.", pt: "Vindo dos EUA/Canadá, trata-se apenas de uma breve conferência física." }
+    ref: { en: "SENASICA — inspection at the point of entry", fr: "SENASICA — inspection au point d'entrée", es: "SENASICA — inspección en el punto de entrada", pt: "SENASICA — inspeção no ponto de entrada" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "No minimum age", fr: "Pas d'âge minimum", es: "Sin edad mínima", pt: "Sem idade mínima" }
+    when: { en: "Mexico sets no minimum entry age; animals under 3 months are exempt from the rabies-vaccination requirement.", fr: "Le Mexique ne fixe pas d'âge minimum d'entrée ; les animaux de moins de 3 mois sont exemptés de l'exigence de vaccination antirabique.", es: "México no fija una edad mínima de entrada; los animales menores de 3 meses están exentos del requisito de vacunación antirrábica.", pt: "O México não fixa idade mínima de entrada; animais com menos de 3 meses estão isentos da exigência de vacinação antirrábica." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "SENASICA — requirements to enter Mexico", fr: "SENASICA — exigences pour entrer au Mexique", es: "SENASICA — requisitos para entrar a México", pt: "SENASICA — exigências para entrar no México" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "If a risk is detected (e.g. ticks or possible exotic parasites), the OISA may hold the dog until laboratory results rule it out; costs are the owner's.", fr: "Si un risque est détecté (p. ex. tiques ou parasites exotiques possibles), l'OISA peut retenir le chien jusqu'aux résultats de laboratoire ; les frais sont à la charge du propriétaire.", es: "Si se detecta un riesgo (p. ej. garrapatas o posibles parásitos exóticos), la OISA puede retener al perro hasta que los resultados de laboratorio lo descarten; los costes corren a cargo del propietario.", pt: "Se for detectado um risco (por exemplo, carrapatos ou possíveis parasitas exóticos), a OISA pode reter o cachorro até que os resultados de laboratório o descartem; os custos correm por conta do dono." }
+    ref: { en: "SENASICA — considerations during inspection", fr: "SENASICA — considérations lors de l'inspection", es: "SENASICA — consideraciones durante la inspección", pt: "SENASICA — considerações durante a inspeção" }
+
+origin:
+  eu:
+    title: { en: "From the US or Canada — inspection only", fr: "Depuis les USA ou le Canada — simple inspection", es: "Desde EE. UU. o Canadá — solo inspección", pt: "Dos EUA ou do Canadá — apenas inspeção" }
+    body:
+      en: "If your dog's origin is Mexico, the US or Canada and it arrives from the US or Canada, no Certificate of Good Health and no vaccination card are required. On arrival, SENASICA staff carry out a brief physical inspection to confirm the dog shows no signs of infectious or contagious disease, no fresh or healing wounds, and no ectoparasites."
+      fr: "Si l'origine de ton chien est le Mexique, les USA ou le Canada et qu'il arrive des USA ou du Canada, aucun Certificat de Bonne Santé ni carnet de vaccination n'est requis. À l'arrivée, le personnel du SENASICA effectue une brève inspection physique pour confirmer l'absence de signes de maladie infectieuse ou contagieuse, de plaies fraîches ou en cicatrisation, et d'ectoparasites."
+      es: "Si el origen de tu perro es México, EE. UU. o Canadá y llega desde EE. UU. o Canadá, no se exige ningún Certificado de Buena Salud ni cartilla de vacunación. A la llegada, el personal de SENASICA realiza una breve inspección física para confirmar que el perro no presenta signos de enfermedad infecciosa o contagiosa, ni heridas frescas o en cicatrización, ni ectoparásitos."
+      pt: "Se a origem do seu cachorro é o México, os EUA ou o Canadá e ele chega dos EUA ou do Canadá, não são exigidos Certificado de Boa Saúde nem carteira de vacinação. Na chegada, a equipe do SENASICA faz uma breve inspeção física para confirmar que o cachorro não apresenta sinais de doença infecciosa ou contagiosa, nem feridas recentes ou em cicatrização, nem ectoparasitas."
+    cls: ok
+  listed:
+    title: { en: "From any other country — Certificate of Good Health", fr: "Depuis tout autre pays — Certificat de Bonne Santé", es: "Desde cualquier otro país — Certificado de Buena Salud", pt: "De qualquer outro país — Certificado de Boa Saúde" }
+    body:
+      en: "Arriving from a country other than the US or Canada, you must present a Certificate of Good Health issued within the last 15 days (original + copy) on official or licensed-vet letterhead. It must give the exporter and importer details, the rabies vaccine date and validity (dogs under 3 months exempt), confirm the dog is clinically healthy, and confirm it was dewormed internally and externally within the previous 6 months and is free of ectoparasites."
+      fr: "En arrivant d'un pays autre que les USA ou le Canada, tu dois présenter un Certificat de Bonne Santé établi dans les 15 derniers jours (original + copie) sur papier officiel ou à en-tête d'un vétérinaire agréé. Il doit indiquer les coordonnées de l'exportateur et de l'importateur, la date et la validité du vaccin antirabique (chiens de moins de 3 mois exemptés), confirmer que le chien est cliniquement sain et qu'il a été vermifugé en interne et en externe dans les 6 mois précédents et est exempt d'ectoparasites."
+      es: "Al llegar de un país distinto de EE. UU. o Canadá, debes presentar un Certificado de Buena Salud expedido dentro de los últimos 15 días (original + copia) en papel oficial o con membrete de un veterinario acreditado. Debe indicar los datos del exportador y del importador, la fecha y la valide de la vacuna antirrábica (perros menores de 3 meses exentos), confirmar que el perro está clínicamente sano, y confirmar que fue desparasitado interna y externamente dentro de los 6 meses previos y está libre de ectoparásitos."
+      pt: "Chegando de um país que não seja os EUA ou o Canadá, você precisa apresentar um Certificado de Boa Saúde emitido nos últimos 15 dias (original + cópia), em papel oficial ou timbrado de veterinário credenciado. Ele deve trazer os dados do exportador e do importador, a data e a validade da vacina antirrábica (cachorros com menos de 3 meses estão isentos), confirmar que o cachorro está clinicamente saudável e confirmar que ele foi vermifugado interna e externamente nos 6 meses anteriores e está livre de ectoparasitas."
+    cls: warn
+  nonListed:
+    title: { en: "Missing documents & the return trip", fr: "Documents manquants & voyage de retour", es: "Documentos que faltan y el viaje de regreso", pt: "Documentos faltando e a viagem de volta" }
+    body:
+      en: "If you lack the certificate or vaccination proof, a private vet in Mexico can examine your dog, apply any needed treatment and issue the certificate on the spot (at your expense), so entry is rarely blocked. Remember that even though Mexico may not demand a rabies vaccination at the border, one is strongly recommended — and almost always required — to bring your dog back into your home country."
+      fr: "Si le certificat ou la preuve de vaccination te manque, un vétérinaire privé au Mexique peut examiner ton chien, appliquer tout traitement nécessaire et délivrer le certificat sur place (à tes frais), si bien que l'entrée est rarement bloquée. Rappelle-toi que même si le Mexique n'exige pas toujours la vaccination antirabique à la frontière, elle est fortement recommandée — et presque toujours obligatoire — pour ramener ton chien dans ton pays."
+      es: "Si te falta el certificado o la prueba de vacunación, un veterinario privado en México puede examinar a tu perro, aplicar cualquier tratamiento necesario y expedir el certificado en el momento (a tu cargo), por lo que la entrada rara vez se bloquea. Recuerda que, aunque México no siempre exija la vacunación antirrábica en la frontera, es muy recomendable — y casi siempre obligatoria — para traer de vuelta a tu perro a tu país de origen."
+      pt: "Se faltar o certificado ou a prova de vacinação, um veterinário particular no México pode examinar seu cachorro, aplicar o tratamento necessário e emitir o certificado na hora (às suas custas), de modo que a entrada raramente é bloqueada. Lembre-se de que, mesmo que o México nem sempre exija a vacinação antirrábica na fronteira, ela é fortemente recomendada — e quase sempre obrigatória — para levar seu cachorro de volta ao seu país de origem."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Mexico depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Mexique dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a México depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega ao México depende do lugar de onde você embarcou."
+  points:
+    - en: "Go to the SENASICA Animal and Plant Health Inspection Office (OISA) at the airport, seaport or land border of entry to obtain the free Import Zoosanitary Certificate."
+      fr: "Rends-toi au bureau d'inspection sanitaire (OISA) du SENASICA de l'aéroport, du port ou de la frontière terrestre d'arrivée pour obtenir le Certificat Zoosanitaire d'Importation gratuit."
+      es: "Acude a la Oficina de Inspección de Sanidad Agropecuaria (OISA) de SENASICA en el aeropuerto, puerto o frontera terrestre de entrada para obtener el Certificado Zoosanitario de Importación gratuito."
+      pt: "Vá até o Escritório de Inspeção de Sanidade Agropecuária (OISA) do SENASICA no aeroporto, porto ou fronteira terrestre de entrada para obter o Certificado Zoossanitário de Importação gratuito."
+    - en: "From the US or Canada: a brief physical inspection only — no certificate or vaccination card needed."
+      fr: "Depuis les USA ou le Canada : une brève inspection physique uniquement — sans certificat ni carnet de vaccination."
+      es: "Desde EE. UU. o Canadá: solo una breve inspección física — sin necesidad de certificado ni cartilla de vacunación."
+      pt: "Dos EUA ou do Canadá: apenas uma breve inspeção física — sem necessidade de certificado nem de carteira de vacinação."
+    - en: "From any other country: present the original Certificate of Good Health (plus a copy) for a documentary and physical review."
+      fr: "Depuis tout autre pays : présente le Certificat de Bonne Santé original (plus une copie) pour un examen documentaire et physique."
+      es: "Desde cualquier otro país: presenta el Certificado de Buena Salud original (más una copia) para una revisión documental y física."
+      pt: "De qualquer outro país: apresente o Certificado de Boa Saúde original (mais uma cópia) para uma conferência documental e física."
+    - en: "The crate must be clean and empty of bedding, toys, treats and ruminant-based items; it is sprayed with a preventive treatment. Collar and leash are allowed."
+      fr: "La caisse doit être propre et vide de litière, jouets, friandises et articles à base de ruminant ; elle est pulvérisée d'un traitement préventif. Collier et laisse sont autorisés."
+      es: "La jaula debe estar limpia y sin cama, juguetes, premios ni artículos a base de rumiante; se le aplica un tratamiento preventivo por fumigación. Se permiten collar y correa."
+      pt: "A caixa de transporte precisa estar limpa e sem forração, brinquedos, petiscos nem itens à base de ruminante; ela recebe a pulverização de um tratamento preventivo. Coleira e guia são permitidas."
+    - en: "If ectoparasites or ticks are found, or a possible exotic parasite is suspected, the OISA may keep the dog until lab results clear it — at the owner's expense."
+      fr: "Si des ectoparasites ou des tiques sont trouvés, ou qu'un parasite exotique est suspecté, l'OISA peut garder le chien jusqu'aux résultats de laboratoire — aux frais du propriétaire."
+      es: "Si se encuentran ectoparásitos o garrapatas, o se sospecha de un posible parásito exótico, la OISA puede retener al perro hasta que los resultados de laboratorio lo descarten — a cargo del propietario."
+      pt: "Se forem encontrados ectoparasitas ou carrapatos, ou se houver suspeita de um possível parasita exótico, a OISA pode manter o cachorro até que os resultados de laboratório o liberem — às custas do dono."
+    - en: "Frequent travellers can register in the Pet Frequent Traveler Program (PMVF) to hold a document valid for six months and skip repeated paperwork."
+      fr: "Les voyageurs fréquents peuvent s'inscrire au Programme Animal Voyageur Fréquent (PMVF) pour disposer d'un document valable six mois et éviter les formalités répétées."
+      es: "Los viajeros frecuentes pueden inscribirse en el Programa Mascota Viajero Frecuente (PMVF) para disponer de un documento válido durante seis meses y evitar los trámites repetidos."
+      pt: "Quem viaja com frequência pode se inscrever no Programa Mascota Viajero Frecuente (PMVF) para ter um documento válido por seis meses e evitar repetir a papelada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Mexico has no national breed-specific legislation. Federal law does not ban or restrict any dog breed for import or ownership, and there is no official dangerous-dog list at the national level."
+    fr: "Le Mexique n'a pas de législation nationale spécifique aux races. La loi fédérale n'interdit ni ne restreint aucune race de chien pour l'importation ou la détention, et il n'existe aucune liste officielle de chiens dangereux au niveau national."
+    es: "México no tiene legislación nacional específica por razas. La ley federal no prohíbe ni restringe ninguna raza de perro para la importación o la tenencia, y no existe una lista oficial de perros peligrosos a nivel nacional."
+    pt: "O México não tem legislação nacional específica por raça. A lei federal não proíbe nem restringe nenhuma raça de cachorro para importação ou posse, e não existe lista oficial de cachorros perigosos em nível nacional."
+  cat1:
+    en: "No banned category: there is no federal list of prohibited breeds, so no dog is refused entry to Mexico on the basis of its breed. Bringing in any breed is permitted provided the health-inspection rules are met."
+    fr: "Aucune catégorie interdite : il n'existe pas de liste fédérale de races prohibées, donc aucun chien n'est refusé à l'entrée au Mexique en raison de sa race. L'importation de toute race est autorisée sous réserve du respect des règles d'inspection sanitaire."
+    es: "Sin categoría prohibida: no existe una lista federal de razas prohibidas, por lo que a ningún perro se le niega la entrada a México por razón de su raza. Se permite introducir cualquier raza siempre que se cumplan las normas de inspección sanitaria."
+    pt: "Nenhuma categoria proibida: não existe lista federal de raças proibidas, portanto nenhum cachorro tem a entrada no México recusada por causa da raça. É permitido trazer qualquer raça, desde que as regras de inspeção sanitária sejam cumpridas."
+  cat2:
+    en: "Local rules & responsible ownership: some municipalities or states may have their own ordinances (leashing, muzzling, insurance), so the owner is responsible for the dog's behaviour. Dogfighting and breeding, training or trading dogs for fights are prohibited under the Federal Penal Code (Art. 419 Bis)."
+    fr: "Règles locales & détention responsable : certaines municipalités ou certains États peuvent avoir leurs propres arrêtés (laisse, muselière, assurance), le propriétaire étant responsable du comportement du chien. Les combats de chiens ainsi que l'élevage, le dressage ou le commerce de chiens à cette fin sont interdits par le Code pénal fédéral (art. 419 Bis)."
+    es: "Normas locales y tenencia responsable: algunos municipios o estados pueden tener sus propias ordenanzas (correa, bozal, seguro), por lo que el propietario es responsable del comportamiento del perro. Las peleas de perros, así como la cría, el adiestramiento o el comercio de perros para peleas, están prohibidos por el Código Penal Federal (art. 419 Bis)."
+    pt: "Regras locais e posse responsável: alguns municípios ou estados podem ter suas próprias normas (guia, focinheira, seguro), e o dono é responsável pelo comportamento do cachorro. As rinhas de cachorros, assim como a criação, o adestramento ou o comércio de cachorros para brigas, são proibidos pelo Código Penal Federal (art. 419 Bis)."
+  note:
+    en: "Because there is no national breed ban, focus on the health-inspection rules for entry. If you will stay in a specific city, check that municipality's local ordinances for any leash, muzzle or insurance requirements."
+    fr: "Comme il n'y a pas d'interdiction nationale de race, concentre-toi sur les règles d'inspection sanitaire pour l'entrée. Si tu séjourne dans une ville précise, vérifie les arrêtés municipaux locaux pour d'éventuelles obligations de laisse, muselière ou assurance."
+    es: "Como no hay prohibición nacional de razas, céntrate en las normas de inspección sanitaria para la entrada. Si vas a quedarte en una ciudad concreta, consulta las ordenanzas locales de ese municipio por si hay requisitos de correa, bozal o seguro."
+    pt: "Como não há proibição nacional por raça, concentre-se nas regras de inspeção sanitária para a entrada. Se você vai ficar em uma cidade específica, consulte as normas locais desse município para eventuais exigências de guia, focinheira ou seguro."
+
+checklist:
+  - en: "Confirm your dog's origin and departure country (US/Canada vs. elsewhere)"
+    fr: "Confirme le pays d'origine et de départ de ton chien (USA/Canada ou ailleurs)"
+    es: "Confirma el país de origen y de salida de tu perro (EE. UU./Canadá u otro lugar)"
+    pt: "Confirme o país de origem e de partida do seu cachorro (EUA/Canadá ou outro)"
+  - en: "Certificate of Good Health (issued within 15 days) — only if arriving from a country other than the US/Canada"
+    fr: "Certificat de Bonne Santé (établi dans les 15 jours) — uniquement si arrivée depuis un pays autre que USA/Canada"
+    es: "Certificado de Buena Salud (expedido dentro de los 15 días) — solo si llegas de un país distinto de EE. UU./Canadá"
+    pt: "Certificado de Boa Saúde (emitido nos últimos 15 dias) — somente se você chegar de um país que não seja EUA/Canadá"
+  - en: "Rabies vaccination up to date — recommended for entry and usually required to return home"
+    fr: "Vaccination antirabique à jour — recommandée à l'entrée et généralement exigée pour rentrer"
+    es: "Vacunación antirrábica al día — recomendada para la entrada y por lo general obligatoria para regresar a casa"
+    pt: "Vacinação antirrábica em dia — recomendada para a entrada e geralmente obrigatória para voltar para casa"
+  - en: "Proof of internal & external deworming within the previous 6 months"
+    fr: "Preuve de vermifugation interne & externe dans les 6 mois précédents"
+    es: "Prueba de desparasitación interna y externa dentro de los 6 meses previos"
+    pt: "Comprovante de vermifugação interna e externa nos 6 meses anteriores"
+  - en: "Clean crate — no bedding, toys, treats or ruminant-based items inside"
+    fr: "Caisse propre — sans litière, jouets, friandises ni articles à base de ruminant à l'intérieur"
+    es: "Jaula limpia — sin cama, juguetes, premios ni artículos a base de rumiante en su interior"
+    pt: "Caixa de transporte limpa — sem forração, brinquedos, petiscos nem itens à base de ruminante dentro"
+  - en: "Only one day's portion of dry food, if any"
+    fr: "Seulement une portion d'aliment sec pour la journée, le cas échéant"
+    es: "Solo una ración de alimento seco para un día, en su caso"
+    pt: "No máximo uma porção de ração seca para um dia, se levar alguma"
+  - en: "Airline reservation confirming your dog's travel option and IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA si en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
+  - en: "Consider the Pet Frequent Traveler Program (PMVF) if you travel often"
+    fr: "Envisagez le Programme Animal Voyageur Fréquent (PMVF) si tu voyages souvent"
+    es: "Considera el Programa Mascota Viajero Frecuente (PMVF) si viajas a menudo"
+    pt: "Considere o Programa Mascota Viajero Frecuente (PMVF) se você viaja com frequência"
+
+sources:
+  - label: { en: "SENASICA — Requirements and procedures for traveling to Mexico with your pet", fr: "SENASICA — Exigences et procédures pour voyager au Mexique avec ton animal", es: "SENASICA — Requisitos y procedimientos para viajar a México con tu mascota", pt: "SENASICA — Exigências e procedimentos para viajar ao México com seu animal de estimação" }
+    url: "https://www.gob.mx/senasica/documentos/si-viajas-con-tu-mascota-194177"
+  - label: { en: "SENASICA — Traveling with your pet to Mexico (official English guide, PDF)", fr: "SENASICA — Voyager au Mexique avec ton animal (guide officiel en anglais, PDF)", es: "SENASICA — Viajar a México con tu mascota (guía oficial en inglés, PDF)", pt: "SENASICA — Viajar ao México com seu animal de estimação (guia oficial em inglês, PDF)" }
+    url: "https://www.gob.mx/cms/uploads/attachment/file/938779/ENG.Viajas_con_tu_mascota_a_M_xico-Requisitos_y_procedimientos_para_viajar_a_M_xico_con_tu_mascota.pdf"
+  - label: { en: "SENASICA — Your pet travels with you", fr: "SENASICA — Ton animal voyage avec toi", es: "SENASICA — Tu mascota viaja contigo", pt: "SENASICA — Seu animal de estimação viaja com você" }
+    url: "https://www.gob.mx/senasica/articulos/tu-mascota-viaja-contigo"
+  - label: { en: "SENASICA — Import and export of pets", fr: "SENASICA — Importation et exportation d'animaux de compagnie", es: "SENASICA — Importación y exportación de mascotas", pt: "SENASICA — Importação e exportação de animais de estimação" }
+    url: "https://www.gob.mx/senasica/acciones-y-programas/exportacion-e-importacion-de-mascotas"
+  - label: { en: "SENASICA — Pet Frequent Traveler Program (PMVF)", fr: "SENASICA — Programme Animal Voyageur Fréquent (PMVF)", es: "SENASICA — Programa Mascota Viajero Frecuente (PMVF)", pt: "SENASICA — Programa Mascota Viajero Frecuente (PMVF)" }
+    url: "https://www.gob.mx/senasica/documentos/programa-mascota-viajero-frecuente"
+  - label: { en: "SENASICA — SENASICA facilitates the entry of pets into the country (press release)", fr: "SENASICA — Le SENASICA facilite l'entrée des animaux dans le pays (communiqué)", es: "SENASICA — SENASICA facilita la entrada de mascotas al país (comunicado)", pt: "SENASICA — O SENASICA facilita a entrada de animais de estimação no país (comunicado)" }
+    url: "https://www.gob.mx/senasica/prensa/facilita-senasica-ingreso-de-mascotas-al-territorio-nacional"
+
+seo:
+  title: { en: "Mexico Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Mexique — Guide", es: "Requisitos de entrada de perros en México — Guía de viaje", pt: "Entrada de cachorro no México — guia de viagem" }
+  metaTitle: { en: "Traveling to Mexico With Your Dog: Entry Requirements (2026)", fr: "Voyager au Mexique avec ton chien : formalités (2026)", es: "Viajar a México con tu perro: requisitos de entrada (2026)", pt: "Viajar ao México com seu cachorro: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official SENASICA rules for bringing a dog into Mexico: no health certificate from the US/Canada, inspection on arrival, no quarantine. Sourced and dated."
+    fr: "Règles officielles SENASICA pour faire entrer un chien au Mexique : pas de certificat depuis USA/Canada, inspection à l'arrivée, pas de quarantaine. Sourcé et daté."
+    es: "Normas oficiales de SENASICA para traer un perro a México: sin certificado sanitario desde EE. UU./Canadá, inspección a la llegada. Con fuentes y fecha."
+    pt: "Regras oficiais do SENASICA para levar um cachorro ao México: sem atestado de saúde vindo dos EUA/Canadá, inspeção na chegada, sem quarentena. Com fontes e data."
+  slug: "mexico"
+  shortDesc:
+    en: "What you need to bring a dog into Mexico, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien au Mexique, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a México, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro ao México, conforme o país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,129 @@
+---
+/* Pet Relief Finder — entry point of the tool. Pick an airport → go to its relief result page
+   (/airports/<slug>). Client-side autocomplete over the airport list; each item shows a small
+   status dot (documented relief / US federal rule / not documented). Data-driven from pet_relief. */
+import { loadKB, slugFor, cityName, inlineT } from "@mydogcanfly/knowledge";
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const kb: any = loadKB();
+const pick = (lt: any): string => (lt?.[locale] ?? lt?.en ?? "");
+
+const airports = [...kb.airports.values()].map((a: any) => {
+  const c = kb.countries.get(a.country_id);
+  const pr = a.pet_relief;
+  const relief = pr?.available === "yes" ? "yes" : pr?.available === "no" ? "no" : a.country_id === "country_us" ? "us" : "none";
+  return { slug: slugFor(a.id), iata: a.iata, city: cityName(a, locale), country: c ? pick(c.name) : "", relief };
+}).sort((x, y) => x.city.localeCompare(y.city, locale));
+
+// a few well-known documented hubs to offer as quick picks
+const featured = airports.filter((a) => a.relief === "yes").slice(0, 8);
+
+const L = {
+  base: locale === "en" ? "" : `/${locale}`,
+  airports,
+  featured,
+  s: {
+    ph: T("Airport — city or code (e.g. CDG, New York)", "Aéroport — ville ou code (ex. CDG, New York)", "Aeropuerto: ciudad o código (p. ej. CDG, Nueva York)"),
+    submit: T("Find the relief areas", "Trouver les coins pipi", "Buscar las zonas de alivio"),
+    need: T("Pick an airport from the list.", "Choisis un aéroport dans la liste.", "Elige un aeropuerto de la lista."),
+    featured: T("Well-documented airports", "Aéroports bien documentés", "Aeropuertos bien documentados"),
+    legendYes: T("Documented relief area", "Zone documentée", "Zona de alivio documentada"),
+    legendUs: T("US rule (airside area)", "Règle US (zone côté piste)", "Norma de EE. UU. (zona lado aire)"),
+    legendNone: T("Not documented yet", "Non documenté", "Aún no documentado"),
+  },
+};
+---
+<div class="prf">
+  <form id="prf-form" class="prf-form" autocomplete="off">
+    <div class="prf-field">
+      <label for="prf-ap">{T("Airport", "Aéroport", "Aeropuerto")}</label>
+      <input id="prf-ap" data-ac="ap" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={L.s.ph} autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other" />
+    </div>
+    <button class="mdcf-btn prf-submit" type="submit">{L.s.submit}</button>
+  </form>
+  <p id="prf-msg" class="prf-msg" hidden></p>
+
+  {featured.length > 0 && (
+    <div class="prf-featured">
+      <div class="prf-flabel">{L.s.featured}</div>
+      <div class="prf-chips">
+        {featured.map((a) => <a class="prf-chip" href={`${L.base}/airports/${a.slug}/`}>{a.city} ({a.iata})</a>)}
+      </div>
+    </div>
+  )}
+</div>
+
+<script type="application/json" id="prf-data" set:html={JSON.stringify(L)} is:inline />
+<script>
+  const L = JSON.parse(document.getElementById("prf-data").textContent);
+  const $ = (s) => document.querySelector(s);
+  const norm = (s) => (s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const esc = (s) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const dot = { yes: "prf-d-yes", us: "prf-d-us", no: "prf-d-no", none: "prf-d-none" };
+  let selected = null;
+
+  function matches(q) {
+    const n = norm(q);
+    const src = n ? L.airports.filter((a) => norm(a.city + " " + a.iata + " " + a.country).includes(n)) : L.airports;
+    return src.slice(0, 8);
+  }
+  const input = $("#prf-ap"), field = input.parentElement;
+  field.style.position = "relative";
+  const box = document.createElement("ul"); box.className = "ac-list"; box.hidden = true; field.appendChild(box);
+  let cur = -1, shown = [];
+  const close = () => { box.hidden = true; input.setAttribute("aria-expanded", "false"); };
+  const render = () => {
+    shown = matches(input.value);
+    if (!shown.length) { close(); return; }
+    box.innerHTML = shown.map((a, i) => `<li class="ac-item" data-i="${i}"><span class="prf-dot ${dot[a.relief]}"></span>${esc(a.city)} (${esc(a.iata)}) <span class="prf-c">${esc(a.country)}</span></li>`).join("");
+    box.hidden = false; input.setAttribute("aria-expanded", "true"); cur = -1;
+  };
+  const choose = (i) => { const a = shown[i]; if (!a) return; selected = a; input.value = a.city + " (" + a.iata + ")"; close(); };
+  input.addEventListener("input", () => { selected = null; render(); });
+  input.addEventListener("focus", render);
+  input.addEventListener("keydown", (e) => {
+    if (box.hidden) return;
+    if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); }
+    else if (e.key === "Enter") { if (cur >= 0) { e.preventDefault(); choose(cur); } return; }
+    else if (e.key === "Escape") { close(); return; } else return;
+    [...box.children].forEach((li, i) => li.classList.toggle("is-cur", i === cur));
+  });
+  box.addEventListener("mousedown", (e) => { const li = e.target.closest(".ac-item"); if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
+  document.addEventListener("click", (e) => { if (!field.contains(e.target)) close(); });
+
+  $("#prf-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const msg = $("#prf-msg"); msg.hidden = true;
+    const a = selected || matches(input.value)[0];
+    if (!a || !norm(input.value)) { msg.hidden = false; msg.textContent = L.s.need; return; }
+    window.location.href = `${L.base}/airports/${a.slug}/`;
+  });
+</script>
+
+<style>
+  .prf-form { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: end;
+    background: var(--mdcf-accent-soft, #fff1e5); border: 1px solid #f1ddc6; border-radius: 16px; padding: 22px;
+    box-shadow: 0 8px 28px rgba(242, 112, 15, .10); transition: box-shadow .25s ease, border-color .25s ease; }
+  .prf-form:focus-within { box-shadow: 0 10px 34px rgba(242, 112, 15, .22); border-color: #ebc9a1; }
+  .prf-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; position: relative; }
+  .prf-field label { font-size: 12px; font-weight: 600; color: var(--mdcf-muted); }
+  .prf-field input { height: 44px; border: 1.5px solid #e7d3ba; border-radius: 10px; padding: 0 12px; font: inherit; background: var(--mdcf-surface); color: var(--mdcf-ink); box-shadow: 0 1px 2px rgba(90, 60, 20, .06); }
+  .prf-field input:focus { outline: none; border-color: var(--mdcf-navy); }
+  .prf-submit { height: 44px; white-space: nowrap; }
+  @media (max-width: 620px) { .prf-form { grid-template-columns: 1fr; } .prf-submit { justify-content: center; } }
+  .prf-msg { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 12px 14px; font-size: 14px; margin: 12px 0 0; }
+  .prf-featured { margin-top: 18px; }
+  .prf-flabel { font-size: 12px; font-weight: 700; color: var(--mdcf-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+  .prf-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .prf-chip { padding: 8px 13px; border-radius: 999px; background: var(--mdcf-subtle); border: 1px solid var(--mdcf-line); text-decoration: none; color: var(--mdcf-ink); font-size: 13.5px; font-weight: 600; }
+  .prf-chip:hover { background: var(--mdcf-line); }
+  :global(.prf-dot) { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; flex: 0 0 auto; }
+  :global(.prf-d-yes) { background: #1a7f43; } :global(.prf-d-us) { background: #9a6400; } :global(.prf-d-no) { background: #b23016; } :global(.prf-d-none) { background: #b4b2a9; }
+  :global(.prf-c) { color: var(--mdcf-muted); font-size: 12.5px; margin-left: 4px; }
+  :global(.ac-list) { position: absolute; z-index: 20; top: 100%; left: 0; right: 0; margin: 4px 0 0; padding: 4px; list-style: none; background: var(--mdcf-surface); border: 1px solid var(--mdcf-line); border-radius: 10px; box-shadow: var(--mdcf-shadow); max-height: 300px; overflow: auto; }
+  :global(.ac-item) { display: flex; align-items: center; padding: 9px 10px; border-radius: 7px; font-size: 14px; cursor: pointer; }
+  :global(.ac-item:hover), :global(.ac-item.is-cur) { background: var(--mdcf-subtle); }
+</style>

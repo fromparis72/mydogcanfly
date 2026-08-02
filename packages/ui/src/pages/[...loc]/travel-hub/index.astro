@@ -1,0 +1,169 @@
+---
+/* L'index du Travel Hub, dans les quatre langues.
+ *
+ * L'index existe partout, les guides seulement en français et en anglais. C'est voulu, et
+ * c'est la raison d'être de la double écriture ci-dessous : en français et en anglais la page
+ * liste 62 guides ; en espagnol et en portugais elle garde le message « en construction » et
+ * ses renvois vers ce qui existe déjà. Retirer la page dans ces deux langues aurait cassé une
+ * URL présente au sitemap et dans le sélecteur de langue depuis des semaines.
+ *
+ * Cette page-ci a bien ses quatre alternates — c'est son adresse qui est identique d'une
+ * langue à l'autre. Seuls les guides, dont le slug est traduit, fournissent leur propre liste.
+ */
+import Base from "../../../layouts/Base.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+import { localizeHref } from "../../../lib/routes";
+import { guidesDe, decompose, guideHref } from "../../../lib/guides";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const L = inlineT(locale);
+const guides = await guidesDe(locale);
+
+// Mots clés d'abord, pas de suffixe de marque — même règle que sur les fiches.
+const title = L(
+  "Dog travel guides: car, train, ferry, gear and health",
+  "Guides pour voyager avec son chien : voiture, train, ferry, équipement et santé",
+  "Guías para viajar con tu perro: coche, tren, ferry, equipo y salud",
+);
+const metaDesc = L(
+  "Practical guides for travelling with a dog: road trips, trains and ferries, campsites and beaches, crates and harnesses, heat, ticks and travel anxiety.",
+  "Des guides pratiques pour voyager avec son chien : road trip, train et ferry, camping et plages, caisses et harnais, chaleur, tiques et anxiété du transport.",
+  "Guías prácticas para viajar con un perro: carretera, tren y ferry, camping y playas, transportines y arneses, calor, garrapatas y ansiedad.",
+);
+
+/* Regroupement par thème. La catégorie vient des données ; on ne la réinvente pas ici. */
+const groupes = new Map<string, typeof guides>();
+for (const g of guides) {
+  const cat = g.data.categories[0] ?? L("Guides", "Guides", "Guías");
+  if (!groupes.has(cat)) groupes.set(cat, []);
+  groupes.get(cat)!.push(g);
+}
+/* Les rubriques sont triées par volume : sur une page de 62 guides, l'ordre alphabétique
+ * n'apprend rien, alors que « le plus fourni d'abord » dit au lecteur où est la matière. */
+const rubriques = [...groupes.entries()].sort((a, b) => b[1].length - a[1].length);
+
+/* L'ancre d'une rubrique. Les intitulés sont accentués — « Équipement », « Santé » — et un
+ * accent dans un identifiant HTML est licite mais se transforme en pourcentages illisibles
+ * une fois l'URL partagée. On translittère donc, sans dépendre d'une table à tenir à jour :
+ * la décomposition Unicode sépare la lettre de son accent, et on ne garde que la lettre. */
+const ancre = (s: string) =>
+  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+const refs = [
+  { href: localizeHref("/airlines/", locale), icon: "✈️", label: t(locale, "nav.airlines") },
+  { href: localizeHref("/countries/", locale), icon: "🌍", label: t(locale, "nav.countries") },
+  { href: localizeHref("/breeds/", locale), icon: "🐕", label: t(locale, "index.breeds.title") },
+  { href: localizeHref("/airports/", locale), icon: "🛂", label: t(locale, "index.airports.title") },
+];
+const fmt = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : locale === "es" ? "es-ES" : locale === "pt" ? "pt-BR" : "en-GB",
+  { day: "numeric", month: "short", year: "numeric" });
+---
+<Base locale={locale} title={title} description={metaDesc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container th">
+      <p class="mdcf-eyebrow">{t(locale, "nav.travel_hub")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+
+      {guides.length === 0 ? (
+        <div class="th-soon">
+          <p class="th-soon__head">🚧 {L("This section is under construction.", "Cette section est en construction.", "Esta sección está en construcción.")}</p>
+          <p>{L(
+            "These guides already exist in French and English. They will be translated — we would rather publish them late than badly.",
+            "Ces guides existent déjà en français et en anglais. Ils seront traduits : nous préférons les publier en retard que mal.",
+            "Estas guías ya existen en francés e inglés. Se traducirán: preferimos publicarlas tarde que mal.",
+          )}</p>
+        </div>
+      ) : (
+        <>
+          <p class="th-lede">{metaDesc}</p>
+
+          {/* Raccourcis vers les rubriques. De simples ancres, donc fonctionnelles sans
+              JavaScript et explorables par les moteurs — un menu qui n'existerait qu'au clic
+              serait invisible pour eux. La position courante est signalée par
+              `:target`, en CSS pur, sans une ligne de script. */}
+          <nav class="th-jump" aria-label={L("Sections", "Rubriques", "Secciones")}>
+            {rubriques.map(([cat, items]) => (
+              <a href={`#${ancre(cat)}`}>{cat} <span>{items.length}</span></a>
+            ))}
+          </nav>
+
+          {rubriques.map(([cat, items]) => (
+            <>
+              <h2 class="th-h2" id={ancre(cat)}>{cat} <span class="th-n">{items.length}</span></h2>
+              <div class="th-cards">
+                {items.map((g) => (
+                  <a class="th-card" href={guideHref(locale, decompose(g).slug)}>
+                    {g.data.cover?.image && (
+                      <img src={g.data.cover.image} alt="" width="400" height="225" loading="lazy" />
+                    )}
+                    <div class="th-card__b">
+                      <h3>{g.data.title}</h3>
+                      {g.data.summary && <p>{g.data.summary}</p>}
+                      <time datetime={g.data.date}>{fmt.format(new Date(g.data.lastmod))}</time>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </>
+          ))}
+        </>
+      )}
+
+      <h2 class="th-h2">{L("Also on MyDogCanFly", "Également sur MyDogCanFly", "También en MyDogCanFly")}</h2>
+      <div class="th-grid">
+        {refs.map((r) => (
+          <a class="th-item" href={r.href}><span aria-hidden="true">{r.icon}</span> {r.label}</a>
+        ))}
+      </div>
+
+      <RelatedTools locale={locale} current="travel-hub" />
+    </div>
+  </section>
+</Base>
+<style>
+  .th-soon { border: 1px solid #f0d9b8; border-radius: 14px; padding: 20px 22px; background: #fff8ec; max-width: 760px; margin: 6px 0 26px; }
+  .th-soon__head { font-weight: 800; margin: 0 0 8px; }
+  .th-soon p { margin: 0; line-height: 1.6; }
+  .th-soon p + p { margin-top: 8px; }
+  .th-lede { max-width: 720px; color: var(--mdcf-ink-soft); line-height: 1.6; margin: 4px 0 26px; }
+  /* Les raccourcis. Collants sous l'en-tête du site — qui fait 60 px — pour rester
+     accessibles pendant qu'on parcourt les 62 guides, et non seulement en haut de page. */
+  .th-jump { position: sticky; top: 60px; z-index: 5; display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 0 0 26px; padding: 10px 0; background: var(--mdcf-surface); border-bottom: 1px solid var(--mdcf-line); }
+  .th-jump a { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px;
+    border: 1px solid var(--mdcf-line); border-radius: 999px; background: var(--mdcf-subtle);
+    color: var(--mdcf-ink); text-decoration: none; font-size: 13.5px; font-weight: 600; }
+  .th-jump a:hover { background: var(--mdcf-accent-soft); border-color: #f0d9b8; color: var(--mdcf-accent-ink); }
+  .th-jump a span { color: var(--mdcf-muted); font-weight: 500; }
+  .th-jump a:hover span { color: inherit; }
+
+  /* Sans cette marge, l'ancre place le titre pile sous l'en-tête collant, qui le recouvre.
+     C'est le défaut classique des menus d'ancres, et il se corrige d'une ligne. */
+  .th-h2 { font-size: 15px; margin: 30px 0 12px; color: var(--mdcf-ink); text-transform: uppercase; letter-spacing: .04em;
+    scroll-margin-top: 124px; }
+  /* La rubrique visée est signalée le temps qu'on la trouve — en CSS seul, sans script. */
+  .th-h2:target { color: var(--mdcf-accent-ink); }
+  .th-n { color: var(--mdcf-muted); font-weight: 500; }
+  .th-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .th-card { display: flex; flex-direction: column; border: 1px solid var(--mdcf-line); border-radius: var(--mdcf-radius);
+    overflow: hidden; background: var(--mdcf-surface); text-decoration: none; color: inherit; }
+  .th-card:hover { box-shadow: var(--mdcf-shadow); }
+  .th-card img { width: 100%; height: 148px; object-fit: cover; display: block; background: var(--mdcf-subtle); }
+  .th-card__b { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .th-card h3 { font-size: 15.5px; margin: 0; line-height: 1.35; }
+  .th-card p { margin: 0; font-size: 13.5px; color: var(--mdcf-muted); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .th-card time { margin-top: auto; font-size: 12px; color: var(--mdcf-muted); }
+  .th-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; max-width: 980px; }
+  .th-item { display: flex; align-items: center; gap: 9px; padding: 12px 14px; border: 1px solid var(--mdcf-line); border-radius: 12px; background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; }
+  .th-item:hover { background: var(--mdcf-line); }
+</style>

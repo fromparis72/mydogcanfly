@@ -1,0 +1,410 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+// Bible — bespoke, noindex "travel sheet" reached from the Finder results (one airline chosen).
+// Fully data-driven: the chronology is assembled client-side from countryData (origin + destination),
+// the airline snapshot travels in the URL. A shareable permalink; it never re-calls the engine.
+import Base from "../../../layouts/Base.astro";
+import { countryData, type CountryGuide, type LT } from "../../../data/countries";
+import airlineLogos from "../../../data/airline-logos.generated.json";
+import PageActions from "../../../components/PageActions.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } },
+    { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const L = inlineT(locale);
+const pick = (lt?: LT): string => (lt ? ((lt as Record<string, string>)[locale] ?? lt.en) : "");
+
+const base = locale === "en" ? "" : `/${locale}`;
+
+// Trim every country guide to the fields the Bible needs, resolved to this locale (keeps the shipped JSON small).
+const bible: Record<string, unknown> = {};
+for (const g of Object.values(countryData) as CountryGuide[]) {
+  const iso = g.iso2.toLowerCase();
+  bible[iso] = {
+    name: pick(g.name),
+    // Les fiches pays sont routées sur l'ISO2 (/countries/gr/), pas sur `seo.slug` qui vaut
+    // le nom anglais complet ("greece") et n'est utilisé nulle part comme URL. Le `?? iso`
+    // ne se déclenchait donc jamais : les 140 fiches, dans les 3 langues, pointaient vers
+    // une URL inexistante depuis la Bible.
+    slug: iso,
+    regime: g.regime ?? null,
+    arrival: { intro: pick(g.arrival?.intro), points: (g.arrival?.points ?? []).map(pick) },
+    origin: {
+      eu: { title: pick(g.origin?.eu?.title), body: pick(g.origin?.eu?.body) },
+      listed: { title: pick(g.origin?.listed?.title), body: pick(g.origin?.listed?.body) },
+      nonListed: { title: pick(g.origin?.nonListed?.title), body: pick(g.origin?.nonListed?.body) },
+    },
+    requirements: (g.requirements ?? []).map((r) => ({
+      item: pick(r.item), required: pick(r.required), when: pick(r.when), exceptions: pick(r.exceptions),
+    })),
+    restricted: g.restrictedDogs
+      ? { intro: pick(g.restrictedDogs.intro), cat1: pick(g.restrictedDogs.cat1), cat2: pick(g.restrictedDogs.cat2), note: pick(g.restrictedDogs.note) }
+      : null,
+    exit: g.exit
+      ? {
+          authority: g.exit.authority, authorityUrl: g.exit.authorityUrl, intro: pick(g.exit.intro),
+          steps: g.exit.steps.map((s) => ({ text: pick(s.text), timing: s.timing })),
+          onSiteNote: g.exit.onSiteNote ? pick(g.exit.onSiteNote) : "",
+        }
+      : null,
+    domestic: g.domestic
+      ? {
+          intro: pick(g.domestic.intro),
+          points: (g.domestic.points ?? []).map(pick),
+          territories: (g.domestic.territories ?? []).map((t) => ({ name: pick(t.name), note: pick(t.note), url: t.url })),
+        }
+      : null,
+    sources: (g.sources ?? []).map((s) => ({ label: pick(s.label), url: s.url })),
+  };
+}
+
+// All UI copy resolved to the locale (FR in tutoiement). The socle + IATA/well-being blocks are the universal
+// baseline (not country data); everything country-specific is pulled from `bible` at runtime.
+const T = {
+  eyebrow: L("Travel requirements — tailored sheet", "Modalités de voyage — fiche sur mesure", "Trámites del viaje — ficha a medida"),
+  dog: L("Dog", "Chien", "Perro"),
+  airline: L("Chosen airline", "Compagnie choisie", "Aerolínea elegida"),
+  needParams: L("Open this sheet from the Finder results to build it.", "Ouvre cette fiche depuis les résultats du Finder pour la construire.", "Abre esta ficha desde los resultados del buscador para generarla."),
+  legend: L("Labels", "Mentions", "Menciones"),
+  req: L("Required", "Requis", "Requerido"), cond: L("Depending", "Selon le cas", "Según el caso"),
+  advised: L("Advised", "Conseillé", "Aconsejado"), check: L("To verify", "À vérifier", "Por verificar"),
+  socleH: L("The basics — identity & vaccination (both ways)", "Le socle — identité & vaccination (dans tous les sens)", "La base — identidad y vacunación (en ambos sentidos)"),
+  socle: [
+    L("ISO microchip (11784/11785), implanted before or with the rabies shot.", "Puce ISO (11784/11785), posée avant ou avec le vaccin antirabique.", "Microchip ISO (11784/11785), implantado antes o con la vacuna antirrábica."),
+    L("Valid rabies vaccination: first dose from 12 weeks, then a 21-day wait.", "Vaccin antirabique valide : 1re dose à partir de 12 semaines, puis 21 jours d'attente.", "Vacuna antirrábica válida: 1.ª dosis desde las 12 semanas, luego 21 días de espera."),
+    L("Boosters kept up to date, with no lapse in validity.", "Rappels tenus à jour, sans interruption de validité.", "Refuerzos al día, sin interrupción de la validez."),
+    L("Dog healthy and fit to travel on the day.", "Chien en bonne santé, apte au transport le jour du vol.", "Perro sano y apto para viajar el día del vuelo."),
+  ],
+  chronoH: L("Your trip, step by step", "Ton voyage, étape par étape", "Tu viaje, paso a paso"),
+  domH: L("Domestic flight — no import formalities", "Vol intérieur — aucune formalité d'import", "Vuelo nacional — sin trámites de importación"),
+  domTerr: L("Watch out — special territories", "Attention — territoires à régime particulier", "Atención — territorios con régimen especial"),
+  domFallback: L(
+    "No border is crossed, so no import formality applies. Check your airline's own conditions (health certificate, age, crate).",
+    "Aucune frontière n'est franchie, donc aucune formalité d'import ne s'applique. Vérifie les conditions propres à ta compagnie (certificat de santé, âge, caisse).",
+    "No se cruza ninguna frontera, así que no se aplica ningún trámite de importación. Consulta las condiciones de tu aerolínea (certificado de salud, edad, jaula)."),
+  out: L("Outbound", "Aller", "Ida"), ret: L("Return", "Retour", "Vuelta"),
+  s1: L("Before departure — leaving", "Avant le départ — sortie de", "Antes de salir — salida de"),
+  s2: L("Arrival — entering", "Arrivée — entrée en", "Llegada — entrada en"),
+  s3: L("Before the return — leaving", "Avant le retour — sortie de", "Antes de la vuelta — salida de"),
+  s4: L("Return — entering", "Retour — entrée en", "Vuelta — entrada en"),
+  freeExit: L("No export formality: the dog leaves the EU freely. What matters is entry into the origin country (step 4).", "Aucune formalité d'export : le chien sort librement de la zone UE. Ce qui compte, c'est l'entrée dans le pays d'origine (étape 4).", "Ninguna formalidad de exportación: el perro sale libremente de la UE. Lo que cuenta es la entrada al país de origen (paso 4)."),
+  exitCheck: L("Check the export rules of the origin country with its veterinary authority.", "Vérifie les règles d'export du pays d'origine auprès de son autorité vétérinaire.", "Verifica las reglas de exportación del país de origen con su autoridad veterinaria."),
+  authority: L("Authority", "Autorité", "Autoridad"),
+  countrySheet: L("Country sheet", "Fiche pays", "Ficha país"),
+  casH: L("Special cases & reserves — check if they apply to you", "Cas particuliers & réserves — vérifie s'ils te concernent", "Casos particulares y reservas — comprueba si te afectan"),
+  cas: [
+    L("Puppy under 12 weeks or not yet vaccinated: travel to the EU is not possible.", "Chiot de moins de 12 semaines ou non encore vacciné : voyage vers l'UE impossible.", "Cachorro de menos de 12 semanas o sin vacunar: el viaje a la UE no es posible."),
+    L("Brachycephalic breed (bulldog, pug…): hold often refused, especially in summer.", "Race brachycéphale (bouledogue, carlin…) : soute souvent refusée, surtout l'été.", "Raza braquicéfala (bulldog, carlino…): bodega a menudo rechazada, sobre todo en verano."),
+    L("Layover through a non-listed third country: a rabies titer may then become mandatory.", "Escale par un pays tiers non listé : un titrage peut alors devenir obligatoire.", "Escala por un país tercero no listado: la titulación puede volverse obligatoria."),
+    L("Recent stay (6 months) in a high-rabies-risk country: stricter entry (permit/titer).", "Séjour récent (6 mois) dans un pays à haut risque rage : entrée durcie (permis/titrage).", "Estancia reciente (6 meses) en país de alto riesgo de rabia: entrada más estricta (permiso/titulación)."),
+    L("More than 5 animals or commercial purpose: switches to the commercial regime, other rules.", "Plus de 5 animaux ou but commercial : bascule en régime commercial, autres règles.", "Más de 5 animales o fin comercial: pasa al régimen comercial, otras reglas."),
+  ],
+  flightH: L("The flight & the airline", "Le vol & la compagnie", "El vuelo y la aerolínea"),
+  cabin: L("Cabin", "Cabine", "Cabina"), hold: L("Hold", "Soute", "Bodega"), cargo: L("Cargo", "Fret", "Carga"),
+  holdNote: L("Above ~8 kg (dog + bag) the dog travels in the accompanied hold, not the cabin.", "Au-delà d'environ 8 kg (chien + sac), le chien voyage en soute accompagnée, pas en cabine.", "Por encima de ~8 kg (perro + bolso), el perro viaja en bodega acompañada, no en cabina."),
+  bookEarly: L("Book the animal slot early: limited number per flight.", "Réserve la place animal tôt : nombre limité par vol.", "Reserva la plaza de animal pronto: número limitado por vuelo."),
+  embargo: L("Summer heat embargo possible depending on temperature.", "Embargo chaleur possible l'été selon la température.", "Embargo por calor posible en verano según la temperatura."),
+  feeCheck: L("Exact fee and breed conditions: confirm with the airline.", "Tarif exact et conditions de race : à confirmer auprès de la compagnie.", "Tarifa exacta y condiciones de raza: confírmalo con la aerolínea."),
+  crateH: L("The travel crate (IATA)", "La caisse de transport (IATA)", "La jaula de transporte (IATA)"),
+  crate: [
+    L("The dog must be able to stand, turn around and lie down.", "Le chien doit tenir debout, se retourner, se coucher.", "El perro debe poder ponerse de pie, girar y tumbarse."),
+    L("Rigid, ventilated on ≥ 3 sides, lockable door, no wheels.", "Rigide, ventilée sur ≥ 3 côtés, porte verrouillable, sans roulettes.", "Rígida, ventilada en ≥ 3 lados, puerta con cierre, sin ruedas."),
+    L("Water bowl, absorbent bedding, 'Live Animal' labels and arrows.", "Gamelle d'eau, litière absorbante, étiquettes « Live Animal » et flèches.", "Bebedero, lecho absorbente, etiquetas 'Live Animal' y flechas."),
+  ],
+  heatH: L("Heat & the hold", "Chaleur & soute", "Calor y bodega"),
+  heat: [
+    L("Above roughly 30 °C, many airlines suspend hold and cargo — the ban follows the temperature, not the season.",
+      "Au-delà d'environ 30 °C, beaucoup de compagnies suspendent soute et fret — l'interdiction suit la température, pas la saison.",
+      "Por encima de unos 30 °C, muchas aerolíneas suspenden bodega y carga — la prohibición sigue a la temperatura, no a la estación."),
+    L("Snub-nosed breeds face stricter thresholds, and are often barred from the hold all year round.",
+      "Les races à museau court ont des seuils plus stricts, et sont souvent interdites de soute toute l'année.",
+      "Las razas de hocico chato tienen umbrales más estrictos, y a menudo tienen prohibida la bodega todo el año."),
+    L("The temperature that counts is the one on the tarmac at departure AND on arrival, not the forecast in town.",
+      "La température qui compte est celle du tarmac au départ ET à l'arrivée, pas la météo en ville.",
+      "La temperatura que cuenta es la de la pista en la salida Y en la llegada, no la previsión en la ciudad."),
+  ],
+  actHeat: L("Calculate the heat risk", "Calculer le risque chaleur", "Calcular el riesgo de calor"),
+  careH: L("Well-being & logistics", "Bien-être & logistique", "Bienestar y logística"),
+  care: [
+    L("Sedation discouraged (breathing risk at altitude).", "Sédation déconseillée (risque respiratoire en altitude).", "Sedación desaconsejada (riesgo respiratorio en altitud)."),
+    L("Get the dog used to its crate beforehand; light meal before the flight.", "Habitue le chien à sa caisse en amont ; repas léger avant le vol.", "Acostumbra al perro a su jaula antes; comida ligera antes del vuelo."),
+    L("Early check-in; collect at the cargo terminal if applicable.", "Enregistrement anticipé ; retrait au terminal fret si applicable.", "Facturación anticipada; recogida en la terminal de carga si aplica."),
+  ],
+  actBook: L("Book the ticket", "Réserver le billet", "Reservar el billete"),
+  actCrate: L("Crate size", "Taille de la caisse", "Tamaño de la jaula"),
+  actPrint: L("Print / PDF", "Imprimer / PDF", "Imprimir / PDF"),
+  actEmail: L("Send by email", "Envoyer par email", "Enviar por email"),
+  emailSubject: L("My dog's travel sheet", "La fiche voyage de mon chien", "La ficha de viaje de mi perro"),
+  further: L("Further reading:", "Pour aller plus loin :", "Para saber más:"),
+  breedSheet: L("Breed sheet", "Fiche de la race", "Ficha de la raza"),
+  airlineSheet: L("Airline sheet", "Fiche compagnie", "Ficha aerolínea"),
+  sourcesH: L("Official sources", "Sources officielles", "Fuentes oficiales"),
+  foot: L("Tailored, non-indexed page. Outbound links open in a new tab.", "Page sur mesure, non indexée. Les liens sortants s'ouvrent dans un nouvel onglet.", "Página a medida, no indexada. Los enlaces externos se abren en una pestaña nueva."),
+  disclaimer: L(
+    "For guidance only — no warranty or liability. Before travelling, always confirm your case with the destination country's embassy or consulate and with your vet.",
+    "Informations données à titre indicatif, sans garantie ni responsabilité. Avant de partir, fais toujours valider ta situation par l'ambassade ou le consulat du pays de destination et par ton vétérinaire.",
+    "Información orientativa, sin garantía ni responsabilidad. Antes de viajar, confirma siempre tu caso con la embajada o el consulado del país de destino y con tu veterinario."),
+};
+// Editorial emphasis, two purposes:
+//  - CRU = crucial documents/actions to not forget — bolded in essential blocks, but only in NON-negated
+//    clauses (so "aucun permis n'est nécessaire" stays neutral).
+//  - CAS = watch-out triggers — bolded in the "special cases" block only.
+const CRU_FR = ["certificat sanitaire","certificat vétérinaire","certificat","passeport européen","passeport","titrage antirabique","titrage sérologique","titrage","puce électronique","puce ISO","puce","permis d'importation","licence d'importation","vaccin antirabique","vaccination antirabique","CDC Dog Import Form"];
+const CRU_EN = ["health certificate","veterinary certificate","certificate","EU pet passport","passport","rabies titer","serological test","titer","microchip","import permit","import licence","import license","rabies vaccination","rabies vaccine","CDC Dog Import Form"];
+const CRU_ES = ["certificado sanitario","certificado veterinario","certificado","pasaporte europeo","pasaporte","titulación antirrábica","titulación serológica","titulación","microchip","permiso de importación","licencia de importación","vacuna antirrábica","CDC Dog Import Form"];
+const CAS_FR = ["brachycéphales","brachycéphale","escale","transit","séjour récent","chiots","chiot","catégorisés","catégorisée","catégorie"];
+const CAS_EN = ["brachycephalic","layover","transit","recent stay","puppy","restricted","banned"];
+const CAS_ES = ["braquicéfala","braquicéfalo","escala","tránsito","estancia reciente","cachorro"];
+const cfg = { locale, base, countryBase: base + "/countries/", breedBase: base + "/breeds/", crateBase: base + "/tools/crate/", heatBase: base + "/tools/heat/",
+  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, T };
+const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La ficha de viaje de tu perro");
+---
+<Base locale={locale} title={`${title} — MyDogCanFly`} description={T.eyebrow} noindex={true}>
+  <section class="mdcf-section"><div class="mdcf-container">
+    <div id="bible" class="bible"><p class="bible__empty">{T.needParams}</p></div>
+    <div id="bible-tools" hidden><PageActions locale={locale} noActions={true} /></div>
+  </div></section>
+
+  <script type="application/json" id="bible-data" set:html={JSON.stringify(bible)} is:inline />
+  <script type="application/json" id="bible-cfg" set:html={JSON.stringify(cfg)} is:inline />
+
+  <script>
+    const DATA = JSON.parse(document.getElementById("bible-data")?.textContent ?? "{}");
+    const C = JSON.parse(document.getElementById("bible-cfg")?.textContent ?? "{}");
+    const T = C.T;
+    const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const mkRe = (arr) => (arr && arr.length)
+      ? new RegExp('(?<![A-Za-zÀ-ÿ])(' + arr.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![A-Za-zÀ-ÿ])', 'gi')
+      : null;
+    const CRURE = mkRe(C.cru), CASRE = mkRe(C.cas);
+    const DLRE = /((?:au moins|at least|al menos|dans les|sous|within|jusqu'à|hasta)\s)?\d+(?:\s?(?:[–-]|à)\s?\d+)?[\s-]?(?:jours?|semaines?|mois|heures?|ans?|d[ií]as?|semanas?|meses|mes|horas?|a[nñ]os?|days?|weeks?|months?|hours?|years?)\b/gi;
+    const NEG = /(aucun|aucune|sans|\bni\b|pas d|jamais|n'est pas|n'exige|n'a pas|no\b|not\b|without|neither|ning[uú]n|ninguna|\bsin\b)/i;
+    const und = (s) => s.replace(DLRE, '<u class="bdelay">$&</u>');
+    // Essential blocks: underline delays; bold crucial terms only in clauses that are NOT negated.
+    const emE = (raw) => { const s = und(esc(raw)); return CRURE ? s.split(/([.;:!?])/).map((p) => NEG.test(p) ? p : p.replace(CRURE, '<b>$1</b>')).join('') : s; };
+    // Special-cases block: bold the watch-out triggers, underline delays.
+    const emC = (raw) => { const s = und(esc(raw)); return CASRE ? s.replace(CASRE, '<b>$1</b>') : s; };
+    const flag = (iso) => iso && iso.length === 2 ? String.fromCodePoint(...[...iso.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : "";
+    const P = new URLSearchParams(location.search);
+    const el = document.getElementById("bible");
+
+    const from = (P.get("from") || "").toLowerCase();
+    const to = (P.get("to") || "").toLowerCase();
+    const O = DATA[from], D = DATA[to];
+    if (!O || !D) { /* keep the empty hint */ }
+    else {
+      const air = { name: P.get("an") || "", site: P.get("as") || "", fiche: P.get("af") || "",
+        cabin: P.get("cab") === "1", hold: P.get("hold") === "1", cargo: P.get("cargo") === "1",
+        direct: P.get("direct") === "1", fee: P.get("fee") || "", embargo: P.get("emb") === "1" };
+      const breed = P.get("breed") || "", brachy = P.get("brachy") === "1", w = P.get("w") || "";
+      const score = P.get("sc") || "";
+
+      const key = (regime) => regime === "eu" ? "eu" : regime === "non_listed" ? "nonListed" : "listed";
+      const pill = (kind) => {
+        const m = { req: ["var(--mdcf-risk-soft,#fee2e2)", "#991b1b", T.req], cond: ["#fef0dc", "#92400e", T.cond],
+          adv: ["#e6f1fb", "#185fa5", T.advised], chk: ["#f1efe8", "#5f5e5a", T.check] };
+        const [bg, fg, tx] = m[kind];
+        return `<span class="bp" style="background:${bg};color:${fg}">${esc(tx)}</span>`;
+      };
+      const list = (arr, f) => arr.filter(Boolean).map((x) => `<li>${f ? f(x) : esc(x)}</li>`).join("");
+
+      // Outbound links carry the full context (airline, breed, destination) so nothing is lost on back-navigation.
+      const airId = P.get("air") || "", bid = P.get("bid") || "";
+      const logo = (C.logos || {})[airId] || null;
+      const logoImg = (cls) => logo ? `<span class="bairlogo ${cls}${logo.dark ? " bairlogo--dark" : ""}"><img src="${esc(logo.src)}" alt="${esc(air.name)}" loading="lazy"></span>` : "";
+      const qs = (pairs) => { const q = pairs.filter((p) => p[1]).map((p) => p[0] + "=" + encodeURIComponent(p[1])).join("&"); return q ? "?" + q : ""; };
+      const addQ = (url, q) => q ? url + (url.indexOf("?") >= 0 ? "&" + q.slice(1) : q) : url;
+      const crateHref = C.crateBase + qs([["air", airId], ["breed", bid]]);
+      const heatHref = C.heatBase + qs([["breed", bid]]);
+      const airFicheHref = air.fiche ? addQ(air.fiche, qs([["to", to], ["breed", bid]])) : "";
+      const countryHref = (slug) => C.countryBase + slug + "/" + qs([["via", airId], ["breed", bid]]);
+
+      // Step content, data-driven from the two country guides.
+      const originEU = O.regime === "eu", destEU = D.regime === "eu";
+      const step1 = originEU
+        ? `<p>${esc(T.freeExit)}</p>`
+        : (O.exit
+          ? `<p>${emE(O.exit.intro)}</p><ul class="bl">${list(O.exit.steps.map((s) => s.text), emE)}</ul>` + (O.exit.onSiteNote ? `<p class="bnote">${emE(O.exit.onSiteNote)}</p>` : "") + `<a class="blink" href="${esc(O.exit.authorityUrl)}" target="_blank" rel="nofollow noopener">${esc(T.authority)} : ${esc(O.exit.authority)}</a>`
+          : `<p>${esc(T.exitCheck)} ${pill("chk")}</p>`);
+      const entryBlock = (guide, fromRegime) => {
+        const ob = guide.origin[key(fromRegime)] || {};
+        const pts = (guide.arrival?.points || []).slice(0, 4);
+        return (ob.body ? `<p>${emE(ob.body)}</p>` : "") + (pts.length ? `<ul class="bl">${list(pts, emE)}</ul>` : "");
+      };
+      const step2 = entryBlock(D, O.regime) + `<a class="blink" href="${esc(countryHref(D.slug))}">${esc(T.countrySheet)} : ${esc(D.name)}</a>`;
+      const step3 = destEU
+        ? `<p>${esc(T.freeExit)}</p>`
+        : (D.exit
+          ? `<p>${emE(D.exit.intro)}</p><ul class="bl">${list(D.exit.steps.map((s) => s.text), emE)}</ul>` + (D.exit.onSiteNote ? `<p class="bnote">${emE(D.exit.onSiteNote)}</p>` : "") + `<a class="blink" href="${esc(D.exit.authorityUrl)}" target="_blank" rel="nofollow noopener">${esc(T.authority)} : ${esc(D.exit.authority)}</a>`
+          : `<p>${esc(T.exitCheck)} ${pill("chk")}</p>`);
+      const step4 = entryBlock(O, D.regime) + `<a class="blink" href="${esc(countryHref(O.slug))}">${esc(T.countrySheet)} : ${esc(O.name)}</a>`;
+
+      const stepRow = (n, chip, chipKind, title, body) =>
+        `<div class="bstep"><div class="bstep__n bstep__n--${chipKind}">${n}</div><div class="bstep__c">
+          <div class="bstep__h"><span class="bstep__t">${esc(title)}</span><span class="bchip bchip--${chipKind}">${esc(chip)}</span></div>
+          <div class="bstep__b">${body}</div></div></div>`;
+
+      const capBadges = `<div class="bcaps">
+        <span class="bcap ${air.cabin ? "is-ok" : "is-no"}">${esc(T.cabin)}${air.cabin ? "" : " ✕"}</span>
+        <span class="bcap ${air.hold ? "is-ok" : "is-no"}">${esc(T.hold)}${air.hold ? " ✓" : ""}</span>
+        <span class="bcap ${air.cargo ? "is-ok" : "is-no"}">${esc(T.cargo)}${air.cargo ? " ✓" : ""}</span>
+        ${air.fee ? `<span class="bfee">${esc(air.fee)}</span>` : ""}</div>`;
+
+      const sourcesAll = [...(O.sources || []), ...(D.sources || [])];
+      const emailBody = encodeURIComponent(location.href);
+
+      el.innerHTML = `
+        <div class="bhead">
+          <div><div class="beyebrow">${esc(T.eyebrow)}</div>
+            <div class="broute">
+              <span class="bleg"><span class="bflag">${flag(from)}</span> ${esc(O.name)}</span>
+              <span class="bplane" aria-hidden="true">✈</span>
+              <span class="bleg"><span class="bflag">${flag(to)}</span> ${esc(D.name)}</span>
+              <span class="bplane" aria-hidden="true">✈</span>
+              <span class="bleg"><span class="bflag">${flag(from)}</span> ${esc(O.name)}</span>
+            </div>
+            <div class="bsub">${esc(T.dog)} ${w ? esc(w) + " kg" : ""}${breed ? " · " + esc(breed) : ""}</div></div>
+          <div class="bhead__r"><div class="blbl">${esc(T.airline)}</div><div class="bair"><span>${esc(air.name)}</span></div>
+            ${score ? `<span class="bscore">${esc(score)} %</span>` : ""}</div>
+        </div>
+
+        <div class="bdisclaimer"><span class="bdisclaimer__ic" aria-hidden="true">⚠️</span> <span>${esc(T.disclaimer)}</span></div>
+
+        <div class="blegend"><span>${esc(T.legend)} :</span> ${pill("req")} ${pill("cond")} ${pill("adv")} ${pill("chk")}</div>
+
+        ${from === to ? "" : `<div class="bcard"><div class="bcard__h">${esc(T.socleH)}</div><ul class="bl">${list(T.socle, emE)}</ul></div>`}
+
+        ${from === to ? (() => {
+          // Domestic: no border, so the four-step entry/exit chronology is meaningless. Show what applies instead.
+          const dm = O.domestic;
+          const body = dm
+            ? `<p>${emE(dm.intro)}</p><ul class="bl">${list(dm.points, emE)}</ul>`
+              + (dm.territories && dm.territories.length
+                ? `<div class="bnote"><b>${esc(T.domTerr)}</b><ul class="bl">${dm.territories.map((t) => `<li><b>${esc(t.name)}</b> — ${emE(t.note)}${t.url ? ` <a class="blink" href="${esc(t.url)}" target="_blank" rel="nofollow noopener">↗</a>` : ""}</li>`).join("")}</ul></div>`
+                : "")
+            : `<p>${esc(T.domFallback)}</p>`;
+          return `<div class="bcard"><div class="bcard__h">${esc(T.domH)}</div>${body}</div>`;
+        })() : `<div class="bcard bchrono"><div class="bcard__h bchrono__h">${esc(T.chronoH)}</div>
+          ${stepRow(1, T.out, "out", flag(from) + "  " + T.s1 + " " + O.name, step1)}
+          ${stepRow(2, T.out, "out", flag(to) + "  " + T.s2 + " " + D.name, step2)}
+          ${stepRow(3, T.ret, "ret", flag(to) + "  " + T.s3 + " " + D.name, step3)}
+          ${stepRow(4, T.ret, "ret", flag(from) + "  " + T.s4 + " " + O.name, step4)}
+        </div>`}
+
+        <div class="bcard bcard--warn"><div class="bcard__h">${esc(T.casH)}</div>
+          <ul class="bl">${list(T.cas, emC)}${D.restricted ? `<li>${emC(D.restricted.intro)} ${emC(D.restricted.note)}</li>` : ""}</ul></div>
+
+        <div class="bcard"><div class="bcard__h bvolh"><span>${esc(T.flightH)} — ${esc(air.name)}${air.direct ? " · " + esc(T.out) : ""}</span>${logoImg("bairlogo--block")}</div>
+          ${capBadges}
+          <ul class="bl">
+            <li>${esc(T.holdNote)} ${pill("req")}</li>
+            <li>${esc(T.bookEarly)} ${pill("adv")}</li>
+            ${air.embargo ? `<li>${esc(T.embargo)} ${pill("cond")}</li>` : ""}
+            <li>${esc(T.feeCheck)} ${pill("chk")}</li>
+          </ul>${airFicheHref ? `<a class="bcrate-cta" href="${esc(airFicheHref)}">✈ ${esc(T.airlineSheet)} : ${esc(air.name)} →</a>` : ""}</div>
+
+        <div class="bgrid">
+          <div class="bcard"><div class="bcard__h">${esc(T.crateH)}</div><ul class="bl">${list(T.crate)}</ul><a class="bcrate-cta" href="${esc(crateHref)}">📦 ${esc(T.actCrate)} ↗</a></div>
+          <div class="bcard"><div class="bcard__h">${esc(T.heatH)}</div><ul class="bl">${list(T.heat)}</ul><a class="bcrate-cta" href="${esc(heatHref)}">🌡 ${esc(T.actHeat)} ↗</a></div>
+        </div>
+        <div class="bcard"><div class="bcard__h">${esc(T.careH)}</div><ul class="bl">${list(T.care)}</ul></div>
+
+        <div class="bactions">
+          ${air.site ? `<a class="bbtn" href="${esc(air.site)}" target="_blank" rel="nofollow noopener">🎟 ${esc(T.actBook)} ↗</a>` : ""}
+          <button class="bbtn" type="button" id="b-print">🖨 ${esc(T.actPrint)}</button>
+          <a class="bbtn" href="mailto:?subject=${encodeURIComponent(T.emailSubject)}&body=${emailBody}">✉ ${esc(T.actEmail)}</a>
+        </div>
+
+        <div class="bfurther">${esc(T.further)}
+          <a href="${esc(countryHref(D.slug))}">${esc(T.countrySheet)} ${esc(D.name)}</a>
+          ${air.fiche ? ` · <a href="${esc(airFicheHref)}">${esc(T.airlineSheet)}</a>` : ""}
+        </div>
+
+        ${sourcesAll.length ? `<div class="bsources"><b>${esc(T.sourcesH)} :</b> ${sourcesAll.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="nofollow noopener">${esc(s.label)}</a>`).join(" · ")}</div>` : ""}
+        <div class="bfoot">${esc(T.foot)}</div>`;
+
+      document.getElementById("b-print")?.addEventListener("click", () => window.print());
+
+      // Le pied de page commun est rendu par Astro, hors du conteneur reconstruit en JS.
+      // Ses liens sont statiques : on y injecte ici le contexte que seule la fiche connaît.
+      const tools = document.getElementById("bible-tools");
+      if (tools) {
+        const ctx = { finder: [["to", to], ["breed", bid], ["air", airId]],
+          destinations: [["breed", bid]], heat: [["breed", bid]],
+          crate: [["breed", bid], ["air", airId]], "pet-relief": [] };
+        tools.querySelectorAll("[data-tool]").forEach((a) => {
+          const q = qs(ctx[a.getAttribute("data-tool")] || []);
+          if (!q) return;
+          const h = a.getAttribute("href") || "", i = h.indexOf("#");
+          // La query doit rester devant l'ancre, sinon elle n'atteint pas location.search.
+          a.setAttribute("href", i >= 0 ? addQ(h.slice(0, i), q) + h.slice(i) : addQ(h, q));
+        });
+        tools.hidden = false;
+      }
+    }
+  </script>
+
+  <style is:global>
+    .bible { max-width: 960px; }
+    .bible__empty { color: var(--mdcf-muted); }
+    .bhead { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: flex-start; }
+    .beyebrow { font-size: 13px; letter-spacing: .06em; color: var(--mdcf-accent); font-weight: 800; text-transform: uppercase; }
+    .bstep__b b, .bl b, .bnote b { font-weight: 600; color: var(--mdcf-ink); }
+    .bdelay { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1.5px; }
+    .broute { font-size: 23px; font-weight: 800; color: var(--mdcf-ink); margin-top: 4px; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+    .bleg { display: inline-flex; align-items: center; gap: 7px; }
+    .bflag { font-size: 24px; line-height: 1; }
+    .bplane { color: var(--mdcf-accent); font-size: 16px; }
+    .bsub { font-size: 14px; color: var(--mdcf-muted); margin-top: 6px; }
+    .bhead__r { text-align: right; } .blbl { font-size: 12.5px; color: var(--mdcf-muted); }
+    .bair { font-size: 16.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 9px; justify-content: flex-end; }
+    .bairlogo { display: inline-flex; align-items: center; justify-content: center; height: 34px; padding: 4px 9px; background: #fff; border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 8px; flex: 0 0 auto; }
+    .bairlogo img { max-height: 24px; max-width: 96px; width: auto; height: auto; object-fit: contain; display: block; }
+    .bairlogo--dark { background: #001e50; border-color: #001e50; }
+    .bvolh { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .bairlogo--block { height: 46px; padding: 6px 13px; }
+    .bairlogo--block img { max-height: 32px; max-width: 132px; }
+    .bscore { display: inline-block; margin-top: 5px; font-size: 12.5px; font-weight: 700; background: #d1fae5; color: #065f46; padding: 3px 10px; border-radius: 999px; }
+    .bdisclaimer { margin-top: 16px; display: flex; gap: 9px; align-items: flex-start; background: #fff8ec; border: 1px solid #f0d9b8; border-radius: 10px; padding: 12px 15px; font-size: 13px; line-height: 1.55; color: #7c4a12; }
+    .bdisclaimer__ic { flex: 0 0 auto; }
+    .blegend { margin: 16px 0 4px; font-size: 11.5px; color: var(--mdcf-muted); display: flex; gap: 7px; align-items: center; flex-wrap: wrap; }
+    .bp { font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 6px; white-space: nowrap; }
+    .bcard { background: var(--mdcf-card, #fff); border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 14px; padding: 18px 20px; margin-top: 18px; }
+    .bcard--warn { background: #fff8ec; border-color: #f0d9b8; }
+    .bcard__h { font-size: 15px; font-weight: 800; margin-bottom: 10px; color: var(--mdcf-ink); }
+    .bl { margin: 0; padding-left: 20px; line-height: 1.72; font-size: 14.5px; color: var(--mdcf-ink-soft, #33436a); }
+    .bl li { margin: 4px 0; }
+    .bchrono { margin-top: 18px; }
+    .bstep { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); }
+    .bstep:last-child { border-bottom: 0; }
+    .bstep__n { flex: 0 0 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+    .bstep__n--out { background: #e6f1fb; color: #185fa5; } .bstep__n--ret { background: #fef0dc; color: #92400e; }
+    .bstep__h { display: flex; gap: 9px; align-items: center; flex-wrap: wrap; }
+    .bstep__t { font-weight: 800; font-size: 16px; color: var(--mdcf-ink); }
+    .bchip { font-size: 11px; padding: 2px 9px; border-radius: 6px; }
+    .bchip--out { background: #e6f1fb; color: #185fa5; } .bchip--ret { background: #fef0dc; color: #92400e; }
+    .bstep__b { font-size: 14.5px; color: var(--mdcf-ink-soft, #33436a); line-height: 1.68; margin-top: 5px; }
+    .bstep__b p { margin: 5px 0; } .bnote { background: #fff8ec; border: 1px solid #f0d9b8; border-radius: 8px; padding: 10px 13px; margin-top: 16px; font-size: 13.5px; line-height: 1.55; color: #7c4a12; }
+    .blink { display: inline-block; margin-top: 7px; font-size: 13.5px; font-weight: 600; color: var(--mdcf-accent); text-decoration: none; }
+    .bcaps { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 10px; font-size: 12.5px; }
+    .bcap { padding: 3px 10px; border-radius: 6px; } .bcap.is-ok { background: #d1fae5; color: #065f46; } .bcap.is-no { background: #fee2e2; color: #991b1b; text-decoration: line-through; }
+    .bfee { color: var(--mdcf-muted); }
+    .bgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; } .bgrid .bcard { margin-top: 18px; }
+    @media (max-width: 680px) { .bgrid { grid-template-columns: 1fr; } }
+    .bactions { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 22px; }
+    .bbtn { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-start; padding: 11px 15px; border: 1px solid var(--mdcf-line, #cfd8e3); border-radius: 10px; background: #fff; font-size: 13.5px; font-weight: 600; color: var(--mdcf-ink); text-decoration: none; cursor: pointer; }
+    .bbtn:hover { background: var(--mdcf-subtle, #f5f7fa); }
+    .bcrate-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 12px; padding: 9px 14px; border: 1px solid var(--mdcf-accent, #1d4ed8); border-radius: 8px; font-size: 13px; font-weight: 700; color: var(--mdcf-accent, #1d4ed8); text-decoration: none; }
+    .bcrate-cta:hover { background: var(--mdcf-accent-soft, #eef4ff); }
+    .bfurther { margin-top: 16px; font-size: 12.5px; color: var(--mdcf-muted); } .bfurther a { color: var(--mdcf-muted); text-decoration: none; }
+    .bsources { margin-top: 14px; font-size: 12px; color: var(--mdcf-muted); } .bsources a { color: var(--mdcf-accent); }
+    .bfoot { margin-top: 10px; font-size: 12px; color: var(--mdcf-muted); }
+    @media print { .bactions, .bfurther, header, footer, nav { display: none !important; } }
+  </style>
+</Base>

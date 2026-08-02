@@ -1,0 +1,378 @@
+# Country Entry Guide — Cameroon (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_cm
+iso2: "CM"
+name: { en: "Cameroon", fr: "Cameroun", es: "Camerún", pt: "Camarões" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: DSV (MINEPIA)
+  authorityUrl: https://minepia.cm
+  intro:
+    en: "Cameroon is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Direction des Services Vétérinaires (MINEPIA)."
+    fr: "Le Cameroun est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction des Services Vétérinaires (MINEPIA)."
+    es: "Camerún no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Direction des Services Vétérinaires (MINEPIA)."
+    pt: "Camarões é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction des Services Vétérinaires (MINEPIA)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "The MINEPIA Direction des Services Vétérinaires manages animal health and issues the export health certificate before departure."
+        fr: "La Direction des Services Vétérinaires du MINEPIA gère la santé animale et délivre le certificat sanitaire d'export avant le départ."
+        es: "La Direction des Services Vétérinaires del MINEPIA gestiona la sanidad animal y emite el certificado sanitario de exportación antes de salir."
+        pt: "A Direction des Services Vétérinaires do MINEPIA administra a saúde animal e emite o atestado de saúde de exportação antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, ele permanece válido por toda a vida enquanto a vacinação antirrábica estiver em dia — vale a pena verificar isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Cameroon with your dog", fr: "Voyager au Cameroun avec ton chien", es: "Viajar a Camerún con tu perro", pt: "Viajar para Camarões com seu cachorro" }
+  intro:
+    en: >-
+      Cameroon accepts pet dogs, but it publishes very little detail of its own, so the clearest
+      official picture comes from the veterinary health certificate its authorities have agreed with
+      exporting countries. The animal-health authority is the Ministry of Livestock, Fisheries and
+      Animal Industries (MINEPIA) and its Veterinary Services Branch (Direction des Services
+      Vétérinaires). In practice your dog needs a microchip, a valid rabies vaccination and an official
+      international veterinary health certificate signed and endorsed by the veterinary authority of the
+      country of departure. Cameroon is a rabies-endemic country and every imported animal is subject to
+      veterinary sanitary inspection at the border. Because many specifics are simply not published, this
+      guide flags clearly what is confirmed by an official source and what remains unknown — always
+      confirm the exact procedure with your vet and with MINEPIA before you book.
+    fr: >-
+      Le Cameroun accepte les chiens de compagnie, mais il publie très peu de détails propres ; l'image
+      officielle la plus claire provient du certificat sanitaire vétérinaire que ses autorités ont
+      convenu avec les pays exportateurs. L'autorité sanitaire est le Ministère de l'Élevage, des Pêches
+      et des Industries Animales (MINEPIA) et sa Direction des Services Vétérinaires. En pratique, ton
+      chien doit disposer d'une puce électronique, d'une vaccination antirabique valide et d'un certificat
+      sanitaire vétérinaire international officiel signé et visé par l'autorité vétérinaire du pays de
+      départ. Le Cameroun est un pays où la rage est endémique et tout animal importé est soumis à
+      l'inspection sanitaire vétérinaire à la frontière. De nombreux points n'étant tout simplement pas
+      publiés, ce guide indique clairement ce qui est confirmé par une source officielle et ce qui reste
+      inconnu — confirme toujours la procédure exacte avec ton vétérinaire et le MINEPIA avant de réserver.
+    es: >-
+      Camerún acepta perros de compañía, pero publica muy pocos detalles propios, así que la imagen
+      oficial más clara procede del certificado sanitario veterinario que sus autoridades han acordado
+      con los países exportadores. La autoridad de sanidad animal es el Ministerio de Ganadería, Pesca e
+      Industrias Animales (MINEPIA) y su Dirección de los Servicios Veterinarios (Direction des Services
+      Vétérinaires). En la práctica tu perro necesita un microchip, una vacunación antirrábica válida y un
+      certificado sanitario veterinario internacional oficial firmado y refrendado por la autoridad
+      veterinaria del país de salida. Camerún es un país con rabia endémica y todo animal importado está
+      sujeto a inspección sanitaria veterinaria en la frontera. Como muchos detalles simplemente no están
+      publicados, esta guía señala con claridad lo que está confirmado por una fuente oficial y lo que
+      sigue siendo desconocido — confirma siempre el procedimiento exacto con tu veterinario y con el
+      MINEPIA antes de reservar.
+
+    pt: "Camarões aceita cachorros de companhia, mas publica muito poucos detalhes próprios, de modo que o quadro oficial mais claro vem do atestado de saúde veterinário que suas autoridades acordaram com os países exportadores. A autoridade de saúde animal é o Ministério da Pecuária, Pesca e Indústrias Animais (MINEPIA) e sua Divisão de Serviços Veterinários (Direction des Services Vétérinaires). Na prática, o cachorro precisa de um microchip, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial, assinado e endossado pela autoridade veterinária do país de partida. Camarões é um país de raiva endêmica, e todo animal importado está sujeito a inspeção sanitária veterinária na fronteira. Como muitos detalhes simplesmente não são publicados, este guia assinala claramente o que é confirmado por uma fonte oficial e o que permanece não comunicado — confirmar sempre o procedimento exato com o veterinário e com o MINEPIA antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — official endorsed veterinary certificate; several details unpublished", fr: "Modéré — certificat vétérinaire officiel visé ; plusieurs détails non publiés", es: "Moderado — certificado veterinario oficial refrendado; varios detalles no publicados", pt: "Moderado — certificado veterinário oficial endossado; vários detalhes não publicados" }
+
+prepTime:
+  eu:
+    en: "From the EU: allow a few days to a couple of weeks if the microchip and rabies vaccination are already in order — an official EU vet issues and endorses the international health certificate close to departure. Cameroon does not publish an EU-specific model, so confirm the wording with your vet."
+    fr: "Depuis l'UE : prévois quelques jours à deux semaines si la puce et la vaccination antirabique sont déjà en règle — un vétérinaire officiel de l'UE établit et vise le certificat sanitaire international peu avant le départ. Le Cameroun ne publie pas de modèle propre à l'UE ; confirme la rédaction avec ton vétérinaire."
+    es: "Desde la UE: prevé de unos días a un par de semanas si el microchip y la vacunación antirrábica ya están en regla — un veterinario oficial de la UE emite y refrenda el certificado sanitario internacional poco antes de la salida. Camerún no publica un modelo específico para la UE, así que confirma la redacción con tu veterinario."
+    pt: "Da UE: contar com alguns dias a duas semanas, se o microchip e a vacinação antirrábica já estiverem em dia — um veterinário oficial da UE emite e endossa o atestado de saúde internacional perto da partida. Camarões não publica um modelo específico para a UE, portanto confirmar o texto com o veterinário."
+  listed:
+    en: "From the United States: the USDA-endorsed dog/cat certificate is valid for 30 days after issuance; allow 1–2 weeks for USDA (VEHCS) endorsement, and about 3 weeks more if the rabies vaccination still has to be done."
+    fr: "Depuis les États-Unis : le certificat chiens/chats visé par l'USDA est valable 30 jours après émission ; compte 1 à 2 semaines pour le visa de l'USDA (VEHCS), et environ 3 semaines de plus si la vaccination antirabique reste à faire."
+    es: "Desde Estados Unidos: el certificado para perros/gatos refrendado por el USDA es válido 30 días tras su emisión; prevé de 1 a 2 semanas para el refrendo del USDA (VEHCS), y unas 3 semanas más si aún falta administrar la vacunación antirrábica."
+    pt: "Dos Estados Unidos: o certificado para cachorros/gatos endossado pelo USDA é válido por 30 dias após a emissão; contar com 1 a 2 semanas para o endosso do USDA (VEHCS), e cerca de mais 3 semanas se a vacinação antirrábica ainda precisar ser feita."
+  nonListed:
+    en: "From other origins: where a MINEPIA import authorization applies, the decision can take up to 30 days — allow several weeks and confirm with the Veterinary Services whether a personal accompanying pet needs one."
+    fr: "Depuis d'autres origines : lorsqu'une autorisation d'importation du MINEPIA s'applique, la décision peut prendre jusqu'à 30 jours — prévois plusieurs semaines et confirme auprès des Services Vétérinaires si un animal de compagnie accompagné en a besoin."
+    es: "Desde otros orígenes: cuando se aplica una autorización de importación del MINEPIA, la decisión puede tardar hasta 30 días — prevé varias semanas y confirma con los Servicios Veterinarios si una mascota personal acompañada necesita una."
+    pt: "De outras origens: quando se aplica uma autorização de importação do MINEPIA, a decisão pode levar até 30 dias — contar com várias semanas e confirmar com os Serviços Veterinários se um cachorro de companhia particular que viaja acompanhado precisa dela."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (rabies-endemic country)", fr: "Requise (pays où la rage est endémique)", es: "Obligatoria (país con rabia endémica)", pt: "Obrigatória (país de raiva endêmica)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required in the official certificate model", fr: "Non requis dans le modèle de certificat officiel", es: "No obligatoria en el modelo de certificado oficial", pt: "Não exigido no modelo oficial de certificado" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed by origin authority)", fr: "Requis (visé par l'autorité d'origine)", es: "Obligatorio (refrendado por la autoridad de origen)", pt: "Obrigatório (endossado pela autoridade de origem)" }
+    cls: warn
+  - requirement: { en: "Import authorization", fr: "Autorisation d'importation", es: "Autorización de importación", pt: "Autorização de importação" }
+    status: { en: "Framework exists — need for a personal pet unclear", fr: "Cadre existant — nécessité pour un animal personnel incertaine", es: "Existe un marco — no está claro si es necesaria para una mascota personal", pt: "Quadro existente — necessidade para um cachorro de companhia particular não está clara" }
+    cls: neutral
+  - requirement: { en: "Border veterinary inspection", fr: "Inspection vétérinaire frontalière", es: "Inspección veterinaria fronteriza", pt: "Inspeção veterinária na fronteira" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published (Unknown)", fr: "Non publiée (Non communiqué)", es: "No publicada (Desconocido)", pt: "Não publicado (não informado)" }
+    cls: neutral
+  - requirement: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    status: { en: "No national import ban published", fr: "Aucune interdiction nationale d'importation publiée", es: "No hay prohibición nacional de importación publicada", pt: "Nenhuma proibição nacional de importação publicada" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog; Cameroon publishes little, so also confirm directly with MINEPIA and the country's veterinary services."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien ; le Cameroun publiant peu, confirme aussi directement auprès du MINEPIA et des services vétérinaires du pays."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro; como Camerún publica poco, confirma también directamente con el MINEPIA y los servicios veterinarios del país."
+    pt: "Somente um médico-veterinário pode confirmar o procedimento exato para cada cachorro; Camarões publica poucos detalhes, portanto também é preciso confirmar diretamente com o MINEPIA e os serviços veterinários do país."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Cameroon (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Cameroun (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Camerún (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Camarões (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Cameroon", fr: "Pays de destination — Cameroun", es: "País de destino — Camerún", pt: "País de destino — Camarões" }
+      text:
+        en: "Cameroon requires a microchip, a valid rabies vaccination and an official international veterinary health certificate, and every imported animal undergoes veterinary sanitary inspection at the border under MINEPIA. Many finer points (exact rabies timing, minimum age, parasite treatment, quarantine) are not published, which is itself a planning factor."
+        fr: "Le Cameroun exige une puce électronique, une vaccination antirabique valide et un certificat sanitaire vétérinaire international officiel, et tout animal importé subit une inspection sanitaire vétérinaire à la frontière sous l'égide du MINEPIA. De nombreux points précis (délais exacts de la rage, âge minimum, traitement antiparasitaire, quarantaine) ne sont pas publiés, ce qui constitue en soi un facteur de préparation."
+        es: "Camerún exige un microchip, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial, y todo animal importado se somete a inspección sanitaria veterinaria en la frontera bajo la tutela del MINEPIA. Muchos detalles más finos (plazos exactos de la rabia, edad mínima, tratamiento antiparasitario, cuarentena) no están publicados, lo que constituye en sí un factor de planificación."
+        pt: "Camarões exige um microchip, uma vacinação antirrábica válida e um atestado de saúde veterinário internacional oficial, e todo animal importado passa por inspeção sanitária veterinária na fronteira, sob o MINEPIA. Muitos pontos mais específicos (calendário exato da raiva, idade mínima, tratamento antiparasitário, quarentena) não são publicados, o que em si é um fator a considerar no planejamento."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The country of departure decides which official certificate model your vet uses and which veterinary authority endorses it. For the United States, a specific USDA dog/cat model exists and is valid for 30 days; other origins issue their own endorsed international certificate. The departure country's own veterinary authority must sign it."
+        fr: "Le pays de départ détermine le modèle de certificat officiel utilisé par ton vétérinaire et l'autorité vétérinaire qui le vise. Pour les États-Unis, un modèle chiens/chats spécifique de l'USDA existe et est valable 30 jours ; les autres origines délivrent leur propre certificat international visé. L'autorité vétérinaire du pays de départ doit le signer."
+        es: "El país de salida determina qué modelo de certificado oficial usa tu veterinario y qué autoridad veterinaria lo refrenda. Para Estados Unidos existe un modelo específico del USDA para perros/gatos, válido 30 días; otros orígenes emiten su propio certificado internacional refrendado. La propia autoridad veterinaria del país de salida debe firmarlo."
+        pt: "O país de partida determina qual modelo oficial de certificado o veterinário utiliza e qual autoridade veterinária o endossa. Para os Estados Unidos, existe um modelo específico do USDA para cachorros/gatos, válido por 30 dias; outras origens emitem seu próprio certificado internacional endossado. A própria autoridade veterinária do país de partida deve assiná-lo."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "Cameroon's veterinary import rules reference lists of countries free of legally notifiable contagious animal diseases. A recent stay in a country with a disease-control suspension or a poor health status can therefore change what is accepted — it is your dog's real origin and history that count, not only the last airport."
+        fr: "La réglementation d'importation vétérinaire du Cameroun se réfère à des listes de pays indemnes de maladies animales réputées légalement contagieuses. Un séjour récent dans un pays sous suspension sanitaire ou au statut sanitaire dégradé peut donc modifier ce qui est accepté — c'est l'origine réelle et l'historique du chien qui comptent, pas seulement le dernier aéroport."
+        es: "Las normas veterinarias de importación de Camerún se remiten a listas de países libres de enfermedades animales contagiosas de declaración legal obligatoria. Por tanto, una estancia reciente en un país con una suspensión de control sanitario o un estatus sanitario deficiente puede cambiar lo que se acepta — lo que cuenta es el origen y el historial reales de tu perro, no solo el último aeropuerto."
+        pt: "As regras veterinárias de importação de Camarões fazem referência a listas de países livres de doenças animais contagiosas de notificação obrigatória. Uma estadia recente em um país com suspensão do controle de doenças ou situação sanitária desfavorável pode, portanto, mudar o que é aceito — o que conta é a origem real e o histórico do cachorro, não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Cameroon's framework, then confirm your dog's exact origin, history and the current certificate wording with your vet and MINEPIA before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre camerounais, puis confirme l'origine et l'historique exacts de ton chien ainsi que la rédaction du certificat en vigueur avec ton vétérinaire et le MINEPIA avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Camerún y luego confirma el origen y el historial exactos de tu perro, así como la redacción vigente del certificado, con tu veterinario y el MINEPIA antes de reservar."
+    pt: "Portanto, ler as exigências abaixo como o quadro geral de Camarões e, em seguida, confirmar a origem exata, o histórico do cachorro e o texto atual do certificado com o veterinário e o MINEPIA antes de reservar."
+
+requirements:
+  - item: { en: "Microchip (identification)", fr: "Puce électronique (identification)", es: "Microchip (identificación)", pt: "Microchip (identificação)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The official US export certificate requires the veterinarian to verify the microchip number, which must match the certificate. The ISO 11784/11785 standard is the international norm; the published Cameroon model does not explicitly state a chip standard.", fr: "Le certificat d'exportation officiel des États-Unis impose au vétérinaire de vérifier le numéro de puce, qui doit correspondre au certificat. La norme ISO 11784/11785 est la référence internationale ; le modèle camerounais publié ne précise pas explicitement de standard de puce.", es: "El certificado de exportación oficial de Estados Unidos obliga al veterinario a verificar el número de microchip, que debe coincidir con el certificado. La norma ISO 11784/11785 es la referencia internacional; el modelo camerunés publicado no indica explícitamente un estándar de microchip.", pt: "O certificado oficial de exportação dos EUA exige que o veterinário verifique o número do microchip, que deve corresponder ao certificado. O padrão ISO 11784/11785 é a norma internacional; o modelo publicado de Camarões não indica explicitamente um padrão de chip." }
+    exceptions: { en: "None published — identification is needed for the certificate to be valid.", fr: "Aucune publiée — l'identification est nécessaire pour que le certificat soit valable.", es: "Ninguna publicada — la identificación es necesaria para que el certificado sea válido.", pt: "Nenhuma publicada — a identificação é necessária para que o certificado seja válido." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate for export of dogs & cats to Cameroon (statement 1)", fr: "USDA APHIS — Certificat sanitaire vétérinaire d'exportation de chiens et chats vers le Cameroun (mention 1)", es: "USDA APHIS — Certificado sanitario veterinario para la exportación de perros y gatos a Camerún (mención 1)", pt: "USDA APHIS — Atestado de Saúde Veterinário para exportação de cachorros e gatos para Camarões (declaração 1)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be current on its rabies vaccination at the time of export, recorded in the certificate's rabies table (date, vaccine, batch, validity). Cameroon is rabies-endemic. The exact minimum waiting period and validity window are not stated in the published certificate model.", fr: "Le chien doit être à jour de sa vaccination antirabique au moment de l'exportation, consignée dans le tableau rage du certificat (date, vaccin, lot, validité). La rage est endémique au Cameroun. Le délai minimal exact et la fenêtre de validité ne sont pas précisés dans le modèle de certificat publié.", es: "El perro debe estar al día de su vacunación antirrábica en el momento de la exportación, registrada en la tabla de rabia del certificado (fecha, vacuna, lote, valide). Camerún tiene rabia endémica. El periodo mínimo de espera exacto y la ventana de valide no se indican en el modelo de certificado publicado.", pt: "O cachorro deve estar com a vacinação antirrábica em dia no momento da exportação, registrada na tabela de raiva do certificado (data, vacina, lote, validade). Camarões tem raiva endêmica. O período mínimo de carência exato e o prazo de validade não constam no modelo de certificado publicado." }
+    exceptions: { en: "The animal must originate from a premises not quarantined for rabies and must not have been exposed to rabies.", fr: "L'animal doit provenir d'un établissement non placé en quarantaine pour la rage et ne pas avoir été exposé à la rage.", es: "El animal debe proceder de un establecimiento no puesto en cuarentena por rabia y no debe haber estado expuesto a la rabia.", pt: "O animal deve ser proveniente de um estabelecimento não colocado em quarentena por raiva e não ter sido exposto à raiva." }
+    ref: { en: "USDA APHIS — Cameroon dog/cat certificate (statements 3–4, rabies table)", fr: "USDA APHIS — Certificat chiens/chats Cameroun (mentions 3–4, tableau rage)", es: "USDA APHIS — Certificado perros/gatos Camerún (menciones 3–4, tabla de rabia)", pt: "USDA APHIS — Certificado para cachorros/gatos com destino a Camarões (declarações 3–4, tabela de raiva)" }
+  - item: { en: "Rabies antibody test (titration)", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required in the official model", fr: "Non requis dans le modèle officiel", es: "No obligatoria en el modelo oficial", pt: "Não exigido no modelo oficial" }
+    when: { en: "The published Cameroon veterinary health certificate does not call for a rabies antibody test. No official Cameroon source requiring one was found.", fr: "Le certificat sanitaire vétérinaire camerounais publié n'exige pas de titrage des anticorps antirabiques. Aucune source officielle camerounaise en exigeant un n'a été trouvée.", es: "El certificado sanitario veterinario camerunés publicado no exige una prueba de titulación de rabia. No se encontró ninguna fuente oficial camerunesa que exija una.", pt: "O atestado de saúde veterinário publicado por Camarões não exige um teste sorológico antirrábico. Nenhuma fonte oficial de Camarões que o exija foi encontrada." }
+    exceptions: { en: "Unknown — a test could still be requested by a specific origin's authority; confirm with your vet.", fr: "Non communiqué — un test pourrait tout de même être demandé par l'autorité d'une origine spécifique ; confirme avec ton vétérinaire.", es: "Desconocido — la autoridad de un origen concreto podría, aun así, solicitar una prueba; confírmalo con tu veterinario.", pt: "Não comunicado — um teste ainda pode ser solicitado pela autoridade de uma origem específica; confirmar com o veterinário." }
+    ref: { en: "USDA APHIS — Cameroon dog/cat certificate (no antibody test listed)", fr: "USDA APHIS — Certificat chiens/chats Cameroun (aucun titrage listé)", es: "USDA APHIS — Certificado perros/gatos Camerún (no figura ninguna prueba de titulación)", pt: "USDA APHIS — Certificado para cachorros/gatos com destino a Camarões (nenhum teste sorológico listado)" }
+  - item: { en: "Official international veterinary health certificate", fr: "Certificat sanitaire vétérinaire international officiel", es: "Certificado sanitario veterinario internacional oficial", pt: "Atestado de saúde veterinário internacional oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by an accredited/official vet of the country of departure and endorsed by that country's veterinary authority. The US model is valid for 30 days after issuance and must carry an original ink endorsement (USDA embossment). French is acceptable as Cameroon is francophone/anglophone.", fr: "Établi par un vétérinaire agréé/officiel du pays de départ et visé par l'autorité vétérinaire de ce pays. Le modèle américain est valable 30 jours après émission et doit porter un visa original à l'encre (embossage USDA). Le français est accepté, le Cameroun étant francophone/anglophone.", es: "Emitido por un veterinario acreditado/oficial del país de salida y refrendado por la autoridad veterinaria de ese país. El modelo estadounidense es válido 30 días tras su emisión y debe llevar un refrendo original en tinta (sello en relieve del USDA). El francés es aceptable, ya que Camerún es francófono/anglófono.", pt: "Emitido por um veterinário credenciado/oficial do país de partida e endossado pela autoridade veterinária desse país. O modelo dos EUA é válido por 30 dias após a emissão e deve conter um endosso original a tinta (selo em relevo do USDA). O francês é aceito, já que Camarões é francófono/anglófono." }
+    exceptions: { en: "None — an endorsed certificate must accompany every dog.", fr: "Aucune — un certificat visé doit accompagner chaque chien.", es: "Ninguna — un certificado refrendado debe acompañar a cada perro.", pt: "Nenhuma — um certificado endossado deve acompanhar todo cachorro." }
+    ref: { en: "USDA APHIS — Cameroon dog/cat certificate; endorsement note (ink signature required)", fr: "USDA APHIS — Certificat chiens/chats Cameroun ; note de visa (signature à l'encre requise)", es: "USDA APHIS — Certificado perros/gatos Camerún; nota de refrendo (se exige firma en tinta)", pt: "USDA APHIS — Certificado para cachorros/gatos com destino a Camarões; nota de endosso (assinatura a tinta obrigatória)" }
+  - item: { en: "Clinical / health examination", fr: "Examen clinique / de santé", es: "Examen clínico / de salud", pt: "Exame clínico / de saúde" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog is inspected by the certifying vet on the date of issue and must appear free of any infectious or contagious disease, and free of known exposure that would endanger animals or public health, including rabies.", fr: "Le chien est examiné par le vétérinaire certificateur à la date d'émission et doit paraître indemne de toute maladie infectieuse ou contagieuse, et exempt d'exposition connue susceptible de mettre en danger les animaux ou la santé publique, y compris la rage.", es: "El perro es examinado por el veterinario certificador en la fecha de emisión y debe aparecer libre de cualquier enfermedad infecciosa o contagiosa, y libre de exposición conocida que pudiera poner en peligro a los animales o la salud pública, incluida la rabia.", pt: "O cachorro é inspecionado pelo veterinário certificador na data de emissão e deve estar livre de qualquer doença infecciosa ou contagiosa, e livre de exposição conhecida que colocaria em risco a saúde animal ou pública, incluindo a raiva." }
+    exceptions: { en: "None.", fr: "Aucune.", es: "Ninguna.", pt: "Nenhuma." }
+    ref: { en: "USDA APHIS — Cameroon dog/cat certificate (statement 2)", fr: "USDA APHIS — Certificat chiens/chats Cameroun (mention 2)", es: "USDA APHIS — Certificado perros/gatos Camerún (mención 2)", pt: "USDA APHIS — Certificado para cachorros/gatos com destino a Camarões (declaração 2)" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / contre les ténias", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not published (Unknown)", fr: "Non publié (Non communiqué)", es: "No publicado (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No official Cameroon source or the published certificate model specifies an internal/external parasite or tapeworm treatment. Confirm with your vet whether one is advisable.", fr: "Aucune source officielle camerounaise ni le modèle de certificat publié ne précise de traitement antiparasitaire interne/externe ou contre les ténias. Vérifie avec ton vétérinaire s'il est conseillé.", es: "Ninguna fuente oficial camerunesa ni el modelo de certificado publicado especifica un tratamiento antiparasitario interno/externo o contra la tenia. Confirma con tu veterinario si es aconsejable.", pt: "Nenhuma fonte oficial de Camarões nem o modelo de certificado publicado especificam um tratamento antiparasitário interno/externo ou contra tênias. Confirmar com o veterinário se é aconselhável." }
+    exceptions: { en: "Unknown.", fr: "Non communiqué.", es: "Desconocido.", pt: "Não informado." }
+    ref: { en: "No official published requirement found (USDA APHIS / MINEPIA)", fr: "Aucune exigence officielle publiée trouvée (USDA APHIS / MINEPIA)", es: "No se encontró ningún requisito oficial publicado (USDA APHIS / MINEPIA)", pt: "Nenhuma exigência oficial publicada encontrada (USDA APHIS / MINEPIA)" }
+  - item: { en: "Import authorization / advance approval", fr: "Autorisation d'importation / accord préalable", es: "Autorización de importación / aprobación previa", pt: "Autorização de importação / aprovação prévia" }
+    required: { en: "Framework exists; need for a personal pet unclear", fr: "Cadre existant ; nécessité pour un animal personnel incertaine", es: "Existe un marco; no está claro si es necesaria para una mascota personal", pt: "Quadro existente; necessidade para um cachorro de companhia particular não está clara" }
+    when: { en: "MINEPIA operates an import-authorization procedure covering breeding and pet animals, granted by the Minister within 30 days. Its published conditions target establishments (creation authorization, business licence), so whether a traveller's accompanying pet needs one is not clearly stated.", fr: "Le MINEPIA applique une procédure d'autorisation d'importation couvrant les animaux d'élevage et de compagnie, accordée par le Ministre sous 30 jours. Ses conditions publiées visent les établissements (autorisation de création, patente) ; la nécessité pour l'animal de compagnie accompagné d'un voyageur n'est donc pas clairement établie.", es: "El MINEPIA aplica un procedimiento de autorización de importación que abarca los animales de cría y de compañía, concedido por el Ministro en un plazo de 30 días. Sus condiciones publicadas se dirigen a los establecimientos (autorización de creación, licencia de actividad), por lo que no queda claramente establecido si la mascota acompañada de un viajero necesita una.", pt: "O MINEPIA opera um procedimento de autorização de importação que abrange animais de reprodução e de companhia, concedida pelo Ministro em até 30 dias. As condições publicadas visam estabelecimentos (autorização de criação, licença comercial), de modo que não fica claro se o cachorro de um viajante que o acompanha precisa de uma." }
+    exceptions: { en: "Unknown for personal pets — confirm with MINEPIA's Veterinary Services before travel.", fr: "Non communiqué pour les animaux personnels — confirme auprès des Services Vétérinaires du MINEPIA avant le voyage.", es: "Desconocido para las mascotas personales — confírmalo con los Servicios Veterinarios del MINEPIA antes de viajar.", pt: "Não comunicado para animais de companhia particulares — confirmar com os Serviços Veterinários do MINEPIA antes da viagem." }
+    ref: { en: "MINEPIA — Import authorization for breeding and pet animals (procedure)", fr: "MINEPIA — Autorisation d'importation des animaux d'élevage et de compagnie (procédure)", es: "MINEPIA — Autorización de importación de animales de cría y de compañía (procedimiento)", pt: "MINEPIA — Autorização de importação para animais de reprodução e de companhia (procedimento)" }
+  - item: { en: "Border veterinary inspection", fr: "Inspection vétérinaire frontalière", es: "Inspección veterinaria fronteriza", pt: "Inspeção veterinária na fronteira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Cameroon law makes imported animals subject to veterinary sanitary inspection; MINEPIA's Veterinary Services Branch is the competent authority and operates border veterinary inspection posts. Present your dog and its documents on arrival.", fr: "La loi camerounaise soumet les animaux importés à l'inspection sanitaire vétérinaire ; la Direction des Services Vétérinaires du MINEPIA est l'autorité compétente et exploite des postes d'inspection vétérinaire aux frontières. Présente ton chien et ses documents à l'arrivée.", es: "La ley camerunesa somete los animales importados a inspección sanitaria veterinaria; la Dirección de los Servicios Veterinarios del MINEPIA es la autoridad competente y gestiona los puestos de inspección veterinaria en las fronteras. Presenta a tu perro y sus documentos a la llegada.", pt: "A legislação de Camarões sujeita os animais importados a inspeção sanitária veterinária; a Divisão de Serviços Veterinários do MINEPIA é a autoridade competente e opera postos de inspeção veterinária de fronteira. Apresentar o cachorro e seus documentos na chegada." }
+    exceptions: { en: "None published.", fr: "Aucune publiée.", es: "Ninguna publicada.", pt: "Nenhuma publicada." }
+    ref: { en: "MINEPIA — Veterinary Services Branch (DSV); Loi n°2000/017; Décret n°86/711 (veterinary sanitary inspection)", fr: "MINEPIA — Direction des Services Vétérinaires (DSV) ; Loi n°2000/017 ; Décret n°86/711 (inspection sanitaire vétérinaire)", es: "MINEPIA — Dirección de los Servicios Veterinarios (DSV); Loi n°2000/017; Décret n°86/711 (inspección sanitaria veterinaria)", pt: "MINEPIA — Divisão de Serviços Veterinários (DSV); Loi n°2000/017; Décret n°86/711 (inspeção sanitária veterinária)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published (linked to rabies vaccination)", fr: "Non publié (lié à la vaccination antirabique)", es: "No publicada (vinculada a la vacunación antirrábica)", pt: "Não publicado (vinculado à vacinação antirrábica)" }
+    when: { en: "No stand-alone minimum age is published. In practice a puppy must be old enough to be validly vaccinated against rabies, but Cameroon does not publish a specific age.", fr: "Aucun âge minimum autonome n'est publié. En pratique, un chiot doit être en âge d'être valablement vacciné contre la rage, mais le Cameroun ne publie pas d'âge spécifique.", es: "No se publica una edad mínima independiente. En la práctica, un cachorro debe tener edad suficiente para estar válidamente vacunado contra la rabia, pero Camerún no publica una edad específica.", pt: "Nenhuma idade mínima autônoma é publicada. Na prática, o filhote deve ter idade suficiente para ser validamente vacinado contra a raiva, mas Camarões não publica uma idade específica." }
+    exceptions: { en: "Unknown — confirm with your vet.", fr: "Non communiqué — confirme avec ton vétérinaire.", es: "Desconocido — confírmalo con tu veterinario.", pt: "Não comunicado — confirmar com o veterinário." }
+    ref: { en: "No official published minimum age (USDA APHIS / MINEPIA)", fr: "Aucun âge minimum officiel publié (USDA APHIS / MINEPIA)", es: "No hay edad mínima oficial publicada (USDA APHIS / MINEPIA)", pt: "Nenhuma idade mínima oficial publicada (USDA APHIS / MINEPIA)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published (Unknown)", fr: "Non publiée (Non communiqué)", es: "No publicada (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No official Cameroon source specifies a routine quarantine for compliant pet dogs. A non-compliant animal may face veterinary measures at the border, but the details are not published.", fr: "Aucune source officielle camerounaise ne précise de quarantaine de routine pour les chiens conformes. Un animal non conforme peut faire l'objet de mesures vétérinaires à la frontière, mais les modalités ne sont pas publiées.", es: "Ninguna fuente oficial camerunesa especifica una cuarentena de rutina para los perros de compañía conformes. Un animal no conforme puede ser objeto de medidas veterinarias en la frontera, pero los detalles no están publicados.", pt: "Nenhuma fonte oficial de Camarões especifica uma quarentena de rotina para cachorros de companhia em conformidade. Um animal em não conformidade pode enfrentar medidas veterinárias na fronteira, mas os detalhes não são publicados." }
+    exceptions: { en: "Unknown.", fr: "Non communiqué.", es: "Desconocido.", pt: "Não informado." }
+    ref: { en: "No official published quarantine rule (MINEPIA)", fr: "Aucune règle de quarantaine officielle publiée (MINEPIA)", es: "No hay norma de cuarentena oficial publicada (MINEPIA)", pt: "Nenhuma regra de quarentena oficial publicada (MINEPIA)" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "No national import ban published", fr: "Aucune interdiction nationale d'importation publiée", es: "No hay prohibición nacional de importación publicada", pt: "Nenhuma proibição nacional de importação publicada" }
+    when: { en: "No official Cameroon breed-specific import ban was found. Entry is controlled by health requirements, not by breed.", fr: "Aucune interdiction d'importation par race officielle camerounaise n'a été trouvée. L'entrée est encadrée par les exigences sanitaires, non par la race.", es: "No se encontró ninguna prohibición de importación por raza oficial camerunesa. La entrada se rige por los requisitos sanitarios, no por la raza.", pt: "Nenhuma proibição de importação específica por raça foi encontrada em fontes oficiais de Camarões. A entrada é controlada por exigências sanitárias, e não por raça." }
+    exceptions: { en: "Unknown — no published list confirms or excludes any breed; verify with MINEPIA.", fr: "Non communiqué — aucune liste publiée ne confirme ni n'exclut de race ; vérifie auprès du MINEPIA.", es: "Desconocido — ninguna lista publicada confirma ni excluye ninguna raza; verifícalo con el MINEPIA.", pt: "Não comunicado — nenhuma lista publicada confirma ou exclui qualquer raça; verificar com o MINEPIA." }
+    ref: { en: "No official published breed legislation found (MINEPIA)", fr: "Aucune législation par race officielle publiée trouvée (MINEPIA)", es: "No se encontró legislación por raza oficial publicada (MINEPIA)", pt: "Nenhuma legislação oficial sobre raças publicada encontrada (MINEPIA)" }
+
+origin:
+  eu:
+    title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
+    body:
+      en: "Cameroon is a non-EU third country and does not run the EU pet-passport scheme, and MINEPIA does not publish an EU-specific certificate model. In practice a dog leaving the EU needs a microchip, a valid rabies vaccination and an official international veterinary health certificate issued and endorsed by the EU country's competent veterinary authority close to departure. Because the exact EU→Cameroon wording is not published, confirm it with your official vet before you travel."
+      fr: "Le Cameroun est un pays tiers hors UE et n'applique pas le dispositif de passeport pour animal de compagnie de l'UE ; le MINEPIA ne publie pas de modèle de certificat propre à l'UE. En pratique, un chien quittant l'UE a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire vétérinaire international officiel établi et visé par l'autorité vétérinaire compétente du pays de l'UE peu avant le départ. La rédaction exacte UE→Cameroun n'étant pas publiée, confirme-la avec ton vétérinaire officiel avant de voyager."
+      es: "Camerún es un país tercero fuera de la UE y no aplica el esquema del pasaporte europeo para mascotas, y el MINEPIA no publica un modelo de certificado específico para la UE. En la práctica, un perro que sale de la UE necesita un microchip, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial emitido y refrendado por la autoridad veterinaria competente del país de la UE poco antes de la salida. Como la redacción exacta UE→Camerún no está publicada, confírmala con tu veterinario oficial antes de viajar."
+      pt: "Camarões é um país terceiro fora da UE e não opera o esquema de passaporte europeu para animais de estimação, e o MINEPIA não publica um modelo de certificado específico para a UE. Na prática, um cachorro que sai da UE precisa de um microchip, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial, emitido e endossado pela autoridade veterinária competente do país da UE perto da partida. Como o texto exato UE→Camarões não é publicado, confirmar com o veterinário oficial antes de viajar."
+    cls: warn
+  listed:
+    title: { en: "From the United States — published certificate model", fr: "Depuis les États-Unis — modèle de certificat publié", es: "Desde Estados Unidos — modelo de certificado publicado", pt: "Dos Estados Unidos — modelo de certificado publicado" }
+    body:
+      en: "The United States has an agreed USDA veterinary health certificate for dogs and cats to Cameroon. It requires the microchip to be verified, a clinical inspection showing the dog free of infectious or contagious disease, origin from a premises not quarantined for and not exposed to rabies, and a current rabies vaccination recorded in the certificate table. The certificate is valid for 30 days after issuance and must carry an original USDA ink endorsement. No rabies antibody test is listed."
+      fr: "Les États-Unis disposent d'un certificat sanitaire vétérinaire USDA convenu pour les chiens et chats vers le Cameroun. Il exige la vérification de la puce, un examen clinique montrant le chien indemne de maladie infectieuse ou contagieuse, une provenance d'un établissement non placé en quarantaine pour la rage et non exposé à la rage, et une vaccination antirabique à jour consignée dans le tableau du certificat. Le certificat est valable 30 jours après émission et doit porter un visa original à l'encre de l'USDA. Aucun titrage des anticorps antirabiques n'est listé."
+      es: "Estados Unidos dispone de un certificado sanitario veterinario del USDA acordado para perros y gatos hacia Camerún. Exige que se verifique el microchip, una inspección clínica que muestre al perro libre de enfermedad infecciosa o contagiosa, la procedencia de un establecimiento no puesto en cuarentena por rabia ni expuesto a ella, y una vacunación antirrábica al día registrada en la tabla del certificado. El certificado es válido 30 días tras su emisión y debe llevar un refrendo original en tinta del USDA. No figura ninguna prueba de titulación de rabia."
+      pt: "Os Estados Unidos têm um atestado de saúde veterinário USDA acordado para cachorros e gatos com destino a Camarões. Ele exige a verificação do microchip, uma inspeção clínica que mostre o cachorro livre de doença infecciosa ou contagiosa, origem de um estabelecimento não colocado em quarentena por raiva e não exposto à raiva, e vacinação antirrábica em dia registrada na tabela do certificado. O certificado é válido por 30 dias após a emissão e deve conter um endosso original a tinta do USDA. Nenhum teste sorológico antirrábico é listado."
+    cls: warn
+  nonListed:
+    title: { en: "From other countries — general Cameroon framework", fr: "Depuis d'autres pays — cadre général camerounais", es: "Desde otros países — marco general de Camerún", pt: "De outros países — quadro geral de Camarões" }
+    body:
+      en: "For other origins there is no publicly posted country-specific model. The general framework still applies: microchip, valid rabies vaccination and an official international veterinary health certificate endorsed by the origin's veterinary authority, plus veterinary sanitary inspection at the Cameroonian border. MINEPIA's import rules reference lists of countries free of legally notifiable contagious diseases, and a MINEPIA import authorization (granted within 30 days) may apply. Confirm the current requirements with MINEPIA's Veterinary Services."
+      fr: "Pour les autres origines, aucun modèle propre au pays n'est publié. Le cadre général s'applique tout de même : puce, vaccination antirabique valide et certificat sanitaire vétérinaire international officiel visé par l'autorité vétérinaire d'origine, ainsi que l'inspection sanitaire vétérinaire à la frontière camerounaise. La réglementation d'importation du MINEPIA se réfère à des listes de pays indemnes de maladies contagieuses réputées légalement à déclaration obligatoire, et une autorisation d'importation du MINEPIA (accordée sous 30 jours) peut s'appliquer. Confirme les exigences en vigueur auprès des Services Vétérinaires du MINEPIA."
+      es: "Para otros orígenes no hay ningún modelo específico por país publicado. El marco general sigue aplicándose: microchip, vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial refrendado por la autoridad veterinaria de origen, además de la inspección sanitaria veterinaria en la frontera camerunesa. Las normas de importación del MINEPIA se remiten a listas de países libres de enfermedades contagiosas de declaración legal obligatoria, y puede aplicarse una autorización de importación del MINEPIA (concedida en un plazo de 30 días). Confirma los requisitos vigentes con los Servicios Veterinarios del MINEPIA."
+      pt: "Para outras origens, não há um modelo específico por país publicado. O quadro geral continua a se aplicar: microchip, vacinação antirrábica válida e um atestado de saúde veterinário internacional oficial endossado pela autoridade veterinária de origem, além de inspeção sanitária veterinária na fronteira camaronesa. As regras de importação do MINEPIA fazem referência a listas de países livres de doenças contagiosas de notificação obrigatória, e uma autorização de importação do MINEPIA (concedida em até 30 dias) pode se aplicar. Confirmar as exigências vigentes com os Serviços Veterinários do MINEPIA."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Cameroon depends on your documents and on the veterinary inspection at the point of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Cameroun dépend de tes documents et de l'inspection vétérinaire au point d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a Camerún depende de tus documentos y de la inspección veterinaria en el punto de entrada."
+    pt: "O que acontece quando o cachorro chega a Camarões depende dos documentos apresentados e da inspeção veterinária no ponto de entrada."
+  points:
+    - en: "Present your dog for veterinary sanitary inspection at the border; MINEPIA's Veterinary Services Branch is the competent authority and runs border veterinary inspection posts."
+      fr: "Présente ton chien à l'inspection sanitaire vétérinaire à la frontière ; la Direction des Services Vétérinaires du MINEPIA est l'autorité compétente et exploite les postes d'inspection vétérinaire aux frontières."
+      es: "Presenta a tu perro para la inspección sanitaria veterinaria en la frontera; la Dirección de los Servicios Veterinarios del MINEPIA es la autoridad competente y gestiona los puestos de inspección veterinaria en las fronteras."
+      pt: "Apresentar o cachorro para inspeção sanitária veterinária na fronteira; a Divisão de Serviços Veterinários do MINEPIA é a autoridade competente e administra os postos de inspeção veterinária de fronteira."
+    - en: "Carry the originals: the endorsed international veterinary health certificate, proof of microchip identification and proof of rabies vaccination."
+      fr: "Munis-toi des originaux : le certificat sanitaire vétérinaire international visé, la preuve d'identification par puce et la preuve de vaccination antirabique."
+      es: "Lleva los originales: el certificado sanitario veterinario internacional refrendado, la prueba de identificación por microchip y la prueba de vacunación antirrábica."
+      pt: "Levar os originais: o atestado de saúde veterinário internacional endossado, o comprovante de identificação por microchip e o comprovante de vacinação antirrábica."
+    - en: "For a US-issued certificate, remember it is only valid for 30 days after issuance and must carry the original ink endorsement — arrive within that window."
+      fr: "Pour un certificat émis aux États-Unis, rappelle-toi qu'il n'est valable que 30 jours après émission et doit porter le visa original à l'encre — arrive dans ce délai."
+      es: "Para un certificado emitido en Estados Unidos, recuerda que solo es válido 30 días tras su emisión y debe llevar el refrendo original en tinta — llega dentro de ese plazo."
+      pt: "Para um certificado emitido nos EUA, lembrar que ele só é válido por 30 dias após a emissão e deve conter o endosso original a tinta — chegar dentro desse prazo."
+    - en: "If documents are missing, incomplete or invalid, the animal may face veterinary measures at the border; the exact consequences are not published, so avoid any gap in your paperwork."
+      fr: "Si les documents manquent, sont incomplets ou invalides, l'animal peut faire l'objet de mesures vétérinaires à la frontière ; les conséquences exactes ne sont pas publiées, évite donc toute lacune dans ton dossier."
+      es: "Si faltan documentos o están incompletos o no son válidos, el animal puede ser objeto de medidas veterinarias en la frontera; las consecuencias exactas no están publicadas, así que evita cualquier laguna en tu documentación."
+      pt: "Se os documentos estiverem incompletos, ausentes ou inválidos, o animal pode enfrentar medidas veterinárias na fronteira; as consequências exatas não são publicadas, portanto é melhor evitar qualquer lacuna na documentação."
+    - en: "Because Cameroon publishes little, confirm entry-point procedures with MINEPIA and your airline before departure."
+      fr: "Le Cameroun publiant peu, confirme les procédures au point d'entrée avec le MINEPIA et ta compagnie aérienne avant le départ."
+      es: "Como Camerún publica poco, confirma los procedimientos del punto de entrada con el MINEPIA y tu aerolínea antes de la salida."
+      pt: "Como Camarões publica pouco, confirmar os procedimentos no ponto de entrada com o MINEPIA e com a companhia aérea antes da partida."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No official Cameroon breed-specific import ban was found in published government sources. Entry appears to be controlled by veterinary health requirements and border inspection, not by breed."
+    fr: "Aucune interdiction d'importation par race officielle camerounaise n'a été trouvée dans les sources gouvernementales publiées. L'entrée semble encadrée par les exigences sanitaires vétérinaires et l'inspection frontalière, non par la race."
+    es: "No se encontró ninguna prohibición de importación por raza oficial camerunesa en las fuentes gubernamentales publicadas. La entrada parece regirse por los requisitos sanitarios veterinarios y la inspección fronteriza, no por la raza."
+    pt: "Nenhuma proibição de importação específica por raça foi encontrada em fontes governamentais publicadas de Camarões. A entrada parece ser controlada por exigências sanitárias veterinárias e inspeção de fronteira, e não por raça."
+  cat1:
+    en: "There is no published national list of prohibited or dangerous breeds for import. Absence of a published list is not the same as a guarantee — no official text confirms that every breed is admitted either."
+    fr: "Il n'existe pas de liste nationale publiée de races interdites ou dangereuses à l'importation. L'absence de liste publiée ne vaut pas garantie — aucun texte officiel ne confirme non plus que toutes les races sont admises."
+    es: "No existe una lista nacional publicada de razas prohibidas o peligrosas para la importación. La ausencia de una lista publicada no equivale a una garantía — ningún texto oficial confirma tampoco que se admita cualquier raza."
+    pt: "Não existe uma lista nacional publicada de raças proibidas ou perigosas para importação. A ausência de uma lista publicada não é o mesmo que uma garantia — nenhum texto oficial confirma que todas as raças sejam admitidas."
+  cat2:
+    en: "No published 'permitted with conditions' category exists for particular breeds. Local municipal rules on keeping certain dogs, if any, are not documented in the official sources reviewed."
+    fr: "Aucune catégorie « autorisée sous conditions » publiée n'existe pour des races particulières. D'éventuelles règles municipales locales sur la détention de certains chiens ne sont pas documentées dans les sources officielles consultées."
+    es: "No existe una categoría publicada de «permitidas con condiciones» para razas concretas. Las eventuales normas municipales locales sobre la tenencia de ciertos perros no están documentadas en las fuentes oficiales consultadas."
+    pt: "Não existe uma categoria publicada de \"permitido com condições\" para raças específicas. Regras municipais locais sobre a posse de determinados cachorros, se existirem, não estão documentadas nas fontes oficiais consultadas."
+  note:
+    en: "Because the position is unpublished rather than confirmed, verify your specific breed with MINEPIA before you travel, especially for types often restricted elsewhere."
+    fr: "La situation étant non publiée plutôt que confirmée, vérifie ta race précise auprès du MINEPIA avant de voyager, surtout pour les types souvent restreints ailleurs."
+    es: "Como la situación es no publicada más que confirmada, verifica tu raza concreta con el MINEPIA antes de viajar, sobre todo para los tipos que a menudo se restringen en otros lugares."
+    pt: "Como a posição não é publicada nem confirmada, verificar a raça específica com o MINEPIA antes de viajar, especialmente para tipos frequentemente restritos em outros lugares."
+
+checklist:
+  - en: "Microchip implanted and its number matching every document"
+    fr: "Puce électronique posée et son numéro correspondant à chaque document"
+    es: "Microchip implantado y con su número coincidiendo con todos los documentos"
+    pt: "Microchip implantado, com o número correspondente a todos os documentos"
+  - en: "Valid rabies vaccination, current at the time of export (dates recorded)"
+    fr: "Vaccination antirabique valide, à jour au moment de l'exportation (dates consignées)"
+    es: "Vacunación antirrábica válida, al día en el momento de la exportación (con las fechas registradas)"
+    pt: "Vacinação antirrábica válida, em dia no momento da exportação (datas registradas)"
+  - en: "Official international veterinary health certificate issued and endorsed by the origin's veterinary authority"
+    fr: "Certificat sanitaire vétérinaire international officiel établi et visé par l'autorité vétérinaire d'origine"
+    es: "Certificado sanitario veterinario internacional oficial emitido y refrendado por la autoridad veterinaria de origen"
+    pt: "Atestado de saúde veterinário internacional oficial, emitido e endossado pela autoridade veterinária de origem"
+  - en: "For a US departure: USDA-endorsed certificate, valid 30 days, with original ink endorsement"
+    fr: "Pour un départ des États-Unis : certificat visé par l'USDA, valable 30 jours, avec visa original à l'encre"
+    es: "Para una salida desde Estados Unidos: certificado refrendado por el USDA, válido 30 días, con refrendo original en tinta"
+    pt: "Para uma partida dos EUA: certificado endossado pelo USDA, válido por 30 dias, com endosso original a tinta"
+  - en: "Confirm with MINEPIA whether an import authorization applies to your accompanying pet"
+    fr: "Confirme auprès du MINEPIA si une autorisation d'importation s'applique à ton animal accompagné"
+    es: "Confirma con el MINEPIA si una autorización de importación se aplica a tu mascota acompañada"
+    pt: "Confirmar com o MINEPIA se uma autorização de importação se aplica ao cachorro que viaja acompanhado"
+  - en: "Original documents ready to present at border veterinary inspection"
+    fr: "Documents originaux prêts à présenter à l'inspection vétérinaire frontalière"
+    es: "Documentos originales listos para presentar en la inspección veterinaria fronteriza"
+    pt: "Documentos originais prontos para apresentação na inspeção veterinária de fronteira"
+  - en: "Confirm any breed, quarantine, parasite-treatment or minimum-age point directly with MINEPIA (unpublished)"
+    fr: "Confirme tout point de race, quarantaine, traitement antiparasitaire ou âge minimum directement avec le MINEPIA (non publié)"
+    es: "Confirma cualquier punto sobre raza, cuarentena, tratamiento antiparasitario o edad mínima directamente con el MINEPIA (no publicado)"
+    pt: "Confirmar diretamente com o MINEPIA qualquer ponto sobre raça, quarentena, tratamento antiparasitário ou idade mínima (não publicado)"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
+
+sources:
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Cameroon", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Cameroun", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Camerún", pt: "USDA APHIS — Pet Travel dos Estados Unidos para Camarões" }
+    url: "https://www.aphis.usda.gov/pet-travel/pet-travel-united-states-cameroon"
+  - label: { en: "USDA APHIS — Veterinary Health Certificate for export of dogs & cats to Cameroon (PDF model)", fr: "USDA APHIS — Certificat sanitaire vétérinaire d'exportation de chiens et chats vers le Cameroun (modèle PDF)", es: "USDA APHIS — Certificado sanitario veterinario para la exportación de perros y gatos a Camerún (modelo PDF)", pt: "USDA APHIS — Atestado de Saúde Veterinário para exportação de cachorros e gatos para Camarões (modelo em PDF)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/cameroon-dog-cat.pdf"
+  - label: { en: "MINEPIA — Import authorization for day-old chicks, hatching eggs, breeding and pet animals (procedure)", fr: "MINEPIA — Autorisation d'importation des poussins d'un jour, œufs à couver, animaux d'élevage et de compagnie (procédure)", es: "MINEPIA — Autorización de importación de pollitos de un día, huevos para incubar, animales de cría y de compañía (procedimiento)", pt: "MINEPIA — Autorização de importação para pintos de um dia, ovos para incubação, animais de reprodução e de companhia (procedimento)" }
+    url: "https://minepia.cm/site/services/productions-et-industries-animales/obtention-dune-autorisation-dimportation-des-poussins-dun-jour-des-oeufs-a-couver-des-animaux-delevage-et-de-compagnie/"
+  - label: { en: "MINEPIA — Veterinary Services Branch (Direction des Services Vétérinaires)", fr: "MINEPIA — Direction des Services Vétérinaires (DSV)", es: "MINEPIA — Dirección de los Servicios Veterinarios (Direction des Services Vétérinaires)", pt: "MINEPIA — Divisão de Serviços Veterinários (Direction des Services Vétérinaires)" }
+    url: "https://minepia.cm/site/en/the-ministry/central-administration/the-directions/veterinary-services-branch/"
+  - label: { en: "MINEPIA — Veterinary Services procedures", fr: "MINEPIA — Procédures des Services Vétérinaires", es: "MINEPIA — Procedimientos de los Servicios Veterinarios", pt: "MINEPIA — Procedimentos dos Serviços Veterinários" }
+    url: "https://minepia.cm/site/en/services-en/veterinary-services/the-procedures/"
+
+seo:
+  title: { en: "Cameroon Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Cameroun — Guide", es: "Requisitos de entrada de perros en Camerún — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Camarões — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Cameroon With Your Dog: Entry Requirements (2026)", fr: "Voyager au Cameroun avec ton chien : formalités (2026)", es: "Viajar a Camerún con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Camarões: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official rules for bringing a dog into Cameroon: microchip, rabies vaccination, endorsed veterinary certificate. Sourced, dated and honest about what is unpublished."
+    fr: "Règles officielles pour faire entrer un chien au Cameroun : puce, vaccination antirabique. Sourcé, daté et transparent sur ce qui n'est pas publié."
+    es: "Normas oficiales para traer un perro a Camerún: microchip, vacunación antirrábica, certificado veterinario refrendado e inspección fronteriza. Con fuentes y fecha."
+    pt: "Regras oficiais para levar um cachorro a Camarões: microchip, vacinação antirrábica e certificado veterinário endossado. Transparente sobre o que não é publicado."
+  slug: "cameroon"
+  shortDesc:
+    en: "What you need to bring a dog into Cameroon — microchip, rabies, an endorsed veterinary certificate and border inspection, with several details unpublished."
+    fr: "Ce qu'il faut pour faire entrer un chien au Cameroun — puce, rage, certificat vétérinaire visé et inspection frontalière, plusieurs détails restant non publiés."
+    es: "Lo que necesitas para traer un perro a Camerún — microchip, rabia, un certificado veterinario refrendado e inspección fronteriza, con varios detalles sin publicar."
+    pt: "O que é preciso para levar um cachorro a Camarões — microchip, raiva, um certificado veterinário endossado e inspeção de fronteira, com vários detalhes não publicados."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

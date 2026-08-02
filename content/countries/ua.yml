@@ -1,0 +1,370 @@
+# Country Entry Guide — Ukraine (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ua
+iso2: "UA"
+name: { en: "Ukraine", fr: "Ukraine", es: "Ucrania", pt: "Ucrânia" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: non_listed
+exit:
+  authority: Derzhprodspozhyvsluzhba
+  authorityUrl: https://dpss.gov.ua/en
+  intro:
+    en: "Ukraine is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the State Service for Food Safety and Consumer Protection."
+    fr: "L'Ukraine est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Service d'État pour la sécurité alimentaire et la protection des consommateurs."
+    es: "Ucrania no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Servicio Estatal de Seguridad Alimentaria y Protección al Consumidor."
+    pt: "A Ucrânia é um país não listado: um teste sorológico antirrábico válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo State Service for Food Safety and Consumer Protection."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The State Service's border-control department issues the international veterinary certificate for pets at border inspection posts and airports before departure."
+        fr: "Le département de contrôle aux frontières du Service d'État délivre le certificat vétérinaire international pour les animaux aux postes d'inspection frontaliers et aéroports avant le départ."
+        es: "El departamento de control fronterizo del Servicio Estatal emite el certificado veterinario internacional para mascotas en los puestos de inspección fronteriza y aeropuertos antes de salir."
+        pt: "O departamento de controle de fronteira do State Service emite o certificado veterinário internacional para animais de estimação nos postos de inspeção de fronteira e nos aeroportos antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Ukraine with your dog", fr: "Voyager en Ukraine avec ton chien", es: "Viajar a Ucrania con tu perro", pt: "Viajar para a Ucrânia com seu cachorro" }
+  intro:
+    en: >-
+      Ukraine is not an EU member and applies its own national veterinary rules to a dog entering the
+      country. Whatever the country of departure, the core is the same: an ISO microchip, a valid rabies
+      vaccination and an international veterinary certificate issued by an official vet before travel. In
+      addition, Ukraine's rules call for a rabies antibody (titration) test analysed by an EU-approved
+      laboratory, which introduces a waiting period before entry. Customs treats a small number of pets
+      travelling with their owner as a non-commercial movement, with no import permit. This guide explains
+      what to prepare — but because the fine detail depends on your dog's origin and history, always
+      confirm the exact procedure with the State Service (Derzhprodspozhyvsluzhba) and your vet before you
+      book.
+    fr: >-
+      L'Ukraine n'est pas membre de l'UE et applique ses propres règles vétérinaires nationales à un chien
+      qui entre dans le pays. Quel que soit le pays de départ, le socle est le même : une puce ISO, une
+      vaccination antirabique valide et un certificat vétérinaire international établi par un vétérinaire
+      officiel avant le voyage. En plus, les règles ukrainiennes prévoient un titrage des anticorps
+      antirabiques analysé par un laboratoire agréé par l'UE, ce qui impose un délai d'attente avant
+      l'entrée. La douane traite un petit nombre d'animaux voyageant avec leur propriétaire comme un
+      mouvement non commercial, sans permis d'importation. Ce guide explique quoi préparer — mais comme le
+      détail dépend de l'origine et de l'historique de ton chien, confirme toujours la procédure exacte
+      auprès du Service d'État (Derzhprodspozhyvsluzhba) et de ton vétérinaire avant de réserver.
+    es: >-
+      Ucrania no es miembro de la UE y aplica sus propias normas veterinarias nacionales a un perro que
+      entra en el país. Sea cual sea el país de salida, el núcleo es el mismo: un microchip ISO, una
+      vacunación antirrábica válida y un certificado veterinario internacional expedido por un veterinario
+      oficial antes del viaje. Además, las normas ucranianas exigen una prueba de titulación de anticuerpos
+      contra la rabia analizada por un laboratorio autorizado por la UE, lo que introduce un periodo de
+      espera antes de la entrada. La aduana trata a un pequeño número de mascotas que viajan con su
+      propietario como un movimiento no comercial, sin permiso de importación. Esta guía explica qué
+      preparar — pero como el detalle depende del origen y del historial de tu perro, confirma siempre el
+      procedimiento exacto con el Servicio Estatal (Derzhprodspozhyvsluzhba) y tu veterinario antes de
+      reservar.
+
+    pt: "A Ucrânia não é membro da UE e aplica as próprias regras veterinárias nacionais a um cachorro que entra no país. Seja qual for o país de partida, o núcleo é o mesmo: microchip ISO, vacinação antirrábica válida e certificado veterinário internacional emitido por um veterinário oficial antes da viagem. Além disso, as regras ucranianas exigem um teste sorológico antirrábico (titulação) analisado por um laboratório aprovado pela UE, o que impõe um período de espera antes da entrada. A alfândega trata um número pequeno de animais de estimação que viajam com o dono como circulação não comercial, sem licença de importação. Este guia explica o que preparar — mas, como os detalhes dependem da origem e do histórico do seu cachorro, confirme sempre o procedimento exato com o State Service (Derzhprodspozhyvsluzhba) e com o seu veterinário antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — antibody test usually required", fr: "Modéré — titrage généralement exigé", es: "Moderado — prueba de titulación generalmente exigida", pt: "Moderada — teste sorológico geralmente obrigatório" }
+
+prepTime:
+  eu:
+    en: "From an EU / rabies-controlled origin: a few days if a valid antibody titer already exists, otherwise plan ~3–4 months for the titration and its waiting period."
+    fr: "Depuis une origine UE / à rage contrôlée : quelques jours si un titrage valide existe déjà, sinon prévoir ~3–4 mois pour le titrage et son délai."
+    es: "Desde un origen de la UE / con rabia controlada: unos días si ya existe una titulación de anticuerpos válida, de lo contrario prevé ~3–4 meses para la prueba de titulación y su periodo de espera."
+    pt: "De origem UE / país com raiva controlada: alguns dias se já existir um teste sorológico válido; caso contrário, conte com cerca de 3–4 meses para a titulação e o período de espera."
+  listed:
+    en: "From another rabies-controlled country: about 3–4 months if a rabies antibody test still has to be carried out before entry."
+    fr: "Depuis un autre pays à rage contrôlée : environ 3–4 mois s'il faut encore réaliser le titrage antirabique avant l'entrée."
+    es: "Desde otro país con rabia controlada: unos 3–4 meses si aún hay que realizar la prueba de titulación de rabia antes de la entrada."
+    pt: "De outro país com raiva controlada: cerca de 3–4 meses se ainda for preciso fazer o teste sorológico antirrábico antes da entrada."
+  nonListed:
+    en: "From a rabies-risk country: ~4+ months — vaccinate, wait ~30 days, run the titration in an EU-approved lab, then observe the pre-entry waiting period."
+    fr: "Depuis un pays à risque rabique : ~4 mois et plus — vacciner, attendre ~30 jours, réaliser le titrage en labo agréé UE, puis respecter le délai avant l'entrée."
+    es: "Desde un país con riesgo de rabia: ~4 meses o más — vacunar, esperar ~30 días, realizar la prueba de titulación en un laboratorio autorizado por la UE, y luego respetar el periodo de espera antes de la entrada."
+    pt: "De um país de risco de raiva: ~4+ meses — vacinar, esperar ~30 dias, fazer a titulação em laboratório aprovado pela UE e depois cumprir o período de espera antes da entrada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required (ISO)", fr: "Requise (ISO)", es: "Obligatorio (ISO)", pt: "Obrigatório (ISO)" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required (titration ≥0.5 IU/ml)", fr: "Requis (titrage ≥0,5 UI/ml)", es: "Obligatoria (titulación ≥0,5 UI/ml)", pt: "Obrigatório (titulação ≥0,5 UI/ml)" }
+    cls: warn
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (international)", fr: "Requis (international)", es: "Obligatorio (internacional)", pt: "Obrigatório (internacional)" }
+    cls: warn
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not specified in official rules", fr: "Non précisé dans les règles officielles", es: "No especificado en las normas oficiales", pt: "Não especificado nas regras oficiais" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+  - en: "Border crossing points and procedures may be temporarily adjusted; confirm the current list of entry points and requirements with the State Service and Ukrainian Customs before travelling."
+    fr: "Les points de passage frontaliers et les procédures peuvent être temporairement ajustés ; confirme la liste actuelle des points d'entrée et les exigences auprès du Service d'État et de la Douane ukrainienne avant de voyager."
+    es: "Los pasos fronterizos y los procedimientos pueden ajustarse temporalmente; confirma la lista actual de puntos de entrada y los requisitos con el Servicio Estatal y la Aduana ucraniana antes de viajar."
+    pt: "Os pontos de passagem de fronteira e os procedimentos podem ser ajustados temporariamente; confirme a lista atual de pontos de entrada e as exigências com o State Service e a alfândega ucraniana antes de viajar."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Ukraine (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Ukraine (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Ucrania (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Ucrânia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Ukraine", fr: "Pays de destination — Ukraine", es: "País de destino — Ucrania", pt: "País de destino — Ucrânia" }
+      text:
+        en: "Ukraine applies its own national rules: an ISO microchip, a valid rabies vaccination, a rabies antibody titration and an international veterinary certificate are the backbone of entry."
+        fr: "L'Ukraine applique ses propres règles nationales : puce ISO, vaccination antirabique valide, titrage antirabique et certificat vétérinaire international constituent le socle de l'entrée."
+        es: "Ucrania aplica sus propias normas nacionales: un microchip ISO, una vacunación antirrábica válida, una prueba de titulación de rabia y un certificado veterinario internacional son la columna vertebral de la entrada."
+        pt: "A Ucrânia aplica as próprias regras nacionais: microchip ISO, vacinação antirrábica válida, teste sorológico antirrábico (titulação) e certificado veterinário internacional são a espinha dorsal da entrada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The departure country decides which official model certificate is issued and how the paperwork is endorsed before travel; it can also affect the vaccination and titration timeline."
+        fr: "Le pays de départ détermine le modèle de certificat officiel délivré et la façon dont les documents sont visés avant le voyage ; il influence aussi le calendrier vaccination-titrage."
+        es: "El país de salida decide qué modelo de certificado oficial se expide y cómo se refrenda la documentación antes del viaje; también puede afectar al calendario de la vacunación y la titulación."
+        pt: "O país de partida define qual modelo oficial de certificado é emitido e como a documentação é endossada antes da viagem; ele também pode afetar o calendário da vacinação e da titulação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country weighs on the titration requirement and the pre-entry waiting period. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique pèse sur l'exigence de titrage et le délai avant l'entrée. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia influye en el requisito de titulación y en el periodo de espera antes de la entrada. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pesa na exigência de titulação e no período de espera antes da entrada. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Ukraine's framework, then confirm your dog's exact origin and history with your vet and the State Service."
+    fr: "Lis donc les exigences ci-dessous comme le cadre ukrainien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire et le Service d'État."
+    es: "Así que lee los requisitos siguientes como el marco de Ucrania y luego confirma el origen y el historial exactos de tu perro con tu veterinario y el Servicio Estatal."
+    pt: "Então leia as exigências abaixo como o quadro geral da Ucrânia e depois confirme a origem exata e o histórico do seu cachorro com o seu veterinário e o State Service."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination; ISO 11784/11785 compliant.", fr: "Doit être posée avant la vaccination antirabique ; conforme ISO 11784/11785.", es: "Debe implantarse antes de la vacunación antirrábica; conforme con ISO 11784/11785.", pt: "Precisa ser implantado antes da vacinação antirrábica; em conformidade com a ISO 11784/11785." }
+    exceptions: { en: "A legible tattoo is accepted only if applied before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "Derzhprodspozhyvsluzhba (dpss.gov.ua)", fr: "Derjprodspojivsloujba (dpss.gov.ua)", es: "Derzhprodspozhyvsluzhba (dpss.gov.ua)", pt: "Derzhprodspozhyvsluzhba (dpss.gov.ua)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old; microchip must already be in place; if only a primary vaccination, wait at least 21 days before travel.", fr: "Chien d'au moins 12 semaines ; la puce doit déjà être posée ; en cas de primo-vaccination seule, attendre au moins 21 jours avant le voyage.", es: "Perro de al menos 12 semanas; el microchip debe estar ya implantado; si solo hay una primovacunación, espera al menos 21 días antes del viaje.", pt: "Cachorro com pelo menos 12 semanas de idade; o microchip já deve estar implantado; se for apenas uma primovacinação, espere no mínimo 21 dias antes da viagem." }
+    exceptions: { en: "Dogs under 12 weeks must not be vaccinated and cannot meet the entry conditions.", fr: "Un chien de moins de 12 semaines ne peut être vacciné et ne peut remplir les conditions d'entrée.", es: "Los perros de menos de 12 semanas no deben vacunarse y no pueden cumplir las condiciones de entrada.", pt: "Cachorros com menos de 12 semanas não devem ser vacinados e não conseguem cumprir as condições de entrada." }
+    ref: { en: "dpss.gov.ua; USDA APHIS (US→Ukraine)", fr: "dpss.gov.ua ; USDA APHIS (USA→Ukraine)", es: "dpss.gov.ua; USDA APHIS (EE. UU.→Ucrania)", pt: "dpss.gov.ua; USDA APHIS (EUA→Ucrânia)" }
+  - item: { en: "Rabies antibody test (titration)", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Blood sampled ≥30 days after vaccination and more than 3 months before entry; result ≥0.5 IU/ml at an EU-approved laboratory; stays valid while vaccination is kept current.", fr: "Sang prélevé ≥30 jours après le vaccin et plus de 3 mois avant l'entrée ; résultat ≥0,5 UI/ml dans un laboratoire agréé UE ; reste valable tant que la vaccination est maintenue à jour.", es: "Sangre extraída ≥30 días después de la vacuna y más de 3 meses antes de la entrada; resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE; sigue siendo válida mientras se mantenga al día la vacunación.", pt: "Sangue coletado ≥30 dias depois da vacinação e mais de 3 meses antes da entrada; resultado ≥0,5 UI/ml em laboratório aprovado pela UE; continua válido enquanto a vacinação for mantida em dia." }
+    exceptions: { en: "Whether Ukraine exempts specific rabies-free origins from the titration is not clearly published (Unknown) — confirm with the State Service.", fr: "L'exemption de titrage pour certaines origines indemnes de rage n'est pas clairement publiée (non communiqué) — à confirmer auprès du Service d'État.", es: "No está claramente publicado si Ucrania exime de la titulación a determinados orígenes libres de rabia (no comunicado) — confírmalo con el Servicio Estatal.", pt: "Não está claramente publicado se a Ucrânia dispensa da titulação certas origens livres de raiva (Desconhecido) — confirme com o State Service." }
+    ref: { en: "dpss.gov.ua; USDA APHIS (US→Ukraine)", fr: "dpss.gov.ua ; USDA APHIS (USA→Ukraine)", es: "dpss.gov.ua; USDA APHIS (EE. UU.→Ucrania)", pt: "dpss.gov.ua; USDA APHIS (EUA→Ucrânia)" }
+  - item: { en: "International veterinary certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Certificado veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued/endorsed by an official (state) veterinarian of the exporting country before departure; records the microchip, vaccination and titration.", fr: "Établi/visé par un vétérinaire officiel (d'État) du pays d'export avant le départ ; consigne la puce, la vaccination et le titrage.", es: "Expedido/refrendado por un veterinario oficial (estatal) del país exportador antes de la salida; registra el microchip, la vacunación y la titulación.", pt: "Emitido/endossado por um veterinário oficial (do Estado) do país exportador antes da partida; registra o microchip, a vacinação e a titulação." }
+    exceptions: { en: "There is no EU pet-passport shortcut when entering Ukraine.", fr: "Aucun raccourci par passeport européen pour entrer en Ukraine.", es: "No hay ningún atajo por pasaporte europeo para entrar en Ucrania.", pt: "Não existe atalho pelo passaporte europeu para animais de estimação na entrada na Ucrânia." }
+    ref: { en: "dpss.gov.ua", fr: "dpss.gov.ua", es: "dpss.gov.ua", pt: "dpss.gov.ua" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not specified", fr: "Non précisé", es: "No especificado", pt: "Não especificada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No tapeworm treatment is set out as a Ukrainian entry condition in the official sources reviewed (Unknown).", fr: "Aucun traitement contre l'échinococcose n'est prévu comme condition d'entrée ukrainienne dans les sources officielles consultées (non communiqué).", es: "No se establece ningún tratamiento contra la tenia como condición de entrada en Ucrania en las fuentes oficiales consultadas (no comunicado).", pt: "Nenhum tratamento contra tênia aparece como condição de entrada na Ucrânia nas fontes oficiais consultadas (Desconhecido)." }
+    ref: { en: "dpss.gov.ua", fr: "dpss.gov.ua", es: "dpss.gov.ua", pt: "dpss.gov.ua" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required (non-commercial)", fr: "Non requis (non commercial)", es: "No obligatorio (no comercial)", pt: "Não obrigatório (não comercial)" }
+    when: { en: "A movement without sale or transfer of ownership, up to 5 animals, is treated as non-commercial and needs no import permit.", fr: "Un mouvement sans vente ni transfert de propriété, jusqu'à 5 animaux, est traité comme non commercial et ne nécessite aucun permis d'import.", es: "Un movimiento sin venta ni transferencia de propiedad, de hasta 5 animales, se trata como no comercial y no necesita permiso de importación.", pt: "Um deslocamento sem venda nem transferência de propriedade, com até 5 animais, é tratado como não comercial e não exige licença de importação." }
+    exceptions: { en: "Commercial imports or larger numbers follow separate veterinary import procedures.", fr: "Les importations commerciales ou en plus grand nombre suivent des procédures d'importation vétérinaires distinctes.", es: "Las importaciones comerciales o en mayor número siguen procedimientos de importación veterinarios distintos.", pt: "Importações comerciais ou quantidades maiores seguem procedimentos veterinários de importação separados." }
+    ref: { en: "dpss.gov.ua; customs.gov.ua", fr: "dpss.gov.ua ; customs.gov.ua", es: "dpss.gov.ua; customs.gov.ua", pt: "dpss.gov.ua; customs.gov.ua" }
+  - item: { en: "Customs declaration", fr: "Déclaration douanière", es: "Declaración aduanera", pt: "Declaração aduaneira" }
+    required: { en: "At the border", fr: "À la frontière", es: "En la frontera", pt: "Na fronteira" }
+    when: { en: "Up to 3 mammals accompanying a traveller may be brought as personal belongings without customs duties; present the animal and documents to customs.", fr: "Jusqu'à 3 mammifères accompagnant un voyageur peuvent être introduits comme effets personnels sans droits de douane ; présente l'animal et les documents à la douane.", es: "Hasta 3 mamíferos que acompañen a un viajero pueden introducirse como efectos personales sin derechos de aduana; presenta el animal y los documentos en la aduana.", pt: "Até 3 mamíferos acompanhando um viajante podem ser trazidos como bens pessoais, sem impostos aduaneiros; apresente o animal e os documentos à alfândega." }
+    exceptions: { en: "Above the duty-free personal allowance, ordinary customs rules apply.", fr: "Au-delà de la franchise personnelle, les règles douanières ordinaires s'appliquent.", es: "Por encima de la franquicia personal, se aplican las normas aduaneras ordinarias.", pt: "Acima da franquia pessoal isenta de impostos, valem as regras aduaneiras comuns." }
+    ref: { en: "customs.gov.ua", fr: "customs.gov.ua", es: "customs.gov.ua", pt: "customs.gov.ua" }
+  - item: { en: "Border veterinary check", fr: "Contrôle vétérinaire frontalier", es: "Control veterinario fronterizo", pt: "Controle veterinário de fronteira" }
+    required: { en: "At entry", fr: "À l'entrée", es: "En la entrada", pt: "Na entrada" }
+    when: { en: "Documentary and identity checks by the state border veterinary inspector at a designated entry point.", fr: "Contrôles documentaires et d'identité par l'inspecteur vétérinaire d'État frontalier à un point d'entrée désigné.", es: "Controles documentales y de identidad por el inspector veterinario estatal de frontera en un punto de entrada designado.", pt: "Conferência de documentos e de identidade pelo inspetor veterinário estatal de fronteira em um ponto de entrada designado." }
+    exceptions: { en: "Missing or invalid documents can lead to refusal or return of the animal.", fr: "Des documents manquants ou invalides peuvent entraîner le refus ou le renvoi de l'animal.", es: "Documentos que falten o no sean válidos pueden provocar la denegación o la devolución del animal.", pt: "Documentos faltando ou inválidos podem levar à recusa ou à devolução do animal." }
+    ref: { en: "dpss.gov.ua; customs.gov.ua", fr: "dpss.gov.ua ; customs.gov.ua", es: "dpss.gov.ua; customs.gov.ua", pt: "dpss.gov.ua; customs.gov.ua" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively older", fr: "En pratique plus âgé", es: "En la práctica mayor", pt: "Na prática, mais velhos" }
+    when: { en: "The 12-week vaccination, then the titration and its multi-month wait, push the realistic entry age to roughly 7 months.", fr: "La vaccination à 12 semaines, puis le titrage et son délai de plusieurs mois, portent l'âge réaliste d'entrée à environ 7 mois.", es: "La vacunación a las 12 semanas, y luego la titulación y su espera de varios meses, elevan la edad realista de entrada a unos 7 meses.", pt: "A vacinação às 12 semanas, depois a titulação e a espera de vários meses que ela impõe, empurram a idade realista de entrada para cerca de 7 meses." }
+    exceptions: { en: "Unvaccinated puppies under 12 weeks cannot meet the conditions.", fr: "Un chiot non vacciné de moins de 12 semaines ne peut remplir les conditions.", es: "Los cachorros sin vacunar menores de 12 semanas no pueden cumplir las condiciones.", pt: "Filhotes não vacinados com menos de 12 semanas não conseguem cumprir as condições." }
+    ref: { en: "dpss.gov.ua; USDA APHIS (US→Ukraine)", fr: "dpss.gov.ua ; USDA APHIS (USA→Ukraine)", es: "dpss.gov.ua; USDA APHIS (EE. UU.→Ucrania)", pt: "dpss.gov.ua; USDA APHIS (EUA→Ucrânia)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — the animal may be refused or returned at the owner's expense.", fr: "Uniquement en cas de non-conformité — l'animal peut être refusé ou renvoyé aux frais du propriétaire.", es: "Solo en caso de incumplimiento — el animal puede ser rechazado o devuelto a cargo del propietario.", pt: "Só se as regras forem descumpridas — o animal pode ser recusado ou devolvido às custas do dono." }
+    ref: { en: "dpss.gov.ua", fr: "dpss.gov.ua", es: "dpss.gov.ua", pt: "dpss.gov.ua" }
+
+origin:
+  eu:
+    title: { en: "From the EU / a rabies-controlled country", fr: "Depuis l'UE / un pays à rage contrôlée", es: "Desde la UE / un país con rabia controlada", pt: "Da UE / de um país com raiva controlada" }
+    body:
+      en: "A dog from an EU or rabies-controlled country needs an ISO microchip, a valid rabies vaccination, an international veterinary certificate and, under Ukraine's rules, a rabies antibody titration (≥0.5 IU/ml, EU-approved lab). The EU pet passport alone is not a shortcut for entering Ukraine."
+      fr: "Un chien venant de l'UE ou d'un pays à rage contrôlée a besoin d'une puce ISO, d'une vaccination antirabique valide, d'un certificat vétérinaire international et, selon les règles ukrainiennes, d'un titrage antirabique (≥0,5 UI/ml, labo agréé UE). Le passeport européen seul n'est pas un raccourci pour entrer en Ukraine."
+      es: "Un perro procedente de la UE o de un país con rabia controlada necesita un microchip ISO, una vacunación antirrábica válida, un certificado veterinario internacional y, según las normas ucranianas, una prueba de titulación de rabia (≥0,5 UI/ml, laboratorio autorizado por la UE). El pasaporte europeo por sí solo no es un atajo para entrar en Ucrania."
+      pt: "Um cachorro vindo da UE ou de um país com raiva controlada precisa de microchip ISO, vacinação antirrábica válida, certificado veterinário internacional e, pelas regras da Ucrânia, de um teste sorológico antirrábico (titulação ≥0,5 UI/ml, laboratório aprovado pela UE). O passaporte europeu para animais de estimação, sozinho, não é atalho para entrar na Ucrânia."
+    cls: warn
+  listed:
+    title: { en: "From another rabies-controlled country", fr: "Depuis un autre pays à rage contrôlée", es: "Desde otro país con rabia controlada", pt: "De outro país com raiva controlada" }
+    body:
+      en: "The core is the same — microchip, valid rabies vaccination, international veterinary certificate endorsed by an official vet, and a rabies antibody titration. Plan the timeline around the blood test and its waiting period before entry."
+      fr: "Le socle est identique — puce, vaccination antirabique valide, certificat vétérinaire international visé par un vétérinaire officiel, et titrage antirabique. Prévois le calendrier autour de la prise de sang et de son délai avant l'entrée."
+      es: "El núcleo es el mismo — microchip, vacunación antirrábica válida, certificado veterinario internacional refrendado por un veterinario oficial, y una prueba de titulación de rabia. Planifica el calendario en torno al análisis de sangre y su periodo de espera antes de la entrada."
+      pt: "O núcleo é o mesmo — microchip, vacinação antirrábica válida, certificado veterinário internacional endossado por um veterinário oficial e teste sorológico antirrábico (titulação). Planeje o calendário em torno da coleta de sangue e do período de espera antes da entrada."
+    cls: warn
+  nonListed:
+    title: { en: "From a rabies-risk country", fr: "Depuis un pays à risque rabique", es: "Desde un país con riesgo de rabia", pt: "De um país de risco de raiva" }
+    body:
+      en: "From a rabies-risk country, follow the full path: microchip, rabies vaccination, blood drawn at least 30 days later, an antibody result ≥0.5 IU/ml at an EU-approved laboratory, then the pre-entry waiting period, plus the endorsed international veterinary certificate."
+      fr: "Depuis un pays à risque rabique, suis le parcours complet : puce, vaccination antirabique, sang prélevé au moins 30 jours après, résultat de titrage ≥0,5 UI/ml dans un laboratoire agréé UE, puis le délai avant l'entrée, ainsi que le certificat vétérinaire international visé."
+      es: "Desde un país con riesgo de rabia, sigue el recorrido completo: microchip, vacunación antirrábica, sangre extraída al menos 30 días después, un resultado de anticuerpos ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego el periodo de espera antes de la entrada, además del certificado veterinario internacional refrendado."
+      pt: "Vindo de um país de risco de raiva, siga o caminho completo: microchip, vacinação antirrábica, sangue coletado no mínimo 30 dias depois, resultado sorológico ≥0,5 UI/ml em laboratório aprovado pela UE, depois o período de espera antes da entrada, além do certificado veterinário internacional endossado."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Ukraine depends on your entry point and documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Ukraine dépend de ton point d'entrée et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a Ucrania depende de tu punto de entrada y de tus documentos."
+    pt: "O que acontece quando seu cachorro chega à Ucrânia depende do seu ponto de entrada e dos documentos."
+  points:
+    - en: "Enter via a designated crossing point and present your dog to the state border veterinary inspector for documentary and identity checks."
+      fr: "Entre par un point de passage désigné et présente ton chien à l'inspecteur vétérinaire d'État frontalier pour les contrôles documentaires et d'identité."
+      es: "Entra por un punto de paso designado y presenta a tu perro al inspector veterinario estatal de frontera para los controles documentales y de identidad."
+      pt: "Entre por um ponto de passagem designado e apresente seu cachorro ao inspetor veterinário estatal de fronteira para a conferência de documentos e de identidade."
+    - en: "Up to 3 mammals travelling with their owner are handled as non-commercial personal belongings, without customs duties; still declare them to customs."
+      fr: "Jusqu'à 3 mammifères voyageant avec leur propriétaire sont traités comme effets personnels non commerciaux, sans droits de douane ; déclare-les tout de même à la douane."
+      es: "Hasta 3 mamíferos que viajan con su propietario se tratan como efectos personales no comerciales, sin derechos de aduana; aun así, decláralos en la aduana."
+      pt: "Até 3 mamíferos que viajam com o dono são tratados como bens pessoais não comerciais, sem impostos aduaneiros; ainda assim, declare-os à alfândega."
+    - en: "Carry the original international veterinary certificate and the laboratory report of the rabies antibody test — not copies."
+      fr: "Munis-toi de l'original du certificat vétérinaire international et du rapport de laboratoire du titrage antirabique — pas de copies."
+      es: "Lleva el original del certificado veterinario internacional y el informe de laboratorio de la prueba de titulación de rabia — no copias."
+      pt: "Leve o certificado veterinário internacional original e o laudo de laboratório do teste sorológico antirrábico — não cópias."
+    - en: "If documents are missing or invalid, the animal may be refused entry or returned at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé à l'entrée ou renvoyé aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado a la entrada o devuelto a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, o animal pode ter a entrada recusada ou ser devolvido às custas do dono."
+    - en: "Border crossing points and procedures may be temporarily adjusted; confirm the current entry points and requirements with the State Service and Ukrainian Customs before you travel."
+      fr: "Les points de passage et les procédures peuvent être temporairement ajustés ; confirme les points d'entrée et exigences actuels auprès du Service d'État et de la Douane ukrainienne avant de voyager."
+      es: "Los pasos fronterizos y los procedimientos pueden ajustarse temporalmente; confirma los puntos de entrada y los requisitos actuales con el Servicio Estatal y la Aduana ucraniana antes de viajar."
+      pt: "Os pontos de passagem de fronteira e os procedimentos podem ser ajustados temporariamente; confirme os pontos de entrada e as exigências atuais com o State Service e a alfândega ucraniana antes de viajar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Ukraine regulates dangerous dog breeds under Cabinet of Ministers Resolution No. 1164 of 10 November 2021 (\"Some issues regarding dangerous dog breeds\"). The rules govern keeping and walking such dogs inside Ukraine; the official sources reviewed do not set out an import ban on these breeds."
+    fr: "L'Ukraine réglemente les races de chiens dangereuses par la résolution du Cabinet des ministres n° 1164 du 10 novembre 2021 (« Certaines questions relatives aux races de chiens dangereuses »). Les règles encadrent la détention et la promenade de ces chiens en Ukraine ; les sources officielles consultées ne prévoient pas d'interdiction d'importation de ces races."
+    es: "Ucrania regula las razas de perros peligrosas mediante la Resolución del Consejo de Ministros n.º 1164, de 10 de noviembre de 2021 («Algunas cuestiones relativas a las razas de perros peligrosas»). Las normas rigen la tenencia y el paseo de estos perros dentro de Ucrania; las fuentes oficiales consultadas no establecen una prohibición de importación de estas razas."
+    pt: "A Ucrânia regula as raças de cachorro perigosas pela Resolução do Gabinete de Ministros nº 1164, de 10 de novembro de 2021 (“Algumas questões relativas às raças de cachorro perigosas”). As regras tratam da posse e do passeio desses cachorros dentro da Ucrânia; as fontes oficiais consultadas não estabelecem proibição de importação dessas raças."
+  cat1:
+    en: "The resolution approves a list of dangerous dog breeds (more than 50 breeds, and crossbreeds of the listed breeds). Owners in Ukraine must hold compulsory third-party liability insurance, and such dogs may be walked in public only muzzled and on a lead."
+    fr: "La résolution approuve une liste de races de chiens dangereuses (plus de 50 races, ainsi que les croisements des races listées). Les propriétaires en Ukraine doivent souscrire une assurance responsabilité civile obligatoire, et ces chiens ne peuvent être promenés en public que muselés et tenus en laisse."
+    es: "La resolución aprueba una lista de razas de perros peligrosas (más de 50 razas, así como los cruces de las razas listadas). Los propietarios en Ucrania deben contratar un seguro de responsabilidad civil obligatorio, y estos perros solo pueden pasearse en público con bozal y con correa."
+    pt: "A resolução aprova uma lista de raças de cachorro perigosas (mais de 50 raças, além dos cruzamentos das raças listadas). Os donos na Ucrânia precisam ter seguro obrigatório de responsabilidade civil contra terceiros, e esses cachorros só podem passear em local público com focinheira e guia."
+  cat2:
+    en: "Ukraine does not operate a second breed category and, in the official sources reviewed, does not prohibit these breeds from entering the country. Entry follows the standard veterinary requirements, while the ownership conditions above apply once in Ukraine."
+    fr: "L'Ukraine n'applique pas de seconde catégorie de races et, dans les sources officielles consultées, n'interdit pas l'entrée de ces races. L'entrée suit les exigences vétérinaires standard, tandis que les conditions de détention ci-dessus s'appliquent une fois en Ukraine."
+    es: "Ucrania no aplica una segunda categoría de razas y, en las fuentes oficiales consultadas, no prohíbe la entrada de estas razas en el país. La entrada sigue los requisitos veterinarios estándar, mientras que las condiciones de tenencia anteriores se aplican una vez en Ucrania."
+    pt: "A Ucrânia não tem uma segunda categoria de raças e, nas fontes oficiais consultadas, não proíbe a entrada dessas raças no país. A entrada segue as exigências veterinárias padrão, enquanto as condições de posse acima passam a valer assim que você estiver na Ucrânia."
+  note:
+    en: "For the exact list and the current insurance and walking obligations, consult Resolution No. 1164 and the State Service before you travel."
+    fr: "Pour la liste exacte et les obligations actuelles d'assurance et de promenade, consulte la résolution n° 1164 et le Service d'État avant de voyager."
+    es: "Para la lista exacta y las obligaciones actuales de seguro y de paseo, consulta la Resolución n.º 1164 y el Servicio Estatal antes de viajar."
+    pt: "Para a lista exata e as obrigações atuais de seguro e de passeio, consulte a Resolução nº 1164 e o State Service antes de viajar."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks; +21 days if primary vaccination)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines ; +21 jours si primo-vaccination)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas; +21 días si es primovacunación)"
+    pt: "Vacinação antirrábica válida (cachorro ≥12 semanas; +21 dias se for primovacinação)"
+  - en: "Rabies antibody test ≥0.5 IU/ml at an EU-approved laboratory"
+    fr: "Titrage antirabique ≥0,5 UI/ml dans un laboratoire agréé UE"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml en un laboratorio autorizado por la UE"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml em laboratório aprovado pela UE"
+  - en: "International veterinary certificate endorsed by an official vet"
+    fr: "Certificat vétérinaire international visé par un vétérinaire officiel"
+    es: "Certificado veterinario internacional refrendado por un veterinario oficial"
+    pt: "Certificado veterinário internacional endossado por um veterinário oficial"
+  - en: "Original documents plus the laboratory titration report"
+    fr: "Documents originaux et rapport de laboratoire du titrage"
+    es: "Documentos originales y el informe de laboratorio de la titulación"
+    pt: "Documentos originais e o laudo de laboratório da titulação"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "If your dog is a listed dangerous breed, check the keeping obligations in Ukraine"
+    fr: "Si ton chien est d'une race dangereuse listée, vérifie les obligations de détention en Ukraine"
+    es: "Si tu perro es de una raza peligrosa listada, comprueba las obligaciones de tenencia en Ucrania"
+    pt: "Se o seu cachorro for de uma raça perigosa listada, confira as obrigações de posse na Ucrânia"
+
+sources:
+  - label: { en: "State Service of Ukraine (Derzhprodspozhyvsluzhba) — Requirements for non-commercial movement of animals", fr: "Service d'État d'Ukraine (Derjprodspojivsloujba) — Exigences pour le mouvement non commercial des animaux", es: "Servicio Estatal de Ucrania (Derzhprodspozhyvsluzhba) — Requisitos para el movimiento no comercial de animales", pt: "State Service of Ukraine (Derzhprodspozhyvsluzhba) — Exigências para a circulação não comercial de animais" }
+    url: "https://dpss.gov.ua/mizhnarodne-spivrobitnictv/veterinariya-ta-bezpechnist/vimogi-do-nekomercijnogo-peremishchennya-tvarin"
+  - label: { en: "State Service of Ukraine — Importing pets into Ukraine", fr: "Service d'État d'Ukraine — Importation d'animaux de compagnie en Ukraine", es: "Servicio Estatal de Ucrania — Importación de mascotas a Ucrania", pt: "State Service of Ukraine — Importação de animais de estimação para a Ucrânia" }
+    url: "https://dpss.gov.ua/news/vvezennia-domashnikh-tvaryn-v-ukrainu"
+  - label: { en: "State Customs Service of Ukraine — Information for citizens", fr: "Service des douanes d'Ukraine — Informations pour les citoyens", es: "Servicio Estatal de Aduanas de Ucrania — Información para los ciudadanos", pt: "State Customs Service of Ukraine — Informações para os cidadãos" }
+    url: "https://customs.gov.ua/en/informatsiia-dlia-gromadian"
+  - label: { en: "State Customs Service of Ukraine — Procedure for moving animals", fr: "Service des douanes d'Ukraine — Procédure de déplacement des animaux", es: "Servicio Estatal de Aduanas de Ucrania — Procedimiento para el desplazamiento de animales", pt: "State Customs Service of Ukraine — Procedimento para o deslocamento de animais" }
+    url: "https://zk.customs.gov.ua/Poriadok_peremishchennia_tvaryn"
+  - label: { en: "USDA APHIS — Pet travel from the United States to Ukraine (Ukraine's entry requirements)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers l'Ukraine (exigences d'entrée ukrainiennes)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Ucrania (requisitos de entrada de Ucrania)", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para a Ucrânia (exigências de entrada da Ucrânia)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-ukraine"
+  - label: { en: "Cabinet of Ministers Resolution No. 1164 of 10 Nov 2021 — dangerous dog breeds (zakon.rada.gov.ua)", fr: "Résolution du Cabinet des ministres n° 1164 du 10 nov. 2021 — races de chiens dangereuses (zakon.rada.gov.ua)", es: "Resolución del Consejo de Ministros n.º 1164, de 10 nov. 2021 — razas de perros peligrosas (zakon.rada.gov.ua)", pt: "Resolução do Gabinete de Ministros nº 1164, de 10 de nov. de 2021 — raças de cachorro perigosas (zakon.rada.gov.ua)" }
+    url: "https://zakon.rada.gov.ua/laws/show/1164-2021-%D0%BF"
+
+seo:
+  title: { en: "Ukraine Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Ukraine — Guide", es: "Requisitos de entrada de perros en Ucrania — Guía de viaje", pt: "Ucrânia: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Ukraine With Your Dog: Entry Requirements (2026)", fr: "Voyager en Ukraine avec ton chien : formalités (2026)", es: "Viajar a Ucrania con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Ucrânia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies, antibody-test and certificate rules for bringing a dog into Ukraine (non-EU). Sourced from the State Service and Customs, and dated."
+    fr: "Règles officielles puce, rage, titrage et certificat pour faire entrer un chien en Ukraine (hors UE). Sourcé auprès du Service d'État et de la Douane, et daté."
+    es: "Normas oficiales de microchip, rabia, titulación y certificado para traer un perro a Ucrania (fuera de la UE). Fuentes: Servicio Estatal y aduanas, con fecha."
+    pt: "Regras oficiais de microchip, raiva, teste sorológico e certificado para levar um cachorro para a Ucrânia (fora da UE). Fontes: State Service e alfândega, com data."
+  slug: "ukraine"
+  shortDesc:
+    en: "What you need to bring a dog into Ukraine: microchip, rabies vaccination, antibody test and an international veterinary certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien en Ukraine : puce, vaccination antirabique, titrage et certificat vétérinaire international."
+    es: "Lo que necesitas para traer un perro a Ucrania: microchip, vacunación antirrábica, prueba de titulación y un certificado veterinario internacional."
+    pt: "O que você precisa para levar um cachorro para a Ucrânia: microchip, vacinação antirrábica, teste sorológico e certificado veterinário internacional."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

@@ -1,0 +1,22 @@
+---
+import { t } from "@mydogcanfly/knowledge";
+import { localizeHref } from "../lib/routes";
+interface Props { context?: string; locale?: string }
+const { context, locale = "en" } = Astro.props;
+const title = context ?? t(locale, "cta.default");
+---
+<section class="cta">
+  <div class="mdcf-container cta__row">
+    <div>
+      <strong>{title}</strong>
+      <p>{t(locale, "cta.sub")}</p>
+    </div>
+    <a class="mdcf-btn" href={localizeHref("/#flight-finder", locale)}>{t(locale, "cta.button")}</a>
+  </div>
+</section>
+
+<style>
+  .cta { background: var(--mdcf-subtle); border-top: 1px solid var(--mdcf-line); border-bottom: 1px solid var(--mdcf-line); padding: 22px 0; }
+  .cta__row { display: flex; align-items: center; gap: 20px; justify-content: space-between; flex-wrap: wrap; }
+  .cta p { margin: 4px 0 0; color: var(--mdcf-muted); font-size: 14px; }
+</style>

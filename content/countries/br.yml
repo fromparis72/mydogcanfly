@@ -1,0 +1,396 @@
+# Country Entry Guide — Brazil (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_br
+iso2: "BR"
+name: { en: "Brazil", fr: "Brésil", es: "Brasil", pt: "Brasil" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Brazil: no import formality, but the State does require a transit certificate."
+    fr: "Vol intérieur au Brésil : aucune formalité d'import, mais l'État exige bien un certificat de transit."
+    es: "Vuelo nacional en Brasil: ningún trámite de importación, pero el Estado sí exige un certificado de tránsito."
+    pt: "Voo doméstico no Brasil: nenhuma formalidade de importação, mas o Estado exige um atestado de trânsito."
+  points:
+    - en: "An Atestado Sanitário for the domestic transit of dogs and cats, issued by a CRMV-registered vet and valid 10 days, must accompany the animal."
+      fr: "Un Atestado Sanitário pour le transit national des chiens et chats, établi par un vétérinaire inscrit au CRMV et valable 10 jours, doit accompagner l'animal."
+      es: "Un Atestado Sanitário para el tránsito nacional de perros y gatos, emitido por un veterinario inscrito en el CRMV y válido 10 días, debe acompañar al animal."
+      pt: "O animal deve estar acompanhado de um Atestado Sanitário para trânsito interestadual de cães e gatos, emitido por médico-veterinário inscrito no CRMV e válido por 10 dias."
+    - en: "Rabies vaccination is required for dogs over 90 days, valid one year. The livestock GTA does not apply to dogs and cats."
+      fr: "La vaccination antirabique est exigée pour les chiens de plus de 90 jours, valable un an. La GTA du bétail ne s'applique pas aux chiens et chats."
+      es: "La vacuna antirrábica es obligatoria para perros de más de 90 días, válida un año. La GTA del ganado no se aplica a perros y gatos."
+      pt: "A vacinação antirrábica é exigida para cães com mais de 90 dias e vale um ano. A GTA, usada para animais de produção, não se aplica a cães e gatos."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+  territories:
+    - name: { en: "Fernando de Noronha", fr: "Fernando de Noronha", es: "Fernando de Noronha", pt: "Fernando de Noronha" }
+      note:
+        en: "Dogs and cats are banned from the island whatever their origin, with narrow exceptions for assistance and police dogs and for residents. The airline itself is fined for carrying a non-compliant animal."
+        fr: "Les chiens et chats sont interdits sur l'île quelle que soit leur origine, avec de rares exceptions pour les chiens d'assistance, de police et ceux des résidents. La compagnie elle-même est sanctionnée si elle embarque un animal non conforme."
+        es: "Los perros y gatos están prohibidos en la isla sea cual sea su origen, con escasas excepciones para perros de asistencia, de policía y de residentes. La propia aerolínea es multada si embarca un animal no conforme."
+        pt: "Cães e gatos são proibidos na ilha, qualquer que seja a origem, com exceções restritas para cães de assistência, cães policiais e animais de residentes. A própria companhia aérea é multada se transportar um animal irregular."
+      url: https://www.noronha.pe.gov.br/saude/vigilancia-em-saude/vigilancia-animal/
+exit:
+  authority: VIGIAGRO (MAPA)
+  authorityUrl: https://www.gov.br/agricultura/pt-br/assuntos/vigilancia-agropecuaria/animais-estimacao/sair-do-brasil
+  intro:
+    en: "Brazil is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an international veterinary certificate (CVI) issued by VIGIAGRO/MAPA."
+    fr: "Le Brésil est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat vétérinaire international (CVI) délivré par VIGIAGRO/MAPA."
+    es: "Brasil no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado veterinario internacional (CVI) emitido por VIGIAGRO/MAPA."
+    pt: "O Brasil é um país não listado, então o teste sorológico antirrábico válido é obrigatório para voltar à União Europeia — além do certificado veterinário internacional (CVI) emitido pelo VIGIAGRO/MAPA."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer well ahead: blood test in an EU-approved lab at least 30 days after vaccination — MAPA notes the full EU process can take 3 to 6 months."
+        fr: "Anticipe largement le titrage antirabique : prise de sang dans un labo agréé UE au moins 30 jours après la vaccination — le MAPA indique que le processus UE complet peut prendre 3 à 6 mois."
+        es: "Anticipa ampliamente la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE al menos 30 días tras la vacuna — el MAPA indica que el proceso completo de la UE puede tardar de 3 a 6 meses."
+        pt: "Antecipe bastante o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — o MAPA observa que todo o processo europeu pode levar de 3 a 6 meses."
+    - timing: window
+      text:
+        en: "Submit the online request on gov.br with your vet's health certificate and records; a federal agricultural auditor reviews it (up to 48h) and issues the digitally signed CVI, free of charge."
+        fr: "Dépose la demande en ligne sur gov.br avec le certificat sanitaire et les documents de ton vétérinaire ; un auditeur fédéral agricole l'examine (jusqu'à 48 h) et délivre le CVI signé numériquement, gratuitement."
+        es: "Presenta la solicitud en línea en gov.br con el certificado sanitario y los documentos de tu veterinario; un auditor fiscal federal agropecuario lo revisa (hasta 48 h) y emite el CVI firmado digitalmente, de forma gratuita."
+        pt: "Faça o pedido on-line no gov.br com o atestado de saúde e os registros do seu veterinário; um auditor fiscal federal agropecuário analisa o processo (em até 48 h) e emite o CVI assinado digitalmente, gratuitamente."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Brazil with your dog", fr: "Voyager au Brésil avec ton chien", es: "Viajar a Brasil con tu perro", pt: "Viajar ao Brasil com seu cachorro" }
+  intro:
+    en: >-
+      Brazil welcomes dogs, and the procedure is comparatively simple: there is no import permit for a
+      personal pet, no quarantine and no rabies antibody test for entry from most countries. The main
+      document is an International Veterinary Certificate (CVI) issued or endorsed by an official
+      veterinarian of your departure country's government veterinary authority — a certificate signed by
+      a private vet alone is not accepted. Your dog needs a valid rabies vaccination (from 90 days of
+      age), a broad-spectrum anti-parasite treatment and a clinical exam shortly before travel. On
+      arrival, Brazil's agricultural inspection service, VIGIAGRO, checks your documents. This guide
+      explains exactly what to prepare before you book your flight.
+    fr: >-
+      Le Brésil accueille les chiens, et la démarche est relativement simple : aucun permis d'importation
+      pour un animal de compagnie personnel, pas de quarantaine et pas de titrage antirabique pour l'entrée
+      depuis la plupart des pays. Le document principal est un Certificat Vétérinaire International (CVI)
+      émis ou visé par un vétérinaire officiel de l'autorité vétérinaire gouvernementale du pays de départ
+      — un certificat signé uniquement par un vétérinaire privé n'est pas accepté. Ton chien doit avoir
+      une vaccination antirabique valide (à partir de 90 jours), un traitement antiparasitaire à large
+      spectre et un examen clinique peu avant le voyage. À l'arrivée, le service d'inspection
+      agricole brésilien, le VIGIAGRO, contrôle tes documents. Ce guide détaille exactement quoi préparer
+      avant de réserver ton vol.
+    es: >-
+      Brasil acoge a los perros, y el procedimiento es relativamente sencillo: no hay permiso de
+      importación para una mascota personal, ni cuarentena ni prueba de titulación de rabia para la
+      entrada desde la mayoría de los países. El documento principal es un Certificado Veterinario
+      Internacional (CVI) expedido o refrendado por un veterinario oficial de la autoridad veterinaria
+      gubernamental de tu país de salida — no se acepta un certificado firmado únicamente por un
+      veterinario privado. Tu perro necesita una vacunación antirrábica válida (a partir de los 90 días
+      de edad), un tratamiento antiparasitario de amplio espectro y un examen clínico poco antes del
+      viaje. A la llegada, el servicio de inspección agropecuaria de Brasil, VIGIAGRO, revisa tus
+      documentos. Esta guía explica exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "O Brasil recebe bem os cachorros, e o procedimento é relativamente simples: não há autorização de importação para um animal de estimação, nem quarentena, nem teste sorológico antirrábico para a entrada vinda da maioria dos países. O documento principal é um Certificado Veterinário Internacional (CVI) emitido ou endossado por um veterinário oficial da autoridade veterinária do governo do país de partida — um certificado assinado apenas por um veterinário particular não é aceito. Seu cachorro precisa de vacinação antirrábica válida (a partir dos 90 dias de idade), tratamento antiparasitário de amplo espectro e exame clínico pouco antes da viagem. Na chegada, o VIGIAGRO, serviço de inspeção agropecuária do Brasil, confere os documentos. Este guia explica exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: easy
+  label: { en: "Easy to moderate", fr: "Facile à modéré", es: "De fácil a moderado", pt: "Fácil a moderado" }
+
+prepTime:
+  eu:
+    en: "A few days if the rabies vaccination is already valid: arrange the anti-parasite treatment, clinical exam and the official CVI within the final 15 days."
+    fr: "Quelques jours si la vaccination antirabique est déjà valide : organise le traitement antiparasitaire, l'examen clinique et le CVI officiel dans les 15 derniers jours."
+    es: "Unos días si la vacunación antirrábica ya es válida: organiza el tratamiento antiparasitario, el examen clínico y el CVI oficial dentro de los últimos 15 días."
+    pt: "Alguns dias se a vacinação antirrábica já estiver válida: organize o tratamento antiparasitário, o exame clínico e o CVI oficial nos últimos 15 dias."
+  listed:
+    en: "Similar timing from a WOAH rabies-free country: no proof of rabies vaccination is needed, but the CVI, treatment and exam still apply."
+    fr: "Délai similaire depuis un pays reconnu indemne de rage par l'OMSA : aucune preuve de vaccination antirabique n'est exigée, mais le CVI, le traitement et l'examen restent requis."
+    es: "Plazo similar desde un país reconocido como libre de rabia por la OMSA: no se exige prueba de vacunación antirrábica, pero el CVI, el tratamiento y el examen siguen siendo obligatorios."
+    pt: "Prazo parecido vindo de um país reconhecido como livre de raiva pela WOAH: não é preciso comprovar a vacinação antirrábica, mas o CVI, o tratamento e o exame continuam valendo."
+  nonListed:
+    en: "About 3 weeks for a first-time rabies vaccination: departure is only allowed 21 days after the primary shot."
+    fr: "Environ 3 semaines pour une primo-vaccination antirabique : le départ n'est autorisé que 21 jours après la première injection."
+    es: "Unas 3 semanas para una primera vacunación antirrábica: la salida solo se permite 21 días después de la primovacunación."
+    pt: "Cerca de 3 semanas em caso de primeira vacinação antirrábica: a saída só é permitida 21 dias depois da primeira dose."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not required (recommended)", fr: "Non requise (recommandée)", es: "No obligatorio (recomendado)", pt: "Não obrigatório (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required from 90 days of age", fr: "Requise dès 90 jours d'âge", es: "Obligatoria a partir de los 90 días de edad", pt: "Obrigatória a partir de 90 dias de idade" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate (CVI)", fr: "Certificat vétérinaire (CVI)", es: "Certificado veterinario (CVI)", pt: "Certificado veterinário (CVI)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Anti-parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    status: { en: "Required within 15 days", fr: "Requis dans les 15 jours", es: "Obligatorio dentro de los 15 días", pt: "Obrigatório nos 15 dias anteriores" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Brazil (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Brésil (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Brasil (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — o Brasil (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Brazil", fr: "Pays de destination — Brésil", es: "País de destino — Brasil", pt: "País de destino — Brasil" }
+      text:
+        en: "Brazil requires an official International Veterinary Certificate (CVI), a valid rabies vaccination, an anti-parasite treatment and a clinical exam. No import permit and no quarantine apply to a personal pet dog."
+        fr: "Le Brésil exige un Certificat Vétérinaire International (CVI) officiel, une vaccination antirabique valide, un traitement antiparasitaire et un examen clinique. Aucun permis d'importation ni quarantaine ne s'applique à un chien de compagnie personnel."
+        es: "Brasil exige un Certificado Veterinario Internacional (CVI) oficial, una vacunación antirrábica válida, un tratamiento antiparasitario y un examen clínico. No se aplica ningún permiso de importación ni cuarentena a un perro de compañía personal."
+        pt: "O Brasil exige um Certificado Veterinário Internacional (CVI) oficial, vacinação antirrábica válida, tratamento antiparasitário e exame clínico. Não há autorização de importação nem quarentena para um cachorro de estimação."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The departure country's official veterinary authority must issue or endorse the CVI. If that country is recognised as rabies-free by the WOAH, proof of rabies vaccination is not required."
+        fr: "L'autorité vétérinaire officielle du pays de départ doit émettre ou viser le CVI. Si ce pays est reconnu indemne de rage par l'OMSA, la preuve de vaccination antirabique n'est pas exigée."
+        es: "La autoridad veterinaria oficial del país de salida debe expedir o refrendar el CVI. Si ese país está reconocido como libre de rabia por la OMSA, no se exige prueba de vacunación antirrábica."
+        pt: "A autoridade veterinária oficial do país de partida deve emitir ou endossar o CVI. Se esse país for reconhecido como livre de raiva pela WOAH, não é preciso comprovar a vacinação antirrábica."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "The rabies situation of your dog's real origin matters more than the last airport. A puppy under 90 days must not have been in contact with any urban rabies case in the previous 90 days."
+        fr: "La situation rabique de l'origine réelle de ton chien compte plus que le dernier aéroport. Un chiot de moins de 90 jours ne doit pas avoir été en contact avec un cas de rage urbaine dans les 90 jours précédents."
+        es: "La situación de rabia del origen real de tu perro cuenta más que el último aeropuerto. Un cachorro de menos de 90 días no debe haber estado en contacto con ningún caso de rabia urbana en los 90 días anteriores."
+        pt: "A situação da raiva na origem real do seu cachorro pesa mais do que o último aeroporto. Um filhote com menos de 90 dias não pode ter tido contato com nenhum caso de raiva urbana nos 90 dias anteriores."
+  note:
+    en: "So read the requirements below as Brazil's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre brésilien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Brasil y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral do Brasil, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "Optional for Brazil; if an electronic ID is used it must comply with ISO 11784/11785 and its location be noted on the CVI.", fr: "Facultative pour le Brésil ; si une identification électronique est utilisée, elle doit être conforme à l'ISO 11784/11785 et sa localisation indiquée sur le CVI.", es: "Opcional para Brasil; si se utiliza una identificación electrónica, debe cumplir con la ISO 11784/11785 y su ubicación indicarse en el CVI.", pt: "Facultativo para o Brasil; se houver identificação eletrônica, ela deve atender às normas ISO 11784/11785 e sua localização deve constar no CVI." }
+    exceptions: { en: "Strongly recommended for reliable identification and often required by the departure country and the airline.", fr: "Fortement recommandée pour une identification fiable et souvent exigée par le pays de départ et la compagnie aérienne.", es: "Muy recomendado para una identificación fiable y a menudo exigido por el país de salida y la aerolínea.", pt: "Fortemente recomendado para uma identificação confiável, e muitas vezes exigido pelo país de partida e pela companhia aérea." }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 17", fr: "Portaria MAPA nº 741/2024, art. 17", es: "Portaria MAPA nº 741/2024, art. 17", pt: "Portaria MAPA nº 741/2024, art. 17" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "For all dogs from 90 days of age, using an authorised vaccine that is still in date; a first vaccination allows departure only 21 days after the shot.", fr: "Pour tout chien à partir de 90 jours, avec un vaccin autorisé encore en cours de validité ; une primo-vaccination n'autorise le départ que 21 jours après l'injection.", es: "Para todos los perros a partir de los 90 días de edad, con una vacuna autorizada aún vigente; una primovacunación solo permite la salida 21 días después de la inyección.", pt: "Para todos os cães a partir dos 90 dias de idade, com vacina autorizada e dentro da validade; em caso de primeira dose, a saída só é permitida 21 dias depois da aplicação." }
+    exceptions: { en: "Not required if the origin country/zone is WOAH-recognised rabies-free (stated on the CVI), or for puppies under 90 days meeting the age conditions.", fr: "Non requise si le pays/la zone d'origine est reconnu indemne de rage par l'OMSA (mentionné sur le CVI), ou pour les chiots de moins de 90 jours remplissant les conditions d'âge.", es: "No obligatoria si el país/la zona de origen está reconocido como libre de rabia por la OMSA (indicado en el CVI), o para los cachorros de menos de 90 días que cumplan las condiciones de edad.", pt: "Não é exigida se o país ou a zona de origem for reconhecido pela WOAH como livre de raiva (o que deve constar no CVI), nem para filhotes com menos de 90 dias que atendam às condições de idade." }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 9–12", fr: "Portaria MAPA nº 741/2024, art. 9 à 12", es: "Portaria MAPA nº 741/2024, art. 9 a 12", pt: "Portaria MAPA nº 741/2024, art. 9 a 12" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Brazil does not require a rabies antibody test for the entry of a personal pet dog.", fr: "Le Brésil n'exige pas de titrage antirabique pour l'entrée d'un chien de compagnie personnel.", es: "Brasil no exige una prueba de titulación de rabia para la entrada de un perro de compañía personal.", pt: "O Brasil não exige teste sorológico antirrábico para a entrada de um cachorro de estimação." }
+    ref: { en: "Portaria MAPA nº 741/2024", fr: "Portaria MAPA nº 741/2024", es: "Portaria MAPA nº 741/2024", pt: "Portaria MAPA nº 741/2024" }
+  - item: { en: "Official pet passport (in lieu of CVI)", fr: "Passeport officiel (à la place du CVI)", es: "Pasaporte oficial para mascotas (en lugar del CVI)", pt: "Passaporte oficial para animais (no lugar do CVI)" }
+    required: { en: "Accepted only from reciprocal countries", fr: "Accepté uniquement depuis les pays réciproques", es: "Aceptado solo desde países recíprocos", pt: "Aceito somente de países com reciprocidade" }
+    when: { en: "A pet passport is accepted only if issued/endorsed by the origin's veterinary authority and if that country reciprocally accepts the Brazilian passport; it must carry all CVI data.", fr: "Un passeport n'est accepté que s'il est émis/visé par l'autorité vétérinaire d'origine et si ce pays accepte réciproquement le passeport brésilien ; il doit contenir toutes les données du CVI.", es: "Un pasaporte para mascotas solo se acepta si es expedido/refrendado por la autoridad veterinaria de origen y si ese país acepta recíprocamente el pasaporte brasileño; debe contener todos los datos del CVI.", pt: "Um passaporte para animais só é aceito se for emitido ou endossado pela autoridade veterinária da origem e se esse país aceitar reciprocamente o passaporte brasileiro; ele deve conter todos os dados do CVI." }
+    exceptions: { en: "The European Pet Passport is currently NOT valid to enter Brazil — a CVI is required instead.", fr: "Le passeport européen pour animaux n'est actuellement PAS valable pour entrer au Brésil — un CVI est requis à la place.", es: "El pasaporte europeo para mascotas actualmente NO es válido para entrar en Brasil — en su lugar se requiere un CVI.", pt: "O passaporte europeu para animais de estimação NÃO é válido hoje para entrar no Brasil — é preciso o CVI." }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 8; MAPA guidance", fr: "Portaria MAPA nº 741/2024, art. 8 ; guide MAPA", es: "Portaria MAPA nº 741/2024, art. 8; guía del MAPA", pt: "Portaria MAPA nº 741/2024, art. 8; orientações do MAPA" }
+  - item: { en: "International Veterinary Certificate (CVI)", fr: "Certificat Vétérinaire International (CVI)", es: "Certificado Veterinario Internacional (CVI)", pt: "Certificado Veterinário Internacional (CVI)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Original CVI issued or endorsed by an official veterinarian of the departure country's veterinary authority, on the MERCOSUR model (mandatory since 6 Sept 2025); valid 60 days from issue while the rabies vaccination stays valid.", fr: "CVI original émis ou visé par un vétérinaire officiel de l'autorité vétérinaire du pays de départ, sur le modèle MERCOSUR (obligatoire depuis le 6 sept. 2025) ; valable 60 jours à compter de l'émission tant que la vaccination antirabique reste valide.", es: "CVI original expedido o refrendado por un veterinario oficial de la autoridad veterinaria del país de salida, según el modelo del MERCOSUR (obligatorio desde el 6 de septiembre de 2025); válido 60 días desde su expedición mientras la vacunación antirrábica siga vigente.", pt: "CVI original emitido ou endossado por um veterinário oficial da autoridade veterinária do país de partida, no modelo do MERCOSUL (obrigatório desde 6 de setembro de 2025); válido por 60 dias a contar da emissão, enquanto a vacinação antirrábica continuar válida." }
+    exceptions: { en: "A certificate signed only by a private veterinarian is not accepted. Brazil may refuse animals previously diagnosed with leishmaniasis.", fr: "Un certificat signé uniquement par un vétérinaire privé n'est pas accepté. Le Brésil peut refuser un animal ayant déjà été diagnostiqué avec une leishmaniose.", es: "No se acepta un certificado firmado únicamente por un veterinario privado. Brasil puede rechazar a animales previamente diagnosticados con leishmaniasis.", pt: "Um certificado assinado apenas por um veterinário particular não é aceito. O Brasil pode recusar animais que já tenham tido diagnóstico de leishmaniose." }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 5–6, 15", fr: "Portaria MAPA nº 741/2024, art. 5-6, 15", es: "Portaria MAPA nº 741/2024, art. 5-6, 15", pt: "Portaria MAPA nº 741/2024, art. 5 e 6, e 15" }
+  - item: { en: "Broad-spectrum anti-parasite treatment", fr: "Traitement antiparasitaire à large spectre", es: "Tratamiento antiparasitario de amplio espectro", pt: "Tratamento antiparasitário de amplo espectro" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Against internal and external parasites, with authorised products, within the 15 days before the CVI is issued; active ingredients must be recorded.", fr: "Contre les parasites internes et externes, avec des produits autorisés, dans les 15 jours précédant l'émission du CVI ; les principes actifs doivent être consignés.", es: "Contra parásitos internos y externos, con productos autorizados, dentro de los 15 días previos a la expedición del CVI; deben registrarse los principios activos.", pt: "Contra parasitas internos e externos, com produtos autorizados, nos 15 dias anteriores à emissão do CVI; os princípios ativos devem ser registrados." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 13", fr: "Portaria MAPA nº 741/2024, art. 13", es: "Portaria MAPA nº 741/2024, art. 13", pt: "Portaria MAPA nº 741/2024, art. 13" }
+  - item: { en: "Clinical examination", fr: "Examen clinique", es: "Examen clínico", pt: "Exame clínico" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "By a registered veterinarian within 10 days before the CVI is issued, confirming no signs of infectious or parasitic disease and fitness for transport.", fr: "Par un vétérinaire enregistré dans les 10 jours précédant l'émission du CVI, confirmant l'absence de signes de maladie infectieuse ou parasitaire et l'aptitude au transport.", es: "Por un veterinario registrado dentro de los 10 días previos a la expedición del CVI, confirmando la ausencia de signos de enfermedad infecciosa o parasitaria y la aptitud para el transporte.", pt: "Feito por médico-veterinário registrado nos 10 dias anteriores à emissão do CVI, atestando a ausência de sinais de doença infecciosa ou parasitária e a aptidão para o transporte." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 14", fr: "Portaria MAPA nº 741/2024, art. 14", es: "Portaria MAPA nº 741/2024, art. 14", pt: "Portaria MAPA nº 741/2024, art. 14" }
+  - item: { en: "Import permit / advance notification", fr: "Permis d'importation / notification préalable", es: "Permiso de importación / notificación previa", pt: "Autorização de importação / notificação prévia" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No import permit is needed for a personal pet dog or cat; other pet species (ferrets, rabbits, etc.) do need a MAPA import authorisation.", fr: "Aucun permis d'importation n'est requis pour un chien ou chat de compagnie personnel ; les autres espèces de compagnie (furets, lapins, etc.) nécessitent une autorisation d'importation du MAPA.", es: "No se necesita permiso de importación para un perro o gato de compañía personal; otras especies de compañía (hurones, conejos, etc.) sí necesitan una autorización de importación del MAPA.", pt: "Não é preciso autorização de importação para cão ou gato de estimação; outras espécies de companhia (furões, coelhos etc.) precisam de autorização de importação do MAPA." }
+    ref: { en: "MAPA / VIGIAGRO — how to bring your dog or cat", fr: "MAPA / VIGIAGRO — comment amener ton chien ou chat", es: "MAPA / VIGIAGRO — cómo traer a tu perro o gato", pt: "MAPA / VIGIAGRO — como trazer seu cão ou gato" }
+  - item: { en: "Border check (VIGIAGRO)", fr: "Contrôle frontalier (VIGIAGRO)", es: "Control fronterizo (VIGIAGRO)", pt: "Fiscalização na fronteira (VIGIAGRO)" }
+    required: { en: "On arrival", fr: "À l'arrivée", es: "A la llegada", pt: "Na chegada" }
+    when: { en: "Present the original CVI (or accepted passport) to the VIGIAGRO agricultural inspection at the point of entry; agents must not retain the original.", fr: "Présente le CVI original (ou le passeport accepté) à l'inspection agricole VIGIAGRO au point d'entrée ; les agents ne doivent pas retenir l'original.", es: "Presenta el CVI original (o el pasaporte aceptado) a la inspección agropecuaria de VIGIAGRO en el punto de entrada; los agentes no deben retener el original.", pt: "Apresente o CVI original (ou o passaporte aceito) à fiscalização agropecuária do VIGIAGRO no ponto de entrada; os agentes não podem reter o original." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 7; VIGIAGRO", fr: "Portaria MAPA nº 741/2024, art. 7 ; VIGIAGRO", es: "Portaria MAPA nº 741/2024, art. 7; VIGIAGRO", pt: "Portaria MAPA nº 741/2024, art. 7; VIGIAGRO" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Conditional under 90 days", fr: "Conditionnel sous 90 jours", es: "Condicional por debajo de los 90 días", pt: "Condicional abaixo de 90 dias" }
+    when: { en: "A puppy under 90 days may enter unvaccinated if the CVI certifies its age and that it has had no contact with any urban rabies case in the previous 90 days.", fr: "Un chiot de moins de 90 jours peut entrer non vacciné si le CVI atteste son âge et l'absence de contact avec tout cas de rage urbaine dans les 90 jours précédents.", es: "Un cachorro de menos de 90 días puede entrar sin vacunar si el CVI certifica su edad y que no ha tenido contacto con ningún caso de rabia urbana en los 90 días anteriores.", pt: "Um filhote com menos de 90 dias pode entrar sem vacina se o CVI atestar sua idade e que ele não teve contato com nenhum caso de raiva urbana nos 90 dias anteriores." }
+    exceptions: { en: "A nursing puppy travelling with its mother is treated as one biological unit and noted on the mother's CVI.", fr: "Un chiot allaité voyageant avec sa mère est traité comme une unité biologique et mentionné sur le CVI de la mère.", es: "Un cachorro lactante que viaja con su madre se trata como una unidad biológica y se indica en el CVI de la madre.", pt: "Um filhote em fase de amamentação que viaja com a mãe é tratado como uma única unidade biológica e é registrado no CVI da mãe." }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 11, 16", fr: "Portaria MAPA nº 741/2024, art. 11, 16", es: "Portaria MAPA nº 741/2024, art. 11, 16", pt: "Portaria MAPA nº 741/2024, art. 11 e 16" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only in case of non-compliance — VIGIAGRO may then order refusal, re-export, retention or other measures at the owner's expense.", fr: "Uniquement en cas de non-conformité — le VIGIAGRO peut alors ordonner un refus, une réexpédition, une rétention ou d'autres mesures aux frais du propriétaire.", es: "Solo en caso de incumplimiento — VIGIAGRO puede entonces ordenar el rechazo, la reexportación, la retención u otras medidas a cargo del propietario.", pt: "Apenas em caso de irregularidade — o VIGIAGRO pode então determinar a recusa, a reexportação, a retenção ou outras medidas, às custas do proprietário." }
+    ref: { en: "Portaria MAPA nº 741/2024, Art. 18–19", fr: "Portaria MAPA nº 741/2024, art. 18-19", es: "Portaria MAPA nº 741/2024, art. 18-19", pt: "Portaria MAPA nº 741/2024, art. 18 e 19" }
+
+origin:
+  eu:
+    title: { en: "Standard case — rabies-affected country", fr: "Cas standard — pays touché par la rage", es: "Caso estándar — país afectado por la rabia", pt: "Caso padrão — país com presença de raiva" }
+    body:
+      en: "From most countries, your dog needs a valid rabies vaccination (from 90 days of age), a broad-spectrum anti-parasite treatment within 15 days and a clinical exam within 10 days, all recorded on an official International Veterinary Certificate (CVI) issued or endorsed by the departure country's veterinary authority. No antibody test and no quarantine."
+      fr: "Depuis la plupart des pays, ton chien a besoin d'une vaccination antirabique valide (dès 90 jours), d'un traitement antiparasitaire à large spectre dans les 15 jours et d'un examen clinique dans les 10 jours, le tout consigné sur un Certificat Vétérinaire International (CVI) officiel émis ou visé par l'autorité vétérinaire du pays de départ. Pas de titrage ni de quarantaine."
+      es: "Desde la mayoría de los países, tu perro necesita una vacunación antirrábica válida (desde los 90 días), un tratamiento antiparasitario de amplio espectro dentro de los 15 días y un examen clínico dentro de los 10 días, todo registrado en un Certificado Veterinario Internacional (CVI) oficial expedido o refrendado por la autoridad veterinaria del país de salida. Sin prueba de titulación ni cuarentena."
+      pt: "Vindo da maioria dos países, seu cachorro precisa de vacinação antirrábica válida (a partir dos 90 dias de idade), tratamento antiparasitário de amplo espectro nos 15 dias anteriores e exame clínico nos 10 dias anteriores, tudo registrado em um Certificado Veterinário Internacional (CVI) oficial emitido ou endossado pela autoridade veterinária do país de partida. Sem teste sorológico e sem quarentena."
+    cls: warn
+  listed:
+    title: { en: "Rabies-free country — no vaccination proof", fr: "Pays indemne de rage — sans preuve de vaccination", es: "País libre de rabia — sin prueba de vacunación", pt: "País livre de raiva — sem comprovação de vacina" }
+    body:
+      en: "If your dog's origin country or zone is officially recognised as rabies-free by the WOAH — and Brazil recognises that status in advance — no proof of rabies vaccination is required. This must be certified on the CVI. The anti-parasite treatment, clinical exam and official CVI still apply."
+      fr: "Si le pays ou la zone d'origine de ton chien est officiellement reconnu indemne de rage par l'OMSA — et que le Brésil reconnaît ce statut au préalable — aucune preuve de vaccination antirabique n'est requise. Cela doit être certifié sur le CVI. Le traitement antiparasitaire, l'examen clinique et le CVI officiel restent exigés."
+      es: "Si el país o la zona de origen de tu perro está oficialmente reconocido como libre de rabia por la OMSA — y Brasil reconoce ese estatus de antemano — no se exige prueba de vacunación antirrábica. Esto debe certificarse en el CVI. El tratamiento antiparasitario, el examen clínico y el CVI oficial siguen siendo obligatorios."
+      pt: "Se o país ou a zona de origem do seu cachorro for oficialmente reconhecido como livre de raiva pela WOAH — e o Brasil reconhecer esse status previamente —, não é preciso comprovar a vacinação antirrábica. Isso deve ser atestado no CVI. O tratamento antiparasitário, o exame clínico e o CVI oficial continuam valendo."
+    cls: ok
+  nonListed:
+    title: { en: "First vaccination or young puppy", fr: "Primo-vaccination ou jeune chiot", es: "Primera vacunación o cachorro joven", pt: "Primeira vacinação ou filhote novo" }
+    body:
+      en: "If the rabies vaccination is a first-time shot, departure is only allowed 21 days after it. A puppy under 90 days may enter unvaccinated only if the CVI certifies its age and that it has had no contact with urban rabies in the previous 90 days. Plan the extra lead time before booking."
+      fr: "Si la vaccination antirabique est une primo-vaccination, le départ n'est autorisé que 21 jours après. Un chiot de moins de 90 jours ne peut entrer non vacciné que si le CVI atteste son âge et l'absence de contact avec la rage urbaine dans les 90 jours précédents. Prévois ce délai supplémentaire avant de réserver."
+      es: "Si la vacunación antirrábica es una primera dosis, la salida solo se permite 21 días después. Un cachorro de menos de 90 días solo puede entrar sin vacunar si el CVI certifica su edad y que no ha tenido contacto con la rabia urbana en los 90 días anteriores. Prevé este plazo adicional antes de reservar."
+      pt: "Se a vacinação antirrábica for a primeira dose, a saída só é permitida 21 dias depois dela. Um filhote com menos de 90 dias só pode entrar sem vacina se o CVI atestar sua idade e que ele não teve contato com raiva urbana nos 90 dias anteriores. Considere esse prazo extra antes de reservar."
+    cls: warn
+
+arrival:
+  intro:
+    en: "When your dog reaches Brazil, checks are carried out by VIGIAGRO, the international agricultural surveillance service, at the point of entry."
+    fr: "À l'arrivée de ton chien au Brésil, les contrôles sont effectués par le VIGIAGRO, le service de surveillance agricole internationale, au point d'entrée."
+    es: "Cuando tu perro llega a Brasil, los controles los realiza VIGIAGRO, el servicio de vigilancia agropecuaria internacional, en el punto de entrada."
+    pt: "Quando seu cachorro chega ao Brasil, a conferência é feita pelo VIGIAGRO, serviço de vigilância agropecuária internacional, no ponto de entrada."
+  points:
+    - en: "Present the original International Veterinary Certificate (or an accepted official passport) to the VIGIAGRO desk on arrival."
+      fr: "Présente le Certificat Vétérinaire International original (ou un passeport officiel accepté) au guichet VIGIAGRO à l'arrivée."
+      es: "Presenta el Certificado Veterinario Internacional original (o un pasaporte oficial aceptado) en el mostrador de VIGIAGRO a la llegada."
+      pt: "Apresente o Certificado Veterinário Internacional original (ou um passaporte oficial aceito) no guichê do VIGIAGRO ao chegar."
+    - en: "The certificate must be issued or endorsed by an official government veterinarian — one signed only by a private vet is refused."
+      fr: "Le certificat doit être émis ou visé par un vétérinaire officiel du gouvernement — un certificat signé uniquement par un vétérinaire privé est refusé."
+      es: "El certificado debe ser expedido o refrendado por un veterinario oficial del gobierno — se rechaza uno firmado únicamente por un veterinario privado."
+      pt: "O certificado deve ser emitido ou endossado por um veterinário oficial do governo — um documento assinado apenas por veterinário particular é recusado."
+    - en: "VIGIAGRO agents must not keep the original CVI — it stays with the owner throughout the trip."
+      fr: "Les agents du VIGIAGRO ne doivent pas conserver le CVI original — il reste avec le propriétaire pendant tout le voyage."
+      es: "Los agentes de VIGIAGRO no deben quedarse con el CVI original — permanece con el propietario durante todo el viaje."
+      pt: "Os agentes do VIGIAGRO não podem ficar com o CVI original — ele permanece com o proprietário durante toda a viagem."
+    - en: "No import permit and no prior appointment are needed for a personal pet dog; carry original documents, not copies."
+      fr: "Aucun permis d'importation ni rendez-vous préalable n'est nécessaire pour un chien de compagnie personnel ; munis-toi des documents originaux, pas de copies."
+      es: "No se necesita permiso de importación ni cita previa para un perro de compañía personal; lleva los documentos originales, no copias."
+      pt: "Não é preciso autorização de importação nem agendamento prévio para um cachorro de estimação; leve os documentos originais, não cópias."
+    - en: "If documents are missing or invalid, VIGIAGRO may order refusal, re-export, retention or other sanitary measures — all at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, le VIGIAGRO peut ordonner un refus, une réexpédition, une rétention ou d'autres mesures sanitaires — le tout aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, VIGIAGRO puede ordenar el rechazo, la reexportación, la retención u otras medidas sanitarias — todo a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, o VIGIAGRO pode determinar a recusa, a reexportação, a retenção ou outras medidas sanitárias — tudo às custas do proprietário."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Brazil has no national law banning specific dog breeds from import, and the MERCOSUR framework only lets member states set up a specific regime for breeds considered dangerous. Pit-bull-type dogs are legal and popular nationally."
+    fr: "Le Brésil n'a pas de loi nationale interdisant l'importation de races de chiens spécifiques, et le cadre MERCOSUR permet seulement aux États membres d'instaurer un régime spécifique pour les races considérées dangereuses. Les chiens de type pit-bull sont légaux et populaires à l'échelle nationale."
+    es: "Brasil no tiene ninguna ley nacional que prohíba la importación de razas de perros específicas, y el marco del MERCOSUR solo permite a los Estados miembros establecer un régimen específico para las razas consideradas peligrosas. Los perros de tipo pit bull son legales y populares a escala nacional."
+    pt: "O Brasil não tem lei nacional que proíba a importação de raças específicas, e o quadro do MERCOSUL apenas permite que os Estados-membros criem um regime específico para raças consideradas perigosas. Cães do tipo pit bull são legais e populares no país."
+  cat1:
+    en: "No breed is banned from entering Brazil at federal level. There is no national dangerous-dog import category comparable to those of some European countries."
+    fr: "Aucune race n'est interdite d'entrée au Brésil au niveau fédéral. Il n'existe pas de catégorie nationale d'importation de chiens dangereux comparable à celle de certains pays européens."
+    es: "Ninguna raza está prohibida de entrar en Brasil a nivel federal. No existe una categoría nacional de importación de perros peligrosos comparable a la de algunos países europeos."
+    pt: "Nenhuma raça é proibida de entrar no Brasil em nível federal. Não existe uma categoria nacional de importação de cães perigosos comparável à de alguns países europeus."
+  cat2:
+    en: "Some states and municipalities regulate pit-bull-type dogs locally (for example rules on breeding, sale, sterilisation or microchipping). Check the specific rules of your destination state or city."
+    fr: "Certains États et municipalités réglementent localement les chiens de type pit-bull (par exemple règles d'élevage, de vente, de stérilisation ou de puçage). Vérifie les règles spécifiques de ton État ou de ta ville de destination."
+    es: "Algunos estados y municipios regulan localmente a los perros de tipo pit bull (por ejemplo, normas sobre cría, venta, esterilización o implantación de microchip). Consulta las normas específicas de tu estado o ciudad de destino."
+    pt: "Alguns estados e municípios regulam localmente os cães do tipo pit bull (por exemplo, regras de criação, venda, castração ou microchipagem). Verifique as regras específicas do estado ou da cidade de destino."
+  note:
+    en: "Because local rules vary, confirm any breed-specific requirement with the authorities of your final destination in Brazil before travelling."
+    fr: "Comme les règles locales varient, confirme toute exigence propre à une race auprès des autorités de ta destination finale au Brésil avant de voyager."
+    es: "Como las normas locales varían, confirma cualquier requisito propio de una raza con las autoridades de tu destino final en Brasil antes de viajar."
+    pt: "Como as regras locais variam, confirme qualquer exigência ligada à raça com as autoridades do seu destino final no Brasil antes de viajar."
+
+checklist:
+  - en: "Valid rabies vaccination (dog ≥90 days; +21 days if it is the first shot)"
+    fr: "Vaccination antirabique valide (chien ≥90 jours ; +21 jours si primo-vaccination)"
+    es: "Vacunación antirrábica válida (perro ≥90 días; +21 días si es la primera dosis)"
+    pt: "Vacinação antirrábica válida (cão com 90 dias ou mais; mais 21 dias se for a primeira dose)"
+  - en: "Broad-spectrum anti-parasite treatment within 15 days before the CVI"
+    fr: "Traitement antiparasitaire à large spectre dans les 15 jours avant le CVI"
+    es: "Tratamiento antiparasitario de amplio espectro dentro de los 15 días previos al CVI"
+    pt: "Tratamento antiparasitário de amplo espectro nos 15 dias anteriores ao CVI"
+  - en: "Clinical examination within 10 days before the CVI"
+    fr: "Examen clinique dans les 10 jours avant le CVI"
+    es: "Examen clínico dentro de los 10 días previos al CVI"
+    pt: "Exame clínico nos 10 dias anteriores ao CVI"
+  - en: "International Veterinary Certificate (CVI) issued or endorsed by an official government vet"
+    fr: "Certificat Vétérinaire International (CVI) émis ou visé par un vétérinaire officiel du gouvernement"
+    es: "Certificado Veterinario Internacional (CVI) expedido o refrendado por un veterinario oficial del gobierno"
+    pt: "Certificado Veterinário Internacional (CVI) emitido ou endossado por veterinário oficial do governo"
+  - en: "Original documents (not copies) carried with you for VIGIAGRO"
+    fr: "Documents originaux (pas de copies) conservés avec toi pour le VIGIAGRO"
+    es: "Documentos originales (no copias) que lleves contigo para VIGIAGRO"
+    pt: "Documentos originais (não cópias) em mãos para o VIGIAGRO"
+  - en: "Microchip (ISO 11784/11785) recommended for reliable identification"
+    fr: "Puce (ISO 11784/11785) recommandée pour une identification fiable"
+    es: "Microchip (ISO 11784/11785) recomendado para una identificación fiable"
+    pt: "Microchip (ISO 11784/11785) recomendado para uma identificação confiável"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula adecuada conforme a la IATA si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "Check any state/municipal breed rules at your final destination"
+    fr: "Vérifie les éventuelles règles d'État/municipales sur les races à ta destination finale"
+    es: "Consulta cualquier norma estatal/municipal sobre razas en tu destino final"
+    pt: "Verifique as regras estaduais ou municipais sobre raças no seu destino final"
+
+sources:
+  - label: { en: "MAPA / VIGIAGRO — Entering Brazil with pets", fr: "MAPA / VIGIAGRO — Entrer au Brésil avec des animaux", es: "MAPA / VIGIAGRO — Entrar en Brasil con mascotas", pt: "MAPA / VIGIAGRO — Entrada no Brasil com animais de estimação" }
+    url: "https://www.gov.br/agricultura/pt-br/assuntos/vigilancia-agropecuaria/animais-estimacao/entrar-no-brasil"
+  - label: { en: "MAPA — How to bring your dog or cat to Brazil (English)", fr: "MAPA — Comment amener ton chien ou chat au Brésil (anglais)", es: "MAPA — Cómo traer a tu perro o gato a Brasil (inglés)", pt: "MAPA — Como trazer seu cão ou gato para o Brasil (em inglês)" }
+    url: "https://www.gov.br/agricultura/pt-br/assuntos/sanidade-animal-e-vegetal/saude-animal/transito-animal/arquivos-transito-internacional/PetImportHowtobringyourdogorcattoBrazilEnglish.pdf"
+  - label: { en: "Portaria MAPA nº 741, de 10 de dezembro de 2024 (sanitary requirements + CVI model)", fr: "Portaria MAPA nº 741, du 10 décembre 2024 (exigences sanitaires + modèle de CVI)", es: "Portaria MAPA nº 741, de 10 de diciembre de 2024 (requisitos sanitarios + modelo de CVI)", pt: "Portaria MAPA nº 741, de 10 de dezembro de 2024 (requisitos sanitários e modelo de CVI)" }
+    url: "https://www.gov.br/agricultura/pt-br/assuntos/vigilancia-agropecuaria/animais-estimacao/portaria-mapa-no-741_2024-caninos-e-felinos-domesticos-1.pdf"
+  - label: { en: "MAPA / VIGIAGRO — Pets (Animais de estimação)", fr: "MAPA / VIGIAGRO — Animaux de compagnie (Animais de estimação)", es: "MAPA / VIGIAGRO — Mascotas (Animais de estimação)", pt: "MAPA / VIGIAGRO — Animais de estimação" }
+    url: "https://www.gov.br/agricultura/pt-br/assuntos/vigilancia-agropecuaria/animais-estimacao"
+
+seo:
+  title: { en: "Brazil Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Brésil — Guide", es: "Requisitos de entrada de perros en Brasil — Guía de viaje", pt: "Brasil: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Brazil With Your Dog: Entry Requirements (2026)", fr: "Voyager au Brésil avec ton chien : formalités (2026)", es: "Viajar a Brasil con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Brasil: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official MAPA/VIGIAGRO rules for bringing a dog into Brazil: International Veterinary Certificate, rabies vaccination. Sourced and dated."
+    fr: "Règles officielles MAPA/VIGIAGRO pour faire entrer un chien au Brésil : Certificat Vétérinaire International, vaccination antirabique. Sourcé et daté."
+    es: "Normas oficiales de MAPA/VIGIAGRO para traer un perro a Brasil: Certificado Veterinario Internacional, vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais do MAPA/VIGIAGRO para levar um cachorro ao Brasil: Certificado Veterinário Internacional e vacinação antirrábica. Com fonte e data."
+  slug: "brazil"
+  shortDesc:
+    en: "What you need to bring a dog into Brazil: an official International Veterinary Certificate, rabies vaccine and pre-travel treatments."
+    fr: "Ce qu'il faut pour faire entrer un chien au Brésil : un Certificat Vétérinaire International officiel, un vaccin antirabique et des traitements avant le voyage."
+    es: "Lo que necesitas para traer un perro a Brasil: un Certificado Veterinario Internacional oficial, la vacuna antirrábica y los tratamientos previos al viaje."
+    pt: "O que é preciso para levar um cachorro ao Brasil: Certificado Veterinário Internacional oficial, vacina antirrábica e tratamentos antes da viagem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,308 @@
+id: airline_philippine
+mono: PR
+name: Philippine Airlines
+titleH1:
+  en: Flying with a dog on Philippine Airlines
+  fr: Voyager avec un chien sur Philippine Airlines
+  es: Viajar con un perro en Philippine Airlines
+  pt: "Viajar com um cachorro na Philippine Airlines"
+metaDesc:
+  en: "Philippine Airlines pet policy: FurPAL cabin dogs (domestic), hold and cargo, fares, snub-nosed embargo and official sources."
+  fr: "Politique animaux Philippine Airlines : chiens en cabine FurPAL (domestique), soute et fret, tarifs, embargo brachy et sources officielles."
+  es: "Política de mascotas de Philippine Airlines: perros en cabina FurPAL (nacional), bodega y carga, tarifas, embargo para razas de hocico chato y fuentes oficiales."
+  pt: "Política de animais da Philippine Airlines: cachorros em cabine via FurPAL (voos domésticos), porão e carga, tarifas, embargo para focinho achatado e fontes."
+chips:
+  - icon: 📍
+    label:
+      en: Philippines · MNL
+      fr: Philippines · MNL
+      es: Filipinas · MNL
+      pt: "Filipinas · MNL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cabin dogs on domestic flights (FurPAL), plus hold & cargo — but strict permits and a broad snub-nosed embargo.
+  fr: Chiens en cabine sur vols domestiques (FurPAL), plus soute & fret — mais permis stricts et large embargo brachy.
+  es: Perros en cabina en vuelos nacionales (FurPAL), además de bodega y carga, pero con permisos estrictos y un amplio embargo para razas de hocico chato.
+  pt: "Cachorros em cabine nos voos domésticos (FurPAL), além de porão e carga — mas com autorizações rigorosas e um amplo embargo para focinho achatado."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: dogs, domestic
+      fr: chiens, domestique
+      es: perros, nacional
+      pt: "cachorros, doméstico"
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: large / brachy
+      fr: grands / brachy
+      es: grandes / braquicéfalos
+      pt: "grandes / braquicéfalos"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Domestic dogs
+      fr: Chiens domestique
+      es: Perros nacionales
+      pt: "Cachorros domésticos"
+    detail:
+      en: "FurPAL: small dogs only (no cats) ≤ 10 kg incl. carrier under the seat, on PAL domestic flights only. Min 12 weeks, in a diaper."
+      fr: "FurPAL : petits chiens uniquement (pas de chats) ≤ 10 kg avec le sac sous le siège, sur les vols domestiques PAL seulement. Min 12 semaines, en couche."
+      es: "FurPAL: solo perros pequeños (sin gatos) ≤ 10 kg con el bolso bajo el asiento, únicamente en vuelos nacionales de PAL. Mín. 12 semanas, con pañal."
+      pt: "FurPAL: somente cachorros pequenos (sem gatos) ≤ 10 kg com a bolsa sob o assento, apenas em voos domésticos da PAL. Mínimo de 12 semanas, com fralda."
+    fee:
+      en: ₱2,500 / way
+      fr: 2 500 ₱ / trajet
+      es: 2500 ₱ / trayecto
+      pt: "₱2.500 / trajeto"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats as checked baggage in a hard container; contact PAL ≥ 48 h ahead. Up to 32 kg (intl) / 50 kg (domestic). Accepted case by case.
+      fr: Chiens et chats en bagage enregistré dans un contenant rigide ; contacter PAL ≥ 48 h à l'avance. Jusqu'à 32 kg (intl) / 50 kg (domestique). Acceptation au cas par cas.
+      es: Perros y gatos como equipaje facturado en una jaula rígida; contacta con PAL ≥ 48 h antes. Hasta 32 kg (intl.) / 50 kg (nacional). Se acepta caso por caso.
+      pt: "Cachorros e gatos como bagagem despachada em um recipiente rígido; entre em contato com a PAL com ≥ 48 h de antecedência. Até 32 kg (internacional) / 50 kg (doméstico). Aceito caso a caso."
+    fee:
+      en: ₱1,000–10,000 / $160–320
+      fr: 1 000–10 000 ₱ / 160–320 $
+      es: 1000–10 000 ₱ / 160–320 $
+      pt: "₱1.000–10.000 / US$ 160–320"
+  - icon: ✈️
+    name:
+      en: PAL Cargo
+      fr: PAL Cargo
+      es: PAL Cargo
+      pt: "PAL Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: A través de carga
+      pt: "Via carga"
+    detail:
+      en: Larger dogs and brachy breeds via PAL Cargo Live Animals (BAI quarantine permit + vet certificate).
+      fr: Grands chiens et races brachy via PAL Cargo Live Animals (permis de quarantaine BAI + certificat vétérinaire).
+      es: Perros grandes y razas braquicéfalas a través de PAL Cargo Live Animals (permiso de cuarentena BAI + certificado veterinario).
+      pt: "Cachorros maiores e raças braquicéfalas via PAL Cargo Live Animals (autorização de quarentena do BAI + certificado veterinário)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (FurPAL, ≤ 10 kg, domestic)
+        fr: Cabine (FurPAL, ≤ 10 kg, domestique)
+        es: Cabina (FurPAL, ≤ 10 kg, nacional)
+        pt: "Cabine (FurPAL, ≤ 10 kg, doméstico)"
+      value:
+        en: ₱2,500 / way
+        fr: 2 500 ₱ / trajet
+        es: 2500 ₱ / trayecto
+        pt: "₱2.500 / trajeto"
+    - label:
+        en: Hold — domestic (by weight)
+        fr: Soute — domestique (au poids)
+        es: Bodega — nacional (por peso)
+        pt: "Porão — doméstico (por peso)"
+      value:
+        en: ₱1,000–10,000
+        fr: 1 000–10 000 ₱
+        es: 1000–10 000 ₱
+        pt: "₱1.000–10.000"
+    - label:
+        en: Hold — international
+        fr: Soute — international
+        es: Bodega — internacional
+        pt: "Porão — internacional"
+      value:
+        en: $160–320
+        fr: 160–320 $
+        es: 160–320 $
+        pt: "US$ 160–320"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: PHP domestic (from 18 Feb 2026) / USD international. Pets are always excess baggage, never in the free allowance.
+    fr: PHP national (dès le 18 fév. 2026) / USD international. Les animaux sont toujours en bagage excédentaire, jamais dans la franchise.
+    es: PHP en vuelos nacionales (desde el 18 feb. 2026) / USD en internacionales. Las mascotas son siempre exceso de equipaje, nunca parte de la franquicia gratuita.
+    pt: "PHP em voos domésticos (a partir de 18 de fev. de 2026) / USD em voos internacionais. Os animais são sempre bagagem excedente, nunca parte da franquia gratuita."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin (FurPAL) possible
+          fr: Cabine (FurPAL) possible
+          es: Cabina (FurPAL) posible
+          pt: "Cabine (FurPAL) possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidas
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Brachycephalic breeds are embargoed from cargo and the hold on all flights (overheating/breathing risk) but MAY fly in the cabin under FurPAL if all requirements are met: bulldogs (all), boxer, pug (all), Boston terrier, Shih Tzu, Pekingese, chow chow, Shar Pei, mastiffs, and various small breeds (apple-head Chihuahua, Maltese, Havanese, Bichon Frise, Papillon, King Charles)."
+      fr: "Les races brachycéphales sont sous embargo en fret et en soute sur tous les vols (risque de surchauffe/respiration) mais PEUVENT voyager en cabine via FurPAL si toutes les conditions sont réunies : bouledogues (tous), boxer, carlin (tous), Boston terrier, Shih Tzu, pékinois, chow chow, Shar Pei, mastiffs, et diverses petites races (Chihuahua tête de pomme, Maltais, Havanais, Bichon frisé, Papillon, King Charles)."
+      es: "Las razas braquicéfalas están bajo embargo en carga y bodega en todos los vuelos (riesgo de sobrecalentamiento/respiración), pero PUEDEN viajar en cabina con FurPAL si se cumplen todos los requisitos: bulldogs (todos), bóxer, carlino (todos), Boston terrier, Shih Tzu, pekinés, chow chow, Shar Pei, mastines, y varias razas pequeñas (Chihuahua cabeza de manzana, Maltés, Habanero, Bichón Frisé, Papillón, King Charles)."
+      pt: "Raças braquicéfalas estão sob embargo na carga e no porão em todos os voos (risco de superaquecimento/respiração), mas PODEM voar na cabine via FurPAL se todas as exigências forem cumpridas: bulldogs (todos), boxer, pug (todos), Boston terrier, Shih Tzu, Pequinês, chow chow, Shar Pei, mastiffs, e várias raças pequenas (Chihuahua cabeça de maçã, Maltês, Havanês, Bichon Frisé, Papillon, King Charles)."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Health certificate ≤ 5 days
+          fr: Certificat santé ≤ 5 jours
+          es: Certificado sanitario ≤ 5 días
+          pt: "Atestado de saúde ≤ 5 dias"
+    note:
+      en: "No cats in the cabin. FurPAL: bring a muzzle, diapers and an empty water bottle; a health certificate (within 5 days) and rabies vaccine (within 12 months) are required. Emotional-support animals aren't accepted."
+      fr: "Pas de chats en cabine. FurPAL : apporter une muselière, des couches et une bouteille d'eau vide ; un certificat sanitaire (moins de 5 jours) et un vaccin antirabique (moins de 12 mois) sont requis. Les animaux de soutien émotionnel ne sont pas acceptés."
+      es: "No se admiten gatos en cabina. FurPAL: lleva un bozal, pañales y una botella de agua vacía; se exigen un certificado sanitario (de menos de 5 días) y la vacuna antirrábica (de menos de 12 meses). No se aceptan animales de apoyo emocional."
+      pt: "Nenhum gato na cabine. FurPAL: leve focinheira, fraldas e uma garrafa de água vazia; exigem-se atestado de saúde (com menos de 5 dias) e vacina antirrábica (com menos de 12 meses). Animais de suporte emocional não são aceitos."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Hold temperature not guaranteed
+        fr: Température soute non garantie
+        es: Temperatura de bodega no garantizada
+        pt: "Temperatura do porão não garantida"
+  note:
+    en: PAL Cargo states the hold is subject to temperature changes and can't guarantee a specific temperature; the brachycephalic embargo cites overheating risk. No numeric limit is published.
+    fr: PAL Cargo indique que la soute est soumise à des variations de température et ne peut garantir une température précise ; l'embargo brachy cite le risque de surchauffe. Aucune limite chiffrée n'est publiée.
+    es: PAL Cargo indica que la bodega está sujeta a cambios de temperatura y no puede garantizar una temperatura específica; el embargo para razas braquicéfalas cita el riesgo de sobrecalentamiento. No se publica ningún límite numérico.
+    pt: "A PAL Cargo declara que o porão está sujeito a variações de temperatura e não pode garantir uma temperatura específica; o embargo para braquicéfalos cita o risco de superaquecimento. Nenhum limite numérico é publicado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs travel free in the cabin (up to 2 to/from the US, 1 elsewhere); emotional-support animals aren't accepted.
+      fr: Les chiens d'assistance dressés voyagent gratuitement en cabine (jusqu'à 2 de/vers les USA, 1 ailleurs) ; les animaux de soutien émotionnel ne sont pas acceptés.
+      es: Los perros de servicio adiestrados viajan gratis en cabina (hasta 2 desde/hacia EE. UU., 1 en el resto de rutas); no se aceptan animales de apoyo emocional.
+      pt: "Cães de serviço treinados viajam gratuitamente na cabine (até 2 de/para os EUA, 1 nas demais rotas); animais de suporte emocional não são aceitos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Notify ≥ 48 h ahead + Service Dog form (+ relief form over 8 h). US: DOT forms."
+      fr: "Prévenir ≥ 48 h à l'avance + formulaire Service Dog (+ formulaire de soulagement au-delà de 8 h). USA : formulaires DOT."
+      es: "Avisa con ≥ 48 h de antelación + formulario Service Dog (+ formulario de alivio si supera las 8 h). EE. UU.: formularios DOT."
+      pt: "Avise com ≥ 48 h de antecedência + formulário Service Dog (+ formulário de alívio para mais de 8 h). EUA: formulários DOT."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: FurPAL is domestic-only
+      fr: FurPAL domestique seul
+      es: FurPAL solo nacional
+      pt: "FurPAL somente doméstico"
+    value:
+      en: Cabin pets (dogs only) are domestic-only, up to 3 per aircraft (2 on Q400).
+      fr: Les animaux en cabine (chiens seulement) sont réservés au domestique, jusqu'à 3 par avion (2 sur Q400).
+      es: Las mascotas en cabina (solo perros) están limitadas a vuelos nacionales, hasta 3 por avión (2 en el Q400).
+      pt: "Animais em cabine (somente cachorros) são restritos a voos domésticos, até 3 por aeronave (2 no Q400)."
+  - icon: 🐶
+    label:
+      en: "Brachy: cabin only"
+      fr: "Brachy : cabine seule"
+      es: "Braquicéfalos: solo cabina"
+      pt: "Braquicéfalos: somente cabine"
+    value:
+      en: Snub-nosed breeds are barred from cargo/hold but may fly in the cabin under FurPAL.
+      fr: Les races au nez écrasé sont interdites en fret/soute mais peuvent voyager en cabine via FurPAL.
+      es: Las razas de hocico chato tienen prohibidas la carga y la bodega, pero pueden viajar en cabina con FurPAL.
+      pt: "Raças de focinho achatado são proibidas na carga/porão, mas podem voar na cabine via FurPAL."
+  - icon: ⏱️
+    label:
+      en: Book 48 h ahead
+      fr: Réserver 48 h avant
+      es: Reserva 48 h antes
+      pt: "Reserve com 48 h de antecedência"
+    value:
+      en: Book and pay ≥ 48 h before departure via PAL offices, contact centre or online.
+      fr: Réserver et payer ≥ 48 h avant le départ via les bureaux PAL, le centre de contact ou en ligne.
+      es: Reserva y paga ≥ 48 h antes de la salida a través de las oficinas de PAL, el centro de contacto o en línea.
+      pt: "Reserve e pague com ≥ 48 h de antecedência à partida pelos escritórios da PAL, central de contato ou on-line."
+book:
+  host: philippineairlines.com
+  url: https://www.philippineairlines.com/
+sources:
+  en: 6 Philippine Airlines sources · last verified 11 July 2026
+  fr: 6 sources Philippine Airlines · dernière vérification 11 juillet 2026
+  es: 6 fuentes de Philippine Airlines · última verificación 11 de julio de 2026
+  pt: "6 fontes da Philippine Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

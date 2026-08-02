@@ -1,0 +1,176 @@
+---
+import { t, loadKB } from "@mydogcanfly/knowledge";
+import { localizeHref, localizedPath, LOCALES, isPreviewLocale } from "../lib/routes";
+import { menuList } from "../lib/pagedata";
+import Logo from "./Logo.astro";
+
+/* `switcherPath` : chemin dont le sélecteur de langue doit dériver ses liens.
+   Par défaut la page courante, ce qui est juste — sauf pour les pages qui n'existent que
+   dans une seule langue. La page 404 proposait ainsi « FR » vers /fr/404/, qui n'existe pas :
+   un visiteur déjà perdu tombait sur une seconde erreur. Ces pages passent "/" ici. */
+interface Props { locale?: string; switcherPath?: string }
+const { locale = "en", switcherPath } = Astro.props;
+
+const kb = loadKB();
+// Listes complètes et filtrables : décision de Philippe, 30/07/2026. Une variante « dix plus
+// consultés + lien vers l'index » a été essayée puis abandonnée — elle allégeait beaucoup
+// l'HTML mais retirait au visiteur la possibilité d'atteindre n'importe quelle fiche depuis
+// n'importe quelle page, qui est la raison d'être de ce menu.
+// Le panneau « aéroport » n'est pas reconstitué : il était calculé à chaque rendu alors
+// qu'aucune entrée de `nav` ne le référence, donc jamais affiché.
+const dropdowns: Record<string, { href: string; label: string; flag?: string; badge?: string }[]> = {
+  airline: menuList(kb, "airline", locale),
+  country: menuList(kb, "country", locale),
+  breed: menuList(kb, "breed", locale),
+};
+
+const nav = [
+  { key: "nav.flight_finder", href: "/#flight-finder" },
+  { key: "nav.airlines", href: "/airlines/", drop: "airline" },
+  { key: "nav.countries", href: "/countries/", drop: "country" },
+  { key: "nav.breeds", href: "/breeds/", drop: "breed" },
+  { key: "nav.tools", href: "/tools/" },
+];
+/* Une langue en préparation n'est pas proposée aux visiteurs : elle n'apparaît dans le
+   sélecteur que si on s'y trouve déjà — sinon on offrirait une porte vers une coquille
+   à moitié traduite. Depuis /pt/, les autres langues restent accessibles pour en sortir. */
+const langLinks = LOCALES
+  .filter((l) => !isPreviewLocale(l) || l === locale)
+  .map((l) => ({ code: l, label: l.toUpperCase(), href: localizedPath(switcherPath ?? Astro.url.pathname, l), active: l === locale }));
+---
+<header class="hdr">
+  <div class="mdcf-container hdr__row">
+    <a class="hdr__logo" href={localizeHref("/", locale)} aria-label="MyDogCanFly"><Logo /></a>
+    <nav id="mdcf-nav" class="hdr__nav" aria-label="Primary">
+      {nav.map((n) => (
+        n.drop ? (
+          <div class="hdr__drop">
+            <a class="hdr__drop-label" href={localizeHref(n.href, locale)}>
+              {t(locale, n.key)}<span class="hdr__caret" aria-hidden="true">▾</span>
+            </a>
+            <div class="hdr__panel" role="menu" aria-label={t(locale, n.key)}>
+              <input type="search" class="hdr__panel-search" autocomplete="off"
+                placeholder={t(locale, "index.filter")} aria-label={t(locale, "index.filter")} />
+              <ul class="hdr__clist">
+                {dropdowns[n.drop].map((it) => (
+                  <li class="hdr__citem" data-name={it.label.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()}>
+                    <a class="hdr__crow" href={it.href}>
+                      {it.flag && <span class="hdr__cflag" aria-hidden="true">{it.flag}</span>}
+                      <span class="hdr__cname">{it.label}</span>
+                      {it.badge && <span class="hdr__cbadge" title={t(locale, "breed.brachy_badge")} aria-label={t(locale, "breed.brachy_badge")}>{it.badge}</span>}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <a href={localizeHref(n.href, locale)}>{t(locale, n.key)}</a>
+        )
+      ))}
+    </nav>
+    <div class="hdr__meta">
+      <div class="hdr__lang" role="group" aria-label="Language">
+        {langLinks.map((l, i) => (
+          <>
+            {i > 0 && <span class="hdr__langsep" aria-hidden="true">/</span>}
+            <a class:list={["hdr__langopt", l.active && "is-active"]} href={l.href} hreflang={l.code} data-lang={l.code} aria-current={l.active ? "true" : undefined}>{l.label}</a>
+          </>
+        ))}
+      </div>
+      <button id="mdcf-menu-btn" class="hdr__burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mdcf-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById("mdcf-menu-btn");
+  const nav = document.getElementById("mdcf-nav");
+  btn?.addEventListener("click", () => {
+    const open = document.body.classList.toggle("nav-open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  nav?.addEventListener("click", (e) => {
+    if ((e.target as HTMLElement).tagName === "A") {
+      document.body.classList.remove("nav-open");
+      btn?.setAttribute("aria-expanded", "false");
+    }
+  });
+  // Filter each dropdown independently (desktop comfort).
+  nav?.querySelectorAll<HTMLElement>(".hdr__panel").forEach((panel) => {
+    const search = panel.querySelector<HTMLInputElement>(".hdr__panel-search");
+    const items = [...panel.querySelectorAll<HTMLElement>(".hdr__citem")];
+    search?.addEventListener("input", () => {
+      const q = search.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().toLowerCase();
+      for (const el of items) el.hidden = !!q && !(el.dataset.name || "").includes(q);
+    });
+    search?.addEventListener("click", (e) => e.stopPropagation());
+  });
+  // Sélecteur de langue — on retient le choix explicite du lecteur. Depuis le 01/08/2026 ce
+  // cookie ne déclenche plus aucune redirection : il sert uniquement à taire le bandeau de
+  // suggestion (LanguageSuggestion.astro). Quelqu'un qui a choisi sa langue n'a plus à se la
+  // voir proposer.
+  document.querySelectorAll<HTMLAnchorElement>(".hdr__langopt").forEach((a) => {
+    a.addEventListener("click", () => {
+      const lang = a.dataset.lang;
+      if (lang) document.cookie = "mdcf_lang=" + lang + "; Path=/; Max-Age=31536000; SameSite=Lax";
+    });
+  });
+</script>
+
+<style>
+  .hdr { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--mdcf-surface) 88%, transparent);
+    backdrop-filter: saturate(1.2) blur(8px); border-bottom: 1px solid var(--mdcf-line); }
+  .hdr__row { display: flex; align-items: center; gap: 20px; height: 60px; }
+  .hdr__logo { display: inline-flex; align-items: center; text-decoration: none; }
+  .hdr__logo:hover { text-decoration: none; }
+  .hdr__nav { display: flex; gap: 18px; margin-left: 8px; }
+  .hdr__nav > a, .hdr__drop-label { color: var(--mdcf-muted); text-decoration: none; font-size: 14px; font-weight: 600; }
+  .hdr__nav > a:hover, .hdr__drop-label:hover { color: var(--mdcf-ink); }
+  .hdr__caret { font-size: 10px; margin-left: 4px; }
+
+  /* Entity dropdowns — desktop comfort feature */
+  .hdr__drop { position: relative; display: inline-flex; align-items: center; }
+  .hdr__panel { position: absolute; top: calc(100% + 10px); left: 0; z-index: 30;
+    width: 300px; background: var(--mdcf-surface); border: 1px solid var(--mdcf-line); border-radius: 12px;
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12); padding: 10px; opacity: 0; visibility: hidden;
+    transform: translateY(-4px); transition: opacity .14s, transform .14s, visibility .14s; }
+  .hdr__drop:hover .hdr__panel, .hdr__drop:focus-within .hdr__panel { opacity: 1; visibility: visible; transform: translateY(0); }
+  .hdr__panel-search { width: 100%; padding: 8px 12px; margin-bottom: 8px; border: 1px solid var(--mdcf-line);
+    border-radius: 8px; font: inherit; font-size: 13px; background: var(--mdcf-bg, #fff); }
+  .hdr__panel-search:focus-visible { border-color: var(--mdcf-accent); outline: none; }
+  .hdr__clist { list-style: none; margin: 0; padding: 0; max-height: 60vh; overflow-y: auto; }
+  .hdr__citem[hidden] { display: none; }
+  .hdr__crow { display: flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 8px;
+    text-decoration: none; color: var(--mdcf-ink); font-size: 14px; }
+  .hdr__crow:hover, .hdr__citem:focus-within > .hdr__crow { background: var(--mdcf-accent-soft); }
+  .hdr__cflag { font-size: 16px; line-height: 1; }
+  .hdr__cname { flex: 1 1 auto; }
+  .hdr__cbadge { font-size: 15px; line-height: 1; flex: 0 0 auto; }
+
+  .hdr__meta { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+  .hdr__lang { display: inline-flex; align-items: center; gap: 2px; border: 1px solid var(--mdcf-line); border-radius: 999px; padding: 3px 4px; }
+  .hdr__langopt { color: var(--mdcf-muted); font-size: 12.5px; font-weight: 700; text-decoration: none; padding: 3px 8px; border-radius: 999px; letter-spacing: .02em; transition: background .15s, color .15s; }
+  .hdr__langopt:hover { color: var(--mdcf-ink); }
+  .hdr__langopt.is-active { color: #fff; background: var(--mdcf-navy, #011d48); }
+  .hdr__langsep { color: var(--mdcf-line); font-size: 12px; }
+  .hdr__burger { display: none; flex-direction: column; justify-content: center; gap: 5px;
+    width: 40px; height: 36px; background: none; border: 1px solid var(--mdcf-line); border-radius: 8px; cursor: pointer; padding: 0 9px; }
+  .hdr__burger span { display: block; height: 2px; background: var(--mdcf-ink); border-radius: 2px; transition: transform .2s, opacity .2s; }
+  @media (max-width: 820px) {
+    .hdr__burger { display: flex; }
+    .hdr__nav { position: absolute; left: 0; right: 0; top: 60px; display: none; flex-direction: column; gap: 0; margin: 0;
+      background: var(--mdcf-surface); border-bottom: 1px solid var(--mdcf-line); box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); padding: 6px 0; }
+    .hdr__nav > a { padding: 12px 20px; font-size: 16px; }
+    /* Mobile: each entity item is a plain link — the dropdowns are a desktop-only comfort. */
+    .hdr__drop { display: block; }
+    .hdr__drop-label { display: block; padding: 12px 20px; font-size: 16px; }
+    .hdr__caret, .hdr__panel { display: none; }
+    :global(body.nav-open) .hdr__nav { display: flex; }
+    :global(body.nav-open) .hdr__burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    :global(body.nav-open) .hdr__burger span:nth-child(2) { opacity: 0; }
+    :global(body.nav-open) .hdr__burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+</style>

@@ -1,0 +1,39 @@
+---
+import Base from "../../../layouts/Base.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const fr = locale === "fr";
+const es = locale === "es";
+const title = T("The best travel crates 2026", "Les meilleures cages de transport 2026", "Los mejores jaulas de viaje 2026");
+const blurb = T("Our ranking of the best IATA-compliant travel crates is coming soon: a selection based on safety, ventilation, sturdiness and airline compliance — with verified sources.", "Notre classement des meilleures cages de transport conformes IATA arrive bientôt : sélection basée sur des critères de sécurité, ventilation, solidité et conformité compagnie — avec sources vérifiées.", "Nuestra clasificación de los mejores jaulas de viaje conformes con la IATA llegará pronto: una selección basada en criterios de seguridad, ventilación, solidez y aceptación de las aerolíneas — con fuentes verificadas.");
+const crateHref = (locale === "en" ? "" : `/${locale}`) + "/tools/crate/";
+const metaDesc = T("The best IATA-compliant dog travel crates: safety, ventilation, sturdiness and airline compliance. Ranking coming soon.", "Les meilleures caisses de transport conformes IATA : sécurité, ventilation, solidité et conformité aux exigences des compagnies.", "Las mejores jaulas de viaje conformes con la IATA: seguridad, ventilación, solidez y cumplimiento de las exigencias de las aerolíneas.");
+---
+<Base locale={locale} title={`${title}`} description={metaDesc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="bc-blurb">{blurb}</p>
+      <div class="bc-soon">
+        <p>{T("🏆 Ranking in preparation — we will only publish models that are genuinely reviewed and sourced (no fabricated recommendations).", "🏆 Classement en préparation — nous ne publierons que des modèles réellement évalués et sourcés (aucune recommandation fabriquée).", "🏆 Clasificación en preparación — solo publicaremos modelos realmente evaluados y con fuentes (sin recomendaciones inventadas).")}</p>
+        <a class="bc-cta" href={crateHref}>📦 {T("In the meantime, calculate the ideal crate size for your dog", "En attendant, calculez la taille de cage idéale pour votre chien", "Mientras tanto, calcula el tamaño de jaula ideal para tu perro")} →</a>
+      </div>
+    </div>
+  </section>
+</Base>
+<style>
+  .bc-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }
+  .bc-soon { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 20px; background: var(--mdcf-surface); max-width: 720px; }
+  .bc-soon p { margin: 0 0 14px; line-height: 1.55; }
+  .bc-cta { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; background: linear-gradient(180deg,var(--mdcf-accent,#f2700f),var(--mdcf-accent-hover,#d95f08)); color: #fff; font-weight: 700; text-decoration: none; }
+</style>

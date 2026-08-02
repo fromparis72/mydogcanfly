@@ -1,0 +1,290 @@
+id: airline_french_bee
+mono: BF
+name: French Bee
+titleH1:
+  en: Flying with a dog on French Bee
+  fr: Voyager avec un chien sur French Bee
+  es: Volar con un perro en French Bee
+  pt: "Voar com um cachorro na French Bee"
+metaDesc:
+  en: "French Bee pet policy: cabin, hold and freight, fares, snub-nosed ban, no pets to Tahiti and official sources."
+  fr: "Politique animaux French Bee : cabine, soute et fret, tarifs, interdiction brachy, pas d'animaux vers Tahiti et sources officielles."
+  es: "Política de mascotas de French Bee: cabina, bodega y carga, tarifas, veto a hocicos chatos, sin mascotas a Tahití y fuentes oficiales."
+  pt: "Política de animais da French Bee: cabine, porão e carga aérea, tarifas, proibição de focinho achatado, sem animais para o Taiti e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: France · ORY
+      fr: France · ORY
+      es: Francia · ORY
+      pt: "França · ORY"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & small dogs in the cabin or hold — but snub-nosed breeds refused and no pets to Tahiti.
+  fr: Chats et petits chiens en cabine ou en soute — mais races au nez écrasé refusées et pas d'animaux vers Tahiti.
+  es: Gatos y perros pequeños en cabina o bodega, pero las razas de hocico chato se rechazan y no hay mascotas a Tahití.
+  pt: "Gatos e cachorros pequenos na cabine ou no porão — mas raças de focinho achatado são recusadas e não há animais para o Taiti."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 75 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One dog or cat ≤ 8 kg incl. carrier in a soft carrier at your feet (max 43 × 35 × 20 cm); min 8 weeks. No Maxi Leg seat.
+      fr: Un chien ou chat ≤ 8 kg avec le sac dans un sac souple à tes pieds (max 43 × 35 × 20 cm) ; min 8 semaines. Pas de siège Maxi Leg.
+      es: Un perro o gato ≤ 8 kg con la jaula, en una jaula blanda a tus pies (máx. 43 × 35 × 20 cm); mín. 8 semanas. Sin asiento Maxi Leg.
+      pt: "Um cachorro ou gato ≤ 8 kg com a bolsa, em uma bolsa flexível a seus pés (máx. 43 × 35 × 20 cm); mín. 8 semanas. Sem assento Maxi Leg."
+    fee:
+      en: €75 / $100
+      fr: 75 € / 100 $
+      es: 75 € / 100 $
+      pt: "75 € / US$ 100"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only (AVIH) up to 75 kg incl. cage in a rigid crate; two pets ≤ 14 kg each may share. Connections only if layover < 2 h.
+      fr: Chiens et chats uniquement (AVIH) jusqu'à 75 kg avec la caisse en caisse rigide ; deux animaux ≤ 14 kg chacun peuvent partager. Correspondances seulement si escale < 2 h.
+      es: Solo perros y gatos (AVIH) hasta 75 kg con la jaula, en una jaula rígida; dos mascotas ≤ 14 kg cada una pueden compartir. Conexiones solo si la escala es < 2 h.
+      pt: "Somente cachorros e gatos (AVIH) até 75 kg com a caixa, em uma caixa rígida; dois animais ≤ 14 kg cada podem compartilhar. Conexões somente se a escala for < 2 h."
+    fee:
+      en: €150 / $195
+      fr: 150 € / 195 $
+      es: 150 € / 195 $
+      pt: "150 € / US$ 195"
+  - icon: ✈️
+    name:
+      en: Freight
+      fr: Fret
+      es: Carga
+      pt: "Carga aérea"
+    cls: warn
+    statusLabel:
+      en: Via freight
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Over 75 kg, oversize, or other species.
+      fr: Au-delà de 75 kg, hors gabarit, ou autres espèces.
+      es: Más de 75 kg, gran tamaño, u otras especies.
+      pt: "Acima de 75 kg, fora do padrão, ou outras espécies."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: €75 / $100
+        fr: 75 € / 100 $
+        es: 75 € / 100 $
+        pt: "75 € / US$ 100"
+    - label:
+        en: Hold (≤ 75 kg)
+        fr: Soute (≤ 75 kg)
+        es: Bodega (≤ 75 kg)
+        pt: "Porão (≤ 75 kg)"
+      value:
+        en: €150 / $195
+        fr: 150 € / 195 $
+        es: 150 € / 195 $
+        pt: "150 € / US$ 195"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR/USD per one-way trip, non-refundable.
+    fr: EUR/USD par trajet aller, non remboursable.
+    es: EUR/USD por trayecto de ida, no reembolsable.
+    pt: "EUR/USD por trajeto de ida, não reembolsável."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Cabin & hold refused
+          fr: Cabine & soute refusées
+          es: Cabina y bodega rechazadas
+          pt: "Cabine e porão recusados"
+    note:
+      en: "Snub-nosed breeds are refused in both cabin and hold (stress causes breathing difficulty): bulldogs (all), boxers (all), pugs (all), French bulldog, Boston terrier, Cane Corso, chow chow, mastiffs (incl. Presa Canario), Shih Tzu, Shar Pei, Pekingese, and Burmese/Exotic/Himalayan/Persian cats."
+      fr: "Les races au nez écrasé sont refusées en cabine et en soute (le stress provoque des difficultés respiratoires) : bouledogues (tous), boxers (tous), carlins (tous), bouledogue français, Boston terrier, Cane Corso, chow chow, mastiffs (dont Presa Canario), Shih Tzu, Shar Pei, pékinois, et chats birmans/exotiques/himalayens/persans."
+      es: "Las razas de hocico chato se rechazan tanto en cabina como en bodega (el estrés provoca dificultad respiratoria): bulldogs (todos), bóxeres (todos), carlinos (todos), bulldog francés, bóston terrier, cane corso, chow chow, mastines (incluido presa canario), shih tzu, shar pei, pequinés, y gatos birmanos/exóticos/himalayos/persas."
+      pt: "Raças de focinho achatado são recusadas tanto na cabine quanto no porão (o estresse causa dificuldade respiratória): buldogues (todos), boxers (todos), pugs (todos), buldogue francês, Boston terrier, Cane Corso, chow chow, mastins (incl. Presa Canario), Shih Tzu, Shar Pei, pequinês, e gatos birmaneses/exóticos/himalaios/persas."
+  - icon: 🚫
+    title:
+      en: French categories & ESA
+      fr: Catégories françaises & ESA
+      es: Categorías francesas y ESA
+      pt: "Categorias francesas e ESA"
+    pills:
+      - cls: no
+        label:
+          en: Category 1 refused
+          fr: Catégorie 1 refusée
+          es: Categoría 1 rechazada
+          pt: "Categoria 1 recusada"
+      - cls: warn
+        label:
+          en: No ESA
+          fr: Pas d'ESA
+          es: Sin ESA
+          pt: "Sem ESA"
+    note:
+      en: French category 1 attack dogs (pit-bull, Boerboel, Tosa) aren't accepted; category 2 with conditions and muzzle. Under-18s can't carry category 1/2 dogs. No emotional-support animals; sedation isn't advised.
+      fr: Les chiens d'attaque de catégorie 1 (pit-bull, Boerboel, Tosa) ne sont pas acceptés ; catégorie 2 sous conditions et muselière. Les moins de 18 ans ne peuvent pas voyager avec un chien de catégorie 1/2. Pas d'animaux de soutien émotionnel ; sédation déconseillée.
+      es: Los perros de ataque de categoría 1 francesa (pit bull, boerboel, tosa) no se aceptan; los de categoría 2 con condiciones y bozal. Los menores de 18 años no pueden viajar con perros de categoría 1/2. Sin animales de apoyo emocional; no se aconseja la sedación.
+      pt: "Cachorros de ataque de categoria 1 francesa (pit bull, Boerboel, Tosa) não são aceitos; os de categoria 2 com condições e focinheira. Menores de 18 anos não podem viajar com cachorros de categoria 1/2. Sem animais de suporte emocional; sedação não é recomendada."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: French Bee publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: French Bee ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: French Bee no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A French Bee não divulga limites de temperatura no porão nem embargo sazonal em suas páginas de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs (any breed, max 2) travel free in the cabin, leashed, no muzzle.
+      fr: Les chiens d'assistance dressés (toute race, max 2) voyagent gratuitement en cabine, en laisse, sans muselière.
+      es: Los perros de servicio adiestrados (cualquier raza, máx. 2) viajan gratis en cabina, con correa y sin bozal.
+      pt: "Cães de assistência adestrados (qualquer raça, máx. 2) viajam de graça na cabine, com guia, sem focinheira."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Notify SVAN ≥ 48 h ahead; microchip + vet certificate. US: DOT form + hygiene certificate + CDC form."
+      fr: "Prévenir le service SVAN ≥ 48 h à l'avance ; puce + certificat vétérinaire. USA : formulaire DOT + certificat d'hygiène + formulaire CDC."
+      es: "Avisa al servicio SVAN ≥ 48 h antes; microchip + certificado veterinario. EE. UU.: formulario DOT + certificado de higiene + formulario del CDC."
+      pt: "Avise o serviço SVAN com ≥ 48 h de antecedência; microchip e atestado veterinário. EUA: formulário do DOT + certificado de higiene + formulário do CDC."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets to Tahiti
+      fr: Pas d'animaux vers Tahiti
+      es: Sin mascotas a Tahití
+      pt: "Sem animais para o Taiti"
+    value:
+      en: Pet transport isn't available to or from Papeete, Tahiti.
+      fr: Le transport d'animaux n'est pas disponible vers ou depuis Papeete, Tahiti.
+      es: El transporte de mascotas no está disponible hacia ni desde Papeete, Tahití.
+      pt: "O transporte de animais não está disponível para ou de Papeete, Taiti."
+  - icon: 🧒
+    label:
+      en: No unaccompanied minors
+      fr: Pas de mineurs seuls
+      es: Sin menores no acompañados
+      pt: "Sem menores desacompanhados"
+    value:
+      en: A pet (cabin or hold) can't travel with an unaccompanied minor.
+      fr: Un animal (cabine ou soute) ne peut pas voyager avec un mineur non accompagné.
+      es: Una mascota (en cabina o bodega) no puede viajar con un menor no acompañado.
+      pt: "Um animal (em cabine ou porão) não pode viajar com um menor desacompanhado."
+  - icon: 🐾
+    label:
+      en: US dogs
+      fr: Chiens USA
+      es: Perros a EE. UU.
+      pt: "Cachorros para os EUA"
+    value:
+      en: Dogs to the US must be 6 months+, microchipped, rabies-vaccinated, with a CDC Dog Import Form.
+      fr: Les chiens vers les USA doivent avoir 6 mois+, être pucés, vaccinés contre la rage, avec un formulaire CDC Dog Import.
+      es: Los perros a EE. UU. deben tener 6 meses o más, microchip, vacuna antirrábica y un CDC Dog Import Form.
+      pt: "Cachorros com destino aos EUA precisam ter 6 meses ou mais, microchip, vacina antirrábica, e um CDC Dog Import Form."
+book:
+  host: frenchbee.com
+  url: https://www.frenchbee.com/
+sources:
+  en: 6 French Bee sources · last verified 11 July 2026
+  fr: 6 sources French Bee · dernière vérification 11 juillet 2026
+  es: 6 fuentes de French Bee · última verificación 11 de julio de 2026
+  pt: "6 fontes da French Bee · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

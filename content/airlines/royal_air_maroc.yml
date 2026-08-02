@@ -1,0 +1,310 @@
+id: airline_royal_air_maroc
+mono: AT
+name: Royal Air Maroc
+titleH1:
+  en: Flying with a dog on Royal Air Maroc
+  fr: Voyager avec un chien sur Royal Air Maroc
+  es: Viajar con un perro en Royal Air Maroc
+  pt: "Viajar com um cachorro na Royal Air Maroc"
+metaDesc:
+  en: "Royal Air Maroc pet policy: cabin, hold and RAM Cargo, fares by zone, banned snub-nosed breeds, UK/UAE exclusion and official sources."
+  fr: "Politique animaux Royal Air Maroc : cabine, soute et RAM Cargo, tarifs par zone, races brachy interdites, exclusion R.-U./ÉAU et sources officielles."
+  es: "Política de mascotas de Royal Air Maroc: cabina, bodega y RAM Cargo, tarifas por zona, razas de hocico chato prohibidas, exclusión Reino Unido/EAU y fuentes…"
+  pt: "Política de animais da Royal Air Maroc: cabine, porão e RAM Cargo, tarifas por zona, raças de focinho achatado proibidas, exclusão de Reino Unido/EAU e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Morocco · CMN
+      fr: Maroc · CMN
+      es: Marruecos · CMN
+      pt: "Marrocos · CMN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin or hold with clear fees — but many snub-nosed breeds and the UK/UAE are barred.
+  fr: Petits animaux en cabine ou en soute avec tarifs clairs — mais de nombreuses races au nez écrasé et le R.-U./ÉAU sont exclus.
+  es: Mascotas pequeñas en cabina o bodega con tarifas claras, pero muchas razas de hocico chato y el Reino Unido/EAU están excluidos.
+  pt: "Animais pequenos na cabine ou no porão com tarifas claras — mas muitas raças de focinho achatado e o Reino Unido/EAU são excluídos."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: < 70 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 70 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & birds ≤ 8 kg incl. carrier in a rigid ventilated container (max 55 × 40 × 20 cm); declare > 48 h ahead. Not to the UAE.
+      fr: Chiens, chats et oiseaux ≤ 8 kg avec le sac dans un contenant rigide ventilé (max 55 × 40 × 20 cm) ; déclarer > 48 h avant. Pas vers les ÉAU.
+      es: Perros, gatos y aves ≤ 8 kg con la jaula en un contenedor rígido ventilado (máx. 55 × 40 × 20 cm); decláralo > 48 h antes. No hacia los EAU.
+      pt: "Cachorros, gatos e aves ≤ 8 kg com a caixa de transporte em um recipiente rígido ventilado (máx. 55 × 40 × 20 cm); declare com mais de 48 h de antecedência. Não para os EAU."
+    fee:
+      en: €70–120
+      fr: 70–120 €
+      es: 70–120 €
+      pt: "€70–120"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Pets under 70 kg in a robust, watertight, ventilated crate (no straw); declare at booking.
+      fr: Animaux de moins de 70 kg dans une caisse robuste, étanche et ventilée (sans paille) ; déclarer à la réservation.
+      es: Mascotas de menos de 70 kg en una jaula robusta, estanca y ventilada (sin paja); decláralo al reservar.
+      pt: "Animais com menos de 70 kg em uma caixa de transporte robusta, estanque e ventilada (sem palha); declare na reserva."
+    fee:
+      en: €60–520
+      fr: 60–520 €
+      es: 60–520 €
+      pt: "€60–520"
+  - icon: ✈️
+    name:
+      en: RAM Cargo
+      fr: RAM Cargo
+      es: RAM Cargo
+      pt: "RAM Cargo"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo cotización
+      pt: "Sob consulta"
+    detail:
+      en: Animals over 70 kg travel as freight.
+      fr: Les animaux de plus de 70 kg voyagent en fret.
+      es: Los animales de más de 70 kg viajan como carga.
+      pt: "Animais acima de 70 kg viajam como carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — domestic
+        fr: Cabine — national
+        es: Cabina — nacional
+        pt: "Cabine — doméstico"
+      value:
+        en: 290 MAD
+        fr: 290 MAD
+        es: 290 MAD
+        pt: "290 MAD"
+    - label:
+        en: Cabin — Europe / Maghreb
+        fr: Cabine — Europe / Maghreb
+        es: Cabina — Europa / Magreb
+        pt: "Cabine — Europa / Magreb"
+      value:
+        en: 640 MAD / €70
+        fr: 640 MAD / 70 €
+        es: 640 MAD / 70 €
+        pt: "640 MAD / €70"
+    - label:
+        en: Cabin — long-haul
+        fr: Cabine — long-courrier
+        es: Cabina — largo radio
+        pt: "Cabine — longa distância"
+      value:
+        en: €120 / $120
+        fr: 120 € / 120 $
+        es: 120 € / 120 $
+        pt: "€120 / US$ 120"
+    - label:
+        en: Hold (≤ 23 → 70 kg)
+        fr: Soute (≤ 23 → 70 kg)
+        es: Bodega (≤ 23 → 70 kg)
+        pt: "Porão (≤ 23 → 70 kg)"
+      value:
+        en: €60–520
+        fr: 60–520 €
+        es: 60–520 €
+        pt: "€60–520"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: MAD / EUR / USD by zone. Animals over 70 kg go by freight.
+    fr: MAD / EUR / USD par zone. Les animaux de plus de 70 kg passent par le fret.
+    es: MAD / EUR / USD por zona. Los animales de más de 70 kg van como carga.
+    pt: "MAD / EUR / USD por zona. Animais acima de 70 kg vão como carga."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Prohibited
+          fr: Interdites
+          es: Prohibidas
+          pt: "Proibidas"
+    note:
+      en: "Snub-nosed pets are prohibited: bulldogs (all — American/English/French/Dutch), boxer, pug, Pekingese, Shih Tzu, Boston terrier, chow chow, Shar Pei, apple-head Chihuahua, mastiffs, Cane Corso, pit bull (all), and British Shorthair/Burmese/Exotic/Himalayan/Persian/Scottish Fold cats."
+      fr: "Les animaux au nez écrasé sont interdits : bouledogues (tous — américain/anglais/français/hollandais), boxer, carlin, pékinois, Shih Tzu, Boston terrier, chow chow, Shar Pei, Chihuahua tête de pomme, mastiffs, Cane Corso, pit-bull (tous), et chats British Shorthair/birman/exotique/himalayen/persan/Scottish Fold."
+      es: "Las mascotas de hocico chato están prohibidas: bulldogs (todos: americano/inglés/francés/holandés), bóxer, carlino, pekinés, Shih Tzu, Boston terrier, chow chow, Shar Pei, Chihuahua cabeza de manzana, mastines, Cane Corso, pit bull (todos), y gatos British Shorthair/birmano/exótico/himalayo/persa/Scottish Fold."
+      pt: "Animais de focinho achatado são proibidos: bulldogs (todos — americano/inglês/francês/holandês), boxer, pug, Pequinês, Shih Tzu, Boston terrier, chow chow, Shar Pei, Chihuahua cabeça de maçã, mastiffs, Cane Corso, pit bull (todos), e gatos British Shorthair/birmanês/exótico/himalaio/persa/Scottish Fold."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Declare > 48 h ahead
+          fr: Déclarer > 48 h avant
+          es: Declarar > 48 h antes
+          pt: "Declarar com mais de 48 h de antecedência"
+    note:
+      en: The crate must be undamaged with a working lock; no hay or straw inside. The passenger assumes full responsibility for the animal.
+      fr: La caisse doit être en bon état avec un verrou fonctionnel ; ni foin ni paille à l'intérieur. Le passager assume l'entière responsabilité de l'animal.
+      es: La jaula debe estar en buen estado con un cierre que funcione; sin heno ni paja dentro. El pasajero asume la plena responsabilidad del animal.
+      pt: "A caixa de transporte deve estar sem danos e com trava funcionando; sem feno ou palha dentro. O passageiro assume total responsabilidade pelo animal."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Royal Air Maroc publishes no hold-temperature limits or seasonal embargo on its pet page.
+    fr: Royal Air Maroc ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux.
+    es: Royal Air Maroc no publica límites de temperatura en bodega ni embargo estacional en su página de mascotas.
+    pt: "A Royal Air Maroc não publica limites de temperatura do porão nem embargo sazonal em sua página de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Guide/service dogs travel free across the RAM network, exempt from the cabin weight and size limits.
+      fr: Les chiens guides/d'assistance voyagent gratuitement sur tout le réseau RAM, exemptés des limites de poids et de taille cabine.
+      es: Los perros guía/de asistencia viajan gratis por toda la red de RAM, exentos de los límites de peso y tamaño de cabina.
+      pt: "Cães-guia/de serviço viajam gratuitamente em toda a rede da RAM, isentos dos limites de peso e tamanho da cabine."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "US flights: DOT service-animal + relief forms ≥ 48 h ahead (or at the gate if booked under 48 h)."
+      fr: "Vols USA : formulaires DOT d'animal d'assistance + soulagement ≥ 48 h à l'avance (ou à la porte si réservé à moins de 48 h)."
+      es: "Vuelos a EE. UU.: formularios DOT de animal de servicio + alivio con ≥ 48 h de antelación (o en la puerta si se reserva con menos de 48 h)."
+      pt: "Voos para os EUA: formulários DOT de animal de serviço + alívio com ≥ 48 h de antecedência (ou no portão de embarque se reservado com menos de 48 h)."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: UK & UAE barred
+      fr: R.-U. & ÉAU exclus
+      es: Reino Unido y EAU excluidos
+      pt: "Reino Unido e EAU excluídos"
+    value:
+      en: Pets aren't accepted to the UAE, nor to/from the UK (except cabin pets departing London Gatwick).
+      fr: Les animaux ne sont pas acceptés vers les ÉAU, ni de/vers le R.-U. (sauf en cabine au départ de Londres Gatwick).
+      es: No se aceptan mascotas hacia los EAU, ni desde/hacia el Reino Unido (salvo mascotas en cabina que salgan de Londres Gatwick).
+      pt: "Animais não são aceitos para os EAU, nem de/para o Reino Unido (exceto animais em cabine que partem de Londres Gatwick)."
+  - icon: 🔁
+    label:
+      en: Connections
+      fr: Correspondances
+      es: Conexiones
+      pt: "Conexões"
+    value:
+      en: "Allow > 2 h: the pet is checked only for the first flight and must be re-checked at the connection."
+      fr: "Prévoir > 2 h : l'animal n'est enregistré que pour le premier vol et doit être réenregistré à la correspondance."
+      es: "Deje > 2 h: la mascota se factura solo para el primer vuelo y hay que volver a facturarla en la conexión."
+      pt: "Reserve mais de 2 h: o animal é despachado somente para o primeiro voo e precisa ser despachado novamente na conexão."
+  - icon: 📄
+    label:
+      en: EU entry
+      fr: Entrée UE
+      es: Entrada a la UE
+      pt: "Entrada na UE"
+    value:
+      en: Pets to the EU need a microchip, valid rabies vaccination and EU pet passport / health certificate.
+      fr: Les animaux vers l'UE ont besoin d'une puce, d'une vaccination antirabique valide et d'un passeport / certificat sanitaire UE.
+      es: Las mascotas hacia la UE necesitan microchip, vacunación antirrábica válida y pasaporte de mascota / certificado sanitario de la UE.
+      pt: "Animais com destino à UE precisam de microchip, vacinação antirrábica válida e passaporte europeu para animais / atestado de saúde."
+book:
+  host: royalairmaroc.com
+  url: https://www.royalairmaroc.com/
+sources:
+  en: Official Royal Air Maroc pet policy · last verified 11 July 2026
+  fr: Politique animaux officielle Royal Air Maroc · dernière vérification 11 juillet 2026
+  es: Política oficial de mascotas de Royal Air Maroc · última verificación 11 de julio de 2026
+  pt: "Política oficial de animais de estimação da Royal Air Maroc · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

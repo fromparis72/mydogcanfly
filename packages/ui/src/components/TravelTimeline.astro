@@ -1,0 +1,373 @@
+---
+/* Travel Timeline — reverse-dated preparation plan for flying a dog to a country.
+   Data-driven: each country's real requirements (from the guides) are classified into canonical
+   steps; the DATES are computed backwards from the travel date using DOCUMENTED official standard
+   intervals (EU Reg. 576/2013 & 577/2013, WOAH): rabies valid ≥21 days after vaccination; when a
+   rabies antibody test (titration) applies, the blood sample must be ≥30 days after the vaccination
+   AND ≥3 months (90 days) before entry — so the vaccination itself moves back to ~120 days. Health
+   certificate typically within 10 days; tapeworm 24–120h before arrival. The country's own wording
+   is shown verbatim per step, and every card links to the full guide. Nothing is fabricated:
+   unpublished timings are shown as "verify", conditional steps are flagged. */
+import { loadKB, inlineT } from "@mydogcanfly/knowledge";
+import { hrefFor, localizeHref } from "../lib/routes";
+
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const kb = loadKB();
+const cd: Record<string, any> = (await import("../data/countries.generated.json")).default as any;
+const loc = (lt: any): string => (lt?.[locale] ?? lt?.en ?? "");
+const trunc = (s: string, n = 160) => (s && s.length > n ? s.slice(0, n - 1) + "…" : s || "");
+
+function classify(itemEn: string): string | null {
+  const s = (itemEn || "").toLowerCase();
+  if (/antibody|titrat|titer|titre|rnatt|ranat|favn|rffit|serolog|rabies blood|rabies serology/.test(s)) return "titer";
+  if (/rabies vacc|vaccination against rabies|rabies\b.*vaccinat/.test(s)) return "rabies";
+  if (/microchip|identification|\bpuce\b|\bident/.test(s)) return "microchip";
+  if (/tapeworm|echinococcus/.test(s)) return "parasite";
+  if (/parasite|deworm|antiparasit|anti-parasit|\btick\b/.test(s)) return "parasite";
+  if (/certificate|certificat|\bpassport\b|\bcvi\b|\bahc\b|\bivhc\b/.test(s)) return "cert";
+  if (/permit|authoriz|authoris|notification|approval|licen|\bnoc\b|non-objection|clearance/.test(s)) return "permit";
+  if (/quarantine/.test(s)) return "quarantine";
+  return null;
+}
+function statusOf(req: string): "yes" | "no" | "cond" {
+  const s = (req || "").toLowerCase().trim();
+  if (/^required/.test(s)) return "yes";
+  if (/^(not |no |none|prohibit|import ban|banned|does not|effectively|no )/.test(s)) return "no";
+  if (/^(not required|not published|not applicable|not offic|not mandat|not among|not in published|not listed|not separ|not itemis)/.test(s)) return "no";
+  return "cond";
+}
+
+// Per-country compact model. when-text kept only for the timing-critical steps to control size.
+const WHEN_FOR = new Set(["rabies", "titer", "cert", "permit"]);
+const ORDER = ["microchip", "rabies", "titer", "parasite", "cert", "permit", "quarantine"];
+const countries = Object.values(cd).map((g: any) => {
+  const steps: Record<string, any> = {};
+  for (const r of g.requirements || []) {
+    const type = classify(loc({ en: r.item?.en }) || r.item?.en || "");
+    if (!type || steps[type]) continue;
+    steps[type] = { status: statusOf(r.required?.en || ""), when: WHEN_FOR.has(type) ? { en: trunc(r.when?.en || ""), fr: trunc(r.when?.fr || "") } : null };
+  }
+  return {
+    iso2: g.iso2,
+    name: loc(g.name),
+    href: hrefFor(g.id, locale),
+    difficulty: g.difficulty || "",
+    steps: Object.fromEntries(ORDER.filter((t) => steps[t]).map((t) => [t, steps[t]])),
+  };
+}).sort((a, b) => a.name.localeCompare(b.name, locale));
+
+const L = {
+  locale,
+  countries,
+  crateHref: locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`,
+  heatHref: locale === "en" ? "/tools/heat/" : `/${locale}/tools/heat/`,
+  finderHref: (locale === "en" ? "/" : `/${locale}/`) + "#flight-finder",
+  s: {
+    countryPh: T("Destination country (type to search)", "Pays de destination (tapez pour chercher)", "País de destino (escribe para buscar)"),
+    date: T("Travel date", "Date du voyage", "Fecha de viaje"),
+    origin: T("Coming from", "Tu viens", "Vienes de"),
+    originEu: T("an EU / rabies-controlled country", "d'un pays de l'UE / à rage contrôlée", "un país de la UE / con rabia controlada"),
+    originHigh: T("a non-listed / high-risk country", "d'un pays non listé / à haut risque", "un país no listado / de alto riesgo"),
+    submit: T("Build my timeline", "Construire mon planning", "Crear mi cronograma"),
+    need: T("Pick a destination country and a travel date.", "Choisis un pays de destination et une date de voyage.", "Elige un país de destino y una fecha de viaje."),
+    title: T("Your reverse timeline", "Ton rétro-planning", "Tu cronograma inverso"),
+    forC: T("for", "pour", "para"),
+    verify: T("Verify", "À vérifier", "Por verificar"),
+    cond: T("If it applies to you", "Si cela te concerne", "Si te aplica"),
+    required: T("Required", "Requis", "Obligatorio"),
+    onArrival: T("On arrival", "À l'arrivée", "A la llegada"),
+    startNow: T("Start now", "À lancer dès maintenant", "Empezar ahora"),
+    ics: T("Add to calendar (.ics)", "Ajouter au calendrier (.ics)", "Añadir al calendario (.ics)"),
+    print: T("Print / save as PDF", "Imprimer / PDF", "Imprimir / guardar como PDF"),
+    guide: T("Full country guide", "Fiche pays complète", "Ficha completa del país"),
+    disclaimer: T("Dates use documented standard intervals; each country's exact wording is shown per step and may differ. This is a planning aid, not legal advice — always confirm timings with the destination's veterinary authority and your vet.", "Les dates utilisent les délais standard officiels ; le texte exact de chaque pays est affiché par étape et peut différer. Aide à la planification, pas un avis juridique — confirme toujours les délais auprès de l'autorité vétérinaire de destination et de ton vétérinaire.", "Las fechas usan los plazos estándar documentados; el texto exacto de cada país se muestra por etapa y puede diferir. Es una ayuda para planificar, no asesoramiento legal: confirma siempre los plazos con la autoridad veterinaria del destino y con tu veterinario."),
+    tofly: T("Travel day", "Jour du départ", "Día del viaje"),
+    daysBefore: T("days before", "jours avant", "días antes"),
+    onwardHeat: T("Check the summer heat risk", "Vérifier le risque chaleur", "Comprobar el riesgo por calor del verano"),
+    onwardCrate: T("Which travel crate size?", "Quelle taille de cage ?", "¿Qué talla de jaula?"),
+    deliverTitle: T("Get this plan", "Recevoir ce planning", "Consigue este plan"),
+    deliverSub: T("Email it to yourself (or someone else), add it to your calendar, or print it.", "Envoie-le-tu (ou à quelqu'un d'autre), ajoute-le à ton agenda, ou imprime-le.", "Envíatelo por correo (o a otra persona), añádelo a tu calendario o imprímelo."),
+    fn: T("First name", "Prénom", "Nombre"),
+    ln: T("Last name", "Nom", "Apellido"),
+    emailL: T("Email address", "Adresse e-mail", "Correo electrónico"),
+    dogL: T("Dog's name", "Nom du chien", "Nombre del perro"),
+    consent: T("I understand these details are used only to generate my email (no data is stored on our servers) and I accept the", "Je comprends que ces informations servent uniquement à générer mon e-mail (aucune donnée n'est conservée sur nos serveurs) et j'accepte les", "Entiendo que estos datos se usan únicamente para generar mi correo (no se almacena ningún dato en nuestros servidores) y acepto las"),
+    consentLink: T("cookie terms and data-rights notice", "modalités relatives aux cookies et au droit à l'information", "condiciones de cookies y el aviso sobre derechos de datos"),
+    emailBtn: T("Email me the timeline", "M'envoyer le planning", "Enviarme el cronograma por correo"),
+    emailInvalid: T("Enter a valid email address.", "Saisis une adresse e-mail valide.", "Introduce una dirección de correo válida."),
+    consentReq: T("Please tick the consent box first.", "Merci de cocher la case de consentement.", "Marca primero la casilla de consentimiento."),
+    emailSubject: T("Your dog travel timeline", "Ton rétro-planning de voyage", "El cronograma de viaje de tu perro"),
+    emailHi: T("Hi", "Bonjour", "Hola"),
+    emailHere: T("Here is the preparation timeline for flying", "Voici le rétro-planning pour faire voyager", "Aquí tienes el cronograma de preparación para hacer viajar a"),
+    emailOn: T("on", "le", "el"),
+    emailGuide: T("Full country guide", "Fiche pays complète", "Ficha completa del país"),
+    emailFoot: T("Generated with MyDogCanFly — always confirm timings with the destination's veterinary authority and your vet.", "Généré avec MyDogCanFly — confirme toujours les délais auprès de l'autorité vétérinaire de destination et de ton vétérinaire.", "Generado con MyDogCanFly: confirma siempre los plazos con la autoridad veterinaria del destino y con tu veterinario."),
+  },
+  steps: {
+    microchip: { t: T("ISO microchip", "Puce ISO", "Microchip ISO"), g: T("Implant the ISO microchip. It must be in place before the rabies vaccination, otherwise the vaccine may not count.", "Posez la puce ISO. Elle doit être en place avant la vaccination antirabique, sinon le vaccin peut ne pas être valable.", "Implanta el microchip ISO. Debe estar colocado antes de la vacunación antirrábica; de lo contrario, la vacuna podría no ser válida.") },
+    rabies: { t: T("Rabies vaccination", "Vaccination antirabique", "Vacunación antirrábica"), g: T("Primary rabies vaccination (after the microchip). It becomes valid 21 days later.", "Primovaccination antirabique (après la puce). Elle devient valable 21 jours après.", "Primovacunación antirrábica (después del microchip). Pasa a ser válida 21 días después."), gTiter: T("Rabies vaccination (after the microchip) — must be early enough for the blood test that follows.", "Vaccination antirabique (après la puce) — assez tôt pour la prise de sang qui suit.", "Vacunación antirrábica (después del microchip): con suficiente antelación para el análisis de sangre que sigue.") },
+    titer: { t: T("Rabies antibody test (titration)", "Test sérologique antirabique (titrage)", "Prueba de titulación de rabia (prueba serológica)"), g: T("Blood sample at an approved lab, ≥30 days after the vaccination and ≥3 months before entry. Result must be ≥0.5 IU/ml.", "Prise de sang en laboratoire agréé, ≥30 jours après le vaccin et ≥3 mois avant l'entrée. Résultat ≥0,5 UI/ml.", "Extracción de sangre en un laboratorio autorizado, ≥30 días después de la vacuna y ≥3 meses antes de la entrada. El resultado debe ser ≥0,5 UI/ml.") },
+    parasite: { t: T("Tapeworm / parasite treatment", "Traitement antiparasitaire (ténia)", "Tratamiento antiparasitario (contra la tenia)"), g: T("Vet-administered treatment, typically 24–120 hours (1–5 days) before arrival, recorded on the certificate.", "Traitement par le vétérinaire, généralement 24–120 h (1–5 jours) avant l'arrivée, inscrit sur le certificat.", "Tratamiento administrado por el veterinario, normalmente 24–120 horas (1–5 días) antes de la llegada, registrado en el certificado.") },
+    cert: { t: T("Veterinary health certificate", "Certificat vétérinaire", "Certificado veterinario"), g: T("Issued and endorsed shortly before travel — often within 10 days of entry.", "Établi et validé peu avant le voyage — souvent dans les 10 jours précédant l'entrée.", "Expedido y validado poco antes del viaje, a menudo dentro de los 10 días previos a la entrada.") },
+    permit: { t: T("Import permit / advance notification", "Permis d'importation / notification", "Permiso de importación / notificación previa"), g: T("Apply well ahead — lead times vary and some authorities need several weeks.", "À demander très en amont — les délais varient et certaines autorités demandent plusieurs semaines.", "Solicítalo con mucha antelación: los plazos varían y algunas autoridades necesitan varias semanas.") },
+    quarantine: { t: T("Quarantine on arrival", "Quarantaine à l'arrivée", "Cuarentena a la llegada"), g: T("Some countries hold the dog in quarantine after arrival. Check the duration in the guide.", "Certains pays placent le chien en quarantaine après l'arrivée. Vérifie la durée dans la fiche.", "Algunos países mantienen al perro en cuarentena tras la llegada. Consulta la duración en la ficha.") },
+  },
+};
+---
+<div class="tl">
+  <form id="tl-form" class="tl-form" autocomplete="off">
+    <div class="tl-field"><label for="tl-country">{T("Destination", "Destination", "Destino")}</label>
+      <input id="tl-country" data-ac="country" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={L.s.countryPh} autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other" /></div>
+    <div class="tl-field tl-field--sm"><label for="tl-date">{L.s.date}</label>
+      <input id="tl-date" type="date" /></div>
+    <div class="tl-field"><label for="tl-origin">{L.s.origin}</label>
+      <select id="tl-origin">
+        <option value="eu">{L.s.originEu}</option>
+        <option value="high" selected>{L.s.originHigh}</option>
+      </select></div>
+    <button class="mdcf-btn tl-submit" type="submit">{L.s.submit}</button>
+  </form>
+
+  <aside class="tl-warn" role="note">
+    <span class="tl-warn__ic" aria-hidden="true">⚠</span>
+    <p>
+      <b>{T("Important", "Avertissement", "Importante")}.</b>{" "}
+      {T(
+        "MyDogCanFly provides indicative planning guidance only and accepts no liability for the accuracy or currency of the information. Rules change frequently: before booking or travelling, always confirm the latest requirements with the embassy or consulate of the destination country and with your veterinarian. See also the full country guide for that destination.",
+        "MyDogCanFly fournit une aide à la planification à titre purement indicatif et décline toute responsabilité quant à l'exactitude ou l'actualité des informations. Les règles évoluent souvent : avant de réserver ou de voyager, valide toujours les dernières exigences auprès de l'ambassade ou du consulat du pays de destination et de ton vétérinaire. Consulte également la fiche pays complète de cette destination.",
+        "MyDogCanFly ofrece orientación de planificación meramente orientativa y no asume ninguna responsabilidad por la exactitud o la vigencia de la información. Las normas cambian con frecuencia: antes de reservar o viajar, confirma siempre los requisitos más recientes con la embajada o el consulado del país de destino y con tu veterinario. Consulta también la ficha completa del país de ese destino."
+      )}
+    </p>
+  </aside>
+
+  <div id="tl-out" class="tl-out" hidden></div>
+</div>
+
+<script type="application/json" id="tl-data" set:html={JSON.stringify(L)} is:inline />
+<script>
+  const L = JSON.parse(document.getElementById("tl-data").textContent);
+  const $ = (s) => document.querySelector(s);
+  const norm = (s) => (s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const esc = (s) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const byName = {};
+  L.countries.forEach((c) => { byName[norm(c.name)] = c; });
+
+  function attachAC(input) {
+    const field = input.parentElement; const box = document.createElement("ul"); box.className = "ac-list"; box.hidden = true; field.appendChild(box);
+    let cur = -1, shown = [];
+    const close = () => { box.hidden = true; input.setAttribute("aria-expanded", "false"); };
+    const render = () => { const n = norm(input.value); shown = (n ? L.countries.filter((c) => norm(c.name).includes(n)) : L.countries).slice(0, 8); if (!shown.length) { close(); return; } box.innerHTML = shown.map((o, i) => `<li class="ac-item" data-i="${i}">${esc(o.name)}</li>`).join(""); box.hidden = false; input.setAttribute("aria-expanded", "true"); cur = -1; };
+    const choose = (i) => { const o = shown[i]; if (!o) return; input.value = o.name; close(); };
+    input.addEventListener("input", render); input.addEventListener("focus", render);
+    input.addEventListener("keydown", (e) => { if (box.hidden) return; if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); } else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); } else if (e.key === "Enter") { if (cur >= 0) { e.preventDefault(); choose(cur); } return; } else if (e.key === "Escape") { close(); return; } else return; [...box.children].forEach((li, i) => li.classList.toggle("is-cur", i === cur)); });
+    box.addEventListener("mousedown", (e) => { const li = e.target.closest(".ac-item"); if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
+    document.addEventListener("click", (e) => { if (!field.contains(e.target)) close(); });
+  }
+  attachAC($("#tl-country"));
+
+  const fmtDate = (d) => d.toLocaleDateString(L.locale === "fr" ? "fr-FR" : L.locale === "es" ? "es-ES" : "en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+  const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
+  const icsDate = (d) => d.toISOString().slice(0, 10).replace(/-/g, "");
+  let icsBlob = null;
+
+  $("#tl-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const out = $("#tl-out"); out.hidden = false;
+    const country = byName[norm($("#tl-country").value)];
+    const dv = $("#tl-date").value;
+    if (!country || !dv) { out.innerHTML = `<div class="tl-msg">${L.s.need}</div>`; return; }
+    const travel = new Date(dv + "T00:00:00");
+    const origin = $("#tl-origin").value; // eu | high
+    const st = country.steps;
+    const titerStatus = st.titer ? st.titer.status : null;
+    const titerPath = titerStatus === "yes" || (titerStatus === "cond" && origin === "high");
+    const rabiesOffset = titerPath ? 120 : 21;
+
+    const items = []; // {offset|null|'arrival', type, statusOverride?}
+    if (st.microchip) items.push({ off: rabiesOffset + 1, type: "microchip", st: st.microchip.status });
+    if (st.rabies) items.push({ off: rabiesOffset, type: "rabies", st: st.rabies.status, titer: titerPath });
+    if (titerPath && st.titer && st.titer.status !== "no") items.push({ off: 90, type: "titer", st: st.titer.status });
+    if (st.cert) items.push({ off: 10, type: "cert", st: st.cert.status });
+    if (st.parasite) items.push({ off: 5, type: "parasite", st: st.parasite.status, win: true });
+    if (st.permit) items.push({ off: null, type: "permit", st: st.permit.status });
+    if (st.quarantine) items.push({ off: "arrival", type: "quarantine", st: st.quarantine.status });
+
+    // dated first (earliest → latest), then no-date "start now", then arrival
+    const dated = items.filter((i) => typeof i.off === "number").sort((a, b) => b.off - a.off);
+    const undatedStart = items.filter((i) => i.off === null);
+    const arrival = items.filter((i) => i.off === "arrival");
+    const ordered = [...undatedStart, ...dated, ...arrival];
+
+    const pill = (s) => s === "yes" ? `<span class="tl-pill tl-yes">${L.s.required}</span>` : s === "cond" ? `<span class="tl-pill tl-cond">${L.s.cond}</span>` : `<span class="tl-pill tl-verify">${L.s.verify}</span>`;
+    const icsEvents = [];
+
+    const plan = ordered.map((it) => {
+      const meta = L.steps[it.type];
+      const cwhen = (st[it.type] && st[it.type].when) ? (st[it.type].when[L.locale] || st[it.type].when.en) : "";
+      let dateLabel = "", genericTxt = meta.g;
+      if (typeof it.off === "number") {
+        const dObj = addDays(travel, -it.off);
+        dateLabel = it.win ? `${fmtDate(addDays(travel, -5))} → ${fmtDate(addDays(travel, -1))}` : fmtDate(dObj);
+        if (it.type === "rabies" && it.titer) genericTxt = meta.gTiter;
+        if (it.st !== "no") icsEvents.push({ d: it.win ? addDays(travel, -5) : dObj, t: meta.t });
+      } else if (it.off === "arrival") { dateLabel = L.s.onArrival; }
+      else { dateLabel = L.s.startNow; }
+      const off = typeof it.off === "number" ? `<span class="tl-off">${it.win ? "1–5" : it.off} ${L.s.daysBefore}</span>` : "";
+      const html = `<li class="tl-step tl-s-${it.st}">
+        <div class="tl-when"><span class="tl-date">${dateLabel}</span>${off}</div>
+        <div class="tl-body">
+          <div class="tl-h"><span class="tl-t">${esc(meta.t)}</span>${pill(it.st)}</div>
+          <p class="tl-g">${esc(genericTxt)}</p>
+          ${cwhen ? `<p class="tl-c"><b>${esc(country.name)}:</b> ${esc(cwhen)}</p>` : ""}
+        </div></li>`;
+      return { dateLabel, title: meta.t, html };
+    });
+    const rows = plan.map((p) => p.html).join("");
+    const flyRow = `<li class="tl-step tl-fly"><div class="tl-when"><span class="tl-date">${fmtDate(travel)}</span></div><div class="tl-body"><div class="tl-h"><span class="tl-t">✈ ${L.s.tofly}</span></div></div></li>`;
+
+    out.innerHTML = `
+      <div class="tl-head">
+        <h3 class="tl-title">${L.s.title} <span class="tl-forc">${L.s.forC} ${esc(country.name)}</span></h3>
+        <a class="tl-act" href="${country.href}">${L.s.guide} →</a>
+      </div>
+      <ol class="tl-list">${rows}${flyRow}</ol>
+      <div class="tl-deliver">
+        <div class="tl-dh">${L.s.deliverTitle}</div>
+        <p class="tl-dsub">${L.s.deliverSub}</p>
+        <div class="tl-dfields">
+          <input id="tl-fn" placeholder="${L.s.fn}" autocomplete="off" data-lpignore="true" data-1p-ignore />
+          <input id="tl-ln" placeholder="${L.s.ln}" autocomplete="off" data-lpignore="true" data-1p-ignore />
+          <input id="tl-email" type="email" placeholder="${L.s.emailL}" autocomplete="off" data-lpignore="true" data-1p-ignore />
+          <input id="tl-dog" placeholder="${L.s.dogL}" autocomplete="off" data-lpignore="true" data-1p-ignore />
+        </div>
+        <label class="tl-consent"><input type="checkbox" id="tl-consent" /> <span>${L.s.consent} <a href="mailto:contact@mydogcanfly.com?subject=${encodeURIComponent(L.s.consentLink)}">${L.s.consentLink}</a>.</span></label>
+        <div class="tl-dbtns">
+          <button type="button" id="tl-email-btn" class="tl-act tl-act--primary">📧 ${L.s.emailBtn}</button>
+          <button type="button" id="tl-ics" class="tl-act">📅 ${L.s.ics}</button>
+          <button type="button" id="tl-print" class="tl-act">🖨 ${L.s.print}</button>
+        </div>
+        <p id="tl-dmsg" class="tl-dmsg" hidden></p>
+      </div>
+      <div class="tl-onward">
+        <a class="tl-onav tl-onav--heat" href="${L.heatHref}" data-carry="breed air">🌡 ${L.s.onwardHeat}</a>
+        <a class="tl-onav tl-onav--crate" href="${L.crateHref}" data-carry="breed air">📦 ${L.s.onwardCrate}</a>
+      </div>
+      <p class="tl-disc">${L.s.disclaimer}</p>`;
+
+    // .ics
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//MyDogCanFly//Timeline//EN"];
+    icsEvents.forEach((ev, i) => { const ds = icsDate(ev.d); lines.push("BEGIN:VEVENT", `UID:mdcf-${Date.now()}-${i}@mydogcanfly`, `DTSTART;VALUE=DATE:${ds}`, `SUMMARY:${ev.t} — ${country.name}`, "END:VEVENT"); });
+    lines.push("BEGIN:VEVENT", `UID:mdcf-fly-${Date.now()}@mydogcanfly`, `DTSTART;VALUE=DATE:${icsDate(travel)}`, `SUMMARY:${L.s.tofly} — ${country.name}`, "END:VEVENT", "END:VCALENDAR");
+    icsBlob = new Blob([lines.join("\r\n")], { type: "text/calendar" });
+    $("#tl-ics").addEventListener("click", () => { const a = document.createElement("a"); a.href = URL.createObjectURL(icsBlob); a.download = `mydogcanfly-timeline-${country.iso2}.ics`; a.click(); });
+    $("#tl-print").addEventListener("click", () => window.print());
+
+    // email delivery — mailto: the message is composed in the visitor's own mail client; nothing is sent to or stored on our servers.
+    $("#tl-email-btn").addEventListener("click", () => {
+      const msg = $("#tl-dmsg"); msg.hidden = true;
+      const email = $("#tl-email").value.trim();
+      if (!$("#tl-consent").checked) { msg.hidden = false; msg.textContent = L.s.consentReq; return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.hidden = false; msg.textContent = L.s.emailInvalid; return; }
+      const fn = $("#tl-fn").value.trim();
+      const dog = $("#tl-dog").value.trim() || (L.locale === "fr" ? "ton chien" : L.locale === "es" ? "tu perro" : "your dog");
+      const subject = `MyDogCanFly — ${L.s.emailSubject} (${country.name})`;
+      const body = [
+        `${L.s.emailHi}${fn ? " " + fn : ""},`, "",
+        `${L.s.emailHere} ${dog} ${L.locale === "fr" ? "vers" : L.locale === "es" ? "a" : "to"} ${country.name} ${L.s.emailOn} ${fmtDate(travel)} :`, "",
+        ...plan.map((p) => `- ${p.dateLabel} : ${p.title}`),
+        `- ${fmtDate(travel)} : ${L.s.tofly}`, "",
+        `${L.s.emailGuide}: https://mydogcanfly.com${country.href}`, "",
+        L.s.emailFoot,
+      ].join("\n");
+      const a = document.createElement("a");
+      a.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      a.click();
+    });
+
+    out.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>
+
+<style>
+  .tl-form { display: grid; grid-template-columns: 1.4fr auto 1.2fr auto; gap: 14px; align-items: end;
+    background: var(--mdcf-accent-soft, #fff1e5); border: 1px solid #f1ddc6; border-radius: 16px; padding: 22px;
+    box-shadow: 0 8px 28px rgba(242, 112, 15, .10); transition: box-shadow .25s ease, border-color .25s ease; }
+  .tl-form:focus-within { box-shadow: 0 10px 34px rgba(242, 112, 15, .22); border-color: #ebc9a1; }
+  .tl-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; position: relative; }
+  .tl-field label { font-size: 12px; font-weight: 600; color: var(--mdcf-muted); }
+  .tl-field input, .tl-field select { height: 44px; border: 1.5px solid #e7d3ba; border-radius: 10px; padding: 0 12px; font: inherit; background: var(--mdcf-surface); color: var(--mdcf-ink); box-shadow: 0 1px 2px rgba(90, 60, 20, .06); }
+  .tl-field input:focus, .tl-field select:focus { outline: none; border-color: var(--mdcf-navy); }
+  .tl-submit { height: 44px; white-space: nowrap; }
+  @media (max-width: 820px) { .tl-form { grid-template-columns: 1fr 1fr; } .tl-submit { grid-column: 1 / -1; justify-content: center; } }
+
+  .tl-warn { display: flex; gap: 12px; align-items: flex-start; margin: 16px 0 0; padding: 14px 16px; background: var(--mdcf-subtle); border: 1px solid var(--mdcf-line); border-radius: 12px; }
+  .tl-warn__ic { flex: 0 0 auto; font-size: 16px; line-height: 1.5; color: #9a6400; }
+  .tl-warn p { margin: 0; font-size: 13px; line-height: 1.55; color: var(--mdcf-ink-soft, #33436a); text-align: left; }
+  .tl-warn b { color: var(--mdcf-ink); }
+
+  .tl-out { margin-top: 22px; scroll-margin-top: 84px; }
+  :global(.tl-msg) { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+  :global(.tl-head) { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  :global(.tl-title) { font-size: 19px; margin: 0; color: var(--mdcf-ink); }
+  :global(.tl-forc) { color: var(--mdcf-muted); font-weight: 500; }
+  :global(.tl-actions) { display: flex; gap: 8px; flex-wrap: wrap; }
+  :global(.tl-act) { font: inherit; font-size: 13px; font-weight: 600; padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--mdcf-navy); background: var(--mdcf-surface); color: var(--mdcf-navy); cursor: pointer; text-decoration: none; }
+  :global(.tl-act:hover) { background: var(--mdcf-navy); color: #fff; }
+  :global(.tl-act--primary) { background: var(--mdcf-navy); color: #fff; }
+  :global(.tl-act--primary:hover) { background: #0a2a5c; color: #fff; }
+  :global(.tl-deliver) { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 18px 20px; background: var(--mdcf-subtle); margin: 18px 0; }
+  :global(.tl-dh) { font-weight: 700; color: var(--mdcf-ink); font-size: 15px; }
+  :global(.tl-dsub) { color: var(--mdcf-muted); font-size: 13px; margin: 4px 0 14px; }
+  :global(.tl-dfields) { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  :global(.tl-dfields input) { height: 42px; border: 1px solid var(--mdcf-line); border-radius: 10px; padding: 0 12px; font: inherit; background: var(--mdcf-surface); color: var(--mdcf-ink); }
+  :global(.tl-dfields input:focus) { outline: none; border-color: var(--mdcf-navy); }
+  :global(.tl-consent) { display: flex; gap: 9px; align-items: flex-start; margin: 12px 0 14px; font-size: 12.5px; color: var(--mdcf-muted); line-height: 1.5; cursor: pointer; }
+  :global(.tl-consent input) { margin-top: 2px; flex: 0 0 auto; width: 16px; height: 16px; accent-color: var(--mdcf-navy); }
+  :global(.tl-consent a) { color: var(--mdcf-accent-ink); }
+  :global(.tl-dbtns) { display: flex; flex-wrap: wrap; gap: 8px; }
+  :global(.tl-dmsg) { margin: 10px 0 0; font-size: 13px; color: #b23016; font-weight: 600; }
+  @media (max-width: 560px) { :global(.tl-dfields) { grid-template-columns: 1fr; } }
+  :global(.tl-list) { list-style: none; margin: 0; padding: 0; position: relative; }
+  :global(.tl-list)::before { content: ""; position: absolute; left: 148px; top: 6px; bottom: 6px; width: 2px; background: var(--mdcf-line); }
+  :global(.tl-step) { display: grid; grid-template-columns: 132px 1fr; gap: 24px; position: relative; padding: 0 0 18px 0; }
+  :global(.tl-when) { text-align: right; padding-top: 2px; }
+  :global(.tl-date) { display: block; font-size: 13.5px; font-weight: 700; color: var(--mdcf-ink); }
+  :global(.tl-off) { display: block; font-size: 11.5px; color: var(--mdcf-muted); margin-top: 2px; }
+  :global(.tl-body) { position: relative; }
+  :global(.tl-body)::before { content: ""; position: absolute; left: -25px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--mdcf-surface); border: 2px solid var(--mdcf-navy); }
+  :global(.tl-s-cond .tl-body)::before { border-color: #b5892a; }
+  :global(.tl-s-no .tl-body)::before { border-color: var(--mdcf-muted); }
+  :global(.tl-fly .tl-body)::before { background: var(--mdcf-navy); }
+  :global(.tl-h) { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  :global(.tl-t) { font-weight: 700; color: var(--mdcf-ink); }
+  :global(.tl-pill) { font-size: 11.5px; font-weight: 700; padding: 2px 9px; border-radius: 999px; }
+  :global(.tl-yes) { background: #e7f7ec; color: #1a7f43; }
+  :global(.tl-cond) { background: #fdf3df; color: #9a6400; }
+  :global(.tl-verify) { background: #eef1f5; color: #4a5666; }
+  :global(.tl-g) { margin: 6px 0 0; color: var(--mdcf-ink); font-size: 14px; line-height: 1.5; }
+  :global(.tl-c) { margin: 6px 0 0; color: var(--mdcf-muted); font-size: 13px; line-height: 1.5; }
+  :global(.tl-fly .tl-t) { color: var(--mdcf-navy); }
+  :global(.tl-onward) { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 14px; }
+  :global(.tl-onav) { flex: 1 1 200px; text-align: center; padding: 12px; border-radius: 12px; border: 1px solid var(--mdcf-line); background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; transition: background .18s ease, border-color .18s ease; }
+  :global(.tl-onav--heat) { background: #fdf1e3; border-color: #f2ddc2; }
+  :global(.tl-onav--heat:hover) { background: #f8e4cb; border-color: #eccea4; }
+  :global(.tl-onav--crate) { background: #ecf2fb; border-color: #d6e4f6; }
+  :global(.tl-onav--crate:hover) { background: #dde9f8; border-color: #c2d8f1; }
+  :global(.tl-disc) { font-size: 12px; color: var(--mdcf-muted); line-height: 1.5; margin: 0; }
+  :global(.ac-list) { position: absolute; z-index: 20; top: 100%; left: 0; right: 0; margin: 4px 0 0; padding: 4px; list-style: none; background: var(--mdcf-surface); border: 1px solid var(--mdcf-line); border-radius: 10px; box-shadow: var(--mdcf-shadow); max-height: 260px; overflow: auto; }
+  :global(.ac-item) { padding: 9px 10px; border-radius: 7px; font-size: 14px; cursor: pointer; }
+  :global(.ac-item:hover), :global(.ac-item.is-cur) { background: var(--mdcf-subtle); }
+  @media (max-width: 560px) {
+    :global(.tl-list)::before { left: 8px; }
+    :global(.tl-step) { grid-template-columns: 1fr; gap: 4px; padding-left: 26px; }
+    :global(.tl-when) { text-align: left; }
+    :global(.tl-body)::before { left: -22px; }
+  }
+  @media print {
+    .tl-form, :global(.tl-onward), :global(.tl-act), :global(.tl-deliver) { display: none !important; }
+    :global(.tl-list)::before { display: none; }
+  }
+</style>

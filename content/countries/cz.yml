@@ -1,0 +1,343 @@
+# Country Entry Guide — Czechia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_cz
+iso2: "CZ"
+name: { en: "Czechia", fr: "Tchéquie", es: "Chequia", pt: "Tchéquia" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Czechia with your dog", fr: "Voyager en Tchéquie avec ton chien", es: "Viajar a Chequia con tu perro", pt: "Viajar para a Tchéquia com seu cachorro" }
+  intro:
+    en: >-
+      Czechia welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Czechia itself. As an EU member, Czechia applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from
+      another EU country simply needs an EU pet passport. A dog from a listed non-EU country (such as
+      the United States, Canada or the United Kingdom) needs an EU animal health certificate but no
+      blood test. A dog from a non-listed country faces the longest path, including a rabies antibody
+      test and a three-month wait. This guide explains each case so you know exactly what to prepare
+      before you book your flight.
+    fr: >-
+      La Tchéquie accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de la Tchéquie. En tant qu'État membre de l'UE, la Tchéquie applique
+      les règles européennes de mouvement des animaux : une puce ISO et une vaccination antirabique
+      valide sont toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un
+      passeport européen. Un chien en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…)
+      a besoin d'un certificat sanitaire européen mais pas de prise de sang. Un chien venant d'un pays
+      non listé suit le parcours le plus long, avec un titrage antirabique et un délai de trois mois. Ce
+      guide détaille chaque cas pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Chequia acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Chequia. Como Estado miembro de la UE, Chequia aplica las normas
+      europeas de movimiento de animales de compañía: siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte
+      europeo para mascotas. Un perro procedente de un país tercero listado (como Estados Unidos, Canadá
+      o el Reino Unido) necesita un certificado sanitario europeo, pero no una prueba de sangre. Un perro
+      de un país no listado se enfrenta al camino más largo, que incluye una prueba de titulación de
+      anticuerpos contra la rabia y una espera de tres meses. Esta guía explica cada caso para que sepas
+      exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Tchéquia recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Tchéquia em si. Como membro da União Europeia, a Tchéquia aplica as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico (titulação) e uma espera de três meses. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate valid 10 days."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario válido 10 días."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Czechia", fr: "Non requis pour la Tchéquie", es: "No obligatorio para Chequia", pt: "Não obrigatório na Tchéquia" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Czechia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Tchéquie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Chequia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Tchéquia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Czechia", fr: "Pays de destination — Tchéquie", es: "País de destino — Chequia", pt: "País de destino — Tchéquia" }
+      text:
+        en: "Czechia applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed to enter Czechia."
+        fr: "La Tchéquie applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer en Tchéquie."
+        es: "Chequia aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en Chequia."
+        pt: "A Tchéquia aplica o marco europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia (Echinococcus) é exigido para entrar na Tchéquia."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Czechia's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre tchèque, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Chequia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o marco regulatório da Tchéquia e depois confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination.", fr: "Doit être posée avant la vaccination antirabique.", es: "Debe implantarse antes de la vacunación antirrábica.", pt: "Deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; svscr.cz", fr: "Règl. UE 576/2013 ; svscr.cz", es: "Regl. UE 576/2013; svscr.cz", pt: "Regulamento UE 576/2013; svscr.cz" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; otherwise re-vaccination is needed.", fr: "La puce doit déjà être posée ; sinon il faut revacciner.", es: "El microchip debe estar ya implantado; de lo contrario, hay que revacunar.", pt: "O microchip já deve estar implantado; caso contrário, é preciso revacinar." }
+    ref: { en: "EU Reg. 576/2013, Annex III", fr: "Règl. UE 576/2013, annexe III", es: "Regl. UE 576/2013, anexo III", pt: "Regulamento UE 576/2013, anexo III" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-designated lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório designado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; svscr.cz", fr: "Règl. UE 2020/692 ; svscr.cz", es: "Regl. UE 2020/692; svscr.cz", pt: "Regulamento UE 2020/692; svscr.cz" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e, depois, por até 4 meses para circular pela UE." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 2019/1293; svscr.cz", fr: "Règl. UE 2019/1293 ; svscr.cz", es: "Regl. UE 2019/1293; svscr.cz", pt: "Regulamento UE 2019/1293; svscr.cz" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Czechia does not require anti-Echinococcus treatment; only Finland, Ireland, Malta, N. Ireland and Norway do.", fr: "La Tchéquie n'exige pas de traitement contre l'échinococcose ; seuls la Finlande, l'Irlande, Malte, l'Irlande du Nord et la Norvège l'imposent.", es: "Chequia no exige tratamiento contra la tenia (Echinococcus); solo lo exigen Finlandia, Irlanda, Malta, Irlanda del Norte y Noruega.", pt: "A Tchéquia não exige tratamento contra a tênia (Echinococcus); só Finlândia, Irlanda, Malta, Irlanda do Norte e Noruega exigem." }
+    ref: { en: "svscr.cz; European Commission — pet travel", fr: "svscr.cz ; Commission européenne — voyage animaux", es: "svscr.cz; Comisión Europea — viaje de animales", pt: "svscr.cz; Comissão Europeia — viagem com animais de estimação" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Czechia issues no import permit for non-commercial pet travel and requires no prior customs appointment.", fr: "La Tchéquie ne délivre aucun permis d'import pour le voyage non commercial et n'exige aucun rendez-vous douanier préalable.", es: "Chequia no expide permiso de importación para el viaje no comercial de mascotas ni exige cita previa en aduanas.", pt: "A Tchéquia não emite autorização de importação para viagem não comercial com animal de estimação e não exige agendamento prévio na alfândega." }
+    ref: { en: "celnisprava.gov.cz (veterinary goods)", fr: "celnisprava.gov.cz (marchandises vétérinaires)", es: "celnisprava.gov.cz (mercancías veterinarias)", pt: "celnisprava.gov.cz (mercadorias veterinárias)" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Non-EU arrivals", fr: "Arrivées hors UE", es: "Llegadas de fuera de la UE", pt: "Chegadas de fora da UE" }
+    when: { en: "Enter from third countries only via an approved international airport point of entry; present yourself to Czech customs.", fr: "Entre depuis les pays tiers uniquement par un aéroport international agréé comme point d'entrée ; présente-toi à la douane tchèque.", es: "Entra desde terceros países únicamente por un aeropuerto internacional autorizado como punto de entrada; preséntate ante la aduana checa.", pt: "Vindo de países terceiros, entre somente por um aeroporto internacional aprovado como ponto de entrada; apresente-se à alfândega tcheca." }
+    exceptions: { en: "No systematic check for intra-EU (Schengen) arrivals.", fr: "Pas de contrôle systématique pour les arrivées intra-UE (Schengen).", es: "Sin control sistemático para las llegadas intracomunitarias (Schengen).", pt: "Sem controle sistemático para as chegadas de dentro da UE (Schengen)." }
+    ref: { en: "EU Reg. 576/2013; celnisprava.gov.cz", fr: "Règl. UE 576/2013 ; celnisprava.gov.cz", es: "Regl. UE 576/2013; celnisprava.gov.cz", pt: "Regulamento UE 576/2013; celnisprava.gov.cz" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Czechia allows unvaccinated pups from EU states under set conditions (with mother, or 8–16 weeks with a signed no-contact declaration); from outside the EU a rabies vaccine at 12 weeks is required.", fr: "La Tchéquie admet les chiots non vaccinés depuis l'UE sous conditions (avec la mère, ou 8–16 semaines avec une déclaration signée d'absence de contact) ; hors UE, le vaccin antirabique à 12 semaines est requis.", es: "Chequia admite cachorros sin vacunar desde países de la UE en determinadas condiciones (con la madre, o de 8 a 16 semanas con una declaración firmada de ausencia de contacto); desde fuera de la UE se exige la vacuna antirrábica a las 12 semanas.", pt: "A Tchéquia admite filhotes não vacinados vindos de países da UE sob certas condições (acompanhados da mãe, ou entre 8 e 16 semanas com uma declaração assinada de ausência de contato); de fora da UE, é obrigatória a vacina antirrábica às 12 semanas." }
+    ref: { en: "EU Reg. 576/2013; svscr.cz", fr: "Règl. UE 576/2013 ; svscr.cz", es: "Regl. UE 576/2013; svscr.cz", pt: "Regulamento UE 576/2013; svscr.cz" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — authorities may then order re-export, quarantine or other measures.", fr: "Uniquement en cas de non-conformité — les autorités peuvent alors ordonner réexpédition, quarantaine ou autres mesures.", es: "Solo en caso de incumplimiento — las autoridades pueden entonces ordenar la reexpedición, la cuarentena u otras medidas.", pt: "Apenas em caso de descumprimento das regras — as autoridades podem então determinar a reexportação, a quarentena ou outras medidas." }
+    ref: { en: "svscr.cz", fr: "svscr.cz", es: "svscr.cz", pt: "svscr.cz" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and normally no border check."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et normalement pas de contrôle frontalier."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y normalmente sin control fronterizo."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e, normalmente, sem controle de fronteira."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by an official vet before departure. No antibody test is required; enter Czechia via an approved international airport and present yourself to customs."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par un vétérinaire officiel avant le départ. Pas de titrage ; entre en Tchéquie par un aéroport international agréé et présente-toi à la douane."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por un veterinario oficial antes de la salida. No se exige prueba de titulación; entra en Chequia por un aeropuerto internacional autorizado y preséntate ante la aduana."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e um certificado sanitário europeu endossado por um veterinário oficial antes da partida. Não é exigido teste sorológico; entre na Tchéquia por um aeroporto internacional aprovado e apresente-se à alfândega."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-designated laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate is also required."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé est également requis."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige un certificado sanitario animal de la UE refrendado."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório designado pela UE, e depois 3 meses obrigatórios de espera antes da entrada. Também é exigido um certificado sanitário europeu endossado."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Czechia depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Tchéquie dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Chequia depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega à Tchéquia depende do país de onde você veio."
+  points:
+    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+      fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
+      es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
+      pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
+    - en: "From outside the EU: pets may be imported only via an approved international airport point of entry; present yourself to Czech customs for documentary and identity checks."
+      fr: "Depuis hors UE : les animaux ne peuvent entrer que par un aéroport international agréé comme point d'entrée ; présente-toi à la douane tchèque pour les contrôles documentaires et d'identité."
+      es: "Desde fuera de la UE: las mascotas solo pueden entrar por un aeropuerto internacional autorizado como punto de entrada; preséntate ante la aduana checa para los controles documentales y de identidad."
+      pt: "De fora da UE: os animais de estimação só podem ser importados por um aeroporto internacional aprovado como ponto de entrada; apresente-se à alfândega tcheca para os controles de documentos e de identificação."
+    - en: "No import permit is issued and no prior appointment with customs is needed for non-commercial pet travel."
+      fr: "Aucun permis d'import n'est délivré et aucun rendez-vous préalable avec la douane n'est nécessaire pour le voyage non commercial."
+      es: "No se expide ningún permiso de importación ni se necesita cita previa con la aduana para el viaje no comercial de mascotas."
+      pt: "Nenhuma autorização de importação é emitida e não é preciso agendamento prévio na alfândega para a viagem não comercial com animal de estimação."
+    - en: "A maximum of five pets may travel with an owner under the non-commercial movement rules."
+      fr: "Un maximum de cinq animaux peut voyager avec un propriétaire dans le cadre du mouvement non commercial."
+      es: "Un máximo de cinco mascotas puede viajar con un propietario según las normas de movimiento no comercial."
+      pt: "No máximo cinco animais de estimação podem viajar com um dono segundo as regras de deslocamento não comercial."
+    - en: "Carry original documents (not copies); keep the laboratory report for any antibody test."
+      fr: "Munis-toi des documents originaux (pas de copies) ; conserve le protocole de laboratoire pour tout titrage."
+      es: "Lleva los documentos originales (no copias); conserva el informe de laboratorio de cualquier prueba de titulación."
+      pt: "Leve os documentos originais (não cópias); guarde o laudo do laboratório de qualquer teste sorológico."
+    - en: "If documents are missing or invalid, authorities may order re-export, quarantine or other measures — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, les autorités peuvent ordonner réexpédition, quarantaine ou autres mesures — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, las autoridades pueden ordenar la reexpedición, la cuarentena u otras medidas — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, as autoridades podem determinar a reexportação, a quarentena ou outras medidas — às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Czechia has no national breed-specific dangerous-dog ban. There is no list of prohibited breeds; the law relies on an owner-responsibility model rather than on the dog's breed."
+    fr: "La Tchéquie n'a aucune interdiction nationale de chiens dangereux fondée sur la race. Il n'existe pas de liste de races interdites ; la loi repose sur un modèle de responsabilité du propriétaire plutôt que sur la race du chien."
+    es: "Chequia no tiene ninguna prohibición nacional de perros peligrosos basada en la raza. No existe una lista de razas prohibidas; la ley se basa en un modelo de responsabilidad del propietario y no en la raza del perro."
+    pt: "A Tchéquia não tem nenhuma proibição nacional de cachorros perigosos baseada na raça. Não existe lista de raças proibidas; a lei se apoia em um modelo de responsabilidade do dono, e não na raça do cachorro."
+  cat1:
+    en: "No breed is banned from import or ownership on the basis of its type. Historically parliament chose responsibility over breed lists, approving only a ban on training any dog for fighting rather than outlawing specific breeds."
+    fr: "Aucune race n'est interdite d'importation ou de détention en raison de son type. Historiquement, le parlement a privilégié la responsabilité plutôt que des listes de races, approuvant seulement l'interdiction de dresser un chien au combat, sans proscrire de races précises."
+    es: "Ninguna raza está prohibida para la importación o la tenencia por razón de su tipo. Históricamente, el parlamento optó por la responsabilidad en lugar de las listas de razas, aprobando únicamente la prohibición de adiestrar a cualquier perro para el combate en lugar de proscribir razas concretas."
+    pt: "Nenhuma raça é proibida de importação ou de posse por causa do seu tipo. Historicamente, o parlamento preferiu a responsabilidade às listas de raças, aprovando apenas a proibição de treinar qualquer cachorro para briga, em vez de banir raças específicas."
+  cat2:
+    en: "Rules are set locally: individual municipalities may adopt ordinances (for example muzzle, leash or registration requirements in public spaces), so obligations can vary from one town to another."
+    fr: "Les règles sont fixées localement : chaque commune peut adopter des arrêtés (par exemple muselière, laisse ou enregistrement dans l'espace public), si bien que les obligations peuvent varier d'une ville à l'autre."
+    es: "Las normas se fijan a nivel local: cada municipio puede adoptar ordenanzas (por ejemplo, exigencias de bozal, correa o registro en los espacios públicos), por lo que las obligaciones pueden variar de una ciudad a otra."
+    pt: "As regras são definidas localmente: cada município pode adotar posturas municipais (por exemplo, exigência de focinheira, guia ou registro em espaços públicos), de modo que as obrigações podem variar de uma cidade para outra."
+  note:
+    en: "Because there is no national breed ban, no dog is refused entry for its breed alone. Check the municipal rules of your destination town, and confirm current local requirements before travelling."
+    fr: "Comme il n'y a pas d'interdiction nationale de race, aucun chien n'est refusé à l'entrée pour sa seule race. Vérifie les règles municipales de ta ville de destination et confirme les obligations locales en vigueur avant de voyager."
+    es: "Como no hay ninguna prohibición nacional por raza, no se rechaza la entrada a ningún perro solo por su raza. Consulta las normas municipales de tu ciudad de destino y confirma los requisitos locales vigentes antes de viajar."
+    pt: "Como não há proibição nacional por raça, nenhum cachorro tem a entrada recusada só pela raça. Consulte as regras municipais da cidade de destino e confirme as exigências locais em vigor antes de viajar."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Original documents plus the laboratory report if an antibody test was done"
+    fr: "Documents originaux et le protocole de laboratoire si un titrage a été réalisé"
+    es: "Documentos originales y el informe de laboratorio si se realizó una prueba de titulación"
+    pt: "Documentos originais e o laudo do laboratório, se tiver sido feito teste sorológico"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "From outside the EU, enter via an approved international airport point of entry"
+    fr: "Depuis hors UE, entre par un aéroport international agréé comme point d'entrée"
+    es: "Desde fuera de la UE, entra por un aeropuerto internacional autorizado como punto de entrada"
+    pt: "Vindo de fora da UE, entre por um aeroporto internacional aprovado como ponto de entrada"
+
+sources:
+  - label: { en: "State Veterinary Administration — Travelling with pet animals", fr: "Administration vétérinaire d'État — Voyager avec des animaux de compagnie", es: "Administración Veterinaria del Estado — Viajar con animales de compañía", pt: "SVS (Státní veterinární správa) — Viajar com animais de estimação" }
+    url: "https://en.svscr.cz/animal-health/travelling-with-pet-animals/"
+  - label: { en: "State Veterinary Administration — To Czechia from EU Member States and Norway", fr: "Administration vétérinaire d'État — Vers la Tchéquie depuis l'UE et la Norvège", es: "Administración Veterinaria del Estado — A Chequia desde los Estados miembros de la UE y Noruega", pt: "SVS (Státní veterinární správa) — Para a Tchéquia a partir dos Estados membros da UE e da Noruega" }
+    url: "https://en.svscr.cz/animal-health/travelling-with-pet-animals/iii-travelling-with-dogs-cats-and-ferrets-to-the-czech-republic-from-the-eu-member-states/"
+  - label: { en: "State Veterinary Administration — To Czechia from listed third countries", fr: "Administration vétérinaire d'État — Vers la Tchéquie depuis les pays tiers listés", es: "Administración Veterinaria del Estado — A Chequia desde países terceros listados", pt: "SVS (Státní veterinární správa) — Para a Tchéquia a partir de países terceiros listados" }
+    url: "https://en.svscr.cz/animal-health/travelling-with-pet-animals/iv-travelling-with-dogs-cats-and-ferrets-to-the-czech-republic-from-listed-third-countries/"
+  - label: { en: "State Veterinary Administration — To Czechia from non-listed third countries", fr: "Administration vétérinaire d'État — Vers la Tchéquie depuis les pays tiers non listés", es: "Administración Veterinaria del Estado — A Chequia desde países terceros no listados", pt: "SVS (Státní veterinární správa) — Para a Tchéquia a partir de países terceiros não listados" }
+    url: "https://en.svscr.cz/animal-health/travelling-with-pet-animals/v-travelling-with-dogs-cats-and-ferrets-to-the-czech-republic-from-non-listed-third-countries/"
+  - label: { en: "Czech Customs Administration — Veterinary goods (pets)", fr: "Douane tchèque — Marchandises vétérinaires (animaux de compagnie)", es: "Administración de Aduanas de Chequia — Mercancías veterinarias (mascotas)", pt: "Celní správa (alfândega da Tchéquia) — Mercadorias veterinárias (animais de estimação)" }
+    url: "https://celnisprava.gov.cz/en/dalsi-kompetence/informace-pro-fyzicke-osoby/Pages/veterinary-goods.aspx"
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Travelling with a pet within the EU", fr: "Commission européenne — Voyager avec un animal dans l'UE", es: "Comisión Europea — Viajar con una mascota dentro de la UE", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+
+seo:
+  title: { en: "Czechia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Tchéquie — Guide", es: "Requisitos de entrada de perros en Chequia — Guía de viaje", pt: "Tchéquia: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Czechia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Tchéquie avec ton chien : formalités (2026)", es: "Viajar a Chequia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Tchéquia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Czechia — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Tchéquie — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Chequia — según origen UE, listado o no listado. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro à Tchéquia — por origem UE, listada e não listada. Com fonte e data."
+  slug: "czechia"
+  shortDesc:
+    en: "What you need to bring a dog into Czechia, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Tchéquie, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Chequia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Tchéquia, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

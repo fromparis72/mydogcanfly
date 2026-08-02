@@ -1,0 +1,355 @@
+# Country Entry Guide — North Macedonia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_mk
+iso2: "MK"
+name: { en: "North Macedonia", fr: "Macédoine du Nord", es: "Macedonia del Norte", pt: "Macedônia do Norte" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: listed
+exit:
+  authority: FVA
+  authorityUrl: https://fva.gov.mk/en/pets
+  intro:
+    en: "North Macedonia is a listed country, so no rabies titer is needed to return to the EU — the EU health certificate is issued by an official veterinarian of the Food and Veterinary Agency (FVA)."
+    fr: "La Macédoine du Nord est un pays listé : pas de titrage pour rentrer dans l'UE — le certificat sanitaire UE est délivré par un vétérinaire officiel de l'Agence pour l'alimentation et la vétérinaire (FVA)."
+    es: "Macedonia del Norte es un país listado: no hace falta titulación para volver a la UE — el certificado sanitario UE lo emite un veterinario oficial de la Agencia de Alimentos y Veterinaria (FVA)."
+    pt: "A Macedônia do Norte é um país listado: nenhum teste sorológico antirrábico é necessário para voltar à UE — o certificado sanitário da UE é emitido por um veterinário oficial da Agência de Alimentos e Veterinária (FVA)."
+  steps:
+    - timing: window
+      text:
+        en: "Your dog needs a microchip and valid rabies vaccination; an FVA authorised veterinarian completes and endorses the EU-model health certificate before departure."
+        fr: "Ton chien doit être pucé et vacciné contre la rage ; un vétérinaire autorisé de la FVA remplit et vise le certificat au modèle UE avant le départ."
+        es: "Tu perro necesita microchip y vacuna antirrábica válida; un veterinario autorizado de la FVA rellena y refrenda el certificado en modelo UE antes de salir."
+        pt: "Seu cachorro precisa de microchip e vacinação antirrábica válida; um veterinário autorizado pela FVA preenche e endossa o certificado sanitário no modelo da UE antes da partida."
+  onSiteNote:
+    en: "The certificate is valid 10 days to reach the EU border check — arrange it close to departure."
+    fr: "Le certificat est valable 10 jours pour atteindre le contrôle à la frontière UE — organise-le peu avant le départ."
+    es: "El certificado vale 10 días para llegar al control fronterizo de la UE — organízalo cerca de la salida."
+    pt: "O certificado vale 10 dias para chegar ao controle de fronteira da UE — providencie-o pouco antes da partida."
+
+hero:
+  h1: { en: "Traveling to North Macedonia with your dog", fr: "Voyager en Macédoine du Nord avec ton chien", es: "Viajar a Macedonia del Norte con tu perro", pt: "Viajar para a Macedônia do Norte com seu cachorro" }
+  intro:
+    en: >-
+      North Macedonia welcomes dogs, but what you need to prepare depends mainly on the country your dog
+      is travelling from — not only on North Macedonia itself. North Macedonia is not in the European
+      Union; it applies its own national rules set by the Food and Veterinary Agency (Agencija za hrana
+      i veterinarstvo). A dog must be over 3 months old, permanently identified and travel with either a
+      pet passport or a veterinary health certificate, depending on its country of origin. Dogs from
+      countries on North Macedonia's low-risk lists need no blood test, while a dog from a country that
+      is not listed must also pass a rabies antibody test at least three months before travel. Up to
+      five non-commercial pets may accompany a traveller. This guide explains each case so you know
+      exactly what to prepare before you book your flight.
+    fr: >-
+      La Macédoine du Nord accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où
+      ton chien voyage — pas seulement de la Macédoine du Nord. Le pays n'est pas membre de l'Union
+      européenne ; il applique ses propres règles nationales fixées par l'Agence pour l'alimentation et
+      la médecine vétérinaire (Agencija za hrana i veterinarstvo). Le chien doit avoir plus de 3 mois,
+      être identifié de façon permanente et voyager avec un passeport pour animaux ou un certificat
+      vétérinaire, selon son pays d'origine. Les chiens venant des pays figurant sur les listes à faible
+      risque de la Macédoine du Nord n'ont pas besoin de prise de sang, tandis qu'un chien issu d'un pays
+      non listé doit aussi réussir un titrage antirabique au moins trois mois avant le voyage. Jusqu'à
+      cinq animaux non commerciaux peuvent accompagner un voyageur. Ce guide détaille chaque cas pour
+      savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Macedonia del Norte acoge a los perros, pero lo que debes preparar depende sobre todo del país
+      desde el que viaja tu perro — no solo de Macedonia del Norte. Macedonia del Norte no forma parte de
+      la Unión Europea; aplica sus propias normas nacionales fijadas por la Agencia de Alimentos y
+      Veterinaria (Agencija za hrana i veterinarstvo). El perro debe tener más de 3 meses, estar
+      identificado de forma permanente y viajar con un pasaporte para mascotas o un certificado sanitario
+      veterinario, según su país de origen. Los perros procedentes de países incluidos en las listas de
+      bajo riesgo de Macedonia del Norte no necesitan análisis de sangre, mientras que un perro de un
+      país que no está listado también debe superar una prueba de titulación de rabia al menos tres meses
+      antes del viaje. Hasta cinco mascotas no comerciales pueden acompañar a un viajero. Esta guía
+      explica cada caso para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Macedônia do Norte recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Macedônia do Norte em si. A Macedônia do Norte não faz parte da União Europeia; ela aplica suas próprias regras nacionais, definidas pela Agência de Alimentos e Veterinária (Agencija za hrana i veterinarstvo). Um cachorro precisa ter mais de 3 meses, estar identificado de forma permanente e viajar com um passaporte para animais ou um atestado de saúde veterinário, dependendo do seu país de origem. Cachorros vindos de países nas listas de baixo risco da Macedônia do Norte não precisam de exame de sangue, enquanto um cachorro vindo de um país não listado também precisa passar por um teste sorológico antirrábico pelo menos três meses antes da viagem. Até cinco animais não comerciais podem acompanhar um viajante. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if a pet passport and rabies vaccination are already up to date."
+    fr: "Quelques jours si le passeport et la vaccination antirabique sont déjà à jour."
+    es: "Unos días si el pasaporte para mascotas y la vacunación antirrábica ya están al día."
+    pt: "Alguns dias se o passaporte para animais e a vacinação antirrábica já estiverem em dia."
+  listed:
+    en: "~2 weeks: a veterinary health certificate must be issued within 10 days before travel, plus a valid rabies vaccination."
+    fr: "~2 semaines : un certificat vétérinaire doit être établi dans les 10 jours précédant le voyage, plus une vaccination antirabique valide."
+    es: "~2 semanas: un certificado sanitario veterinario debe expedirse dentro de los 10 días previos al viaje, más una vacunación antirrábica válida."
+    pt: "~2 semanas: um atestado de saúde veterinário precisa ser emitido nos 10 dias antes da viagem, mais uma vacinação antirrábica válida."
+  nonListed:
+    en: "~3–4 months: a rabies antibody test must be done at least 3 months before travel, on top of the certificate."
+    fr: "~3–4 mois : un titrage antirabique doit être réalisé au moins 3 mois avant le voyage, en plus du certificat."
+    es: "~3–4 meses: una prueba de titulación de rabia debe realizarse al menos 3 meses antes del viaje, además del certificado."
+    pt: "~3–4 meses: um teste sorológico antirrábico precisa ser feito pelo menos 3 meses antes da viagem, além do certificado."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required (microchip or legible tattoo)", fr: "Requise (puce ou tatouage lisible)", es: "Obligatorio (microchip o tatuaje legible)", pt: "Obrigatório (microchip ou tatuagem legível)" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-passport origins", fr: "Conditionnel — origines sans passeport", es: "Condicional — orígenes sin pasaporte", pt: "Condicional — origens sem passaporte" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Optional (not mandatory)", fr: "Facultatif (non obligatoire)", es: "Opcional (no obligatorio)", pt: "Opcional (não obrigatório)" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — North Macedonia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Macédoine du Nord (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Macedonia del Norte (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Macedônia do Norte (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — North Macedonia", fr: "Pays de destination — Macédoine du Nord", es: "País de destino — Macedonia del Norte", pt: "País de destino — Macedônia do Norte" }
+      text:
+        en: "North Macedonia applies its national Rulebook (Official Gazette 153/2015): a dog over 3 months old, permanently identified, with a valid rabies vaccination and either a pet passport or a veterinary health certificate."
+        fr: "La Macédoine du Nord applique son Règlement national (Journal officiel 153/2015) : chien de plus de 3 mois, identifié de façon permanente, avec une vaccination antirabique valide et un passeport ou un certificat vétérinaire."
+        es: "Macedonia del Norte aplica su Reglamento nacional (Boletín Oficial 153/2015): un perro de más de 3 meses, identificado de forma permanente, con una vacunación antirrábica válida y un pasaporte para mascotas o un certificado sanitario veterinario."
+        pt: "A Macedônia do Norte aplica seu Regulamento nacional (Diário Oficial 153/2015): um cachorro com mais de 3 meses, identificado de forma permanente, com vacinação antirrábica válida e um passaporte para animais ou um atestado de saúde veterinário."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from a passport country (Annex II Part A), a certificate country (Annex II Part B) or a country not on the low-risk lists decides whether a rabies antibody test is required."
+        fr: "Que ton chien parte d'un pays à passeport (annexe II partie A), d'un pays à certificat (annexe II partie B) ou d'un pays hors des listes à faible risque détermine si un titrage antirabique est exigé."
+        es: "Que tu perro salga de un país con pasaporte (anexo II parte A), de un país con certificado (anexo II parte B) o de un país fuera de las listas de bajo riesgo determina si se exige una prueba de titulación de rabia."
+        pt: "Se o seu cachorro parte de um país de passaporte (anexo II parte A), de um país de certificado (anexo II parte B) ou de um país fora das listas de baixo risco é o que determina se o teste sorológico antirrábico é exigido."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger the antibody test even if you fly in from a low-risk country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer le titrage même si tu arrives d'un pays à faible risque. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a la prueba de titulación aunque llegues desde un país de bajo riesgo. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar o teste sorológico mesmo que você chegue de um país de baixo risco. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as North Macedonia's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre macédonien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Macedonia del Norte y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral da Macedônia do Norte, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Microchip / permanent identification", fr: "Puce / identification permanente", es: "Microchip / identificación permanente", pt: "Microchip / identificação permanente" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be individually identified before travel.", fr: "Le chien doit être identifié individuellement avant le voyage.", es: "El perro debe estar identificado individualmente antes del viaje.", pt: "O cachorro precisa estar identificado individualmente antes da viagem." }
+    exceptions: { en: "An electronic microchip, a clearly legible tattoo or any other permanent means of identification is accepted.", fr: "Une puce électronique, un tatouage clairement lisible ou tout autre moyen d'identification permanent est accepté.", es: "Se acepta un microchip electrónico, un tatuaje claramente legible o cualquier otro medio de identificación permanente.", pt: "Um microchip eletrônico, uma tatuagem claramente legível ou qualquer outro meio permanente de identificação é aceito." }
+    ref: { en: "Rulebook, Official Gazette 153/2015; fva.gov.mk", fr: "Règlement, Journal officiel 153/2015 ; fva.gov.mk", es: "Reglamento, Boletín Oficial 153/2015; fva.gov.mk", pt: "Regulamento, Diário Oficial 153/2015; fva.gov.mk" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Valid rabies vaccination for a dog over 3 months old, as recorded in the passport or veterinary health certificate.", fr: "Vaccination antirabique valide pour un chien de plus de 3 mois, consignée dans le passeport ou le certificat vétérinaire.", es: "Vacunación antirrábica válida para un perro de más de 3 meses, registrada en el pasaporte o el certificado sanitario veterinario.", pt: "Vacinação antirrábica válida para um cachorro com mais de 3 meses, registrada no passaporte ou no atestado de saúde veterinário." }
+    exceptions: { en: "Puppies under 3 months not yet vaccinated may enter only under strict conditions (see minimum age).", fr: "Les chiots de moins de 3 mois non encore vaccinés ne peuvent entrer que sous conditions strictes (voir âge minimum).", es: "Los cachorros de menos de 3 meses aún no vacunados solo pueden entrar bajo condiciones estrictas (ver edad mínima).", pt: "Filhotes com menos de 3 meses ainda não vacinados só podem entrar sob condições rigorosas (veja idade mínima)." }
+    ref: { en: "Rulebook 153/2015; model veterinary health certificate", fr: "Règlement 153/2015 ; modèle de certificat vétérinaire", es: "Reglamento 153/2015; modelo de certificado sanitario veterinario", pt: "Regulamento 153/2015; atestado de saúde veterinário modelo" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Required only for origins not on the Annex I (Part A/B) low-risk lists: test done at least 3 months before travel.", fr: "Exigé uniquement pour les origines hors des listes à faible risque de l'annexe I (parties A/B) : test réalisé au moins 3 mois avant le voyage.", es: "Se exige solo para orígenes fuera de las listas de bajo riesgo del anexo I (partes A/B): prueba realizada al menos 3 meses antes del viaje.", pt: "Exigido apenas para origens fora das listas de baixo risco do anexo I (partes A/B): teste feito pelo menos 3 meses antes da viagem." }
+    exceptions: { en: "Not required from countries on the Annex I low-risk lists (which include the EU).", fr: "Non requis depuis les pays des listes à faible risque de l'annexe I (dont l'UE).", es: "No se exige desde países de las listas de bajo riesgo del anexo I (que incluyen la UE).", pt: "Não exigido a partir de países nas listas de baixo risco do anexo I (que incluem a UE)." }
+    ref: { en: "Rulebook 153/2015, Annex I; fva.gov.mk", fr: "Règlement 153/2015, annexe I ; fva.gov.mk", es: "Reglamento 153/2015, anexo I; fva.gov.mk", pt: "Regulamento 153/2015, anexo I; fva.gov.mk" }
+  - item: { en: "Pet passport (Annex II, Part A)", fr: "Passeport pour animaux (annexe II, partie A)", es: "Pasaporte para mascotas (anexo II, parte A)", pt: "Passaporte para animais (anexo II, parte A)" }
+    required: { en: "Part A origins", fr: "Origines partie A", es: "Orígenes de la parte A", pt: "Origens da parte A" }
+    when: { en: "Issued by an authorised vet; records the identification and rabies vaccination.", fr: "Délivré par un vétérinaire autorisé ; consigne l'identification et la vaccination antirabique.", es: "Expedido por un veterinario autorizado; registra la identificación y la vacunación antirrábica.", pt: "Emitido por um veterinário autorizado; registra a identificação e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by a veterinary health certificate for Annex II Part B origins.", fr: "Remplacé par un certificat vétérinaire pour les origines de l'annexe II partie B.", es: "Se sustituye por un certificado sanitario veterinario para orígenes del anexo II parte B.", pt: "Substituído por um atestado de saúde veterinário para origens do anexo II parte B." }
+    ref: { en: "Rulebook 153/2015, Annex II Part A", fr: "Règlement 153/2015, annexe II partie A", es: "Reglamento 153/2015, anexo II parte A", pt: "Regulamento 153/2015, anexo II parte A" }
+  - item: { en: "Veterinary health certificate (Annex II, Part B)", fr: "Certificat vétérinaire (annexe II, partie B)", es: "Certificado sanitario veterinario (anexo II, parte B)", pt: "Atestado de saúde veterinário (anexo II, parte B)" }
+    required: { en: "Part B origins", fr: "Origines partie B", es: "Orígenes de la parte B", pt: "Origens da parte B" }
+    when: { en: "Issued by an authorised/official vet in the country of origin, endorsed within 10 days before travel.", fr: "Établi par un vétérinaire autorisé/officiel du pays d'origine, visé dans les 10 jours précédant le voyage.", es: "Expedido por un veterinario autorizado/oficial del país de origen, refrendado dentro de los 10 días previos al viaje.", pt: "Emitido por um veterinário autorizado/oficial no país de origem, endossado nos 10 dias antes da viagem." }
+    exceptions: { en: "Not needed for Annex II Part A origins (pet passport instead).", fr: "Inutile pour les origines de l'annexe II partie A (passeport à la place).", es: "No necesario para orígenes del anexo II parte A (en su lugar, el pasaporte).", pt: "Não necessário para origens do anexo II parte A (nesse caso, vale o passaporte para animais)." }
+    ref: { en: "Rulebook 153/2015, Annex II Part B; model certificate", fr: "Règlement 153/2015, annexe II partie B ; modèle de certificat", es: "Reglamento 153/2015, anexo II parte B; modelo de certificado", pt: "Regulamento 153/2015, anexo II parte B; certificado modelo" }
+  - item: { en: "Tapeworm (Echinococcus) & tick treatment", fr: "Traitement échinococcose & tiques", es: "Tratamiento contra la tenia (Echinococcus) y garrapatas", pt: "Tratamento contra a tênia (Echinococcus) e carrapatos" }
+    required: { en: "Optional", fr: "Facultatif", es: "Opcional", pt: "Opcional" }
+    when: { en: "May be examined and treated for echinococcosis and ticks by an official vet, noted in the passport or certificate.", fr: "Peut être examiné et traité contre l'échinococcose et les tiques par un vétérinaire officiel, avec mention dans le passeport ou le certificat.", es: "Puede ser examinado y tratado contra la equinococosis y las garrapatas por un veterinario oficial, con anotación en el pasaporte o el certificado.", pt: "Pode ser examinado e tratado contra a equinococose e os carrapatos por um veterinário oficial, com anotação no passaporte ou no certificado." }
+    exceptions: { en: "Not mandatory for entry into North Macedonia.", fr: "Non obligatoire pour l'entrée en Macédoine du Nord.", es: "No obligatorio para la entrada en Macedonia del Norte.", pt: "Não obrigatório para a entrada na Macedônia do Norte." }
+    ref: { en: "Rulebook 153/2015; fva.gov.mk", fr: "Règlement 153/2015 ; fva.gov.mk", es: "Reglamento 153/2015; fva.gov.mk", pt: "Regulamento 153/2015; fva.gov.mk" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "For non-commercial pets (up to 5 animals) no import permit is issued; customs clears them with veterinary consent.", fr: "Pour les animaux non commerciaux (jusqu'à 5), aucun permis n'est délivré ; la douane les dédouane avec l'accord vétérinaire.", es: "Para mascotas no comerciales (hasta 5 animales) no se expide permiso de importación; la aduana las despacha con la conformidad veterinaria.", pt: "Para animais não comerciais (até 5 animais), nenhuma autorização de importação é emitida; a alfândega os libera com o aval veterinário." }
+    ref: { en: "customs.gov.mk", fr: "customs.gov.mk", es: "customs.gov.mk", pt: "customs.gov.mk" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "At passenger travel terminals of official border crossings; customs officials and, if needed, an official veterinarian check identity and documents.", fr: "Aux terminaux voyageurs des postes-frontières officiels ; les douaniers et, si nécessaire, un vétérinaire officiel vérifient l'identité et les documents.", es: "En las terminales de pasajeros de los pasos fronterizos oficiales; los funcionarios de aduanas y, si es necesario, un veterinario oficial verifican la identidad y los documentos.", pt: "Nos terminais de passageiros dos postos de fronteira oficiais; agentes alfandegários e, se necessário, um veterinário oficial conferem a identidade e os documentos." }
+    exceptions: { en: "Import and transit only take place at official passenger border crossings.", fr: "L'importation et le transit n'ont lieu qu'aux postes-frontières voyageurs officiels.", es: "La importación y el tránsito solo tienen lugar en los pasos fronterizos de pasajeros oficiales.", pt: "A importação e o trânsito só acontecem em postos de fronteira de passageiros oficiais." }
+    ref: { en: "fva.gov.mk; customs.gov.mk", fr: "fva.gov.mk ; customs.gov.mk", es: "fva.gov.mk; customs.gov.mk", pt: "fva.gov.mk; customs.gov.mk" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Over 3 months", fr: "Plus de 3 mois", es: "Más de 3 meses", pt: "Mais de 3 meses" }
+    when: { en: "Dogs, cats and ferrets must be older than 3 months to be imported.", fr: "Chiens, chats et furets doivent avoir plus de 3 mois pour être importés.", es: "Los perros, gatos y hurones deben tener más de 3 meses para ser importados.", pt: "Cachorros, gatos e furões precisam ter mais de 3 meses para serem importados." }
+    exceptions: { en: "A puppy under 3 months, unvaccinated, may enter only with a passport and if it has stayed only at its birthplace with no contact with wild animals, or travels with its already-vaccinated mother.", fr: "Un chiot de moins de 3 mois, non vacciné, ne peut entrer qu'avec un passeport et s'il n'a séjourné qu'à son lieu de naissance sans contact avec des animaux sauvages, ou s'il voyage avec sa mère déjà vaccinée.", es: "Un cachorro de menos de 3 meses, sin vacunar, solo puede entrar con un pasaporte y si ha permanecido únicamente en su lugar de nacimiento sin contacto con animales salvajes, o si viaja con su madre ya vacunada.", pt: "Um filhote com menos de 3 meses, não vacinado, só pode entrar com um passaporte e se tiver permanecido apenas no local de nascimento, sem contato com animais selvagens, ou se viajar com a mãe já vacinada." }
+    ref: { en: "Rulebook 153/2015", fr: "Règlement 153/2015", es: "Reglamento 153/2015", pt: "Regulamento 153/2015" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "A non-compliant animal may be refused entry or returned at the owner's expense.", fr: "Un animal non conforme peut être refusé à l'entrée ou renvoyé aux frais du propriétaire.", es: "Un animal no conforme puede ser rechazado en la entrada o devuelto a cargo del propietario.", pt: "Um animal em desconformidade pode ter a entrada recusada ou ser devolvido às custas do dono." }
+    ref: { en: "Rulebook 153/2015", fr: "Règlement 153/2015", es: "Reglamento 153/2015", pt: "Regulamento 153/2015" }
+
+origin:
+  eu:
+    title: { en: "Simplified — pet passport (Annex II Part A)", fr: "Simplifié — passeport (annexe II partie A)", es: "Simplificado — pasaporte para mascotas (anexo II parte A)", pt: "Simplificado — passaporte para animais (anexo II parte A)" }
+    body:
+      en: "A dog coming from a country listed in Annex II Part A (which includes EU countries) travels with a pet passport showing permanent identification and a valid rabies vaccination. No antibody test is required. The dog must be over 3 months old."
+      fr: "Un chien venant d'un pays de l'annexe II partie A (dont les pays de l'UE) voyage avec un passeport mentionnant une identification permanente et une vaccination antirabique valide. Aucun titrage n'est requis. Le chien doit avoir plus de 3 mois."
+      es: "Un perro que llega de un país incluido en el anexo II parte A (que incluye los países de la UE) viaja con un pasaporte para mascotas que acredite una identificación permanente y una vacunación antirrábica válida. No se exige prueba de titulación. El perro debe tener más de 3 meses."
+      pt: "Um cachorro vindo de um país listado no anexo II parte A (que inclui os países da UE) viaja com um passaporte para animais que comprove a identificação permanente e a vacinação antirrábica válida. Nenhum teste sorológico é exigido. O cachorro precisa ter mais de 3 meses."
+    cls: ok
+  listed:
+    title: { en: "Veterinary health certificate, no blood test", fr: "Certificat vétérinaire, sans prise de sang", es: "Certificado sanitario veterinario, sin análisis de sangre", pt: "Atestado de saúde veterinário, sem exame de sangue" }
+    body:
+      en: "From a country listed in Annex II Part B but still on North Macedonia's Annex I low-risk lists, your dog needs permanent identification, a valid rabies vaccination and a veterinary health certificate endorsed by an official vet within 10 days before travel. No antibody test is required."
+      fr: "Depuis un pays de l'annexe II partie B mais figurant sur les listes à faible risque de l'annexe I, ton chien a besoin d'une identification permanente, d'une vaccination antirabique valide et d'un certificat vétérinaire visé par un vétérinaire officiel dans les 10 jours précédant le voyage. Aucun titrage n'est requis."
+      es: "Desde un país incluido en el anexo II parte B pero que sigue en las listas de bajo riesgo del anexo I de Macedonia del Norte, tu perro necesita identificación permanente, una vacunación antirrábica válida y un certificado sanitario veterinario refrendado por un veterinario oficial dentro de los 10 días previos al viaje. No se exige prueba de titulación."
+      pt: "De um país listado no anexo II parte B, mas ainda nas listas de baixo risco do anexo I da Macedônia do Norte, seu cachorro precisa de identificação permanente, vacinação antirrábica válida e um atestado de saúde veterinário endossado por um veterinário oficial nos 10 dias antes da viagem. Nenhum teste sorológico é exigido."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a country that is not on the Annex I low-risk lists, add a rabies antibody titration test carried out at least 3 months before travel, on top of the identification, rabies vaccination and endorsed veterinary health certificate."
+      fr: "Depuis un pays hors des listes à faible risque de l'annexe I, ajoute un titrage antirabique réalisé au moins 3 mois avant le voyage, en plus de l'identification, de la vaccination antirabique et du certificat vétérinaire visé."
+      es: "Desde un país que no está en las listas de bajo riesgo del anexo I, añade una prueba de titulación de rabia realizada al menos 3 meses antes del viaje, además de la identificación, la vacunación antirrábica y el certificado sanitario veterinario refrendado."
+      pt: "De um país fora das listas de baixo risco do anexo I, acrescente um teste sorológico antirrábico feito pelo menos 3 meses antes da viagem, além da identificação, da vacinação antirrábica e do atestado de saúde veterinário endossado."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches North Macedonia depends on where you flew from and your documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Macédoine du Nord dépend de ton lieu de départ et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a Macedonia del Norte depende del lugar desde el que hayas volado y de tus documentos."
+    pt: "O que acontece quando seu cachorro chega à Macedônia do Norte depende de onde você partiu e dos seus documentos."
+  points:
+    - en: "Import and transit take place only at passenger travel terminals of official border crossings (including Skopje airport)."
+      fr: "L'importation et le transit n'ont lieu qu'aux terminaux voyageurs des postes-frontières officiels (dont l'aéroport de Skopje)."
+      es: "La importación y el tránsito solo tienen lugar en las terminales de pasajeros de los pasos fronterizos oficiales (incluido el aeropuerto de Skopie)."
+      pt: "A importação e o trânsito só acontecem nos terminais de passageiros dos postos de fronteira oficiais (incluindo o aeroporto de Skopje)."
+    - en: "Customs officials check identity and documents; an official veterinarian may also inspect the animal if required."
+      fr: "Les douaniers vérifient l'identité et les documents ; un vétérinaire officiel peut aussi inspecter l'animal si nécessaire."
+      es: "Los funcionarios de aduanas verifican la identidad y los documentos; un veterinario oficial también puede inspeccionar al animal si es necesario."
+      pt: "Agentes alfandegários conferem a identidade e os documentos; um veterinário oficial também pode inspecionar o animal, se necessário."
+    - en: "Up to five non-commercial pets may accompany a traveller (more only for shows, competitions or training)."
+      fr: "Jusqu'à cinq animaux non commerciaux peuvent accompagner un voyageur (davantage seulement pour expositions, concours ou entraînement)."
+      es: "Hasta cinco mascotas no comerciales pueden acompañar a un viajero (más solo para exposiciones, competiciones o entrenamiento)."
+      pt: "Até cinco animais não comerciais podem acompanhar um viajante (mais apenas para exposições, competições ou treinamento)."
+    - en: "Carry the original pet passport or veterinary health certificate, plus proof of the antibody test if you come from a non-listed country."
+      fr: "Munis-toi du passeport original ou du certificat vétérinaire, ainsi que de la preuve du titrage si tu viens d'un pays non listé."
+      es: "Lleva el pasaporte para mascotas o el certificado sanitario veterinario original, además de la prueba de la titulación si vienes de un país no listado."
+      pt: "Leve o passaporte para animais ou o atestado de saúde veterinário original, além do comprovante do teste sorológico, se você vier de um país não listado."
+    - en: "If documents are missing or invalid, the animal may be refused entry or returned at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé à l'entrée ou renvoyé aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado en la entrada o devuelto a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, o animal pode ter a entrada recusada ou ser devolvido às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "North Macedonia's pet-import Rulebook (153/2015) sets no breed-specific restriction: the requirements apply to dogs by age, identification, vaccination and origin, not by breed. No official national breed-import ban is published by the Food and Veterinary Agency."
+    fr: "Le Règlement d'importation (153/2015) de la Macédoine du Nord ne fixe aucune restriction par race : les exigences s'appliquent selon l'âge, l'identification, la vaccination et l'origine, non selon la race. Aucune interdiction nationale d'importation par race n'est publiée par l'Agence pour l'alimentation et la médecine vétérinaire."
+    es: "El Reglamento de importación de mascotas (153/2015) de Macedonia del Norte no establece ninguna restricción por raza: los requisitos se aplican a los perros según la edad, la identificación, la vacunación y el origen, no según la raza. La Agencia de Alimentos y Veterinaria no publica ninguna prohibición nacional de importación por raza."
+    pt: "O Regulamento de importação de animais da Macedônia do Norte (153/2015) não estabelece nenhuma restrição por raça: as exigências se aplicam aos cachorros conforme idade, identificação, vacinação e origem, não conforme a raça. Nenhuma proibição nacional oficial de importação por raça é publicada pela Agência de Alimentos e Veterinária."
+  cat1:
+    en: "No category of dog is banned from import under the published FVA rules. Local ownership and public-safety rules for dangerous dogs may still apply once in the country."
+    fr: "Aucune catégorie de chien n'est interdite d'importation selon les règles publiées de l'AHV. Des règles locales de détention et de sécurité publique pour les chiens dangereux peuvent néanmoins s'appliquer sur place."
+    es: "Ninguna categoría de perro está prohibida para la importación según las normas publicadas por la AAV. Las normas locales de tenencia y seguridad pública para perros peligrosos pueden aplicarse igualmente una vez en el país."
+    pt: "Nenhuma categoria de cachorro tem a importação proibida segundo as regras publicadas pela FVA. Regras locais de posse e de segurança pública para cachorros perigosos ainda podem se aplicar depois da entrada no país."
+  cat2:
+    en: "No second category is defined for import purposes. Owners should confirm any municipal or public-order rules on specific breeds with local authorities."
+    fr: "Aucune deuxième catégorie n'est définie pour l'importation. Les propriétaires doivent vérifier auprès des autorités locales toute règle municipale ou d'ordre public visant des races spécifiques."
+    es: "No se define una segunda categoría a efectos de importación. Los propietarios deben confirmar con las autoridades locales cualquier norma municipal o de orden público que afecte a razas específicas."
+    pt: "Nenhuma segunda categoria é definida para fins de importação. Os donos devem confirmar junto às autoridades locais quaisquer regras municipais ou de ordem pública sobre raças específicas."
+  note:
+    en: "Because no breed-import ban is published, confirm the current position with the Food and Veterinary Agency before travel if your dog is a breed restricted elsewhere in Europe."
+    fr: "Aucune interdiction d'importation par race n'étant publiée, confirme la position actuelle auprès de l'Agence pour l'alimentation et la médecine vétérinaire avant le voyage si ton chien est d'une race restreinte ailleurs en Europe."
+    es: "Como no se publica ninguna prohibición de importación por raza, confirma la situación actual con la Agencia de Alimentos y Veterinaria antes de viajar si tu perro es de una raza restringida en otros lugares de Europa."
+    pt: "Como nenhuma proibição de importação por raça é publicada, confirme a posição atual junto à Agência de Alimentos e Veterinária antes de viajar, se o seu cachorro for de uma raça restrita em outros lugares da Europa."
+
+checklist:
+  - en: "Permanent identification (microchip or clearly legible tattoo)"
+    fr: "Identification permanente (puce ou tatouage clairement lisible)"
+    es: "Identificación permanente (microchip o tatuaje claramente legible)"
+    pt: "Identificação permanente (microchip ou tatuagem claramente legível)"
+  - en: "Valid rabies vaccination (dog over 3 months old)"
+    fr: "Vaccination antirabique valide (chien de plus de 3 mois)"
+    es: "Vacunación antirrábica válida (perro de más de 3 meses)"
+    pt: "Vacinação antirrábica válida (cachorro com mais de 3 meses)"
+  - en: "Rabies antibody test — non-listed countries only, at least 3 months before travel"
+    fr: "Titrage antirabique — pays non listés uniquement, au moins 3 mois avant le voyage"
+    es: "Prueba de titulación de rabia — solo países no listados, al menos 3 meses antes del viaje"
+    pt: "Teste sorológico antirrábico — apenas países não listados, pelo menos 3 meses antes da viagem"
+  - en: "Pet passport (Annex II Part A) or endorsed veterinary health certificate (Annex II Part B, within 10 days)"
+    fr: "Passeport (annexe II partie A) ou certificat vétérinaire visé (annexe II partie B, sous 10 jours)"
+    es: "Pasaporte para mascotas (anexo II parte A) o certificado sanitario veterinario refrendado (anexo II parte B, dentro de 10 días)"
+    pt: "Passaporte para animais (anexo II parte A) ou atestado de saúde veterinário endossado (anexo II parte B, nos 10 dias)"
+  - en: "Original documents, not copies"
+    fr: "Documents originaux, pas de copies"
+    es: "Documentos originales, no copias"
+    pt: "Documentos originais, não cópias"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "No more than 5 non-commercial pets per traveller"
+    fr: "Pas plus de 5 animaux non commerciaux par voyageur"
+    es: "No más de 5 mascotas no comerciales por viajero"
+    pt: "No máximo 5 animais não comerciais por viajante"
+
+sources:
+  - label: { en: "Food and Veterinary Agency — Pets (import and transit)", fr: "Agence pour l'alimentation et la médecine vétérinaire — Animaux de compagnie (import et transit)", es: "Agencia de Alimentos y Veterinaria — Mascotas (importación y tránsito)", pt: "Agência de Alimentos e Veterinária — Animais de estimação (importação e trânsito)" }
+    url: "https://fva.gov.mk/en/pets"
+  - label: { en: "Macedonian Customs — Live animals, pets, animal and plant products", fr: "Douane macédonienne — Animaux vivants, animaux de compagnie, produits d'origine animale et végétale", es: "Aduana macedonia — Animales vivos, mascotas, productos de origen animal y vegetal", pt: "Alfândega da Macedônia — Animais vivos, animais de estimação, produtos de origem animal e vegetal" }
+    url: "https://customs.gov.mk/index.php/en/patnici-2/2016-08-22-14-12-54/zivi-zivotni-proizvodi-od-zivotinsko-i-rastitelno-poteklo-2"
+  - label: { en: "USDA APHIS — Pet Travel to North Macedonia (model health certificate & Annex II)", fr: "USDA APHIS — Voyage d'animaux vers la Macédoine du Nord (modèle de certificat & annexe II)", es: "USDA APHIS — Viaje de mascotas a Macedonia del Norte (modelo de certificado sanitario y anexo II)", pt: "USDA APHIS — Viagem de animais para a Macedônia do Norte (atestado de saúde modelo e anexo II)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-north-macedonia"
+
+seo:
+  title: { en: "North Macedonia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Macédoine du Nord — Guide", es: "Requisitos de entrada de perros en Macedonia del Norte — Guía de viaje", pt: "Macedônia do Norte: exigências de entrada para cachorros" }
+  metaTitle: { en: "North Macedonia Dog Entry Requirements (2026)", fr: "Voyager en Macédoine du Nord avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Macedonia del Norte (2026)", pt: "Exigências de entrada de cachorros na Macedônia do Norte (2026)" }
+  metaDesc:
+    en: "Official identification, rabies and antibody-test rules for bringing a dog into North Macedonia — by passport, certificate and non-listed origin. Sourced and dated."
+    fr: "Règles officielles d'identification, rage et titrage pour faire entrer un chien en Macédoine du Nord — selon origine à passeport. Sourcé et daté."
+    es: "Normas oficiales de identificación, rabia y prueba de titulación para traer un perro a Macedonia del Norte — según origen con pasaporte. Con fuentes y fecha."
+    pt: "Regras oficiais de identificação, raiva e teste sorológico para levar um cachorro à Macedônia do Norte — por origem com passaporte, com certificado e não listada."
+  slug: "north-macedonia"
+  shortDesc:
+    en: "What you need to bring a dog into North Macedonia, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Macédoine du Nord, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Macedonia del Norte, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Macedônia do Norte, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

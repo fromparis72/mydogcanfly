@@ -1,0 +1,316 @@
+id: airline_alaska
+mono: AS
+name: Alaska Airlines
+titleH1:
+  en: Flying with a dog on Alaska Airlines
+  fr: Voyager avec un chien sur Alaska Airlines
+  es: Viajar con perro en Alaska Airlines
+  pt: "Viajar com um cachorro pela Alaska Airlines"
+metaDesc:
+  en: "Alaska Airlines pet policy: cabin, climate-controlled hold and Pet Connect cargo, fares, breed & temperature limits and official sources."
+  fr: "Politique animaux Alaska Airlines : cabine, soute climatisée et fret Pet Connect, tarifs, restrictions de races et température, sources officielles."
+  es: "Política de mascotas de Alaska Airlines: cabina, bodega climatizada y carga Pet Connect, tarifas, límites de raza y temperatura, y fuentes oficiales."
+  pt: "Política de animais da Alaska Airlines: cabine, porão climatizado e carga Pet Connect, tarifas, limites de raça e temperatura e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: United States · SEA
+      fr: États-Unis · SEA
+      es: Estados Unidos · SEA
+      pt: "Estados Unidos · SEA"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: One of the most pet-friendly US airlines — cabin, climate-controlled hold and cargo are all available.
+  fr: Une des compagnies US les plus pet-friendly — cabine, soute climatisée et fret sont tous disponibles.
+  es: "Una de las aerolíneas de EE. UU. más pet-friendly: cabina, bodega climatizada y carga están todas disponibles."
+  pt: "Uma das companhias dos EUA mais pet-friendly — cabine, porão climatizado e carga estão todos disponíveis."
+ladder:
+  - flex: 22
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: under-seat
+      fr: sous le siège
+      es: bajo el asiento
+      pt: "sob o assento"
+  - flex: 58
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 150 lb
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 150 lb"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small dogs, cats, rabbits & birds in a soft carrier under the seat (max 17 × 11 × 9.5 in). First-come, first-served.
+      fr: Petits chiens, chats, lapins et oiseaux dans un sac souple sous le siège (max 17 × 11 × 9,5 po). Premier arrivé, premier servi.
+      es: Perros pequeños, gatos, conejos y aves en una jaula blanda bajo el asiento (máx. 17 × 11 × 9,5 in). Por orden de llegada.
+      pt: "Cachorros pequenos, gatos, coelhos e aves em uma bolsa de transporte flexível embaixo do assento (máx. 17 × 11 × 9,5 pol.). Por ordem de chegada."
+    fee:
+      en: $100 / way
+      fr: 100 $ / trajet
+      es: 100 $ / trayecto
+      pt: "$100 / trajeto"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Larger pets in the climate-controlled baggage hold on your flight (pet + carrier ≤ 150 lb). Health certificate required.
+      fr: Animaux plus grands dans la soute bagages climatisée sur ton vol (animal + caisse ≤ 150 lb). Certificat sanitaire requis.
+      es: Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo (mascota + jaula ≤ 150 lb). Se requiere certificado sanitario.
+      pt: "Animais maiores no porão de bagagem climatizado do seu voo (animal + caixa de transporte ≤ 150 lb). É exigido atestado de saúde."
+    fee:
+      en: $150 / way
+      fr: 150 $ / trajet
+      es: 150 $ / trayecto
+      pt: "US$ 150 / trajeto"
+  - icon: ✈️
+    name:
+      en: Pet Connect cargo
+      fr: Fret Pet Connect
+      es: Carga Pet Connect
+      pt: "Carga Pet Connect"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo presupuesto
+      pt: "Sob consulta"
+    detail:
+      en: Unaccompanied pets or over 150 lb, via Alaska Air Cargo Pet Connect.
+      fr: Animaux non accompagnés ou de plus de 150 lb, via Alaska Air Cargo Pet Connect.
+      es: Mascotas no acompañadas o de más de 150 lb, mediante Alaska Air Cargo Pet Connect.
+      pt: "Animais desacompanhados ou com mais de 150 lb, via Alaska Air Cargo Pet Connect."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: $100 each way ($35 within Hawaii)
+        fr: 100 $ / trajet (35 $ intra-Hawaï)
+        es: 100 $ / trayecto (35 $ dentro de Hawái)
+        pt: "$100 por trajeto ($35 dentro do Havaí)"
+    - label:
+        en: Hold (checked)
+        fr: Soute (enregistré)
+        es: Bodega (facturado)
+        pt: "Porão (despachado)"
+      value:
+        en: $150 each way ($100 within Alaska)
+        fr: 150 $ / trajet (100 $ intra-Alaska)
+        es: 150 $ / trayecto (100 $ dentro de Alaska)
+        pt: "$150 por trajeto ($100 dentro do Alasca)"
+    - label:
+        en: Pet Connect cargo
+        fr: Fret Pet Connect
+        es: Carga Pet Connect
+        pt: "Carga Pet Connect"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD. The checked-baggage fee is $150 each way (from 14 Oct 2025).
+    fr: USD. Le tarif bagage enregistré est de 150 $ par trajet (depuis le 14 oct. 2025).
+    es: USD. La tarifa de equipaje facturado es de 150 $ por trayecto (desde el 14 oct 2025).
+    pt: "USD. A tarifa de bagagem despachada é de $150 por trajeto (a partir de 14 out. 2025)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidas
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Snub-nosed dogs & cats aren't accepted in the hold or cargo (Hawaii exception) but may fly in the cabin: pit bull, American Staffordshire, boxer, bulldogs (French/English), Boston terrier, pug, Shih Tzu, chow chow, mastiffs, Brussels Griffon, and Burmese/Exotic/Himalayan/Persian cats."
+      fr: "Chiens et chats au nez écrasé refusés en soute et en fret (exception Hawaï) mais admis en cabine : pit-bull, American Staffordshire, boxer, bouledogues (français/anglais), Boston terrier, carlin, Shih Tzu, chow chow, mastiffs, Griffon bruxellois, et chats birmans/exotiques/himalayens/persans."
+      es: "Los perros y gatos de hocico chato no se aceptan en bodega ni en carga (excepción Hawái), pero pueden volar en cabina: pit bull, American Staffordshire, bóxer, bulldogs (francés/inglés), Boston terrier, carlino, Shih Tzu, chow chow, mastines, Grifón de Bruselas, y gatos birmanos/exóticos/himalayos/persas."
+      pt: "Cachorros e gatos de focinho achatado não são aceitos no porão nem na carga (exceção para o Havaí), mas podem voar na cabine: pit bull, American Staffordshire, boxer, buldogues (francês/inglês), Boston Terrier, pug, Shih Tzu, Chow Chow, mastins, Grifon de Bruxelas, e gatos birmaneses/exóticos/himalaios/persas."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Sedation not advised
+          fr: Sédation déconseillée
+          es: Sedación desaconsejada
+          pt: "Sedação não recomendada"
+    note:
+      en: Sedation isn't advised for hold travel — any decision to tranquillise must be made by your vet.
+      fr: La sédation est déconseillée pour la soute — toute décision de tranquilliser revient à ton vétérinaire.
+      es: No se aconseja la sedación para viajar en bodega; cualquier decisión de tranquilizar corresponde a tu veterinario.
+      pt: "A sedação não é recomendada para viagens no porão — qualquer decisão de tranquilizar cabe ao seu veterinário."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Climate-controlled hold
+        fr: Soute climatisée
+        es: Bodega climatizada
+        pt: "Porão climatizado"
+    - cls: no
+      label:
+        en: "Cargo: 7–29.5 °C (45–85 °F)"
+        fr: "Fret : 7–29,5 °C (45–85 °F)"
+        es: "Carga: 7–29,5 °C (45–85 °F)"
+        pt: "Carga: 7–29,5 °C (45–85 °F)"
+  note:
+    en: Pet Connect cargo accepts pets only when forecast temperatures are 45–85 °F (7–29.5 °C) at every point; summer embargoes run ~1 May–16 Oct above 85 °F, with cold exceptions on a vet acclimation certificate. Checked baggage uses the same climate-controlled hold, with acceptance declined in extreme temperatures.
+    fr: Le fret Pet Connect n'accepte les animaux que si les températures prévues sont de 45–85 °F (7–29,5 °C) à chaque point ; embargos d'été ~1er mai–16 oct. au-dessus de 85 °F, avec exceptions par temps froid sur certificat vétérinaire d'acclimatation. La soute bagages est la même soute climatisée, refus possible par température extrême.
+    es: La carga Pet Connect solo acepta mascotas cuando las temperaturas previstas son de 45–85 °F (7–29,5 °C) en cada punto; hay embargos de verano ~1 may–16 oct por encima de 85 °F, con excepciones por frío mediante certificado veterinario de aclimatación. El equipaje facturado usa la misma bodega climatizada, con rechazo posible en temperaturas extremas.
+    pt: "A carga Pet Connect só aceita animais quando as temperaturas previstas são de 45–85 °F (7–29,5 °C) em cada ponto; embargos por calor de verão ocorrem ~1 mai.–16 out. acima de 85 °F, com exceções por frio mediante atestado veterinário de aclimatação. A bagagem despachada usa o mesmo porão climatizado, com recusa possível em temperaturas extremas."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs fly free in the cabin (max 2); emotional-support animals no longer qualify.
+      fr: Chiens d'assistance dressés gratuits en cabine (max 2) ; chiens de soutien émotionnel non éligibles.
+      es: Los perros de asistencia adiestrados viajan gratis en cabina (máx. 2); los animales de apoyo emocional ya no son elegibles.
+      pt: "Cães de serviço treinados voam gratuitamente na cabine (máx. 2); animais de apoio emocional não são mais elegíveis."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: US DOT Service Animal form, submitted ≥ 48 h ahead.
+      fr: Formulaire DOT d'animal d'assistance, soumis ≥ 48 h à l'avance.
+      es: Formulario de animal de asistencia del DOT de EE. UU., presentado ≥ 48 h antes.
+      pt: "Formulário de Animal de Serviço do DOT dos EUA, enviado com ≥ 48 h de antecedência."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Pet-friendly
+      fr: Pet-friendly
+      es: Pet-friendly
+      pt: "Pet-friendly"
+    value:
+      en: Cabin, climate-controlled checked hold, and cargo — one of the most flexible US carriers.
+      fr: Cabine, soute enregistrée climatisée et fret — une des compagnies US les plus souples.
+      es: "Cabina, bodega facturada climatizada y carga: una de las aerolíneas de EE. UU. más flexibles."
+      pt: "Cabine, porão despachado climatizado e carga — uma das companhias dos EUA mais flexíveis."
+  - icon: 🧳
+    label:
+      en: Species
+      fr: Espèces
+      es: Especies
+      pt: "Espécies"
+    value:
+      en: The hold accepts many species domestically (ferrets, rabbits, reptiles, birds…), but dogs & cats only to Hawaii/international.
+      fr: La soute accepte de nombreuses espèces en national (furets, lapins, reptiles, oiseaux…), mais chiens et chats seulement vers Hawaï/international.
+      es: La bodega acepta muchas especies en vuelos nacionales (hurones, conejos, reptiles, aves…), pero perros y gatos solo hacia Hawái/internacional.
+      pt: "O porão aceita muitas espécies em voos domésticos (furões, coelhos, répteis, aves…), mas cachorros e gatos somente para o Havaí/internacional."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reservar
+      pt: "Reserva"
+    value:
+      en: Cabin & checked pets are first-come, first-served — reserve before the day of travel; cargo via the Pet Connect call centre.
+      fr: Animaux en cabine et en soute au premier arrivé — réserver avant le jour du voyage ; fret via le centre d'appel Pet Connect.
+      es: "Las mascotas en cabina y facturadas se atienden por orden de llegada: reserva antes del día del viaje; la carga se gestiona por el centro de llamadas de Pet Connect."
+      pt: "Animais na cabine e despachados são atendidos por ordem de chegada — reserve antes do dia da viagem; a carga é feita via a central de atendimento do Pet Connect."
+book:
+  host: alaskaair.com
+  url: https://www.alaskaair.com/
+sources:
+  en: 7 Alaska Airlines & Air Cargo sources · last verified 11 July 2026
+  fr: 7 sources Alaska Airlines & Air Cargo · dernière vérification 11 juillet 2026
+  es: 7 fuentes de Alaska Airlines y Air Cargo · última verificación 11 julio 2026
+  pt: "7 fontes da Alaska Airlines e Air Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

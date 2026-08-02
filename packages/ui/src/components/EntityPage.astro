@@ -1,0 +1,624 @@
+---
+import Base from "../layouts/Base.astro";
+import FinderCTA from "./FinderCTA.astro";
+import Icon from "./Icon.astro";
+import { t } from "@mydogcanfly/knowledge";
+import type { Rule } from "@mydogcanfly/knowledge";
+import type { PremiumView, GuideView, PetReliefView, AirportInfoView, BreedTravelView, EntryFactorsView } from "../lib/pagedata";
+
+interface Related { href: string; label: string; kind: string; flag?: string }
+interface Fact { label: string; value: string }
+interface Props {
+  kind: string;
+  title: string;
+  subtitle?: string;
+  facts?: Fact[];
+  rules?: Rule[];
+  related?: Related[];
+  relatedTitle?: string;
+  schema: Record<string, unknown>;
+  finderContext?: string;
+  locale?: string;
+  premium?: PremiumView;
+  guide?: GuideView;
+  petRelief?: PetReliefView;
+  airportInfo?: AirportInfoView;
+  headFlag?: string;
+  monogram?: boolean;
+  contact?: { phones: { region: string; number: string }[]; src: { host: string; url: string; date: string; confidence: number } };
+  breedTravel?: BreedTravelView;
+  entryFactors?: EntryFactorsView;
+}
+const { kind, title, subtitle, facts = [], rules = [], related = [], relatedTitle, schema, finderContext, locale = "en", premium, guide, petRelief, airportInfo, headFlag, monogram, contact, breedTravel, entryFactors } = Astro.props;
+const ai = airportInfo;
+const bt = breedTravel;
+const critColor: Record<string, string> = { critical: "#dc2626", high: "#d97706", medium: "#2563eb", low: "#64748b" };
+const host = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
+const stars = (n: number) => "★".repeat(n) + "☆".repeat(Math.max(0, 5 - n));
+const p = premium;
+const initials = title.split(/\s+/).map((w) => w[0] ?? "").slice(0, 2).join("").toUpperCase();
+---
+<Base title={`${title} — MyDogCanFly`} description={`${kind}: ${title}.`} locale={locale}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <div class="ep__head">
+        {headFlag
+          ? <div class="ep__flag" aria-hidden="true">{headFlag}</div>
+          : p?.logo && !p.logo.placeholder && p.logo.src
+            ? <img class="ep__logoimg" src={p.logo.src} alt={p.logo.alt ?? title} loading="lazy" />
+            : (p?.logo || monogram)
+              ? <div class="ep__logo" title={p?.logo?.alt} aria-hidden="true">{initials}</div>
+              : null}
+        <div>
+          <p class="mdcf-eyebrow">{kind}</p>
+          <h1 class="ep__title">{title}</h1>
+          {subtitle && <p class="ep__sub">{subtitle}</p>}
+        </div>
+      </div>
+      {facts.length > 0 && (
+        <div class="ep__facts">
+          {facts.map((f) => <div class="ep__fact"><span>{f.label}</span><b>{f.value}</b></div>)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <FinderCTA context={finderContext} locale={locale} />
+
+  {entryFactors && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <article class="mdcf-card ep__factors">
+          <h2 class="ep__factorstitle">{entryFactors.title}</h2>
+          <p class="ep__factorsintro">{entryFactors.intro}</p>
+          <ol class="ep__factorslist">
+            {entryFactors.factors.map((f, i) => (
+              <li class="ep__factor">
+                <span class="ep__factornum" aria-hidden="true">{i + 1}</span>
+                <div>
+                  <div class="ep__factorhead">
+                    <b>{f.label}</b>
+                    <span class="ep__factorstars" aria-hidden="true">{"★".repeat(f.stars)}{"☆".repeat(Math.max(0, 5 - f.stars))}</span>
+                  </div>
+                  <p class="ep__factortext">{f.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p class="ep__factorsnote">{entryFactors.note}</p>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {bt && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <article class="mdcf-card bt__score">
+          <div class="bt__scorehead">
+            <div class="bt__stars" aria-hidden="true">{stars(Math.round(bt.stars))}</div>
+            <div class="bt__num"><b>{bt.stars.toFixed(1)}</b><span>/5 · {bt.score}/100</span></div>
+            <span class={`bt__diff bt__diff--${bt.difficulty.emoji === "🟢" ? "ok" : bt.difficulty.emoji === "🔴" ? "no" : "mid"}`}>{bt.difficulty.emoji} {bt.difficulty.label}</span>
+          </div>
+          <p class="bt__verdict">{bt.verdict}</p>
+          <p class="bt__diffexpl">{bt.difficulty.explanation}</p>
+          {bt.src && <p class="ep__src">{t(locale, "section.sources")}: <a href={bt.src.url} rel="nofollow noopener" target="_blank">{bt.src.host}</a><span> · {bt.src.date}</span></p>}
+        </article>
+      </div>
+    </section>
+  )}
+
+  {bt && bt.ratings.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "breed.profile")}</h2>
+        <div class="bt__ratings">
+          {bt.ratings.map((r) => (
+            <div class="bt__rating">
+              <span class="bt__rlabel">{r.label}</span>
+              <span class="bt__bar" aria-hidden="true"><span class="bt__fill" style={`width:${r.value * 20}%`}></span></span>
+              <span class="bt__rval">{r.value}/5</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {bt && (bt.strengths.length > 0 || bt.limitations.length > 0) && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "breed.why")}</h2>
+        <div class="bt__why">
+          {bt.strengths.length > 0 && (
+            <div class="bt__col">
+              <h3 class="bt__coltitle">{t(locale, "breed.strengths")}</h3>
+              <ul class="bt__list bt__list--plus">{bt.strengths.map((s) => <li>{s}</li>)}</ul>
+            </div>
+          )}
+          {bt.limitations.length > 0 && (
+            <div class="bt__col">
+              <h3 class="bt__coltitle">{t(locale, "breed.limitations")}</h3>
+              <ul class="bt__list bt__list--minus">{bt.limitations.map((s) => <li>{s}</li>)}</ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {bt && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "breed.cabin")}</h2>
+        <p class="bt__para">{bt.cabin}</p>
+        <h2 class="mdcf-h2" style="margin-top:24px">{t(locale, "breed.hold")}</h2>
+        <p class="bt__para">{bt.hold}</p>
+        <h2 class="mdcf-h2" style="margin-top:24px">{t(locale, "breed.climate")}</h2>
+        <p class="bt__para">{bt.climate}</p>
+      </div>
+    </section>
+  )}
+
+  {bt && bt.tips.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "breed.tips")}</h2>
+        <ul class="ep__tips">{bt.tips.map((tp) => <li>{tp}</li>)}</ul>
+      </div>
+    </section>
+  )}
+
+  {bt && bt.faq.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.faq")}</h2>
+        {bt.faq.map((f) => (
+          <details class="ep__faq"><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {bt && bt.similar.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container">
+        <h2 class="mdcf-h2">{t(locale, "breed.similar")}</h2>
+        <div class="ep__related">
+          {bt.similar.map((s) => <a class="mdcf-card ep__rel" href={s.href}><b>{s.label}</b></a>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {petRelief && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.pet_relief")}</h2>
+        <article class={`mdcf-card ep__relief ep__relief--${petRelief.available}`}>
+          <div class="ep__reliefhead">
+            <span class="ep__pawic" aria-hidden="true">🐾</span>
+            <b>{petRelief.available === "yes" ? t(locale, "petrelief.yes") : t(locale, "petrelief.no")}</b>
+            {petRelief.available === "yes" && petRelief.postSecurity && (
+              <span class="ep__pill ep__pill--air">{t(locale, "petrelief.airside")}</span>
+            )}
+          </div>
+          {petRelief.locations.length > 0 && (
+            <ul class="ep__relieflist">
+              {petRelief.locations.map((l) => <li>{l}</li>)}
+            </ul>
+          )}
+          {petRelief.note && <p class="ep__reliefnote">{petRelief.note}</p>}
+          {petRelief.src && (
+            <p class="ep__src">
+              {t(locale, "section.sources")}: <a href={petRelief.src.url} rel="nofollow noopener" target="_blank">{petRelief.src.host}</a>
+              <span> · {petRelief.src.date}</span><span> · {stars(petRelief.src.confidence)}</span>
+            </p>
+          )}
+        </article>
+      </div>
+    </section>
+  )}
+
+  {ai && (ai.address || ai.website || ai.access) && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.airport_access")}</h2>
+        <article class="mdcf-card ep__info">
+          <div class="ep__infohead"><span class="ep__infoic" aria-hidden="true">📍</span></div>
+          {ai.access && <p class="ep__infotext">{ai.access}</p>}
+          <dl class="ep__kv">
+            {ai.address && <div><dt>{t(locale, "airport.address")}</dt><dd>{ai.address}</dd></div>}
+            {ai.website && <div><dt>{t(locale, "airport.website")}</dt><dd><a href={ai.website} rel="nofollow noopener" target="_blank">{host(ai.website)}</a></dd></div>}
+          </dl>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {ai?.borderPost && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.border_post")}</h2>
+        <article class="mdcf-card ep__info ep__info--alert">
+          <div class="ep__infohead"><span class="ep__infoic" aria-hidden="true">🩺</span></div>
+          <p class="ep__infotext">{ai.borderPost.note}</p>
+          <dl class="ep__kv">
+            {ai.borderPost.appliesWhen && <div><dt>{t(locale, "airport.applies_to")}</dt><dd>{ai.borderPost.appliesWhen}</dd></div>}
+            {ai.borderPost.phone && <div><dt>{t(locale, "airport.phone")}</dt><dd>{ai.borderPost.phone}</dd></div>}
+            {ai.borderPost.address && <div><dt>{t(locale, "airport.address")}</dt><dd>{ai.borderPost.address}</dd></div>}
+            {ai.borderPost.hours && <div><dt>{t(locale, "airport.hours")}</dt><dd>{ai.borderPost.hours}</dd></div>}
+          </dl>
+          <p class="ep__src">
+            {t(locale, "section.sources")}: <a href={ai.borderPost.src.url} rel="nofollow noopener" target="_blank">{ai.borderPost.src.host}</a>
+            <span> · {ai.borderPost.src.date}</span><span> · {stars(ai.borderPost.src.confidence)}</span>
+          </p>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {ai?.terminalRules && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.terminal_rules")}</h2>
+        <article class="mdcf-card ep__info">
+          <div class="ep__infohead"><span class="ep__infoic" aria-hidden="true">🐾</span></div>
+          <ul class="ep__infolist">{ai.terminalRules.items.map((x) => <li>{x}</li>)}</ul>
+          <p class="ep__src">
+            {t(locale, "section.sources")}: <a href={ai.terminalRules.src.url} rel="nofollow noopener" target="_blank">{ai.terminalRules.src.host}</a>
+            <span> · {ai.terminalRules.src.date}</span><span> · {stars(ai.terminalRules.src.confidence)}</span>
+          </p>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {ai?.assistance && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.assistance_dogs")}</h2>
+        <article class="mdcf-card ep__info">
+          <div class="ep__infohead"><span class="ep__infoic" aria-hidden="true">🦮</span></div>
+          <p class="ep__infotext">{ai.assistance.note}</p>
+          {ai.assistance.src && (
+            <p class="ep__src">
+              {t(locale, "section.sources")}: <a href={ai.assistance.src.url} rel="nofollow noopener" target="_blank">{ai.assistance.src.host}</a>
+              <span> · {ai.assistance.src.date}</span><span> · {stars(ai.assistance.src.confidence)}</span>
+            </p>
+          )}
+        </article>
+      </div>
+    </section>
+  )}
+
+  {ai?.contacts && ai.contacts.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.contacts")}</h2>
+        <article class="mdcf-card ep__info">
+          <div class="ep__infohead"><span class="ep__infoic" aria-hidden="true">☎️</span></div>
+          <dl class="ep__kv">
+            {ai.contacts.map((c) => <div><dt>{c.label}</dt><dd>{c.value}</dd></div>)}
+          </dl>
+          {ai.contacts.find((c) => c.src) && (
+            <p class="ep__src">
+              {t(locale, "section.sources")}: <a href={ai.contacts.find((c) => c.src)!.src!.url} rel="nofollow noopener" target="_blank">{ai.contacts.find((c) => c.src)!.src!.host}</a>
+              <span> · {ai.contacts.find((c) => c.src)!.src!.date}</span>
+            </p>
+          )}
+        </article>
+      </div>
+    </section>
+  )}
+
+  {guide && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <article class="ep__guide" set:html={guide.html} />
+        {guide.sources.length > 0 && (
+          <div class="ep__guidesrc">
+            <h3>{t(locale, "section.sources")}</h3>
+            <ol>
+              {guide.sources.map((s) => (
+                <li id={`g-src-${s.id}`}>
+                  <a href={s.url} rel="nofollow noopener" target="_blank">{s.publisher ?? host(s.url)}</a>
+                  {s.accessed && <span> · {s.accessed}</span>}
+                </li>
+              ))}
+            </ol>
+            {guide.policySource && (
+              <p class="ep__src">{t(locale, "section.pet_policy")}: <a href={guide.policySource} rel="nofollow noopener" target="_blank">{host(guide.policySource)}</a></p>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  {p?.summary && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.about")}</h2>
+        <p class="ep__lede">{p.summary}</p>
+      </div>
+    </section>
+  )}
+
+  {p && p.policy.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container">
+        <h2 class="mdcf-h2">{t(locale, "section.pet_policy")}</h2>
+        <div class="ep__pol">
+          {p.policy.map((pl) => (
+            <article class="mdcf-card ep__polcard">
+              <div class="ep__polhead">
+                <span class="ep__polic"><Icon name={pl.key} size={18} /></span>
+                <b>{pl.label}</b>
+                <span class={`ep__pill ${pl.allowed ? "ep__pill--ok" : "ep__pill--no"}`}>
+                  {pl.allowed ? t(locale, "premium.allowed") : t(locale, "premium.not_allowed")}
+                </span>
+              </div>
+              <dl class="ep__specs">
+                {pl.maxWeight && <div><dt>{t(locale, "premium.max_weight")}</dt><dd>{pl.maxWeight}</dd></div>}
+                {pl.dims && <div><dt>{t(locale, "premium.carrier")}</dt><dd>{pl.dims}</dd></div>}
+                {pl.fee && <div><dt>{t(locale, "premium.fee")}</dt><dd>{pl.fee}</dd></div>}
+              </dl>
+              {pl.conditions && <p class="ep__polcond">{pl.conditions}</p>}
+              <p class="ep__src">
+                {t(locale, "section.sources")}: <a href={pl.src.url} rel="nofollow noopener" target="_blank">{pl.src.host}</a>
+                <span> · {pl.src.date}</span><span> · {stars(pl.src.confidence)}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {p?.booking && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.booking")}</h2>
+        <p>{p.booking.text}</p>
+        <p class="ep__src">
+          {t(locale, "section.sources")}: <a href={p.booking.src.url} rel="nofollow noopener" target="_blank">{p.booking.src.host}</a>
+          <span> · {p.booking.src.date}</span><span> · {stars(p.booking.src.confidence)}</span>
+        </p>
+      </div>
+    </section>
+  )}
+
+  {p && p.history.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.history")}</h2>
+        <ul class="ep__timeline">
+          {p.history.map((h) => (
+            <li>
+              <span class="ep__year">{h.year}</span>
+              <span class="ep__event">{h.event} <a class="ep__cite" href={h.src.url} rel="nofollow noopener" target="_blank">{h.src.host}</a></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {p && p.faq.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.faq")}</h2>
+        {p.faq.map((f) => (
+          <details class="ep__faq">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+            <p class="ep__src">
+              {t(locale, "section.sources")}: <a href={f.src.url} rel="nofollow noopener" target="_blank">{f.src.host}</a>
+              <span> · {f.src.date}</span><span> · {stars(f.src.confidence)}</span>
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {p && p.tips.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.tips")}</h2>
+        <ul class="ep__tips">
+          {p.tips.map((tp) => (
+            <li>{tp.text} <a class="ep__cite" href={tp.src.url} rel="nofollow noopener" target="_blank">{tp.src.host}</a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {rules.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container">
+        <h2 class="mdcf-h2">{t(locale, "section.rules")}</h2>
+        <div class="ep__rules">
+          {rules.map((r) => (
+            <article class="mdcf-card">
+              <div class="ep__rulehead">
+                <span class="ep__badge" style={`--c:${critColor[r.criticality] ?? "#64748b"}`}>{t(locale, `crit.${r.criticality}`, r.criticality)}</span>
+                <span class="ep__cat">{t(locale, `cat.${r.category}`, r.category.replace(/_/g, " "))}</span>
+              </div>
+              <p class="ep__rationale">{r.rationale}</p>
+              <p class="ep__src">
+                {t(locale, "section.sources")}: <a href={r.source.url} rel="nofollow noopener" target="_blank">{host(r.source.url)}</a>
+                <span> · {r.source.verified_date}</span>
+                <span> · {stars(r.source.confidence)}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {contact && contact.phones.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container ep__narrow">
+        <h2 class="mdcf-h2">{t(locale, "section.contact_airline")}</h2>
+        <article class="mdcf-card ep__info">
+          <div class="ep__infohead"><span class="ep__infoic" aria-hidden="true">☎️</span></div>
+          <dl class="ep__kv">
+            {contact.phones.map((ph) => <div><dt>{ph.region}</dt><dd><a href={`tel:${ph.number.replace(/[^+0-9]/g, "")}`}>{ph.number}</a></dd></div>)}
+          </dl>
+          <p class="ep__src">
+            {t(locale, "section.sources")}: <a href={contact.src.url} rel="nofollow noopener" target="_blank">{contact.src.host}</a>
+            <span> · {contact.src.date}</span><span> · {stars(contact.src.confidence)}</span>
+          </p>
+        </article>
+      </div>
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section class="mdcf-section">
+      <div class="mdcf-container">
+        <h2 class="mdcf-h2">{relatedTitle ?? t(locale, "section.related")}</h2>
+        <div class="ep__related">
+          {related.map((rl) => (
+            <a class="mdcf-card ep__rel" href={rl.href}>
+              {rl.flag && <span class="ep__relflag" aria-hidden="true">{rl.flag}</span>}
+              <b>{rl.label}</b>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+</Base>
+
+<style>
+  .ep__head { display: flex; align-items: center; gap: 16px; }
+  .ep__logo { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; border: 1px solid #bae6fd;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px;
+    color: #0369a1; background: #e0f2fe; letter-spacing: .02em; }
+  .ep__title { font-size: clamp(24px, 3.4vw, 36px); margin: 0 0 6px; letter-spacing: -.01em; }
+  .ep__sub { color: var(--mdcf-muted); margin: 0 0 16px; }
+  .ep__facts { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 8px; }
+  .ep__fact { display: flex; flex-direction: column; }
+  .ep__fact span { font-size: 12px; color: var(--mdcf-muted); text-transform: uppercase; letter-spacing: .05em; }
+  .ep__fact b { font-size: 18px; }
+  .ep__rules { display: grid; gap: 12px; }
+  .ep__rulehead { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .ep__badge { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #fff; background: var(--c); padding: 2px 8px; border-radius: 999px; }
+  .ep__cat { font-size: 13px; color: var(--mdcf-muted); }
+  .ep__rationale { margin: 0 0 8px; }
+  .ep__src { margin: 0; font-size: 12.5px; color: var(--mdcf-muted); }
+  .ep__related { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ep__rel { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--mdcf-ink); }
+  .ep__relkind { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted); }
+  .ep__relflag { font-size: 20px; line-height: 1; }
+  .ep__narrow { max-width: 760px; }
+  .ep__factors { border-left: 4px solid var(--mdcf-accent); }
+  .ep__factorstitle { font-size: 18px; margin: 0 0 4px; letter-spacing: -.01em; }
+  .ep__factorsintro { margin: 0 0 14px; color: var(--mdcf-muted); line-height: 1.55; }
+  .ep__factorslist { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .ep__factor { display: flex; gap: 12px; align-items: flex-start; }
+  .ep__factornum { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 999px; background: var(--mdcf-accent-soft); color: var(--mdcf-accent-ink);
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+  .ep__factorhead { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .ep__factorhead b { font-size: 15px; }
+  .ep__factorstars { color: #f59e0b; font-size: 12px; letter-spacing: 1px; }
+  .ep__factortext { margin: 2px 0 0; line-height: 1.55; font-size: 14.5px; }
+  .ep__factorsnote { margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--mdcf-line); font-size: 14px; color: var(--mdcf-muted); line-height: 1.55; }
+  .bt__score { display: flex; flex-direction: column; gap: 8px; }
+  .bt__scorehead { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .bt__stars { color: #f59e0b; font-size: 20px; letter-spacing: 2px; }
+  .bt__num b { font-size: 22px; } .bt__num span { color: var(--mdcf-muted); font-size: 14px; margin-left: 4px; }
+  .bt__diff { margin-left: auto; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .bt__diff--ok { color: #065f46; background: #d1fae5; }
+  .bt__diff--mid { color: #92400e; background: #fef3c7; }
+  .bt__diff--no { color: #991b1b; background: #fee2e2; }
+  .bt__verdict { margin: 4px 0 0; font-size: 16px; line-height: 1.55; }
+  .bt__diffexpl { margin: 0; font-size: 14px; color: var(--mdcf-muted); line-height: 1.55; }
+  .bt__ratings { display: grid; gap: 10px; }
+  .bt__rating { display: grid; grid-template-columns: 190px 1fr 42px; align-items: center; gap: 12px; font-size: 14px; }
+  .bt__rlabel { color: var(--mdcf-ink); }
+  .bt__bar { height: 8px; background: color-mix(in srgb, var(--mdcf-line) 45%, transparent); border-radius: 999px; overflow: hidden; }
+  .bt__fill { display: block; height: 100%; background: var(--mdcf-accent); border-radius: 999px; }
+  .bt__rval { text-align: right; color: var(--mdcf-muted); font-variant-numeric: tabular-nums; }
+  .bt__why { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .bt__coltitle { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--mdcf-muted); margin: 0 0 8px; }
+  .bt__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .bt__list li { padding-left: 22px; position: relative; line-height: 1.5; }
+  .bt__list--plus li::before { content: "✅"; position: absolute; left: 0; font-size: 13px; }
+  .bt__list--minus li::before { content: "⚠️"; position: absolute; left: 0; font-size: 13px; }
+  .bt__para { margin: 0; line-height: 1.65; }
+  @media (max-width: 640px) { .bt__rating { grid-template-columns: 130px 1fr 40px; } .bt__why { grid-template-columns: 1fr; } }
+  .ep__logoimg { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--mdcf-line);
+    object-fit: contain; padding: 8px; background: #fff; }
+  .ep__flag { flex: 0 0 auto; width: 56px; height: 56px; border-radius: 14px; border: 1px solid var(--mdcf-line);
+    display: flex; align-items: center; justify-content: center; font-size: 30px; line-height: 1;
+    background: color-mix(in srgb, var(--mdcf-line) 30%, transparent); }
+  .ep__info { display: flex; flex-direction: column; gap: 10px; }
+  .ep__info--alert { border-left: 4px solid #d97706; }
+  .ep__infohead { display: flex; align-items: center; gap: 10px; }
+  .ep__infoic { font-size: 22px; line-height: 1; }
+  .ep__infotext { margin: 0; line-height: 1.6; }
+  .ep__infolist { margin: 0; padding-left: 18px; display: grid; gap: 6px; line-height: 1.5; }
+  .ep__kv { margin: 0; display: grid; gap: 8px; }
+  .ep__kv div { display: flex; justify-content: space-between; gap: 16px; font-size: 14.5px; border-top: 1px solid var(--mdcf-line); padding-top: 8px; }
+  .ep__kv div:first-child { border-top: none; padding-top: 0; }
+  .ep__kv dt { color: var(--mdcf-muted); white-space: nowrap; }
+  .ep__kv dd { margin: 0; font-weight: 600; text-align: right; }
+  .ep__relief { display: flex; flex-direction: column; gap: 10px; border-left: 4px solid var(--mdcf-line); }
+  .ep__relief--yes { border-left-color: #059669; }
+  .ep__relief--no { border-left-color: #d97706; }
+  .ep__reliefhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .ep__reliefhead b { font-size: 16px; }
+  .ep__pawic { font-size: 20px; line-height: 1; }
+  .ep__pill--air { color: #065f46; background: #d1fae5; }
+  .ep__relieflist { margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 14.5px; line-height: 1.5; }
+  .ep__reliefnote { margin: 2px 0 0; font-size: 14px; color: var(--mdcf-muted); }
+  .ep__lede { font-size: 17px; line-height: 1.6; }
+  .ep__pol { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .ep__polcard { display: flex; flex-direction: column; gap: 8px; }
+  .ep__polhead { display: flex; align-items: center; gap: 8px; }
+  .ep__polic { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; color: var(--mdcf-accent); background: var(--mdcf-accent-soft); }
+  .ep__polhead .ep__pill { margin-left: auto; }
+  .ep__pill { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+  .ep__pill--ok { color: #065f46; background: #d1fae5; }
+  .ep__pill--no { color: #991b1b; background: #fee2e2; }
+  .ep__specs { margin: 0; display: grid; gap: 4px; }
+  .ep__specs div { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+  .ep__specs dt { color: var(--mdcf-muted); }
+  .ep__specs dd { margin: 0; font-weight: 600; text-align: right; }
+  .ep__polcond { margin: 4px 0 0; font-size: 14px; color: var(--mdcf-muted); }
+  .ep__timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .ep__timeline li { display: flex; gap: 14px; }
+  .ep__year { font-weight: 800; color: var(--mdcf-ink); min-width: 48px; }
+  .ep__cite { font-size: 12px; color: var(--mdcf-muted); }
+  .ep__faq { border-top: 1px solid var(--mdcf-line); padding: 10px 0; }
+  .ep__faq summary { cursor: pointer; font-weight: 600; }
+  .ep__faq p { margin: 8px 0 0; }
+  .ep__tips { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  .ep__guide :global(h3.g-h) { font-size: 20px; margin: 22px 0 8px; letter-spacing: -.01em; }
+  .ep__guide :global(h3.g-h:first-child) { margin-top: 0; }
+  .ep__guide :global(h4.g-q) { font-size: 15.5px; margin: 16px 0 4px; }
+  .ep__guide :global(p) { margin: 0 0 10px; line-height: 1.65; }
+  .ep__guide :global(ul) { margin: 0 0 10px; padding-left: 18px; display: grid; gap: 4px; }
+  .ep__guide :global(blockquote) { margin: 10px 0; padding: 6px 0 6px 14px; border-left: 3px solid var(--mdcf-accent); color: var(--mdcf-ink); font-style: italic; }
+  .ep__guide :global(sup.g-cite) { font-size: 11px; line-height: 0; }
+  .ep__guide :global(sup.g-cite a) { text-decoration: none; color: var(--mdcf-accent); font-weight: 700; padding: 0 1px; }
+  /* V3 identity card */
+  .ep__guide :global(table.g-card) { width: 100%; border-collapse: collapse; margin: 4px 0 18px; font-size: 14.5px; }
+  .ep__guide :global(table.g-card td) { padding: 8px 12px; border-bottom: 1px solid var(--mdcf-line); vertical-align: top; }
+  .ep__guide :global(table.g-card tr:first-child td) { font-weight: 700; color: var(--mdcf-muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; border-bottom-width: 2px; }
+  .ep__guide :global(table.g-card td:first-child) { white-space: nowrap; color: var(--mdcf-muted); width: 42%; }
+  .ep__guide :global(table.g-card td:last-child) { font-weight: 600; color: var(--mdcf-ink); }
+  .ep__guidesrc { border-top: 1px solid var(--mdcf-line); margin-top: 18px; padding-top: 12px; }
+  .ep__guidesrc h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted); margin: 0 0 6px; }
+  .ep__guidesrc ol { margin: 0; padding-left: 18px; display: grid; gap: 3px; font-size: 13px; }
+  .ep__guidesrc a { color: var(--mdcf-accent-ink); }
+  @media (max-width: 720px) { .ep__related { grid-template-columns: 1fr 1fr; } .ep__pol { grid-template-columns: 1fr; } }
+</style>

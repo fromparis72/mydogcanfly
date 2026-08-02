@@ -1,0 +1,278 @@
+id: airline_easyjet
+mono: U2
+name: easyJet
+titleH1:
+  en: Flying with a dog on easyJet
+  fr: Voyager avec un chien sur easyJet
+  es: Viajar con perro en easyJet
+  pt: "Voar com um cachorro na easyJet"
+metaDesc:
+  en: "easyJet pet policy: no pets carried, only accredited assistance dogs in the cabin, route limits and official sources."
+  fr: "Politique animaux easyJet : aucun animal transporté, seulement les chiens d'assistance accrédités en cabine, restrictions de routes et sources officielles."
+  es: "Política de mascotas de easyJet: no se transportan mascotas, solo perros de asistencia acreditados en cabina, límites de rutas y fuentes oficiales."
+  pt: "Política de animais da easyJet: nenhum animal transportado, somente cães de assistência credenciados na cabine, limites de rota e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: United Kingdom · LTN
+      fr: Royaume-Uni · LTN
+      es: Reino Unido · LTN
+      pt: "Reino Unido · LTN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: No pets
+    fr: Aucun animal
+    es: Sin mascotas
+    pt: "Sem animais"
+verdictNote:
+  en: easyJet carries no pets at all — only accredited assistance dogs travel free in the cabin.
+  fr: easyJet ne transporte aucun animal — seuls les chiens d'assistance accrédités voyagent gratuitement en cabine.
+  es: easyJet no transporta ninguna mascota; solo los perros de asistencia acreditados viajan gratis en cabina.
+  pt: "A easyJet não transporta nenhum animal — somente cães de assistência credenciados voam gratuitamente na cabine."
+ladder:
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: assistance only
+      fr: assistance seul
+      es: solo asistencia
+      pt: "somente assistência"
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 34
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: —
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    detail:
+      en: Animals aren't allowed — only recognised registered assistance dogs. Emotional-support dogs and pets are forbidden.
+      fr: Les animaux ne sont pas admis — seulement les chiens d'assistance reconnus et enregistrés. Chiens de soutien émotionnel et animaux interdits.
+      es: No se admiten animales, solo los perros de asistencia reconocidos y registrados. Los perros de apoyo emocional y las mascotas están prohibidos.
+      pt: "Animais não são permitidos — somente cães de assistência reconhecidos e registrados. Cães de apoio emocional e animais de estimação são proibidos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: No pets are carried in the hold.
+      fr: Aucun animal n'est transporté en soute.
+      es: No se transportan mascotas en la bodega.
+      pt: "Nenhum animal é transportado no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: easyJet operates no pet cargo service.
+      fr: easyJet n'exploite aucun service fret animalier.
+      es: easyJet no opera ningún servicio de carga para mascotas.
+      pt: "A easyJet não opera nenhum serviço de carga para animais."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Pets (cabin / hold / cargo)
+        fr: Animaux (cabine / soute / fret)
+        es: Mascotas (cabina / bodega / carga)
+        pt: "Animais (cabine / porão / carga)"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transportan
+        pt: "Não transportado"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: easyJet doesn't carry pets of any kind; only accredited assistance dogs travel free in the cabin.
+    fr: easyJet ne transporte aucun animal ; seuls les chiens d'assistance accrédités voyagent gratuitement en cabine.
+    es: easyJet no transporta mascotas de ningún tipo; solo los perros de asistencia acreditados viajan gratis en cabina.
+    pt: "A easyJet não transporta animais de nenhum tipo; somente cães de assistência credenciados voam gratuitamente na cabine."
+restrictions:
+  - icon: 🚫
+    title:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    pills:
+      - cls: no
+        label:
+          en: Pets forbidden
+          fr: Animaux interdits
+          es: Mascotas prohibidas
+          pt: "Animais proibidos"
+    note:
+      en: Animals of any kind and emotional-support dogs are forbidden. Only assistance dogs certified by an ADI/IGDF-accredited organisation are accepted.
+      fr: Les animaux de toute nature et les chiens de soutien émotionnel sont interdits. Seuls les chiens d'assistance certifiés par un organisme accrédité ADI/IGDF sont acceptés.
+      es: Los animales de cualquier tipo y los perros de apoyo emocional están prohibidos. Solo se aceptan perros de asistencia certificados por una organización acreditada ADI/IGDF.
+      pt: "Animais de qualquer tipo e cães de apoio emocional são proibidos. Somente cães de assistência certificados por uma organização credenciada ADI/IGDF são aceitos."
+  - icon: 🌍
+    title:
+      en: Route limits (assistance dogs)
+      fr: Routes limitées (chiens d'assistance)
+      es: Límites de rutas (perros de asistencia)
+      pt: "Limites de rota (cães de assistência)"
+    pills:
+      - cls: no
+        label:
+          en: Not to some countries
+          fr: Pas vers certains pays
+          es: No hacia algunos países
+          pt: "Não para alguns países"
+    note:
+      en: Assistance dogs aren't permitted on flights to/from Egypt, Israel, Kosovo, Montenegro, Morocco or Turkey.
+      fr: Les chiens d'assistance ne sont pas admis sur les vols de/vers l'Égypte, Israël, le Kosovo, le Monténégro, le Maroc ou la Turquie.
+      es: Los perros de asistencia no se permiten en vuelos hacia/desde Egipto, Israel, Kosovo, Montenegro, Marruecos o Turquía.
+      pt: "Cães de assistência não são permitidos em voos de/para Egito, Israel, Kosovo, Montenegro, Marrocos ou Turquia."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: No pets carried
+        fr: Aucun animal transporté
+        es: No se transportan mascotas
+        pt: "Nenhum animal transportado"
+  note:
+    en: easyJet carries no pets, so no hold-temperature policy applies.
+    fr: "easyJet ne transporte aucun animal : aucune règle de température de soute ne s'applique."
+    es: "easyJet no transporta mascotas, así que no se aplica ninguna política de temperatura de la bodega."
+    pt: "A easyJet não transporta animais, portanto nenhuma política de temperatura do porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Accredited assistance dogs travel free in the cabin (dog + containers + food) on most routes.
+      fr: Les chiens d'assistance accrédités voyagent gratuitement en cabine (chien + contenants + nourriture) sur la plupart des routes.
+      es: Los perros de asistencia acreditados viajan gratis en cabina (perro + contenedores + comida) en la mayoría de las rutas.
+      pt: "Cães de assistência credenciados viajam gratuitamente na cabine (cão + recipientes + comida) na maioria das rotas."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: ADI/IGDF certification, health certificate/pet passport, vaccinations; notify ≥ 48 h ahead, arrive 2 h early. Not to Egypt/Israel/Kosovo/Montenegro/Morocco/Turkey.
+      fr: Certification ADI/IGDF, certificat sanitaire/passeport, vaccinations ; prévenir ≥ 48 h à l'avance, arriver 2 h avant. Pas vers Égypte/Israël/Kosovo/Monténégro/Maroc/Turquie.
+      es: Certificación ADI/IGDF, certificado sanitario/pasaporte de mascota, vacunas; avisa ≥ 48 h antes, llega 2 h antes. No hacia Egipto/Israel/Kosovo/Montenegro/Marruecos/Turquía.
+      pt: "Certificação ADI/IGDF, atestado de saúde/passaporte de animal de estimação, vacinas; avise ≥ 48 h antes, chegue 2 h mais cedo. Não para Egito/Israel/Kosovo/Montenegro/Marrocos/Turquia."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets whatsoever
+      fr: Aucun animal
+      es: Ninguna mascota
+      pt: "Nenhum animal, de forma alguma"
+    value:
+      en: No pets in cabin, hold or cargo — only recognised assistance dogs.
+      fr: Aucun animal en cabine, soute ou fret — seulement les chiens d'assistance reconnus.
+      es: Sin mascotas en cabina, bodega ni carga, solo perros de asistencia reconocidos.
+      pt: "Nenhum animal na cabine, no porão ou na carga — somente cães de assistência reconhecidos."
+  - icon: 🌍
+    label:
+      en: Route exclusions
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    value:
+      en: Assistance dogs banned to/from Egypt, Israel, Kosovo, Montenegro, Morocco and Turkey.
+      fr: Chiens d'assistance interdits de/vers l'Égypte, Israël, le Kosovo, le Monténégro, le Maroc et la Turquie.
+      es: Los perros de asistencia están vetados hacia/desde Egipto, Israel, Kosovo, Montenegro, Marruecos y Turquía.
+      pt: "Cães de assistência proibidos de/para Egito, Israel, Kosovo, Montenegro, Marrocos e Turquia."
+  - icon: ✓
+    label:
+      en: Free carriage
+      fr: Transport gratuit
+      es: Transporte gratuito
+      pt: "Transporte gratuito"
+    value:
+      en: Assistance dogs (with containers and food) are carried free, on top of the baggage allowance.
+      fr: Les chiens d'assistance (avec contenants et nourriture) sont transportés gratuitement, en plus de la franchise bagages.
+      es: Los perros de asistencia (con contenedores y comida) se transportan gratis, además de la franquicia de equipaje.
+      pt: "Os cães de assistência (com recipientes e comida) são transportados gratuitamente, além da franquia de bagagem."
+book:
+  host: easyjet.com
+  url: https://www.easyjet.com/
+sources:
+  en: 2 easyJet sources · last verified 11 July 2026
+  fr: 2 sources easyJet · dernière vérification 11 juillet 2026
+  es: 2 fuentes de easyJet · última verificación 11 julio 2026
+  pt: "2 fontes da easyJet · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

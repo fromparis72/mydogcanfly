@@ -1,0 +1,314 @@
+id: airline_finnair
+mono: AY
+name: Finnair
+titleH1:
+  en: Flying with a dog on Finnair
+  fr: Voyager avec un chien sur Finnair
+  es: Volar con un perro en Finnair
+  pt: "Voar com um cachorro na Finnair"
+metaDesc:
+  en: "Finnair pet policy: cabin, heated hold and cargo, fares by zone, cargo-only countries and official sources."
+  fr: "Politique animaux Finnair : cabine, soute chauffée et fret, tarifs par zone, pays fret-seul et sources officielles."
+  es: "Política de mascotas de Finnair: cabina, bodega climatizada y carga, tarifas por zona, países solo carga y fuentes oficiales."
+  pt: "Política de animais da Finnair: cabine, porão aquecido e carga, tarifas por zona, países somente carga e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Finland · HEL
+      fr: Finlande · HEL
+      es: Finlandia · HEL
+      pt: "Finlândia · HEL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in a heated hold — but many countries are cargo-only (UK, HK, UAE, Australia).
+  fr: Petits animaux en cabine, plus grands en soute chauffée — mais de nombreux pays sont fret-seul (R.-U., HK, ÉAU, Australie).
+  es: Mascotas pequeñas en cabina, las más grandes en una bodega climatizada, pero muchos países son solo carga (R.U., HK, EAU, Australia).
+  pt: "Animais pequenos na cabine, os maiores em um porão aquecido — mas muitos países são somente carga (Reino Unido, HK, EAU, Austrália)."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: cargo-only countries
+      fr: pays fret-seul
+      es: países solo carga
+      pt: "países somente carga"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & small dogs (min 8 weeks) ≤ 8 kg incl. carrier under the seat (soft 55 × 40 × 23 cm); max 2 per carrier. Not in long-haul Business.
+      fr: Chats et petits chiens (min 8 semaines) ≤ 8 kg avec le sac sous le siège (souple 55 × 40 × 23 cm) ; max 2 par sac. Pas en Business long-courrier.
+      es: Gatos y perros pequeños (mín. 8 semanas) ≤ 8 kg con la jaula bajo el asiento (blanda 55 × 40 × 23 cm); máx. 2 por jaula. No en Business de largo radio.
+      pt: "Gatos e cachorros pequenos (mín. 8 semanas) ≤ 8 kg com a bolsa embaixo do assento (flexível, 55 × 40 × 23 cm); máx. 2 por bolsa. Não disponível na Business de longa distância."
+    fee:
+      en: €60–130
+      fr: 60–130 €
+      es: 60–130 €
+      pt: "60–130 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Bigger dogs & ferrets in a heated, air-conditioned hold (≤ 75 kg incl. container on Finnair, 50 kg on Norra). No auto-transfer at Helsinki.
+      fr: Chiens plus grands et furets dans une soute chauffée et climatisée (≤ 75 kg avec le contenant sur Finnair, 50 kg sur Norra). Pas de transfert automatique à Helsinki.
+      es: Perros más grandes y hurones en una bodega climatizada con calefacción (≤ 75 kg con el contenedor en Finnair, 50 kg en Norra). Sin transferencia automática en Helsinki.
+      pt: "Cachorros maiores e furões em um porão aquecido e climatizado (≤ 75 kg com o recipiente na Finnair, 50 kg na Norra). Sem transferência automática em Helsinque."
+    fee:
+      en: €140–650
+      fr: 140–650 €
+      es: 140–650 €
+      pt: "140–650 €"
+  - icon: ✈️
+    name:
+      en: Finnair Cargo
+      fr: Finnair Cargo
+      es: Finnair Cargo
+      pt: "Finnair Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Over hold limits, unaccompanied, or to/via cargo-only countries (UK, Hong Kong, UAE, Australia). Via a forwarder.
+      fr: Au-delà des limites soute, non accompagné, ou vers/via des pays fret-seul (R.-U., Hong Kong, ÉAU, Australie). Via un transitaire.
+      es: Por encima de los límites de bodega, sin acompañante, o hacia/vía países solo carga (R.U., Hong Kong, EAU, Australia). Mediante un transitario.
+      pt: "Acima dos limites de porão, sem acompanhante, ou de/via países somente carga (Reino Unido, Hong Kong, EAU, Austrália). Por meio de um despachante."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Europe
+        fr: Cabine — Europe
+        es: Cabina — Europa
+        pt: "Cabine — Europa"
+      value:
+        en: €60–65
+        fr: 60–65 €
+        es: 60–65 €
+        pt: "60–65 €"
+    - label:
+        en: Cabin — intercontinental
+        fr: Cabine — intercontinental
+        es: Cabina — intercontinental
+        pt: "Cabine — intercontinental"
+      value:
+        en: €120–140
+        fr: 120–140 €
+        es: 120–140 €
+        pt: "120–140 €"
+    - label:
+        en: Hold — Europe
+        fr: Soute — Europe
+        es: Bodega — Europa
+        pt: "Porão — Europa"
+      value:
+        en: €140
+        fr: 140 €
+        es: 140 €
+        pt: "140 €"
+    - label:
+        en: Hold — intercontinental
+        fr: Soute — intercontinental
+        es: Bodega — intercontinental
+        pt: "Porão — intercontinental"
+      value:
+        en: €650 / $700
+        fr: 650 € / 700 $
+        es: 650 € / 700 $
+        pt: "650 € / US$ 700"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per journey; a few euros more if booked ≤ 6 days ahead.
+    fr: EUR par trajet ; quelques euros de plus si réservé ≤ 6 jours à l'avance.
+    es: EUR por trayecto; unos euros más si reservas con ≤ 6 días de antelación.
+    pt: "EUR por trajeto; alguns euros a mais se reservado com ≤ 6 dias de antecedência."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Cargo-only countries
+      fr: Pays fret-seul
+      es: Países solo carga
+      pt: "Países somente carga"
+    pills:
+      - cls: no
+        label:
+          en: UK / HK / UAE / Australia
+          fr: R.-U. / HK / ÉAU / Australie
+          es: R.U. / HK / EAU / Australia
+          pt: "Reino Unido / HK / EAU / Austrália"
+    note:
+      en: Many destinations are cargo-only — the pet can't travel with you — including Great Britain, Hong Kong, the UAE and Australia.
+      fr: De nombreuses destinations sont fret-seul — l'animal ne peut pas voyager avec toi — dont la Grande-Bretagne, Hong Kong, les ÉAU et l'Australie.
+      es: Muchos destinos son solo carga — la mascota no puede viajar contigo — incluidos Gran Bretaña, Hong Kong, los EAU y Australia.
+      pt: "Muitos destinos são somente carga — o animal não pode viajar com você — incluindo Grã-Bretanha, Hong Kong, os EAU e a Austrália."
+  - icon: 📄
+    title:
+      en: Sedation & age
+      fr: Sédation & âge
+      es: Sedación y edad
+      pt: "Sedação e idade"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 8 weeks
+          fr: 8 semaines min.
+          es: Mín. 8 semanas
+          pt: "Mín. 8 semanas"
+    note:
+      en: IATA discourages sedation; if a vet prescribes it, mark the details on the container. Puppies/kittens must be at least 8 weeks old. Primates and lab animals aren't accepted.
+      fr: L'IATA déconseille la sédation ; si un vétérinaire la prescrit, indique les détails sur le contenant. Les chiots/chatons doivent avoir au moins 8 semaines. Les primates et animaux de laboratoire ne sont pas acceptés.
+      es: La IATA desaconseja la sedación; si un veterinario la prescribe, anota los detalles en el contenedor. Los cachorros/gatitos deben tener al menos 8 semanas. No se aceptan primates ni animales de laboratorio.
+      pt: "A IATA desaconselha a sedação; se um veterinário a prescrever, anote os detalhes no recipiente. Filhotes devem ter pelo menos 8 semanas. Primatas e animais de laboratório não são aceitos."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Heated hold, always > +10 °C
+        fr: Soute chauffée, toujours > +10 °C
+        es: Bodega con calefacción, siempre > +10 °C
+        pt: "Porão aquecido, sempre acima de +10 °C"
+  note:
+    en: The pet hold section is air-conditioned and heated, kept always above +10 °C (no lights, no in-flight access). Most aircraft keep the hold temperature similar to the cabin. Finnair publishes no upper temperature limit.
+    fr: La section soute pour animaux est climatisée et chauffée, maintenue toujours au-dessus de +10 °C (sans lumière, sans accès en vol). La plupart des avions gardent une température de soute proche de la cabine. Finnair ne publie pas de limite haute de température.
+    es: La sección de bodega para mascotas está climatizada y con calefacción, siempre por encima de +10 °C (sin luz, sin acceso en vuelo). La mayoría de aviones mantienen la temperatura de bodega parecida a la de la cabina. Finnair no publica un límite superior de temperatura.
+    pt: "A seção de porão para animais é climatizada e aquecida, mantida sempre acima de +10 °C (sem luz, sem acesso durante o voo). A maioria das aeronaves mantém a temperatura do porão parecida com a da cabine. A Finnair não divulga um limite superior de temperatura."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs (guide, hearing, service) and working search-and-rescue dogs travel free in the cabin on all flights, any size.
+      fr: Les chiens d'assistance (guide, écoute, service) et les chiens de recherche et sauvetage voyagent gratuitement en cabine sur tous les vols, quelle que soit leur taille.
+      es: Los perros de asistencia (guía, de escucha, de servicio) y los perros de búsqueda y rescate en activo viajan gratis en cabina en todos los vuelos, sea cual sea su tamaño.
+      pt: "Cães de assistência (guia, audição, serviço) e cães de busca e resgate em atividade viajam de graça na cabine em todos os voos, qualquer que seja o tamanho."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Notify ≥ 48 h ahead via the special-assistance form; working dogs also need a training certificate + mission document.
+      fr: Prévenir ≥ 48 h à l'avance via le formulaire d'assistance spéciale ; les chiens de travail nécessitent aussi un certificat de dressage + document de mission.
+      es: Avisa con ≥ 48 h de antelación mediante el formulario de asistencia especial; los perros de trabajo también necesitan un certificado de adiestramiento + documento de misión.
+      pt: "Avise com ≥ 48 h de antecedência pelo formulário de assistência especial; cães de trabalho também precisam de um certificado de adestramento e de um documento de missão."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Cargo-only countries
+      fr: Pays fret-seul
+      es: Países solo carga
+      pt: "Países somente carga"
+    value:
+      en: Great Britain, Hong Kong, the UAE and Australia are cargo-only — pets can't travel with you.
+      fr: Grande-Bretagne, Hong Kong, ÉAU et Australie sont fret-seul — les animaux ne voyagent pas avec toi.
+      es: Gran Bretaña, Hong Kong, los EAU y Australia son solo carga; las mascotas no pueden viajar contigo.
+      pt: "Grã-Bretanha, Hong Kong, os EAU e a Austrália são somente carga — os animais não podem viajar com você."
+  - icon: 🔁
+    label:
+      en: Helsinki transfers
+      fr: Transferts Helsinki
+      es: Conexiones en Helsinki
+      pt: "Conexões em Helsinque"
+    value:
+      en: Hold pets don't transfer automatically at Helsinki — collect and re-check them; minimum connection 3 h.
+      fr: Les animaux en soute ne suivent pas automatiquement à Helsinki — les récupérer et réenregistrer ; correspondance minimale 3 h.
+      es: Las mascotas en bodega no se transfieren automáticamente en Helsinki; recógelas y vuelve a facturarlas; conexión mínima 3 h.
+      pt: "Animais no porão não são transferidos automaticamente em Helsinque — retire-os e despache-os de novo; conexão mínima de 3 h."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: "Cabin: online at booking or Manage booking. Hold: book the flight ≥ 7 days ahead, then inform Finnair within 24 h (US flights ≥ 2 weeks)."
+      fr: "Cabine : en ligne à la réservation ou via Gérer la réservation. Soute : réserver le vol ≥ 7 jours à l'avance, puis informer Finnair sous 24 h (vols USA ≥ 2 semaines)."
+      es: "Cabina: en línea al reservar o en Gestionar reserva. Bodega: reserva el vuelo con ≥ 7 días de antelación y luego informa a Finnair en 24 h (vuelos a EE. UU. ≥ 2 semanas)."
+      pt: "Cabine: on-line na reserva ou em Gerenciar reserva. Porão: reserve o voo com ≥ 7 dias de antecedência e depois avise a Finnair em até 24 h (voos para os EUA ≥ 2 semanas)."
+book:
+  host: finnair.com
+  url: https://www.finnair.com/
+sources:
+  en: 2 Finnair sources · last verified 11 July 2026
+  fr: 2 sources Finnair · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Finnair · última verificación 11 de julio de 2026
+  pt: "2 fontes da Finnair · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

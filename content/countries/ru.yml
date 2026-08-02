@@ -1,0 +1,364 @@
+# Country Entry Guide — Russia (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ru
+iso2: "RU"
+name: { en: "Russia", fr: "Russie", es: "Rusia", pt: "Rússia" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: non_listed
+exit:
+  authority: Rosselkhoznadzor
+  authorityUrl: https://fsvps.gov.ru
+  intro:
+    en: "Russia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by Rosselkhoznadzor (FSVPS)."
+    fr: "La Russie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Rosselkhoznadzor (FSVPS)."
+    es: "Rusia no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Rosselkhoznadzor (FSVPS)."
+    pt: "A Rússia é um país não listado: um teste sorológico antirrábico válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Rosselkhoznadzor (FSVPS)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The state veterinary service issues domestic certificate Form 1; at the border, Rosselkhoznadzor exchanges it free of charge for the international certificate Form 5a (valid 5 days; rabies vaccination required >21 days and <12 months before travel)."
+        fr: "Le service vétérinaire d'État délivre le certificat national (formulaire 1) ; à la frontière, le Rosselkhoznadzor l'échange gratuitement contre le certificat international (formulaire 5a, valable 5 jours ; vaccination antirabique exigée entre 21 jours et 12 mois avant le voyage)."
+        es: "El servicio veterinario estatal emite el certificado nacional (Formulario 1); en la frontera, Rosselkhoznadzor lo cambia gratis por el certificado internacional (Formulario 5a, válido 5 días; vacuna antirrábica exigida entre 21 días y 12 meses antes del viaje)."
+        pt: "O serviço veterinário estatal emite o certificado nacional Formulário 1; na fronteira, o Rosselkhoznadzor o troca gratuitamente pelo certificado internacional Formulário 5a (válido por 5 dias; vacinação antirrábica aplicada há mais de 21 dias e menos de 12 meses antes da viagem)."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Russia with your dog", fr: "Voyager en Russie avec ton chien", es: "Viajar a Rusia con tu perro", pt: "Viajar para a Rússia com seu cachorro" }
+  intro:
+    en: >-
+      Russia is not part of the EU: it applies its own rules through the Eurasian Economic Union
+      (EAEU) and the Federal Service for Veterinary and Phytosanitary Surveillance (Rosselkhoznadzor).
+      A dog travelling for personal use — up to two animals per owner — can enter without an import
+      permit and without quarantine, provided it carries an international veterinary passport with a
+      valid rabies vaccination and the other required shots, plus a clinical examination noted within
+      14 days before departure. What you prepare still depends on your dog's country of departure and
+      whether you travel with more than two animals. This guide explains the standard path and the
+      cases where a Rosselkhoznadzor permit is needed, so you know what to organise before you fly.
+    fr: >-
+      La Russie ne fait pas partie de l'UE : elle applique ses propres règles via l'Union économique
+      eurasiatique (UEEA) et le Service fédéral de surveillance vétérinaire et phytosanitaire
+      (Rosselkhoznadzor). Un chien voyageant à titre personnel — jusqu'à deux animaux par propriétaire —
+      peut entrer sans permis d'importation et sans quarantaine, à condition d'avoir un passeport
+      vétérinaire international avec une vaccination antirabique valide et les autres vaccins exigés,
+      ainsi qu'un examen clinique noté dans les 14 jours précédant le départ. Ce qu'il faut préparer
+      dépend aussi du pays de départ et du nombre d'animaux. Ce guide détaille le parcours standard et
+      les cas nécessitant une autorisation de Rosselkhoznadzor, pour savoir quoi organiser avant de partir.
+    es: >-
+      Rusia no forma parte de la UE: aplica sus propias normas a través de la Unión Económica Euroasiática
+      (UEEA) y del Servicio Federal de Vigilancia Veterinaria y Fitosanitaria (Rosselkhoznadzor). Un perro
+      que viaja a título personal — hasta dos animales por propietario — puede entrar sin permiso de
+      importación y sin cuarentena, siempre que lleve un pasaporte veterinario internacional con una
+      vacunación antirrábica válida y las demás vacunas exigidas, más un examen clínico anotado dentro de
+      los 14 días previos a la salida. Lo que debes preparar depende también del país de salida de tu
+      perro y de si viajas con más de dos animales. Esta guía explica el recorrido estándar y los casos en
+      los que se necesita una autorización de Rosselkhoznadzor, para que sepas qué organizar antes de volar.
+
+    pt: "A Rússia não faz parte da UE: ela aplica as próprias regras por meio da União Econômica Eurasiática (UEE) e do Serviço Federal de Vigilância Veterinária e Fitossanitária (Rosselkhoznadzor). Um cachorro que viaja para uso pessoal — até dois animais por dono — pode entrar sem autorização de importação e sem quarentena, desde que leve um passaporte veterinário internacional com vacinação antirrábica válida e as demais vacinas exigidas, além de um exame clínico registrado nos 14 dias anteriores à partida. O que você precisa preparar ainda depende do país de partida do seu cachorro e de você viajar ou não com mais de dois animais. Este guia explica o caminho padrão e os casos em que é preciso uma autorização do Rosselkhoznadzor, para você saber o que organizar antes de voar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate (vaccinations + veterinary passport)", fr: "Modéré (vaccins + passeport vétérinaire)", es: "Moderado (vacunas + pasaporte veterinario)", pt: "Moderado (vacinas + passaporte veterinário)" }
+
+prepTime:
+  eu:
+    en: "From another EAEU country (Belarus, Kazakhstan, Armenia, Kyrgyzstan): a few days if the international passport and vaccinations are up to date."
+    fr: "Depuis un autre pays de l'UEEA (Biélorussie, Kazakhstan, Arménie, Kirghizistan) : quelques jours si le passeport international et les vaccins sont à jour."
+    es: "Desde otro país de la UEEA (Bielorrusia, Kazajistán, Armenia, Kirguistán): unos días si el pasaporte internacional y las vacunas están al día."
+    pt: "De outro país da UEE (Belarus, Cazaquistão, Armênia, Quirguistão): alguns dias, se o passaporte internacional e as vacinas estiverem em dia."
+  listed:
+    en: "From any other country, up to 2 pets: about 3 weeks if the primary rabies shot is still needed (given at least 20 days before departure) plus the 14-day clinical exam."
+    fr: "Depuis tout autre pays, jusqu'à 2 animaux : environ 3 semaines si la primo-vaccination antirabique reste à faire (au moins 20 jours avant le départ) plus l'examen clinique des 14 jours."
+    es: "Desde cualquier otro país, hasta 2 mascotas: unas 3 semanas si aún falta la primovacunación antirrábica (administrada al menos 20 días antes de la salida) más el examen clínico de los 14 días."
+    pt: "De qualquer outro país, até 2 animais: cerca de 3 semanas se ainda faltar a primovacinação antirrábica (aplicada no mínimo 20 dias antes da partida), mais o exame clínico dos 14 dias."
+  nonListed:
+    en: "More than 2 animals, unaccompanied or commercial import: several weeks — an annual Rosselkhoznadzor import permit (form No.1) must be obtained in advance."
+    fr: "Plus de 2 animaux, sans accompagnateur ou import commercial : plusieurs semaines — un permis annuel d'importation Rosselkhoznadzor (formulaire n°1) doit être obtenu à l'avance."
+    es: "Más de 2 animales, sin acompañante o importación comercial: varias semanas — hay que obtener con antelación un permiso anual de importación de Rosselkhoznadzor (formulario n.º 1)."
+    pt: "Mais de 2 animais, viagem desacompanhada ou importação comercial: várias semanas — é preciso obter com antecedência uma autorização anual de importação do Rosselkhoznadzor (formulário nº 1)."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended, not strictly required", fr: "Recommandée, non strictement exigée", es: "Recomendado, no estrictamente obligatorio", pt: "Recomendado, não estritamente obrigatório" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required in general", fr: "Non requis en général", es: "No obligatoria en general", pt: "Em geral, não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "International passport (or Form No.15)", fr: "Passeport international (ou formulaire n°15)", es: "Pasaporte internacional (o formulario n.º 15)", pt: "Passaporte internacional (ou Formulário nº 15)" }
+    cls: warn
+  - requirement: { en: "Other vaccinations (distemper, hepatitis, parvo…)", fr: "Autres vaccins (maladie de Carré, hépatite, parvovirose…)", es: "Otras vacunas (moquillo, hepatitis, parvovirus…)", pt: "Outras vacinações (cinomose, hepatite, parvovirose…)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for up to 2 pets", fr: "Non requise jusqu'à 2 animaux", es: "No obligatoria hasta 2 mascotas", pt: "Não obrigatória para até 2 animais" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Russia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Russie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Rusia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Rússia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Russia", fr: "Pays de destination — Russie", es: "País de destino — Rusia", pt: "País de destino — Rússia" }
+      text:
+        en: "Russia applies the EAEU veterinary rules: a rabies vaccination and a set of other vaccinations (distemper, hepatitis, parvovirus, adenovirus, leptospirosis) recorded in an international veterinary passport are required, with a clinical exam within 14 days of departure."
+        fr: "La Russie applique les règles vétérinaires de l'UEEA : vaccination antirabique et une série d'autres vaccins (Carré, hépatite, parvovirose, adénovirose, leptospirose) consignés dans un passeport vétérinaire international, avec un examen clinique dans les 14 jours avant le départ."
+        es: "Rusia aplica las normas veterinarias de la UEEA: se exigen una vacunación antirrábica y una serie de otras vacunas (moquillo, hepatitis, parvovirus, adenovirus, leptospirosis) consignadas en un pasaporte veterinario internacional, con un examen clínico dentro de los 14 días previos a la salida."
+        pt: "A Rússia aplica as regras veterinárias da UEE: são exigidas a vacinação antirrábica e um conjunto de outras vacinas (cinomose, hepatite, parvovírus, adenovírus, leptospirose) registradas em um passaporte veterinário internacional, além de um exame clínico feito nos 14 dias anteriores à partida."
+    - stars: 4
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Coming from another EAEU country lets your dog move on the international passport alone. From any other country the same passport is accepted for up to two pets; other animals must be quarantined in the country of departure first."
+        fr: "En provenance d'un autre pays de l'UEEA, ton chien circule avec le seul passeport international. Depuis tout autre pays, ce même passeport est accepté jusqu'à deux animaux ; les autres animaux doivent d'abord être mis en quarantaine dans le pays de départ."
+        es: "Si llega de otro país de la UEEA, tu perro circula solo con el pasaporte internacional. Desde cualquier otro país, ese mismo pasaporte se acepta hasta dos mascotas; los demás animales deben ponerse antes en cuarentena en el país de salida."
+        pt: "Vir de outro país da UEE permite que seu cachorro viaje só com o passaporte internacional. De qualquer outro país, o mesmo passaporte é aceito para até dois animais; os demais animais precisam antes cumprir quarentena no país de partida."
+    - stars: 3
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Russia does not run an EU-style listed/non-listed system, but the rabies situation of your dog's real origin matters: keep proof of an in-date vaccination and, where a 3-year vaccine is used, of maintained immunity."
+        fr: "La Russie n'applique pas de système listé/non listé à l'européenne, mais la situation rabique de l'origine réelle du chien compte : conserve la preuve d'une vaccination à jour et, en cas de vaccin triennal, du maintien de l'immunité."
+        es: "Rusia no aplica un sistema de listados/no listados al estilo de la UE, pero la situación de rabia del origen real de tu perro importa: conserva la prueba de una vacunación en vigor y, cuando se use una vacuna trienal, del mantenimiento de la inmunidad."
+        pt: "A Rússia não tem um sistema de países listados/não listados como o da UE, mas a situação da raiva na origem real do seu cachorro conta: guarde a comprovação de uma vacinação em dia e, quando for usada uma vacina de 3 anos, da imunidade mantida."
+  note:
+    en: "So read the requirements below as Russia's framework, then confirm your dog's exact origin, number of animals and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre russe, puis confirme l'origine exacte, le nombre d'animaux et l'historique de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Rusia y luego confirma con tu veterinario el origen exacto, el número de animales y el historial de tu perro."
+    pt: "Então leia as exigências abaixo como o quadro geral da Rússia e depois confirme com seu veterinário a origem exata, o número de animais e o histórico do seu cachorro."
+
+requirements:
+  - item: { en: "Microchip / identification", fr: "Puce / identification", es: "Microchip / identificación", pt: "Microchip / identificação" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "An ISO microchip or legible tattoo is advised; the international passport should identify the animal.", fr: "Une puce ISO ou un tatouage lisible est conseillé ; le passeport international doit identifier l'animal.", es: "Se aconseja un microchip ISO o un tatuaje legible; el pasaporte internacional debe identificar al animal.", pt: "Recomenda-se um microchip ISO ou uma tatuagem legível; o passaporte internacional deve identificar o animal." }
+    exceptions: { en: "Russia explicitly allows import of non-identified pets (no chip, tattoo, ring or brand) kept at home.", fr: "La Russie autorise expressément l'importation d'animaux non identifiés (sans puce, tatouage, bague ni marque) détenus à domicile.", es: "Rusia autoriza expresamente la importación de mascotas no identificadas (sin chip, tatuaje, anillo ni marca) mantenidas en el hogar.", pt: "A Rússia permite expressamente a importação de animais de estimação sem identificação (sem chip, tatuagem, anilha ou marca a ferro) criados em casa." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Customs Union Decision No.317, ch.15", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Décision Union douanière n°317, ch.15", es: "Rosselkhoznadzor (fsvps.gov.ru); Decisión de la Unión Aduanera n.º 317, cap. 15", pt: "Rosselkhoznadzor (fsvps.gov.ru); Decisão nº 317 da União Aduaneira, cap. 15" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "All carnivores must be vaccinated; the shot is given at least 20 days before departure if not done in the last 12 months.", fr: "Tous les carnivores doivent être vaccinés ; le vaccin est fait au moins 20 jours avant le départ s'il n'a pas été fait dans les 12 derniers mois.", es: "Todos los carnívoros deben estar vacunados; la vacuna se administra al menos 20 días antes de la salida si no se ha hecho en los últimos 12 meses.", pt: "Todos os carnívoros precisam ser vacinados; a vacina é aplicada no mínimo 20 dias antes da partida se não tiver sido feita nos últimos 12 meses." }
+    exceptions: { en: "Unvaccinated puppies under 3 months may enter only with a Form No.15 veterinary certificate.", fr: "Les chiots non vaccinés de moins de 3 mois ne peuvent entrer qu'avec un certificat vétérinaire formulaire n°15.", es: "Los cachorros sin vacunar de menos de 3 meses solo pueden entrar con un certificado veterinario del formulario n.º 15.", pt: "Filhotes não vacinados com menos de 3 meses só podem entrar com um certificado veterinário Formulário nº 15." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Customs Union Decision No.317", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Décision Union douanière n°317", es: "Rosselkhoznadzor (fsvps.gov.ru); Decisión de la Unión Aduanera n.º 317", pt: "Rosselkhoznadzor (fsvps.gov.ru); Decisão nº 317 da União Aduaneira" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required in general", fr: "Non requis en général", es: "No obligatoria en general", pt: "Em geral, não obrigatório" }
+    when: { en: "No blood titration is needed for a standard vaccination.", fr: "Aucun titrage sanguin n'est nécessaire pour une vaccination standard.", es: "No se necesita ninguna titulación en sangre para una vacunación estándar.", pt: "Não é preciso fazer titulação sanguínea para uma vacinação padrão." }
+    exceptions: { en: "Only for a 3-year vaccine without a vet's confirmation of immunity — then a result ≥0.5 IU/ml is required.", fr: "Uniquement pour un vaccin triennal sans confirmation vétérinaire d'immunité — un résultat ≥0,5 UI/ml est alors exigé.", es: "Solo para una vacuna trienal sin confirmación veterinaria de inmunidad — entonces se exige un resultado ≥0,5 UI/ml.", pt: "Somente no caso de vacina de 3 anos sem confirmação de imunidade por um veterinário — nesse caso é exigido um resultado ≥0,5 UI/ml." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru)", fr: "Rosselkhoznadzor (fsvps.gov.ru)", es: "Rosselkhoznadzor (fsvps.gov.ru)", pt: "Rosselkhoznadzor (fsvps.gov.ru)" }
+  - item: { en: "International veterinary passport", fr: "Passeport vétérinaire international", es: "Pasaporte veterinario internacional", pt: "Passaporte veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Records the vaccinations and the clinical exam; for up to 2 pets it is treated as the veterinary certificate.", fr: "Consigne les vaccins et l'examen clinique ; pour 2 animaux maximum, il vaut certificat vétérinaire.", es: "Registra las vacunas y el examen clínico; para un máximo de 2 mascotas hace las veces de certificado veterinario.", pt: "Registra as vacinas e o exame clínico; para até 2 animais, ele vale como certificado veterinário." }
+    exceptions: { en: "A clinical examination must be noted by the competent authority within 14 days before departure.", fr: "Un examen clinique doit être noté par l'autorité compétente dans les 14 jours avant le départ.", es: "La autoridad competente debe anotar un examen clínico dentro de los 14 días previos a la salida.", pt: "Um exame clínico precisa ser registrado pela autoridade competente nos 14 dias anteriores à partida." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Customs Union Decision No.317", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Décision Union douanière n°317", es: "Rosselkhoznadzor (fsvps.gov.ru); Decisión de la Unión Aduanera n.º 317", pt: "Rosselkhoznadzor (fsvps.gov.ru); Decisão nº 317 da União Aduaneira" }
+  - item: { en: "International veterinary certificate (Form No.15)", fr: "Certificat vétérinaire international (formulaire n°15)", es: "Certificado veterinario internacional (formulario n.º 15)", pt: "Certificado veterinário internacional (Formulário nº 15)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Needed when there is no international passport, when the animal travels unaccompanied, or for unvaccinated puppies under 3 months.", fr: "Nécessaire en l'absence de passeport international, si l'animal voyage sans accompagnateur, ou pour les chiots non vaccinés de moins de 3 mois.", es: "Necesario cuando no hay pasaporte internacional, cuando el animal viaja sin acompañante o para cachorros sin vacunar de menos de 3 meses.", pt: "Necessário quando não há passaporte internacional, quando o animal viaja desacompanhado ou no caso de filhotes não vacinados com menos de 3 meses." }
+    exceptions: { en: "Not needed when up to 2 pets travel with the owner on a valid international passport.", fr: "Inutile lorsque 2 animaux maximum voyagent avec le propriétaire sous passeport international valide.", es: "No necesario cuando un máximo de 2 mascotas viajan con el propietario con un pasaporte internacional válido.", pt: "Não é necessário quando até 2 animais viajam com o dono com um passaporte internacional válido." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru), Form No.15", fr: "Rosselkhoznadzor (fsvps.gov.ru), formulaire n°15", es: "Rosselkhoznadzor (fsvps.gov.ru), formulario n.º 15", pt: "Rosselkhoznadzor (fsvps.gov.ru), Formulário nº 15" }
+  - item: { en: "Other vaccinations", fr: "Autres vaccins", es: "Otras vacunas", pt: "Outras vacinações" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated against distemper, hepatitis, parvovirus, adenovirus and leptospirosis.", fr: "Les chiens doivent être vaccinés contre la maladie de Carré, l'hépatite, la parvovirose, l'adénovirose et la leptospirose.", es: "Los perros deben estar vacunados contra el moquillo, la hepatitis, el parvovirus, el adenovirus y la leptospirosis.", pt: "Os cachorros precisam ser vacinados contra cinomose, hepatite, parvovírus, adenovírus e leptospirose." }
+    exceptions: { en: "Leptospirosis is not required if a preventive treatment registered in the exporting country is applied.", fr: "La leptospirose n'est pas exigée si un traitement préventif enregistré dans le pays exportateur est appliqué.", es: "La leptospirosis no se exige si se aplica un tratamiento preventivo registrado en el país exportador.", pt: "A vacina contra leptospirose não é exigida se for aplicado um tratamento preventivo registrado no país exportador." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Customs Union Decision No.317", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Décision Union douanière n°317", es: "Rosselkhoznadzor (fsvps.gov.ru); Decisión de la Unión Aduanera n.º 317", pt: "Rosselkhoznadzor (fsvps.gov.ru); Decisão nº 317 da União Aduaneira" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "A Rosselkhoznadzor permit is needed for more than 2 animals or when the animal is unaccompanied; up to 5 pets may use the annual Form No.1 permit.", fr: "Un permis Rosselkhoznadzor est requis pour plus de 2 animaux ou si l'animal n'est pas accompagné ; jusqu'à 5 animaux peuvent utiliser le permis annuel formulaire n°1.", es: "Se necesita un permiso de Rosselkhoznadzor para más de 2 animales o cuando el animal no va acompañado; hasta 5 mascotas pueden usar el permiso anual del formulario n.º 1.", pt: "É preciso uma autorização do Rosselkhoznadzor para mais de 2 animais ou quando o animal viaja desacompanhado; até 5 animais podem usar a autorização anual do Formulário nº 1." }
+    exceptions: { en: "Not required for up to 2 pets travelling with their owner for personal use.", fr: "Non requis pour 2 animaux maximum voyageant avec leur propriétaire à titre personnel.", es: "No obligatorio para un máximo de 2 mascotas que viajan con su propietario a título personal.", pt: "Não é obrigatória para até 2 animais que viajam com o dono para uso pessoal." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru), permit Form No.1", fr: "Rosselkhoznadzor (fsvps.gov.ru), permis formulaire n°1", es: "Rosselkhoznadzor (fsvps.gov.ru), permiso del formulario n.º 1", pt: "Rosselkhoznadzor (fsvps.gov.ru), autorização Formulário nº 1" }
+  - item: { en: "Border veterinary control", fr: "Contrôle vétérinaire frontalier", es: "Control veterinario fronterizo", pt: "Controle veterinário de fronteira" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Enter through a checkpoint that operates veterinary control and present the passport to the vet on duty.", fr: "Entre par un point de passage assurant le contrôle vétérinaire et présente le passeport au vétérinaire de service.", es: "Entra por un puesto de control que disponga de control veterinario y presenta el pasaporte al veterinario de turno.", pt: "Entre por um posto de fronteira que faça controle veterinário e apresente o passaporte ao veterinário de plantão." }
+    exceptions: { en: "The list and opening hours of veterinary checkpoints are published by Rosselkhoznadzor.", fr: "La liste et les horaires des points de contrôle vétérinaire sont publiés par Rosselkhoznadzor.", es: "La lista y los horarios de los puestos de control veterinario los publica Rosselkhoznadzor.", pt: "A lista e os horários de funcionamento dos postos de controle veterinário são publicados pelo Rosselkhoznadzor." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Russian Customs (customs.gov.ru)", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Douane russe (customs.gov.ru)", es: "Rosselkhoznadzor (fsvps.gov.ru); Aduanas de Rusia (customs.gov.ru)", pt: "Rosselkhoznadzor (fsvps.gov.ru); alfândega russa (customs.gov.ru)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Puppies under 3 months are usually unvaccinated against rabies; they may enter only with a Form No.15 certificate.", fr: "Les chiots de moins de 3 mois ne sont généralement pas vaccinés contre la rage ; ils ne peuvent entrer qu'avec un certificat formulaire n°15.", es: "Los cachorros de menos de 3 meses no suelen estar vacunados contra la rabia; solo pueden entrar con un certificado del formulario n.º 15.", pt: "Filhotes com menos de 3 meses geralmente não estão vacinados contra a raiva; eles só podem entrar com um certificado Formulário nº 15." }
+    exceptions: { en: "Otherwise the rabies shot (≥20 days before departure) governs the earliest travel date.", fr: "Sinon, le vaccin antirabique (≥20 jours avant le départ) détermine la première date de voyage possible.", es: "En caso contrario, la vacuna antirrábica (≥20 días antes de la salida) determina la primera fecha de viaje posible.", pt: "Fora isso, é a vacina antirrábica (≥20 dias antes da partida) que determina a data mais cedo em que dá para viajar." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru), Form No.15", fr: "Rosselkhoznadzor (fsvps.gov.ru), formulaire n°15", es: "Rosselkhoznadzor (fsvps.gov.ru), formulario n.º 15", pt: "Rosselkhoznadzor (fsvps.gov.ru), Formulário nº 15" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "No import quarantine for up to 2 dogs or cats travelling with the owner on an international passport.", fr: "Aucune quarantaine à l'import pour 2 chiens ou chats maximum voyageant avec le propriétaire sous passeport international.", es: "Sin cuarentena de importación para un máximo de 2 perros o gatos que viajan con el propietario con un pasaporte internacional.", pt: "Sem quarentena de importação para até 2 cachorros ou gatos que viajam com o dono com passaporte internacional." }
+    exceptions: { en: "Other animals (and birds) must be quarantined in the country of departure before entry.", fr: "Les autres animaux (et oiseaux) doivent être mis en quarantaine dans le pays de départ avant l'entrée.", es: "Los demás animales (y las aves) deben ponerse en cuarentena en el país de salida antes de la entrada.", pt: "Os demais animais (e as aves) precisam cumprir quarentena no país de partida antes da entrada." }
+    ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Customs Union Decision No.317", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Décision Union douanière n°317", es: "Rosselkhoznadzor (fsvps.gov.ru); Decisión de la Unión Aduanera n.º 317", pt: "Rosselkhoznadzor (fsvps.gov.ru); Decisão nº 317 da União Aduaneira" }
+
+origin:
+  eu:
+    title: { en: "From another EAEU country", fr: "Depuis un autre pays de l'UEEA", es: "Desde otro país de la UEEA", pt: "De outro país da UEE" }
+    body:
+      en: "A dog coming from another Eurasian Economic Union country (Belarus, Kazakhstan, Armenia, Kyrgyzstan) moves on its international veterinary passport alone, showing valid rabies and other required vaccinations. No import permit and no quarantine for up to two pets travelling with the owner."
+      fr: "Un chien venant d'un autre pays de l'Union économique eurasiatique (Biélorussie, Kazakhstan, Arménie, Kirghizistan) circule avec son seul passeport vétérinaire international, mentionnant la rage et les autres vaccins exigés à jour. Pas de permis ni de quarantaine pour deux animaux maximum voyageant avec le propriétaire."
+      es: "Un perro que llega de otro país de la Unión Económica Euroasiática (Bielorrusia, Kazajistán, Armenia, Kirguistán) circula solo con su pasaporte veterinario internacional, que acredite la rabia y las demás vacunas exigidas al día. Sin permiso de importación ni cuarentena para un máximo de dos mascotas que viajan con el propietario."
+      pt: "Um cachorro vindo de outro país da União Econômica Eurasiática (Belarus, Cazaquistão, Armênia, Quirguistão) viaja apenas com o passaporte veterinário internacional, comprovando a vacinação antirrábica válida e as demais vacinas exigidas. Sem autorização de importação e sem quarentena para até dois animais que viajam com o dono."
+    cls: ok
+  listed:
+    title: { en: "From any other country — up to 2 pets", fr: "Depuis tout autre pays — jusqu'à 2 animaux", es: "Desde cualquier otro país — hasta 2 mascotas", pt: "De qualquer outro país — até 2 animais" }
+    body:
+      en: "From a non-EAEU country, up to two dogs or cats for personal use enter without an import permit and without quarantine, accompanied by the owner and an international veterinary passport with valid vaccinations and a clinical exam noted within 14 days of departure. Present yourself to veterinary control at the checkpoint."
+      fr: "Depuis un pays hors UEEA, deux chiens ou chats maximum à titre personnel entrent sans permis d'importation ni quarantaine, accompagnés du propriétaire et d'un passeport vétérinaire international avec vaccins valides et examen clinique noté dans les 14 jours avant le départ. Présente-toi au contrôle vétérinaire au point de passage."
+      es: "Desde un país no perteneciente a la UEEA, hasta dos perros o gatos a título personal entran sin permiso de importación ni cuarentena, acompañados del propietario y de un pasaporte veterinario internacional con vacunas válidas y un examen clínico anotado dentro de los 14 días previos a la salida. Preséntate ante el control veterinario en el puesto de control."
+      pt: "Vindo de um país fora da UEE, até dois cachorros ou gatos para uso pessoal entram sem autorização de importação e sem quarentena, acompanhados pelo dono e por um passaporte veterinário internacional com as vacinas válidas e um exame clínico registrado nos 14 dias anteriores à partida. Apresente-se ao controle veterinário no posto de fronteira."
+    cls: warn
+  nonListed:
+    title: { en: "More than 2 animals / unaccompanied", fr: "Plus de 2 animaux / sans accompagnateur", es: "Más de 2 animales / sin acompañante", pt: "Mais de 2 animais / viagem desacompanhada" }
+    body:
+      en: "For more than two animals, an unaccompanied dog, or a commercial import, you must obtain a Rosselkhoznadzor import permit in advance (up to five pets may use the annual Form No.1 permit) and travel with a Form No.15 veterinary certificate. Additional conditions such as pre-export quarantine may apply."
+      fr: "Pour plus de deux animaux, un chien sans accompagnateur ou un import commercial, tu dois obtenir à l'avance un permis d'importation Rosselkhoznadzor (jusqu'à cinq animaux via le permis annuel formulaire n°1) et voyager avec un certificat vétérinaire formulaire n°15. Des conditions supplémentaires comme une quarantaine avant export peuvent s'appliquer."
+      es: "Para más de dos animales, un perro sin acompañante o una importación comercial, debes obtener con antelación un permiso de importación de Rosselkhoznadzor (hasta cinco mascotas mediante el permiso anual del formulario n.º 1) y viajar con un certificado veterinario del formulario n.º 15. Pueden aplicarse condiciones adicionales, como una cuarentena previa a la exportación."
+      pt: "Para mais de dois animais, um cachorro desacompanhado ou uma importação comercial, você precisa obter previamente uma autorização de importação do Rosselkhoznadzor (até cinco animais podem usar a autorização anual do Formulário nº 1) e viajar com um certificado veterinário Formulário nº 15. Podem valer condições adicionais, como quarentena antes da exportação."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Russia depends on where you flew from and how many animals you bring."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Russie dépend de ton lieu de départ et du nombre d'animaux."
+    es: "Lo que ocurre cuando tu perro llega a Rusia depende del lugar desde el que hayas volado y del número de animales que lleves."
+    pt: "O que acontece quando seu cachorro chega à Rússia depende de onde você veio e de quantos animais você leva."
+  points:
+    - en: "Enter only through a border checkpoint that operates veterinary control (list and hours published by Rosselkhoznadzor)."
+      fr: "Entre uniquement par un point de passage assurant le contrôle vétérinaire (liste et horaires publiés par Rosselkhoznadzor)."
+      es: "Entra únicamente por un puesto fronterizo que disponga de control veterinario (lista y horarios publicados por Rosselkhoznadzor)."
+      pt: "Entre apenas por um posto de fronteira com controle veterinário (lista e horários publicados pelo Rosselkhoznadzor)."
+    - en: "Present the international veterinary passport to the veterinary officer, who checks the vaccinations and the 14-day clinical-exam note."
+      fr: "Présente le passeport vétérinaire international à l'agent vétérinaire, qui vérifie les vaccins et la note d'examen clinique des 14 jours."
+      es: "Presenta el pasaporte veterinario internacional al agente veterinario, que comprueba las vacunas y la anotación del examen clínico de los 14 días."
+      pt: "Apresente o passaporte veterinário internacional ao agente veterinário, que confere as vacinas e o registro do exame clínico dos 14 dias."
+    - en: "For up to 2 pets travelling with you, no import permit and no quarantine are required."
+      fr: "Pour 2 animaux maximum voyageant avec toi, aucun permis d'importation ni quarantaine ne sont exigés."
+      es: "Para un máximo de 2 mascotas que viajan contigo, no se exigen permiso de importación ni cuarentena."
+      pt: "Para até 2 animais viajando com você, não são exigidas autorização de importação nem quarentena."
+    - en: "For more than 2 animals or an unaccompanied dog, the Rosselkhoznadzor permit and a Form No.15 certificate must be shown."
+      fr: "Pour plus de 2 animaux ou un chien sans accompagnateur, le permis Rosselkhoznadzor et un certificat formulaire n°15 doivent être présentés."
+      es: "Para más de 2 animales o un perro sin acompañante, deben presentarse el permiso de Rosselkhoznadzor y un certificado del formulario n.º 15."
+      pt: "Para mais de 2 animais ou um cachorro desacompanhado, é preciso apresentar a autorização do Rosselkhoznadzor e um certificado Formulário nº 15."
+    - en: "Carry original documents; where they are not in Russian, an official translation is recommended."
+      fr: "Munis-toi des documents originaux ; s'ils ne sont pas en russe, une traduction officielle est recommandée."
+      es: "Lleva los documentos originales; si no están en ruso, se recomienda una traducción oficial."
+      pt: "Leve os documentos originais; quando eles não estiverem em russo, recomenda-se uma tradução oficial."
+    - en: "If vaccinations or documents are missing or invalid, entry can be refused and the animal returned at the owner's expense."
+      fr: "Si les vaccins ou documents manquent ou sont invalides, l'entrée peut être refusée et l'animal réexpédié aux frais du propriétaire."
+      es: "Si faltan vacunas o documentos, o no son válidos, puede denegarse la entrada y devolverse al animal a cargo del propietario."
+      pt: "Se faltarem vacinas ou documentos, ou se eles não forem válidos, a entrada pode ser recusada e o animal devolvido às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Russia has no breed-specific import ban, but Government Decree No.974 of 29 July 2019 lists 12 potentially dangerous dog breeds (and their crossbreeds). Since 1 January 2020 these dogs must be muzzled and kept on a lead in public."
+    fr: "La Russie n'a pas d'interdiction d'importation visant une race, mais le décret gouvernemental n°974 du 29 juillet 2019 liste 12 races de chiens potentiellement dangereuses (et leurs croisements). Depuis le 1er janvier 2020, ces chiens doivent être muselés et tenus en laisse dans l'espace public."
+    es: "Rusia no tiene ninguna prohibición de importación por raza, pero el Decreto Gubernamental n.º 974 de 29 de julio de 2019 lista 12 razas de perros potencialmente peligrosos (y sus cruces). Desde el 1 de enero de 2020, estos perros deben llevar bozal y correa en el espacio público."
+    pt: "A Rússia não tem proibição de importação por raça, mas o Decreto do Governo nº 974, de 29 de julho de 2019, lista 12 raças de cachorro potencialmente perigosas (e seus cruzamentos). Desde 1º de janeiro de 2020, esses cachorros precisam usar focinheira e andar na guia em locais públicos."
+  cat1:
+    en: "The 12 listed breeds are: Akbash, American Bandogge, Ambuldog, Brazilian Bulldog, Bully Kutta, Alapaha Blue Blood Bulldog (Otto), Bandog, wolf-dog hybrids, Volkosob (wolf hybrid), Gull Dong, Pitbull Mastiff and the North Caucasian dog — plus any crossbreeds of these breeds."
+    fr: "Les 12 races listées sont : Akbash, American Bandogge, Ambuldog, Bouledogue brésilien, Bully Kutta, Bouledogue Alapaha de sang bleu (Otto), Bandog, hybrides loup-chien, Volkosob (hybride de loup), Gull Dong, Pitbull Mastiff et le chien du Caucase du Nord — ainsi que tout croisement de ces races."
+    es: "Las 12 razas listadas son: Akbash, American Bandogge, Ambuldog, Bulldog brasileño, Bully Kutta, Bulldog Alapaha de sangre azul (Otto), Bandog, híbridos lobo-perro, Volkosob (híbrido de lobo), Gull Dong, Pitbull Mastiff y el perro del Cáucaso del Norte — además de cualquier cruce de estas razas."
+    pt: "As 12 raças listadas são: Akbash, American Bandogge, Ambuldog, Buldogue Brasileiro, Bully Kutta, Alapaha Blue Blood Bulldog (Otto), Bandog, híbridos de lobo com cachorro, Volkosob (híbrido de lobo), Gull Dong, Pitbull Mastiff e o cachorro do Cáucaso do Norte — além de qualquer cruzamento dessas raças."
+  cat2:
+    en: "This list does not prohibit entry: a listed dog can be imported like any other dog under the standard EAEU procedure. The restriction is a handling obligation (muzzle and lead in public) once in Russia, not a customs ban."
+    fr: "Cette liste n'interdit pas l'entrée : un chien listé peut être importé comme tout autre chien selon la procédure standard de l'UEEA. La restriction est une obligation de maîtrise (muselière et laisse en public) une fois en Russie, pas une interdiction douanière."
+    es: "Esta lista no prohíbe la entrada: un perro listado puede importarse como cualquier otro perro según el procedimiento estándar de la UEEA. La restricción es una obligación de manejo (bozal y correa en público) una vez en Rusia, no una prohibición aduanera."
+    pt: "Essa lista não proíbe a entrada: um cachorro listado pode ser importado como qualquer outro, pelo procedimento padrão da UEE. A restrição é uma obrigação de manejo (focinheira e guia em locais públicos) depois que você está na Rússia, e não uma proibição alfandegária."
+  note:
+    en: "The muzzle-and-lead rule does not apply when the dog is within an enclosed area owned by its keeper. Only the official decree text is authoritative — confirm your dog's status before you travel."
+    fr: "La règle muselière-et-laisse ne s'applique pas lorsque le chien se trouve dans un espace clos appartenant à son détenteur. Seul le texte officiel du décret fait foi — confirme le statut de ton chien avant de voyager."
+    es: "La regla del bozal y la correa no se aplica cuando el perro está en un espacio cerrado propiedad de su tenedor. Solo el texto oficial del decreto tiene valide — confirma el estatus de tu perro antes de viajar."
+    pt: "A regra da focinheira e da guia não vale quando o cachorro está em uma área fechada pertencente a quem cuida dele. Só o texto oficial do decreto faz fé — confirme a situação do seu cachorro antes de viajar."
+
+checklist:
+  - en: "International veterinary passport identifying the dog"
+    fr: "Passeport vétérinaire international identifiant le chien"
+    es: "Pasaporte veterinario internacional que identifique al perro"
+    pt: "Passaporte veterinário internacional identificando o cachorro"
+  - en: "Valid rabies vaccination (given ≥20 days before departure if primary)"
+    fr: "Vaccination antirabique valide (≥20 jours avant le départ si primo-vaccination)"
+    es: "Vacunación antirrábica válida (administrada ≥20 días antes de la salida si es primovacunación)"
+    pt: "Vacinação antirrábica válida (aplicada ≥20 dias antes da partida se for primovacinação)"
+  - en: "Other required vaccinations: distemper, hepatitis, parvovirus, adenovirus, leptospirosis"
+    fr: "Autres vaccins exigés : Carré, hépatite, parvovirose, adénovirose, leptospirose"
+    es: "Otras vacunas exigidas: moquillo, hepatitis, parvovirus, adenovirus, leptospirosis"
+    pt: "Outras vacinas obrigatórias: cinomose, hepatite, parvovírus, adenovírus, leptospirose"
+  - en: "Clinical examination noted in the passport within 14 days before departure"
+    fr: "Examen clinique noté dans le passeport dans les 14 jours avant le départ"
+    es: "Examen clínico anotado en el pasaporte dentro de los 14 días previos a la salida"
+    pt: "Exame clínico registrado no passaporte nos 14 dias anteriores à partida"
+  - en: "Form No.15 certificate if travelling without a passport, unaccompanied, or a puppy under 3 months"
+    fr: "Certificat formulaire n°15 si voyage sans passeport, sans accompagnateur, ou chiot de moins de 3 mois"
+    es: "Certificado del formulario n.º 15 si se viaja sin pasaporte, sin acompañante, o con un cachorro de menos de 3 meses"
+    pt: "Certificado Formulário nº 15 se a viagem for sem passaporte, desacompanhada ou com filhote de menos de 3 meses"
+  - en: "Rosselkhoznadzor import permit if bringing more than 2 animals"
+    fr: "Permis d'importation Rosselkhoznadzor si plus de 2 animaux"
+    es: "Permiso de importación de Rosselkhoznadzor si llevas más de 2 animales"
+    pt: "Autorização de importação do Rosselkhoznadzor se você levar mais de 2 animais"
+  - en: "Documents in Russian or with an official translation"
+    fr: "Documents en russe ou avec une traduction officielle"
+    es: "Documentos en ruso o con una traducción oficial"
+    pt: "Documentos em russo ou com tradução oficial"
+  - en: "Enter via a checkpoint with veterinary control; suitable IATA crate if in the hold"
+    fr: "Entrée par un point de passage avec contrôle vétérinaire ; caisse IATA adaptée si voyage en soute"
+    es: "Entra por un puesto de control con control veterinario; jaula IATA adecuada si viaja en bodega"
+    pt: "Entrada por um posto de fronteira com controle veterinário; caixa de transporte IATA adequada se for no porão"
+
+sources:
+  - label: { en: "Rosselkhoznadzor — How to import a pet into Russia (official instruction)", fr: "Rosselkhoznadzor — Comment importer un animal en Russie (instruction officielle)", es: "Rosselkhoznadzor — Cómo importar una mascota a Rusia (instrucción oficial)", pt: "Rosselkhoznadzor — Como importar um animal de estimação para a Rússia (instrução oficial)" }
+    url: "https://fsvps.gov.ru/puteshestvujushhim-s-pitomcami-vvoz-vyvo/instrukcija-kak-vvezti-domashnee-zhivotnoe-v-rossiju/"
+  - label: { en: "Rosselkhoznadzor — EAEU veterinary requirements for domestic animals (Decision No.317, ch.15)", fr: "Rosselkhoznadzor — Exigences vétérinaires UEEA pour animaux domestiques (Décision n°317, ch.15)", es: "Rosselkhoznadzor — Requisitos veterinarios de la UEEA para animales domésticos (Decisión n.º 317, cap. 15)", pt: "Rosselkhoznadzor — Exigências veterinárias da UEE para animais domésticos (Decisão nº 317, cap. 15)" }
+    url: "https://fsvps.gov.ru/files/veterinarnye-trebovanija-pri-vvoze-v-evrazijskij-jekonomicheskij-sojuz-eajes-domashnih-zhivotnyh-glava-15/"
+  - label: { en: "Russian Customs (FCS) — Regulations concerning movement of domestic animals", fr: "Douane russe (FCS) — Règles de circulation des animaux domestiques", es: "Aduanas de Rusia (FCS) — Normas sobre la circulación de animales domésticos", pt: "Alfândega russa (FCS) — Regras sobre o deslocamento de animais domésticos" }
+    url: "https://eng.customs.gov.ru/folder/207638"
+  - label: { en: "Russian Customs (FCS) — Moving with domestic animals (personal use)", fr: "Douane russe (FCS) — Déplacement avec des animaux domestiques (usage personnel)", es: "Aduanas de Rusia (FCS) — Desplazamiento con animales domésticos (uso personal)", pt: "Alfândega russa (FCS) — Deslocar-se com animais domésticos (uso pessoal)" }
+    url: "https://customs.gov.ru/fiz/pravila-peremeshheniya-tovarov/peremeshhenie-domashnix-zhivotnyx"
+  - label: { en: "Government of Russia — Decree No.974 of 29.07.2019, list of potentially dangerous dogs", fr: "Gouvernement de Russie — Décret n°974 du 29.07.2019, liste des chiens potentiellement dangereux", es: "Gobierno de Rusia — Decreto n.º 974 de 29.07.2019, lista de perros potencialmente peligrosos", pt: "Governo da Rússia — Decreto nº 974, de 29.07.2019, lista de cachorros potencialmente perigosos" }
+    url: "http://static.government.ru/media/files/PxZhq9t89S5sUBniNoaEiqhfPJIs93C1.pdf"
+
+seo:
+  title: { en: "Russia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Russie — Guide", es: "Requisitos de entrada de perros en Rusia — Guía de viaje", pt: "Rússia: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Russia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Russie avec ton chien : formalités (2026)", es: "Viajar a Rusia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Rússia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official Rosselkhoznadzor and EAEU rules for bringing a dog into Russia: rabies and other vaccinations, international veterinary passport. Sourced and dated."
+    fr: "Règles officielles Rosselkhoznadzor et UEEA pour faire entrer un chien en Russie : rage et autres vaccins, passeport vétérinaire international. Sourcé et daté."
+    es: "Normas oficiales de Rosselkhoznadzor y la UEEA para traer un perro a Rusia: rabia y otras vacunas, pasaporte veterinario internacional. Con fuentes y fecha."
+    pt: "Regras oficiais do Rosselkhoznadzor e da UEE para levar um cachorro à Rússia: vacina antirrábica e demais vacinas, passaporte veterinário. Com fonte e data."
+  slug: "russia"
+  shortDesc:
+    en: "What you need to bring a dog into Russia, depending on your country of departure and number of animals."
+    fr: "Ce qu'il faut pour faire entrer un chien en Russie, selon ton pays de départ et le nombre d'animaux."
+    es: "Lo que necesitas para traer un perro a Rusia, según tu país de salida y el número de animales."
+    pt: "O que você precisa para levar um cachorro à Rússia, dependendo do país de partida e do número de animais."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

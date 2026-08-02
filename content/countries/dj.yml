@@ -1,0 +1,375 @@
+# Country Entry Guide — Djibouti (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_dj
+iso2: "DJ"
+name: { en: "Djibouti", fr: "Djibouti", es: "Yibuti", pt: "Djibuti" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: DESV
+  authorityUrl: http://www.maem.dj/index.php?id_page=4
+  intro:
+    en: "Djibouti is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Direction de l'Élevage et des Services Vétérinaires (DESV)."
+    fr: "Djibouti est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction de l'Élevage et des Services Vétérinaires (DESV)."
+    es: "Yibuti no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Direction de l'Élevage et des Services Vétérinaires (DESV)."
+    pt: "O Djibuti é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction de l'Élevage et des Services Vétérinaires (DESV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "The DESV inspects animals destined for export and issues the sanitary certificate before departure."
+        fr: "La DESV inspecte les animaux destinés à l'export et délivre le certificat sanitaire avant le départ."
+        es: "La DESV inspecciona los animales destinados a la exportación y emite el certificado sanitario antes de salir."
+        pt: "A DESV inspeciona os animais destinados à exportação e emite o certificado sanitário antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, ele permanece válido por toda a vida enquanto a vacinação antirrábica estiver em dia — vale a pena verificar isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Djibouti with your dog", fr: "Voyager à Djibouti avec ton chien", es: "Viajar a Yibuti con tu perro", pt: "Viajar para o Djibuti com seu cachorro" }
+  intro:
+    en: >-
+      Djibouti is not an EU country, and entry for a dog is controlled by its own veterinary authority —
+      the Direction de l'Élevage et des Services Vétérinaires (DESV), part of the Ministère de
+      l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage et des Ressources Halieutiques (MAEM).
+      Djibouti publishes almost nothing about pet-dog entry. USDA APHIS confirms that, for species other
+      than poultry, the requirements are "not known" and directs travellers to have the importer apply for
+      an import permit at the appropriate ministry — that permit is what sets the exact conditions for your
+      dog. The DESV does run veterinary posts at the country's main animal entry borders and issues health
+      certificates for companion animals (dogs and cats), and Djibouti operates a livestock quarantine
+      centre, so a health certificate, a veterinary check and a possible quarantine are realistic, but the
+      precise microchip, rabies, blood-test and timing rules are not published. This guide states what is
+      officially confirmed and flags clearly what remains unpublished, so you know what to ask before you
+      book.
+    fr: >-
+      Djibouti n'est pas un pays de l'UE, et l'entrée d'un chien est contrôlée par sa propre autorité
+      vétérinaire — la Direction de l'Élevage et des Services Vétérinaires (DESV), rattachée au Ministère
+      de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage et des Ressources Halieutiques (MAEM).
+      Djibouti ne publie presque rien sur l'entrée des chiens de compagnie. L'USDA APHIS confirme que,
+      pour les espèces autres que la volaille, les exigences sont « non connues » et invite l'importateur
+      à demander un permis d'importation auprès du ministère compétent — c'est ce permis qui fixe les
+      conditions exactes pour ton chien. La DESV dispose de postes vétérinaires aux principales
+      frontières d'entrée des animaux et délivre des certificats de santé pour les animaux de compagnie
+      (chiens et chats), et Djibouti exploite un centre de quarantaine pour le bétail : un certificat
+      sanitaire, un contrôle vétérinaire et une éventuelle quarantaine sont donc plausibles, mais les
+      règles précises de puce, de rage, de test sanguin et de calendrier ne sont pas publiées. Ce guide
+      indique ce qui est officiellement confirmé et signale clairement ce qui reste non publié, pour
+      savoir quoi demander avant de réserver.
+    es: >-
+      Yibuti no es un país de la UE, y la entrada de un perro está controlada por su propia autoridad
+      veterinaria — la Direction de l'Élevage et des Services Vétérinaires (DESV), dependiente del
+      Ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage et des Ressources
+      Halieutiques (MAEM). Yibuti no publica casi nada sobre la entrada de perros de compañía. El USDA
+      APHIS confirma que, para las especies distintas de las aves de corral, los requisitos son «no
+      conocidos» y remite a los viajeros a que el importador solicite un permiso de importación en el
+      ministerio competente — ese permiso es lo que fija las condiciones exactas para tu perro. La DESV
+      sí gestiona puestos veterinarios en las principales fronteras de entrada de animales del país y
+      expide certificados sanitarios para los animales de compañía (perros y gatos), y Yibuti opera un
+      centro de cuarentena para el ganado, por lo que un certificado sanitario, un control veterinario y
+      una posible cuarentena son realistas, pero las reglas precisas de microchip, rabia, análisis de
+      sangre y plazos no están publicadas. Esta guía indica lo que está oficialmente confirmado y señala
+      con claridad lo que sigue sin publicarse, para que sepas qué preguntar antes de reservar.
+
+    pt: "O Djibuti não é um país da UE, e a entrada de um cachorro é controlada pela sua própria autoridade veterinária — a Direction de l'Élevage et des Services Vétérinaires (DESV), parte do Ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage et des Ressources Halieutiques (MAEM). O Djibuti publica quase nada sobre a entrada de cachorros de companhia. O USDA APHIS confirma que, para espécies além das aves, as exigências \"não são conhecidas\" e orienta os viajantes a que o importador solicite uma autorização de importação junto ao ministério competente — essa autorização é o que define as condições exatas para o cachorro. A DESV opera postos veterinários nas principais fronteiras de entrada de animais do país e emite atestados de saúde para animais de companhia (cachorros e gatos), e o Djibuti opera um centro de quarentena de animais de criação, de modo que um atestado de saúde, uma verificação veterinária e uma possível quarentena são cenários realistas, mas as regras precisas sobre microchip, raiva, exame de sangue e calendário não são publicadas. Este guia expõe o que é oficialmente confirmado e assinala claramente o que permanece não comunicado, para que você saiba o que perguntar antes de reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — import permit via the ministry, almost no published specifics", fr: "Difficile — permis d'importation via le ministère, quasiment aucun détail publié", es: "Difícil — permiso de importación a través del ministerio, casi ningún detalle publicado", pt: "Difícil — autorização de importação via ministério, quase nenhum detalhe publicado" }
+
+prepTime:
+  eu:
+    en: "From Europe: no EU-passport shortcut. Allow well ahead of travel to have the importer obtain an import permit from the ministry (MAEM/DESV) and an official government-vet health certificate; the permit sets the exact conditions, so start early and confirm the timeline with the authority."
+    fr: "Depuis l'Europe : aucun raccourci « passeport UE ». Prévois largement avant le départ pour que l'importateur obtienne un permis d'importation auprès du ministère (MAEM/DESV) et un certificat sanitaire officiel du vétérinaire gouvernemental ; le permis fixe les conditions exactes, alors anticipe et confirme le calendrier avec l'autorité."
+    es: "Desde Europa: no hay atajo de «pasaporte UE». Prevé mucho tiempo antes del viaje para que el importador obtenga un permiso de importación del ministerio (MAEM/DESV) y un certificado sanitario oficial del veterinario gubernamental; el permiso fija las condiciones exactas, así que empieza pronto y confirma los plazos con la autoridad."
+    pt: "Da Europa: nenhum atalho pelo passaporte europeu. Providenciar com bastante antecedência para que o importador obtenha uma autorização de importação junto ao ministério (MAEM/DESV) e um atestado de saúde veterinário governamental oficial; a autorização define as condições exatas, portanto começar cedo e confirmar o prazo com a autoridade."
+  listed:
+    en: "Djibouti does not publish a listed-country / origin-tiering scheme for pet entry. The same import-permit and health-certificate approach applies; plan around the permit, not around an origin list."
+    fr: "Djibouti ne publie pas de schéma de pays « listés » ni de classement par origine pour l'entrée des animaux. La même logique de permis et de certificat s'applique ; organise-toi autour du permis, pas d'une liste d'origine."
+    es: "Yibuti no publica un esquema de países «listados» ni de clasificación por origen para la entrada de animales. Se aplica el mismo enfoque de permiso de importación y certificado sanitario; organízate en torno al permiso, no a una lista de orígenes."
+    pt: "O Djibuti não publica um esquema de países listados / categorização por origem para a entrada de animais de companhia. Aplica-se a mesma abordagem de autorização de importação e atestado de saúde; planejar em função da autorização, e não de uma lista de origens."
+  nonListed:
+    en: "From any origin: the exact steps depend on the conditions written on the import permit issued by the ministry. Because published detail is essentially absent, confirm every requirement directly with the authority before booking."
+    fr: "Depuis toute origine : les étapes exactes dépendent des conditions inscrites sur le permis d'importation délivré par le ministère. Le détail publié étant quasi inexistant, confirme chaque exigence directement auprès de l'autorité avant de réserver."
+    es: "Desde cualquier origen: los pasos exactos dependen de las condiciones inscritas en el permiso de importación expedido por el ministerio. Como el detalle publicado es prácticamente inexistente, confirma cada requisito directamente con la autoridad antes de reservar."
+    pt: "De qualquer origem: as etapas exatas dependem das condições indicadas na autorização de importação emitida pelo ministério. Como praticamente não há detalhes publicados, confirmar cada exigência diretamente com a autoridade antes de reservar."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (import permit via ministry)", fr: "Oui (permis d'import via le ministère)", es: "Sí (permiso de importación a través del ministerio)", pt: "Sim (mediante autorização de importação via ministério)" }
+    cls: ok
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (government-endorsed)", fr: "Requis (visé par le gouvernement)", es: "Obligatorio (refrendado por el gobierno)", pt: "Obrigatório (endossado pelo governo)" }
+    cls: warn
+  - requirement: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    status: { en: "Unknown (not officially published)", fr: "Non communiqué (non publié officiellement)", es: "Desconocido (no publicado oficialmente)", pt: "Não comunicado (não publicado oficialmente)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Set by permit (rabies present in region)", fr: "Fixée par le permis (rage présente dans la région)", es: "Fijada por el permiso (rabia presente en la región)", pt: "Definida pela autorização (raiva presente na região)" }
+    cls: neutral
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Unknown (not officially published)", fr: "Non communiqué (non publié officiellement)", es: "Desconocido (no publicado oficialmente)", pt: "Não comunicado (não publicado oficialmente)" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Unknown (livestock quarantine centre exists)", fr: "Non communiqué (centre de quarantaine bétail existant)", es: "Desconocido (existe un centro de cuarentena para el ganado)", pt: "Não comunicado (existe um centro de quarentena de animais de criação)" }
+    cls: neutral
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "No published breed law found", fr: "Aucune loi de race publiée trouvée", es: "No se encontró ninguna ley de razas publicada", pt: "Nenhuma legislação sobre raças publicada encontrada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Djibouti does not publish a public pet-import checklist; the ministry (MAEM/DESV) sets the exact conditions on the import permit, and only a veterinarian can confirm the procedure for your individual dog."
+    fr: "Djibouti ne publie pas de liste publique pour l'importation d'animaux ; le ministère (MAEM/DESV) fixe les conditions exactes sur le permis d'importation, et seul un vétérinaire peut confirmer la procédure pour ton chien."
+    es: "Yibuti no publica una lista pública para la importación de animales; el ministerio (MAEM/DESV) fija las condiciones exactas en el permiso de importación, y solo un veterinario puede confirmar el procedimiento para tu perro."
+    pt: "O Djibuti não publica uma lista pública de exigências para a importação de animais de companhia; o ministério (MAEM/DESV) define as condições exatas na autorização de importação, e somente um médico-veterinário pode confirmar o procedimento para cada cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Djibouti (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — Djibouti (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Yibuti (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Djibuti (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Djibouti", fr: "Pays de destination — Djibouti", es: "País de destino — Yibuti", pt: "País de destino — Djibuti" }
+      text:
+        en: "Djibouti applies its own scheme through the DESV (Ministry of Agriculture, Water, Fisheries and Livestock). For pet dogs there is no published checklist: USDA APHIS states the requirements are 'not known' and points to an import permit obtained from the ministry, which lists the exact conditions. Veterinary posts operate at the main animal entry borders."
+        fr: "Djibouti applique son propre schéma via la DESV (ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage). Pour les chiens de compagnie, aucune liste publique n'existe : l'USDA APHIS indique que les exigences sont « non connues » et renvoie vers un permis d'importation obtenu auprès du ministère, qui liste les conditions exactes. Des postes vétérinaires opèrent aux principales frontières d'entrée des animaux."
+        es: "Yibuti aplica su propio esquema a través de la DESV (Ministerio de Agricultura, Agua, Pesca y Ganadería). Para los perros de compañía no existe una lista publicada: el USDA APHIS indica que los requisitos son «no conocidos» y remite a un permiso de importación obtenido del ministerio, que enumera las condiciones exactas. Hay puestos veterinarios que operan en las principales fronteras de entrada de animales."
+        pt: "O Djibuti aplica seu próprio esquema por meio da DESV (Ministério da Agricultura, Água, Pesca e Pecuária). Para cachorros de companhia não há uma lista publicada de exigências: o USDA APHIS declara que as exigências \"não são conhecidas\" e remete a uma autorização de importação obtida junto ao ministério, que lista as condições exatas. Postos veterinários operam nas principais fronteiras de entrada de animais."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health certificate must be issued and endorsed by the competent (government) veterinary authority of your departure country. The import-permit application typically states the animal, the country of origin, the transport and the point of entry, so where you fly from shapes the certification the authority asks for."
+        fr: "Le certificat sanitaire doit être délivré et visé par l'autorité vétérinaire compétente (gouvernementale) de ton pays de départ. La demande de permis précise généralement l'animal, le pays d'origine, le transport et le point d'entrée : le pays de départ influence donc la certification exigée par l'autorité."
+        es: "El certificado sanitario debe ser expedido y refrendado por la autoridad veterinaria competente (gubernamental) de tu país de salida. La solicitud del permiso de importación suele indicar el animal, el país de origen, el transporte y el punto de entrada, por lo que el país desde el que vuelas condiciona la certificación que pide la autoridad."
+        pt: "O atestado de saúde deve ser emitido e endossado pela autoridade veterinária competente (governamental) do país de partida. O pedido de autorização de importação normalmente indica o animal, o país de origem, o transporte e o ponto de entrada, de modo que o local de partida determina a certificação exigida pela autoridade."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "Rabies is present in the Horn of Africa region and the DESV controls animal-disease risk, so your dog's real origin and recent movements matter. Recent stays and transited countries can shape the health certification and any measures the authority applies on arrival."
+        fr: "La rage est présente dans la région de la Corne de l'Afrique et la DESV maîtrise le risque de maladie animale : l'origine réelle et les déplacements récents de ton chien comptent. Les séjours récents et les pays traversés peuvent influencer la certification sanitaire et les mesures appliquées à l'arrivée."
+        es: "La rabia está presente en la región del Cuerno de África y la DESV controla el riesgo de enfermedades animales, por lo que el origen real y los desplazamientos recientes de tu perro importan. Las estancias recientes y los países transitados pueden condicionar la certificación sanitaria y las medidas que la autoridad aplique a la llegada."
+        pt: "A raiva está presente na região do Chifre da África, e a DESV controla o risco de doenças animais, por isso a origem real e os deslocamentos recentes do cachorro importam. Estadias recentes e países de trânsito podem influenciar a certificação sanitária e quaisquer medidas aplicadas pela autoridade na chegada."
+  note:
+    en: "So read the requirements below as Djibouti's framework, then confirm the exact conditions with the ministry (MAEM/DESV) and your vet — the import permit is what lists the precise rules."
+    fr: "Lis donc les exigences ci-dessous comme le cadre djiboutien, puis confirme les conditions exactes auprès du ministère (MAEM/DESV) et de ton vétérinaire — c'est le permis d'importation qui liste les règles précises."
+    es: "Así que lee los requisitos siguientes como el marco de Yibuti y luego confirma las condiciones exactas con el ministerio (MAEM/DESV) y tu veterinario — es el permiso de importación el que enumera las reglas precisas."
+    pt: "Portanto, ler as exigências abaixo como o quadro geral do Djibuti e, em seguida, confirmar as condições exatas com o ministério (MAEM/DESV) e com o veterinário — é a autorização de importação que lista as regras precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required (as advised by USDA APHIS)", fr: "Requis (selon l'USDA APHIS)", es: "Obligatorio (según recomienda el USDA APHIS)", pt: "Obrigatória (conforme orientação do USDA APHIS)" }
+    when: { en: "USDA APHIS advises that, for species whose requirements are not listed (which includes dogs), the importer or buyer should apply for an import permit at the appropriate ministry before the animal is shipped; that permit will most likely outline the specific requirements. In Djibouti the competent authority is the DESV under the MAEM.", fr: "L'USDA APHIS indique que, pour les espèces dont les exigences ne sont pas listées (ce qui inclut les chiens), l'importateur ou l'acheteur doit demander un permis d'importation auprès du ministère compétent avant l'expédition de l'animal ; ce permis détaillera très probablement les exigences spécifiques. À Djibouti, l'autorité compétente est la DESV rattachée au MAEM.", es: "El USDA APHIS indica que, para las especies cuyos requisitos no están listados (lo que incluye a los perros), el importador o comprador debe solicitar un permiso de importación en el ministerio competente antes de expedir el animal; ese permiso detallará muy probablemente los requisitos específicos. En Yibuti, la autoridad competente es la DESV, dependiente del MAEM.", pt: "O USDA APHIS orienta que, para espécies cujas exigências não são listadas (o que inclui cachorros), o importador ou comprador solicite uma autorização de importação junto ao ministério competente antes de o animal ser enviado; essa autorização provavelmente definirá as exigências específicas. No Djibuti, a autoridade competente é a DESV, sob o MAEM." }
+    exceptions: { en: "No published exception found. The exact permit process for pet dogs is not detailed in a public checklist; obtain it from the ministry.", fr: "Aucune exception publiée trouvée. Le processus exact de permis pour les chiens de compagnie n'est pas détaillé dans une liste publique ; à obtenir auprès du ministère.", es: "No se encontró ninguna excepción publicada. El proceso exacto de permiso para los perros de compañía no está detallado en una lista pública; hay que obtenerlo del ministerio.", pt: "Nenhuma exceção publicada encontrada. O processo exato de autorização para cachorros de companhia não é detalhado em uma lista pública; obtê-lo junto ao ministério." }
+    ref: { en: "USDA APHIS — Export Live Animals to Djibouti (species not listed: apply for an import permit at the appropriate ministry)", fr: "USDA APHIS — Exportation d'animaux vivants vers Djibouti (espèce non listée : permis d'importation au ministère compétent)", es: "USDA APHIS — Exportación de animales vivos a Yibuti (especie no listada: solicitar un permiso de importación en el ministerio competente)", pt: "USDA APHIS — Export Live Animals to Djibouti (espécie não listada: solicitar uma autorização de importação junto ao ministério competente)" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An international/export veterinary health certificate issued by a licensed vet and endorsed by the competent (government) veterinary authority of the exporting country should accompany the animal. The DESV's Djibouti veterinary post itself issues health certificates ('certificat de bonne santé') for companion animals (dogs and cats). A certificate drafted in French is acceptable.", fr: "Un certificat vétérinaire international/export délivré par un vétérinaire agréé et visé par l'autorité vétérinaire compétente (gouvernementale) du pays exportateur doit accompagner l'animal. Le poste vétérinaire de Djibouti de la DESV délivre lui-même des certificats de santé (« certificat de bonne santé ») pour les animaux de compagnie (chiens et chats). Un certificat rédigé en français est accepté.", es: "Un certificado sanitario veterinario internacional/de exportación expedido por un veterinario autorizado y refrendado por la autoridad veterinaria competente (gubernamental) del país exportador debe acompañar al animal. El puesto veterinario de Yibuti de la DESV expide él mismo certificados sanitarios («certificat de bonne santé») para los animales de compañía (perros y gatos). Se acepta un certificado redactado en francés.", pt: "Um atestado de saúde veterinário internacional/de exportação, emitido por um veterinário licenciado e endossado pela autoridade veterinária competente (governamental) do país exportador, deve acompanhar o animal. O próprio posto veterinário da DESV no Djibuti emite atestados de saúde ('certificat de bonne santé') para animais de companhia (cachorros e gatos). Um certificado redigido em francês é aceito." }
+    exceptions: { en: "There is no APHIS-published dog/cat certificate model for Djibouti, so exporters use the certificate specified by the import permit. Content and timing follow the permit.", fr: "Il n'existe pas de modèle de certificat chien/chat publié par l'APHIS pour Djibouti ; les exportateurs utilisent donc le certificat indiqué par le permis d'importation. Le contenu et le délai suivent le permis.", es: "No existe un modelo de certificado para perros/gatos publicado por el APHIS para Yibuti, por lo que los exportadores usan el certificado que indica el permiso de importación. El contenido y los plazos siguen el permiso.", pt: "Não existe um modelo de certificado para cachorros/gatos publicado pelo APHIS para o Djibuti, portanto os exportadores usam o certificado especificado na autorização de importação. O conteúdo e o calendário seguem a autorização." }
+    ref: { en: "USDA APHIS — Export Live Animals to Djibouti; MAEM/DESV (Djibouti veterinary post — companion-animal health certificate)", fr: "USDA APHIS — Exportation d'animaux vivants vers Djibouti ; MAEM/DESV (poste vétérinaire de Djibouti — certificat de santé pour animaux de compagnie)", es: "USDA APHIS — Exportación de animales vivos a Yibuti; MAEM/DESV (puesto veterinario de Yibuti — certificado sanitario para animales de compañía)", pt: "USDA APHIS — Export Live Animals to Djibouti; MAEM/DESV (posto veterinário do Djibuti — atestado de saúde para animais de companhia)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "Not specified in any official Djiboutian source we could verify. An ISO 11784/11785 15-digit microchip is best practice for international travel and is worth confirming with the DESV when the import permit is applied for.", fr: "Non précisé dans une source officielle djiboutienne vérifiable. Une puce ISO 11784/11785 à 15 chiffres est une bonne pratique pour les voyages internationaux et mérite d'être confirmée auprès de la DESV lors de la demande de permis.", es: "No se especifica en ninguna fuente oficial yibutiana que hayamos podido verificar. Un microchip ISO 11784/11785 de 15 dígitos es una buena práctica para los viajes internacionales y conviene confirmarlo con la DESV al solicitar el permiso de importación.", pt: "Não especificado em nenhuma fonte oficial djibutiana que se pôde verificar. Um microchip ISO 11784/11785 de 15 dígitos é a melhor prática para viagens internacionais, e vale a pena confirmá-lo com a DESV no momento de solicitar a autorização de importação." }
+    exceptions: { en: "No official statement found making the microchip mandatory or optional for pet entry into Djibouti.", fr: "Aucune déclaration officielle trouvée rendant la puce obligatoire ou facultative pour l'entrée d'un animal à Djibouti.", es: "No se encontró ninguna declaración oficial que haga el microchip obligatorio u opcional para la entrada de un animal en Yibuti.", pt: "Nenhuma declaração oficial encontrada que torne o microchip obrigatório ou opcional para a entrada de animais de companhia no Djibuti." }
+    ref: { en: "Not published in official sources (MAEM/DESV / USDA APHIS / Douanes)", fr: "Non publié dans les sources officielles (MAEM/DESV / USDA APHIS / Douanes)", es: "No publicado en las fuentes oficiales (MAEM/DESV / USDA APHIS / Douanes)", pt: "Não publicado em fontes oficiais (MAEM/DESV / USDA APHIS / Douanes)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Set by the import permit", fr: "Fixée par le permis d'importation", es: "Fijada por el permiso de importación", pt: "Definida pela autorização de importação" }
+    when: { en: "The exact rabies-vaccination requirement (timing and validity) is not published in a public checklist; it is set by the import permit and the origin-country health certificate. Rabies is present in the Horn of Africa region, so a valid rabies vaccination should be expected and confirmed with the DESV.", fr: "L'exigence exacte de vaccination antirabique (calendrier et validité) n'est pas publiée dans une liste publique ; elle est fixée par le permis d'importation et le certificat sanitaire du pays d'origine. La rage étant présente dans la région de la Corne de l'Afrique, une vaccination antirabique valide est à prévoir et à confirmer auprès de la DESV.", es: "El requisito exacto de vacunación antirrábica (plazos y valide) no se publica en una lista pública; lo fija el permiso de importación y el certificado sanitario del país de origen. La rabia está presente en la región del Cuerno de África, por lo que hay que prever una vacunación antirrábica válida y confirmarla con la DESV.", pt: "A exigência exata de vacinação antirrábica (calendário e validade) não é publicada em uma lista pública; é definida pela autorização de importação e pelo atestado de saúde do país de origem. A raiva está presente na região do Chifre da África, por isso deve-se esperar e confirmar com a DESV uma vacinação antirrábica válida." }
+    exceptions: { en: "No official published exemption or precise interval could be verified; rely on the conditions written on the permit.", fr: "Aucune exemption officielle ni intervalle précis n'a pu être vérifié ; fie-toi aux conditions inscrites sur le permis.", es: "No se pudo verificar ninguna exención oficial ni intervalo preciso; guíate por las condiciones inscritas en el permiso.", pt: "Nenhuma isenção ou intervalo preciso oficial e publicado pôde ser verificado; seguir as condições indicadas na autorização." }
+    ref: { en: "Not published as a public specification (MAEM/DESV / USDA APHIS); regional rabies presence is general public-health context", fr: "Non publié comme spécification publique (MAEM/DESV / USDA APHIS) ; la présence régionale de la rage relève du contexte de santé publique général", es: "No publicado como especificación pública (MAEM/DESV / USDA APHIS); la presencia regional de la rabia corresponde al contexto general de salud pública", pt: "Não publicado como especificação pública (MAEM/DESV / USDA APHIS); a presença regional de raiva é um contexto geral de saúde pública" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Djiboutian source states whether a rabies antibody test (blood test) is required for a dog to enter. Confirm directly with the DESV before assuming it is or is not needed.", fr: "Aucune source officielle djiboutienne n'indique si un titrage des anticorps antirabiques (prise de sang) est exigé pour l'entrée d'un chien. À confirmer directement auprès de la DESV avant de supposer qu'il est requis ou non.", es: "Ninguna fuente oficial yibutiana indica si se exige una prueba de titulación de anticuerpos contra la rabia (análisis de sangre) para la entrada de un perro. Confírmalo directamente con la DESV antes de suponer que es o no necesario.", pt: "Nenhuma fonte oficial djibutiana declara se um teste sorológico antirrábico (exame de sangue) é exigido para a entrada de um cachorro. Confirmar diretamente com a DESV antes de presumir que seja ou não necessário." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (MAEM/DESV / USDA APHIS)", fr: "Non publié dans les sources officielles (MAEM/DESV / USDA APHIS)", es: "No publicado en las fuentes oficiales (MAEM/DESV / USDA APHIS)", pt: "Não publicado em fontes oficiais (MAEM/DESV / USDA APHIS)" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Djiboutian source specifies internal or external parasite (tapeworm/tick) treatment for dogs. If applicable it would appear on the import permit or the health-certificate model.", fr: "Aucune source officielle djiboutienne ne précise de traitement antiparasitaire interne ou externe (ténia/tiques) pour les chiens. Le cas échéant, il figurerait sur le permis d'importation ou le modèle de certificat sanitaire.", es: "Ninguna fuente oficial yibutiana especifica un tratamiento antiparasitario interno o externo (tenia/garrapatas) para los perros. En su caso, figuraría en el permiso de importación o en el modelo de certificado sanitario.", pt: "Nenhuma fonte oficial djibutiana especifica um tratamento antiparasitário interno ou externo (contra tênias/carrapatos) para cachorros. Se aplicável, isso constaria na autorização de importação ou no modelo de atestado de saúde." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (MAEM/DESV / USDA APHIS)", fr: "Non publié dans les sources officielles (MAEM/DESV / USDA APHIS)", es: "No publicado en las fuentes oficiales (MAEM/DESV / USDA APHIS)", pt: "Não publicado em fontes oficiais (MAEM/DESV / USDA APHIS)" }
+  - item: { en: "Veterinary control at the point of entry", fr: "Contrôle vétérinaire au point d'entrée", es: "Control veterinario en el punto de entrada", pt: "Controle veterinário no ponto de entrada" }
+    required: { en: "Yes (regulatory control)", fr: "Oui (contrôle réglementaire)", es: "Sí (control reglamentario)", pt: "Sim (controle regulamentar)" }
+    when: { en: "The DESV runs veterinary posts covering the country's main animal entry borders, and customs clearance is handled by the Direction Générale des Douanes et Droits Indirects (DGDDI). Present the original import permit and health certificate at the point of entry.", fr: "La DESV dispose de postes vétérinaires couvrant les principales frontières d'entrée des animaux du pays, et le dédouanement est assuré par la Direction Générale des Douanes et Droits Indirects (DGDDI). Présente le permis d'importation et le certificat sanitaire originaux au point d'entrée.", es: "La DESV gestiona puestos veterinarios que cubren las principales fronteras de entrada de animales del país, y el despacho de aduanas lo realiza la Direction Générale des Douanes et Droits Indirects (DGDDI). Presenta el permiso de importación y el certificado sanitario originales en el punto de entrada.", pt: "A DESV opera postos veterinários que cobrem as principais fronteiras de entrada de animais do país, e o desembaraço aduaneiro é feito pela Direction Générale des Douanes et Droits Indirects (DGDDI). Apresentar a autorização de importação original e o atestado de saúde no ponto de entrada." }
+    exceptions: { en: "The precise pet inspection procedure at Djibouti–Ambouli airport is not published; follow the instructions on the permit and clear with the on-duty state veterinary officer and customs.", fr: "La procédure précise d'inspection des animaux à l'aéroport de Djibouti–Ambouli n'est pas publiée ; suis les instructions du permis et présente-toi au vétérinaire d'État de service et à la douane.", es: "El procedimiento preciso de inspección de animales en el aeropuerto de Yibuti–Ambouli no está publicado; sigue las instrucciones del permiso y tramita el despacho con el veterinario estatal de servicio y la aduana.", pt: "O procedimento exato de inspeção de animais de companhia no aeroporto de Djibuti–Ambouli não é publicado; seguir as instruções da autorização e obter a liberação junto ao veterinário estadual de plantão e à alfândega." }
+    ref: { en: "MAEM/DESV (veterinary posts at main entry borders); Djibouti Customs (DGDDI)", fr: "MAEM/DESV (postes vétérinaires aux principales frontières d'entrée) ; Douanes de Djibouti (DGDDI)", es: "MAEM/DESV (puestos veterinarios en las principales fronteras de entrada); Aduanas de Yibuti (DGDDI)", pt: "MAEM/DESV (postos veterinários nas principais fronteiras de entrada); Alfândega do Djibuti (DGDDI)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "Djibouti operates a livestock/zoonosis quarantine centre at Damerjog, but no official source publishes a routine quarantine period for pet dogs, or the consequence of incomplete documents. Any quarantine would be at the authority's discretion under animal-disease control.", fr: "Djibouti exploite un centre de quarantaine (bétail / zoonoses) à Damerjog, mais aucune source officielle ne publie de période de quarantaine systématique pour les chiens de compagnie, ni la conséquence de documents incomplets. Une éventuelle quarantaine relèverait de l'appréciation de l'autorité au titre du contrôle des maladies animales.", es: "Yibuti opera un centro de cuarentena (ganado / zoonosis) en Damerjog, pero ninguna fuente oficial publica un periodo de cuarentena sistemático para los perros de compañía, ni la consecuencia de tener documentos incompletos. Cualquier cuarentena quedaría a criterio de la autoridad en el marco del control de enfermedades animales.", pt: "O Djibuti opera um centro de quarentena de animais de criação/zoonoses em Damerjog, mas nenhuma fonte oficial publica um período de quarentena de rotina para cachorros de companhia, nem as consequências de documentos incompletos. Qualquer quarentena ficaria a critério da autoridade, no âmbito do controle de doenças animais." }
+    exceptions: { en: "Not addressed for pet dogs in the official documents reviewed.", fr: "Non traité pour les chiens de compagnie dans les documents officiels consultés.", es: "No se aborda para los perros de compañía en los documentos oficiales consultados.", pt: "Não abordado para cachorros de companhia nos documentos oficiais consultados." }
+    ref: { en: "MAEM/DESV (Damerjog quarantine centre — zoonosis control); routine pet quarantine not published", fr: "MAEM/DESV (centre de quarantaine de Damerjog — lutte contre les zoonoses) ; quarantaine systématique des animaux non publiée", es: "MAEM/DESV (centro de cuarentena de Damerjog — control de zoonosis); cuarentena sistemática de animales no publicada", pt: "MAEM/DESV (centro de quarentena de Damerjog — controle de zoonoses); quarentena de rotina para animais de companhia não publicada" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Djiboutian source states a minimum travelling age for puppies. Any age condition would flow from the rabies-vaccination rule written on the import permit.", fr: "Aucune source officielle djiboutienne n'indique d'âge minimum pour voyager pour les chiots. Une éventuelle condition d'âge découlerait de la règle de vaccination antirabique inscrite sur le permis.", es: "Ninguna fuente oficial yibutiana indica una edad mínima para viajar para los cachorros. Cualquier condición de edad derivaría de la regla de vacunación antirrábica inscrita en el permiso.", pt: "Nenhuma fonte oficial djibutiana declara uma idade mínima de viagem para filhotes. Qualquer condição de idade decorreria da regra de vacinação antirrábica indicada na autorização de importação." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (MAEM/DESV / USDA APHIS)", fr: "Non publié dans les sources officielles (MAEM/DESV / USDA APHIS)", es: "No publicado en las fuentes oficiales (MAEM/DESV / USDA APHIS)", pt: "Não publicado em fontes oficiais (MAEM/DESV / USDA APHIS)" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No published breed law found", fr: "Aucune loi de race publiée trouvée", es: "No se encontró ninguna ley de razas publicada", pt: "Nenhuma legislação sobre raças publicada encontrada" }
+    when: { en: "We found no official Djiboutian breed-specific import ban or dangerous-dog list. Entry is controlled by the import permit and veterinary requirements, not by breed, as far as officially published.", fr: "Nous n'avons trouvé aucune interdiction d'importation par race ni liste de chiens dangereux officielle djiboutienne. L'entrée est encadrée par le permis d'importation et les exigences vétérinaires, non par la race, selon ce qui est officiellement publié.", es: "No encontramos ninguna prohibición de importación por raza ni lista de perros peligrosos oficial yibutiana. La entrada está regulada por el permiso de importación y los requisitos veterinarios, no por la raza, según lo que está oficialmente publicado.", pt: "Não foi encontrada nenhuma proibição de importação específica por raça nem lista de cachorros perigosos oficial do Djibuti. A entrada é controlada pela autorização de importação e pelas exigências veterinárias, e não por raça, até onde é publicado oficialmente." }
+    exceptions: { en: "Absence of a published list is not a guarantee; verify current breed rules with the DESV before travelling.", fr: "L'absence de liste publiée n'est pas une garantie ; vérifie les règles de race à jour auprès de la DESV avant de voyager.", es: "La ausencia de una lista publicada no es una garantía; verifica las normas de razas vigentes con la DESV antes de viajar.", pt: "A ausência de uma lista publicada não é uma garantia; verificar as regras de raça vigentes com a DESV antes de viajar." }
+    ref: { en: "No official breed-specific legislation located (MAEM/DESV / Douanes)", fr: "Aucune législation par race officielle localisée (MAEM/DESV / Douanes)", es: "No se localizó ninguna legislación oficial por raza (MAEM/DESV / Douanes)", pt: "Nenhuma legislação específica por raça localizada (MAEM/DESV / Douanes)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Djibouti: the EU passport is not a Djiboutian document. A dog from Europe needs an import permit obtained in advance from the ministry (MAEM/DESV) and an official veterinary health certificate endorsed by the government veterinary authority of the departure country (a certificate in French is acceptable). Because Djibouti does not publish detailed pet conditions, confirm the exact vaccination, identification and certificate wording with the DESV before you book."
+      fr: "Aucun raccourci « passeport européen » pour entrer à Djibouti : le passeport UE n'est pas un document djiboutien. Un chien venant d'Europe a besoin d'un permis d'importation obtenu à l'avance auprès du ministère (MAEM/DESV) et d'un certificat vétérinaire officiel visé par l'autorité vétérinaire gouvernementale du pays de départ (un certificat en français est accepté). Djibouti ne publiant pas le détail des conditions, confirme auprès de la DESV la vaccination, l'identification et la formulation exacte du certificat avant de réserver."
+      es: "No hay atajo de «pasaporte europeo» para entrar en Yibuti: el pasaporte de la UE no es un documento yibutiano. Un perro que viene de Europa necesita un permiso de importación obtenido con antelación del ministerio (MAEM/DESV) y un certificado sanitario veterinario oficial refrendado por la autoridad veterinaria gubernamental del país de salida (se acepta un certificado en francés). Como Yibuti no publica el detalle de las condiciones, confirma con la DESV la vacunación, la identificación y la redacción exacta del certificado antes de reservar."
+      pt: "Não existe atalho pelo passaporte europeu para animais de estimação rumo ao Djibuti: o passaporte da UE não é um documento djibutiano. Um cachorro vindo da Europa precisa de uma autorização de importação obtida com antecedência junto ao ministério (MAEM/DESV) e de um atestado de saúde veterinário oficial endossado pela autoridade veterinária governamental do país de partida (um certificado em francês é aceito). Como o Djibuti não publica condições detalhadas para animais de companhia, confirmar o texto exato sobre vacinação, identificação e certificado com a DESV antes de reservar."
+    cls: warn
+  listed:
+    title: { en: "There is no listed-country scheme", fr: "Il n'existe pas de schéma de pays listés", es: "No existe un esquema de países listados", pt: "Não existe um esquema de países listados" }
+    body:
+      en: "Unlike some countries, Djibouti does not publish a list of exempted or 'rabies-free' origin countries with a simplified path. As far as officially published, the same import-permit and health-certificate approach applies whatever your origin. Treat any origin-based easing as unconfirmed until the DESV states it on the permit."
+      fr: "Contrairement à certains pays, Djibouti ne publie pas de liste de pays d'origine exemptés ou « indemnes de rage » bénéficiant d'un parcours simplifié. Selon ce qui est officiellement publié, la même logique de permis et de certificat s'applique quelle que soit l'origine. Considère tout allègement lié à l'origine comme non confirmé tant que la DESV ne l'indique pas sur le permis."
+      es: "A diferencia de algunos países, Yibuti no publica una lista de países de origen exentos o «libres de rabia» con una vía simplificada. Según lo que está oficialmente publicado, se aplica el mismo enfoque de permiso de importación y certificado sanitario sea cual sea tu origen. Considera no confirmada cualquier flexibilización basada en el origen mientras la DESV no la indique en el permiso."
+      pt: "Diferentemente de alguns países, o Djibuti não publica uma lista de países de origem isentos ou 'livres de raiva' com um caminho simplificado. Até onde é publicado oficialmente, aplica-se a mesma abordagem de autorização de importação e atestado de saúde, qualquer que seja a origem. Tratar qualquer flexibilização baseada na origem como não confirmada até que a DESV a declare na autorização."
+    cls: warn
+  nonListed:
+    title: { en: "From all other origins", fr: "Depuis toute autre origine", es: "Desde cualquier otro origen", pt: "De todas as outras origens" }
+    body:
+      en: "From any country, the core is the same: an advance import permit from the ministry and an official government-vet health certificate from the departure country. Rabies is present in the region and the DESV controls animal-disease risk, so expect a rabies-vaccination condition and possible additional certification depending on the countries your dog transited. The permit is the document that lists the precise, binding rules for your case."
+      fr: "Depuis n'importe quel pays, la base est identique : un permis d'importation préalable du ministère et un certificat sanitaire officiel du vétérinaire gouvernemental du pays de départ. La rage étant présente dans la région et la DESV maîtrisant le risque de maladie animale, prévois une condition de vaccination antirabique et une possible certification supplémentaire selon les pays traversés. Le permis est le document qui liste les règles précises et contraignantes pour ton cas."
+      es: "Desde cualquier país, la base es la misma: un permiso de importación previo del ministerio y un certificado sanitario oficial del veterinario gubernamental del país de salida. La rabia está presente en la región y la DESV controla el riesgo de enfermedades animales, por lo que hay que prever una condición de vacunación antirrábica y una posible certificación adicional según los países que haya transitado tu perro. El permiso es el documento que enumera las reglas precisas y vinculantes para tu caso."
+      pt: "De qualquer país, o essencial é o mesmo: uma autorização de importação antecipada do ministério e um atestado de saúde veterinário governamental oficial do país de partida. A raiva está presente na região, e a DESV controla o risco de doenças animais, por isso deve-se esperar uma condição de vacinação antirrábica e possível certificação adicional, conforme os países pelos quais o cachorro transitou. A autorização é o documento que lista as regras precisas e vinculantes para cada caso."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens on arrival depends on your import permit and the certificates you carry; live animals pass DESV veterinary control at entry and clear customs (DGDDI)."
+    fr: "Ce qui se passe à l'arrivée dépend de ton permis d'importation et des certificats que tu porte ; les animaux vivants passent le contrôle vétérinaire de la DESV à l'entrée et le dédouanement (DGDDI)."
+    es: "Lo que ocurre a la llegada depende de tu permiso de importación y de los certificados que lleves; los animales vivos pasan el control veterinario de la DESV a la entrada y el despacho de aduanas (DGDDI)."
+    pt: "O que acontece na chegada depende da autorização de importação e dos certificados levados; os animais vivos passam pelo controle veterinário da DESV na entrada e são liberados pela alfândega (DGDDI)."
+  points:
+    - en: "Present the original import permit and the endorsed veterinary health certificate to the veterinary/customs officer at the point of entry — carry originals, not copies."
+      fr: "Présente le permis d'importation original et le certificat vétérinaire visé à l'agent vétérinaire/douanier au point d'entrée — munis-toi des originaux, pas de copies."
+      es: "Presenta el permiso de importación original y el certificado sanitario veterinario refrendado al agente veterinario/aduanero en el punto de entrada — lleva originales, no copias."
+      pt: "Apresentar a autorização de importação original e o atestado de saúde veterinário endossado ao agente veterinário/aduaneiro no ponto de entrada — levar os originais, não cópias."
+    - en: "The DESV runs veterinary posts at the country's main animal entry borders; Djibouti–Ambouli International Airport is the usual air point of entry."
+      fr: "La DESV dispose de postes vétérinaires aux principales frontières d'entrée des animaux ; l'aéroport international de Djibouti–Ambouli est le point d'entrée aérien habituel."
+      es: "La DESV gestiona puestos veterinarios en las principales fronteras de entrada de animales del país; el Aeropuerto Internacional de Yibuti–Ambouli es el punto de entrada aéreo habitual."
+      pt: "A DESV opera postos veterinários nas principais fronteiras de entrada de animais do país; o Aeroporto Internacional de Djibuti–Ambouli é o ponto de entrada aéreo habitual."
+    - en: "The specific pet inspection and any clearance steps at the airport are not published; follow the conditions written on your permit and the instructions of the on-duty state vet and customs."
+      fr: "L'inspection spécifique des animaux et les éventuelles étapes de dédouanement à l'aéroport ne sont pas publiées ; suis les conditions inscrites sur ton permis et les instructions du vétérinaire d'État de service et de la douane."
+      es: "La inspección específica de animales y los posibles pasos de despacho en el aeropuerto no están publicados; sigue las condiciones inscritas en tu permiso y las instrucciones del veterinario estatal de servicio y de la aduana."
+      pt: "A inspeção específica de animais de companhia e quaisquer etapas de liberação no aeroporto não são publicadas; seguir as condições indicadas na autorização e as instruções do veterinário estadual de plantão e da alfândega."
+    - en: "Arriving without a valid import permit or the required health certificate risks refusal, delay or measures at the authority's discretion — do not travel until the permit is issued."
+      fr: "Arriver sans permis d'importation valide ou sans le certificat sanitaire requis expose à un refus, un retard ou des mesures à l'appréciation de l'autorité — ne voyage pas tant que le permis n'est pas délivré."
+      es: "Llegar sin un permiso de importación válido o sin el certificado sanitario requerido expone a un rechazo, un retraso o medidas a criterio de la autoridad — no viajes hasta que se haya expedido el permiso."
+      pt: "Chegar sem uma autorização de importação válida ou sem o atestado de saúde exigido implica risco de recusa, atraso ou medidas a critério da autoridade — não viajar até que a autorização seja emitida."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Entry into Djibouti is controlled through the import permit and veterinary requirements, not through breed. We located no official Djiboutian breed-specific import ban or dangerous-dog register."
+    fr: "L'entrée à Djibouti est encadrée par le permis d'importation et les exigences vétérinaires, non par la race. Nous n'avons localisé aucune interdiction d'importation par race ni registre de chiens dangereux officiel djiboutien."
+    es: "La entrada en Yibuti está regulada por el permiso de importación y los requisitos veterinarios, no por la raza. No localizamos ninguna prohibición de importación por raza ni registro de perros peligrosos oficial yibutiano."
+    pt: "A entrada no Djibuti é controlada por meio da autorização de importação e das exigências veterinárias, e não por raça. Não foi localizado nenhum registro oficial djibutiano de proibição de importação por raça ou de cachorros perigosos."
+  cat1:
+    en: "No prohibited-breed list found: official Djiboutian sources do not name banned breeds for import. A compliant dog of any breed should be importable once the permit and health certificate are in order — but confirm, as absence of a published list is not a guarantee."
+    fr: "Aucune liste de races interdites trouvée : les sources officielles djiboutiennes ne nomment pas de races interdites à l'importation. Un chien conforme, quelle que soit sa race, devrait pouvoir être importé dès lors que le permis et le certificat sanitaire sont en règle — mais vérifie, car l'absence de liste publiée n'est pas une garantie."
+    es: "No se encontró ninguna lista de razas prohibidas: las fuentes oficiales yibutianas no nombran razas prohibidas para la importación. Un perro que cumpla los requisitos, sea cual sea su raza, debería poder importarse una vez que el permiso y el certificado sanitario estén en regla — pero confírmalo, ya que la ausencia de una lista publicada no es una garantía."
+    pt: "Nenhuma lista de raças proibidas encontrada: as fontes oficiais djibutianas não nomeiam raças proibidas para importação. Um cachorro em conformidade de qualquer raça deveria poder ser importado uma vez que a autorização e o atestado de saúde estejam em ordem — mas convém confirmar, já que a ausência de uma lista publicada não é uma garantia."
+  cat2:
+    en: "No licence-category breed scheme found: we found no official Djiboutian tier of breeds requiring a special permit to import. Any such national rule would be enforced by the authority and should be checked directly before travel."
+    fr: "Aucun régime de races sous licence trouvé : nous n'avons trouvé aucune catégorie officielle djiboutienne de races nécessitant un permis spécial à l'importation. Une telle règle nationale serait appliquée par l'autorité et doit être vérifiée directement avant le voyage."
+    es: "No se encontró ningún régimen de razas sujetas a licencia: no encontramos ninguna categoría oficial yibutiana de razas que requiera un permiso especial para importarlas. Cualquier norma nacional de ese tipo sería aplicada por la autoridad y debe verificarse directamente antes del viaje."
+    pt: "Nenhum esquema de categoria de licença por raça encontrado: não foi encontrada nenhuma categoria oficial djibutiana de raças que exija uma autorização especial para importação. Qualquer regra nacional desse tipo seria aplicada pela autoridade e deve ser verificada diretamente antes da viagem."
+  note:
+    en: "Because national rules can change and are not fully published online, verify the current breed and import conditions directly with the DESV (MAEM) before you travel."
+    fr: "Les règles nationales pouvant évoluer et n'étant pas entièrement publiées en ligne, vérifie les conditions de race et d'importation à jour directement auprès de la DESV (MAEM) avant de voyager."
+    es: "Como las normas nacionales pueden cambiar y no están totalmente publicadas en línea, verifica las condiciones de raza e importación vigentes directamente con la DESV (MAEM) antes de viajar."
+    pt: "Como as regras nacionais podem mudar e não estão totalmente publicadas on-line, verificar diretamente com a DESV (MAEM) as condições vigentes de raça e importação antes de viajar."
+
+checklist:
+  - en: "Have the importer apply for an import permit from the ministry (MAEM/DESV) well before travel"
+    fr: "Fais demander par l'importateur un permis d'importation auprès du ministère (MAEM/DESV) bien avant le voyage"
+    es: "Haz que el importador solicite un permiso de importación al ministerio (MAEM/DESV) mucho antes del viaje"
+    pt: "Providenciar que o importador solicite uma autorização de importação junto ao ministério (MAEM/DESV) com bastante antecedência"
+  - en: "Ask the DESV for the exact vaccination, identification and certificate conditions for your dog"
+    fr: "Demande à la DESV les conditions exactes de vaccination, d'identification et de certificat pour ton chien"
+    es: "Pregunta a la DESV las condiciones exactas de vacunación, identificación y certificado para tu perro"
+    pt: "Perguntar à DESV as condições exatas de vacinação, identificação e certificado para o cachorro"
+  - en: "Obtain an official veterinary health certificate endorsed by your country's government veterinary authority (a certificate in French is acceptable)"
+    fr: "Obtiens un certificat vétérinaire officiel visé par l'autorité vétérinaire gouvernementale de ton pays (un certificat en français est accepté)"
+    es: "Obtén un certificado sanitario veterinario oficial refrendado por la autoridad veterinaria gubernamental de tu país (se acepta un certificado en francés)"
+    pt: "Obter um atestado de saúde veterinário oficial endossado pela autoridade veterinária governamental do país de partida (um certificado em francês é aceito)"
+  - en: "Confirm rabies-vaccination timing (rabies is present in the region) and whether a blood test is asked for"
+    fr: "Confirme le calendrier de la vaccination antirabique (rage présente dans la région) et si un titrage est demandé"
+    es: "Confirma los plazos de la vacunación antirrábica (la rabia está presente en la región) y si se pide una prueba de titulación"
+    pt: "Confirmar o calendário da vacinação antirrábica (a raiva está presente na região) e se um exame de sangue é solicitado"
+  - en: "Consider an ISO 11784/11785 microchip for identification and check it with the DESV"
+    fr: "Envisagez une puce ISO 11784/11785 pour l'identification et vérifie-la auprès de la DESV"
+    es: "Considera un microchip ISO 11784/11785 para la identificación y verifícalo con la DESV"
+    pt: "Considerar um microchip ISO 11784/11785 para identificação e confirmá-lo com a DESV"
+  - en: "Carry original permit and certificates to present at the point of entry (not copies)"
+    fr: "Munis-toi du permis et des certificats originaux à présenter au point d'entrée (pas de copies)"
+    es: "Lleva el permiso y los certificados originales para presentarlos en el punto de entrada (no copias)"
+    pt: "Levar a autorização e os certificados originais para apresentar no ponto de entrada (não cópias)"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+  - en: "Verify current breed rules with the DESV before booking"
+    fr: "Vérifie les règles de race à jour auprès de la DESV avant de réserver"
+    es: "Verifica las normas de razas vigentes con la DESV antes de reservar"
+    pt: "Verificar as regras de raça vigentes com a DESV antes de reservar"
+
+sources:
+  - label: { en: "USDA APHIS — Export Live Animals to Djibouti (species not listed: importer applies for an import permit at the appropriate ministry)", fr: "USDA APHIS — Exportation d'animaux vivants vers Djibouti (espèce non listée : l'importateur demande un permis au ministère compétent)", es: "USDA APHIS — Exportación de animales vivos a Yibuti (especie no listada: el importador solicita un permiso al ministerio competente)", pt: "USDA APHIS — Export Live Animals to Djibouti (espécie não listada: o importador solicita uma autorização de importação junto ao ministério competente)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-djibouti"
+  - label: { en: "Ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage (MAEM) — Direction de l'Élevage et des Services Vétérinaires (DESV)", fr: "Ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage (MAEM) — Direction de l'Élevage et des Services Vétérinaires (DESV)", es: "Ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage (MAEM) — Direction de l'Élevage et des Services Vétérinaires (DESV)", pt: "Ministère de l'Agriculture, de l'Eau, de la Pêche, chargé de l'Élevage (MAEM) — Direction de l'Élevage et des Services Vétérinaires (DESV)" }
+    url: "http://www.maem.dj/index.php?id_page=4"
+  - label: { en: "MAEM (Djibouti) — ministry official site", fr: "MAEM (Djibouti) — site officiel du ministère", es: "MAEM (Yibuti) — sitio oficial del ministerio", pt: "MAEM (Djibuti) — site oficial do ministério" }
+    url: "http://www.maem.dj/"
+  - label: { en: "Direction Générale des Douanes et Droits Indirects (DGDDI) — Prohibitions and Restrictions", fr: "Direction Générale des Douanes et Droits Indirects (DGDDI) — Prohibitions et Restrictions", es: "Direction Générale des Douanes et Droits Indirects (DGDDI) — Prohibiciones y restricciones", pt: "Direction Générale des Douanes et Droits Indirects (DGDDI) — Proibições e Restrições" }
+    url: "https://douanes.gouv.dj/prohibitions-et-restrictions/"
+  - label: { en: "Direction Générale des Douanes et Droits Indirects (DGDDI) — official site", fr: "Direction Générale des Douanes et Droits Indirects (DGDDI) — site officiel", es: "Direction Générale des Douanes et Droits Indirects (DGDDI) — sitio oficial", pt: "Direction Générale des Douanes et Droits Indirects (DGDDI) — site oficial" }
+    url: "https://douanes.gouv.dj/"
+  - label: { en: "Republic of Djibouti — Customs Code (2011 edition), Ministry of Finance", fr: "République de Djibouti — Code des Douanes (édition 2011), ministère des Finances", es: "República de Yibuti — Código de Aduanas (edición de 2011), Ministerio de Finanzas", pt: "República do Djibuti — Código Aduaneiro (edição de 2011), Ministério das Finanças" }
+    url: "https://www.ministere-finances.dj/CodeDouanes2011.pdf"
+
+seo:
+  title: { en: "Djibouti Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Djibouti — Guide", es: "Requisitos de entrada de perros en Yibuti — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Djibuti — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Djibouti With Your Dog: Entry Requirements (2026)", fr: "Voyager à Djibouti avec ton chien : formalités (2026)", es: "Viajar a Yibuti con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Djibuti: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official rules for bringing a dog into Djibouti: a ministry import permit (MAEM/DESV) and a government-endorsed veterinary certificate. Sourced and dated."
+    fr: "Règles officielles pour faire entrer un chien à Djibouti : permis d'importation du ministère (MAEM/DESV) et certificat vétérinaire visé. Sourcé et daté."
+    es: "Normas oficiales para traer un perro a Yibuti: permiso de importación del ministerio (MAEM/DESV) y certificado veterinario refrendado. Con fuentes y fecha."
+    pt: "Regras oficiais para levar um cachorro ao Djibuti: uma autorização de importação do ministério (MAEM/DESV) e um certificado veterinário endossado pelo governo."
+  slug: "djibouti"
+  shortDesc:
+    en: "What you need to bring a dog into Djibouti: an advance import permit from the ministry and an official government-vet health certificate — detailed conditions are set by the permit."
+    fr: "Ce qu'il faut pour faire entrer un chien à Djibouti : un permis d'importation préalable du ministère et un certificat sanitaire officiel du vétérinaire gouvernemental — le détail est fixé par le permis."
+    es: "Lo que necesitas para traer un perro a Yibuti: un permiso de importación previo del ministerio y un certificado sanitario oficial del veterinario gubernamental — el detalle lo fija el permiso."
+    pt: "O que é preciso para levar um cachorro ao Djibuti: uma autorização de importação antecipada do ministério e um atestado de saúde veterinário governamental oficial — as condições detalhadas são definidas pela autorização."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 1

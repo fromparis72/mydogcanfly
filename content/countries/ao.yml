@@ -1,0 +1,366 @@
+# Country Entry Guide — Angola (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ao
+iso2: "AO"
+name: { en: "Angola", fr: "Angola", es: "Angola", pt: "Angola" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: ISV
+  authorityUrl: https://minagrif.gov.ao/
+  intro:
+    en: "Angola is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Instituto dos Serviços de Veterinária (ISV)."
+    fr: "L'Angola est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par l'Instituto dos Serviços de Veterinária (ISV)."
+    es: "Angola no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Instituto dos Serviços de Veterinária (ISV)."
+    pt: "Angola é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para regressar à UE — além de um atestado de saúde de exportação endossado pelo Instituto dos Serviços de Veterinária (ISV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipar o teste sorológico antirrábico (titulação): análise de sangue num laboratório aprovado pela UE, pelo menos 30 dias depois da vacinação — um resultado válido é indispensável para reentrar na UE e não se resolve à última hora."
+    - timing: window
+      text:
+        en: "The ISV (veterinary public-health service) issues the certificate of origin and health and sets the norms for exporting animals."
+        fr: "L'ISV (service de santé publique vétérinaire) délivre le certificat d'origine et de santé et fixe les normes d'export des animaux."
+        es: "El ISV (servicio de salud pública veterinaria) emite el certificado de origen y salud y fija las normas para exportar animales."
+        pt: "O ISV (serviço de saúde pública veterinária) emite o certificado de origem e de sanidade e fixa as normas de exportação de animais."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, este permanece válido para toda a vida enquanto a vacinação antirrábica estiver em dia — convém verificar antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Angola with your dog", fr: "Voyager en Angola avec ton chien", es: "Viajar a Angola con tu perro", pt: "Viajar para Angola com o seu cachorro" }
+  intro:
+    en: >-
+      Angola admits pet dogs, but it publishes very little detail about the exact entry procedure. The
+      competent authority is the Instituto dos Serviços de Veterinária (ISV), under the Ministério da
+      Agricultura e Florestas (MINAGRIF); customs clearance is handled by the Administração Geral
+      Tributária (AGT). Angola is a rabies-endemic country and is officially classified as high-risk for
+      dog rabies, so a valid rabies vaccination and an official veterinary health certificate from your
+      origin country are the practical baseline, and animals are inspected on arrival. Because Angola is
+      not part of the EU pet framework and does not publish a public dog-import checklist, several exact
+      conditions — microchip standard, vaccination timing, any antibody test, parasite treatment,
+      minimum age and quarantine — are not officially documented. This guide sets out what is confirmed
+      from official sources and flags clearly what you must verify directly with the ISV before you book.
+    fr: >-
+      L'Angola admet les chiens de compagnie, mais publie très peu de détails sur la procédure d'entrée
+      exacte. L'autorité compétente est l'Instituto dos Serviços de Veterinária (ISV), rattaché au
+      Ministério da Agricultura e Florestas (MINAGRIF) ; le dedouanement relève de l'Administração Geral
+      Tributária (AGT). L'Angola est un pays d'endémie rabique, officiellement classé à haut risque de
+      rage canine : une vaccination antirabique valide et un certificat vétérinaire officiel du pays
+      d'origine constituent donc la base pratique, et les animaux sont inspectés à l'arrivée. Comme
+      l'Angola n'appartient pas au cadre européen et ne publie pas de liste d'exigences pour les chiens,
+      plusieurs conditions exactes — norme de puce, calendrier vaccinal, éventuel test d'anticorps,
+      traitement antiparasitaire, âge minimum et quarantaine — ne sont pas documentées officiellement. Ce
+      guide expose ce qui est confirmé par des sources officielles et signale clairement ce que tu dois
+      vérifier directement auprès de l'ISV avant de réserver.
+    es: >-
+      Angola admite a los perros de compañía, pero publica muy pocos detalles sobre el procedimiento de
+      entrada exacto. La autoridad competente es el Instituto dos Serviços de Veterinária (ISV), dependiente
+      del Ministério da Agricultura e Florestas (MINAGRIF); el despacho de aduanas corre a cargo de la
+      Administração Geral Tributária (AGT). Angola es un país con rabia endémica y está clasificado
+      oficialmente como de alto riesgo de rabia canina, por lo que una vacunación antirrábica válida y un
+      certificado sanitario veterinario oficial de tu país de origen constituyen la base práctica, y los
+      animales se inspeccionan a la llegada. Como Angola no forma parte del marco europeo para mascotas y no
+      publica una lista de requisitos para la importación de perros, varias condiciones exactas — norma de
+      microchip, calendario de vacunación, posible prueba de anticuerpos, tratamiento antiparasitario, edad
+      mínima y cuarentena — no están documentadas oficialmente. Esta guía expone lo que está confirmado por
+      fuentes oficiales y señala claramente lo que debes verificar directamente con el ISV antes de reservar.
+
+    pt: "Angola admite cachorros de companhia, mas publica muito poucos detalhes sobre o procedimento exato de entrada. A autoridade competente é o Instituto dos Serviços de Veterinária (ISV), tutelado pelo Ministério da Agricultura e Florestas (MINAGRIF); o desembaraço aduaneiro cabe à Administração Geral Tributária (AGT). Angola é um país de raiva endémica e está oficialmente classificado como de alto risco de raiva canina, pelo que uma vacinação antirrábica válida e um atestado de saúde veterinário oficial do país de origem constituem a base prática, e os animais são inspecionados à chegada. Como Angola não integra o quadro europeu para animais de companhia e não publica uma lista pública de exigências para a importação de cachorros, várias condições exatas — norma do microchip, calendário de vacinação, eventual teste sorológico, tratamento antiparasitário, idade mínima e quarentena — não estão documentadas oficialmente. Este guia expõe o que está confirmado por fontes oficiais e assinala com clareza o que deve ser verificado diretamente junto do ISV antes de reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — few published rules, confirm with ISV", fr: "Difficile — peu de règles publiées, à confirmer auprès de l'ISV", es: "Difícil — pocas normas publicadas, confirma con el ISV", pt: "Difícil — poucas regras publicadas, confirmar junto do ISV" }
+
+prepTime:
+  eu:
+    en: "From Europe: allow several weeks and confirm the exact steps with the ISV first — a rabies vaccination and an official, embassy-legalised veterinary certificate are the pacing items. Exact lead time is not officially published."
+    fr: "Depuis l'Europe : prévoir plusieurs semaines et confirmer d'abord les étapes exactes auprès de l'ISV — la vaccination antirabique et un certificat vétérinaire officiel légalisé par l'ambassade rythment le calendrier. Le délai exact n'est pas publié officiellement."
+    es: "Desde Europa: calcula varias semanas y confirma primero los pasos exactos con el ISV — la vacunación antirrábica y un certificado veterinario oficial legalizado por la embajada marcan el ritmo del calendario. El plazo exacto no se publica oficialmente."
+    pt: "Da Europa: contar com várias semanas e confirmar primeiro as etapas exatas junto do ISV — a vacinação antirrábica e um certificado veterinário oficial legalizado pela embaixada marcam o ritmo do calendário. O prazo exato não é publicado oficialmente."
+  listed:
+    en: "From a rabies-controlled country (US, Canada, Gulf states…): similar — a valid rabies vaccination and an endorsed veterinary certificate. No official Angolan timetable is published; plan ahead and check with the ISV."
+    fr: "Depuis un pays à rage maîtrisée (USA, Canada, pays du Golfe…) : similaire — vaccination antirabique valide et certificat vétérinaire visé. Aucun calendrier angolais officiel n'est publié ; anticipe et vérifie auprès de l'ISV."
+    es: "Desde un país con rabia controlada (EE. UU., Canadá, países del Golfo…): similar — una vacunación antirrábica válida y un certificado veterinario refrendado. No se publica ningún calendario angoleño oficial; planifica con antelación y consúltalo con el ISV."
+    pt: "De um país com raiva controlada (EUA, Canadá, países do Golfo…): situação semelhante — vacinação antirrábica válida e certificado veterinário endossado. Não existe calendário angolano oficial publicado; convém organizar tudo com antecedência e confirmar junto do ISV."
+  nonListed:
+    en: "From another high-rabies-risk country: same baseline, but expect closer scrutiny on arrival. Any additional test or waiting period is not officially published — confirm with the ISV before travel."
+    fr: "Depuis un autre pays à haut risque rabique : même base, mais contrôle renforcé à l'arrivée. Tout test ou délai supplémentaire n'est pas publié officiellement — à confirmer auprès de l'ISV avant le voyage."
+    es: "Desde otro país de alto riesgo de rabia: la misma base, pero espera un control más riguroso a la llegada. Cualquier prueba o periodo de espera adicional no se publica oficialmente — confírmalo con el ISV antes de viajar."
+    pt: "De outro país de alto risco de raiva: a mesma base, mas com uma verificação mais rigorosa à chegada. Qualquer teste ou prazo adicional não é publicado oficialmente — confirmar junto do ISV antes da viagem."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Unknown (recommended)", fr: "Non communiqué (recommandée)", es: "No comunicado (recomendado)", pt: "Não comunicado (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (baseline)", fr: "Requise (base)", es: "Obligatoria (base)", pt: "Obrigatória (base)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Unknown (not published)", fr: "Non communiqué (non publié)", es: "No comunicado (no publicado)", pt: "Não comunicado (não publicado)" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed + legalised)", fr: "Requis (visé + légalisé)", es: "Obligatorio (refrendado + legalizado)", pt: "Obrigatório (endossado + legalizado)" }
+    cls: warn
+  - requirement: { en: "Import authorisation (ISV)", fr: "Autorisation d'importation (ISV)", es: "Autorización de importación (ISV)", pt: "Autorização de importação (ISV)" }
+    status: { en: "Conditional — confirm with ISV", fr: "Conditionnelle — à confirmer auprès de l'ISV", es: "Condicional — confirma con el ISV", pt: "Condicional — confirmar junto do ISV" }
+    cls: neutral
+  - requirement: { en: "Arrival inspection", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção à chegada" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Unknown (not published)", fr: "Non communiqué (non publié)", es: "No comunicado (no publicado)", pt: "Não comunicado (não publicado)" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Angola publishes little public detail on dog imports; only the Instituto dos Serviços de Veterinária (ISV) can confirm the exact conditions and any import authorisation for your individual dog."
+    fr: "L'Angola publie peu de détails publics sur l'importation de chiens ; seul l'Instituto dos Serviços de Veterinária (ISV) peut confirmer les conditions exactes et toute autorisation d'importation pour ton chien."
+    es: "Angola publica pocos detalles públicos sobre la importación de perros; solo el Instituto dos Serviços de Veterinária (ISV) puede confirmar las condiciones exactas y cualquier autorización de importación para tu perro."
+    pt: "Angola publica poucos detalhes públicos sobre a importação de cachorros; só o Instituto dos Serviços de Veterinária (ISV) pode confirmar as condições exatas e uma eventual autorização de importação para cada cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cão" }
+  intro:
+    en: "The exact documents depend on three things — Angola (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Angola (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Angola (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Angola (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Angola", fr: "Pays de destination — Angola", es: "País de destino — Angola", pt: "País de destino — Angola" }
+      text:
+        en: "Angola sets its own rules through the ISV rather than the EU framework. A valid rabies vaccination and an official veterinary health certificate are the practical baseline, and every arriving animal is inspected. Because Angola is rabies-endemic, a current rabies vaccination matters, but the precise conditions are not publicly published."
+        fr: "L'Angola fixe ses propres règles via l'ISV et non le cadre européen. Une vaccination antirabique valide et un certificat vétérinaire officiel constituent la base pratique, et chaque animal est inspecté à l'arrivée. L'Angola étant en endémie rabique, une vaccination à jour est importante, mais les conditions précises ne sont pas publiées."
+        es: "Angola fija sus propias normas a través del ISV y no del marco europeo. Una vacunación antirrábica válida y un certificado sanitario veterinario oficial constituyen la base práctica, y cada animal que llega es inspeccionado. Como Angola tiene rabia endémica, una vacunación al día es importante, pero las condiciones precisas no se publican."
+        pt: "Angola define as suas próprias regras através do ISV e não do quadro europeu. Uma vacinação antirrábica válida e um atestado de saúde veterinário oficial constituem a base prática, e todos os animais que chegam são inspecionados. Por Angola ter raiva endémica, uma vacinação antirrábica em dia é importante, mas as condições precisas não são publicadas."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Your departure country's disease situation shapes what the official vet must certify and how closely the dog is checked on arrival. Coming from another rabies-endemic country can mean extra scrutiny; the exact effect is not officially documented."
+        fr: "La situation sanitaire du pays de départ détermine ce que le vétérinaire officiel doit certifier et l'intensité du contrôle à l'arrivée. Venir d'un autre pays d'endémie rabique peut entraîner un contrôle renforcé ; l'effet exact n'est pas documenté officiellement."
+        es: "La situación sanitaria de tu país de salida determina lo que el veterinario oficial debe certificar y la rigurosidad del control a la llegada. Venir de otro país con rabia endémica puede implicar un escrutinio adicional; el efecto exacto no está documentado oficialmente."
+        pt: "A situação sanitária do país de partida determina o que o veterinário oficial deve certificar e o rigor da verificação do cachorro à chegada. Vir de outro país de raiva endémica pode implicar um exame mais atento; o efeito exato não está documentado oficialmente."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a high-risk area can influence the checks applied at the airport. It is your dog's real origin and history that count — not only the last airport it flew from — so keep a complete, honest travel record."
+        fr: "Un séjour récent dans une zone à haut risque peut influencer les contrôles à l'aéroport. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement le dernier aéroport de départ — garde donc un historique de voyage complet et sincère."
+        es: "Una estancia reciente en una zona de alto riesgo puede influir en los controles aplicados en el aeropuerto. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto desde el que voló — así que conserva un historial de viajes completo y sincero."
+        pt: "Uma estadia recente em zona de alto risco pode influenciar as verificações aplicadas no aeroporto. O que conta é a origem real e o percurso do cachorro — e não apenas o último aeroporto de onde partiu — pelo que importa conservar um histórico de viagens completo e honesto."
+  note:
+    en: "So read the requirements below as Angola's general framework, then confirm your dog's exact origin and history — and the current conditions — directly with the ISV before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre général angolais, puis confirme l'origine et l'historique exacts de ton chien — et les conditions à jour — directement auprès de l'ISV avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco general de Angola y luego confirma el origen y el historial exactos de tu perro — y las condiciones actuales — directamente con el ISV antes de reservar."
+    pt: "As exigências abaixo devem, portanto, ser lidas como o quadro geral angolano; a origem e o histórico exatos do cachorro — e as condições em vigor — devem ser confirmados diretamente junto do ISV antes de reservar."
+
+requirements:
+  - item: { en: "Import authorisation (ISV)", fr: "Autorisation d'importation (ISV)", es: "Autorización de importación (ISV)", pt: "Autorização de importação (ISV)" }
+    required: { en: "Conditional", fr: "Conditionnelle", es: "Condicional", pt: "Condicional" }
+    when: { en: "The ISV is the authority that issues sanitary certificates and authorisations for animal imports. Whether a personal pet dog needs a prior import authorisation is not clearly published; request confirmation from the ISV before shipping. Commercial imports normally require a permit.", fr: "L'ISV est l'autorité qui délivre les certificats sanitaires et les autorisations d'importation d'animaux. Le fait qu'un chien de compagnie personnel nécessite une autorisation préalable n'est pas clairement publié ; demande confirmation à l'ISV avant l'expédition. Les importations commerciales requièrent normalement un permis.", es: "El ISV es la autoridad que expide los certificados sanitarios y las autorizaciones de importación de animales. Si un perro de compañía personal necesita una autorización de importación previa no está claramente publicado; solicita confirmación al ISV antes del envío. Las importaciones comerciales requieren normalmente un permiso.", pt: "O ISV é a autoridade que emite os certificados sanitários e as autorizações de importação de animais. Não está claramente publicado se um cachorro de companhia particular necessita de uma autorização de importação prévia; convém pedir confirmação ao ISV antes do envio. As importações comerciais exigem normalmente uma autorização." }
+    exceptions: { en: "Exact procedure, fees and processing time for pet dogs are not officially published: Unknown. Confirm directly with the ISV / MINAGRIF.", fr: "Procédure, frais et délais exacts pour les chiens de compagnie non publiés officiellement : non communiqués. À confirmer directement auprès de l'ISV / MINAGRIF.", es: "El procedimiento, las tasas y los plazos exactos para perros de compañía no se publican oficialmente: no comunicado. Confírmalo directamente con el ISV / MINAGRIF.", pt: "O procedimento, as taxas e os prazos exatos para cachorros de companhia não são publicados oficialmente: não comunicado. Confirmar diretamente junto do ISV / MINAGRIF." }
+    ref: { en: "ISV / Ministério da Agricultura e Florestas (MINAGRIF)", fr: "ISV / Ministério da Agricultura e Florestas (MINAGRIF)", es: "ISV / Ministério da Agricultura e Florestas (MINAGRIF)", pt: "ISV / Ministério da Agricultura e Florestas (MINAGRIF)" }
+  - item: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    required: { en: "Unknown (recommended)", fr: "Non communiqué (recommandée)", es: "No comunicado (recomendado)", pt: "Não comunicado (recomendado)" }
+    when: { en: "Angola does not publish a microchip rule for dog entry. An internationally readable ISO 11784/11785 chip is strongly advisable so identification matches your dog's vaccination and health certificate.", fr: "L'Angola ne publie pas de règle de puce pour l'entrée des chiens. Une puce ISO 11784/11785 lisible à l'international est fortement conseillée pour que l'identification concorde avec le carnet de vaccination et le certificat sanitaire.", es: "Angola no publica una norma de microchip para la entrada de perros. Es muy aconsejable un microchip ISO 11784/11785 legible a nivel internacional para que la identificación coincida con la cartilla de vacunación y el certificado sanitario de tu perro.", pt: "Angola não publica qualquer regra de microchip para a entrada de cachorros. É fortemente aconselhável um microchip ISO 11784/11785 legível internacionalmente, para que a identificação corresponda à caderneta de vacinação e ao atestado de saúde do cachorro." }
+    exceptions: { en: "No official Angolan microchip requirement is published: Unknown. Confirm with the ISV.", fr: "Aucune exigence de puce angolaise officielle n'est publiée : non communiqué. À confirmer auprès de l'ISV.", es: "No se publica ninguna exigencia oficial angoleña de microchip: no comunicado. Confírmalo con el ISV.", pt: "Não é publicada qualquer exigência angolana oficial de microchip: não comunicado. Confirmar junto do ISV." }
+    ref: { en: "No published Angolan microchip standard (ISV)", fr: "Aucune norme de puce angolaise publiée (ISV)", es: "No hay norma angoleña de microchip publicada (ISV)", pt: "Nenhuma norma angolana de microchip publicada (ISV)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (baseline)", fr: "Requise (base)", es: "Obligatoria (base)", pt: "Obrigatória (base)" }
+    when: { en: "A valid rabies vaccination recorded on the health certificate is the practical baseline for entry, and Angola is rabies-endemic so a current vaccination is essential. The exact minimum interval before travel and validity accepted by Angola are not officially published.", fr: "Une vaccination antirabique valide inscrite sur le certificat sanitaire constitue la base pratique de l'entrée, et l'Angola étant en endémie rabique, une vaccination à jour est essentielle. Le délai minimum exact avant le voyage et la validité admise par l'Angola ne sont pas publiés officiellement.", es: "Una vacunación antirrábica válida inscrita en el certificado sanitario constituye la base práctica de la entrada, y como Angola tiene rabia endémica, una vacunación al día es esencial. El intervalo mínimo exacto antes del viaje y la valide admitida por Angola no se publican oficialmente.", pt: "Uma vacinação antirrábica válida inscrita no atestado de saúde constitui a base prática da entrada e, como Angola tem raiva endémica, uma vacinação em dia é essencial. O intervalo mínimo exato antes da viagem e a validade admitida por Angola não são publicados oficialmente." }
+    exceptions: { en: "Precise timing (e.g. a 21- or 30-day wait) is not published by Angola: Unknown. Confirm the exact schedule with your vet and the ISV.", fr: "Le calendrier précis (par ex. délai de 21 ou 30 jours) n'est pas publié par l'Angola : non communiqué. Confirme le calendrier exact avec ton vétérinaire et l'ISV.", es: "El calendario preciso (p. ej. una espera de 21 o 30 días) no lo publica Angola: no comunicado. Confirma el calendario exacto con tu veterinario y el ISV.", pt: "Angola não publica o calendário preciso (por exemplo, um prazo de 21 ou 30 dias): não comunicado. Confirmar o calendário exato com o veterinário e com o ISV." }
+    ref: { en: "CDC — Angola listed high-risk for dog rabies; ISV certificate", fr: "CDC — Angola classé à haut risque de rage canine ; certificat ISV", es: "CDC — Angola clasificado de alto riesgo de rabia canina; certificado ISV", pt: "CDC — Angola classificado como de alto risco de raiva canina; certificado do ISV" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "Angola does not publish whether a rabies antibody test is required for dog entry, and no agreed international certificate for Angola specifies one. Do not assume it is or is not needed.", fr: "L'Angola ne publie pas si un titrage antirabique est exigé pour l'entrée des chiens, et aucun certificat international convenu pour l'Angola n'en précise. Ne présume ni sa nécessité ni son absence.", es: "Angola no publica si se exige una prueba de titulación de rabia para la entrada de perros, y ningún certificado internacional acordado para Angola la especifica. No des por sentado que sea o no necesaria.", pt: "Angola não publica se é exigido um teste sorológico antirrábico para a entrada de cachorros, e nenhum certificado internacional acordado para Angola o especifica. Não se deve presumir que seja nem que deixe de ser necessário." }
+    exceptions: { en: "No official Angolan antibody-test rule is published: Unknown. Confirm with the ISV, especially from another high-risk origin.", fr: "Aucune règle de titrage angolaise officielle n'est publiée : non communiqué. À confirmer auprès de l'ISV, surtout depuis une autre origine à haut risque.", es: "No se publica ninguna norma angoleña oficial de prueba de titulación: no comunicado. Confírmalo con el ISV, sobre todo desde otro origen de alto riesgo.", pt: "Não é publicada qualquer regra angolana oficial sobre o teste sorológico antirrábico: não comunicado. Confirmar junto do ISV, sobretudo a partir de outra origem de alto risco." }
+    ref: { en: "No published Angolan antibody-test requirement (ISV)", fr: "Aucune exigence de titrage angolaise publiée (ISV)", es: "No hay exigencia angoleña de prueba de titulación publicada (ISV)", pt: "Nenhuma exigência angolana de teste sorológico publicada (ISV)" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An official international veterinary health certificate, completed by a licensed vet and endorsed by the exporting country's government veterinary authority, is the standard document for entry. Angolan practice also commonly requires documents to be translated into Portuguese and legalised by an Angolan embassy or consulate.", fr: "Un certificat vétérinaire international officiel, établi par un vétérinaire agréé et visé par l'autorité vétérinaire gouvernementale du pays d'export, est le document standard pour l'entrée. La pratique angolaise exige aussi couramment une traduction en portugais et une légalisation par une ambassade ou un consulat d'Angola.", es: "Un certificado sanitario veterinario internacional oficial, cumplimentado por un veterinario colegiado y refrendado por la autoridad veterinaria gubernamental del país exportador, es el documento estándar para la entrada. La práctica angoleña también suele exigir que los documentos se traduzcan al portugués y se legalicen ante una embajada o un consulado de Angola.", pt: "Um certificado veterinário internacional oficial, preenchido por um veterinário habilitado e endossado pela autoridade veterinária governamental do país exportador, é o documento padrão para a entrada. A prática angolana exige também, com frequência, que os documentos sejam traduzidos para português e legalizados por uma embaixada ou um consulado de Angola." }
+    exceptions: { en: "The USA has no APHIS-agreed dog health certificate for Angola, so exporters are directed to obtain an import permit from the Angolan ministry; the exact certificate template and validity for dogs are not officially published: Unknown.", fr: "Les États-Unis n'ont pas de certificat sanitaire pour chiens convenu avec l'APHIS pour l'Angola ; les exportateurs sont donc invités à obtenir un permis d'importation auprès du ministère angolais ; le modèle et la validité exacts du certificat pour chiens ne sont pas publiés : non communiqués.", es: "Estados Unidos no tiene un certificado sanitario para perros acordado con el APHIS para Angola, por lo que se indica a los exportadores que obtengan un permiso de importación del ministerio angoleño; el modelo exacto del certificado y su valide para perros no se publican: no comunicados.", pt: "Os Estados Unidos não dispõem de um atestado de saúde para cachorros acordado com o APHIS para Angola, pelo que os exportadores são orientados a obter uma autorização de importação junto do ministério angolano; o modelo exato do certificado e a sua validade para cachorros não são publicados oficialmente: não comunicado." }
+    ref: { en: "USDA APHIS — Export Live Animals to Angola; ISV", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Angola ; ISV", es: "USDA APHIS — Exportación de animales vivos a Angola; ISV", pt: "USDA APHIS — Exportação de animais vivos para Angola; ISV" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "Angola does not publish a mandatory internal/external parasite treatment for dog entry. Endo- and ecto-parasite treatment shortly before travel is good practice and may be recorded on veterinary documents.", fr: "L'Angola ne publie pas de traitement antiparasitaire interne/externe obligatoire pour l'entrée des chiens. Un traitement endo- et ecto-parasitaire peu avant le voyage est une bonne pratique et peut être consigné sur les documents vétérinaires.", es: "Angola no publica un tratamiento antiparasitario interno/externo obligatorio para la entrada de perros. Un tratamiento contra endo- y ectoparásitos poco antes del viaje es una buena práctica y puede registrarse en los documentos veterinarios.", pt: "Angola não publica qualquer tratamento antiparasitário interno/externo obrigatório para a entrada de cachorros. O tratamento contra endoparasitas e ectoparasitas pouco antes da viagem é uma boa prática e pode constar dos documentos veterinários." }
+    exceptions: { en: "No specific tapeworm or tick treatment is mandated in published Angolan requirements: Unknown. Confirm with the ISV.", fr: "Aucun traitement spécifique contre le ténia ou les tiques n'est imposé dans les exigences angolaises publiées : non communiqué. À confirmer auprès de l'ISV.", es: "No se impone ningún tratamiento específico contra la tenia o las garrapatas en los requisitos angoleños publicados: no comunicado. Confírmalo con el ISV.", pt: "Nenhum tratamento específico contra a ténia ou as carraças é imposto nas exigências angolanas publicadas: não comunicado. Confirmar junto do ISV." }
+    ref: { en: "No published Angolan parasite-treatment rule (ISV)", fr: "Aucune règle de traitement antiparasitaire angolaise publiée (ISV)", es: "No hay norma angoleña de tratamiento antiparasitario publicada (ISV)", pt: "Nenhuma regra angolana de tratamento antiparasitário publicada (ISV)" }
+  - item: { en: "Arrival veterinary inspection", fr: "Inspection vétérinaire à l'arrivée", es: "Inspección veterinaria a la llegada", pt: "Inspeção veterinária à chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Arriving dogs and their documents are checked at the point of entry, and an animal must be free of signs of disease communicable to humans or animals when examined. Customs clearance is handled by the Administração Geral Tributária (AGT) alongside the veterinary check.", fr: "Les chiens à l'arrivée et leurs documents sont contrôlés au point d'entrée, et l'animal doit être exempt de signes de maladie transmissible à l'homme ou à l'animal lors de l'examen. Le dédouanement est assuré par l'Administração Geral Tributária (AGT) parallèlement au contrôle vétérinaire.", es: "Los perros que llegan y sus documentos se controlan en el punto de entrada, y el animal debe estar libre de signos de enfermedad transmisible a personas o animales en el momento del examen. El despacho de aduanas corre a cargo de la Administração Geral Tributária (AGT) junto con el control veterinario.", pt: "Os cachorros que chegam e os seus documentos são verificados no ponto de entrada, e o animal deve estar livre de sinais de doença transmissível a pessoas ou a animais no momento do exame. O desembaraço aduaneiro cabe à Administração Geral Tributária (AGT), em paralelo com a verificação veterinária." }
+    exceptions: { en: "If the dog shows signs of disease or documents are deficient, further examination or measures may be imposed; details are not officially published: Unknown.", fr: "Si le chien présente des signes de maladie ou si les documents sont incomplets, un examen ou des mesures complémentaires peuvent être imposés ; les détails ne sont pas publiés officiellement : non communiqués.", es: "Si el perro presenta signos de enfermedad o los documentos son deficientes, pueden imponerse un examen o medidas adicionales; los detalles no se publican oficialmente: no comunicados.", pt: "Se o cachorro apresentar sinais de doença ou se os documentos forem insuficientes, podem ser impostos exames ou medidas adicionais; os detalhes não são publicados oficialmente: não comunicado." }
+    ref: { en: "ISV (veterinary inspection); AGT (customs)", fr: "ISV (inspection vétérinaire) ; AGT (douane)", es: "ISV (inspección veterinaria); AGT (aduanas)", pt: "ISV (inspeção veterinária); AGT (alfândega)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "Angola does not publish an explicit minimum travelling age for dogs. In practice, the need for a valid rabies vaccination sets a de facto minimum age, but no official figure is stated.", fr: "L'Angola ne publie pas d'âge minimum explicite de voyage pour les chiens. En pratique, la nécessité d'une vaccination antirabique valide fixe un âge minimum de fait, mais aucun chiffre officiel n'est indiqué.", es: "Angola no publica una edad mínima de viaje explícita para los perros. En la práctica, la necesidad de una vacunación antirrábica válida fija una edad mínima de facto, pero no se indica ninguna cifra oficial.", pt: "Angola não publica uma idade mínima de viagem explícita para cachorros. Na prática, a necessidade de uma vacinação antirrábica válida fixa uma idade mínima de facto, mas não é indicado qualquer valor oficial." }
+    exceptions: { en: "Exact minimum age is not officially published: Unknown. Confirm with your vet and the ISV before booking.", fr: "L'âge minimum exact n'est pas publié officiellement : non communiqué. À confirmer avec ton vétérinaire et l'ISV avant de réserver.", es: "La edad mínima exacta no se publica oficialmente: no comunicado. Confírmalo con tu veterinario y el ISV antes de reservar.", pt: "A idade mínima exata não é publicada oficialmente: não comunicado. Confirmar com o veterinário e com o ISV antes de reservar." }
+    ref: { en: "No explicit minimum age in published Angolan requirements", fr: "Aucun âge minimum explicite dans les exigences angolaises publiées", es: "No hay edad mínima explícita en los requisitos angoleños publicados", pt: "Nenhuma idade mínima explícita nas exigências angolanas publicadas" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "Angola does not publish a routine quarantine rule for pet dogs. A healthy dog with complete documents is not expected to be quarantined, but no official policy is available.", fr: "L'Angola ne publie pas de règle de quarantaine systématique pour les chiens de compagnie. Un chien sain avec des documents complets ne devrait pas être mis en quarantaine, mais aucune politique officielle n'est disponible.", es: "Angola no publica una norma de cuarentena rutinaria para los perros de compañía. No se espera que un perro sano con documentos completos sea puesto en cuarentena, pero no hay ninguna política oficial disponible.", pt: "Angola não publica uma regra de quarentena sistemática para cachorros de companhia. Não se espera que um cachorro saudável e com documentos completos seja colocado em quarentena, mas não existe qualquer política oficial disponível." }
+    exceptions: { en: "Whether quarantine may be imposed where disease is suspected or paperwork is deficient is not officially published: Unknown. Confirm with the ISV.", fr: "Le point de savoir si une quarantaine peut être imposée en cas de suspicion de maladie ou de documents incomplets n'est pas publié officiellement : non communiqué. À confirmer auprès de l'ISV.", es: "Si puede imponerse cuarentena en caso de sospecha de enfermedad o de documentación deficiente no se publica oficialmente: no comunicado. Confírmalo con el ISV.", pt: "Não é publicado oficialmente se pode ser imposta quarentena em caso de suspeita de doença ou de documentação insuficiente: não comunicado. Confirmar junto do ISV." }
+    ref: { en: "No published Angolan quarantine rule (ISV)", fr: "Aucune règle de quarantaine angolaise publiée (ISV)", es: "No hay norma angoleña de cuarentena publicada (ISV)", pt: "Nenhuma regra angolana de quarentena publicada (ISV)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Angola: the EU passport is not an Angolan document. A dog from Europe needs, as a baseline, a valid rabies vaccination and an official international veterinary health certificate endorsed by the government vet, commonly translated into Portuguese and legalised by an Angolan embassy or consulate. Confirm any import authorisation and the exact conditions with the ISV first."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Angola : le passeport UE n'est pas un document angolais. Un chien venant d'Europe a besoin, en base, d'une vaccination antirabique valide et d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental, couramment traduit en portugais et légalisé par une ambassade ou un consulat d'Angola. Confirme d'abord toute autorisation d'importation et les conditions exactes auprès de l'ISV."
+      es: "No hay atajo de «pasaporte europeo para mascotas» para entrar en Angola: el pasaporte de la UE no es un documento angoleño. Un perro procedente de Europa necesita, como base, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial refrendado por el veterinario gubernamental, comúnmente traducido al portugués y legalizado por una embajada o un consulado de Angola. Confirma primero cualquier autorización de importación y las condiciones exactas con el ISV."
+      pt: "Não existe atalho de «passaporte europeu para animais de companhia» para entrar em Angola: o passaporte da UE não é um documento angolano. Um cachorro vindo da Europa precisa, como base, de uma vacinação antirrábica válida e de um certificado veterinário internacional oficial endossado pelo veterinário governamental, habitualmente traduzido para português e legalizado por uma embaixada ou um consulado de Angola. Convém confirmar primeiro junto do ISV qualquer autorização de importação e as condições exatas."
+    cls: warn
+  listed:
+    title: { en: "From a rabies-controlled country", fr: "Depuis un pays à rage maîtrisée", es: "Desde un país con rabia controlada", pt: "De um país com raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the same baseline applies: a valid rabies vaccination and an endorsed, legalised veterinary health certificate. The USA has no APHIS-agreed dog certificate for Angola, so US travellers are directed to obtain an import permit from the Angolan ministry. Verify the exact steps with the ISV before travel."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), la même base s'applique : vaccination antirabique valide et certificat vétérinaire visé et légalisé. Les États-Unis n'ont pas de certificat pour chiens convenu avec l'APHIS pour l'Angola ; les voyageurs américains sont donc invités à obtenir un permis d'importation auprès du ministère angolais. Vérifie les étapes exactes auprès de l'ISV avant le voyage."
+      es: "Desde países con una situación de rabia controlada (Estados Unidos, Canadá, países del Golfo, la mayor parte de Europa y otros), se aplica la misma base: una vacunación antirrábica válida y un certificado sanitario veterinario refrendado y legalizado. Estados Unidos no tiene un certificado para perros acordado con el APHIS para Angola, por lo que se indica a los viajeros estadounidenses que obtengan un permiso de importación del ministerio angoleño. Verifica los pasos exactos con el ISV antes de viajar."
+      pt: "A partir de países com uma situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se a mesma base: uma vacinação antirrábica válida e um atestado de saúde veterinário endossado e legalizado. Os Estados Unidos não dispõem de um certificado para cachorros acordado com o APHIS para Angola, pelo que os viajantes norte-americanos são orientados a obter uma autorização de importação junto do ministério angolano. Verificar as etapas exatas junto do ISV antes da viagem."
+    cls: warn
+  nonListed:
+    title: { en: "From another high-rabies-risk country", fr: "Depuis un autre pays à haut risque rabique", es: "Desde otro país de alto riesgo de rabia", pt: "De outro país de alto risco de raiva" }
+    body:
+      en: "Angola is itself rabies-endemic. From another high-risk origin, the same baseline documents apply, and you should expect closer scrutiny of the rabies vaccination and health certificate on arrival. Any additional test or waiting period is not officially published — confirm the current conditions with the ISV and keep original documents ready."
+      fr: "L'Angola est lui-même en endémie rabique. Depuis une autre origine à haut risque, les mêmes documents de base s'appliquent, et attends-toi à un contrôle renforcé de la vaccination antirabique et du certificat sanitaire à l'arrivée. Tout test ou délai supplémentaire n'est pas publié officiellement — confirme les conditions à jour auprès de l'ISV et garde les documents originaux prêts."
+      es: "La propia Angola tiene rabia endémica. Desde otro origen de alto riesgo, se aplican los mismos documentos de base, y debes esperar un control más riguroso de la vacunación antirrábica y del certificado sanitario a la llegada. Cualquier prueba o periodo de espera adicional no se publica oficialmente — confirma las condiciones actuales con el ISV y ten listos los documentos originales."
+      pt: "A própria Angola tem raiva endémica. A partir de outra origem de alto risco, aplicam-se os mesmos documentos de base, devendo esperar-se uma verificação mais atenta da vacinação antirrábica e do atestado de saúde à chegada. Qualquer teste ou prazo adicional não é publicado oficialmente — confirmar as condições em vigor junto do ISV e ter os documentos originais prontos."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Angola, the ISV veterinary service and AGT customs handle the checks at the point of entry (mainly Luanda's Quatro de Fevereiro International Airport)."
+    fr: "À l'arrivée de ton chien en Angola, le service vétérinaire de l'ISV et la douane AGT effectuent les contrôles au point d'entrée (principalement l'aéroport international Quatro de Fevereiro de Luanda)."
+    es: "Cuando tu perro llega a Angola, el servicio veterinario del ISV y la aduana AGT realizan los controles en el punto de entrada (principalmente el Aeropuerto Internacional Quatro de Fevereiro de Luanda)."
+    pt: "Quando o cachorro chega a Angola, o serviço veterinário do ISV e a alfândega da AGT efetuam as verificações no ponto de entrada (sobretudo no Aeroporto Internacional Quatro de Fevereiro, em Luanda)."
+  points:
+    - en: "Present the full document set — the veterinary health certificate (endorsed and, where required, legalised), the rabies vaccination record and any ISV import authorisation you obtained in advance."
+      fr: "Présente l'ensemble des documents — le certificat vétérinaire (visé et, si requis, légalisé), le justificatif de vaccination antirabique et toute autorisation d'importation ISV obtenue à l'avance."
+      es: "Presenta el conjunto completo de documentos — el certificado sanitario veterinario (refrendado y, cuando se requiera, legalizado), el justificante de vacunación antirrábica y cualquier autorización de importación del ISV que hayas obtenido con antelación."
+      pt: "Apresentar o conjunto completo de documentos — o atestado de saúde veterinário (endossado e, quando exigido, legalizado), o certificado de vacinação antirrábica e qualquer autorização de importação do ISV obtida previamente."
+    - en: "The dog must be free of signs of disease communicable to humans or animals when examined at the entry point."
+      fr: "Le chien doit être exempt de signes de maladie transmissible à l'homme ou à l'animal lors de l'examen au point d'entrée."
+      es: "El perro debe estar libre de signos de enfermedad transmisible a personas o animales en el momento del examen en el punto de entrada."
+      pt: "O cachorro deve estar livre de sinais de doença transmissível a pessoas ou a animais no momento do exame no ponto de entrada."
+    - en: "Carry original documents, not copies, and keep a set with you throughout the journey; documents translated into Portuguese and legalised by an Angolan mission avoid delays."
+      fr: "Munis-toi des documents originaux, pas de copies, et garde-en un jeu sur toi durant tout le trajet ; des documents traduits en portugais et légalisés par une mission angolaise évitent les retards."
+      es: "Lleva los documentos originales, no copias, y mantén un juego contigo durante todo el trayecto; los documentos traducidos al portugués y legalizados por una misión angoleña evitan retrasos."
+      pt: "Levar os documentos originais, não cópias, e manter um conjunto consigo durante todo o trajeto; documentos traduzidos para português e legalizados por uma missão diplomática angolana evitam atrasos."
+    - en: "Consequences of missing or invalid documents (further examination, holding, refusal) are not officially published for pet dogs: Unknown. Complete, endorsed paperwork is your best protection."
+      fr: "Les conséquences de documents manquants ou invalides (examen complémentaire, rétention, refus) ne sont pas publiées officiellement pour les chiens de compagnie : non communiquées. Des documents complets et visés sont ton meilleure protection."
+      es: "Las consecuencias de documentos faltantes o no válidos (examen adicional, retención, rechazo) no se publican oficialmente para los perros de compañía: no comunicadas. Una documentación completa y refrendada es tu mejor protección."
+      pt: "As consequências de documentos em falta ou inválidos (exame adicional, retenção, recusa) não são publicadas oficialmente para cachorros de companhia: não comunicado. Uma documentação completa e endossada é a melhor proteção."
+    - en: "Arrive on a weekday during office hours where possible, so the on-duty state vet and customs can clear your dog promptly."
+      fr: "Arrive si possible en semaine et pendant les heures de bureau, pour un dédouanement rapide par le vétérinaire d'État de service et la douane."
+      es: "Llega, si es posible, entre semana y en horario de oficina, para que el veterinario estatal de turno y la aduana puedan despachar a tu perro con rapidez."
+      pt: "Chegar, sempre que possível, em dia útil e em horário de expediente, para que o veterinário do Estado de serviço e a alfândega possam concluir rapidamente o desembaraço do cachorro."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "We found no official Angolan legislation banning the import of specific dog breeds. Entry is controlled by veterinary/health requirements and customs, not by a published national breed list."
+    fr: "Nous n'avons trouvé aucune législation angolaise officielle interdisant l'importation de races de chiens précises. L'entrée est encadrée par les exigences vétérinaires/sanitaires et la douane, non par une liste nationale de races publiée."
+    es: "No encontramos ninguna legislación angoleña oficial que prohíba la importación de razas concretas de perros. La entrada se controla mediante los requisitos veterinarios/sanitarios y las aduanas, no mediante una lista nacional de razas publicada."
+    pt: "Não foi encontrada qualquer legislação angolana oficial que proíba a importação de raças específicas de cachorro. A entrada é regulada pelas exigências veterinárias/sanitárias e pela alfândega, e não por uma lista nacional de raças publicada."
+  cat1:
+    en: "No national breed-specific import ban for dogs is published by the ISV, MINAGRIF or the AGT. We could not confirm any list of prohibited breeds from an official Angolan source."
+    fr: "Aucune interdiction nationale d'importation par race de chien n'est publiée par l'ISV, le MINAGRIF ou l'AGT. Nous n'avons pu confirmer aucune liste de races interdites auprès d'une source angolaise officielle."
+    es: "El ISV, el MINAGRIF ni la AGT publican ninguna prohibición nacional de importación por raza de perro. No pudimos confirmar ninguna lista de razas prohibidas a partir de una fuente angoleña oficial."
+    pt: "Nem o ISV, nem o MINAGRIF, nem a AGT publicam qualquer proibição nacional de importação por raça de cachorro. Não foi possível confirmar nenhuma lista de raças proibidas a partir de uma fonte angolana oficial."
+  cat2:
+    en: "Whether any local ownership, licensing or dangerous-dog rules apply within Angola is not published in the sources we could access: Unknown. Verify with the ISV or an Angolan consulate for your specific breed."
+    fr: "Le point de savoir si des règles locales de détention, de licence ou relatives aux chiens dangereux s'appliquent en Angola n'est pas publié dans les sources accessibles : non communiqué. Vérifie auprès de l'ISV ou d'un consulat d'Angola pour ta race précise."
+    es: "Si se aplican dentro de Angola normas locales de tenencia, licencia o sobre perros peligrosos no está publicado en las fuentes a las que pudimos acceder: no comunicado. Verifícalo con el ISV o un consulado de Angola para tu raza concreta."
+    pt: "Não está publicado, nas fontes acessíveis, se vigoram em Angola regras locais de posse, de licenciamento ou relativas a cachorros perigosos: não comunicado. Verificar junto do ISV ou de um consulado de Angola para a raça em questão."
+  note:
+    en: "Because official breed rules are not published, confirm the current position for your specific breed directly with the ISV or an Angolan diplomatic mission before you travel."
+    fr: "Les règles de races officielles n'étant pas publiées, vérifie la situation à jour pour ta race précise directement auprès de l'ISV ou d'une mission diplomatique angolaise avant de voyager."
+    es: "Como las normas oficiales sobre razas no se publican, confirma la situación actual para tu raza concreta directamente con el ISV o una misión diplomática angoleña antes de viajar."
+    pt: "Como as regras oficiais sobre raças não são publicadas, convém confirmar a situação em vigor para a raça em questão diretamente junto do ISV ou de uma missão diplomática angolana antes de viajar."
+
+checklist:
+  - en: "Contact the ISV / MINAGRIF early to confirm the exact conditions and whether an import authorisation is needed"
+    fr: "Contacte l'ISV / MINAGRIF tôt pour confirmer les conditions exactes et la nécessité d'une autorisation d'importation"
+    es: "Contacta pronto con el ISV / MINAGRIF para confirmar las condiciones exactas y si se necesita una autorización de importación"
+    pt: "Contactar o ISV / MINAGRIF com antecedência para confirmar as condições exatas e se é necessária uma autorização de importação"
+  - en: "Valid rabies vaccination recorded on your dog's documents (Angola is rabies-endemic)"
+    fr: "Vaccination antirabique valide inscrite sur les documents de ton chien (Angola en endémie rabique)"
+    es: "Vacunación antirrábica válida inscrita en los documentos de tu perro (Angola tiene rabia endémica)"
+    pt: "Vacinação antirrábica válida inscrita nos documentos do cachorro (Angola tem raiva endémica)"
+  - en: "Microchip (ISO 11784/11785) advisable so identification matches all records"
+    fr: "Puce (ISO 11784/11785) conseillée pour que l'identification concorde avec tous les documents"
+    es: "Microchip (ISO 11784/11785) aconsejable para que la identificación coincida con todos los documentos"
+    pt: "Microchip (ISO 11784/11785) aconselhável para que a identificação corresponda a todos os documentos"
+  - en: "Official international veterinary health certificate, endorsed by the government vet"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental"
+    es: "Certificado sanitario veterinario internacional oficial, refrendado por el veterinario gubernamental"
+    pt: "Certificado veterinário internacional oficial, endossado pelo veterinário governamental"
+  - en: "Portuguese translation and Angolan embassy/consulate legalisation of your documents"
+    fr: "Traduction en portugais et légalisation de tes documents par une ambassade/un consulat d'Angola"
+    es: "Traducción al portugués y legalización de tus documentos por una embajada/un consulado de Angola"
+    pt: "Tradução para português e legalização dos documentos por embaixada/consulado de Angola"
+  - en: "Original documents (not copies) to present to the ISV and AGT at the point of entry"
+    fr: "Documents originaux (pas de copies) à présenter à l'ISV et à l'AGT au point d'entrée"
+    es: "Documentos originales (no copias) para presentar al ISV y a la AGT en el punto de entrada"
+    pt: "Documentos originais (não cópias) para apresentar ao ISV e à AGT no ponto de entrada"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula adecuada conforme a la IATA si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+  - en: "Confirm vaccination timing, minimum age and any antibody test with your vet and the ISV before booking"
+    fr: "Confirme le calendrier vaccinal, l'âge minimum et tout titrage avec ton vétérinaire et l'ISV avant de réserver"
+    es: "Confirma el calendario de vacunación, la edad mínima y cualquier prueba de titulación con tu veterinario y el ISV antes de reservar"
+    pt: "Confirmar o calendário de vacinação, a idade mínima e qualquer teste sorológico antirrábico com o veterinário e com o ISV antes de reservar"
+
+sources:
+  - label: { en: "USDA APHIS — Export Live Animals to Angola (no agreed dog certificate; obtain an import permit from the ministry)", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Angola (aucun certificat chien convenu ; obtenir un permis auprès du ministère)", es: "USDA APHIS — Exportación de animales vivos a Angola (no hay certificado para perros acordado; obtén un permiso de importación del ministerio)", pt: "USDA APHIS — Exportação de animais vivos para Angola (sem certificado para cachorros acordado; obter uma autorização de importação junto do ministério)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-angola"
+  - label: { en: "USDA APHIS — Dog Imports: Check Country Disease Status (rabies)", fr: "USDA APHIS — Statut sanitaire par pays pour l'importation de chiens (rage)", es: "USDA APHIS — Importación de perros: comprueba el estatus sanitario del país (rabia)", pt: "USDA APHIS — Importação de cachorros: consultar o estatuto sanitário do país (raiva)" }
+    url: "https://www.aphis.usda.gov/pet-travel/another-country-to-us-import/dogs/disease-status"
+  - label: { en: "CDC — High-Risk Countries for Dog Rabies (Angola listed)", fr: "CDC — Pays à haut risque de rage canine (Angola listé)", es: "CDC — Países de alto riesgo de rabia canina (Angola listado)", pt: "CDC — Países de alto risco de raiva canina (Angola listado)" }
+    url: "https://www.cdc.gov/importation/dogs/high-risk-countries.html"
+  - label: { en: "Ministério da Agricultura e Florestas (MINAGRIF) — official portal (Instituto dos Serviços de Veterinária)", fr: "Ministério da Agricultura e Florestas (MINAGRIF) — portail officiel (Instituto dos Serviços de Veterinária)", es: "Ministério da Agricultura e Florestas (MINAGRIF) — portal oficial (Instituto dos Serviços de Veterinária)", pt: "Ministério da Agricultura e Florestas (MINAGRIF) — portal oficial (Instituto dos Serviços de Veterinária)" }
+    url: "https://www.minagrif.gov.ao/"
+  - label: { en: "Administração Geral Tributária (AGT) — Import and Export (customs clearance)", fr: "Administração Geral Tributária (AGT) — Importation et Exportation (dédouanement)", es: "Administração Geral Tributária (AGT) — Importación y Exportación (despacho de aduanas)", pt: "Administração Geral Tributária (AGT) — Importação e Exportação (desembaraço aduaneiro)" }
+    url: "https://www.agt.minfin.gov.ao/PortalAGT/#!/servicos-aduaneiros//importacao-e-exportacao"
+
+seo:
+  title: { en: "Angola Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Angola — Guide", es: "Requisitos de entrada de perros en Angola — Guía de viaje", pt: "Angola: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Angola With Your Dog: Entry Requirements (2026)", fr: "Voyager en Angola avec ton chien : formalités (2026)", es: "Viajar a Angola con tu perro: requisitos de entrada (2026)", pt: "Viajar para Angola com o cachorro: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official ISV/MINAGRIF framework for bringing a dog into Angola: rabies vaccination, endorsed and legalised veterinary certificate. Sourced and dated."
+    fr: "Cadre officiel ISV/MINAGRIF pour faire entrer un chien en Angola : vaccination antirabique, certificat vétérinaire visé et légalisé. Sourcé et daté."
+    es: "Marco oficial ISV/MINAGRIF para traer un perro a Angola: vacunación antirrábica, certificado veterinario refrendado y legalizado. Con fuentes y fecha."
+    pt: "Quadro oficial ISV/MINAGRIF para levar um cachorro para Angola: vacinação antirrábica e certificado veterinário endossado e legalizado. Com fontes e data."
+  slug: "angola"
+  shortDesc:
+    en: "What you need to bring a dog into Angola: rabies vaccination and an endorsed, legalised veterinary certificate — confirm exact conditions with the ISV."
+    fr: "Ce qu'il faut pour faire entrer un chien en Angola : vaccination antirabique et certificat vétérinaire visé et légalisé — conditions exactes à confirmer auprès de l'ISV."
+    es: "Lo que necesitas para traer un perro a Angola: vacunación antirrábica y un certificado veterinario refrendado y legalizado — confirma las condiciones exactas con el ISV."
+    pt: "O que é preciso para levar um cachorro para Angola: vacinação antirrábica e certificado veterinário endossado e legalizado — condições exatas a confirmar com o ISV."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 1

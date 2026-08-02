@@ -1,0 +1,322 @@
+id: airline_iberia
+mono: IB
+name: Iberia
+titleH1:
+  en: Flying with a dog on Iberia
+  fr: Voyager avec un chien sur Iberia
+  es: Volar con un perro en Iberia
+  pt: "Viajar com um cachorro pela Iberia"
+metaDesc:
+  en: "Iberia pet policy: cabin, hold and IAG Cargo rules, fares by zone, breed limits, UK exclusion and official sources."
+  fr: "Politique animaux Iberia : cabine, soute et IAG Cargo, tarifs par zone, restrictions de races, exclusion Royaume-Uni et sources officielles."
+  es: "Política de mascotas de Iberia: normas de cabina, bodega e IAG Cargo, tarifas por zona, límites de raza, exclusión del Reino Unido y fuentes oficiales."
+  pt: "Política de animais da Iberia: regras de cabine, porão e IAG Cargo, tarifas por zona, restrições de raça, exclusão do Reino Unido e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Spain · MAD
+      fr: Espagne · MAD
+      es: España · MAD
+      pt: "Espanha · MAD"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin or hold — but no pets to the UK and the hold needs prior approval.
+  fr: Petits animaux en cabine ou en soute — mais rien vers le Royaume-Uni et la soute exige un accord préalable.
+  es: Mascotas pequeñas en cabina o bodega, pero nada al Reino Unido y la bodega exige autorización previa.
+  pt: "Animais pequenos na cabine ou no porão — mas nada para o Reino Unido, e o porão exige autorização prévia."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 45 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & small pets ≤ 8 kg incl. carrier under the seat (max 45 × 35 × 25 cm). Bookable online at booking.
+      fr: Chiens, chats et petits animaux ≤ 8 kg avec le sac sous le siège (max 45 × 35 × 25 cm). Réservable en ligne à l'achat.
+      es: Perros, gatos y mascotas pequeñas ≤ 8 kg con la jaula bajo el asiento (máx. 45 × 35 × 25 cm). Se puede reservar en línea al comprar el billete.
+      pt: "Cachorros, gatos e animais pequenos ≤ 8 kg incluindo a bolsa de transporte sob o assento (máx. 45 × 35 × 25 cm). Pode ser reservado online na compra da passagem."
+    fee:
+      en: €40–180
+      fr: 40–180 €
+      es: 40–180 €
+      pt: "40–180 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (not snub-nosed or dangerous breeds) up to 45 kg incl. carrier; prior authorisation required, transit 90 min–4 h.
+      fr: Chats et chiens (hors races au nez écrasé ou dangereuses) jusqu'à 45 kg avec la caisse ; accord préalable requis, correspondance 90 min–4 h.
+      es: Perros y gatos (salvo razas de hocico chato o potencialmente peligrosas) hasta 45 kg con la jaula; se requiere autorización previa, conexión de 90 min–4 h.
+      pt: "Gatos e cachorros (exceto raças de focinho achatado ou perigosas) até 45 kg incluindo a caixa de transporte; exige autorização prévia, conexão de 90 min–4 h."
+    fee:
+      en: €90–330
+      fr: 90–330 €
+      es: 90–330 €
+      pt: "90–330 €"
+  - icon: ✈️
+    name:
+      en: IAG Cargo
+      fr: IAG Cargo
+      es: IAG Cargo
+      pt: "IAG Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Vía agente
+      pt: "Via agente"
+    detail:
+      en: Over 45 kg, restricted breeds, unaccompanied, or to/from the UK. Booked through a cargo agent.
+      fr: Au-delà de 45 kg, races restreintes, animal non accompagné, ou de/vers le R.-U. Réservé via un agent de fret.
+      es: Más de 45 kg, razas restringidas, animal sin acompañante, o hacia/desde el R.U. Se reserva a través de un agente de carga.
+      pt: "Acima de 45 kg, raças restritas, animal sem acompanhante, ou de/para o Reino Unido. Reservado por meio de um agente de carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Spain
+        fr: Cabine — Espagne
+        es: Cabina — España
+        pt: "Cabine — Espanha"
+      value:
+        en: €40
+        fr: 40 €
+        es: 40 €
+        pt: "40 €"
+    - label:
+        en: Cabin — Europe / N. Africa
+        fr: Cabine — Europe / Afrique du N.
+        es: Cabina — Europa / Norte de África
+        pt: "Cabine — Europa / Norte da África"
+      value:
+        en: €60
+        fr: 60 €
+        es: 60 €
+        pt: "60 €"
+    - label:
+        en: Cabin — America / Asia
+        fr: Cabine — Amérique / Asie
+        es: Cabina — América / Asia
+        pt: "Cabine — América / Ásia"
+      value:
+        en: €180
+        fr: 180 €
+        es: 180 €
+        pt: "180 €"
+    - label:
+        en: Hold (by weight & zone)
+        fr: Soute (poids & zone)
+        es: Bodega (por peso y zona)
+        pt: "Porão (por peso e zona)"
+      value:
+        en: €90–330
+        fr: 90–330 €
+        es: 90–330 €
+        pt: "90–330 €"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR, online per segment; airport and connecting-flight rates are higher.
+    fr: EUR, en ligne par tronçon ; les tarifs aéroport et en correspondance sont plus élevés.
+    es: EUR, en línea por tramo; las tarifas en aeropuerto y con conexión son más altas.
+    pt: "EUR, online por trecho; as tarifas no aeroporto e em conexões são mais altas."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats can't travel in the hold (heat/breathing risk) but may fly in the cabin: boxers, bulldogs (all), Boston terrier, pug, Shih Tzu, Pekingese, chow chow, Cane Corso, Dogue de Bordeaux, mastiffs, Shar Pei, and Persian/Exotic/Himalayan/Burmese cats."
+      fr: "Chiens et chats au nez écrasé interdits en soute (risque chaleur/respiration) mais admis en cabine : boxers, bouledogues (tous), Boston terrier, carlin, Shih Tzu, pékinois, chow chow, Cane Corso, Dogue de Bordeaux, mastiffs, Shar Pei, et chats persans/exotiques/himalayens/birmans."
+      es: "Los perros y gatos de hocico chato no pueden viajar en bodega (riesgo de calor/respiración), pero sí pueden ir en cabina: bóxeres, bulldogs (todos), bóston terrier, carlino, shih tzu, pequinés, chow chow, cane corso, dogo de Burdeos, mastines, shar pei, y gatos persas/exóticos/himalayos/birmanos."
+      pt: "Cachorros e gatos de focinho achatado não podem viajar no porão (risco de calor/respiração), mas podem voar na cabine: boxers, buldogues (todos), Boston Terrier, pug, Shih Tzu, Pequinês, Chow Chow, Cane Corso, Dogue de Bordeaux, mastins, Shar Pei, e gatos persas/exóticos/himalaios/burmeses."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas potencialmente peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: Cabin & hold banned
+          fr: Cabine & soute interdites
+          es: Cabina y bodega prohibidas
+          pt: "Cabine e porão proibidos"
+    note:
+      en: Dangerous breeds (pit bull, Staffordshire, American Staffordshire, Rottweiler, Doberman, Dogo Argentino, Fila Brasileiro, Tosa, Akita) are banned from cabin and hold — cargo only. Ferrets and weasel-family animals aren't carried.
+      fr: Races dangereuses (pit-bull, Staffordshire, American Staffordshire, Rottweiler, Doberman, Dogo Argentino, Fila Brasileiro, Tosa, Akita) interdites en cabine et en soute — fret uniquement. Furets et mustélidés non transportés.
+      es: "Las razas potencialmente peligrosas (pit bull, staffordshire, american staffordshire, rottweiler, doberman, dogo argentino, fila brasileiro, tosa, akita) están prohibidas en cabina y bodega: solo carga. Los hurones y demás mustélidos no se transportan."
+      pt: "As raças perigosas (pit bull, Staffordshire, American Staffordshire, Rottweiler, Dobermann, Dogo Argentino, Fila Brasileiro, Tosa, Akita) são proibidas na cabine e no porão — somente carga. Furões e outros mustelídeos não são transportados."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+    - cls: warn
+      label:
+        en: "Heat embargo: not disclosed"
+        fr: "Embargo chaleur : non communiqué"
+        es: "Embargo por calor: no divulgado"
+        pt: "Embargo por calor: não divulgado"
+  note:
+    en: Iberia publishes no hold-temperature limits or seasonal embargo beyond the brachycephalic heat-risk rationale.
+    fr: Iberia ne publie pas de limites de température en soute ni d'embargo saisonnier, au-delà du motif de risque chaleur pour les brachycéphales.
+    es: Iberia no publica límites de temperatura en bodega ni embargo estacional más allá del motivo de riesgo por calor en las razas braquicéfalas.
+    pt: "A Iberia não divulga limites de temperatura no porão nem embargo sazonal, além do critério de risco por calor para as raças braquicefálicas."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Recognised assistance dogs fly free in the cabin at the owner's feet; emotional-support dogs follow pet rules.
+      fr: Chiens d'assistance reconnus gratuits en cabine aux pieds du maître ; chiens de soutien émotionnel soumis aux règles animaux.
+      es: Los perros de asistencia reconocidos viajan gratis en cabina a los pies del dueño; los perros de apoyo emocional se rigen por las normas de mascotas.
+      pt: "Cães de assistência reconhecidos viajam gratuitamente na cabine aos pés do dono; cães de apoio emocional seguem as regras para animais de estimação."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Notify ≥ 48 h ahead with ID/certificate (IGDF/ADI/ONCE). UK: Pet Travel Scheme + Animal Aircare ≥ 72 h. US: DOT form."
+      fr: "Prévenir ≥ 48 h à l'avance avec pièce/certificat (IGDF/ADI/ONCE). R.-U. : Pet Travel Scheme + Animal Aircare ≥ 72 h. USA : formulaire DOT."
+      es: "Avisa con ≥ 48 h de antelación con documento/certificado (IGDF/ADI/ONCE). R.U.: Pet Travel Scheme + Animal Aircare ≥ 72 h. EE. UU.: formulario DOT."
+      pt: "Avise com ≥ 48 h de antecedência, com identificação/certificado (IGDF/ADI/ONCE). R.U.: Pet Travel Scheme + Animal Aircare ≥ 72 h. EUA: formulário DOT."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets to the UK
+      fr: Pas d'animaux vers le R.-U.
+      es: Sin mascotas al R.U.
+      pt: "Sem animais para o Reino Unido"
+    value:
+      en: No cabin pets to UK airports and no hold pets to/from the UK — cargo only.
+      fr: Pas d'animaux en cabine vers les aéroports britanniques ni en soute de/vers le R.-U. — fret uniquement.
+      es: "Sin mascotas en cabina a aeropuertos británicos ni en bodega hacia/desde el R.U.: solo carga."
+      pt: "Sem animais em cabine para aeroportos do R.U. nem no porão de/para o R.U. — somente carga."
+  - icon: 💻
+    label:
+      en: Online booking
+      fr: Réservation en ligne
+      es: Reserva en línea
+      pt: "Reserva online"
+    value:
+      en: Cabin dogs, cats, tortoises & birds can be added online at booking (≥ 48 h before).
+      fr: Chiens, chats, tortues et oiseaux en cabine ajoutables en ligne à l'achat (≥ 48 h avant).
+      es: Los perros, gatos, tortugas y aves de cabina se pueden añadir en línea al comprar el billete (≥ 48 h antes).
+      pt: "Cachorros, gatos, tartarugas e aves em cabine podem ser adicionados online na compra da passagem (≥ 48 h antes)."
+  - icon: ⏱️
+    label:
+      en: Hold approval
+      fr: Accord soute
+      es: Autorización de bodega
+      pt: "Autorização de porão"
+    value:
+      en: Hold travel needs prior approval via Iberia offices with all flights confirmed.
+      fr: La soute exige un accord préalable via les bureaux Iberia, tous les vols confirmés.
+      es: Viajar en bodega requiere autorización previa a través de las oficinas de Iberia, con todos los vuelos confirmados.
+      pt: "Viajar no porão exige autorização prévia junto aos escritórios da Iberia, com todos os voos confirmados."
+book:
+  host: iberia.com
+  url: https://www.iberia.com/
+sources:
+  en: 3 Iberia sources · last verified 11 July 2026
+  fr: 3 sources Iberia · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Iberia · última verificación 11 de julio de 2026
+  pt: "3 fontes da Iberia · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

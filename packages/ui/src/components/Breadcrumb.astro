@@ -1,0 +1,40 @@
+---
+// Visible breadcrumb + BreadcrumbList JSON-LD. Pass the full trail incl. the current page (last, no href).
+interface Crumb { label: string; href?: string }
+interface Props { items: Crumb[]; locale?: string }
+const { items, locale = "en" } = Astro.props as Props;
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+const SITE = "https://mydogcanfly.com";
+const abs = (href: string) => (href.startsWith("http") ? href : `${SITE}${base}${href}`);
+const ld = JSON.stringify({
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  itemListElement: items.map((c, i) => ({
+    "@type": "ListItem", position: i + 1, name: c.label,
+    ...(c.href ? { item: abs(c.href) } : {}),
+  })),
+});
+---
+<nav class="bc" aria-label="Breadcrumb">
+  <ol>
+    {items.map((c, i) => (
+      <li>
+        {c.href && i < items.length - 1
+          ? <a href={`${base}${c.href}`}>{c.label}</a>
+          : <span aria-current="page">{c.label}</span>}
+        {i < items.length - 1 && <span class="bc__sep" aria-hidden="true">›</span>}
+      </li>
+    ))}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={ld} is:inline />
+<style>
+  .bc { margin: 6px 0 4px; }
+  .bc ol { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; padding: 0; }
+  .bc li { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; }
+  .bc a { color: var(--mdcf-muted); text-decoration: none; }
+  .bc a:hover { color: var(--mdcf-ink); text-decoration: underline; }
+  .bc span[aria-current] { color: var(--mdcf-ink); font-weight: 600; }
+  .bc__sep { color: var(--mdcf-line); }
+</style>

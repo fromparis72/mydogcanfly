@@ -1,0 +1,146 @@
+---
+import Base from "../../../layouts/Base.astro";
+import HeatCalculator from "../../../components/HeatCalculator.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { t, loadKB, breedName, slugFor, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const L = inlineT(locale);
+
+// Maillage retour vers les fiches races : les titres de ces pages promettent désormais la
+// chaleur, l'outil doit donc y renvoyer. On liste les races réellement les plus exposées —
+// museau court d'abord (interdites de soute toute l'année chez beaucoup de compagnies),
+// puis faible tolérance à la chaleur — plutôt qu'une sélection arbitraire.
+const kbHeat: any = loadKB();
+const hotBreeds = [...kbHeat.breeds.values()]
+  .map((b: any) => ({
+    id: b.id, slug: slugFor(b.id), name: breedName(b, locale),
+    brachy: !!b.brachycephalic, heat: b.travel?.heat_tolerance ?? 3,
+  }))
+  .filter((b) => b.brachy || b.heat <= 2)
+  .sort((a, b) => Number(b.brachy) - Number(a.brachy) || a.heat - b.heat || a.name.localeCompare(b.name))
+  .slice(0, 12);
+const breedsBase = locale === "en" ? "/breeds/" : `/${locale}/breeds/`;
+const title = L("Can my dog fly in the hold in this heat?", "Mon chien peut-il voyager en soute par cette chaleur ?", "¿Puede mi perro viajar en bodega con este calor?");
+const blurb = L(
+  "Departure, arrival and month: estimate the summer heat-embargo risk for hold/cargo on your route, and find the best months to travel with your dog.",
+  "Départ, arrivée et mois : estimez le risque d'embargo chaleur en soute/cargo sur votre route, et trouvez les meilleurs mois pour voyager avec votre chien.",
+  "Salida, llegada y mes: estima el riesgo de embargo por calor en bodega/carga en tu ruta y encuentra los mejores meses para viajar con tu perro."
+);
+
+const FAQ_FR = [
+  { q: "Qu'est-ce qu'un embargo chaleur pour les animaux en avion ?", a: "C'est une restriction saisonnière : au-delà d'un seuil de température (souvent 27-30 °C) au départ, en escale ou à l'arrivée, la compagnie suspend le transport des animaux en soute/cargo pour éviter le coup de chaleur. Notre outil estime ce risque sur votre route et votre mois." },
+  { q: "À quelle température les chiens ne peuvent-ils plus voyager en soute ?", a: "Le seuil courant d'embargo est d'environ 30 °C ; entre 27 et 30 °C beaucoup de compagnies appliquent déjà des restrictions. Pour les races brachycéphales, le seuil est plus bas (souvent 24 °C, ex. British Airways). La cabine climatisée n'est pas concernée." },
+  { q: "Les races à nez court (brachycéphales) sont-elles plus exposées ?", a: "Oui. Leurs voies respiratoires comprimées régulent mal la chaleur : le risque de détresse est bien plus élevé, les seuils sont plus stricts, et de nombreuses compagnies les interdisent en soute toute l'année. Cochez la race pour affiner le verdict." },
+  { q: "Comment sont estimées les températures ?", a: "À partir de la latitude de chaque aéroport et du mois choisi (modèle saisonnier). Ce sont des estimations de tendance, pas une prévision météo en temps réel : vérifiez toujours auprès de la compagnie avant de réserver." },
+  { q: "Quels sont les meilleurs mois pour voyager avec mon chien en soute ?", a: "Généralement les mois les plus frais aux deux extrémités du vol (hors été dans l'hémisphère concerné). L'outil affiche un calendrier 12 mois de votre route et met en avant les mois « feu vert »." },
+];
+const FAQ_EN = [
+  { q: "What is a pet heat embargo on flights?", a: "It's a seasonal restriction: above a temperature threshold (often 27-30°C) at departure, layover or arrival, the airline suspends animals in hold/cargo to avoid heat stroke. Our tool estimates that risk for your route and month." },
+  { q: "At what temperature can dogs no longer fly in the hold?", a: "The common embargo threshold is around 30°C; between 27 and 30°C many airlines already apply restrictions. For snub-nosed breeds the cut-off is lower (often 24°C, e.g. British Airways). The climate-controlled cabin is not affected." },
+  { q: "Are snub-nosed (brachycephalic) breeds more at risk?", a: "Yes. Their compressed airways regulate heat poorly, so the risk of distress is far higher, thresholds are stricter, and many carriers ban them from the hold year-round. Tick the breed to refine the verdict." },
+  { q: "How are the temperatures estimated?", a: "From each airport's latitude and the chosen month (a seasonal model). These are trend estimates, not a live forecast — always confirm with the airline before booking." },
+  { q: "What are the best months to fly a dog in the hold?", a: "Usually the cooler months at both ends of the flight (outside summer in the relevant hemisphere). The tool shows a 12-month calendar for your route and highlights the green-light months." },
+];
+const FAQ_ES = [
+  { q: "¿Qué es un embargo por calor para mascotas en los vuelos?", a: "Es una restricción estacional: por encima de un umbral de temperatura (a menudo 27-30 °C) en la salida, la escala o la llegada, la aerolínea suspende el transporte de animales en bodega/carga para evitar el golpe de calor. Nuestra herramienta estima ese riesgo para tu ruta y tu mes." },
+  { q: "¿A partir de qué temperatura los perros ya no pueden viajar en bodega?", a: "El umbral de embargo habitual ronda los 30 °C; entre 27 y 30 °C muchas aerolíneas ya aplican restricciones. Para las razas de hocico chato el límite es más bajo (a menudo 24 °C, p. ej. British Airways). La cabina climatizada no se ve afectada." },
+  { q: "¿Las razas de hocico chato (braquicéfalas) corren más riesgo?", a: "Sí. Sus vías respiratorias comprimidas regulan mal el calor, así que el riesgo de sufrimiento es mucho mayor, los umbrales son más estrictos y muchas aerolíneas las prohíben en bodega todo el año. Marca la raza para afinar el veredicto." },
+  { q: "¿Cómo se estiman las temperaturas?", a: "A partir de la latitud de cada aeropuerto y del mes elegido (un modelo estacional). Son estimaciones de tendencia, no una previsión en tiempo real: confirma siempre con la aerolínea antes de reservar." },
+  { q: "¿Cuáles son los mejores meses para viajar con mi perro en bodega?", a: "Normalmente los meses más frescos en ambos extremos del vuelo (fuera del verano del hemisferio correspondiente). La herramienta muestra un calendario de 12 meses de tu ruta y destaca los meses con luz verde." },
+];
+const FAQ_PT = [
+  { q: "O que é um embargo por calor para animais nos voos?", a: "É uma restrição sazonal: acima de um limite de temperatura (muitas vezes 27-30 °C) na partida, na conexão ou na chegada, a companhia suspende o transporte de animais no porão e na carga para evitar insolação. Nossa ferramenta estima esse risco para a sua rota e o mês escolhido." },
+  { q: "A partir de que temperatura o cachorro não pode mais voar no porão?", a: "O limite habitual de embargo fica em torno de 30 °C; entre 27 e 30 °C muitas companhias já aplicam restrições. Para as raças de focinho achatado o corte é mais baixo (frequentemente 24 °C, como na British Airways). A cabine, com temperatura controlada, não é afetada." },
+  { q: "As raças de focinho achatado (braquicefálicas) correm mais risco?", a: "Sim. As vias aéreas comprimidas regulam mal o calor, então o risco de sofrimento é bem maior, os limites são mais rígidos e muitas companhias as proíbem no porão o ano inteiro. Marque a raça para refinar o veredicto." },
+  { q: "Como as temperaturas são estimadas?", a: "A partir da latitude de cada aeroporto e do mês escolhido (um modelo sazonal). São estimativas de tendência, não uma previsão do tempo — confirme sempre com a companhia antes de reservar." },
+  { q: "Quais são os melhores meses para levar um cachorro no porão?", a: "Em geral os meses mais frescos nas duas pontas do voo (fora do verão do hemisfério correspondente). A ferramenta mostra um calendário de 12 meses para a sua rota e destaca os meses liberados." },
+];
+/* La langue est une clé, plus une branche : le ternaire à deux branches renvoyait /pt/
+   vers la FAQ anglaise, même une fois la traduction écrite. */
+const FAQS: Record<string, typeof FAQ_EN> = { fr: FAQ_FR, es: FAQ_ES, pt: FAQ_PT, en: FAQ_EN };
+const faq = FAQS[locale] ?? FAQ_EN;
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org", "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+});
+---
+<Base locale={locale} title={`${title}`} description={blurb}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <Breadcrumb locale={locale} items={[
+        { label: L("Home", "Accueil", "Inicio"), href: "/" },
+        { label: t(locale, "nav.tools"), href: "/tools/" },
+        { label: L("Heat risk", "Risque chaleur", "Riesgo por calor") },
+      ]} />
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="hx-blurb">{blurb}</p>
+      <HeatCalculator locale={locale} />
+
+      <section class="hxfaq">
+        <h2>{L("Frequently asked questions", "Questions fréquentes", "Preguntas frecuentes")}</h2>
+        {faq.map((f) => (
+          <details class="hxfaq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+
+      <section class="hxbreeds">
+        <h2>{L("Breeds most at risk in the heat", "Les races les plus exposées à la chaleur", "Las razas más expuestas al calor")}</h2>
+        <p class="hxbreeds__note">{L(
+          "Snub-nosed breeds are banned from the hold year-round by many airlines, whatever the temperature. Open a breed to see its heat tolerance and the airlines that accept it.",
+          "Les races à museau court sont interdites de soute toute l'année par de nombreuses compagnies, quelle que soit la température. Ouvre une race pour voir sa tolérance à la chaleur et les compagnies qui l'acceptent.",
+          "Las razas de hocico chato están prohibidas en bodega todo el año por muchas aerolíneas, sea cual sea la temperatura. Abre una raza para ver su tolerancia al calor y las aerolíneas que la aceptan.")}</p>
+        <div class="hxbreeds__list">
+          {hotBreeds.map((b) => (
+            <a class="hxbreeds__item" href={`${breedsBase}${b.slug}/`}>
+              {b.brachy && <span class="hxbreeds__flag" title={L("Snub-nosed", "Museau court", "Hocico chato")}>🐽</span>}
+              {b.name}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <RelatedTools locale={locale} current="heat" />
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={faqLd} is:inline />
+</Base>
+
+<style>
+  .hxbreeds { margin-top: 26px; }
+  .hxbreeds h2 { font-size: 17px; font-weight: 800; color: var(--mdcf-ink); margin: 0 0 8px; }
+  .hxbreeds__note { font-size: 13.5px; line-height: 1.6; color: var(--mdcf-muted); margin: 0 0 12px; max-width: 760px; }
+  .hxbreeds__list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hxbreeds__item {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px;
+    border: 1px solid var(--mdcf-line); border-radius: 999px; font-size: 14px;
+    color: var(--mdcf-ink); text-decoration: none; background: var(--mdcf-card, #fff);
+  }
+  .hxbreeds__item:hover { border-color: var(--mdcf-ink); }
+  .hxbreeds__flag { font-size: 13px; }
+</style>
+<style>
+  .hx-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }
+  .hxfaq { margin-top: 32px; max-width: 820px; }
+  .hxfaq > h2 { font-size: 20px; margin: 0 0 14px; }
+  .hxfaq__item { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 4px 16px; margin-bottom: 10px; background: var(--mdcf-surface); }
+  .hxfaq__item summary { cursor: pointer; font-weight: 700; padding: 12px 0; list-style: none; }
+  .hxfaq__item summary::-webkit-details-marker { display: none; }
+  .hxfaq__item summary::after { content: "＋"; float: right; color: var(--mdcf-accent-ink, #b4530a); font-weight: 800; }
+  .hxfaq__item[open] summary::after { content: "－"; }
+  .hxfaq__item p { margin: 0 0 14px; color: var(--mdcf-muted); line-height: 1.55; font-size: 14.5px; }
+</style>

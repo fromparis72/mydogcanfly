@@ -1,0 +1,382 @@
+# Country Entry Guide — Morocco (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ma
+iso2: "MA"
+name: { en: "Morocco", fr: "Maroc", es: "Marruecos", pt: "Marrocos" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Morocco: no official domestic requirement could be confirmed — what is asked for comes from the airline."
+    fr: "Vol intérieur au Maroc : aucune exigence intérieure officielle n'a pu être confirmée — ce qui est demandé vient de la compagnie."
+    es: "Vuelo nacional en Marruecos: no se ha podido confirmar ningún requisito nacional oficial — lo que se pide viene de la aerolínea."
+    pt: "Voo doméstico no Marrocos: não foi possível confirmar nenhuma exigência nacional oficial — o que é pedido vem da companhia aérea."
+  points:
+    - en: "The veterinary authority publishes identification and certificate models for import and export only; no domestic movement document was found, and even the general rabies obligation could not be verified on an official page."
+      fr: "L'autorité vétérinaire ne publie des modèles d'identification et de certificats que pour l'import et l'export ; aucun document de mouvement intérieur n'a été trouvé, et même l'obligation générale de vaccination antirabique n'a pu être vérifiée sur une page officielle."
+      es: "La autoridad veterinaria solo publica modelos de identificación y certificados para importación y exportación; no se encontró documento de movimiento nacional, y ni siquiera la obligación general de vacuna antirrábica pudo verificarse en una página oficial."
+      pt: "A autoridade veterinária só publica modelos de identificação e de certificados para importação e exportação; nenhum documento de circulação interna foi encontrado, e nem mesmo a obrigação geral de vacinação antirrábica pôde ser verificada em uma página oficial."
+    - en: "The airports authority imposes nothing of its own and defers entirely to the airline, which does ask for health and vaccination certificates and bans snub-nosed breeds."
+      fr: "L'autorité aéroportuaire n'impose rien en propre et s'en remet entièrement à la compagnie, qui exige bien certificats de santé et de vaccination et interdit les races à nez court."
+      es: "La autoridad aeroportuaria no impone nada propio y se remite enteramente a la aerolínea, que sí exige certificados de salud y vacunación y prohíbe razas chatas."
+      pt: "A autoridade aeroportuária não impõe nada por conta própria e remete inteiramente à companhia aérea, que de fato exige atestado de saúde e comprovante de vacinação e proíbe as raças de focinho achatado."
+exit:
+  authority: ONSSA
+  authorityUrl: https://www.onssa.gov.ma/import-and-export-controls/export-certification/export-of-live-animals/dogs-and-cats/?lang=en
+  intro:
+    en: "Leaving Morocco with your dog needs an official export health certificate (ONSSA model) signed by an official veterinarian."
+    fr: "Sortir du Maroc avec ton chien demande un certificat sanitaire d'export officiel (modèle ONSSA) signé par un vétérinaire officiel."
+    es: "Salir de Marruecos con tu perro requiere un certificado sanitario de exportación oficial (modelo ONSSA) firmado por un veterinario oficial."
+    pt: "Sair do Marrocos com seu cachorro exige um atestado de saúde oficial de exportação (modelo ONSSA) assinado por um veterinário oficial."
+  steps:
+    - timing: window
+      text:
+        en: "Have an official veterinarian issue the ONSSA export health certificate shortly before departure."
+        fr: "Fais établir le certificat sanitaire d'export ONSSA par un vétérinaire officiel peu avant le départ."
+        es: "Haz que un veterinario oficial emita el certificado sanitario de exportación de ONSSA poco antes de la salida."
+        pt: "Peça a um veterinário oficial que emita o atestado de saúde de exportação do ONSSA pouco antes da partida."
+  onSiteNote:
+    en: "Morocco is a non-listed country: the EU-return rabies titer is the real trap — do it in the EU BEFORE you leave to avoid a 3-month wait."
+    fr: "Le Maroc est un pays non listé : le titrage antirabique du retour UE est le vrai piège — réalise-le dans l'UE AVANT de partir pour éviter les 3 mois d'attente."
+    es: "Marruecos es un país no listado: la titulación antirrábica del regreso a la UE es la verdadera trampa — hazla en la UE ANTES de salir para evitar la espera de 3 meses."
+    pt: "O Marrocos é um país não listado: o teste sorológico antirrábico (titulação) exigido no retorno à UE é a verdadeira armadilha — faça-o na UE ANTES de partir, para evitar 3 meses de espera."
+
+hero:
+  h1: { en: "Traveling to Morocco with your dog", fr: "Voyager au Maroc avec ton chien", es: "Viajar a Marruecos con tu perro", pt: "Viajar para o Marrocos com seu cachorro" }
+  intro:
+    en: >-
+      Morocco welcomes pet dogs, but entry runs through the country's own scheme managed by ONSSA
+      (the national food-safety and veterinary authority), not the EU framework. Every dog needs a
+      permanent identification (microchip or tattoo), a valid rabies vaccination and an official
+      veterinary health certificate (certificat sanitaire) issued shortly before departure by a
+      government vet of the country of origin. The dog must also come from a country or zone free of
+      rabies. For a temporary stay, a rabies antibody test is required in addition. On arrival, you
+      present your dog for veterinary inspection and declare it to customs. This guide explains the
+      certificate, the rabies rules, the temporary-stay blood test and the banned breeds so you know
+      exactly what to prepare before you book your flight.
+    fr: >-
+      Le Maroc accueille les chiens, mais l'entrée passe par le dispositif propre au pays, géré par
+      l'ONSSA (l'autorité nationale de sécurité sanitaire et vétérinaire), et non par le cadre de l'UE.
+      Chaque chien doit disposer d'une identification permanente (puce électronique ou tatouage), d'une
+      vaccination antirabique valide et d'un certificat sanitaire officiel établi peu avant le départ
+      par un vétérinaire officiel du pays d'origine. Le chien doit en outre provenir d'un pays ou d'une
+      zone indemne de rage. Pour un séjour temporaire, un titrage des anticorps antirabiques est exigé
+      en plus. À l'arrivée, tu présente ton chien à l'inspection vétérinaire et le déclare à la
+      douane. Ce guide détaille le certificat, les règles antirabiques, la prise de sang pour les
+      séjours temporaires et les races interdites, pour savoir exactement quoi préparer avant de
+      réserver ton vol.
+    es: >-
+      Marruecos acoge a los perros de compañía, pero la entrada se gestiona a través del sistema
+      propio del país, administrado por la ONSSA (la autoridad nacional de seguridad alimentaria y
+      veterinaria), y no por el marco de la UE. Todo perro necesita una identificación permanente
+      (microchip o tatuaje), una vacunación antirrábica válida y un certificado sanitario veterinario
+      oficial (certificat sanitaire) expedido poco antes de la salida por un veterinario oficial del
+      país de origen. El perro debe proceder además de un país o una zona libre de rabia. Para una
+      estancia temporal, se exige adicionalmente una prueba de titulación de rabia. A la llegada,
+      presentas tu perro para la inspección veterinaria y lo declaras en aduanas. Esta guía explica
+      el certificado, las normas antirrábicas, el análisis de sangre para estancias temporales y las
+      razas prohibidas, para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "O Marrocos recebe cachorros de estimação, mas a entrada segue o sistema próprio do país, gerido pelo ONSSA (a autoridade nacional de segurança sanitária dos alimentos e de saúde veterinária), e não o marco da UE. Todo cachorro precisa de uma identificação permanente (microchip ou tatuagem), de uma vacinação antirrábica válida e de um certificado veterinário oficial (certificat sanitaire) emitido pouco antes da partida por um veterinário oficial do país de origem. O cachorro também precisa vir de um país ou de uma zona livre de raiva. Para uma estadia temporária, é exigido além disso um teste sorológico antirrábico (titulação). Na chegada, você apresenta o cachorro à inspeção veterinária e o declara à alfândega. Este guia explica o certificado, as regras sobre a raiva, o exame de sangue das estadias temporárias e as raças proibidas, para você saber exatamente o que preparar antes de reservar o voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — official veterinary certificate required", fr: "Modéré — certificat sanitaire officiel requis", es: "Moderado — se exige un certificado sanitario oficial", pt: "Moderado — certificado veterinário oficial obrigatório" }
+
+prepTime:
+  eu:
+    en: "From the EU: a few days if identification and rabies vaccination are already in order — the ONSSA health certificate is issued by an official vet close to departure."
+    fr: "Depuis l'UE : quelques jours si l'identification et la vaccination antirabique sont déjà en règle — le certificat sanitaire ONSSA est établi par un vétérinaire officiel peu avant le départ."
+    es: "Desde la UE: unos días si la identificación y la vacunación antirrábica ya están en regla — el certificado sanitario ONSSA lo expide un veterinario oficial poco antes de la salida."
+    pt: "Da UE: alguns dias se a identificação e a vacinação antirrábica já estiverem em ordem — o atestado de saúde do ONSSA é emitido por um veterinário oficial perto da data de partida."
+  listed:
+    en: "From another third country: similar timing using the ONSSA certificate model for that country; allow about 3 weeks if the first rabies shot is still needed."
+    fr: "Depuis un autre pays tiers : délais comparables avec le modèle de certificat ONSSA du pays ; prévois environ 3 semaines s'il faut encore faire le premier vaccin antirabique."
+    es: "Desde otro país tercero: plazos similares usando el modelo de certificado ONSSA de ese país; prevé unas 3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "De outro país terceiro: prazos parecidos, usando o modelo de certificado do ONSSA correspondente a esse país; conte cerca de 3 semanas se a primeira dose da vacina antirrábica ainda for necessária."
+  nonListed:
+    en: "For a temporary stay, add the rabies antibody test: blood drawn at least 30 days after vaccination, so plan several extra weeks for sampling and the laboratory result."
+    fr: "Pour un séjour temporaire, ajoute le titrage antirabique : sang prélevé au moins 30 jours après la vaccination — compte plusieurs semaines de plus pour le prélèvement et le résultat de laboratoire."
+    es: "Para una estancia temporal, añade la prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacunación, así que prevé varias semanas más para la toma y el resultado del laboratorio."
+    pt: "Para uma estadia temporária, acrescente o teste sorológico antirrábico (titulação): coleta de sangue pelo menos 30 dias após a vacinação, portanto reserve várias semanas a mais para a coleta e o resultado do laboratório."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (non-banned breeds)", fr: "Oui (races non interdites)", es: "Sí (razas no prohibidas)", pt: "Sim (raças não proibidas)" }
+    cls: ok
+  - requirement: { en: "Identification (microchip or tattoo)", fr: "Identification (puce ou tatouage)", es: "Identificación (microchip o tatuaje)", pt: "Identificação (microchip ou tatuagem)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — temporary stays only", fr: "Conditionnel — séjours temporaires uniquement", es: "Condicional — solo estancias temporales", pt: "Condicional — somente estadias temporárias" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies-free country of origin", fr: "Pays d'origine indemne de rage", es: "País de origen libre de rabia", pt: "País de origem livre de raiva" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    cls: ok
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "Pit bull, Boerbull, Tosa prohibited", fr: "Pit-bull, Boerbull, Tosa interdits", es: "Pit bull, Boerbull, Tosa prohibidos", pt: "Pit bull, Boerbull e Tosa proibidos" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Morocco (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Maroc (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Marruecos (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Marrocos (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Morocco", fr: "Pays de destination — Maroc", es: "País de destino — Marruecos", pt: "País de destino — Marrocos" }
+      text:
+        en: "Morocco runs its own ONSSA scheme: a permanent identification, a valid rabies vaccination, a country of origin free of rabies and an official veterinary health certificate are always required. Certain dangerous breeds are banned outright."
+        fr: "Le Maroc applique son propre dispositif ONSSA : une identification permanente, une vaccination antirabique valide, un pays d'origine indemne de rage et un certificat sanitaire officiel sont toujours exigés. Certaines races dangereuses sont totalement interdites."
+        es: "Marruecos aplica su propio sistema ONSSA: siempre se exigen una identificación permanente, una vacunación antirrábica válida, un país de origen libre de rabia y un certificado sanitario veterinario oficial. Algunas razas peligrosas están totalmente prohibidas."
+        pt: "O Marrocos aplica o sistema próprio do ONSSA: identificação permanente, vacinação antirrábica válida, país de origem livre de raiva e certificado veterinário oficial são sempre obrigatórios. Algumas raças consideradas perigosas são totalmente proibidas."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "ONSSA issues a certificate model per origin (a dedicated model for the EU, and others for third countries such as the US, UK, UAE, Russia, Tunisia and South Africa). The country of departure decides which model your official vet must use — and it must be a country recognised as free of rabies."
+        fr: "L'ONSSA publie un modèle de certificat par origine (un modèle dédié pour l'UE, et d'autres pour les pays tiers comme les USA, le Royaume-Uni, les EAU, la Russie, la Tunisie et l'Afrique du Sud). Le pays de départ détermine le modèle que ton vétérinaire officiel doit utiliser — et il doit s'agir d'un pays reconnu indemne de rage."
+        es: "La ONSSA publica un modelo de certificado por origen (un modelo específico para la UE y otros para países terceros como EE. UU., el Reino Unido, los EAU, Rusia, Túnez y Sudáfrica). El país de salida determina qué modelo debe usar tu veterinario oficial — y debe ser un país reconocido como libre de rabia."
+        pt: "O ONSSA publica um modelo de certificado por origem (um modelo específico para a UE e outros para países terceiros, como Estados Unidos, Reino Unido, Emirados Árabes Unidos, Rússia, Tunísia e África do Sul). O país de partida determina qual modelo o seu veterinário oficial deve usar — e precisa ser um país reconhecido como livre de raiva."
+    - stars: 4
+      label: { en: "Length of stay & prior residence", fr: "Durée du séjour et séjours antérieurs", es: "Duración de la estancia y residencia previa", pt: "Duração da estadia e residência anterior" }
+      text:
+        en: "A temporary stay adds a rabies antibody test that a permanent (definitive) import does not need. Your dog must also have lived in a rabies-free country or zone since birth or for at least the 6 months before departure, so a recent stay in a rabies-risk country matters — not only the last airport."
+        fr: "Un séjour temporaire ajoute un titrage antirabique dont l'importation définitive n'a pas besoin. Ton chien doit aussi avoir vécu dans un pays ou une zone indemne de rage depuis sa naissance ou au moins les 6 mois précédant le départ ; un séjour récent dans un pays à risque rabique compte donc — pas seulement l'aéroport de destination finale."
+        es: "Una estancia temporal añade una prueba de titulación de rabia que una importación permanente (definitiva) no necesita. Tu perro también debe haber vivido en un país o zona libre de rabia desde su nacimiento o al menos los 6 meses anteriores a la salida, por lo que una estancia reciente en un país con riesgo de rabia cuenta — no solo el último aeropuerto."
+        pt: "Uma estadia temporária acrescenta um teste sorológico antirrábico (titulação) que a importação permanente (definitiva) não exige. Seu cachorro também precisa ter vivido em um país ou zona livre de raiva desde o nascimento ou pelo menos nos 6 meses anteriores à partida, de modo que uma estadia recente em um país de risco de raiva conta — e não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Morocco's framework, then confirm your dog's exact origin, length of stay and history with your vet before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre marocain, puis confirme l'origine, la durée du séjour et l'historique exacts de ton chien avec ton vétérinaire avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Marruecos y luego confirma el origen, la duración de la estancia y el historial exactos de tu perro con tu veterinario antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral do Marrocos e depois confirme com o seu veterinário a origem exata, a duração da estadia e o histórico do seu cachorro antes de reservar."
+
+requirements:
+  - item: { en: "Identification (microchip or tattoo)", fr: "Identification (puce ou tatouage)", es: "Identificación (microchip o tatuaje)", pt: "Identificação (microchip ou tatuagem)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A permanent identification mark must be in place before the rabies vaccination and must match the health certificate.", fr: "Une marque d'identification permanente doit être posée avant la vaccination antirabique et correspondre au certificat sanitaire.", es: "Una marca de identificación permanente debe estar colocada antes de la vacunación antirrábica y coincidir con el certificado sanitario.", pt: "A marca de identificação permanente deve ser aplicada antes da vacinação antirrábica e deve coincidir com a que consta no atestado de saúde." }
+    exceptions: { en: "None — every imported dog must be identified.", fr: "Aucune — tout chien importé doit être identifié.", es: "Ninguna — todo perro importado debe estar identificado.", pt: "Nenhuma — todo cachorro importado deve ser identificado." }
+    ref: { en: "ONSSA — health certificate for import of dogs & cats", fr: "ONSSA — certificat sanitaire d'importation de chiens et chats", es: "ONSSA — certificado sanitario para la importación de perros y gatos", pt: "ONSSA — atestado de saúde para importação de cães e gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Valid vaccination with an inactivated rabies vaccine; the certificate records the vaccine, batch, expiry date, primary vaccination date and last booster.", fr: "Vaccination valide avec un vaccin antirabique inactivé ; le certificat consigne le vaccin, le lot, la date de péremption, la date de primovaccination et le dernier rappel.", es: "Vacunación válida con una vacuna antirrábica inactivada; el certificado registra la vacuna, el lote, la fecha de caducidad, la fecha de primovacunación y el último refuerzo.", pt: "Vacinação válida com vacina antirrábica inativada; o certificado registra a vacina, o lote, a data de validade, a data da vacinação inicial e o último reforço." }
+    exceptions: { en: "The identification must already be in place; otherwise the animal must be re-vaccinated.", fr: "L'identification doit déjà être posée ; sinon l'animal doit être revacciné.", es: "La identificación debe estar ya colocada; de lo contrario, el animal debe ser revacunado.", pt: "A identificação já deve estar aplicada; caso contrário, o animal precisa ser revacinado." }
+    ref: { en: "ONSSA — health certificate for import of dogs & cats", fr: "ONSSA — certificat sanitaire d'importation de chiens et chats", es: "ONSSA — certificado sanitario para la importación de perros y gatos", pt: "ONSSA — atestado de saúde para importação de cães e gatos" }
+  - item: { en: "Rabies-free country of origin", fr: "Pays d'origine indemne de rage", es: "País de origen libre de rabia", pt: "País de origem livre de raiva" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must have been kept in a country or zone free of rabies since birth or for at least the 6 months before loading.", fr: "Le chien doit avoir séjourné dans un pays ou une zone indemne de rage depuis sa naissance ou au moins les 6 mois précédant le chargement.", es: "El perro debe haber permanecido en un país o zona libre de rabia desde su nacimiento o al menos los 6 meses anteriores al embarque.", pt: "O cachorro deve ter sido mantido em um país ou zona livre de raiva desde o nascimento ou pelo menos nos 6 meses anteriores ao embarque." }
+    exceptions: { en: "Animals from a country not recognised as rabies-free may be refused.", fr: "Les animaux d'un pays non reconnu indemne de rage peuvent être refusés.", es: "Los animales de un país no reconocido como libre de rabia pueden ser rechazados.", pt: "Animais provenientes de um país não reconhecido como livre de raiva podem ser recusados." }
+    ref: { en: "ONSSA — health certificate (point 1)", fr: "ONSSA — certificat sanitaire (point 1)", es: "ONSSA — certificado sanitario (punto 1)", pt: "ONSSA — atestado de saúde (ponto 1)" }
+  - item: { en: "Rabies antibody test (titration)", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Required for a temporary import: blood drawn by an authorised vet at least 30 days after the rabies vaccination, result at least 0.5 IU/ml, with the endorsed laboratory report attached to the certificate.", fr: "Requis pour une importation temporaire : sang prélevé par un vétérinaire habilité au moins 30 jours après la vaccination antirabique, résultat au moins égal à 0,5 UI/ml, le bulletin de laboratoire visé étant joint au certificat.", es: "Obligatoria para una importación temporal: sangre extraída por un veterinario autorizado al menos 30 días después de la vacunación antirrábica, resultado de al menos 0,5 UI/ml, con el informe de laboratorio refrendado adjunto al certificado.", pt: "Obrigatório para uma importação temporária: coleta de sangue feita por um veterinário autorizado pelo menos 30 dias após a vacinação antirrábica, resultado de no mínimo 0,5 UI/ml, com o laudo laboratorial endossado anexado ao certificado." }
+    exceptions: { en: "Not required for a permanent (definitive) import to Morocco.", fr: "Non requis pour une importation définitive au Maroc.", es: "No obligatoria para una importación permanente (definitiva) a Marruecos.", pt: "Não obrigatório para uma importação permanente (definitiva) para o Marrocos." }
+    ref: { en: "ONSSA — health certificate (point 5)", fr: "ONSSA — certificat sanitaire (point 5)", es: "ONSSA — certificado sanitario (punto 5)", pt: "ONSSA — atestado de saúde (ponto 5)" }
+  - item: { en: "Veterinary health certificate (certificat sanitaire)", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Certificado veterinário (certificat sanitaire)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued or countersigned by an official government vet of the country of origin close to departure — the ONSSA dog/cat model is signed within the 24 hours before loading; the general customs rule references the three days before embarkation.", fr: "Établi ou contresigné par un vétérinaire officiel du pays d'origine peu avant le départ — le modèle ONSSA chiens/chats est signé dans les 24 heures précédant le chargement ; la règle douanière générale évoque les trois jours précédant l'embarquement.", es: "Expedido o refrendado por un veterinario oficial del gobierno del país de origen poco antes de la salida — el modelo ONSSA para perros/gatos se firma dentro de las 24 horas previas al embarque; la norma aduanera general se refiere a los tres días previos al embarque.", pt: "Emitido ou referendado por um veterinário oficial do governo do país de origem pouco antes da partida — o modelo do ONSSA para cães e gatos é assinado nas 24 horas anteriores ao embarque; a regra aduaneira geral se refere aos três dias anteriores ao embarque." }
+    exceptions: { en: "None — an official certificate must accompany every dog.", fr: "Aucune — un certificat officiel doit accompagner chaque chien.", es: "Ninguna — un certificado oficial debe acompañar a cada perro.", pt: "Nenhuma — um certificado oficial deve acompanhar cada cachorro." }
+    ref: { en: "ONSSA — health certificate; Douane (ADII) — Importation des animaux, Section 02", fr: "ONSSA — certificat sanitaire ; Douane (ADII) — Importation des animaux, Section 02", es: "ONSSA — certificado sanitario; Aduana (ADII) — Importación de animales, Sección 02", pt: "ONSSA — atestado de saúde; Douane (ADII) — Importation des animaux, Section 02" }
+  - item: { en: "Health / clinical examination", fr: "Examen clinique / de santé", es: "Examen clínico / de salud", pt: "Exame de saúde / clínico" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Examined within the 24 hours before loading, found in good health and showing no clinical sign of a contagious disease on the day of loading.", fr: "Examiné dans les 24 heures précédant le chargement, trouvé en bon état de santé et ne présentant aucun signe clinique de maladie contagieuse le jour du chargement.", es: "Examinado dentro de las 24 horas previas al embarque, en buen estado de salud y sin ningún signo clínico de enfermedad contagiosa el día del embarque.", pt: "Examinado nas 24 horas anteriores ao embarque, considerado em bom estado de saúde e sem nenhum sinal clínico de doença contagiosa no dia do embarque." }
+    exceptions: { en: "None.", fr: "Aucune.", es: "Ninguna.", pt: "Nenhuma." }
+    ref: { en: "ONSSA — health certificate (points 2–3)", fr: "ONSSA — certificat sanitaire (points 2–3)", es: "ONSSA — certificado sanitario (puntos 2–3)", pt: "ONSSA — atestado de saúde (pontos 2–3)" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required (personal pet)", fr: "Non requis (animal personnel)", es: "No obligatorio (mascota personal)", pt: "Não obrigatória (animal de estimação particular)" }
+    when: { en: "A traveller's pet dog needs no prior import permit, but it is subject to veterinary sanitary inspection at the border, at the owner's expense.", fr: "Le chien de compagnie d'un voyageur n'exige pas de permis d'importation préalable, mais il est soumis à l'inspection sanitaire vétérinaire à la frontière, aux frais du propriétaire.", es: "El perro de compañía de un viajero no exige un permiso de importación previo, pero está sujeto a la inspección sanitaria veterinaria en la frontera, a cargo del propietario.", pt: "O cachorro de estimação de um viajante não precisa de autorização de importação prévia, mas fica sujeito à inspeção sanitária veterinária na fronteira, às custas do dono." }
+    exceptions: { en: "Larger movements fall under commercial import rules, not personal import.", fr: "Les mouvements plus importants relèvent de l'importation commerciale, non de l'importation personnelle.", es: "Los movimientos de mayor tamaño se rigen por las normas de importación comercial, no por la importación personal.", pt: "Movimentações maiores se enquadram nas regras de importação comercial, e não de importação particular." }
+    ref: { en: "Douane (ADII) — Importation des animaux, Section 02", fr: "Douane (ADII) — Importation des animaux, Section 02", es: "Aduana (ADII) — Importación de animales, Sección 02", pt: "Douane (ADII) — Importation des animaux, Section 02" }
+  - item: { en: "Border veterinary inspection & customs declaration", fr: "Inspection vétérinaire frontalière et déclaration en douane", es: "Inspección veterinaria fronteriza y declaración en aduanas", pt: "Inspeção veterinária na fronteira e declaração aduaneira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Enter through a border post open to animal imports; present your dog for veterinary sanitary inspection and declare it to customs on arrival.", fr: "Entre par un poste frontière ouvert à l'importation d'animaux ; présente ton chien à l'inspection sanitaire vétérinaire et déclare-le à la douane à l'arrivée.", es: "Entra por un puesto fronterizo abierto a la importación de animales; presenta tu perro para la inspección sanitaria veterinaria y decláralo en aduanas a la llegada.", pt: "Entre por um posto de fronteira aberto à importação de animais; apresente seu cachorro à inspeção sanitária veterinária e declare-o à alfândega na chegada." }
+    exceptions: { en: "Animals in international transit without unloading are outside these formalities.", fr: "Les animaux en transit international sans rupture de charge sont hors de ces formalités.", es: "Los animales en tránsito internacional sin descarga quedan fuera de estas formalidades.", pt: "Animais em trânsito internacional sem desembarque ficam fora dessas formalidades." }
+    ref: { en: "Douane (ADII) — Importation des animaux, Section 02", fr: "Douane (ADII) — Importation des animaux, Section 02", es: "Aduana (ADII) — Importación de animales, Sección 02", pt: "Douane (ADII) — Importation des animaux, Section 02" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Linked to rabies vaccination", fr: "Lié à la vaccination antirabique", es: "Vinculada a la vacunación antirrábica", pt: "Vinculada à vacinação antirrábica" }
+    when: { en: "A puppy must be old enough to be validly vaccinated against rabies — generally about 3 months (12 weeks). ONSSA does not publish a separate stand-alone minimum age.", fr: "Un chiot doit être en âge d'être valablement vacciné contre la rage — généralement environ 3 mois (12 semaines). L'ONSSA ne publie pas d'âge minimum distinct spécifique.", es: "Un cachorro debe tener edad suficiente para ser vacunado válidamente contra la rabia — generalmente unos 3 meses (12 semanas). La ONSSA no publica una edad mínima independiente específica.", pt: "O filhote precisa ter idade suficiente para ser validamente vacinado contra a raiva — em geral, cerca de 3 meses (12 semanas). O ONSSA não publica uma idade mínima própria e separada." }
+    exceptions: { en: "Puppies too young to be vaccinated cannot meet the rabies requirement and cannot be imported.", fr: "Les chiots trop jeunes pour être vaccinés ne peuvent satisfaire l'exigence antirabique et ne peuvent être importés.", es: "Los cachorros demasiado jóvenes para ser vacunados no pueden cumplir el requisito antirrábico y no pueden ser importados.", pt: "Filhotes jovens demais para serem vacinados não conseguem cumprir a exigência sobre a raiva e não podem ser importados." }
+    ref: { en: "ONSSA — health certificate (rabies vaccination)", fr: "ONSSA — certificat sanitaire (vaccination antirabique)", es: "ONSSA — certificado sanitario (vacunación antirrábica)", pt: "ONSSA — atestado de saúde (vacinação antirrábica)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Non-compliant animals may be refused, returned or held under veterinary control at the owner's expense.", fr: "Les animaux non conformes peuvent être refusés, renvoyés ou placés sous contrôle vétérinaire aux frais du propriétaire.", es: "Los animales que no cumplen los requisitos pueden ser rechazados, devueltos o retenidos bajo control veterinario a cargo del propietario.", pt: "Animais em situação irregular podem ser recusados, devolvidos ou retidos sob controle veterinário às custas do dono." }
+    ref: { en: "Douane (ADII) — Importation des animaux, Section 02", fr: "Douane (ADII) — Importation des animaux, Section 02", es: "Aduana (ADII) — Importación de animales, Sección 02", pt: "Douane (ADII) — Importation des animaux, Section 02" }
+  - item: { en: "Banned / dangerous breeds", fr: "Races interdites / dangereuses", es: "Razas prohibidas / peligrosas", pt: "Raças proibidas / perigosas" }
+    required: { en: "Prohibited", fr: "Interdites", es: "Prohibidas", pt: "Proibidas" }
+    when: { en: "Import of dogs classified as dangerous is prohibited: pit bull type (Staffordshire Bull Terrier, American Staffordshire Terrier), Boerbull type (Mastiff) and Tosa.", fr: "L'importation des chiens classés dangereux est interdite : type pit-bull (Staffordshire Bull Terrier, American Staffordshire Terrier), type boerbull (Mastiff) et Tosa.", es: "La importación de perros clasificados como peligrosos está prohibida: tipo pit bull (Staffordshire Bull Terrier, American Staffordshire Terrier), tipo Boerbull (Mastiff) y Tosa.", pt: "A importação de cachorros classificados como perigosos é proibida: tipo pit bull (Staffordshire Bull Terrier, American Staffordshire Terrier), tipo Boerbull (Mastiff) e Tosa." }
+    exceptions: { en: "None published — the ban is set by joint ministerial order and applies at the border.", fr: "Aucune publiée — l'interdiction est fixée par arrêté conjoint et s'applique à la frontière.", es: "Ninguna publicada — la prohibición se establece por orden ministerial conjunta y se aplica en la frontera.", pt: "Nenhuma publicada — a proibição é definida por um arrêté conjoint (decisão interministerial) e se aplica na fronteira." }
+    ref: { en: "Arrêté conjoint n° 1677.18 (18/07/2018); ONSSA — public notice on dangerous dogs", fr: "Arrêté conjoint n° 1677.18 (18/07/2018) ; ONSSA — avis au public sur les chiens dangereux", es: "Arrêté conjoint n° 1677.18 (18/07/2018); ONSSA — aviso público sobre perros peligrosos", pt: "Arrêté conjoint n° 1677.18 (18/07/2018); ONSSA — aviso ao público sobre cachorros perigosos" }
+
+origin:
+  eu:
+    title: { en: "From the European Union — ONSSA EU certificate", fr: "Depuis l'Union européenne — certificat ONSSA UE", es: "Desde la Unión Europea — certificado ONSSA UE", pt: "Da União Europeia — certificado do ONSSA para a UE" }
+    body:
+      en: "For a dog leaving the EU, ONSSA provides a dedicated EU import certificate. Your dog needs a permanent identification placed before vaccination, a valid inactivated rabies vaccine, and residence in a rabies-free country or zone since birth or for at least the 6 months before loading. An official EU vet signs the certificate within the 24 hours before loading. No antibody test is required for a permanent import."
+      fr: "Pour un chien quittant l'UE, l'ONSSA propose un certificat d'importation dédié à l'UE. Ton chien a besoin d'une identification permanente posée avant la vaccination, d'un vaccin antirabique inactivé valide, et d'un séjour dans un pays ou une zone indemne de rage depuis sa naissance ou au moins les 6 mois précédant le chargement. Un vétérinaire officiel de l'UE signe le certificat dans les 24 heures précédant le chargement. Aucun titrage n'est requis pour une importation définitive."
+      es: "Para un perro que sale de la UE, la ONSSA ofrece un certificado de importación específico para la UE. Tu perro necesita una identificación permanente colocada antes de la vacunación, una vacuna antirrábica inactivada válida y haber residido en un país o zona libre de rabia desde su nacimiento o al menos los 6 meses anteriores al embarque. Un veterinario oficial de la UE firma el certificado dentro de las 24 horas previas al embarque. No se exige prueba de titulación para una importación permanente."
+      pt: "Para um cachorro que sai da UE, o ONSSA disponibiliza um certificado de importação específico para a UE. Seu cachorro precisa de uma identificação permanente aplicada antes da vacinação, de uma vacina antirrábica inativada válida e de residência em um país ou zona livre de raiva desde o nascimento ou pelo menos nos 6 meses anteriores ao embarque. Um veterinário oficial da UE assina o certificado nas 24 horas anteriores ao embarque. Nenhum teste sorológico é exigido para uma importação permanente."
+    cls: ok
+  listed:
+    title: { en: "From another third country — country-specific model", fr: "Depuis un autre pays tiers — modèle propre au pays", es: "Desde otro país tercero — modelo específico del país", pt: "De outro país terceiro — modelo específico por país" }
+    body:
+      en: "For other origins, ONSSA publishes country-specific certificate models (for example the United States, United Kingdom, United Arab Emirates, Russia, Tunisia, South Africa, Portugal, Spain, Slovenia and New Zealand). The core requirements are the same: identification, valid rabies vaccination, a rabies-free country of origin and an official health certificate. Your official vet must use the correct ONSSA model for that country."
+      fr: "Pour les autres origines, l'ONSSA publie des modèles de certificat propres au pays (par exemple les États-Unis, le Royaume-Uni, les Émirats arabes unis, la Russie, la Tunisie, l'Afrique du Sud, le Portugal, l'Espagne, la Slovénie et la Nouvelle-Zélande). Les exigences de base sont identiques : identification, vaccination antirabique valide, pays d'origine indemne de rage et certificat sanitaire officiel. Ton vétérinaire officiel doit utiliser le bon modèle ONSSA pour ce pays."
+      es: "Para otros orígenes, la ONSSA publica modelos de certificado específicos por país (por ejemplo, Estados Unidos, el Reino Unido, los Emiratos Árabes Unidos, Rusia, Túnez, Sudáfrica, Portugal, España, Eslovenia y Nueva Zelanda). Los requisitos básicos son los mismos: identificación, vacunación antirrábica válida, un país de origen libre de rabia y un certificado sanitario oficial. Tu veterinario oficial debe usar el modelo ONSSA correcto para ese país."
+      pt: "Para outras origens, o ONSSA publica modelos de certificado específicos por país (por exemplo, Estados Unidos, Reino Unido, Emirados Árabes Unidos, Rússia, Tunísia, África do Sul, Portugal, Espanha, Eslovênia e Nova Zelândia). As exigências centrais são as mesmas: identificação, vacinação antirrábica válida, país de origem livre de raiva e um atestado de saúde oficial. Seu veterinário oficial precisa usar o modelo do ONSSA correspondente a esse país."
+    cls: warn
+  nonListed:
+    title: { en: "Temporary stay — antibody test required", fr: "Séjour temporaire — titrage requis", es: "Estancia temporal — prueba de titulación obligatoria", pt: "Estadia temporária — teste sorológico obrigatório" }
+    body:
+      en: "If your dog is imported temporarily (for example a holiday, then a return abroad), ONSSA additionally requires a rabies antibody test: blood drawn by an authorised vet at least 30 days after the rabies vaccination, with a result of at least 0.5 IU/ml. The endorsed laboratory report is attached to the health certificate. A permanent (definitive) import to Morocco does not require this test."
+      fr: "Si ton chien est importé temporairement (par exemple des vacances, puis un retour à l'étranger), l'ONSSA exige en plus un titrage antirabique : sang prélevé par un vétérinaire habilité au moins 30 jours après la vaccination antirabique, avec un résultat d'au moins 0,5 UI/ml. Le bulletin de laboratoire visé est joint au certificat sanitaire. Une importation définitive au Maroc n'exige pas ce test."
+      es: "Si tu perro se importa temporalmente (por ejemplo, unas vacaciones y luego un regreso al extranjero), la ONSSA exige además una prueba de titulación de rabia: sangre extraída por un veterinario autorizado al menos 30 días después de la vacunación antirrábica, con un resultado de al menos 0,5 UI/ml. El informe de laboratorio refrendado se adjunta al certificado sanitario. Una importación permanente (definitiva) a Marruecos no exige esta prueba."
+      pt: "Se o seu cachorro for importado temporariamente (por exemplo, umas férias e depois o retorno ao exterior), o ONSSA exige adicionalmente um teste sorológico antirrábico (titulação): coleta de sangue feita por um veterinário autorizado pelo menos 30 dias após a vacinação antirrábica, com resultado de no mínimo 0,5 UI/ml. O laudo laboratorial endossado é anexado ao atestado de saúde. Uma importação permanente (definitiva) para o Marrocos não exige esse teste."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Morocco depends on your documents and whether the stay is temporary or permanent."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Maroc dépend de tes documents et du caractère temporaire ou définitif du séjour."
+    es: "Lo que ocurre cuando tu perro llega a Marruecos depende de tus documentos y de si la estancia es temporal o permanente."
+    pt: "O que acontece quando seu cachorro chega ao Marrocos depende dos seus documentos e de a estadia ser temporária ou permanente."
+  points:
+    - en: "Enter through a border post open to animal imports; your dog is subject to veterinary sanitary inspection at the owner's expense."
+      fr: "Entre par un poste frontière ouvert à l'importation d'animaux ; ton chien est soumis à l'inspection sanitaire vétérinaire aux frais du propriétaire."
+      es: "Entra por un puesto fronterizo abierto a la importación de animales; tu perro está sujeto a la inspección sanitaria veterinaria a cargo del propietario."
+      pt: "Entre por um posto de fronteira aberto à importação de animais; seu cachorro fica sujeito à inspeção sanitária veterinária às custas do dono."
+    - en: "Declare your dog to customs on arrival and present the official documents spontaneously."
+      fr: "Déclare ton chien à la douane à l'arrivée et présente spontanément les documents officiels."
+      es: "Declara tu perro en aduanas a la llegada y presenta espontáneamente los documentos oficiales."
+      pt: "Declare seu cachorro à alfândega na chegada e apresente os documentos oficiais espontaneamente."
+    - en: "Carry originals: the ONSSA veterinary health certificate, proof of identification and rabies vaccination, and — for a temporary stay — the rabies antibody test report."
+      fr: "Munis-toi des originaux : le certificat sanitaire ONSSA, la preuve d'identification et de vaccination antirabique et — pour un séjour temporaire — le bulletin de titrage antirabique."
+      es: "Lleva los originales: el certificado sanitario ONSSA, la prueba de identificación y de vacunación antirrábica y — para una estancia temporal — el informe de la prueba de titulación de rabia."
+      pt: "Leve os originais: o certificado veterinário do ONSSA, o comprovante de identificação e de vacinação antirrábica e — no caso de estadia temporária — o laudo do teste sorológico antirrábico (titulação)."
+    - en: "If documents are missing or invalid, or the breed is banned, the animal may be refused entry, returned or held under veterinary control — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, ou si la race est interdite, l'animal peut être refusé, renvoyé ou placé sous contrôle vétérinaire — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, o si la raza está prohibida, el animal puede ser rechazado en la entrada, devuelto o retenido bajo control veterinario — a cargo del propietario."
+      pt: "Se faltarem documentos ou se eles forem inválidos, ou ainda se a raça for proibida, o animal pode ter a entrada recusada, ser devolvido ou ficar sob controle veterinário — às custas do dono."
+    - en: "Pit bull, Boerbull (Mastiff) and Tosa type dogs are refused entry."
+      fr: "Les chiens de type pit-bull, boerbull (Mastiff) et Tosa sont refusés à l'entrée."
+      es: "Los perros de tipo pit bull, Boerbull (Mastiff) y Tosa son rechazados en la entrada."
+      pt: "Cachorros do tipo pit bull, Boerbull (Mastiff) e Tosa têm a entrada recusada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Morocco prohibits the import of dogs classified as dangerous under a joint order of the Minister of the Interior and the Minister of Agriculture (No. 1677.18 of 18 July 2018). The ban targets specific breeds and applies at the border; it does not depend on an individual behavioural assessment."
+    fr: "Le Maroc interdit l'importation des chiens classés dangereux au titre d'un arrêté conjoint du ministre de l'Intérieur et du ministre de l'Agriculture (n° 1677.18 du 18 juillet 2018). L'interdiction vise des races précises et s'applique à la frontière ; elle ne dépend pas d'une évaluation comportementale individuelle."
+    es: "Marruecos prohíbe la importación de perros clasificados como peligrosos en virtud de una orden conjunta del Ministro del Interior y del Ministro de Agricultura (n.º 1677.18, de 18 de julio de 2018). La prohibición se dirige a razas concretas y se aplica en la frontera; no depende de una evaluación individual del comportamiento."
+    pt: "O Marrocos proíbe a importação de cachorros classificados como perigosos com base em um arrêté conjoint do Ministro do Interior e do Ministro da Agricultura (n° 1677.18, de 18 de julho de 2018). A proibição visa raças específicas e se aplica na fronteira; não depende de uma avaliação comportamental individual."
+  cat1:
+    en: "Banned from import: pit bull type (Staffordshire Bull Terrier, American Staffordshire Terrier), Boerbull type (Mastiff) and Tosa. ONSSA states plainly that importing these dogs into Morocco is prohibited."
+    fr: "Interdits à l'importation : type pit-bull (Staffordshire Bull Terrier, American Staffordshire Terrier), type boerbull (Mastiff) et Tosa. L'ONSSA indique clairement que l'importation de ces chiens au Maroc est interdite."
+    es: "Prohibidos para la importación: tipo pit bull (Staffordshire Bull Terrier, American Staffordshire Terrier), tipo Boerbull (Mastiff) y Tosa. La ONSSA indica claramente que la importación de estos perros a Marruecos está prohibida."
+    pt: "Proibidos de importação: tipo pit bull (Staffordshire Bull Terrier, American Staffordshire Terrier), tipo Boerbull (Mastiff) e Tosa. O ONSSA afirma com todas as letras que importar esses cachorros para o Marrocos é proibido."
+  cat2:
+    en: "There is no lighter 'permitted with conditions' category for these breeds at the border: their import is refused outright. No published exemption exists for personal pets."
+    fr: "Il n'existe pas de catégorie allégée « autorisée sous conditions » pour ces races à la frontière : leur importation est purement refusée. Aucune exemption publiée n'existe pour les animaux de compagnie personnels."
+    es: "No existe una categoría más flexible de «permitida con condiciones» para estas razas en la frontera: su importación se rechaza sin más. No existe ninguna exención publicada para mascotas personales."
+    pt: "Não existe na fronteira uma categoria mais branda do tipo “permitido sob condições” para essas raças: a importação é recusada de forma pura e simples. Não há nenhuma isenção publicada para animais de estimação particulares."
+  note:
+    en: "Because a dog that resembles a listed type risks refusal, confirm your dog's breed and any cross before you travel. The list is set by ministerial order and can change; verify with ONSSA."
+    fr: "Un chien ressemblant à un type listé risquant le refus, confirme la race de ton chien et tout croisement avant de voyager. La liste est fixée par arrêté et peut évoluer ; vérifie auprès de l'ONSSA."
+    es: "Como un perro que se parezca a un tipo listado se arriesga al rechazo, confirma la raza de tu perro y cualquier cruce antes de viajar. La lista se fija por orden ministerial y puede cambiar; verifícalo con la ONSSA."
+    pt: "Como um cachorro parecido com um dos tipos listados corre risco de recusa, confirme a raça do seu cachorro e eventuais cruzamentos antes de viajar. A lista é definida por arrêté ministériel e pode mudar; verifique junto ao ONSSA."
+
+checklist:
+  - en: "Permanent identification (microchip or tattoo) placed before the rabies vaccination"
+    fr: "Identification permanente (puce ou tatouage) posée avant la vaccination antirabique"
+    es: "Identificación permanente (microchip o tatuaje) colocada antes de la vacunación antirrábica"
+    pt: "Identificação permanente (microchip ou tatuagem) aplicada antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination with an inactivated vaccine (dates recorded)"
+    fr: "Vaccination antirabique valide avec un vaccin inactivé (dates consignées)"
+    es: "Vacunación antirrábica válida con una vacuna inactivada (fechas registradas)"
+    pt: "Vacinação antirrábica válida com vacina inativada (datas registradas)"
+  - en: "Dog kept in a rabies-free country or zone since birth or the last 6 months"
+    fr: "Chien ayant séjourné dans un pays ou une zone indemne de rage depuis la naissance ou les 6 derniers mois"
+    es: "Perro que haya permanecido en un país o zona libre de rabia desde su nacimiento o los últimos 6 meses"
+    pt: "Cachorro mantido em país ou zona livre de raiva desde o nascimento ou nos últimos 6 meses"
+  - en: "Rabies antibody test ≥0.5 IU/ml, ≥30 days after vaccination — temporary stays only"
+    fr: "Titrage antirabique ≥0,5 UI/ml, ≥30 jours après la vaccination — séjours temporaires uniquement"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml, ≥30 días después de la vacunación — solo estancias temporales"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml, ≥30 dias após a vacinação — somente estadias temporárias"
+  - en: "ONSSA veterinary health certificate signed by an official vet close to departure"
+    fr: "Certificat sanitaire ONSSA signé par un vétérinaire officiel peu avant le départ"
+    es: "Certificado sanitario veterinario ONSSA firmado por un veterinario oficial poco antes de la salida"
+    pt: "Certificado veterinário do ONSSA assinado por um veterinário oficial pouco antes da partida"
+  - en: "Original documents ready to present at veterinary inspection and to customs"
+    fr: "Documents originaux prêts à présenter à l'inspection vétérinaire et à la douane"
+    es: "Documentos originales listos para presentar en la inspección veterinaria y en aduanas"
+    pt: "Documentos originais prontos para apresentar na inspeção veterinária e na alfândega"
+  - en: "Confirm your dog is not a banned breed (pit bull, Boerbull/Mastiff, Tosa)"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite (pit-bull, boerbull/Mastiff, Tosa)"
+    es: "Confirma que tu perro no sea de una raza prohibida (pit bull, Boerbull/Mastiff, Tosa)"
+    pt: "Confirme que seu cachorro não é de uma raça proibida (pit bull, Boerbull/Mastiff, Tosa)"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "ONSSA — Import of dogs and cats (certificates and procedures)", fr: "ONSSA — Importation des chiens et chats (certificats et procédures)", es: "ONSSA — Importación de perros y gatos (certificados y procedimientos)", pt: "ONSSA — Importação de cães e gatos (certificados e procedimentos)" }
+    url: "https://www.onssa.gov.ma/controle-a-limportation-et-a-lexportation/controle-a-limportation/importation-des-animaux-vivants/chiens-et-chats/"
+  - label: { en: "ONSSA — Health certificate for import of dogs & cats from the EU (model)", fr: "ONSSA — Certificat sanitaire d'importation de chiens et chats depuis l'UE (modèle)", es: "ONSSA — Certificado sanitario para la importación de perros y gatos desde la UE (modelo)", pt: "ONSSA — Atestado de saúde para importação de cães e gatos a partir da UE (modelo)" }
+    url: "https://www.onssa.gov.ma/wp-content/uploads/2023/07/Importation-au-Maroc-de-chiens-et-chats-a-partir-de-lUE.pdf"
+  - label: { en: "ONSSA — Health certificate for import of dogs & cats from third countries (model)", fr: "ONSSA — Certificat sanitaire d'importation de chiens et chats depuis les pays tiers (modèle)", es: "ONSSA — Certificado sanitario para la importación de perros y gatos desde países terceros (modelo)", pt: "ONSSA — Atestado de saúde para importação de cães e gatos a partir de países terceiros (modelo)" }
+    url: "https://www.onssa.gov.ma/wp-content/uploads/2022/09/Importation-chiens-chats-tiers-.pdf"
+  - label: { en: "ONSSA — Public notice: import of dangerous dogs prohibited (order 1677.18)", fr: "ONSSA — Avis au public : importation de chiens dangereux interdite (arrêté 1677.18)", es: "ONSSA — Aviso público: importación de perros peligrosos prohibida (orden 1677.18)", pt: "ONSSA — Aviso ao público: importação de cachorros perigosos proibida (arrêté 1677.18)" }
+    url: "https://www.onssa.gov.ma/wp-content/uploads/2022/08/avis-au-public-chiens-dangereux-.pdf"
+  - label: { en: "Administration des Douanes (ADII) — Import of animals and animal products (Section 02)", fr: "Administration des Douanes (ADII) — Importation des animaux et produits animaux (Section 02)", es: "Administration des Douanes (ADII) — Importación de animales y productos animales (Sección 02)", pt: "Administration des Douanes (ADII) — Importação de animais e produtos animais (Section 02)" }
+    url: "https://www.douane.gov.ma/dms/loadDocument?documentId=30734"
+
+seo:
+  title: { en: "Morocco Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Maroc — Guide", es: "Requisitos de entrada de perros en Marruecos — Guía de viaje", pt: "Entrada de cachorros no Marrocos — guia de viagem" }
+  metaTitle: { en: "Traveling to Morocco With Your Dog: Entry Requirements (2026)", fr: "Voyager au Maroc avec ton chien : formalités (2026)", es: "Viajar a Marruecos con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Marrocos com o cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official ONSSA rules for bringing a dog into Morocco: identification, rabies vaccination, health certificate and temporary-stay antibody test. Sourced and dated."
+    fr: "Règles officielles ONSSA pour faire entrer un chien au Maroc : identification, vaccination antirabique, certificat sanitaire. Sourcé et daté."
+    es: "Normas oficiales de la ONSSA para traer un perro a Marruecos: identificación, vacunación antirrábica, certificado sanitario. Con fuentes y fecha."
+    pt: "Regras oficiais do ONSSA para levar um cachorro para o Marrocos: identificação, vacinação antirrábica, certificado veterinário, teste sorológico. Com fontes e data."
+  slug: "morocco"
+  shortDesc:
+    en: "What you need to bring a dog into Morocco — ONSSA identification, rabies, health certificate, antibody test and banned breeds."
+    fr: "Ce qu'il faut pour faire entrer un chien au Maroc — identification ONSSA, rage, certificat sanitaire, titrage et races interdites."
+    es: "Lo que necesitas para traer un perro a Marruecos — identificación ONSSA, rabia, certificado sanitario, prueba de titulación y razas prohibidas."
+    pt: "O que você precisa para levar um cachorro para o Marrocos — identificação, raiva, atestado de saúde do ONSSA, teste sorológico e raças proibidas."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

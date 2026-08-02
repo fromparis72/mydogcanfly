@@ -1,0 +1,288 @@
+id: airline_air_algerie
+mono: AH
+name: Air Algérie
+titleH1:
+  en: Flying with a dog on Air Algérie
+  fr: Voyager avec un chien sur Air Algérie
+  es: Volar con un perro en Air Algérie
+  pt: "Viajar com um cachorro na Air Algérie"
+metaDesc:
+  en: "Air Algérie pet policy: cabin, heated pressurised hold and cargo, UK hold ban and official sources."
+  fr: "Politique animaux Air Algérie : cabine, soute chauffée et pressurisée, fret, interdiction soute R.-U. et sources officielles."
+  es: "Política de mascotas de Air Algérie: cabina, bodega calefactada y presurizada, carga, prohibición de bodega al Reino Unido y fuentes oficiales."
+  pt: "Política de animais da Air Algérie: cabine, porão aquecido e pressurizado, carga, proibição de porão para o Reino Unido e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Algeria · ALG
+      fr: Algérie · ALG
+      es: Argelia · ALG
+      pt: "Argélia · ALG"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in a heated pressurised hold — but no hold pets to/from the UK.
+  fr: Petits animaux en cabine, plus grands en soute chauffée et pressurisée — mais pas d'animaux en soute vers/depuis le R.-U.
+  es: Mascotas pequeñas en cabina, las más grandes en una bodega calefactada y presurizada — pero sin mascotas en bodega hacia/desde el Reino Unido.
+  pt: "Animais pequenos na cabine, maiores em um porão aquecido e pressurizado — mas sem animais no porão de/para o Reino Unido."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 6 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 23 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK / large
+      fr: R.-U. / grands
+      es: R.U. / grandes
+      pt: "Reino Unido / grande porte"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small cats, dogs, hamsters, birds or turtles ≤ 6 kg incl. carrier at your feet (max 55 + 40 + 20 cm); counts as your cabin bag.
+      fr: Petits chats, chiens, hamsters, oiseaux ou tortues ≤ 6 kg avec le sac à tes pieds (max 55 + 40 + 20 cm) ; compte comme ton bagage cabine.
+      es: Gatos, perros, hámsteres, aves o tortugas pequeños ≤ 6 kg incluida la jaula a tus pies (máx 55 + 40 + 20 cm); cuenta como tu equipaje de cabina.
+      pt: "Gatos, cachorros, hamsters, aves ou tartarugas pequenos, ≤ 6 kg com a bolsa incluída, aos seus pés (máx. 55 + 40 + 20 cm); conta como sua bagagem de cabine."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Over 6 kg (pet + cage < 23 kg) in a robust, watertight, ventilated crate in a warm, pressurised hold. Not to/from the UK.
+      fr: Au-delà de 6 kg (animal + cage < 23 kg) en caisse robuste, étanche et ventilée dans une soute chaude et pressurisée. Pas vers/depuis le R.-U.
+      es: Más de 6 kg (mascota + jaula < 23 kg) en una jaula robusta, estanca y ventilada en una bodega cálida y presurizada. No hacia/desde el Reino Unido.
+      pt: "Acima de 6 kg (animal + caixa < 23 kg) em uma caixa robusta, estanque e ventilada, em um porão aquecido e pressurizado. Não disponível de/para o Reino Unido."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Oversize, or all pets to/from the UK (freight only).
+      fr: Hors gabarit, ou tous les animaux vers/depuis le R.-U. (fret uniquement).
+      es: Fuera de medidas, o todas las mascotas hacia/desde el Reino Unido (solo carga).
+      pt: "Fora do tamanho, ou todos os animais de/para o Reino Unido (somente carga)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 6 kg)
+        fr: Cabine (≤ 6 kg)
+        es: Cabina (≤ 6 kg)
+        pt: "Cabine (≤ 6 kg)"
+      value:
+        en: Excess-baggage rate
+        fr: Tarif bagage excédentaire
+        es: Tarifa de exceso de equipaje
+        pt: "Tarifa de excesso de bagagem"
+    - label:
+        en: Hold (< 23 kg)
+        fr: Soute (< 23 kg)
+        es: Bodega (< 23 kg)
+        pt: "Porão (< 23 kg)"
+      value:
+        en: Excess-baggage rate
+        fr: Tarif bagage excédentaire
+        es: Tarifa de exceso de equipaje
+        pt: "Tarifa de excesso de bagagem"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Charged as excess baggage, varying by destination (no flat published fare).
+    fr: Facturé en bagage excédentaire, variable selon la destination (pas de tarif fixe publié).
+    es: Se cobra como exceso de equipaje, variable según el destino (sin tarifa fija publicada).
+    pt: "Cobrado como excesso de bagagem, variando por destino (sem tarifa fixa publicada)."
+restrictions:
+  - icon: 🚫
+    title:
+      en: No hold pets to the UK
+      fr: Pas de soute vers le R.-U.
+      es: Sin mascotas en bodega al Reino Unido
+      pt: "Sem animais no porão para o Reino Unido"
+    pills:
+      - cls: no
+        label:
+          en: "UK: freight only"
+          fr: "R.-U. : fret uniquement"
+          es: "R.U.: solo carga"
+          pt: "Reino Unido: somente carga"
+    note:
+      en: Hold transport of animals is prohibited on flights to and from the UK — pets must go by freight.
+      fr: Le transport d'animaux en soute est interdit sur les vols vers et depuis le R.-U. — les animaux doivent voyager en fret.
+      es: El transporte de animales en bodega está prohibido en los vuelos hacia y desde el Reino Unido — las mascotas deben viajar como carga.
+      pt: "O transporte de animais no porão é proibido em voos de e para o Reino Unido — os animais devem ir como carga."
+  - icon: 📄
+    title:
+      en: EU documents
+      fr: Documents UE
+      es: Documentos UE
+      pt: "Documentos da UE"
+    pills:
+      - cls: warn
+        label:
+          en: Microchip + pet passport
+          fr: Puce + passeport
+          es: Microchip + pasaporte de mascota
+          pt: "Microchip + passaporte para animais"
+    note:
+      en: Dogs/cats to the EU need an electronic microchip and a pet passport completed by a vet, plus up-to-date vaccinations. Limited pets per aircraft.
+      fr: Les chiens/chats vers l'UE ont besoin d'une puce électronique et d'un passeport rempli par un vétérinaire, plus des vaccinations à jour. Nombre d'animaux limité par avion.
+      es: Los perros/gatos hacia la UE necesitan un microchip electrónico y un pasaporte de mascota cumplimentado por un veterinario, además de las vacunas al día. Número limitado de mascotas por avión.
+      pt: "Cachorros/gatos com destino à UE precisam de microchip eletrônico e de um passaporte para animais preenchido por um veterinário, além das vacinas em dia. Número limitado de animais por aeronave."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Warm, pressurised hold
+        fr: Soute chaude et pressurisée
+        es: Bodega cálida y presurizada
+        pt: "Porão aquecido e pressurizado"
+  note:
+    en: Hold animals travel in warm, pressurised compartments; Air Algérie publishes no numeric temperature limit.
+    fr: Les animaux en soute voyagent dans des compartiments chauds et pressurisés ; Air Algérie ne publie pas de limite chiffrée de température.
+    es: Los animales en bodega viajan en compartimentos cálidos y presurizados; Air Algérie no publica ningún límite numérico de temperatura.
+    pt: "Os animais no porão viajam em compartimentos aquecidos e pressurizados; a Air Algérie não publica limite numérico de temperatura."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide dogs for visually/hearing-impaired passengers travel free in the cabin, harnessed and muzzled at your feet.
+      fr: Les chiens guides pour passagers déficients visuels/auditifs voyagent gratuitement en cabine, en harnais et muselés à tes pieds.
+      es: Los perros guía para pasajeros con discapacidad visual/auditiva viajan gratis en cabina, con arnés y bozal a tus pies.
+      pt: "Cães-guia para passageiros com deficiência visual/auditiva viajam grátis na cabine, com peitoral e focinheira, aos seus pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Notify at booking / ≥ 2 days ahead with the required travel documents.
+      fr: Prévenir à la réservation / ≥ 2 jours à l'avance avec les documents de voyage requis.
+      es: Avisa al reservar / con ≥ 2 días de antelación con los documentos de viaje requeridos.
+      pt: "Avise no momento da reserva / com ≥ 2 dias de antecedência, com os documentos de viagem exigidos."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No hold pets to the UK
+      fr: Pas de soute vers le R.-U.
+      es: Sin mascotas en bodega al Reino Unido
+      pt: "Sem animais no porão para o Reino Unido"
+    value:
+      en: Animals can't travel in the hold to/from the UK — carriage must be by freight.
+      fr: Les animaux ne peuvent pas voyager en soute vers/depuis le R.-U. — le transport doit se faire en fret.
+      es: Los animales no pueden viajar en bodega hacia/desde el Reino Unido — el transporte debe hacerse como carga.
+      pt: "Animais não podem viajar no porão de/para o Reino Unido — o transporte deve ser feito como carga."
+  - icon: 📄
+    label:
+      en: EU entry
+      fr: Entrée UE
+      es: Entrada a la UE
+      pt: "Entrada na UE"
+    value:
+      en: Dogs/cats to the EU need a microchip and a pet passport beyond vaccination records.
+      fr: Les chiens/chats vers l'UE ont besoin d'une puce et d'un passeport au-delà des carnets de vaccination.
+      es: Los perros/gatos hacia la UE necesitan un microchip y un pasaporte de mascota además de las cartillas de vacunación.
+      pt: "Cachorros/gatos com destino à UE precisam de microchip e de um passaporte para animais, além do registro de vacinação."
+  - icon: 🔁
+    label:
+      en: Connections
+      fr: Correspondances
+      es: Conexiones
+      pt: "Conexões"
+    value:
+      en: With a connection on another airline, confirm acceptance with the Air Algérie agency.
+      fr: Avec une correspondance sur une autre compagnie, confirmer l'acceptation auprès de l'agence Air Algérie.
+      es: Con una conexión en otra aerolínea, confirma la aceptación con la agencia de Air Algérie.
+      pt: "Em caso de conexão com outra companhia, confirme a aceitação com a agência da Air Algérie."
+book:
+  host: airalgerie.dz
+  url: https://www.airalgerie.dz/
+sources:
+  en: 2 Air Algérie sources · last verified 11 July 2026
+  fr: 2 sources Air Algérie · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Air Algérie · última verificación 11 de julio de 2026
+  pt: "2 fontes da Air Algérie · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

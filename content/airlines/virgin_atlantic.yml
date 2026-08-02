@@ -1,0 +1,300 @@
+id: airline_virgin_atlantic
+mono: VS
+name: Virgin Atlantic
+titleH1:
+  en: Flying with a dog on Virgin Atlantic
+  fr: Voyager avec un chien sur Virgin Atlantic
+  es: Volar con un perro en Virgin Atlantic
+  pt: "Viajar com um cachorro na Virgin Atlantic"
+metaDesc:
+  en: "Virgin Atlantic pet policy: cargo-only via approved agent, cabin assistance dogs, restrictions and official sources."
+  fr: "Politique animaux Virgin Atlantic : fret uniquement via agent agréé, chiens d'assistance en cabine, restrictions et sources officielles."
+  es: "Política de mascotas de Virgin Atlantic: solo carga a través de un agente autorizado, perros de asistencia en cabina, restricciones y fuentes oficiales."
+  pt: "Política de animais da Virgin Atlantic: somente carga via agente autorizado, cães de assistência na cabine, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: United Kingdom · LHR
+      fr: Royaume-Uni · LHR
+      es: Reino Unido · LHR
+      pt: "Reino Unido · LHR"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin or checked pets; cats & dogs travel only as cargo via an approved agent, plus assistance dogs in the cabin.
+  fr: Pas d'animaux en cabine ni en bagage enregistré ; chats et chiens uniquement en fret via un agent agréé, plus les chiens d'assistance en cabine.
+  es: Sin mascotas en cabina ni facturadas; los gatos y perros viajan solo como carga a través de un agente autorizado, además de los perros de asistencia en cabina.
+  pt: "Sem animais na cabine nem despachados; gatos e cachorros viajam somente como carga via agente autorizado, além dos cães de assistência na cabine."
+ladder:
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: cats & dogs
+      fr: chats & chiens
+      es: gatos y perros
+      pt: "gatos e cachorros"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No admitida
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only recognised assistance dogs.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance reconnus.
+      es: Sin mascotas en cabina; solo perros de asistencia reconocidos.
+      pt: "Sem animais na cabine — somente cães de assistência reconhecidos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No admitida
+      pt: "Não permitido"
+    detail:
+      en: Pets aren't accepted as passenger checked baggage.
+      fr: Les animaux ne sont pas acceptés en bagage enregistré passager.
+      es: Las mascotas no se aceptan como equipaje facturado del pasajero.
+      pt: "Animais não são aceitos como bagagem despachada de passageiro."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Virgin Atlantic Cargo
+      fr: Virgin Atlantic Cargo
+      es: Virgin Atlantic Cargo
+      pt: "Virgin Atlantic Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Vía agente
+      pt: "Via agente"
+    detail:
+      en: Cats & dogs only, point-to-point, min 10 weeks, IATA kennel. Book ≥ 7 days ahead via the Cargo dept or an IATA pet agent.
+      fr: Chats et chiens uniquement, point à point, min 10 semaines, caisse IATA. Réserver ≥ 7 jours à l'avance via le service Cargo ou un agent IATA.
+      es: Solo gatos y perros, punto a punto, mín. 10 semanas, jaula IATA. Reserva ≥ 7 días antes a través del departamento de carga o un agente IATA de mascotas.
+      pt: "Somente gatos e cachorros, ponto a ponto, mín. 10 semanas, caixa de transporte IATA. Reserve com ≥ 7 dias de antecedência pelo departamento de Carga ou um agente IATA de animais."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin / hold
+        fr: Cabine / soute
+        es: Cabina / bodega
+        pt: "Cabine / porão"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Cargo (via pet agent)
+        fr: Fret (via agent)
+        es: Carga (vía agente de mascotas)
+        pt: "Carga (via agente de animais)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Assistance dog (cabin)
+        fr: Chien d'assistance (cabine)
+        es: Perro de asistencia (cabina)
+        pt: "Cão de assistência (cabine)"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Cost depends on kennel size and route, quoted by the Cargo department (no fixed fare).
+    fr: Le coût dépend de la taille de la caisse et de la route, chiffré par le service Cargo (pas de tarif fixe).
+    es: El coste depende del tamaño de la jaula y de la ruta, presupuestado por el departamento de carga (sin tarifa fija).
+    pt: "O custo depende do tamanho da caixa de transporte e da rota, cotado pelo departamento de Carga (sem tarifa fixa)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: "Snub-nosed dogs & cats are refused: all pugs, Boston terrier, Brussels Griffon, English/Japanese toy spaniels, Pekingese, English/French/American bulldog, Shih Tzu, and Himalayan/Persian cats. Crossbreeds need a side-profile photo for a decision."
+      fr: "Chiens et chats au nez écrasé refusés : tous les carlins, Boston terrier, Griffon bruxellois, épagneuls nains anglais/japonais, pékinois, bouledogue anglais/français/américain, Shih Tzu, et chats himalayens/persans. Les croisés nécessitent une photo de profil pour décision."
+      es: "Se rechazan los perros y gatos de hocico chato: todos los carlinos, Boston terrier, grifón de Bruselas, spaniels toy inglés/japonés, pekinés, bulldog inglés/francés/americano, Shih Tzu, y gatos himalayo/persa. Los cruces necesitan una foto de perfil para una decisión."
+      pt: "Cachorros e gatos de focinho achatado são recusados: todos os pugs, Boston terrier, Griffon de Bruxelas, spaniels anões inglês/japonês, Pequinês, bulldog inglês/francês/americano, Shih Tzu, e gatos himalaio/persa. Cruzamentos precisam de uma foto de perfil para a decisão."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+      - cls: warn
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Dangerous breeds (pit bull types, American Staffordshire, Dogo Argentino, Fila, Tosa, Boerboel, Bully Kutta) aren't accepted. Pets must not be sedated.
+      fr: Les races dangereuses (types pit-bull, American Staffordshire, Dogo Argentino, Fila, Tosa, Boerboel, Bully Kutta) ne sont pas acceptées. Les animaux ne doivent pas être sédatés.
+      es: Las razas peligrosas (tipos pit bull, American Staffordshire, Dogo Argentino, Fila, Tosa, Boerboel, Bully Kutta) no se aceptan. Las mascotas no deben ir sedadas.
+      pt: "Raças perigosas (tipos pit bull, American Staffordshire, Dogo Argentino, Fila, Tosa, Boerboel, Bully Kutta) não são aceitas. Os animais não podem ser sedados."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Virgin Atlantic publishes no numeric hold-temperature limits; pets travel as manifested cargo.
+    fr: Virgin Atlantic ne publie pas de limites chiffrées de température en soute ; les animaux voyagent en fret manifesté.
+    es: Virgin Atlantic no publica límites numéricos de temperatura en bodega; las mascotas viajan como carga manifestada.
+    pt: "A Virgin Atlantic não publica limites numéricos de temperatura de porão; os animais viajam como carga manifestada."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Recognised assistance dogs (ADI-accredited) travel in the cabin; snub-nosed and Dangerous Dogs Act breeds are excluded.
+      fr: Les chiens d'assistance reconnus (accrédités ADI) voyagent en cabine ; les races au nez écrasé et du Dangerous Dogs Act sont exclues.
+      es: Los perros de asistencia reconocidos (acreditados por ADI) viajan en cabina; las razas de hocico chato y las del Dangerous Dogs Act quedan excluidas.
+      pt: "Cães de assistência reconhecidos (credenciados pela ADI) viajam na cabine; raças de focinho achatado e as do Dangerous Dogs Act ficam excluídas."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Notify Special Assistance ≥ 72 h ahead with training + health docs. US: DOT form (+ relief over 8 h)."
+      fr: "Prévenir l'Assistance spéciale ≥ 72 h à l'avance avec les documents de dressage + santé. USA : formulaire DOT (+ soulagement au-delà de 8 h)."
+      es: "Avisa a Asistencia Especial ≥ 72 h antes con la documentación de adiestramiento y de salud. EE. UU.: formulario DOT (+ alivio en vuelos de más de 8 h)."
+      pt: "Avise a Assistência Especial com ≥ 72 h de antecedência, com os documentos de treinamento e de saúde. EUA: formulário DOT (+ alívio em voos acima de 8 h)."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo gatos y perros
+      pt: "Somente gatos e cachorros"
+    value:
+      en: Only cats and dogs are carried (cargo); no other species and no emotional-support animals.
+      fr: Seuls les chats et chiens sont transportés (fret) ; pas d'autres espèces ni animaux de soutien émotionnel.
+      es: Solo se transportan gatos y perros (carga); ninguna otra especie ni animales de apoyo emocional.
+      pt: "Somente gatos e cachorros são transportados (carga); nenhuma outra espécie e nenhum animal de apoio emocional."
+  - icon: ✈️
+    label:
+      en: Point-to-point
+      fr: Point à point
+      es: Punto a punto
+      pt: "Ponto a ponto"
+    value:
+      en: Pets are moved point-to-point only — Virgin doesn't tranship pets, and not all routes are offered.
+      fr: Les animaux sont transportés point à point uniquement — Virgin ne fait pas de transbordement, et toutes les routes ne sont pas proposées.
+      es: Las mascotas se transportan solo punto a punto; Virgin no hace transbordo de mascotas y no se ofrecen todas las rutas.
+      pt: "Os animais são transportados somente ponto a ponto — a Virgin não faz transbordo de animais, e nem todas as rotas são oferecidas."
+  - icon: ⏱️
+    label:
+      en: Book 7 days ahead
+      fr: Réserver 7 jours avant
+      es: Reserva 7 días antes
+      pt: "Reserve com 7 dias de antecedência"
+    value:
+      en: Pet cargo can't be booked online — contact the Cargo dept or an IATA pet agent ≥ 7 days ahead.
+      fr: Le fret animalier ne se réserve pas en ligne — contacter le service Cargo ou un agent IATA ≥ 7 jours à l'avance.
+      es: La carga de mascotas no se puede reservar en línea; contacta con el departamento de carga o un agente IATA de mascotas ≥ 7 días antes.
+      pt: "A carga de animais não pode ser reservada on-line — entre em contato com o departamento de Carga ou um agente IATA de animais com ≥ 7 dias de antecedência."
+book:
+  host: virginatlantic.com
+  url: https://www.virginatlantic.com/
+sources:
+  en: Official Virgin Atlantic & Cargo pages · last verified 11 July 2026
+  fr: Pages officielles Virgin Atlantic & Cargo · dernière vérification 11 juillet 2026
+  es: Páginas oficiales de Virgin Atlantic y Cargo · última verificación 11 de julio de 2026
+  pt: "Páginas oficiais da Virgin Atlantic e da Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

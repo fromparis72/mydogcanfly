@@ -1,0 +1,288 @@
+id: airline_air_mauritius
+mono: MK
+name: Air Mauritius
+titleH1:
+  en: Flying with a dog on Air Mauritius
+  fr: Voyager avec un chien sur Air Mauritius
+  es: Volar con un perro en Air Mauritius
+  pt: "Viajar com um cachorro pela Air Mauritius"
+metaDesc:
+  en: "Air Mauritius pet policy: no cabin pets, hold and cargo, strict Mauritius quarantine and official sources."
+  fr: "Politique animaux Air Mauritius : pas d'animaux en cabine, soute et fret, quarantaine stricte à Maurice et sources officielles."
+  es: "Política de mascotas de Air Mauritius: sin mascotas en cabina, bodega y carga, cuarentena estricta en Mauricio y fuentes oficiales."
+  pt: "Política de animais da Air Mauritius: sem animais na cabine, porão e carga, quarentena rigorosa em Maurício e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Mauritius · MRU
+      fr: Maurice · MRU
+      es: Mauricio · MRU
+      pt: "Ilha Maurício · MRU"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets except guide dogs; pets travel in the hold or via cargo — with strict Mauritius quarantine on import.
+  fr: Pas d'animaux en cabine sauf chiens guides ; les animaux voyagent en soute ou en fret — avec une quarantaine stricte à Maurice à l'importation.
+  es: No se admiten mascotas en cabina salvo perros guía; las mascotas viajan en bodega o como carga — con cuarentena estricta en Mauricio a la importación.
+  pt: "Nenhum animal na cabine, exceto cães-guia; os animais viajam no porão ou via carga — com quarentena rigorosa em Maurício na importação."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 62
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 30
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: solo / unusual
+      fr: seul / inhabituel
+      es: solo / inusual
+      pt: "sozinho / fora do padrão"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Strict no-pets-in-cabin policy — only guide dogs for passengers with disabilities.
+      fr: Politique stricte sans animaux en cabine — seulement les chiens guides pour passagers handicapés.
+      es: Política estricta de no admitir mascotas en cabina — solo perros guía para pasajeros con discapacidad.
+      pt: "Política estrita de nenhum animal na cabine — somente cães-guia para passageiros com deficiência."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: With prior reservation & documents, dogs, cats & household birds as checked baggage from Mauritius, per IATA rules. Reptiles/rodents cargo-only.
+      fr: Sur réservation préalable et documents, chiens, chats et oiseaux domestiques en bagage enregistré au départ de Maurice, selon les règles IATA. Reptiles/rongeurs en fret uniquement.
+      es: Con reserva previa y documentos, perros, gatos y aves domésticas como equipaje facturado desde Mauricio, según las reglas de la IATA. Reptiles/roedores solo como carga.
+      pt: "Com reserva prévia e documentos, cachorros, gatos e aves domésticas como bagagem despachada partindo de Maurício, conforme as regras da IATA. Répteis e roedores somente como carga."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: ✈️
+    name:
+      en: Air Mauritius Cargo
+      fr: Air Mauritius Cargo
+      es: Air Mauritius Cargo
+      pt: "Air Mauritius Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Solo pets, unusual sizes, reptiles & rodents via cargo or a freight forwarder.
+      fr: Animaux non accompagnés, tailles inhabituelles, reptiles et rongeurs via le fret ou un transitaire.
+      es: Mascotas no acompañadas, tamaños inusuales, reptiles y roedores vía carga o un agente de carga.
+      pt: "Animais sozinhos, tamanhos fora do padrão, répteis e roedores via carga ou um despachante de carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold (checked, per IATA)
+        fr: Soute (enregistré, selon IATA)
+        es: Bodega (facturado, según IATA)
+        pt: "Porão (despachado, conforme IATA)"
+      value:
+        en: Excess-baggage rate (on request)
+        fr: Tarif bagage excédentaire (sur demande)
+        es: Tarifa de exceso de equipaje (bajo petición)
+        pt: "Tarifa de excesso de bagagem (sob consulta)"
+    - label:
+        en: Cargo (solo / unusual)
+        fr: Fret (seul / inhabituel)
+        es: Carga (solo / inusual)
+        pt: "Carga (sozinho / fora do padrão)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: The pet + container + food is charged as excess baggage; rates on request.
+    fr: L'animal + le contenant + la nourriture est facturé en bagage excédentaire ; tarifs sur demande.
+    es: La mascota + el contenedor + la comida se cobran como exceso de equipaje; tarifas bajo petición.
+    pt: "O animal + a caixa de transporte + a comida são cobrados como excesso de bagagem; tarifas sob consulta."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Special-condition breeds
+      fr: Races sous conditions
+      es: Razas con condiciones especiales
+      pt: "Raças com condições especiais"
+    pills:
+      - cls: warn
+        label:
+          en: Special conditions
+          fr: Conditions spéciales
+          es: Condiciones especiales
+          pt: "Condições especiais"
+    note:
+      en: Special conditions may apply to certain categories, e.g. bulldogs, bull terriers and Burmese cats.
+      fr: Des conditions spéciales peuvent s'appliquer à certaines catégories, par ex. bouledogues, bull terriers et chats birmans.
+      es: Pueden aplicarse condiciones especiales a determinadas categorías, p. ej. bulldogs, bull terriers y gatos birmanos.
+      pt: "Condições especiais podem se aplicar a certas categorias, por exemplo buldogues, bull terriers e gatos birmaneses."
+  - icon: 📄
+    title:
+      en: Import & health
+      fr: Import & santé
+      es: Importación y salud
+      pt: "Importação e saúde"
+    pills:
+      - cls: warn
+        label:
+          en: IATA + permits
+          fr: IATA + permis
+          es: IATA + permisos
+          pt: "IATA + autorizações"
+    note:
+      en: Pets must be healthy with up-to-date vaccinations and export/import/transit permits, per the IATA Live Animals Regulations.
+      fr: Les animaux doivent être sains avec des vaccinations à jour et des permis d'export/import/transit, selon la réglementation IATA Live Animals.
+      es: Las mascotas deben estar sanas con las vacunas al día y permisos de exportación/importación/tránsito, según el Reglamento IATA de Animales Vivos.
+      pt: "Os animais devem estar saudáveis, com vacinações em dia e autorizações de exportação/importação/trânsito, conforme o Regulamento IATA de Animais Vivos."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Air Mauritius publishes no hold-temperature limits; carriage follows the IATA Live Animals Regulations.
+    fr: Air Mauritius ne publie pas de limites de température en soute ; le transport suit la réglementation IATA Live Animals.
+    es: Air Mauritius no publica límites de temperatura en bodega; el transporte sigue el Reglamento IATA de Animales Vivos.
+    pt: "A Air Mauritius não divulga limites de temperatura no porão; o transporte segue o Regulamento IATA de Animais Vivos."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide dogs for passengers with disabilities are carried free in the cabin, on top of the baggage allowance.
+      fr: Les chiens guides pour passagers handicapés sont transportés gratuitement en cabine, en plus de la franchise bagages.
+      es: Los perros guía para pasajeros con discapacidad se transportan gratis en cabina, además de la franquicia de equipaje.
+      pt: "Cães-guia para passageiros com deficiência são transportados gratuitamente na cabine, além da franquia de bagagem."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Notify at booking with all documents (per the conditions of carriage).
+      fr: Prévenir à la réservation avec tous les documents (selon les conditions de transport).
+      es: Avisa al reservar con todos los documentos (según las condiciones de transporte).
+      pt: "Avise no momento da reserva, com todos os documentos (conforme as condições de transporte)."
+goodToKnow:
+  - icon: 📄
+    label:
+      en: Mauritius quarantine
+      fr: Quarantaine Maurice
+      es: Cuarentena en Mauricio
+      pt: "Quarentena em Maurício"
+    value:
+      en: Import to Mauritius needs a permit from the Livestock & Veterinary Division; the pet is quarantined 5 days on arrival (up to 30 by origin), with charges.
+      fr: L'importation à Maurice nécessite un permis de la Division vétérinaire ; l'animal est mis en quarantaine 5 jours à l'arrivée (jusqu'à 30 selon l'origine), avec frais.
+      es: La importación a Mauricio requiere un permiso de la División de Ganadería y Veterinaria; la mascota se pone en cuarentena 5 días a la llegada (hasta 30 según el origen), con gastos.
+      pt: "A importação para Maurício exige uma autorização da Divisão de Pecuária e Veterinária; o animal fica em quarentena por 5 dias na chegada (até 30 conforme a origem), com custos."
+  - icon: 🛡️
+    label:
+      en: IATA rules
+      fr: Règles IATA
+      es: Reglas IATA
+      pt: "Regras da IATA"
+    value:
+      en: Acceptance strictly follows the latest IATA Live Animals Regulations; pets must be healthy and vaccinated.
+      fr: L'acceptation suit strictement la dernière réglementation IATA Live Animals ; les animaux doivent être sains et vaccinés.
+      es: La aceptación sigue estrictamente el último Reglamento IATA de Animales Vivos; las mascotas deben estar sanas y vacunadas.
+      pt: "A aceitação segue estritamente a versão mais recente do Regulamento IATA de Animais Vivos; os animais devem estar saudáveis e vacinados."
+  - icon: 🔁
+    label:
+      en: Long transits
+      fr: Longs transits
+      es: Tránsitos largos
+      pt: "Trânsitos longos"
+    value:
+      en: For long/overnight transits in Mauritius, a paid feed-and-walk service can be arranged.
+      fr: Pour les longs transits/nuitées à Maurice, un service payant de nourrissage et de promenade peut être organisé.
+      es: Para tránsitos largos o con pernoctación en Mauricio, se puede contratar un servicio de pago de alimentación y paseo.
+      pt: "Para trânsitos longos ou com pernoite em Maurício, é possível contratar um serviço pago de alimentação e passeio."
+book:
+  host: airmauritius.com
+  url: https://www.airmauritius.com/
+sources:
+  en: 3 Air Mauritius sources · last verified 11 July 2026
+  fr: 3 sources Air Mauritius · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Air Mauritius · última verificación 11 de julio de 2026
+  pt: "3 fontes da Air Mauritius · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

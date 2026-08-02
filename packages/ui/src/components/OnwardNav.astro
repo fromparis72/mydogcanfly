@@ -1,0 +1,130 @@
+---
+/* Onward navigation — shared "Where to next?" block for airline fiches AND country guides.
+   Lets a visitor jump straight to: a destination country's entry requirements, an airline
+   fiche, or the flight finder — without looping back through a search.
+   Destination-aware: if the URL carries ?to=<iso> (passed by the finder when it links to an
+   airline fiche), a direct button to that country's requirements is shown. */
+import { loadKB, slugFor, inlineT } from "@mydogcanfly/knowledge";
+import { localizeHref } from "../lib/routes";
+
+interface Props { locale?: string; currentAirlineId?: string; currentCountryIso?: string; defaultIso?: string; defaultName?: string; bookUrl?: string; bookHost?: string }
+const { locale = "en", currentAirlineId, currentCountryIso, defaultIso, defaultName, bookUrl, bookHost } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const kb = loadKB();
+
+const cbase = localizeHref("/countries/", locale);
+const abase = localizeHref("/airlines/", locale);
+// Query string avant l'ancre : après "#", tout est fragment et n'atteint pas location.search.
+// Depuis une fiche compagnie, on transmet la compagnie pour que le Finder ouvre déjà en contexte.
+const finderHref = localizeHref("/", locale)
+  + (currentAirlineId ? `?air=${currentAirlineId}` : "")
+  + "#flight-finder";
+
+const countryList = [...kb.countries.values()]
+  .map((c) => ({ iso: c.iso2.toLowerCase(), name: (c.name as unknown as Record<string, string>)[locale] ?? (c.name as unknown as { en: string }).en }))
+  .filter((c) => c.iso !== currentCountryIso)
+  .sort((a, b) => a.name.localeCompare(b.name, locale));
+const airlineList = [...kb.airlines.values()]
+  .map((a) => ({ slug: slugFor(a.id), name: (a as unknown as { name: string }).name, id: a.id }))
+  .filter((a) => a.id !== currentAirlineId)
+  .sort((a, b) => a.name.localeCompare(b.name, locale));
+
+const nsNames: Record<string, string> = Object.fromEntries(
+  [...kb.countries.values()].map((c) => [c.iso2.toLowerCase(), (c.name as unknown as Record<string, string>)[locale] ?? (c.name as unknown as { en: string }).en]),
+);
+const nsPrefix = T("Entry requirements — ", "Modalités d'entrée — ", "Requisitos de entrada — ");
+// Carry the current airline into the destination link (?via=), so the country page can keep offering
+// "you were considering <airline>?" instead of losing that choice between step 1 and step 2.
+const via = currentAirlineId ? `?via=${currentAirlineId}` : "";
+// Default suggestion (airline pages): the carrier's home country. Overridden client-side by ?to=<iso>.
+const defHref = defaultIso ? `${cbase}${defaultIso}/${via}` : "";
+const defLabel = defaultIso && defaultName ? nsPrefix + defaultName : "";
+const showPrimary = !!(defaultIso || bookUrl);
+---
+<section class="onav">
+  <div class="onav__head">
+    <span class="onav__ic">🧭</span>
+    <div>
+      <h2>{T("Where to next?", "Où aller ensuite ?", "¿Adónde vamos ahora?")}</h2>
+      <p>{T("Go straight to what you need — no need to run a new search.", "Allez directement à l'essentiel — sans relancer une recherche.", "Ve directamente a lo que necesitas — sin volver a buscar.")}</p>
+    </div>
+  </div>
+
+  {showPrimary && (
+    <div class="onav__primary">
+      <a id="onav-dest" class="onav__btn" data-carry="breed" href={defHref || "#"} hidden={!defaultIso}>📋 <span id="onav-dest-label">{defLabel}</span> →</a>
+      {bookUrl && (
+        <a class="onav__book" href={bookUrl} rel="nofollow noopener" target="_blank">🌐 {bookHost ? `${bookHost} · ` : ""}{T("book", "réserver", "reservar")} ↗</a>
+      )}
+    </div>
+  )}
+
+  <div class="onav__grid">
+    <div class="onav__ctl">
+      <label for="onav-country">📋 {defaultIso ? T("Or another destination", "Ou une autre destination", "O otro destino") : T("Destination country requirements", "Modalités d'un pays de destination", "Requisitos del país de destino")}</label>
+      <select id="onav-country" aria-label={T("Destination country", "Pays de destination", "País de destino")}>
+        <option value="" selected disabled>{T("Choose a country…", "Choisir un pays…", "Elige un país…")}</option>
+        {countryList.map((c) => (<option value={`${cbase}${c.iso}/${via}`}>{c.name}</option>))}
+      </select>
+    </div>
+    <div class="onav__ctl">
+      <label for="onav-airline">🐾 {T("Check an airline", "Voir une compagnie", "Ver una aerolínea")}</label>
+      <select id="onav-airline" aria-label={T("Airline", "Compagnie", "Aerolínea")}>
+        <option value="" selected disabled>{T("Choose an airline…", "Choisir une compagnie…", "Elige una aerolínea…")}</option>
+        {airlineList.map((a) => (<option value={`${abase}${a.slug}/`}>{a.name}</option>))}
+      </select>
+    </div>
+    <a class="onav__finder" data-carry="breed" href={finderHref}>🔎 {T("Search a flight", "Rechercher un vol", "Buscar un vuelo")}</a>
+  </div>
+</section>
+
+<script define:vars={{ nsNames, cbase, nsPrefix, via, currentAirlineId }}>
+  (function () {
+    // On an airline fiche, this IS the airline the visitor is considering → update the sticky context.
+    if (currentAirlineId && window.mdcfCtx && window.mdcfCtx.setAir) window.mdcfCtx.setAir(currentAirlineId);
+    var to = (new URLSearchParams(location.search).get("to") || "").toLowerCase().replace(/[^a-z]/g, "");
+    var link = document.getElementById("onav-dest");
+    var label = document.getElementById("onav-dest-label");
+    if (to && nsNames[to] && link && label) {
+      link.href = cbase + to + "/" + via;
+      label.textContent = nsPrefix + nsNames[to];
+      link.hidden = false;
+    }
+    // Keep the dog's breed in the URL when jumping via the selects (they navigate in JS, not <a>).
+    var breed = new URLSearchParams(location.search).get("breed");
+    var withBreed = function (url) { if (!breed) return url; return url + (url.indexOf("?") >= 0 ? "&" : "?") + "breed=" + encodeURIComponent(breed); };
+    var go = function (sel) { if (sel && sel.value) location.href = withBreed(sel.value); };
+    var c = document.getElementById("onav-country");
+    var a = document.getElementById("onav-airline");
+    if (c) c.addEventListener("change", function () { go(c); });
+    if (a) a.addEventListener("change", function () { go(a); });
+  })();
+</script>
+
+<style>
+  .onav { background: linear-gradient(180deg, #f5f9ff, #ffffff); border: 1px solid #cfe0f5; border-radius: 16px; padding: 20px 22px; margin: 0 0 16px; }
+  .onav__head { display: flex; gap: 12px; align-items: flex-start; }
+  .onav__ic { font-size: 22px; line-height: 1.25; }
+  .onav h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: 0; }
+  .onav__head p { margin: 4px 0 0; color: var(--mdcf-muted, #5b6b7f); font-size: 14px; }
+  .onav__primary { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; margin-top: 16px; }
+  .onav__btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px;
+    background: var(--mdcf-surface, #fff); color: var(--mdcf-navy, #011d48); border: 1.5px solid var(--mdcf-navy, #011d48); font-weight: 600; text-decoration: none; transition: background .18s ease, color .18s ease; }
+  .onav__btn:hover { background: var(--mdcf-navy, #011d48); color: #fff; }
+  .onav__book { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; box-sizing: border-box; padding: 0 16px; border-radius: 999px;
+    background: #fff; border: 1px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-accent-ink, #b4530a); font-weight: 700; font-size: 14px; text-decoration: none; }
+  .onav__book:hover { border-color: var(--mdcf-accent-ink, #b4530a); box-shadow: 0 2px 8px rgba(15, 23, 42, .06); }
+  .onav__grid { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; margin-top: 16px; }
+  .onav__ctl { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .onav__ctl label { font-weight: 700; font-size: 13px; color: var(--mdcf-ink, #1a2433); }
+  .onav__ctl select { width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--mdcf-line, #e6ebf1); background: #fff; font: inherit; font-size: 14.5px; color: var(--mdcf-ink, #1a2433); }
+  .onav__finder { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 42px; box-sizing: border-box; padding: 0 16px; border-radius: 12px;
+    border: 1px solid var(--mdcf-line, #e6ebf1); background: #fff; color: var(--mdcf-ink, #1a2433); font-weight: 700; font-size: 14px; text-decoration: none; white-space: nowrap; }
+  .onav__finder:hover { border-color: var(--mdcf-accent-ink, #b4530a); color: var(--mdcf-accent-ink, #b4530a); }
+  @media (max-width: 640px) {
+    .onav { padding: 16px 16px; }
+    .onav__grid { grid-template-columns: 1fr; gap: 12px; }
+    .onav__finder { min-height: 44px; }
+  }
+</style>

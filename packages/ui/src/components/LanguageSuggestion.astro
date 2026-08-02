@@ -1,0 +1,104 @@
+---
+/* Bandeau « ce site existe aussi dans votre langue » — une proposition, jamais une redirection.
+ *
+ * Ce composant remplace le 302 que le Worker posait sur « / » jusqu'au 01/08/2026. Le
+ * raisonnement est dans l'en-tête de public/_worker.js ; en deux mots : une URL annoncée
+ * comme canonique par le sitemap et les hreflang doit répondre la même chose à tout le
+ * monde. Le besoin auquel la redirection répondait reste réel — un francophone qui tape le
+ * domaine nu tombe sur de l'anglais — mais il se traite par une suggestion visible.
+ *
+ * Trois principes, dans l'ordre d'importance :
+ *
+ *   1. Rien ne bouge tout seul. Le bandeau propose un lien ; c'est le lecteur qui clique.
+ *   2. Le refus est définitif. « Non merci » écrit le cookie de la langue courante, et le
+ *      bandeau ne reparaît plus. Un bandeau qu'on doit fermer deux fois est une nuisance.
+ *   3. Le texte est écrit dans la langue proposée, pas dans celle de la page. Proposer le
+ *      portugais à un Brésilien dans une phrase anglaise, c'est rater la moitié du geste.
+ *
+ * Le bandeau est rendu masqué (`hidden`) et n'est révélé que par le script. Un robot qui
+ * n'exécute pas JavaScript ne voit rien ; un robot qui l'exécute voit un lien de plus vers
+ * une page déjà déclarée en hreflang. Dans les deux cas, aucune ambiguïté sur la page servie.
+ *
+ * Posé sur les quatre accueils uniquement : c'est là, et là seulement, qu'on arrive sans
+ * avoir choisi sa langue. Sur une page profonde, on vient d'un résultat de recherche déjà
+ * dans la bonne langue.
+ */
+const { locale } = Astro.props as { locale: string };
+
+/** Une entrée par langue publique. `label` est dans la langue proposée — voir principe 3. */
+const LANGS = [
+  { code: "en", home: "/", offer: "This site is available in English.", go: "View in English", no: "No thanks" },
+  { code: "fr", home: "/fr/", offer: "Ce site existe en français.", go: "Voir en français", no: "Non merci" },
+  { code: "es", home: "/es/", offer: "Este sitio está disponible en español.", go: "Ver en español", no: "No, gracias" },
+  { code: "pt", home: "/pt/", offer: "Este site está disponível em português.", go: "Ver em português", no: "Agora não" },
+];
+---
+
+<div id="mdcf-langsug" hidden>
+  <div class="lsug__in">
+    <span class="lsug__txt" id="lsug-txt"></span>
+    <a class="lsug__go" id="lsug-go" href="/"></a>
+    <button class="lsug__no" id="lsug-no" type="button"></button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ LANGS, locale }}>
+  (function () {
+    var bar = document.getElementById("mdcf-langsug");
+    if (!bar) return;
+
+    /* Un choix déjà exprimé — par le sélecteur du bandeau ou celui de l'en-tête — clôt le
+     * sujet. On ne propose rien à quelqu'un qui a déjà répondu. */
+    if (/(?:^|;\s*)mdcf_lang=/.test(document.cookie)) return;
+
+    /* `navigator.languages` d'abord : il porte l'ordre de préférence réel, là où
+     * `navigator.language` ne donne que le premier. On ne retient que le préfixe — « pt-BR »
+     * et « pt-PT » mènent au même site, et « fr-CA » au français. */
+    var wanted = null;
+    var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language];
+    for (var i = 0; i < prefs.length && !wanted; i++) {
+      var head = String(prefs[i] || "").toLowerCase().split("-")[0];
+      for (var j = 0; j < LANGS.length; j++) if (LANGS[j].code === head) { wanted = LANGS[j]; break; }
+    }
+    /* Langue inconnue de nous, ou déjà celle de la page : rien à proposer. */
+    if (!wanted || wanted.code === locale) return;
+
+    var remember = function (code) {
+      document.cookie = "mdcf_lang=" + code + "; Path=/; Max-Age=31536000; SameSite=Lax";
+    };
+
+    document.getElementById("lsug-txt").textContent = wanted.offer;
+    var go = document.getElementById("lsug-go");
+    go.textContent = wanted.go;
+    go.href = wanted.home;
+    go.setAttribute("hreflang", wanted.code);
+    go.addEventListener("click", function () { remember(wanted.code); });
+
+    var no = document.getElementById("lsug-no");
+    no.textContent = wanted.no;
+    no.addEventListener("click", function () {
+      remember(locale);
+      bar.hidden = true;
+    });
+
+    bar.hidden = false;
+  })();
+</script>
+
+<style>
+  /* Le bandeau pousse la page vers le bas au lieu de la recouvrir : il apparaît après le
+   * rendu, et un élément flottant qui surgit sur un texte qu'on a commencé à lire est plus
+   * agaçant qu'utile. */
+  #mdcf-langsug { background: var(--mdcf-accent-soft); border-bottom: 1px solid var(--mdcf-line); }
+  .lsug__in { max-width: var(--mdcf-max); margin: 0 auto; padding: 10px 20px;
+    display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; font-size: 14px; }
+  .lsug__txt { color: var(--mdcf-ink); }
+  .lsug__go { color: var(--mdcf-accent-ink); font-weight: 600; text-decoration: underline; }
+  .lsug__go:hover { color: var(--mdcf-accent-hover); }
+  /* Le refus est volontairement discret — présent et cliquable, mais il ne rivalise pas
+   * avec la proposition. */
+  .lsug__no { margin-left: auto; background: none; border: 0; padding: 4px 6px; cursor: pointer;
+    color: var(--mdcf-muted); font: inherit; font-size: 13px; text-decoration: underline; }
+  .lsug__no:hover { color: var(--mdcf-ink); }
+  @media (max-width: 560px) { .lsug__no { margin-left: 0; } }
+</style>

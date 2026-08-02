@@ -1,0 +1,322 @@
+id: airline_swiss
+mono: LX
+name: SWISS
+titleH1:
+  en: Flying with a dog on SWISS
+  fr: Voyager avec un chien sur SWISS
+  es: Volar con un perro en SWISS
+  pt: "Viajar com um cachorro na SWISS"
+metaDesc:
+  en: "SWISS pet policy: cabin, air-conditioned hold and Swiss WorldCargo rules, fares by zone, breed limits and official sources."
+  fr: "Politique animaux SWISS : cabine, soute climatisée et Swiss WorldCargo, tarifs par zone, restrictions de races et sources officielles."
+  es: "Política de mascotas de SWISS: cabina, bodega climatizada y normas de Swiss WorldCargo, tarifas por zona, restricciones de razas y fuentes oficiales."
+  pt: "Política de animais da SWISS: cabine, porão com ar-condicionado e regras da Swiss WorldCargo, tarifas por zona, limites por raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Switzerland · ZRH
+      fr: Suisse · ZRH
+      es: Suiza · ZRH
+      pt: "Suíça · ZRH"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & small dogs in the cabin or air-conditioned hold — snub-nosed breeds cabin-only, paperwork required.
+  fr: Chats et petits chiens en cabine ou en soute climatisée — races au nez écrasé en cabine seulement, formalités requises.
+  es: Gatos y perros pequeños en cabina o bodega climatizada; las razas braquicéfalas solo en cabina, con documentación obligatoria.
+  pt: "Gatos e cachorros pequenos na cabine ou no porão com ar-condicionado — raças de focinho achatado somente na cabine, documentação obrigatória."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: "> 8 kg"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: unaccompanied
+      fr: non accompagné
+      es: sin acompañante
+      pt: "sem acompanhante"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats ≤ 8 kg incl. carrier in a soft bag under the seat (max 55 × 40 × 23 cm); max 2, min 12 weeks. Signed cabin form required.
+      fr: Chiens et chats ≤ 8 kg avec le sac dans un sac souple sous le siège (max 55 × 40 × 23 cm) ; max 2, min 12 semaines. Formulaire cabine signé requis.
+      es: Perros y gatos de ≤ 8 kg con el bolso en una bolsa blanda bajo el asiento (máx. 55 × 40 × 23 cm); máx. 2, mín. 12 semanas. Se requiere formulario de cabina firmado.
+      pt: "Cachorros e gatos ≤ 8 kg com a bolsa em uma bolsa macia sob o assento (máx. 55 × 40 × 23 cm); máx. 2, mín. 12 semanas. É exigido um formulário de cabine assinado."
+    fee:
+      en: CHF 75–140
+      fr: 75–140 CHF
+      es: 75–140 CHF
+      pt: "CHF 75–140"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Non-snub-nosed dogs & cats over 8 kg as excess baggage in the air-conditioned hold, IATA crate. Stricter ventilation rules from May 2026.
+      fr: Chiens et chats non brachycéphales de plus de 8 kg en bagage excédentaire dans la soute climatisée, caisse IATA. Règles de ventilation renforcées dès mai 2026.
+      es: Perros y gatos no braquicéfalos de más de 8 kg como equipaje en exceso en la bodega climatizada, con jaula IATA. Normas de ventilación más estrictas desde mayo de 2026.
+      pt: "Cachorros e gatos que não sejam de focinho achatado com mais de 8 kg, como excesso de bagagem no porão com ar-condicionado, em caixa de transporte IATA. Regras de ventilação mais rígidas a partir de maio de 2026."
+    fee:
+      en: CHF 115–440
+      fr: 115–440 CHF
+      es: 115–440 CHF
+      pt: "CHF 115–440"
+  - icon: ✈️
+    name:
+      en: Swiss WorldCargo
+      fr: Swiss WorldCargo
+      es: Swiss WorldCargo
+      pt: "Swiss WorldCargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Unaccompanied animals or countries requiring cargo (UK, Ireland, UAE, Hong Kong, South Africa). Zurich Animal Care Center.
+      fr: Animaux non accompagnés ou pays imposant le fret (R.-U., Irlande, Émirats, Hong Kong, Afrique du Sud). Animal Care Center de Zurich.
+      es: Animales sin acompañante o países que exigen carga (Reino Unido, Irlanda, Emiratos, Hong Kong, Sudáfrica). Animal Care Center de Zúrich.
+      pt: "Animais sem acompanhante ou países que exigem carga (Reino Unido, Irlanda, EAU, Hong Kong, África do Sul). Zurich Animal Care Center."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: CHF 75–140
+        fr: 75–140 CHF
+        es: 75–140 CHF
+        pt: "CHF 75–140"
+    - label:
+        en: Hold (by zone & crate size)
+        fr: Soute (zone & taille de caisse)
+        es: Bodega (por zona y tamaño de la jaula)
+        pt: "Porão (por zona e tamanho da caixa)"
+      value:
+        en: CHF 115–440
+        fr: 115–440 CHF
+        es: 115–440 CHF
+        pt: "CHF 115–440"
+    - label:
+        en: Transfer surcharge (FRA/MUC/VIE/ZRH/GVA)
+        fr: Surcharge transfert (FRA/MUC/VIE/ZRH/GVA)
+        es: Recargo por conexión (FRA/MUC/VIE/ZRH/GVA)
+        pt: "Sobretaxa de conexão (FRA/MUC/VIE/ZRH/GVA)"
+      value:
+        en: €150 / CHF 170
+        fr: 150 € / 170 CHF
+        es: 150 € / 170 CHF
+        pt: "€150 / CHF 170"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: CHF, by zone; a transfer surcharge applies via certain hubs. Pets are always excess baggage, never in the free allowance.
+    fr: CHF, par zone ; une surcharge de transfert s'applique via certains hubs. Les animaux sont toujours en bagage excédentaire, jamais dans la franchise.
+    es: CHF, por zona; se aplica un recargo por conexión a través de ciertos hubs. Las mascotas siempre son equipaje en exceso, nunca dentro de la franquicia.
+    pt: "CHF, por zona; uma sobretaxa de conexão se aplica via determinados hubs. Os animais são sempre excesso de bagagem, nunca incluídos na franquia gratuita."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed breeds & crossbreeds are cabin-only (barred from the hold): bulldogs (except American), pugs, Boston terrier, boxer, Brussels Griffon, chow chow, Shih Tzu, Pekingese, Shar Pei, Lhasa Apso, Japanese Chin, and Persian/Exotic/Himalayan/British Shorthair/Scottish Fold cats. Via cargo, only with a BOAS grade 0–1 certificate."
+      fr: "Races au nez écrasé et croisés : cabine uniquement (interdits en soute) : bouledogues (sauf américain), carlins, Boston terrier, boxer, Griffon bruxellois, chow chow, Shih Tzu, pékinois, Shar Pei, Lhasa Apso, Chin japonais, et chats persans/exotiques/himalayens/British Shorthair/Scottish Fold. En fret, seulement avec un certificat BOAS grade 0–1."
+      es: "Las razas braquicéfalas y sus cruces solo viajan en cabina (prohibidas en bodega): bulldogs (salvo el americano), carlinos, Boston terrier, bóxer, grifón de Bruselas, chow chow, Shih Tzu, pekinés, Shar Pei, Lhasa Apso, Chin japonés, y gatos persa/exótico/himalayo/British Shorthair/Scottish Fold. En carga, solo con un certificado BOAS grado 0–1."
+      pt: "Raças de focinho achatado e seus cruzamentos viajam somente na cabine (proibidas no porão): buldogues (exceto o americano), pugs, Boston terrier, boxer, grifão de Bruxelas, chow chow, Shih Tzu, pequinês, Shar Pei, Lhasa Apso, Chin japonês, e gatos persa/exótico/himalaia/British Shorthair/Scottish Fold. Via carga, somente com um certificado BOAS grau 0–1."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: Cargo crate only
+          fr: Caisse fret seule
+          es: Solo jaula de carga
+          pt: "Somente em caixa de carga"
+      - cls: warn
+        label:
+          en: Min. 12 weeks
+          fr: 12 semaines min.
+          es: Mín. 12 semanas
+          pt: "Mín. 12 semanas"
+    note:
+      en: Dangerous breeds (American Bulldog, American Bully, pit bull types, Caucasian Ovcharka, Dogo Argentino, Kangal, Rottweiler) only in a reinforced cargo crate. Pregnant animals & 'teacup' dogs refused; min. 12 weeks.
+      fr: Races dangereuses (American Bulldog, American Bully, types pit-bull, berger du Caucase, Dogo Argentino, Kangal, Rottweiler) uniquement en caisse fret renforcée. Animaux gestants et chiens « teacup » refusés ; min. 12 semaines.
+      es: Las razas peligrosas (American Bulldog, American Bully, tipos pit bull, pastor del Cáucaso, Dogo Argentino, Kangal, Rottweiler) solo en jaula de carga reforzada. Se rechazan animales gestantes y perros «teacup»; mín. 12 semanas.
+      pt: "Raças perigosas (American Bulldog, American Bully, tipos pit bull, pastor do Cáucaso, Dogo Argentino, Kangal, Rottweiler) somente em caixa de carga reforçada. Animais prenhes e cachorros \"teacup\" são recusados; mín. 12 semanas."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Air-conditioned hold
+        fr: Soute climatisée
+        es: Bodega climatizada
+        pt: "Porão climatizado"
+    - cls: warn
+      label:
+        en: Heat limit 27 °C
+        fr: Limite chaleur 27 °C
+        es: Límite de calor 27 °C
+        pt: "Limite de calor 27 °C"
+  note:
+    en: Swiss WorldCargo restricts pet carriage when outside temperatures exceed 27 °C (rebooking to a cooler time). The Nov–Mar winter embargo covers cold-sensitive species but not dogs and cats. The hold is air-conditioned, similar to the cabin.
+    fr: Swiss WorldCargo limite le transport quand la température extérieure dépasse 27 °C (report à un horaire plus frais). L'embargo hivernal nov.–mars vise les espèces sensibles au froid, pas les chiens et chats. La soute est climatisée, comparable à la cabine.
+    es: Swiss WorldCargo limita el transporte de mascotas cuando la temperatura exterior supera los 27 °C (reprogramación a una hora más fresca). El embargo invernal de nov.–mar. cubre las especies sensibles al frío, pero no a perros y gatos. La bodega está climatizada, similar a la cabina.
+    pt: "A Swiss WorldCargo restringe o transporte de animais quando as temperaturas externas ultrapassam 27 °C (reagendamento para um horário mais fresco). O embargo de inverno nov.–mar. cobre espécies sensíveis ao frio, mas não cachorros e gatos. O porão tem ar-condicionado, semelhante à cabine."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: One assistance dog free (two on US flights), no carrier needed, in the footwell; min. 4 months.
+      fr: Un chien d'assistance gratuit (deux sur les vols USA), sans sac, dans l'espace au sol ; min. 4 mois.
+      es: Un perro de asistencia gratis (dos en vuelos a EE. UU.), sin jaula, en el espacio para los pies; mín. 4 meses.
+      pt: "Um cachorro de assistência grátis (dois em voos para os EUA), sem necessidade de bolsa, no espaço para os pés; mín. 4 meses."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Accredited certificate (ADI/ADEu/IGDF). US flights: DOT forms ≥ 48 h, dogs 6 months+, CDC form. Emotional-support dogs not accepted."
+      fr: "Certificat accrédité (ADI/ADEu/IGDF). Vols USA : formulaires DOT ≥ 48 h, chiens 6 mois+, formulaire CDC. Chiens de soutien émotionnel non acceptés."
+      es: "Certificado acreditado (ADI/ADEu/IGDF). Vuelos a EE. UU.: formularios DOT ≥ 48 h, perros de 6 meses o más, formulario CDC. No se aceptan perros de apoyo emocional."
+      pt: "Certificado credenciado (ADI/ADEu/IGDF). Voos para os EUA: formulários DOT ≥ 48 h, cachorros com 6 meses+, formulário CDC. Cachorros de suporte emocional não são aceitos."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: US entry
+      fr: Entrée aux USA
+      es: Entrada a EE. UU.
+      pt: "Entrada nos EUA"
+    value:
+      en: Dogs to the US only to specific airports, 6 months+, with the CDC Dog Import Form.
+      fr: Chiens vers les USA uniquement vers certains aéroports, 6 mois+, avec le formulaire CDC Dog Import.
+      es: Los perros a EE. UU. solo a aeropuertos concretos, de 6 meses o más, con el formulario CDC Dog Import.
+      pt: "Cachorros para os EUA somente para aeroportos específicos, com 6 meses+, com o formulário CDC Dog Import."
+  - icon: 📦
+    label:
+      en: New crate rules
+      fr: Nouvelles règles caisse
+      es: Nuevas normas de jaula
+      pt: "Novas regras de caixa de transporte"
+    value:
+      en: From 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused.
+      fr: Dès le 4 mai 2026, les caisses de soute doivent respecter des limites de ventilation IATA plus strictes, sous peine de refus.
+      es: Desde el 4 de mayo de 2026, las jaulas de bodega deben cumplir límites de ventilación IATA más estrictos o serán rechazadas.
+      pt: "A partir de 4 de maio de 2026, as caixas de transporte do porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas."
+  - icon: 🛋️
+    label:
+      en: Lounges
+      fr: Salons
+      es: Salas VIP
+      pt: "Salas VIP"
+    value:
+      en: Pets are welcome in SWISS lounges, in their carrier or crate.
+      fr: Les animaux sont admis dans les salons SWISS, dans leur sac ou caisse.
+      es: Las mascotas son bienvenidas en las salas VIP de SWISS, en su bolso o jaula.
+      pt: "Os animais são bem-vindos nas salas VIP da SWISS, em sua bolsa ou caixa de transporte."
+book:
+  host: swiss.com
+  url: https://www.swiss.com/
+sources:
+  en: 5 SWISS & Swiss WorldCargo sources · last verified 11 July 2026
+  fr: 5 sources SWISS & Swiss WorldCargo · dernière vérification 11 juillet 2026
+  es: 5 fuentes de SWISS y Swiss WorldCargo · última verificación 11 de julio de 2026
+  pt: "5 fontes da SWISS e da Swiss WorldCargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

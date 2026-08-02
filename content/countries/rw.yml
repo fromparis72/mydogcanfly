@@ -1,0 +1,381 @@
+# Country Entry Guide — Rwanda (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_rw
+iso2: "RW"
+name: { en: "Rwanda", fr: "Rwanda", es: "Ruanda", pt: "Ruanda" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: RAB
+  authorityUrl: https://rwandatrade.rw/procedure/419?l=en
+  intro:
+    en: "Rwanda is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Rwanda Agriculture and Animal Resources Development Board (RAB)."
+    fr: "Le Rwanda est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Rwanda Agriculture and Animal Resources Development Board (RAB)."
+    es: "Ruanda no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Rwanda Agriculture and Animal Resources Development Board (RAB)."
+    pt: "Ruanda é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Rwanda Agriculture and Animal Resources Development Board (RAB)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "RAB is the veterinary competent authority that issues the export permit and the veterinary health certificate for dogs and cats."
+        fr: "Le RAB est l'autorité vétérinaire compétente qui délivre le permis d'export et le certificat sanitaire vétérinaire pour les chiens et chats."
+        es: "El RAB es la autoridad veterinaria competente que emite el permiso de exportación y el certificado sanitario veterinario para perros y gatos."
+        pt: "O RAB é a autoridade veterinária competente que emite a autorização de exportação e o atestado de saúde veterinário para cachorros e gatos."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Rwanda with your dog", fr: "Voyager au Rwanda avec ton chien", es: "Viajar a Ruanda con tu perro", pt: "Viajar para Ruanda com seu cachorro" }
+  intro:
+    en: >-
+      Rwanda welcomes pet dogs, but entry is controlled by its own authorities — the Rwanda
+      Agriculture and Animal Resources Development Board (RAB), the veterinary services, and the
+      Rwanda Inspectorate, Competition and Consumer Protection Authority (RICA), with customs handled
+      by the Rwanda Revenue Authority (RRA). No dog may arrive without an import permit obtained in
+      advance and a RAB non-objection. Every dog needs a valid rabies vaccination and an
+      international veterinary (health) certificate signed by a veterinarian in the country of
+      export. Rwanda is not an EU country and does not recognise the EU pet passport as an entry
+      document; it also does not operate an EU-style list of approved countries. Rwanda is a
+      rabies-endemic country, so the rabies vaccination is treated as a core requirement for every
+      origin. What mainly changes with your origin is who endorses your certificate and how far
+      ahead you must plan. This guide explains each step before you book your flight.
+    fr: >-
+      Le Rwanda accueille les chiens de compagnie, mais l'entrée est contrôlée par ses propres
+      autorités — le Rwanda Agriculture and Animal Resources Development Board (RAB), les services
+      vétérinaires et la Rwanda Inspectorate, Competition and Consumer Protection Authority (RICA),
+      le dédouanement étant assuré par la Rwanda Revenue Authority (RRA). Aucun chien ne peut arriver
+      sans un permis d'importation obtenu à l'avance et une non-objection du RAB. Chaque chien doit
+      disposer d'une vaccination antirabique valide et d'un certificat vétérinaire international
+      (certificat sanitaire) signé par un vétérinaire du pays d'export. Le Rwanda n'est pas un pays
+      de l'UE et ne reconnaît pas le passeport européen comme document d'entrée ; il n'applique pas
+      non plus de liste de pays approuvés à l'européenne. Le Rwanda est un pays d'enzootie rabique :
+      la vaccination antirabique est donc une exigence de base pour toute origine. Ce qui change
+      surtout selon l'origine, c'est qui vise ton certificat et le délai à prévoir. Ce guide
+      détaille chaque étape avant de réserver ton vol.
+    es: >-
+      Ruanda acoge a los perros de compañía, pero la entrada está controlada por sus propias
+      autoridades — el Rwanda Agriculture and Animal Resources Development Board (RAB), los servicios
+      veterinarios y la Rwanda Inspectorate, Competition and Consumer Protection Authority (RICA),
+      con el despacho aduanero a cargo de la Rwanda Revenue Authority (RRA). Ningún perro puede llegar
+      sin un permiso de importación obtenido con antelación y una no objeción del RAB. Cada perro
+      necesita una vacunación antirrábica válida y un certificado veterinario internacional
+      (certificado sanitario) firmado por un veterinario del país de exportación. Ruanda no es un país
+      de la UE y no reconoce el pasaporte europeo para mascotas como documento de entrada; tampoco
+      aplica una lista de países aprobados al estilo de la UE. Ruanda es un país de rabia endémica, por
+      lo que la vacunación antirrábica se considera un requisito básico para todo origen. Lo que cambia
+      sobre todo según el origen es quién refrenda tu certificado y con cuánta antelación debes
+      planificar. Esta guía explica cada paso antes de reservar tu vuelo.
+
+    pt: "Ruanda recebe bem cachorros de estimação, mas a entrada é controlada por suas próprias autoridades — o Rwanda Agriculture and Animal Resources Development Board (RAB), os serviços veterinários, e a Rwanda Inspectorate, Competition and Consumer Protection Authority (RICA), com a alfândega administrada pela Rwanda Revenue Authority (RRA). Nenhum cachorro pode chegar sem uma autorização de importação obtida com antecedência e uma não objeção do RAB. Todo cachorro precisa de uma vacinação antirrábica válida e de um certificado veterinário (de saúde) internacional assinado por um veterinário no país de exportação. Ruanda não é um país da UE e não reconhece o passaporte europeu para animais de estimação como documento de entrada; também não opera uma lista de países aprovados no estilo da UE. Ruanda tem raiva endêmica, portanto a vacinação antirrábica é tratada como exigência central para qualquer origem. O que muda principalmente conforme a origem é quem endossa seu certificado e com quanto tempo de antecedência você deve planejar. Este guia explica cada etapa antes de você reservar seu voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance import permit, RAB non-objection and vet certificate", fr: "Modérée — permis préalable, non-objection du RAB et certificat vétérinaire", es: "Moderada — permiso de importación previo, no objeción del RAB y certificado veterinario", pt: "Moderada — autorização de importação prévia, não objeção do RAB e certificado veterinário" }
+
+prepTime:
+  eu:
+    en: "From Europe: allow ~4–6 weeks for the import permit and RAB non-objection, a rabies vaccination given 30 days to 12 months before entry, and an international veterinary certificate signed before departure."
+    fr: "Depuis l'Europe : prévoir ~4 à 6 semaines pour le permis et la non-objection du RAB, une vaccination antirabique faite de 30 jours à 12 mois avant l'entrée et un certificat vétérinaire international signé avant le départ."
+    es: "Desde Europa: prevé ~4 a 6 semanas para el permiso de importación y la no objeción del RAB, una vacunación antirrábica administrada de 30 días a 12 meses antes de la entrada, y un certificado veterinario internacional firmado antes de la salida."
+    pt: "Da Europa: reserve ~4 a 6 semanas para a autorização de importação e a não objeção do RAB, uma vacinação antirrábica aplicada entre 30 dias e 12 meses antes da entrada, e um certificado veterinário internacional assinado antes da partida."
+  listed:
+    en: "From other non-EU countries: ~4–6 weeks — the same core steps (import permit, RAB non-objection, rabies vaccination, international veterinary certificate), with the certificate endorsed by your national veterinary authority."
+    fr: "Depuis d'autres pays hors UE : ~4 à 6 semaines — mêmes étapes de base (permis, non-objection du RAB, vaccination antirabique, certificat vétérinaire international), le certificat étant visé par ton autorité vétérinaire nationale."
+    es: "Desde otros países no pertenecientes a la UE: ~4 a 6 semanas — los mismos pasos básicos (permiso de importación, no objeción del RAB, vacunación antirrábica, certificado veterinario internacional), con el certificado refrendado por tu autoridad veterinaria nacional."
+    pt: "De outros países fora da UE: ~4 a 6 semanas — as mesmas etapas principais (autorização de importação, não objeção do RAB, vacinação antirrábica, certificado veterinário internacional), com o certificado endossado pela sua autoridade veterinária nacional."
+  nonListed:
+    en: "From all origins: Rwanda applies the same import-permit and certificate requirements; allow extra time so the rabies vaccination is at least 30 days old and the permit is issued (about 4–5 working days once documents are complete) before travel."
+    fr: "Depuis toute origine : le Rwanda applique les mêmes exigences de permis et de certificat ; prévois une marge pour que le vaccin ait au moins 30 jours et que le permis soit délivré (environ 4 à 5 jours ouvrables une fois le dossier complet) avant le voyage."
+    es: "Desde todos los orígenes: Ruanda aplica los mismos requisitos de permiso de importación y de certificado; prevé un margen para que la vacuna antirrábica tenga al menos 30 días y para que el permiso se expida (unos 4 a 5 días hábiles una vez completo el expediente) antes del viaje."
+    pt: "De todas as origens: Ruanda aplica as mesmas exigências de autorização de importação e certificado; reserve tempo extra para que a vacinação antirrábica tenha pelo menos 30 dias e para que a autorização seja emitida (cerca de 4 a 5 dias úteis assim que os documentos estiverem completos) antes da viagem."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Import permit + RAB non-objection", fr: "Permis d'import + non-objection RAB", es: "Permiso de importación + no objeción del RAB", pt: "Autorização de importação + não objeção do RAB" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required for identification (ISO recommended)", fr: "Requise pour l'identification (ISO recommandée)", es: "Obligatorio para la identificación (ISO recomendado)", pt: "Obrigatório para identificação (ISO recomendado)" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (30 days to 12 months before entry)", fr: "Requise (30 jours à 12 mois avant l'entrée)", es: "Obligatoria (de 30 días a 12 meses antes de la entrada)", pt: "Obrigatória (entre 30 dias e 12 meses antes da entrada)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not listed in published conditions", fr: "Non mentionné dans les conditions publiées", es: "No mencionada en las condiciones publicadas", pt: "Não consta das condições publicadas" }
+    cls: ok
+  - requirement: { en: "International veterinary certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Certificado veterinário internacional" }
+    status: { en: "Required (from export-country vet)", fr: "Requis (vétérinaire du pays d'export)", es: "Obligatorio (veterinario del país de exportación)", pt: "Obrigatório (emitido por veterinário do país de exportação)" }
+    cls: warn
+  - requirement: { en: "Airport veterinary inspection", fr: "Inspection vétérinaire à l'aéroport", es: "Inspección veterinaria en el aeropuerto", pt: "Inspeção veterinária no aeroporto" }
+    status: { en: "Required (Kigali International Airport)", fr: "Requise (aéroport international de Kigali)", es: "Obligatoria (Aeropuerto Internacional de Kigali)", pt: "Obrigatória (Aeroporto Internacional de Kigali)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published as routine", fr: "Non prévue de façon systématique", es: "No prevista de forma sistemática", pt: "Não prevista como rotina" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and RAB / the veterinary services set the exact conditions on your import permit and non-objection."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et le RAB / les services vétérinaires fixent les conditions exactes sur ton permis d'importation et ton non-objection."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y el RAB / los servicios veterinarios fijan las condiciones exactas en tu permiso de importación y tu no objeción."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro, e o RAB / os serviços veterinários definem as condições exatas da sua autorização de importação e da não objeção."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Rwanda (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Rwanda (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Ruanda (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Ruanda (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Rwanda", fr: "Pays de destination — Rwanda", es: "País de destino — Ruanda", pt: "País de destino — Ruanda" }
+      text:
+        en: "Rwanda always requires an advance import permit and a RAB non-objection, a rabies vaccination given 30 days to 12 months before entry, and an international veterinary certificate from a vet in the country of export. Entry and inspection take place at a designated point, chiefly Kigali International Airport."
+        fr: "Le Rwanda exige toujours un permis d'importation préalable et une non-objection du RAB, une vaccination antirabique faite de 30 jours à 12 mois avant l'entrée et un certificat vétérinaire international d'un vétérinaire du pays d'export. L'entrée et l'inspection se font à un point désigné, principalement l'aéroport international de Kigali."
+        es: "Ruanda exige siempre un permiso de importación previo y una no objeción del RAB, una vacunación antirrábica administrada de 30 días a 12 meses antes de la entrada, y un certificado veterinario internacional de un veterinario del país de exportación. La entrada y la inspección se realizan en un punto designado, principalmente el Aeropuerto Internacional de Kigali."
+        pt: "Ruanda sempre exige uma autorização de importação prévia e uma não objeção do RAB, uma vacinação antirrábica aplicada entre 30 dias e 12 meses antes da entrada, e um certificado veterinário internacional de um veterinário no país de exportação. A entrada e a inspeção ocorrem em um ponto designado, principalmente o Aeroporto Internacional de Kigali."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Your departure country decides who endorses the veterinary certificate — for example an EU official veterinarian, or a USDA-accredited vet with APHIS endorsement from the United States. Rwanda's published conditions do not set easier or harder tiers by origin; the core documents are the same for everyone."
+        fr: "Ton pays de départ détermine qui vise le certificat vétérinaire — par exemple un vétérinaire officiel de l'UE, ou un vétérinaire agréé USDA avec visa APHIS depuis les États-Unis. Les conditions publiées du Rwanda n'établissent pas de niveaux plus ou moins stricts selon l'origine ; les documents de base sont identiques pour tous."
+        es: "Tu país de salida decide quién refrenda el certificado veterinario — por ejemplo, un veterinario oficial de la UE, o un veterinario acreditado por el USDA con visado de APHIS desde Estados Unidos. Las condiciones publicadas de Ruanda no establecen niveles más o menos estrictos según el origen; los documentos básicos son los mismos para todos."
+        pt: "Seu país de partida determina quem endossa o certificado veterinário — por exemplo, um veterinário oficial da UE, ou um veterinário credenciado pela USDA com endosso da APHIS, no caso dos Estados Unidos. As condições publicadas por Ruanda não estabelecem níveis mais fáceis ou mais difíceis conforme a origem; os documentos principais são os mesmos para todos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's real origin and recent movements can affect what the export-country vet is able to certify and what the veterinary officer asks for on arrival at Kigali. Confirm your dog's history with your vet before you finalise the permit application."
+        fr: "L'origine réelle et les déplacements récents de ton chien peuvent influer sur ce que le vétérinaire du pays d'export peut attester et sur ce que l'agent vétérinaire demande à l'arrivée à Kigali. Confirme l'historique de ton chien avec ton vétérinaire avant de finaliser la demande de permis."
+        es: "El origen real y los desplazamientos recientes de tu perro pueden influir en lo que el veterinario del país de exportación puede certificar y en lo que el agente veterinario solicita a la llegada a Kigali. Confirma el historial de tu perro con tu veterinario antes de cerrar la solicitud del permiso."
+        pt: "A origem real e os deslocamentos recentes do seu cachorro podem afetar o que o veterinário do país de exportação consegue certificar e o que o agente veterinário exige na chegada a Kigali. Confirme o histórico do seu cachorro com seu veterinário antes de finalizar a solicitação da autorização."
+  note:
+    en: "So read the requirements below as Rwanda's framework, then confirm your dog's exact origin and history with your vet — the import permit lists the precise conditions."
+    fr: "Lis donc les exigences ci-dessous comme le cadre rwandais, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis d'importation liste les conditions précises."
+    es: "Así que lee los requisitos siguientes como el marco de Ruanda y luego confirma el origen y el historial exactos de tu perro con tu veterinario — el permiso de importación detalla las condiciones precisas."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral de Ruanda, e depois confirme a origem exata e o histórico do seu cachorro com seu veterinário — a autorização de importação lista as condições precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Obtained in advance before the dog travels. The importer applies for an import permit for dogs and cats through Rwanda's authorities (RAB / veterinary services, with RICA handling import inspection). Published guidance indicates the permit is ready about 4–5 working days after all necessary documents are received.", fr: "À obtenir à l'avance avant le voyage du chien. L'importateur demande un permis d'importation pour chiens et chats auprès des autorités rwandaises (RAB / services vétérinaires, la RICA assurant l'inspection à l'importation). L'information publiée indique que le permis est prêt environ 4 à 5 jours ouvrables après réception de tous les documents nécessaires.", es: "Se obtiene con antelación antes de que el perro viaje. El importador solicita un permiso de importación para perros y gatos ante las autoridades ruandesas (RAB / servicios veterinarios, con la RICA a cargo de la inspección de importación). La información publicada indica que el permiso está listo unos 4 a 5 días hábiles después de recibir todos los documentos necesarios.", pt: "Obtida com antecedência antes da viagem do cachorro. O importador solicita uma autorização de importação para cachorros e gatos junto às autoridades de Ruanda (RAB / serviços veterinários, com a RICA cuidando da inspeção de importação). As orientações publicadas indicam que a autorização fica pronta cerca de 4 a 5 dias úteis após o recebimento de todos os documentos necessários." }
+    exceptions: { en: "No exceptions — an import permit is required for importing dogs and cats. Confirm the current application channel with RAB / the veterinary services.", fr: "Aucune exception — un permis d'importation est requis pour importer des chiens et des chats. Confirme le circuit de demande à jour auprès du RAB / des services vétérinaires.", es: "Sin excepciones — se exige un permiso de importación para importar perros y gatos. Confirma el canal de solicitud vigente con el RAB / los servicios veterinarios.", pt: "Sem exceções — uma autorização de importação é exigida para importar cachorros e gatos. Confirme o canal atual de solicitação com o RAB / os serviços veterinários." }
+    ref: { en: "Rwanda Trade Portal (RRA) — Full procedure for the import of dogs and cats; Obtain import permit (dogs and cats)", fr: "Portail du commerce du Rwanda (RRA) — Procédure complète d'importation de chiens et chats ; Obtenir un permis d'importation (chiens et chats)", es: "Rwanda Trade Portal (RRA) — Procedimiento completo para la importación de perros y gatos; Obtener el permiso de importación (perros y gatos)", pt: "Rwanda Trade Portal (RRA) — Full procedure for the import of dogs and cats; Obtain import permit (dogs and cats)" }
+  - item: { en: "RAB non-objection", fr: "Non-objection du RAB", es: "No objeción del RAB", pt: "Não objeção do RAB" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The import procedure for dogs and cats includes obtaining a RAB (Rwanda Agriculture and Animal Resources Development Board) non-objection as part of the clearance file, alongside the import permit and the veterinary certificate.", fr: "La procédure d'importation des chiens et chats prévoit l'obtention d'une non-objection du RAB (Rwanda Agriculture and Animal Resources Development Board) dans le dossier de dédouanement, en plus du permis d'importation et du certificat vétérinaire.", es: "El procedimiento de importación de perros y gatos incluye obtener una no objeción del RAB (Rwanda Agriculture and Animal Resources Development Board) como parte del expediente de despacho, junto con el permiso de importación y el certificado veterinario.", pt: "O procedimento de importação para cachorros e gatos inclui a obtenção de uma não objeção do RAB (Rwanda Agriculture and Animal Resources Development Board) como parte do processo de liberação, junto com a autorização de importação e o certificado veterinário." }
+    exceptions: { en: "None published. The RAB non-objection is part of the official import procedure for dogs and cats.", fr: "Aucune exception publiée. La non-objection du RAB fait partie de la procédure d'importation officielle des chiens et chats.", es: "Ninguna publicada. La no objeción del RAB forma parte del procedimiento de importación oficial de perros y gatos.", pt: "Nenhuma publicada. A não objeção do RAB faz parte do procedimento oficial de importação para cachorros e gatos." }
+    ref: { en: "Rwanda Trade Portal (RRA) — Full procedure for the import of dogs and cats (Obtain RAB non-objection)", fr: "Portail du commerce du Rwanda (RRA) — Procédure complète d'importation de chiens et chats (Obtenir la non-objection du RAB)", es: "Rwanda Trade Portal (RRA) — Procedimiento completo para la importación de perros y gatos (Obtener la no objeción del RAB)", pt: "Rwanda Trade Portal (RRA) — Full procedure for the import of dogs and cats (Obtain RAB non-objection)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required for identification", fr: "Requise pour l'identification", es: "Obligatorio para la identificación", pt: "Obrigatório para identificação" }
+    when: { en: "Microchip identification is listed among the documents required to move a dog to Rwanda. An ISO 11784/11785 15-digit microchip is recommended, ideally implanted before the rabies vaccination so the records match.", fr: "L'identification par puce figure parmi les documents requis pour amener un chien au Rwanda. Une puce ISO 11784/11785 à 15 chiffres est recommandée, idéalement posée avant la vaccination antirabique pour que les documents concordent.", es: "La identificación por microchip figura entre los documentos requeridos para llevar un perro a Ruanda. Se recomienda un microchip ISO 11784/11785 de 15 dígitos, idealmente implantado antes de la vacunación antirrábica para que los registros coincidan.", pt: "A identificação por microchip está listada entre os documentos exigidos para mover um cachorro para Ruanda. Um microchip ISO 11784/11785 de 15 dígitos é recomendado, idealmente implantado antes da vacinação antirrábica para que os registros coincidam." }
+    exceptions: { en: "If your microchip is not ISO-compliant, bring your own scanner. Confirm the exact identification requirement on your permit.", fr: "Si ta puce n'est pas compatible ISO, apporte ton propre lecteur. Confirme l'exigence exacte d'identification sur ton permis.", es: "Si tu microchip no es compatible con ISO, lleva tu propio lector. Confirma el requisito exacto de identificación en tu permiso.", pt: "Se o seu microchip não for compatível com a norma ISO, leve seu próprio leitor. Confirme a exigência exata de identificação na sua autorização." }
+    ref: { en: "Official export requirements for Rwanda (Thailand DLD Animal Quarantine) — microchip implantation", fr: "Exigences officielles d'export vers le Rwanda (DLD Thaïlande, quarantaine animale) — pose d'une puce", es: "Requisitos oficiales de exportación a Ruanda (DLD Tailandia, cuarentena animal) — implantación de microchip", pt: "Official export requirements for Rwanda (Thailand DLD Animal Quarantine) — implantação de microchip" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated against rabies with an inactivated rabies vaccine not less than 30 days and not more than 12 months before entry into Rwanda, and the vaccination must remain continuously valid up to the departure date. The certificate must show the date, the vaccine product details and the veterinarian's identity and signature.", fr: "Les chiens doivent être vaccinés contre la rage avec un vaccin antirabique inactivé au moins 30 jours et au plus 12 mois avant l'entrée au Rwanda, la vaccination devant rester valable en continu jusqu'à la date de départ. Le certificat doit indiquer la date, les détails du vaccin et l'identité et la signature du vétérinaire.", es: "Los perros deben estar vacunados contra la rabia con una vacuna antirrábica inactivada al menos 30 días y como máximo 12 meses antes de la entrada en Ruanda, y la vacunación debe permanecer válida de forma continua hasta la fecha de salida. El certificado debe indicar la fecha, los datos del producto vacunal y la identidad y la firma del veterinario.", pt: "Os cachorros devem ser vacinados contra a raiva com uma vacina antirrábica inativada não menos de 30 dias e não mais de 12 meses antes da entrada em Ruanda, e a vacinação deve permanecer continuamente válida até a data de partida. O certificado deve indicar a data, os detalhes do produto vacinal e a identidade e assinatura do veterinário." }
+    exceptions: { en: "None published. Rwanda is a rabies-endemic country and treats the rabies vaccination as a core requirement for every origin.", fr: "Aucune exception publiée. Le Rwanda est un pays d'enzootie rabique et considère la vaccination antirabique comme une exigence de base pour toute origine.", es: "Ninguna publicada. Ruanda es un país de rabia endémica y considera la vacunación antirrábica un requisito básico para todo origen.", pt: "Nenhuma publicada. Ruanda tem raiva endêmica e trata a vacinação antirrábica como exigência central para qualquer origem." }
+    ref: { en: "Official export requirements for Rwanda (Thailand DLD Animal Quarantine) — rabies 30 days to 12 months before departure", fr: "Exigences officielles d'export vers le Rwanda (DLD Thaïlande, quarantaine animale) — rage de 30 jours à 12 mois avant le départ", es: "Requisitos oficiales de exportación a Ruanda (DLD Tailandia, cuarentena animal) — rabia de 30 días a 12 meses antes de la salida", pt: "Official export requirements for Rwanda (Thailand DLD Animal Quarantine) — raiva entre 30 dias e 12 meses antes da partida" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not listed in published conditions", fr: "Non mentionné dans les conditions publiées", es: "No mencionada en las condiciones publicadas", pt: "Não consta das condições publicadas" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Rwanda's published import conditions do not list a rabies antibody (blood) test to enter. Because the requirement is not published, confirm directly with RAB / the veterinary services for your specific origin, especially if you will travel onward.", fr: "Les conditions d'importation publiées du Rwanda ne mentionnent pas de titrage antirabique (prise de sang) pour entrer. Cette exigence n'étant pas publiée, vérifie directement auprès du RAB / des services vétérinaires pour ton origine précise, surtout en cas de voyage ultérieur.", es: "Las condiciones de importación publicadas de Ruanda no incluyen una prueba de titulación de rabia (análisis de sangre) para entrar. Como el requisito no está publicado, verifícalo directamente con el RAB / los servicios veterinarios para tu origen concreto, sobre todo si vas a continuar viaje.", pt: "As condições de importação publicadas por Ruanda não listam um teste sorológico (de sangue) antirrábico para a entrada. Como a exigência não é publicada, confirme diretamente com o RAB / os serviços veterinários para a sua origem específica, especialmente se você seguir viagem depois." }
+    ref: { en: "Rwanda import conditions (no antibody test listed)", fr: "Conditions d'importation du Rwanda (aucun titrage listé)", es: "Condiciones de importación de Ruanda (sin prueba de titulación listada)", pt: "Rwanda import conditions (nenhum teste sorológico listado)" }
+  - item: { en: "International veterinary certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Certificado veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An international veterinary (health) certificate must be issued by a veterinarian in the country of export, certifying the dog's health and vaccinations. From the United States it must be issued by a USDA-accredited veterinarian and endorsed by USDA-APHIS; from the EU it should be endorsed by the national official veterinary authority. Published guidance indicates the certificate should be recent (issued shortly before travel).", fr: "Un certificat vétérinaire international (sanitaire) doit être établi par un vétérinaire du pays d'export, attestant la santé et les vaccinations du chien. Depuis les États-Unis, il doit être établi par un vétérinaire agréé USDA et visé par l'USDA-APHIS ; depuis l'UE, il doit être visé par l'autorité vétérinaire officielle nationale. L'information publiée indique que le certificat doit être récent (établi peu avant le voyage).", es: "Un certificado veterinario internacional (sanitario) debe ser emitido por un veterinario del país de exportación, que certifique la salud y las vacunas del perro. Desde Estados Unidos debe emitirlo un veterinario acreditado por el USDA y refrendarlo el USDA-APHIS; desde la UE debe refrendarlo la autoridad veterinaria oficial nacional. La información publicada indica que el certificado debe ser reciente (emitido poco antes del viaje).", pt: "Um certificado veterinário (de saúde) internacional deve ser emitido por um veterinário no país de exportação, certificando a saúde e as vacinações do cachorro. A partir dos Estados Unidos, deve ser emitido por um veterinário credenciado pela USDA e endossado pela USDA-APHIS; a partir da UE, deve ser endossado pela autoridade veterinária oficial nacional. As orientações publicadas indicam que o certificado deve ser recente (emitido pouco antes da viagem)." }
+    exceptions: { en: "Use the certificate format required by your national veterinary authority and the Rwandan permit; keep copies of the animal's records for entry.", fr: "Utilise le format de certificat exigé par ton autorité vétérinaire nationale et le permis rwandais ; conserve des copies des documents de l'animal pour l'entrée.", es: "Utiliza el formato de certificado exigido por tu autoridad veterinaria nacional y el permiso ruandés; conserva copias de los documentos del animal para la entrada.", pt: "Use o modelo de certificado exigido pela sua autoridade veterinária nacional e pela autorização ruandesa; guarde cópias dos registros do animal para a entrada." }
+    ref: { en: "Rwanda Trade Portal (RRA) — International veterinary certificate / veterinary health certificate for dogs and cats", fr: "Portail du commerce du Rwanda (RRA) — Certificat vétérinaire international / certificat sanitaire pour chiens et chats", es: "Rwanda Trade Portal (RRA) — Certificado veterinario internacional / certificado sanitario veterinario para perros y gatos", pt: "Rwanda Trade Portal (RRA) — International veterinary certificate / veterinary health certificate for dogs and cats" }
+  - item: { en: "Parasite / deworming treatment", fr: "Traitement antiparasitaire / vermifuge", es: "Tratamiento antiparasitario / desparasitación", pt: "Tratamento antiparasitário / vermifugação" }
+    required: { en: "Not published as mandatory", fr: "Non publié comme obligatoire", es: "No publicado como obligatorio", pt: "Não publicado como obrigatório" }
+    when: { en: "A specific deworming or external-parasite treatment is not published as a mandatory entry condition in Rwanda's official import procedure. Deworming before departure is commonly advised as good practice.", fr: "Un traitement vermifuge ou antiparasitaire externe précis n'est pas publié comme condition d'entrée obligatoire dans la procédure d'importation officielle du Rwanda. La vermifugation avant le départ est souvent conseillée en bonne pratique.", es: "En el procedimiento de importación oficial de Ruanda no se publica un tratamiento concreto de desparasitación o contra parásitos externos como condición de entrada obligatoria. Se aconseja habitualmente desparasitar antes de la salida como buena práctica.", pt: "Um tratamento específico de vermifugação ou antiparasitário externo não é publicado como condição obrigatória de entrada no procedimento oficial de importação de Ruanda. A vermifugação antes da partida é comumente recomendada como boa prática." }
+    exceptions: { en: "Confirm any compulsory treatment on your permit and with your vet, especially for tick- and worm-borne diseases.", fr: "Confirme tout traitement obligatoire sur ton permis et avec ton vétérinaire, en particulier pour les maladies transmises par les tiques et les vers.", es: "Confirma cualquier tratamiento obligatorio en tu permiso y con tu veterinario, sobre todo para las enfermedades transmitidas por garrapatas y gusanos.", pt: "Confirme qualquer tratamento obrigatório na sua autorização e com o seu veterinário, especialmente para doenças transmitidas por carrapatos e vermes." }
+    ref: { en: "Rwanda import conditions (no mandatory parasite treatment published)", fr: "Conditions d'importation du Rwanda (aucun traitement antiparasitaire obligatoire publié)", es: "Condiciones de importación de Ruanda (sin tratamiento antiparasitario obligatorio publicado)", pt: "Rwanda import conditions (nenhum tratamento antiparasitário obrigatório publicado)" }
+  - item: { en: "Airport / port-of-entry veterinary inspection", fr: "Inspection vétérinaire à l'aéroport / au point d'entrée", es: "Inspección veterinaria en el aeropuerto / punto de entrada", pt: "Inspeção veterinária no aeroporto / ponto de entrada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dogs and cats are cleared and inspected at a designated point of entry — chiefly Kigali International Airport, and named land borders for road entry. Give the veterinary services advance notice so an officer is available to inspect your dog on arrival, and present the import permit, RAB non-objection and certificates.", fr: "Les chiens et chats sont dédouanés et inspectés à un point d'entrée désigné — principalement l'aéroport international de Kigali, et les postes-frontières nommés pour l'entrée routière. Préviens à l'avance les services vétérinaires afin qu'un agent soit disponible pour inspecter ton chien à l'arrivée, et présente le permis d'importation, la non-objection du RAB et les certificats.", es: "Los perros y gatos se despachan e inspeccionan en un punto de entrada designado — principalmente el Aeropuerto Internacional de Kigali, y los pasos fronterizos terrestres nombrados para la entrada por carretera. Avisa con antelación a los servicios veterinarios para que haya un agente disponible que inspeccione a tu perro a la llegada, y presenta el permiso de importación, la no objeción del RAB y los certificados.", pt: "Cachorros e gatos são liberados e inspecionados em um ponto de entrada designado — principalmente o Aeroporto Internacional de Kigali, e fronteiras terrestres nomeadas para entrada rodoviária. Avise com antecedência os serviços veterinários para que um agente esteja disponível para inspecionar seu cachorro na chegada, e apresente a autorização de importação, a não objeção do RAB e os certificados." }
+    exceptions: { en: "None — inspection applies to imported live animals at the designated point of entry (RICA import inspection under Law No. 31/2017).", fr: "Aucune — l'inspection s'applique aux animaux vivants importés au point d'entrée désigné (inspection à l'importation de la RICA au titre de la Loi n° 31/2017).", es: "Ninguna — la inspección se aplica a los animales vivos importados en el punto de entrada designado (inspección de importación de la RICA en virtud de la Ley n.º 31/2017).", pt: "Nenhuma — a inspeção se aplica a animais vivos importados no ponto de entrada designado (inspeção de importação da RICA segundo a Law No. 31/2017)." }
+    ref: { en: "RICA — Import Inspection Unit; Rwanda Trade Portal (RRA) — clearance of dogs and cats at Kigali International Airport", fr: "RICA — Unité d'inspection à l'importation ; Portail du commerce du Rwanda (RRA) — dédouanement des chiens et chats à l'aéroport international de Kigali", es: "RICA — Unidad de Inspección de Importación; Rwanda Trade Portal (RRA) — despacho de perros y gatos en el Aeropuerto Internacional de Kigali", pt: "RICA — Import Inspection Unit; Rwanda Trade Portal (RRA) — clearance of dogs and cats at Kigali International Airport" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published as routine", fr: "Non prévue de façon systématique", es: "No prevista de forma sistemática", pt: "Não prevista como rotina" }
+    when: { en: "Rwanda's published import procedure does not set a routine quarantine for compliant pet dogs. A dog that is not in apparent good health, or that arrives without the required documents, may be examined further or held at the veterinary officer's discretion.", fr: "La procédure d'importation publiée du Rwanda ne prévoit pas de quarantaine systématique pour les chiens de compagnie conformes. Un chien qui n'est pas en bonne santé apparente, ou qui arrive sans les documents requis, peut faire l'objet d'un examen complémentaire ou être retenu à la discrétion de l'agent vétérinaire.", es: "El procedimiento de importación publicado de Ruanda no establece una cuarentena sistemática para los perros de compañía conformes. Un perro que no esté en aparente buen estado de salud, o que llegue sin los documentos requeridos, puede ser objeto de un examen adicional o retenido a discreción del agente veterinario.", pt: "O procedimento de importação publicado por Ruanda não estabelece uma quarentena sistemática para cachorros de estimação em conformidade. Um cachorro que não pareça estar em boa saúde, ou que chegue sem os documentos exigidos, pode passar por exame adicional ou ser retido a critério do agente veterinário." }
+    exceptions: { en: "The exact conditions and any duration are not published. Confirm on your permit and with the veterinary services.", fr: "Les conditions exactes et toute durée ne sont pas publiées. À confirmer sur ton permis et auprès des services vétérinaires.", es: "Las condiciones exactas y cualquier duración no están publicadas. Confírmalo en tu permiso y con los servicios veterinarios.", pt: "As condições exatas e qualquer duração não são publicadas. Confirme na sua autorização e com os serviços veterinários." }
+    ref: { en: "Rwanda import conditions (no routine quarantine published)", fr: "Conditions d'importation du Rwanda (aucune quarantaine systématique publiée)", es: "Condiciones de importación de Ruanda (sin cuarentena sistemática publicada)", pt: "Rwanda import conditions (nenhuma quarentena sistemática publicada)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "About 4 months", fr: "Environ 4 mois", es: "Unos 4 meses", pt: "Cerca de 4 meses" }
+    when: { en: "Published export requirements for Rwanda state pets must be at least 4 months old. This aligns with the rabies rule: a puppy is typically vaccinated against rabies at around 12 weeks and the vaccine must then be at least 30 days old before entry.", fr: "Les exigences d'export publiées pour le Rwanda indiquent que les animaux doivent avoir au moins 4 mois. Cela concorde avec la règle rabique : un chiot est généralement vacciné contre la rage vers 12 semaines et le vaccin doit ensuite dater d'au moins 30 jours avant l'entrée.", es: "Los requisitos de exportación publicados para Ruanda indican que los animales deben tener al menos 4 meses. Esto concuerda con la regla de la rabia: un cachorro suele vacunarse contra la rabia hacia las 12 semanas y la vacuna debe tener luego al menos 30 días antes de la entrada.", pt: "As exigências de exportação publicadas para Ruanda indicam que os animais de estimação devem ter pelo menos 4 meses. Isso se alinha com a regra da raiva: um filhote é normalmente vacinado contra a raiva por volta de 12 semanas, e a vacina deve então ter pelo menos 30 dias antes da entrada." }
+    exceptions: { en: "Confirm the minimum age for your dog with RAB / the veterinary services and your vet.", fr: "Confirme l'âge minimum pour ton chien auprès du RAB / des services vétérinaires et de ton vétérinaire.", es: "Confirma la edad mínima para tu perro con el RAB / los servicios veterinarios y con tu veterinario.", pt: "Confirme a idade mínima do seu cachorro com o RAB / os serviços veterinários e com seu veterinário." }
+    ref: { en: "Official export requirements for Rwanda (Thailand DLD Animal Quarantine) — pets at least 4 months old", fr: "Exigences officielles d'export vers le Rwanda (DLD Thaïlande, quarantaine animale) — animaux d'au moins 4 mois", es: "Requisitos oficiales de exportación a Ruanda (DLD Tailandia, cuarentena animal) — animales de al menos 4 meses", pt: "Official export requirements for Rwanda (Thailand DLD Animal Quarantine) — animais de estimação com pelo menos 4 meses" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No national import ban found", fr: "Aucune interdiction nationale trouvée", es: "No se ha encontrado prohibición nacional de importación", pt: "Nenhuma proibição nacional de importação encontrada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "We found no official Rwandan breed-specific import ban; entry is controlled by permit, RAB non-objection and health requirements, not by breed. Rwanda applies national dog-ownership rules (registration and annual rabies vaccination) domestically.", fr: "Nous n'avons trouvé aucune interdiction d'importation officielle par race au Rwanda ; l'entrée est encadrée par le permis, la non-objection du RAB et les exigences sanitaires, non par la race. Le Rwanda applique des règles nationales de détention des chiens (enregistrement et vaccination antirabique annuelle) sur son territoire.", es: "No hemos encontrado ninguna prohibición de importación oficial por raza en Ruanda; la entrada se controla mediante el permiso, la no objeción del RAB y los requisitos sanitarios, no por la raza. Ruanda aplica normas nacionales de tenencia de perros (registro y vacunación antirrábica anual) en su territorio.", pt: "Não encontramos nenhuma proibição oficial ruandesa de importação por raça; a entrada é controlada pela autorização, pela não objeção do RAB e pelas exigências sanitárias, não pela raça. Ruanda aplica regras nacionais de posse de cachorros (registro e vacinação antirrábica anual) internamente." }
+    ref: { en: "Rwanda import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation du Rwanda (aucune législation par race citée)", es: "Condiciones de importación de Ruanda (sin legislación por raza citada)", pt: "Rwanda import conditions (nenhuma legislação específica por raça citada)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Rwanda: the EU passport is not a Rwandan document. A dog from Europe needs the import permit and RAB non-objection, a valid rabies vaccination (given 30 days to 12 months before entry), microchip identification and an international veterinary certificate signed by a vet in the country of export, ideally endorsed by the national official veterinary authority. No rabies antibody test is listed in the published conditions."
+      fr: "Aucun raccourci « passeport européen » pour entrer au Rwanda : le passeport UE n'est pas un document rwandais. Un chien venant d'Europe a besoin du permis d'importation et de la non-objection du RAB, d'une vaccination antirabique valide (faite de 30 jours à 12 mois avant l'entrée), d'une identification par puce et d'un certificat vétérinaire international signé par un vétérinaire du pays d'export, idéalement visé par l'autorité vétérinaire officielle nationale. Aucun titrage antirabique n'est mentionné dans les conditions publiées."
+      es: "No hay atajo de «pasaporte europeo» para entrar en Ruanda: el pasaporte de la UE no es un documento ruandés. Un perro procedente de Europa necesita el permiso de importación y la no objeción del RAB, una vacunación antirrábica válida (administrada de 30 días a 12 meses antes de la entrada), identificación por microchip y un certificado veterinario internacional firmado por un veterinario del país de exportación, idealmente refrendado por la autoridad veterinaria oficial nacional. No se menciona ninguna prueba de titulación de rabia en las condiciones publicadas."
+      pt: "Não existe atalho de passaporte europeu para entrar em Ruanda: o passaporte da UE não é um documento ruandês. Um cachorro vindo da Europa precisa da autorização de importação e da não objeção do RAB, de uma vacinação antirrábica válida (aplicada entre 30 dias e 12 meses antes da entrada), de identificação por microchip e de um certificado veterinário internacional assinado por um veterinário no país de exportação, idealmente endossado pela autoridade veterinária oficial nacional. Nenhum teste sorológico antirrábico consta das condições publicadas."
+    cls: warn
+  listed:
+    title: { en: "From other non-EU countries", fr: "Depuis d'autres pays hors UE", es: "Desde otros países no pertenecientes a la UE", pt: "De outros países fora da UE" }
+    body:
+      en: "Rwanda does not operate an EU-style list of approved countries for pet entry. From any non-EU origin the same core requirements apply: import permit, RAB non-objection, rabies vaccination, microchip and international veterinary certificate. From the United States, for example, the certificate must be issued by a USDA-accredited veterinarian and endorsed by USDA-APHIS; note that APHIS does not publish a dedicated Rwanda page, so work from Rwanda's own conditions."
+      fr: "Le Rwanda n'applique pas de liste de pays approuvés à l'européenne pour l'entrée des animaux. Depuis toute origine hors UE, les mêmes exigences de base s'appliquent : permis d'importation, non-objection du RAB, vaccination antirabique, puce et certificat vétérinaire international. Depuis les États-Unis, par exemple, le certificat doit être établi par un vétérinaire agréé USDA et visé par l'USDA-APHIS ; à noter que l'APHIS ne publie pas de page dédiée au Rwanda, appuie-toi donc sur les conditions rwandaises."
+      es: "Ruanda no aplica una lista de países aprobados al estilo de la UE para la entrada de mascotas. Desde cualquier origen no perteneciente a la UE se aplican los mismos requisitos básicos: permiso de importación, no objeción del RAB, vacunación antirrábica, microchip y certificado veterinario internacional. Desde Estados Unidos, por ejemplo, el certificado debe emitirlo un veterinario acreditado por el USDA y refrendarlo el USDA-APHIS; ten en cuenta que APHIS no publica una página específica para Ruanda, así que guíate por las propias condiciones de Ruanda."
+      pt: "Ruanda não opera uma lista de países aprovados no estilo da UE para a entrada de animais de estimação. De qualquer origem fora da UE, aplicam-se as mesmas exigências principais: autorização de importação, não objeção do RAB, vacinação antirrábica, microchip e certificado veterinário internacional. Dos Estados Unidos, por exemplo, o certificado deve ser emitido por um veterinário credenciado pela USDA e endossado pela USDA-APHIS; observe que a APHIS não publica uma página dedicada a Ruanda, portanto trabalhe a partir das próprias condições de Ruanda."
+    cls: warn
+  nonListed:
+    title: { en: "From all other origins", fr: "Depuis toute autre origine", es: "Desde cualquier otro origen", pt: "De todas as outras origens" }
+    body:
+      en: "Whatever the origin, Rwanda's framework is the same: apply in advance for the import permit and RAB non-objection, carry a valid rabies vaccination, microchip and international veterinary certificate, and present everything to the veterinary officer at Kigali International Airport (or a named land border). Arriving without a permit or the required certificates risks refusal, further examination or return at the owner's expense."
+      fr: "Quelle que soit l'origine, le cadre rwandais est le même : demande à l'avance le permis d'importation et la non-objection du RAB, munis-toi d'une vaccination antirabique valide, d'une puce et d'un certificat vétérinaire international, et présente l'ensemble à l'agent vétérinaire à l'aéroport international de Kigali (ou à un poste-frontière nommé). Arriver sans permis ou sans les certificats requis expose à un refus, à un examen complémentaire ou à un renvoi aux frais du propriétaire."
+      es: "Sea cual sea el origen, el marco de Ruanda es el mismo: solicita con antelación el permiso de importación y la no objeción del RAB, lleva una vacunación antirrábica válida, un microchip y un certificado veterinario internacional, y presenta todo al agente veterinario en el Aeropuerto Internacional de Kigali (o en un paso fronterizo terrestre nombrado). Llegar sin permiso o sin los certificados requeridos expone a un rechazo, a un examen adicional o a una devolución a cargo del propietario."
+      pt: "Seja qual for a origem, o quadro de Ruanda é o mesmo: solicite com antecedência a autorização de importação e a não objeção do RAB, leve uma vacinação antirrábica válida, microchip e certificado veterinário internacional, e apresente tudo ao agente veterinário no Aeroporto Internacional de Kigali (ou em uma fronteira terrestre nomeada). Chegar sem uma autorização ou os certificados exigidos arrisca recusa, exame adicional ou devolução por conta do dono."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Rwanda depends on your permit and the certificates you carry."
+    fr: "Ce qui se passe à l'arrivée au Rwanda dépend de ton permis et des certificats que tu porte."
+    es: "Lo que ocurre cuando tu perro llega a Ruanda depende de tu permiso y de los certificados que lleves."
+    pt: "O que acontece quando seu cachorro chega a Ruanda depende da sua autorização e dos certificados que você porta."
+  points:
+    - en: "Enter at a designated point of entry — chiefly Kigali International Airport for air travel — and present the original import permit, the RAB non-objection, the rabies vaccination record and the international veterinary certificate."
+      fr: "Entre par un point d'entrée désigné — principalement l'aéroport international de Kigali pour la voie aérienne — et présente le permis d'importation original, la non-objection du RAB, le carnet de vaccination antirabique et le certificat vétérinaire international."
+      es: "Entra por un punto de entrada designado — principalmente el Aeropuerto Internacional de Kigali para la vía aérea — y presenta el permiso de importación original, la no objeción del RAB, la cartilla de vacunación antirrábica y el certificado veterinario internacional."
+      pt: "Entre por um ponto de entrada designado — principalmente o Aeroporto Internacional de Kigali para viagens aéreas — e apresente a autorização de importação original, a não objeção do RAB, o registro da vacinação antirrábica e o certificado veterinário internacional."
+    - en: "Give the veterinary services advance notice of your arrival so an officer is available to inspect your dog; the dog must be free of signs of disease communicable to humans."
+      fr: "Préviens à l'avance les services vétérinaires de ton arrivée afin qu'un agent soit disponible pour inspecter ton chien ; le chien doit être exempt de signes de maladie transmissible à l'homme."
+      es: "Avisa con antelación a los servicios veterinarios de tu llegada para que haya un agente disponible que inspeccione a tu perro; el perro debe estar libre de signos de enfermedad transmisible a las personas."
+      pt: "Avise com antecedência os serviços veterinários sobre sua chegada para que um agente esteja disponível para inspecionar seu cachorro; o cachorro deve estar livre de sinais de doença transmissível a humanos."
+    - en: "Customs clearance is handled by the Rwanda Revenue Authority (RRA); RICA carries out import inspection of the consignment at the entry point."
+      fr: "Le dédouanement est assuré par la Rwanda Revenue Authority (RRA) ; la RICA effectue l'inspection à l'importation de l'envoi au point d'entrée."
+      es: "El despacho aduanero lo gestiona la Rwanda Revenue Authority (RRA); la RICA realiza la inspección de importación del envío en el punto de entrada."
+      pt: "O desembaraço aduaneiro é feito pela Rwanda Revenue Authority (RRA); a RICA realiza a inspeção de importação da remessa no ponto de entrada."
+    - en: "A dog not in apparent good health, or arriving without the required documents, may be examined further or held at the veterinary officer's discretion."
+      fr: "Un chien qui n'est pas en bonne santé apparente, ou qui arrive sans les documents requis, peut faire l'objet d'un examen complémentaire ou être retenu à la discrétion de l'agent vétérinaire."
+      es: "Un perro que no esté en aparente buen estado de salud, o que llegue sin los documentos requeridos, puede ser objeto de un examen adicional o retenido a discreción del agente veterinario."
+      pt: "Um cachorro que não pareça estar em boa saúde, ou que chegue sem os documentos exigidos, pode passar por exame adicional ou ser retido a critério do agente veterinário."
+    - en: "Carry original documents (not copies) and keep a set with you throughout the journey."
+      fr: "Munis-toi des documents originaux (pas de copies) et garde-en un jeu sur toi durant tout le trajet."
+      es: "Lleva los documentos originales (no copias) y guarda un juego contigo durante todo el trayecto."
+      pt: "Leve os documentos originais (não cópias) e mantenha um jogo com você durante todo o trajeto."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Rwanda's published import conditions control entry through the import permit, the RAB non-objection and health requirements, not through breed. We found no national breed-specific import ban in the official conditions."
+    fr: "Les conditions d'importation publiées du Rwanda encadrent l'entrée par le permis d'importation, la non-objection du RAB et les exigences sanitaires, non par la race. Nous n'avons trouvé aucune interdiction d'importation nationale par race dans les conditions officielles."
+    es: "Las condiciones de importación publicadas de Ruanda controlan la entrada mediante el permiso de importación, la no objeción del RAB y los requisitos sanitarios, no por la raza. No hemos encontrado ninguna prohibición de importación nacional por raza en las condiciones oficiales."
+    pt: "As condições de importação publicadas por Ruanda controlam a entrada por meio da autorização de importação, da não objeção do RAB e das exigências sanitárias, não pela raça. Não encontramos nenhuma proibição nacional de importação por raça nas condições oficiais."
+  cat1:
+    en: "No prohibited-breed list: the official Rwandan import conditions do not name banned breeds. A compliant dog of any breed can be imported once the permit, RAB non-objection, rabies vaccination and veterinary certificate are in order."
+    fr: "Pas de liste de races interdites : les conditions d'importation officielles du Rwanda ne nomment aucune race prohibée. Un chien conforme, quelle que soit sa race, peut être importé dès lors que le permis, la non-objection du RAB, la vaccination antirabique et le certificat vétérinaire sont en règle."
+    es: "Sin lista de razas prohibidas: las condiciones de importación oficiales de Ruanda no nombran ninguna raza prohibida. Un perro conforme, sea cual sea su raza, puede importarse una vez que el permiso, la no objeción del RAB, la vacunación antirrábica y el certificado veterinario están en regla."
+    pt: "Nenhuma lista de raças proibidas: as condições de importação oficiais ruandesas não citam raças banidas. Um cachorro de qualquer raça, em conformidade, pode ser importado desde que a autorização, a não objeção do RAB, a vacinação antirrábica e o certificado veterinário estejam em ordem."
+  cat2:
+    en: "Rwanda does apply national dog-ownership rules on its territory — including registration of dogs with local authorities and annual rabies vaccination — reinforced by RAB. These are domestic ownership and public-health rules, not breed import bans."
+    fr: "Le Rwanda applique bien des règles nationales de détention des chiens sur son territoire — dont l'enregistrement des chiens auprès des autorités locales et la vaccination antirabique annuelle — renforcées par le RAB. Il s'agit de règles de détention et de santé publique internes, non d'interdictions d'importation par race."
+    es: "Ruanda sí aplica normas nacionales de tenencia de perros en su territorio — incluidos el registro de los perros ante las autoridades locales y la vacunación antirrábica anual — reforzadas por el RAB. Son normas internas de tenencia y de salud pública, no prohibiciones de importación por raza."
+    pt: "Ruanda aplica regras nacionais de posse de cachorros em seu território — incluindo o registro de cachorros junto às autoridades locais e a vacinação antirrábica anual — reforçadas pelo RAB. São regras domésticas de posse e de saúde pública, não proibições de importação por raça."
+  note:
+    en: "Because national rules are not always published in full and can change, treat this as 'none found' rather than a guarantee, and verify current breed and ownership conditions with RAB before you travel."
+    fr: "Les règles nationales n'étant pas toujours publiées en intégralité et pouvant évoluer, considère cela comme « rien de trouvé » plutôt qu'une garantie, et vérifie les conditions de race et de détention à jour auprès du RAB avant de voyager."
+    es: "Como las normas nacionales no siempre se publican íntegramente y pueden cambiar, considera esto como «nada encontrado» en lugar de una garantía, y verifica las condiciones vigentes de raza y de tenencia con el RAB antes de viajar."
+    pt: "Como as regras nacionais nem sempre são publicadas na íntegra e podem mudar, trate isso como 'nenhuma encontrada' em vez de uma garantia, e verifique as condições atuais de raça e posse com o RAB antes de viajar."
+
+checklist:
+  - en: "Apply for the import permit and RAB non-objection well before travel (allow about 4–5 working days once documents are complete)"
+    fr: "Demande le permis d'importation et la non-objection du RAB bien avant le voyage (compte environ 4 à 5 jours ouvrables une fois le dossier complet)"
+    es: "Solicita el permiso de importación y la no objeción del RAB bastante antes del viaje (cuenta con unos 4 a 5 días hábiles una vez completo el expediente)"
+    pt: "Solicite a autorização de importação e a não objeção do RAB bem antes da viagem (reserve cerca de 4 a 5 dias úteis assim que os documentos estiverem completos)"
+  - en: "ISO microchip implanted for identification, ideally before the rabies vaccination"
+    fr: "Puce ISO posée pour l'identification, idéalement avant la vaccination antirabique"
+    es: "Microchip ISO implantado para la identificación, idealmente antes de la vacunación antirrábica"
+    pt: "Microchip ISO implantado para identificação, idealmente antes da vacinação antirrábica"
+  - en: "Rabies vaccination given 30 days to 12 months before entry, continuously valid to departure"
+    fr: "Vaccination antirabique faite de 30 jours à 12 mois avant l'entrée, valable en continu jusqu'au départ"
+    es: "Vacunación antirrábica administrada de 30 días a 12 meses antes de la entrada, válida de forma continua hasta la salida"
+    pt: "Vacinação antirrábica aplicada entre 30 dias e 12 meses antes da entrada, continuamente válida até a partida"
+  - en: "International veterinary certificate from a vet in the country of export (USDA-APHIS endorsed from the US; official-vet endorsed from the EU)"
+    fr: "Certificat vétérinaire international d'un vétérinaire du pays d'export (visé USDA-APHIS depuis les États-Unis ; visé par le vétérinaire officiel depuis l'UE)"
+    es: "Certificado veterinario internacional de un veterinario del país de exportación (refrendado por USDA-APHIS desde EE. UU.; refrendado por el veterinario oficial desde la UE)"
+    pt: "Certificado veterinário internacional de um veterinário no país de exportação (endossado pela USDA-APHIS a partir dos EUA; endossado por veterinário oficial a partir da UE)"
+  - en: "Give the veterinary services advance notice for inspection at Kigali International Airport"
+    fr: "Préviens à l'avance les services vétérinaires pour l'inspection à l'aéroport international de Kigali"
+    es: "Avisa con antelación a los servicios veterinarios para la inspección en el Aeropuerto Internacional de Kigali"
+    pt: "Avise com antecedência os serviços veterinários para a inspeção no Aeroporto Internacional de Kigali"
+  - en: "Original permit, RAB non-objection and certificates to present at the point of entry"
+    fr: "Permis, non-objection du RAB et certificats originaux à présenter au point d'entrée"
+    es: "Permiso, no objeción del RAB y certificados originales para presentar en el punto de entrada"
+    pt: "Autorização, não objeção do RAB e certificados originais para apresentar no ponto de entrada"
+  - en: "Puppy at least about 4 months old before travel"
+    fr: "Chiot d'au moins environ 4 mois avant le voyage"
+    es: "Cachorro de al menos unos 4 meses antes del viaje"
+    pt: "Filhote com pelo menos cerca de 4 meses antes da viagem"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
+
+sources:
+  - label: { en: "Rwanda Trade Portal (RRA) — Full procedure for the import of dogs and cats", fr: "Portail du commerce du Rwanda (RRA) — Procédure complète d'importation de chiens et chats", es: "Rwanda Trade Portal (RRA) — Procedimiento completo para la importación de perros y gatos", pt: "Rwanda Trade Portal (RRA) — Full procedure for the import of dogs and cats" }
+    url: "https://rwandatrade.rw/procedure/509?l=en"
+  - label: { en: "Rwanda Trade Portal (RRA) — Obtain import permit (dogs and cats)", fr: "Portail du commerce du Rwanda (RRA) — Obtenir un permis d'importation (chiens et chats)", es: "Rwanda Trade Portal (RRA) — Obtener el permiso de importación (perros y gatos)", pt: "Rwanda Trade Portal (RRA) — Obtain import permit (dogs and cats)" }
+    url: "https://rwandatrade.rw/procedure/422?l=en"
+  - label: { en: "Rwanda Trade Portal (RRA) — Veterinary health certificate for dogs and cats", fr: "Portail du commerce du Rwanda (RRA) — Certificat sanitaire vétérinaire pour chiens et chats", es: "Rwanda Trade Portal (RRA) — Certificado sanitario veterinario para perros y gatos", pt: "Rwanda Trade Portal (RRA) — Veterinary health certificate for dogs and cats" }
+    url: "https://rwandatrade.rw/procedure/419?l=en"
+  - label: { en: "RICA — Import Inspection Unit (Rwanda Inspectorate, Competition and Consumer Protection Authority)", fr: "RICA — Unité d'inspection à l'importation (Rwanda Inspectorate, Competition and Consumer Protection Authority)", es: "RICA — Unidad de Inspección de Importación (Rwanda Inspectorate, Competition and Consumer Protection Authority)", pt: "RICA — Import Inspection Unit (Rwanda Inspectorate, Competition and Consumer Protection Authority)" }
+    url: "https://www.rica.gov.rw/import-inspection-unit"
+  - label: { en: "Rwanda Agriculture and Animal Resources Development Board (RAB) — official site", fr: "Rwanda Agriculture and Animal Resources Development Board (RAB) — site officiel", es: "Rwanda Agriculture and Animal Resources Development Board (RAB) — sitio oficial", pt: "Rwanda Agriculture and Animal Resources Development Board (RAB) — site oficial" }
+    url: "https://www.rab.gov.rw/"
+  - label: { en: "Official export requirements for Rwanda — Thailand DLD Animal Quarantine (rabies timing, microchip, minimum age, import permit)", fr: "Exigences officielles d'export vers le Rwanda — DLD Thaïlande, quarantaine animale (délais rage, puce, âge minimum, permis d'importation)", es: "Requisitos oficiales de exportación a Ruanda — DLD Tailandia, cuarentena animal (plazos de rabia, microchip, edad mínima, permiso de importación)", pt: "Official export requirements for Rwanda — Thailand DLD Animal Quarantine (prazo da raiva, microchip, idade mínima, autorização de importação)" }
+    url: "http://aqs-suvarn-dld.go.th/wp/wp-content/uploads/2022/11/Rwanda-1.pdf"
+
+seo:
+  title: { en: "Rwanda Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Rwanda — Guide", es: "Requisitos de entrada de perros en Ruanda — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Ruanda — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Rwanda With Your Dog: Entry Requirements (2026)", fr: "Voyager au Rwanda avec ton chien : formalités (2026)", es: "Viajar a Ruanda con tu perro: requisitos de entrada (2026)", pt: "Viajar para Ruanda com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaDesc:
+    en: "Official rules for bringing a dog into Rwanda: import permit and RAB non-objection, rabies vaccination (30 days–12 months) and an international vet certificate."
+    fr: "Faire entrer un chien au Rwanda : permis d'importation et non-objection du RAB, vaccination antirabique (30 jours–12 mois) et certificat vétérinaire international."
+    es: "Normas oficiales para traer un perro a Ruanda: permiso de importación y no objeción del RAB, vacunación antirrábica (30 días–12 meses) y certificado veterinario."
+    pt: "Levar um cachorro para Ruanda: autorização de importação e não objeção do RAB, vacinação antirrábica (30 dias a 12 meses) e certificado internacional."
+  slug: "rwanda"
+  shortDesc:
+    en: "What you need to bring a dog into Rwanda: an advance import permit and RAB non-objection, a rabies vaccination and an international veterinary certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien au Rwanda : un permis d'importation préalable et une non-objection du RAB, une vaccination antirabique et un certificat vétérinaire international."
+    es: "Lo que necesitas para traer un perro a Ruanda: un permiso de importación previo y una no objeción del RAB, una vacunación antirrábica y un certificado veterinario internacional."
+    pt: "O que você precisa para levar um cachorro a Ruanda: uma autorização de importação prévia e não objeção do RAB, uma vacinação antirrábica e um certificado veterinário internacional."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

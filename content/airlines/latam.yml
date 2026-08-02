@@ -1,0 +1,320 @@
+id: airline_latam
+mono: LA
+name: LATAM
+titleH1:
+  en: Flying with a dog on LATAM
+  fr: Voyager avec un chien sur LATAM
+  es: Viajar con un perro en LATAM
+  pt: "Viajar com um cachorro na LATAM"
+metaDesc:
+  en: "LATAM pet policy: cabin, hold and LATAM Cargo across the Americas, fares by zone, breed limits and official sources."
+  fr: "Politique animaux LATAM : cabine, soute et LATAM Cargo dans les Amériques, tarifs par zone, restrictions de races et sources officielles."
+  es: "Política de mascotas de LATAM: cabina, bodega y LATAM Cargo por todo el continente americano, tarifas por zona, límites por raza y fuentes oficiales."
+  pt: "Política de animais da LATAM: cabine, porão e LATAM Cargo em toda a América, tarifas por zona, limites por raça e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Chile · SCL / GRU
+      fr: Chili · SCL / GRU
+      es: Chile · SCL / GRU
+      pt: "Chile · SCL / GRU"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cabin, hold and cargo across the Americas with published fees — but breed, temperature and booking limits apply.
+  fr: Cabine, soute et fret dans les Amériques avec tarifs publiés — mais restrictions de races, température et réservation.
+  es: Cabina, bodega y carga por todo el continente americano con tarifas publicadas, pero con límites de raza, temperatura y reserva.
+  pt: "Cabine, porão e carga em toda a América com tarifas publicadas — mas há limites de raça, temperatura e reserva."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: size-based
+      fr: selon taille
+      es: según el tamaño
+      pt: "conforme o tamanho"
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: over limits
+      fr: hors limites
+      es: fuera de los límites
+      pt: "fora dos limites"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Small dog or cat in a carrier under the seat (max 40 × 28 × 25 cm); Economy/Premium Economy only. Min 16 weeks (6 months to the US).
+      fr: Petit chien ou chat dans un sac sous le siège (max 40 × 28 × 25 cm) ; Économique/Premium Economy seulement. Min 16 semaines (6 mois vers les USA).
+      es: Perro o gato pequeño en una jaula bajo el asiento (máx. 40 × 28 × 25 cm); solo Economy/Premium Economy. Mínimo 16 semanas (6 meses hacia EE. UU.).
+      pt: "Cachorro ou gato pequeno em uma bolsa de transporte sob o assento (máx. 40 × 28 × 25 cm); somente Economy/Premium Economy. Mínimo de 16 semanas (6 meses para os EUA)."
+    fee:
+      en: $45–250
+      fr: 45–250 $
+      es: 45–250 $
+      pt: "US$ 45–250"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dog or cat in a rigid kennel; up to 45 kg on wide-bodies, 23–32 kg on single-aisle by flight length. Book ≤ 48 h before.
+      fr: Chien ou chat en caisse rigide ; jusqu'à 45 kg sur gros-porteurs, 23–32 kg sur mono-couloir selon la durée. Réserver ≤ 48 h avant.
+      es: Perro o gato en una jaula rígida; hasta 45 kg en aviones de fuselaje ancho, 23–32 kg en los de pasillo único según la duración del vuelo. Reserva ≤ 48 h antes.
+      pt: "Cachorro ou gato em uma caixa de transporte rígida; até 45 kg em aeronaves de fuselagem larga, 23–32 kg em aeronaves de corredor único, conforme a duração do voo. Reserve com até 48 h de antecedência."
+    fee:
+      en: $50–300
+      fr: 50–300 $
+      es: 50–300 $
+      pt: "US$ 50–300"
+  - icon: ✈️
+    name:
+      en: LATAM Cargo
+      fr: LATAM Cargo
+      es: LATAM Cargo
+      pt: "LATAM Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: A través de agente
+      pt: "Via agente"
+    detail:
+      en: Over hold limits or dangerous (non-brachy) breeds. International via an IPATA cargo agency; domestic via the Contact Center.
+      fr: Au-delà des limites soute ou races dangereuses (non brachy). International via une agence de fret IPATA ; national via le centre d'appel.
+      es: Por encima de los límites de bodega o razas peligrosas (no braquicéfalas). Internacional a través de una agencia de carga IPATA; nacional a través del Contact Center.
+      pt: "Acima dos limites do porão ou raças perigosas (não braquicéfalas). Internacional via uma agência de carga IPATA; nacional via o Contact Center."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (regional → long-haul)
+        fr: Cabine (régional → long-courrier)
+        es: Cabina (regional → largo radio)
+        pt: "Cabine (regional → longo curso)"
+      value:
+        en: $45–250
+        fr: 45–250 $
+        es: 45–250 $
+        pt: "US$ 45–250"
+    - label:
+        en: Hold (0–45 kg, by zone)
+        fr: Soute (0–45 kg, par zone)
+        es: Bodega (0–45 kg, por zona)
+        pt: "Porão (0–45 kg, por zona)"
+      value:
+        en: $50–300
+        fr: 50–300 $
+        es: 50–300 $
+        pt: "US$ 50–300"
+    - label:
+        en: LATAM Cargo
+        fr: LATAM Cargo
+        es: LATAM Cargo
+        pt: "LATAM Cargo"
+      value:
+        en: Quote
+        fr: Devis
+        es: Cotización
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD international; local currency for domestic Brazil, Chile, Colombia, Peru and Ecuador.
+    fr: USD à l'international ; monnaie locale pour le national Brésil, Chili, Colombie, Pérou et Équateur.
+    es: USD en vuelos internacionales; moneda local en vuelos nacionales de Brasil, Chile, Colombia, Perú y Ecuador.
+    pt: "USD nos voos internacionais; moeda local nos voos nacionais do Brasil, Chile, Colômbia, Peru e Equador."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats aren't accepted in the hold (may fly in the cabin): boxer, bulldogs (all), Boston terrier, Bull Mastiff, American Bully, chow chow, Akita and Bull Terrier types, and Persian/Himalayan/Exotic/Burmese cats."
+      fr: "Chiens et chats au nez écrasé refusés en soute (admis en cabine) : boxer, bouledogues (tous), Boston terrier, Bull Mastiff, American Bully, chow chow, types Akita et Bull Terrier, et chats persans/himalayens/exotiques/birmans."
+      es: "Los perros y gatos de hocico chato no se aceptan en bodega (sí pueden viajar en cabina): bóxer, bulldogs (todos), Boston terrier, Bull Mastiff, American Bully, chow chow, tipos Akita y Bull Terrier, y gatos persas/himalayos/exóticos/birmanos."
+      pt: "Cachorros e gatos de focinho achatado não são aceitos no porão (podem viajar na cabine): boxer, bulldogs (todos), Boston terrier, Bull Mastiff, American Bully, chow chow, tipos Akita e Bull Terrier, e gatos persas/himalaios/exóticos/birmaneses."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+      - cls: warn
+        label:
+          en: Good health required
+          fr: Bonne santé requise
+          es: Requiere buena salud
+          pt: "Boa saúde exigida"
+    note:
+      en: Pets must not be sedated and must be in good health; females not pregnant or within 48 h post-partum. Dangerous non-brachycephalic breeds travel via cargo.
+      fr: Les animaux ne doivent pas être sédatés et doivent être en bonne santé ; femelles non gestantes ni à moins de 48 h post-partum. Les races dangereuses non brachycéphales voyagent en fret.
+      es: Las mascotas no deben estar sedadas y deben gozar de buena salud; las hembras no pueden estar preñadas ni dentro de las 48 h posparto. Las razas peligrosas no braquicéfalas viajan como carga.
+      pt: "Os animais não podem estar sedados e devem estar em boa saúde; fêmeas não podem estar prenhes nem dentro de 48 h pós-parto. Raças perigosas não braquicéfalas viajam via carga."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: No hold to NY/Boston · Dec 15–Apr 15
+        fr: Pas de soute NY/Boston · 15 déc–15 avr
+        es: Sin bodega a NY/Boston · 15 dic–15 abr
+        pt: "Sem porão para NY/Boston · 15 dez–15 abr"
+    - cls: warn
+      label:
+        en: "Heat limits: not disclosed"
+        fr: "Limites chaleur : non communiqué"
+        es: "Límites de calor: no comunicados"
+        pt: "Limites de calor: não divulgados"
+  note:
+    en: LATAM publishes no numeric limits but bars hold travel to/from New York and Boston from 15 Dec to 15 Apr (cabin still allowed); some domestic hold service is restricted by heat, evaluated case by case in Brazil.
+    fr: LATAM ne publie pas de limites chiffrées mais interdit la soute de/vers New York et Boston du 15 déc. au 15 avr. (cabine toujours possible) ; certains services de soute domestiques sont limités par la chaleur, au cas par cas au Brésil.
+    es: LATAM no publica límites numéricos, pero prohíbe el viaje en bodega desde/hacia Nueva York y Boston del 15 de diciembre al 15 de abril (la cabina sigue permitida); algunos servicios de bodega nacionales se restringen por el calor y se evalúan caso por caso en Brasil.
+    pt: "A LATAM não publica limites numéricos, mas proíbe o transporte no porão de/para Nova York e Boston de 15 de dezembro a 15 de abril (a cabine continua permitida); alguns serviços de porão domésticos são restritos por calor, avaliados caso a caso no Brasil."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Certified service dogs travel free in the cabin on most routes, at the passenger's feet.
+      fr: Les chiens d'assistance certifiés voyagent gratuitement en cabine sur la plupart des routes, aux pieds du passager.
+      es: Los perros de servicio certificados viajan gratis en cabina en la mayoría de las rutas, a los pies del pasajero.
+      pt: "Cães de serviço certificados viajam gratuitamente na cabine na maioria das rotas, aos pés do passageiro."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Request ≥ 48 h ahead with health + training certificates. US: DOT rules; min 16 weeks (6 months to the US)."
+      fr: "Demande ≥ 48 h à l'avance avec certificats sanitaire + dressage. USA : règles DOT ; min 16 semaines (6 mois vers les USA)."
+      es: "Solicítalo con ≥ 48 h de antelación con los certificados sanitario y de adiestramiento. EE. UU.: normas DOT; mínimo 16 semanas (6 meses hacia EE. UU.)."
+      pt: "Solicite com ≥ 48 h de antecedência, com os certificados de saúde e de treinamento. EUA: regras do DOT; mínimo de 16 semanas (6 meses para os EUA)."
+goodToKnow:
+  - icon: 🔁
+    label:
+      en: LATAM flights only
+      fr: Vols LATAM seuls
+      es: Solo vuelos LATAM
+      pt: "Somente voos LATAM"
+    value:
+      en: Pets travel only on LATAM-operated flights (no codeshare), with at most one connection under 7 h.
+      fr: Les animaux voyagent uniquement sur les vols opérés par LATAM (pas de codeshare), avec au plus une correspondance de moins de 7 h.
+      es: Las mascotas viajan solo en vuelos operados por LATAM (sin código compartido), con una conexión como máximo de menos de 7 h.
+      pt: "Os animais viajam somente em voos operados pela LATAM (sem código compartilhado), com no máximo uma conexão de menos de 7 h."
+  - icon: 🎫
+    label:
+      en: Airport boarding pass
+      fr: Carte au comptoir
+      es: Tarjeta de embarque en el aeropuerto
+      pt: "Cartão de embarque no aeroporto"
+    value:
+      en: Pet bookings get their boarding pass only at the airport; pets can't be sedated.
+      fr: Les réservations avec animal reçoivent leur carte d'embarquement uniquement à l'aéroport ; pas de sédation.
+      es: Las reservas con mascota obtienen la tarjeta de embarque solo en el aeropuerto; las mascotas no pueden estar sedadas.
+      pt: "As reservas com animal recebem o cartão de embarque somente no aeroporto; os animais não podem estar sedados."
+  - icon: 🚫
+    label:
+      en: US–S. America suspended
+      fr: USA–Am. du Sud suspendu
+      es: EE. UU.–Sudamérica suspendido
+      pt: "EUA–América do Sul suspenso"
+    value:
+      en: Dog travel between the US and Bolivia, Brazil, Ecuador, Peru and Colombia is suspended (CDC rabies rules).
+      fr: Le transport de chiens entre les USA et la Bolivie, le Brésil, l'Équateur, le Pérou et la Colombie est suspendu (règles rage CDC).
+      es: El transporte de perros entre EE. UU. y Bolivia, Brasil, Ecuador, Perú y Colombia está suspendido (normas de rabia del CDC).
+      pt: "O transporte de cachorros entre os EUA e Bolívia, Brasil, Equador, Peru e Colômbia está suspenso (regras de raiva do CDC)."
+book:
+  host: latamairlines.com
+  url: https://www.latamairlines.com/
+sources:
+  en: 4 LATAM sources · last verified 11 July 2026
+  fr: 4 sources LATAM · dernière vérification 11 juillet 2026
+  es: 4 fuentes de LATAM · última verificación 11 de julio de 2026
+  pt: "4 fontes da LATAM · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

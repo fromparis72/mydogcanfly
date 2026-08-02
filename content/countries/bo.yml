@@ -1,0 +1,382 @@
+# Country Entry Guide — Bolivia (bilingual EN/FR).
+# Bolivia is NOT in the EU. This encodes Bolivia's own SENASAG scheme (REGENSA, R/A 172/2022).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_bo
+iso2: "BO"
+name: { en: "Bolivia", fr: "Bolivie", es: "Bolivia", pt: "Bolívia" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: SENASAG
+  authorityUrl: https://www.senasag.gob.bo/
+  intro:
+    en: "Bolivia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by SENASAG."
+    fr: "La Bolivie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le SENASAG."
+    es: "Bolivia no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el SENASAG."
+    pt: "A Bolívia é um país não listado, então um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — mais um atestado de saúde de exportação avalizado pelo SENASAG."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "SENASAG issues the export zoosanitary certificate within 24–48h once the documents (including a vet health certificate dated within the last 10 days) are complete."
+        fr: "Le SENASAG délivre le certificat zoosanitaire d'export en 24–48 h une fois le dossier complet (dont un certificat sanitaire de moins de 10 jours)."
+        es: "El SENASAG emite el certificado zoosanitario de exportación en 24–48 h una vez completa la documentación (incluido un certificado sanitario de menos de 10 días)."
+        pt: "O SENASAG emite o certificado zoossanitário de exportação em 24–48 h assim que a documentação estiver completa (incluindo um atestado de saúde veterinário emitido nos últimos 10 dias)."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Bolivia with your dog", fr: "Voyager en Bolivie avec ton chien", es: "Viajar a Bolivia con tu perro", pt: "Viajar para a Bolívia com seu cachorro" }
+  intro:
+    en: >-
+      Bolivia welcomes dogs, but its entry procedure is a little more formal than some of its neighbours.
+      SENASAG (Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria, the national
+      animal-health authority) works through two documents. First, a Zoosanitary Import Permit
+      (Permiso Zoosanitario de Importación) must be obtained from SENASAG before your dog leaves the
+      country of origin. Second, your dog travels with an original zoosanitary certificate issued by the
+      official veterinary authority of the departure country, showing current vaccinations — including
+      rabies for a dog over three months old — and internal and external parasite treatment. SENASAG
+      then certifies the animal on arrival at customs. There is no published rabies antibody test, and
+      there is no routine quarantine for a healthy, compliant pet, though SENASAG may impose one if
+      requirements are not met. This guide explains exactly what to prepare, and the timing to respect,
+      before you book your flight.
+    fr: >-
+      La Bolivie accueille les chiens, mais sa procédure d'entrée est un peu plus formelle que celle de
+      certains pays voisins. Le SENASAG (Servicio Nacional de Sanidad Agropecuaria e Inocuidad
+      Alimentaria, l'autorité sanitaire animale nationale) fonctionne avec deux documents. D'abord, un
+      Permis Zoosanitaire d'Importation (Permiso Zoosanitario de Importación) doit être obtenu auprès du
+      SENASAG avant le départ du chien du pays d'origine. Ensuite, ton chien voyage avec un certificat
+      zoosanitaire original émis par l'autorité vétérinaire officielle du pays de départ, attestant des
+      vaccinations à jour — dont la rage pour un chien de plus de trois mois — et un traitement
+      antiparasitaire interne et externe. Le SENASAG certifie ensuite l'animal à l'arrivée en douane. Il
+      n'existe pas de titrage antirabique publié, et il n'y a pas de quarantaine systématique pour un
+      animal sain et conforme, même si le SENASAG peut en imposer une si les exigences ne sont pas
+      remplies. Ce guide détaille quoi préparer, et les délais à respecter, avant de réserver ton vol.
+    es: >-
+      Bolivia acoge a los perros, pero su procedimiento de entrada es un poco más formal que el de
+      algunos de sus vecinos. El SENASAG (Servicio Nacional de Sanidad Agropecuaria e Inocuidad
+      Alimentaria, la autoridad nacional de sanidad animal) funciona con dos documentos. Primero, hay
+      que obtener del SENASAG un Permiso Zoosanitario de Importación antes de que tu perro salga del
+      país de origen. Segundo, tu perro viaja con un certificado zoosanitario original expedido por la
+      autoridad veterinaria oficial del país de salida, que acredite las vacunaciones al día — incluida
+      la rabia para un perro de más de tres meses — y un tratamiento contra parásitos internos y
+      externos. El SENASAG certifica luego al animal a su llegada en la aduana. No hay una prueba de
+      titulación de rabia publicada, y no existe una cuarentena rutinaria para una mascota sana y
+      conforme, aunque el SENASAG puede imponer una si no se cumplen los requisitos. Esta guía explica
+      exactamente qué preparar, y los plazos que respetar, antes de reservar tu vuelo.
+
+    pt: "A Bolívia recebe bem os cachorros, mas seu procedimento de entrada é um pouco mais formal que o de alguns países vizinhos. O SENASAG (Servicio Nacional de Sanidad Agropecuaria e Inocuidad Alimentaria, a autoridade nacional de saúde animal) trabalha com dois documentos. Primeiro, é preciso obter do SENASAG uma Autorização Zoossanitária de Importação (Permiso Zoosanitario de Importación) antes de o seu cachorro sair do país de origem. Segundo, o seu cachorro viaja com um certificado zoossanitário original emitido pela autoridade veterinária oficial do país de partida, atestando as vacinações em dia — inclusive a raiva para um cachorro com mais de três meses — e o tratamento antiparasitário interno e externo. O SENASAG certifica então o animal na chegada à alfândega. Não há teste sorológico antirrábico publicado, e não existe quarentena de rotina para um animal saudável e em conformidade, ainda que o SENASAG possa impor uma se as exigências não forem cumpridas. Este guia explica exatamente o que preparar, e os prazos a respeitar, antes de você comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — a prior SENASAG import permit is required", fr: "Modérée — un permis d'importation SENASAG préalable est requis", es: "Moderada — se requiere un permiso de importación previo del SENASAG", pt: "Moderado — é obrigatória uma autorização de importação prévia do SENASAG" }
+
+prepTime:
+  eu:
+    en: "Standard case (third countries, incl. EU): allow time to obtain the SENASAG Zoosanitary Import Permit before departure, plus a zoosanitary certificate with vaccinations done within 60 days and parasite treatment within 30 days before shipment."
+    fr: "Cas standard (pays tiers, dont l'UE) : prévois du temps pour obtenir le Permis Zoosanitaire d'Importation du SENASAG avant le départ, plus un certificat zoosanitaire avec vaccinations fais dans les 60 jours et antiparasitaire dans les 30 jours avant l'embarquement."
+    es: "Caso estándar (países terceros, incl. la UE): prevé tiempo para obtener el Permiso Zoosanitario de Importación del SENASAG antes de la salida, más un certificado zoosanitario con vacunaciones hechas dentro de los 60 días y tratamiento antiparasitario dentro de los 30 días previos al embarque."
+    pt: "Caso padrão (países terceiros, incl. a UE): reserve tempo para obter a Autorização Zoossanitária de Importação do SENASAG antes da partida, mais um certificado zoossanitário com vacinações feitas nos 60 dias e tratamento antiparasitário nos 30 dias anteriores ao embarque."
+  listed:
+    en: "From an Andean Community country (Peru, Ecuador, Colombia): the vaccination window is wider (given between 1 month and 1 year before export) but no vaccine may be given in the 14 days before shipment — plan the schedule with your vet."
+    fr: "Depuis un pays de la Communauté andine (Pérou, Équateur, Colombie) : la fenêtre de vaccination est plus large (entre 1 mois et 1 an avant l'export) mais aucun vaccin ne doit être fait dans les 14 jours avant l'embarquement — planifie le calendrier avec ton vétérinaire."
+    es: "Desde un país de la Comunidad Andina (Perú, Ecuador, Colombia): la ventana de vacunación es más amplia (administrada entre 1 mes y 1 año antes de la exportación) pero no puede aplicarse ninguna vacuna en los 14 días previos al embarque — planifica el calendario con tu veterinario."
+    pt: "De um país da Comunidade Andina (Peru, Equador, Colômbia): a janela de vacinação é mais ampla (aplicada entre 1 mês e 1 ano antes da exportação), mas nenhuma vacina pode ser aplicada nos 14 dias anteriores ao embarque — planeje o calendário com seu veterinário."
+  nonListed:
+    en: "If requirements are not met: SENASAG may require quarantine of at least 30 days under its supervision — always prepare and obtain the import permit in advance."
+    fr: "Si les exigences ne sont pas remplies : le SENASAG peut imposer une quarantaine d'au moins 30 jours sous sa supervision — prépare toujours et obtiens le permis d'importation à l'avance."
+    es: "Si no se cumplen los requisitos: el SENASAG puede exigir una cuarentena de al menos 30 días bajo su supervisión — prepara y obtén siempre el permiso de importación por adelantado."
+    pt: "Se as exigências não forem cumpridas: o SENASAG pode exigir uma quarentena de pelo menos 30 dias sob sua supervisão — prepare e obtenha sempre a autorização de importação com antecedência."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not specified by SENASAG (recommended)", fr: "Non spécifiée par le SENASAG (recommandée)", es: "No especificado por el SENASAG (recomendado)", pt: "Não especificado pelo SENASAG (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required from 3 months of age", fr: "Requise dès 3 mois", es: "Obligatoria a partir de los 3 meses de edad", pt: "Obrigatória a partir dos 3 meses de idade" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "SENASAG Zoosanitary Import Permit", fr: "Permis Zoosanitaire d'Importation SENASAG", es: "Permiso Zoosanitario de Importación del SENASAG", pt: "Autorização Zoossanitária de Importação do SENASAG" }
+    status: { en: "Required (before departure)", fr: "Requis (avant le départ)", es: "Obligatorio (antes de la salida)", pt: "Obrigatória (antes da partida)" }
+    cls: warn
+  - requirement: { en: "Zoosanitary certificate (official authority of origin)", fr: "Certificat zoosanitaire (autorité officielle d'origine)", es: "Certificado zoosanitario (autoridad oficial de origen)", pt: "Certificado zoossanitário (autoridade oficial de origem)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not routine; possible if non-compliant", fr: "Non systématique ; possible si non conforme", es: "No rutinaria; posible si no se cumplen los requisitos", pt: "Não é rotina; possível se não houver conformidade" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Bolivia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Bolivie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Bolivia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Bolívia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Bolivia", fr: "Pays de destination — Bolivie", es: "País de destino — Bolivia", pt: "País de destino — Bolívia" }
+      text:
+        en: "Bolivia applies its own SENASAG scheme (REGENSA): a Zoosanitary Import Permit obtained before departure, plus an original zoosanitary certificate covering current vaccinations (rabies from 3 months) and internal and external parasite treatment, then certification on arrival. No rabies antibody test is published, and quarantine is not routine."
+        fr: "La Bolivie applique son propre régime SENASAG (REGENSA) : un Permis Zoosanitaire d'Importation obtenu avant le départ, plus un certificat zoosanitaire original couvrant les vaccinations à jour (rage dès 3 mois) et un traitement antiparasitaire interne et externe, puis une certification à l'arrivée. Aucun titrage antirabique n'est publié, et la quarantaine n'est pas systématique."
+        es: "Bolivia aplica su propio régimen del SENASAG (REGENSA): un Permiso Zoosanitario de Importación obtenido antes de la salida, más un certificado zoosanitario original que cubra las vacunaciones al día (rabia desde los 3 meses) y un tratamiento antiparasitario interno y externo, y luego la certificación a la llegada. No se publica ninguna prueba de titulación de rabia, y la cuarentena no es rutinaria."
+        pt: "A Bolívia aplica seu próprio esquema do SENASAG (REGENSA): uma Autorização Zoossanitária de Importação obtida antes da partida, mais um certificado zoossanitário original que cubra as vacinações em dia (raiva a partir dos 3 meses) e o tratamento antiparasitário interno e externo, e depois a certificação na chegada. Nenhum teste sorológico antirrábico é publicado, e a quarentena não é de rotina."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The zoosanitary certificate must be issued by the official veterinary authority of the country you depart from, one per animal, with all information in Spanish. Its content and timing — vaccinations and parasite treatment done within the required windows — drive your whole preparation."
+        fr: "Le certificat zoosanitaire doit être émis par l'autorité vétérinaire officielle du pays de départ, un par animal, avec toutes les informations en espagnol. Son contenu et ses délais — vaccinations et antiparasitaire réalisés dans les fenêtres requises — rythment toute ton préparation."
+        es: "El certificado zoosanitario debe ser expedido por la autoridad veterinaria oficial del país desde el que sales, uno por animal, con toda la información en español. Su contenido y sus plazos — vacunaciones y tratamiento antiparasitario realizados dentro de las ventanas requeridas — marcan el ritmo de toda tu preparación."
+        pt: "O certificado zoossanitário precisa ser emitido pela autoridade veterinária oficial do país de onde você parte, um por animal, com todas as informações em espanhol. Seu conteúdo e seus prazos — vacinações e tratamento antiparasitário feitos dentro das janelas exigidas — comandam toda a sua preparação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Bolivia runs two published schemes: one for Andean Community member countries (Peru, Ecuador, Colombia) and one for all other third countries, including the EU. Which timing rules apply to your dog depends on where it is exported from. Confirm your dog's history with your vet."
+        fr: "La Bolivie applique deux régimes publiés : un pour les pays membres de la Communauté andine (Pérou, Équateur, Colombie) et un pour tous les autres pays tiers, dont l'UE. Les délais applicables à ton chien dépendent du pays d'où il est exporté. Confirme l'historique de ton chien avec ton vétérinaire."
+        es: "Bolivia aplica dos regímenes publicados: uno para los países miembros de la Comunidad Andina (Perú, Ecuador, Colombia) y otro para todos los demás países terceros, incluida la UE. Qué reglas de plazos se aplican a tu perro depende del país desde el que se exporta. Confirma el historial de tu perro con tu veterinario."
+        pt: "A Bolívia aplica dois esquemas publicados: um para os países membros da Comunidade Andina (Peru, Equador, Colômbia) e outro para todos os demais países terceiros, inclusive a UE. Quais regras de prazo valem para o seu cachorro depende do país de onde ele é exportado. Confirme o histórico do seu cachorro com o seu veterinário."
+  note:
+    en: "So read the requirements below as Bolivia's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre bolivien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Bolivia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Então leia as exigências abaixo como o quadro geral da Bolívia e depois confirme com o seu veterinário a origem exata e o histórico do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not specified by SENASAG (recommended)", fr: "Non spécifiée par le SENASAG (recommandée)", es: "No especificado por el SENASAG (recomendado)", pt: "Não especificado pelo SENASAG (recomendado)" }
+    when: { en: "SENASAG's published pet import requirements ask that the animal be inspected and identified at shipment, but do not specify an ISO microchip. A microchip is strongly advised for identification and for the return trip, and other countries' rules may require it.", fr: "Les exigences d'importation publiées par le SENASAG demandent que l'animal soit inspecté et identifié à l'embarquement, mais ne spécifient pas de puce ISO. Une puce reste fortement conseillée pour l'identification et le retour, et les règles d'autres pays peuvent l'imposer.", es: "Los requisitos de importación de mascotas publicados por el SENASAG piden que el animal sea inspeccionado e identificado en el embarque, pero no especifican un microchip ISO. Se recomienda encarecidamente un microchip para la identificación y para el viaje de vuelta, y las normas de otros países pueden exigirlo.", pt: "As exigências de importação de animais de estimação publicadas pelo SENASAG pedem que o animal seja inspecionado e identificado no embarque, mas não especificam um microchip ISO. O microchip é fortemente recomendado para a identificação e para a viagem de volta, e as regras de outros países podem exigi-lo." }
+    exceptions: { en: "Confirm with the certifying vet how your dog's identity is recorded on the zoosanitary certificate.", fr: "Confirme avec le vétérinaire certificateur comment l'identité de ton chien est consignée sur le certificat zoosanitaire.", es: "Confirma con el veterinario certificador cómo se registra la identidad de tu perro en el certificado zoosanitario.", pt: "Confirme com o veterinário certificador como a identidade do seu cachorro é registrada no certificado zoossanitário." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países)", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países)", es: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países)", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países)" }
+  - item: { en: "SENASAG Zoosanitary Import Permit (PIZ)", fr: "Permis Zoosanitaire d'Importation SENASAG (PIZ)", es: "Permiso Zoosanitario de Importación del SENASAG (PIZ)", pt: "Autorização Zoossanitária de Importação do SENASAG (PIZ)" }
+    required: { en: "Required before departure", fr: "Requis avant le départ", es: "Obligatorio antes de la salida", pt: "Obrigatória antes da partida" }
+    when: { en: "The Zoosanitary Import Permit for pets (dogs and cats) is issued by SENASAG before the animal leaves the country of origin, and must be presented on entry. Application needs form SENASAGIMPFOR001, a letter to the SENASAG Departmental Head, bank-deposit proof, a liquidation form and the zoosanitary certificate of origin per animal.", fr: "Le Permis Zoosanitaire d'Importation d'animaux de compagnie (chiens et chats) est émis par le SENASAG avant que l'animal quitte le pays d'origine, et doit être présenté à l'entrée. La demande exige le formulaire SENASAGIMPFOR001, une lettre au Chef Départemental du SENASAG, un justificatif de dépôt bancaire, un formulaire de liquidation et le certificat zoosanitaire d'origine par animal.", es: "El Permiso Zoosanitario de Importación de animales de compañía (perros y gatos) lo expide el SENASAG antes de que el animal salga del país de origen, y debe presentarse a la entrada. La solicitud requiere el formulario SENASAGIMPFOR001, una carta al Jefe Departamental del SENASAG, un comprobante de depósito bancario, un formulario de liquidación y el certificado zoosanitario de origen por animal.", pt: "A Autorização Zoossanitária de Importação de animais de estimação (cães e gatos) é emitida pelo SENASAG antes de o animal sair do país de origem e precisa ser apresentada na entrada. O pedido exige o formulário SENASAGIMPFOR001, uma carta ao Chefe Departamental do SENASAG, um comprovante de depósito bancário, um formulário de liquidação e o certificado zoossanitário de origem por animal." }
+    exceptions: { en: "The permit is valid 60 days for air or land transport (90 days maritime-land), extendable once by 30 days if inspection has not yet taken place. A commercial invoice and packing list are also needed if the pet was purchased.", fr: "Le permis est valable 60 jours pour le transport aérien ou terrestre (90 jours maritime-terrestre), prorogeable une fois de 30 jours si l'inspection n'a pas encore eu lieu. Une facture commerciale et une liste de colisage sont aussi requises si l'animal a été acheté.", es: "El permiso es válido 60 días para el transporte aéreo o terrestre (90 días marítimo-terrestre), prorrogable una vez por 30 días si aún no ha tenido lugar la inspección. También se necesitan una factura comercial y una lista de empaque si la mascota fue comprada.", pt: "A autorização é válida por 60 dias para o transporte aéreo ou terrestre (90 dias marítimo-terrestre), prorrogável uma vez por 30 dias se a inspeção ainda não tiver ocorrido. Também são necessárias uma fatura comercial e uma lista de embalagem se o animal tiver sido comprado." }
+    ref: { en: "VUCE / SENASAG — Permiso de Importación de animales de compañía (perros y gatos); REGENSA cap. 7.1", fr: "VUCE / SENASAG — Permiso de Importación de animales de compañía (perros y gatos) ; REGENSA chap. 7.1", es: "VUCE / SENASAG — Permiso de Importación de animales de compañía (perros y gatos); REGENSA cap. 7.1", pt: "VUCE / SENASAG — Permiso de Importación de animales de compañía (perros y gatos); REGENSA cap. 7.1" }
+  - item: { en: "Zoosanitary certificate of origin", fr: "Certificat zoosanitaire d'origine", es: "Certificado zoosanitario de origen", pt: "Certificado zoossanitário de origem" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An original zoosanitary certificate, one per animal, issued by the official animal-health authority of the exporting country, attesting the vaccinations, the parasite treatment and the departure inspection. All information must be in Spanish.", fr: "Un certificat zoosanitaire original, un par animal, émis par l'autorité officielle de santé animale du pays exportateur, attestant les vaccinations, le traitement antiparasitaire et l'inspection au départ. Toute l'information doit être en espagnol.", es: "Un certificado zoosanitario original, uno por animal, expedido por la autoridad oficial de sanidad animal del país exportador, que acredite las vacunaciones, el tratamiento antiparasitario y la inspección de salida. Toda la información debe estar en español.", pt: "Um certificado zoossanitário original, um por animal, emitido pela autoridade oficial de saúde animal do país exportador, atestando as vacinações, o tratamento antiparasitário e a inspeção na partida. Todas as informações precisam estar em espanhol." }
+    exceptions: { en: "The certificate is verified at the point of entry; SENASAG then issues its certification at destination customs.", fr: "Le certificat est vérifié au point d'entrée ; le SENASAG délivre ensuite sa certification à la douane de destination.", es: "El certificado se verifica en el punto de entrada; el SENASAG expide después su certificación en la aduana de destino.", pt: "O certificado é verificado no ponto de entrada; o SENASAG emite depois a sua certificação na alfândega de destino." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required from 3 months", fr: "Requise dès 3 mois", es: "Obligatoria a partir de los 3 meses", pt: "Obrigatória a partir dos 3 meses" }
+    when: { en: "Mandatory for a dog over three months old. For third countries (incl. the EU), the vaccination must have been done within the 60 days before shipment; the certificate states the date, type and brand of the product used.", fr: "Obligatoire pour un chien de plus de trois mois. Pour les pays tiers (dont l'UE), la vaccination doit avoir été faite dans les 60 jours avant l'embarquement ; le certificat indique la date, le type et la marque du produit utilisé.", es: "Obligatoria para un perro de más de tres meses. Para los países terceros (incl. la UE), la vacunación debe haberse realizado dentro de los 60 días previos al embarque; el certificado indica la fecha, el tipo y la marca del producto utilizado.", pt: "Obrigatória para um cachorro com mais de três meses. Para os países terceiros (incl. a UE), a vacinação precisa ter sido feita nos 60 dias anteriores ao embarque; o certificado indica a data, o tipo e a marca do produto utilizado." }
+    exceptions: { en: "From an Andean Community country (Peru, Ecuador, Colombia), the vaccine must instead have been given between 1 month and 1 year before export, and no vaccine may be given in the 14 days before shipment.", fr: "Depuis un pays de la Communauté andine (Pérou, Équateur, Colombie), le vaccin doit au contraire avoir été fait entre 1 mois et 1 an avant l'export, et aucun vaccin ne doit être fait dans les 14 jours avant l'embarquement.", es: "Desde un país de la Comunidad Andina (Perú, Ecuador, Colombia), la vacuna debe en cambio haberse administrado entre 1 mes y 1 año antes de la exportación, y no puede aplicarse ninguna vacuna en los 14 días previos al embarque.", pt: "De um país da Comunidade Andina (Peru, Equador, Colômbia), a vacina precisa, em vez disso, ter sido aplicada entre 1 mês e 1 ano antes da exportação, e nenhuma vacina pode ser aplicada nos 14 dias anteriores ao embarque." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países / países miembros CAN)", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países / países miembros CAN)", es: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países / países miembros CAN)", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía (terceros países / países miembros CAN)" }
+  - item: { en: "Other core vaccinations", fr: "Autres vaccinations de base", es: "Otras vacunaciones básicas", pt: "Outras vacinações essenciais" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "For third countries the certificate must record vaccination (within 60 days before shipment) against canine distemper, canine hepatitis, leptospirosis, parvovirus and coronavirus, and parainfluenza, in addition to rabies.", fr: "Pour les pays tiers, le certificat doit attester la vaccination (dans les 60 jours avant l'embarquement) contre la maladie de Carré, l'hépatite canine, la leptospirose, le parvovirus et le coronavirus, et la parainfluenza, en plus de la rage.", es: "Para los países terceros, el certificado debe acreditar la vacunación (dentro de los 60 días previos al embarque) contra el moquillo canino, la hepatitis canina, la leptospirosis, el parvovirus y el coronavirus, y la parainfluenza, además de la rabia.", pt: "Para os países terceiros, o certificado precisa registrar a vacinação (nos 60 dias anteriores ao embarque) contra cinomose, hepatite canina, leptospirose, parvovirose e coronavirose, e parainfluenza, além da raiva." }
+    exceptions: { en: "From an Andean Community country the required diseases are distemper, hepatitis, leptospirosis, parvovirus and rabies, given between 1 month and 1 year before export.", fr: "Depuis un pays de la Communauté andine, les maladies requises sont la maladie de Carré, l'hépatite, la leptospirose, le parvovirus et la rage, vaccinées entre 1 mois et 1 an avant l'export.", es: "Desde un país de la Comunidad Andina las enfermedades requeridas son el moquillo, la hepatitis, la leptospirosis, el parvovirus y la rabia, vacunadas entre 1 mes y 1 año antes de la exportación.", pt: "De um país da Comunidade Andina, as doenças exigidas são cinomose, hepatite, leptospirose, parvovirose e raiva, com vacinação aplicada entre 1 mês e 1 ano antes da exportação." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "SENASAG's published pet import requirements do not call for a rabies antibody test for a dog from any origin.", fr: "Les exigences d'importation publiées par le SENASAG n'exigent aucun titrage antirabique pour un chien, quelle que soit l'origine.", es: "Los requisitos de importación de mascotas publicados por el SENASAG no exigen ninguna prueba de titulación de rabia para un perro, sea cual sea su origen.", pt: "As exigências de importação de animais de estimação publicadas pelo SENASAG não pedem nenhum teste sorológico antirrábico para um cachorro, seja qual for a origem." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
+  - item: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Treatment against internal and external parasites, with products authorised in the country of origin, done within the 30 days before shipment for third countries.", fr: "Traitement contre les parasites internes et externes, avec des produits autorisés dans le pays d'origine, réalisé dans les 30 jours avant l'embarquement pour les pays tiers.", es: "Tratamiento contra parásitos internos y externos, con productos autorizados en el país de origen, realizado dentro de los 30 días previos al embarque para los países terceros.", pt: "Tratamento contra parasitas internos e externos, com produtos autorizados no país de origem, feito nos 30 dias anteriores ao embarque no caso dos países terceiros." }
+    exceptions: { en: "From an Andean Community country the treatment window is the 14 days before shipment.", fr: "Depuis un pays de la Communauté andine, la fenêtre de traitement est de 14 jours avant l'embarquement.", es: "Desde un país de la Comunidad Andina la ventana de tratamiento es de 14 días antes del embarque.", pt: "De um país da Comunidade Andina, a janela de tratamento é a dos 14 dias anteriores ao embarque." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
+  - item: { en: "Departure inspection & crate", fr: "Inspection au départ & caisse", es: "Inspección de salida y jaula", pt: "Inspeção na partida e caixa de transporte" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "At shipment an official veterinarian inspects and identifies the dog, finding it in normal health with no tumours, fresh or healing wounds, or signs of quarantinable/transmissible disease or ectoparasites. The dog travels in a crate washed and disinfected before use.", fr: "À l'embarquement, un vétérinaire officiel inspecte et identifie le chien, le trouvant en bonne santé, sans tumeurs, plaies fraîches ou en cicatrisation, ni signe de maladie quarantenaire/transmissible ou d'ectoparasites. Le chien voyage dans une caisse lavée et désinfectée avant usage.", es: "En el embarque, un veterinario oficial inspecciona e identifica al perro, hallándolo con salud normal, sin tumores, heridas frescas o en cicatrización, ni signos de enfermedad cuarentenable/transmisible o de ectoparásitos. El perro viaja en una jaula lavada y desinfectada antes de su uso.", pt: "No embarque, um veterinário oficial inspeciona e identifica o cachorro, constatando saúde normal, sem tumores, feridas recentes ou em cicatrização, nem sinais de doença quarentenável/transmissível ou de ectoparasitas. O cachorro viaja em uma caixa de transporte lavada e desinfetada antes do uso." }
+    exceptions: { en: "No waste may accompany the animal; packaging, bedding and equipment must be disinfected with products authorised by the origin country.", fr: "Aucun déchet ne doit accompagner l'animal ; emballages, litière et équipements doivent être désinfectés avec des produits autorisés par le pays d'origine.", es: "Ningún residuo puede acompañar al animal; embalajes, cama y equipo deben desinfectarse con productos autorizados por el país de origen.", pt: "Nenhum resíduo pode acompanhar o animal; embalagens, forração e equipamentos precisam ser desinfetados com produtos autorizados pelo país de origem." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
+  - item: { en: "SENASAG certification on arrival", fr: "Certification SENASAG à l'arrivée", es: "Certificación del SENASAG a la llegada", pt: "Certificação do SENASAG na chegada" }
+    required: { en: "Required on arrival", fr: "Requise à l'arrivée", es: "Obligatoria a la llegada", pt: "Obrigatória na chegada" }
+    when: { en: "SENASAG grants its certification when the pets arrive at destination customs, on presentation of the original import permit and the original documentation used to obtain it.", fr: "Le SENASAG accorde sa certification à l'arrivée des animaux à la douane de destination, sur présentation du permis d'importation original et de la documentation originale ayant servi à l'obtenir.", es: "El SENASAG concede su certificación cuando las mascotas llegan a la aduana de destino, previa presentación del permiso de importación original y de la documentación original usada para obtenerlo.", pt: "O SENASAG concede a sua certificação quando os animais de estimação chegam à alfândega de destino, mediante apresentação da autorização de importação original e da documentação original usada para obtê-la." }
+    exceptions: { en: "Keep every document in original; all paperwork is handled in Spanish.", fr: "Conserve chaque document en original ; toutes les formalités se font en espagnol.", es: "Conserva cada documento en original; todos los trámites se hacen en español.", pt: "Guarde cada documento no original; todos os trâmites são feitos em espanhol." }
+    ref: { en: "VUCE / SENASAG — Certificación de animales de compañía (perros y gatos)", fr: "VUCE / SENASAG — Certificación de animales de compañía (perros y gatos)", es: "VUCE / SENASAG — Certificación de animales de compañía (perros y gatos)", pt: "VUCE / SENASAG — Certificación de animales de compañía (perros y gatos)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routine; possible", fr: "Non systématique ; possible", es: "No rutinaria; posible", pt: "Não é rotina; possível" }
+    when: { en: "There is no routine quarantine for a healthy, compliant pet.", fr: "Il n'y a pas de quarantaine systématique pour un animal sain et conforme.", es: "No hay cuarentena rutinaria para una mascota sana y conforme.", pt: "Não há quarentena de rotina para um animal de estimação saudável e em conformidade." }
+    exceptions: { en: "If necessary, SENASAG may require the animal to remain in quarantine under the sanitary authority's supervision for at least 30 days after entry.", fr: "Si nécessaire, le SENASAG peut exiger que l'animal reste en quarantaine sous la supervision de l'autorité sanitaire pendant au moins 30 jours après l'entrée.", es: "Si es necesario, el SENASAG puede exigir que el animal permanezca en cuarentena bajo la supervisión de la autoridad sanitaria durante al menos 30 días después de la entrada.", pt: "Se necessário, o SENASAG pode exigir que o animal permaneça em quarentena sob a supervisão da autoridade sanitária por pelo menos 30 dias depois da entrada." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía (Parágrafo II)", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía (Parágrafo II)", es: "SENASAG — Requisitos sanitarios para importar animales de compañía (Parágrafo II)", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía (Parágrafo II)" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "No fixed minimum; rabies from 3 months", fr: "Pas de minimum fixe ; rage dès 3 mois", es: "Sin mínimo fijo; rabia a partir de los 3 meses", pt: "Sem mínimo fixo; antirrábica a partir dos 3 meses" }
+    when: { en: "SENASAG does not publish a fixed minimum entry age, but rabies vaccination becomes mandatory once the dog is over three months old.", fr: "Le SENASAG ne publie pas d'âge minimum d'entrée fixe, mais la vaccination antirabique devient obligatoire dès que le chien a plus de trois mois.", es: "El SENASAG no publica una edad mínima de entrada fija, pero la vacunación antirrábica pasa a ser obligatoria en cuanto el perro tiene más de tres meses.", pt: "O SENASAG não publica uma idade mínima de entrada fixa, mas a vacinação antirrábica passa a ser obrigatória assim que o cachorro tem mais de três meses." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las reglas de edad de las aerolíneas y las reglas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
+
+origin:
+  eu:
+    title: { en: "From the EU & other third countries — the standard scheme", fr: "Depuis l'UE & autres pays tiers — le régime standard", es: "Desde la UE y otros países terceros — el régimen estándar", pt: "Da UE e de outros países terceiros — o esquema padrão" }
+    body:
+      en: "For a dog arriving from the European Union, the EU pet passport is not the operative document for Bolivia. Your dog needs a SENASAG Zoosanitary Import Permit obtained before departure, plus an original zoosanitary certificate (one per animal, in Spanish) issued by the official veterinary authority of the country you travel from. The certificate must record vaccination within the 60 days before shipment against rabies (from 3 months), distemper, canine hepatitis, leptospirosis, parvovirus and coronavirus, and parainfluenza, and internal and external parasite treatment within 30 days. SENASAG certifies the dog at destination customs."
+      fr: "Pour un chien venant de l'Union européenne, le passeport européen n'est pas le document opérant pour la Bolivie. Ton chien a besoin d'un Permis Zoosanitaire d'Importation du SENASAG obtenu avant le départ, plus un certificat zoosanitaire original (un par animal, en espagnol) émis par l'autorité vétérinaire officielle du pays de départ. Le certificat doit attester une vaccination dans les 60 jours avant l'embarquement contre la rage (dès 3 mois), la maladie de Carré, l'hépatite canine, la leptospirose, le parvovirus et le coronavirus, et la parainfluenza, et un traitement antiparasitaire interne et externe dans les 30 jours. Le SENASAG certifie le chien à la douane de destination."
+      es: "Para un perro que llega de la Unión Europea, el pasaporte europeo para mascotas no es el documento operativo para Bolivia. Tu perro necesita un Permiso Zoosanitario de Importación del SENASAG obtenido antes de la salida, más un certificado zoosanitario original (uno por animal, en español) expedido por la autoridad veterinaria oficial del país desde el que viajas. El certificado debe registrar la vacunación dentro de los 60 días previos al embarque contra la rabia (desde los 3 meses), el moquillo, la hepatitis canina, la leptospirosis, el parvovirus y el coronavirus, y la parainfluenza, y el tratamiento contra parásitos internos y externos dentro de los 30 días. El SENASAG certifica al perro en la aduana de destino."
+      pt: "Para um cachorro que chega da União Europeia, o passaporte europeu para animais de companhia não é o documento operativo para a Bolívia. O seu cachorro precisa de uma Autorização Zoossanitária de Importação do SENASAG obtida antes da partida, mais um certificado zoossanitário original (um por animal, em espanhol) emitido pela autoridade veterinária oficial do país de onde você viaja. O certificado precisa registrar a vacinação nos 60 dias anteriores ao embarque contra a raiva (a partir dos 3 meses), a cinomose, a hepatite canina, a leptospirose, a parvovirose e a coronavirose, e a parainfluenza, e o tratamento antiparasitário interno e externo nos 30 dias. O SENASAG certifica o cachorro na alfândega de destino."
+    cls: warn
+  listed:
+    title: { en: "From an Andean Community country (Peru, Ecuador, Colombia)", fr: "Depuis un pays de la Communauté andine (Pérou, Équateur, Colombie)", es: "Desde un país de la Comunidad Andina (Perú, Ecuador, Colombia)", pt: "De um país da Comunidade Andina (Peru, Equador, Colômbia)" }
+    body:
+      en: "Bolivia publishes a distinct scheme for pets coming from fellow Andean Community member countries. The core vaccinations — distemper, hepatitis, leptospirosis, parvovirus and rabies — must have been given between 1 month and 1 year before export, and no vaccine (active or inactivated) may be given in the 14 days before shipment. Parasite treatment is done within the 14 days before shipment. A departure inspection by an official vet, a disinfected crate and the SENASAG import permit still apply, and there is no antibody test."
+      fr: "La Bolivie publie un régime distinct pour les animaux venant des autres pays membres de la Communauté andine. Les vaccinations de base — maladie de Carré, hépatite, leptospirose, parvovirus et rage — doivent avoir été fais entre 1 mois et 1 an avant l'export, et aucun vaccin (actif ou inactivé) ne doit être fait dans les 14 jours avant l'embarquement. Le traitement antiparasitaire est réalisé dans les 14 jours avant l'embarquement. Une inspection au départ par un vétérinaire officiel, une caisse désinfectée et le permis d'importation SENASAG s'appliquent toujours, et il n'y a aucun titrage."
+      es: "Bolivia publica un régimen distinto para las mascotas que llegan de otros países miembros de la Comunidad Andina. Las vacunaciones básicas — moquillo, hepatitis, leptospirosis, parvovirus y rabia — deben haberse administrado entre 1 mes y 1 año antes de la exportación, y no puede aplicarse ninguna vacuna (activa o inactivada) en los 14 días previos al embarque. El tratamiento antiparasitario se realiza dentro de los 14 días previos al embarque. Una inspección de salida por un veterinario oficial, una jaula desinfectada y el permiso de importación del SENASAG siguen aplicándose, y no hay prueba de titulación."
+      pt: "A Bolívia publica um esquema distinto para os animais de estimação vindos dos outros países membros da Comunidade Andina. As vacinações essenciais — cinomose, hepatite, leptospirose, parvovirose e raiva — precisam ter sido aplicadas entre 1 mês e 1 ano antes da exportação, e nenhuma vacina (ativa ou inativada) pode ser aplicada nos 14 dias anteriores ao embarque. O tratamento antiparasitário é feito nos 14 dias anteriores ao embarque. A inspeção na partida por um veterinário oficial, uma caixa de transporte desinfetada e a autorização de importação do SENASAG continuam valendo, e não há teste sorológico."
+    cls: warn
+  nonListed:
+    title: { en: "Non-compliant arrivals & quarantine", fr: "Arrivées non conformes & quarantaine", es: "Llegadas no conformes y cuarentena", pt: "Chegadas não conformes e quarentena" }
+    body:
+      en: "If a dog arrives without meeting the sanitary requirements, or shows signs of disease, SENASAG may — if it deems it necessary — require the animal to remain in quarantine under the sanitary authority's supervision for at least 30 days after entry, at the owner's expense. Obtaining the import permit before departure and presenting a complete zoosanitary certificate is the way to avoid this."
+      fr: "Si un chien arrive sans remplir les exigences sanitaires, ou présente des signes de maladie, le SENASAG peut — s'il le juge nécessaire — exiger que l'animal reste en quarantaine sous la supervision de l'autorité sanitaire pendant au moins 30 jours après l'entrée, aux frais du propriétaire. Obtenir le permis d'importation avant le départ et présenter un certificat zoosanitaire complet est la façon d'éviter cela."
+      es: "Si un perro llega sin cumplir los requisitos sanitarios, o muestra signos de enfermedad, el SENASAG puede — si lo considera necesario — exigir que el animal permanezca en cuarentena bajo la supervisión de la autoridad sanitaria durante al menos 30 días después de la entrada, a cargo del propietario. Obtener el permiso de importación antes de la salida y presentar un certificado zoosanitario completo es la forma de evitarlo."
+      pt: "Se um cachorro chega sem cumprir as exigências sanitárias, ou apresenta sinais de doença, o SENASAG pode — se julgar necessário — exigir que o animal permaneça em quarentena sob a supervisão da autoridade sanitária por pelo menos 30 dias depois da entrada, às custas do tutor. Obter a autorização de importação antes da partida e apresentar um certificado zoossanitário completo é a maneira de evitar isso."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Bolivia depends on your documents and the permit obtained beforehand."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Bolivie dépend de tes documents et du permis obtenu au préalable."
+    es: "Lo que ocurre cuando tu perro llega a Bolivia depende de tus documentos y del permiso obtenido de antemano."
+    pt: "O que acontece quando o seu cachorro chega à Bolívia depende dos seus documentos e da autorização obtida com antecedência."
+  points:
+    - en: "SENASAG staff verify the original Zoosanitary Import Permit and the original zoosanitary certificate of origin, then grant SENASAG certification at destination customs (aduana)."
+      fr: "Le personnel du SENASAG vérifie le Permis Zoosanitaire d'Importation original et le certificat zoosanitaire d'origine original, puis délivre la certification SENASAG à la douane de destination (aduana)."
+      es: "El personal del SENASAG verifica el Permiso Zoosanitario de Importación original y el certificado zoosanitario de origen original, y luego concede la certificación del SENASAG en la aduana de destino."
+      pt: "Os agentes do SENASAG verificam a Autorização Zoossanitária de Importação original e o certificado zoossanitário de origem original, e depois concedem a certificação do SENASAG na alfândega de destino (aduana)."
+    - en: "The import permit must be valid on arrival (60 days for air or land transport), so plan the trip within that window; it can be extended once by 30 days if inspection has not yet happened."
+      fr: "Le permis d'importation doit être valide à l'arrivée (60 jours pour le transport aérien ou terrestre), planifie donc le voyage dans ce délai ; il peut être prorogé une fois de 30 jours si l'inspection n'a pas encore eu lieu."
+      es: "El permiso de importación debe ser válido a la llegada (60 días para el transporte aéreo o terrestre), así que planifica el viaje dentro de esa ventana; puede prorrogarse una vez por 30 días si aún no ha tenido lugar la inspección."
+      pt: "A autorização de importação precisa estar válida na chegada (60 dias para o transporte aéreo ou terrestre), então planeje a viagem dentro dessa janela; ela pode ser prorrogada uma vez por 30 dias se a inspeção ainda não tiver ocorrido."
+    - en: "Keep every document in original and in Spanish; the bank-deposit proof and liquidation form are part of the file."
+      fr: "Conserve chaque document en original et en espagnol ; le justificatif de dépôt bancaire et le formulaire de liquidation font partie du dossier."
+      es: "Conserva cada documento en original y en español; el comprobante de depósito bancario y el formulario de liquidación forman parte del expediente."
+      pt: "Guarde cada documento no original e em espanhol; o comprovante de depósito bancário e o formulário de liquidação fazem parte do processo."
+    - en: "If a document is missing or the dog appears ill, SENASAG may require quarantine of at least 30 days under its supervision, at the owner's expense."
+      fr: "Si un document manque ou si le chien paraît malade, le SENASAG peut exiger une quarantaine d'au moins 30 jours sous sa supervision, aux frais du propriétaire."
+      es: "Si falta un documento o el perro parece enfermo, el SENASAG puede exigir una cuarentena de al menos 30 días bajo su supervisión, a cargo del propietario."
+      pt: "Se faltar um documento ou o cachorro parecer doente, o SENASAG pode exigir uma quarentena de pelo menos 30 dias sob sua supervisão, às custas do tutor."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Bolivia has no SENASAG breed-specific import ban. National Law No. 553 (2014) regulates the keeping of dogs considered dangerous, but this governs ownership and public safety within Bolivia — it is not an entry ban applied at the border by the animal-health authority."
+    fr: "La Bolivie n'a aucune interdiction d'importation liée à la race au niveau du SENASAG. La loi nationale n° 553 (2014) réglemente la détention des chiens considérés comme dangereux, mais elle porte sur la détention et la sécurité publique en Bolivie — ce n'est pas une interdiction d'entrée appliquée à la frontière par l'autorité sanitaire animale."
+    es: "Bolivia no tiene ninguna prohibición de importación por raza a nivel del SENASAG. La Ley Nacional N.º 553 (2014) regula la tenencia de perros considerados peligrosos, pero rige la tenencia y la seguridad pública dentro de Bolivia — no es una prohibición de entrada aplicada en la frontera por la autoridad de sanidad animal."
+    pt: "A Bolívia não tem, no SENASAG, proibição de importação por raça. A Ley Nacional N.º 553 (2014) regula a posse de cachorros considerados perigosos, mas trata da posse e da segurança pública dentro da Bolívia — não é uma proibição de entrada aplicada na fronteira pela autoridade de saúde animal."
+  cat1:
+    en: "No banned category at entry: no breed is refused entry to Bolivia on the basis of its breed, provided the SENASAG sanitary requirements (import permit, zoosanitary certificate, vaccinations, parasite treatment, inspection) are met."
+    fr: "Aucune catégorie interdite à l'entrée : aucune race n'est refusée à l'entrée en Bolivie en raison de sa race, sous réserve du respect des exigences sanitaires du SENASAG (permis d'importation, certificat zoosanitaire, vaccinations, antiparasitaire, inspection)."
+    es: "Ninguna categoría prohibida a la entrada: no se rechaza la entrada a Bolivia de ninguna raza por razón de su raza, siempre que se cumplan los requisitos sanitarios del SENASAG (permiso de importación, certificado zoosanitario, vacunaciones, antiparasitario, inspección)."
+    pt: "Nenhuma categoria proibida na entrada: nenhuma raça tem a entrada na Bolívia recusada por causa da raça, desde que sejam cumpridas as exigências sanitárias do SENASAG (autorização de importação, certificado zoossanitário, vacinações, tratamento antiparasitário, inspeção)."
+  cat2:
+    en: "Ownership rules: Law No. 553 on the keeping of dangerous dogs for citizen security lists breeds treated as dangerous — including American Staffordshire Terrier, American Staffordshire Bull Terrier, Pit Bull Terrier, Bull Terrier, Bullmastiff, Doberman, Dogo Argentino, Dogo de Burdeos, Fila Brasileiro, Rottweiler and Tosa Inu, and their crosses. Owners must obtain police authorisation and register the dog with the municipality; breeding for profit and training for fighting are prohibited. These are ownership obligations, not entry bans."
+    fr: "Règles de détention : la loi n° 553 sur la tenue des chiens dangereux pour la sécurité citoyenne liste des races réputées dangereuses — dont l'American Staffordshire Terrier, l'American Staffordshire Bull Terrier, le Pit Bull Terrier, le Bull Terrier, le Bullmastiff, le Doberman, le Dogo Argentino, le Dogue de Bordeaux, le Fila Brasileiro, le Rottweiler et le Tosa Inu, ainsi que leurs croisements. Les propriétaires doivent obtenir une autorisation de la police et enregistrer le chien auprès de la municipalité ; l'élevage à but lucratif et le dressage au combat sont interdits. Ce sont des obligations de détention, pas des interdictions d'entrée."
+    es: "Reglas de tenencia: la Ley N.º 553 sobre la tenencia de perros peligrosos para la seguridad ciudadana enumera razas consideradas peligrosas — incluidos el American Staffordshire Terrier, el American Staffordshire Bull Terrier, el Pit Bull Terrier, el Bull Terrier, el Bullmastiff, el Doberman, el Dogo Argentino, el Dogo de Burdeos, el Fila Brasileiro, el Rottweiler y el Tosa Inu, y sus cruces. Los propietarios deben obtener autorización de la policía y registrar al perro en el municipio; la cría con fines de lucro y el adiestramiento para la pelea están prohibidos. Son obligaciones de tenencia, no prohibiciones de entrada."
+    pt: "Regras de posse: a Ley N.º 553, sobre a posse de cachorros perigosos para a segurança cidadã, lista raças tratadas como perigosas — incluindo American Staffordshire Terrier, American Staffordshire Bull Terrier, Pit Bull Terrier, Bull Terrier, Bullmastiff, Doberman, Dogo Argentino, Dogo de Burdeos, Fila Brasileiro, Rottweiler e Tosa Inu, e seus cruzamentos. Os tutores precisam obter autorização da polícia e registrar o cachorro no município; a criação com fins lucrativos e o adestramento para brigas são proibidos. São obrigações de posse, não proibições de entrada."
+  note:
+    en: "Because there is no national breed ban at the border, focus on the SENASAG sanitary rules for entry. If you will live in Bolivia with a listed breed, check the police authorisation and municipal registration obligations under Law No. 553."
+    fr: "Comme il n'y a pas d'interdiction nationale de race à la frontière, concentre-toi sur les règles sanitaires du SENASAG pour l'entrée. Si tu vivez en Bolivie avec une race listée, vérifie les obligations d'autorisation policière et d'enregistrement municipal de la loi n° 553."
+    es: "Como no hay una prohibición nacional de raza en la frontera, céntrate en las normas sanitarias del SENASAG para la entrada. Si vas a vivir en Bolivia con una raza listada, consulta las obligaciones de autorización policial y de registro municipal de la Ley N.º 553."
+    pt: "Como não existe proibição nacional de raças na fronteira, concentre-se nas regras sanitárias do SENASAG para a entrada. Se você for morar na Bolívia com uma raça listada, confira as obrigações de autorização policial e de registro municipal da Ley N.º 553."
+
+checklist:
+  - en: "SENASAG Zoosanitary Import Permit obtained before departure (form SENASAGIMPFOR001, letter to the Departmental Head, bank-deposit proof, liquidation form)"
+    fr: "Permis Zoosanitaire d'Importation SENASAG obtenu avant le départ (formulaire SENASAGIMPFOR001, lettre au Chef Départemental, justificatif de dépôt bancaire, formulaire de liquidation)"
+    es: "Permiso Zoosanitario de Importación del SENASAG obtenido antes de la salida (formulario SENASAGIMPFOR001, carta al Jefe Departamental, comprobante de depósito bancario, formulario de liquidación)"
+    pt: "Autorização Zoossanitária de Importação do SENASAG obtida antes da partida (formulário SENASAGIMPFOR001, carta ao Chefe Departamental, comprovante de depósito bancário, formulário de liquidação)"
+  - en: "Original zoosanitary certificate, one per animal, from the official veterinary authority of the departure country — all information in Spanish"
+    fr: "Certificat zoosanitaire original, un par animal, de l'autorité vétérinaire officielle du pays de départ — toute l'information en espagnol"
+    es: "Certificado zoosanitario original, uno por animal, de la autoridad veterinaria oficial del país de salida — toda la información en español"
+    pt: "Certificado zoossanitário original, um por animal, da autoridade veterinária oficial do país de partida — todas as informações em espanhol"
+  - en: "Rabies vaccination (from 3 months) plus core vaccinations recorded within the required window (60 days for third countries)"
+    fr: "Vaccination antirabique (dès 3 mois) plus vaccinations de base consignées dans la fenêtre requise (60 jours pour les pays tiers)"
+    es: "Vacunación antirrábica (desde los 3 meses) más vacunaciones básicas registradas dentro de la ventana requerida (60 días para los países terceros)"
+    pt: "Vacinação antirrábica (a partir dos 3 meses) mais as vacinações essenciais registradas dentro da janela exigida (60 dias para os países terceiros)"
+  - en: "Internal & external parasite treatment within 30 days before shipment (14 days from an Andean Community country), recorded on the certificate"
+    fr: "Traitement antiparasitaire interne & externe dans les 30 jours avant l'embarquement (14 jours depuis un pays de la Communauté andine), consigné sur le certificat"
+    es: "Tratamiento antiparasitario interno y externo dentro de los 30 días previos al embarque (14 días desde un país de la Comunidad Andina), registrado en el certificado"
+    pt: "Tratamento antiparasitário interno e externo nos 30 dias anteriores ao embarque (14 dias vindo de um país da Comunidade Andina), registrado no certificado"
+  - en: "Official departure inspection recorded; crate washed and disinfected before use, with no waste accompanying the animal"
+    fr: "Inspection officielle au départ consignée ; caisse lavée et désinfectée avant usage, sans déchet accompagnant l'animal"
+    es: "Inspección oficial de salida registrada; jaula lavada y desinfectada antes de su uso, sin residuos que acompañen al animal"
+    pt: "Inspeção oficial na partida registrada; caixa de transporte lavada e desinfetada antes do uso, sem nenhum resíduo acompanhando o animal"
+  - en: "Commercial invoice and packing list if the pet was purchased (sale/purchase)"
+    fr: "Facture commerciale et liste de colisage si l'animal a été acheté (vente/achat)"
+    es: "Factura comercial y lista de empaque si la mascota fue comprada (venta/compra)"
+    pt: "Fatura comercial e lista de embalagem se o animal tiver sido comprado (venda/compra)"
+  - en: "Travel planned within the import permit validity (60 days air/land), and rabies vaccine still valid on arrival"
+    fr: "Voyage planifié dans la validité du permis d'importation (60 jours aérien/terrestre), et vaccin antirabique encore valide à l'arrivée"
+    es: "Viaje planificado dentro de la valide del permiso de importación (60 días aéreo/terrestre), y vacuna antirrábica aún válida a la llegada"
+    pt: "Viagem planejada dentro da validade da autorização de importação (60 dias aéreo/terrestre), e vacina antirrábica ainda válida na chegada"
+  - en: "Microchip recommended for identification (and required by many other countries / for the return)"
+    fr: "Puce recommandée pour l'identification (et exigée par de nombreux autres pays / pour le retour)"
+    es: "Microchip recomendado para la identificación (y exigido por muchos otros países / para el regreso)"
+    pt: "Microchip recomendado para a identificação (e exigido por muitos outros países / para a volta)"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula adecuada conforme a la IATA si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
+
+sources:
+  - label: { en: "VUCE / SENASAG (Aduana Nacional de Bolivia) — Import permit for pets (dogs and cats): requirements", fr: "VUCE / SENASAG (Aduana Nacional de Bolivia) — Permis d'importation d'animaux de compagnie (chiens et chats) : exigences", es: "VUCE / SENASAG (Aduana Nacional de Bolivia) — Permiso de importación de animales de compañía (perros y gatos): requisitos", pt: "VUCE / SENASAG (Aduana Nacional de Bolivia) — Autorização de importação de animais de estimação (cães e gatos): requisitos" }
+    url: "https://www.vuce.gob.bo/es/SENASAG_importacion_perros_gatos_requisitos"
+  - label: { en: "VUCE / SENASAG — Import of pets (dogs and cats): procedure", fr: "VUCE / SENASAG — Importation d'animaux de compagnie (chiens et chats) : procédure", es: "VUCE / SENASAG — Importación de animales de compañía (perros y gatos): procedimiento", pt: "VUCE / SENASAG — Importação de animais de estimação (cães e gatos): procedimento" }
+    url: "https://www.vuce.gob.bo/es/SENASAG_importacion_perros_gatos_procedimiento"
+  - label: { en: "SENASAG — Sanitary requirements to import pets from third countries (PDF)", fr: "SENASAG — Exigences sanitaires pour importer des animaux de compagnie de pays tiers (PDF)", es: "SENASAG — Requisitos sanitarios para importar animales de compañía de países terceros (PDF)", pt: "SENASAG — Requisitos sanitários para importar animais de estimação de países terceiros (PDF)" }
+    url: "https://www.senasag.gob.bo/index.php/institucional/unidades-nacionales/administracion/area-nacional-de-recursos-humano/category/5349-sanidad-animal?download=2278:requisitos-sanitarios-para-importar-animales-de-compania-terceros-paises"
+  - label: { en: "SENASAG — Sanitary requirements to import pets from Andean Community member countries (PDF)", fr: "SENASAG — Exigences sanitaires pour importer des animaux de compagnie de pays membres de la Communauté andine (PDF)", es: "SENASAG — Requisitos sanitarios para importar animales de compañía de países miembros de la Comunidad Andina (PDF)", pt: "SENASAG — Requisitos sanitários para importar animais de estimação de países membros da Comunidade Andina (PDF)" }
+    url: "https://www.senasag.gob.bo/index.php/institucional/unidades-nacionales/administracion/area-nacional-de-recursos-humano/category/5349-sanidad-animal?download=2277:requisitos-sanitarios-para-importar-animales-de-compania-paises-miembros"
+  - label: { en: "SENASAG — REGENSA ch. 7.1: issuance of zoosanitary import permits", fr: "SENASAG — REGENSA chap. 7.1 : émission des permis zoosanitaires d'importation", es: "SENASAG — REGENSA cap. 7.1: emisión de permisos zoosanitarios de importación", pt: "SENASAG — REGENSA cap. 7.1: emissão das autorizações zoossanitárias de importação" }
+    url: "https://www.senasag.gob.bo/index.php/tramites-y-servicios/convocatorias/regensa-en-linea/494-capitulo-7-1-emision-de-permisos-zoosanitarios-de-importacion"
+  - label: { en: "gob.bo / SENASAG — Zoosanitary certificate for pets (dogs and cats)", fr: "gob.bo / SENASAG — Certificat zoosanitaire pour animaux de compagnie (chiens et chats)", es: "gob.bo / SENASAG — Certificado zoosanitario para animales de compañía (perros y gatos)", pt: "gob.bo / SENASAG — Certificado zoossanitário para animais de estimação (cães e gatos)" }
+    url: "https://www.gob.bo/tramites/certificado-zoosanitario-para-animales-de-compania-perros-y-gatos"
+  - label: { en: "Estado Plurinacional de Bolivia — Law No. 553 (keeping of dangerous dogs for citizen security)", fr: "État plurinational de Bolivie — Loi n° 553 (tenue des chiens dangereux pour la sécurité citoyenne)", es: "Estado Plurinacional de Bolivia — Ley N.º 553 (tenencia de perros peligrosos para la seguridad ciudadana)", pt: "Estado Plurinacional de Bolivia — Ley N.º 553 (posse de cachorros perigosos para a segurança cidadã)" }
+    url: "https://fiscalia.gob.bo/marco-legal/leyes/ley-553"
+
+seo:
+  title: { en: "Bolivia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Bolivie — Guide", es: "Requisitos de entrada de perros en Bolivia — Guía de viaje", pt: "Bolívia: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Bolivia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Bolivie avec ton chien : formalités (2026)", es: "Viajar a Bolivia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Bolívia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official SENASAG rules for bringing a dog into Bolivia: Zoosanitary Import Permit, zoosanitary certificate, rabies and core vaccinations. Sourced and dated."
+    fr: "Règles officielles SENASAG pour faire entrer un chien en Bolivie : Permis Zoosanitaire d'Importation, certificat zoosanitaire. Sourcé et daté."
+    es: "Normas oficiales del SENASAG para traer un perro a Bolivia: Permiso Zoosanitario de Importación, certificado zoosanitario. Con fuentes y fecha."
+    pt: "Regras oficiais do SENASAG para levar um cachorro para a Bolívia: autorização de importação, certificado zoossanitário, raiva e vacinas. Com fontes e data."
+  slug: "bolivia"
+  shortDesc:
+    en: "What you need to bring a dog into Bolivia under SENASAG's rules, including the prior import permit."
+    fr: "Ce qu'il faut pour faire entrer un chien en Bolivie selon les règles du SENASAG, dont le permis d'importation préalable."
+    es: "Lo que necesitas para traer un perro a Bolivia según las normas del SENASAG, incluido el permiso de importación previo."
+    pt: "O que você precisa para levar um cachorro para a Bolívia segundo as regras do SENASAG, incluindo a autorização de importação prévia."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,379 @@
+# Country Entry Guide — Peru (trilingual EN/FR/ES).
+# Peru is NOT in the EU. This encodes Peru's own SENASA scheme (Servicio Nacional de Sanidad Agraria).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_pe
+iso2: "PE"
+name: { en: "Peru", fr: "Pérou", es: "Perú", pt: "Peru" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: SENASA
+  authorityUrl: https://www.senasa.gob.pe/senasacontigo/senasa-viajas-con-tu-mascota-conoce-cuales-son-los-requisitos-sanitarios-para-ingresar-o-salir-de-peru/
+  intro:
+    en: "Peru is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export sanitary certificate from SENASA."
+    fr: "Le Pérou est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export du SENASA."
+    es: "Perú no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación del SENASA."
+    pt: "O Peru é um país não listado, então um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado sanitário de exportação do SENASA."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Request the SENASA export certificate at least 72 hours before travel, with the destination's requirements, a current health certificate and vaccination record; SENASA inspects the dog before certifying."
+        fr: "Demande le certificat d'export SENASA au moins 72 h avant le voyage, avec les exigences de destination, un certificat sanitaire à jour et le carnet de vaccination ; le SENASA examine le chien avant de certifier."
+        es: "Solicita el certificado de exportación del SENASA al menos 72 horas antes del viaje, con los requisitos del destino, un certificado sanitario vigente y el registro de vacunación; el SENASA inspecciona al perro antes de certificar."
+        pt: "Peça o certificado de exportação do SENASA pelo menos 72 horas antes da viagem, com as exigências do destino, um atestado de saúde em dia e a carteira de vacinação; o SENASA inspeciona o cachorro antes de certificar."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Peru with your dog", fr: "Voyager au Pérou avec ton chien", es: "Viajar a Perú con tu perro", pt: "Viajar para o Peru com o seu cachorro" }
+  intro:
+    en: >-
+      Peru welcomes dogs, and its entry rules are the same for a personal pet arriving from almost
+      anywhere. SENASA (Servicio Nacional de Sanidad Agraria, the national animal-health authority)
+      asks for one core document: an original export health certificate issued by the official
+      veterinary authority of the country you travel from. It must show current vaccinations —
+      including rabies for a dog over three months old — and internal and external deworming done
+      within 30 days before travel. There is no rabies antibody test and no general quarantine for a
+      healthy pet; SENASA simply carries out a clinical inspection on arrival, mainly at Jorge Chávez
+      International Airport in Lima. A dog travelling as accompanied baggage usually clears customs
+      without paying import duties. This guide explains exactly what to prepare, and the timing to
+      respect, before you book your flight.
+    fr: >-
+      Le Pérou accueille les chiens, et ses règles d'entrée sont identiques pour un animal de compagnie
+      venant de presque partout. Le SENASA (Servicio Nacional de Sanidad Agraria, l'autorité sanitaire
+      animale nationale) demande un document essentiel : un certificat sanitaire d'exportation original
+      émis par l'autorité vétérinaire officielle du pays d'où tu voyages. Il doit attester des
+      vaccinations à jour — dont la rage pour un chien de plus de trois mois — et un traitement
+      antiparasitaire interne et externe réalisé dans les 30 jours avant le voyage. Il n'y a pas de
+      titrage antirabique ni de quarantaine générale pour un animal en bonne santé ; le SENASA effectue
+      simplement une inspection clinique à l'arrivée, principalement à l'aéroport international Jorge
+      Chávez de Lima. Un chien voyageant en bagage accompagné passe généralement la douane sans payer de
+      droits d'importation. Ce guide détaille quoi préparer, et les délais à respecter, avant de réserver.
+    es: >-
+      Perú acoge a los perros, y sus normas de entrada son las mismas para una mascota personal que
+      llega desde casi cualquier lugar. El SENASA (Servicio Nacional de Sanidad Agraria, la autoridad
+      nacional de sanidad animal) pide un documento esencial: un certificado sanitario de exportación
+      original emitido por la autoridad veterinaria oficial del país desde el que viajas. Debe acreditar
+      las vacunas al día — incluida la rabia para un perro de más de tres meses — y una desparasitación
+      interna y externa realizada dentro de los 30 días previos al viaje. No hay prueba de titulación de
+      rabia ni cuarentena general para una mascota sana; el SENASA simplemente realiza una inspección
+      clínica a la llegada, principalmente en el Aeropuerto Internacional Jorge Chávez de Lima. Un perro
+      que viaja como equipaje acompañado suele pasar la aduana sin pagar derechos de importación. Esta
+      guía explica exactamente qué preparar, y los plazos que respetar, antes de reservar tu vuelo.
+
+    pt: "O Peru recebe bem os cachorros, e suas regras de entrada são as mesmas para um animal de estimação que chega de quase qualquer lugar. O SENASA (Servicio Nacional de Sanidad Agraria, a autoridade nacional de saúde animal) pede um documento central: um atestado de saúde de exportação original, emitido pela autoridade veterinária oficial do país de onde você viaja. Ele deve trazer as vacinações em dia — inclusive a antirrábica para um cachorro com mais de três meses — e a vermifugação interna e externa feita nos 30 dias anteriores à viagem. Não há teste sorológico antirrábico nem quarentena geral para um animal saudável; o SENASA apenas faz uma inspeção clínica na chegada, principalmente no Aeroporto Internacional Jorge Chávez, em Lima. Um cachorro que viaja como bagagem acompanhada normalmente é liberado na alfândega sem pagar impostos de importação. Este guia explica exatamente o que preparar, e os prazos a respeitar, antes de você comprar a passagem."
+difficulty:
+  level: easy
+  label: { en: "Easy — one uniform SENASA scheme for most origins", fr: "Facile — un régime SENASA uniforme pour la plupart des origines", es: "Fácil — un régimen SENASA uniforme para la mayoría de los orígenes", pt: "Fácil — um esquema único do SENASA para a maioria das origens" }
+
+prepTime:
+  eu:
+    en: "Standard case: a few days to assemble the export health certificate once vaccinations are valid and deworming is done within 30 days before travel."
+    fr: "Cas standard : quelques jours pour réunir le certificat sanitaire d'exportation une fois les vaccinations valides et le traitement antiparasitaire fait dans les 30 jours avant le voyage."
+    es: "Caso estándar: unos días para reunir el certificado sanitario de exportación una vez que las vacunas son válidas y la desparasitación se ha hecho dentro de los 30 días previos al viaje."
+    pt: "Caso padrão: alguns dias para montar o atestado de saúde de exportação, uma vez que as vacinações estejam válidas e a vermifugação tenha sido feita nos 30 dias anteriores à viagem."
+  listed:
+    en: "If the rabies shot is still needed: allow extra time, as rabies vaccination is mandatory from 3 months of age and must be valid at travel."
+    fr: "Si la vaccination antirabique reste à faire : prévois du temps, la rage étant obligatoire dès 3 mois et devant être valide au voyage."
+    es: "Si aún falta la vacuna antirrábica: prevé tiempo adicional, ya que la vacunación antirrábica es obligatoria desde los 3 meses de edad y debe ser válida en el momento del viaje."
+    pt: "Se a vacina antirrábica ainda estiver pendente: conte um tempo a mais, já que a vacinação antirrábica é obrigatória a partir dos 3 meses de idade e precisa estar válida no dia da viagem."
+  nonListed:
+    en: "Non-compliant arrivals: if documents are missing, SENASA determines a sanitary measure on the spot, which can mean delays and costs — always prepare in advance."
+    fr: "Arrivées non conformes : si des documents manquent, le SENASA fixe une mesure sanitaire sur place, avec délais et frais possibles — prépare toujours à l'avance."
+    es: "Llegadas no conformes: si faltan documentos, el SENASA determina una medida sanitaria en el momento, lo que puede suponer demoras y costes — prepáralo siempre con antelación."
+    pt: "Chegadas fora das regras: se faltarem documentos, o SENASA define na hora uma medida sanitária, o que pode significar atrasos e custos — prepare tudo sempre com antecedência."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not listed by SENASA at entry (recommended)", fr: "Non listée par le SENASA à l'entrée (recommandée)", es: "No exigido por el SENASA a la entrada (recomendado)", pt: "Não consta das exigências do SENASA na entrada (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required from 3 months of age", fr: "Requise dès 3 mois", es: "Obligatoria desde los 3 meses de edad", pt: "Obrigatória a partir dos 3 meses de idade" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Export health certificate (official authority of origin)", fr: "Certificat sanitaire d'exportation (autorité officielle d'origine)", es: "Certificado sanitario de exportación (autoridad oficial de origen)", pt: "Atestado de saúde de exportação (autoridade oficial de origem)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Internal & external deworming", fr: "Antiparasitaire interne & externe", es: "Desparasitación interna y externa", pt: "Vermifugação interna e externa" }
+    status: { en: "Required (within 30 days)", fr: "Requis (dans les 30 jours)", es: "Obligatoria (dentro de los 30 días)", pt: "Obrigatória (nos 30 dias anteriores)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for a healthy pet", fr: "Non requise pour un animal en bonne santé", es: "No obligatoria para una mascota sana", pt: "Não exigida para um animal saudável" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Peru (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Pérou (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Perú (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Peru (o seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Peru", fr: "Pays de destination — Pérou", es: "País de destino — Perú", pt: "País de destino — Peru" }
+      text:
+        en: "Peru applies its own SENASA scheme: one original export health certificate covering current vaccinations (rabies from 3 months) and internal and external deworming, plus a clinical inspection on arrival. No rabies antibody test and no general quarantine are demanded."
+        fr: "Le Pérou applique son propre régime SENASA : un certificat sanitaire d'exportation original couvrant les vaccinations à jour (rage dès 3 mois) et un traitement antiparasitaire interne et externe, plus une inspection clinique à l'arrivée. Ni titrage ni quarantaine générale ne sont exigés."
+        es: "Perú aplica su propio régimen SENASA: un certificado sanitario de exportación original que cubre las vacunas al día (rabia desde los 3 meses) y una desparasitación interna y externa, más una inspección clínica a la llegada. No se exigen prueba de titulación de rabia ni cuarentena general."
+        pt: "O Peru aplica o seu próprio esquema do SENASA: um atestado de saúde de exportação original que cobre as vacinações em dia (antirrábica a partir dos 3 meses) e a vermifugação interna e externa, mais uma inspeção clínica na chegada. Não se exige teste sorológico antirrábico nem quarentena geral."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health certificate must be issued by the official veterinary authority of the country you depart from. Its content and timing (deworming within 30 days, valid vaccinations) drive your whole preparation."
+        fr: "Le certificat sanitaire doit être émis par l'autorité vétérinaire officielle du pays de départ. Son contenu et ses délais (antiparasitaire dans les 30 jours, vaccinations valides) rythment toute ton préparation."
+        es: "El certificado sanitario debe ser emitido por la autoridad veterinaria oficial del país desde el que sales. Su contenido y sus plazos (desparasitación dentro de los 30 días, vacunas válidas) marcan toda tu preparación."
+        pt: "O atestado de saúde deve ser emitido pela autoridade veterinária oficial do país de onde você parte. O seu conteúdo e os seus prazos (vermifugação nos 30 dias anteriores, vacinações válidas) condicionam toda a sua preparação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "SENASA's published pet scheme applies uniformly, but recent residence and the animal-health status of those countries can affect what the official authority certifies. Confirm your dog's history with your vet."
+        fr: "Le régime publié du SENASA s'applique uniformément, mais le séjour récent et le statut sanitaire de ces pays peuvent influer sur ce que l'autorité officielle certifie. Confirme l'historique de ton chien avec ton vétérinaire."
+        es: "El régimen para mascotas publicado por el SENASA se aplica de manera uniforme, pero la residencia reciente y el estatus zoosanitario de esos países pueden influir en lo que la autoridad oficial certifica. Confirma el historial de tu perro con tu veterinario."
+        pt: "O esquema publicado pelo SENASA para animais de estimação vale de forma uniforme, mas a residência recente e a situação de saúde animal desses países podem influenciar o que a autoridade oficial certifica. Confirme o histórico do seu cachorro com o seu veterinário."
+  note:
+    en: "So read the requirements below as Peru's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre péruvien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Perú y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral do Peru e depois confirme com o seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not listed at entry (recommended)", fr: "Non listée à l'entrée (recommandée)", es: "No exigido a la entrada (recomendado)", pt: "Não consta das exigências de entrada (recomendado)" }
+    when: { en: "SENASA's published entry requirements do not list a microchip. A microchip is strongly advised for identification and for the return trip, and other countries' rules may require it.", fr: "Les exigences d'entrée publiées par le SENASA ne mentionnent pas de puce. Une puce reste fortement conseillée pour l'identification et le retour, et les règles d'autres pays peuvent l'imposer.", es: "Los requisitos de entrada publicados por el SENASA no incluyen el microchip. Un microchip es muy recomendable para la identificación y para el viaje de regreso, y las normas de otros países pueden exigirlo.", pt: "As exigências de entrada publicadas pelo SENASA não mencionam o microchip. O microchip é fortemente recomendado para a identificação e para a viagem de volta, e as regras de outros países podem exigi-lo." }
+    exceptions: { en: "For exit from Peru, SENASA does list an ISO 11784/11785 microchip implant record where required by the destination country.", fr: "Pour la sortie du Pérou, le SENASA liste une constance d'implant de puce ISO 11784/11785 lorsque le pays de destination l'exige.", es: "Para la salida de Perú, el SENASA sí incluye una constancia de implante de microchip ISO 11784/11785 cuando el país de destino lo exige.", pt: "Para a saída do Peru, o SENASA prevê, sim, o registro de implante de microchip ISO 11784/11785 quando o país de destino exigir." }
+    ref: { en: "SENASA — Requisitos sanitarios para ingresar o salir de Perú", fr: "SENASA — Requisitos sanitarios para ingresar o salir de Perú", es: "SENASA — Requisitos sanitarios para ingresar o salir de Perú", pt: "SENASA — Requisitos sanitarios para ingresar o salir de Perú" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required from 3 months", fr: "Requise dès 3 mois", es: "Obligatoria desde los 3 meses", pt: "Obrigatória a partir dos 3 meses" }
+    when: { en: "Mandatory for a dog over three months of age; the current rabies vaccination must be recorded on the export health certificate issued by the origin's official authority.", fr: "Obligatoire pour un chien de plus de trois mois ; la vaccination antirabique en cours doit figurer sur le certificat sanitaire d'exportation émis par l'autorité officielle d'origine.", es: "Obligatoria para un perro de más de tres meses de edad; la vacunación antirrábica vigente debe constar en el certificado sanitario de exportación emitido por la autoridad oficial de origen.", pt: "Obrigatória para um cachorro com mais de três meses de idade; a vacinação antirrábica em dia deve constar do atestado de saúde de exportação emitido pela autoridade oficial de origem." }
+    exceptions: { en: "A dog under three months old is not required by SENASA to be rabies-vaccinated, but other vaccinations and airline/return rules still apply.", fr: "Un chien de moins de trois mois n'est pas tenu par le SENASA d'être vacciné contre la rage, mais les autres vaccinations et les règles des compagnies/du retour s'appliquent.", es: "El SENASA no exige que un perro menor de tres meses esté vacunado contra la rabia, pero siguen aplicándose las demás vacunas y las normas de la aerolínea y del regreso.", pt: "O SENASA não exige vacinação antirrábica para um cachorro com menos de três meses, mas as demais vacinações e as regras da companhia aérea e do retorno continuam valendo." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Other vaccinations", fr: "Autres vaccinations", es: "Otras vacunas", pt: "Outras vacinações" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "The certificate must record current vaccinations against canine parvovirus, distemper, canine hepatitis and leptospirosis, in addition to rabies.", fr: "Le certificat doit attester des vaccinations à jour contre le parvovirus canin, la maladie de Carré, l'hépatite canine et la leptospirose, en plus de la rage.", es: "El certificado debe acreditar las vacunas vigentes contra el parvovirus canino, el moquillo, la hepatitis canina y la leptospirosis, además de la rabia.", pt: "O certificado deve registrar as vacinações em dia contra parvovirose canina, cinomose, hepatite infecciosa canina e leptospirose, além da raiva." }
+    exceptions: { en: "Age-appropriate exceptions may apply for very young puppies per the certifying vet.", fr: "Des exceptions liées à l'âge peuvent s'appliquer aux très jeunes chiots selon le vétérinaire certificateur.", es: "Pueden aplicarse excepciones por edad para cachorros muy jóvenes según el veterinario certificador.", pt: "Podem valer exceções conforme a idade para filhotes muito novos, a critério do veterinário que assina o certificado." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "SENASA does not require a rabies antibody test for a personal pet from any origin.", fr: "Le SENASA n'exige aucun titrage antirabique pour un animal de compagnie, quelle que soit l'origine.", es: "El SENASA no exige ninguna prueba de titulación de rabia para una mascota personal, sea cual sea el origen.", pt: "O SENASA não exige teste sorológico antirrábico para um animal de estimação, seja qual for a origem." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Export health certificate", fr: "Certificat sanitaire d'exportation", es: "Certificado sanitario de exportación", pt: "Atestado de saúde de exportação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An original export health certificate issued by the official veterinary authority of the country of origin, stating the vaccinations, the deworming and the animal's health status.", fr: "Un certificat sanitaire d'exportation original émis par l'autorité vétérinaire officielle du pays d'origine, indiquant les vaccinations, le traitement antiparasitaire et l'état de santé de l'animal.", es: "Un certificado sanitario de exportación original emitido por la autoridad veterinaria oficial del país de origen, que indique las vacunas, la desparasitación y el estado de salud del animal.", pt: "Um atestado de saúde de exportação original, emitido pela autoridade veterinária oficial do país de origem, informando as vacinações, a vermifugação e o estado de saúde do animal." }
+    exceptions: { en: "Present the original at the border. A written application with the owner's and pet's details is also submitted to SENASA on entry.", fr: "Présente l'original à la frontière. Une demande écrite avec les données du propriétaire et de l'animal est aussi remise au SENASA à l'entrée.", es: "Presenta el original en la frontera. También se entrega al SENASA a la entrada una solicitud por escrito con los datos del propietario y de la mascota.", pt: "Apresente o original na fronteira. Na entrada também se entrega ao SENASA uma solicitação por escrito com os dados do tutor e do animal." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Internal & external deworming", fr: "Traitement antiparasitaire interne & externe", es: "Desparasitación interna y externa", pt: "Vermifugação interna e externa" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Internal and external deworming carried out within the 30 days before travel, recorded on the export health certificate.", fr: "Traitement antiparasitaire interne et externe réalisé dans les 30 jours avant le voyage, consigné sur le certificat sanitaire d'exportation.", es: "Desparasitación interna y externa realizada dentro de los 30 días previos al viaje, consignada en el certificado sanitario de exportación.", pt: "Vermifugação interna e externa realizada nos 30 dias anteriores à viagem, registrada no atestado de saúde de exportação." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "SENASA fee", fr: "Redevance SENASA", es: "Tasa del SENASA", pt: "Taxa do SENASA" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A payment of S/ 98.60 into SENASA's bank account is made for the entry procedure (amount per the current SENASA tariff / TUPA).", fr: "Un paiement de 98,60 S/ sur le compte bancaire du SENASA est effectué pour la procédure d'entrée (montant selon le tarif / TUPA en vigueur du SENASA).", es: "Se realiza un pago de S/ 98,60 en la cuenta bancaria del SENASA por el trámite de entrada (importe según el tarifario / TUPA vigente del SENASA).", pt: "Faz-se um pagamento de S/ 98,60 na conta bancária do SENASA pelo procedimento de entrada (valor conforme a tarifa vigente do SENASA / TUPA)." }
+    exceptions: { en: "The exact tariff may change; check the current SENASA TUPA before travel.", fr: "Le tarif exact peut évoluer ; vérifie le TUPA en vigueur du SENASA avant le voyage.", es: "El importe exacto puede cambiar; consulta el TUPA vigente del SENASA antes de viajar.", pt: "A tarifa exata pode mudar; confira o TUPA vigente do SENASA antes de viajar." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Import permit / advance notification", fr: "Permis d'importation / notification préalable", es: "Permiso de importación / notificación previa", pt: "Autorização de importação / notificação prévia" }
+    required: { en: "Not required for dogs (accompanied pet)", fr: "Non requis pour les chiens (animal accompagné)", es: "No obligatorio para perros (mascota acompañada)", pt: "Não obrigatória para cachorros (animal acompanhado)" }
+    when: { en: "For a dog as a personal pet, no prior Sanitary Import Permit (PSI) is needed. A PSI and quarantine-facility authorisation apply only to other animal species.", fr: "Pour un chien comme animal de compagnie, aucun Permis Sanitaire d'Importation (PSI) préalable n'est requis. Un PSI et une autorisation d'enceinte de quarantaine ne concernent que les autres espèces animales.", es: "Para un perro como mascota personal, no se necesita un Permiso Sanitario de Importación (PSI) previo. Un PSI y la autorización de recinto de cuarentena solo aplican a otras especies animales.", pt: "Para um cachorro como animal de estimação, não é preciso Permiso Sanitario de Importación (PSI) prévio. O PSI e a autorização de estabelecimento de quarentena valem apenas para outras espécies animais." }
+    exceptions: { en: "Airlines and customs handling may have their own advance-notice requirements.", fr: "Les compagnies aériennes et la manutention douanière peuvent avoir leurs propres exigences de préavis.", es: "Las aerolíneas y la gestión aduanera pueden tener sus propios requisitos de aviso previo.", pt: "As companhias aéreas e o despacho aduaneiro podem ter as suas próprias exigências de aviso prévio." }
+    ref: { en: "gob.pe — Ingreso de mascotas al país (material informativo)", fr: "gob.pe — Ingreso de mascotas al país (material informativo)", es: "gob.pe — Ingreso de mascotas al país (material informativo)", pt: "gob.pe — Ingreso de mascotas al país (material informativo)" }
+  - item: { en: "SENASA inspection on arrival", fr: "Inspection SENASA à l'arrivée", es: "Inspección del SENASA a la llegada", pt: "Inspeção do SENASA na chegada" }
+    required: { en: "Required on arrival", fr: "Requise à l'arrivée", es: "Obligatoria a la llegada", pt: "Obrigatória na chegada" }
+    when: { en: "SENASA staff review the export health certificate and carry out a clinical inspection to detect any sign of infectious-contagious or parasitic disease, mainly at Jorge Chávez International Airport (Lima).", fr: "Le personnel du SENASA examine le certificat sanitaire d'exportation et réalise une inspection clinique pour détecter tout signe de maladie infectocontagieuse ou parasitaire, principalement à l'aéroport international Jorge Chávez (Lima).", es: "El personal del SENASA revisa el certificado sanitario de exportación y realiza una inspección clínica para detectar cualquier signo de enfermedad infectocontagiosa o parasitaria, principalmente en el Aeropuerto Internacional Jorge Chávez (Lima).", pt: "Os agentes do SENASA analisam o atestado de saúde de exportação e fazem uma inspeção clínica para detectar qualquer sinal de doença infectocontagiosa ou parasitária, principalmente no Aeroporto Internacional Jorge Chávez (Lima)." }
+    exceptions: { en: "If a document is missing or the animal shows signs of disease, the SENASA inspector determines the applicable sanitary measure.", fr: "Si un document manque ou si l'animal présente des signes de maladie, l'inspecteur du SENASA détermine la mesure sanitaire applicable.", es: "Si falta un documento o el animal presenta signos de enfermedad, el inspector del SENASA determina la medida sanitaria aplicable.", pt: "Se faltar um documento ou o animal apresentar sinais de doença, o inspetor do SENASA define a medida sanitária aplicável." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Customs (SUNAT)", fr: "Douane (SUNAT)", es: "Aduanas (SUNAT)", pt: "Alfândega (SUNAT)" }
+    required: { en: "Applies on arrival", fr: "S'applique à l'arrivée", es: "Se aplica a la llegada", pt: "Aplica-se na chegada" }
+    when: { en: "A single pet as accompanied baggage, arriving from 1 month before to 6 months after the passenger, clears without import duties on presentation of the passport and air ticket.", fr: "Un seul animal en bagage accompagné, arrivant d'un mois avant à six mois après le passager, passe sans droits d'importation sur présentation du passeport et du billet d'avion.", es: "Una sola mascota como equipaje acompañado, que llega desde 1 mes antes hasta 6 meses después del pasajero, pasa sin derechos de importación presentando el pasaporte y el billete de avión.", pt: "Um único animal de estimação como bagagem acompanhada, chegando entre 1 mês antes e 6 meses depois do passageiro, é liberado sem impostos de importação mediante apresentação do passaporte e da passagem aérea." }
+    exceptions: { en: "A second or further pet, or one arriving outside that window or as unlinked cargo, is subject to import duties via a Simplified Import Declaration (DSI).", fr: "Un deuxième animal ou plus, ou un animal arrivant hors de ce délai ou en fret non lié à un passager, est soumis aux droits d'importation via une Déclaration Simplifiée d'Importation (DSI).", es: "Una segunda mascota o más, o una que llegue fuera de ese plazo o como carga no vinculada a un pasajero, está sujeta a derechos de importación mediante una Declaración Simplificada de Importación (DSI).", pt: "Um segundo animal, ou mais, e também o que chegar fora dessa janela ou como carga desvinculada, fica sujeito a impostos de importação por meio de uma Declaración Simplificada de Importación (DSI)." }
+    ref: { en: "gob.pe / SUNAT — Ingreso de mascota al país", fr: "gob.pe / SUNAT — Ingreso de mascota al país", es: "gob.pe / SUNAT — Ingreso de mascota al país", pt: "gob.pe / SUNAT — Ingreso de mascota al país" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "No fixed minimum; rabies from 3 months", fr: "Pas de minimum fixe ; rage dès 3 mois", es: "Sin mínimo fijo; rabia desde los 3 meses", pt: "Sem mínimo fixo; antirrábica a partir dos 3 meses" }
+    when: { en: "SENASA does not publish a fixed minimum entry age, but rabies vaccination becomes mandatory once the dog is over three months old.", fr: "Le SENASA ne publie pas d'âge minimum d'entrée fixe, mais la vaccination antirabique devient obligatoire dès que le chien a plus de trois mois.", es: "El SENASA no publica una edad mínima de entrada fija, pero la vacunación antirrábica pasa a ser obligatoria cuando el perro supera los tres meses.", pt: "O SENASA não publica uma idade mínima fixa de entrada, mas a vacinação antirrábica passa a ser obrigatória quando o cachorro tem mais de três meses." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "SENASA — Ingreso de mascotas (requisitos sanitarios)", fr: "SENASA — Ingreso de mascotas (requisitos sanitarios)", es: "SENASA — Ingreso de mascotas (requisitos sanitarios)", pt: "SENASA — Ingreso de mascotas (requisitos sanitarios)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "There is no general quarantine for a healthy compliant pet. If requirements are not met, the SENASA inspector determines the applicable sanitary measure.", fr: "Il n'y a pas de quarantaine générale pour un animal sain et conforme. Si les exigences ne sont pas remplies, l'inspecteur du SENASA détermine la mesure sanitaire applicable.", es: "No hay cuarentena general para una mascota sana y conforme. Si no se cumplen los requisitos, el inspector del SENASA determina la medida sanitaria aplicable.", pt: "Não há quarentena geral para um animal saudável e em conformidade. Se as exigências não forem cumpridas, o inspetor do SENASA define a medida sanitária aplicável." }
+    ref: { en: "gob.pe — Ingreso de mascotas al país (material informativo)", fr: "gob.pe — Ingreso de mascotas al país (material informativo)", es: "gob.pe — Ingreso de mascotas al país (material informativo)", pt: "gob.pe — Ingreso de mascotas al país (material informativo)" }
+
+origin:
+  eu:
+    title: { en: "Standard SENASA scheme — export health certificate", fr: "Régime SENASA standard — certificat sanitaire d'exportation", es: "Régimen SENASA estándar — certificado sanitario de exportación", pt: "Esquema padrão do SENASA — atestado de saúde de exportação" }
+    body:
+      en: "For a dog arriving from the European Union, the EU pet passport is not the operative document for Peru. Your dog needs an original export health certificate issued by the official veterinary authority of the country you travel from, recording current vaccinations (rabies from 3 months, plus canine parvovirus, distemper, hepatitis and leptospirosis) and internal and external deworming within 30 days before travel. SENASA reviews it and inspects the dog on arrival."
+      fr: "Pour un chien venant de l'Union européenne, le passeport européen n'est pas le document opérant pour le Pérou. Ton chien a besoin d'un certificat sanitaire d'exportation original émis par l'autorité vétérinaire officielle du pays de départ, attestant des vaccinations à jour (rage dès 3 mois, plus parvovirus canin, maladie de Carré, hépatite et leptospirose) et d'un traitement antiparasitaire interne et externe dans les 30 jours avant le voyage. Le SENASA l'examine et inspecte le chien à l'arrivée."
+      es: "Para un perro que llega de la Unión Europea, el pasaporte europeo para mascotas no es el documento operativo para Perú. Tu perro necesita un certificado sanitario de exportación original emitido por la autoridad veterinaria oficial del país desde el que viajas, que acredite las vacunas al día (rabia desde los 3 meses, más parvovirus canino, moquillo, hepatitis y leptospirosis) y una desparasitación interna y externa dentro de los 30 días previos al viaje. El SENASA lo revisa e inspecciona al perro a la llegada."
+      pt: "Para um cachorro que chega da União Europeia, o passaporte europeu para animais de companhia não é o documento que vale no Peru. O seu cachorro precisa de um atestado de saúde de exportação original, emitido pela autoridade veterinária oficial do país de onde você viaja, registrando as vacinações em dia (antirrábica a partir dos 3 meses, mais parvovirose canina, cinomose, hepatite e leptospirose) e a vermifugação interna e externa nos 30 dias anteriores à viagem. O SENASA analisa o documento e inspeciona o cachorro na chegada."
+    cls: ok
+  listed:
+    title: { en: "From any other third country — same single scheme", fr: "Depuis tout autre pays tiers — le même régime unique", es: "Desde cualquier otro país tercero — el mismo régimen único", pt: "De qualquer outro país terceiro — o mesmo esquema único" }
+    body:
+      en: "Peru applies the same procedure regardless of the country of origin. Whatever your departure country, the path is one export health certificate from its official veterinary authority, valid vaccinations and deworming, the SENASA fee, and the clinical inspection on arrival. There is no rabies antibody test and no waiting period beyond keeping the vaccinations valid."
+      fr: "Le Pérou applique la même procédure quel que soit le pays d'origine. Quel que soit ton pays de départ, le parcours est un certificat sanitaire d'exportation de son autorité vétérinaire officielle, des vaccinations et un antiparasitaire valides, la redevance SENASA et l'inspection clinique à l'arrivée. Il n'y a ni titrage antirabique ni délai d'attente au-delà du maintien de la validité des vaccinations."
+      es: "Perú aplica el mismo procedimiento sea cual sea el país de origen. Cualquiera que sea tu país de salida, el recorrido es un certificado sanitario de exportación de su autoridad veterinaria oficial, vacunas y desparasitación válidas, la tasa del SENASA y la inspección clínica a la llegada. No hay prueba de titulación de rabia ni periodo de espera más allá de mantener las vacunas vigentes."
+      pt: "O Peru aplica o mesmo procedimento, seja qual for o país de origem. Qualquer que seja o seu país de partida, o caminho é um atestado de saúde de exportação emitido pela autoridade veterinária oficial de lá, vacinações válidas e vermifugação, a taxa do SENASA e a inspeção clínica na chegada. Não há teste sorológico antirrábico nem prazo de espera além de manter as vacinações em dia."
+    cls: ok
+  nonListed:
+    title: { en: "Non-compliant arrivals & customs cases", fr: "Arrivées non conformes & cas douaniers", es: "Llegadas no conformes y casos aduaneros", pt: "Chegadas fora das regras e casos aduaneiros" }
+    body:
+      en: "If a dog arrives without meeting the sanitary requirements, or shows signs of disease, the SENASA inspector determines the sanitary measure to protect the country's animal health, at the owner's expense. Separately, a pet that is not a single accompanied animal within the customs window may owe import duties through a Simplified Import Declaration (DSI) with SUNAT."
+      fr: "Si un chien arrive sans remplir les exigences sanitaires, ou présente des signes de maladie, l'inspecteur du SENASA détermine la mesure sanitaire pour protéger le statut zoosanitaire du pays, aux frais du propriétaire. Par ailleurs, un animal qui n'est pas un unique animal accompagné dans le délai douanier peut devoir des droits d'importation via une Déclaration Simplifiée d'Importation (DSI) auprès de la SUNAT."
+      es: "Si un perro llega sin cumplir los requisitos sanitarios, o presenta signos de enfermedad, el inspector del SENASA determina la medida sanitaria para proteger el estatus zoosanitario del país, a cargo del propietario. Aparte, una mascota que no sea un único animal acompañado dentro del plazo aduanero puede adeudar derechos de importación mediante una Declaración Simplificada de Importación (DSI) ante la SUNAT."
+      pt: "Se um cachorro chegar sem cumprir as exigências sanitárias, ou apresentar sinais de doença, o inspetor do SENASA define a medida sanitária para proteger a saúde animal do país, às custas do tutor. À parte disso, um animal que não seja um único animal acompanhado dentro da janela aduaneira pode ficar devendo impostos de importação por meio de uma Declaración Simplificada de Importación (DSI) junto à SUNAT."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Peru depends on how it travels and on your documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Pérou dépend de son mode de voyage et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a Perú depende de su forma de viajar y de tus documentos."
+    pt: "O que acontece quando o seu cachorro chega ao Peru depende de como ele viaja e dos seus documentos."
+  points:
+    - en: "SENASA staff review the original export health certificate and perform a clinical inspection of the dog, mainly at Jorge Chávez International Airport in Lima."
+      fr: "Le personnel du SENASA examine le certificat sanitaire d'exportation original et réalise une inspection clinique du chien, principalement à l'aéroport international Jorge Chávez de Lima."
+      es: "El personal del SENASA revisa el certificado sanitario de exportación original y realiza una inspección clínica del perro, principalmente en el Aeropuerto Internacional Jorge Chávez de Lima."
+      pt: "Os agentes do SENASA analisam o atestado de saúde de exportação original e fazem uma inspeção clínica do cachorro, principalmente no Aeroporto Internacional Jorge Chávez, em Lima."
+    - en: "A single pet travelling as accompanied baggage, arriving within 1 month before to 6 months after the passenger, is not charged import duties on presentation of the passport and air ticket."
+      fr: "Un seul animal en bagage accompagné, arrivant d'un mois avant à six mois après le passager, n'est pas soumis aux droits d'importation sur présentation du passeport et du billet d'avion."
+      es: "Una sola mascota que viaja como equipaje acompañado, que llega desde 1 mes antes hasta 6 meses después del pasajero, no paga derechos de importación presentando el pasaporte y el billete de avión."
+      pt: "Um único animal de estimação viajando como bagagem acompanhada, chegando entre 1 mês antes e 6 meses depois do passageiro, não paga impostos de importação mediante apresentação do passaporte e da passagem aérea."
+    - en: "For a dog arriving as air cargo or outside the accompanied-baggage window, expect a customs process with SUNAT (Simplified Import Declaration and possible duties)."
+      fr: "Pour un chien arrivant en fret aérien ou hors du délai du bagage accompagné, prévois une procédure douanière avec la SUNAT (Déclaration Simplifiée d'Importation et droits éventuels)."
+      es: "Para un perro que llega como carga aérea o fuera del plazo de equipaje acompañado, prevé un trámite aduanero con la SUNAT (Declaración Simplificada de Importación y posibles derechos)."
+      pt: "Para um cachorro que chega como carga aérea ou fora da janela da bagagem acompanhada, conte com um processo aduaneiro junto à SUNAT (Declaración Simplificada de Importación e possíveis impostos)."
+    - en: "Keep the SENASA fee payment voucher and all originals; forms are handled in Spanish."
+      fr: "Conserve le justificatif de paiement de la redevance SENASA et tous les originaux ; les formalités se font en espagnol."
+      es: "Conserva el comprobante de pago de la tasa del SENASA y todos los originales; los trámites se hacen en español."
+      pt: "Guarde o comprovante de pagamento da taxa do SENASA e todos os originais; os formulários são tratados em espanhol."
+    - en: "If a document is missing or the dog appears ill, the SENASA inspector determines the applicable sanitary measure, and any resulting costs fall on the owner."
+      fr: "Si un document manque ou si le chien paraît malade, l'inspecteur du SENASA détermine la mesure sanitaire applicable, et les frais qui en découlent sont à la charge du propriétaire."
+      es: "Si falta un documento o el perro parece enfermo, el inspector del SENASA determina la medida sanitaria aplicable, y los costes que se deriven corren a cargo del propietario."
+      pt: "Se faltar um documento ou o cachorro parecer doente, o inspetor do SENASA define a medida sanitária aplicável, e os custos decorrentes ficam por conta do tutor."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Peru has no SENASA breed-specific import ban. National law regulates the keeping of dogs considered potentially dangerous, but this governs ownership within Peru — it is not an entry ban applied at the border."
+    fr: "Le Pérou n'a aucune interdiction d'importation liée à la race au niveau du SENASA. La loi nationale réglemente la détention des chiens considérés comme potentiellement dangereux, mais elle porte sur la détention au Pérou — ce n'est pas une interdiction d'entrée appliquée à la frontière."
+    es: "Perú no tiene ninguna prohibición de importación por raza a nivel del SENASA. La ley nacional regula la tenencia de perros considerados potencialmente peligrosos, pero esto rige la tenencia dentro de Perú — no es una prohibición de entrada aplicada en la frontera."
+    pt: "O Peru não tem, no SENASA, proibição de importação por raça. A lei nacional regula a posse de cachorros considerados potencialmente perigosos, mas isso rege a posse dentro do Peru — não é uma proibição de entrada aplicada na fronteira."
+  cat1:
+    en: "No banned category at entry: no breed is refused entry to Peru on the basis of its breed, provided the SENASA sanitary requirements (export health certificate, vaccinations, deworming, inspection) are met."
+    fr: "Aucune catégorie interdite à l'entrée : aucune race n'est refusée à l'entrée au Pérou en raison de sa race, sous réserve du respect des exigences sanitaires du SENASA (certificat sanitaire d'exportation, vaccinations, antiparasitaire, inspection)."
+    es: "Ninguna categoría prohibida a la entrada: no se rechaza la entrada a Perú a ninguna raza por razón de su raza, siempre que se cumplan los requisitos sanitarios del SENASA (certificado sanitario de exportación, vacunas, desparasitación, inspección)."
+    pt: "Nenhuma categoria proibida na entrada: nenhuma raça tem a entrada no Peru recusada por causa da raça, desde que as exigências sanitárias do SENASA (atestado de saúde de exportação, vacinações, vermifugação, inspeção) sejam cumpridas."
+  cat2:
+    en: "Ownership rules: Law No. 27596 and its regulation (Supreme Decree 006-2002-SA) set the legal regime for keeping, breeding and handling dogs deemed potentially dangerous. Ministry of Health Resolution 1776-2002-SA/DM lists breeds including Pit Bull Terrier, Dogo Argentino, Fila Brasileiro, Tosa Japonesa (Tosa Inu), Bullmastiff, Doberman and Rottweiler. Owners must be adults, register the dog, and meet responsible-ownership conditions — these are ownership obligations, not entry bans."
+    fr: "Règles de détention : la loi n° 27596 et son règlement (Décret suprême 006-2002-SA) fixent le régime juridique de détention, d'élevage et de manipulation des chiens réputés potentiellement dangereux. La Résolution ministérielle 1776-2002-SA/DM liste des races dont le Pit Bull Terrier, le Dogo Argentino, le Fila Brasileiro, le Tosa Japonais (Tosa Inu), le Bullmastiff, le Doberman et le Rottweiler. Les propriétaires doivent être majeurs, enregistrer le chien et respecter des conditions de détention responsable — ce sont des obligations de détention, pas des interdictions d'entrée."
+    es: "Normas de tenencia: la Ley N.º 27596 y su reglamento (Decreto Supremo 006-2002-SA) fijan el régimen jurídico de la tenencia, la crianza y el manejo de perros considerados potencialmente peligrosos. La Resolución Ministerial 1776-2002-SA/DM lista razas como el Pit Bull Terrier, el Dogo Argentino, el Fila Brasileiro, la Tosa Japonesa (Tosa Inu), el Bullmastiff, el Doberman y el Rottweiler. Los propietarios deben ser mayores de edad, registrar al perro y cumplir condiciones de tenencia responsable — son obligaciones de tenencia, no prohibiciones de entrada."
+    pt: "Regras de posse: a Ley N.º 27596 e o seu regulamento (Decreto Supremo 006-2002-SA) definem o regime jurídico da posse, da criação e do manejo de cachorros considerados potencialmente perigosos. A Resolución Ministerial 1776-2002-SA/DM lista raças como Pit Bull Terrier, Dogo Argentino, Fila Brasileiro, Tosa Japonesa (Tosa Inu), Bullmastiff, Doberman e Rottweiler. Os tutores devem ser maiores de idade, registrar o cachorro e cumprir as condições de posse responsável — são obrigações de posse, não proibições de entrada."
+  note:
+    en: "Because there is no national breed ban at the border, focus on the SENASA sanitary rules for entry. If you will live in Peru with a listed breed, check the ownership and registration obligations under Law 27596 and its regulation."
+    fr: "Comme il n'y a pas d'interdiction nationale de race à la frontière, concentre-toi sur les règles sanitaires du SENASA pour l'entrée. Si tu vivez au Pérou avec une race listée, vérifie les obligations de détention et d'enregistrement de la loi 27596 et de son règlement."
+    es: "Como no hay prohibición nacional de raza en la frontera, céntrate en las normas sanitarias del SENASA para la entrada. Si vas a vivir en Perú con una raza listada, revisa las obligaciones de tenencia y de registro de la Ley 27596 y su reglamento."
+    pt: "Como não existe proibição nacional de raças na fronteira, concentre-se nas regras sanitárias do SENASA para a entrada. Se você for morar no Peru com uma raça listada, confira as obrigações de posse e de registro previstas na Ley 27596 e no seu regulamento."
+
+checklist:
+  - en: "Original export health certificate issued by the official veterinary authority of the country of departure"
+    fr: "Certificat sanitaire d'exportation original émis par l'autorité vétérinaire officielle du pays de départ"
+    es: "Certificado sanitario de exportación original emitido por la autoridad veterinaria oficial del país de salida"
+    pt: "Atestado de saúde de exportação original emitido pela autoridade veterinária oficial do país de partida"
+  - en: "Current vaccinations recorded: rabies (from 3 months), plus canine parvovirus, distemper, hepatitis and leptospirosis"
+    fr: "Vaccinations à jour consignées : rage (dès 3 mois), plus parvovirus canin, maladie de Carré, hépatite et leptospirose"
+    es: "Vacunas vigentes consignadas: rabia (desde los 3 meses), más parvovirus canino, moquillo, hepatitis y leptospirosis"
+    pt: "Vacinações em dia registradas: raiva (a partir dos 3 meses), mais parvovirose canina, cinomose, hepatite e leptospirose"
+  - en: "Internal & external deworming within 30 days before travel, recorded on the certificate"
+    fr: "Traitement antiparasitaire interne & externe dans les 30 jours avant le voyage, consigné sur le certificat"
+    es: "Desparasitación interna y externa dentro de los 30 días previos al viaje, consignada en el certificado"
+    pt: "Vermifugação interna e externa nos 30 dias anteriores à viagem, registrada no certificado"
+  - en: "Written application with the owner's and pet's details for SENASA on entry"
+    fr: "Demande écrite avec les données du propriétaire et de l'animal pour le SENASA à l'entrée"
+    es: "Solicitud por escrito con los datos del propietario y de la mascota para el SENASA a la entrada"
+    pt: "Solicitação por escrito com os dados do tutor e do animal para o SENASA na entrada"
+  - en: "SENASA fee (S/ 98.60) payment voucher — verify the current amount on the SENASA TUPA"
+    fr: "Justificatif de paiement de la redevance SENASA (98,60 S/) — vérifie le montant en vigueur sur le TUPA du SENASA"
+    es: "Comprobante de pago de la tasa del SENASA (S/ 98,60) — verifica el importe vigente en el TUPA del SENASA"
+    pt: "Comprovante de pagamento da taxa do SENASA (S/ 98,60) — confira o valor vigente no TUPA do SENASA"
+  - en: "Passport and air ticket to clear a single accompanied pet without import duties at customs"
+    fr: "Passeport et billet d'avion pour dédouaner un unique animal accompagné sans droits d'importation"
+    es: "Pasaporte y billete de avión para despachar una única mascota acompañada sin derechos de importación en la aduana"
+    pt: "Passaporte e passagem aérea para liberar na alfândega um único animal acompanhado sem impostos de importação"
+  - en: "Microchip recommended for identification (and required by many other countries / for the return)"
+    fr: "Puce recommandée pour l'identification (et exigée par de nombreux autres pays / pour le retour)"
+    es: "Microchip recomendado para la identificación (y exigido por muchos otros países / para el regreso)"
+    pt: "Microchip recomendado para a identificação (e exigido por muitos outros países / para a volta)"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
+
+sources:
+  - label: { en: "SENASA — Traveling with your pet: sanitary requirements to enter or leave Peru", fr: "SENASA — Voyager avec ton animal : exigences sanitaires pour entrer ou sortir du Pérou", es: "SENASA — Viajar con tu mascota: requisitos sanitarios para ingresar o salir de Perú", pt: "SENASA — Viajar com o seu animal de estimação: requisitos sanitários para entrar ou sair do Peru" }
+    url: "https://www.senasa.gob.pe/senasacontigo/senasa-viajas-con-tu-mascota-conoce-cuales-son-los-requisitos-sanitarios-para-ingresar-o-salir-de-peru/"
+  - label: { en: "SENASA — Requirements for the exit and entry of pets to the country", fr: "SENASA — Exigences pour la sortie et l'entrée des animaux dans le pays", es: "SENASA — Requisitos para la salida e ingreso de mascotas al país", pt: "SENASA — Requisitos para a saída e a entrada de animais de estimação no país" }
+    url: "https://www.senasa.gob.pe/senasacontigo/conoce-los-requisitos-para-la-salida-e-ingreso-de-mascotas-al-pais/"
+  - label: { en: "gob.pe — SENASA campaign 'Travel with your pet'", fr: "gob.pe — Campagne SENASA « Voyage avec ton animal »", es: "gob.pe — Campaña del SENASA «Viaja con tu mascota»", pt: "gob.pe — Campanha do SENASA «Viaja con tu mascota»" }
+    url: "https://www.gob.pe/institucion/senasa/campa%C3%B1as/5651-viaja-con-tu-mascota"
+  - label: { en: "gob.pe / SUNAT — Entry of pets to the country (informative material, PDF)", fr: "gob.pe / SUNAT — Entrée des animaux dans le pays (matériel informatif, PDF)", es: "gob.pe / SUNAT — Ingreso de mascotas al país (material informativo, PDF)", pt: "gob.pe / SUNAT — Entrada de animais de estimação no país (material informativo, PDF)" }
+    url: "https://cdn.www.gob.pe/uploads/document/file/2669694/Material%20Informativo%20%20Ingreso%20de%20Mascotas%20.pdf"
+  - label: { en: "Congreso de la República — Law No. 27596 (legal regime of dogs)", fr: "Congreso de la República — Loi n° 27596 (régime juridique des chiens)", es: "Congreso de la República — Ley N.º 27596 (régimen jurídico de los perros)", pt: "Congreso de la República — Ley N.º 27596 (regime jurídico dos cachorros)" }
+    url: "https://leyes.congreso.gob.pe/Documentos/Leyes/27596.pdf"
+  - label: { en: "gob.pe — Law No. 27596 (official record)", fr: "gob.pe — Loi n° 27596 (fiche officielle)", es: "gob.pe — Ley N.º 27596 (ficha oficial)", pt: "gob.pe — Ley N.º 27596 (ficha oficial)" }
+    url: "https://www.gob.pe/institucion/congreso-de-la-republica/normas-legales/2753229-27596"
+
+seo:
+  title: { en: "Peru Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Pérou — Guide", es: "Requisitos de entrada de perros en Perú — Guía de viaje", pt: "Requisitos de entrada de cachorros no Peru — Guia" }
+  metaTitle: { en: "Traveling to Peru With Your Dog: Entry Requirements (2026)", fr: "Voyager au Pérou avec ton chien : formalités (2026)", es: "Viajar a Perú con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Peru: requisitos de entrada (2026)" }
+  metaDesc:
+    en: "Official SENASA rules for bringing a dog into Peru: export health certificate, rabies and core vaccinations, deworming, no antibody test. Sourced and dated."
+    fr: "Règles officielles SENASA pour faire entrer un chien au Pérou : certificat sanitaire d'exportation, rage et vaccinations de base, antiparasitaire. Sourcé et daté."
+    es: "Normas oficiales del SENASA para traer un perro a Perú: certificado sanitario de exportación, rabia y vacunas básicas, desparasitación. Con fuentes y fecha."
+    pt: "Regras oficiais do SENASA para levar um cachorro ao Peru: atestado de saúde de exportação, antirrábica e vacinas básicas, vermifugação. Com fontes e data."
+  slug: "peru"
+  shortDesc:
+    en: "What you need to bring a dog into Peru under SENASA's rules, from most countries of origin."
+    fr: "Ce qu'il faut pour faire entrer un chien au Pérou selon les règles du SENASA, depuis la plupart des pays d'origine."
+    es: "Lo que necesitas para traer un perro a Perú según las normas del SENASA, desde la mayoría de los países de origen."
+    pt: "O que você precisa para levar um cachorro ao Peru segundo as regras do SENASA, vindo da maioria dos países de origem."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

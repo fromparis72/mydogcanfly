@@ -1,0 +1,163 @@
+# ─────────────────────────────────────────────────────────────────────
+# Fiche compagnie MyDogCanFly — SQUELETTE VIDE MAIS COMPLET
+# Copier vers content/airlines/<slug>.yml puis remplir.
+# Règle d'or : rien d'inventé. Donnée non publiée → status: unknown / valeur: null.
+# EN obligatoire dans chaque LocalizedText ; FR/ES si disponibles.
+# ─────────────────────────────────────────────────────────────────────
+
+# ── Identité ───────────────────────────────────────────────────────────
+id:                       # airline_<snake>            (obligatoire)
+iata:                     # ex. AF                     (obligatoire, 2 car.)
+name:                     # ex. Air France             (obligatoire, neutre)
+country_id:               # ex. country_fr            (obligatoire)
+alliance: none            # star_alliance | oneworld | skyteam | none
+website:                  # https://…                 (facultatif)
+
+# ── Politique de transport ────────────────────────────────────────────
+# Omettre entièrement un bloc = « Inconnu ». Un bloc présent DOIT être sourcé.
+# Chaque bloc policy/restriction peut porter un `code:` lisible (ex. AF-CAB-001, AF-HOLD-003, AF-BRACHY-002).
+policy:
+  cabin:
+    code:                 # ex. AF-CAB-001  (facultatif — identifiant de règle stable)
+    status: unknown       # allowed | not_allowed | not_applicable | unknown | to_confirm
+    max_weight_kg:        # number > 0 (facultatif)
+    carrier_dims_cm:      # { l: , w: , h: }  (facultatif)
+    fee:                  # LocalizedText { en:, fr:, es: } (facultatif)
+    conditions:           # LocalizedText (facultatif)
+    source:               # voir bloc SOURCE ci-dessous (obligatoire si status ≠ unknown)
+  hold:
+    status: unknown
+    max_weight_kg:
+    fee:
+    conditions:
+    source:
+  cargo:
+    status: unknown
+    fee:
+    conditions:
+    source:
+
+# ── Tarifs courts (alternative à policy.*.fee) ────────────────────────
+fees:
+  cabin:                  # string ou null
+  hold:                   # string ou null
+  cargo:                  # string ou null
+
+# ── Tarifs structurés multi-zones (facultatif) ────────────────────────
+fare_table: []
+# - zone: { en: , fr: , es: }
+#   placement: cabin      # cabin | hold | cargo
+#   amount:               # number
+#   currency: EUR         # ISO 4217
+#   basis: per_segment    # per_segment | per_flight | per_trip | on_request
+
+# ── Restrictions (→ règles moteur) ────────────────────────────────────
+restrictions:
+  brachycephalic:
+    hold: unknown         # allowed | forbidden | unknown | to_confirm
+    cabin: unknown
+    note:                 # LocalizedText (facultatif)
+    source:
+  banned_breeds: []
+  # - breed_id: breed_<snake>
+  #   placement: [hold, cargo]
+  #   source: { … }
+  aircraft: {}            # map: <CODE_APPAREIL>: { compatible: bool, note?: LocalizedText, source }
+  # B777: { compatible: true,  source: { … } }
+  # A320: { compatible: false, note: { en:, fr: }, source: { … } }
+  routes: []
+  # - note: { en:, fr: }
+  #   source: { … }
+
+# ── Environnement & température (info n°1 pour grands chiens) ──────────
+environment:
+  pressurised:            # true | false | null
+  temperature_controlled: # true | false | null
+  published_temperature_range:   # { min_c: , max_c: }  (facultatif)
+  heat_embargo:           # (→ règle moteur)
+    applies:              # true | false | null
+    threshold_c:          # int (°C)
+    placement:            # [hold, cargo]
+    source:
+  cold_embargo:
+    applies:
+    threshold_c:
+    placement:
+    source:
+  ground_time_limit:      # { minutes: , note?: LocalizedText, source }
+  climate_notes:          # LocalizedText
+  source:
+
+# ── Expérience voyageur (éditorial ; evidence.type community|observed) ─
+experience: []
+# - text: { en:, fr: }
+#   source: { … evidence: { type: community } … }
+
+# ── Chien d'assistance ────────────────────────────────────────────────
+assistance_dog:
+  accepted:               # true | false | null
+  in_cabin_free:          # true | false | null
+  note:                   # LocalizedText
+  source:
+
+# ── Contact ────────────────────────────────────────────────────────────
+contact:
+  phones: []
+  # - region: { en:, fr: }
+  #   number: "+…"
+  source:
+
+# ── Réservation / démarches ───────────────────────────────────────────
+booking:
+  text:                   # LocalizedText
+  source:
+
+# ── Résumé éditorial court (hero) ─────────────────────────────────────
+summary:                  # LocalizedText
+summary_source:           # Source
+
+# ── Éditorial structuré ───────────────────────────────────────────────
+history: []
+# - year: 2020
+#   event: { en:, fr: }
+#   source: { … }
+precedents: []            # UNIQUEMENT si cas réel citable
+examples: []
+tips: []
+faq: []
+# - q: { en:, fr: }
+#   a: { en:, fr: }
+#   source: { … }
+
+# ── Logo & média ──────────────────────────────────────────────────────
+logo:
+  src:                    # /brand/airlines/<slug>/logo.svg
+  placeholder: true       # true tant qu'aucun asset libre de droits
+  alt:                    # LocalizedText (obligatoire si logo présent)
+  credit:
+  source_url:
+
+# ── Version & vérification ────────────────────────────────────────────
+last_reviewed:            # YYYY-MM-DD (obligatoire — date de vérification)
+policy_version:           # ex. "2026.1" (facultatif — indépendant)
+effective_date:           # YYYY-MM-DD  (facultatif — entrée en vigueur de la politique)
+
+# ── Historique des changements de politique ───────────────────────────
+change_log: []
+# - date: YYYY-MM-DD
+#   rule: AF-HOLD-003     # code de règle lisible (facultatif)
+#   description: { en:, fr: }
+#   source: { … }
+
+# ─────────────────────────────────────────────────────────────────────
+# GABARIT « SOURCE » (à recopier dans chaque champ `source:` ci-dessus)
+#   url:            https://…                 (obligatoire, URL officielle)
+#   evidence:                                 (obligatoire — NATURE de l'info)
+#     type:         official                  # official | airline_contact | regulation | observed | community | estimated
+#   verified_date:  2026-07-11                (date de consultation)
+#   confidence:     3                         (1..5)
+#   reviewer:       chatgpt
+#   effective_date:                           (facultatif — entrée en vigueur)
+#   note:                                     (facultatif — extrait / note interne)
+#   # source_type est dérivé de evidence.type ; review_due est calculé (verified_date + 90 j) — NE PAS saisir
+# ─────────────────────────────────────────────────────────────────────

@@ -1,0 +1,268 @@
+---
+/* Heat-risk calculator — will the hold/cargo be under a summer heat embargo on this route/month?
+   Route-based (departure + arrival airports), month granularity. Honest & data-driven:
+   - Temperatures are SEASONAL ESTIMATES from airport latitude + month (same model as the engine's
+     destinations tool: SUMMER_HIGH/WINTER_HIGH piecewise curves). Clearly labelled as estimates.
+   - Embargo threshold 30°C, risk band 27-30°C (matches engine). Snub-nosed breeds get stricter
+     thresholds (27 / 24) because carriers apply lower cut-offs for them (e.g. BA 24°C / 75°F).
+   - Scope: HOLD / CARGO only (cabin is climate-controlled — one honest caveat line). */
+import { loadKB, breedName, cityName, inlineT } from "@mydogcanfly/knowledge";
+import { hrefFor } from "../lib/routes";
+
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const kb = loadKB();
+const loc = (lt: unknown): string => (lt as Record<string, string>)?.[locale] ?? (lt as { en: string })?.en ?? "";
+
+const airports = [...kb.airports.values()]
+  .filter((a) => (a as any).geo?.lat != null)
+  .map((a: any) => {
+    const c = kb.countries.get(a.country_id);
+    return { id: a.id, iata: a.iata, city: cityName(a, locale), country: c ? loc(c.name) : "", iso2: c?.iso2 ?? "", lat: a.geo.lat };
+  })
+  .sort((x, y) => x.city.localeCompare(y.city, locale));
+
+const breeds = [...kb.breeds.values()]
+  .map((b) => ({ id: b.id, label: breedName(b, locale), br: b.brachycephalic }))
+  .sort((x, y) => x.label.localeCompare(y.label, locale));
+
+const months = locale === "fr"
+  ? ["janv.", "févr.", "mars", "avril", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."]
+  : locale === "es"
+  ? ["ene.", "feb.", "mar.", "abr.", "may.", "jun.", "jul.", "ago.", "sept.", "oct.", "nov.", "dic."]
+  : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const L = {
+  locale,
+  airports,
+  breeds: Object.fromEntries(breeds.map((b) => [b.label.toLowerCase(), { id: b.id, br: b.br }])),
+  breedById: Object.fromEntries(breeds.map((b) => [b.id, b.label])),
+  months,
+  finderHref: (locale === "en" ? "/" : `/${locale}/`) + "#flight-finder",
+  crateHref: locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`,
+  s: {
+    depPh: T("Departure airport (city or code)", "Aéroport de départ (ville ou code)", "Aeropuerto de salida (ciudad o código)"),
+    arrPh: T("Arrival airport (city or code)", "Aéroport d'arrivée (ville ou code)", "Aeropuerto de llegada (ciudad o código)"),
+    breedPh: T("Breed (optional — refines the risk)", "Race (facultatif — affine le risque)", "Raza (opcional: afina el riesgo)"),
+    submit: T("Check the heat risk", "Évaluer le risque chaleur", "Evaluar el riesgo por calor"),
+    needBoth: T("Pick a departure and an arrival airport.", "Choisis un aéroport de départ et un d'arrivée.", "Elige un aeropuerto de salida y uno de llegada."),
+    at: T("at", "à", "a"),
+    estimate: T("Seasonal estimate", "Estimation saisonnière", "Estimación estacional"),
+    verdictTitle: T("Hold / cargo heat verdict", "Verdict chaleur soute / cargo", "Veredicto de calor en bodega / carga"),
+    ok: T("Clear to fly", "Feu vert", "Luz verde para volar"),
+    risk: T("Elevated risk", "Risque élevé", "Riesgo elevado"),
+    embargo: T("Likely embargo", "Embargo probable", "Embargo probable"),
+    okD: T("Estimated temperatures are within the safe range for hold/cargo transport.", "Les températures estimées sont dans la plage sûre pour un transport en soute/cargo.", "Las temperaturas estimadas están dentro del rango seguro para el transporte en bodega/carga."),
+    riskD: T("Warm enough that airlines may restrict hold/cargo travel — confirm with the carrier.", "Assez chaud pour que des compagnies restreignent la soute/cargo — à confirmer avec la compagnie.", "Hace suficiente calor como para que las aerolíneas restrinjan la bodega/carga: confírmalo con la aerolínea."),
+    embargoD: T("Above the usual embargo threshold — hold/cargo is likely suspended on this route/month.", "Au-dessus du seuil d'embargo habituel — la soute/cargo est probablement suspendue sur cette route/ce mois.", "Por encima del umbral de embargo habitual: es probable que la bodega/carga esté suspendida en esta ruta/mes."),
+    brachy: T("Snub-nosed breed: stricter limits apply, and many carriers ban them from the hold year-round regardless of temperature.", "Race brachycéphale : seuils plus stricts, et de nombreuses compagnies l'interdisent en soute toute l'année, quelle que soit la température.", "Raza de hocico chato: se aplican límites más estrictos y muchas aerolíneas las prohíben en bodega todo el año, sea cual sea la temperatura."),
+    calendar: T("Heat by month on this route", "Chaleur par mois sur cette route", "Calor por mes en esta ruta"),
+    calNote: T("Worst of the two airports each month. Green = clear, amber = risk, red = likely embargo.", "Pire des deux aéroports chaque mois. Vert = ok, ambre = risque, rouge = embargo probable.", "El peor de los dos aeropuertos cada mes. Verde = ok, ámbar = riesgo, rojo = embargo probable."),
+    bestMonths: T("Best months", "Meilleurs mois", "Mejores meses"),
+    caveat: T("Estimates from airport latitude + month — not a live forecast. Heat embargoes apply to hold/cargo; a small dog travelling in the climate-controlled cabin is not affected. Always confirm with the airline.", "Estimations d'après la latitude de l'aéroport + le mois — pas une prévision en temps réel. Les embargos chaleur concernent la soute/cargo ; un petit chien voyageant en cabine climatisée n'est pas concerné. Confirme toujours avec la compagnie.", "Estimaciones a partir de la latitud del aeropuerto + el mes, no una previsión en tiempo real. Los embargos por calor afectan a la bodega/carga; un perro pequeño que viaja en la cabina climatizada no se ve afectado. Confirma siempre con la aerolínea."),
+    onwardAir: T("Find the best airline for this trip", "Trouver la meilleure compagnie pour ce voyage", "Encontrar la mejor aerolínea para este viaje"),
+    onwardCrate: T("Which travel crate size?", "Quelle taille de cage ?", "¿Qué talla de jaula?"),
+    degC: "°C",
+  },
+};
+---
+<div class="hx">
+  <form id="hx-form" class="hx-form" autocomplete="off">
+    <div class="hx-field"><label for="hx-dep">{T("Departure", "Départ", "Salida")}</label>
+      <input id="hx-dep" data-ac="dep" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={L.s.depPh} autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other" /></div>
+    <div class="hx-field"><label for="hx-arr">{T("Arrival", "Arrivée", "Llegada")}</label>
+      <input id="hx-arr" data-ac="arr" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={L.s.arrPh} autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other" /></div>
+    <div class="hx-field hx-field--sm"><label for="hx-month">{T("Month", "Mois", "Mes")}</label>
+      <select id="hx-month">{months.map((m, i) => <option value={i + 1}>{m}</option>)}</select></div>
+    <div class="hx-field"><label for="hx-breed">{T("Breed", "Race", "Raza")}</label>
+      <input id="hx-breed" data-ac="breed" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={L.s.breedPh} autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other" /></div>
+    <button class="mdcf-btn hx-submit" type="submit">{L.s.submit}</button>
+  </form>
+  <div id="hx-out" class="hx-out" hidden></div>
+</div>
+
+<script type="application/json" id="hx-data" set:html={JSON.stringify(L)} is:inline />
+<script>
+  const L = JSON.parse(document.getElementById("hx-data").textContent);
+  const $ = (s) => document.querySelector(s);
+  const norm = (s) => (s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const esc = (s) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // --- climate model (mirrors engine destinations.ts) ---
+  const SUMMER = [[0,31],[10,32],[20,35],[27,37],[35,33],[45,27],[55,21],[65,17],[90,9]];
+  const WINTER = [[0,30],[10,30],[20,27],[30,22],[40,12],[50,6],[60,0],[90,-20]];
+  function piece(p, x){ if(x<=p[0][0])return p[0][1]; for(let i=1;i<p.length;i++){const[x1,y1]=p[i]; if(x<=x1){const[x0,y0]=p[i-1]; return y0+((y1-y0)*(x-x0))/(x1-x0);}} return p[p.length-1][1]; }
+  function tempAt(lat, month){ const a=Math.abs(lat), su=piece(SUMMER,a), wi=piece(WINTER,a); const peak=lat<0?1:7; const dist=Math.min(Math.abs(month-peak),12-Math.abs(month-peak)); const s=(Math.cos((dist/6)*Math.PI)+1)/2; return Math.round(wi+(su-wi)*s); }
+
+  // thresholds: [embargo, risk] — snub-nosed breeds get stricter cut-offs
+  function bands(brachy){ return brachy ? { emb:27, risk:24 } : { emb:30, risk:27 }; }
+  function level(temp, b){ return temp> b.emb ? "no" : temp> b.risk ? "warn" : "ok"; }
+
+  const airByKey = {};
+  L.airports.forEach((a)=>{ airByKey[a.id]=a; });
+  function findAirport(text){
+    const q=norm(text); if(!q) return null;
+    // exact "City (IATA)" match first, then startsWith, then includes
+    let hit=L.airports.find((a)=>norm(a.city+" ("+a.iata+")")===q) ||
+            L.airports.find((a)=>norm(a.iata)===q) ||
+            L.airports.find((a)=>norm(a.city).startsWith(q)) ||
+            L.airports.find((a)=>norm(a.city+" "+a.iata+" "+a.country).includes(q));
+    return hit||null;
+  }
+  const label = (a)=> a.city+" ("+a.iata+")";
+
+  // --- autocomplete ---
+  const breedLabels=Object.values(L.breedById);
+  function acItems(key, q){
+    const n=norm(q);
+    if(key==="breed"){ return (n?breedLabels.filter(k=>norm(k).includes(n)):breedLabels).slice(0,8).map(k=>({v:k})); }
+    const src=L.airports;
+    const arr=(n?src.filter(a=>norm(a.city+" "+a.iata+" "+a.country).includes(n)):src).slice(0,8);
+    return arr.map(a=>({v:label(a)+" — "+a.country}));
+  }
+  function attachAC(input){
+    const key=input.getAttribute("data-ac"); const field=input.parentElement; field.style.position="relative";
+    const box=document.createElement("ul"); box.className="ac-list"; box.hidden=true; field.appendChild(box); let cur=-1, shown=[];
+    const close=()=>{ box.hidden=true; input.setAttribute("aria-expanded","false"); };
+    const render=()=>{ shown=acItems(key, input.value); if(!shown.length){close();return;} box.innerHTML=shown.map((o,i)=>`<li class="ac-item" data-i="${i}">${esc(o.v)}</li>`).join(""); box.hidden=false; input.setAttribute("aria-expanded","true"); cur=-1; };
+    const choose=(i)=>{ const o=shown[i]; if(!o)return; input.value=o.v.split(" — ")[0]; close(); };
+    input.addEventListener("input",render);
+    input.addEventListener("focus",render);
+    input.addEventListener("keydown",(e)=>{ if(box.hidden)return; if(e.key==="ArrowDown"){e.preventDefault();cur=Math.min(cur+1,shown.length-1);}else if(e.key==="ArrowUp"){e.preventDefault();cur=Math.max(cur-1,0);}else if(e.key==="Enter"){if(cur>=0){e.preventDefault();choose(cur);}return;}else if(e.key==="Escape"){close();return;}else return; [...box.children].forEach((li,i)=>li.classList.toggle("is-cur",i===cur)); });
+    box.addEventListener("mousedown",(e)=>{ const li=e.target.closest(".ac-item"); if(li){e.preventDefault();choose(Number(li.dataset.i));} });
+    document.addEventListener("click",(e)=>{ if(!field.contains(e.target))close(); });
+  }
+  ["#hx-dep","#hx-arr","#hx-breed"].forEach((s)=>attachAC($(s)));
+
+  const badge=(lv,txt)=>`<span class="hx-pill hx-${lv}">${txt}</span>`;
+  const emoji={ok:"🟢",warn:"🟡",no:"🔴"};
+
+  $("#hx-form").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const dep=findAirport($("#hx-dep").value), arr=findAirport($("#hx-arr").value);
+    const out=$("#hx-out"); out.hidden=false;
+    if(!dep||!arr){ out.innerHTML=`<div class="hx-msg">${L.s.needBoth}</div>`; return; }
+    const month=parseInt($("#hx-month").value,10);
+    const bv=norm($("#hx-breed").value);
+    const bkey=bv?Object.keys(L.breeds).find(k=>norm(k)===bv):null;
+    const breed=bkey?L.breeds[bkey]:null;
+    const brachy=!!(breed&&breed.br); const b=bands(brachy);
+
+    const dt=tempAt(dep.lat,month), at=tempAt(arr.lat,month);
+    const worst=Math.max(dt,at);
+    const lv=level(worst,b);
+    const vTitle={ok:L.s.ok,warn:L.s.risk,no:L.s.embargo}[lv];
+    const vDesc={ok:L.s.okD,warn:L.s.riskD,no:L.s.embargoD}[lv];
+
+    // 12-month calendar (worst airport per month)
+    const cal=[]; for(let m=1;m<=12;m++){ const w=Math.max(tempAt(dep.lat,m),tempAt(arr.lat,m)); cal.push({m,t:w,lv:level(w,b)}); }
+    const best=cal.filter(c=>c.lv==="ok").map(c=>L.months[c.m-1]);
+
+    out.innerHTML=`
+      <div class="hx-card hx-verdict hx-b-${lv}">
+        <div class="hx-vhead"><span class="hx-vemoji">${emoji[lv]}</span><span class="hx-vtitle">${vTitle}</span></div>
+        <p class="hx-vdesc">${vDesc}</p>
+        <div class="hx-legs">
+          <div class="hx-leg"><span class="hx-legcap">${esc(dep.city)} (${dep.iata})</span>${badge(level(dt,b),dt+L.s.degC)}</div>
+          <div class="hx-legarrow">→</div>
+          <div class="hx-leg"><span class="hx-legcap">${esc(arr.city)} (${arr.iata})</span>${badge(level(at,b),at+L.s.degC)}</div>
+        </div>
+        <p class="hx-est">${L.s.estimate} · ${L.months[month-1]}</p>
+        ${brachy?`<p class="hx-brachy">⚠ ${L.s.brachy}</p>`:""}
+      </div>
+      <div class="hx-card">
+        <div class="hx-calhd">${L.s.calendar}</div>
+        <div class="hx-cal">${cal.map(c=>`<div class="hx-mon hx-m-${c.lv} ${c.m===month?"is-sel":""}"><span class="hx-mlab">${L.months[c.m-1]}</span><span class="hx-mt">${c.t}°</span></div>`).join("")}</div>
+        <p class="hx-calnote">${L.s.calNote}</p>
+        ${best.length?`<p class="hx-best"><b>${L.s.bestMonths}:</b> ${best.join(", ")}</p>`:""}
+      </div>
+      <div class="hx-onward">
+        <a class="hx-onav" href="${L.finderHref}${breed?`?breed=${breed.id}`:""}" data-carry="breed air">✈ ${L.s.onwardAir}</a>
+        <a class="hx-onav" href="${L.crateHref}" data-carry="breed air">📦 ${L.s.onwardCrate}</a>
+      </div>
+      <p class="hx-caveat">${L.s.caveat}</p>`;
+    if(window.mdcfCtx&&breed) window.mdcfCtx.setBreed(breed.id);
+    out.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+
+  // Race pré-remplie depuis « ?breed= » UNIQUEMENT — pas depuis la mémoire de session seule.
+  // Même règle que le Finder (commentaire détaillé dans FlightFinder.astro) : une race retenue
+  // plus tôt dans la visite n'est pas une déclaration du visiteur, et le risque chaleur n'est
+  // pas le même pour un carlin et pour un husky. Le bloc du deep-link ci-dessous lit déjà
+  // « ?breed= » : ce n'est donc pas une perte de fonction, seulement le retrait d'une supposition.
+
+  // Deep-link depuis le Finder ou une fiche : ?dep=CDG&arr=JFK&month=8&breed=<id>
+  // On accepte le code IATA ou le nom de ville (findAirport gère les deux), et on lance
+  // le calcul tout seul si le trajet est complet — sinon l'utilisateur devrait resaisir
+  // ce qu'il vient déjà de renseigner ailleurs.
+  (function(){
+    try{
+      const q=new URLSearchParams(location.search);
+      const setAirport=(param,sel)=>{
+        const raw=q.get(param); if(!raw) return false;
+        const a=findAirport(raw); if(!a) return false;
+        $(sel).value=label(a); return true;
+      };
+      const okDep=setAirport("dep","#hx-dep");
+      const okArr=setAirport("arr","#hx-arr");
+      const m=parseInt(q.get("month")||"",10);
+      if(m>=1&&m<=12) $("#hx-month").value=String(m);
+      const b=q.get("breed");
+      if(b&&L.breedById[b]) $("#hx-breed").value=L.breedById[b];
+      // Calcul immédiat seulement si les deux extrémités sont connues.
+      if(okDep&&okArr) $("#hx-form").dispatchEvent(new Event("submit",{cancelable:true,bubbles:true}));
+    }catch(e){}
+  })();
+</script>
+
+<style>
+  .hx-form { display: grid; grid-template-columns: 1fr 1fr auto 1fr auto; gap: 14px; align-items: end;
+    background: var(--mdcf-accent-soft, #fff1e5); border: 1px solid #f1ddc6; border-radius: 16px; padding: 22px 22px;
+    box-shadow: 0 8px 28px rgba(242, 112, 15, .10); transition: box-shadow .25s ease, border-color .25s ease; }
+  .hx-form:focus-within { box-shadow: 0 10px 34px rgba(242, 112, 15, .22); border-color: #ebc9a1; }
+  .hx-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; position: relative; }
+  .hx-field label { font-size: 12px; font-weight: 600; color: var(--mdcf-muted); }
+  .hx-field input, .hx-field select { height: 44px; border: 1.5px solid #e7d3ba; border-radius: 10px; padding: 0 12px; font: inherit; background: var(--mdcf-surface); color: var(--mdcf-ink); box-shadow: 0 1px 2px rgba(90, 60, 20, .06); }
+  .hx-field input:focus, .hx-field select:focus { outline: none; border-color: var(--mdcf-navy); }
+  .hx-submit { height: 44px; white-space: nowrap; }
+  @media (max-width: 820px) { .hx-form { grid-template-columns: 1fr 1fr; } .hx-submit { grid-column: 1 / -1; justify-content: center; } }
+
+  .hx-out { margin-top: 20px; display: grid; gap: 14px; }
+  :global(.hx-msg) { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 12px 14px; font-size: 14px; }
+  :global(.hx-card) { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 18px 20px; background: var(--mdcf-surface); }
+  :global(.hx-verdict.hx-b-ok) { background: #f0faf3; border-color: #cfead8; }
+  :global(.hx-verdict.hx-b-warn) { background: #fdf6e7; border-color: #f0e2be; }
+  :global(.hx-verdict.hx-b-no) { background: #fdecec; border-color: #f4cfcf; }
+  :global(.hx-vhead) { display: flex; align-items: center; gap: 10px; }
+  :global(.hx-vemoji) { font-size: 20px; }
+  :global(.hx-vtitle) { font-size: 19px; font-weight: 800; color: var(--mdcf-ink); }
+  :global(.hx-vdesc) { color: var(--mdcf-ink); font-size: 14.5px; line-height: 1.55; margin: 8px 0 14px; }
+  :global(.hx-legs) { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  :global(.hx-leg) { display: flex; flex-direction: column; gap: 6px; }
+  :global(.hx-legcap) { font-size: 12.5px; color: var(--mdcf-muted); font-weight: 600; }
+  :global(.hx-legarrow) { color: var(--mdcf-muted); font-size: 18px; }
+  :global(.hx-pill) { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 14px; font-weight: 800; }
+  :global(.hx-ok) { background: #e7f7ec; color: #1a7f43; }
+  :global(.hx-warn) { background: #fdf3df; color: #9a6400; }
+  :global(.hx-no) { background: #fbdcd7; color: #b23016; }
+  :global(.hx-est) { font-size: 12px; color: var(--mdcf-muted); margin: 12px 0 0; }
+  :global(.hx-brachy) { margin: 12px 0 0; font-size: 13px; color: #8a1414; background: #fbdcd7; border-radius: 8px; padding: 8px 10px; line-height: 1.5; }
+  :global(.hx-calhd) { font-weight: 700; color: var(--mdcf-ink); margin-bottom: 12px; }
+  :global(.hx-cal) { display: grid; grid-template-columns: repeat(12, 1fr); gap: 5px; }
+  :global(.hx-mon) { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 2px; border-radius: 8px; }
+  :global(.hx-m-ok) { background: #e7f7ec; } :global(.hx-m-warn) { background: #fdf3df; } :global(.hx-m-no) { background: #fbdcd7; }
+  :global(.hx-mon.is-sel) { outline: 2px solid var(--mdcf-navy); }
+  :global(.hx-mlab) { font-size: 11px; color: var(--mdcf-muted); font-weight: 600; }
+  :global(.hx-mt) { font-size: 12px; font-weight: 700; color: var(--mdcf-ink); }
+  :global(.hx-calnote) { font-size: 12px; color: var(--mdcf-muted); margin: 12px 0 0; line-height: 1.5; }
+  :global(.hx-best) { font-size: 14px; color: var(--mdcf-ink); margin: 8px 0 0; }
+  :global(.hx-onward) { display: flex; flex-wrap: wrap; gap: 10px; }
+  :global(.hx-onav) { flex: 1 1 200px; text-align: center; padding: 12px; border-radius: 12px; border: 1px solid var(--mdcf-line); background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; }
+  :global(.hx-onav:hover) { background: var(--mdcf-line); }
+  :global(.hx-caveat) { font-size: 12px; color: var(--mdcf-muted); line-height: 1.5; margin: 0; }
+  :global(.ac-list) { position: absolute; z-index: 20; top: 100%; left: 0; right: 0; margin: 4px 0 0; padding: 4px; list-style: none; background: var(--mdcf-surface); border: 1px solid var(--mdcf-line); border-radius: 10px; box-shadow: var(--mdcf-shadow); max-height: 260px; overflow: auto; }
+  :global(.ac-item) { padding: 9px 10px; border-radius: 7px; font-size: 14px; cursor: pointer; }
+  :global(.ac-item:hover), :global(.ac-item.is-cur) { background: var(--mdcf-subtle); }
+</style>

@@ -1,0 +1,351 @@
+# Country Entry Guide — Mali (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ml
+iso2: "ML"
+name: { en: "Mali", fr: "Mali", es: "Malí", pt: "Mali" }
+region: { en: "West Africa", fr: "Afrique de l'Ouest", es: "África Occidental", pt: "África Ocidental" }
+
+
+regime: non_listed
+
+hero:
+  h1: { en: "Traveling to Mali with your dog", fr: "Voyager au Mali avec ton chien", es: "Viajar a Malí con tu perro", pt: "Viajar para o Mali com seu cachorro" }
+  intro:
+    en: >-
+      Mali admits pet dogs, but it publishes very little about the exact procedure, so this guide sticks
+      strictly to what official sources confirm. Mali is not part of the EU framework: animal health is
+      overseen by the Direction Nationale des Services Vétérinaires (DNSV), the national veterinary
+      authority under the ministry responsible for livestock. The clearest documented requirement is an
+      official international veterinary certificate: the United States and Mali use a bilingual
+      (English/French) export health certificate, valid for 30 days after issuance, on which a
+      government-accredited vet certifies that the dog was inspected, appears free of infectious disease
+      including rabies, comes from an area not quarantined for rabies, and has a valid rabies vaccination.
+      Beyond that, Mali does not publish a detailed pet-import scheme online, so several points — advance
+      import permit, quarantine, minimum age, breed rules — are simply not published and are marked
+      Unknown here rather than guessed. This guide explains what is confirmed and what must be verified
+      directly with the DNSV or a Malian embassy before you book.
+    fr: >-
+      Le Mali admet les chiens de compagnie, mais publie très peu de détails sur la procédure exacte ; ce
+      guide s'en tient donc strictement à ce que confirment les sources officielles. Le Mali ne relève pas
+      du cadre de l'UE : la santé animale est supervisée par la Direction Nationale des Services
+      Vétérinaires (DNSV), autorité vétérinaire nationale rattachée au ministère chargé de l'élevage.
+      L'exigence la mieux documentée est un certificat vétérinaire international officiel : les États-Unis
+      et le Mali utilisent un certificat sanitaire d'exportation bilingue (anglais/français), valable
+      30 jours après sa délivrance, sur lequel un vétérinaire accrédité certifie que le chien a été
+      inspecté, semble exempt de maladie infectieuse y compris la rage, provient d'une zone non mise en
+      quarantaine pour la rage et dispose d'une vaccination antirabique valide. Au-delà, le Mali ne publie
+      pas de dispositif détaillé d'importation en ligne : plusieurs points — permis d'importation
+      préalable, quarantaine, âge minimum, règles de race — ne sont tout simplement pas publiés et sont
+      indiqués « Non communiqué » ici plutôt que devinés. Ce guide détaille ce qui est confirmé et ce qui
+      doit être vérifié directement auprès de la DNSV ou d'une ambassade du Mali avant de réserver.
+    es: >-
+      Malí admite perros de compañía, pero publica muy poco sobre el procedimiento exacto, por lo que esta
+      guía se ciñe estrictamente a lo que confirman las fuentes oficiales. Malí no forma parte del marco de
+      la UE: la sanidad animal está supervisada por la Direction Nationale des Services Vétérinaires
+      (DNSV), la autoridad veterinaria nacional dependiente del ministerio responsable de la ganadería. El
+      requisito mejor documentado es un certificado veterinario internacional oficial: Estados Unidos y
+      Malí utilizan un certificado sanitario de exportación bilingüe (inglés/francés), válido 30 días tras
+      su expedición, en el que un veterinario acreditado por el gobierno certifica que el perro fue
+      inspeccionado, parece libre de enfermedad infecciosa incluida la rabia, procede de una zona no puesta
+      en cuarentena por rabia y dispone de una vacunación antirrábica válida. Más allá de eso, Malí no
+      publica en línea un régimen detallado de importación, por lo que varios puntos — permiso de
+      importación previo, cuarentena, edad mínima, normas de razas — simplemente no están publicados y aquí
+      se marcan como No comunicado en lugar de suponerlos. Esta guía explica lo que está confirmado y lo que
+      debe verificarse directamente con la DNSV o una embajada de Malí antes de reservar.
+
+    pt: "O Mali admite cachorros de estimação, mas publica muito pouco sobre o procedimento exato, portanto este guia se atém estritamente ao que as fontes oficiais confirmam. O Mali não faz parte do quadro da UE: a saúde animal é supervisionada pela Direction Nationale des Services Vétérinaires (DNSV), a autoridade veterinária nacional sob o ministério responsável pela pecuária. A exigência mais claramente documentada é um certificado veterinário internacional oficial: os Estados Unidos e o Mali usam um atestado de saúde de exportação bilíngue (inglês/francês), válido por 30 dias após a emissão, no qual um veterinário credenciado pelo governo certifica que o cachorro foi inspecionado, parece livre de doença infecciosa, incluindo raiva, vem de uma área não colocada em quarentena por raiva, e tem uma vacinação antirrábica válida. Além disso, o Mali não publica on-line um esquema detalhado de importação de animais de estimação, portanto vários pontos — autorização de importação prévia, quarentena, idade mínima, regras de raça — simplesmente não são publicados e estão marcados aqui como não comunicado em vez de presumidos. Este guia explica o que está confirmado e o que deve ser verificado diretamente com a DNSV ou com uma embaixada maliana antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — official veterinary certificate + rabies; several rules unpublished", fr: "Modéré — certificat vétérinaire officiel + rage ; plusieurs règles non publiées", es: "Moderado — certificado veterinario oficial + rabia; varias normas no publicadas", pt: "Moderada — certificado veterinário oficial + raiva; várias regras não publicadas" }
+
+prepTime:
+  eu:
+    en: "From the EU: allow one to two weeks if identification and rabies vaccination are already valid — an official vet issues the international veterinary certificate close to departure. Allow more time to confirm any additional conditions with the DNSV, since Mali does not publish a full procedure."
+    fr: "Depuis l'UE : prévois une à deux semaines si l'identification et la vaccination antirabique sont déjà valides — un vétérinaire officiel établit le certificat vétérinaire international peu avant le départ. Prévois davantage de temps pour confirmer toute condition supplémentaire auprès de la DNSV, le Mali ne publiant pas de procédure complète."
+    es: "Desde la UE: prevé una o dos semanas si la identificación y la vacunación antirrábica ya son válidas — un veterinario oficial expide el certificado veterinario internacional poco antes de la salida. Prevé más tiempo para confirmar cualquier condición adicional con la DNSV, ya que Malí no publica un procedimiento completo."
+    pt: "Da UE: reserve de uma a duas semanas se a identificação e a vacinação antirrábica já estiverem válidas — um veterinário oficial emite o certificado veterinário internacional perto da partida. Reserve mais tempo para confirmar com a DNSV quaisquer condições adicionais, já que o Mali não publica um procedimento completo."
+  listed:
+    en: "From the United States: allow time to visit a USDA-accredited veterinarian and obtain USDA endorsement of the bilingual export certificate (valid 30 days after issuance). If the first rabies shot is still needed, plan roughly 3 weeks because vaccination must precede the certificate."
+    fr: "Depuis les États-Unis : prévois le temps de consulter un vétérinaire accrédité USDA et d'obtenir l'endossement USDA du certificat d'exportation bilingue (valable 30 jours après délivrance). S'il faut encore faire le premier vaccin antirabique, prévois environ 3 semaines, la vaccination devant précéder le certificat."
+    es: "Desde Estados Unidos: prevé tiempo para acudir a un veterinario acreditado por el USDA y obtener el refrendo del USDA del certificado de exportación bilingüe (válido 30 días tras la expedición). Si aún falta la primera vacuna antirrábica, planifica unas 3 semanas, ya que la vacunación debe preceder al certificado."
+    pt: "Dos Estados Unidos: reserve tempo para visitar um veterinário credenciado pela USDA e obter o endosso da USDA no certificado bilíngue de exportação (válido por 30 dias após a emissão). Se a primeira dose da vacina antirrábica ainda for necessária, planeje cerca de 3 semanas, pois a vacinação deve preceder o certificado."
+  nonListed:
+    en: "Whatever the origin, the limiting steps are the rabies vaccination itself and issuing the official veterinary certificate shortly before departure. Because Mali publishes little, contact the DNSV or a Malian embassy early to confirm whether an advance import permit or any extra condition applies."
+    fr: "Quelle que soit l'origine, les étapes limitantes sont la vaccination antirabique elle-même et l'établissement du certificat vétérinaire officiel peu avant le départ. Le Mali publiant peu, contacte tôt la DNSV ou une ambassade du Mali pour confirmer si un permis d'importation préalable ou toute condition supplémentaire s'applique."
+    es: "Sea cual sea el origen, los pasos que marcan el ritmo son la propia vacunación antirrábica y la expedición del certificado veterinario oficial poco antes de la salida. Como Malí publica poco, contacta pronto con la DNSV o una embajada de Malí para confirmar si aplica un permiso de importación previo o cualquier condición adicional."
+    pt: "Seja qual for a origem, as etapas limitantes são a própria vacinação antirrábica e a emissão do certificado veterinário oficial pouco antes da partida. Como o Mali publica pouco, entre em contato com a DNSV ou com uma embaixada maliana com antecedência para confirmar se é exigida uma autorização de importação prévia ou qualquer condição extra."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with veterinary certificate)", fr: "Oui (avec certificat vétérinaire)", es: "Sí (con certificado veterinario)", pt: "Sim (com certificado veterinário)" }
+    cls: ok
+  - requirement: { en: "Advance import permit", fr: "Permis d'importation préalable", es: "Permiso de importación previo", pt: "Autorização de importação prévia" }
+    status: { en: "Not published — confirm with DNSV", fr: "Non communiqué — à confirmer auprès de la DNSV", es: "No comunicado — confirma con la DNSV", pt: "Não publicado — confirme com a DNSV" }
+    cls: neutral
+  - requirement: { en: "Identification (microchip)", fr: "Identification (puce)", es: "Identificación (microchip)", pt: "Identificação (microchip)" }
+    status: { en: "Recorded on the certificate; ISO microchip recommended", fr: "Consignée sur le certificat ; puce ISO recommandée", es: "Registrada en el certificado; se recomienda microchip ISO", pt: "Registrado no certificado; microchip ISO recomendado" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (valid)", fr: "Requise (valide)", es: "Obligatoria (válida)", pt: "Obrigatória (válida)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in published entry rules", fr: "Non prévu par les règles d'entrée publiées", es: "No previsto en las normas de entrada publicadas", pt: "Não consta nas regras de entrada publicadas" }
+    cls: ok
+  - requirement: { en: "International veterinary certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Certificado veterinário internacional" }
+    status: { en: "Required (valid 30 days)", fr: "Requis (valable 30 jours)", es: "Obligatorio (válido 30 días)", pt: "Obrigatório (válido por 30 dias)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published", fr: "Non communiqué", es: "No comunicada", pt: "Não publicado" }
+    cls: neutral
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "No published breed import ban", fr: "Aucune interdiction d'importation par race publiée", es: "No hay prohibición de importación por raza publicada", pt: "Nenhuma proibição de importação por raça publicada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Mali publishes little about pet import, so only a veterinarian and the DNSV can confirm the exact, current procedure for your individual dog."
+    fr: "Le Mali publie peu sur l'importation d'animaux ; seuls un vétérinaire et la DNSV peuvent confirmer la procédure exacte et à jour pour ton chien."
+    es: "Malí publica poco sobre la importación de mascotas, así que solo un veterinario y la DNSV pueden confirmar el procedimiento exacto y actual para tu perro."
+    pt: "O Mali publica pouco sobre a importação de animais de estimação, portanto só um veterinário e a DNSV podem confirmar o procedimento exato e atual para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Mali (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Mali (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Malí (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Mali (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Mali", fr: "Pays de destination — Mali", es: "País de destino — Malí", pt: "País de destino — Mali" }
+      text:
+        en: "Mali sits outside the EU framework and its animal health is overseen by the Direction Nationale des Services Vétérinaires (DNSV). The documented core is an official international veterinary certificate confirming inspection and a valid rabies vaccination. Mali does not publish a full online procedure, so an advance permit, quarantine, minimum age and breed rules are unpublished and must be confirmed directly with the DNSV."
+        fr: "Le Mali se situe hors du cadre de l'UE et sa santé animale est supervisée par la Direction Nationale des Services Vétérinaires (DNSV). Le socle documenté est un certificat vétérinaire international officiel attestant l'inspection et une vaccination antirabique valide. Le Mali ne publie pas de procédure complète en ligne : permis préalable, quarantaine, âge minimum et règles de race ne sont pas publiés et doivent être confirmés directement auprès de la DNSV."
+        es: "Malí queda fuera del marco de la UE y su sanidad animal está supervisada por la Direction Nationale des Services Vétérinaires (DNSV). El núcleo documentado es un certificado veterinario internacional oficial que acredita la inspección y una vacunación antirrábica válida. Malí no publica un procedimiento completo en línea, por lo que el permiso previo, la cuarentena, la edad mínima y las normas de razas no están publicados y deben confirmarse directamente con la DNSV."
+        pt: "O Mali está fora do quadro da UE, e sua saúde animal é supervisionada pela Direction Nationale des Services Vétérinaires (DNSV). O núcleo documentado é um certificado veterinário internacional oficial que confirma a inspeção e uma vacinação antirrábica válida. O Mali não publica um procedimento completo on-line, portanto uma autorização prévia, a quarentena, a idade mínima e as regras de raça não são publicadas e devem ser confirmadas diretamente com a DNSV."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The international veterinary certificate is issued by a government-accredited vet in the country of departure, using that country's official model. For the United States, this is the bilingual USDA export health certificate for Mali, endorsed by USDA and valid 30 days. The country of departure decides who signs your certificate and shapes the rabies-vaccination evidence Mali's services expect."
+        fr: "Le certificat vétérinaire international est établi par un vétérinaire accrédité du pays de départ, selon le modèle officiel de ce pays. Pour les États-Unis, il s'agit du certificat sanitaire d'exportation USDA bilingue pour le Mali, endossé par l'USDA et valable 30 jours. Le pays de départ détermine qui signe ton certificat et conditionne les preuves de vaccination antirabique attendues par les services maliens."
+        es: "El certificado veterinario internacional lo expide un veterinario acreditado por el gobierno en el país de salida, según el modelo oficial de ese país. Para Estados Unidos, es el certificado sanitario de exportación bilingüe del USDA para Malí, refrendado por el USDA y válido 30 días. El país de salida determina quién firma tu certificado y condiciona las pruebas de vacunación antirrábica que esperan los servicios malienses."
+        pt: "O certificado veterinário internacional é emitido por um veterinário credenciado pelo governo no país de partida, usando o modelo oficial desse país. Para os Estados Unidos, trata-se do atestado de saúde de exportação bilíngue da USDA para o Mali, endossado pela USDA e válido por 30 dias. O país de partida, portanto, determina quem assina seu certificado e molda as comprovações de vacinação antirrábica que os serviços do Mali esperam."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's rabies history and recent country of residence matter to the veterinary services, not only the last airport. A stay in a rabies-risk country can affect the evidence required. Note that Mali is itself a rabies-endemic country, treated by the EU as a non-listed (unfavourable) third country, which matters for any later return to the EU."
+        fr: "L'historique antirabique et le pays de résidence récent de ton chien comptent pour les services vétérinaires, pas seulement l'aéroport de destination finale. Un séjour dans un pays à risque rabique peut influer sur les preuves exigées. Note que le Mali est lui-même un pays à rage endémique, traité par l'UE comme un pays tiers non listé (situation défavorable), ce qui compte pour un éventuel retour ultérieur vers l'UE."
+        es: "El historial de rabia y el país de residencia reciente de tu perro importan para los servicios veterinarios, no solo el último aeropuerto. Una estancia en un país con riesgo de rabia puede afectar a las pruebas exigidas. Ten en cuenta que Malí es en sí mismo un país con rabia endémica, tratado por la UE como país tercero no listado (situación desfavorable), lo que importa para un posible regreso posterior a la UE."
+        pt: "O histórico de raiva do seu cachorro e o país de residência recente importam para os serviços veterinários, não apenas o último aeroporto. Uma estadia em um país de risco de raiva pode afetar as comprovações exigidas. Observe que o próprio Mali é um país com raiva endêmica, tratado pela UE como país terceiro não listado (desfavorável), o que importa para uma eventual volta à UE."
+  note:
+    en: "So read the requirements below as the confirmed core, then verify the unpublished points and your dog's exact origin, length of stay and history with your vet and the DNSV before booking."
+    fr: "Lis donc les exigences ci-dessous comme le socle confirmé, puis vérifie les points non publiés ainsi que l'origine, la durée du séjour et l'historique exacts de ton chien auprès de ton vétérinaire et de la DNSV avant de réserver."
+    es: "Así que lee los requisitos siguientes como el núcleo confirmado y luego verifica los puntos no publicados y el origen exacto, la duración de la estancia y el historial de tu perro con tu veterinario y la DNSV antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o núcleo confirmado, e depois verifique os pontos não publicados e a origem exata, o tempo de estadia e o histórico do seu cachorro com seu veterinário e com a DNSV antes de reservar."
+
+requirements:
+  - item: { en: "Advance import permit", fr: "Permis d'importation préalable", es: "Permiso de importación previo", pt: "Autorização de importação prévia" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "Mali does not publish an online pet-import permit procedure, and the official US–Mali export certificate does not reference a prior permit. This is an absence of published rule, not a confirmation that none exists — confirm directly with the DNSV or a Malian embassy before travel.", fr: "Le Mali ne publie pas de procédure de permis d'importation d'animaux en ligne, et le certificat d'exportation officiel États-Unis–Mali n'évoque pas de permis préalable. C'est une absence de règle publiée, non une confirmation qu'aucun n'existe — à confirmer directement auprès de la DNSV ou d'une ambassade du Mali avant le voyage.", es: "Malí no publica en línea un procedimiento de permiso de importación de mascotas, y el certificado de exportación oficial Estados Unidos–Malí no menciona un permiso previo. Esto es una ausencia de norma publicada, no una confirmación de que no exista — confírmalo directamente con la DNSV o una embajada de Malí antes de viajar.", pt: "O Mali não publica on-line um procedimento de autorização de importação de animais de estimação, e o certificado oficial de exportação EUA–Mali não menciona uma autorização prévia. Isso é a ausência de uma regra publicada, não a confirmação de que nenhuma existe — confirme diretamente com a DNSV ou com uma embaixada maliana antes de viajar." }
+    exceptions: { en: "Unknown — the DNSV may set conditions case by case.", fr: "Non communiqué — la DNSV peut fixer des conditions au cas par cas.", es: "No comunicado — la DNSV puede fijar condiciones caso por caso.", pt: "Não comunicado — a DNSV pode definir condições caso a caso." }
+    ref: { en: "Mali DNSV (Loi n° 05-010; Décret n° 09-261/P-RM) — no published pet-import permit; USDA APHIS export certificate", fr: "DNSV Mali (Loi n° 05-010 ; Décret n° 09-261/P-RM) — aucun permis d'importation d'animaux publié ; certificat d'exportation USDA APHIS", es: "DNSV Malí (Loi n° 05-010; Décret n° 09-261/P-RM) — ningún permiso de importación de mascotas publicado; certificado de exportación USDA APHIS", pt: "Mali DNSV (Loi n° 05-010; Décret n° 09-261/P-RM) — nenhuma autorização de importação de animais de estimação publicada; certificado de exportação USDA APHIS" }
+  - item: { en: "Identification (microchip)", fr: "Identification (puce)", es: "Identificación (microchip)", pt: "Identificação (microchip)" }
+    required: { en: "Recorded on the certificate; ISO microchip recommended", fr: "Consignée sur le certificat ; puce ISO recommandée", es: "Registrada en el certificado; se recomienda microchip ISO", pt: "Registrado no certificado; microchip ISO recomendado" }
+    when: { en: "The official US–Mali certificate identifies each animal by microchip number and/or name, and the vet verifies the presence of any listed microchip. A microchip is the practical standard and an ISO microchip is needed for a later return to the EU. Mali does not publish a separate stand-alone microchip law.", fr: "Le certificat officiel États-Unis–Mali identifie chaque animal par numéro de puce et/ou nom, et le vétérinaire vérifie la présence de toute puce mentionnée. La puce est le standard en pratique et une puce ISO est nécessaire pour un retour ultérieur vers l'UE. Le Mali ne publie pas de loi distincte spécifique sur la puce.", es: "El certificado oficial Estados Unidos–Malí identifica a cada animal por número de microchip y/o nombre, y el veterinario verifica la presencia de cualquier microchip indicado. El microchip es el estándar en la práctica y se necesita un microchip ISO para un regreso posterior a la UE. Malí no publica una ley específica e independiente sobre el microchip.", pt: "O certificado oficial EUA–Mali identifica cada animal por número de microchip e/ou nome, e o veterinário verifica a presença de qualquer microchip informado. Um microchip é o padrão prático, e um microchip ISO é necessário para uma eventual volta à UE. O Mali não publica uma lei isolada específica sobre microchip." }
+    exceptions: { en: "The certificate allows identification by name where no microchip is listed — confirm what the DNSV accepts.", fr: "Le certificat autorise l'identification par le nom lorsqu'aucune puce n'est mentionnée — confirme ce que la DNSV accepte.", es: "El certificado permite la identificación por nombre cuando no se indica microchip — confirma qué acepta la DNSV.", pt: "O certificado permite a identificação por nome quando nenhum microchip é informado — confirme o que a DNSV aceita." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to Mali (box 21)", fr: "USDA APHIS — Certificat vétérinaire pour l'exportation de chiens et chats vers le Mali (case 21)", es: "USDA APHIS — Certificado veterinario para la exportación de perros y gatos a Malí (casilla 21)", pt: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to Mali (campo 21)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (valid)", fr: "Requise (valide)", es: "Obligatoria (válida)", pt: "Obrigatória (válida)" }
+    when: { en: "The official certificate requires the dog to be vaccinated against rabies, recording the vaccination date, vaccine name, batch number and end date of validity. Where it is a primary vaccination, allow it to take effect before travel (commonly at least 21 days); confirm the exact window with your official vet.", fr: "Le certificat officiel exige que le chien soit vacciné contre la rage, en consignant la date de vaccination, le nom du vaccin, le numéro de lot et la date de fin de validité. S'il s'agit d'une primo-vaccination, laisse-la produire ses effets avant le voyage (souvent au moins 21 jours) ; confirme la fenêtre exacte avec ton vétérinaire officiel.", es: "El certificado oficial exige que el perro esté vacunado contra la rabia, registrando la fecha de vacunación, el nombre de la vacuna, el número de lote y la fecha de fin de valide. Cuando se trate de una primovacunación, deja que surta efecto antes del viaje (por lo general al menos 21 días); confirma la ventana exacta con tu veterinario oficial.", pt: "O certificado oficial exige que o cachorro seja vacinado contra a raiva, registrando a data da vacinação, o nome da vacina, o número do lote e a data de fim de validade. Quando se tratar de uma primovacinação, deixe-a fazer efeito antes da viagem (geralmente pelo menos 21 dias); confirme a janela exata com seu veterinário oficial." }
+    exceptions: { en: "A dog too young to be validly vaccinated cannot meet the rabies requirement.", fr: "Un chien trop jeune pour être valablement vacciné ne peut satisfaire l'exigence antirabique.", es: "Un perro demasiado joven para ser vacunado válidamente no puede cumplir el requisito antirrábico.", pt: "Um cachorro jovem demais para ser validamente vacinado não pode cumprir a exigência relativa à raiva." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to Mali (rabies vaccinations)", fr: "USDA APHIS — Certificat vétérinaire pour l'exportation de chiens et chats vers le Mali (vaccinations contre la rage)", es: "USDA APHIS — Certificado veterinario para la exportación de perros y gatos a Malí (vacunaciones contra la rabia)", pt: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to Mali (vacinações antirrábicas)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published", fr: "Non prévu", es: "No previsto", pt: "Não publicado" }
+    when: { en: "Mali's documented entry requirements for personal pets do not include a rabies antibody test for import into the country; on the official certificate any additional test is optional. (A rabies antibody test may still be relevant for a later return to the EU, because Mali is rabies-endemic and non-listed.)", fr: "Les exigences d'entrée documentées pour les animaux personnels n'incluent pas de titrage antirabique pour l'importation au Mali ; sur le certificat officiel, tout test supplémentaire est facultatif. (Un titrage peut toutefois rester pertinent pour un retour ultérieur vers l'UE, le Mali étant à rage endémique et non listé.)", es: "Los requisitos de entrada documentados para mascotas personales no incluyen una prueba de titulación de rabia para la importación en el país; en el certificado oficial cualquier prueba adicional es opcional. (Una prueba de titulación de rabia puede seguir siendo relevante para un regreso posterior a la UE, ya que Malí tiene rabia endémica y no está listado.)", pt: "As exigências de entrada documentadas do Mali para animais de estimação pessoais não incluem um teste sorológico antirrábico para a importação no país; no certificado oficial, qualquer teste adicional é opcional. (Um teste sorológico antirrábico ainda pode ser relevante para uma volta futura à UE, pois o Mali tem raiva endêmica e é um país não listado.)" }
+    exceptions: { en: "Unknown for special cases — confirm with the DNSV, as conditions can differ by the dog's origin and rabies history.", fr: "Non communiqué pour les cas particuliers — à confirmer auprès de la DNSV, les conditions pouvant varier selon l'origine et l'historique rabique du chien.", es: "No comunicado para casos especiales — confirma con la DNSV, ya que las condiciones pueden variar según el origen y el historial de rabia del perro.", pt: "Não comunicado para casos especiais — confirme com a DNSV, pois as condições podem variar conforme a origem e o histórico de raiva do cachorro." }
+    ref: { en: "USDA APHIS — export certificate (additional tests optional); no published Malian antibody-test requirement", fr: "USDA APHIS — certificat d'exportation (tests supplémentaires facultatifs) ; aucun titrage malien publié", es: "USDA APHIS — certificado de exportación (pruebas adicionales opcionales); ningún requisito de prueba de titulación maliense publicado", pt: "USDA APHIS — certificado de exportação (testes adicionais opcionais); nenhuma exigência maliana de teste sorológico publicada" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required (original)", fr: "Requis (original)", es: "Obligatorio (original)", pt: "Obrigatório (original)" }
+    when: { en: "An official international veterinary certificate must accompany the dog. The US–Mali model is bilingual (English/French), ink-signed and embossed by USDA, and is valid for 30 days after issuance; the vet certifies inspection, apparent freedom from infectious disease including rabies, origin from an area not quarantined for rabies, and rabies vaccination. French is acceptable on the certificate.", fr: "Un certificat vétérinaire international officiel doit accompagner le chien. Le modèle États-Unis–Mali est bilingue (anglais/français), signé à l'encre et embossé par l'USDA, et valable 30 jours après délivrance ; le vétérinaire atteste l'inspection, l'absence apparente de maladie infectieuse dont la rage, l'origine d'une zone non mise en quarantaine pour la rage et la vaccination antirabique. Le français est accepté sur le certificat.", es: "Un certificado veterinario internacional oficial debe acompañar al perro. El modelo Estados Unidos–Malí es bilingüe (inglés/francés), firmado con tinta y con sello en relieve del USDA, y es válido 30 días tras la expedición; el veterinario certifica la inspección, la aparente ausencia de enfermedad infecciosa incluida la rabia, el origen de una zona no puesta en cuarentena por rabia y la vacunación antirrábica. Se acepta el francés en el certificado.", pt: "Um certificado veterinário internacional oficial deve acompanhar o cachorro. O modelo EUA–Mali é bilíngue (inglês/francês), assinado à tinta e chancelado pela USDA, e é válido por 30 dias após a emissão; o veterinário certifica a inspeção, a aparente ausência de doença infecciosa, incluindo raiva, a origem de uma área não colocada em quarentena por raiva, e a vacinação antirrábica. O francês é aceito no certificado." }
+    exceptions: { en: "None — an original official certificate must accompany every dog.", fr: "Aucune — un certificat officiel original doit accompagner chaque chien.", es: "Ninguna — un certificado oficial original debe acompañar a cada perro.", pt: "Nenhuma — um certificado oficial original deve acompanhar todo cachorro." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to Mali (valid 30 days)", fr: "USDA APHIS — Certificat vétérinaire pour l'exportation de chiens et chats vers le Mali (valable 30 jours)", es: "USDA APHIS — Certificado veterinario para la exportación de perros y gatos a Malí (válido 30 días)", pt: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to Mali (válido por 30 dias)" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / échinocoque", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not published as mandatory", fr: "Non prévu comme obligatoire", es: "No previsto como obligatorio", pt: "Não publicado como obrigatório" }
+    when: { en: "The official US–Mali certificate lists treatments only in an optional box, and Mali does not publish a mandatory internal or external parasite treatment for personal pet dogs.", fr: "Le certificat officiel États-Unis–Mali ne mentionne les traitements que dans une case facultative, et le Mali ne publie pas de traitement antiparasitaire interne ou externe obligatoire pour les chiens de compagnie personnels.", es: "El certificado oficial Estados Unidos–Malí solo menciona los tratamientos en una casilla opcional, y Malí no publica un tratamiento antiparasitario interno o externo obligatorio para los perros de compañía personales.", pt: "O certificado oficial EUA–Mali lista tratamentos apenas em um campo opcional, e o Mali não publica um tratamento antiparasitário interno ou externo obrigatório para cachorros de estimação pessoais." }
+    exceptions: { en: "Unknown — a vet may recommend treatments; confirm any requirement with the DNSV.", fr: "Non communiqué — un vétérinaire peut recommander des traitements ; confirme toute exigence auprès de la DNSV.", es: "No comunicado — un veterinario puede recomendar tratamientos; confirma cualquier requisito con la DNSV.", pt: "Não comunicado — um veterinário pode recomendar tratamentos; confirme qualquer exigência com a DNSV." }
+    ref: { en: "USDA APHIS — export certificate (treatments optional)", fr: "USDA APHIS — certificat d'exportation (traitements facultatifs)", es: "USDA APHIS — certificado de exportación (tratamientos opcionales)", pt: "USDA APHIS — certificado de exportação (tratamentos opcionais)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published (linked to rabies)", fr: "Non communiqué (lié à la rage)", es: "No comunicado (vinculado a la rabia)", pt: "Não publicado (vinculado à raiva)" }
+    when: { en: "Mali does not publish a stand-alone minimum age. In practice, a puppy must be old enough to be validly vaccinated against rabies (commonly about 3 months / 12 weeks) with the vaccination effective before travel.", fr: "Le Mali ne publie pas d'âge minimum distinct. En pratique, un chiot doit être en âge d'être valablement vacciné contre la rage (souvent environ 3 mois / 12 semaines), la vaccination devant produire ses effets avant le voyage.", es: "Malí no publica una edad mínima independiente. En la práctica, un cachorro debe tener edad suficiente para ser vacunado válidamente contra la rabia (normalmente unos 3 meses / 12 semanas), con la vacunación surtiendo efecto antes del viaje.", pt: "O Mali não publica uma idade mínima isolada. Na prática, um filhote precisa ter idade suficiente para ser validamente vacinado contra a raiva (geralmente cerca de 3 meses / 12 semanas), com a vacinação em vigor antes da viagem." }
+    exceptions: { en: "Puppies too young to be vaccinated cannot meet the rabies requirement — confirm with the DNSV.", fr: "Les chiots trop jeunes pour être vaccinés ne peuvent satisfaire l'exigence antirabique — à confirmer auprès de la DNSV.", es: "Los cachorros demasiado jóvenes para ser vacunados no pueden cumplir el requisito antirrábico — confirma con la DNSV.", pt: "Filhotes jovens demais para serem vacinados não podem cumprir a exigência relativa à raiva — confirme com a DNSV." }
+    ref: { en: "Derived from the rabies-vaccination requirement; no separate Malian minimum-age rule published", fr: "Déduit de l'exigence de vaccination antirabique ; aucun âge minimum malien distinct publié", es: "Derivado del requisito de vacunación antirrábica; no se publica una norma de edad mínima maliense independiente", pt: "Derivada da exigência de vacinação antirrábica; nenhuma regra maliana separada de idade mínima publicada" }
+  - item: { en: "Border veterinary inspection & customs", fr: "Inspection vétérinaire frontalière et douane", es: "Inspección veterinaria fronteriza y aduanas", pt: "Inspeção veterinária de fronteira e alfândega" }
+    required: { en: "Expected — details not published", fr: "Attendue — détails non publiés", es: "Prevista — detalles no publicados", pt: "Prevista — detalhes não publicados" }
+    when: { en: "The DNSV is legally charged with the health control of animals and animal products, including at border posts, so the dog and its documents can be checked on arrival by the official veterinary services alongside customs. Mali does not publish the specific airport pet-check procedure — carry all originals and be ready to present them.", fr: "La DNSV est légalement chargée du contrôle sanitaire des animaux et des produits animaux, y compris aux postes frontaliers ; le chien et ses documents peuvent donc être contrôlés à l'arrivée par les services vétérinaires officiels, aux côtés de la douane. Le Mali ne publie pas la procédure spécifique de contrôle des animaux à l'aéroport — garde tous les originaux et sois prêt à les présenter.", es: "La DNSV está legalmente encargada del control sanitario de los animales y productos animales, incluso en los puestos fronterizos, por lo que el perro y sus documentos pueden ser revisados a la llegada por los servicios veterinarios oficiales, junto con la aduana. Malí no publica el procedimiento específico de control de mascotas en el aeropuerto — lleva todos los originales y prepárate para presentarlos.", pt: "A DNSV é legalmente encarregada do controle sanitário dos animais e produtos de origem animal, inclusive nos postos de fronteira, portanto o cachorro e seus documentos podem ser verificados na chegada pelos serviços veterinários oficiais junto com a alfândega. O Mali não publica o procedimento específico de verificação de animais de estimação no aeroporto — leve todos os originais e esteja pronto para apresentá-los." }
+    exceptions: { en: "Unknown — the exact inspection procedure is not published; confirm with the DNSV.", fr: "Non communiqué — la procédure d'inspection exacte n'est pas publiée ; à confirmer auprès de la DNSV.", es: "No comunicado — el procedimiento de inspección exacto no está publicado; confirma con la DNSV.", pt: "Não comunicado — o procedimento exato de inspeção não é publicado; confirme com a DNSV." }
+    ref: { en: "Mali DNSV — mission (contrôle sanitaire des animaux; Loi n° 05-010; Décret n° 09-261/P-RM)", fr: "DNSV Mali — mission (contrôle sanitaire des animaux ; Loi n° 05-010 ; Décret n° 09-261/P-RM)", es: "DNSV Malí — misión (contrôle sanitaire des animaux; Loi n° 05-010; Décret n° 09-261/P-RM)", pt: "Mali DNSV — mission (contrôle sanitaire des animaux; Loi n° 05-010; Décret n° 09-261/P-RM)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicada", pt: "Não publicado" }
+    when: { en: "No routine quarantine for compliant personal pet dogs is published by Mali. This is an absence of published rule, not a guarantee — a non-compliant animal could still be held or refused.", fr: "Aucune quarantaine de routine pour les chiens de compagnie personnels conformes n'est publiée par le Mali. C'est une absence de règle publiée, non une garantie — un animal non conforme pourrait néanmoins être retenu ou refusé.", es: "Malí no publica ninguna cuarentena rutinaria para los perros de compañía personales conformes. Esto es una ausencia de norma publicada, no una garantía — un animal no conforme aún podría ser retenido o rechazado.", pt: "Nenhuma quarentena sistemática é publicada pelo Mali para cachorros de estimação pessoais em conformidade. Isso é a ausência de uma regra publicada, não uma garantia — um animal em não conformidade ainda pode ser retido ou recusado." }
+    exceptions: { en: "Non-compliant animals may be refused, returned or held under veterinary control at the owner's expense.", fr: "Les animaux non conformes peuvent être refusés, renvoyés ou placés sous contrôle vétérinaire aux frais du propriétaire.", es: "Los animales no conformes pueden ser rechazados, devueltos o retenidos bajo control veterinario a cargo del propietario.", pt: "Animais em situação irregular podem ser recusados, devolvidos ou retidos sob controle veterinário às custas do dono." }
+    ref: { en: "No quarantine rule published on official Malian sources or the USDA APHIS export certificate", fr: "Aucune règle de quarantaine publiée sur les sources officielles maliennes ni sur le certificat d'exportation USDA APHIS", es: "No hay ninguna norma de cuarentena publicada en las fuentes oficiales malienses ni en el certificado de exportación USDA APHIS", pt: "Nenhuma regra de quarentena publicada em fontes oficiais malianas ou no certificado de exportação USDA APHIS" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "No published breed ban", fr: "Aucune interdiction par race publiée", es: "No hay prohibición por raza publicada", pt: "Nenhuma proibição de raça publicada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "We found no official Malian instrument banning or restricting dog breeds at import. This is an absence of published rule, not a guarantee — confirm your dog's breed with the DNSV before travel.", fr: "Nous n'avons trouvé aucun texte officiel malien interdisant ou restreignant les races de chiens à l'importation. C'est une absence de règle publiée, non une garantie — confirme la race de ton chien auprès de la DNSV avant de voyager.", es: "No encontramos ningún instrumento oficial maliense que prohíba o restrinja las razas de perros en la importación. Esto es una ausencia de norma publicada, no una garantía — confirma la raza de tu perro con la DNSV antes de viajar.", pt: "Não encontramos nenhum instrumento oficial maliano que proíba ou restrinja raças de cachorro na importação. Isso é a ausência de uma regra publicada, não uma garantia — confirme a raça do seu cachorro com a DNSV antes de viajar." }
+    ref: { en: "No breed-specific import legislation found on official Malian sources", fr: "Aucune législation d'importation par race trouvée sur les sources officielles maliennes", es: "No se encontró legislación de importación por raza en las fuentes oficiales malienses", pt: "Nenhuma legislação específica por raça encontrada em fontes oficiais malianas" }
+
+origin:
+  eu:
+    title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
+    body:
+      en: "For a dog leaving the EU, have an official EU vet issue an international veterinary certificate close to departure. Your dog needs a permanent identification (an ISO microchip in practice) and a valid rabies vaccination recorded in the passport / vaccination booklet. No rabies antibody test is published for entry into Mali. Because Mali publishes little, confirm with the DNSV or a Malian embassy whether an advance import permit or any extra condition applies before you book. On arrival, the official veterinary services may check the dog and its documents with customs."
+      fr: "Pour un chien quittant l'UE, fais établir un certificat vétérinaire international par un vétérinaire officiel de l'UE peu avant le départ. Ton chien a besoin d'une identification permanente (une puce ISO en pratique) et d'une vaccination antirabique valide consignée dans le passeport / carnet de vaccination. Aucun titrage antirabique n'est publié pour l'entrée au Mali. Le Mali publiant peu, confirme auprès de la DNSV ou d'une ambassade du Mali si un permis d'importation préalable ou toute condition supplémentaire s'applique avant de réserver. À l'arrivée, les services vétérinaires officiels peuvent contrôler le chien et ses documents avec la douane."
+      es: "Para un perro que sale de la UE, haz que un veterinario oficial de la UE expida un certificado veterinario internacional poco antes de la salida. Tu perro necesita una identificación permanente (un microchip ISO en la práctica) y una vacunación antirrábica válida registrada en el pasaporte / cartilla de vacunación. No se publica ninguna prueba de titulación de rabia para la entrada en Malí. Como Malí publica poco, confirma con la DNSV o una embajada de Malí si aplica un permiso de importación previo o cualquier condición adicional antes de reservar. A la llegada, los servicios veterinarios oficiales pueden revisar al perro y sus documentos junto con la aduana."
+      pt: "Para um cachorro que sai da UE, peça a um veterinário oficial da UE para emitir um certificado veterinário internacional perto da partida. Seu cachorro precisa de uma identificação permanente (um microchip ISO na prática) e de uma vacinação antirrábica válida registrada no passaporte / carteira de vacinação. Nenhum teste sorológico antirrábico é publicado para a entrada no Mali. Como o Mali publica pouco, confirme com a DNSV ou com uma embaixada maliana se é exigida uma autorização de importação prévia ou qualquer condição extra antes de reservar. Na chegada, os serviços veterinários oficiais podem verificar o cachorro e seus documentos junto com a alfândega."
+    cls: warn
+  listed:
+    title: { en: "From another third country", fr: "Depuis un autre pays tiers", es: "Desde otro país tercero", pt: "De outro país terceiro" }
+    body:
+      en: "From a non-EU country, the core is the same: a permanent identification, a valid rabies vaccination and an original international veterinary certificate issued by a government-accredited vet close to departure. From the United States, use the bilingual USDA export health certificate for Mali, endorsed by USDA (ink-signed and embossed) and valid for 30 days after issuance. Use your own country's official export model where you travel from elsewhere, and confirm any additional Malian condition with the DNSV."
+      fr: "Depuis un pays hors UE, le socle est identique : une identification permanente, une vaccination antirabique valide et l'original d'un certificat vétérinaire international établi par un vétérinaire accrédité peu avant le départ. Depuis les États-Unis, utilise le certificat sanitaire d'exportation USDA bilingue pour le Mali, endossé par l'USDA (signé à l'encre et embossé) et valable 30 jours après délivrance. Utilise le modèle d'exportation officiel de ton propre pays si tu voyages d'ailleurs, et confirme toute condition malienne supplémentaire auprès de la DNSV."
+      es: "Desde un país no perteneciente a la UE, el núcleo es el mismo: una identificación permanente, una vacunación antirrábica válida y el original de un certificado veterinario internacional expedido por un veterinario acreditado por el gobierno poco antes de la salida. Desde Estados Unidos, utiliza el certificado sanitario de exportación bilingüe del USDA para Malí, refrendado por el USDA (firmado con tinta y con sello en relieve) y válido 30 días tras la expedición. Utiliza el modelo de exportación oficial de tu propio país si viajas desde otro lugar, y confirma cualquier condición maliense adicional con la DNSV."
+      pt: "Vindo de um país fora da UE, o núcleo é o mesmo: uma identificação permanente, uma vacinação antirrábica válida e um certificado veterinário internacional original emitido por um veterinário credenciado pelo governo perto da partida. A partir dos Estados Unidos, use o atestado de saúde de exportação bilíngue da USDA para o Mali, endossado pela USDA (assinado à tinta e chancelado) e válido por 30 dias após a emissão. Use o modelo oficial de exportação do seu próprio país se viajar de outro lugar, e confirme qualquer condição maliana adicional com a DNSV."
+    cls: warn
+  nonListed:
+    title: { en: "Rabies history & special cases", fr: "Historique rabique et cas particuliers", es: "Historial de rabia y casos especiales", pt: "Histórico de raiva e casos particulares" }
+    body:
+      en: "Mali does not publish a separate at-risk-country track or a rabies antibody test for personal pets entering the country, but the DNSV can attach conditions based on the dog's origin and rabies history. If your dog has stayed in a high-risk country, confirm directly with the DNSV what evidence will be required before you travel. Because Mali is itself rabies-endemic and treated by the EU as a non-listed third country, plan the rabies antibody test now if you intend to bring the dog back into the EU later."
+      fr: "Le Mali ne publie pas de parcours distinct pour les pays à risque ni de titrage antirabique pour les animaux personnels entrant dans le pays, mais la DNSV peut assortir l'entrée de conditions selon l'origine et l'historique rabique du chien. Si ton chien a séjourné dans un pays à haut risque, confirme directement auprès de la DNSV les preuves exigées avant de voyager. Le Mali étant lui-même à rage endémique et traité par l'UE comme un pays tiers non listé, prévois dès maintenant le titrage antirabique si tu compte ramener le chien dans l'UE plus tard."
+      es: "Malí no publica un recorrido separado para países de riesgo ni una prueba de titulación de rabia para las mascotas personales que entran en el país, pero la DNSV puede añadir condiciones según el origen y el historial de rabia del perro. Si tu perro ha estado en un país de alto riesgo, confirma directamente con la DNSV qué pruebas se exigirán antes de viajar. Como Malí tiene rabia endémica y la UE lo trata como país tercero no listado, planifica ya la prueba de titulación de rabia si tienes intención de traer al perro de vuelta a la UE más adelante."
+      pt: "O Mali não publica uma via separada para países de risco nem um teste sorológico antirrábico para animais de estimação pessoais que entram no país, mas a DNSV pode acrescentar condições com base na origem e no histórico de raiva do cachorro. Se seu cachorro esteve em um país de alto risco, confirme diretamente com a DNSV quais comprovações serão exigidas antes de viajar. Como o próprio Mali tem raiva endêmica e é tratado pela UE como país terceiro não listado, planeje já o teste sorológico antirrábico (titulação) se pretende levar o cachorro de volta à UE mais tarde."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Mali is not published in detail, so prepare a complete, valid document set and expect an official check."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Mali n'est pas publié en détail ; prépare donc un dossier complet et valide et attends-toi à un contrôle officiel."
+    es: "Lo que ocurre cuando tu perro llega a Malí no está publicado en detalle, así que prepara un conjunto de documentos completo y válido y cuenta con un control oficial."
+    pt: "O que acontece quando seu cachorro chega ao Mali não é publicado em detalhes, portanto prepare um conjunto completo e válido de documentos e espere uma verificação oficial."
+  points:
+    - en: "The Direction Nationale des Services Vétérinaires (DNSV) is responsible for the health control of animals, including at border posts, so your dog and documents can be checked on arrival alongside customs."
+      fr: "La Direction Nationale des Services Vétérinaires (DNSV) est responsable du contrôle sanitaire des animaux, y compris aux postes frontaliers ; ton chien et tes documents peuvent donc être contrôlés à l'arrivée, aux côtés de la douane."
+      es: "La Direction Nationale des Services Vétérinaires (DNSV) es responsable del control sanitario de los animales, incluso en los puestos fronterizos, por lo que tu perro y tus documentos pueden ser revisados a la llegada, junto con la aduana."
+      pt: "A Direction Nationale des Services Vétérinaires (DNSV) é responsável pelo controle sanitário dos animais, inclusive nos postos de fronteira, portanto seu cachorro e seus documentos podem ser verificados na chegada junto com a alfândega."
+    - en: "Present the originals: the international veterinary certificate, proof of identification and proof of a valid rabies vaccination."
+      fr: "Présente les originaux : le certificat vétérinaire international, la preuve d'identification et la preuve d'une vaccination antirabique valide."
+      es: "Presenta los originales: el certificado veterinario internacional, la prueba de identificación y la prueba de una vacunación antirrábica válida."
+      pt: "Apresente os originais: o certificado veterinário internacional, a comprovação de identificação e a comprovação da vacinação antirrábica válida."
+    - en: "Keep the certificate within its validity window (30 days for the US–Mali model) on the day of arrival."
+      fr: "Garde le certificat dans sa fenêtre de validité (30 jours pour le modèle États-Unis–Mali) le jour de l'arrivée."
+      es: "Mantén el certificado dentro de su ventana de valide (30 días para el modelo Estados Unidos–Malí) el día de la llegada."
+      pt: "Mantenha o certificado dentro do seu prazo de validade (30 dias no modelo EUA–Mali) no dia da chegada."
+    - en: "If documents are missing or invalid, the animal may be refused entry, returned or held under veterinary control — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé, renvoyé ou placé sous contrôle vétérinaire — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado en la entrada, devuelto o retenido bajo control veterinario — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, o animal pode ter a entrada recusada, ser devolvido ou ficar retido sob controle veterinário — às custas do dono."
+    - en: "Because the exact airport procedure is not published, confirm the arrival formalities with the DNSV or a Malian embassy before you travel, and carry a full set of originals throughout the journey."
+      fr: "La procédure exacte à l'aéroport n'étant pas publiée, confirme les formalités d'arrivée auprès de la DNSV ou d'une ambassade du Mali avant de voyager, et garde un jeu complet d'originaux durant tout le trajet."
+      es: "Como el procedimiento exacto en el aeropuerto no está publicado, confirma los trámites de llegada con la DNSV o una embajada de Malí antes de viajar, y lleva un juego completo de originales durante todo el trayecto."
+      pt: "Como o procedimento exato do aeroporto não é publicado, confirme as formalidades de chegada com a DNSV ou com uma embaixada maliana antes de viajar, e leve um conjunto completo de originais durante toda a viagem."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No breed-specific import ban for dogs is published on Mali's official veterinary or government sources. Entry is framed by the health requirements (identification, rabies vaccination, veterinary certificate), not by a published national list of prohibited breeds."
+    fr: "Aucune interdiction d'importation par race pour les chiens n'est publiée sur les sources officielles vétérinaires ou gouvernementales du Mali. L'entrée est encadrée par les exigences sanitaires (identification, vaccination antirabique, certificat vétérinaire), non par une liste nationale de races interdites publiée."
+    es: "No se publica ninguna prohibición de importación por raza para perros en las fuentes oficiales veterinarias o gubernamentales de Malí. La entrada se enmarca en los requisitos sanitarios (identificación, vacunación antirrábica, certificado veterinario), no en una lista nacional de razas prohibidas publicada."
+    pt: "Nenhuma proibição de importação por raça de cachorro é publicada nas fontes veterinárias ou governamentais oficiais do Mali. A entrada é enquadrada pelas exigências sanitárias (identificação, vacinação antirrábica, certificado veterinário), não por uma lista nacional publicada de raças proibidas."
+  cat1:
+    en: "We found no official Malian instrument banning breeds such as pit bull types from import. This is an absence of published rule rather than a positive authorisation of any specific breed."
+    fr: "Nous n'avons trouvé aucun texte officiel malien interdisant à l'importation des races comme les types pit-bull. Il s'agit d'une absence de règle publiée, et non d'une autorisation expresse d'une race précise."
+    es: "No encontramos ningún instrumento oficial maliense que prohíba la importación de razas como los tipos pit bull. Se trata de una ausencia de norma publicada, y no de una autorización expresa de ninguna raza concreta."
+    pt: "Não encontramos nenhum instrumento oficial maliano que proíba a importação de raças como os tipos pit bull. Isso é a ausência de uma regra publicada, e não uma autorização positiva de nenhuma raça específica."
+  cat2:
+    en: "There is likewise no published lighter 'permitted with conditions' breed category at the border. Local ownership or public-order rules could still exist; they are not part of any published import procedure."
+    fr: "Il n'existe de même aucune catégorie allégée « autorisée sous conditions » publiée à la frontière. Des règles locales de détention ou d'ordre public pourraient exister ; elles ne font pas partie d'une procédure d'importation publiée."
+    es: "Del mismo modo, no existe ninguna categoría de raza más ligera «permitida con condiciones» publicada en la frontera. Podrían existir normas locales de tenencia o de orden público; no forman parte de ningún procedimiento de importación publicado."
+    pt: "Também não há uma categoria mais branda de raça 'permitida com condições' publicada na fronteira. Regras locais de posse ou de ordem pública ainda podem existir; elas não fazem parte de nenhum procedimento de importação publicado."
+  note:
+    en: "Because rules can change and Mali publishes little online, confirm your dog's breed and any cross with the DNSV before you travel."
+    fr: "Les règles pouvant évoluer et le Mali publiant peu en ligne, confirme la race de ton chien et tout croisement auprès de la DNSV avant de voyager."
+    es: "Como las normas pueden cambiar y Malí publica poco en línea, confirma la raza de tu perro y cualquier cruce con la DNSV antes de viajar."
+    pt: "Como as regras podem mudar e o Mali publica pouco on-line, confirme a raça do seu cachorro e qualquer cruzamento com a DNSV antes de viajar."
+
+checklist:
+  - en: "Confirm with the DNSV or a Malian embassy whether an advance import permit or any extra condition applies (Mali publishes little)"
+    fr: "Confirme auprès de la DNSV ou d'une ambassade du Mali si un permis d'importation préalable ou une condition supplémentaire s'applique (le Mali publie peu)"
+    es: "Confirma con la DNSV o una embajada de Malí si aplica un permiso de importación previo o cualquier condición adicional (Malí publica poco)"
+    pt: "Confirme com a DNSV ou com uma embaixada maliana se é exigida uma autorização de importação prévia ou qualquer condição extra (o Mali publica pouco)"
+  - en: "Permanent identification (ISO microchip recommended) placed before the rabies vaccination"
+    fr: "Identification permanente (puce ISO recommandée) posée avant la vaccination antirabique"
+    es: "Identificación permanente (se recomienda microchip ISO) colocada antes de la vacunación antirrábica"
+    pt: "Identificação permanente (microchip ISO recomendado) implantada antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination recorded with date, vaccine, batch and validity (primary shot to take effect before travel)"
+    fr: "Vaccination antirabique valide consignée avec date, vaccin, lot et validité (primo-vaccination produisant ses effets avant le voyage)"
+    es: "Vacunación antirrábica válida registrada con fecha, vacuna, lote y valide (primovacunación surtiendo efecto antes del viaje)"
+    pt: "Vacinação antirrábica válida registrada com data, vacina, lote e validade (a primovacinação deve fazer efeito antes da viagem)"
+  - en: "Original international veterinary certificate issued shortly before departure (US–Mali model valid 30 days, ink-signed and embossed by USDA)"
+    fr: "Original du certificat vétérinaire international établi peu avant le départ (modèle États-Unis–Mali valable 30 jours, signé à l'encre et embossé par l'USDA)"
+    es: "Original del certificado veterinario internacional expedido poco antes de la salida (modelo Estados Unidos–Malí válido 30 días, firmado con tinta y con sello en relieve del USDA)"
+    pt: "Certificado veterinário internacional original emitido pouco antes da partida (modelo EUA–Mali válido por 30 dias, assinado à tinta e chancelado pela USDA)"
+  - en: "Up-to-date vaccination records carried with you"
+    fr: "Preuves de vaccination à jour emportées avec toi"
+    es: "Registros de vacunación al día contigo"
+    pt: "Registros de vacinação atualizados levados com você"
+  - en: "Check the certificate is still within its validity window on your arrival date"
+    fr: "Vérifie que le certificat est encore dans sa fenêtre de validité à ta date d'arrivée"
+    es: "Comprueba que el certificado sigue dentro de su ventana de valide en tu fecha de llegada"
+    pt: "Verifique se o certificado ainda está dentro do seu prazo de validade na data da sua chegada"
+  - en: "Original documents ready for a possible border veterinary check and customs"
+    fr: "Documents originaux prêts pour un éventuel contrôle vétérinaire frontalier et la douane"
+    es: "Documentos originales listos para un posible control veterinario fronterizo y la aduana"
+    pt: "Documentos originais prontos para uma possível verificação veterinária de fronteira e alfândega"
+  - en: "If you will return to the EU, plan the rabies antibody test (Mali is rabies-endemic and non-listed)"
+    fr: "Si tu rentre dans l'UE, prévois le titrage antirabique (le Mali est à rage endémique et non listé)"
+    es: "Si vas a regresar a la UE, planifica la prueba de titulación de rabia (Malí tiene rabia endémica y no está listado)"
+    pt: "Se você for voltar à UE, planeje o teste sorológico antirrábico (titulação) (o Mali tem raiva endêmica e é não listado)"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Mali (dogs and cats)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Mali (chiens et chats)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Malí (perros y gatos)", pt: "USDA APHIS — Pet Travel From the United States to Mali (cachorros e gatos)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-mali"
+  - label: { en: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to the Republic of Mali (bilingual EN/FR, valid 30 days)", fr: "USDA APHIS — Certificat vétérinaire pour l'exportation de chiens et chats vers la République du Mali (bilingue EN/FR, valable 30 jours)", es: "USDA APHIS — Certificado veterinario para la exportación de perros y gatos a la República de Malí (bilingüe EN/FR, válido 30 días)", pt: "USDA APHIS — Veterinary Health Certificate for Export of Dogs and Cats to the Republic of Mali (bilíngue EN/FR, válido por 30 dias)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/mali-dog-cat.pdf"
+  - label: { en: "Mali — Direction Nationale des Services Vétérinaires (DNSV): mission and legal basis (Loi n° 05-010; Décret n° 09-261/P-RM)", fr: "Mali — Direction Nationale des Services Vétérinaires (DNSV) : mission et base légale (Loi n° 05-010 ; Décret n° 09-261/P-RM)", es: "Malí — Direction Nationale des Services Vétérinaires (DNSV): misión y base legal (Loi n° 05-010; Décret n° 09-261/P-RM)", pt: "Mali — Direction Nationale des Services Vétérinaires (DNSV): missão e base legal (Loi n° 05-010; Décret n° 09-261/P-RM)" }
+    url: "https://mpfef.gouv.ml/index.php/direction-nationale-des-services-veterinaires-dnsv/"
+
+seo:
+  title: { en: "Mali Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Mali — Guide", es: "Requisitos de entrada de perros en Malí — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Mali — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Mali With Your Dog: Entry Requirements (2026)", fr: "Voyager au Mali avec ton chien : formalités (2026)", es: "Viajar a Malí con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Mali com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaDesc:
+    en: "Official requirements for bringing a dog into Mali: international veterinary certificate. Several rules are unpublished — sourced and dated."
+    fr: "Exigences officielles pour faire entrer un chien au Mali : certificat vétérinaire international. Plusieurs règles ne sont pas publiées — sourcé et daté."
+    es: "Requisitos oficiales para traer un perro a Malí: certificado veterinario internacional. Varias normas no están publicadas — con fuentes y fecha."
+    pt: "Exigências oficiais para levar um cachorro ao Mali: certificado veterinário internacional. Várias regras não são publicadas — com fontes e data."
+  slug: "mali"
+  shortDesc:
+    en: "What is confirmed to bring a dog into Mali — an official international veterinary certificate, identification and a valid rabies vaccination; other rules unpublished, confirm with the DNSV."
+    fr: "Ce qui est confirmé pour faire entrer un chien au Mali — certificat vétérinaire international officiel, identification et vaccination antirabique valide ; autres règles non publiées, à confirmer auprès de la DNSV."
+    es: "Lo confirmado para traer un perro a Malí — un certificado veterinario internacional oficial, identificación y una vacunación antirrábica válida; otras normas no publicadas, confirma con la DNSV."
+    pt: "O que está confirmado para levar um cachorro ao Mali — um certificado veterinário internacional oficial, identificação e uma vacinação antirrábica válida; outras regras não publicadas, confirme com a DNSV."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

@@ -1,0 +1,306 @@
+id: airline_air_china
+mono: CA
+name: Air China
+titleH1:
+  en: Flying with a dog on Air China
+  fr: Voyager avec un chien sur Air China
+  es: Volar con un perro en Air China
+  pt: "Viajar com um cachorro na Air China"
+metaDesc:
+  en: "Air China pet policy: hold-only carriage, US dog suspension, breed limits and official sources."
+  fr: "Politique animaux Air China : transport en soute uniquement, suspension des chiens vers les USA, restrictions de races et sources officielles."
+  es: "Política de mascotas de Air China: transporte solo en bodega, suspensión de perros hacia EE. UU., límites de razas y fuentes oficiales."
+  pt: "Política de animais da Air China: transporte somente no porão, suspensão de cachorros para os EUA, limites de raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: China · PEK
+      fr: Chine · PEK
+      es: China · PEK
+      pt: "China · PEK"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets except service dogs; cats & dogs travel in the hold on oxygen-equipped aircraft.
+  fr: Pas d'animaux en cabine sauf chiens d'assistance ; chats et chiens voyagent en soute sur avions équipés d'oxygène.
+  es: No se admiten mascotas en cabina salvo perros de asistencia; los gatos y perros viajan en bodega en aeronaves equipadas con oxígeno.
+  pt: "Sem animais na cabine, exceto cães de serviço; gatos e cachorros viajam no porão em aeronaves equipadas com oxigênio."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: large
+      fr: grands
+      es: grandes
+      pt: "grande porte"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets can't enter the cabin — only trained service dogs. Cats & dogs travel in the hold.
+      fr: Les animaux ne peuvent pas entrer en cabine — seulement les chiens d'assistance dressés. Chats et chiens voyagent en soute.
+      es: Las mascotas no pueden entrar en cabina — solo perros de asistencia adiestrados. Los gatos y perros viajan en bodega.
+      pt: "Animais não podem entrar na cabine — somente cães de serviço treinados. Gatos e cachorros viajam no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (≤ 32 kg incl. container) in an oxygen-equipped hold; not on A319/A320/737-8MAX/ARJ21. One per passenger; check in 120 min ahead.
+      fr: Chats et chiens (≤ 32 kg avec le contenant) dans une soute équipée d'oxygène ; pas sur A319/A320/737-8MAX/ARJ21. Un par passager ; enregistrement 120 min avant.
+      es: Gatos y perros (≤ 32 kg incluido el contenedor) en una bodega equipada con oxígeno; no en A319/A320/737-8MAX/ARJ21. Uno por pasajero; factura 120 min antes.
+      pt: "Gatos e cachorros (≤ 32 kg com a caixa incluída) em um porão equipado com oxigênio; não disponível em A319/A320/737-8MAX/ARJ21. Um por passageiro; check-in com 120 min de antecedência."
+    fee:
+      en: Special-baggage fee
+      fr: Tarif bagage spécial
+      es: Tarifa de equipaje especial
+      pt: "Tarifa de bagagem especial"
+  - icon: ✈️
+    name:
+      en: Air China Cargo
+      fr: Air China Cargo
+      es: Air China Cargo
+      pt: "Air China Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Larger animals travel via Air China Cargo.
+      fr: Les animaux plus grands voyagent via Air China Cargo.
+      es: Los animales más grandes viajan vía Air China Cargo.
+      pt: "Animais maiores viajam via Air China Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold (≤ 32 kg)
+        fr: Soute (≤ 32 kg)
+        es: Bodega (≤ 32 kg)
+        pt: "Porão (≤ 32 kg)"
+      value:
+        en: Special-baggage fee
+        fr: Tarif bagage spécial
+        es: Tarifa de equipaje especial
+        pt: "Tarifa de bagagem especial"
+    - label:
+        en: Cargo (large)
+        fr: Fret (grands)
+        es: Carga (grandes)
+        pt: "Carga (grande porte)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Air China charges pets per its special-baggage schedule (paid at check-in) — no flat published amount.
+    fr: Air China facture les animaux selon son barème de bagage spécial (payé à l'enregistrement) — pas de montant fixe publié.
+    es: Air China cobra las mascotas según su tarifa de equipaje especial (se paga en la facturación) — sin importe fijo publicado.
+    pt: "A Air China cobra pelos animais conforme sua tabela de bagagem especial (paga no check-in) — sem valor fixo publicado."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: "Snub-nosed dogs & cats prone to breathing difficulty aren't accepted: bulldogs, boxers, pugs, Boston terrier, mastiffs, Pekingese, chow chow, Shih Tzu, Shar Pei, pit bull types, Tosa, Dogo Argentino, and Burmese/Himalayan/Persian/Exotic cats."
+      fr: "Chiens et chats au nez écrasé sujets aux difficultés respiratoires refusés : bouledogues, boxers, carlins, Boston terrier, mastiffs, pékinois, chow chow, Shih Tzu, Shar Pei, types pit-bull, Tosa, Dogo Argentino, et chats birmans/himalayens/persans/exotiques."
+      es: "Los perros y gatos de hocico chato propensos a dificultades respiratorias no se aceptan: bulldogs, boxers, carlinos, Boston terrier, mastines, pekineses, chow chow, Shih Tzu, Shar Pei, tipos pit bull, Tosa, Dogo Argentino y gatos birmanos/himalayos/persas/exóticos."
+      pt: "Cachorros e gatos de focinho achatado, propensos a dificuldades respiratórias, não são aceitos: bulldogues, boxers, pugs, Boston terrier, mastiffs, pequinês, chow chow, Shih Tzu, Shar Pei, tipos pit bull, Tosa, Dogo Argentino, e gatos burmeses/himalaios/persas/exóticos."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No US dogs (since Feb 2025)
+          fr: Pas de chiens USA (depuis fév. 2025)
+          es: Sin perros a EE. UU. (desde feb. 2025)
+          pt: "Sem cachorros para os EUA (desde fev. de 2025)"
+      - cls: warn
+        label:
+          en: Min. 8 weeks
+          fr: 8 semaines min.
+          es: Mín. 8 semanas
+          pt: "Mín. 8 semanas"
+    note:
+      en: Pregnant, nursing, sick or under-8-week animals are refused. No interline pet service. Since 1 Feb 2025, all dogs (incl. guide/hearing) are suspended on flights to the US.
+      fr: Les animaux gestants, allaitants, malades ou de moins de 8 semaines sont refusés. Pas de service interligne. Depuis le 1er fév. 2025, tous les chiens (y compris guides/d'écoute) sont suspendus sur les vols vers les USA.
+      es: Los animales gestantes, lactantes, enfermos o de menos de 8 semanas son rechazados. Sin servicio interlínea de mascotas. Desde el 1 de feb. de 2025, todos los perros (incluidos guía/de escucha) están suspendidos en los vuelos hacia EE. UU.
+      pt: "Animais prenhes, lactantes, doentes ou com menos de 8 semanas são recusados. Sem serviço de animais interline. Desde 1º de fev. de 2025, todos os cachorros (incluindo cães-guia/de audição) estão suspensos em voos para os EUA."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Oxygen-equipped hold required
+        fr: Soute équipée d'oxygène requise
+        es: Se requiere bodega equipada con oxígeno
+        pt: "Porão equipado com oxigênio obrigatório"
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Pets must be loaded into a cargo compartment with an oxygen supply; aircraft without one (A319/A320/737-8MAX/ARJ21) can't carry pets. No numeric temperature limit is published.
+    fr: Les animaux doivent être chargés dans un compartiment équipé d'oxygène ; les avions sans (A319/A320/737-8MAX/ARJ21) ne peuvent pas transporter d'animaux. Aucune limite chiffrée de température n'est publiée.
+    es: Las mascotas deben cargarse en un compartimento con suministro de oxígeno; las aeronaves sin él (A319/A320/737-8MAX/ARJ21) no pueden transportar mascotas. No se publica ningún límite numérico de temperatura.
+    pt: "Os animais devem ser carregados em um compartimento de carga com suprimento de oxigênio; aeronaves sem esse recurso (A319/A320/737-8MAX/ARJ21) não podem transportar animais. Nenhum limite numérico de temperatura é publicado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: A disabled passenger (16+) may travel with a trained guide/hearing dog free in the cabin, vested and leashed.
+      fr: Un passager handicapé (16+) peut voyager avec un chien guide/d'écoute dressé gratuitement en cabine, en gilet et en laisse.
+      es: Un pasajero con discapacidad (16+) puede viajar con un perro guía/de escucha adiestrado gratis en cabina, con chaleco y correa.
+      pt: "Um passageiro com deficiência (16 anos ou mais) pode viajar com um cão-guia/de audição treinado, grátis na cabine, com colete e coleira."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Apply at an Air China office ≥ 48 h ahead with the dog's ID + quarantine certificate. Note: all dogs are suspended to the US since 1 Feb 2025."
+      fr: "Demander dans un bureau Air China ≥ 48 h à l'avance avec l'ID du chien + certificat de quarantaine. Note : tous les chiens sont suspendus vers les USA depuis le 1er fév. 2025."
+      es: "Solicítalo en una oficina de Air China con ≥ 48 h de antelación con la identificación del perro + certificado de cuarentena. Nota: todos los perros están suspendidos hacia EE. UU. desde el 1 de feb. de 2025."
+      pt: "Solicite em um escritório da Air China com ≥ 48 h de antecedência, com a identificação do cachorro + certificado de quarentena. Nota: todos os cachorros estão suspensos para os EUA desde 1º de fev. de 2025."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No US dogs
+      fr: Pas de chiens USA
+      es: Sin perros a EE. UU.
+      pt: "Sem cachorros para os EUA"
+    value:
+      en: Since 1 Feb 2025, Air China has suspended all dogs (pets and guide/hearing dogs) on flights to the US.
+      fr: Depuis le 1er fév. 2025, Air China a suspendu tous les chiens (animaux et chiens guides/d'écoute) sur les vols vers les USA.
+      es: Desde el 1 de feb. de 2025, Air China ha suspendido todos los perros (mascotas y perros guía/de escucha) en los vuelos hacia EE. UU.
+      pt: "Desde 1º de fev. de 2025, a Air China suspendeu todos os cachorros (de estimação e cães-guia/de audição) em voos para os EUA."
+  - icon: 🧳
+    label:
+      en: Hold only
+      fr: Soute uniquement
+      es: Solo bodega
+      pt: "Somente porão"
+    value:
+      en: One pet per passenger, in the hold on an oxygen-equipped aircraft — never in the cabin.
+      fr: Un animal par passager, en soute sur un avion équipé d'oxygène — jamais en cabine.
+      es: Una mascota por pasajero, en la bodega de una aeronave equipada con oxígeno — nunca en cabina.
+      pt: "Um animal por passageiro, no porão de uma aeronave equipada com oxigênio — nunca na cabine."
+  - icon: 📄
+    label:
+      en: China quarantine
+      fr: Quarantaine Chine
+      es: Cuarentena en China
+      pt: "Quarentena na China"
+    value:
+      en: Pets entering China face customs quarantine (up to 30 days) unless from an exempt country, with ISO microchip + rabies docs.
+      fr: Les animaux entrant en Chine subissent une quarantaine douanière (jusqu'à 30 jours) sauf pays exempté, avec puce ISO + documents rage.
+      es: Las mascotas que entran en China se enfrentan a una cuarentena aduanera (hasta 30 días) salvo que procedan de un país exento, con microchip ISO + documentos de rabia.
+      pt: "Os animais que entram na China enfrentam quarentena alfandegária (até 30 dias), a menos que venham de um país isento, com microchip ISO + documentos antirrábicos."
+book:
+  host: airchina.com
+  url: https://www.airchina.com/
+sources:
+  en: 3 Air China sources · last verified 11 July 2026
+  fr: 3 sources Air China · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Air China · última verificación 11 de julio de 2026
+  pt: "3 fontes da Air China · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

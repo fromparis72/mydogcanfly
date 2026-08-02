@@ -1,0 +1,320 @@
+id: airline_ita_airways
+mono: AZ
+name: ITA Airways
+titleH1:
+  en: Flying with a dog on ITA Airways
+  fr: Voyager avec un chien sur ITA Airways
+  es: Volar con un perro en ITA Airways
+  pt: "Viajar com um cachorro pela ITA Airways"
+metaDesc:
+  en: "ITA Airways pet policy: generous cabin allowance, hold rules, fares by zone, brachycephalic hold ban and official sources."
+  fr: "Politique animaux ITA Airways : cabine généreuse, soute, tarifs par zone, suspension soute brachycéphales et sources officielles."
+  es: "Política de mascotas de ITA Airways: franquicia de cabina generosa, normas de bodega, tarifas por zona, veto de braquicéfalos en bodega y fuentes oficiales."
+  pt: "Política de animais da ITA Airways: franquia generosa na cabine, regras de porão, tarifas por zona, proibição de braquicefálicos no porão e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Italy · FCO
+      fr: Italie · FCO
+      es: Italia · FCO
+      pt: "Itália · FCO"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Generous cabin allowance (up to 12 kg on domestic) — but phone-only booking and a snub-nosed hold ban.
+  fr: Franchise cabine généreuse (jusqu'à 12 kg en national) — mais réservation par téléphone et soute interdite aux brachycéphales.
+  es: Franquicia de cabina generosa (hasta 12 kg en nacional), pero reserva solo por teléfono y veto de hocicos chatos en bodega.
+  pt: "Franquia generosa na cabine (até 12 kg em voos domésticos) — mas reserva somente por telefone e proibição de raças de focinho achatado no porão."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 12 kg
+  - flex: 84
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats (min. 3 months) in a soft carrier under the seat (max 55 × 40 × 23 cm); up to 12 kg on domestic flights, 8 kg elsewhere.
+      fr: Chiens et chats (min. 3 mois) dans un sac souple sous le siège (max 55 × 40 × 23 cm) ; jusqu'à 12 kg sur les vols nationaux, 8 kg ailleurs.
+      es: Perros y gatos (mín. 3 meses) en una jaula blanda bajo el asiento (máx. 55 × 40 × 23 cm); hasta 12 kg en vuelos nacionales, 8 kg en el resto.
+      pt: "Cachorros e gatos (mín. 3 meses) em uma bolsa de transporte macia sob o assento (máx. 55 × 40 × 23 cm); até 12 kg em voos domésticos, 8 kg nos demais."
+    fee:
+      en: €73–230
+      fr: 73–230 €
+      es: 73–230 €
+      pt: "73–230 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats up to 75 kg incl. carrier (AVIH) in a rigid crate. Snub-nosed breeds suspended from the hold since Oct 2025.
+      fr: Chiens et chats jusqu'à 75 kg avec la caisse (AVIH), caisse rigide. Soute suspendue pour les brachycéphales depuis oct. 2025.
+      es: Perros y gatos hasta 75 kg con la jaula (AVIH), en una jaula rígida. Bodega suspendida para hocicos chatos desde oct. 2025.
+      pt: "Cachorros e gatos até 75 kg incluindo a caixa de transporte (AVIH), em uma caixa rígida. Raças de focinho achatado suspensas do porão desde out. 2025."
+    fee:
+      en: €83–330
+      fr: 83–330 €
+      es: 83–330 €
+      pt: "83–330 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: ITA carries pets only in the cabin or hold — there's no separate pet cargo service.
+      fr: ITA ne transporte les animaux qu'en cabine ou en soute — pas de service fret animalier séparé.
+      es: ITA solo transporta mascotas en cabina o bodega; no hay servicio de carga de mascotas por separado.
+      pt: "A ITA transporta animais somente na cabine ou no porão — não há serviço separado de carga para animais."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin — domestic
+        fr: Cabine — national
+        es: Cabina — nacional
+        pt: "Cabine — doméstico"
+      value:
+        en: €73
+        fr: 73 €
+        es: 73 €
+        pt: "73 €"
+    - label:
+        en: Cabin — Europe
+        fr: Cabine — Europe
+        es: Cabina — Europa
+        pt: "Cabine — Europa"
+      value:
+        en: €95
+        fr: 95 €
+        es: 95 €
+        pt: "95 €"
+    - label:
+        en: Cabin — intercontinental
+        fr: Cabine — intercontinental
+        es: Cabina — intercontinental
+        pt: "Cabine — intercontinental"
+      value:
+        en: €210–230
+        fr: 210–230 €
+        es: 210–230 €
+        pt: "210–230 €"
+    - label:
+        en: Hold (domestic → intercont.)
+        fr: Soute (national → intercont.)
+        es: Bodega (nacional → intercont.)
+        pt: "Porão (doméstico → intercont.)"
+      value:
+        en: €83–330
+        fr: 83–330 €
+        es: 83–330 €
+        pt: "83–330 €"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per single flight, by zone. Pets are dogs and cats only (from December 2025).
+    fr: EUR par vol simple, par zone. Animaux limités aux chiens et chats (depuis décembre 2025).
+    es: EUR por vuelo simple, por zona. Las mascotas son solo perros y gatos (desde diciembre de 2025).
+    pt: "EUR por voo simples, por zona. Os animais aceitos são somente cachorros e gatos (desde dezembro de 2025)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold suspended
+          fr: Soute suspendue
+          es: Bodega suspendida
+          pt: "Porão suspenso"
+    note:
+      en: Since Oct 2025 the hold (AVIH) is suspended for all brachycephalic breeds (temperature/pressure sensitivity); the cabin stays allowed within limits. Includes bulldogs, French bulldog, boxer, Boston terrier, pug, Shih Tzu, Pekingese, Cane Corso, Dogue de Bordeaux, mastiffs, Presa Canario, Persian/Exotic/Himalayan/Burmese cats — plus some small breeds (apple-head Chihuahua, Maltese, Yorkshire, Cavalier).
+      fr: Depuis oct. 2025, la soute (AVIH) est suspendue pour toutes les races brachycéphales (sensibilité température/pression) ; la cabine reste autorisée dans les limites. Inclut bouledogues, bouledogue français, boxer, Boston terrier, carlin, Shih Tzu, pékinois, Cane Corso, Dogue de Bordeaux, mastiffs, Presa Canario, chats persans/exotiques/himalayens/birmans — plus certaines petites races (Chihuahua tête de pomme, Maltais, Yorkshire, Cavalier).
+      es: Desde oct. 2025, la bodega (AVIH) está suspendida para todas las razas braquicéfalas (sensibilidad a temperatura/presión); la cabina sigue permitida dentro de los límites. Incluye bulldogs, bulldog francés, bóxer, bóston terrier, carlino, shih tzu, pequinés, cane corso, dogo de Burdeos, mastines, presa canario, gatos persas/exóticos/himalayos/birmanos, y algunas razas pequeñas (chihuahua cabeza de manzana, maltés, yorkshire, cavalier).
+      pt: "Desde out. 2025, o porão (AVIH) está suspenso para todas as raças braquicefálicas (sensibilidade a temperatura/pressão); a cabine continua permitida dentro dos limites. Inclui buldogues, Buldogue Francês, boxer, Boston Terrier, pug, Shih Tzu, Pequinês, Cane Corso, Dogue de Bordeaux, mastins, Presa Canario, gatos persas/exóticos/himalaios/burmeses — além de algumas raças pequenas (Chihuahua cabeça de maçã, Maltês, Yorkshire, Cavalier)."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 3 months
+          fr: 3 mois min.
+          es: Mín. 3 meses
+          pt: "Mín. 3 meses"
+      - cls: warn
+        label:
+          en: Dogs & cats only
+          fr: Chiens & chats seuls
+          es: Solo perros y gatos
+          pt: "Somente cachorros e gatos"
+    note:
+      en: Animals under 3 months aren't carried; inside the carrier the animal must not be leashed or muzzled and straw bedding is banned. From Dec 2025, only dogs and cats are carried.
+      fr: Animaux de moins de 3 mois non transportés ; dans le sac, l'animal ne doit être ni en laisse ni muselé et la litière de paille est interdite. Depuis déc. 2025, seuls les chiens et chats sont transportés.
+      es: Los animales de menos de 3 meses no se transportan; dentro de la jaula el animal no debe ir con correa ni bozal y se prohíbe la cama de paja. Desde dic. 2025, solo se transportan perros y gatos.
+      pt: "Animais com menos de 3 meses não são transportados; dentro da bolsa de transporte, o animal não pode estar preso pela guia nem com focinheira, e cama de palha é proibida. Desde dez. 2025, somente cachorros e gatos são transportados."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+    - cls: warn
+      label:
+        en: "Heat embargo: not disclosed"
+        fr: "Embargo chaleur : non communiqué"
+        es: "Embargo por calor: no divulgado"
+        pt: "Embargo por calor: não divulgado"
+  note:
+    en: ITA Airways publishes no hold-temperature limits or seasonal embargo on its pet pages. Suitability depends on the aircraft, route and weather.
+    fr: ITA Airways ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux. La compatibilité dépend de l'avion, de la route et de la météo.
+    es: ITA Airways no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas. La idoneidad depende del avión, la ruta y el tiempo.
+    pt: "A ITA Airways não divulga limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais. A adequação depende da aeronave, da rota e do clima."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained assistance dogs of any breed travel free in the cabin (or hold); leash + muzzle on request.
+      fr: Chiens d'assistance dressés de toute race gratuits en cabine (ou soute) ; laisse + muselière sur demande.
+      es: Los perros de asistencia adiestrados de cualquier raza viajan gratis en cabina (o bodega); correa + bozal a petición.
+      pt: "Cães de assistência treinados de qualquer raça viajam gratuitamente na cabine (ou no porão); guia e focinheira mediante solicitação."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Training certificate required; request ≥ 48 h before departure. Emotional-support dogs pay the standard fee.
+      fr: Certificat de dressage requis ; demande ≥ 48 h avant le départ. Chiens de soutien émotionnel au tarif standard.
+      es: Se exige certificado de adiestramiento; solicítalo ≥ 48 h antes de la salida. Los perros de apoyo emocional pagan la tarifa estándar.
+      pt: "Exige certificado de treinamento; solicite ≥ 48 h antes da partida. Cães de apoio emocional pagam a tarifa padrão."
+goodToKnow:
+  - icon: 📞
+    label:
+      en: Phone booking only
+      fr: Réservation par téléphone
+      es: Reserva solo por teléfono
+      pt: "Reserva somente por telefone"
+    value:
+      en: Pet transport must be booked by phone ≥ 48 h ahead — not online — with exact carrier dimensions.
+      fr: Le transport animal se réserve par téléphone ≥ 48 h à l'avance — pas en ligne — avec les dimensions exactes du sac.
+      es: El transporte de la mascota debe reservarse por teléfono ≥ 48 h antes — no en línea — con las dimensiones exactas de la jaula.
+      pt: "O transporte de animais deve ser reservado por telefone ≥ 48 h antes — não online — com as dimensões exatas da bolsa de transporte."
+  - icon: 🐾
+    label:
+      en: Dogs & cats only
+      fr: Chiens & chats seuls
+      es: Solo perros y gatos
+      pt: "Somente cachorros e gatos"
+    value:
+      en: From December 2025, only dogs and cats are carried (cabin or hold).
+      fr: Depuis décembre 2025, seuls les chiens et chats sont transportés (cabine ou soute).
+      es: Desde diciembre de 2025, solo se transportan perros y gatos (cabina o bodega).
+      pt: "Desde dezembro de 2025, somente cachorros e gatos são transportados (cabine ou porão)."
+  - icon: 🧳
+    label:
+      en: Carrier size
+      fr: Taille du sac
+      es: Tamaño de la jaula
+      pt: "Tamanho da bolsa de transporte"
+    value:
+      en: The cabin carrier must be ≤ 55 × 40 × 23 cm or boarding may be denied; signed PET form in duplicate.
+      fr: Le sac cabine doit être ≤ 55 × 40 × 23 cm sous peine de refus d'embarquement ; formulaire PET signé en double.
+      es: La jaula de cabina debe medir ≤ 55 × 40 × 23 cm o pueden denegar el embarque; formulario PET firmado por duplicado.
+      pt: "A bolsa de transporte de cabine deve ter ≤ 55 × 40 × 23 cm, ou o embarque pode ser negado; formulário PET assinado em duas vias."
+book:
+  host: ita-airways.com
+  url: https://www.ita-airways.com/
+sources:
+  en: 5 ITA Airways sources · last verified 11 July 2026
+  fr: 5 sources ITA Airways · dernière vérification 11 juillet 2026
+  es: 5 fuentes de ITA Airways · última verificación 11 de julio de 2026
+  pt: "5 fontes da ITA Airways · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

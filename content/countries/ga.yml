@@ -1,0 +1,375 @@
+# Country Entry Guide — Gabon (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ga
+iso2: "GA"
+name: { en: "Gabon", fr: "Gabon", es: "Gabón", pt: "Gabão" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: Direction Générale de l'Élevage
+  authorityUrl: https://www.agriculture.gouv.ga
+  intro:
+    en: "Gabon is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Direction Générale de l'Élevage (veterinary services)."
+    fr: "Le Gabon est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction Générale de l'Élevage (services vétérinaires)."
+    es: "Gabón no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Direction Générale de l'Élevage (servicios veterinarios)."
+    pt: "O Gabão é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction Générale de l'Élevage (serviços veterinários)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "The ministry's livestock and veterinary directorate endorses the export health certificate before departure."
+        fr: "La direction de l'élevage et des services vétérinaires du ministère vise le certificat sanitaire d'export avant le départ."
+        es: "La dirección de ganadería y servicios veterinarios del ministerio refrenda el certificado sanitario de exportación antes de salir."
+        pt: "A diretoria de pecuária e veterinária do ministério endossa o atestado de saúde de exportação antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, ele permanece válido por toda a vida enquanto a vacinação antirrábica estiver em dia — vale a pena verificar isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Gabon with your dog", fr: "Voyager au Gabon avec ton chien", es: "Viajar a Gabón con tu perro", pt: "Viajar para o Gabão com seu cachorro" }
+  intro:
+    en: >-
+      Gabon accepts pet dogs, but it publishes very little of its own detail, so much of the exact
+      procedure has to be confirmed directly with the authorities. The animal-health authority is the
+      Ministry of Agriculture, Livestock and Rural Development and its Directorate-General for Livestock
+      (Direction Générale de l'Élevage — the veterinary services), while the Gabonese Food Safety Agency
+      (Agence Gabonaise de Sécurité Alimentaire, AGASA) controls sanitary imports and runs the border
+      inspection posts. In practice your dog will need a valid rabies vaccination and an official
+      international veterinary health certificate signed by the veterinary authority of the country of
+      departure, and Gabon operates an import-authorization system for animals. Gabon lies in a
+      rabies-affected region, so the rabies rule is central. Because so many specifics are simply not
+      published, this guide clearly separates what an official source confirms from what remains unknown —
+      always confirm the exact, current procedure with your vet, the Directorate-General for Livestock and
+      AGASA before you book.
+    fr: >-
+      Le Gabon accepte les chiens de compagnie, mais il publie très peu de détails propres : une grande
+      partie de la procédure exacte doit être confirmée directement auprès des autorités. L'autorité
+      sanitaire est le Ministère de l'Agriculture, de l'Élevage et du Développement Rural et sa Direction
+      Générale de l'Élevage (les services vétérinaires), tandis que l'Agence Gabonaise de Sécurité
+      Alimentaire (AGASA) contrôle les importations sanitaires et exploite les postes d'inspection
+      frontaliers. En pratique, ton chien aura besoin d'une vaccination antirabique valide et d'un
+      certificat sanitaire vétérinaire international officiel signé par l'autorité vétérinaire du pays de
+      départ, et le Gabon applique un système d'autorisation d'importation pour les animaux. Le Gabon se
+      situe dans une région touchée par la rage : la règle antirabique est donc centrale. De nombreux
+      points n'étant tout simplement pas publiés, ce guide distingue clairement ce qu'une source officielle
+      confirme de ce qui reste inconnu — confirme toujours la procédure exacte et à jour avec ton
+      vétérinaire, la Direction Générale de l'Élevage et l'AGASA avant de réserver.
+    es: >-
+      Gabón acepta a los perros de compañía, pero publica muy pocos detalles propios, por lo que gran
+      parte del procedimiento exacto debe confirmarse directamente con las autoridades. La autoridad
+      sanitaria animal es el Ministerio de Agricultura, Ganadería y Desarrollo Rural y su Dirección
+      General de Ganadería (Direction Générale de l'Élevage — los servicios veterinarios), mientras que
+      la Agencia Gabonesa de Seguridad Alimentaria (Agence Gabonaise de Sécurité Alimentaire, AGASA)
+      controla las importaciones sanitarias y gestiona los puestos de inspección fronterizos. En la
+      práctica, tu perro necesitará una vacunación antirrábica válida y un certificado sanitario
+      veterinario internacional oficial firmado por la autoridad veterinaria del país de salida, y Gabón
+      aplica un sistema de autorización de importación para los animales. Gabón se sitúa en una región
+      afectada por la rabia, por lo que la norma antirrábica es central. Como muchos detalles simplemente
+      no están publicados, esta guía separa con claridad lo que una fuente oficial confirma de lo que
+      sigue siendo desconocido — confirma siempre el procedimiento exacto y actualizado con tu
+      veterinario, la Dirección General de Ganadería y la AGASA antes de reservar.
+
+    pt: "O Gabão aceita cachorros de companhia, mas publica muito poucos detalhes próprios, de modo que boa parte do procedimento exato precisa ser confirmada diretamente com as autoridades. A autoridade de saúde animal é o Ministério da Agricultura, Pecuária e Desenvolvimento Rural e sua Diretoria-Geral de Pecuária (Direction Générale de l'Élevage — os serviços veterinários), enquanto a Agência Gabonesa de Segurança Alimentar (Agence Gabonaise de Sécurité Alimentaire, AGASA) controla as importações sanitárias e administra os postos de inspeção de fronteira. Na prática, o cachorro precisará de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial, assinado pela autoridade veterinária do país de partida, e o Gabão opera um sistema de autorização de importação para animais. O Gabão está numa região afetada pela raiva, por isso a regra da raiva é central. Como muitos detalhes simplesmente não são publicados, este guia separa claramente o que é confirmado por uma fonte oficial do que permanece não comunicado — confirmar sempre o procedimento exato e atual com o veterinário, com a Diretoria-Geral de Pecuária e com a AGASA antes de reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — import authorization framework and very little published detail", fr: "Difficile — cadre d'autorisation d'importation et très peu de détails publiés", es: "Difícil — marco de autorización de importación y muy pocos detalles publicados", pt: "Difícil — quadro de autorização de importação e muito poucos detalhes publicados" }
+
+prepTime:
+  eu:
+    en: "From the EU: Gabon publishes no EU-specific model, so allow several weeks. Have the microchip and rabies vaccination in order, then an official EU vet issues and endorses an international veterinary health certificate close to departure, and confirm with AGASA whether an import authorization is needed for an accompanying pet."
+    fr: "Depuis l'UE : le Gabon ne publie pas de modèle propre à l'UE, prévois donc plusieurs semaines. Mets la puce et la vaccination antirabique en règle, puis un vétérinaire officiel de l'UE établit et vise un certificat sanitaire vétérinaire international peu avant le départ ; confirme auprès de l'AGASA si une autorisation d'importation est nécessaire pour un animal accompagné."
+    es: "Desde la UE: Gabón no publica un modelo específico para la UE, así que reserva varias semanas. Ten en regla el microchip y la vacunación antirrábica; después, un veterinario oficial de la UE expide y refrenda un certificado sanitario veterinario internacional poco antes de la salida, y confirma con la AGASA si se necesita una autorización de importación para una mascota acompañada."
+    pt: "Da UE: o Gabão não publica um modelo específico para a UE, portanto contar com várias semanas. Deixar o microchip e a vacinação antirrábica em dia; depois, um veterinário oficial da UE emite e endossa um atestado de saúde veterinário internacional perto da partida, e confirmar com a AGASA se uma autorização de importação é necessária para um animal que viaja acompanhado."
+  listed:
+    en: "From the United States: USDA/APHIS publishes no dog or cat export certificate for Gabon. APHIS advises that the importer apply for an import permit at the appropriate Gabonese ministry, which will outline the requirements — allow several weeks and start with the Directorate-General for Livestock and AGASA."
+    fr: "Depuis les États-Unis : l'USDA/APHIS ne publie aucun certificat d'exportation de chiens ou de chats pour le Gabon. L'APHIS conseille que l'importateur demande un permis d'importation auprès du ministère gabonais compétent, qui précisera les exigences — prévois plusieurs semaines et commence par la Direction Générale de l'Élevage et l'AGASA."
+    es: "Desde Estados Unidos: el USDA/APHIS no publica ningún certificado de exportación de perros o gatos para Gabón. El APHIS aconseja que el importador solicite un permiso de importación al ministerio gabonés competente, que detallará los requisitos — reserva varias semanas y empieza por la Dirección General de Ganadería y la AGASA."
+    pt: "Dos Estados Unidos: o USDA/APHIS não publica um certificado de exportação para cachorros ou gatos com destino ao Gabão. O APHIS orienta o importador a solicitar uma autorização de importação junto ao ministério gabonês competente, que definirá as exigências — contar com várias semanas e começar pela Diretoria-Geral de Pecuária e pela AGASA."
+  nonListed:
+    en: "From other origins: the same core elements apply — valid rabies vaccination, an official international veterinary certificate endorsed by the origin's authority, and a likely AGASA import authorization plus border inspection. Timelines and conditions are not published, so confirm directly before booking."
+    fr: "Depuis d'autres origines : les mêmes éléments de base s'appliquent — vaccination antirabique valide, certificat vétérinaire international officiel visé par l'autorité d'origine, et probable autorisation d'importation de l'AGASA avec inspection frontalière. Les délais et conditions ne sont pas publiés ; confirme directement avant de réserver."
+    es: "Desde otros orígenes: se aplican los mismos elementos básicos — vacunación antirrábica válida, un certificado veterinario internacional oficial refrendado por la autoridad de origen y una probable autorización de importación de la AGASA más la inspección fronteriza. Los plazos y las condiciones no están publicados, así que confirma directamente antes de reservar."
+    pt: "De outras origens: aplicam-se os mesmos elementos essenciais — vacinação antirrábica válida, certificado veterinário internacional oficial endossado pela autoridade de origem, e provável autorização de importação da AGASA, além de inspeção de fronteira. Os prazos e as condições não são publicados, portanto confirmar diretamente antes de reservar."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not published (Unknown)", fr: "Non publiée (Non communiqué)", es: "No publicado (Desconocido)", pt: "Não publicado (não informado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required in practice (rabies-affected region); timing unpublished", fr: "Requise en pratique (région touchée par la rage) ; délais non publiés", es: "Obligatoria en la práctica (región afectada por la rabia); plazos no publicados", pt: "Obrigatória na prática (região afetada pela raiva); calendário não publicado" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not published (Unknown)", fr: "Non publié (Non communiqué)", es: "No publicado (Desconocido)", pt: "Não publicado (não informado)" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed by origin authority)", fr: "Requis (visé par l'autorité d'origine)", es: "Obligatorio (refrendado por la autoridad de origen)", pt: "Obrigatório (endossado pela autoridade de origem)" }
+    cls: warn
+  - requirement: { en: "Import authorization", fr: "Autorisation d'importation", es: "Autorización de importación", pt: "Autorização de importação" }
+    status: { en: "Framework exists (AGASA) — need for a personal pet unclear", fr: "Cadre existant (AGASA) — nécessité pour un animal personnel incertaine", es: "Existe un marco (AGASA) — necesidad para una mascota personal poco clara", pt: "Quadro existente (AGASA) — necessidade para um cachorro de companhia particular não está clara" }
+    cls: neutral
+  - requirement: { en: "Border veterinary inspection", fr: "Inspection vétérinaire frontalière", es: "Inspección veterinaria fronteriza", pt: "Inspeção veterinária na fronteira" }
+    status: { en: "Required (AGASA border inspection post)", fr: "Requise (poste d'inspection frontalier AGASA)", es: "Obligatoria (puesto de inspección fronterizo de la AGASA)", pt: "Obrigatória (posto de inspeção de fronteira da AGASA)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published (Unknown)", fr: "Non publiée (Non communiqué)", es: "No publicada (Desconocido)", pt: "Não publicado (não informado)" }
+    cls: neutral
+  - requirement: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    status: { en: "No published import ban found", fr: "Aucune interdiction d'importation publiée", es: "No se ha encontrado ninguna prohibición de importación publicada", pt: "Nenhuma proibição de importação publicada foi encontrada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog; Gabon publishes very little, so also confirm directly with the Directorate-General for Livestock (DGE) and AGASA."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien ; le Gabon publiant très peu, confirme aussi directement auprès de la Direction Générale de l'Élevage (DGE) et de l'AGASA."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro; como Gabón publica muy poco, confirma también directamente con la Dirección General de Ganadería (DGE) y la AGASA."
+    pt: "Somente um médico-veterinário pode confirmar o procedimento exato para cada cachorro; o Gabão publica muito pouco, portanto também é preciso confirmar diretamente com a Diretoria-Geral de Pecuária (DGE) e com a AGASA."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Gabon (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Gabon (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Gabón (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Gabão (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Gabon", fr: "Pays de destination — Gabon", es: "País de destino — Gabón", pt: "País de destino — Gabão" }
+      text:
+        en: "Gabon requires, in practice, a valid rabies vaccination and an official international veterinary health certificate, controls sanitary imports through AGASA and inspects animals at its border inspection posts. Its Directorate-General for Livestock is the veterinary authority. Many finer points (microchip standard, rabies timing, antibody test, minimum age, quarantine) are not published, which is itself a planning factor."
+        fr: "Le Gabon exige, en pratique, une vaccination antirabique valide et un certificat sanitaire vétérinaire international officiel, contrôle les importations sanitaires via l'AGASA et inspecte les animaux à ses postes d'inspection frontaliers. Sa Direction Générale de l'Élevage est l'autorité vétérinaire. De nombreux points précis (norme de puce, délais de la rage, titrage, âge minimum, quarantaine) ne sont pas publiés, ce qui constitue en soi un facteur de préparation."
+        es: "Gabón exige, en la práctica, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial, controla las importaciones sanitarias a través de la AGASA e inspecciona a los animales en sus puestos de inspección fronterizos. Su Dirección General de Ganadería es la autoridad veterinaria. Muchos puntos más concretos (norma del microchip, plazos de la rabia, prueba de titulación, edad mínima, cuarentena) no están publicados, lo que en sí mismo es un factor de planificación."
+        pt: "O Gabão exige, na prática, uma vacinação antirrábica válida e um atestado de saúde veterinário internacional oficial, controla as importações sanitárias por meio da AGASA e inspeciona os animais em seus postos de inspeção de fronteira. Sua Diretoria-Geral de Pecuária é a autoridade veterinária. Muitos pontos mais específicos (padrão de microchip, calendário da raiva, teste sorológico, idade mínima, quarentena) não são publicados, o que em si é um fator a considerar no planejamento."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The country of departure decides which official certificate your vet uses and which veterinary authority endorses it. Gabon publishes no country-specific model, and for the United States USDA/APHIS has no dog/cat certificate for Gabon — so the departure country's own official international veterinary certificate, endorsed by its competent authority, is used, and the importer may need to obtain an import permit from Gabon first."
+        fr: "Le pays de départ détermine le certificat officiel utilisé par ton vétérinaire et l'autorité vétérinaire qui le vise. Le Gabon ne publie aucun modèle propre à un pays, et pour les États-Unis l'USDA/APHIS ne dispose d'aucun certificat chiens/chats pour le Gabon — c'est donc le certificat vétérinaire international officiel du pays de départ, visé par son autorité compétente, qui est utilisé, l'importateur pouvant devoir obtenir au préalable un permis d'importation au Gabon."
+        es: "El país de salida decide qué certificado oficial usa tu veterinario y qué autoridad veterinaria lo refrenda. Gabón no publica ningún modelo específico por país y, para Estados Unidos, el USDA/APHIS no dispone de ningún certificado de perros/gatos para Gabón — por eso se utiliza el propio certificado veterinario internacional oficial del país de salida, refrendado por su autoridad competente, y el importador puede tener que obtener antes un permiso de importación de Gabón."
+        pt: "O país de partida determina qual certificado oficial o veterinário utiliza e qual autoridade veterinária o endossa. O Gabão não publica um modelo específico por país, e para os Estados Unidos o USDA/APHIS não possui certificado para cachorros/gatos com destino ao Gabão — portanto, usa-se o próprio certificado veterinário internacional oficial do país de partida, endossado pela sua autoridade competente, e o importador pode precisar antes obter uma autorização de importação junto ao Gabão."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a country with a poor animal-health status or an active disease-control measure can change what Gabon's veterinary services accept, because it is your dog's real origin and history that matter for a rabies-affected destination, not only the last airport. Confirm your dog's history with the Directorate-General for Livestock."
+        fr: "Un séjour récent dans un pays au statut sanitaire dégradé ou sous mesure active de lutte contre une maladie peut modifier ce que les services vétérinaires gabonais acceptent, car c'est l'origine réelle et l'historique du chien qui comptent pour une destination touchée par la rage, pas seulement le dernier aéroport. Confirme l'historique de ton chien auprès de la Direction Générale de l'Élevage."
+        es: "Una estancia reciente en un país con un estatus sanitario animal deficiente o con una medida activa de control de enfermedades puede cambiar lo que aceptan los servicios veterinarios de Gabón, porque lo que cuenta para un destino afectado por la rabia es el origen y el historial reales de tu perro, no solo el último aeropuerto. Confirma el historial de tu perro con la Dirección General de Ganadería."
+        pt: "Uma estadia recente em um país com situação sanitária animal desfavorável ou com medida ativa de controle de doenças pode mudar o que os serviços veterinários do Gabão aceitam, pois o que importa para um destino afetado pela raiva é a origem real e o histórico do cachorro, não apenas o último aeroporto. Confirmar o histórico do cachorro com a Diretoria-Geral de Pecuária."
+  note:
+    en: "So read the requirements below as Gabon's general framework, then confirm your dog's exact origin, history and the current documents with your vet, the Directorate-General for Livestock and AGASA before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre général gabonais, puis confirme l'origine et l'historique exacts de ton chien ainsi que les documents en vigueur avec ton vétérinaire, la Direction Générale de l'Élevage et l'AGASA avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco general de Gabón y luego confirma el origen y el historial exactos de tu perro, así como los documentos vigentes, con tu veterinario, la Dirección General de Ganadería y la AGASA antes de reservar."
+    pt: "Portanto, ler as exigências abaixo como o quadro geral do Gabão e, em seguida, confirmar a origem exata, o histórico do cachorro e os documentos vigentes com o veterinário, com a Diretoria-Geral de Pecuária e com a AGASA antes de reservar."
+
+requirements:
+  - item: { en: "Microchip (identification)", fr: "Puce électronique (identification)", es: "Microchip (identificación)", pt: "Microchip (identificação)" }
+    required: { en: "Not published (Unknown)", fr: "Non publiée (Non communiqué)", es: "No publicado (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No official Gabonese source specifies a microchip or an identification standard for importing a pet dog. The ISO 11784/11785 chip is the international norm and is strongly recommended so the animal can be matched to its certificate, but Gabon does not publish it as a stand-alone obligation.", fr: "Aucune source officielle gabonaise ne précise de puce ou de norme d'identification pour l'importation d'un chien de compagnie. La puce ISO 11784/11785 est la référence internationale et est fortement recommandée pour que l'animal corresponde à son certificat, mais le Gabon ne la publie pas comme obligation autonome.", es: "Ninguna fuente oficial gabonesa especifica un microchip ni una norma de identificación para importar un perro de compañía. El microchip ISO 11784/11785 es la norma internacional y se recomienda encarecidamente para que el animal pueda cotejarse con su certificado, pero Gabón no lo publica como obligación independiente.", pt: "Nenhuma fonte oficial gabonesa especifica um microchip ou um padrão de identificação para a importação de um cachorro de companhia. O chip ISO 11784/11785 é a norma internacional e é fortemente recomendado, para que o animal possa ser correspondido ao seu certificado, mas o Gabão não o publica como uma obrigação autônoma." }
+    exceptions: { en: "Unknown — confirm the required identification with the Directorate-General for Livestock and AGASA.", fr: "Non communiqué — confirme l'identification requise auprès de la Direction Générale de l'Élevage et de l'AGASA.", es: "Desconocido — confirma la identificación exigida con la Dirección General de Ganadería y la AGASA.", pt: "Não comunicado — confirmar a identificação exigida com a Diretoria-Geral de Pecuária e com a AGASA." }
+    ref: { en: "No official published requirement found (DGE / AGASA)", fr: "Aucune exigence officielle publiée trouvée (DGE / AGASA)", es: "No se ha encontrado ningún requisito oficial publicado (DGE / AGASA)", pt: "Nenhuma exigência oficial publicada encontrada (DGE / AGASA)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required in practice; timing and validity unpublished", fr: "Requise en pratique ; délais et validité non publiés", es: "Obligatoria en la práctica; plazos y valide no publicados", pt: "Obrigatória na prática; calendário e validade não publicados" }
+    when: { en: "Gabon lies in a rabies-affected region and its Ministry of Agriculture publicly observes World Rabies Day, so a valid rabies vaccination recorded by the vet is expected for import. The exact minimum waiting period after vaccination and the validity window are not published in any official Gabonese model.", fr: "Le Gabon se situe dans une région touchée par la rage et son Ministère de l'Agriculture observe publiquement la Journée mondiale de lutte contre la rage ; une vaccination antirabique valide consignée par le vétérinaire est donc attendue à l'importation. Le délai minimal exact après vaccination et la fenêtre de validité ne sont publiés dans aucun modèle officiel gabonais.", es: "Gabón se sitúa en una región afectada por la rabia y su Ministerio de Agricultura conmemora públicamente el Día Mundial contra la Rabia, por lo que se espera para la importación una vacunación antirrábica válida registrada por el veterinario. El plazo mínimo exacto tras la vacuna y la ventana de valide no están publicados en ningún modelo oficial gabonés.", pt: "O Gabão está numa região afetada pela raiva, e seu Ministério da Agricultura observa publicamente o Dia Mundial de Combate à Raiva, por isso é esperada uma vacinação antirrábica válida, registrada pelo veterinário, para a importação. O período mínimo exato de carência após a vacinação e o prazo de validade não são publicados em nenhum modelo oficial gabonês." }
+    exceptions: { en: "Unknown — confirm the exact rabies timing with your vet and the Directorate-General for Livestock.", fr: "Non communiqué — confirme les délais exacts de la rage avec ton vétérinaire et la Direction Générale de l'Élevage.", es: "Desconocido — confirma los plazos exactos de la rabia con tu veterinario y la Dirección General de Ganadería.", pt: "Não comunicado — confirmar o calendário exato da raiva com o veterinário e com a Diretoria-Geral de Pecuária." }
+    ref: { en: "Ministry of Agriculture, Livestock & Rural Development (DGE) — World Rabies Day; no published import model", fr: "Ministère de l'Agriculture, de l'Élevage et du Développement Rural (DGE) — Journée mondiale de lutte contre la rage ; aucun modèle d'importation publié", es: "Ministerio de Agricultura, Ganadería y Desarrollo Rural (DGE) — Día Mundial contra la Rabia; ningún modelo de importación publicado", pt: "Ministério da Agricultura, Pecuária e Desenvolvimento Rural (DGE) — Dia Mundial de Combate à Raiva; nenhum modelo de importação publicado" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published (Unknown)", fr: "Non publié (Non communiqué)", es: "No publicada (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No official Gabonese source requires a rabies antibody test for importing a dog, and none excludes it either. Because nothing is published, treat it as unknown and confirm before travel.", fr: "Aucune source officielle gabonaise n'exige de titrage des anticorps antirabiques pour l'importation d'un chien, et aucune ne l'exclut non plus. Rien n'étant publié, considère ce point comme non communiqué et confirme avant le voyage.", es: "Ninguna fuente oficial gabonesa exige una prueba de titulación de rabia para importar un perro, y ninguna la excluye tampoco. Como no hay nada publicado, trátalo como desconocido y confírmalo antes de viajar.", pt: "Nenhuma fonte oficial gabonesa exige um teste sorológico antirrábico para a importação de um cachorro, e nenhuma o exclui tampouco. Como nada é publicado, tratar como não comunicado e confirmar antes da viagem." }
+    exceptions: { en: "Unknown — a specific origin's authority could still request one; confirm with your vet.", fr: "Non communiqué — l'autorité d'une origine spécifique pourrait tout de même en demander un ; confirme avec ton vétérinaire.", es: "Desconocido — la autoridad de un origen concreto podría exigirla igualmente; confírmalo con tu veterinario.", pt: "Não comunicado — a autoridade de uma origem específica ainda pode solicitá-lo; confirmar com o veterinário." }
+    ref: { en: "No official published requirement found (DGE / AGASA)", fr: "Aucune exigence officielle publiée trouvée (DGE / AGASA)", es: "No se ha encontrado ningún requisito oficial publicado (DGE / AGASA)", pt: "Nenhuma exigência oficial publicada encontrada (DGE / AGASA)" }
+  - item: { en: "Official international veterinary health certificate", fr: "Certificat sanitaire vétérinaire international officiel", es: "Certificado sanitario veterinario internacional oficial", pt: "Atestado de saúde veterinário internacional oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An official international veterinary health certificate issued and endorsed by the veterinary authority of the country of departure must accompany the dog. Gabon publishes no country-specific model, so the origin's own endorsed international certificate is used. French is acceptable, Gabon being a francophone country.", fr: "Un certificat sanitaire vétérinaire international officiel établi et visé par l'autorité vétérinaire du pays de départ doit accompagner le chien. Le Gabon ne publie aucun modèle propre à un pays ; c'est donc le certificat international visé de l'origine qui est utilisé. Le français est accepté, le Gabon étant un pays francophone.", es: "Un certificado sanitario veterinario internacional oficial expedido y refrendado por la autoridad veterinaria del país de salida debe acompañar al perro. Gabón no publica ningún modelo específico por país, por lo que se utiliza el propio certificado internacional refrendado del origen. El francés es aceptable, ya que Gabón es un país francófono.", pt: "Um atestado de saúde veterinário internacional oficial, emitido e endossado pela autoridade veterinária do país de partida, deve acompanhar o cachorro. O Gabão não publica um modelo específico por país, portanto usa-se o próprio certificado internacional endossado da origem. O francês é aceito, já que o Gabão é um país francófono." }
+    exceptions: { en: "None — an endorsed certificate should accompany every dog; confirm the exact wording accepted by Gabon.", fr: "Aucune — un certificat visé doit accompagner chaque chien ; confirme la rédaction exacte acceptée par le Gabon.", es: "Ninguna — un certificado refrendado debe acompañar a cada perro; confirma la redacción exacta que acepta Gabón.", pt: "Nenhuma — um certificado endossado deve acompanhar todo cachorro; confirmar o texto exato aceito pelo Gabão." }
+    ref: { en: "USDA/APHIS — Export Live Animals to Gabon (import permit outlines requirements); AGASA (sanitary import control)", fr: "USDA/APHIS — Exportation d'animaux vivants vers le Gabon (le permis d'importation précise les exigences) ; AGASA (contrôle sanitaire à l'importation)", es: "USDA/APHIS — Exportación de animales vivos a Gabón (el permiso de importación detalla los requisitos); AGASA (control sanitario de importación)", pt: "USDA/APHIS — Export Live Animals to Gabon (a autorização de importação define as exigências); AGASA (controle sanitário de importação)" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / contre les ténias", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not published (Unknown)", fr: "Non publié (Non communiqué)", es: "No publicado (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No official Gabonese source specifies an internal or external parasite or tapeworm treatment for importing a pet dog. A vet may still advise one as good practice.", fr: "Aucune source officielle gabonaise ne précise de traitement antiparasitaire interne ou externe ni contre les ténias pour l'importation d'un chien de compagnie. Un vétérinaire peut néanmoins en conseiller un par bonne pratique.", es: "Ninguna fuente oficial gabonesa especifica un tratamiento antiparasitario interno o externo ni contra la tenia para importar un perro de compañía. Aun así, un veterinario puede aconsejar uno como buena práctica.", pt: "Nenhuma fonte oficial gabonesa especifica um tratamento antiparasitário interno ou externo ou contra tênias para a importação de um cachorro de companhia. Um veterinário ainda pode recomendá-lo como boa prática." }
+    exceptions: { en: "Unknown.", fr: "Non communiqué.", es: "Desconocido.", pt: "Não informado." }
+    ref: { en: "No official published requirement found (DGE / AGASA)", fr: "Aucune exigence officielle publiée trouvée (DGE / AGASA)", es: "No se ha encontrado ningún requisito oficial publicado (DGE / AGASA)", pt: "Nenhuma exigência oficial publicada encontrada (DGE / AGASA)" }
+  - item: { en: "Import authorization / advance approval", fr: "Autorisation d'importation / accord préalable", es: "Autorización de importación / aprobación previa", pt: "Autorização de importação / aprovação prévia" }
+    required: { en: "Framework exists (AGASA); need for a personal pet unclear", fr: "Cadre existant (AGASA) ; nécessité pour un animal personnel incertaine", es: "Existe un marco (AGASA); necesidad para una mascota personal poco clara", pt: "Quadro existente (AGASA); necessidade para um cachorro de companhia particular não está clara" }
+    when: { en: "AGASA operates a sanitary import-authorization system (Autorisation Spéciale d'Importation) with imports declared and inspected at a border inspection post, and USDA/APHIS advises applying for an import permit at the Gabonese ministry. Its published forms target trade goods, so whether a traveller's accompanying pet needs an authorization is not clearly stated.", fr: "L'AGASA applique un système d'autorisation sanitaire d'importation (Autorisation Spéciale d'Importation), les importations étant déclarées et inspectées à un poste d'inspection frontalier, et l'USDA/APHIS conseille de demander un permis d'importation au ministère gabonais. Ses formulaires publiés visent les marchandises ; la nécessité pour l'animal de compagnie accompagné d'un voyageur n'est donc pas clairement établie.", es: "La AGASA gestiona un sistema de autorización sanitaria de importación (Autorisation Spéciale d'Importation), con importaciones declaradas e inspeccionadas en un puesto de inspección fronterizo, y el USDA/APHIS aconseja solicitar un permiso de importación al ministerio gabonés. Sus formularios publicados están dirigidos a mercancías comerciales, por lo que no queda claro si la mascota acompañante de un viajero necesita una autorización.", pt: "A AGASA opera um sistema de autorização sanitária de importação (Autorisation Spéciale d'Importation), com as importações declaradas e inspecionadas em um posto de inspeção de fronteira, e o USDA/APHIS orienta a solicitar uma autorização de importação junto ao ministério gabonês. Seus formulários publicados visam mercadorias comerciais, de modo que não fica claro se o cachorro de um viajante que o acompanha precisa de uma autorização." }
+    exceptions: { en: "Unknown for personal pets — confirm with AGASA and the Directorate-General for Livestock before travel.", fr: "Non communiqué pour les animaux personnels — confirme auprès de l'AGASA et de la Direction Générale de l'Élevage avant le voyage.", es: "Desconocido para las mascotas personales — confírmalo con la AGASA y la Dirección General de Ganadería antes de viajar.", pt: "Não comunicado para animais de companhia particulares — confirmar com a AGASA e com a Diretoria-Geral de Pecuária antes da viagem." }
+    ref: { en: "AGASA — import authorization form (Autorisation Spéciale d'Importation); USDA/APHIS — Export Live Animals to Gabon", fr: "AGASA — formulaire d'autorisation d'importation (Autorisation Spéciale d'Importation) ; USDA/APHIS — Exportation d'animaux vivants vers le Gabon", es: "AGASA — formulario de autorización de importación (Autorisation Spéciale d'Importation); USDA/APHIS — Exportación de animales vivos a Gabón", pt: "AGASA — formulário de autorização de importação (Autorisation Spéciale d'Importation); USDA/APHIS — Export Live Animals to Gabon" }
+  - item: { en: "Border veterinary inspection", fr: "Inspection vétérinaire frontalière", es: "Inspección veterinaria fronteriza", pt: "Inspeção veterinária na fronteira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "AGASA controls sanitary imports and operates border inspection posts (Poste d'Inspection Frontalier) where imported goods and animals are declared and inspected on arrival. Present your dog and its documents at the point of entry.", fr: "L'AGASA contrôle les importations sanitaires et exploite des postes d'inspection frontaliers (Poste d'Inspection Frontalier) où les marchandises et animaux importés sont déclarés et inspectés à l'arrivée. Présente ton chien et ses documents au point d'entrée.", es: "La AGASA controla las importaciones sanitarias y gestiona puestos de inspección fronterizos (Poste d'Inspection Frontalier) donde las mercancías y los animales importados se declaran e inspeccionan a la llegada. Presenta a tu perro y sus documentos en el punto de entrada.", pt: "A AGASA controla as importações sanitárias e administra postos de inspeção de fronteira (Poste d'Inspection Frontalier), onde mercadorias e animais importados são declarados e inspecionados na chegada. Apresentar o cachorro e seus documentos no ponto de entrada." }
+    exceptions: { en: "Exact steps and fees for a personal pet at the airport are not published; confirm with AGASA.", fr: "Les étapes et frais exacts pour un animal de compagnie personnel à l'aéroport ne sont pas publiés ; confirme auprès de l'AGASA.", es: "Los pasos y las tasas exactos para una mascota personal en el aeropuerto no están publicados; confírmalos con la AGASA.", pt: "As etapas exatas e as taxas para um cachorro de companhia particular no aeroporto não são publicadas; confirmar com a AGASA." }
+    ref: { en: "AGASA — import/export control and border inspection posts", fr: "AGASA — contrôle import/export et postes d'inspection frontaliers", es: "AGASA — control de importación/exportación y puestos de inspección fronterizos", pt: "AGASA — controle de importação/exportação e postos de inspeção de fronteira" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published (Unknown)", fr: "Non publié (Non communiqué)", es: "No publicada (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No stand-alone minimum age is published. In practice a puppy must be old enough to be validly vaccinated against rabies, but Gabon does not publish a specific age.", fr: "Aucun âge minimum autonome n'est publié. En pratique, un chiot doit être en âge d'être valablement vacciné contre la rage, mais le Gabon ne publie pas d'âge spécifique.", es: "No se publica ninguna edad mínima independiente. En la práctica, un cachorro debe tener edad suficiente para estar válidamente vacunado contra la rabia, pero Gabón no publica una edad específica.", pt: "Nenhuma idade mínima autônoma é publicada. Na prática, o filhote deve ter idade suficiente para ser validamente vacinado contra a raiva, mas o Gabão não publica uma idade específica." }
+    exceptions: { en: "Unknown — confirm with your vet and the Directorate-General for Livestock.", fr: "Non communiqué — confirme avec ton vétérinaire et la Direction Générale de l'Élevage.", es: "Desconocido — confírmalo con tu veterinario y la Dirección General de Ganadería.", pt: "Não comunicado — confirmar com o veterinário e com a Diretoria-Geral de Pecuária." }
+    ref: { en: "No official published minimum age (DGE / AGASA)", fr: "Aucun âge minimum officiel publié (DGE / AGASA)", es: "No hay una edad mínima oficial publicada (DGE / AGASA)", pt: "Nenhuma idade mínima oficial publicada (DGE / AGASA)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published (Unknown)", fr: "Non publiée (Non communiqué)", es: "No publicada (Desconocido)", pt: "Não publicado (não informado)" }
+    when: { en: "No official Gabonese source specifies a routine quarantine for compliant pet dogs. A non-compliant animal may face veterinary measures at the border, but the details are not published.", fr: "Aucune source officielle gabonaise ne précise de quarantaine de routine pour les chiens conformes. Un animal non conforme peut faire l'objet de mesures vétérinaires à la frontière, mais les modalités ne sont pas publiées.", es: "Ninguna fuente oficial gabonesa especifica una cuarentena rutinaria para los perros que cumplen los requisitos. Un animal no conforme puede ser objeto de medidas veterinarias en la frontera, pero los detalles no están publicados.", pt: "Nenhuma fonte oficial gabonesa especifica uma quarentena de rotina para cachorros de companhia em conformidade. Um animal em não conformidade pode enfrentar medidas veterinárias na fronteira, mas os detalhes não são publicados." }
+    exceptions: { en: "Unknown.", fr: "Non communiqué.", es: "Desconocido.", pt: "Não informado." }
+    ref: { en: "No official published quarantine rule (DGE / AGASA)", fr: "Aucune règle de quarantaine officielle publiée (DGE / AGASA)", es: "No hay ninguna norma de cuarentena oficial publicada (DGE / AGASA)", pt: "Nenhuma regra de quarentena oficial publicada (DGE / AGASA)" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "No published import ban found", fr: "Aucune interdiction d'importation publiée", es: "No se ha encontrado ninguna prohibición de importación publicada", pt: "Nenhuma proibição de importação publicada foi encontrada" }
+    when: { en: "No official Gabonese breed-specific import ban was found. Entry appears to be controlled by health requirements and sanitary inspection, not by breed.", fr: "Aucune interdiction d'importation par race officielle gabonaise n'a été trouvée. L'entrée semble encadrée par les exigences sanitaires et l'inspection, non par la race.", es: "No se ha encontrado ninguna prohibición de importación oficial gabonesa por raza. La entrada parece regirse por los requisitos sanitarios y la inspección, no por la raza.", pt: "Nenhuma proibição de importação específica por raça foi encontrada em fontes oficiais gabonesas. A entrada parece ser controlada por exigências sanitárias e inspeção sanitária, e não por raça." }
+    exceptions: { en: "Unknown — no published list confirms or excludes any breed; verify with the Directorate-General for Livestock.", fr: "Non communiqué — aucune liste publiée ne confirme ni n'exclut de race ; vérifie auprès de la Direction Générale de l'Élevage.", es: "Desconocido — ninguna lista publicada confirma ni excluye raza alguna; verifícalo con la Dirección General de Ganadería.", pt: "Não comunicado — nenhuma lista publicada confirma ou exclui qualquer raça; verificar com a Diretoria-Geral de Pecuária." }
+    ref: { en: "No official published breed legislation found (DGE / AGASA)", fr: "Aucune législation par race officielle publiée trouvée (DGE / AGASA)", es: "No se ha encontrado ninguna legislación oficial por raza publicada (DGE / AGASA)", pt: "Nenhuma legislação oficial sobre raças publicada encontrada (DGE / AGASA)" }
+
+origin:
+  eu:
+    title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
+    body:
+      en: "Gabon is a non-EU third country and does not run the EU pet-passport scheme, and it publishes no EU-specific certificate model. In practice a dog leaving the EU needs a microchip, a valid rabies vaccination and an official international veterinary health certificate issued and endorsed by the EU country's competent veterinary authority close to departure. Because the exact EU→Gabon requirements are not published, confirm them with your official vet, the Directorate-General for Livestock and AGASA before you travel."
+      fr: "Le Gabon est un pays tiers hors UE et n'applique pas le dispositif de passeport pour animal de compagnie de l'UE ; il ne publie aucun modèle de certificat propre à l'UE. En pratique, un chien quittant l'UE a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire vétérinaire international officiel établi et visé par l'autorité vétérinaire compétente du pays de l'UE peu avant le départ. Les exigences exactes UE→Gabon n'étant pas publiées, confirme-les avec ton vétérinaire officiel, la Direction Générale de l'Élevage et l'AGASA avant de voyager."
+      es: "Gabón es un país tercero ajeno a la UE y no aplica el sistema del pasaporte europeo para mascotas, ni publica ningún modelo de certificado específico para la UE. En la práctica, un perro que sale de la UE necesita un microchip, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial expedido y refrendado por la autoridad veterinaria competente del país de la UE poco antes de la salida. Como los requisitos exactos UE→Gabón no están publicados, confírmalos con tu veterinario oficial, la Dirección General de Ganadería y la AGASA antes de viajar."
+      pt: "O Gabão é um país terceiro fora da UE e não opera o esquema de passaporte europeu para animais de estimação, e não publica um modelo de certificado específico para a UE. Na prática, um cachorro que sai da UE precisa de um microchip, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial, emitido e endossado pela autoridade veterinária competente do país da UE perto da partida. Como as exigências exatas UE→Gabão não são publicadas, confirmar com o veterinário oficial, com a Diretoria-Geral de Pecuária e com a AGASA antes de viajar."
+    cls: warn
+  listed:
+    title: { en: "From the United States — no published certificate", fr: "Depuis les États-Unis — aucun certificat publié", es: "Desde Estados Unidos — ningún certificado publicado", pt: "Dos Estados Unidos — nenhum certificado publicado" }
+    body:
+      en: "USDA/APHIS lists Gabon export certificates only for livestock (cattle, poultry, sheep and goats) — there is no dog or cat certificate. APHIS advises that the importer apply for an import permit at the appropriate Gabonese ministry, which will most likely outline the specific requirements. In practice a USDA-accredited vet would still issue an international veterinary health certificate for the dog, endorsed by USDA, but the entry conditions must be confirmed with the Gabonese authorities first."
+      fr: "L'USDA/APHIS ne publie de certificats d'exportation vers le Gabon que pour le bétail (bovins, volailles, ovins et caprins) — il n'existe aucun certificat chiens ou chats. L'APHIS conseille que l'importateur demande un permis d'importation auprès du ministère gabonais compétent, qui précisera vraisemblablement les exigences. En pratique, un vétérinaire agréé USDA établirait tout de même un certificat sanitaire vétérinaire international pour le chien, visé par l'USDA, mais les conditions d'entrée doivent d'abord être confirmées auprès des autorités gabonaises."
+      es: "El USDA/APHIS solo publica certificados de exportación a Gabón para ganado (bovino, aves de corral, ovino y caprino) — no existe ningún certificado de perros ni gatos. El APHIS aconseja que el importador solicite un permiso de importación al ministerio gabonés competente, que muy probablemente detallará los requisitos específicos. En la práctica, un veterinario acreditado por el USDA expediría igualmente un certificado sanitario veterinario internacional para el perro, refrendado por el USDA, pero las condiciones de entrada deben confirmarse primero con las autoridades gabonesas."
+      pt: "O USDA/APHIS lista certificados de exportação para o Gabão apenas para animais de criação (bovinos, aves, ovinos e caprinos) — não existe certificado para cachorros ou gatos. O APHIS orienta o importador a solicitar uma autorização de importação junto ao ministério gabonês competente, que provavelmente definirá as exigências específicas. Na prática, um veterinário credenciado pelo USDA ainda emitiria um atestado de saúde veterinário internacional para o cachorro, endossado pelo USDA, mas as condições de entrada devem ser confirmadas antes com as autoridades gabonesas."
+    cls: warn
+  nonListed:
+    title: { en: "From other countries — general Gabon framework", fr: "Depuis d'autres pays — cadre général gabonais", es: "Desde otros países — marco general de Gabón", pt: "De outros países — quadro geral do Gabão" }
+    body:
+      en: "For other origins there is no publicly posted country-specific model. The general framework still applies: a valid rabies vaccination, an official international veterinary health certificate endorsed by the origin's veterinary authority, and sanitary declaration and inspection at Gabon's border inspection post under AGASA, with a possible import authorization. Confirm the current requirements with the Directorate-General for Livestock and AGASA."
+      fr: "Pour les autres origines, aucun modèle propre au pays n'est publié. Le cadre général s'applique tout de même : vaccination antirabique valide, certificat sanitaire vétérinaire international officiel visé par l'autorité vétérinaire d'origine, et déclaration et inspection sanitaires au poste d'inspection frontalier du Gabon sous l'égide de l'AGASA, avec une éventuelle autorisation d'importation. Confirme les exigences en vigueur auprès de la Direction Générale de l'Élevage et de l'AGASA."
+      es: "Para otros orígenes no hay ningún modelo específico por país publicado. El marco general se aplica igualmente: vacunación antirrábica válida, certificado sanitario veterinario internacional oficial refrendado por la autoridad veterinaria de origen, y declaración e inspección sanitarias en el puesto de inspección fronterizo de Gabón bajo la AGASA, con una posible autorización de importación. Confirma los requisitos vigentes con la Dirección General de Ganadería y la AGASA."
+      pt: "Para outras origens, não há um modelo específico por país publicado. O quadro geral continua a se aplicar: vacinação antirrábica válida, atestado de saúde veterinário internacional oficial endossado pela autoridade veterinária de origem, e declaração sanitária e inspeção no posto de inspeção de fronteira do Gabão sob a AGASA, com uma possível autorização de importação. Confirmar as exigências vigentes com a Diretoria-Geral de Pecuária e com a AGASA."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Gabon depends on your documents and on the sanitary inspection at the point of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Gabon dépend de tes documents et de l'inspection sanitaire au point d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a Gabón depende de tus documentos y de la inspección sanitaria en el punto de entrada."
+    pt: "O que acontece quando o cachorro chega ao Gabão depende dos documentos apresentados e da inspeção sanitária no ponto de entrada."
+  points:
+    - en: "Present your dog for sanitary inspection at the border; AGASA controls sanitary imports and runs the border inspection posts (Poste d'Inspection Frontalier)."
+      fr: "Présente ton chien à l'inspection sanitaire à la frontière ; l'AGASA contrôle les importations sanitaires et exploite les postes d'inspection frontaliers (Poste d'Inspection Frontalier)."
+      es: "Presenta a tu perro para la inspección sanitaria en la frontera; la AGASA controla las importaciones sanitarias y gestiona los puestos de inspección fronterizos (Poste d'Inspection Frontalier)."
+      pt: "Apresentar o cachorro para inspeção sanitária na fronteira; a AGASA controla as importações sanitárias e administra os postos de inspeção de fronteira (Poste d'Inspection Frontalier)."
+    - en: "Carry the originals: the official international veterinary health certificate, proof of rabies vaccination and any identification and import-authorization document."
+      fr: "Munis-toi des originaux : le certificat sanitaire vétérinaire international officiel, la preuve de vaccination antirabique et tout document d'identification et d'autorisation d'importation."
+      es: "Lleva los originales: el certificado sanitario veterinario internacional oficial, la prueba de vacunación antirrábica y cualquier documento de identificación y de autorización de importación."
+      pt: "Levar os originais: o atestado de saúde veterinário internacional oficial, o comprovante de vacinação antirrábica e qualquer documento de identificação e de autorização de importação."
+    - en: "Documents must be consistent — identification, vaccination and health statements should match across the certificate and the vaccination record."
+      fr: "Les documents doivent être cohérents — l'identification, la vaccination et les mentions sanitaires doivent concorder entre le certificat et le carnet de vaccination."
+      es: "Los documentos deben ser coherentes — la identificación, la vacunación y las declaraciones sanitarias deben coincidir entre el certificado y la cartilla de vacunación."
+      pt: "Os documentos devem ser coerentes entre si — a identificação, a vacinação e as declarações de saúde devem corresponder entre o certificado e a caderneta de vacinação."
+    - en: "If documents are missing, incomplete or invalid, the animal may face veterinary measures at the border; the exact consequences are not published, so avoid any gap in your paperwork."
+      fr: "Si les documents manquent, sont incomplets ou invalides, l'animal peut faire l'objet de mesures vétérinaires à la frontière ; les conséquences exactes ne sont pas publiées, évite donc toute lacune dans ton dossier."
+      es: "Si faltan documentos o son incompletos o no válidos, el animal puede ser objeto de medidas veterinarias en la frontera; las consecuencias exactas no están publicadas, así que evita cualquier laguna en tu documentación."
+      pt: "Se os documentos estiverem incompletos, ausentes ou inválidos, o animal pode enfrentar medidas veterinárias na fronteira; as consequências exatas não são publicadas, portanto é melhor evitar qualquer lacuna na documentação."
+    - en: "Because Gabon publishes little, confirm entry-point procedures with AGASA, the Directorate-General for Livestock and your airline before departure."
+      fr: "Le Gabon publiant peu, confirme les procédures au point d'entrée avec l'AGASA, la Direction Générale de l'Élevage et ta compagnie aérienne avant le départ."
+      es: "Como Gabón publica poco, confirma los procedimientos del punto de entrada con la AGASA, la Dirección General de Ganadería y tu aerolínea antes de la salida."
+      pt: "Como o Gabão publica pouco, confirmar os procedimentos no ponto de entrada com a AGASA, com a Diretoria-Geral de Pecuária e com a companhia aérea antes da partida."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No official Gabonese breed-specific import ban was found in published government sources. Entry appears to be controlled by veterinary health requirements and sanitary inspection, not by breed."
+    fr: "Aucune interdiction d'importation par race officielle gabonaise n'a été trouvée dans les sources gouvernementales publiées. L'entrée semble encadrée par les exigences sanitaires vétérinaires et l'inspection, non par la race."
+    es: "No se ha encontrado ninguna prohibición de importación oficial gabonesa por raza en las fuentes gubernamentales publicadas. La entrada parece regirse por los requisitos sanitarios veterinarios y la inspección, no por la raza."
+    pt: "Nenhuma proibição de importação específica por raça foi encontrada em fontes governamentais publicadas gabonesas. A entrada parece ser controlada por exigências sanitárias veterinárias e inspeção sanitária, e não por raça."
+  cat1:
+    en: "There is no published national list of prohibited or dangerous breeds for import. Absence of a published list is not the same as a guarantee — no official text confirms that every breed is admitted either."
+    fr: "Il n'existe pas de liste nationale publiée de races interdites ou dangereuses à l'importation. L'absence de liste publiée ne vaut pas garantie — aucun texte officiel ne confirme non plus que toutes les races sont admises."
+    es: "No existe ninguna lista nacional publicada de razas prohibidas o peligrosas para la importación. La ausencia de una lista publicada no equivale a una garantía — ningún texto oficial confirma tampoco que se admita toda raza."
+    pt: "Não existe uma lista nacional publicada de raças proibidas ou perigosas para importação. A ausência de uma lista publicada não é o mesmo que uma garantia — nenhum texto oficial confirma que todas as raças sejam admitidas."
+  cat2:
+    en: "No published 'permitted with conditions' category exists for particular breeds. Local municipal rules on keeping certain dogs, if any, are not documented in the official sources reviewed."
+    fr: "Aucune catégorie « autorisée sous conditions » publiée n'existe pour des races particulières. D'éventuelles règles municipales locales sur la détention de certains chiens ne sont pas documentées dans les sources officielles consultées."
+    es: "No existe ninguna categoría publicada de «autorizada con condiciones» para razas concretas. Las posibles normas municipales locales sobre la tenencia de ciertos perros, si las hay, no están documentadas en las fuentes oficiales consultadas."
+    pt: "Não existe uma categoria publicada de \"permitido com condições\" para raças específicas. Regras municipais locais sobre a posse de determinados cachorros, se existirem, não estão documentadas nas fontes oficiais consultadas."
+  note:
+    en: "Because the position is unpublished rather than confirmed, verify your specific breed with the Directorate-General for Livestock before you travel, especially for types often restricted elsewhere."
+    fr: "La situation étant non publiée plutôt que confirmée, vérifie ta race précise auprès de la Direction Générale de l'Élevage avant de voyager, surtout pour les types souvent restreints ailleurs."
+    es: "Como la situación no está publicada más que confirmada, verifica tu raza concreta con la Dirección General de Ganadería antes de viajar, sobre todo para los tipos que suelen restringirse en otros lugares."
+    pt: "Como a posição não é publicada nem confirmada, verificar a raça específica com a Diretoria-Geral de Pecuária antes de viajar, especialmente para tipos frequentemente restritos em outros lugares."
+
+checklist:
+  - en: "Valid rabies vaccination, current and correctly recorded (dates and vaccine)"
+    fr: "Vaccination antirabique valide, à jour et correctement consignée (dates et vaccin)"
+    es: "Vacunación antirrábica válida, al día y correctamente registrada (fechas y vacuna)"
+    pt: "Vacinação antirrábica válida, em dia e corretamente registrada (datas e vacina)"
+  - en: "Identification in order (ISO microchip strongly recommended) matching every document"
+    fr: "Identification en règle (puce ISO fortement recommandée) correspondant à chaque document"
+    es: "Identificación en regla (microchip ISO muy recomendado) que coincida con cada documento"
+    pt: "Identificação em ordem (microchip ISO fortemente recomendado) correspondente a todos os documentos"
+  - en: "Official international veterinary health certificate issued and endorsed by the origin's veterinary authority"
+    fr: "Certificat sanitaire vétérinaire international officiel établi et visé par l'autorité vétérinaire d'origine"
+    es: "Certificado sanitario veterinario internacional oficial expedido y refrendado por la autoridad veterinaria de origen"
+    pt: "Atestado de saúde veterinário internacional oficial, emitido e endossado pela autoridade veterinária de origem"
+  - en: "Confirm with the Directorate-General for Livestock and AGASA whether an import authorization applies to your accompanying pet"
+    fr: "Confirme auprès de la Direction Générale de l'Élevage et de l'AGASA si une autorisation d'importation s'applique à ton animal accompagné"
+    es: "Confirma con la Dirección General de Ganadería y la AGASA si una autorización de importación se aplica a tu mascota acompañante"
+    pt: "Confirmar com a Diretoria-Geral de Pecuária e com a AGASA se uma autorização de importação se aplica ao cachorro que viaja acompanhado"
+  - en: "Original documents ready to present at the AGASA border inspection post"
+    fr: "Documents originaux prêts à présenter au poste d'inspection frontalier de l'AGASA"
+    es: "Documentos originales listos para presentar en el puesto de inspección fronterizo de la AGASA"
+    pt: "Documentos originais prontos para apresentação no posto de inspeção de fronteira da AGASA"
+  - en: "Confirm any breed, quarantine, parasite-treatment, antibody-test or minimum-age point directly with the authorities (unpublished)"
+    fr: "Confirme tout point de race, quarantaine, traitement antiparasitaire, titrage ou âge minimum directement avec les autorités (non publié)"
+    es: "Confirma cualquier punto sobre raza, cuarentena, tratamiento antiparasitario, prueba de titulación o edad mínima directamente con las autoridades (no publicado)"
+    pt: "Confirmar diretamente com as autoridades qualquer ponto sobre raça, quarentena, tratamento antiparasitário, teste sorológico ou idade mínima (não publicado)"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
+
+sources:
+  - label: { en: "Ministry of Agriculture, Livestock & Rural Development (Gabon) — official site", fr: "Ministère de l'Agriculture, de l'Élevage et du Développement Rural (Gabon) — site officiel", es: "Ministerio de Agricultura, Ganadería y Desarrollo Rural (Gabón) — sitio oficial", pt: "Ministério da Agricultura, Pecuária e Desenvolvimento Rural (Gabão) — site oficial" }
+    url: "https://www.agriculture.gouv.ga/"
+  - label: { en: "Directorate-General for Livestock (DGE) — veterinary authority", fr: "Direction Générale de l'Élevage (DGE) — autorité vétérinaire", es: "Dirección General de Ganadería (DGE) — autoridad veterinaria", pt: "Diretoria-Geral de Pecuária (DGE) — autoridade veterinária" }
+    url: "https://www.agriculture.gouv.ga/dge-direction-generale-de-lelevage-"
+  - label: { en: "Agence Gabonaise de Sécurité Alimentaire (AGASA) — import/export sanitary control", fr: "Agence Gabonaise de Sécurité Alimentaire (AGASA) — contrôle sanitaire import/export", es: "Agence Gabonaise de Sécurité Alimentaire (AGASA) — control sanitario de importación/exportación", pt: "Agence Gabonaise de Sécurité Alimentaire (AGASA) — controle sanitário de importação/exportação" }
+    url: "https://agasa.site/importation-et-exportation/"
+  - label: { en: "AGASA — import authorization form (Autorisation Spéciale d'Importation, PIF)", fr: "AGASA — formulaire d'autorisation d'importation (Autorisation Spéciale d'Importation, PIF)", es: "AGASA — formulario de autorización de importación (Autorisation Spéciale d'Importation, PIF)", pt: "AGASA — formulário de autorização de importação (Autorisation Spéciale d'Importation, PIF)" }
+    url: "https://www.sda.agasa.tech/assets/juridique/Formulaire.pdf"
+  - label: { en: "USDA/APHIS — Export Live Animals to Gabon (no dog/cat certificate published)", fr: "USDA/APHIS — Exportation d'animaux vivants vers le Gabon (aucun certificat chiens/chats publié)", es: "USDA/APHIS — Exportación de animales vivos a Gabón (ningún certificado de perros/gatos publicado)", pt: "USDA/APHIS — Export Live Animals to Gabon (nenhum certificado para cachorros/gatos publicado)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-gabon"
+
+seo:
+  title: { en: "Gabon Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Gabon — Guide", es: "Requisitos de entrada de perros en Gabón — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Gabão — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Gabon With Your Dog: Entry Requirements (2026)", fr: "Voyager au Gabon avec ton chien : formalités (2026)", es: "Viajar a Gabón con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Gabão: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official rules for bringing a dog into Gabon: rabies vaccination, endorsed veterinary certificate. Sourced, dated and honest about what is unpublished."
+    fr: "Règles officielles pour faire entrer un chien au Gabon : vaccination antirabique. Sourcé, daté et transparent sur ce qui n'est pas publié."
+    es: "Normas oficiales para traer un perro a Gabón: vacunación antirrábica, certificado veterinario refrendado. Con fuentes, fecha y transparencia sobre lo no publicado."
+    pt: "Regras oficiais para levar um cachorro ao Gabão: vacinação antirrábica e certificado veterinário endossado. Transparente sobre o que não é publicado."
+  slug: "gabon"
+  shortDesc:
+    en: "What you need to bring a dog into Gabon — rabies vaccination, an endorsed veterinary certificate and AGASA border inspection, with many details unpublished."
+    fr: "Ce qu'il faut pour faire entrer un chien au Gabon — vaccination antirabique, certificat vétérinaire visé et inspection frontalière de l'AGASA, de nombreux détails restant non publiés."
+    es: "Lo que necesitas para traer un perro a Gabón — vacunación antirrábica, un certificado veterinario refrendado e inspección fronteriza de la AGASA, con muchos detalles sin publicar."
+    pt: "O que é preciso para levar um cachorro ao Gabão — vacinação antirrábica, um certificado veterinário endossado e inspeção de fronteira da AGASA, com muitos detalhes não publicados."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 1

@@ -1,0 +1,302 @@
+id: airline_jal
+mono: JL
+name: Japan Airlines (JAL)
+titleH1:
+  en: Flying with a dog on Japan Airlines
+  fr: Voyager avec un chien sur Japan Airlines
+  es: Volar con un perro en Japan Airlines
+  pt: "Viajar com um cachorro pela Japan Airlines"
+metaDesc:
+  en: "Japan Airlines pet policy: hold-only carriage, year-round bulldog ban, fares, restrictions and official sources."
+  fr: "Politique animaux Japan Airlines : transport en soute uniquement, bulldogs interdits toute l'année, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de Japan Airlines: transporte solo en bodega, veto a los bulldogs todo el año, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da Japan Airlines: transporte somente no porão, proibição de buldogues o ano todo, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Japan · HND / NRT
+      fr: Japon · HND / NRT
+      es: Japón · HND / NRT
+      pt: "Japão · HND / NRT"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cats or dogs in the cabin; pets fly only in the hold — bulldogs are banned year-round.
+  fr: Ni chats ni chiens en cabine ; les animaux ne volent qu'en soute — les bulldogs sont interdits toute l'année.
+  es: Sin perros ni gatos en cabina; las mascotas vuelan solo en bodega y los bulldogs están vetados todo el año.
+  pt: "Nenhum cachorro ou gato na cabine; os animais só voam no porão — os buldogues são proibidos o ano todo."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 32 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Dogs & cats can't be carried in the cabin — only assistance dogs (plus tiny sealed-container creatures).
+      fr: Chiens et chats interdits en cabine — seulement les chiens d'assistance (plus quelques petites créatures en récipient scellé).
+      es: Los perros y gatos no pueden viajar en cabina; solo los perros de asistencia (más algunas criaturas diminutas en recipiente sellado).
+      pt: "Cachorros e gatos não podem ser transportados na cabine — somente cães de assistência (além de pequenas criaturas em recipiente lacrado)."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Pets as checked baggage in the bulk hold (pet + crate ≤ 32 kg); min 8 weeks, rabies-vaccinated. IATA crate (rental available).
+      fr: Animaux en bagage enregistré dans la soute vrac (animal + caisse ≤ 32 kg) ; min 8 semaines, vaccinés contre la rage. Caisse IATA (location possible).
+      es: Mascotas como equipaje facturado en la bodega a granel (mascota + jaula ≤ 32 kg); mín. 8 semanas, vacunadas contra la rabia. Jaula IATA (con alquiler disponible).
+      pt: "Animais como bagagem despachada no porão de carga geral (animal + caixa de transporte ≤ 32 kg); mín. 8 semanas, vacinado contra a raiva. Caixa IATA (aluguel disponível)."
+    fee:
+      en: ¥5,500–7,700
+      fr: 5 500–7 700 ¥
+      es: 5500–7700 ¥
+      pt: "¥5.500–7.700"
+  - icon: ✈️
+    name:
+      en: JAL Cargo
+      fr: JAL Cargo
+      es: JAL Cargo
+      pt: "JAL Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Unaccompanied pets or over 32 kg travel via JAL Cargo.
+      fr: Les animaux non accompagnés ou de plus de 32 kg voyagent via JAL Cargo.
+      es: Las mascotas sin acompañante o de más de 32 kg viajan por JAL Cargo.
+      pt: "Animais desacompanhados ou com mais de 32 kg viajam pela JAL Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold — Japan domestic
+        fr: Soute — national Japon
+        es: Bodega — nacional Japón
+        pt: "Porão — Japão doméstico"
+      value:
+        en: ¥5,500–7,700 / crate
+        fr: 5 500–7 700 ¥ / caisse
+        es: 5500–7700 ¥ / jaula
+        pt: "¥5.500–7.700 / caixa"
+    - label:
+        en: Cargo (> 32 kg / unaccompanied)
+        fr: Fret (> 32 kg / non accompagné)
+        es: Carga (> 32 kg / sin acompañante)
+        pt: "Carga (> 32 kg / desacompanhado)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: JPY domestic, per crate per sector. International pets check in at the passenger counter with quarantine papers.
+    fr: JPY national, par caisse et par tronçon. Les animaux internationaux s'enregistrent au comptoir passagers avec les papiers de quarantaine.
+    es: JPY nacional, por jaula y por tramo. Las mascotas internacionales se facturan en el mostrador de pasajeros con los papeles de cuarentena.
+    pt: "JPY doméstico, por caixa e por trecho. Os animais internacionais fazem check-in no balcão de passageiros com os documentos de quarentena."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Bulldogs banned year-round
+          fr: Bulldogs interdits toute l'année
+          es: Bulldogs vetados todo el año
+          pt: "Buldogues proibidos o ano todo"
+      - cls: warn
+        label:
+          en: "Snub-nosed: caution"
+          fr: "Nez écrasé : prudence"
+          es: "Hocico chato: precaución"
+          pt: "Focinho achatado: precaução"
+    note:
+      en: Bulldogs & French bulldogs are refused year-round (cabin & hold). Other snub-nosed breeds (pugs, Chin, Boston terrier, bulldog hybrids) are accepted but JAL urges caution on dates & times (heat/breathing sensitivity).
+      fr: Bouledogues et bouledogues français refusés toute l'année (cabine & soute). Les autres races au nez écrasé (carlins, Chin, Boston terrier, croisés bouledogue) sont acceptées mais JAL recommande la prudence sur les dates et horaires (sensibilité chaleur/respiration).
+      es: Los bulldogs y bulldogs franceses se rechazan todo el año (cabina y bodega). Otras razas de hocico chato (carlinos, chin, bóston terrier, cruces de bulldog) se aceptan, pero JAL recomienda precaución con las fechas y horarios (sensibilidad al calor/respiración).
+      pt: "Buldogues e Buldogues Franceses são recusados o ano todo (cabine e porão). Outras raças de focinho achatado (pugs, Chin, Boston Terrier, cruzamentos de buldogue) são aceitas, mas a JAL recomenda cautela quanto a datas e horários (sensibilidade a calor/respiração)."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Waiver required
+          fr: Décharge requise
+          es: Se exige exención
+          pt: "Termo de responsabilidade exigido"
+    note:
+      en: Venomous animals aren't accepted; a signed waiver is required at check-in. Dogs to the US must be 6 months+.
+      fr: Les animaux venimeux ne sont pas acceptés ; une décharge signée est requise à l'enregistrement. Les chiens vers les USA doivent avoir 6 mois+.
+      es: Los animales venenosos no se aceptan; se exige una exención de responsabilidad firmada en el check-in. Los perros a EE. UU. deben tener 6 meses o más.
+      pt: "Animais peçonhentos não são aceitos; um termo de responsabilidade assinado é exigido no check-in. Cachorros com destino aos EUA devem ter 6 meses ou mais."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Temperature & humidity-controlled hold
+        fr: Soute température & humidité contrôlées
+        es: Bodega con temperatura y humedad controladas
+        pt: "Porão com temperatura e umidade controladas"
+    - cls: no
+      label:
+        en: Summer caution May–Oct
+        fr: Prudence été mai–oct.
+        es: Precaución en verano may–oct
+        pt: "Cautela no verão maio–out."
+  note:
+    en: JAL publishes no absolute limit but flags a summer caution period (mid-Jul–mid-Sep internationally, 1 May–31 Oct domestically) and winter cold below 0 °C. The bulk hold is air-conditioned (lights off, ~0.8 bar), aiming to match the cabin.
+    fr: JAL ne publie pas de limite absolue mais signale une période de prudence estivale (mi-juil.–mi-sept. à l'international, 1er mai–31 oct. en national) et un froid hivernal sous 0 °C. La soute vrac est climatisée (lumières éteintes, ~0,8 bar), visant à égaler la cabine.
+    es: JAL no publica un límite absoluto, pero señala un periodo de precaución en verano (de mediados de jul a mediados de sep a nivel internacional, del 1 de mayo al 31 de octubre a nivel nacional) y frío invernal por debajo de 0 °C. La bodega a granel está climatizada (luces apagadas, ~0,8 bar) y busca igualar la cabina.
+    pt: "A JAL não divulga um limite absoluto, mas sinaliza um período de cautela no verão (metade de jul. a metade de set. em voos internacionais, 1º de maio a 31 de outubro em voos domésticos) e frio de inverno abaixo de 0 °C. O porão de carga geral é climatizado (luzes apagadas, ~0,8 bar), buscando equivaler à cabine."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs (guide, service, hearing) accompany passengers in the cabin free.
+      fr: Les chiens d'assistance (guides, de service, d'écoute) accompagnent les passagers gratuitement en cabine.
+      es: Los perros de asistencia (guía, de servicio, de escucha) acompañan a los pasajeros gratis en cabina.
+      pt: "Os cães de assistência (guia, de serviço, de audição) acompanham os passageiros na cabine gratuitamente."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Register at booking with the MHLW certificate. US/Canada: DOT form; 8 h+ flights add the relief form. Emotional-support dogs carried as pets."
+      fr: "S'enregistrer à la réservation avec le certificat MHLW. USA/Canada : formulaire DOT ; vols de 8 h+ : formulaire de soulagement. Chiens de soutien émotionnel transportés comme animaux."
+      es: "Regístrate al reservar con el certificado del MHLW. EE. UU./Canadá: formulario DOT; en vuelos de 8 h+ se añade el formulario de alivio. Los perros de apoyo emocional se transportan como mascotas."
+      pt: "Registre-se na reserva com o certificado do MHLW. EUA/Canadá: formulário DOT; voos de 8 h+ acrescentam o formulário de alívio. Cães de apoio emocional são transportados como animais de estimação."
+goodToKnow:
+  - icon: 🧳
+    label:
+      en: 32 kg limit
+      fr: Limite 32 kg
+      es: Límite de 32 kg
+      pt: "Limite de 32 kg"
+    value:
+      en: Pet + crate over 32 kg must ship as cargo; total pet + baggage capped at 100 kg (45 kg on JAC/HAC/RAC).
+      fr: "Animal + caisse de plus de 32 kg : en fret ; total animal + bagages plafonné à 100 kg (45 kg sur JAC/HAC/RAC)."
+      es: "Mascota + jaula de más de 32 kg: como carga; el total de mascota + equipaje se limita a 100 kg (45 kg en JAC/HAC/RAC)."
+      pt: "Animal + caixa de transporte com mais de 32 kg deve ser enviado como carga; o total de animal + bagagem é limitado a 100 kg (45 kg na JAC/HAC/RAC)."
+  - icon: 📦
+    label:
+      en: Rental crates
+      fr: Caisses en location
+      es: Jaulas de alquiler
+      pt: "Caixas de aluguel"
+    value:
+      en: IATA rental crates (S–XL) available; L/XL need advance reservation.
+      fr: Caisses IATA en location (S–XL) ; L/XL sur réservation préalable.
+      es: Jaulas IATA de alquiler (S–XL) disponibles; los L/XL requieren reserva previa.
+      pt: "Caixas IATA de aluguel (S–XL) disponíveis; os tamanhos L/XL exigem reserva antecipada."
+  - icon: ⏱️
+    label:
+      en: Check-in
+      fr: Enregistrement
+      es: Facturación
+      pt: "Check-in"
+    value:
+      en: Signed waiver required; arrive ≥ 40 min (domestic) / 120 min (international) early.
+      fr: Décharge signée requise ; arriver ≥ 40 min (national) / 120 min (international) à l'avance.
+      es: Se exige exención firmada; llega con ≥ 40 min (nacional) / 120 min (internacional) de antelación.
+      pt: "Termo de responsabilidade assinado exigido; chegue com ≥ 40 min (doméstico) / 120 min (internacional) de antecedência."
+book:
+  host: jal.co.jp
+  url: https://www.jal.co.jp/
+sources:
+  en: 6 Japan Airlines sources · last verified 11 July 2026
+  fr: 6 sources Japan Airlines · dernière vérification 11 juillet 2026
+  es: 6 fuentes de Japan Airlines · última verificación 11 de julio de 2026
+  pt: "6 fontes da Japan Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

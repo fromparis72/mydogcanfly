@@ -1,0 +1,45 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+// Static, crawlable cross-links between tools. Renders all tools except the current one.
+/* Contexte optionnel : depuis une fiche pays/race/compagnie, on transmet ce qu'on sait déjà
+   (destination, race, compagnie) pour que l'outil s'ouvre pré-rempli plutôt que vide. */
+interface Props { locale?: string; current?: string; toIso?: string; breedId?: string; airlineId?: string }
+const { locale = "en", current = "", toIso, breedId, airlineId } = Astro.props as Props;
+const fr = locale === "fr";
+const L = inlineT(locale);
+const base = locale === "en" ? "" : `/${locale}`;
+// La query string précède toujours l'ancre : après « # », tout est fragment et n'atteint
+// pas location.search, donc le paramètre serait perdu.
+const q = (pairs: [string, string | undefined][]) => {
+  const s = pairs.filter(([, v]) => v).map(([k, v]) => `${k}=${encodeURIComponent(v as string)}`).join("&");
+  return s ? `?${s}` : "";
+};
+const tools = [
+  { key: "finder", icon: "✈", href: `${base}/${q([["to", toIso], ["breed", breedId], ["air", airlineId]])}#flight-finder`, label: L("Find a dog-friendly flight", "Rechercher un vol adapté", "Buscar un vuelo apto para perros") },
+  { key: "destinations", icon: "🌍", href: `${base}/tools/destinations/${q([["breed", breedId]])}`, label: L("Where can I take my dog", "Où partir avec mon chien", "Adónde puedo ir con mi perro") },
+  { key: "heat", icon: "🌡", href: `${base}/tools/heat/${q([["breed", breedId]])}`, label: L("Summer heat risk", "Risque chaleur en soute", "Riesgo de calor en verano") },
+  { key: "crate", icon: "📦", href: `${base}/tools/crate/${q([["breed", breedId], ["air", airlineId]])}`, label: L("Which crate size", "Quelle taille de cage", "Qué tamaño de jaula") },
+  { key: "pet-relief", icon: "🚻", href: `${base}/tools/pet-relief/`, label: L("Airport pet relief", "Coins pipi en aéroport", "Zonas de alivio en aeropuertos") },
+  /* Sixième entrée, ajoutée le 01/08/2026 avec le Travel Hub. Ce n'est pas un outil au sens
+   * des cinq autres — on n'y calcule rien — mais c'est là qu'un lecteur va chercher la suite
+   * quand l'outil a répondu à sa question. Le bloc devient « les cinq outils et le reste ». */
+  { key: "travel-hub", icon: "📖", href: `${base}/travel-hub/`, label: L("Travel Hub guides", "Guides Travel Hub", "Guías Travel Hub") },
+];
+const items = tools.filter((t) => t.key !== current);
+---
+<section class="rtl">
+  <h2 class="rtl__h">{L("Related tools", "Outils liés", "Herramientas relacionadas")}</h2>
+  <div class="rtl__grid">
+    {items.map((t) => (
+      <a class="rtl__item" data-tool={t.key} href={t.href}><span class="rtl__ic" aria-hidden="true">{t.icon}</span> {t.label}</a>
+    ))}
+  </div>
+</section>
+<style>
+  .rtl { margin: 28px 0 0; }
+  .rtl__h { font-size: 15px; margin: 0 0 12px; color: var(--mdcf-ink); }
+  .rtl__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .rtl__item { display: flex; align-items: center; gap: 9px; padding: 12px 14px; border: 1px solid var(--mdcf-line); border-radius: 12px; background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; }
+  .rtl__item:hover { background: var(--mdcf-line); }
+  .rtl__ic { flex: 0 0 auto; }
+</style>

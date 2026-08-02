@@ -1,0 +1,343 @@
+id: airline_american
+mono: AA
+name: American Airlines
+titleH1:
+  en: Flying with a dog on American Airlines
+  fr: Voyager avec un chien sur American Airlines
+  es: Viajar con perro en American Airlines
+  pt: "Viajar com um cachorro pela American Airlines"
+metaDesc:
+  en: "American Airlines pet policy: cabin, checked-pet and PetEmbark cargo rules, fares, restrictions and official sources."
+  fr: "Politique animaux American Airlines : cabine, soute et fret PetEmbark, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de American Airlines: reglas de cabina, mascota facturada y carga PetEmbark, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da American Airlines: regras de cabine, animal despachado e carga PetEmbark, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: United States
+      fr: États-Unis
+      es: Estados Unidos
+      pt: "Estados Unidos"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Easy in the cabin, but the hold is military-only — large dogs travel via PetEmbark cargo.
+  fr: Simple en cabine, mais la soute est réservée aux militaires — les grands chiens passent par le fret PetEmbark.
+  es: "Fácil en cabina, pero la bodega es solo para militares: los perros grandes viajan mediante la carga PetEmbark."
+  pt: "Fácil na cabine, mas o porão é exclusivo para militares — os cachorros grandes viajam via carga PetEmbark."
+ladder:
+  - flex: 12
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 9 kg
+  - flex: 30
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: military only
+      fr: militaires
+      es: solo militares
+      pt: "somente militares"
+  - flex: 58
+    color: "#1f5fa8"
+    label:
+      en: PetEmbark cargo
+      fr: Fret PetEmbark
+      es: Carga PetEmbark
+      pt: "Carga PetEmbark"
+    sub:
+      en: large dogs
+      fr: grands chiens
+      es: perros grandes
+      pt: "cachorros grandes"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One small dog or cat under the seat. Combined 20 lb / 9 kg limit on the A321T.
+      fr: Un petit chien ou chat sous le siège. Limite 9 kg (20 lb) sur l'A321T.
+      es: Un perro o gato pequeño bajo el asiento. Límite combinado de 20 lb / 9 kg en el A321T.
+      pt: "Um cachorro ou gato pequeno embaixo do assento. Limite combinado de 20 lb / 9 kg no A321T."
+    fee:
+      en: $150 / way
+      fr: 150 $ / trajet
+      es: 150 $ / trayecto
+      pt: "US$ 150 / trajeto"
+  - icon: 🎖️
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Military only
+      fr: Militaires uniquement
+      es: Solo militares
+      pt: "Somente militares"
+    detail:
+      en: Checked pets only for eligible active-duty U.S. military & State Dept personnel.
+      fr: Soute réservée au personnel militaire d'active et diplomatique américain.
+      es: Mascotas facturadas solo para personal militar en activo y del Departamento de Estado de EE. UU. elegible.
+      pt: "Animais despachados somente para militares dos EUA em serviço ativo e funcionários do Departamento de Estado elegíveis."
+    fee:
+      en: $150 – 200
+      fr: 150 – 200 $
+      es: 150 – 200 $
+      pt: "$150 – 200"
+  - icon: ✈️
+    name:
+      en: PetEmbark cargo
+      fr: Fret PetEmbark
+      es: Carga PetEmbark
+      pt: "Carga PetEmbark"
+    cls: ok
+    statusLabel:
+      en: Open to all
+      fr: Ouvert à tous
+      es: Abierto a todos
+      pt: "Aberto a todos"
+    detail:
+      en: Large pets ship via American PetEmbark (AA Cargo), open to the general public.
+      fr: Les grands animaux voyagent via American PetEmbark (AA Cargo), ouvert au public.
+      es: Las mascotas grandes viajan mediante American PetEmbark (AA Cargo), abierto al público general.
+      pt: "Os animais grandes viajam via American PetEmbark (AA Cargo), aberto ao público em geral."
+    fee:
+      en: Quote + $150
+      fr: Devis + 150 $
+      es: Presupuesto + 150 $
+      pt: "Orçamento + $150"
+fareList:
+  rows:
+    - label:
+        en: Cabin (small pet)
+        fr: Cabine (petit animal)
+        es: Cabina (mascota pequeña)
+        pt: "Cabine (animal pequeno)"
+      value:
+        en: $150 each way
+        fr: 150 $ / trajet
+        es: 150 $ / trayecto
+        pt: "US$ 150 por trajeto"
+    - label:
+        en: Hold — U.S. military / State Dept
+        fr: Soute — militaires / diplomates US
+        es: Bodega — militares / Departamento de Estado de EE. UU.
+        pt: "Porão — militares dos EUA / Departamento de Estado"
+      value:
+        en: $150 – 200 each way
+        fr: 150 – 200 $ / trajet
+        es: 150 – 200 $ / trayecto
+        pt: "$150 – 200 por trajeto"
+    - label:
+        en: PetEmbark cargo
+        fr: Fret PetEmbark
+        es: Carga PetEmbark
+        pt: "Carga PetEmbark"
+      value:
+        en: On request + $150 handling
+        fr: Sur devis + 150 $ de dossier
+        es: Bajo presupuesto + 150 $ de gestión
+        pt: "Sob consulta + $150 de manuseio"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD, per one-way journey and per kennel. Cargo rates are calculated by route, size and weight.
+    fr: USD, par trajet aller et par caisse. Le fret est calculé selon la route, la taille et le poids.
+    es: USD, por trayecto de ida y por jaula. Las tarifas de carga se calculan según la ruta, el tamaño y el peso.
+    pt: "USD, por trajeto de ida e por caixa de transporte. As tarifas de carga são calculadas conforme a rota, o tamanho e o peso."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin allowed
+          fr: Cabine autorisée
+          es: Cabina permitida
+          pt: "Cabine permitida"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Boxers, bulldogs, mastiffs, pugs (all breeds, incl. mixes) barred from the hold; cargo subject to PetEmbark's approved-breed policy.
+      fr: Boxers, bouledogues, mastiffs, carlins (toutes variétés, croisés inclus) interdits en soute ; le fret dépend de la politique races de PetEmbark.
+      es: Bóxers, bulldogs, mastines, carlinos (todas las razas, mestizos incluidos) vetados en bodega; la carga depende de la política de razas aprobadas de PetEmbark.
+      pt: "Boxers, buldogues, mastins, pugs (todas as variedades, incluindo mestiços) são vetados no porão; a carga está sujeita à política de raças aprovadas da PetEmbark."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+      - cls: warn
+        label:
+          en: CDC rabies rule
+          fr: Règle rage CDC
+          es: Regla de rabia de los CDC
+          pt: "Regra de raiva do CDC"
+    note:
+      en: Sedated pets are refused. Dogs that visited a CDC high-risk rabies country in the last 6 months are not accepted as carry-on.
+      fr: Animaux sédatés refusés. Les chiens ayant visité un pays à risque rage (CDC) dans les 6 derniers mois ne sont pas admis en cabine.
+      es: Las mascotas sedadas son rechazadas. Los perros que hayan visitado un país de alto riesgo de rabia según los CDC en los últimos 6 meses no se aceptan en cabina.
+      pt: "Animais sedados são recusados. Cachorros que visitaram um país de alto risco de raiva segundo o CDC nos últimos 6 meses não são aceitos na cabine."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Heat ceiling 29.4 °C (85 °F)
+        fr: Plafond chaleur 29,4 °C (85 °F)
+        es: Techo de calor 29,4 °C (85 °F)
+        pt: "Teto de calor de 29,4 °C (85 °F)"
+    - cls: no
+      label:
+        en: Cold floor −6.6 °C (20 °F)
+        fr: Plancher froid −6,6 °C (20 °F)
+        es: Piso de frío −6,6 °C (20 °F)
+        pt: "Piso de frio de −6,6 °C (20 °F)"
+    - cls: warn
+      label:
+        en: "In-flight temperature: not disclosed"
+        fr: "Température en vol : non communiqué"
+        es: "Temperatura en vuelo: no comunicada"
+        pt: "Temperatura em voo: não comunicado"
+  note:
+    en: "For checked and cargo pets, American publishes strict ground-temperature limits: no travel if the temperature exceeds 29.4 °C or drops below −6.6 °C at any point of the itinerary. It does not publish a single in-flight temperature setting."
+    fr: "Pour la soute et le fret, American publie des limites de température au sol strictes : pas de transport si la température dépasse 29,4 °C ou descend sous −6,6 °C à un point du trajet. Aucune température en vol unique n'est publiée."
+    es: "Para las mascotas facturadas y en carga, American publica límites estrictos de temperatura en tierra: no hay transporte si la temperatura supera los 29,4 °C o baja de −6,6 °C en cualquier punto del itinerario. No publica un valor único de temperatura en vuelo."
+    pt: "Para animais despachados e em carga, a American divulga limites estritos de temperatura em solo: não há transporte se a temperatura ultrapassar 29,4 °C ou cair abaixo de −6,6 °C em qualquer ponto do itinerário. Não divulga um valor único de temperatura em voo."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Free for eligible fully trained service dogs (U.S. DOT rules).
+      fr: Gratuit pour les chiens d'assistance dressés éligibles (règles DOT américaines).
+      es: Gratis para perros de asistencia totalmente adiestrados y elegibles (reglas del DOT de EE. UU.).
+      pt: "Gratuito para cães de serviço totalmente treinados e elegíveis (regras do DOT dos EUA)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: U.S. DOT forms required; behaviour, age and placement rules apply.
+      fr: Formulaires DOT requis ; règles de comportement, d'âge et de placement.
+      es: Se requieren los formularios del DOT de EE. UU.; aplican reglas de comportamiento, edad y ubicación.
+      pt: "São exigidos os formulários do DOT dos EUA; aplicam-se regras de comportamento, idade e acomodação."
+  - icon: ⏱️
+    label:
+      en: Long flights
+      fr: Vols longs
+      es: Vuelos largos
+      pt: "Voos longos"
+    value:
+      en: Vet health certificate recommended for itineraries over 8 h.
+      fr: Certificat vétérinaire recommandé pour les trajets de plus de 8 h.
+      es: Se recomienda certificado sanitario veterinario para itinerarios de más de 8 h.
+      pt: "Atestado de saúde veterinário recomendado para itinerários de mais de 8 h."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Large dogs
+      fr: Grands chiens
+      es: Perros grandes
+      pt: "Cachorros grandes"
+    value:
+      en: Ship via American PetEmbark (AA Cargo) — the main channel for non-cabin pets.
+      fr: Via American PetEmbark (AA Cargo) — le canal principal hors cabine.
+      es: "Viajan mediante American PetEmbark (AA Cargo): el canal principal para mascotas fuera de cabina."
+      pt: "Viajam via American PetEmbark (AA Cargo) — o principal canal para animais fora da cabine."
+  - icon: 🎖️
+    label:
+      en: Checked pets
+      fr: Animaux en soute
+      es: Mascotas facturadas
+      pt: "Animais despachados"
+    value:
+      en: Reserved for active-duty U.S. military and State Dept personnel on orders.
+      fr: Réservés au personnel militaire d'active et diplomatique américain en mission.
+      es: Reservadas para personal militar en activo y del Departamento de Estado de EE. UU. en comisión de servicio.
+      pt: "Reservado para militares dos EUA em serviço ativo e funcionários do Departamento de Estado em missão."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reservar
+      pt: "Reserva"
+    value:
+      en: One carrier per passenger · aircraft & seat restrictions apply.
+      fr: Un sac par passager · restrictions selon l'avion et le siège.
+      es: Una jaula por pasajero · aplican restricciones según el avión y el asiento.
+      pt: "Uma caixa de transporte por passageiro · aplicam-se restrições de aeronave e assento."
+book:
+  host: aa.com
+  url: https://www.aa.com/
+sources:
+  en: 4 American Airlines sources · confidence 5/5 · last verified 11 July 2026
+  fr: 4 sources American Airlines · confiance 5/5 · dernière vérification 11 juillet 2026
+  es: 4 fuentes de American Airlines · confianza 5/5 · última verificación 11 julio 2026
+  pt: "4 fontes da American Airlines · confiança 5/5 · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

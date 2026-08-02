@@ -1,0 +1,94 @@
+---
+import Base from "../layouts/Base.astro";
+import { t } from "@mydogcanfly/knowledge";
+interface Item { href: string; label: string; sub?: string; flag?: string }
+interface Props { kind: string; title: string; /** Titre SEO « mots clés d'abord » ; à défaut, H1 + suffixe de marque (ancien comportement). */ seoTitle?: string; blurb?: string; metaDesc?: string; items: Item[]; locale?: string; link?: { href: string; label: string } }
+const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link } = Astro.props;
+---
+<Base title={seoTitle ?? `${title} — MyDogCanFly`} description={metaDesc ?? blurb ?? title} locale={locale}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <p class="mdcf-eyebrow">{kind}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      {blurb && <p class="idx__blurb">{blurb}</p>}
+      {link && <a class="idx__link" href={link.href}>{link.label}</a>}
+      <div class="idx__bar">
+        <input id="idx-search" class="idx__search" type="search" list="idx-suggest" autocomplete="off" enterkeyhint="go" placeholder={t(locale, "index.filter")} aria-label={t(locale, "index.filter")} />
+        <datalist id="idx-suggest">{items.map((i) => <option value={i.label} data-href={i.href}></option>)}</datalist>
+        <button id="idx-go" class="idx__go" type="button" aria-label={t(locale, "index.open")} title={t(locale, "index.open")}>→</button>
+        <span class="idx__count"><b id="idx-count">{items.length}</b> {t(locale, "index.results")}</span>
+      </div>
+      <div id="idx-list" class="idx">
+        {items.map((i) => (
+          <a class="mdcf-card idx__item" href={i.href} data-search={`${i.label} ${i.sub ?? ""}`.toLowerCase()}>
+            <b>{i.flag ? <span class="idx__flag" aria-hidden="true">{i.flag}</span> : null}{i.label}</b>
+            {i.sub && <span class="idx__sub">{i.sub}</span>}
+          </a>
+        ))}
+      </div>
+      <p id="idx-empty" class="idx__empty" hidden>{t(locale, "index.no_results")}</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const input = document.getElementById("idx-search") as HTMLInputElement | null;
+  const goBtn = document.getElementById("idx-go");
+  const items = [...document.querySelectorAll<HTMLElement>(".idx__item")];
+  const count = document.getElementById("idx-count");
+  const empty = document.getElementById("idx-empty");
+  const label = (el: HTMLElement) => (el.querySelector("b")?.textContent || "").trim().toLowerCase();
+
+  const applyFilter = () => {
+    const q = (input?.value || "").trim().toLowerCase();
+    let shown = 0;
+    for (const el of items) {
+      const match = !q || (el.getAttribute("data-search") || "").includes(q);
+      el.hidden = !match;
+      if (match) shown++;
+    }
+    if (count) count.textContent = String(shown);
+    if (empty) empty.hidden = shown > 0;
+    return shown;
+  };
+
+  // Go straight to the requested page: exact name match first, else the single best visible result.
+  const navigate = () => {
+    const q = (input?.value || "").trim().toLowerCase();
+    if (!q) return;
+    const visible = items.filter((el) => !el.hidden);
+    const target = items.find((el) => label(el) === q) || (visible.length ? visible[0] : null);
+    const href = target?.getAttribute("href");
+    if (href) window.location.href = href;
+  };
+
+  input?.addEventListener("input", applyFilter);
+  input?.addEventListener("keydown", (e) => {
+    if ((e as KeyboardEvent).key === "Enter") { e.preventDefault(); applyFilter(); navigate(); }
+  });
+  goBtn?.addEventListener("click", () => { applyFilter(); navigate(); });
+</script>
+
+<style>
+  .idx__blurb { color: var(--mdcf-muted); margin: 0 0 12px; }
+  .idx__link { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 16px; padding: 8px 14px;
+    border: 1px solid var(--mdcf-line); border-radius: 999px; text-decoration: none; color: var(--mdcf-ink);
+    font-size: 14px; font-weight: 600; transition: border-color .15s, background .15s; }
+  .idx__link:hover { border-color: var(--mdcf-accent); background: var(--mdcf-accent-soft); }
+  .idx__bar { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; }
+  .idx__search { flex: 1 1 auto; max-width: 460px; padding: 11px 14px; border: 1px solid var(--mdcf-line); border-radius: 999px; font: inherit; background: var(--mdcf-surface); }
+  .idx__search:focus-visible { border-color: var(--mdcf-accent); outline: none; }
+  .idx__go { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 999px; border: none; cursor: pointer;
+    background: var(--mdcf-accent); color: #fff; font-size: 18px; font-weight: 800; line-height: 1;
+    display: inline-flex; align-items: center; justify-content: center; transition: background .15s; }
+  .idx__go:hover { background: var(--mdcf-accent-hover); }
+  .idx__count { color: var(--mdcf-muted); font-size: 13px; white-space: nowrap; }
+  .idx__count b { color: var(--mdcf-ink); }
+  .idx { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .idx__item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--mdcf-ink); transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .idx__item:hover { border-color: var(--mdcf-accent); transform: translateY(-1px); box-shadow: var(--mdcf-shadow); }
+  .idx__flag { margin-right: 8px; font-size: 1.05em; line-height: 1; }
+  .idx__sub { color: var(--mdcf-muted); font-size: 13px; }
+  .idx__empty { color: var(--mdcf-muted); }
+  @media (max-width: 720px) { .idx { grid-template-columns: 1fr 1fr; } }
+</style>

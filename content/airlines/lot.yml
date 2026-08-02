@@ -1,0 +1,300 @@
+id: airline_lot
+mono: LO
+name: LOT Polish Airlines
+titleH1:
+  en: Flying with a dog on LOT Polish Airlines
+  fr: Voyager avec un chien sur LOT Polish Airlines
+  es: Viajar con un perro en LOT Polish Airlines
+  pt: "Viajar com um cachorro na LOT Polish Airlines"
+metaDesc:
+  en: "LOT Polish Airlines pet policy: cabin, hold and cargo, fares by zone, snub-nosed hold ban, UK/UAE exclusion and official sources."
+  fr: "Politique animaux LOT Polish Airlines : cabine, soute et fret, tarifs par zone, interdiction soute brachy, exclusion R.-U./ÉAU et sources officielles."
+  es: "Política de mascotas de LOT Polish Airlines: cabina, bodega y carga, tarifas por zona, veto en bodega a razas de hocico chato, exclusión Reino Unido/EAU y fuentes…"
+  pt: "Política de animais da LOT Polish Airlines: cabine, porão e carga, tarifas por zona, proibição de porão para focinho achatado, exclusão de Reino Unido/EAU e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Poland · WAW
+      fr: Pologne · WAW
+      es: Polonia · WAW
+      pt: "Polônia · WAW"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats, dogs & ferrets in the cabin or hold — but snub-nosed breeds barred from the hold and no pets to the UK/UAE.
+  fr: Chats, chiens et furets en cabine ou en soute — mais races au nez écrasé interdites en soute et rien vers le R.-U./ÉAU.
+  es: Gatos, perros y hurones en cabina o bodega, pero las razas de hocico chato no pueden viajar en bodega y no se admiten mascotas hacia el Reino Unido/EAU.
+  pt: "Gatos, cachorros e furões na cabine ou no porão — mas raças de focinho achatado são proibidas no porão e nenhum animal para Reino Unido/EAU."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: "> 8 kg"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK/UAE / species
+      fr: R.-U./ÉAU / espèces
+      es: Reino Unido/EAU / especies
+      pt: "Reino Unido/EAU / espécies"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dog, cat or ferret ≤ 8 kg incl. carrier under the seat (max 55 × 40 × 20 cm; smaller on Embraer); one per passenger.
+      fr: Chien, chat ou furet ≤ 8 kg avec le sac sous le siège (max 55 × 40 × 20 cm ; plus petit sur Embraer) ; un par passager.
+      es: Perro, gato o hurón ≤ 8 kg con el bolso bajo el asiento (máx. 55 × 40 × 20 cm; más pequeño en Embraer); uno por pasajero.
+      pt: "Cachorro, gato ou furão ≤ 8 kg com a bolsa sob o assento (máx. 55 × 40 × 20 cm; menor em Embraer); um por passageiro."
+    fee:
+      en: €65–100
+      fr: 65–100 €
+      es: 65–100 €
+      pt: "€65–100"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & ferrets over 8 kg in an IATA crate in a temperature-adjusted hold; one adult per crate. Snub-nosed barred.
+      fr: Chiens, chats et furets de plus de 8 kg en caisse IATA dans une soute à température ajustée ; un adulte par caisse. Races au nez écrasé exclues.
+      es: Perros, gatos y hurones de más de 8 kg en una jaula IATA en una bodega con temperatura regulada; un adulto por jaula. Razas de hocico chato excluidas.
+      pt: "Cachorros, gatos e furões acima de 8 kg em uma caixa de transporte IATA em um porão com temperatura regulada; um adulto por caixa. Focinho achatado proibido."
+    fee:
+      en: €150–290
+      fr: 150–290 €
+      es: 150–290 €
+      pt: "€150–290"
+  - icon: ✈️
+    name:
+      en: LOT Cargo
+      fr: LOT Cargo
+      es: LOT Cargo
+      pt: "LOT Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: A través de agente
+      pt: "Via agente"
+    detail:
+      en: Other species, and routes requiring cargo (UK, UAE), via a forwarding company.
+      fr: Autres espèces, et routes imposant le fret (R.-U., ÉAU), via un transitaire.
+      es: Otras especies y rutas que exigen carga (Reino Unido, EAU), a través de una empresa transitaria.
+      pt: "Outras espécies, e rotas que exigem carga (Reino Unido, EAU), via uma empresa transportadora."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: €65–100
+        fr: 65–100 €
+        es: 65–100 €
+        pt: "€65–100"
+    - label:
+        en: Hold (> 8 kg)
+        fr: Soute (> 8 kg)
+        es: Bodega (> 8 kg)
+        pt: "Porão (> 8 kg)"
+      value:
+        en: €150–290
+        fr: 150–290 €
+        es: 150–290 €
+        pt: "€150–290"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR by zone; prices are shown only at booking / Manage My Booking.
+    fr: EUR par zone ; les prix ne s'affichent qu'à la réservation / Manage My Booking.
+    es: EUR por zona; los precios solo se muestran al reservar / Manage My Booking.
+    pt: "EUR por zona; os preços só aparecem na reserva / Manage My Booking."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats (and crossbreeds) are banned from the hold — cabin only if within limits: bulldogs (all), boxer, Boston terrier, Bull Mastiff, Cane Corso, Cavalier King Charles, Chihuahua, chow chow, Dogue de Bordeaux, Brussels Griffon, Lhasa Apso, mastiffs, pugs (all), Pekingese, Shar Pei, Shih Tzu, and Persian/Exotic/Himalayan/British Shorthair/Scottish Fold cats."
+      fr: "Chiens et chats au nez écrasé (et croisés) interdits en soute — cabine uniquement dans les limites : bouledogues (tous), boxer, Boston terrier, Bull Mastiff, Cane Corso, Cavalier King Charles, Chihuahua, chow chow, Dogue de Bordeaux, Griffon bruxellois, Lhasa Apso, mastiffs, carlins (tous), pékinois, Shar Pei, Shih Tzu, et chats persans/exotiques/himalayens/British Shorthair/Scottish Fold."
+      es: "Los perros y gatos de hocico chato (y sus cruces) tienen prohibida la bodega; solo cabina dentro de los límites: bulldogs (todos), bóxer, Boston terrier, Bull Mastiff, Cane Corso, Cavalier King Charles, Chihuahua, chow chow, Dogo de Burdeos, Grifón de Bruselas, Lhasa Apso, mastines, carlinos (todos), pekinés, Shar Pei, Shih Tzu, y gatos persas/exóticos/himalayos/British Shorthair/Scottish Fold."
+      pt: "Cachorros e gatos de focinho achatado (e cruzamentos) são proibidos no porão — cabine somente se dentro dos limites: bulldogs (todos), boxer, Boston terrier, Bull Mastiff, Cane Corso, Cavalier King Charles, Chihuahua, chow chow, Dogue de Bordeaux, Griffon de Bruxelas, Lhasa Apso, mastiffs, pugs (todos), Pequinês, Shar Pei, Shih Tzu, e gatos persas/exóticos/himalaios/British Shorthair/Scottish Fold."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 3 months
+          fr: 3 mois min.
+          es: Mín. 3 meses
+          pt: "Mín. 3 meses"
+    note:
+      en: Sedation only after a vet consult. Min 3 months, rabies ≥ 21 days (6 months for the US). Leash + muzzle carried outside the container.
+      fr: Sédation uniquement après avis vétérinaire. Min 3 mois, rage ≥ 21 jours (6 mois pour les USA). Laisse + muselière portées hors du contenant.
+      es: Sedación solo tras consulta veterinaria. Mínimo 3 meses, rabia ≥ 21 días (6 meses para EE. UU.). Correa y bozal llevados fuera de la jaula.
+      pt: "Sedação somente após consulta veterinária. Mínimo de 3 meses, raiva ≥ 21 dias (6 meses para os EUA). Coleira e focinheira levados fora do recipiente."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: LOT says the hold temperature is 'appropriately adjusted' but publishes no numeric limits or seasonal embargo.
+    fr: LOT indique que la température de la soute est « ajustée de manière appropriée » mais ne publie pas de limites chiffrées ni d'embargo saisonnier.
+    es: LOT indica que la temperatura de la bodega se "regula de forma adecuada", pero no publica límites numéricos ni embargo estacional.
+    pt: "A LOT afirma que a temperatura do porão é \"regulada de forma adequada\", mas não publica limites numéricos nem embargo sazonal."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: An assistance/guide dog travels free in the cabin, no carrier, no weight limit, in a harness at your feet.
+      fr: Un chien d'assistance/guide voyage gratuitement en cabine, sans sac, sans limite de poids, en harnais à tes pieds.
+      es: Un perro de asistencia/guía viaja gratis en cabina, sin jaula, sin límite de peso, con arnés a tus pies.
+      pt: "Um cão de assistência/guia viaja gratuitamente na cabine, sem bolsa de transporte, sem limite de peso, em um arreio aos seus pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Notify ≥ 48 h ahead. Non-US: 1 dog, ADI/IGDF certification. US: 2 dogs, DOT forms + CDC. Not to the UK or UAE (quarantine)."
+      fr: "Prévenir ≥ 48 h à l'avance. Hors USA : 1 chien, certification ADI/IGDF. USA : 2 chiens, formulaires DOT + CDC. Pas vers le R.-U. ni les ÉAU (quarantaine)."
+      es: "Avisa con ≥ 48 h de antelación. Fuera de EE. UU.: 1 perro, certificación ADI/IGDF. EE. UU.: 2 perros, formularios DOT + CDC. No hacia el Reino Unido ni los EAU (cuarentena)."
+      pt: "Avise com ≥ 48 h de antecedência. Fora dos EUA: 1 cachorro, certificação ADI/IGDF. EUA: 2 cachorros, formulários DOT + CDC. Não para Reino Unido nem EAU (quarentena)."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets UK/UAE
+      fr: Pas d'animaux R.-U./ÉAU
+      es: Sin mascotas Reino Unido/EAU
+      pt: "Sem animais para Reino Unido/EAU"
+    value:
+      en: Animals to the UK and UAE only travel as cargo (not cabin/hold); no animals to Iceland; Japan requires quarantine.
+      fr: Les animaux vers le R.-U. et les ÉAU ne voyagent qu'en fret (ni cabine ni soute) ; aucun animal vers l'Islande ; le Japon impose une quarantaine.
+      es: Los animales hacia el Reino Unido y los EAU solo viajan como carga (ni cabina ni bodega); no se admiten animales hacia Islandia; Japón exige cuarentena.
+      pt: "Animais para o Reino Unido e os EAU só viajam como carga (nem cabine nem porão); nenhum animal para a Islândia; o Japão exige quarentena."
+  - icon: 🐾
+    label:
+      en: US dogs
+      fr: Chiens USA
+      es: Perros a EE. UU.
+      pt: "Cachorros para os EUA"
+    value:
+      en: Dogs to the US need CDC verification (up to 48 h), booked ≤ 48 h before the flight; high-risk countries only to JFK/LAX/MIA.
+      fr: Les chiens vers les USA nécessitent une vérification CDC (jusqu'à 48 h), réservés ≤ 48 h avant le vol ; pays à risque uniquement vers JFK/LAX/MIA.
+      es: Los perros hacia EE. UU. necesitan verificación del CDC (hasta 48 h), reservados ≤ 48 h antes del vuelo; los países de alto riesgo solo hacia JFK/LAX/MIA.
+      pt: "Cachorros para os EUA precisam de verificação do CDC (até 48 h), reservada com ≤ 48 h de antecedência ao voo; países de alto risco somente para JFK/LAX/MIA."
+  - icon: ⏱️
+    label:
+      en: Limited space
+      fr: Places limitées
+      es: Plazas limitadas
+      pt: "Vagas limitadas"
+    value:
+      en: Availability is limited per aircraft — confirm at booking or up to 12 h before departure.
+      fr: Les places sont limitées par avion — confirmer à la réservation ou jusqu'à 12 h avant le départ.
+      es: La disponibilidad es limitada por avión; confírmalo al reservar o hasta 12 h antes de la salida.
+      pt: "A disponibilidade é limitada por aeronave — confirme na reserva ou até 12 h antes da partida."
+book:
+  host: lot.com
+  url: https://www.lot.com/
+sources:
+  en: 5 LOT Polish Airlines sources · last verified 11 July 2026
+  fr: 5 sources LOT Polish Airlines · dernière vérification 11 juillet 2026
+  es: 5 fuentes de LOT Polish Airlines · última verificación 11 de julio de 2026
+  pt: "5 fontes da LOT Polish Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

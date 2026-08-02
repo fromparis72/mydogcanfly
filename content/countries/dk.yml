@@ -1,0 +1,353 @@
+# Country Entry Guide — Denmark (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_dk
+iso2: "DK"
+name: { en: "Denmark", fr: "Danemark", es: "Dinamarca", pt: "Dinamarca" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Denmark with your dog", fr: "Voyager au Danemark avec ton chien", es: "Viajar a Dinamarca con tu perro", pt: "Viajar para a Dinamarca com seu cachorro" }
+  intro:
+    en: >-
+      Denmark welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Denmark itself. As an EU member, Denmark applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from
+      another EU country simply needs an EU pet passport. A dog from a listed non-EU country (such as
+      the United States, Canada or the United Kingdom) needs an EU animal health certificate but no
+      blood test. A dog from a non-listed country faces the longest path, including a rabies antibody
+      test and a three-month wait. One point is unique to Denmark: 13 dog breeds and their crosses are
+      banned and cannot be brought in at all. This guide explains each case before you book your flight.
+    fr: >-
+      Le Danemark accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement du Danemark. En tant qu'État membre de l'UE, le Danemark applique les
+      règles européennes de mouvement des animaux : une puce ISO et une vaccination antirabique valide
+      sont toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un passeport
+      européen. Un chien en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…) a besoin
+      d'un certificat sanitaire européen mais pas de prise de sang. Un chien venant d'un pays non listé
+      suit le parcours le plus long, avec un titrage antirabique et un délai de trois mois. Un point est
+      propre au Danemark : 13 races de chiens et leurs croisements sont interdites et ne peuvent pas
+      entrer. Ce guide détaille chaque cas avant de réserver ton vol.
+    es: >-
+      Dinamarca acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Dinamarca. Como Estado miembro de la UE, Dinamarca aplica las normas
+      europeas de movimiento de animales de compañía: siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte
+      europeo para mascotas. Un perro procedente de un país tercero listado (como Estados Unidos, Canadá
+      o el Reino Unido) necesita un certificado sanitario europeo, pero no una prueba de sangre. Un perro
+      de un país no listado se enfrenta al camino más largo, que incluye una prueba de titulación de
+      anticuerpos contra la rabia y una espera de tres meses. Hay un punto propio de Dinamarca: 13 razas
+      de perros y sus cruces están prohibidas y no pueden entrar en absoluto. Esta guía explica cada caso
+      antes de que reserves tu vuelo.
+
+    pt: "A Dinamarca recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Dinamarca em si. Como membro da União Europeia, a Dinamarca aplica as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico e três meses de espera. Há um ponto exclusivo da Dinamarca: 13 raças de cachorros e seus cruzamentos são proibidas e não podem entrar de jeito nenhum. Este guia explica cada caso antes de você reservar o voo."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin; banned breeds refused)", fr: "Facile à difficile (selon l'origine ; races interdites refusées)", es: "De fácil a difícil (según el origen; razas prohibidas rechazadas)", pt: "De fácil a difícil (depende da origem; raças proibidas são recusadas)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus an EU animal health certificate."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire européen."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario animal de la UE."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário europeu."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — except 13 banned breeds", fr: "Oui — sauf 13 races interdites", es: "Sí — salvo 13 razas prohibidas", pt: "Sim — exceto 13 raças proibidas" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Denmark", fr: "Non requis pour le Danemark", es: "No obligatorio para Dinamarca", pt: "Não obrigatório para a Dinamarca" }
+    cls: ok
+  - requirement: { en: "Banned dog breeds", fr: "Races de chiens interdites", es: "Razas de perros prohibidas", pt: "Raças de cachorros proibidas" }
+    status: { en: "13 breeds prohibited — no exemption", fr: "13 races interdites — sans dérogation", es: "13 razas prohibidas — sin excepción", pt: "13 raças proibidas — sem exceção" }
+    cls: no
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Denmark (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Danemark (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Dinamarca (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Dinamarca (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Denmark", fr: "Pays de destination — Danemark", es: "País de destino — Dinamarca", pt: "País de destino — Dinamarca" }
+      text:
+        en: "Denmark applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed. Denmark also bans 13 dog breeds and their crosses from entry."
+        fr: "Le Danemark applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis. Le Danemark interdit aussi l'entrée de 13 races de chiens et de leurs croisements."
+        es: "Dinamarca aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia. Dinamarca también prohíbe la entrada de 13 razas de perros y sus cruces."
+        pt: "A Dinamarca aplica o quadro europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido. A Dinamarca também proíbe a entrada de 13 raças de cachorros e de seus cruzamentos."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Denmark's framework, then confirm your dog's exact origin, history and breed with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre danois, puis confirme l'origine, l'historique et la race exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Dinamarca y luego confirma el origen, el historial y la raza exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro dinamarquês, e confirme com seu veterinário a origem, o histórico e a raça exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination; ISO 11784/11785 (HDX or FDX-B).", fr: "Doit être posée avant la vaccination antirabique ; ISO 11784/11785 (HDX ou FDX-B).", es: "Debe implantarse antes de la vacunación antirrábica; ISO 11784/11785 (HDX o FDX-B).", pt: "Deve ser implantado antes da vacinação antirrábica; ISO 11784/11785 (HDX ou FDX-B)." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; foedevarestyrelsen.dk", fr: "Règl. UE 576/2013 ; foedevarestyrelsen.dk", es: "Regl. UE 576/2013; foedevarestyrelsen.dk", pt: "Regulamento UE 576/2013; foedevarestyrelsen.dk" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; no exemption from a valid rabies vaccination is possible.", fr: "La puce doit déjà être posée ; aucune dérogation à une vaccination antirabique valide n'est possible.", es: "El microchip debe estar ya implantado; no es posible ninguna excepción a una vacunación antirrábica válida.", pt: "O microchip já deve estar implantado; não existe nenhuma dispensa da vacinação antirrábica válida." }
+    ref: { en: "EU Reg. 2020/688, Annex VII", fr: "Règl. UE 2020/688, annexe VII", es: "Regl. UE 2020/688, anexo VII", pt: "Regulamento UE 2020/688, anexo VII" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-approved lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas origens não listadas: sangue ≥30 dias após a vacinação, ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, laboratório aprovado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; foedevarestyrelsen.dk", fr: "Règl. UE 2020/692 ; foedevarestyrelsen.dk", es: "Regl. UE 2020/692; foedevarestyrelsen.dk", pt: "Regulamento UE 2020/692; foedevarestyrelsen.dk" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013; foedevarestyrelsen.dk", fr: "Règl. UE 577/2013 ; foedevarestyrelsen.dk", es: "Regl. UE 577/2013; foedevarestyrelsen.dk", pt: "Regulamento UE 577/2013; foedevarestyrelsen.dk" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by the official vet of the country of dispatch before departure.", fr: "Établi/visé par le vétérinaire officiel du pays d'expédition avant départ.", es: "Expedido/refrendado por el veterinario oficial del país de expedición antes de la salida.", pt: "Emitido/endossado pelo veterinário oficial do país de expedição antes da partida." }
+    exceptions: { en: "Not needed for EU origins (EU pet passport instead).", fr: "Inutile pour les origines UE (passeport européen à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte europeo para mascotas).", pt: "Não é necessário para origens na UE (usa-se o passaporte europeu para animais)." }
+    ref: { en: "EU Reg. 577/2013; foedevarestyrelsen.dk", fr: "Règl. UE 577/2013 ; foedevarestyrelsen.dk", es: "Regl. UE 577/2013; foedevarestyrelsen.dk", pt: "Regulamento UE 577/2013; foedevarestyrelsen.dk" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only Finland, Ireland, Malta, N. Ireland and Norway require it — not Denmark.", fr: "Seuls la Finlande, l'Irlande, Malte, l'Irlande du Nord et la Norvège l'exigent — pas le Danemark.", es: "Solo lo exigen Finlandia, Irlanda, Malta, Irlanda del Norte y Noruega — no Dinamarca.", pt: "Só a Finlândia, a Irlanda, Malta, a Irlanda do Norte e a Noruega exigem — a Dinamarca não." }
+    ref: { en: "European Commission — pet travel", fr: "Commission européenne — voyage animaux", es: "Comisión Europea — viaje de animales", pt: "Comissão Europeia — viagens com animais de estimação" }
+  - item: { en: "Banned dog breeds", fr: "Races de chiens interdites", es: "Razas de perros prohibidas", pt: "Raças de cachorros proibidas" }
+    required: { en: "13 breeds prohibited", fr: "13 races interdites", es: "13 razas prohibidas", pt: "13 raças proibidas" }
+    when: { en: "Keeping, breeding and import of the 13 listed breeds and their crosses is prohibited; no exemption is possible.", fr: "La détention, l'élevage et l'importation des 13 races listées et de leurs croisements sont interdits ; aucune dérogation n'est possible.", es: "La tenencia, la cría y la importación de las 13 razas listadas y sus cruces están prohibidas; no es posible ninguna excepción.", pt: "A posse, a criação e a importação das 13 raças listadas e de seus cruzamentos são proibidas; nenhuma exceção é possível." }
+    exceptions: { en: "Dogs acquired before 17 March 2010 may enter under transitional rules (lead ≤2 m and muzzle in public); this never covers Pit Bull Terrier or Tosa Inu.", fr: "Les chiens acquis avant le 17 mars 2010 peuvent entrer selon les règles transitoires (laisse ≤2 m et muselière en public) ; jamais le Pit Bull Terrier ni le Tosa Inu.", es: "Los perros adquiridos antes del 17 de marzo de 2010 pueden entrar según las normas transitorias (correa ≤2 m y bozal en la vía pública); esto nunca cubre al Pit Bull Terrier ni al Tosa Inu.", pt: "Cachorros adquiridos antes de 17 de março de 2010 podem entrar segundo as regras transitórias (guia de ≤2 m e focinheira em público); isso nunca vale para o Pit Bull Terrier nem para o Tosa Inu." }
+    ref: { en: "Danish Act on Dogs (Hundeloven), §§1 a-b", fr: "Loi danoise sur les chiens (Hundeloven), §§1 a-b", es: "Ley danesa sobre perros (Hundeloven), §§1 a-b", pt: "Lei dinamarquesa sobre cães (Hundeloven), §§1 a-b" }
+  - item: { en: "Danish Dog Register", fr: "Registre danois des chiens", es: "Registro danés de perros", pt: "Registro Dinamarquês de Cães" }
+    required: { en: "Stays over 4 weeks", fr: "Séjours de plus de 4 semaines", es: "Estancias de más de 4 semanas", pt: "Estadias de mais de 4 semanas" }
+    when: { en: "The dog must be registered in the Danish Dog Register within 4 weeks of arrival if the stay exceeds 4 weeks.", fr: "Le chien doit être inscrit au Registre danois des chiens dans les 4 semaines suivant l'arrivée si le séjour dépasse 4 semaines.", es: "El perro debe inscribirse en el Registro danés de perros dentro de las 4 semanas siguientes a la llegada si la estancia supera las 4 semanas.", pt: "O cachorro precisa ser inscrito no Registro Dinamarquês de Cães em até 4 semanas após a chegada, se a estadia passar de 4 semanas." }
+    exceptions: { en: "Short holiday stays under 4 weeks are not concerned.", fr: "Les séjours de vacances de moins de 4 semaines ne sont pas concernés.", es: "Las estancias vacacionales de menos de 4 semanas no están afectadas.", pt: "Estadias curtas de férias, com menos de 4 semanas, não são afetadas." }
+    ref: { en: "foedevarestyrelsen.dk; hunderegister.dk", fr: "foedevarestyrelsen.dk ; hunderegister.dk", es: "foedevarestyrelsen.dk; hunderegister.dk", pt: "foedevarestyrelsen.dk; hunderegister.dk" }
+  - item: { en: "Border check (travellers' point of entry)", fr: "Contrôle frontalier (point d'entrée voyageurs)", es: "Control fronterizo (punto de entrada de viajeros)", pt: "Controle de fronteira (ponto de entrada de viajantes)" }
+    required: { en: "Non-EU arrivals", fr: "Arrivées hors UE", es: "Llegadas de fuera de la UE", pt: "Chegadas de fora da UE" }
+    when: { en: "Enter via Copenhagen (Kastrup), Billund or Aalborg airport; identity and documents are checked (free of charge).", fr: "Entrer par l'aéroport de Copenhague (Kastrup), Billund ou Aalborg ; identité et documents contrôlés (gratuitement).", es: "Entra por el aeropuerto de Copenhague (Kastrup), Billund o Aalborg; se comprueban la identidad y los documentos (de forma gratuita).", pt: "Entre pelo aeroporto de Copenhague (Kastrup), Billund ou Aalborg; identidade e documentos são conferidos (gratuitamente)." }
+    exceptions: { en: "No systematic check for intra-EU arrivals or from Andorra, Iceland, Norway, Switzerland and other EU-terms countries.", fr: "Pas de contrôle systématique pour les arrivées intra-UE ou depuis Andorre, Islande, Norvège, Suisse et autres pays sous conditions UE.", es: "Sin control sistemático para las llegadas intracomunitarias o desde Andorra, Islandia, Noruega, Suiza y otros países en condiciones equivalentes a la UE.", pt: "Sem controle sistemático para chegadas de dentro da UE ou vindas de Andorra, Islândia, Noruega, Suíça e outros países em condições equivalentes às da UE." }
+    ref: { en: "foedevarestyrelsen.dk (points of entry)", fr: "foedevarestyrelsen.dk (points d'entrée)", es: "foedevarestyrelsen.dk (puntos de entrada)", pt: "foedevarestyrelsen.dk (pontos de entrada)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter from outside the EU.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer depuis hors UE.", es: "Un cachorro de menos de 12 semanas no puede vacunarse, por lo que no puede entrar desde fuera de la UE.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não podem entrar vindos de fora da UE." }
+    ref: { en: "EU Reg. 2020/688; foedevarestyrelsen.dk", fr: "Règl. UE 2020/688 ; foedevarestyrelsen.dk", es: "Regl. UE 2020/688; foedevarestyrelsen.dk", pt: "Regulamento UE 2020/688; foedevarestyrelsen.dk" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — the authorities may then order re-export, quarantine or, for a banned breed, euthanasia.", fr: "Uniquement en cas de non-conformité — les autorités peuvent alors ordonner réexpédition, quarantaine ou, pour une race interdite, euthanasie.", es: "Solo en caso de incumplimiento — las autoridades pueden entonces ordenar la reexpedición, la cuarentena o, para una raza prohibida, la eutanasia.", pt: "Somente em caso de descumprimento das regras — as autoridades podem então determinar a reexportação, a quarentena ou, no caso de uma raça proibida, a eutanásia." }
+    ref: { en: "Danish Act on Dogs; foedevarestyrelsen.dk", fr: "Loi danoise sur les chiens ; foedevarestyrelsen.dk", es: "Ley danesa sobre perros; foedevarestyrelsen.dk", pt: "Lei dinamarquesa sobre cães; foedevarestyrelsen.dk" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and normally no border check. Countries on EU terms (Norway, Switzerland, Iceland, Andorra, San Marino, Monaco, Liechtenstein, Vatican, Faroe Islands, Gibraltar, Greenland) follow the same simplified route."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et normalement pas de contrôle frontalier. Les pays sous conditions UE (Norvège, Suisse, Islande, Andorre, Saint-Marin, Monaco, Liechtenstein, Vatican, Îles Féroé, Gibraltar, Groenland) suivent le même parcours simplifié."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y normalmente sin control fronterizo. Los países en condiciones equivalentes a la UE (Noruega, Suiza, Islandia, Andorra, San Marino, Mónaco, Liechtenstein, Vaticano, Islas Feroe, Gibraltar, Groenlandia) siguen la misma vía simplificada."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu para animais que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e, normalmente, sem controle de fronteira. Os países em condições equivalentes às da UE (Noruega, Suíça, Islândia, Andorra, San Marino, Mônaco, Liechtenstein, Vaticano, Ilhas Faroé, Gibraltar, Groenlândia) seguem a mesma via simplificada."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by the official vet of the country of dispatch. No antibody test is required; enter through a Danish travellers' point of entry (Copenhagen, Billund or Aalborg airport)."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par le vétérinaire officiel du pays d'expédition. Pas de titrage ; entre par un point d'entrée voyageurs danois (aéroport de Copenhague, Billund ou Aalborg)."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por el veterinario oficial del país de expedición. No se exige prueba de titulación; entra por un punto de entrada de viajeros danés (aeropuerto de Copenhague, Billund o Aalborg)."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e certificado sanitário europeu endossado pelo veterinário oficial do país de expedição. Não é exigido teste sorológico; entre por um ponto de entrada de viajantes dinamarquês (aeroporto de Copenhague, Billund ou Aalborg)."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-approved laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate is also required, and entry must be through a Danish travellers' point of entry."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé est également requis, et l'entrée doit se faire par un point d'entrée voyageurs danois."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige un certificado sanitario animal de la UE refrendado, y la entrada debe hacerse por un punto de entrada de viajeros danés."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório aprovado pela UE e, depois, 3 meses obrigatórios de espera antes da entrada. Também é exigido um certificado sanitário europeu endossado, e a entrada precisa ser feita por um ponto de entrada de viajantes dinamarquês."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Denmark depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Danemark dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Dinamarca depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega à Dinamarca depende de onde você embarcou."
+  points:
+    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+      fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
+      es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
+      pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
+    - en: "From outside the EU: enter only through Copenhagen (Kastrup), Billund or Aalborg airport, where customs check identity and documents on behalf of the Veterinary and Food Administration."
+      fr: "Depuis hors UE : entre uniquement par l'aéroport de Copenhague (Kastrup), Billund ou Aalborg, où la douane contrôle identité et documents pour le compte de l'administration vétérinaire et alimentaire."
+      es: "Desde fuera de la UE: entra únicamente por el aeropuerto de Copenhague (Kastrup), Billund o Aalborg, donde la aduana comprueba la identidad y los documentos por cuenta de la Administración Veterinaria y Alimentaria."
+      pt: "Vindo de fora da UE: entre apenas pelo aeroporto de Copenhague (Kastrup), Billund ou Aalborg, onde a alfândega confere identidade e documentos em nome da Administração Veterinária e Alimentar."
+    - en: "Entering from a non-EU country through any other airport or port is illegal; checks in Denmark are free of charge."
+      fr: "Entrer depuis un pays hors UE par tout autre aéroport ou port est illégal ; les contrôles au Danemark sont gratuits."
+      es: "Entrar desde un país de fuera de la UE por cualquier otro aeropuerto o puerto es ilegal; los controles en Dinamarca son gratuitos."
+      pt: "Entrar vindo de um país fora da UE por qualquer outro aeroporto ou porto é ilegal; os controles na Dinamarca são gratuitos."
+    - en: "Notifying the point of entry at least 24 hours before arrival makes the check easier."
+      fr: "Prévenir le point d'entrée au moins 24 heures avant l'arrivée facilite le contrôle."
+      es: "Avisar al punto de entrada al menos 24 horas antes de la llegada facilita el control."
+      pt: "Avisar o ponto de entrada com pelo menos 24 horas de antecedência facilita o controle."
+    - en: "If documents are missing or invalid, the authorities may order re-export, quarantine or, in the worst case, euthanasia — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, les autorités peuvent ordonner réexpédition, quarantaine ou, au pire, euthanasie — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, las autoridades pueden ordenar la reexpedición, la cuarentena o, en el peor de los casos, la eutanasia — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, as autoridades podem determinar a reexportação, a quarentena ou, na pior das hipóteses, a eutanásia — às custas do dono."
+    - en: "Any of the 13 banned breeds (or a cross) is refused entry, unless covered by the pre-2010 transitional rules; only transit without unnecessary stops is tolerated."
+      fr: "Toute race parmi les 13 interdites (ou un croisement) est refusée à l'entrée, sauf si elle relève des règles transitoires antérieures à 2010 ; seul le transit sans arrêt inutile est toléré."
+      es: "Cualquiera de las 13 razas prohibidas (o un cruce) es rechazada a la entrada, salvo que quede cubierta por las normas transitorias anteriores a 2010; solo se tolera el tránsito sin paradas innecesarias."
+      pt: "Qualquer uma das 13 raças proibidas (ou um cruzamento) tem a entrada recusada, a não ser que esteja coberta pelas regras transitórias anteriores a 2010; só se tolera o trânsito sem paradas desnecessárias."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Denmark uses a banned-breed model under the Danish Act on Dogs (Hundeloven). Rather than permitting listed breeds under conditions, it prohibits 13 breeds outright. The ban applies to tourists and residents alike, and only a pedigree or descent evidence — not appearance — can prove a dog is not one of them."
+    fr: "Le Danemark applique un modèle d'interdiction de races au titre de la loi danoise sur les chiens (Hundeloven). Plutôt que d'autoriser des races listées sous conditions, il interdit purement 13 races. L'interdiction vise aussi bien les touristes que les résidents, et seul un pedigree ou une preuve de filiation — pas l'apparence — peut établir qu'un chien n'en fait pas partie."
+    es: "Dinamarca aplica un modelo de prohibición de razas en virtud de la Ley danesa sobre perros (Hundeloven). En lugar de permitir razas listadas bajo condiciones, prohíbe directamente 13 razas. La prohibición se aplica por igual a turistas y residentes, y solo un pedigrí o una prueba de filiación — no la apariencia — puede demostrar que un perro no es una de ellas."
+    pt: "A Dinamarca adota um modelo de proibição de raças previsto na lei dinamarquesa sobre cães (Hundeloven). Em vez de permitir raças listadas sob condições, ela proíbe pura e simplesmente 13 raças. A proibição vale igualmente para turistas e residentes, e só um pedigree ou uma prova de ascendência — não a aparência — pode comprovar que um cachorro não é uma delas."
+  cat1:
+    en: "Prohibited breeds (import, keeping and breeding banned, crosses included, no exemption): 1) Pit Bull Terrier, 2) Tosa Inu, 3) American Staffordshire Terrier, 4) Fila Brasileiro, 5) Dogo Argentino, 6) American Bulldog, 7) Boerboel, 8) Kangal, 9) Central Asian Shepherd Dog (Ovtcharka), 10) Caucasian Shepherd Dog (Ovtcharka), 11) South Russian Shepherd Dog (Ovtcharka), 12) Tornjak, 13) Sarplaninac. Bringing one of these dogs into Denmark is prohibited under the Act on Dogs, §§1 a-b."
+    fr: "Races interdites (importation, détention et élevage interdits, croisements inclus, sans dérogation) : 1) Pit Bull Terrier, 2) Tosa Inu, 3) American Staffordshire Terrier, 4) Fila Brasileiro, 5) Dogo Argentino, 6) American Bulldog, 7) Boerboel, 8) Kangal, 9) Berger d'Asie centrale (Ovtcharka), 10) Berger du Caucase (Ovtcharka), 11) Berger de Russie méridionale (Ovtcharka), 12) Tornjak, 13) Sarplaninac. Faire entrer l'un de ces chiens au Danemark est interdit au titre de la loi sur les chiens, §§1 a-b."
+    es: "Razas prohibidas (importación, tenencia y cría prohibidas, cruces incluidos, sin excepción): 1) Pit Bull Terrier, 2) Tosa Inu, 3) American Staffordshire Terrier, 4) Fila Brasileiro, 5) Dogo Argentino, 6) American Bulldog, 7) Boerboel, 8) Kangal, 9) Perro pastor de Asia Central (Ovtcharka), 10) Perro pastor del Cáucaso (Ovtcharka), 11) Perro pastor de Rusia meridional (Ovtcharka), 12) Tornjak, 13) Sarplaninac. Introducir uno de estos perros en Dinamarca está prohibido en virtud de la Ley sobre perros, §§1 a-b."
+    pt: "Raças proibidas (importação, posse e criação proibidas, cruzamentos incluídos, sem exceção): 1) Pit Bull Terrier, 2) Tosa Inu, 3) American Staffordshire Terrier, 4) Fila Brasileiro, 5) Dogo Argentino, 6) American Bulldog, 7) Boerboel, 8) Kangal, 9) Central Asian Shepherd Dog (Ovtcharka), 10) Caucasian Shepherd Dog (Ovtcharka), 11) South Russian Shepherd Dog (Ovtcharka), 12) Tornjak, 13) Sarplaninac. Levar um desses cachorros para a Dinamarca é proibido pela lei sobre cães, §§1 a-b."
+  cat2:
+    en: "Denmark has no permissive second category: there is no ownership permit or muzzle scheme that allows a banned breed to be imported normally. The only exceptions are transitional — a dog acquired before 17 March 2010 may be kept and brought in (on a lead ≤2 m and muzzled in public), but this never applies to Pit Bull Terrier or Tosa Inu, banned since 1991. A banned breed may transit Denmark only if it does not leave the vehicle except for brief necessary stops and there are no unnecessary stops."
+    fr: "Le Danemark n'a pas de seconde catégorie permissive : il n'existe pas de permis de détention ou de régime de muselière autorisant l'importation normale d'une race interdite. Les seules exceptions sont transitoires — un chien acquis avant le 17 mars 2010 peut être détenu et introduit (laisse ≤2 m et muselière en public), mais jamais le Pit Bull Terrier ni le Tosa Inu, interdits depuis 1991. Une race interdite ne peut transiter par le Danemark que si elle ne quitte pas le véhicule, hormis de brefs arrêts nécessaires, et sans arrêt inutile."
+    es: "Dinamarca no tiene una segunda categoría permisiva: no existe ningún permiso de tenencia ni régimen de bozal que permita importar normalmente una raza prohibida. Las únicas excepciones son transitorias — un perro adquirido antes del 17 de marzo de 2010 puede tenerse e introducirse (con correa ≤2 m y bozal en la vía pública), pero esto nunca se aplica al Pit Bull Terrier ni al Tosa Inu, prohibidos desde 1991. Una raza prohibida solo puede transitar por Dinamarca si no sale del vehículo salvo para breves paradas necesarias y sin paradas innecesarias."
+    pt: "A Dinamarca não tem uma segunda categoria permissiva: não existe licença de posse nem regime de focinheira que permita importar normalmente uma raça proibida. As únicas exceções são transitórias — um cachorro adquirido antes de 17 de março de 2010 pode ser mantido e levado ao país (com guia de ≤2 m e focinheira em público), mas isso nunca vale para o Pit Bull Terrier nem para o Tosa Inu, proibidos desde 1991. Uma raça proibida só pode transitar pela Dinamarca se não sair do veículo, salvo em breves paradas necessárias, e sem nenhuma parada desnecessária."
+  note:
+    en: "If your dog resembles one of the 13 breeds, carry documentation of its breed and, for a pre-2010 dog, proof of the acquisition date. For any doubt, contact the Danish Veterinary, Food, Agriculture and Fisheries Agency (Fødevarestyrelsen)."
+    fr: "Si ton chien ressemble à l'une des 13 races, munis-toi d'une preuve de sa race et, pour un chien antérieur à 2010, d'une preuve de la date d'acquisition. En cas de doute, contacte l'Administration vétérinaire, alimentaire, agricole et de la pêche (Fødevarestyrelsen)."
+    es: "Si tu perro se parece a una de las 13 razas, lleva documentación de su raza y, para un perro anterior a 2010, una prueba de la fecha de adquisición. En caso de duda, contacta con la Administración Veterinaria, Alimentaria, Agrícola y de Pesca (Fødevarestyrelsen)."
+    pt: "Se seu cachorro se parece com uma das 13 raças, leve a documentação da raça dele e, no caso de um cachorro anterior a 2010, o comprovante da data de aquisição. Em caso de dúvida, entre em contato com a Agência Veterinária, Alimentar, Agrícola e de Pesca da Dinamarca (Fødevarestyrelsen)."
+
+checklist:
+  - en: "Confirm your dog is not one of the 13 banned breeds (or a cross)"
+    fr: "Vérifie que ton chien n'est pas l'une des 13 races interdites (ni un croisement)"
+    es: "Confirma que tu perro no es una de las 13 razas prohibidas (ni un cruce)"
+    pt: "Confirme que seu cachorro não é uma das 13 raças proibidas (nem um cruzamento)"
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Enter via Copenhagen, Billund or Aalborg airport if arriving from outside the EU"
+    fr: "Entrer par l'aéroport de Copenhague, Billund ou Aalborg si arrivée hors UE"
+    es: "Entra por el aeropuerto de Copenhague, Billund o Aalborg si llegas desde fuera de la UE"
+    pt: "Entrar pelo aeroporto de Copenhague, Billund ou Aalborg se a chegada for de fora da UE"
+  - en: "Register in the Danish Dog Register if the stay exceeds 4 weeks"
+    fr: "Inscription au Registre danois des chiens si le séjour dépasse 4 semaines"
+    es: "Inscríbete en el Registro danés de perros si la estancia supera las 4 semanas"
+    pt: "Inscrever o cachorro no Registro Dinamarquês de Cães se a estadia passar de 4 semanas"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+
+sources:
+  - label: { en: "Danish Veterinary and Food Agency (Fødevarestyrelsen) — How to travel with your dog to Denmark", fr: "Administration vétérinaire et alimentaire (Fødevarestyrelsen) — Voyager avec ton chien au Danemark", es: "Administración Veterinaria y Alimentaria de Dinamarca (Fødevarestyrelsen) — Cómo viajar con tu perro a Dinamarca", pt: "Autoridade Veterinária e Alimentar da Dinamarca (Fødevarestyrelsen) — Como viajar com seu cachorro para a Dinamarca" }
+    url: "https://en.foedevarestyrelsen.dk/animals/travelling-with-pet-animals/how-to-travel-with-your-dog"
+  - label: { en: "Fødevarestyrelsen — Danish Legislation on Dogs (banned breeds)", fr: "Fødevarestyrelsen — Législation danoise sur les chiens (races interdites)", es: "Fødevarestyrelsen — Legislación danesa sobre perros (razas prohibidas)", pt: "Fødevarestyrelsen — Legislação dinamarquesa sobre cães (raças proibidas)" }
+    url: "https://en.foedevarestyrelsen.dk/animals/animal-welfare/danish-legislation-on-dogs"
+  - label: { en: "Fødevarestyrelsen — Traveller's Point of Entry in Denmark", fr: "Fødevarestyrelsen — Points d'entrée voyageurs au Danemark", es: "Fødevarestyrelsen — Puntos de entrada de viajeros en Dinamarca", pt: "Fødevarestyrelsen — Pontos de entrada de viajantes na Dinamarca" }
+    url: "https://en.foedevarestyrelsen.dk/animals/travelling-with-pet-animals/travellers-point-of-entry-in-denmark"
+  - label: { en: "Ministry of Food, Agriculture and Fisheries of Denmark — The Danish dog law", fr: "Ministère de l'Alimentation, de l'Agriculture et de la Pêche du Danemark — La loi danoise sur les chiens", es: "Ministerio de Alimentación, Agricultura y Pesca de Dinamarca — La ley danesa sobre perros", pt: "Ministério da Alimentação, Agricultura e Pesca da Dinamarca — A lei dinamarquesa sobre cães" }
+    url: "https://en.fvm.dk/news-and-contact/focus-on/the-danish-dog-law"
+  - label: { en: "Danish Customs (Toldstyrelsen / skat.dk) — Travel rules and goods you may bring into Denmark", fr: "Douane danoise (Toldstyrelsen / skat.dk) — Règles de voyage et marchandises admises au Danemark", es: "Aduana danesa (Toldstyrelsen / skat.dk) — Normas de viaje y mercancías que puedes traer a Dinamarca", pt: "Alfândega dinamarquesa (Toldstyrelsen / skat.dk) — Regras de viagem e mercadorias que você pode levar para a Dinamarca" }
+    url: "https://skat.dk/data.aspx?lang=us&oid=2303332"
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Listing of non-EU countries (antibody-test exemption)", fr: "Commission européenne — Liste des pays tiers (dispense de titrage)", es: "Comisión Europea — Lista de países no pertenecientes a la UE (exención de la prueba de titulación)", pt: "Comissão Europeia — Lista dos países terceiros (isenção de teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en"
+
+seo:
+  title: { en: "Denmark Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Danemark — Guide", es: "Requisitos de entrada de perros en Dinamarca — Guía de viaje", pt: "Dinamarca: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Denmark With Your Dog: Entry Requirements (2026)", fr: "Voyager au Danemark avec ton chien : formalités (2026)", es: "Viajar a Dinamarca con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Dinamarca: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Denmark, plus the 13 banned breeds — by EU. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien au Danemark, plus les 13 races interdites — selon origine UE. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Dinamarca, más las 13 razas prohibidas — según origen UE. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para o cachorro na Dinamarca, mais as 13 raças proibidas — conforme a origem na UE. Com fonte e data."
+  slug: "denmark"
+  shortDesc:
+    en: "What you need to bring a dog into Denmark, depending on where you are coming from — and the 13 banned breeds."
+    fr: "Ce qu'il faut pour faire entrer un chien au Danemark, selon ton pays de départ — et les 13 races interdites."
+    es: "Lo que necesitas para traer un perro a Dinamarca, según el país del que vengas — y las 13 razas prohibidas."
+    pt: "O que você precisa para levar um cachorro para a Dinamarca, dependendo do país de onde você vem — e as 13 raças proibidas."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

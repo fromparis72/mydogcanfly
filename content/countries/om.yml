@@ -1,0 +1,344 @@
+# Country Entry Guide — Oman (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_om
+iso2: "OM"
+name: { en: "Oman", fr: "Oman", es: "Omán", pt: "Omã" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+
+hero:
+  h1: { en: "Traveling to Oman with your dog", fr: "Voyager à Oman avec ton chien", es: "Viajar a Omán con tu perro", pt: "Viajar para Omã com seu cachorro" }
+  intro:
+    en: >-
+      Oman welcomes pet dogs, but entry runs through the country's own scheme, not the EU framework.
+      Before your dog travels you must obtain a PRIOR veterinary import permit from the Ministry of
+      Agriculture, Fisheries Wealth and Water Resources (Veterinary Quarantine Department), applied for
+      through the Customs "Bayan" system. On top of the permit, your dog needs an electronic microchip, a
+      valid rabies vaccination and — for every origin — a rabies antibody test carried out by an
+      accredited laboratory. Oman follows the recommendations of the World Organisation for Animal Health
+      (WOAH-OIE), so the same core procedure applies whatever country your dog leaves from. The exact
+      timing depends on the country your dog is travelling from, its vaccination and blood-test dates, and
+      its breed. This guide explains the permit, the tests, the minimum age and the banned breeds so you
+      know what to prepare before you book.
+    fr: >-
+      Oman accueille les chiens, mais l'entrée passe par le dispositif propre au pays, pas par le cadre de
+      l'UE. Avant le voyage de ton chien, tu dois obtenir un permis vétérinaire d'importation
+      PRÉALABLE auprès du ministère de l'Agriculture, de la Richesse halieutique et des Ressources en eau
+      (département de la quarantaine vétérinaire), demandé via le système douanier « Bayan ». Outre le
+      permis, ton chien doit avoir une puce électronique, une vaccination antirabique valide et — pour
+      toute origine — un titrage des anticorps antirabiques réalisé par un laboratoire agréé. Oman suit les
+      recommandations de l'Organisation mondiale de la santé animale (WOAH-OIE), de sorte que la même
+      procédure de base s'applique quel que soit le pays de départ. Le calendrier exact dépend du pays de
+      départ, des dates de vaccination et de prise de sang, et de la race. Ce guide détaille le permis, les
+      tests, l'âge minimum et les races interdites pour savoir quoi préparer avant de réserver.
+    es: >-
+      Omán acoge a los perros de compañía, pero la entrada pasa por el régimen propio del país, no por el
+      marco de la UE. Antes de que tu perro viaje debes obtener un permiso veterinario de importación PREVIO
+      del Ministerio de Agricultura, Riqueza Pesquera y Recursos Hídricos (Departamento de Cuarentena
+      Veterinaria), solicitado a través del sistema aduanero «Bayan». Además del permiso, tu perro necesita
+      un microchip electrónico, una vacunación antirrábica válida y — para cualquier origen — una prueba de
+      titulación de anticuerpos contra la rabia realizada por un laboratorio acreditado. Omán sigue las
+      recomendaciones de la Organización Mundial de Sanidad Animal (WOAH-OIE), por lo que el mismo
+      procedimiento básico se aplica sea cual sea el país desde el que sale tu perro. El calendario exacto
+      depende del país de salida, de las fechas de vacunación y de análisis de sangre, y de la raza. Esta
+      guía explica el permiso, las pruebas, la edad mínima y las razas prohibidas para que sepas qué
+      preparar antes de reservar.
+
+    pt: "Omã recebe cachorros de estimação, mas a entrada segue o sistema próprio do país, e não o regime da UE. Antes de o seu cachorro viajar, você precisa obter uma autorização veterinária PRÉVIA junto ao Ministério da Agricultura, Riqueza Pesqueira e Recursos Hídricos (Departamento de Quarentena Veterinária), solicitada por meio do sistema alfandegário \"Bayan\". Além da autorização, o seu cachorro precisa de um microchip eletrônico, uma vacinação antirrábica válida e — para qualquer origem — um teste sorológico antirrábico realizado por um laboratório credenciado. Omã segue as recomendações da Organização Mundial de Saúde Animal (WOAH-OIE), portanto o mesmo procedimento central se aplica seja qual for o país de onde o seu cachorro parte. O prazo exato depende do país de onde o seu cachorro está viajando, das datas da vacinação e do exame de sangue, e da raça. Este guia explica a autorização, os exames, a idade mínima e as raças proibidas para você saber o que preparar antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance import permit and rabies antibody test required", fr: "Modéré — permis d'importation préalable et titrage antirabique requis", es: "Moderado — se exigen permiso de importación previo y prueba de titulación de rabia", pt: "Moderado — autorização de importação prévia e teste sorológico antirrábico obrigatórios" }
+
+prepTime:
+  eu:
+    en: "From the EU or another country: plan several months. The rabies antibody test blood sample is taken 21–30 days after the rabies vaccination, and its result must be at least 3 months old (and under 12 months) when the dog is exported."
+    fr: "Depuis l'UE ou un autre pays : compte plusieurs mois. Le prélèvement du titrage antirabique est effectué 21–30 jours après la vaccination antirabique, et son résultat doit avoir au moins 3 mois (et moins de 12 mois) au moment de l'exportation du chien."
+    es: "Desde la UE u otro país: planifica varios meses. La muestra de sangre para la prueba de titulación de rabia se toma 21–30 días después de la vacunación antirrábica, y su resultado debe tener al menos 3 meses (y menos de 12 meses) en el momento de la exportación del perro."
+    pt: "Da UE ou de outro país: planeje vários meses. A coleta de sangue para o teste sorológico antirrábico é feita de 21 a 30 dias após a vacinação antirrábica, e o resultado deve ter pelo menos 3 meses (e menos de 12 meses) quando o cachorro for exportado."
+  listed:
+    en: "Oman applies one WOAH-based scheme to all origins: microchip, rabies vaccination, rabies antibody test and the advance veterinary permit are always required — the 3-month post-test waiting period drives the overall timeline."
+    fr: "Oman applique un dispositif unique fondé sur WOAH à toutes les origines : puce, vaccination antirabique, titrage antirabique et permis vétérinaire préalable sont toujours requis — le délai d'attente de 3 mois après le test conditionne le calendrier global."
+    es: "Omán aplica un único régimen basado en la WOAH a todos los orígenes: microchip, vacunación antirrábica, prueba de titulación de rabia y el permiso veterinario previo son siempre obligatorios — el período de espera de 3 meses tras la prueba marca el calendario global."
+    pt: "Omã aplica um único regime baseado na WOAH para todas as origens: microchip, vacinação antirrábica, teste sorológico antirrábico e a autorização veterinária prévia são sempre exigidos — o período de espera de 3 meses após o teste é o que determina o prazo geral."
+  nonListed:
+    en: "If your dog is a banned breed, under 4 months old, or its documents/blood-test dates are out of range, import is refused — timing cannot be assumed and eligibility must be confirmed first."
+    fr: "Si ton chien est d'une race interdite, a moins de 4 mois, ou si ses documents/dates de prise de sang sont hors délais, l'importation est refusée — les délais ne peuvent être présumés et l'éligibilité doit d'abord être confirmée."
+    es: "Si tu perro es de una raza prohibida, tiene menos de 4 meses, o sus documentos/fechas de análisis de sangre están fuera de plazo, se deniega la importación — no se pueden dar por supuestos los plazos y primero debe confirmarse la elegibilidad."
+    pt: "Se o seu cachorro for de uma raça proibida, tiver menos de 4 meses ou se os documentos/as datas do exame de sangue estiverem fora do prazo, a importação é recusada — o prazo não pode ser presumido e a elegibilidade precisa ser confirmada antes."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (non-banned breeds)", fr: "Oui (races non interdites)", es: "Sí (razas no prohibidas)", pt: "Sim (raças não proibidas)" }
+    cls: ok
+  - requirement: { en: "Import permit (Ministry / Bayan)", fr: "Permis d'importation (Ministère / Bayan)", es: "Permiso de importación (Ministerio / Bayan)", pt: "Autorização de importação (Ministério / Bayan)" }
+    status: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio por adelantado", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required (all origins)", fr: "Requis (toutes origines)", es: "Obligatoria (todos los orígenes)", pt: "Obrigatório (todas as origens)" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado veterinario oficial", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published", fr: "Non communiqué", es: "No comunicada", pt: "Não publicado" }
+    cls: neutral
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "Several breeds prohibited", fr: "Plusieurs races interdites", es: "Varias razas prohibidas", pt: "Várias raças proibidas" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Oman (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — Oman (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Omán (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Omã (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Oman", fr: "Pays de destination — Oman", es: "País de destino — Omán", pt: "País de destino — Omã" }
+      text:
+        en: "Oman runs its own scheme: a prior veterinary import permit (via the Bayan system), an electronic microchip, a valid rabies vaccination, a rabies antibody test and a government veterinary health certificate are always required. Certain breeds are banned outright under Resolution 222/2019, and puppies under four months cannot enter."
+        fr: "Oman applique son propre dispositif : permis vétérinaire d'importation préalable (via le système Bayan), puce électronique, vaccination antirabique valide, titrage antirabique et certificat vétérinaire officiel toujours exigés. Certaines races sont totalement interdites au titre de la résolution 222/2019, et les chiots de moins de quatre mois ne peuvent entrer."
+        es: "Omán aplica su propio régimen: un permiso veterinario de importación previo (a través del sistema Bayan), un microchip electrónico, una vacunación antirrábica válida, una prueba de titulación de rabia y un certificado veterinario oficial son siempre obligatorios. Ciertas razas están totalmente prohibidas al amparo de la Resolución 222/2019, y los cachorros menores de cuatro meses no pueden entrar."
+        pt: "Omã aplica o próprio sistema: uma autorização veterinária de importação prévia (pelo sistema Bayan), um microchip eletrônico, uma vacinação antirrábica válida, um teste sorológico antirrábico e um atestado de saúde veterinário oficial são sempre exigidos. Certas raças são totalmente proibidas pela Resolução 222/2019, e filhotes com menos de quatro meses não podem entrar."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Oman applies its WOAH-based rules to every origin, so a rabies antibody test from an accredited laboratory is required whatever country your dog leaves from. The departure country's own export rules and the timing of the vaccination and blood test shape your overall schedule."
+        fr: "Oman applique ses règles fondées sur WOAH à toutes les origines : un titrage antirabique par un laboratoire agréé est donc requis quel que soit le pays de départ. Les règles d'exportation du pays de départ et le calendrier de la vaccination et de la prise de sang déterminent ton planning global."
+        es: "Omán aplica sus normas basadas en la WOAH a todos los orígenes, por lo que se exige una prueba de titulación de rabia de un laboratorio acreditado sea cual sea el país desde el que sale tu perro. Las propias normas de exportación del país de salida y el calendario de la vacunación y del análisis de sangre determinan tu planificación global."
+        pt: "Omã aplica as suas normas baseadas na WOAH a qualquer origem, portanto um teste sorológico antirrábico de um laboratório credenciado é exigido seja qual for o país de onde o seu cachorro parte. As próprias normas de exportação do país de partida e o prazo da vacinação e do exame de sangue definem o seu cronograma geral."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's real vaccination and residence history — not only the last airport — determines whether the rabies antibody test result falls inside the required 3-to-12-month window on the day of export. A recent move can reset that clock."
+        fr: "L'historique réel de vaccination et de séjour de ton chien — pas seulement le dernier aéroport — détermine si le résultat du titrage antirabique se situe dans la fenêtre requise de 3 à 12 mois le jour de l'exportation. Un déménagement récent peut réinitialiser ce compte à rebours."
+        es: "El historial real de vacunación y residencia de tu perro — no solo el último aeropuerto — determina si el resultado de la prueba de titulación de rabia se encuentra dentro de la ventana requerida de 3 a 12 meses el día de la exportación. Una mudanza reciente puede reiniciar esa cuenta atrás."
+        pt: "O histórico real de vacinação e de residência do seu cachorro — não apenas o último aeroporto — determina se o resultado do teste sorológico antirrábico se encaixa na janela exigida de 3 a 12 meses no dia da exportação. Uma mudança recente pode reiniciar essa contagem."
+  note:
+    en: "So read the requirements below as Oman's framework, then confirm your dog's exact origin, vaccination and blood-test dates and history with your vet before applying for the permit."
+    fr: "Lis donc les exigences ci-dessous comme le cadre omanais, puis confirme l'origine, les dates de vaccination et de prise de sang et l'historique exacts de ton chien avec ton vétérinaire avant de demander le permis."
+    es: "Así que lee los requisitos siguientes como el marco de Omán y luego confirma el origen, las fechas de vacunación y de análisis de sangre y el historial exactos de tu perro con tu veterinario antes de solicitar el permiso."
+    pt: "Portanto, leia as exigências abaixo como o regime de Omã e depois confirme a origem exata, as datas da vacinação e do exame de sangue, e o histórico do seu cachorro com o seu veterinário antes de solicitar a autorização."
+
+requirements:
+  - item: { en: "Veterinary import permit", fr: "Permis vétérinaire d'importation", es: "Permiso veterinario de importación", pt: "Autorização de importação veterinária" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A PRIOR veterinary permit must be obtained before the pet arrives, applied for through the Customs Bayan system; the permit is issued electronically. Application fee OMR 20; approval within two hours during working hours, seven days a week.", fr: "Un permis vétérinaire PRÉALABLE doit être obtenu avant l'arrivée de l'animal, demandé via le système douanier Bayan ; le permis est délivré par voie électronique. Frais de demande 20 OMR ; approbation sous deux heures pendant les heures de travail, sept jours sur sept.", es: "Debe obtenerse un permiso veterinario PREVIO antes de la llegada de la mascota, solicitado a través del sistema aduanero Bayan; el permiso se expide de forma electrónica. Tasa de solicitud 20 OMR; aprobación en un plazo de dos horas durante el horario laboral, los siete días de la semana.", pt: "Uma autorização veterinária PRÉVIA deve ser obtida antes de o animal chegar, solicitada por meio do sistema alfandegário Bayan; a autorização é emitida eletronicamente. Taxa de solicitação: 20 OMR; aprovação em até duas horas durante o horário de expediente, sete dias por semana." }
+    exceptions: { en: "No dog may enter without a valid prior veterinary permit. Permit validity period: Unknown (not published).", fr: "Aucun chien ne peut entrer sans permis vétérinaire préalable valide. Durée de validité du permis : non communiquée.", es: "Ningún perro puede entrar sin un permiso veterinario previo válido. Período de valide del permiso: no comunicado (no publicado).", pt: "Nenhum cachorro pode entrar sem uma autorização veterinária prévia válida. Período de validade da autorização: Não comunicado (não publicado)." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats; Gov.om — Veterinary permit to import animals shipment", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats ; Gov.om — Permis vétérinaire d'importation d'animaux", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos; Gov.om — Permiso veterinario para importar un envío de animales", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos; Gov.om — Autorização veterinária para importar remessa de animais" }
+  - item: { en: "Electronic microchip", fr: "Puce électronique", es: "Microchip electrónico", pt: "Microchip eletrônico" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must carry an electronic microchip recorded on the immunization record; the chip number must match the vaccination record and health certificate.", fr: "Le chien doit porter une puce électronique consignée au carnet de vaccination ; le numéro de puce doit correspondre au carnet et au certificat sanitaire.", es: "El perro debe llevar un microchip electrónico registrado en la cartilla de vacunación; el número del chip debe coincidir con la cartilla de vacunación y el certificado sanitario.", pt: "O cachorro deve ter um microchip eletrônico registrado na carteira de imunização; o número do chip deve coincidir com o registro de vacinação e o atestado de saúde." }
+    exceptions: { en: "None — identification is mandatory. The specific ISO standard number is not stated in Oman's published rules.", fr: "Aucune — l'identification est obligatoire. La norme ISO précise n'est pas indiquée dans les règles publiées d'Oman.", es: "Ninguna — la identificación es obligatoria. El número de norma ISO específico no se indica en las normas publicadas de Omán.", pt: "Nenhuma — a identificação é obrigatória. O número específico do padrão ISO não é indicado nas normas publicadas por Omã." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Given after the dog has completed 12 weeks of age; no more than 12 months may have passed since the vaccination date at the time of import.", fr: "Administrée après que le chien a atteint 12 semaines ; au plus 12 mois peuvent s'être écoulés depuis la date de vaccination au moment de l'importation.", es: "Administrada después de que el perro haya cumplido 12 semanas de edad; en el momento de la importación no pueden haber transcurrido más de 12 meses desde la fecha de vacunación.", pt: "Aplicada depois de o cachorro completar 12 semanas de idade; não podem ter se passado mais de 12 meses desde a data da vacinação no momento da importação." }
+    exceptions: { en: "The microchip must already be in place and recorded for the vaccination to be recognised.", fr: "La puce doit déjà être posée et consignée pour que la vaccination soit reconnue.", es: "El microchip debe estar ya implantado y registrado para que se reconozca la vacunación.", pt: "O microchip já deve estar implantado e registrado para que a vacinação seja reconhecida." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A blood sample is drawn 21–30 days after the last rabies vaccination and tested by an accredited laboratory (RNATT or FAVN). At export the result must be at least 3 months old and not more than 12 months old.", fr: "Un prélèvement sanguin est effectué 21–30 jours après la dernière vaccination antirabique et analysé par un laboratoire agréé (RNATT ou FAVN). À l'exportation, le résultat doit avoir au moins 3 mois et au plus 12 mois.", es: "Se extrae una muestra de sangre 21–30 días después de la última vacunación antirrábica y se analiza en un laboratorio acreditado (RNATT o FAVN). En la exportación, el resultado debe tener al menos 3 meses y no más de 12 meses.", pt: "Uma amostra de sangue é coletada de 21 a 30 dias após a última vacinação antirrábica e testada por um laboratório credenciado (RNATT ou FAVN). Na exportação, o resultado deve ter pelo menos 3 meses e no máximo 12 meses." }
+    exceptions: { en: "None documented — the test applies to all origins under Oman's WOAH-based rules.", fr: "Aucune documentée — le test s'applique à toutes les origines selon les règles d'Oman fondées sur WOAH.", es: "Ninguna documentada — la prueba se aplica a todos los orígenes según las normas de Omán basadas en la WOAH.", pt: "Nenhuma documentada — o teste se aplica a todas as origens segundo as normas de Omã baseadas na WOAH." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A government veterinary health certificate from the country of export must accompany the dog on arrival, together with the passport/immunization record and the accredited-laboratory rabies antibody certificate.", fr: "Un certificat vétérinaire officiel du pays d'exportation doit accompagner le chien à l'arrivée, avec le passeport/carnet de vaccination et le certificat de titrage antirabique du laboratoire agréé.", es: "Un certificado veterinario oficial del país de exportación debe acompañar al perro a la llegada, junto con el pasaporte/cartilla de vacunación y el certificado de titulación de rabia del laboratorio acreditado.", pt: "Um atestado de saúde veterinário oficial do país de exportação deve acompanhar o cachorro na chegada, junto com o passaporte/carteira de imunização e o certificado de teste sorológico antirrábico do laboratório credenciado." }
+    exceptions: { en: "None — an authorised certificate must accompany every dog.", fr: "Aucune — un certificat autorisé doit accompagner chaque chien.", es: "Ninguna — un certificado autorizado debe acompañar a cada perro.", pt: "Nenhuma — um certificado autorizado deve acompanhar cada cachorro." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Parasite treatment (tapeworm / external)", fr: "Traitement antiparasitaire (ténia / externe)", es: "Tratamiento antiparasitario (tenia / externo)", pt: "Tratamento antiparasitário (tênia / externo)" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "Oman's published import conditions for dogs do not state a specific internal or external parasite treatment requirement.", fr: "Les conditions d'importation publiées par Oman pour les chiens n'indiquent pas d'exigence spécifique de traitement antiparasitaire interne ou externe.", es: "Las condiciones de importación publicadas por Omán para los perros no indican ningún requisito específico de tratamiento antiparasitario interno o externo.", pt: "As condições de importação publicadas por Omã para cachorros não indicam uma exigência específica de tratamento antiparasitário interno ou externo." }
+    exceptions: { en: "The exporting country's own rules may still impose one — confirm with your vet before travel.", fr: "Les règles du pays d'exportation peuvent toutefois en imposer un — à confirmer avec ton vétérinaire avant le voyage.", es: "Las propias normas del país de exportación pueden imponer uno igualmente — confírmalo con tu veterinario antes del viaje.", pt: "As próprias normas do país exportador ainda podem impor um — confirme com o seu veterinário antes de viajar." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be more than four months old to be imported.", fr: "Le chien doit avoir plus de quatre mois pour être importé.", es: "El perro debe tener más de cuatro meses para ser importado.", pt: "O cachorro deve ter mais de quatro meses de idade para ser importado." }
+    exceptions: { en: "Younger puppies cannot meet the vaccination and antibody-test timeline and cannot be imported.", fr: "Les chiots plus jeunes ne peuvent respecter le calendrier de vaccination et de titrage et ne peuvent être importés.", es: "Los cachorros más jóvenes no pueden cumplir el calendario de vacunación y prueba de titulación y no pueden ser importados.", pt: "Filhotes mais novos não conseguem cumprir o prazo da vacinação e do teste sorológico e não podem ser importados." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Border check / port examination", fr: "Contrôle frontalier / examen au port", es: "Control fronterizo / examen en el puerto", pt: "Controle de fronteira / exame no ponto de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "On arrival at the port of entry (land, sea or air, cargo or passenger) the dog and its documents are checked against the permit, health certificate, passport and rabies antibody certificate.", fr: "À l'arrivée au point d'entrée (terre, mer ou air, fret ou passagers), le chien et ses documents sont contrôlés au regard du permis, du certificat sanitaire, du passeport et du certificat de titrage antirabique.", es: "A la llegada al punto de entrada (tierra, mar o aire, carga o pasajeros) se cotejan el perro y sus documentos con el permiso, el certificado sanitario, el pasaporte y el certificado de titulación de rabia.", pt: "Na chegada ao ponto de entrada (terrestre, marítimo ou aéreo, carga ou passageiro), o cachorro e seus documentos são conferidos em relação à autorização, ao atestado de saúde, ao passaporte e ao certificado do teste sorológico antirrábico." }
+    exceptions: { en: "None — every imported dog is checked at the entry port.", fr: "Aucune — tout chien importé est contrôlé au point d'entrée.", es: "Ninguna — todo perro importado se controla en el punto de entrada.", pt: "Nenhuma — todo cachorro importado é conferido no ponto de entrada." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicada", pt: "Não publicado" }
+    when: { en: "Oman's published pet-import conditions do not state a routine quarantine for compliant dogs; a duration is not published.", fr: "Les conditions d'importation d'animaux publiées par Oman n'indiquent pas de quarantaine de routine pour les chiens conformes ; aucune durée n'est publiée.", es: "Las condiciones de importación de mascotas publicadas por Omán no indican una cuarentena rutinaria para los perros conformes; no se publica ninguna duración.", pt: "As condições de importação de animais de estimação publicadas por Omã não indicam quarentena de rotina para cachorros em conformidade; uma duração não é publicada." }
+    exceptions: { en: "Non-compliant animals may be held, refused or returned at the owner's expense.", fr: "Les animaux non conformes peuvent être retenus, refusés ou renvoyés aux frais du propriétaire.", es: "Los animales no conformes pueden ser retenidos, rechazados o devueltos a cargo del propietario.", pt: "Animais em não conformidade podem ser retidos, recusados ou devolvidos às custas do dono." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "Prohibited", fr: "Interdites", es: "Prohibidas", pt: "Proibidas" }
+    when: { en: "Import of the breeds listed under Resolution 222/2019 (pit bull, Staffordshire terrier, American Bully, mastiff, Fila Brasileiro, Dogo Argentino, Japanese Tosa, Rottweiler, Doberman Pinscher, Presa Canario, Boxer, Boerboel, Caucasian Shepherd, Anatolian Karabash, Great Dane) and any mix of them is not allowed.", fr: "L'importation des races listées par la résolution 222/2019 (pit-bull, Staffordshire terrier, American Bully, mastiff, Fila Brasileiro, Dogo Argentino, Tosa japonais, Rottweiler, Doberman, Presa Canario, Boxer, Boerboel, berger du Caucase, Karabash anatolien, dogue allemand) et tout croisement de celles-ci n'est pas autorisée.", es: "No se permite la importación de las razas listadas en la Resolución 222/2019 (pit bull, Staffordshire terrier, American Bully, mastín, Fila Brasileiro, Dogo Argentino, Tosa Inu, Rottweiler, Dóberman, Presa Canario, Bóxer, Boerboel, Pastor del Cáucaso, Kangal de Anatolia, Gran Danés) ni de ningún cruce de las mismas.", pt: "A importação das raças listadas na Resolução 222/2019 (pit bull, Staffordshire terrier, American Bully, mastim, Fila Brasileiro, Dogo Argentino, Tosa japonês, Rottweiler, Doberman, Presa Canário, Boxer, Boerboel, Pastor do Cáucaso, Karabash da Anatólia, Dogue Alemão) e qualquer mistura dessas raças não é permitida." }
+    exceptions: { en: "None published for these breeds at import.", fr: "Aucune publiée pour ces races à l'importation.", es: "Ninguna publicada para estas razas en la importación.", pt: "Nenhuma publicada para essas raças na importação." }
+    ref: { en: "Directorate General of Customs — Veterinary Permit to Import Dogs and Cats; Resolution 222/2019", fr: "Direction générale des douanes — Permis vétérinaire d'importation de chiens et chats ; résolution 222/2019", es: "Directorate General of Customs — Permiso veterinario para importar perros y gatos; Resolución 222/2019", pt: "Diretoria Geral de Alfândega — Autorização Veterinária para Importar Cachorros e Gatos; Resolução 222/2019" }
+
+origin:
+  eu:
+    title: { en: "From the EU or another country — the standard Oman scheme", fr: "Depuis l'UE ou un autre pays — le dispositif standard d'Oman", es: "Desde la UE u otro país — el régimen estándar de Omán", pt: "Da UE ou de outro país — o esquema padrão de Omã" }
+    body:
+      en: "Whatever country your dog leaves, Oman requires the same core file: the prior veterinary import permit (applied for through the Bayan system before travel), an electronic microchip, a rabies vaccination given after 12 weeks of age and no older than 12 months, a rabies antibody test from an accredited laboratory (RNATT or FAVN) and a government veterinary health certificate from the country of export. The dog must be more than four months old. There is no EU-style pet-passport shortcut: even dogs from the EU go through this full procedure."
+      fr: "Quel que soit le pays de départ de ton chien, Oman exige le même dossier de base : le permis vétérinaire d'importation préalable (demandé via le système Bayan avant le voyage), une puce électronique, une vaccination antirabique administrée après 12 semaines et datant de moins de 12 mois, un titrage antirabique par un laboratoire agréé (RNATT ou FAVN) et un certificat vétérinaire officiel du pays d'exportation. Le chien doit avoir plus de quatre mois. Il n'existe pas de raccourci de type passeport UE : même les chiens de l'UE suivent cette procédure complète."
+      es: "Sea cual sea el país del que salga tu perro, Omán exige el mismo expediente básico: el permiso veterinario de importación previo (solicitado a través del sistema Bayan antes del viaje), un microchip electrónico, una vacunación antirrábica administrada después de las 12 semanas de edad y con una antigüedad no superior a 12 meses, una prueba de titulación de rabia de un laboratorio acreditado (RNATT o FAVN) y un certificado veterinario oficial del país de exportación. El perro debe tener más de cuatro meses. No hay ningún atajo de tipo pasaporte de la UE: incluso los perros de la UE siguen este procedimiento completo."
+      pt: "Seja qual for o país de onde o seu cachorro parte, Omã exige a mesma base documentada: a autorização veterinária de importação prévia (solicitada pelo sistema Bayan antes da viagem), um microchip eletrônico, uma vacinação antirrábica aplicada depois das 12 semanas de idade e com no máximo 12 meses, um teste sorológico antirrábico de um laboratório credenciado (RNATT ou FAVN) e um atestado de saúde veterinário oficial do país de exportação. O cachorro deve ter mais de quatro meses de idade. Não existe atalho nos moldes do passaporte europeu: até os cachorros vindos da UE passam por esse procedimento completo."
+    cls: ok
+  listed:
+    title: { en: "One WOAH-based scheme for all origins", fr: "Un dispositif unique fondé sur WOAH pour toutes les origines", es: "Un único régimen basado en la WOAH para todos los orígenes", pt: "Um único regime baseado na WOAH para todas as origens" }
+    body:
+      en: "Oman states that its import conditions follow the recommendations of the World Organisation for Animal Health (WOAH-OIE) and does not publish a country-by-country rabies-risk tiering. In practice this means the rabies antibody test is required for every origin, and the 3-to-12-month window between the test result and export is what governs your timeline. Confirm the current rules for your specific departure country before you plan the move."
+      fr: "Oman indique que ses conditions d'importation suivent les recommandations de l'Organisation mondiale de la santé animale (WOAH-OIE) et ne publie pas de classement du risque rabique pays par pays. En pratique, cela signifie que le titrage antirabique est requis pour toute origine, et que la fenêtre de 3 à 12 mois entre le résultat du test et l'exportation conditionne ton calendrier. Confirme les règles en vigueur pour ton pays de départ précis avant de planifier le déménagement."
+      es: "Omán indica que sus condiciones de importación siguen las recomendaciones de la Organización Mundial de Sanidad Animal (WOAH-OIE) y no publica una clasificación del riesgo de rabia país por país. En la práctica, esto significa que la prueba de titulación de rabia se exige para cualquier origen, y que la ventana de 3 a 12 meses entre el resultado de la prueba y la exportación es la que rige tu calendario. Confirma las normas vigentes para tu país de salida concreto antes de planificar la mudanza."
+      pt: "Omã declara que as suas condições de importação seguem as recomendações da Organização Mundial de Saúde Animal (WOAH-OIE) e não publica uma classificação de risco de raiva país por país. Na prática, isso significa que o teste sorológico antirrábico é exigido para qualquer origem, e a janela de 3 a 12 meses entre o resultado do teste e a exportação é o que rege o seu cronograma. Confirme as normas atuais para o seu país de partida específico antes de planejar a mudança."
+    cls: warn
+  nonListed:
+    title: { en: "When entry is refused", fr: "Quand l'entrée est refusée", es: "Cuándo se deniega la entrada", pt: "Quando a entrada é recusada" }
+    body:
+      en: "Import is refused if your dog is one of the breeds banned under Resolution 222/2019 (or a mix of them), is four months old or younger, has no valid rabies antibody result inside the 3-to-12-month window, or arrives without the prior veterinary permit and the required certificates. Non-compliant animals may be held, refused entry or returned at the owner's expense, so confirm eligibility before anything else."
+      fr: "L'importation est refusée si ton chien fait partie des races interdites par la résolution 222/2019 (ou un croisement de celles-ci), a quatre mois ou moins, ne dispose pas d'un résultat de titrage antirabique valide dans la fenêtre de 3 à 12 mois, ou arrive sans le permis vétérinaire préalable et les certificats requis. Les animaux non conformes peuvent être retenus, refusés ou renvoyés aux frais du propriétaire ; confirme donc l'éligibilité avant toute chose."
+      es: "Se deniega la importación si tu perro es una de las razas prohibidas al amparo de la Resolución 222/2019 (o un cruce de ellas), tiene cuatro meses o menos, no tiene un resultado de titulación de rabia válido dentro de la ventana de 3 a 12 meses, o llega sin el permiso veterinario previo y los certificados exigidos. Los animales no conformes pueden ser retenidos, rechazados en la entrada o devueltos a cargo del propietario, así que confirma la elegibilidad antes que nada."
+      pt: "A importação é recusada se o seu cachorro for de uma das raças proibidas pela Resolução 222/2019 (ou uma mistura delas), tiver quatro meses de idade ou menos, não tiver um resultado válido de teste sorológico antirrábico dentro da janela de 3 a 12 meses, ou chegar sem a autorização veterinária prévia e os certificados exigidos. Animais em não conformidade podem ser retidos, ter a entrada recusada ou ser devolvidos às custas do dono, portanto confirme a elegibilidade antes de qualquer outra coisa."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Oman depends on your prior veterinary permit and the documents you carry."
+    fr: "Ce qui se passe à l'arrivée de ton chien à Oman dépend de ton permis vétérinaire préalable et des documents que tu présente."
+    es: "Lo que ocurre cuando tu perro llega a Omán depende de tu permiso veterinario previo y de los documentos que lleves."
+    pt: "O que acontece quando o seu cachorro chega a Omã depende da sua autorização veterinária prévia e dos documentos que você leva."
+  points:
+    - en: "The prior veterinary import permit must be obtained through the Bayan system before the dog arrives and be valid on the day of entry."
+      fr: "Le permis vétérinaire d'importation préalable doit être obtenu via le système Bayan avant l'arrivée du chien et être valide le jour de l'entrée."
+      es: "El permiso veterinario de importación previo debe obtenerse a través del sistema Bayan antes de la llegada del perro y ser válido el día de la entrada."
+      pt: "A autorização veterinária de importação prévia deve ser obtida pelo sistema Bayan antes de o cachorro chegar e estar válida no dia da entrada."
+    - en: "At the port of entry (land, sea or air, cargo or passenger) the dog is examined against the permit, microchip and certificates."
+      fr: "Au point d'entrée (terre, mer ou air, fret ou passagers), le chien est examiné au regard du permis, de la puce et des certificats."
+      es: "En el punto de entrada (tierra, mar o aire, carga o pasajeros) se examina al perro cotejándolo con el permiso, el microchip y los certificados."
+      pt: "No ponto de entrada (terrestre, marítimo ou aéreo, carga ou passageiro), o cachorro é examinado em relação à autorização, ao microchip e aos certificados."
+    - en: "Carry the originals: the veterinary import permit, the government veterinary health certificate from the export country, the passport/immunization record and the accredited-laboratory rabies antibody certificate."
+      fr: "Munis-toi des originaux : le permis vétérinaire d'importation, le certificat vétérinaire officiel du pays d'exportation, le passeport/carnet de vaccination et le certificat de titrage antirabique du laboratoire agréé."
+      es: "Lleva los originales: el permiso veterinario de importación, el certificado veterinario oficial del país de exportación, el pasaporte/cartilla de vacunación y el certificado de titulación de rabia del laboratorio acreditado."
+      pt: "Leve os originais: a autorização veterinária de importação, o atestado de saúde veterinário oficial do país de exportação, o passaporte/carteira de imunização e o certificado do teste sorológico antirrábico do laboratório credenciado."
+    - en: "If documents are missing or invalid, the breed is banned, or the dog is too young, the animal may be held, refused entry or returned — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, si la race est interdite, ou si le chien est trop jeune, l'animal peut être retenu, refusé ou renvoyé — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, la raza está prohibida, o el perro es demasiado joven, el animal puede ser retenido, rechazado en la entrada o devuelto — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, se a raça for proibida ou se o cachorro for muito novo, o animal pode ser retido, ter a entrada recusada ou ser devolvido — às custas do dono."
+    - en: "Permit approval is issued within two hours during working hours, but apply well ahead — the antibody-test timeline is measured in months, not hours."
+      fr: "L'approbation du permis est délivrée sous deux heures pendant les heures de travail, mais anticipe largement — le calendrier du titrage se compte en mois, pas en heures."
+      es: "La aprobación del permiso se emite en un plazo de dos horas durante el horario laboral, pero solicítalo con mucha antelación — el calendario de la prueba de titulación se mide en meses, no en horas."
+      pt: "A aprovação da autorização é emitida em até duas horas durante o horário de expediente, mas solicite com bastante antecedência — o prazo do teste sorológico é medido em meses, não em horas."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Oman prohibits the import of a list of dangerous dog breeds under Resolution 222/2019, applied through the Directorate General of Customs and the Ministry of Agriculture, Fisheries Wealth and Water Resources. The ban targets specific breeds and any mix of them; it does not depend on an individual behavioural assessment."
+    fr: "Oman interdit l'importation d'une liste de races de chiens dangereux au titre de la résolution 222/2019, appliquée par la Direction générale des douanes et le ministère de l'Agriculture, de la Richesse halieutique et des Ressources en eau. L'interdiction vise des races précises et tout croisement de celles-ci ; elle ne dépend pas d'une évaluation comportementale individuelle."
+    es: "Omán prohíbe la importación de una lista de razas de perros peligrosos al amparo de la Resolución 222/2019, aplicada a través de la Directorate General of Customs y el Ministerio de Agricultura, Riqueza Pesquera y Recursos Hídricos. La prohibición se dirige a razas concretas y a cualquier cruce de ellas; no depende de una evaluación individual del comportamiento."
+    pt: "Omã proíbe a importação de uma lista de raças de cachorros perigosas pela Resolução 222/2019, aplicada pela Diretoria Geral de Alfândega e pelo Ministério da Agricultura, Riqueza Pesqueira e Recursos Hídricos. A proibição visa raças específicas e qualquer mistura delas; não depende de uma avaliação comportamental individual."
+  cat1:
+    en: "Banned from import (Resolution 222/2019): Pit Bull, Staffordshire Terrier, American Bully, Mastiff, Fila Brasileiro, Dogo Argentino, Japanese Tosa, Rottweiler, Doberman Pinscher, Presa Canario, Boxer, Boerboel, Caucasian Shepherd Dog, Anatolian Karabash and Great Dane, plus any mixed breed of these dogs."
+    fr: "Interdits à l'importation (résolution 222/2019) : Pit Bull, Staffordshire Terrier, American Bully, Mastiff, Fila Brasileiro, Dogo Argentino, Tosa japonais, Rottweiler, Doberman, Presa Canario, Boxer, Boerboel, berger du Caucase, Karabash anatolien et dogue allemand, ainsi que tout croisement de ces chiens."
+    es: "Prohibidos para la importación (Resolución 222/2019): Pit Bull, Staffordshire Terrier, American Bully, Mastín, Fila Brasileiro, Dogo Argentino, Tosa Inu, Rottweiler, Dóberman, Presa Canario, Bóxer, Boerboel, Pastor del Cáucaso, Kangal de Anatolia y Gran Danés, además de cualquier cruce de estos perros."
+    pt: "Proibidas para importação (Resolução 222/2019): Pit Bull, Staffordshire Terrier, American Bully, Mastim, Fila Brasileiro, Dogo Argentino, Tosa Japonês, Rottweiler, Doberman, Presa Canário, Boxer, Boerboel, Pastor do Cáucaso, Karabash da Anatólia e Dogue Alemão, além de qualquer raça cruzada com esses cachorros."
+  cat2:
+    en: "There is no lighter 'permitted with conditions' category for these breeds at the border: their import is refused outright. Any exemption for service or assistance dogs is not published in Oman's import rules — confirm directly with the Veterinary Quarantine Department if this applies to you."
+    fr: "Il n'existe pas de catégorie allégée « autorisée sous conditions » pour ces races à la frontière : leur importation est purement refusée. Toute exemption pour chiens de service ou d'assistance n'est pas publiée dans les règles d'importation d'Oman — vérifie directement auprès du département de la quarantaine vétérinaire si cela te concerne."
+    es: "No existe una categoría más ligera de «permitido con condiciones» para estas razas en la frontera: su importación se deniega de plano. Cualquier exención para perros de servicio o de asistencia no está publicada en las normas de importación de Omán — confírmalo directamente con el Departamento de Cuarentena Veterinaria si esto te afecta."
+    pt: "Não existe uma categoria mais branda de 'permitido com condições' para essas raças na fronteira: a importação delas é recusada totalmente. Qualquer isenção para cães de serviço ou de assistência não é publicada nas normas de importação de Omã — confirme diretamente com o Departamento de Quarentena Veterinária se isso se aplica ao seu caso."
+  note:
+    en: "Because a dog that resembles or is crossed with a listed type risks refusal, confirm your dog's breed and any cross before applying for the permit. The banned-breed list can change; verify against Resolution 222/2019 and the Directorate General of Customs page."
+    fr: "Un chien ressemblant à un type listé ou croisé avec l'un d'eux risquant le refus, confirme la race de ton chien et tout croisement avant de demander le permis. La liste des races interdites peut évoluer ; vérifie auprès de la résolution 222/2019 et de la page de la Direction générale des douanes."
+    es: "Como un perro que se parezca a un tipo listado o esté cruzado con uno de ellos corre el riesgo de ser rechazado, confirma la raza de tu perro y cualquier cruce antes de solicitar el permiso. La lista de razas prohibidas puede cambiar; verifícala frente a la Resolución 222/2019 y la página de la Directorate General of Customs."
+    pt: "Como um cachorro que se parece com um tipo listado, ou é cruzado com ele, corre o risco de ser recusado, confirme a raça do seu cachorro e qualquer cruzamento antes de solicitar a autorização. A lista de raças proibidas pode mudar; verifique na Resolução 222/2019 e na página da Diretoria Geral de Alfândega."
+
+checklist:
+  - en: "Prior veterinary import permit obtained through the Bayan system before travel (fee OMR 20)"
+    fr: "Permis vétérinaire d'importation préalable obtenu via le système Bayan avant le voyage (frais 20 OMR)"
+    es: "Permiso veterinario de importación previo obtenido a través del sistema Bayan antes del viaje (tasa 20 OMR)"
+    pt: "Autorização veterinária de importação prévia obtida pelo sistema Bayan antes da viagem (taxa de 20 OMR)"
+  - en: "Electronic microchip implanted and recorded before the rabies vaccination"
+    fr: "Puce électronique posée et consignée avant la vaccination antirabique"
+    es: "Microchip electrónico implantado y registrado antes de la vacunación antirrábica"
+    pt: "Microchip eletrônico implantado e registrado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog >12 weeks at the shot, under 12 months old at import)"
+    fr: "Vaccination antirabique valide (chien >12 semaines à l'injection, datant de moins de 12 mois à l'importation)"
+    es: "Vacunación antirrábica válida (perro >12 semanas en el momento de la inyección, con menos de 12 meses de antigüedad en la importación)"
+    pt: "Vacinação antirrábica válida (cachorro com mais de 12 semanas na aplicação, com menos de 12 meses na importação)"
+  - en: "Rabies antibody test (RNATT or FAVN) from an accredited lab — sample 21–30 days after vaccination, result 3–12 months old at export"
+    fr: "Titrage antirabique (RNATT ou FAVN) par un laboratoire agréé — prélèvement 21–30 jours après la vaccination, résultat de 3 à 12 mois à l'exportation"
+    es: "Prueba de titulación de rabia (RNATT o FAVN) de un laboratorio acreditado — muestra 21–30 días después de la vacunación, resultado con 3–12 meses de antigüedad en la exportación"
+    pt: "Teste sorológico antirrábico (RNATT ou FAVN) de um laboratório credenciado — amostra de 21 a 30 dias após a vacinação, resultado com 3 a 12 meses na exportação"
+  - en: "Government veterinary health certificate from the export country matching the microchip"
+    fr: "Certificat vétérinaire officiel du pays d'exportation correspondant à la puce"
+    es: "Certificado veterinario oficial del país de exportación que coincida con el microchip"
+    pt: "Atestado de saúde veterinário oficial do país de exportação, coincidindo com o microchip"
+  - en: "Passport / immunization record and accredited-laboratory rabies antibody certificate"
+    fr: "Passeport / carnet de vaccination et certificat de titrage antirabique du laboratoire agréé"
+    es: "Pasaporte / cartilla de vacunación y certificado de titulación de rabia del laboratorio acreditado"
+    pt: "Passaporte / carteira de imunização e certificado do teste sorológico antirrábico do laboratório credenciado"
+  - en: "Dog more than 4 months old"
+    fr: "Chien de plus de 4 mois"
+    es: "Perro de más de 4 meses"
+    pt: "Cachorro com mais de 4 meses de idade"
+  - en: "Confirm your dog is not a banned breed under Resolution 222/2019 (pit bull, mastiff, Rottweiler, Boxer, Great Dane, Presa Canario, wolf-type crosses…)"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite par la résolution 222/2019 (pit-bull, mastiff, Rottweiler, Boxer, dogue allemand, Presa Canario, croisements…)"
+    es: "Confirma que tu perro no es de una raza prohibida por la Resolución 222/2019 (pit bull, mastín, Rottweiler, Bóxer, Gran Danés, Presa Canario, cruces de tipo lobo…)"
+    pt: "Confirme que o seu cachorro não é de uma raça proibida pela Resolução 222/2019 (pit bull, mastim, Rottweiler, Boxer, Dogue Alemão, Presa Canário, cruzamentos tipo lobo…)"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "Directorate General of Customs (Royal Oman Police) — Veterinary Permit to Import Dogs and Cats", fr: "Direction générale des douanes (Police royale d'Oman) — Permis vétérinaire d'importation de chiens et chats", es: "Directorate General of Customs (Policía Real de Omán) — Permiso veterinario para importar perros y gatos", pt: "Diretoria Geral de Alfândega (Polícia Real de Omã) — Autorização Veterinária para Importar Cachorros e Gatos" }
+    url: "https://www.customs.gov.om/en/business-services/permit/veterinary-permit-to-import-dogs-and-cats"
+  - label: { en: "Gov.om — Get a Veterinary Permit to Import Animals Shipment (Ministry of Agriculture, Fisheries Wealth & Water Resources)", fr: "Gov.om — Obtenir un permis vétérinaire d'importation d'animaux (ministère de l'Agriculture, de la Richesse halieutique et des Ressources en eau)", es: "Gov.om — Obtener un permiso veterinario para importar un envío de animales (Ministerio de Agricultura, Riqueza Pesquera y Recursos Hídricos)", pt: "Gov.om — Obter Autorização Veterinária para Importar Remessa de Animais (Ministério da Agricultura, Riqueza Pesqueira e Recursos Hídricos)" }
+    url: "https://gov.om/en/w/get-a-veterinary-permit-to-import-animals-shipment"
+  - label: { en: "Oman Government Portal — Permit to import pets (Ministry of Agriculture & Fisheries)", fr: "Portail du gouvernement d'Oman — Permis d'importation d'animaux de compagnie (ministère de l'Agriculture et de la Pêche)", es: "Portal del Gobierno de Omán — Permiso para importar mascotas (Ministerio de Agricultura y Pesca)", pt: "Portal do Governo de Omã — Autorização para importar animais de estimação (Ministério da Agricultura e Pesca)" }
+    url: "https://omanportal.gov.om/wps/wcm/connect/en/site/home/gov/gov1/gov5governmentorganizations/maf/impdg"
+
+seo:
+  title: { en: "Oman Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Oman — Guide", es: "Requisitos de entrada de perros en Omán — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Omã — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Oman With Your Dog: Entry Requirements (2026)", fr: "Voyager à Oman avec ton chien : formalités (2026)", es: "Viajar a Omán con tu perro: requisitos de entrada (2026)", pt: "Viajar para Omã com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaDesc:
+    en: "Official Oman veterinary import permit, microchip, rabies vaccination and rabies antibody-test rules for bringing a dog into Oman. Sourced and dated."
+    fr: "Règles officielles d'Oman : permis vétérinaire d'importation, puce, vaccination et titrage antirabiques pour faire entrer un chien à Oman. Sourcé et daté."
+    es: "Normas oficiales de Omán: permiso veterinario de importación, microchip, vacunación antirrábica y prueba de titulación para traer un perro. Con fuentes y fecha."
+    pt: "Autorização veterinária oficial de importação de Omã, microchip, vacinação antirrábica e normas do teste sorológico antirrábico para levar um cachorro para Omã."
+  slug: "oman"
+  shortDesc:
+    en: "What you need to bring a dog into Oman — veterinary permit, microchip, rabies vaccination, antibody test and banned breeds."
+    fr: "Ce qu'il faut pour faire entrer un chien à Oman — permis vétérinaire, puce, vaccination antirabique, titrage et races interdites."
+    es: "Lo que necesitas para traer un perro a Omán — permiso veterinario, microchip, vacunación antirrábica, prueba de titulación y razas prohibidas."
+    pt: "O que você precisa para levar um cachorro para Omã — autorização veterinária, microchip, vacinação antirrábica, teste sorológico e raças proibidas."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

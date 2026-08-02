@@ -1,0 +1,310 @@
+id: airline_thai_airways
+mono: TG
+name: Thai Airways
+titleH1:
+  en: Flying with a dog on Thai Airways
+  fr: Voyager avec un chien sur Thai Airways
+  es: Volar con un perro en Thai Airways
+  pt: "Viajar com um cachorro na Thai Airways"
+metaDesc:
+  en: "Thai Airways pet policy: hold-only carriage, 34 embargoed breeds, route bans, fares and official sources."
+  fr: "Politique animaux Thai Airways : transport en soute uniquement, 34 races interdites, routes exclues, tarifs et sources officielles."
+  es: "Política de mascotas de Thai Airways: transporte solo en bodega, 34 razas vetadas, rutas excluidas, tarifas y fuentes oficiales."
+  pt: "Política de animais da Thai Airways: transporte somente no porão, 34 raças proibidas, rotas excluídas, tarifas e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Thailand · BKK
+      fr: Thaïlande · BKK
+      es: Tailandia · BKK
+      pt: "Tailândia · BKK"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets except service dogs; only dogs & cats in the hold, with 34 embargoed breeds and route bans.
+  fr: Pas d'animaux en cabine sauf chiens d'assistance ; seuls chiens et chats en soute, avec 34 races interdites et routes exclues.
+  es: Sin mascotas en cabina salvo perros de servicio; solo perros y gatos en bodega, con 34 razas vetadas y rutas excluidas.
+  pt: "Sem animais na cabine, exceto cachorros de assistência; somente cachorros e gatos no porão, com 34 raças proibidas e rotas excluídas."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 70 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: embargo breeds
+      fr: races interdites
+      es: razas vetadas
+      pt: "raças proibidas"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No admitida
+      pt: "Não permitido"
+    detail:
+      en: Pets are generally not in the cabin — only trained service dogs.
+      fr: Les animaux ne sont généralement pas en cabine — seulement les chiens d'assistance dressés.
+      es: Las mascotas generalmente no viajan en cabina; solo perros de servicio adiestrados.
+      pt: "Os animais geralmente não viajam na cabine — somente cachorros de assistência adestrados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only as checked baggage (AVIH) on your flight, up to 70 kg incl. container; over 4 months (intl). Not on A320 or several routes.
+      fr: Chiens et chats uniquement en bagage enregistré (AVIH) sur ton vol, jusqu'à 70 kg avec le contenant ; plus de 4 mois (intl). Pas sur A320 ni plusieurs routes.
+      es: Solo perros y gatos como equipaje facturado (AVIH) en tu vuelo, hasta 70 kg con la jaula; más de 4 meses (internacional). No en A320 ni en varias rutas.
+      pt: "Somente cachorros e gatos como bagagem despachada (AVIH) em seu voo, até 70 kg com o recipiente; acima de 4 meses (internacional). Não em A320 nem em várias rotas."
+    fee:
+      en: $320–540
+      fr: 320–540 $
+      es: 320–540 $
+      pt: "$320–540"
+  - icon: ✈️
+    name:
+      en: THAI Cargo
+      fr: THAI Cargo
+      es: THAI Cargo
+      pt: "THAI Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: The 34 embargoed dog breeds and cargo acceptance go via THAI Cargo.
+      fr: Les 34 races de chiens interdites et l'acceptation en fret passent par THAI Cargo.
+      es: Las 34 razas de perro vetadas y la admisión en carga se gestionan a través de THAI Cargo.
+      pt: "As 34 raças de cachorro proibidas e a aceitação em carga são geridas via THAI Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold — international (≤ 32 kg)
+        fr: Soute — international (≤ 32 kg)
+        es: Bodega — internacional (≤ 32 kg)
+        pt: "Porão — internacional (≤ 32 kg)"
+      value:
+        en: $320
+        fr: 320 $
+        es: 320 $
+        pt: "$320"
+    - label:
+        en: Hold — international (32–70 kg)
+        fr: Soute — international (32–70 kg)
+        es: Bodega — internacional (32–70 kg)
+        pt: "Porão — internacional (32–70 kg)"
+      value:
+        en: $540
+        fr: 540 $
+        es: 540 $
+        pt: "$540"
+    - label:
+        en: Hold — domestic (≤ 70 kg)
+        fr: Soute — national (≤ 70 kg)
+        es: Bodega — nacional (≤ 70 kg)
+        pt: "Porão — doméstico (≤ 70 kg)"
+      value:
+        en: THB 1,500
+        fr: 1 500 THB
+        es: 1500 THB
+        pt: "THB 1.500"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD/THB, effective for travel on/after 2 March 2026. Non-refundable, not in the free allowance.
+    fr: USD/THB, en vigueur pour les voyages à partir du 2 mars 2026. Non remboursable, hors franchise bagages.
+    es: USD/THB, en vigor para viajes a partir del 2 de marzo de 2026. No reembolsable, fuera de la franquicia de equipaje.
+    pt: "USD/THB, válido para viagens a partir de 2 de março de 2026. Não reembolsável, fora da franquia gratuita."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: "34 breeds: cargo only"
+          fr: "34 races : fret uniquement"
+          es: "34 razas: solo carga"
+          pt: "34 raças: somente carga"
+    note:
+      en: THAI doesn't accept 34 snub-nosed and other dog breeds as checked baggage (anatomy makes them vulnerable to air/temperature changes) — bulldogs (all), boxers (all), pugs (all), Boston terrier, mastiffs (all), Shih Tzu, Pekingese, chow chow, Shar Pei, Cane Corso, pit bull/Staffordshire types, Japanese Chin, King Charles/Cavalier spaniels. These go via THAI Cargo.
+      fr: THAI n'accepte pas 34 races de chiens au nez écrasé et autres en bagage enregistré (leur anatomie les rend vulnérables aux variations d'air/température) — bouledogues (tous), boxers (tous), carlins (tous), Boston terrier, mastiffs (tous), Shih Tzu, pékinois, chow chow, Shar Pei, Cane Corso, types pit-bull/Staffordshire, Chin japonais, épagneuls King Charles/Cavalier. Ils passent par THAI Cargo.
+      es: "THAI no acepta 34 razas de perro de hocico chato y otras como equipaje facturado (su anatomía las hace vulnerables a los cambios de aire/temperatura): bulldogs (todos), bóxeres (todos), carlinos (todos), Boston terrier, mastines (todos), Shih Tzu, pekinés, chow chow, Shar Pei, Cane Corso, tipos pit bull/Staffordshire, Chin japonés, spaniels King Charles/Cavalier. Estas se gestionan a través de THAI Cargo."
+      pt: "A THAI não aceita 34 raças de cachorro de focinho achatado e outras como bagagem despachada (a anatomia as torna vulneráveis a mudanças de ar/temperatura) — buldogues (todos), boxers (todos), pugs (todos), Boston terrier, mastins (todos), Shih Tzu, pequinês, chow chow, Shar Pei, Cane Corso, tipos pit bull/Staffordshire, Chin japonês, spaniels King Charles/Cavalier. Essas raças são geridas via THAI Cargo."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: IATA container required
+          fr: Contenant IATA requis
+          es: Jaula IATA obligatoria
+          pt: "Caixa de transporte IATA obrigatória"
+    note:
+      en: The pet must be healthy and not pregnant; provide a leak-proof, disinfected IATA container with food and water.
+      fr: L'animal doit être sain et non gestant ; fournir un contenant IATA étanche et désinfecté avec nourriture et eau.
+      es: La mascota debe estar sana y no gestante; aporta una jaula IATA estanca y desinfectada con comida y agua.
+      pt: "O animal deve estar saudável e não prenhe; forneça uma caixa de transporte IATA à prova de vazamento e desinfetada, com comida e água."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Temperature-controlled hold
+        fr: Soute à température contrôlée
+        es: Bodega con temperatura controlada
+        pt: "Porão com temperatura controlada"
+    - cls: warn
+      label:
+        en: "Numeric limits: not disclosed"
+        fr: "Limites chiffrées : non communiqué"
+        es: "Límites numéricos: no comunicados"
+        pt: "Limites numéricos: não comunicados"
+  note:
+    en: Pets travel in a hold just beneath the cabin described as safe and temperature-controlled; THAI publishes no numeric limit.
+    fr: Les animaux voyagent dans une soute juste sous la cabine décrite comme sûre et à température contrôlée ; THAI ne publie pas de limite chiffrée.
+    es: Las mascotas viajan en una bodega justo debajo de la cabina descrita como segura y con temperatura controlada; THAI no publica ningún límite numérico.
+    pt: "Os animais viajam em um porão logo abaixo da cabine, descrito como seguro e com temperatura controlada; a THAI não publica um limite numérico."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs (guide/hearing/assistance, min 6 months) travel free in the cabin with recognised certification (ADI/IGDF/ADEu).
+      fr: Les chiens d'assistance dressés (guide/écoute/assistance, min 6 mois) voyagent gratuitement en cabine avec une certification reconnue (ADI/IGDF/ADEu).
+      es: Los perros de servicio adiestrados (guía/de señal/de asistencia, mín. 6 meses) viajan gratis en cabina con una certificación reconocida (ADI/IGDF/ADEu).
+      pt: "Cachorros de assistência adestrados (guia/de sinalização/de assistência, mín. 6 meses) viajam grátis na cabine com uma certificação reconhecida (ADI/IGDF/ADEu)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Contact the nearest THAI office ≥ 48 h ahead with ID/microchip, rabies + health certificates.
+      fr: Contacter le bureau THAI le plus proche ≥ 48 h à l'avance avec ID/puce, certificats rage + santé.
+      es: Contacta con la oficina de THAI más cercana ≥ 48 h antes con identificación/microchip y certificados de rabia y de salud.
+      pt: "Entre em contato com o escritório mais próximo da THAI com ≥ 48 h de antecedência, com identificação/microchip e atestados de vacinação antirrábica e de saúde."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Route embargoes
+      fr: Embargos de routes
+      es: Embargos de rutas
+      pt: "Embargos de rotas"
+    value:
+      en: AVIH isn't available on A320 aircraft, nor to Auckland, Denpasar, Dubai, Hong Kong, or to/from Brisbane/Melbourne/Perth/Sydney.
+      fr: L'AVIH n'est pas disponible sur A320, ni vers Auckland, Denpasar, Dubaï, Hong Kong, ou de/vers Brisbane/Melbourne/Perth/Sydney.
+      es: El AVIH no está disponible en aviones A320, ni a Auckland, Denpasar, Dubái, Hong Kong, ni desde/hacia Brisbane/Melbourne/Perth/Sídney.
+      pt: "O AVIH não está disponível em aeronaves A320, nem para Auckland, Denpasar, Dubai, Hong Kong, ou de/para Brisbane/Melbourne/Perth/Sydney."
+  - icon: ⏱️
+    label:
+      en: 3 working days
+      fr: 3 jours ouvrés
+      es: 3 días hábiles
+      pt: "3 dias úteis"
+    value:
+      en: The AVIH request must be made ≥ 3 working days ahead; check in ≥ 2 h before departure.
+      fr: La demande AVIH doit être faite ≥ 3 jours ouvrés à l'avance ; enregistrement ≥ 2 h avant le départ.
+      es: La solicitud de AVIH debe hacerse ≥ 3 días hábiles antes; factura ≥ 2 h antes de la salida.
+      pt: "A solicitação de AVIH deve ser feita com ≥ 3 dias úteis de antecedência; faça o check-in ≥ 2 h antes da partida."
+  - icon: 💶
+    label:
+      en: Non-refundable
+      fr: Non remboursable
+      es: No reembolsable
+      pt: "Não reembolsável"
+    value:
+      en: The AVIH fee is non-refundable and isn't part of the free baggage allowance.
+      fr: Le tarif AVIH est non remboursable et hors franchise bagages.
+      es: La tarifa de AVIH no es reembolsable y no forma parte de la franquicia de equipaje.
+      pt: "A tarifa do AVIH não é reembolsável e não faz parte da franquia gratuita de bagagem."
+book:
+  host: thaiairways.com
+  url: https://www.thaiairways.com/
+sources:
+  en: 3 Thai Airways sources · last verified 11 July 2026
+  fr: 3 sources Thai Airways · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Thai Airways · última verificación 11 de julio de 2026
+  pt: "3 fontes da Thai Airways · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

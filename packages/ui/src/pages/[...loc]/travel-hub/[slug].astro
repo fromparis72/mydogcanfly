@@ -1,0 +1,196 @@
+---
+/* Un guide du Travel Hub.
+ *
+ * Trois points méritent d'être dits, parce qu'ils ne se devinent pas à la lecture :
+ *
+ *  1. Les slugs sont TRADUITS. `/fr/travel-hub/camping-avec-chien/` et
+ *     `/travel-hub/camping-with-a-dog/` sont le même guide, reliés par `key`. C'est pourquoi
+ *     cette page fournit elle-même ses `hreflang` à Base au lieu de le laisser les déduire du
+ *     chemin : la déduction donnerait des adresses qui n'existent pas.
+ *  2. Les guides n'existent qu'en français et en anglais. `languesDe()` constate la
+ *     disponibilité sur le disque ; rien n'est annoncé qui ne soit servi. C'est la leçon du
+ *     portugais, qui a été déclaré en hreflang avant d'exister.
+ *  3. Le `en bref` vit dans le front matter, pas dans le corps. Il est donc rendu ici, en
+ *     tête, et reste réutilisable ailleurs (index, extraits) sans avoir à découper du texte.
+ */
+import { getCollection } from "astro:content";
+import { shardPaths } from "../../../lib/buildShard";
+import Base from "../../../layouts/Base.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { inlineT } from "@mydogcanfly/knowledge";
+import { decompose, guideHref, languesDe, GUIDE_LOCALES, type Guide } from "../../../lib/guides";
+import { LEGAL } from "../../../lib/legal";
+
+export async function getStaticPaths() {
+  const tous = await getCollection("guides");
+  const chemins = tous
+    .filter((g) => (GUIDE_LOCALES as readonly string[]).includes(decompose(g).locale))
+    .map((g) => {
+      const { locale, slug } = decompose(g);
+      return {
+        params: { loc: locale === "en" ? undefined : locale, slug },
+        props: { entry: g, locale, slug },
+      };
+    });
+  /* Les guides entrent dans le découpage du build, comme les quatre familles de fiches.
+   * Sans ça, leurs 124 pages seraient réémises à CHAQUE passe — la construction complète en
+   * compte vingt-sept — et chaque passe dépasserait la limite de temps du bac à sable. */
+  return shardPaths("guides", chemins);
+}
+
+const { entry, locale, slug } = Astro.props as { entry: Guide; locale: string; slug: string };
+const d = entry.data;
+const L = inlineT(locale);
+const { Content } = await entry.render();
+const alt = await languesDe(d.key);
+
+const base = locale === "en" ? "" : `/${locale}`;
+const hubHref = `${base}/travel-hub/`;
+const site = "https://mydogcanfly.com";
+const url = site + guideHref(locale, slug);
+const cover = d.cover?.image ? (d.cover.image.startsWith("http") ? d.cover.image : site + d.cover.image) : undefined;
+
+/* La date affichée : `lastmod` s'il est postérieur, sinon la publication. Un guide révisé
+ * doit le dire — c'est la même exigence de fraîcheur datée que sur les fiches. */
+const dt = (s: string) => new Date(s);
+const revise = dt(d.lastmod) > dt(d.date);
+const fmt = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+const ld: Record<string, any>[] = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: d.title,
+    description: d.description,
+    inLanguage: locale,
+    datePublished: d.date,
+    dateModified: d.lastmod,
+    mainEntityOfPage: url,
+    ...(cover ? { image: cover } : {}),
+    ...(d.author ? { author: { "@type": "Person", name: d.author } } : {}),
+    publisher: { "@id": `${LEGAL.url}/#org` },
+  },
+];
+if (d.faq.length)
+  ld.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: d.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  });
+---
+<Base
+  locale={locale}
+  title={d.seoTitle ?? d.title}
+  description={d.description}
+  image={d.cover?.image}
+  ogType="article"
+  jsonLd={ld}
+  altLangs={alt}
+  switcherPath={hubHref}
+>
+  <article class="gd">
+    <div class="mdcf-container">
+      {/* Breadcrumb ajoute lui-même le préfixe de langue : on lui passe le chemin nu. */}
+      <Breadcrumb
+        locale={locale}
+        items={[{ label: "Travel Hub", href: "/travel-hub/" }, { label: d.title }]}
+      />
+
+      <h1 class="gd__h1">{d.title}</h1>
+      <p class="gd__meta">
+        {d.author && <span>{d.author}</span>}
+        <span>
+          {revise
+            ? `${L("updated", "mis à jour le", "actualizado el")} ${fmt.format(dt(d.lastmod))}`
+            : fmt.format(dt(d.date))}
+        </span>
+      </p>
+
+      {d.cover?.image && (
+        <figure class="gd__cover">
+          <img src={d.cover.image} alt={d.cover.alt ?? d.title} width="1400" height="788" loading="eager" />
+          {/* Le crédit photo est une obligation de licence, pas une politesse. */}
+          {d.cover.credit && <figcaption set:html={d.cover.credit.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" rel="nofollow noopener">$1</a>')} />}
+        </figure>
+      )}
+
+      {d.enbref.length > 0 && (
+        <aside class="gd__bref">
+          <p class="gd__bref-h">{L("In short", "En bref", "En resumen")}</p>
+          <ul>
+            {d.enbref.map((p) => <li set:html={p.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")} />)}
+          </ul>
+        </aside>
+      )}
+
+      <div class="gd__body"><Content /></div>
+
+      {d.faq.length > 0 && (
+        <section class="gd__faq">
+          <h2>{L("Frequently asked questions", "Questions fréquentes", "Preguntas frecuentes")}</h2>
+          {d.faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )}
+
+      <RelatedTools locale={locale} current="travel-hub" />
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  /* `is:global` : le corps de l'article est injecté par <Content />, donc sans l'attribut de
+     portée qu'Astro pose sur le balisage écrit ici. Les sélecteurs sont préfixés `.gd__body`
+     pour que la portée reste de fait limitée à l'article. */
+  .gd { padding: 26px 0 40px; }
+  .gd__h1 { font-size: clamp(26px, 3.6vw, 38px); line-height: 1.18; margin: 10px 0 10px; max-width: 22ch; max-width: 760px; }
+  .gd__meta { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--mdcf-muted); font-size: 13.5px; margin: 0 0 20px; }
+  .gd__cover { margin: 0 0 24px; max-width: 860px; }
+  .gd__cover img { width: 100%; height: auto; border-radius: var(--mdcf-radius); display: block; }
+  .gd__cover figcaption { color: var(--mdcf-muted); font-size: 12px; margin-top: 6px; }
+  .gd__cover figcaption a { color: inherit; }
+
+  .gd__bref { max-width: 760px; background: var(--mdcf-accent-soft); border: 1px solid #f0d9b8;
+    border-radius: var(--mdcf-radius); padding: 16px 20px; margin: 0 0 26px; }
+  .gd__bref-h { margin: 0 0 8px; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--mdcf-accent-ink); }
+  .gd__bref ul { margin: 0; padding-left: 20px; }
+  .gd__bref li { margin: 4px 0; line-height: 1.5; }
+
+  .gd__body { max-width: 760px; line-height: 1.68; font-size: 16.5px; }
+  .gd__body h2 { font-size: 23px; margin: 34px 0 12px; line-height: 1.25; }
+  .gd__body h3 { font-size: 18.5px; margin: 26px 0 10px; }
+  .gd__body p { margin: 0 0 16px; }
+  .gd__body ul, .gd__body ol { margin: 0 0 18px; padding-left: 22px; }
+  .gd__body li { margin: 6px 0; }
+  .gd__body a { color: var(--mdcf-link); }
+
+  /* Les deux encarts venus des shortcodes Hugo. Le `type` de l'alerte porte un sens :
+     « obligatoire » est une exigence réglementaire, « attention » un risque. Les aplatir
+     dans un même gris ferait perdre l'information. */
+  .gd__body .gd-alerte { border-left: 4px solid var(--mdcf-warn); background: #fffaf0;
+    padding: 14px 18px; border-radius: 0 10px 10px 0; margin: 22px 0; }
+  .gd__body .gd-alerte--obligatoire { border-left-color: var(--mdcf-risk); background: #fff5f5; }
+  .gd__body .gd-alerte--info { border-left-color: var(--mdcf-accent); background: var(--mdcf-accent-soft); }
+  .gd__body ol.gd-etapes { counter-reset: e; list-style: none; padding-left: 0; margin: 22px 0; }
+  .gd__body ol.gd-etapes li { counter-increment: e; position: relative; padding: 10px 0 10px 44px; border-top: 1px solid var(--mdcf-line); }
+  .gd__body ol.gd-etapes li:last-child { border-bottom: 1px solid var(--mdcf-line); }
+  .gd__body ol.gd-etapes li::before { content: counter(e); position: absolute; left: 0; top: 10px;
+    width: 28px; height: 28px; border-radius: 50%; background: var(--mdcf-accent-soft);
+    color: var(--mdcf-accent-ink); font-weight: 800; font-size: 13px; display: grid; place-items: center; }
+
+  .gd__faq { max-width: 760px; margin: 34px 0 0; }
+  .gd__faq h2 { font-size: 21px; margin: 0 0 12px; }
+  .gd__faq details { border-top: 1px solid var(--mdcf-line); padding: 12px 0; }
+  .gd__faq details:last-of-type { border-bottom: 1px solid var(--mdcf-line); }
+  .gd__faq summary { cursor: pointer; font-weight: 650; }
+  .gd__faq p { margin: 10px 0 0; color: var(--mdcf-ink-soft); line-height: 1.6; }
+</style>

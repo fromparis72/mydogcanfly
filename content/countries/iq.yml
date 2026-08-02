@@ -1,0 +1,360 @@
+# Country Entry Guide — Iraq (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_iq
+iso2: "IQ"
+name: { en: "Iraq", fr: "Irak", es: "Irak", pt: "Iraque" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+
+hero:
+  h1: { en: "Traveling to Iraq with your dog", fr: "Voyager en Irak avec ton chien", es: "Viajar a Irak con tu perro", pt: "Viajar para o Iraque com seu cachorro" }
+  intro:
+    en: >-
+      Iraq (the Republic of Iraq) is a non-EU country, so the EU pet-passport framework does not apply
+      here. Entry is governed by Iraq's own authorities: the Ministry of Agriculture, which is the
+      competent veterinary authority for importing live animals, together with the General Authority of
+      Customs at the border. The clearest official reference available is the agreed United States–Iraq
+      veterinary health certificate for dogs and cats, published by USDA APHIS: it requires a valid
+      rabies vaccination, a veterinary inspection and certification that the animal comes from an area
+      not quarantined for rabies, and it is valid for 30 days after issuance. Iraq itself publishes very
+      little detailed public guidance for personal pet imports, and the country is classified as
+      high-risk for dog rabies. Because several key details are not officially published, this guide
+      states clearly what is confirmed by official sources and what you must confirm directly with the
+      Ministry of Agriculture before you book. Always travel with an official government-endorsed
+      veterinary health certificate.
+    fr: >-
+      L'Irak (République d'Irak) est un pays hors UE : le cadre du passeport européen pour animaux ne
+      s'applique donc pas. L'entrée relève des autorités irakiennes : le ministère de l'Agriculture,
+      autorité vétérinaire compétente pour l'importation d'animaux vivants, ainsi que l'Autorité générale
+      des douanes à la frontière. La référence officielle la plus claire disponible est le certificat
+      vétérinaire convenu entre les États-Unis et l'Irak pour les chiens et les chats, publié par l'USDA
+      APHIS : il exige une vaccination antirabique valide, une inspection vétérinaire et une attestation
+      que l'animal provient d'une zone non placée sous quarantaine rabique, et il est valable 30 jours
+      après sa délivrance. L'Irak lui-même publie très peu d'informations publiques détaillées pour
+      l'importation personnelle d'animaux, et le pays est classé à haut risque pour la rage canine.
+      Plusieurs points clés n'étant pas officiellement publiés, ce guide distingue clairement ce qui est
+      confirmé par des sources officielles de ce que tu dois confirmer directement auprès du ministère
+      de l'Agriculture avant de réserver. Voyage toujours avec un certificat vétérinaire officiel visé
+      par l'autorité gouvernementale.
+    es: >-
+      Irak (la República de Irak) es un país no perteneciente a la UE, por lo que el marco del pasaporte
+      europeo para mascotas no se aplica aquí. La entrada se rige por las propias autoridades de Irak: el
+      Ministerio de Agricultura, que es la autoridad veterinaria competente para la importación de
+      animales vivos, junto con la Autoridad General de Aduanas en la frontera. La referencia oficial más
+      clara disponible es el certificado sanitario veterinario acordado entre Estados Unidos e Irak para
+      perros y gatos, publicado por el USDA APHIS: exige una vacunación antirrábica válida, una inspección
+      veterinaria y la certificación de que el animal procede de una zona no sometida a cuarentena por
+      rabia, y es válido durante 30 días tras su expedición. El propio Irak publica muy poca información
+      pública detallada para la importación personal de mascotas, y el país está clasificado como de alto
+      riesgo para la rabia canina. Como varios detalles clave no se publican oficialmente, esta guía
+      indica claramente lo que confirman las fuentes oficiales y lo que debes confirmar directamente con
+      el Ministerio de Agricultura antes de reservar. Viaja siempre con un certificado sanitario
+      veterinario oficial refrendado por el gobierno.
+
+    pt: "O Iraque (República do Iraque) é um país fora da UE, portanto o regime europeu de passaporte para animais de estimação não se aplica aqui. A entrada é regida pelas próprias autoridades iraquianas: o Ministério da Agricultura, autoridade veterinária competente para a importação de animais vivos, junto com a Autoridade Geral de Alfândega na fronteira. A referência oficial mais clara disponível é o atestado de saúde veterinário acordado entre Estados Unidos e Iraque para cachorros e gatos, publicado pelo USDA APHIS: ele exige vacinação antirrábica válida, inspeção veterinária e a certificação de que o animal vem de uma área não colocada em quarentena por raiva, sendo válido por 30 dias após a emissão. O próprio Iraque publica muito pouca orientação pública detalhada para a importação pessoal de animais de estimação, e o país é classificado como de alto risco para a raiva canina. Como vários detalhes-chave não são publicados oficialmente, este guia indica claramente o que é confirmado por fontes oficiais e o que você precisa confirmar diretamente com o Ministério da Agricultura antes de reservar. Viaje sempre com um atestado de saúde veterinário oficial endossado pelo governo."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — official health certificate required, several details not officially published", fr: "Difficile — certificat sanitaire officiel requis, plusieurs détails non publiés officiellement", es: "Difícil — se exige un certificado sanitario oficial, varios detalles no publicados oficialmente", pt: "Difícil — atestado de saúde oficial obrigatório, vários detalhes não publicados oficialmente" }
+
+prepTime:
+  eu:
+    en: "From Europe / the EU: no EU-passport shortcut. Plan ahead for an official government-endorsed veterinary health certificate and a valid rabies vaccination. Iraq does not publish a detailed public checklist for EU-origin dogs — confirm the exact certificate and any import permit with the Ministry of Agriculture."
+    fr: "Depuis l'Europe / l'UE : aucun raccourci « passeport UE ». Prévois un certificat vétérinaire officiel visé par l'autorité gouvernementale et une vaccination antirabique valide. L'Irak ne publie pas de liste publique détaillée pour les chiens d'origine UE — confirme le certificat exact et un éventuel permis d'importation auprès du ministère de l'Agriculture."
+    es: "Desde Europa / la UE: sin atajo de «pasaporte UE». Planifica con antelación un certificado sanitario veterinario oficial refrendado por el gobierno y una vacunación antirrábica válida. Irak no publica una lista pública detallada para perros de origen UE — confirma el certificado exacto y cualquier permiso de importación con el Ministerio de Agricultura."
+    pt: "Da Europa / da UE: não há atalho de passaporte europeu. Planeje com antecedência um atestado de saúde veterinário oficial endossado pelo governo e uma vacinação antirrábica válida. O Iraque não publica uma lista de verificação pública detalhada para cachorros de origem na UE — confirme o atestado exato e qualquer autorização de importação com o Ministério da Agricultura."
+  listed:
+    en: "From another rabies-controlled country: same core steps — an endorsed veterinary health certificate and a valid rabies vaccination. For US-origin dogs the agreed certificate is valid for 30 days after issuance; from other countries, obtain the equivalent official export certificate and confirm timings."
+    fr: "Depuis un autre pays à rage maîtrisée : mêmes étapes de base — certificat vétérinaire visé et vaccination antirabique valide. Pour les chiens d'origine américaine, le certificat convenu est valable 30 jours après délivrance ; depuis d'autres pays, obtiens le certificat d'exportation officiel équivalent et confirme les délais."
+    es: "Desde otro país con la rabia controlada: los mismos pasos básicos — un certificado sanitario veterinario refrendado y una vacunación antirrábica válida. Para los perros de origen estadounidense, el certificado acordado es válido durante 30 días tras su expedición; desde otros países, obtén el certificado de exportación oficial equivalente y confirma los plazos."
+    pt: "De outro país com raiva controlada: as mesmas etapas básicas — um atestado de saúde veterinário endossado e uma vacinação antirrábica válida. Para cachorros de origem americana, o atestado acordado é válido por 30 dias após a emissão; de outros países, obtenha o certificado de exportação oficial equivalente e confirme os prazos."
+  nonListed:
+    en: "From a high-rabies-risk country: expect closer scrutiny. Iraq is itself classified as high-risk for dog rabies. The certificate must state the dog comes from an area not quarantined for rabies; extra measures may be decided case-by-case by the Ministry of Agriculture."
+    fr: "Depuis un pays à haut risque rabique : attends-toi à un contrôle renforcé. L'Irak est elle-même classée à haut risque pour la rage canine. Le certificat doit attester que le chien provient d'une zone non placée sous quarantaine rabique ; d'éventuelles mesures supplémentaires sont décidées au cas par cas par le ministère de l'Agriculture."
+    es: "Desde un país de alto riesgo de rabia: espera un control más estricto. El propio Irak está clasificado como de alto riesgo para la rabia canina. El certificado debe indicar que el perro procede de una zona no sometida a cuarentena por rabia; el Ministerio de Agricultura puede decidir medidas adicionales caso por caso."
+    pt: "De um país de alto risco de raiva: espere um controle mais rigoroso. O próprio Iraque é classificado como de alto risco para a raiva canina. O atestado deve declarar que o cachorro vem de uma área não colocada em quarentena por raiva; medidas adicionais podem ser decididas caso a caso pelo Ministério da Agricultura."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes, with official health certificate", fr: "Oui, avec certificat sanitaire officiel", es: "Sí, con certificado sanitario oficial", pt: "Sim, com atestado de saúde oficial" }
+    cls: ok
+  - requirement: { en: "Import permit (Ministry of Agriculture)", fr: "Permis d'importation (ministère de l'Agriculture)", es: "Permiso de importación (Ministerio de Agricultura)", pt: "Autorização de importação (Ministério da Agricultura)" }
+    status: { en: "Not officially published for pets", fr: "Non communiqué pour les animaux de compagnie", es: "No publicado oficialmente para mascotas", pt: "Não publicado oficialmente para animais de estimação" }
+    cls: neutral
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended (ID by chip or name)", fr: "Recommandée (identification par puce ou nom)", es: "Recomendado (identificación por chip o nombre)", pt: "Recomendado (identificação por microchip ou nome)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not on the US–Iraq certificate — confirm for other origins", fr: "Absent du certificat États-Unis–Irak — à confirmer selon l'origine", es: "No figura en el certificado Estados Unidos–Irak — confirmar para otros orígenes", pt: "Ausente do atestado Estados Unidos–Iraque — a confirmar para outras origens" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (valid 30 days)", fr: "Requis (valable 30 jours)", es: "Obligatorio (válido 30 días)", pt: "Obrigatório (válido por 30 dias)" }
+    cls: warn
+  - requirement: { en: "Arrival veterinary check", fr: "Contrôle vétérinaire à l'arrivée", es: "Control veterinario a la llegada", pt: "Controle veterinário na chegada" }
+    status: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    cls: neutral
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "No official breed law published", fr: "Aucune loi de race publiée", es: "No hay ley de razas oficial publicada", pt: "Nenhuma lei de raças publicada oficialmente" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Several Iraqi pet-import details are not officially published; the clearest official reference is the agreed US–Iraq veterinary health certificate, and the definitive conditions for your dog must be confirmed with the Ministry of Agriculture."
+    fr: "Plusieurs détails d'importation d'animaux en Irak ne sont pas publiés officiellement ; la référence officielle la plus claire est le certificat vétérinaire convenu États-Unis–Irak, et les conditions définitives pour ton chien doivent être confirmées auprès du ministère de l'Agriculture."
+    es: "Varios detalles de la importación de mascotas en Irak no se publican oficialmente; la referencia oficial más clara es el certificado sanitario veterinario acordado entre Estados Unidos e Irak, y las condiciones definitivas para tu perro deben confirmarse con el Ministerio de Agricultura."
+    pt: "Vários detalhes da importação de animais de estimação no Iraque não são publicados oficialmente; a referência oficial mais clara é o atestado de saúde veterinário acordado entre Estados Unidos e Iraque, e as condições definitivas para o seu cachorro devem ser confirmadas com o Ministério da Agricultura."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Iraq (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Irak (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Irak (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Iraque (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Iraq", fr: "Pays de destination — Irak", es: "País de destino — Irak", pt: "País de destino — Iraque" }
+      text:
+        en: "Iraq runs its own scheme through the Ministry of Agriculture (the competent veterinary authority) and the General Authority of Customs. An official veterinary health certificate and a valid rabies vaccination are the backbone of any live-animal import. Iraq is not an EU country, so the EU pet passport is not an Iraqi document."
+        fr: "L'Irak applique son propre dispositif via le ministère de l'Agriculture (autorité vétérinaire compétente) et l'Autorité générale des douanes. Un certificat vétérinaire officiel et une vaccination antirabique valide sont la base de toute importation d'animal vivant. L'Irak n'étant pas un pays de l'UE, le passeport européen n'y est pas un document valable."
+        es: "Irak aplica su propio sistema a través del Ministerio de Agricultura (la autoridad veterinaria competente) y la Autoridad General de Aduanas. Un certificado sanitario veterinario oficial y una vacunación antirrábica válida son la base de cualquier importación de animales vivos. Irak no es un país de la UE, por lo que el pasaporte europeo para mascotas no es un documento iraquí."
+        pt: "O Iraque aplica um sistema próprio por meio do Ministério da Agricultura (a autoridade veterinária competente) e da Autoridade Geral de Alfândega. Um atestado de saúde veterinário oficial e uma vacinação antirrábica válida são a base de qualquer importação de animal vivo. O Iraque não é um país da UE, portanto o passaporte europeu para animais de estimação não é um documento iraquiano."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The disease status of your departure country shapes what the official vet must certify. The agreed US–Iraq certificate requires a statement that the dog comes from an area not quarantined for rabies — a point that matters because Iraq itself is a rabies-endemic country."
+        fr: "La situation sanitaire du pays de départ détermine ce que le vétérinaire officiel doit certifier. Le certificat convenu États-Unis–Irak exige une attestation que le chien provient d'une zone non placée sous quarantaine rabique — un point important, l'Irak étant elle-même un pays d'endémie rabique."
+        es: "La situación sanitaria de tu país de salida determina lo que el veterinario oficial debe certificar. El certificado acordado entre Estados Unidos e Irak exige una declaración de que el perro procede de una zona no sometida a cuarentena por rabia — un punto importante, ya que el propio Irak es un país con rabia endémica."
+        pt: "A situação sanitária do seu país de partida determina o que o veterinário oficial deve atestar. O atestado acordado entre Estados Unidos e Iraque exige uma declaração de que o cachorro vem de uma área não colocada em quarentena por raiva — um ponto importante, já que o próprio Iraque é um país endêmico para raiva."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a high-rabies-risk or rabies-quarantined area can trigger extra scrutiny at the border. It is your dog's real origin and travel history that count — not only the last airport. Keep a complete record of where your dog has lived."
+        fr: "Un séjour récent dans une zone à haut risque rabique ou sous quarantaine rabique peut entraîner un contrôle renforcé à la frontière. C'est l'origine réelle et l'historique de voyage du chien qui comptent — pas seulement le dernier aéroport. Conserve un historique complet des lieux de vie de ton chien."
+        es: "Una estancia reciente en una zona de alto riesgo de rabia o sometida a cuarentena por rabia puede provocar un control adicional en la frontera. Lo que cuenta es el origen y el historial de viajes reales de tu perro — no solo el último aeropuerto. Conserva un registro completo de dónde ha vivido tu perro."
+        pt: "Uma estadia recente em uma área de alto risco de raiva ou sob quarentena por raiva pode acionar um controle adicional na fronteira. O que conta é a origem real e o histórico de viagens do seu cachorro — não apenas o último aeroporto. Mantenha um registro completo de onde o seu cachorro viveu."
+  note:
+    en: "So read the requirements below as Iraq's framework, then confirm your dog's exact origin, history and the current conditions with the Ministry of Agriculture before you make any plans."
+    fr: "Lis donc les exigences ci-dessous comme le cadre irakien, puis confirme l'origine, l'historique de ton chien et les conditions actuelles auprès du ministère de l'Agriculture avant tout projet."
+    es: "Así que lee los requisitos siguientes como el marco de Irak y luego confirma el origen, el historial exactos de tu perro y las condiciones vigentes con el Ministerio de Agricultura antes de hacer cualquier plan."
+    pt: "Portanto, leia as exigências abaixo como o regime do Iraque e depois confirme a origem exata, o histórico e as condições atuais do seu cachorro com o Ministério da Agricultura antes de fazer qualquer plano."
+
+requirements:
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An international/export veterinary health certificate completed by a licensed vet accompanies the dog. For US-origin dogs, USDA APHIS publishes an agreed US–Iraq dog/cat certificate that is valid for 30 days after issuance and (for the US) does not require USDA endorsement. From other countries, use the equivalent official export certificate.", fr: "Un certificat vétérinaire international/export établi par un vétérinaire agréé accompagne le chien. Pour les chiens d'origine américaine, l'USDA APHIS publie un certificat convenu États-Unis–Irak chien/chat, valable 30 jours après délivrance et (pour les États-Unis) sans visa USDA obligatoire. Depuis d'autres pays, utilise le certificat d'exportation officiel équivalent.", es: "Un certificado sanitario veterinario internacional/de exportación cumplimentado por un veterinario autorizado acompaña al perro. Para los perros de origen estadounidense, el USDA APHIS publica un certificado acordado entre Estados Unidos e Irak para perros/gatos que es válido durante 30 días tras su expedición y (para Estados Unidos) no requiere el refrendo del USDA. Desde otros países, usa el certificado de exportación oficial equivalente.", pt: "Um atestado de saúde veterinário internacional/de exportação, preenchido por um veterinário licenciado, acompanha o cachorro. Para cachorros de origem americana, o USDA APHIS publica um atestado acordado entre Estados Unidos e Iraque para cachorros e gatos, válido por 30 dias após a emissão e que (para os EUA) não exige endosso do USDA. De outros países, use o atestado de exportação oficial equivalente." }
+    exceptions: { en: "Carry originals; the certificate has short validity (30 days for the US model) and must still be valid on arrival. Iraq has no published bilateral model certificate for many other origins — confirm the exact form with the Ministry of Agriculture.", fr: "Munis-toi des originaux ; le certificat a une validité courte (30 jours pour le modèle américain) et doit être encore valable à l'arrivée. L'Irak n'a pas de modèle bilatéral publié pour de nombreuses autres origines — confirme la forme exacte auprès du ministère de l'Agriculture.", es: "Lleva los originales; el certificado tiene una valide corta (30 días para el modelo estadounidense) y debe seguir siendo válido a la llegada. Irak no tiene un modelo de certificado bilateral publicado para muchos otros orígenes — confirma el formulario exacto con el Ministerio de Agricultura.", pt: "Leve os originais; o atestado tem validade curta (30 dias no modelo americano) e precisa continuar válido na chegada. O Iraque não publica um modelo bilateral de atestado para muitas outras origens — confirme o formulário exato com o Ministério da Agricultura." }
+    ref: { en: "USDA APHIS — Pet Travel to Iraq (agreed dog/cat health certificate)", fr: "USDA APHIS — Voyage d'animaux vers l'Irak (certificat sanitaire chien/chat convenu)", es: "USDA APHIS — Viaje de mascotas a Irak (certificado sanitario acordado para perros/gatos)", pt: "USDA APHIS — Viagem de animais de estimação para o Iraque (atestado de saúde acordado para cachorros e gatos)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "The agreed US–Iraq certificate identifies each animal by microchip number or name, and the vet certifies verifying any microchip listed. An ISO 11784/11785 chip is the international standard and is strongly advised so records match, but no official Iraqi rule making it strictly mandatory was found.", fr: "Le certificat convenu États-Unis–Irak identifie chaque animal par numéro de puce ou nom, et le vétérinaire atteste avoir vérifié toute puce indiquée. Une puce ISO 11784/11785 est la norme internationale et fortement conseillée pour que les documents concordent, mais aucune règle officielle irakienne la rendant strictement obligatoire n'a été trouvée.", es: "El certificado acordado entre Estados Unidos e Irak identifica a cada animal por número de microchip o nombre, y el veterinario certifica haber verificado cualquier microchip indicado. Un chip ISO 11784/11785 es la norma internacional y se recomienda encarecidamente para que los registros coincidan, pero no se encontró ninguna norma oficial iraquí que lo haga estrictamente obligatorio.", pt: "O atestado acordado entre Estados Unidos e Iraque identifica cada animal pelo número do microchip ou pelo nome, e o veterinário certifica a verificação de qualquer microchip informado. Um chip ISO 11784/11785 é o padrão internacional e é fortemente recomendado para que os registros coincidam, mas nenhuma norma oficial iraquiana o torna estritamente obrigatório." }
+    exceptions: { en: "Confirm the identification requirement for your origin with the Ministry of Agriculture.", fr: "Confirme l'exigence d'identification pour ton origine auprès du ministère de l'Agriculture.", es: "Confirma el requisito de identificación para tu origen con el Ministerio de Agricultura.", pt: "Confirme a exigência de identificação para a sua origem com o Ministério da Agricultura." }
+    ref: { en: "USDA APHIS — Iraq dog/cat health certificate (box 21 identification)", fr: "USDA APHIS — Certificat chien/chat Irak (identification case 21)", es: "USDA APHIS — Certificado para perros/gatos de Irak (identificación, casilla 21)", pt: "USDA APHIS — Atestado de saúde para cachorros e gatos do Iraque (campo 21, identificação)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Iraq is a rabies-endemic country; a valid rabies vaccination is recorded on the health certificate with the date, vaccine name and validity period. The certificate also states the dog originated from an area not quarantined for rabies and was not exposed to rabies.", fr: "L'Irak est un pays d'endémie rabique ; une vaccination antirabique valide est consignée sur le certificat sanitaire avec la date, le nom du vaccin et la période de validité. Le certificat atteste aussi que le chien provient d'une zone non placée sous quarantaine rabique et n'a pas été exposé à la rage.", es: "Irak es un país con rabia endémica; una vacunación antirrábica válida se registra en el certificado sanitario con la fecha, el nombre de la vacuna y el periodo de valide. El certificado también indica que el perro procede de una zona no sometida a cuarentena por rabia y que no ha estado expuesto a la rabia.", pt: "O Iraque é um país endêmico para raiva; a vacinação antirrábica válida é registrada no atestado de saúde com a data, o nome da vacina e o período de validade. O atestado também declara que o cachorro veio de uma área não colocada em quarentena por raiva e não foi exposto à raiva." }
+    exceptions: { en: "The US model does not state a fixed minimum interval before travel; confirm the required post-vaccination timing and validity with the Ministry of Agriculture before booking.", fr: "Le modèle américain n'indique pas de délai minimum fixe avant le voyage ; confirme le délai post-vaccination requis et la validité auprès du ministère de l'Agriculture avant de réserver.", es: "El modelo estadounidense no indica un intervalo mínimo fijo antes del viaje; confirma el plazo posterior a la vacunación requerido y la valide con el Ministerio de Agricultura antes de reservar.", pt: "O modelo americano não estabelece um intervalo mínimo fixo antes da viagem; confirme o prazo exigido após a vacinação e a validade com o Ministério da Agricultura antes de reservar." }
+    ref: { en: "USDA APHIS — Iraq dog/cat health certificate; CDC — Iraq classified high-risk for dog rabies", fr: "USDA APHIS — Certificat chien/chat Irak ; CDC — Irak classée à haut risque pour la rage canine", es: "USDA APHIS — Certificado para perros/gatos de Irak; CDC — Irak clasificado como de alto riesgo para la rabia canina", pt: "USDA APHIS — Atestado de saúde para cachorros e gatos do Iraque; CDC — Iraque classificado como de alto risco para raiva canina" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not on the US–Iraq certificate", fr: "Absent du certificat États-Unis–Irak", es: "No figura en el certificado Estados Unidos–Irak", pt: "Ausente do atestado Estados Unidos–Iraque" }
+    when: { en: "The agreed US–Iraq dog/cat certificate does not include a rabies antibody test. Whether Iraq requires an antibody test for dogs from other origins is not published in an official Iraqi source.", fr: "Le certificat convenu États-Unis–Irak chien/chat n'inclut pas de titrage antirabique. La question de savoir si l'Irak exige un titrage pour les chiens d'autres origines n'est pas publiée dans une source officielle irakienne.", es: "El certificado acordado entre Estados Unidos e Irak para perros/gatos no incluye una prueba de titulación de rabia. Si Irak exige una prueba de titulación para perros de otros orígenes no se publica en una fuente oficial iraquí.", pt: "O atestado acordado entre Estados Unidos e Iraque para cachorros e gatos não inclui teste sorológico antirrábico. Se o Iraque exige teste sorológico para cachorros de outras origens não é informado em nenhuma fonte oficial iraquiana." }
+    exceptions: { en: "Do not assume it is or is not required from your country — confirm directly with the Ministry of Agriculture.", fr: "Ne présume ni de son exigence ni de sa dispense depuis ton pays — confirme directement auprès du ministère de l'Agriculture.", es: "No des por hecho que se exige o no desde tu país — confírmalo directamente con el Ministerio de Agricultura.", pt: "Não presuma que ele é ou não exigido para o seu país — confirme diretamente com o Ministério da Agricultura." }
+    ref: { en: "USDA APHIS — Iraq dog/cat health certificate; no official Iraqi specification found for other origins", fr: "USDA APHIS — Certificat chien/chat Irak ; aucune spécification officielle irakienne trouvée pour les autres origines", es: "USDA APHIS — Certificado para perros/gatos de Irak; no se encontró especificación oficial iraquí para otros orígenes", pt: "USDA APHIS — Atestado de saúde para cachorros e gatos do Iraque; nenhuma especificação oficial iraquiana encontrada para outras origens" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "The agreed US–Iraq certificate does not require internal or external parasite treatment. Such treatment shortly before travel is common international practice, but no official Iraqi public rule or timing was found.", fr: "Le certificat convenu États-Unis–Irak n'exige pas de traitement antiparasitaire interne ou externe. Un tel traitement peu avant le voyage est une pratique internationale courante, mais aucune règle ni délai officiel irakien public n'a été trouvé.", es: "El certificado acordado entre Estados Unidos e Irak no exige tratamiento antiparasitario interno o externo. Ese tratamiento poco antes del viaje es una práctica internacional común, pero no se encontró ninguna norma ni plazo oficial iraquí público.", pt: "O atestado acordado entre Estados Unidos e Iraque não exige tratamento antiparasitário interno ou externo. Esse tratamento pouco antes da viagem é uma prática internacional comum, mas nenhuma norma pública oficial iraquiana sobre isso ou seu prazo foi encontrada." }
+    exceptions: { en: "Confirm any required treatment and window with the Ministry of Agriculture / your official vet.", fr: "Confirme tout traitement requis et son délai auprès du ministère de l'Agriculture / de ton vétérinaire officiel.", es: "Confirma cualquier tratamiento requerido y su plazo con el Ministerio de Agricultura / tu veterinario oficial.", pt: "Confirme qualquer tratamento exigido e seu prazo com o Ministério da Agricultura / seu veterinário oficial." }
+    ref: { en: "USDA APHIS — Iraq dog/cat health certificate; no official Iraqi specification found", fr: "USDA APHIS — Certificat chien/chat Irak ; aucune spécification officielle irakienne trouvée", es: "USDA APHIS — Certificado para perros/gatos de Irak; no se encontró especificación oficial iraquí", pt: "USDA APHIS — Atestado de saúde para cachorros e gatos do Iraque; nenhuma especificação oficial iraquiana encontrada" }
+  - item: { en: "Import permit / advance approval", fr: "Permis d'importation / autorisation préalable", es: "Permiso de importación / autorización previa", pt: "Autorização de importação / aprovação prévia" }
+    required: { en: "Not officially published for pets", fr: "Non communiqué pour les animaux de compagnie", es: "No publicado oficialmente para mascotas", pt: "Não publicado oficialmente para animais de estimação" }
+    when: { en: "USDA APHIS notes that for live-animal species without an agreed protocol, the importer should apply for an import permit at the Iraqi Ministry of Agriculture. For pet dogs and cats an agreed certificate exists and no separate public permit rule was found, but a permit may still be requested in some cases.", fr: "L'USDA APHIS indique que, pour les espèces d'animaux vivants sans protocole convenu, l'importateur doit demander un permis d'importation auprès du ministère de l'Agriculture irakien. Pour les chiens et chats de compagnie, un certificat convenu existe et aucune règle publique de permis distincte n'a été trouvée, mais un permis peut néanmoins être demandé dans certains cas.", es: "El USDA APHIS señala que, para las especies de animales vivos sin un protocolo acordado, el importador debe solicitar un permiso de importación al Ministerio de Agricultura iraquí. Para perros y gatos de compañía existe un certificado acordado y no se encontró una norma pública de permiso aparte, pero en algunos casos aún puede solicitarse un permiso.", pt: "O USDA APHIS observa que, para espécies de animais vivos sem protocolo acordado, o importador deve solicitar uma autorização de importação junto ao Ministério da Agricultura do Iraque. Para cachorros e gatos de estimação existe um atestado acordado e nenhuma norma pública separada sobre autorização foi encontrada, mas uma autorização ainda pode ser solicitada em alguns casos." }
+    exceptions: { en: "Confirm whether an advance import permit applies to your dog with the Ministry of Agriculture before travel.", fr: "Confirme si un permis d'importation préalable s'applique à ton chien auprès du ministère de l'Agriculture avant le voyage.", es: "Confirma si un permiso de importación previo se aplica a tu perro con el Ministerio de Agricultura antes de viajar.", pt: "Confirme com o Ministério da Agricultura, antes da viagem, se uma autorização de importação prévia se aplica ao seu cachorro." }
+    ref: { en: "USDA APHIS — Export Live Animals to Iraq; Ministry of Agriculture", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Irak ; ministère de l'Agriculture", es: "USDA APHIS — Exportación de animales vivos a Irak; Ministerio de Agricultura", pt: "USDA APHIS — Exportação de animais vivos para o Iraque; Ministério da Agricultura" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "A minimum travelling age for puppies is not published in an official Iraqi source. In practice a puppy needs its own valid rabies vaccination, which implies a minimum age.", fr: "Aucun âge minimum de voyage pour les chiots n'est publié dans une source officielle irakienne. En pratique, un chiot a besoin de sa propre vaccination antirabique valide, ce qui implique un âge minimum.", es: "No se publica una edad mínima de viaje para cachorros en una fuente oficial iraquí. En la práctica, un cachorro necesita su propia vacunación antirrábica válida, lo que implica una edad mínima.", pt: "Uma idade mínima de viagem para filhotes não é publicada em nenhuma fonte oficial iraquiana. Na prática, um filhote precisa da própria vacinação antirrábica válida, o que implica uma idade mínima." }
+    exceptions: { en: "Confirm the minimum age for your dog's origin with the Ministry of Agriculture.", fr: "Confirme l'âge minimum pour l'origine de ton chien auprès du ministère de l'Agriculture.", es: "Confirma la edad mínima para el origen de tu perro con el Ministerio de Agricultura.", pt: "Confirme a idade mínima para a origem do seu cachorro com o Ministério da Agricultura." }
+    ref: { en: "No official Iraqi specification found — verify with the Ministry of Agriculture", fr: "Aucune spécification officielle irakienne trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se encontró especificación oficial iraquí — verifícalo con el Ministerio de Agricultura", pt: "Nenhuma especificação oficial iraquiana encontrada — verifique com o Ministério da Agricultura" }
+  - item: { en: "Arrival veterinary check / border inspection", fr: "Contrôle vétérinaire à l'arrivée / inspection frontalière", es: "Control veterinario a la llegada / inspección fronteriza", pt: "Controle veterinário na chegada / inspeção de fronteira" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "Live animals are cleared at the port of entry by the General Authority of Customs and the Ministry of Agriculture's veterinary services against the health certificate. Iraq does not publish a detailed public description of the pet arrival inspection.", fr: "Les animaux vivants sont dédouanés au point d'entrée par l'Autorité générale des douanes et les services vétérinaires du ministère de l'Agriculture, au regard du certificat sanitaire. L'Irak ne publie pas de description publique détaillée de l'inspection des animaux à l'arrivée.", es: "Los animales vivos se despachan en el punto de entrada por la Autoridad General de Aduanas y los servicios veterinarios del Ministerio de Agricultura, contrastándolos con el certificado sanitario. Irak no publica una descripción pública detallada de la inspección de mascotas a la llegada.", pt: "Os animais vivos são liberados no ponto de entrada pela Autoridade Geral de Alfândega e pelos serviços veterinários do Ministério da Agricultura, com base no atestado de saúde. O Iraque não publica uma descrição pública detalhada da inspeção de chegada de animais de estimação." }
+    exceptions: { en: "Incomplete or invalid documents may lead to hold, refusal or return at the owner's expense.", fr: "Des documents incomplets ou invalides peuvent entraîner une rétention, un refus ou un renvoi aux frais du propriétaire.", es: "Documentos incompletos o no válidos pueden dar lugar a retención, rechazo o devolución a cargo del propietario.", pt: "Documentos incompletos ou inválidos podem levar à retenção, recusa ou devolução às custas do dono." }
+    ref: { en: "Iraq General Authority of Customs; Ministry of Agriculture veterinary services", fr: "Autorité générale des douanes d'Irak ; services vétérinaires du ministère de l'Agriculture", es: "Autoridad General de Aduanas de Irak; servicios veterinarios del Ministerio de Agricultura", pt: "Autoridade Geral de Alfândega do Iraque; serviços veterinários do Ministério da Agricultura" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "No official Iraqi rule on routine quarantine for compliant pet dogs was found. Non-compliant or unhealthy animals may be held for examination.", fr: "Aucune règle officielle irakienne sur une quarantaine systématique des chiens conformes n'a été trouvée. Les animaux non conformes ou malades peuvent être retenus pour examen.", es: "No se encontró ninguna norma oficial iraquí sobre cuarentena de rutina para perros de compañía que cumplen los requisitos. Los animales que no cumplen los requisitos o están enfermos pueden ser retenidos para examen.", pt: "Nenhuma norma oficial iraquiana sobre quarentena de rotina para cachorros de estimação em conformidade foi encontrada. Animais em não conformidade ou doentes podem ser retidos para exame." }
+    exceptions: { en: "Confirm whether any quarantine applies to your dog's origin with the Ministry of Agriculture.", fr: "Confirme si une quarantaine s'applique à l'origine de ton chien auprès du ministère de l'Agriculture.", es: "Confirma si se aplica alguna cuarentena al origen de tu perro con el Ministerio de Agricultura.", pt: "Confirme com o Ministério da Agricultura se alguma quarentena se aplica à origem do seu cachorro." }
+    ref: { en: "No official Iraqi specification found — verify with the Ministry of Agriculture", fr: "Aucune spécification officielle irakienne trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se encontró especificación oficial iraquí — verifícalo con el Ministerio de Agricultura", pt: "Nenhuma especificação oficial iraquiana encontrada — verifique com o Ministério da Agricultura" }
+  - item: { en: "Restricted / banned breeds", fr: "Races interdites / restreintes", es: "Razas restringidas / prohibidas", pt: "Raças restritas / proibidas" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No publicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "No official Iraqi breed-import law or dangerous-dog list could be verified from a government source.", fr: "Aucune loi irakienne d'importation par race ni liste de chiens dangereux n'a pu être vérifiée à partir d'une source gouvernementale.", es: "No se pudo verificar ninguna ley iraquí oficial de importación por razas ni lista de perros peligrosos a partir de una fuente gubernamental.", pt: "Nenhuma lei iraquiana oficial sobre importação de raças ou lista de cães perigosos pôde ser confirmada em fonte governamental." }
+    exceptions: { en: "Confirm any breed restriction with the Ministry of Agriculture before travelling, as national rules can change.", fr: "Confirme toute restriction de race auprès du ministère de l'Agriculture avant de voyager, les règles nationales pouvant évoluer.", es: "Confirma cualquier restricción de raza con el Ministerio de Agricultura antes de viajar, ya que las normas nacionales pueden cambiar.", pt: "Confirme qualquer restrição de raça com o Ministério da Agricultura antes de viajar, pois as normas nacionais podem mudar." }
+    ref: { en: "No official Iraqi breed law found — verify with the Ministry of Agriculture", fr: "Aucune loi de race irakienne officielle trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se encontró ley de razas iraquí oficial — verifícalo con el Ministerio de Agricultura", pt: "Nenhuma lei iraquiana oficial sobre raças encontrada — verifique com o Ministério da Agricultura" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Iraq: the EU passport is not an Iraqi document. A dog from Europe needs a valid rabies vaccination and an official international veterinary health certificate endorsed by the government vet before departure. Iraq publishes no bilateral EU model certificate, so request the exact certificate and any import permit from the Ministry of Agriculture before booking."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Irak : le passeport UE n'est pas un document irakien. Un chien venant d'Europe a besoin d'une vaccination antirabique valide et d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental avant le départ. L'Irak ne publie pas de modèle bilatéral UE ; demande le certificat exact et un éventuel permis d'importation au ministère de l'Agriculture avant de réserver."
+      es: "No hay atajo de «pasaporte europeo» para entrar en Irak: el pasaporte de la UE no es un documento iraquí. Un perro procedente de Europa necesita una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial refrendado por el veterinario del gobierno antes de la salida. Irak no publica un modelo de certificado bilateral para la UE, así que solicita el certificado exacto y cualquier permiso de importación al Ministerio de Agricultura antes de reservar."
+      pt: "Não há atalho de passaporte europeu para entrar no Iraque: o passaporte da UE não é um documento iraquiano. Um cachorro vindo da Europa precisa de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial, endossado pelo veterinário do governo, antes da partida. O Iraque não publica um modelo bilateral com a UE, portanto solicite o atestado exato e qualquer autorização de importação ao Ministério da Agricultura antes de reservar."
+    cls: warn
+  listed:
+    title: { en: "From another rabies-controlled country", fr: "Depuis un autre pays à rage maîtrisée", es: "Desde otro país con la rabia controlada", pt: "De outro país com raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the same core scheme applies: valid rabies vaccination and an endorsed veterinary health certificate. For US-origin dogs the agreed certificate is valid for 30 days after issuance and does not require a rabies antibody test. From other countries, obtain the equivalent official export certificate and confirm any additional condition with the Ministry of Agriculture."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), le même schéma de base s'applique : vaccination antirabique valide et certificat vétérinaire visé. Pour les chiens d'origine américaine, le certificat convenu est valable 30 jours après délivrance et n'exige pas de titrage antirabique. Depuis d'autres pays, obtiens le certificat d'exportation officiel équivalent et confirme toute condition supplémentaire auprès du ministère de l'Agriculture."
+      es: "Desde países con una situación de rabia controlada (Estados Unidos, Canadá, los países del Golfo, la mayor parte de Europa y otros), se aplica el mismo sistema básico: vacunación antirrábica válida y un certificado sanitario veterinario refrendado. Para los perros de origen estadounidense, el certificado acordado es válido durante 30 días tras su expedición y no exige una prueba de titulación de rabia. Desde otros países, obtén el certificado de exportación oficial equivalente y confirma cualquier condición adicional con el Ministerio de Agricultura."
+      pt: "Vindo de países com situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se o mesmo esquema básico: vacinação antirrábica válida e atestado de saúde veterinário endossado. Para cachorros de origem americana, o atestado acordado é válido por 30 dias após a emissão e não exige teste sorológico antirrábico. De outros países, obtenha o atestado de exportação oficial equivalente e confirme qualquer condição adicional com o Ministério da Agricultura."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país de alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "From a high-rabies-risk origin, expect closer scrutiny and possibly additional measures decided case-by-case. Iraq itself is classified as high-risk for dog rabies, so origin disease status matters. The official health certificate must reflect the dog's rabies vaccination and confirm it comes from an area not quarantined for rabies. Dogs from areas under rabies restriction may face extra checks or refusal — verify with the Ministry of Agriculture well ahead of travel."
+      fr: "Depuis une origine à haut risque rabique, attends-toi à un contrôle renforcé et possiblement à des mesures supplémentaires décidées au cas par cas. L'Irak elle-même est classée à haut risque pour la rage canine ; le statut sanitaire de l'origine compte donc. Le certificat officiel doit refléter la vaccination antirabique du chien et attester qu'il provient d'une zone non placée sous quarantaine rabique. Un chien venant d'une zone sous restriction rabique peut subir des contrôles supplémentaires ou un refus — vérifie auprès du ministère de l'Agriculture bien avant le voyage."
+      es: "Desde un origen de alto riesgo de rabia, espera un control más estricto y posiblemente medidas adicionales decididas caso por caso. El propio Irak está clasificado como de alto riesgo para la rabia canina, por lo que la situación sanitaria del origen importa. El certificado oficial debe reflejar la vacunación antirrábica del perro y confirmar que procede de una zona no sometida a cuarentena por rabia. Los perros procedentes de zonas bajo restricción por rabia pueden enfrentarse a controles adicionales o al rechazo — verifícalo con el Ministerio de Agricultura mucho antes del viaje."
+      pt: "Vindo de uma origem de alto risco de raiva, espere um controle mais rigoroso e possivelmente medidas adicionais decididas caso a caso. O próprio Iraque é classificado como de alto risco para raiva canina, portanto a situação sanitária da origem importa. O atestado de saúde oficial deve refletir a vacinação antirrábica do cachorro e confirmar que ele vem de uma área não colocada em quarentena por raiva. Cachorros vindos de áreas sob restrição por raiva podem enfrentar controles adicionais ou recusa — verifique com o Ministério da Agricultura com bastante antecedência."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Iraq, the General Authority of Customs and the Ministry of Agriculture's veterinary services handle the check at the port of entry."
+    fr: "À l'arrivée de ton chien en Irak, l'Autorité générale des douanes et les services vétérinaires du ministère de l'Agriculture effectuent le contrôle au point d'entrée."
+    es: "Cuando tu perro llega a Irak, la Autoridad General de Aduanas y los servicios veterinarios del Ministerio de Agricultura realizan el control en el punto de entrada."
+    pt: "Quando o seu cachorro chega ao Iraque, a Autoridade Geral de Alfândega e os serviços veterinários do Ministério da Agricultura cuidam do controle no ponto de entrada."
+  points:
+    - en: "Travel with the original official veterinary health certificate; the US model is valid for only 30 days after issuance and must still be valid on the day of entry."
+      fr: "Voyage avec le certificat vétérinaire officiel original ; le modèle américain n'est valable que 30 jours après délivrance et doit être encore valide le jour de l'entrée."
+      es: "Viaja con el certificado sanitario veterinario oficial original; el modelo estadounidense solo es válido durante 30 días tras su expedición y debe seguir siendo válido el día de la entrada."
+      pt: "Viaje com o atestado de saúde veterinário oficial original; o modelo americano é válido por apenas 30 dias após a emissão e precisa continuar válido no dia da entrada."
+    - en: "The dog is checked against the health certificate, identification (microchip or name) and rabies vaccination record."
+      fr: "Le chien est contrôlé au regard du certificat sanitaire, de l'identification (puce ou nom) et du carnet de vaccination antirabique."
+      es: "El perro se coteja con el certificado sanitario, la identificación (microchip o nombre) y el registro de vacunación antirrábica."
+      pt: "O cachorro é conferido em relação ao atestado de saúde, à identificação (microchip ou nome) e ao registro de vacinação antirrábica."
+    - en: "Carry original documents — the government-endorsed health certificate and vaccination records — not copies."
+      fr: "Munis-toi des documents originaux — le certificat sanitaire visé par l'autorité et le carnet de vaccination — pas de copies."
+      es: "Lleva los documentos originales — el certificado sanitario refrendado por el gobierno y los registros de vacunación — no copias."
+      pt: "Leve os documentos originais — o atestado de saúde endossado pelo governo e os registros de vacinação — não cópias."
+    - en: "If documents are missing or invalid, the animal may be held, refused entry or returned at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être retenu, refusé ou renvoyé aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser retenido, rechazado en la entrada o devuelto a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, o animal pode ser retido, ter a entrada recusada ou ser devolvido às custas do dono."
+    - en: "Where possible, arrive on a weekday during office hours so the on-duty state vet can clear the animal promptly."
+      fr: "Si possible, arrive en semaine et pendant les heures de bureau pour que le vétérinaire d'État de service puisse dédouaner l'animal rapidement."
+      es: "Si es posible, llega en día laborable y en horario de oficina para que el veterinario estatal de guardia pueda despachar al animal con prontitud."
+      pt: "Sempre que possível, chegue em um dia útil durante o horário de expediente para que o veterinário estatal de plantão possa liberar o animal rapidamente."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No official Iraqi law restricting or banning specific dog breeds for import could be verified from a government source. This does not guarantee there is none — it means no published, verifiable list was found."
+    fr: "Aucune loi irakienne officielle restreignant ou interdisant des races de chiens précises à l'importation n'a pu être vérifiée à partir d'une source gouvernementale. Cela ne garantit pas qu'il n'en existe aucune — cela signifie qu'aucune liste publiée et vérifiable n'a été trouvée."
+    es: "No se pudo verificar ninguna ley iraquí oficial que restrinja o prohíba razas de perros concretas para la importación a partir de una fuente gubernamental. Esto no garantiza que no exista ninguna — significa que no se encontró ninguna lista publicada y verificable."
+    pt: "Nenhuma lei iraquiana oficial que restrinja ou proíba raças específicas de cachorros para importação pôde ser confirmada em fonte governamental. Isso não garante que não exista nenhuma — significa apenas que nenhuma lista publicada e verificável foi encontrada."
+  cat1:
+    en: "Banned breeds: Not officially published. Do not assume your breed is either allowed or prohibited — confirm your dog's breed status with the Ministry of Agriculture, which is the authoritative authority for imports."
+    fr: "Races interdites : non communiqué officiellement. Ne présume pas que ta race est autorisée ou interdite — confirme le statut de la race de ton chien auprès du ministère de l'Agriculture, autorité compétente pour les importations."
+    es: "Razas prohibidas: no publicado oficialmente. No des por hecho que tu raza está permitida o prohibida — confirma la situación de la raza de tu perro con el Ministerio de Agricultura, que es la autoridad competente para las importaciones."
+    pt: "Raças proibidas: não publicado oficialmente. Não presuma que a raça do seu cachorro é permitida ou proibida — confirme a situação da raça com o Ministério da Agricultura, a autoridade competente para importações."
+  cat2:
+    en: "Restricted / licence-required breeds: Not officially published. If your dog is a type sometimes treated as dangerous elsewhere in the region, confirm its status directly with the Ministry of Agriculture before booking."
+    fr: "Races restreintes / soumises à licence : non communiqué officiellement. Si ton chien est d'un type parfois considéré comme dangereux ailleurs dans la région, confirme son statut directement auprès du ministère de l'Agriculture avant de réserver."
+    es: "Razas restringidas / que requieren licencia: no publicado oficialmente. Si tu perro es de un tipo que a veces se considera peligroso en otras partes de la región, confirma su situación directamente con el Ministerio de Agricultura antes de reservar."
+    pt: "Raças restritas / com exigência de licença: não publicado oficialmente. Se o seu cachorro for de um tipo às vezes tratado como perigoso em outros lugares da região, confirme a situação diretamente com o Ministério da Agricultura antes de reservar."
+  note:
+    en: "Because breed rules in the region can change and are not clearly published for Iraq, verify your dog's breed status with the Ministry of Agriculture or an Iraqi consulate before you travel."
+    fr: "Les règles de race dans la région pouvant évoluer et n'étant pas clairement publiées pour l'Irak, vérifie le statut de la race de ton chien auprès du ministère de l'Agriculture ou d'un consulat irakien avant de voyager."
+    es: "Como las normas de razas en la región pueden cambiar y no están claramente publicadas para Irak, verifica la situación de la raza de tu perro con el Ministerio de Agricultura o un consulado iraquí antes de viajar."
+    pt: "Como as normas sobre raças na região podem mudar e não são claramente publicadas para o Iraque, verifique a situação da raça do seu cachorro com o Ministério da Agricultura ou um consulado iraquiano antes de viajar."
+
+checklist:
+  - en: "Official international veterinary health certificate, endorsed by the government vet (US model valid 30 days)"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental (modèle américain valable 30 jours)"
+    es: "Certificado sanitario veterinario internacional oficial, refrendado por el veterinario del gobierno (modelo estadounidense válido 30 días)"
+    pt: "Atestado de saúde veterinário internacional oficial, endossado pelo veterinário do governo (modelo americano válido por 30 dias)"
+  - en: "Confirm the exact certificate and any import permit for your origin with the Ministry of Agriculture"
+    fr: "Confirme le certificat exact et un éventuel permis d'importation pour ton origine auprès du ministère de l'Agriculture"
+    es: "Confirma el certificado exacto y cualquier permiso de importación para tu origen con el Ministerio de Agricultura"
+    pt: "Confirme o atestado exato e qualquer autorização de importação para a sua origem com o Ministério da Agricultura"
+  - en: "ISO 11784/11785 microchip implanted before the rabies vaccination (advised)"
+    fr: "Puce ISO 11784/11785 posée avant la vaccination antirabique (conseillé)"
+    es: "Microchip ISO 11784/11785 implantado antes de la vacunación antirrábica (recomendado)"
+    pt: "Microchip ISO 11784/11785 implantado antes da vacinação antirrábica (recomendado)"
+  - en: "Valid rabies vaccination for your dog, recorded with date, vaccine and validity"
+    fr: "Vaccination antirabique valide pour ton chien, consignée avec date, vaccin et validité"
+    es: "Vacunación antirrábica válida para tu perro, registrada con fecha, vacuna y valide"
+    pt: "Vacinação antirrábica válida para o seu cachorro, registrada com data, vacina e validade"
+  - en: "Confirm rabies vaccination timing and any antibody test for your origin with the Ministry of Agriculture"
+    fr: "Confirme le délai de vaccination antirabique et un éventuel titrage pour ton origine auprès du ministère de l'Agriculture"
+    es: "Confirma el plazo de la vacunación antirrábica y cualquier prueba de titulación para tu origen con el Ministerio de Agricultura"
+    pt: "Confirme o prazo da vacinação antirrábica e qualquer teste sorológico para a sua origem com o Ministério da Agricultura"
+  - en: "Original vaccination booklet and identification record (not copies)"
+    fr: "Carnet de vaccination et justificatif d'identification originaux (pas de copies)"
+    es: "Cartilla de vacunación y justificante de identificación originales (no copias)"
+    pt: "Carteira de vacinação original e registro de identificação (não cópias)"
+  - en: "Confirm your dog's breed is not restricted with the Ministry of Agriculture"
+    fr: "Vérifie que la race de ton chien n'est pas restreinte auprès du ministère de l'Agriculture"
+    es: "Confirma que la raza de tu perro no esté restringida con el Ministerio de Agricultura"
+    pt: "Confirme com o Ministério da Agricultura que a raça do seu cachorro não é restrita"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
+
+sources:
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Iraq (agreed dog/cat health certificate)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers l'Irak (certificat sanitaire chien/chat convenu)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Irak (certificado sanitario acordado para perros/gatos)", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para o Iraque (atestado de saúde acordado para cachorros e gatos)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-iraq"
+  - label: { en: "USDA APHIS — Veterinary Health Certificate for Dogs and Cats to Iraq (PDF)", fr: "USDA APHIS — Certificat vétérinaire pour chiens et chats vers l'Irak (PDF)", es: "USDA APHIS — Certificado sanitario veterinario para perros y gatos a Irak (PDF)", pt: "USDA APHIS — Atestado de Saúde Veterinário para Cachorros e Gatos com Destino ao Iraque (PDF)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/iraq-dog-cat.pdf"
+  - label: { en: "USDA APHIS — Export Live Animals to Iraq (import permit via the ministry for unlisted species)", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Irak (permis via le ministère pour espèces non listées)", es: "USDA APHIS — Exportación de animales vivos a Irak (permiso de importación a través del ministerio para especies no listadas)", pt: "USDA APHIS — Exportação de Animais Vivos para o Iraque (autorização de importação pelo ministério para espécies não listadas)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-iraq"
+  - label: { en: "Iraq Ministry of Agriculture — official website (competent veterinary authority)", fr: "Ministère de l'Agriculture d'Irak — site officiel (autorité vétérinaire compétente)", es: "Ministerio de Agricultura de Irak — sitio web oficial (autoridad veterinaria competente)", pt: "Ministério da Agricultura do Iraque — site oficial (autoridade veterinária competente)" }
+    url: "http://www.zeraa.gov.iq/"
+  - label: { en: "Iraq General Authority of Customs (Ministry of Finance) — border clearance", fr: "Autorité générale des douanes d'Irak (ministère des Finances) — dédouanement", es: "Autoridad General de Aduanas de Irak (Ministerio de Finanzas) — despacho fronterizo", pt: "Autoridade Geral de Alfândega do Iraque (Ministério das Finanças) — liberação de fronteira" }
+    url: "https://www.customs.mof.gov.iq/en/home-1"
+  - label: { en: "CDC — High-Risk Countries for Dog Rabies (Iraq listed high-risk)", fr: "CDC — Pays à haut risque pour la rage canine (Irak classée à haut risque)", es: "CDC — Países de alto riesgo para la rabia canina (Irak clasificado como de alto riesgo)", pt: "CDC — Países de Alto Risco para Raiva Canina (Iraque listado como alto risco)" }
+    url: "https://www.cdc.gov/importation/dogs/high-risk-countries.html"
+
+seo:
+  title: { en: "Iraq Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Irak — Guide", es: "Requisitos de entrada de perros en Irak — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Iraque — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Iraq With Your Dog: Entry Requirements (2026)", fr: "Voyager en Irak avec ton chien : formalités (2026)", es: "Viajar a Irak con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Iraque: exigências de entrada 2026" }
+  metaDesc:
+    en: "Bringing a dog into Iraq: official vet health certificate (US model valid 30 days), rabies vaccination and Ministry of Agriculture clearance. Sourced and dated."
+    fr: "Faire entrer un chien en Irak : certificat vétérinaire (modèle américain valable 30 jours), vaccination antirabique et contrôle du ministère de l'Agriculture."
+    es: "Traer un perro a Irak: certificado veterinario oficial (modelo estadounidense válido 30 días), vacunación antirrábica y despacho del Ministerio de Agricultura."
+    pt: "Levar um cachorro para o Iraque: atestado de saúde veterinário oficial (modelo americano válido por 30 dias), vacinação antirrábica e liberação do ministério."
+  slug: "iraq"
+  shortDesc:
+    en: "What you need to bring a dog into Iraq: an official veterinary health certificate and rabies vaccination, cleared by the Ministry of Agriculture — with several details to confirm officially."
+    fr: "Ce qu'il faut pour faire entrer un chien en Irak : un certificat vétérinaire officiel et une vaccination antirabique, avec contrôle du ministère de l'Agriculture — plusieurs détails restant à confirmer officiellement."
+    es: "Lo que necesitas para traer un perro a Irak: un certificado sanitario veterinario oficial y una vacunación antirrábica, con el despacho del Ministerio de Agricultura — con varios detalles por confirmar oficialmente."
+    pt: "O que você precisa para levar um cachorro para o Iraque: um atestado de saúde veterinário oficial e vacinação antirrábica, liberados pelo Ministério da Agricultura — com vários detalhes a confirmar oficialmente."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

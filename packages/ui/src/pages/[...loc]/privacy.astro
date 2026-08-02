@@ -1,0 +1,84 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+import LegalShell from "../../components/LegalShell.astro";
+import { LEGAL } from "../../lib/legal";
+export function getStaticPaths() {
+  return [{ params: { loc: undefined }, props: { locale: "en" } }, { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } }];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const T = inlineT(locale);
+const title = T("Privacy Policy", "Politique de confidentialité", "Política de privacidad");
+---
+<Base locale={locale} title={`${title} — MyDogCanFly`} description={T("How MyDogCanFly handles your data — GDPR and CCPA rights, cookies and contact.", "Comment MyDogCanFly traite vos données — droits RGPD et CCPA, cookies et contact.", "Cómo trata MyDogCanFly tus datos — derechos del RGPD y de la CCPA, cookies y contacto.")}>
+  <LegalShell locale={locale} title={title}>
+    <h2>{T("Who we are", "Qui nous sommes", "Quiénes somos")}</h2>
+    <p>{T("MyDogCanFly is published by", "MyDogCanFly est édité par", "MyDogCanFly está editado por")} <b>{LEGAL.publisher}</b> ({LEGAL.state}, USA). {T("For any privacy question or request, contact", "Pour toute question ou demande relative à la vie privée, écrivez à", "Para cualquier pregunta o solicitud relativa a la privacidad, escribe a")} <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</p>
+
+    <h2>{T("Our approach: data minimisation", "Notre approche : minimisation des données", "Nuestro enfoque: minimización de datos")}</h2>
+    <p>{T(
+      "MyDogCanFly is a mostly static, informational site. We collect as little personal data as possible and we do not sell it. We do not run advertising cookies or cross-site tracking.",
+      "MyDogCanFly est un site essentiellement statique et informatif. Nous collectons le moins de données personnelles possible et ne les vendons pas. Nous n'utilisons ni cookies publicitaires ni traçage inter-sites.",
+      "MyDogCanFly es un sitio esencialmente estático e informativo. Recopilamos la menor cantidad posible de datos personales y no los vendemos. No utilizamos cookies publicitarias ni seguimiento entre sitios.",
+    )}</p>
+
+    <h2>{T("What we process", "Ce que nous traitons", "Qué tratamos")}</h2>
+    <ul>
+      <li>{T(
+        "Technical & security data: our host (Cloudflare) processes your IP address, browser and request data to deliver the site and protect it from abuse. This is standard server-log / CDN processing.",
+        "Données techniques et de sécurité : notre hébergeur (Cloudflare) traite votre adresse IP, votre navigateur et les données de requête pour livrer le site et le protéger des abus. Il s'agit d'un traitement standard de journaux serveur / CDN.",
+        "Datos técnicos y de seguridad: nuestro alojamiento (Cloudflare) trata tu dirección IP, tu navegador y los datos de solicitud para entregar el sitio y protegerlo de abusos. Se trata de un tratamiento estándar de registros de servidor / CDN.",
+      )}</li>
+      <li>{T(
+        "Functional browser storage: our tools may store your selected breed and airline in your browser (sessionStorage) so your choices carry from one tool to the next. This stays on your device and is not sent to us.",
+        "Stockage fonctionnel du navigateur : nos outils peuvent mémoriser la race et la compagnie choisies dans votre navigateur (sessionStorage) pour reporter vos choix d'un outil à l'autre. Cela reste sur votre appareil et ne nous est pas transmis.",
+        "Almacenamiento funcional del navegador: nuestras herramientas pueden guardar la raza y la aerolínea que has seleccionado en tu navegador (sessionStorage) para trasladar tus elecciones de una herramienta a otra. Esto permanece en tu dispositivo y no se nos envía.",
+      )}</li>
+      <li>{T(
+        "\"Email me the timeline\" feature: the message is composed in your own email client (mailto). We do not receive or store the details you enter.",
+        "Fonction « M'envoyer le planning » : le message est composé dans votre propre logiciel de messagerie (mailto). Nous ne recevons ni ne stockons les informations que vous saisissez.",
+        "Función «Enviarme el cronograma»: el mensaje se redacta en tu propio cliente de correo (mailto). No recibimos ni almacenamos los datos que introduces.",
+      )}</li>
+      <li>{T(
+        "Correspondence: if you email us (e.g. to report an error), we process that message to reply and, where relevant, correct the site.",
+        "Correspondance : si vous nous écrivez (par ex. pour signaler une erreur), nous traitons ce message pour vous répondre et, le cas échéant, corriger le site.",
+        "Correspondencia: si nos escribes (por ejemplo, para informar de un error), tratamos ese mensaje para responderte y, cuando proceda, corregir el sitio.",
+      )}</li>
+    </ul>
+    <p>{T(
+      "If we later introduce privacy-respecting analytics, they will be opt-in via a consent banner (default: denied) and disclosed in our Cookie Policy.",
+      "Si nous introduisons ultérieurement une mesure d'audience respectueuse de la vie privée, elle sera soumise à votre consentement via une bannière (par défaut : refusé) et détaillée dans notre politique cookies.",
+      "Si más adelante introducimos una medición de audiencia respetuosa con la privacidad, será opcional mediante un banner de consentimiento (por defecto: denegado) y se detallará en nuestra Política de cookies.",
+    )}</p>
+
+    <h2>{T("Legal bases (GDPR)", "Bases légales (RGPD)", "Bases jurídicas (RGPD)")}</h2>
+    <p>{T(
+      "We rely on our legitimate interest in operating and securing the site (technical data), on functionality strictly necessary to the service you request (browser storage), and on your consent for anything optional.",
+      "Nous nous appuyons sur notre intérêt légitime à exploiter et sécuriser le site (données techniques), sur la fonctionnalité strictement nécessaire au service demandé (stockage navigateur), et sur votre consentement pour tout élément optionnel.",
+      "Nos basamos en nuestro interés legítimo en operar y proteger el sitio (datos técnicos), en la funcionalidad estrictamente necesaria para el servicio que solicitas (almacenamiento del navegador) y en tu consentimiento para todo lo que sea opcional.",
+    )}</p>
+
+    <h2>{T("Your rights", "Vos droits", "Tus derechos")}</h2>
+    <p>{T(
+      "EU/EEA/UK residents (GDPR) have the right to access, rectify, erase, restrict and port their data, and to object to processing. California residents (CCPA/CPRA) have the right to know, access, delete, correct and opt out of the sale/sharing of personal information — we do not sell or share personal information. To exercise any right, email",
+      "Les résidents de l'UE/EEE/Royaume-Uni (RGPD) disposent des droits d'accès, de rectification, d'effacement, de limitation et de portabilité, et du droit d'opposition. Les résidents de Californie (CCPA/CPRA) disposent des droits de connaître, d'accéder, de supprimer, de corriger et de s'opposer à la vente/au partage de données personnelles — nous ne vendons ni ne partageons de données personnelles. Pour exercer un droit, écrivez à",
+      "Los residentes de la UE/EEE/Reino Unido (RGPD) tienen derecho a acceder, rectificar, suprimir, limitar y portar sus datos, así como a oponerse al tratamiento. Los residentes de California (CCPA/CPRA) tienen derecho a conocer, acceder, eliminar, corregir y oponerse a la venta/al intercambio de datos personales — no vendemos ni compartimos datos personales. Para ejercer cualquier derecho, escribe a",
+    )} <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>. {T("We respond within 30 days.", "Nous répondons sous 30 jours.", "Respondemos en un plazo de 30 días.")}</p>
+
+    <h2>{T("Retention", "Conservation", "Conservación")}</h2>
+    <p>{T(
+      "We keep email correspondence only as long as needed to handle your request. We do not maintain a marketing database from this site.",
+      "Nous conservons la correspondance uniquement le temps nécessaire au traitement de votre demande. Nous ne constituons pas de base marketing à partir de ce site.",
+      "Conservamos la correspondencia por correo electrónico solo durante el tiempo necesario para atender tu solicitud. No mantenemos una base de datos de marketing a partir de este sitio.",
+    )}</p>
+
+    <h2>{T("International transfers", "Transferts internationaux", "Transferencias internacionales")}</h2>
+    <p>{T(
+      "The publisher is established in the United States and the site is served from Cloudflare's global network. Technical data may therefore be processed in the USA and other countries where our host operates infrastructure.",
+      "L'éditeur est établi aux États-Unis et le site est servi depuis le réseau mondial de Cloudflare. Les données techniques peuvent donc être traitées aux États-Unis et dans d'autres pays où notre hébergeur exploite des infrastructures.",
+      "El editor está establecido en los Estados Unidos y el sitio se sirve desde la red global de Cloudflare. Por tanto, los datos técnicos pueden tratarse en los EE. UU. y en otros países donde nuestro alojamiento opera infraestructura.",
+    )}</p>
+  </LegalShell>
+</Base>

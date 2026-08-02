@@ -1,0 +1,359 @@
+# Country Entry Guide — Poland (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_pl
+iso2: "PL"
+name: { en: "Poland", fr: "Pologne", es: "Polonia", pt: "Polônia" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Poland with your dog", fr: "Voyager en Pologne avec ton chien", es: "Viajar a Polonia con tu perro", pt: "Viajar para a Polônia com seu cachorro" }
+  intro:
+    en: >-
+      Poland welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Poland itself. As an EU member, Poland applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from
+      another EU country simply needs an EU pet passport. A dog from a listed non-EU country (such as
+      the United States, Canada or the United Kingdom) needs an EU animal health certificate but no
+      blood test. A dog from a non-listed country faces the longest path, including a rabies antibody
+      test and a three-month wait. Poland does not ban any breed from entering, but keeping certain
+      breeds inside the country requires a local permit. This guide explains each case so you know
+      exactly what to prepare before you book your flight.
+    fr: >-
+      La Pologne accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de la Pologne. En tant qu'État membre de l'UE, la Pologne applique
+      les règles européennes de mouvement des animaux : une puce ISO et une vaccination antirabique
+      valide sont toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un
+      passeport européen. Un chien en provenance d'un pays tiers listé (États-Unis, Canada,
+      Royaume-Uni…) a besoin d'un certificat sanitaire européen mais pas de prise de sang. Un chien
+      venant d'un pays non listé suit le parcours le plus long, avec un titrage antirabique et un délai
+      de trois mois. La Pologne n'interdit l'entrée d'aucune race, mais la détention de certaines races
+      sur son territoire exige un permis local. Ce guide détaille chaque cas pour savoir exactement
+      quoi préparer avant de réserver ton vol.
+    es: >-
+      Polonia acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Polonia. Como Estado miembro de la UE, Polonia aplica las normas
+      europeas de movimiento de animales de compañía: siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte
+      europeo para mascotas. Un perro procedente de un país tercero listado (como Estados Unidos, Canadá
+      o el Reino Unido) necesita un certificado sanitario animal de la UE, pero no una prueba de sangre.
+      Un perro de un país no listado se enfrenta al camino más largo, que incluye una prueba de
+      titulación de rabia y una espera de tres meses. Polonia no prohíbe la entrada de ninguna raza,
+      pero tener ciertas razas dentro del país requiere un permiso local. Esta guía explica cada caso
+      para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Polônia recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Polônia em si. Como membro da União Europeia, a Polônia aplica as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico (titulação) e uma espera de três meses. A Polônia não proíbe a entrada de nenhuma raça, mas manter certas raças dentro do país exige uma autorização local. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate valid 10 days."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario válido 10 días."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Poland", fr: "Non requis pour la Pologne", es: "No obligatorio para Polonia", pt: "Não obrigatório na Polônia" }
+    cls: ok
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "No import ban — keeping permit for listed breeds", fr: "Pas d'interdiction d'import — permis de détention pour les races listées", es: "Sin prohibición de importación — permiso de tenencia para las razas listadas", pt: "Sem proibição de importação — autorização de posse para as raças listadas" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Poland (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Pologne (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Polonia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Polônia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Poland", fr: "Pays de destination — Pologne", es: "País de destino — Polonia", pt: "País de destino — Polônia" }
+      text:
+        en: "Poland applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed to enter Poland. Poland adds no breed import ban, but keeping certain breeds requires a local permit."
+        fr: "La Pologne applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer en Pologne. La Pologne n'ajoute aucune interdiction d'import de race, mais la détention de certaines races exige un permis local."
+        es: "Polonia aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en Polonia. Polonia no añade ninguna prohibición de importación por raza, pero tener ciertas razas requiere un permiso local."
+        pt: "A Polônia aplica o marco europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia (Echinococcus) é exigido para entrar na Polônia. A Polônia não acrescenta nenhuma proibição de importação por raça, mas manter certas raças exige uma autorização local."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Poland's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre polonais, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Polonia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o marco regulatório da Polônia e depois confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784/11785 transponder; must be implanted before the rabies vaccination.", fr: "Transpondeur ISO 11784/11785 ; doit être posé avant la vaccination antirabique.", es: "Transpondedor ISO 11784/11785; debe implantarse antes de la vacunación antirrábica.", pt: "Transponder ISO 11784/11785; deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; wetgiw.gov.pl", fr: "Règl. UE 576/2013 ; wetgiw.gov.pl", es: "Regl. UE 576/2013; wetgiw.gov.pl", pt: "Regulamento UE 576/2013; wetgiw.gov.pl" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "Poland does not allow the entry of young dogs without a valid rabies vaccination; the microchip must precede the shot.", fr: "La Pologne n'autorise pas l'entrée de jeunes chiens sans vaccination antirabique valide ; la puce doit précéder le vaccin.", es: "Polonia no permite la entrada de perros jóvenes sin una vacunación antirrábica válida; el microchip debe preceder a la vacuna.", pt: "A Polônia não permite a entrada de cachorros jovens sem vacinação antirrábica válida; o microchip deve ser aplicado antes da vacina." }
+    ref: { en: "EU Reg. 576/2013, Annex III; wetgiw.gov.pl", fr: "Règl. UE 576/2013, annexe III ; wetgiw.gov.pl", es: "Regl. UE 576/2013, anexo III; wetgiw.gov.pl", pt: "Regulamento UE 576/2013, anexo III; wetgiw.gov.pl" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only (e.g. Ukraine, Turkey, Georgia, Egypt): blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-designated lab.", fr: "Pays non listés uniquement (p. ex. Ukraine, Turquie, Géorgie, Égypte) : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados (p. ej. Ucrania, Turquía, Georgia, Egipto): sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas (ex.: Ucrânia, Turquia, Geórgia, Egito): sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório designado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; wetgiw.gov.pl", fr: "Règl. UE 2020/692 ; wetgiw.gov.pl", es: "Regl. UE 2020/692; wetgiw.gov.pl", pt: "Regulamento UE 2020/692; wetgiw.gov.pl" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel. A written owner declaration of non-commercial movement is also required.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE. Une déclaration écrite du propriétaire de mouvement non commercial est également exigée.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE. También se exige una declaración escrita del propietario de movimiento no comercial.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e depois por até 4 meses para deslocamentos dentro da UE. Também é exigida uma declaração escrita do dono de que o deslocamento não é comercial." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV; wetgiw.gov.pl", fr: "Règl. UE 577/2013, annexe IV ; wetgiw.gov.pl", es: "Regl. UE 577/2013, anexo IV; wetgiw.gov.pl", pt: "Regulamento UE 577/2013, anexo IV; wetgiw.gov.pl" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only Finland, Ireland, Malta, N. Ireland and Norway require it — not Poland.", fr: "Seuls la Finlande, l'Irlande, Malte, l'Irlande du Nord et la Norvège l'exigent — pas la Pologne.", es: "Solo lo exigen Finlandia, Irlanda, Malta, Irlanda del Norte y Noruega — no Polonia.", pt: "Só Finlândia, Irlanda, Malta, Irlanda do Norte e Noruega exigem — a Polônia não." }
+    ref: { en: "European Commission — pet travel", fr: "Commission européenne — voyage animaux", es: "Comisión Europea — viaje de animales", pt: "Comissão Europeia — viagens com animais de estimação" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "Up to 5 pets per traveller move under the non-commercial rules; 6 or more (or unaccompanied) follow commercial import rules.", fr: "Jusqu'à 5 animaux par voyageur relèvent des règles non commerciales ; 6 ou plus (ou non accompagnés) suivent les règles d'import commercial.", es: "Hasta 5 mascotas por viajero se rigen por las normas no comerciales; 6 o más (o sin acompañante) siguen las normas de importación comercial.", pt: "Até 5 animais por viajante se enquadram nas regras não comerciais; 6 ou mais (ou desacompanhados) seguem as regras de importação comercial." }
+    exceptions: { en: "Poland issues no import permit for a private pet and requires no prior customs appointment.", fr: "La Pologne ne délivre aucun permis d'import pour un animal de compagnie privé et n'exige aucun rendez-vous douanier préalable.", es: "Polonia no expide ningún permiso de importación para una mascota privada ni exige cita previa en aduanas.", pt: "A Polônia não emite autorização de importação para animal de estimação particular e não exige agendamento prévio na alfândega." }
+    ref: { en: "EU Reg. 576/2013; wetgiw.gov.pl", fr: "Règl. UE 576/2013 ; wetgiw.gov.pl", es: "Regl. UE 576/2013; wetgiw.gov.pl", pt: "Regulamento UE 576/2013; wetgiw.gov.pl" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Non-EU arrivals", fr: "Arrivées hors UE", es: "Llegadas de fuera de la UE", pt: "Chegadas de fora da UE" }
+    when: { en: "At a designated travellers' point of entry; customs (KAS) or the official veterinary service read the microchip and check the documents.", fr: "À un point d'entrée voyageurs désigné ; la douane (KAS) ou le service vétérinaire officiel lit la puce et contrôle les documents.", es: "En un punto de entrada de viajeros designado; la aduana (KAS) o el servicio veterinario oficial lee el microchip y revisa los documentos.", pt: "Em um ponto de entrada de viajantes designado; a alfândega (KAS) ou o serviço veterinário oficial leem o microchip e conferem os documentos." }
+    exceptions: { en: "No systematic check for intra-EU (Schengen) arrivals.", fr: "Pas de contrôle systématique pour les arrivées intra-UE (Schengen).", es: "Sin control sistemático para las llegadas intracomunitarias (Schengen).", pt: "Sem controle sistemático para as chegadas de dentro da UE (Schengen)." }
+    ref: { en: "EU Reg. 576/2013; wetgiw.gov.pl", fr: "Règl. UE 576/2013 ; wetgiw.gov.pl", es: "Regl. UE 576/2013; wetgiw.gov.pl", pt: "Regulamento UE 576/2013; wetgiw.gov.pl" }
+  - item: { en: "Restricted / dangerous breeds", fr: "Races restreintes / dangereuses", es: "Razas restringidas / peligrosas", pt: "Raças restritas / perigosas" }
+    required: { en: "Keeping permit (not an import ban)", fr: "Permis de détention (pas d'interdiction d'import)", es: "Permiso de tenencia (no una prohibición de importación)", pt: "Autorização de posse (não é proibição de importação)" }
+    when: { en: "No breed is refused entry or transit, but keeping or breeding a dog of a breed officially listed as aggressive requires a permit from the local municipality.", fr: "Aucune race n'est refusée à l'entrée ou au transit, mais détenir ou élever un chien d'une race officiellement listée comme agressive exige un permis de la commune locale.", es: "A ninguna raza se le deniega la entrada o el tránsito, pero tener o criar un perro de una raza oficialmente listada como agresiva requiere un permiso del municipio local.", pt: "Nenhuma raça tem entrada ou trânsito recusados, mas manter ou criar um cachorro de uma raça oficialmente listada como agressiva exige autorização do município local." }
+    exceptions: { en: "The list of ~11 breeds is set by ministerial regulation; the permit is issued by the mayor (wójt/burmistrz/prezydent miasta).", fr: "La liste d'environ 11 races est fixée par arrêté ministériel ; le permis est délivré par le maire (wójt/burmistrz/prezydent miasta).", es: "La lista de unas 11 razas la fija un reglamento ministerial; el permiso lo expide el alcalde (wójt/burmistrz/prezydent miasta).", pt: "A lista de cerca de 11 raças é definida por portaria ministerial; a autorização é emitida pelo chefe do município (wójt/burmistrz/prezydent miasta)." }
+    ref: { en: "Reg. MSWiA 28.04.2003 (Dz.U. 2003 no. 77 item 687); Animal Protection Act art. 10", fr: "Arrêté MSWiA du 28.04.2003 (Dz.U. 2003 nr 77 poz. 687) ; Loi sur la protection des animaux art. 10", es: "Regl. MSWiA de 28.04.2003 (Dz.U. 2003 n.º 77 pos. 687); Ley de Protección de los Animales art. 10", pt: "Rozporządzenie MSWiA 28.04.2003 (Dz.U. 2003 nr 77 poz. 687); Ustawa o ochronie zwierząt (Lei de proteção dos animais) art. 10" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter Poland from outside the EU without a valid rabies vaccination.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer en Pologne depuis hors UE sans vaccination antirabique valide.", es: "Los cachorros menores de 12 semanas no pueden vacunarse, por lo que no pueden entrar en Polonia desde fuera de la UE sin una vacunación antirrábica válida.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, por isso, não podem entrar na Polônia vindos de fora da UE sem vacinação antirrábica válida." }
+    ref: { en: "EU Reg. 576/2013; wetgiw.gov.pl", fr: "Règl. UE 576/2013 ; wetgiw.gov.pl", es: "Regl. UE 576/2013; wetgiw.gov.pl", pt: "Regulamento UE 576/2013; wetgiw.gov.pl" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — authorities may then order re-export or other measures at the owner's expense.", fr: "Uniquement en cas de non-conformité — les autorités peuvent alors ordonner la réexpédition ou d'autres mesures aux frais du propriétaire.", es: "Solo en caso de incumplimiento — las autoridades pueden ordenar la reexpedición u otras medidas a cargo del propietario.", pt: "Apenas em caso de descumprimento das regras — as autoridades podem então determinar a reexportação ou outras medidas às custas do dono." }
+    ref: { en: "EU Reg. 576/2013; wetgiw.gov.pl", fr: "Règl. UE 576/2013 ; wetgiw.gov.pl", es: "Regl. UE 576/2013; wetgiw.gov.pl", pt: "Regulamento UE 576/2013; wetgiw.gov.pl" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and normally no border check. If you plan to keep a listed aggressive breed in Poland, arrange the municipal keeping permit."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et normalement pas de contrôle frontalier. Si tu compte détenir en Pologne une race listée comme agressive, prévois le permis de détention communal."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y normalmente sin control fronterizo. Si tienes previsto tener en Polonia una raza listada como agresiva, gestiona el permiso de tenencia municipal."
+      pt: "Um cachorro vindo de outro país da UE precisa do passaporte europeu para animais comprovando microchip ISO válido e vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e normalmente sem controle de fronteira. Se você pretende manter na Polônia uma raça listada como agressiva, providencie a autorização de posse municipal."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by an official vet before departure, plus a written non-commercial declaration. No antibody test is required; arrive via a designated travellers' point of entry."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par un vétérinaire officiel avant le départ, ainsi qu'une déclaration écrite de non-commercialité. Pas de titrage ; arrive par un point d'entrée voyageurs désigné."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por un veterinario oficial antes de la salida, más una declaración escrita de no comercialidad. No se exige prueba de titulación; llega por un punto de entrada de viajeros designado."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e um certificado sanitário europeu endossado por um veterinário oficial antes da partida, além de uma declaração escrita de deslocamento não comercial. Não é exigido teste sorológico; entre por um ponto de entrada de viajantes designado."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country such as Ukraine, Turkey, Georgia or Egypt, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-designated laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate is also required."
+      fr: "Depuis un pays non listé (à risque) comme l'Ukraine, la Turquie, la Géorgie ou l'Égypte, ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé est également requis."
+      es: "Desde un país no listado (con riesgo) como Ucrania, Turquía, Georgia o Egipto, añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige un certificado sanitario animal de la UE refrendado."
+      pt: "Vindo de um país não listado (de risco), como Ucrânia, Turquia, Geórgia ou Egito, acrescente o teste sorológico antirrábico (titulação): sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório designado pela UE, e depois 3 meses obrigatórios de espera antes da entrada. Também é exigido um certificado sanitário europeu endossado."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Poland depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Pologne dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Polonia depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega à Polônia depende do país de onde você veio."
+  points:
+    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+      fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
+      es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
+      pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
+    - en: "From outside the EU: arrive via a designated travellers' point of entry, where customs (KAS) or the official veterinary service read the microchip and check the documents against it."
+      fr: "Depuis hors UE : arrive par un point d'entrée voyageurs désigné, où la douane (KAS) ou le service vétérinaire officiel lit la puce et contrôle les documents par rapport à celle-ci."
+      es: "Desde fuera de la UE: llega por un punto de entrada de viajeros designado, donde la aduana (KAS) o el servicio veterinario oficial lee el microchip y coteja los documentos con él."
+      pt: "De fora da UE: entre por um ponto de entrada de viajantes designado, onde a alfândega (KAS) ou o serviço veterinário oficial leem o microchip e conferem os documentos com base nele."
+    - en: "No import permit is issued for a private pet and no prior appointment with customs is needed."
+      fr: "Aucun permis d'import n'est délivré pour un animal de compagnie privé et aucun rendez-vous préalable avec la douane n'est nécessaire."
+      es: "No se expide ningún permiso de importación para una mascota privada ni se necesita cita previa con la aduana."
+      pt: "Nenhuma autorização de importação é emitida para animal de estimação particular e não é preciso agendamento prévio na alfândega."
+    - en: "Carry the original documents (not copies); Polish or bilingual/officially translated documents are expected."
+      fr: "Munis-toi des documents originaux (pas de copies) ; des documents en polonais ou bilingues/traduits officiellement sont attendus."
+      es: "Lleva los documentos originales (no copias); se esperan documentos en polaco o bilingües/traducidos oficialmente."
+      pt: "Leve os documentos originais (não cópias); espera-se que estejam em polonês ou bilíngues/traduzidos oficialmente."
+    - en: "If identification or documents are missing or invalid, authorities may order re-export, quarantine or other measures at the owner's expense."
+      fr: "Si l'identification ou les documents manquent ou sont invalides, les autorités peuvent ordonner réexpédition, quarantaine ou d'autres mesures aux frais du propriétaire."
+      es: "Si falta la identificación o los documentos, o no son válidos, las autoridades pueden ordenar la reexpedición, la cuarentena u otras medidas a cargo del propietario."
+      pt: "Se a identificação ou os documentos estiverem ausentes ou inválidos, as autoridades podem determinar a reexportação, a quarentena ou outras medidas às custas do dono."
+    - en: "No breed is refused at the border, but keeping a listed aggressive breed in Poland requires a permit from the local municipality."
+      fr: "Aucune race n'est refusée à la frontière, mais détenir en Pologne une race listée comme agressive exige un permis de la commune locale."
+      es: "A ninguna raza se le deniega en la frontera, pero tener en Polonia una raza listada como agresiva requiere un permiso del municipio local."
+      pt: "Nenhuma raça é recusada na fronteira, mas manter na Polônia uma raça listada como agressiva exige autorização do município local."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Poland does not ban any breed from entering or transiting the country. Instead, it regulates the keeping of certain breeds: a Ministry of Interior and Administration regulation (28 April 2003) lists about eleven breeds officially considered aggressive, and the Animal Protection Act requires a permit to keep or breed a dog of one of these breeds."
+    fr: "La Pologne n'interdit à aucune race d'entrer ou de transiter par le pays. Elle réglemente plutôt la détention de certaines races : un arrêté du ministère de l'Intérieur et de l'Administration (28 avril 2003) liste environ onze races officiellement considérées comme agressives, et la loi sur la protection des animaux exige un permis pour détenir ou élever un chien de l'une de ces races."
+    es: "Polonia no prohíbe a ninguna raza entrar o transitar por el país. En su lugar, regula la tenencia de ciertas razas: un reglamento del Ministerio del Interior y Administración (28 de abril de 2003) enumera unas once razas oficialmente consideradas agresivas, y la Ley de Protección de los Animales exige un permiso para tener o criar un perro de una de estas razas."
+    pt: "A Polônia não proíbe a entrada nem o trânsito de nenhuma raça pelo país. Em vez disso, ela regula a posse de certas raças: uma portaria do Ministério do Interior e da Administração (MSWiA, de 28 de abril de 2003) lista cerca de onze raças oficialmente consideradas agressivas, e a Ustawa o ochronie zwierząt (Lei de proteção dos animais) exige autorização para manter ou criar um cachorro de uma dessas raças."
+  cat1:
+    en: "Listed aggressive breeds: American Pit Bull Terrier, Perro de Presa Mallorquin (Ca de Bou), American Bulldog, Dogo Argentino, Perro de Presa Canario, Tosa Inu, Rottweiler, Akbash Dog, Anatolian Karabash, Moscow Watchdog and Caucasian Shepherd Dog. These dogs may still enter and transit Poland freely."
+    fr: "Races listées comme agressives : American Pit Bull Terrier, Perro de Presa Mallorquin (Ca de Bou), Bouledogue américain, Dogo Argentino, Perro de Presa Canario, Tosa Inu, Rottweiler, Akbash, Anatolian Karabash, chien de garde de Moscou et berger du Caucase. Ces chiens peuvent entrer et transiter librement en Pologne."
+    es: "Razas listadas como agresivas: American Pit Bull Terrier, Perro de Presa Mallorquín (Ca de Bou), Bulldog americano, Dogo Argentino, Perro de Presa Canario, Tosa Inu, Rottweiler, Akbash, Karabash de Anatolia, perro guardián de Moscú y pastor del Cáucaso. Estos perros pueden entrar y transitar libremente por Polonia."
+    pt: "Raças listadas como agressivas: American Pit Bull Terrier, Perro de Presa Mallorquin (Ca de Bou), American Bulldog, Dogo Argentino, Perro de Presa Canario, Tosa Inu, Rottweiler, Akbash Dog, Anatolian Karabash, Moscow Watchdog e Caucasian Shepherd Dog (pastor do Cáucaso). Esses cachorros continuam podendo entrar e transitar livremente pela Polônia."
+  cat2:
+    en: "Keeping permit: to keep or breed a dog of a listed breed in Poland, the owner must obtain a permit from the head of the local municipality (wójt, burmistrz or prezydent miasta) where the dog will be kept. The permit is granted only if the dog is kept in conditions that pose no threat to people or animals; it is refused or withdrawn otherwise."
+    fr: "Permis de détention : pour détenir ou élever en Pologne un chien d'une race listée, le propriétaire doit obtenir un permis auprès du chef de la commune (wójt, burmistrz ou prezydent miasta) où le chien sera détenu. Le permis n'est accordé que si le chien est détenu dans des conditions ne présentant aucun danger pour les personnes ou les animaux ; il est refusé ou retiré dans le cas contraire."
+    es: "Permiso de tenencia: para tener o criar en Polonia un perro de una raza listada, el propietario debe obtener un permiso del jefe del municipio (wójt, burmistrz o prezydent miasta) donde se tendrá el perro. El permiso solo se concede si el perro se mantiene en condiciones que no supongan ninguna amenaza para las personas o los animales; de lo contrario, se deniega o se retira."
+    pt: "Autorização de posse: para manter ou criar na Polônia um cachorro de uma raça listada, o dono precisa obter uma autorização do chefe do município (wójt, burmistrz ou prezydent miasta) onde o cachorro será mantido. A autorização só é concedida se o cachorro for mantido em condições que não representem ameaça a pessoas ou animais; caso contrário, ela é recusada ou cassada."
+  note:
+    en: "The list applies to the breeds named in the regulation, not merely to look-alike dogs. This is a keeping-permit rule, not an import restriction: a tourist passing through with such a dog does not need the permit, but a resident keeping one does. Confirm the current list and local formalities with the destination municipality before moving."
+    fr: "La liste vise les races nommées dans l'arrêté, et non les simples chiens ressemblants. Il s'agit d'une règle de permis de détention, pas d'une restriction d'import : un touriste de passage avec un tel chien n'a pas besoin du permis, mais un résident qui en détient un, oui. Confirme la liste en vigueur et les formalités locales auprès de la commune de destination avant de déménager."
+    es: "La lista se aplica a las razas nombradas en el reglamento, no simplemente a perros parecidos. Es una norma de permiso de tenencia, no una restricción de importación: un turista de paso con un perro así no necesita el permiso, pero un residente que tenga uno, sí. Confirma la lista vigente y los trámites locales con el municipio de destino antes de mudarte."
+    pt: "A lista se aplica às raças nomeadas na portaria, e não simplesmente a cachorros parecidos. É uma regra de autorização de posse, não uma restrição de importação: um turista que só está de passagem com um cachorro desses não precisa da autorização, mas um residente que o mantém precisa. Confirme a lista atual e as formalidades locais com o município de destino antes de se mudar."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Written non-commercial declaration for non-EU arrivals"
+    fr: "Déclaration écrite de non-commercialité pour les arrivées hors UE"
+    es: "Declaración escrita de no comercialidad para las llegadas de fuera de la UE"
+    pt: "Declaração escrita de deslocamento não comercial para chegadas de fora da UE"
+  - en: "Original documents in Polish, bilingual or officially translated"
+    fr: "Documents originaux en polonais, bilingues ou traduits officiellement"
+    es: "Documentos originales en polaco, bilingües o traducidos oficialmente"
+    pt: "Documentos originais em polonês, bilíngues ou traduzidos oficialmente"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "If you will keep a listed aggressive breed in Poland, apply for the municipal keeping permit"
+    fr: "Si tu détiendrez en Pologne une race listée comme agressive, demande le permis de détention communal"
+    es: "Si vas a tener en Polonia una raza listada como agresiva, solicita el permiso de tenencia municipal"
+    pt: "Se você for manter na Polônia uma raça listada como agressiva, solicite a autorização de posse municipal"
+
+sources:
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Travelling with a pet within the EU", fr: "Commission européenne — Voyager avec un animal dans l'UE", es: "Comisión Europea — Viajar con una mascota dentro de la UE", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - label: { en: "European Commission — Listing of non-EU countries (antibody-test exemption)", fr: "Commission européenne — Liste des pays tiers (dispense de titrage)", es: "Comisión Europea — Lista de países no pertenecientes a la UE (exención de la prueba de titulación)", pt: "Comissão Europeia — Lista dos países terceiros (isenção de teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en"
+  - label: { en: "General Veterinary Inspectorate (GIW) — Dogs, cats, ferrets: entry to Poland from third countries", fr: "Inspection vétérinaire générale (GIW) — Chiens, chats, furets : entrée en Pologne depuis les pays tiers", es: "Inspección Veterinaria General (GIW) — Perros, gatos, hurones: entrada en Polonia desde terceros países", pt: "Inspetoria Veterinária Geral (GIW) — Cães, gatos e furões: entrada na Polônia a partir de países terceiros" }
+    url: "https://www.wetgiw.gov.pl/nadzor-weterynaryjny/podroz-ze-zwierzetami-towarzyszacymi-z-panstw-trzecich-do-polski"
+  - label: { en: "General Veterinary Inspectorate (GIW) — Border crossings and sanctions", fr: "Inspection vétérinaire générale (GIW) — Points de passage frontaliers et sanctions", es: "Inspección Veterinaria General (GIW) — Pasos fronterizos y sanciones", pt: "Inspetoria Veterinária Geral (GIW) — Passagens de fronteira e sanções" }
+    url: "https://www.wetgiw.gov.pl/nadzor-weterynaryjny/przejscia-graniczne-i-sankcje"
+  - label: { en: "Biznes.gov.pl — Keeping or breeding a dog of a breed considered aggressive (permit)", fr: "Biznes.gov.pl — Détenir ou élever un chien d'une race considérée comme agressive (permis)", es: "Biznes.gov.pl — Tener o criar un perro de una raza considerada agresiva (permiso)", pt: "Biznes.gov.pl — Manter ou criar um cachorro de uma raça considerada agressiva (autorização)" }
+    url: "https://www.biznes.gov.pl/pl/portal/ou1492"
+  - label: { en: "ISAP — Regulation on the list of dog breeds considered aggressive (Dz.U. 2003 no. 77 item 687)", fr: "ISAP — Arrêté sur la liste des races de chiens considérées comme agressives (Dz.U. 2003 nr 77 poz. 687)", es: "ISAP — Reglamento sobre la lista de razas de perros consideradas agresivas (Dz.U. 2003 n.º 77 pos. 687)", pt: "ISAP — Portaria sobre a lista de raças de cachorros consideradas agressivas (Dz.U. 2003 nr 77 poz. 687)" }
+    url: "https://isap.sejm.gov.pl/isap.nsf/DocDetails.xsp?id=WDU20030770687"
+
+seo:
+  title: { en: "Poland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Pologne — Guide", es: "Requisitos de entrada de perros en Polonia — Guía de viaje", pt: "Polônia: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Poland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Pologne avec ton chien : formalités (2026)", es: "Viajar a Polonia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Polônia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Poland — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Pologne — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Polonia — según origen UE, listado o no listado. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro à Polônia — por origem UE, listada e não listada. Com fonte e data."
+  slug: "poland"
+  shortDesc:
+    en: "What you need to bring a dog into Poland, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Pologne, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Polonia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Polônia, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

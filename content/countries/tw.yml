@@ -1,0 +1,383 @@
+# Country Entry Guide — Taiwan (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_tw
+iso2: "TW"
+name: { en: "Taiwan", fr: "Taïwan", es: "Taiwán", pt: "Taiwan" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: listed
+domestic:
+  intro:
+    en: "Domestic flight in Taiwan: nothing is required within the main island, but the outlying islands of Kinmen and Matsu are a real internal border."
+    fr: "Vol intérieur à Taïwan : rien n'est exigé sur l'île principale, mais les îles de Kinmen et Matsu constituent une véritable frontière intérieure."
+    es: "Vuelo nacional en Taiwán: nada se exige en la isla principal, pero las islas de Kinmen y Matsu son una verdadera frontera interior."
+    pt: "Voo doméstico em Taiwan: nada é exigido dentro da ilha principal, mas as ilhas periféricas de Kinmen e Matsu são uma verdadeira fronteira interna."
+  points:
+    - en: "Pet registration with an implanted microchip and annual rabies vaccination are compulsory as ownership duties."
+      fr: "L'enregistrement de l'animal avec puce implantée et la vaccination antirabique annuelle sont obligatoires au titre des devoirs du détenteur."
+      es: "El registro de la mascota con microchip implantado y la vacuna antirrábica anual son obligatorios como deberes del propietario."
+      pt: "O registro do animal de estimação com microchip implantado e a vacinação antirrábica anual são obrigações compulsórias da posse."
+    - en: "Within Taiwan proper, including Penghu, no movement document is required."
+      fr: "Sur Taïwan proprement dit, Penghu compris, aucun document de mouvement n'est requis."
+      es: "En Taiwán propiamente dicho, incluido Penghu, no se exige documento de movimiento."
+      pt: "Dentro de Taiwan propriamente dito, incluindo Penghu, nenhum documento de deslocamento é exigido."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+  territories:
+    - name: { en: "Kinmen and Matsu", fr: "Kinmen et Matsu", es: "Kinmen y Matsu", pt: "Kinmen e Matsu" }
+      note:
+        en: "Dogs moving in either direction between Taiwan proper and these islands must be inspected: pet registration dated at least 30 days before, and rabies vaccination at least 7 days before arrival and under a year old. Documents are filed before departure and the animal is presented on arrival."
+        fr: "Les chiens circulant dans un sens comme dans l'autre entre Taïwan et ces îles doivent être inspectés : enregistrement datant d'au moins 30 jours, et vaccination antirabique d'au moins 7 jours avant l'arrivée et de moins d'un an. Les documents se déposent avant le départ et l'animal est présenté à l'arrivée."
+        es: "Los perros que se muevan en cualquier sentido entre Taiwán y estas islas deben ser inspeccionados: registro con al menos 30 días de antigüedad, y vacuna antirrábica de al menos 7 días antes de la llegada y de menos de un año. Los documentos se presentan antes de salir y el animal se presenta a la llegada."
+        pt: "Cachorros que se deslocam em qualquer direção entre Taiwan propriamente dito e essas ilhas devem ser inspecionados: registro do animal datado de pelo menos 30 dias antes, e vacinação antirrábica de pelo menos 7 dias antes da chegada e com menos de um ano. Os documentos são apresentados antes da partida e o animal é apresentado na chegada."
+      url: https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=M0130014
+exit:
+  authority: APHIA
+  authorityUrl: https://www.aphia.gov.tw/en/ws.php?id=14261
+  intro:
+    en: "Taiwan is a listed country, so no rabies titer is needed to return to the EU — APHIA (formerly BAPHIQ) inspects your dog and issues the export certificate."
+    fr: "Taïwan est un pays listé : pas de titrage pour rentrer dans l'UE — l'APHIA (ex-BAPHIQ) inspecte ton chien et délivre le certificat d'export."
+    es: "Taiwán es un país listado: no hace falta titulación para volver a la UE — la APHIA (antes BAPHIQ) inspecciona a tu perro y emite el certificado de exportación."
+    pt: "Taiwan é um país listado, portanto nenhum teste sorológico antirrábico é necessário para voltar à UE — a APHIA (antiga BAPHIQ) inspeciona o seu cachorro e emite o certificado de exportação."
+  steps:
+    - timing: window
+      text:
+        en: "Obtain the destination's health-certificate form and file an export-quarantine application at an APHIA branch office; APHIA advises submitting it at least about a week before shipment, then inspects the dog and endorses the certificate."
+        fr: "Procure-toi le formulaire de certificat sanitaire de la destination et dépose une demande de quarantaine d'export à un bureau APHIA ; l'APHIA conseille de le faire au moins une semaine avant, puis inspecte le chien et vise le certificat."
+        es: "Consigue el formulario de certificado sanitario del destino y presenta una solicitud de cuarentena de exportación en una oficina de la APHIA; la APHIA recomienda hacerlo al menos una semana antes, luego inspecciona al perro y refrenda el certificado."
+        pt: "Obtenha o formulário de atestado de saúde do destino e apresente uma solicitação de quarentena de exportação em uma filial da APHIA; a APHIA recomenda apresentá-la pelo menos cerca de uma semana antes do envio, e então inspeciona o cachorro e endossa o atestado."
+  onSiteNote:
+    en: "Confirm the specific EU member-state requirements too — APHIA certifies to the destination country's designated form."
+    fr: "Vérifie aussi les exigences propres à l'État membre UE de destination — l'APHIA certifie selon le formulaire désigné par le pays d'arrivée."
+    es: "Confirma también los requisitos del Estado miembro de la UE de destino — la APHIA certifica según el formulario designado por el país de llegada."
+    pt: "Confirme também as exigências específicas do Estado-membro da UE de destino — a APHIA certifica de acordo com o formulário designado do país de destino."
+
+hero:
+  h1: { en: "Traveling to Taiwan with your dog", fr: "Voyager à Taïwan avec ton chien", es: "Viajar a Taiwán con tu perro", pt: "Viajar para Taiwan com seu cachorro" }
+  intro:
+    en: >-
+      Taiwan welcomes dogs, but it runs its own strict, rabies-focused entry scheme managed by the
+      Animal and Plant Health Inspection Agency (APHIA). What you must prepare depends mainly on
+      whether your dog is coming from a country Taiwan recognises as rabies-free (such as Japan, the
+      United Kingdom, Australia or Singapore) or from a rabies-infected country — which is how most of
+      the world is classified. Every dog needs an ISO microchip, an inactivated rabies vaccination and
+      an import permit applied for in advance. Dogs from rabies-infected countries also need a rabies
+      antibody test and, in most cases, a post-arrival quarantine at a designated facility. This guide
+      explains each path so you know exactly what to prepare before you book your flight.
+    fr: >-
+      Taïwan accueille les chiens, mais applique son propre régime d'entrée strict, centré sur la rage
+      et géré par l'Animal and Plant Health Inspection Agency (APHIA). Ce qu'il faut préparer dépend
+      surtout de l'origine : un pays reconnu par Taïwan comme indemne de rage (Japon, Royaume-Uni,
+      Australie, Singapour…) ou un pays infecté par la rage — statut de la plupart des pays du monde.
+      Tout chien a besoin d'une puce ISO, d'une vaccination antirabique inactivée et d'un permis
+      d'importation demandé à l'avance. Les chiens venant d'un pays infecté doivent aussi passer un
+      test sérologique antirabique (titrage) et, le plus souvent, une quarantaine à l'arrivée dans un
+      centre désigné. Ce guide détaille chaque cas pour savoir quoi préparer avant de réserver.
+    es: >-
+      Taiwán acoge a los perros, pero aplica su propio régimen de entrada estricto, centrado en la rabia
+      y gestionado por la Animal and Plant Health Inspection Agency (APHIA). Lo que debes preparar depende
+      sobre todo de si tu perro llega de un país que Taiwán reconoce como libre de rabia (como Japón, el
+      Reino Unido, Australia o Singapur) o de un país infectado por la rabia — que es como se clasifica la
+      mayor parte del mundo. Todo perro necesita un microchip ISO, una vacunación antirrábica inactivada y
+      un permiso de importación solicitado con antelación. Los perros procedentes de países infectados por
+      la rabia también necesitan una prueba de titulación de rabia y, en la mayoría de los casos, una
+      cuarentena tras la llegada en un centro designado. Esta guía explica cada caso para que sepas
+      exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "Taiwan recebe cachorros, mas aplica o próprio esquema rigoroso, centrado na raiva, administrado pela Animal and Plant Health Inspection Agency (APHIA). O que você precisa preparar depende principalmente de o seu cachorro vir de um país que Taiwan reconhece como livre de raiva (como Japão, Reino Unido, Austrália ou Cingapura) ou de um país infectado por raiva — que é como a maior parte do mundo é classificada. Todo cachorro precisa de um microchip ISO, uma vacinação antirrábica inativada e uma autorização de importação solicitada com antecedência. Cachorros vindos de países infectados por raiva também precisam de um teste sorológico antirrábico e, na maioria dos casos, de uma quarentena após a chegada em uma instalação designada. Este guia explica cada caminho para você saber exatamente o que preparar antes de reservar o seu voo."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — import permit, antibody test and quarantine", fr: "Difficile — permis, titrage et quarantaine", es: "Difícil — permiso de importación, prueba de titulación y cuarentena", pt: "Difícil — autorização de importação, teste sorológico e quarentena" }
+
+prepTime:
+  eu:
+    en: "From a rabies-free country: ~1 month if already resident — inactivated rabies shot 30 days to 1 year before entry, permit filed at least 20 days ahead, no antibody test and no quarantine."
+    fr: "Depuis un pays indemne : ~1 mois si déjà résident — vaccin antirabique inactivé 30 jours à 1 an avant l'entrée, permis déposé au moins 20 jours avant, sans titrage ni quarantaine."
+    es: "Desde un país libre de rabia: ~1 mes si ya eres residente — vacuna antirrábica inactivada de 30 días a 1 año antes de la entrada, permiso presentado al menos 20 días antes, sin prueba de titulación ni cuarentena."
+    pt: "De um país livre de raiva: cerca de 1 mês se já for residente — vacina antirrábica inativada de 30 dias a 1 ano antes da entrada, autorização solicitada com pelo menos 20 dias de antecedência, sem teste sorológico e sem quarentena."
+  listed:
+    en: "From a rabies-infected country, standard path: ~4 months — antibody test blood drawn at least 90 days before entry, then a minimum 7-day quarantine at a designated facility."
+    fr: "Depuis un pays infecté, voie standard : ~4 mois — sang du titrage prélevé au moins 90 jours avant l'entrée, puis une quarantaine minimale de 7 jours dans un centre désigné."
+    es: "Desde un país infectado por la rabia, vía estándar: ~4 meses — sangre de la prueba de titulación extraída al menos 90 días antes de la entrada, y luego una cuarentena mínima de 7 días en un centro designado."
+    pt: "De um país infectado por raiva, caminho padrão: cerca de 4 meses — coleta de sangue para o teste sorológico feita pelo menos 90 dias antes da entrada, seguida de uma quarentena mínima de 7 dias em uma instalação designada."
+  nonListed:
+    en: "From a rabies-infected country, quarantine-waiver path: ~6–7 months — antibody test blood drawn 180 days to 1 year before entry and the permit filed at least 120 days ahead."
+    fr: "Depuis un pays infecté, voie avec dispense de quarantaine : ~6–7 mois — sang du titrage prélevé 180 jours à 1 an avant l'entrée et permis déposé au moins 120 jours avant."
+    es: "Desde un país infectado por la rabia, vía con exención de cuarentena: ~6–7 meses — sangre de la prueba de titulación extraída de 180 días a 1 año antes de la entrada y permiso presentado al menos 120 días antes."
+    pt: "De um país infectado por raiva, caminho com isenção de quarentena: cerca de 6 a 7 meses — coleta de sangue para o teste sorológico feita de 180 dias a 1 ano antes da entrada e autorização solicitada com pelo menos 120 dias de antecedência."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (some breeds banned)", fr: "Oui (certaines races interdites)", es: "Sí (algunas razas prohibidas)", pt: "Sim (algumas raças proibidas)" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (inactivated vaccine)", fr: "Requise (vaccin inactivé)", es: "Obligatoria (vacuna inactivada)", pt: "Obrigatória (vacina inativada)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required from rabies-infected countries", fr: "Requis depuis les pays infectés par la rage", es: "Obligatoria desde países infectados por la rabia", pt: "Obrigatório de países infectados por raiva" }
+    cls: warn
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio con antelación", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (official export certificate)", fr: "Requis (certificat officiel d'exportation)", es: "Obligatorio (certificado oficial de exportación)", pt: "Obrigatório (certificado de exportação oficial)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Required — min 7 days from rabies-infected countries", fr: "Requise — min 7 jours depuis les pays infectés", es: "Obligatoria — mín. 7 días desde países infectados", pt: "Obrigatória — mínimo de 7 dias de países infectados por raiva" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Taiwan (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — Taïwan (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Taiwán (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Taiwan (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Taiwan", fr: "Pays de destination — Taïwan", es: "País de destino — Taiwán", pt: "País de destino — Taiwan" }
+      text:
+        en: "Taiwan applies its own APHIA scheme: an ISO microchip, an inactivated rabies vaccination and an advance import permit are always required, and modified-live rabies vaccines are never accepted."
+        fr: "Taïwan applique son propre régime APHIA : puce ISO, vaccination antirabique inactivée et permis d'importation à l'avance toujours exigés ; les vaccins antirabiques vivants atténués ne sont jamais acceptés."
+        es: "Taiwán aplica su propio régimen de la APHIA: siempre se exigen un microchip ISO, una vacunación antirrábica inactivada y un permiso de importación previo, y nunca se aceptan vacunas antirrábicas vivas atenuadas."
+        pt: "Taiwan aplica o próprio esquema da APHIA: um microchip ISO, uma vacinação antirrábica inativada e uma autorização de importação prévia são sempre exigidos, e vacinas antirrábicas de vírus vivo modificado nunca são aceitas."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from a country Taiwan recognises as rabies-free or from a rabies-infected country decides whether a rabies antibody test and a post-arrival quarantine are required."
+        fr: "Que ton chien parte d'un pays reconnu indemne de rage par Taïwan ou d'un pays infecté détermine si un titrage antirabique et une quarantaine à l'arrivée sont exigés."
+        es: "Que tu perro salga de un país que Taiwán reconoce como libre de rabia o de un país infectado por la rabia determina si se exigen una prueba de titulación de rabia y una cuarentena tras la llegada."
+        pt: "O fato de o seu cachorro partir de um país que Taiwan reconhece como livre de raiva ou de um país infectado por raiva determina se um teste sorológico antirrábico e uma quarentena após a chegada são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A stay in or transit through a rabies-infected country can cancel the rabies-free treatment even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour ou un transit par un pays infecté peut annuler le traitement « indemne » même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia o un tránsito por un país infectado por la rabia puede anular el trato de país libre de rabia aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia em, ou trânsito por, um país infectado por raiva pode anular o tratamento de país livre de raiva, mesmo que você chegue voando de um país isento. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Taiwan's framework, then confirm your dog's exact origin and history with your vet and the APHIA branch office at your port of entry."
+    fr: "Lis donc les exigences ci-dessous comme le cadre taïwanais, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire et l'antenne APHIA de ton point d'entrée."
+    es: "Así que lee los requisitos siguientes como el marco de Taiwán y luego confirma el origen y el historial exactos de tu perro con tu veterinario y la oficina regional de la APHIA de tu punto de entrada."
+    pt: "Portanto, leia as exigências abaixo como o regime de Taiwan e depois confirme a origem exata e o histórico do seu cachorro com o seu veterinário e a filial da APHIA no seu ponto de entrada."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted and readable before the rabies vaccination and blood test.", fr: "Doit être posée et lisible avant la vaccination antirabique et la prise de sang.", es: "Debe implantarse y ser legible antes de la vacunación antirrábica y la prueba de sangre.", pt: "Deve ser implantado e legível antes da vacinação antirrábica e do exame de sangue." }
+    exceptions: { en: "Ensure the microchip can be scanned and is functional on arrival.", fr: "Assure-toi que la puce est lisible et fonctionnelle à l'arrivée.", es: "Asegúrate de que el microchip se pueda escanear y funcione a la llegada.", pt: "Certifique-se de que o microchip pode ser lido e está funcional na chegada." }
+    ref: { en: "APHIA — Quarantine Requirements for the Importation of Dogs and Cats", fr: "APHIA — Conditions de quarantaine à l'importation des chiens et chats", es: "APHIA — Requisitos de cuarentena para la importación de perros y gatos", pt: "APHIA — Exigências de Quarentena para a Importação de Cachorros e Gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Inactivated (killed) vaccine only, given 30 days to 1 year before entry; dog at least 90 days old at vaccination.", fr: "Vaccin inactivé (tué) uniquement, administré 30 jours à 1 an avant l'entrée ; chien d'au moins 90 jours à la vaccination.", es: "Solo vacuna inactivada (muerta), administrada de 30 días a 1 año antes de la entrada; perro de al menos 90 días en el momento de la vacunación.", pt: "Somente vacina inativada (morta), aplicada de 30 dias a 1 ano antes da entrada; cachorro com pelo menos 90 dias de idade na vacinação." }
+    exceptions: { en: "Modified-live (MLV) rabies vaccines are not accepted, even those approved by the USDA.", fr: "Les vaccins antirabiques vivants atténués (MLV) ne sont pas acceptés, même approuvés par l'USDA.", es: "Las vacunas antirrábicas vivas atenuadas (MLV) no se aceptan, ni siquiera las aprobadas por el USDA.", pt: "Vacinas antirrábicas de vírus vivo modificado (MLV) não são aceitas, mesmo as aprovadas pelo USDA." }
+    ref: { en: "APHIA — Quarantine Requirements for the Importation of Dogs and Cats", fr: "APHIA — Conditions de quarantaine à l'importation des chiens et chats", es: "APHIA — Requisitos de cuarentena para la importación de perros y gatos", pt: "APHIA — Exigências de Quarentena para a Importação de Cachorros e Gatos" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Rabies-infected origins only: tested at a WOAH reference or APHIA-designated lab, result ≥0.5 IU/ml, blood sampled at least 90 days before entry (180 days to 1 year to qualify for a quarantine waiver).", fr: "Origines infectées uniquement : analysé dans un labo de référence OMSA ou désigné par l'APHIA, résultat ≥0,5 UI/ml, sang prélevé au moins 90 jours avant l'entrée (180 jours à 1 an pour ouvrir droit à une dispense de quarantaine).", es: "Solo orígenes infectados: analizada en un laboratorio de referencia de la WOAH o designado por la APHIA, resultado ≥0,5 UI/ml, sangre extraída al menos 90 días antes de la entrada (de 180 días a 1 año para tener derecho a una exención de cuarentena).", pt: "Apenas para origens infectadas por raiva: testado em um laboratório de referência da WOAH ou designado pela APHIA, resultado ≥0,5 UI/ml, sangue coletado pelo menos 90 dias antes da entrada (de 180 dias a 1 ano para se qualificar para a isenção de quarentena)." }
+    exceptions: { en: "Not required from countries/zones Taiwan recognises as rabies-free (Japan, UK, Australia, New Zealand, Singapore, Sweden, Iceland, Norway, Estonia, Czech Republic, plus Hawaii and Guam). Blood cannot be sampled in Taiwan.", fr: "Non requis depuis les pays/zones reconnus indemnes par Taïwan (Japon, Royaume-Uni, Australie, Nouvelle-Zélande, Singapour, Suède, Islande, Norvège, Estonie, Tchéquie, ainsi qu'Hawaï et Guam). Le sang ne peut être prélevé à Taïwan.", es: "No se exige desde países/zonas que Taiwán reconoce como libres de rabia (Japón, Reino Unido, Australia, Nueva Zelanda, Singapur, Suecia, Islandia, Noruega, Estonia, República Checa, además de Hawái y Guam). La sangre no puede extraerse en Taiwán.", pt: "Não exigido de países/zonas que Taiwan reconhece como livres de raiva (Japão, Reino Unido, Austrália, Nova Zelândia, Cingapura, Suécia, Islândia, Noruega, Estônia, República Tcheca, além do Havaí e Guam). O sangue não pode ser coletado em Taiwan." }
+    ref: { en: "APHIA — Quarantine Requirements; FAQ (2026-03-10)", fr: "APHIA — Conditions de quarantaine ; FAQ (2026-03-10)", es: "APHIA — Requisitos de cuarentena; preguntas frecuentes (2026-03-10)", pt: "APHIA — Exigências de Quarentena; Perguntas Frequentes (10/03/2026)" }
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply online at least 20 days before entry (at least 120 days if seeking a quarantine waiver); the permit is free.", fr: "Demande en ligne au moins 20 jours avant l'entrée (au moins 120 jours pour une dispense de quarantaine) ; le permis est gratuit.", es: "Solicítalo en línea al menos 20 días antes de la entrada (al menos 120 días si buscas una exención de cuarentena); el permiso es gratuito.", pt: "Solicite on-line pelo menos 20 dias antes da entrada (pelo menos 120 dias se buscar isenção de quarentena); a autorização é gratuita." }
+    exceptions: { en: "Arriving without an import permit means the dog is re-exported or destroyed.", fr: "Arriver sans permis d'importation signifie que le chien est réexpédié ou euthanasié.", es: "Llegar sin permiso de importación significa que el perro es reexportado o sacrificado.", pt: "Chegar sem uma autorização de importação significa que o cachorro é reexportado ou destruído." }
+    ref: { en: "APHIA — Online Application System for Dog/Cat Import Permit", fr: "APHIA — Système de demande en ligne du permis d'importation chien/chat", es: "APHIA — Sistema de solicitud en línea del permiso de importación de perros/gatos", pt: "APHIA — Sistema de Solicitação On-line de Autorização de Importação de Cachorros/Gatos" }
+  - item: { en: "Veterinary (health) certificate", fr: "Certificat vétérinaire (sanitaire)", es: "Certificado veterinario (sanitario)", pt: "Atestado (de saúde) veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Original certificate from the exporting country's government veterinary authority: APHIA Form 001 (rabies-free) or Form 002 (rabies-infected), in Chinese or English.", fr: "Certificat original de l'autorité vétérinaire gouvernementale du pays d'exportation : formulaire APHIA 001 (indemne) ou 002 (infecté), en chinois ou anglais.", es: "Certificado original de la autoridad veterinaria gubernamental del país exportador: formulario APHIA 001 (libre de rabia) o 002 (infectado por la rabia), en chino o inglés.", pt: "Certificado original da autoridade veterinária governamental do país exportador: Formulário APHIA 001 (livre de raiva) ou Formulário 002 (infectado por raiva), em chinês ou inglês." }
+    exceptions: { en: "Without the original certificate the dog is re-exported or destroyed.", fr: "Sans le certificat original, le chien est réexpédié ou euthanasié.", es: "Sin el certificado original, el perro es reexportado o sacrificado.", pt: "Sem o certificado original, o cachorro é reexportado ou destruído." }
+    ref: { en: "APHIA Form 001 / Form 002 — Veterinary Certificate for the Export of Dogs/Cats to Taiwan", fr: "Formulaire APHIA 001 / 002 — Certificat vétérinaire d'exportation vers Taïwan", es: "Formulario APHIA 001 / Formulario 002 — Certificado veterinario para la exportación de perros/gatos a Taiwán", pt: "Formulário APHIA 001 / Formulário 002 — Certificado Veterinário para a Exportação de Cachorros/Gatos para Taiwan" }
+  - item: { en: "Post-entry quarantine", fr: "Quarantaine à l'arrivée", es: "Cuarentena tras la entrada", pt: "Quarentena após a entrada" }
+    required: { en: "Required (rabies-infected origins)", fr: "Requise (origines infectées)", es: "Obligatoria (orígenes infectados por la rabia)", pt: "Obrigatória (origens infectadas por raiva)" }
+    when: { en: "Minimum 7 days at a designated quarantine facility; the space is reserved when the import permit is issued.", fr: "Minimum 7 jours dans un centre de quarantaine désigné ; la place est réservée dès la délivrance du permis.", es: "Mínimo 7 días en un centro de cuarentena designado; la plaza se reserva al expedirse el permiso de importación.", pt: "Mínimo de 7 dias em uma instalação de quarentena designada; a vaga é reservada quando a autorização de importação é emitida." }
+    exceptions: { en: "Waivable under strict conditions (early antibody test + advance filing, or direct lab reporting); not required from rabies-free countries.", fr: "Dispensable sous conditions strictes (titrage précoce + dépôt anticipé, ou transmission directe du labo) ; non requise depuis les pays indemnes.", es: "Se puede eximir bajo condiciones estrictas (prueba de titulación temprana + presentación anticipada, o notificación directa del laboratorio); no se exige desde países libres de rabia.", pt: "Pode ser dispensada sob condições rigorosas (teste sorológico antecipado + solicitação com antecedência, ou envio direto do laudo pelo laboratório); não exigida de países livres de raiva." }
+    ref: { en: "APHIA — Quarantine Requirements for the Importation of Dogs and Cats", fr: "APHIA — Conditions de quarantaine à l'importation des chiens et chats", es: "APHIA — Requisitos de cuarentena para la importación de perros y gatos", pt: "APHIA — Exigências de Quarentena para a Importação de Cachorros e Gatos" }
+  - item: { en: "Advance quarantine reservation", fr: "Réservation anticipée de la quarantaine", es: "Reserva anticipada de la cuarentena", pt: "Reserva antecipada de quarentena" }
+    required: { en: "Included in the permit", fr: "Incluse dans le permis", es: "Incluida en el permiso", pt: "Incluída na autorização" }
+    when: { en: "No separate booking — issuance of the import permit confirms the reserved quarantine space; check availability in the online system.", fr: "Pas de réservation séparée — la délivrance du permis confirme la place réservée ; consulte les disponibilités dans le système en ligne.", es: "Sin reserva aparte — la expedición del permiso de importación confirma la plaza de cuarentena reservada; consulta la disponibilidad en el sistema en línea.", pt: "Sem reserva separada — a emissão da autorização de importação confirma a vaga de quarentena reservada; verifique a disponibilidade no sistema on-line." }
+    exceptions: { en: "Any change of date or port of entry must be applied for at least 10 days ahead.", fr: "Tout changement de date ou de point d'entrée doit être demandé au moins 10 jours avant.", es: "Cualquier cambio de fecha o de punto de entrada debe solicitarse al menos 10 días antes.", pt: "Qualquer alteração de data ou de ponto de entrada deve ser solicitada com pelo menos 10 dias de antecedência." }
+    ref: { en: "APHIA — FAQ, Quarantine Requirements (2026-03-10)", fr: "APHIA — FAQ, conditions de quarantaine (2026-03-10)", es: "APHIA — Preguntas frecuentes, requisitos de cuarentena (2026-03-10)", pt: "APHIA — Perguntas Frequentes, Exigências de Quarentena (10/03/2026)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "At least 90 days", fr: "Au moins 90 jours", es: "Al menos 90 días", pt: "Pelo menos 90 dias" }
+    when: { en: "Dog must be at least 90 days old to be shipped and at vaccination; in practice older because of the waiting periods.", fr: "Le chien doit avoir au moins 90 jours pour être expédié et à la vaccination ; en pratique plus âgé du fait des délais.", es: "El perro debe tener al menos 90 días para ser enviado y en el momento de la vacunación; en la práctica es mayor debido a los períodos de espera.", pt: "O cachorro deve ter pelo menos 90 dias de idade para ser transportado e na vacinação; na prática, mais velho por causa dos períodos de espera." }
+    exceptions: { en: "Puppies under 90 days cannot be vaccinated, so cannot be imported.", fr: "Un chiot de moins de 90 jours ne peut être vacciné, donc ne peut être importé.", es: "Un cachorro de menos de 90 días no puede vacunarse, por lo que no puede importarse.", pt: "Filhotes com menos de 90 dias não podem ser vacinados e, portanto, não podem ser importados." }
+    ref: { en: "APHIA — Quarantine Requirements for the Importation of Dogs and Cats", fr: "APHIA — Conditions de quarantaine à l'importation des chiens et chats", es: "APHIA — Requisitos de cuarentena para la importación de perros y gatos", pt: "APHIA — Exigências de Quarentena para a Importação de Cachorros e Gatos" }
+  - item: { en: "Prohibited breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    required: { en: "Import banned", fr: "Importation interdite", es: "Importación prohibida", pt: "Importação proibida" }
+    when: { en: "American Pit Bull Terrier, American Pit Bull and American Staffordshire Terrier cannot be imported or bred.", fr: "American Pit Bull Terrier, American Pit Bull et American Staffordshire Terrier ne peuvent être importés ni élevés.", es: "El American Pit Bull Terrier, el American Pit Bull y el American Staffordshire Terrier no pueden importarse ni criarse.", pt: "American Pit Bull Terrier, American Pit Bull e American Staffordshire Terrier não podem ser importados nem criados." }
+    exceptions: { en: "Ban effective 1 March 2022 (Ministry of Agriculture).", fr: "Interdiction en vigueur depuis le 1er mars 2022 (ministère de l'Agriculture).", es: "Prohibición en vigor desde el 1 de marzo de 2022 (Ministerio de Agricultura).", pt: "Proibição em vigor desde 1º de março de 2022 (Ministério da Agricultura)." }
+    ref: { en: "Ministry of Agriculture — Announcement GL000084", fr: "Ministère de l'Agriculture — Avis GL000084", es: "Ministerio de Agricultura — Anuncio GL000084", pt: "Ministério da Agricultura — Comunicado GL000084" }
+
+origin:
+  eu:
+    title: { en: "From a rabies-free country or zone", fr: "Depuis un pays ou une zone indemne de rage", es: "Desde un país o zona libre de rabia", pt: "De um país ou zona livre de raiva" }
+    body:
+      en: "If your dog comes from a country/zone Taiwan recognises as rabies-free (Japan, United Kingdom, Australia, New Zealand, Singapore, Sweden, Iceland, Norway excluding Svalbard, Estonia, Czech Republic, and Hawaii and Guam), it needs an ISO microchip, an inactivated rabies vaccination and an advance import permit. The dog must also have been kept in that rabies-free country continuously for at least 180 days (or since birth if under 180 days old). No antibody test and no quarantine are required."
+      fr: "Si ton chien vient d'un pays/zone reconnu indemne par Taïwan (Japon, Royaume-Uni, Australie, Nouvelle-Zélande, Singapour, Suède, Islande, Norvège hors Svalbard, Estonie, Tchéquie, ainsi qu'Hawaï et Guam), il lui faut une puce ISO, une vaccination antirabique inactivée et un permis d'importation à l'avance. Le chien doit aussi avoir séjourné dans ce pays indemne de façon continue pendant au moins 180 jours (ou depuis la naissance s'il a moins de 180 jours). Ni titrage ni quarantaine ne sont exigés."
+      es: "Si tu perro procede de un país/zona que Taiwán reconoce como libre de rabia (Japón, Reino Unido, Australia, Nueva Zelanda, Singapur, Suecia, Islandia, Noruega excepto Svalbard, Estonia, República Checa, así como Hawái y Guam), necesita un microchip ISO, una vacunación antirrábica inactivada y un permiso de importación previo. El perro también debe haber permanecido en ese país libre de rabia de forma continua durante al menos 180 días (o desde el nacimiento si tiene menos de 180 días). No se exigen prueba de titulación ni cuarentena."
+      pt: "Se o seu cachorro vem de um país/zona que Taiwan reconhece como livre de raiva (Japão, Reino Unido, Austrália, Nova Zelândia, Cingapura, Suécia, Islândia, Noruega excluindo Svalbard, Estônia, República Tcheca, além do Havaí e Guam), ele precisa de um microchip ISO, uma vacinação antirrábica inativada e uma autorização de importação prévia. O cachorro também deve ter permanecido nesse país livre de raiva continuamente por pelo menos 180 dias (ou desde o nascimento, se tiver menos de 180 dias). Nenhum teste sorológico e nenhuma quarentena são exigidos."
+    cls: ok
+  listed:
+    title: { en: "From a rabies-infected country — standard (7-day quarantine)", fr: "Depuis un pays infecté — voie standard (quarantaine de 7 jours)", es: "Desde un país infectado por la rabia — vía estándar (cuarentena de 7 días)", pt: "De um país infectado por raiva — padrão (quarentena de 7 dias)" }
+    body:
+      en: "Most of the world is classified as rabies-infected. Your dog needs a microchip, an inactivated rabies vaccination, an advance import permit and a rabies antibody test (≥0.5 IU/ml) at a WOAH reference or APHIA-designated laboratory, with blood drawn at least 90 days before entry. On arrival the dog undergoes a minimum 7-day quarantine at a designated facility, with the space reserved through the permit."
+      fr: "La plupart des pays sont classés infectés par la rage. Ton chien a besoin d'une puce, d'une vaccination antirabique inactivée, d'un permis d'importation à l'avance et d'un titrage antirabique (≥0,5 UI/ml) dans un labo de référence OMSA ou désigné par l'APHIA, avec un sang prélevé au moins 90 jours avant l'entrée. À l'arrivée, le chien subit une quarantaine d'au moins 7 jours dans un centre désigné, la place étant réservée via le permis."
+      es: "La mayor parte del mundo está clasificada como infectada por la rabia. Tu perro necesita un microchip, una vacunación antirrábica inactivada, un permiso de importación previo y una prueba de titulación de rabia (≥0,5 UI/ml) en un laboratorio de referencia de la WOAH o designado por la APHIA, con la sangre extraída al menos 90 días antes de la entrada. A la llegada, el perro pasa una cuarentena mínima de 7 días en un centro designado, con la plaza reservada a través del permiso."
+      pt: "A maior parte do mundo é classificada como infectada por raiva. O seu cachorro precisa de um microchip, uma vacinação antirrábica inativada, uma autorização de importação prévia e um teste sorológico antirrábico (≥0,5 UI/ml) em um laboratório de referência da WOAH ou designado pela APHIA, com sangue coletado pelo menos 90 dias antes da entrada. Na chegada, o cachorro passa por uma quarentena mínima de 7 dias em uma instalação designada, com a vaga reservada pela autorização."
+    cls: warn
+  nonListed:
+    title: { en: "From a rabies-infected country — quarantine waiver", fr: "Depuis un pays infecté — dispense de quarantaine", es: "Desde un país infectado por la rabia — exención de cuarentena", pt: "De um país infectado por raiva — isenção de quarentena" }
+    body:
+      en: "The 7-day quarantine can be waived only if the antibody-test blood was drawn 180 days to 1 year before entry and either the permit is filed at least 120 days ahead, or the testing laboratory / exporting authority sends the report directly to APHIA. A dog re-entering within 1 year of a passed pre-export Taiwan test is also exempt. All other conditions (microchip, inactivated vaccine, import permit, official certificate) still apply."
+      fr: "La quarantaine de 7 jours n'est dispensée que si le sang du titrage a été prélevé 180 jours à 1 an avant l'entrée et si, soit le permis est déposé au moins 120 jours avant, soit le laboratoire d'analyse / l'autorité d'exportation transmet le rapport directement à l'APHIA. Un chien revenant dans l'année suivant un test taïwanais réussi avant l'export est aussi exempté. Toutes les autres conditions (puce, vaccin inactivé, permis, certificat officiel) restent applicables."
+      es: "La cuarentena de 7 días solo puede eximirse si la sangre de la prueba de titulación se extrajo de 180 días a 1 año antes de la entrada y, o bien el permiso se presenta al menos 120 días antes, o bien el laboratorio de análisis / la autoridad exportadora envía el informe directamente a la APHIA. También está exento un perro que vuelve a entrar dentro de 1 año tras superar una prueba taiwanesa previa a la exportación. Todas las demás condiciones (microchip, vacuna inactivada, permiso de importación, certificado oficial) siguen aplicándose."
+      pt: "A quarentena de 7 dias só pode ser dispensada se o sangue do teste sorológico tiver sido coletado de 180 dias a 1 ano antes da entrada e a autorização for solicitada com pelo menos 120 dias de antecedência, ou o laboratório de teste / a autoridade exportadora enviar o laudo diretamente à APHIA. Um cachorro que reentra dentro de 1 ano após um teste de Taiwan pré-exportação aprovado também é isento. Todas as demais condições (microchip, vacina inativada, autorização de importação, certificado oficial) continuam se aplicando."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Taiwan depends on its origin and on the documents you present at the port of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien à Taïwan dépend de son origine et des documents présentés au point d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a Taiwán depende de su origen y de los documentos que presentes en el punto de entrada."
+    pt: "O que acontece quando o seu cachorro chega a Taiwan depende da sua origem e dos documentos que você apresenta no ponto de entrada."
+  points:
+    - en: "Apply for the import permit online (pet-epermit.aphia.gov.tw) at least 20 days before travel — 120 days if you want to waive the quarantine."
+      fr: "Demande le permis d'importation en ligne (pet-epermit.aphia.gov.tw) au moins 20 jours avant le voyage — 120 jours pour dispenser de la quarantaine."
+      es: "Solicita el permiso de importación en línea (pet-epermit.aphia.gov.tw) al menos 20 días antes del viaje — 120 días si quieres eximir la cuarentena."
+      pt: "Solicite a autorização de importação on-line (pet-epermit.aphia.gov.tw) pelo menos 20 dias antes da viagem — 120 dias se você quiser dispensar a quarentena."
+    - en: "On arrival, submit the original export veterinary certificate, a copy of the import permit, and the airway bill (cargo) or customs declaration (accompanied) at the animal quarantine counter."
+      fr: "À l'arrivée, présente le certificat vétérinaire d'exportation original, une copie du permis et la lettre de transport aérien (fret) ou la déclaration en douane (accompagné) au guichet de quarantaine animale."
+      es: "A la llegada, entrega el certificado veterinario de exportación original, una copia del permiso de importación y la carta de porte aéreo (carga) o la declaración de aduanas (acompañado) en el mostrador de cuarentena animal."
+      pt: "Na chegada, apresente o certificado veterinário de exportação original, uma cópia da autorização de importação e o conhecimento aéreo (carga) ou a declaração alfandegária (acompanhado) no balcão de quarentena animal."
+    - en: "Dogs from rabies-infected countries are transported to a designated quarantine facility (e.g. near Taoyuan or Kaohsiung) for a minimum 7-day quarantine; the owner pays transport and quarantine costs."
+      fr: "Les chiens venant de pays infectés sont transportés vers un centre de quarantaine désigné (près de Taoyuan ou Kaohsiung) pour une quarantaine minimale de 7 jours ; le propriétaire paie le transport et la quarantaine."
+      es: "Los perros procedentes de países infectados por la rabia son transportados a un centro de cuarentena designado (p. ej. cerca de Taoyuan o Kaohsiung) para una cuarentena mínima de 7 días; el propietario paga el transporte y los costes de cuarentena."
+      pt: "Cachorros vindos de países infectados por raiva são transportados para uma instalação de quarentena designada (por exemplo, perto de Taoyuan ou Kaohsiung) para uma quarentena mínima de 7 dias; o dono paga os custos de transporte e quarentena."
+    - en: "A computer processing fee (NTD 100) and other fees are payable in cash in New Taiwan Dollars on arrival."
+      fr: "Des frais de traitement informatique (100 NTD) et d'autres frais sont payables en espèces en dollars taïwanais à l'arrivée."
+      es: "A la llegada se abonan en efectivo, en nuevos dólares taiwaneses, una tasa de tramitación informática (100 NTD) y otras tasas."
+      pt: "Uma taxa de processamento informatizado (NTD 100) e outras taxas são pagas em dinheiro, em dólares novos de Taiwan, na chegada."
+    - en: "A dog arriving without an import permit, or without the original export veterinary certificate, is re-exported or destroyed at the owner's expense."
+      fr: "Un chien arrivant sans permis d'importation, ou sans le certificat vétérinaire d'exportation original, est réexpédié ou euthanasié aux frais du propriétaire."
+      es: "Un perro que llega sin permiso de importación, o sin el certificado veterinario de exportación original, es reexportado o sacrificado a cargo del propietario."
+      pt: "Um cachorro que chega sem autorização de importação, ou sem o certificado veterinário de exportação original, é reexportado ou destruído às custas do dono."
+    - en: "Prohibited breeds (American Pit Bull Terrier, American Pit Bull, American Staffordshire Terrier) are refused import."
+      fr: "Les races interdites (American Pit Bull Terrier, American Pit Bull, American Staffordshire Terrier) sont refusées à l'importation."
+      es: "Las razas prohibidas (American Pit Bull Terrier, American Pit Bull, American Staffordshire Terrier) tienen la importación denegada."
+      pt: "Raças proibidas (American Pit Bull Terrier, American Pit Bull, American Staffordshire Terrier) têm a importação recusada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Taiwan does not operate a graded dangerous-dog category system like some European countries; instead the Ministry of Agriculture bans specific pit-bull-type breeds from import and breeding."
+    fr: "Taïwan n'applique pas un système de catégories de chiens dangereux comme certains pays européens ; le ministère de l'Agriculture interdit plutôt certaines races de type pit-bull à l'importation et à l'élevage."
+    es: "Taiwán no aplica un sistema graduado de categorías de perros peligrosos como algunos países europeos; en su lugar, el Ministerio de Agricultura prohíbe la importación y la cría de determinadas razas de tipo pit-bull."
+    pt: "Taiwan não opera um sistema de categorias graduadas de cães perigosos como alguns países europeus; em vez disso, o Ministério da Agricultura proíbe a importação e a criação de raças específicas do tipo pit bull."
+  cat1:
+    en: "Prohibited breeds: the American Pit Bull Terrier, American Pit Bull and American Staffordshire Terrier cannot be imported into or bred in Taiwan. The ban has applied since 1 March 2022 under a Ministry of Agriculture announcement (formerly Council of Agriculture)."
+    fr: "Races interdites : l'American Pit Bull Terrier, l'American Pit Bull et l'American Staffordshire Terrier ne peuvent être importés ni élevés à Taïwan. L'interdiction s'applique depuis le 1er mars 2022 selon un avis du ministère de l'Agriculture (ex-Council of Agriculture)."
+    es: "Razas prohibidas: el American Pit Bull Terrier, el American Pit Bull y el American Staffordshire Terrier no pueden importarse ni criarse en Taiwán. La prohibición se aplica desde el 1 de marzo de 2022 según un anuncio del Ministerio de Agricultura (antes Council of Agriculture)."
+    pt: "Raças proibidas: o American Pit Bull Terrier, o American Pit Bull e o American Staffordshire Terrier não podem ser importados para Taiwan nem criados no país. A proibição está em vigor desde 1º de março de 2022, segundo um comunicado do Ministério da Agricultura (antigo Conselho de Agricultura)."
+  cat2:
+    en: "No other dog breeds are banned from import for entry-quarantine purposes. Ownership of a controlled dog within Taiwan may carry separate local muzzle-and-leash rules, which are outside the import scheme."
+    fr: "Aucune autre race de chien n'est interdite à l'importation au titre de la quarantaine d'entrée. La détention d'un chien réglementé à Taïwan peut relever de règles locales distinctes (muselière et laisse), hors du régime d'importation."
+    es: "Ninguna otra raza de perro está prohibida para la importación a efectos de la cuarentena de entrada. La tenencia de un perro regulado dentro de Taiwán puede estar sujeta a normas locales aparte (bozal y correa), ajenas al régimen de importación."
+    pt: "Nenhuma outra raça de cachorro é proibida para importação para fins de quarentena de entrada. A posse de um cachorro controlado dentro de Taiwan pode envolver normas locais separadas de focinheira e coleira, que ficam fora do regime de importação."
+  note:
+    en: "Bengal (leopard) cats have separate hybrid-generation rules, but these do not affect dogs. Confirm your dog's breed status with the APHIA branch office at your intended port of entry before booking."
+    fr: "Les chats Bengal (léopard) relèvent de règles distinctes selon la génération d'hybridation, sans effet sur les chiens. Confirme le statut de la race de ton chien auprès de l'antenne APHIA de ton point d'entrée avant de réserver."
+    es: "Los gatos Bengala (leopardo) están sujetos a normas aparte según la generación de hibridación, pero estas no afectan a los perros. Confirma el estado de raza de tu perro con la oficina regional de la APHIA de tu punto de entrada previsto antes de reservar."
+    pt: "Gatos Bengal (leopardo) têm normas separadas sobre geração híbrida, mas elas não afetam cachorros. Confirme a situação da raça do seu cachorro com a filial da APHIA no ponto de entrada pretendido antes de reservar."
+
+checklist:
+  - en: "Microchip (ISO) implanted and readable before vaccination and testing"
+    fr: "Puce (ISO) posée et lisible avant vaccination et titrage"
+    es: "Microchip (ISO) implantado y legible antes de la vacunación y la prueba"
+    pt: "Microchip (ISO) implantado e legível antes da vacinação e dos exames"
+  - en: "Inactivated rabies vaccination (dog ≥90 days old, 30 days to 1 year before entry)"
+    fr: "Vaccination antirabique inactivée (chien ≥90 jours, 30 jours à 1 an avant l'entrée)"
+    es: "Vacunación antirrábica inactivada (perro ≥90 días, de 30 días a 1 año antes de la entrada)"
+    pt: "Vacinação antirrábica inativada (cachorro com ≥90 dias de idade, de 30 dias a 1 ano antes da entrada)"
+  - en: "Rabies antibody test ≥0.5 IU/ml at a WOAH/APHIA lab — rabies-infected countries only"
+    fr: "Titrage antirabique ≥0,5 UI/ml dans un labo OMSA/APHIA — pays infectés uniquement"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml en un laboratorio WOAH/APHIA — solo países infectados por la rabia"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml em laboratório WOAH/APHIA — apenas para países infectados por raiva"
+  - en: "Import permit applied for online (≥20 days ahead; ≥120 days for a quarantine waiver)"
+    fr: "Permis d'importation demandé en ligne (≥20 jours avant ; ≥120 jours pour une dispense)"
+    es: "Permiso de importación solicitado en línea (≥20 días antes; ≥120 días para una exención de cuarentena)"
+    pt: "Autorização de importação solicitada on-line (≥20 dias de antecedência; ≥120 dias para isenção de quarentena)"
+  - en: "Original export veterinary certificate (APHIA Form 001 or 002)"
+    fr: "Certificat vétérinaire d'exportation original (formulaire APHIA 001 ou 002)"
+    es: "Certificado veterinario de exportación original (formulario APHIA 001 o 002)"
+    pt: "Certificado veterinário de exportação original (Formulário APHIA 001 ou 002)"
+  - en: "Quarantine space confirmed through the permit (rabies-infected origins)"
+    fr: "Place de quarantaine confirmée via le permis (origines infectées)"
+    es: "Plaza de cuarentena confirmada a través del permiso (orígenes infectados por la rabia)"
+    pt: "Vaga de quarentena confirmada pela autorização (origens infectadas por raiva)"
+  - en: "Airline reservation confirming your dog's travel option and IATA crate"
+    fr: "Réservation confirmant l'option de transport et caisse IATA de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y la jaula IATA"
+    pt: "Reserva na companhia aérea confirmando a opção de viagem do cachorro e caixa de transporte IATA"
+  - en: "Confirm your dog is not a prohibited pit-bull-type breed"
+    fr: "Vérifie que ton chien n'est pas d'une race de type pit-bull interdite"
+    es: "Confirma que tu perro no es de una raza de tipo pit-bull prohibida"
+    pt: "Confirme que o seu cachorro não é de uma raça proibida do tipo pit bull"
+
+sources:
+  - label: { en: "APHIA — Quarantine for Dogs & Cats (forms and requirements)", fr: "APHIA — Quarantaine des chiens et chats (formulaires et conditions)", es: "APHIA — Cuarentena de perros y gatos (formularios y requisitos)", pt: "APHIA — Quarentena para Cachorros e Gatos (formulários e exigências)" }
+    url: "https://www.aphia.gov.tw/en/ws.php?id=14261"
+  - label: { en: "APHIA — FAQ, Quarantine Requirements for the Importation of Dogs and Cats (2026-03-10)", fr: "APHIA — FAQ, conditions de quarantaine à l'importation des chiens et chats (2026-03-10)", es: "APHIA — Preguntas frecuentes, requisitos de cuarentena para la importación de perros y gatos (2026-03-10)", pt: "APHIA — Perguntas Frequentes, Exigências de Quarentena para a Importação de Cachorros e Gatos (10/03/2026)" }
+    url: "https://pet-epermit.aphia.gov.tw/files/other/information_146asfiledownload0_14721c.pdf"
+  - label: { en: "APHIA Kaohsiung Branch — Importation of Dogs or Cats into Taiwan FAQ", fr: "APHIA antenne de Kaohsiung — FAQ importation de chiens ou chats à Taïwan", es: "APHIA oficina de Kaohsiung — Preguntas frecuentes sobre la importación de perros o gatos a Taiwán", pt: "Filial da APHIA em Kaohsiung — Perguntas Frequentes sobre a Importação de Cachorros ou Gatos para Taiwan" }
+    url: "https://www.aphia.gov.tw/office/khaphia/en/ws.php?id=738"
+  - label: { en: "APHIA — Online Application System for Dog/Cat Import Permit", fr: "APHIA — Système de demande en ligne du permis d'importation chien/chat", es: "APHIA — Sistema de solicitud en línea del permiso de importación de perros/gatos", pt: "APHIA — Sistema de Solicitação On-line de Autorização de Importação de Cachorros/Gatos" }
+    url: "https://pet-epermit.aphia.gov.tw/"
+  - label: { en: "Ministry of Agriculture — Prohibited pit-bull-type breeds (Announcement GL000084)", fr: "Ministère de l'Agriculture — Races de type pit-bull interdites (avis GL000084)", es: "Ministerio de Agricultura — Razas de tipo pit-bull prohibidas (Anuncio GL000084)", pt: "Ministério da Agricultura — Raças proibidas do tipo pit bull (Comunicado GL000084)" }
+    url: "https://law.moa.gov.tw/glrsnewsout/LawContent.aspx?id=GL000084"
+  - label: { en: "APHIA — Animal and Plant Health Inspection Agency (English home)", fr: "APHIA — Animal and Plant Health Inspection Agency (accueil anglais)", es: "APHIA — Animal and Plant Health Inspection Agency (inicio en inglés)", pt: "APHIA — Animal and Plant Health Inspection Agency (página inicial em inglês)" }
+    url: "https://www.aphia.gov.tw/en/"
+
+seo:
+  title: { en: "Taiwan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Taïwan — Guide", es: "Requisitos de entrada de perros en Taiwán — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Taiwan — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Taiwan With Your Dog: Entry Requirements (2026)", fr: "Voyager à Taïwan avec ton chien : formalités (2026)", es: "Viajar a Taiwán con tu perro: requisitos de entrada (2026)", pt: "Viajar para Taiwan com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaDesc:
+    en: "Official APHIA rules for bringing a dog into Taiwan: microchip, rabies vaccine, antibody test, import permit and 7-day minimum quarantine from infected countries."
+    fr: "Règles officielles APHIA pour un chien entrant à Taïwan : puce, rage, titrage, permis d'importation et quarantaine de 7 jours minimum depuis un pays infecté."
+    es: "Normas oficiales de la APHIA para traer un perro a Taiwán: microchip, rabia, titulación, permiso de importación y cuarentena mínima de 7 días si hay riesgo."
+    pt: "Normas oficiais da APHIA para levar um cachorro para Taiwan: microchip, vacina antirrábica, teste sorológico, autorização de importação e quarentena de 7 dias."
+  slug: "taiwan"
+  shortDesc:
+    en: "What you need to bring a dog into Taiwan, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien à Taïwan, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Taiwán, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para Taiwan, dependendo de onde você está vindo."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

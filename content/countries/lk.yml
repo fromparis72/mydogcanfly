@@ -1,0 +1,417 @@
+# Country Entry Guide — Sri Lanka (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Sri Lanka is NOT in the EU. It runs its own national scheme through the Department of
+# Animal Production and Health (DAPH) under the Animal Diseases Act No. 59 of 1992.
+# An import permit from the Director General, DAPH must be applied for online (Google Form)
+# at least 2 weeks before arrival; ISO microchip -> rabies + core vaccinations (distemper,
+# parvovirus, infectious hepatitis, leptospirosis) -> negative blood tests for leishmaniasis,
+# heartworm antigen and heartworm microfilaria (within 1 month of departure) -> ecto/endo
+# parasite treatment -> International Veterinary Health Certificate issued within 10 days of
+# export -> quarantine inspection at Katunayake (BIA) -> 30-day home quarantine.
+# No rabies antibody test is required by DAPH. No national breed-import ban exists.
+# The eu/listed/nonListed slots are repurposed to Sri Lanka's practical paths:
+# eu = compliant dog from a country recognised free of the tested diseases (fewest blood tests);
+# listed = standard case, full 3-test blood panel required; nonListed = young puppy,
+# lapsed vaccination, non-compliant arrival or 3+ animals (extra permit / additional quarantine).
+id: country_lk
+iso2: "LK"
+name: { en: "Sri Lanka", fr: "Sri Lanka", es: "Sri Lanka", pt: "Sri Lanka" }
+region: { en: "South Asia", fr: "Asie du Sud", es: "Asia del Sur", pt: "Ásia do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: DAPH
+  authorityUrl: http://www.daph.gov.lk
+  intro:
+    en: "Sri Lanka is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Department of Animal Production and Health (DAPH)."
+    fr: "Le Sri Lanka est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Department of Animal Production and Health (DAPH)."
+    es: "Sri Lanka no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Department of Animal Production and Health (DAPH)."
+    pt: "O Sri Lanka é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pelo Department of Animal Production and Health (DAPH)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "DAPH veterinary/quarantine officers issue and endorse the international export health certificate before departure."
+        fr: "Les agents vétérinaires/de quarantaine du DAPH délivrent et visent le certificat sanitaire d'export international avant le départ."
+        es: "Los oficiales veterinarios/de cuarentena del DAPH emiten y refrendan el certificado sanitario de exportación internacional antes de salir."
+        pt: "Os veterinários/agentes de quarentena do DAPH emitem e endossam o atestado de saúde internacional de exportação antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Sri Lanka with your dog", fr: "Voyager au Sri Lanka avec ton chien", es: "Viajar a Sri Lanka con tu perro", pt: "Viajar para o Sri Lanka com seu cachorro" }
+  intro:
+    en: >-
+      Sri Lanka welcomes pet dogs, but it runs its own national import scheme through the Department of
+      Animal Production and Health (DAPH) — not the EU framework. Under the Animal Diseases Act No. 59 of
+      1992, you must first obtain an import permit from the Director General of DAPH, applied for online at
+      least two weeks before arrival. Your dog needs an ISO microchip, up-to-date rabies and core
+      vaccinations (canine distemper, parvovirus, infectious hepatitis and leptospirosis), negative blood
+      tests for leishmaniasis and heartworm, a parasite treatment, and an International Veterinary Health
+      Certificate issued by the exporting country's government veterinary authority within ten days of
+      export. On arrival, your dog is inspected by animal quarantine officers at the airport and then kept
+      under a 30-day home quarantine. Sri Lanka does not require a rabies antibody test. What you must
+      prepare depends on your dog's country of origin and travel history, so read this guide before booking.
+    fr: >-
+      Le Sri Lanka accueille les chiens de compagnie, mais applique son propre régime d'importation via le
+      Department of Animal Production and Health (DAPH) — et non le cadre européen. En vertu de l'Animal
+      Diseases Act n° 59 de 1992, tu dois d'abord obtenir un permis d'importation auprès du Directeur
+      général du DAPH, à demander en ligne au moins deux semaines avant l'arrivée. Ton chien a besoin
+      d'une puce ISO, de vaccinations à jour contre la rage et les maladies de base (maladie de Carré,
+      parvovirose, hépatite contagieuse et leptospirose), de tests sanguins négatifs pour la leishmaniose
+      et la dirofilariose, d'un traitement antiparasitaire, et d'un certificat vétérinaire international
+      délivré par l'autorité vétérinaire gouvernementale du pays d'export dans les dix jours avant l'export.
+      À l'arrivée, le chien est inspecté par les agents de quarantaine à l'aéroport puis placé en quarantaine
+      à domicile pendant 30 jours. Le Sri Lanka n'exige pas de titrage antirabique. Ce que tu dois
+      préparer dépend de l'origine et de l'historique de ton chien : lis ce guide avant de réserver.
+    es: >-
+      Sri Lanka acoge a los perros de compañía, pero aplica su propio régimen nacional de importación a
+      través del Department of Animal Production and Health (DAPH) — no el marco europeo. En virtud de la
+      Animal Diseases Act n.º 59 de 1992, primero debes obtener un permiso de importación del Director
+      General del DAPH, solicitado en línea al menos dos semanas antes de la llegada. Tu perro necesita un
+      microchip ISO, vacunas antirrábica y básicas al día (moquillo canino, parvovirus, hepatitis
+      infecciosa y leptospirosis), pruebas de sangre negativas para leishmaniasis y dirofilariosis (gusano
+      del corazón), un tratamiento antiparasitario, y un Certificado Veterinario Internacional expedido por
+      la autoridad veterinaria gubernamental del país exportador dentro de los diez días previos a la
+      exportación. A la llegada, tu perro es inspeccionado por los agentes de cuarentena animal en el
+      aeropuerto y luego se mantiene en cuarentena domiciliaria de 30 días. Sri Lanka no exige una prueba de
+      titulación de rabia. Lo que debes preparar depende del país de origen y del historial de viajes de tu
+      perro, así que lee esta guía antes de reservar.
+
+    pt: "O Sri Lanka recebe cachorros de estimação, mas aplica seu próprio esquema nacional de importação por meio do Department of Animal Production and Health (DAPH) — e não o marco da UE. Pelo Animal Diseases Act No. 59 of 1992, você precisa primeiro obter uma autorização de importação junto ao Director General do DAPH, solicitada on-line pelo menos duas semanas antes da chegada. Seu cachorro precisa de um microchip ISO, vacinação antirrábica e vacinas essenciais em dia (cinomose canina, parvovirose, hepatite infecciosa e leptospirose), exames de sangue negativos para leishmaniose e dirofilariose, um tratamento antiparasitário, e um International Veterinary Health Certificate emitido pela autoridade veterinária governamental do país exportador dentro de dez dias antes da exportação. Na chegada, o seu cachorro é inspecionado por agentes de quarentena animal no aeroporto e depois mantido em quarentena domiciliar de 30 dias. O Sri Lanka não exige um teste sorológico antirrábico. O que você precisa preparar depende do país de origem do seu cachorro e do histórico de viagens, então leia este guia antes de reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — import permit, blood-test panel and 30-day home quarantine", fr: "Difficile — permis d'importation, panel de tests sanguins et quarantaine à domicile de 30 jours", es: "Difícil — permiso de importación, panel de análisis de sangre y cuarentena domiciliaria de 30 días", pt: "Difícil — autorização de importação, painel de exames de sangue e quarentena domiciliar de 30 dias" }
+
+prepTime:
+  eu:
+    en: "Compliant dog from a country recognised free of the tested diseases: ~3–4 weeks — import permit (apply ≥2 weeks before arrival), up-to-date vaccinations, parasite treatment and a health certificate issued within 10 days of export; some or all blood tests waived."
+    fr: "Chien conforme venant d'un pays reconnu indemne des maladies testées : ~3 à 4 semaines — permis d'importation (demande ≥2 semaines avant l'arrivée), vaccins à jour, traitement antiparasitaire et certificat sanitaire établi dans les 10 jours avant l'export ; tout ou partie des tests sanguins levés."
+    es: "Perro conforme procedente de un país reconocido libre de las enfermedades analizadas: ~3–4 semanas — permiso de importación (solicítalo ≥2 semanas antes de la llegada), vacunas al día, tratamiento antiparasitario y un certificado sanitario expedido dentro de los 10 días previos a la exportación; se eximen algunos o todos los análisis de sangre."
+    pt: "Cachorro em conformidade vindo de um país reconhecido como livre das doenças testadas: cerca de 3 a 4 semanas — autorização de importação (solicitada ≥2 semanas antes da chegada), vacinas em dia, tratamento antiparasitário e um atestado de saúde emitido dentro de 10 dias antes da exportação; alguns ou todos os exames de sangue dispensados."
+  listed:
+    en: "Standard case (full blood panel): ~1–2 months — allow time for negative leishmaniasis and heartworm tests (done within one month of departure) plus the permit, vaccinations, parasite treatment and health certificate."
+    fr: "Cas standard (panel sanguin complet) : ~1 à 2 mois — prévois le temps des tests négatifs leishmaniose et dirofilariose (réalisés dans le mois avant le départ), plus le permis, les vaccins, le traitement antiparasitaire et le certificat sanitaire."
+    es: "Caso estándar (panel de sangre completo): ~1–2 meses — reserva tiempo para las pruebas negativas de leishmaniasis y dirofilariosis (realizadas dentro del mes anterior a la salida), además del permiso, las vacunas, el tratamiento antiparasitario y el certificado sanitario."
+    pt: "Caso padrão (painel completo de exames de sangue): cerca de 1 a 2 meses — reserve tempo para os exames negativos de leishmaniose e dirofilariose (feitos dentro de um mês antes da partida), além da autorização, das vacinas, do tratamento antiparasitário e do atestado de saúde."
+  nonListed:
+    en: "Young puppy, lapsed vaccination, 3+ animals or a non-compliant arrival: plan several extra weeks — a 3+ animal import needs a separate Import and Export Control permit, and non-compliant dogs risk additional quarantine, return or other legal action."
+    fr: "Jeune chiot, vaccination périmée, 3 animaux ou plus, ou arrivée non conforme : prévois plusieurs semaines de plus — un import de 3 animaux ou plus exige un permis distinct du Département du contrôle des importations/exportations, et un chien non conforme risque quarantaine supplémentaire, renvoi ou autres poursuites."
+    es: "Cachorro joven, vacunación caducada, 3 o más animales o una llegada no conforme: prevé varias semanas adicionales — la importación de 3 o más animales requiere un permiso independiente del Departamento de Control de Importaciones y Exportaciones, y los perros no conformes se arriesgan a cuarentena adicional, devolución u otras medidas legales."
+    pt: "Filhote jovem, vacinação vencida, 3 ou mais animais ou chegada em não conformidade: planeje várias semanas extras — a importação de 3 ou mais animais exige uma autorização separada do Import and Export Control, e cachorros em não conformidade correm o risco de quarentena adicional, devolução ou outras medidas legais."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with permit and conditions", fr: "Oui — avec permis et conditions", es: "Sí — con permiso y condiciones", pt: "Sim — com autorização e condições" }
+    cls: neutral
+  - requirement: { en: "Import permit (DAPH, in advance)", fr: "Permis d'importation (DAPH, à l'avance)", es: "Permiso de importación (DAPH, con antelación)", pt: "Autorização de importação (DAPH, com antecedência)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required by Sri Lanka", fr: "Non requis par le Sri Lanka", es: "No obligatoria en Sri Lanka", pt: "Não exigido pelo Sri Lanka" }
+    cls: ok
+  - requirement: { en: "Core vaccinations (distemper, parvovirus, hepatitis, leptospirosis)", fr: "Vaccins de base (Carré, parvovirose, hépatite, leptospirose)", es: "Vacunas básicas (moquillo, parvovirus, hepatitis, leptospirosis)", pt: "Vacinas essenciais (cinomose, parvovirose, hepatite, leptospirose)" }
+    status: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Blood tests (leishmaniasis, heartworm antigen & microfilaria)", fr: "Tests sanguins (leishmaniose, antigène et microfilaires de dirofilaire)", es: "Análisis de sangre (leishmaniasis, antígeno y microfilaria de dirofilaria)", pt: "Exames de sangue (leishmaniose, antígeno e microfilária da dirofilariose)" }
+    status: { en: "Required (may be waived by origin)", fr: "Requis (levés selon l'origine)", es: "Obligatorios (pueden eximirse según el origen)", pt: "Obrigatório (pode ser dispensado conforme a origem)" }
+    cls: warn
+  - requirement: { en: "Parasite treatment (external & internal)", fr: "Traitement antiparasitaire (externe et interne)", es: "Tratamiento antiparasitario (externo e interno)", pt: "Tratamento antiparasitário (externo e interno)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "International Veterinary Health Certificate", fr: "Certificat vétérinaire international", es: "Certificado Veterinario Internacional", pt: "International Veterinary Health Certificate" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "30-day home quarantine", fr: "Quarantaine à domicile de 30 jours", es: "Cuarentena domiciliaria de 30 días", pt: "Quarentena domiciliar de 30 dias" }
+    cls: warn
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and Sri Lanka's Department of Animal Production and Health (DAPH) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le Department of Animal Production and Health (DAPH) du Sri Lanka peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y el Department of Animal Production and Health (DAPH) de Sri Lanka pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário e o Department of Animal Production and Health (DAPH) do Sri Lanka podem confirmar o procedimento exato para o seu cachorro."
+  - en: "The DAPH import permit must be obtained before departure — apply online at least two weeks before arrival."
+    fr: "Le permis d'importation du DAPH doit être obtenu avant le départ — demande en ligne au moins deux semaines avant l'arrivée."
+    es: "El permiso de importación del DAPH debe obtenerse antes de la salida — solicítalo en línea al menos dos semanas antes de la llegada."
+    pt: "A autorização de importação do DAPH precisa ser obtida antes da partida — solicite on-line pelo menos duas semanas antes da chegada."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Sri Lanka (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — le Sri Lanka (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Sri Lanka (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — o Sri Lanka (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Sri Lanka", fr: "Pays de destination — Sri Lanka", es: "País de destino — Sri Lanka", pt: "País de destino — Sri Lanka" }
+      text:
+        en: "Sri Lanka runs its own DAPH scheme under the Animal Diseases Act No. 59 of 1992: an advance import permit, an ISO microchip, up-to-date rabies and core vaccinations, negative blood tests, a parasite treatment, an International Veterinary Health Certificate and a 30-day home quarantine. It does not use the EU pet-passport system."
+        fr: "Le Sri Lanka applique son propre régime DAPH au titre de l'Animal Diseases Act n° 59 de 1992 : permis d'importation préalable, puce ISO, vaccins antirabique et de base à jour, tests sanguins négatifs, traitement antiparasitaire, certificat vétérinaire international et quarantaine à domicile de 30 jours. Il n'utilise pas le passeport européen."
+        es: "Sri Lanka aplica su propio régimen del DAPH conforme a la Animal Diseases Act n.º 59 de 1992: un permiso de importación previo, un microchip ISO, vacunas antirrábica y básicas al día, análisis de sangre negativos, un tratamiento antiparasitario, un Certificado Veterinario Internacional y una cuarentena domiciliaria de 30 días. No utiliza el sistema de pasaporte europeo para mascotas."
+        pt: "O Sri Lanka aplica seu próprio esquema do DAPH sob o Animal Diseases Act No. 59 of 1992: uma autorização de importação prévia, um microchip ISO, vacinação antirrábica e vacinas essenciais em dia, exames de sangue negativos, um tratamento antiparasitário, um International Veterinary Health Certificate e uma quarentena domiciliar de 30 dias. O país não usa o sistema de passaporte para animais de estimação da UE."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country's government veterinary authority must issue and endorse the health certificate. It also decides which blood tests you need: if the exporting country is officially recognised free of leishmaniasis or heartworm, testing for that disease is not required."
+        fr: "L'autorité vétérinaire gouvernementale du pays d'export doit établir et viser le certificat sanitaire. Elle détermine aussi les tests sanguins nécessaires : si le pays d'export est officiellement reconnu indemne de leishmaniose ou de dirofilariose, le test correspondant n'est pas exigé."
+        es: "La autoridad veterinaria gubernamental del país exportador debe expedir y refrendar el certificado sanitario. También determina qué análisis de sangre necesitas: si el país exportador está oficialmente reconocido como libre de leishmaniasis o dirofilariosis, no se exige el análisis de esa enfermedad."
+        pt: "A autoridade veterinária governamental do país exportador precisa emitir e endossar o atestado de saúde. Ela também determina quais exames de sangue você precisa: se o país exportador for oficialmente reconhecido como livre de leishmaniose ou dirofilariose, o exame para essa doença não é exigido."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's disease exposure and vaccination history shape the blood-test panel and the certificate wording, and quarantine officers may impose additional quarantine if an animal raises a health concern on arrival — regardless of the last airport."
+        fr: "L'exposition aux maladies et l'historique de vaccination de ton chien déterminent le panel de tests sanguins et le libellé du certificat, et les agents de quarantaine peuvent imposer une quarantaine supplémentaire si un animal suscite une inquiétude sanitaire à l'arrivée — quel que soit le dernier aéroport."
+        es: "La exposición a enfermedades y el historial de vacunación de tu perro determinan el panel de análisis de sangre y el redactado del certificado, y los agentes de cuarentena pueden imponer cuarentena adicional si un animal genera una preocupación sanitaria a la llegada — independientemente del último aeropuerto."
+        pt: "A exposição a doenças e o histórico de vacinação do seu cachorro determinam o painel de exames de sangue e o texto do certificado, e os agentes de quarentena podem impor quarentena adicional se um animal levantar alguma preocupação de saúde na chegada — independentemente do último aeroporto."
+  note:
+    en: "So read the requirements below as Sri Lanka's framework, then confirm your dog's exact origin, history and timeline with your vet and DAPH before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre sri-lankais, puis confirme l'origine, l'historique et le calendrier exacts de ton chien avec ton vétérinaire et le DAPH avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Sri Lanka y luego confirma el origen, el historial y el calendario exactos de tu perro con tu veterinario y el DAPH antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o marco do Sri Lanka e depois confirme com o seu veterinário e o DAPH a origem, o histórico e o cronograma exatos do seu cachorro antes de reservar."
+
+requirements:
+  - item: { en: "Import permit (DAPH)", fr: "Permis d'importation (DAPH)", es: "Permiso de importación (DAPH)", pt: "Autorização de importação (DAPH)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Under Section 21 of the Animal Diseases Act No. 59 of 1992, apply to the Director General, DAPH. For dogs the application is made online only (DAPH Google Form) at least two weeks before arrival, with vaccination records, laboratory test reports, the International Veterinary Health Certificate (or draft) and the microchip certificate attached.", fr: "En vertu de l'article 21 de l'Animal Diseases Act n° 59 de 1992, la demande se fait auprès du Directeur général du DAPH. Pour les chiens, elle se fait uniquement en ligne (formulaire Google du DAPH) au moins deux semaines avant l'arrivée, avec carnet de vaccination, rapports de tests de laboratoire, certificat vétérinaire international (ou projet) et certificat de puce joints.", es: "En virtud del artículo 21 de la Animal Diseases Act n.º 59 de 1992, la solicitud se dirige al Director General del DAPH. Para perros, la solicitud se hace únicamente en línea (formulario Google del DAPH) al menos dos semanas antes de la llegada, adjuntando el carnet de vacunación, los informes de los análisis de laboratorio, el Certificado Veterinario Internacional (o un borrador) y el certificado del microchip.", pt: "Pela Seção 21 do Animal Diseases Act No. 59 of 1992, o pedido é feito ao Director General do DAPH. Para cachorros, o pedido é feito apenas on-line (formulário Google do DAPH) pelo menos duas semanas antes da chegada, com os registros de vacinação, os laudos de exames laboratoriais, o International Veterinary Health Certificate (ou uma minuta) e o certificado do microchip em anexo." }
+    exceptions: { en: "No fee is charged for the import permit. Handwritten or hand-delivered applications are not accepted. Inquiries: vraanim@gmail.com. The reviewed DAPH documents do not publish a validity period for the permit — confirm current validity with DAPH.", fr: "Le permis d'importation est gratuit. Les demandes manuscrites ou remises en main propre ne sont pas acceptées. Renseignements : vraanim@gmail.com. Les documents DAPH consultés ne publient pas de durée de validité du permis — confirme la validité en vigueur auprès du DAPH.", es: "El permiso de importación no tiene coste. No se aceptan solicitudes manuscritas ni entregadas en persona. Consultas: vraanim@gmail.com. Los documentos del DAPH consultados no publican un periodo de valide para el permiso — confirma la valide vigente con el DAPH.", pt: "Nenhuma taxa é cobrada pela autorização de importação. Pedidos manuscritos ou entregues pessoalmente não são aceitos. Dúvidas: vraanim@gmail.com. Os documentos do DAPH analisados não publicam um prazo de validade para a autorização — confirme a validade atual com o DAPH." }
+    ref: { en: "Animal Diseases Act No. 59 of 1992 (s.21); DAPH — Import; Essential Guidelines", fr: "Animal Diseases Act n° 59 de 1992 (art. 21) ; DAPH — Import ; Essential Guidelines", es: "Animal Diseases Act No. 59 of 1992 (s.21); DAPH — Import; Essential Guidelines", pt: "Animal Diseases Act No. 59 of 1992 (s.21); DAPH — Import; Essential Guidelines" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Every dog must be identified with an ISO-compliant microchip. The microchip number must be clearly stated on all relevant documents, including the vaccination records and the blood-test reports.", fr: "Chaque chien doit être identifié par une puce conforme ISO. Le numéro de puce doit figurer clairement sur tous les documents pertinents, y compris le carnet de vaccination et les rapports de tests sanguins.", es: "Todo perro debe identificarse con un microchip conforme a la norma ISO. El número del microchip debe indicarse claramente en todos los documentos pertinentes, incluidos el carnet de vacunación y los informes de los análisis de sangre.", pt: "Todo cachorro precisa ser identificado com um microchip em conformidade com a ISO. O número do microchip precisa constar claramente em todos os documentos relevantes, inclusive nos registros de vacinação e nos laudos dos exames de sangue." }
+    exceptions: { en: "If the microchip number on the documents does not match the animal at inspection, clearance can be refused.", fr: "Si le numéro de puce des documents ne correspond pas à l'animal lors de l'inspection, le dédouanement peut être refusé.", es: "Si el número del microchip de los documentos no coincide con el del animal en la inspección, se puede denegar el despacho.", pt: "Se o número do microchip nos documentos não corresponder ao animal na inspeção, a liberação pode ser recusada." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.2)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 2)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 2)", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.2)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be fully vaccinated and up to date against rabies, with valid vaccination records submitted at the time of application. For dogs under three months of age, the dam (mother) must be fully vaccinated against rabies and the core diseases.", fr: "Le chien doit être entièrement vacciné et à jour contre la rage, avec un carnet de vaccination valide fourni lors de la demande. Pour les chiens de moins de trois mois, la mère doit être entièrement vaccinée contre la rage et les maladies de base.", es: "El perro debe estar completamente vacunado y al día contra la rabia, con un carnet de vacunación válido presentado en el momento de la solicitud. Para perros menores de tres meses, la madre debe estar completamente vacunada contra la rabia y las enfermedades básicas.", pt: "O cachorro precisa estar totalmente vacinado e em dia contra a raiva, com registros de vacinação válidos enviados no momento do pedido. Para cachorros com menos de três meses de idade, a mãe precisa estar totalmente vacinada contra a raiva e as doenças essenciais." }
+    exceptions: { en: "The reviewed DAPH requirement does not publish a specific vaccination interval beyond 'fully vaccinated and up to date' — carry complete, dated records showing current validity and the microchip number.", fr: "L'exigence DAPH consultée ne publie pas d'intervalle de vaccination précis au-delà de « entièrement vacciné et à jour » — munis-toi d'un carnet complet et daté attestant la validité en cours et le numéro de puce.", es: "El requisito del DAPH consultado no publica un intervalo de vacunación específico más allá de «completamente vacunado y al día» — lleva un carnet completo y fechado que muestre la valide vigente y el número del microchip.", pt: "A exigência do DAPH analisada não publica um intervalo específico de vacinação além de 'totalmente vacinado e em dia' — leve registros completos e datados que mostrem a validade atual e o número do microchip." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.3)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 3)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 3)", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.3)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Sri Lanka's DAPH veterinary health requirements for dogs do not call for a rabies antibody test. Only up-to-date rabies vaccination is required.", fr: "Les exigences sanitaires vétérinaires du DAPH pour les chiens n'imposent pas de titrage antirabique. Seule une vaccination antirabique à jour est requise.", es: "Los requisitos sanitarios veterinarios del DAPH de Sri Lanka para perros no exigen una prueba de titulación de rabia. Solo se requiere una vacunación antirrábica al día.", pt: "As exigências sanitárias veterinárias do DAPH do Sri Lanka para cachorros não exigem um teste sorológico antirrábico. Apenas a vacinação antirrábica em dia é obrigatória." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.3)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 3)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 3)", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.3)" }
+  - item: { en: "Core vaccinations", fr: "Vaccins de base", es: "Vacunas básicas", pt: "Vacinas essenciais" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "In addition to rabies, the dog must be fully vaccinated and up to date against canine distemper, canine parvovirus, canine infectious hepatitis and leptospirosis. Records must show the microchip number.", fr: "Outre la rage, le chien doit être entièrement vacciné et à jour contre la maladie de Carré, la parvovirose canine, l'hépatite contagieuse canine et la leptospirose. Le carnet doit indiquer le numéro de puce.", es: "Además de la rabia, el perro debe estar completamente vacunado y al día contra el moquillo canino, el parvovirus canino, la hepatitis infecciosa canina y la leptospirosis. El carnet debe mostrar el número del microchip.", pt: "Além da raiva, o cachorro precisa estar totalmente vacinado e em dia contra cinomose canina, parvovirose canina, hepatite infecciosa canina e leptospirose. Os registros precisam mostrar o número do microchip." }
+    exceptions: { en: "For dogs under three months of age, the dam must be fully vaccinated against these diseases.", fr: "Pour les chiens de moins de trois mois, la mère doit être entièrement vaccinée contre ces maladies.", es: "Para perros menores de tres meses, la madre debe estar completamente vacunada contra estas enfermedades.", pt: "Para cachorros com menos de três meses de idade, a mãe precisa estar totalmente vacinada contra essas doenças." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.3)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 3)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 3)", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.3)" }
+  - item: { en: "Blood tests (dogs)", fr: "Tests sanguins (chiens)", es: "Análisis de sangre (perros)", pt: "Exames de sangue (cachorros)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorios", pt: "Obrigatório" }
+    when: { en: "All dogs must test negative for leishmaniasis (PCR/ELISA/IFAT), heartworm antigen (PCR/ELISA/IFAT) and heartworm microfilaria (Knott's test / concentration / filtration), done within one month before departure. Test reports must include the microchip number.", fr: "Tous les chiens doivent être négatifs à la leishmaniose (PCR/ELISA/IFAT), à l'antigène de dirofilaire (PCR/ELISA/IFAT) et aux microfilaires de dirofilaire (test de Knott / concentration / filtration), réalisés dans le mois précédant le départ. Les rapports doivent porter le numéro de puce.", es: "Todos los perros deben dar negativo en leishmaniasis (PCR/ELISA/IFAT), antígeno de dirofilaria (PCR/ELISA/IFAT) y microfilaria de dirofilaria (test de Knott / concentración / filtración), realizados dentro del mes anterior a la salida. Los informes de los análisis deben incluir el número del microchip.", pt: "Todos os cachorros precisam testar negativo para leishmaniose (PCR/ELISA/IFAT), antígeno de dirofilariose (PCR/ELISA/IFAT) e microfilária de dirofilariose (teste de Knott / concentração / filtração), feitos dentro de um mês antes da partida. Os laudos dos exames precisam incluir o número do microchip." }
+    exceptions: { en: "If the exporting country is officially recognised as free from any of these diseases, testing for that specific disease is not required.", fr: "Si le pays d'export est officiellement reconnu indemne de l'une de ces maladies, le test correspondant n'est pas exigé.", es: "Si el país exportador está oficialmente reconocido como libre de alguna de estas enfermedades, no se exige el análisis de esa enfermedad en concreto.", pt: "Se o país exportador for oficialmente reconhecido como livre de qualquer uma dessas doenças, o exame para essa doença específica não é exigido." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.4)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 4)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 4)", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.4)" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be treated for both external parasites (ectoparasites) and internal parasites (endoparasites), certified in writing by a registered veterinarian and presented at quarantine inspection.", fr: "Le chien doit être traité contre les parasites externes (ectoparasites) et internes (endoparasites), avec certification écrite d'un vétérinaire enregistré, présentée à l'inspection de quarantaine.", es: "El perro debe recibir tratamiento contra parásitos externos (ectoparásitos) e internos (endoparásitos), certificado por escrito por un veterinario registrado y presentado en la inspección de cuarentena.", pt: "O cachorro precisa ser tratado tanto para parasitas externos (ectoparasitas) quanto para parasitas internos (endoparasitas), certificado por escrito por um veterinário registrado e apresentado na inspeção de quarentena." }
+    exceptions: { en: "The DAPH health requirement states 'within fourteen (14) days prior to departure' while the DAPH guideline states 'within seven (07) days prior to travel' — treat the dog within 7 days before travel to satisfy both.", fr: "L'exigence sanitaire DAPH indique « dans les quatorze (14) jours avant le départ » tandis que la notice DAPH indique « dans les sept (07) jours avant le voyage » — traitez le chien dans les 7 jours avant le voyage pour satisfaire aux deux.", es: "El requisito sanitario del DAPH indica «dentro de los catorce (14) días previos a la salida», mientras que la guía del DAPH indica «dentro de los siete (07) días previos al viaje» — trata al perro dentro de los 7 días previos al viaje para cumplir ambos.", pt: "A exigência sanitária do DAPH indica 'dentro de quatorze (14) dias antes da partida', enquanto a diretriz do DAPH indica 'dentro de sete (07) dias antes da viagem' — trate o cachorro dentro de 7 dias antes da viagem para atender às duas." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.5); Essential Guidelines", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 5) ; Essential Guidelines", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 5); Essential Guidelines", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.5); Essential Guidelines" }
+  - item: { en: "International Veterinary Health Certificate", fr: "Certificat vétérinaire international", es: "Certificado Veterinario Internacional", pt: "International Veterinary Health Certificate" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the competent government veterinary authority of the exporting country within ten days prior to export/arrival. It must confirm the dog is clinically healthy and fit for travel, has a valid ISO microchip, has been duly vaccinated (including rabies) and has tested negative for the required diseases.", fr: "Délivré par l'autorité vétérinaire gouvernementale compétente du pays d'export dans les dix jours avant l'export/l'arrivée. Il doit attester que le chien est cliniquement sain et apte au voyage, porte une puce ISO valide, a été dûment vacciné (rage comprise) et a été testé négatif aux maladies requises.", es: "Expedido por la autoridad veterinaria gubernamental competente del país exportador dentro de los diez días previos a la exportación/llegada. Debe confirmar que el perro está clínicamente sano y apto para viajar, que tiene un microchip ISO válido, que ha sido debidamente vacunado (incluida la rabia) y que ha dado negativo en las enfermedades requeridas.", pt: "Emitido pela autoridade veterinária governamental competente do país exportador dentro de dez dias antes da exportação/chegada. Ele precisa confirmar que o cachorro está clinicamente saudável e apto para viajar, tem um microchip ISO válido, foi devidamente vacinado (incluindo a raiva) e testou negativo para as doenças exigidas." }
+    exceptions: { en: "Submit the certificate (or a sample/draft copy) with the application; if only issued after the permit, present the original upon arrival in Sri Lanka.", fr: "Fournis le certificat (ou une copie type/projet) avec la demande ; s'il n'est établi qu'après le permis, présente l'original à l'arrivée au Sri Lanka.", es: "Presenta el certificado (o una copia modelo/borrador) con la solicitud; si solo se expide después del permiso, presenta el original a la llegada a Sri Lanka.", pt: "Envie o certificado (ou uma cópia de amostra/minuta) junto com o pedido; se ele só for emitido depois da autorização, apresente o original na chegada ao Sri Lanka." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.6); Essential Guidelines", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 6) ; Essential Guidelines", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 6); Essential Guidelines", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.6); Essential Guidelines" }
+  - item: { en: "Number of animals / extra permit", fr: "Nombre d'animaux / permis supplémentaire", es: "Número de animales / permiso adicional", pt: "Número de animais / autorização extra" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Importing three (3) or more animals requires a separate permit from the Import and Export Control Department, ideally applied for at the same time as the DAPH application.", fr: "L'importation de trois (3) animaux ou plus exige un permis distinct du Département du contrôle des importations/exportations, à demander idéalement en même temps que la demande DAPH.", es: "La importación de tres (3) o más animales requiere un permiso independiente del Departamento de Control de Importaciones y Exportaciones, solicitado idealmente al mismo tiempo que la solicitud del DAPH.", pt: "A importação de três (3) ou mais animais exige uma autorização separada do Import and Export Control Department, de preferência solicitada ao mesmo tempo que o pedido ao DAPH." }
+    exceptions: { en: "Apply via the Import and Export Control Department portal to avoid clearance delays.", fr: "Fais la demande via le portail du Département du contrôle des importations/exportations pour éviter les retards de dédouanement.", es: "Solicítalo a través del portal del Departamento de Control de Importaciones y Exportaciones para evitar retrasos en el despacho.", pt: "Solicite pelo portal do Import and Export Control Department para evitar atrasos na liberação." }
+    ref: { en: "DAPH — Essential Guidelines (s.11)", fr: "DAPH — Essential Guidelines (art. 11)", es: "DAPH — Essential Guidelines (art. 11)", pt: "DAPH — Essential Guidelines (s.11)" }
+  - item: { en: "Arrival inspection", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Inform the airport quarantine office before departure (aqokatunayake@gmail.com). On arrival at Katunayake (Bandaranaike International Airport), declare the dog to Sri Lanka Customs / animal quarantine and submit all documents; a quarantine handling fee of LKR 950 is payable.", fr: "Informe le bureau de quarantaine de l'aéroport avant le départ (aqokatunayake@gmail.com). À l'arrivée à Katunayake (aéroport international Bandaranaike), déclare le chien à la douane sri-lankaise / à la quarantaine animale et remets tous les documents ; des frais de gestion de quarantaine de 950 LKR sont dus.", es: "Informa a la oficina de cuarentena del aeropuerto antes de la salida (aqokatunayake@gmail.com). A la llegada a Katunayake (aeropuerto internacional Bandaranaike), declara el perro ante la aduana de Sri Lanka / cuarentena animal y presenta todos los documentos; se debe abonar una tasa de gestión de cuarentena de 950 LKR.", pt: "Informe o escritório de quarentena do aeroporto antes da partida (aqokatunayake@gmail.com). Na chegada a Katunayake (Bandaranaike International Airport), declare o cachorro à alfândega do Sri Lanka / quarentena animal e apresente todos os documentos; uma taxa de manuseio de quarentena de LKR 950 é devida." }
+    exceptions: { en: "Non-compliance may result in return of the animal, quarantine or other legal action.", fr: "La non-conformité peut entraîner le renvoi de l'animal, la quarantaine ou d'autres poursuites.", es: "El incumplimiento puede dar lugar a la devolución del animal, la cuarentena u otras medidas legales.", pt: "O descumprimento pode resultar na devolução do animal, em quarentena ou em outras medidas legais." }
+    ref: { en: "DAPH — Essential Guidelines (s.9); DAPH — Quarantine", fr: "DAPH — Essential Guidelines (art. 9) ; DAPH — Quarantaine", es: "DAPH — Essential Guidelines (art. 9); DAPH — Cuarentena", pt: "DAPH — Essential Guidelines (s.9); DAPH — Quarantine" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Over 1.5 months", fr: "Plus de 1,5 mois", es: "Más de 1,5 meses", pt: "Acima de 1,5 mês" }
+    when: { en: "The dog must be over one and a half (1.5) months of age at the time of importation. Dogs under three months must have a fully vaccinated dam.", fr: "Le chien doit avoir plus d'un mois et demi (1,5) au moment de l'importation. Les chiens de moins de trois mois doivent avoir une mère entièrement vaccinée.", es: "El perro debe tener más de un mes y medio (1,5) en el momento de la importación. Los perros menores de tres meses deben tener una madre completamente vacunada.", pt: "O cachorro precisa ter mais de um mês e meio (1,5 mês) de idade no momento da importação. Cachorros com menos de três meses precisam ter uma mãe totalmente vacinada." }
+    exceptions: { en: "In practice, an unvaccinated young puppy still needs up-to-date protection from a vaccinated dam and must meet every other requirement.", fr: "En pratique, un jeune chiot non vacciné a tout de même besoin d'une protection à jour via une mère vaccinée et doit remplir toutes les autres exigences.", es: "En la práctica, un cachorro joven sin vacunar necesita igualmente una protección al día procedente de una madre vacunada y debe cumplir el resto de los requisitos.", pt: "Na prática, um filhote jovem não vacinado ainda assim precisa da proteção em dia de uma mãe vacinada e precisa cumprir todas as demais exigências." }
+    ref: { en: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.1, s.3)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (art. 1, art. 3)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (art. 1, art. 3)", pt: "DAPH — Veterinary Health Requirements for Importation of Dogs (s.1, s.3)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "30-day home quarantine", fr: "Quarantaine à domicile de 30 jours", es: "Cuarentena domiciliaria de 30 días", pt: "Quarentena domiciliar de 30 dias" }
+    when: { en: "Every animal imported into Sri Lanka is subject to quarantine for a minimum of thirty days under Section 28 of the Animal Diseases Act No. 59 of 1992. For dogs and cats this is a 30-day home quarantine during which quarantine officers may inspect the animal; any illness must be reported immediately.", fr: "Tout animal importé au Sri Lanka est soumis à une quarantaine d'au moins trente jours en vertu de l'article 28 de l'Animal Diseases Act n° 59 de 1992. Pour les chiens et chats, il s'agit d'une quarantaine à domicile de 30 jours durant laquelle les agents peuvent inspecter l'animal ; toute maladie doit être signalée immédiatement.", es: "Todo animal importado a Sri Lanka está sujeto a una cuarentena de un mínimo de treinta días conforme al artículo 28 de la Animal Diseases Act n.º 59 de 1992. Para perros y gatos, se trata de una cuarentena domiciliaria de 30 días durante la cual los agentes de cuarentena pueden inspeccionar al animal; cualquier enfermedad debe notificarse de inmediato.", pt: "Todo animal importado para o Sri Lanka está sujeito a quarentena de no mínimo trinta dias, pela Seção 28 do Animal Diseases Act No. 59 of 1992. Para cachorros e gatos, essa é uma quarentena domiciliar de 30 dias, durante a qual os agentes de quarentena podem inspecionar o animal; qualquer doença precisa ser relatada imediatamente." }
+    exceptions: { en: "Additional quarantine may be imposed if deemed necessary by the authorities.", fr: "Une quarantaine supplémentaire peut être imposée si les autorités le jugent nécessaire.", es: "Las autoridades pueden imponer cuarentena adicional si lo consideran necesario.", pt: "Uma quarentena adicional pode ser imposta se as autoridades julgarem necessário." }
+    ref: { en: "Animal Diseases Act No. 59 of 1992 (s.28); DAPH — Quarantine; Essential Guidelines (s.10)", fr: "Animal Diseases Act n° 59 de 1992 (art. 28) ; DAPH — Quarantaine ; Essential Guidelines (art. 10)", es: "Animal Diseases Act n.º 59 de 1992 (art. 28); DAPH — Cuarentena; Essential Guidelines (art. 10)", pt: "Animal Diseases Act No. 59 of 1992 (s.28); DAPH — Quarantine; Essential Guidelines (s.10)" }
+
+origin:
+  eu:
+    title: { en: "Dog from a country recognised free of the tested diseases — fastest path", fr: "Chien venant d'un pays reconnu indemne des maladies testées — parcours le plus rapide", es: "Perro procedente de un país reconocido libre de las enfermedades analizadas — la vía más rápida", pt: "Cachorro vindo de um país reconhecido como livre das doenças testadas — caminho mais rápido" }
+    body:
+      en: "If your dog comes from a country officially recognised as free of leishmaniasis and/or heartworm, testing for those diseases is not required, which shortens preparation. You still need the DAPH import permit, an ISO microchip, up-to-date rabies and core vaccinations, a parasite treatment for external and internal parasites, and an International Veterinary Health Certificate issued within ten days of export. No rabies antibody test applies, but the 30-day home quarantine still does."
+      fr: "Si ton chien vient d'un pays officiellement reconnu indemne de leishmaniose et/ou de dirofilariose, les tests correspondants ne sont pas exigés, ce qui raccourcit la préparation. Il te faut tout de même le permis DAPH, une puce ISO, des vaccins antirabique et de base à jour, un traitement contre les parasites externes et internes, et un certificat vétérinaire international établi dans les dix jours avant l'export. Aucun titrage antirabique ne s'applique, mais la quarantaine à domicile de 30 jours reste due."
+      es: "Si tu perro procede de un país oficialmente reconocido como libre de leishmaniasis y/o dirofilariosis, no se exige el análisis de esas enfermedades, lo que acorta la preparación. Aun así, necesitas el permiso de importación del DAPH, un microchip ISO, vacunas antirrábica y básicas al día, un tratamiento antiparasitario contra parásitos externos e internos, y un Certificado Veterinario Internacional expedido dentro de los diez días previos a la exportación. No se aplica ninguna prueba de titulación de rabia, pero sí la cuarentena domiciliaria de 30 días."
+      pt: "Se o seu cachorro vier de um país oficialmente reconhecido como livre de leishmaniose e/ou dirofilariose, o exame para essas doenças não é exigido, o que reduz a preparação. Você ainda precisa da autorização de importação do DAPH, de um microchip ISO, da vacinação antirrábica e das vacinas essenciais em dia, de um tratamento antiparasitário para parasitas externos e internos, e de um International Veterinary Health Certificate emitido dentro de dez dias antes da exportação. Nenhum teste sorológico antirrábico se aplica, mas a quarentena domiciliar de 30 dias ainda se aplica."
+    cls: warn
+  listed:
+    title: { en: "Standard case — full blood-test panel", fr: "Cas standard — panel de tests sanguins complet", es: "Caso estándar — panel de análisis de sangre completo", pt: "Caso padrão — painel completo de exames de sangue" }
+    body:
+      en: "From most countries the dog must test negative for leishmaniasis, heartworm antigen and heartworm microfilaria, done within one month before departure, with the microchip number on each report. Add the import permit (applied for at least two weeks before arrival), up-to-date rabies and core vaccinations, the parasite treatment and the health certificate. On arrival, quarantine officers inspect the dog and a 30-day home quarantine follows."
+      fr: "Depuis la plupart des pays, le chien doit être négatif à la leishmaniose, à l'antigène et aux microfilaires de dirofilaire, dans le mois avant le départ, avec le numéro de puce sur chaque rapport. Ajoute le permis d'importation (demandé au moins deux semaines avant l'arrivée), les vaccins antirabique et de base à jour, le traitement antiparasitaire et le certificat sanitaire. À l'arrivée, les agents de quarantaine inspectent le chien et une quarantaine à domicile de 30 jours suit."
+      es: "Desde la mayoría de los países, el perro debe dar negativo en leishmaniasis, antígeno de dirofilaria y microfilaria de dirofilaria, realizados dentro del mes anterior a la salida, con el número del microchip en cada informe. Añade el permiso de importación (solicitado al menos dos semanas antes de la llegada), las vacunas antirrábica y básicas al día, el tratamiento antiparasitario y el certificado sanitario. A la llegada, los agentes de cuarentena inspeccionan al perro y sigue una cuarentena domiciliaria de 30 días."
+      pt: "Vindo da maioria dos países, o cachorro precisa testar negativo para leishmaniose, antígeno e microfilária de dirofilariose, feitos dentro de um mês antes da partida, com o número do microchip em cada laudo. Acrescente a autorização de importação (solicitada pelo menos duas semanas antes da chegada), a vacinação antirrábica e as vacinas essenciais em dia, o tratamento antiparasitário e o atestado de saúde. Na chegada, os agentes de quarentena inspecionam o cachorro, e uma quarentena domiciliar de 30 dias se segue."
+    cls: warn
+  nonListed:
+    title: { en: "Young puppy, lapsed vaccination, 3+ animals or non-compliant arrival", fr: "Jeune chiot, vaccination périmée, 3 animaux ou plus, ou arrivée non conforme", es: "Cachorro joven, vacunación caducada, 3 o más animales o llegada no conforme", pt: "Filhote jovem, vacinação vencida, 3 ou mais animais ou chegada em não conformidade" }
+    body:
+      en: "A dog under three months relies on a fully vaccinated dam; a lapsed vaccination must be brought up to date before travel. Importing three or more animals needs a separate Import and Export Control Department permit. A dog that arrives without a valid permit, matching microchip, required vaccinations, negative tests or certificate risks additional quarantine, return to the exporting country or other legal action — all at the owner's expense."
+      fr: "Un chien de moins de trois mois dépend d'une mère entièrement vaccinée ; une vaccination périmée doit être remise à jour avant le voyage. Importer trois animaux ou plus exige un permis distinct du Département du contrôle des importations/exportations. Un chien arrivant sans permis valide, sans puce correspondante, sans les vaccins, les tests négatifs ou le certificat requis risque une quarantaine supplémentaire, un renvoi vers le pays d'export ou d'autres poursuites — aux frais du propriétaire."
+      es: "Un perro menor de tres meses depende de una madre completamente vacunada; una vacunación caducada debe ponerse al día antes del viaje. La importación de tres o más animales requiere un permiso independiente del Departamento de Control de Importaciones y Exportaciones. Un perro que llegue sin permiso válido, sin microchip coincidente, sin las vacunas requeridas, sin análisis negativos o sin certificado se arriesga a cuarentena adicional, devolución al país exportador u otras medidas legales — todo a cargo del propietario."
+      pt: "Um cachorro com menos de três meses depende de uma mãe totalmente vacinada; uma vacinação vencida precisa ser atualizada antes da viagem. A importação de três ou mais animais exige uma autorização separada do Import and Export Control Department. Um cachorro que chega sem uma autorização válida, sem microchip correspondente, sem as vacinas exigidas, sem exames negativos ou sem certificado corre o risco de quarentena adicional, devolução ao país exportador ou outras medidas legais — tudo às custas do dono."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Sri Lanka depends on whether every condition was completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Sri Lanka dépend du fait que toutes les conditions aient été remplies avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Sri Lanka depende de si se cumplieron todas las condiciones antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega ao Sri Lanka depende de todas as condições terem sido cumpridas antes da partida."
+  points:
+    - en: "Before departure, inform the airport quarantine office by email (aqokatunayake@gmail.com) so an officer is available for your arrival."
+      fr: "Avant le départ, informe par e-mail le bureau de quarantaine de l'aéroport (aqokatunayake@gmail.com) afin qu'un agent soit disponible à ton arrivée."
+      es: "Antes de la salida, informa por correo electrónico a la oficina de cuarentena del aeropuerto (aqokatunayake@gmail.com) para que haya un agente disponible a tu llegada."
+      pt: "Antes da partida, informe o escritório de quarentena do aeroporto por e-mail (aqokatunayake@gmail.com) para que um agente esteja disponível na sua chegada."
+    - en: "Dogs enter through Katunayake — Bandaranaike International Airport (BIA), where animal quarantine officers inspect the animal at the port of entry."
+      fr: "Les chiens entrent par Katunayake — l'aéroport international Bandaranaike (BIA), où les agents de quarantaine animale inspectent l'animal au point d'entrée."
+      es: "Los perros entran por Katunayake — el aeropuerto internacional Bandaranaike (BIA), donde los agentes de cuarentena animal inspeccionan al animal en el punto de entrada."
+      pt: "Os cachorros entram por Katunayake — Bandaranaike International Airport (BIA), onde agentes de quarentena animal inspecionam o animal no ponto de entrada."
+    - en: "Declare the dog to Sri Lanka Customs and animal quarantine and present the import permit, the original International Veterinary Health Certificate, vaccination records, blood-test reports and the parasite-treatment certificate."
+      fr: "Déclare le chien à la douane sri-lankaise et à la quarantaine animale et présente le permis d'importation, le certificat vétérinaire international original, le carnet de vaccination, les rapports de tests sanguins et le certificat de traitement antiparasitaire."
+      es: "Declara el perro ante la aduana de Sri Lanka y la cuarentena animal y presenta el permiso de importación, el Certificado Veterinario Internacional original, el carnet de vacunación, los informes de los análisis de sangre y el certificado de tratamiento antiparasitario."
+      pt: "Declare o cachorro à alfândega do Sri Lanka e à quarentena animal e apresente a autorização de importação, o International Veterinary Health Certificate original, os registros de vacinação, os laudos dos exames de sangue e o certificado de tratamento antiparasitário."
+    - en: "A quarantine handling fee of LKR 950 is payable on arrival; the import permit itself is free of charge."
+      fr: "Des frais de gestion de quarantaine de 950 LKR sont dus à l'arrivée ; le permis d'importation lui-même est gratuit."
+      es: "A la llegada se debe abonar una tasa de gestión de cuarentena de 950 LKR; el permiso de importación en sí es gratuito."
+      pt: "Uma taxa de manuseio de quarentena de LKR 950 é devida na chegada; a própria autorização de importação é gratuita."
+    - en: "If the documents comply, the quarantine officer recommends clearance to Customs, and the dog goes into a 30-day home quarantine with possible officer inspections."
+      fr: "Si les documents sont conformes, l'agent de quarantaine recommande le dédouanement à la douane, et le chien entre en quarantaine à domicile de 30 jours avec inspections possibles des agents."
+      es: "Si los documentos son conformes, el agente de cuarentena recomienda el despacho a la aduana, y el perro entra en una cuarentena domiciliaria de 30 días con posibles inspecciones de los agentes."
+      pt: "Se os documentos estiverem em conformidade, o agente de quarentena recomenda a liberação à alfândega, e o cachorro entra em quarentena domiciliar de 30 dias, com possíveis inspeções por agentes."
+    - en: "If documents are missing or invalid, or the microchip does not match, the animal may be returned to the exporting country, placed in additional quarantine or subject to other legal action, at the owner's expense."
+      fr: "Si des documents manquent ou sont invalides, ou si la puce ne correspond pas, l'animal peut être renvoyé vers le pays d'export, placé en quarantaine supplémentaire ou faire l'objet d'autres poursuites, aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, o si el microchip no coincide, el animal puede ser devuelto al país exportador, puesto en cuarentena adicional o sujeto a otras medidas legales, a cargo del propietario."
+      pt: "Se a documentação estiver ausente ou inválida, ou se o microchip não corresponder, o animal pode ser devolvido ao país exportador, colocado em quarentena adicional ou sujeito a outras medidas legais, às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Sri Lanka's Department of Animal Production and Health does not publish a breed-specific import ban: the veterinary health requirements for importing dogs apply to all breeds equally, and no breed is named as prohibited from entering the country."
+    fr: "Le Department of Animal Production and Health du Sri Lanka ne publie pas d'interdiction d'importation liée à la race : les exigences sanitaires vétérinaires pour l'importation des chiens s'appliquent de la même façon à toutes les races, et aucune race n'est désignée comme interdite d'entrée."
+    es: "El Department of Animal Production and Health de Sri Lanka no publica ninguna prohibición de importación específica por raza: los requisitos sanitarios veterinarios para la importación de perros se aplican por igual a todas las razas, y ninguna raza figura como prohibida de entrar en el país."
+    pt: "O Department of Animal Production and Health do Sri Lanka não publica uma proibição de importação por raça: as exigências sanitárias veterinárias para a importação de cachorros se aplicam igualmente a todas as raças, e nenhuma raça é citada como proibida de entrar no país."
+  cat1:
+    en: "There is no national breed-specific import ban. Breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler and similar) are not, in the reviewed DAPH documents, prohibited from being imported into Sri Lanka."
+    fr: "Il n'existe aucune interdiction d'importation liée à la race au niveau national. Les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler et similaires) ne sont pas, dans les documents DAPH consultés, interdites d'importation au Sri Lanka."
+    es: "No existe ninguna prohibición nacional de importación específica por raza. Las razas restringidas en algunos otros países (tipos pit-bull, Tosa, Rottweiler y similares) no están prohibidas para su importación a Sri Lanka en los documentos del DAPH consultados."
+    pt: "Não há uma proibição nacional de importação por raça. Raças restritas em alguns outros países (tipos pit-bull, Tosa, Rottweiler e semelhantes) não são, nos documentos do DAPH analisados, proibidas de serem importadas para o Sri Lanka."
+  cat2:
+    en: "Restrictions come instead from airline policies: many carriers refuse or restrict snub-nosed (brachycephalic) breeds in the hold and may set their own breed rules. These are not Sri Lankan import bans. Sri Lanka's national animal legislation (the Animal Diseases Act and the older cruelty ordinance) addresses disease control and welfare, not breed bans."
+    fr: "Les restrictions proviennent plutôt des politiques des compagnies aériennes : de nombreux transporteurs refusent ou limitent les races brachycéphales (au nez court) en soute et peuvent fixer leurs propres règles de race. Ce ne sont pas des interdictions d'importation sri-lankaises. La législation animale nationale (l'Animal Diseases Act et l'ancienne ordonnance sur la cruauté) traite de la lutte contre les maladies et du bien-être, pas d'interdictions de races."
+    es: "Las restricciones provienen más bien de las políticas de las aerolíneas: muchas compañías rechazan o restringen las razas de nariz chata (braquicéfalas) en la bodega y pueden fijar sus propias normas de raza. No se trata de prohibiciones de importación de Sri Lanka. La legislación animal nacional de Sri Lanka (la Animal Diseases Act y la antigua ordenanza sobre crueldad) trata del control de enfermedades y el bienestar, no de prohibiciones de raza."
+    pt: "As restrições vêm, em vez disso, das políticas das companhias aéreas: muitas recusam ou restringem raças de focinho achatado (braquicefálicas) no porão e podem estabelecer suas próprias regras de raça. Essas não são proibições de importação do Sri Lanka. A legislação animal nacional do Sri Lanka (o Animal Diseases Act e a antiga ordenança de crueldade) trata do controle de doenças e do bem-estar, não de proibições por raça."
+  note:
+    en: "Because airline breed policies are stricter than Sri Lankan import law, confirm your dog's breed is accepted by your carrier before booking, and re-check DAPH for any future change to the breed rules."
+    fr: "Comme les politiques de race des compagnies aériennes sont plus strictes que la loi sri-lankaise d'importation, vérifie que la race de ton chien est acceptée par ton transporteur avant de réserver, et revérifiez auprès du DAPH toute évolution future des règles de race."
+    es: "Como las políticas de raza de las aerolíneas son más estrictas que la ley de importación de Sri Lanka, confirma que tu aerolínea acepta la raza de tu perro antes de reservar, y vuelve a consultar al DAPH ante cualquier cambio futuro en las normas de raza."
+    pt: "Como as políticas de raça das companhias aéreas são mais rígidas do que a lei de importação do Sri Lanka, confirme que a raça do seu cachorro é aceita pela sua companhia aérea antes de reservar, e verifique novamente o DAPH para qualquer mudança futura nas regras de raça."
+
+checklist:
+  - en: "DAPH import permit applied for online (Google Form) at least 2 weeks before arrival"
+    fr: "Permis d'importation DAPH demandé en ligne (formulaire Google) au moins 2 semaines avant l'arrivée"
+    es: "Permiso de importación del DAPH solicitado en línea (formulario Google) al menos 2 semanas antes de la llegada"
+    pt: "Autorização de importação do DAPH solicitada on-line (formulário Google) pelo menos 2 semanas antes da chegada"
+  - en: "ISO-compliant microchip; number on every vaccination record and blood-test report"
+    fr: "Puce conforme ISO ; numéro sur chaque carnet de vaccination et rapport de test sanguin"
+    es: "Microchip conforme a la norma ISO; número en cada carnet de vacunación e informe de análisis de sangre"
+    pt: "Microchip em conformidade com a ISO; número em todo registro de vacinação e laudo de exame de sangue"
+  - en: "Rabies vaccination up to date, with valid records"
+    fr: "Vaccination antirabique à jour, avec carnet valide"
+    es: "Vacunación antirrábica al día, con carnet válido"
+    pt: "Vacinação antirrábica em dia, com registros válidos"
+  - en: "Core vaccinations up to date: distemper, parvovirus, infectious hepatitis, leptospirosis"
+    fr: "Vaccins de base à jour : Carré, parvovirose, hépatite contagieuse, leptospirose"
+    es: "Vacunas básicas al día: moquillo, parvovirus, hepatitis infecciosa, leptospirosis"
+    pt: "Vacinas essenciais em dia: cinomose, parvovirose, hepatite infecciosa, leptospirose"
+  - en: "Negative blood tests for leishmaniasis and heartworm (antigen & microfilaria), within 1 month of departure"
+    fr: "Tests sanguins négatifs pour la leishmaniose et la dirofilariose (antigène et microfilaires), dans le mois avant le départ"
+    es: "Análisis de sangre negativos para leishmaniasis y dirofilariosis (antígeno y microfilaria), dentro del mes anterior a la salida"
+    pt: "Exames de sangue negativos para leishmaniose e dirofilariose (antígeno e microfilária), dentro de 1 mês antes da partida"
+  - en: "Parasite treatment (external & internal) certified by a registered vet, within 7 days before travel"
+    fr: "Traitement antiparasitaire (externe et interne) certifié par un vétérinaire enregistré, dans les 7 jours avant le voyage"
+    es: "Tratamiento antiparasitario (externo e interno) certificado por un veterinario registrado, dentro de los 7 días previos al viaje"
+    pt: "Tratamento antiparasitário (externo e interno) certificado por um veterinário registrado, dentro de 7 dias antes da viagem"
+  - en: "Original International Veterinary Health Certificate issued within 10 days of export"
+    fr: "Certificat vétérinaire international original délivré dans les 10 jours avant l'export"
+    es: "Certificado Veterinario Internacional original expedido dentro de los 10 días previos a la exportación"
+    pt: "International Veterinary Health Certificate original emitido dentro de 10 dias antes da exportação"
+  - en: "Separate Import and Export Control permit if importing 3 or more animals"
+    fr: "Permis distinct du contrôle des importations/exportations si 3 animaux ou plus"
+    es: "Permiso independiente de Control de Importaciones y Exportaciones si se importan 3 o más animales"
+    pt: "Autorização separada do Import and Export Control se importar 3 ou mais animais"
+  - en: "Airport quarantine office notified before departure (aqokatunayake@gmail.com); budget LKR 950 on arrival"
+    fr: "Bureau de quarantaine de l'aéroport prévenu avant le départ (aqokatunayake@gmail.com) ; prévoir 950 LKR à l'arrivée"
+    es: "Oficina de cuarentena del aeropuerto notificada antes de la salida (aqokatunayake@gmail.com); prevé 950 LKR a la llegada"
+    pt: "Escritório de quarentena do aeroporto notificado antes da partida (aqokatunayake@gmail.com); reserve LKR 950 para a chegada"
+  - en: "Plan for a 30-day home quarantine after arrival; IATA-compliant crate; confirm your breed with the airline"
+    fr: "Prévoir une quarantaine à domicile de 30 jours après l'arrivée ; caisse conforme IATA ; vérifier ta race auprès de la compagnie"
+    es: "Prevé una cuarentena domiciliaria de 30 días tras la llegada; jaula conforme a IATA; confirma la raza con la aerolínea"
+    pt: "Planeje uma quarentena domiciliar de 30 dias após a chegada; caixa de transporte em conformidade com a IATA; confirme a raça do seu cachorro com a companhia aérea"
+
+sources:
+  - label: { en: "DAPH — Import (how to apply for an import permit; dogs & cats)", fr: "DAPH — Import (comment demander un permis d'importation ; chiens et chats)", es: "DAPH — Import (cómo solicitar un permiso de importación; perros y gatos)", pt: "DAPH — Import (como solicitar uma autorização de importação; cães e gatos)" }
+    url: "https://daph.gov.lk/services/imp1"
+  - label: { en: "DAPH — Veterinary Health Requirements for the Importation of Dogs (effective 1 Jan 2026)", fr: "DAPH — Exigences sanitaires vétérinaires pour l'importation de chiens (en vigueur au 1er janv. 2026)", es: "DAPH — Requisitos sanitarios veterinarios para la importación de perros (en vigor desde el 1 de enero de 2026)", pt: "DAPH — Veterinary Health Requirements for the Importation of Dogs (em vigor a partir de 1º de janeiro de 2026)" }
+    url: "https://daph.gov.lk/files/uploads/pdf_document/0-1767258605.pdf"
+  - label: { en: "DAPH — Quarantine (import clearance of live animals)", fr: "DAPH — Quarantaine (dédouanement des animaux vivants)", es: "DAPH — Cuarentena (despacho de importación de animales vivos)", pt: "DAPH — Quarantine (liberação de importação de animais vivos)" }
+    url: "https://daph.gov.lk/services/Quar"
+  - label: { en: "Department of Animal Production and Health (DAPH) — official website", fr: "Department of Animal Production and Health (DAPH) — site officiel", es: "Department of Animal Production and Health (DAPH) — sitio web oficial", pt: "Department of Animal Production and Health (DAPH) — site oficial" }
+    url: "https://daph.gov.lk/"
+  - label: { en: "Import and Export Control Department — permit portal (3+ animals)", fr: "Département du contrôle des importations/exportations — portail de permis (3 animaux ou plus)", es: "Departamento de Control de Importaciones y Exportaciones — portal de permisos (3 o más animales)", pt: "Import and Export Control Department — portal de autorizações (3 ou mais animais)" }
+    url: "https://public.stratlinksl.imexport.gov.lk"
+
+seo:
+  title: { en: "Sri Lanka Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Sri Lanka — Guide", es: "Requisitos de entrada de perros en Sri Lanka — Guía de viaje", pt: "Entrada de cachorro no Sri Lanka — guia de viagem" }
+  metaTitle: { en: "Traveling to Sri Lanka With Your Dog: Entry Requirements (2026)", fr: "Voyager au Sri Lanka avec ton chien : formalités (2026)", es: "Viajar a Sri Lanka con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Sri Lanka com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official DAPH rules for bringing a dog into Sri Lanka: advance import permit, ISO microchip, rabies and core vaccinations. Sourced and dated."
+    fr: "Règles officielles DAPH pour faire entrer un chien au Sri Lanka : permis d'importation préalable, puce ISO, vaccins rage et de base. Sourcé et daté."
+    es: "Normas oficiales del DAPH para traer un perro a Sri Lanka: permiso de importación previo, microchip ISO, vacunas antirrábica y básicas. Con fuentes y fecha."
+    pt: "Regras oficiais do DAPH para levar um cachorro ao Sri Lanka: autorização de importação prévia, microchip ISO, vacinação antirrábica e vacinas essenciais."
+  slug: "sri-lanka"
+  shortDesc:
+    en: "What you need to bring a dog into Sri Lanka: a DAPH import permit, blood tests, a health certificate and a 30-day home quarantine."
+    fr: "Ce qu'il faut pour faire entrer un chien au Sri Lanka : un permis d'importation DAPH, des tests sanguins, un certificat sanitaire et une quarantaine à domicile de 30 jours."
+    es: "Lo que necesitas para traer un perro a Sri Lanka: un permiso de importación del DAPH, análisis de sangre, un certificado sanitario y una cuarentena domiciliaria de 30 días."
+    pt: "O que você precisa para levar um cachorro ao Sri Lanka: uma autorização de importação do DAPH, exames de sangue, um atestado de saúde e uma quarentena domiciliar de 30 dias."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

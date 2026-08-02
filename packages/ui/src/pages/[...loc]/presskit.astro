@@ -1,0 +1,953 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+/* Presse & partenariats — une page par langue, dans le design du site.
+ *
+ * Parti pris : la page est écrite ici, en HTML léger et indexable, et NON servie depuis
+ * l'export de l'outil de design. Les exports autonomes pèsent 10 Mo et construisent leurs
+ * images en JavaScript : parfaits comme document à télécharger, inutilisables comme page web
+ * (invisibles des moteurs, lentes, non imprimables). Les deux usages sont donc séparés :
+ * cette page pour être trouvée et lue, les fichiers pour être emportés.
+ */
+import Base from "../../layouts/Base.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { LEGAL } from "../../lib/legal";
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { join, resolve } from "node:path";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+
+/* Un lien de téléchargement n'est rendu que si le fichier existe vraiment dans /public/press.
+ * Sans ce garde-fou, la page annoncerait un dossier de presse absent — le pire défaut possible
+ * sur une page destinée à des journalistes, et un lien mort dans l'audit. */
+/* `import.meta.url` ne désigne PAS ce fichier au moment du build : Astro empaquette la page
+ * dans un chunk, dont la profondeur varie avec le découpage de Vite. Le chemin relatif est
+ * donc tombé sur `<repo>/public/presskit/` — inexistant —, `has()` a répondu « non » pour les
+ * six fichiers, et la page a cessé d'afficher ses téléchargements sans que rien n'échoue.
+ * Un garde-fou qui se trompe en silence est pire que pas de garde-fou : on essaie donc
+ * plusieurs racines, et si aucune n'est trouvée on affiche les liens plutôt que de les
+ * escamoter — un lien mort, au moins, l'audit du site le voit. */
+const CANDIDATES = [
+  fileURLToPath(new URL("../../../public/presskit/", import.meta.url)),
+  resolve(process.cwd(), "packages/ui/public/presskit/"),
+  resolve(process.cwd(), "public/presskit/"),
+];
+const PUBLIC_DIR = CANDIDATES.find((d) => existsSync(d));
+if (!PUBLIC_DIR) console.warn("[presskit] dossier /public/presskit introuvable : les liens sont affichés sans vérification");
+/* `join`, pas une concaténation : `resolve()` rend un chemin SANS barre finale, et le
+ * « + » collait le nom du fichier au nom du dossier. */
+const has = (file: string) => (PUBLIC_DIR ? existsSync(join(PUBLIC_DIR, file)) : true);
+
+/* Les chiffres de cette page sont ceux de l'accueil, à la virgule près.
+ *
+ * Le 30/07 la page n'en portait aucun, pour éviter de contredire l'accueil. Le bloc « en bref »
+ * en réclame — un journaliste ne doit pas ouvrir un PDF de 3,7 Mo pour trouver une date de
+ * lancement. La règle est donc : **on recopie ce que le site publie déjà**, on n'introduit pas
+ * une seconde série de chiffres. Une page de presse qui compterait autrement que la page
+ * d'accueil serait le pire des signaux, et c'est précisément là qu'un journaliste vérifie. */
+
+/* Documents. `file` est le nom attendu dans /public/presskit/ ; l'absence masque la ligne. */
+const docs = [
+  {
+    key: "en", flag: "🇬🇧", label: "English",
+    pdf: "press-kit-en.pdf", html: "press-kit-en.html",
+    /* « Press Book » n'existe pas en anglais courant : on dit « press kit » ou « media kit ».
+     * La page employait déjà « press kit » dans son propre texte pendant que le document
+     * affichait « Press Book ». Un seul terme, partout. */
+    name: T("Press kit (English)", "Dossier (anglais)", "Dosier (inglés)"),
+  },
+  {
+    key: "fr", flag: "🇫🇷", label: "Français",
+    pdf: "press-kit-fr.pdf", html: "press-kit-fr.html",
+    name: T("Press kit (French)", "Plaquette", "Dosier (francés)"),
+  },
+  {
+    key: "es", flag: "🇪🇸", label: "Español",
+    pdf: "press-kit-es.pdf", html: "press-kit-es.html",
+    name: T("Press kit (Spanish)", "Dossier (espagnol)", "Dosier"),
+  },
+  {
+    /* Le portugais est une langue en préparation, mais son dossier est complet : il est donc
+     * proposé au même titre que les trois autres. Un journaliste brésilien n'a aucune raison
+     * de recevoir la version anglaise parce que le site n'a pas fini de basculer. */
+    key: "pt", flag: "🇧🇷", label: "Português",
+    pdf: "press-kit-pt.pdf", html: "press-kit-pt.html",
+    name: T("Press kit (Portuguese)", "Dossier (portugais)", "Dosier (portugués)"),
+  },
+].map((d) => ({ ...d, hasPdf: has(d.pdf), hasHtml: has(d.html) }))
+  .filter((d) => d.hasPdf || d.hasHtml)
+  /* Le dossier de la langue lue passe en tête, l'anglais juste après.
+   * Un journaliste français arrivé sur /fr/ n'a aucune raison de voir la version anglaise
+   * en premier ; l'anglais reste second parce que c'est la langue de repli du dossier —
+   * et sur /pt/, qui n'a pas encore son dossier, il redevient naturellement le premier. */
+  .sort((a, b) => (a.key === locale ? -2 : a.key === "en" ? -1 : 0) - (b.key === locale ? -2 : b.key === "en" ? -1 : 0));
+
+/* Les « decks » (présentations) ne sont pas publiés : seuls les trois dossiers de presse le
+ * sont, dans leur version corrigée. Le tableau reste pour le jour où un deck sera à jour —
+ * vide, il ne rend rien. */
+const decks: { file: string; label: string }[] = [];
+
+/* Les aperçus portent un numéro de version, comme les photos et les captures. Trois fois de
+ * suite, un fichier a changé de contenu en gardant son nom : le navigateur servait l'ancienne
+ * image et on croyait la correction ratée alors qu'elle était faite. Toute image dont le
+ * contenu change doit changer de nom — c'est la seule parade fiable.
+ *
+ * Les logos sont désormais de VRAIS vectoriels. Le fichier livré jusqu'ici sous l'extension
+ * `.svg` n'en était pas un : zéro chemin, une image bitmap encapsulée en base64, donc du flou
+ * dès qu'un média l'agrandissait. On annonce le format réellement disponible, pièce par pièce. */
+const vectorFormats = T("SVG · PDF · PNG", "SVG · PDF · PNG", "SVG · PDF · PNG");
+const logos = [
+  { prev: "previews/emblem-v3.png", big: true,
+    name: T("Emblem", "Emblème", "Emblema"),
+    meta: vectorFormats + " · " + T("vector", "vectoriel", "vectorial") },
+  { prev: "previews/wordmark-v3.png", big: false,
+    name: T("Wordmark", "Logotype", "Logotipo"),
+    meta: vectorFormats + " · " + T("vector", "vectoriel", "vectorial") },
+  { prev: "previews/logo-v3.png", big: false,
+    name: T("Full logo", "Logo complet", "Logotipo completo"),
+    meta: vectorFormats + " · " + T("vector", "vectoriel", "vectorial") },
+];
+
+/* Captures du produit. Un journaliste doit voir ce que le site fait, pas seulement la marque —
+ * c'est ce qui manquait le plus. Chaque vignette est cliquable vers le PNG pleine résolution. */
+const shots = [
+  { file: "screenshots/01-flight-finder-2",
+    name: T("Flight Finder", "Le Finder", "El buscador"),
+    note: T("The starting point: route, breed, weight, cabin or hold, travel date.",
+            "Le point de départ : trajet, race, poids, cabine ou soute, date du voyage.",
+            "El punto de partida: ruta, raza, peso, cabina o bodega, fecha del viaje.") },
+  { file: "screenshots/02-recommendation-2",
+    name: T("The recommendation", "La recommandation", "La recomendación"),
+    note: T("A verdict with a compatibility score, the reasons behind it, and the airlines that actually fly the route.",
+            "Un verdict avec son taux de compatibilité, les raisons qui le motivent, et les compagnies qui font vraiment la route.",
+            "Un veredicto con su porcentaje de compatibilidad, las razones que lo motivan y las aerolíneas que cubren la ruta.") },
+  { file: "screenshots/03-requirements-sheet-3",
+    name: T("The tailored requirements sheet", "La fiche d'exigences sur mesure", "La ficha de requisitos a medida"),
+    note: T("Step by step, outbound and return — each rule carrying the authority it comes from.",
+            "Étape par étape, aller et retour — chaque règle porte l'autorité dont elle vient.",
+            "Paso a paso, ida y vuelta — cada norma indica la autoridad de la que procede.") },
+  { file: "screenshots/04-breed-report-2",
+    name: T("The breed travel report", "Le rapport de voyage par race", "El informe de viaje por raza"),
+    note: T("Cabin, hold, cargo, heat and cold — read from the breed's own data.",
+            "Cabine, soute, cargo, chaleur et froid — lus sur les données de la race.",
+            "Cabina, bodega, carga, calor y frío — leídos de los datos de la raza.") },
+];
+
+/* Photos réelles. Le reste de l'univers visuel du site est illustré ou généré ; ces images-ci
+ * sont des photographies, prises par Philippe. C'est ce qui équilibre la campagne créative.
+ *
+ * Quatre, et toutes en 16:9. Le premier jet en proposait huit, dans des formats mêlés —
+ * portrait, carré, 4:3, 9:16. La grille recadre au centre avec `object-fit: cover` : sur les
+ * sources verticales, le chien sortait du cadre. On ne compte donc plus sur le navigateur
+ * pour recadrer, on livre les fichiers déjà cadrés sur le sujet, tous au même format.
+ *
+ * Le 16:9 est serré pour un chien debout : sur la photo du Mexique, la fenêtre fait à peine
+ * plus que sa hauteur, d'où un calage au pixel — 30 pixels plus haut et les pattes sont
+ * coupées, 70 plus bas et c'est la tête.
+ *
+ * Le suffixe `-2` n'est pas décoratif. Deux de ces quatre images ont changé de contenu en
+ * gardant leur nom : le navigateur et le CDN ont alors continué à servir l'ancienne version,
+ * et on croyait corriger un cadrage qui était déjà bon. Toute image dont le contenu change
+ * doit changer de nom. */
+const photos = [
+  /* Retouche fournie le 02/08/2026. Nouveau NOM de fichier, et non écrasement : c'est la règle
+   * rappelée juste au-dessus, et c'est ce qui garantit qu'aucun cache ne resserve l'ancienne
+   * version. L'ancien fichier reste en place tant qu'on n'a pas vérifié qu'il n'est cité
+   * nulle part ailleurs. */
+  { file: "photos/philippe-bailey-3.jpg",
+    name: T("Philippe & Bailey", "Philippe et Bailey", "Philippe y Bailey") },
+  { file: "photos/bailey-crate-2.jpg",
+    /* Bailey est un mâle partout ailleurs dans le corpus — « him » dans le dossier anglais,
+     * « un Golden Retriever » en français, « llevarlo » en espagnol. On s'y tient. */
+    name: T("Bailey and his IATA crate", "Bailey et sa caisse IATA", "Bailey y su jaula IATA") },
+  { file: "photos/philippe-bailey-snow.jpg",
+    /* Bailey est à gauche sur l'image, Philippe à droite : la légende suit ce qu'on voit. */
+    name: T("Bailey & Philippe in the mountains", "Bailey et Philippe à la montagne", "Bailey y Philippe en la montaña") },
+  { file: "photos/bailey-mexico-3.jpg",
+    name: T("Bailey in Mexico", "Bailey au Mexique", "Bailey en México") },
+];
+
+/* Le résumé copiable. Un journaliste doit pouvoir prendre les faits sans ouvrir le PDF.
+ * Les décomptes sont ceux publiés sur l'accueil : une page de presse qui annoncerait
+ * d'autres chiffres que le site lui-même serait le pire des signaux. */
+const brief = [
+  [T("Site", "Nom du site", "Nombre del sitio"), "MyDogCanFly.com"],
+  [T("Purpose", "Objectif", "Objetivo"),
+   T("Check if your dog can fly with your chosen airline to your destination country, along with the legal and veterinary requirements and applicable restrictions.",
+     "Vérifiez si votre chien peut voler avec la compagnie choisie vers votre pays de destination, ainsi que les formalités légales et vétérinaires, et les restrictions applicables.",
+     "Comprueba si tu perro puede volar con la aerolínea elegida al país de destino, así como los requisitos legales y veterinarios y las restricciones aplicables.")],
+  [T("Price", "Prix", "Precio"), T("Free, no account needed", "Gratuit, sans compte", "Gratuito, sin cuenta")],
+  [T("Airlines", "Compagnies", "Aerolíneas"), "90+"],
+  [T("Destinations", "Destinations", "Destinos"), "160+"],
+  [T("Dog breeds", "Races de chiens", "Razas de perro"), "200+"],
+  [T("Airports listed", "Aéroports listés", "Aeropuertos listados"), "250+"],
+  [T("Languages", "Langues", "Idiomas"), T("English, French, Spanish, Portuguese", "anglais, français, espagnol, portugais", "inglés, francés, español, portugués")],
+  [T("Publisher", "Éditeur", "Editor"), "B2B VENUES LLC"],
+  /* Le fondateur signe « Philippe BENOIST » sur tout ce qui est destiné à la presse — cette
+     page et les quatre plaquettes — depuis le 01/08/2026. Le reste du site porte encore
+     « Phil Albert-Benoist » (mentions légales, JSON-LD, page À propos) : c'est un écart connu,
+     à résorber le jour où l'on décide du nom unique. Ne pas propager l'un ou l'autre à
+     l'aveugle. */
+  [T("Founder", "Fondateur", "Fundador"), "Philippe BENOIST"],
+  [T("Press contact", "Contact presse", "Contacto de prensa"), "press@mydogcanfly.com"],
+  [T("Launch", "Lancement", "Lanzamiento"), T("15 August 2026", "15 août 2026", "15 de agosto de 2026")],
+];
+const briefText = brief.map(([k, v]) => `${k}: ${v}`).join("\n");
+
+const videos: Record<string, { id: string; label: string }> = {
+  en: { id: "j2vI3Zan1FY", label: "English" },
+  fr: { id: "eldt1BPV_4Q", label: "Français" },
+  es: { id: "wOvbxhPQvq4", label: "Español" },
+};
+const ownVideo = videos[locale] ?? videos.en;
+const otherVideos = Object.entries(videos).filter(([k]) => k !== locale).map(([, v]) => v);
+
+/* Le code d'intégration, prêt à coller dans un article.
+ *
+ * On le donne écrit plutôt que de laisser le journaliste le récupérer sur YouTube, pour trois
+ * raisons : le code de YouTube est en dimensions fixes (560 × 315) et casse sur mobile, il
+ * pointe sur `youtube.com` qui dépose des cookies avant même la lecture — beaucoup de
+ * rédactions l'interdisent —, et il ne porte pas de titre accessible. Celui-ci est en 16/9
+ * fluide (le `padding-top: 56.25%` est le rapport 9/16), en mode `nocookie`, avec un `title`.
+ * Tout est en styles en ligne : un CMS qui filtre les feuilles de style ne cassera rien. */
+const embedCode = `<!-- MyDogCanFly — ${T("Launch film", "Film de lancement", "Película de lanzamiento")} (${ownVideo.label}) -->
+<div style="position:relative;width:100%;padding-top:56.25%">
+  <iframe src="https://www.youtube-nocookie.com/embed/${ownVideo.id}"
+    title="MyDogCanFly — ${ownVideo.label}"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+    loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>`;
+
+// Google tronque au-delà de 65 caractères : les trois titres sont calibrés dessous.
+const title = T(
+  "Press & partnerships — MyDogCanFly press kit, logos and media",   // 61
+  "Presse & partenariats — dossier de presse et logos MyDogCanFly",  // 62
+  "Prensa y colaboraciones — dosier y logotipos MyDogCanFly",        // 56
+);
+const desc = T(
+  "MyDogCanFly press kit, downloadable logos, launch film and contacts. Everything is on this page — no email needed.",
+  "Dossier de presse MyDogCanFly, logos à télécharger, film de lancement et contacts. Tout est sur cette page, sans passer par un email.",
+  "Dosier de prensa de MyDogCanFly, logotipos descargables, película de lanzamiento y contactos. Todo está en esta página, sin necesidad de correo.",
+);
+---
+<Base locale={locale} title={title} description={desc}>
+  <section class="mdcf-section prs-sec">
+    <div class="mdcf-container prs">
+      {/* Filigrane décoratif — jamais annoncé aux lecteurs d'écran, jamais cliquable. */}
+      {/* Version officielle de l'emblème — celle qui porte l'hélice et l'arc pointillé. Le
+          fichier précédent (`emblem-watermark.webp`) était une version antérieure, sans hélice ;
+          il est conservé pour ne rien casser ailleurs, mais ne doit plus être utilisé. Nouveau
+          nom de fichier, et non écrasement de l'ancien : c'est ce qui garantit que les caches,
+          navigateur comme réseau, servent bien la nouvelle image. */}
+      <img class="prs-mark" src="/presskit/emblem-watermark-v2.webp" alt="" aria-hidden="true"
+           width="1400" height="797" loading="lazy" decoding="async" />
+      <Breadcrumb locale={locale} items={[
+        { label: T("Home", "Accueil", "Inicio"), href: "/" },
+        { label: T("Press", "Presse", "Prensa") },
+      ]} />
+
+
+      {/* Deux colonnes : le texte porte l'information, l'image donne le ton. Sur mobile, le
+          texte reste en premier — l'illustration est un plaisir, pas une porte d'entrée. */}
+      <div class="prs-hero">
+        <div class="prs-hero-txt">
+          <p class="mdcf-eyebrow">{T("Press & partnerships", "Presse & partenariats", "Prensa y colaboraciones")}</p>
+          <h1 class="mdcf-h2">{T("Press kit, logos and media", "Dossier de presse, logos et médias", "Dosier de prensa, logotipos y medios")}</h1>
+        </div>
+        {/* Tirage photo légèrement incliné, sur une auréole dégradée aux couleurs de la marque.
+            Le cadre blanc plus épais en bas et l'ombre portée donnent l'objet posé sur la page ;
+            l'inclinaison se redresse au survol. Sans légende : elle n'ajoutait rien que l'image
+            ne dise déjà, et le texte alternatif porte la description pour qui ne voit pas. */}
+        <div class="prs-photo">
+          {/* Deux largeurs servies : 39 Ko sur mobile au lieu de 90. Le PNG d'origine faisait
+              2,1 Mo — inadapté à une photographie. */}
+          <img src="/presskit/press-illustration.webp"
+               srcset="/presskit/press-illustration-760.webp 760w, /presskit/press-illustration.webp 1400w"
+               sizes="(max-width: 900px) 100vw, 552px"
+               width="1400" height="933" decoding="async"
+               alt={T(
+                 "A golden retriever wearing sunglasses sits in an armchair facing a journalist taking notes, under a studio microphone, in front of a MyDogCanFly backdrop.",
+                 "Un golden retriever en lunettes de soleil, assis dans un fauteuil face à un journaliste qui prend des notes, sous un micro de studio, devant un fond MyDogCanFly.",
+                 "Un golden retriever con gafas de sol, sentado en un sillón frente a un periodista que toma notas, bajo un micrófono de estudio, ante un fondo de MyDogCanFly.",
+               )} />
+        </div>
+      </div>
+
+      <!-- CE QUE FAIT LE SITE -->
+      <div class="prs-what">
+        {/* `set:html` : la question centrale porte une balise <b>, et Astro échappe par défaut
+            tout ce qu'on interpole. La chaîne vient de notre propre table, jamais d'une saisie. */}
+        <p set:html={T(
+          "<b>MyDogCanFly</b> answers one question: <b>can my dog fly — on this airline, to this country?</b> The site compares what each airline allows in the cabin, in the hold and in cargo, what each destination requires on arrival, and what each breed's size and morphology change in practice.",
+          "<b>MyDogCanFly</b> répond à une seule question : <b>mon chien peut-il prendre l'avion, sur cette compagnie, vers ce pays ?</b> Le site compare ce que chaque compagnie autorise en cabine, en soute et en cargo, ce que chaque destination exige à l'arrivée, et ce que la taille et la morphologie de chaque race changent concrètement.",
+          "<b>MyDogCanFly</b> responde a una sola pregunta: <b>¿puede volar mi perro, en esta aerolínea, a este país?</b> El sitio compara lo que cada aerolínea permite en cabina, en bodega y en carga, lo que cada destino exige a la llegada, y lo que el tamaño y la morfología de cada raza cambian en la práctica.",
+        )}</p>
+        <p class="prs-claim">{T(
+          "Every rule carries its source, its verification date and a confidence level. Airlines are re-checked every 90 days, countries every 180. Free, no account, in four languages.",
+          "Chaque règle porte sa source, sa date de vérification et un niveau de confiance. Les compagnies sont revérifiées tous les 90 jours, les pays tous les 180. Gratuit, sans compte, en quatre langues.",
+          "Cada norma incluye su fuente, su fecha de verificación y un nivel de confianza. Las aerolíneas se revisan cada 90 días, los países cada 180. Gratis, sin cuenta, en cuatro idiomas.",
+        )}</p>
+      </div>
+
+      {/* EN BREF — les faits, copiables d'un geste.
+          Un journaliste pressé ne doit pas avoir à ouvrir un PDF de 3,7 Mo pour retrouver
+          une date de lancement ou l'adresse de l'éditeur. Le bouton copie le bloc entier
+          en texte brut ; sans JavaScript, le tableau reste lisible et sélectionnable. */}
+      <h2 class="prs-h2">{T("MyDogCanFly in brief", "MyDogCanFly en bref", "MyDogCanFly en breve")}</h2>
+      <div class="prs-brief">
+        <dl class="prs-brief-list" id="prs-brief">
+          {/* La ligne « Objectif » est la seule à porter une phrase entière ; les autres sont
+              des valeurs courtes. Le repérage se fait sur la longueur, pas sur un index : une
+              ligne ajoutée ou déplacée ne doit pas déplacer la mise en forme avec elle. */}
+          {brief.map(([k, v]) => (
+            <div class={`prs-brief-row${String(v).length > 90 ? " prs-brief-row--phrase" : ""}`}>
+              <dt>{k}</dt><dd>{v}</dd>
+            </div>
+          ))}
+        </dl>
+        <button class="mdcf-btn prs-btn prs-copy" type="button" data-copy={briefText}>
+          {T("Copy these facts", "Copier ces informations", "Copiar estos datos")}
+        </button>
+      </div>
+
+      <!-- DOSSIER DE PRESSE -->
+      <h2 class="prs-h2">{T("Press kit", "Dossier de presse", "Dosier de prensa")}</h2>
+      {docs.length > 0 ? (
+        <div class="prs-docs">
+          {docs.map((d) => (
+            <div class="prs-doc">
+              <div class="prs-doc-name"><span aria-hidden="true">{d.flag}</span> {d.name} <span class="prs-doc-lang">{d.label}</span></div>
+              <div class="prs-doc-links">
+                {d.hasPdf && (<a class="mdcf-btn prs-btn" href={`/presskit/${d.pdf}`} download>{T("Download PDF", "Télécharger le PDF", "Descargar PDF")}</a>)}
+                {d.hasHtml && (<a class="prs-alt" href={`/presskit/${d.html}`} target="_blank" rel="noopener">{T("Read in browser", "Lire dans le navigateur", "Leer en el navegador")} →</a>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="prs-note">{T("The press kit is being finalised. Write to us and we will send the link as soon as it is online.", "Le dossier de presse est en cours de finalisation. Écris-nous et nous t'enverrons le lien dès sa mise en ligne.", "El dosier de prensa se está finalizando. Escríbenos y te enviaremos el enlace en cuanto esté disponible.")}</p>
+      )}
+      {decks.length > 0 && (
+        <p class="prs-note">
+          {T("Also available:", "Également disponible :", "También disponible:")}{" "}
+          {decks.map((d) => (<a href={`/presskit/${d.file}`} target="_blank" rel="noopener">{d.label}</a>))}
+        </p>
+      )}
+
+      <!-- VIDÉO -->
+      {/* Ne décrit pas le contenu du film : la vignette YouTube montre un cochon ailé, pas le
+          golden retriever, et annoncer « Bailey est le visage du site » juste au-dessus était
+          faux à l'écran. On s'en tient à ce qui est vérifiable — la nature de la campagne, les
+          trois langues, le droit d'intégration. */}
+      <h2 class="prs-h2">{T("Launch film", "Film de lancement", "Película de lanzamiento")}</h2>
+      {/* « Tournée / shot / rodada » affirmait un tournage qui n'a pas eu lieu : le film est
+          intégralement généré par IA. On le dit — un journaliste qui l'intègre a besoin de le
+          savoir, beaucoup de rédactions ont désormais une règle là-dessus, et l'apprendre
+          après publication coûterait bien plus cher que de l'annoncer. */}
+      {/* La fin de la phrase est le déclencheur : « libre d'intégration dans un article » est
+          exactement l'endroit où la question du code se pose. Un bouton, pas un lien : il
+          n'y a pas de page à ouvrir, et un lien mort au clavier serait pire. */}
+      <p class="prs-sub">{T(
+        "A tongue-in-cheek advertising campaign, entirely AI-generated, in three languages and",
+        "Une campagne publicitaire humoristique, intégralement générée par intelligence artificielle, en trois langues et",
+        "Una campaña publicitaria con humor, generada íntegramente con inteligencia artificial, en tres idiomas y",
+      )}{" "}<button type="button" class="prs-linkbtn" id="prs-embed-open" aria-haspopup="dialog">{T(
+        "free to embed in an article",
+        "libre d'intégration dans un article",
+        "libre de incrustar en un artículo",
+      )}</button>.</p>
+      <div class="prs-video">
+        <iframe src={`https://www.youtube-nocookie.com/embed/${ownVideo.id}`} title={`MyDogCanFly — ${ownVideo.label}`}
+          loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="prs-note">
+        {T("Other languages:", "Autres langues :", "Otros idiomas:")}{" "}
+        {otherVideos.map((v, i) => (
+          <>{i > 0 && " · "}<a href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener">{v.label}</a></>
+        ))}
+        {" · "}<a href={LEGAL.youtube} target="_blank" rel="noopener">{T("YouTube channel", "Chaîne YouTube", "Canal de YouTube")}</a>
+      </p>
+
+      {/* CODE D'INTÉGRATION — dans une fenêtre, plus à demeure sur la page.
+          Le code reste affiché une fois ouverte : on voit ce qu'on colle avant de le coller. */}
+      <dialog class="prs-embed-dlg" id="prs-embed-dlg" aria-labelledby="prs-embed-title">
+        <div class="prs-embed-head">
+          <span id="prs-embed-title">{T("Embed code", "Code d'intégration", "Código de inserción")}</span>
+          <div class="prs-embed-actions">
+            <button class="mdcf-btn prs-btn prs-copy" type="button" data-copy={embedCode}
+              data-copy-src="prs-embed-code" data-done-label={T("Copied", "Copié", "Copiado")}>
+              {T("Copy the code", "Copier le code", "Copiar el código")}
+            </button>
+            <button type="button" class="prs-embed-x" id="prs-embed-close"
+              aria-label={T("Close", "Fermer", "Cerrar")}>×</button>
+          </div>
+        </div>
+        <pre class="prs-embed-code" id="prs-embed-code"><code>{embedCode}</code></pre>
+        <p class="prs-note prs-embed-note">{T(
+          "Fluid 16:9, no cookie dropped before playback, accessible title. For another language, swap the video ID for the one in the link above.",
+          "16/9 fluide, aucun cookie déposé avant la lecture, titre accessible. Pour une autre langue, remplacez l'identifiant de la vidéo par celui du lien ci-dessus.",
+          "16:9 fluido, sin cookies antes de la reproducción, título accesible. Para otro idioma, sustituye el identificador del vídeo por el del enlace anterior.",
+        )}</p>
+      </dialog>
+
+      {/* CAPTURES DU PRODUIT — ce qui manquait le plus.
+          On découvrait très bien la marque et pas du tout l'interface. Ces quatre images
+          sont des captures réelles du site, pas des maquettes ni des rendus. */}
+      <h2 class="prs-h2">{T("The product", "Le produit", "El producto")}</h2>
+      <p class="prs-sub">{T(
+        "Real screenshots, not mock-ups. Click any image to enlarge it.",
+        "Des captures réelles, pas des maquettes. Clique sur une image pour l'agrandir.",
+        "Capturas reales, no maquetas. Haz clic en una imagen para ampliarla.",
+      )}</p>
+      {/* Le lien reste un vrai lien vers le PNG : sans JavaScript, l'image s'ouvre quand même.
+          Avec JavaScript, le clic est intercepté et ouvre la visionneuse — on ne renvoie plus
+          le fichier dans un dossier de téléchargements que personne ne retrouve. */}
+      <div class="prs-shots">
+        {shots.map((s) => (
+          <figure class="prs-shot">
+            <a href={`/presskit/${s.file}.png`} data-full={`/presskit/${s.file}.png`} data-cap={s.name} data-gallery="shots">
+              <img src={`/presskit/${s.file}.webp`} alt={s.name} loading="lazy" decoding="async" />
+            </a>
+            <figcaption><b>{s.name}</b><span>{s.note}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <p class="prs-pack">
+        <a class="mdcf-btn prs-btn" href="/presskit/mydogcanfly-screenshots.zip" download>{T("Download the four screenshots (.zip)", "Télécharger les quatre captures (.zip)", "Descargar las cuatro capturas (.zip)")}</a>
+        <span class="prs-pack-note">{T(
+          "PNG, 2000 px wide — free to use to illustrate an article about MyDogCanFly.",
+          "PNG, 2000 px de large — libres d'usage pour illustrer un article consacré à MyDogCanFly.",
+          "PNG, 2000 px de ancho — de uso libre para ilustrar un artículo sobre MyDogCanFly.",
+        )}</span>
+      </p>
+
+      {/* Visionneuse. `<dialog>` plutôt qu'un div maison : la touche Échap, le piège à focus,
+          le retour du focus sur la vignette d'origine et l'inertie de l'arrière-plan sont
+          natifs. On ferme au clic sur l'image, sur le fond, ou sur la croix. */}
+      <dialog class="prs-lb" id="prs-lb" aria-label={T("Enlarged screenshot", "Capture agrandie", "Captura ampliada")}>
+        <button class="prs-lb-x" type="button" aria-label={T("Close", "Fermer", "Cerrar")}>&times;</button>
+        <button class="prs-lb-nav prs-lb-prev" type="button" aria-label={T("Previous screenshot", "Capture précédente", "Captura anterior")}>&#8249;</button>
+        <button class="prs-lb-nav prs-lb-next" type="button" aria-label={T("Next screenshot", "Capture suivante", "Captura siguiente")}>&#8250;</button>
+        <img class="prs-lb-img" src="" alt="" />
+        <p class="prs-lb-foot">
+          <span class="prs-lb-cap"></span>
+          <a class="prs-lb-dl" href="" download>{T("Download the full-resolution file", "Télécharger le fichier pleine résolution", "Descargar el archivo a resolución completa")}</a>
+        </p>
+      </dialog>
+
+      {/* PHOTOS — l'équilibre.
+          Le film et l'illustration sont générés par IA, et c'est dit. Il fallait donc du réel
+          en face, au moins aussi visible : ces photos sont des photographies, prises par
+          Philippe. Celle de Bailey devant sa caisse IATA sur le tarmac est la meilleure preuve
+          du positionnement « Real data. Real care. ». */}
+      <h2 class="prs-h2">{T("Philippe & Bailey", "Philippe et Bailey", "Philippe y Bailey")}</h2>
+      <p class="prs-sub">{T(
+        "Real photographs, taken by Philippe. Free to use for editorial coverage of MyDogCanFly, credit “Courtesy of MyDogCanFly”.",
+        "De vraies photographies, prises par Philippe. Libres d'usage pour un article consacré à MyDogCanFly, avec le crédit « Avec l'aimable autorisation de MyDogCanFly ».",
+        "Fotografías reales, tomadas por Philippe. De uso libre para un artículo sobre MyDogCanFly, con el crédito «Cortesía de MyDogCanFly».",
+      )}</p>
+      {/* Même visionneuse que pour les captures : cliquer sur une photo l'ouvre dans la page.
+          Le téléchargement reste possible, mais par l'archive ci-dessous plutôt que par un
+          clic qui envoie un fichier dans un dossier que personne ne retrouve. */}
+      <div class="prs-photos">
+        {photos.map((p) => (
+          <a class="prs-photo" href={`/presskit/${p.file}`} data-full={`/presskit/${p.file}`} data-cap={p.name} data-gallery="photos">
+            <img src={`/presskit/${p.file}`} alt={p.name} loading="lazy" decoding="async" />
+            <span class="prs-photo-name">{p.name}</span>
+          </a>
+        ))}
+      </div>
+      <p class="prs-pack">
+        <a class="mdcf-btn prs-btn" href="/presskit/mydogcanfly-photos.zip" download>{T("Download the four photographs (.zip)", "Télécharger les quatre photographies (.zip)", "Descargar las cuatro fotografías (.zip)")}</a>
+        <span class="prs-pack-note">{T(
+          "JPEG, 16:9, up to 2400 px wide — free to use for editorial coverage of MyDogCanFly, credit “Courtesy of MyDogCanFly”.",
+          "JPEG, 16:9, jusqu'à 2400 px de large — libres d'usage pour un article consacré à MyDogCanFly, avec le crédit « Avec l'aimable autorisation de MyDogCanFly ».",
+          "JPEG, 16:9, hasta 2400 px de ancho — de uso libre para un artículo sobre MyDogCanFly, con el crédito «Cortesía de MyDogCanFly».",
+        )}</span>
+      </p>
+      {/* Note d'auteur, à la manière d'un rabat de livre : portrait carré, filet, texte en
+          serif avec lettrine, sur fond crème. Le bloc tient toute la largeur de la colonne
+          comme le reste de la page — c'était un paragraphe étroit perdu sous les photos. */}
+      <div class="prs-author">
+        {/* Photo propre à la biographie : les quatre images de la galerie servent déjà ailleurs
+            sur la page, et le portrait était un recadrage de l'une d'elles. Elle est verticale
+            et gardée entière — aucun recadrage, donc aucun risque de couper l'un des deux. */}
+        {/* Version fournie le 02/08/2026, colorimétrie volontairement plus chaude. NOM DE
+            FICHIER DIFFÉRENT, et non écrasement : c'est la règle rappelée plus haut dans ce
+            fichier, et la seule qui garantisse qu'aucun cache ne resserve la version froide.
+            Le rapport est identique au pixel près — 1060/1484 = 760/1064 —, la règle CSS
+            `aspect-ratio: 2122/2971` reste donc juste et rien ne bouge dans la page. */}
+        <img class="prs-author-img" src="/presskit/photos/founder-duo-2.jpg"
+             alt={T("Philippe BENOIST and Bailey as a puppy",
+                    "Philippe BENOIST et Bailey chiot",
+                    "Philippe BENOIST y Bailey de cachorro")}
+             width="1060" height="1484" loading="lazy" decoding="async" />
+        <div class="prs-author-txt">
+          <p class="prs-author-eyebrow">{T("Short biography", "Biographie courte", "Biografía breve")}</p>
+          <p class="prs-author-name">Philippe BENOIST</p>
+          <p class="prs-author-role">{T("Founder and publisher, MyDogCanFly", "Fondateur et éditeur, MyDogCanFly", "Fundador y editor, MyDogCanFly")}</p>
+          <p class="prs-author-body">{T(
+            "Philippe BENOIST built MyDogCanFly after flying with Bailey, his golden retriever, and finding that no two airlines answered the same question the same way. The sources are public — airline conditions of carriage, government animal-health regulations — but scattered and contradictory. He gathered and read them, and used artificial intelligence to structure, code and maintain the result: a single decision engine that says yes, no, or yes-with-conditions, and shows where each answer comes from.",
+            "Philippe BENOIST a construit MyDogCanFly après avoir voyagé avec Bailey, son golden retriever, et constaté que deux compagnies ne répondaient jamais pareil à la même question. Les sources sont publiques — conditions de transport des compagnies, réglementations sanitaires des États — mais éparpillées et contradictoires. Il les a rassemblées et lues, et s'est appuyé sur l'intelligence artificielle pour structurer, coder et tenir à jour le résultat : un moteur de décision unique qui dit oui, non, ou oui sous conditions, et montre d'où vient chaque réponse.",
+            "Philippe BENOIST creó MyDogCanFly después de viajar con Bailey, su golden retriever, y comprobar que dos aerolíneas nunca respondían igual a la misma pregunta. Las fuentes son públicas — condiciones de transporte de las aerolíneas, normativas sanitarias de los países — pero están dispersas y se contradicen. Las reunió y las leyó, y se apoyó en la inteligencia artificial para estructurar, programar y mantener el resultado: un único motor de decisión que dice sí, no, o sí con condiciones, y muestra de dónde viene cada respuesta.",
+          )}</p>
+        </div>
+      </div>
+
+      <!-- LOGOS -->
+      <h2 class="prs-h2">{T("Logos", "Logos", "Logotipos")}</h2>
+      <p class="prs-sub">{T(
+        "Click any logo to download the whole pack: SVG, vector PDF and transparent PNG, each in full colour, single-ink navy and reversed white.",
+        "Clique sur n'importe quel logo pour télécharger le pack complet : SVG, PDF vectoriel et PNG transparent, chacun en couleur, en monochrome marine et en réserve blanche.",
+        "Haz clic en cualquier logotipo para descargar el pack completo: SVG, PDF vectorial y PNG transparente, cada uno en color, en monocromo azul y en blanco.",
+      )}</p>
+      <div class="prs-logos">
+        {logos.map((l) => (
+          <a class="prs-logo" href="/presskit/mydogcanfly-logos.zip" download>
+            <span class={l.big ? "prs-logo-img is-big" : "prs-logo-img"}><img src={`/presskit/${l.prev}`} alt={l.name} loading="lazy" decoding="async" /></span>
+            <span class="prs-logo-name">{l.name}</span>
+            <span class="prs-logo-meta">{l.meta}</span>
+          </a>
+        ))}
+      </div>
+      <p class="prs-pack">
+        <a class="mdcf-btn prs-btn" href="/presskit/mydogcanfly-logos.zip" download>{T("Download the logo pack (.zip)", "Télécharger le pack de logos (.zip)", "Descargar el pack de logotipos (.zip)")}</a>
+        <span class="prs-pack-note">{T(
+          "27 files — 3 pieces × 3 colour variants × SVG, PDF and PNG — plus the usage notes, clear-space rule and brand colours.",
+          "27 fichiers — 3 pièces × 3 variantes de couleur × SVG, PDF et PNG — avec la note d'usage, la zone de protection et les couleurs de marque.",
+          "27 archivos — 3 piezas × 3 variantes de color × SVG, PDF y PNG — con la nota de uso, el área de protección y los colores de marca.",
+        )}</span>
+      </p>
+
+      <p class="prs-note">
+        {T("Press visual:", "Visuel de presse :", "Imagen de prensa:")}{" "}
+        <a href="/presskit/press-illustration.png" download>{T("download the illustration", "télécharger l'illustration", "descargar la ilustración")}</a>
+        {" "}— PNG 1536 × 1024. {T(
+          "AI-generated illustration, free to use to illustrate an article about MyDogCanFly, with the credit MyDogCanFly.com.",
+          "Illustration générée par intelligence artificielle, libre d'usage pour illustrer un article consacré à MyDogCanFly, avec le crédit MyDogCanFly.com.",
+          "Ilustración generada con inteligencia artificial, de uso libre para ilustrar un artículo sobre MyDogCanFly, con el crédito MyDogCanFly.com.",
+        )}
+      </p>
+
+      <!-- COULEURS -->
+      <h2 class="prs-h2">{T("Brand colours", "Couleurs de marque", "Colores de marca")}</h2>
+      <div class="prs-colours">
+        {[
+          { hex: "#011D48", name: T("Navy", "Bleu nuit", "Azul noche") },
+          { hex: "#0E2350", name: T("Ink", "Encre", "Tinta") },
+          { hex: "#F2700F", name: T("Orange", "Orange", "Naranja") },
+          { hex: "#FCFBF9", name: T("Off-white", "Blanc cassé", "Blanco roto") },
+        ].map((c) => (
+          <div class="prs-colour">
+            <span class="prs-swatch" style={`background:${c.hex}`}></span>
+            <b>{c.name}</b><code>{c.hex}</code>
+          </div>
+        ))}
+      </div>
+
+      <!-- CONTACTS -->
+      <h2 class="prs-h2">{T("Contacts", "Contacts", "Contactos")}</h2>
+      <!--email_off-->
+      {/* Marqueur officiel de Cloudflare : il désactive l'obfuscation des adresses e-mail sur
+          la portion de page qu'il encadre. Sans lui, Cloudflare remplace l'adresse par
+          « [email protected] » et un décodeur JavaScript — un journaliste qui copie
+          l'adresse, la lit dans le code source, ou navigue sans JS n'obtient rien d'utilisable.
+          La protection reste active sur le reste du site : seule cette page l'abandonne, et
+          c'est un arbitrage assumé — une adresse presse est faite pour être trouvée. */}
+      <div class="prs-contacts">
+        <div class="prs-contact">
+          <b>{T("Press", "Presse", "Prensa")}</b>
+          <a href={`mailto:${LEGAL.pressEmail}`}>{LEGAL.pressEmail}</a>
+          <span>{T(
+            "Interviews, data questions, fact-checking. We answer data questions with the source and its verification date.",
+            "Interviews, questions sur les données, vérification de faits. Nous répondons aux questions de données avec la source et sa date de vérification.",
+            "Entrevistas, preguntas sobre los datos, verificación de hechos. Respondemos con la fuente y su fecha de verificación.",
+          )}</span>
+        </div>
+        <div class="prs-contact">
+          <b>{T("Partnerships", "Partenariats", "Colaboraciones")}</b>
+          <a href={`mailto:${LEGAL.partnershipsEmail}`}>{LEGAL.partnershipsEmail}</a>
+          <span>{T(
+            "Airlines, airports, veterinary and pet-travel professionals, media partnerships.",
+            "Compagnies aériennes, aéroports, professionnels vétérinaires et du voyage animalier, partenariats médias.",
+            "Aerolíneas, aeropuertos, profesionales veterinarios y del viaje con mascotas, colaboraciones con medios.",
+          )}</span>
+        </div>
+        <div class="prs-contact">
+          <b>{T("Publisher", "Éditeur", "Editor")}</b>
+          <span>{LEGAL.publisher}<br />{LEGAL.addressLine}<br />{LEGAL.addressCity}, {LEGAL.addressRegion} {LEGAL.addressZip}, {LEGAL.addressCountry}</span>
+          <a href={`${base}/legal-notice/`}>{T("Legal notice", "Mentions légales", "Aviso legal")} →</a>
+        </div>
+      </div>
+      <!--/email_off-->
+
+      <p class="prs-note prs-cite">{T(
+        "Please credit MyDogCanFly.com and, where relevant, link to the page you used. If you spot an error in our data, tell us — we correct and date every change.",
+        "Merci de créditer MyDogCanFly.com et, si c'est pertinent, de créer un lien vers la page utilisée. Si tu repères une erreur dans nos données, dis-le-nous : nous corrigeons et datons chaque modification.",
+        "Por favor, cita MyDogCanFly.com y, cuando corresponda, enlaza la página utilizada. Si detectas un error en nuestros datos, dínoslo: corregimos y fechamos cada cambio.",
+      )} <a href={`${base}/report-error/`}>{T("Report an error", "Signaler une erreur", "Informar de un error")} →</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Filigrane : l'emblème en très grand, très pâle, derrière le contenu.
+     Trois précautions — `pointer-events: none` pour qu'il n'intercepte aucun clic,
+     `aria-hidden` côté balise pour qu'aucun lecteur d'écran ne l'annonce, et un z-index qui
+     le maintient sous le texte. Le fichier est recadré sur le tracé (85 % du PNG d'origine
+     était du vide transparent) et converti en WebP : 41 Ko au lieu de 226. */
+  /* Le filigrane déborde volontairement du conteneur pour occuper la marge. Sans rognage, ce
+     débordement élargit la page et crée une barre de défilement horizontale sur mobile —
+     constaté à 390 px. `clip` rogne sans créer de conteneur de défilement, contrairement à
+     `hidden` ; on rogne sur la section, pleine largeur, pour préserver l'effet de marge. */
+  .prs-sec { overflow-x: clip; }
+  .prs { max-width: 900px; position: relative; }
+  .prs > *:not(.prs-mark) { position: relative; z-index: 1; }
+  .prs-mark {
+    position: absolute; z-index: 0; pointer-events: none;
+    /* Passé à GAUCHE le 02/08/2026. À droite, il doublait la photo d'interview et surchargeait
+       un côté déjà occupé ; à gauche il remplit le vide laissé sous le titre, qui ne tient que
+       deux lignes. Le déplacement est symétrique — `left` au lieu de `right`, et l'image est
+       retournée horizontalement — pour que la silhouette regarde vers le texte et non vers
+       l'extérieur de la page. Un simple déplacement, sans miroir, l'aurait fait sortir du cadre
+       du regard. */
+    /* `height: auto` est INDISPENSABLE, et son absence a coûté cher. Sans lui, l'attribut
+       `height` du HTML s'applique comme hauteur réelle : l'image se retrouve à la largeur
+       fixée par le CSS et à la hauteur du fichier, donc étirée. Le défaut est passé inaperçu
+       tant que les deux valeurs coïncidaient à peu près ; il a éclaté dès qu'on a réduit la
+       largeur. Ne jamais fixer une seule des deux dimensions sur cette image. */
+    top: 110px; left: -30px; width: 410px; height: auto; max-width: none;
+    opacity: .16; transform: scaleX(-1) rotate(-8deg);
+    /* Dégradé de fondu appliqué à l'emblème lui-même : il est net d'un côté et s'efface de
+       l'autre. Une opacité uniforme aurait donné un aplat terne ; le masque lui donne du relief
+       sans jamais gêner la lecture. L'angle suit le retournement : le masque est appliqué avant
+       la transformation, donc il reste écrit dans le repère d'origine de l'image.
+       Deux corrections du 02/08/2026, dans cet ordre. L'amplitude a d'abord été divisée par
+       deux — le fondu descendait jusqu'à l'effacement complet, il s'arrête à 50 %. Mais cela
+       ne suffisait pas : l'hélice restait illisible parce qu'elle se trouvait du côté FAIBLE
+       du dégradé. L'angle a donc été retourné de 180°, de 148 à 328 degrés. Le dégradé part
+       maintenant de l'hélice, qui est l'extrémité pleine, et s'estompe vers la queue de
+       l'avion. Retenir la règle : sur cette image, l'angle décide de ce qui se lit, pas les
+       paliers d'opacité. */
+    -webkit-mask-image: linear-gradient(328deg, #000 4%, rgba(0, 0, 0, .78) 42%, rgba(0, 0, 0, .56) 74%, rgba(0, 0, 0, .5) 94%);
+    mask-image: linear-gradient(328deg, #000 4%, rgba(0, 0, 0, .78) 42%, rgba(0, 0, 0, .56) 74%, rgba(0, 0, 0, .5) 94%);
+  }
+  @media (max-width: 900px) {
+    /* Sur mobile la marge disponible disparaît : le filigrane passerait sous le texte au lieu
+       de l'accompagner. On le réduit et on le repousse en bas de page. */
+    .prs-mark { top: auto; bottom: 40px; left: -150px; right: auto; width: 480px; opacity: .11; }
+  }
+  .prs-lead { color: var(--mdcf-muted); font-size: 15.5px; line-height: 1.65; max-width: 760px; }
+  /* Le tirage est aligné en HAUT, pas au centre : la colonne de texte ne porte que le
+     sur-titre et le titre, donc un centrage laissait la photo flotter au milieu d'un vide.
+     La marge négative la fait remonter à la hauteur des pastilles de langue. */
+  .prs-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 552px); gap: 28px; align-items: start; }
+  /* Le décalage horizontal partait du bord du bouton « Español », qui n'existe plus depuis
+     que le choix de langue se fait uniquement dans l'en-tête du site. Il ne reste que la
+     remontée verticale, qui aligne le haut du tirage sur le fil d'Ariane.
+     `translateX` plutôt qu'une marge : dans la grille, une marge se prendrait sur la largeur
+     de la colonne et rognerait l'image. */
+  .prs-hero .prs-photo { margin-top: -34px; }
+  .prs-hero-txt .prs-lead { max-width: none; }
+  /* Tirage photo : cadre blanc, marge basse plus épaisse comme sur un vrai tirage, légère
+     inclinaison, double ombre (une proche et dure, une lointaine et douce). L'auréole dégradée
+     est un pseudo-élément flouté — aucune image supplémentaire à charger. */
+  .prs-photo { position: relative; padding: 30px 24px 34px; }
+  /* L'auréole doit DÉBORDER du tirage, sinon elle est intégralement masquée par la photo et
+     l'effet ne se voit pas (première version : inset positif, invisible). */
+  .prs-photo::before {
+    content: ""; position: absolute; z-index: 0;
+    inset: -6px -14px -4px -18px; border-radius: 46% 54% 40% 60%;
+    background: radial-gradient(58% 58% at 22% 26%, rgba(242, 112, 15, .55), transparent 68%),
+                radial-gradient(62% 62% at 82% 78%, rgba(1, 29, 72, .42), transparent 70%);
+    filter: blur(34px);
+  }
+  .prs-photo img {
+    position: relative; z-index: 1; width: 100%; height: auto; display: block;
+    background: #fff; padding: 12px 12px 34px; border-radius: 3px;
+    transform: rotate(-1.7deg);
+    box-shadow: 0 2px 6px rgba(15, 23, 42, .18), 0 18px 40px -12px rgba(1, 29, 72, .38);
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .prs-photo:hover img {
+    transform: rotate(0deg) scale(1.012);
+    box-shadow: 0 3px 8px rgba(15, 23, 42, .20), 0 26px 54px -14px rgba(1, 29, 72, .42);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .prs-photo img, .prs-photo:hover img { transition: none; transform: none; }
+  }
+  @media (max-width: 900px) { .prs-hero { grid-template-columns: 1fr; gap: 18px; } .prs-hero .prs-photo { margin-top: 0; } }
+  .prs-h2 { font-size: 21px; margin: 38px 0 10px; }
+  .prs-sub { color: var(--mdcf-muted); font-size: 14.5px; margin: 0 0 16px; max-width: 760px; }
+  .prs-note { color: var(--mdcf-muted); font-size: 13.5px; line-height: 1.6; margin: 14px 0 0; }
+  .prs-cite { margin-top: 34px; border-top: 1px solid var(--mdcf-line); padding-top: 16px; }
+
+  .prs-what { margin: -10px 0 0; border-left: 3px solid var(--mdcf-accent, #f2700f); padding: 2px 0 2px 18px; }
+  .prs-what p { color: var(--mdcf-ink); font-size: 15px; line-height: 1.7; margin: 0 0 10px; max-width: 780px; }
+  .prs-what p:last-child { margin-bottom: 0; color: var(--mdcf-muted); font-size: 14px; }
+
+  .prs-docs { display: grid; gap: 10px; }
+  .prs-doc { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 14px 16px; background: var(--mdcf-surface); }
+  .prs-doc-name { font-weight: 700; font-size: 15px; }
+  .prs-doc-lang { font-weight: 500; font-size: 12.5px; color: var(--mdcf-muted); margin-left: 6px; }
+  .prs-doc-links { display: inline-flex; align-items: center; gap: 14px; }
+  .prs-btn { font-size: 14px; padding: 9px 16px; }
+  .prs-alt { font-size: 13.5px; font-weight: 600; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  .prs-alt:hover { text-decoration: underline; }
+
+  /* En bref */
+  .prs-brief { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 18px 20px; background: var(--mdcf-subtle); }
+  .prs-brief-list { margin: 0 0 14px; }
+  .prs-brief-row { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--mdcf-line); }
+  .prs-brief-row:last-child { border-bottom: 0; }
+  .prs-brief-row dt { flex: 0 0 42%; color: var(--mdcf-muted); font-size: 14px; margin: 0; }
+  .prs-brief-row dd { margin: 0; font-weight: 600; font-size: 14px; }
+  /* Une phrase de trois lignes en demi-gras se lit comme un pavé, là où le même poids met en
+     valeur une donnée courte. Elle passe donc en 500 et en italique — le même traitement que
+     le chapô de la page, ce qui la rattache au discours plutôt qu'au tableau de chiffres. */
+  .prs-brief-row--phrase dd { font-weight: 500; font-style: italic; }
+  .prs-copy[data-done] { border-color: var(--mdcf-ok, #1d7a4d); }
+
+  /* Captures du produit */
+  /* Chaque capture est une carte : l'image et son texte tiennent dans le même bloc, avec de
+     la marge autour. Avant, l'image touchait sa légende et la légende touchait la capture
+     suivante — rien ne disait où finissait l'une et où commençait l'autre. */
+  .prs-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .prs-shot { margin: 0; background: #fff; border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 14px 14px 16px; box-shadow: 0 1px 2px rgba(1,29,72,.05); transition: box-shadow .18s ease, transform .18s ease; }
+  .prs-shot:hover { box-shadow: 0 10px 28px rgba(1,29,72,.13); transform: translateY(-2px); }
+  .prs-shot a { display: block; border: 1px solid var(--mdcf-line); border-radius: 9px; overflow: hidden; background: #fff; cursor: zoom-in; }
+  .prs-shot img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; }
+
+
+  /* Visionneuse */
+  .prs-lb { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; width: min(1400px, 96vw); overflow: visible; }
+  .prs-lb::backdrop { background: rgba(1, 29, 72, .86); }
+  .prs-lb-img { display: block; width: 100%; max-height: 84vh; object-fit: contain; border-radius: 10px; background: #fff; cursor: zoom-out; }
+  .prs-lb-x { position: absolute; top: -14px; right: -14px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #fff; color: #011d48; font-size: 26px; line-height: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+  .prs-lb-x:hover { background: #F2700F; color: #fff; }
+  .prs-lb-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); color: #011d48; font-size: 30px; line-height: 1; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+  .prs-lb-nav:hover { background: #F2700F; color: #fff; }
+  .prs-lb-prev { left: -22px; }
+  .prs-lb-next { right: -22px; }
+  @media (max-width: 700px) { .prs-lb-prev { left: 6px; } .prs-lb-next { right: 6px; } }
+  .prs-lb-foot { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; align-items: baseline; margin: 10px 2px 0; color: #fff; font-size: 14px; }
+  .prs-lb-dl { color: #fff; text-decoration: underline; }
+  .prs-shot figcaption { padding: 14px 4px 0; font-size: 13px; line-height: 1.55; }
+  .prs-shot figcaption b { display: block; font-size: 15px; margin-bottom: 4px; }
+  .prs-shot figcaption span { color: var(--mdcf-muted); }
+
+  /* Photos réelles */
+  .prs-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .prs-photo { display: flex; flex-direction: column; text-decoration: none; color: inherit; text-align: center; }
+  .prs-photo { cursor: zoom-in; }
+  .prs-photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; border: 1px solid var(--mdcf-line); }
+  .prs-photo-name { font-size: 13px; font-weight: 600; margin-top: 14px; }
+  .prs-photo-meta { font-size: 12px; color: var(--mdcf-muted); }
+  /* Note d'auteur */
+  .prs-author { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 26px; align-items: start;
+    background: #FCFBF9; border: 1px solid var(--mdcf-line); border-left: 3px solid #F2700F; border-radius: 0 14px 14px 0; padding: 26px 28px; margin-top: 22px; }
+  /* Ratio natif de la photo (2122 × 2971) : `contain` plutôt que `cover`, et aucune hauteur
+     imposée — c'est la seule façon d'être certain qu'aucun des deux ne soit rogné. */
+  .prs-author-img { width: 190px; height: auto; aspect-ratio: 2122 / 2971; object-fit: contain;
+    border-radius: 4px; box-shadow: 0 6px 18px rgba(1,29,72,.14); }
+  .prs-author-eyebrow { margin: 0; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--mdcf-muted); }
+  .prs-author-name { margin: 6px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: 22px; font-weight: 700; }
+  .prs-author-role { margin: 2px 0 12px; font-size: 13px; color: var(--mdcf-muted); }
+  .prs-author-body { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.72; }
+  /* Lettrine — le signe le plus court d'une page de livre. */
+  .prs-author-body::first-letter { float: left; font-size: 52px; line-height: .84; padding: 4px 8px 0 0; color: #F2700F; font-weight: 700; }
+  @media (max-width: 700px) {
+    .prs-author { grid-template-columns: 1fr; gap: 16px; }
+    .prs-author-img { width: 150px; }
+  }
+  /* La promesse de méthode : mise en italique pour la détacher du paragraphe qui la précède. */
+  .prs-claim { font-style: italic; }
+
+  .prs-logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+  /* Les trois aperçus partagent exactement le même cadre, en 16:9.
+     Deux essais avant celui-ci : `transform: scale(2)` sur l'emblème, qui débordait parce
+     qu'une transformation ne repousse pas les bords ; puis une boîte deux fois plus haute,
+     qui rendait la première tuile presque carrée à côté des deux autres. Un cadre commun et
+     une image contenue règlent les deux — l'emblème paraît grand parce que son dessin est
+     large, pas parce qu'on force sa boîte. */
+  /* Damier discret : sans lui, un logo transparent sur fond blanc laisse croire qu'il a un fond blanc. */
+  .prs-logo { display: block; text-decoration: none; border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 14px; background: var(--mdcf-surface); }
+  .prs-logo:hover { border-color: var(--mdcf-accent-ink, #b4530a); }
+  .prs-logo-img { display: flex; align-items: center; justify-content: center; aspect-ratio: 16 / 9; border-radius: 10px;
+    background-color: #fff;
+    background-image: linear-gradient(45deg, #f1f3f6 25%, transparent 25%, transparent 75%, #f1f3f6 75%),
+                      linear-gradient(45deg, #f1f3f6 25%, transparent 25%, transparent 75%, #f1f3f6 75%);
+    background-size: 16px 16px; background-position: 0 0, 8px 8px; }
+  .prs-logo-img img { max-width: 92%; max-height: 84%; width: auto; height: auto; }
+  .prs-logo-name { display: block; margin-top: 10px; font-weight: 700; font-size: 14px; color: var(--mdcf-ink); }
+  .prs-logo-meta { display: block; font-size: 12px; color: var(--mdcf-muted); }
+  .prs-pack { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 16px; }
+  .prs-pack-note { font-size: 13px; color: var(--mdcf-muted); flex: 1 1 240px; }
+
+  .prs-colours { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .prs-colour { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 12px; background: var(--mdcf-surface); }
+  .prs-colour b { display: block; font-size: 13.5px; margin-top: 8px; }
+  .prs-colour code { font-size: 12.5px; color: var(--mdcf-muted); }
+  .prs-swatch { display: block; height: 46px; border-radius: 8px; border: 1px solid var(--mdcf-line); }
+
+  .prs-video { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--mdcf-line); aspect-ratio: 16 / 9; }
+  .prs-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* Code d'intégration — dans une fenêtre, ouverte depuis la phrase de description. */
+  .prs-linkbtn { border: 0; background: none; padding: 0; font: inherit; cursor: pointer;
+    color: var(--mdcf-accent-ink, #b4530a); font-weight: 600; text-decoration: underline;
+    text-underline-offset: 2px; }
+  .prs-linkbtn:hover { text-decoration-thickness: 2px; }
+  .prs-embed-dlg { width: min(760px, calc(100vw - 32px)); max-height: min(80vh, 620px); padding: 0;
+    border: 1px solid var(--mdcf-line); border-radius: 14px; background: var(--mdcf-subtle);
+    color: var(--mdcf-ink); overflow: auto; box-shadow: 0 24px 60px rgba(1,29,72,.28); }
+  .prs-embed-dlg::backdrop { background: rgba(1,29,72,.55); }
+  .prs-embed-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+    padding: 11px 14px; border-bottom: 1px solid var(--mdcf-line); position: sticky; top: 0;
+    background: var(--mdcf-subtle); }
+  .prs-embed-head span { font-weight: 700; font-size: 14px; }
+  .prs-embed-actions { display: inline-flex; align-items: center; gap: 10px; }
+  .prs-embed-x { width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--mdcf-line);
+    background: var(--mdcf-surface); color: var(--mdcf-ink); font-size: 19px; line-height: 1; cursor: pointer; }
+  .prs-embed-x:hover { background: #F7A263; border-color: #F49450; }
+  .prs-embed-code { margin: 0; padding: 14px; overflow-x: auto; background: var(--mdcf-surface); }
+  .prs-embed-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12.5px; line-height: 1.65; color: var(--mdcf-ink); white-space: pre; }
+  .prs-embed-note { margin: 0; padding: 12px 14px; border-top: 1px solid var(--mdcf-line); }
+
+  .prs-contacts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .prs-contact { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 15px 16px; background: var(--mdcf-surface); display: grid; gap: 6px; align-content: start; }
+  .prs-contact b { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--mdcf-muted); }
+  .prs-contact a { font-weight: 700; font-size: 14.5px; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  .prs-contact a:hover { text-decoration: underline; }
+  .prs-contact span { font-size: 13px; color: var(--mdcf-muted); line-height: 1.55; }
+
+  @media (max-width: 820px) {
+    .prs-colours { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .prs-logos, .prs-contacts, .prs-shots { grid-template-columns: 1fr; }
+    .prs-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .prs-brief-row { flex-direction: column; gap: 2px; }
+    .prs-brief-row dt { flex: none; }
+  }
+</style>
+
+<script>
+  /* Copie du bloc « en bref ».
+     Le texte à copier voyage dans un attribut `data-copy` plutôt que d'être reconstruit
+     depuis le DOM : la mise en page peut changer sans casser la copie. Sans JavaScript, le
+     bouton n'apparaît pas comme cassé — il ne fait rien, et la liste reste sélectionnable
+     à la souris, ce qui était déjà le comportement de secours. */
+  /* Visionneuse des captures produit.
+     Le lien pointe vers le PNG et reste fonctionnel sans JavaScript ; ici on l'intercepte
+     pour afficher l'image dans la page plutôt que de l'envoyer dans les téléchargements. */
+  const lb = document.getElementById("prs-lb") as HTMLDialogElement | null;
+  if (lb && typeof lb.showModal === "function") {
+    const img = lb.querySelector<HTMLImageElement>(".prs-lb-img")!;
+    const cap = lb.querySelector<HTMLElement>(".prs-lb-cap")!;
+    const dl = lb.querySelector<HTMLAnchorElement>(".prs-lb-dl")!;
+    const prevBtn = lb.querySelector<HTMLButtonElement>(".prs-lb-prev")!;
+    const nextBtn = lb.querySelector<HTMLButtonElement>(".prs-lb-next")!;
+    /* Deux galeries partagent la visionneuse — les captures et les photographies. Les
+       flèches ne doivent pas faire passer de l'une à l'autre : on retient la série cliquée. */
+    const all = [...document.querySelectorAll<HTMLAnchorElement>("a[data-full][data-gallery]")];
+    let links: HTMLAnchorElement[] = all;
+    let at = 0;
+    /* La position de défilement est relevée à l'ouverture et rendue à la fermeture.
+       `<dialog>` rend le focus à l'élément d'origine, mais le navigateur ramenait la page
+       en haut : un lecteur qui referme doit retrouver la grille là où il l'avait laissée. */
+    let scrollAt = 0;
+
+    const show = (i: number) => {
+      at = (i + links.length) % links.length;
+      const a = links[at];
+      img.src = a.dataset.full ?? "";
+      img.alt = a.dataset.cap ?? "";
+      cap.textContent = `${a.dataset.cap ?? ""} — ${at + 1}/${links.length}`;
+      dl.href = a.dataset.full ?? "";
+    };
+
+    all.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        scrollAt = window.scrollY;
+        links = all.filter((x) => x.dataset.gallery === a.dataset.gallery);
+        show(links.indexOf(a));
+        lb.showModal();
+      });
+    });
+
+    const close = () => lb.close();
+    img.addEventListener("click", close);
+    lb.querySelector(".prs-lb-x")?.addEventListener("click", close);
+    prevBtn.addEventListener("click", (e) => { e.stopPropagation(); show(at - 1); });
+    nextBtn.addEventListener("click", (e) => { e.stopPropagation(); show(at + 1); });
+    lb.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") { e.preventDefault(); show(at - 1); }
+      if (e.key === "ArrowRight") { e.preventDefault(); show(at + 1); }
+    });
+    /* Clic sur le fond : `<dialog>` reçoit l'événement pour toute la surface de l'écran,
+       on ne ferme donc que si le clic tombe hors du contenu. */
+    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+    lb.addEventListener("close", () => {
+      img.removeAttribute("src");
+      window.scrollTo({ top: scrollAt, behavior: "instant" as ScrollBehavior });
+    });
+  }
+
+  /* Fenêtre du code d'intégration. Même règle que la visionneuse de photos : on note la
+     position de la page à l'ouverture et on y revient à la fermeture, sinon `<dialog>`
+     renvoie le lecteur en haut de page. */
+  {
+    const dlg = document.getElementById("prs-embed-dlg") as HTMLDialogElement | null;
+    const open = document.getElementById("prs-embed-open");
+    const shut = document.getElementById("prs-embed-close");
+    if (dlg && open) {
+      let scrollAt = 0;
+      open.addEventListener("click", () => { scrollAt = window.scrollY; dlg.showModal(); });
+      shut?.addEventListener("click", () => dlg.close());
+      dlg.addEventListener("click", (e) => { if (e.target === dlg) dlg.close(); });
+      dlg.addEventListener("close", () => {
+        window.scrollTo({ top: scrollAt, behavior: "instant" as ScrollBehavior });
+      });
+    }
+  }
+
+  document.querySelectorAll<HTMLButtonElement>(".prs-copy").forEach((btn) => {
+    const original = btn.textContent ?? "";
+    btn.addEventListener("click", async () => {
+      const text = btn.dataset.copy ?? "";
+      try {
+        await navigator.clipboard.writeText(text);
+      } catch {
+        // Contexte non sécurisé ou permission refusée : on sélectionne la liste pour que
+        // l'utilisateur fasse la copie lui-même plutôt que de le laisser sans retour.
+        const list = document.getElementById(btn.dataset.copySrc ?? "prs-brief");
+        if (list) {
+          const r = document.createRange();
+          r.selectNodeContents(list);
+          const s = window.getSelection();
+          s?.removeAllRanges();
+          s?.addRange(r);
+        }
+        return;
+      }
+      btn.dataset.done = "1";
+      btn.textContent = btn.getAttribute("data-done-label") ?? "✓";
+      setTimeout(() => { delete btn.dataset.done; btn.textContent = original; }, 2000);
+    });
+  });
+</script>

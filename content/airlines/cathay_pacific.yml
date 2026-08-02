@@ -1,0 +1,300 @@
+id: airline_cathay_pacific
+mono: CX
+name: Cathay Pacific
+titleH1:
+  en: Flying with a dog on Cathay Pacific
+  fr: Voyager avec un chien sur Cathay Pacific
+  es: Viajar con perro en Cathay Pacific
+  pt: "Voar com um cachorro na Cathay Pacific"
+metaDesc:
+  en: "Cathay Pacific pet policy: cargo-only via certified agents, cabin assistance dogs, restrictions and official sources."
+  fr: "Politique animaux Cathay Pacific : fret uniquement via agents certifiés, chiens d'assistance en cabine, restrictions et sources officielles."
+  es: "Política de mascotas de Cathay Pacific: solo carga mediante agentes certificados, perros de asistencia en cabina, restricciones y fuentes oficiales."
+  pt: "Política de animais da Cathay Pacific: somente carga mediante agentes certificados, cães de assistência em cabine, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Hong Kong · HKG
+      fr: Hong Kong · HKG
+      es: Hong Kong · HKG
+      pt: "Hong Kong · HKG"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: Pets fly only via Cathay Cargo through certified agents; the cabin is limited to accredited assistance dogs.
+  fr: Les animaux ne voyagent que via Cathay Cargo par agents certifiés ; la cabine est réservée aux chiens d'assistance accrédités.
+  es: Las mascotas vuelan solo mediante Cathay Cargo a través de agentes certificados; la cabina se limita a perros de asistencia acreditados.
+  pt: "Os animais só voam mediante a Cathay Cargo, por agentes certificados; a cabine é reservada a cães de assistência credenciados."
+ladder:
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: Cathay Cargo
+      fr: Cathay Cargo
+      es: Cathay Cargo
+      pt: "Cathay Cargo"
+    sub:
+      en: all pets
+      fr: tous animaux
+      es: todas las mascotas
+      pt: "todos os animais"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only accredited assistance dogs.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance accrédités.
+      es: No se admiten mascotas en cabina, solo perros de asistencia acreditados.
+      pt: "Nenhum animal na cabine — somente cães de assistência credenciados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Cathay doesn't carry pets as passenger checked baggage.
+      fr: Cathay ne transporte pas les animaux en bagage enregistré passager.
+      es: Cathay no transporta mascotas como equipaje facturado del pasajero.
+      pt: "A Cathay não transporta animais como bagagem despachada de passageiro."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cathay Cargo
+      fr: Cathay Cargo
+      es: Cathay Cargo
+      pt: "Cathay Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Mediante agente
+      pt: "Via agente"
+    detail:
+      en: All pets travel via Cathay Cargo (Cathay Live Animal). Since Sep 2025, bookings only through IPATA / IATA-accredited agents.
+      fr: Tous les animaux voyagent via Cathay Cargo (Cathay Live Animal). Depuis sept. 2025, réservation uniquement via des agents IPATA / accrédités IATA.
+      es: Todas las mascotas viajan mediante Cathay Cargo (Cathay Live Animal). Desde sep 2025, las reservas solo se hacen a través de agentes IPATA / acreditados por IATA.
+      pt: "Todos os animais viajam pela Cathay Cargo (Cathay Live Animal). Desde set. de 2025, as reservas são feitas somente por agentes credenciados pela IPATA / IATA."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin / hold
+        fr: Cabine / soute
+        es: Cabina / bodega
+        pt: "Cabine / porão"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Cathay Cargo (live animal)
+        fr: Cathay Cargo (animal vivant)
+        es: Cathay Cargo (animal vivo)
+        pt: "Cathay Cargo (animal vivo)"
+      value:
+        en: Quote via agent
+        fr: Devis via agent
+        es: Presupuesto mediante agente
+        pt: "Orçamento mediante agente"
+    - label:
+        en: Assistance dog (cabin)
+        fr: Chien d'assistance (cabine)
+        es: Perro de asistencia (cabina)
+        pt: "Cão de assistência (cabine)"
+      value:
+        en: See conditions
+        fr: Voir conditions
+        es: Ver condiciones
+        pt: "Ver condições"
+  note:
+    en: Cathay publishes no passenger pet fare — pet transport is quoted by Cathay Cargo through a certified agent.
+    fr: Cathay ne publie pas de tarif animal passager — le transport est chiffré par Cathay Cargo via un agent certifié.
+    es: Cathay no publica una tarifa de mascota para pasajeros; el transporte lo presupuesta Cathay Cargo a través de un agente certificado.
+    pt: "A Cathay não divulga tarifa de animal para passageiros — o transporte é orçado pela Cathay Cargo por um agente certificado."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Seasonal, select routes
+          fr: Saisonnier, routes précises
+          es: Estacional, rutas concretas
+          pt: "Sazonal, rotas específicas"
+    note:
+      en: Snub-nosed cats & dogs are carried only seasonally (Jan–May, Oct–Dec) on HKG→London Heathrow, HKG→Melbourne and HKG→Singapore, via an IPATA-certified BOAS pet shipper.
+      fr: Chats et chiens au nez écrasé transportés uniquement en saison (janv.–mai, oct.–déc.) sur HKG→Londres Heathrow, HKG→Melbourne et HKG→Singapour, via un expéditeur BOAS certifié IPATA.
+      es: Los gatos y perros de hocico chato se transportan solo por temporada (ene–may, oct–dic) en HKG→Londres Heathrow, HKG→Melbourne y HKG→Singapur, mediante un agente de mascotas BOAS certificado por IPATA.
+      pt: "Gatos e cachorros de focinho achatado são transportados somente em determinadas épocas (jan.–mai., out.–dez.) nas rotas HKG→Londres Heathrow, HKG→Melbourne e HKG→Singapura, mediante um agente de transporte de animais BOAS certificado pela IPATA."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Embargo list applies
+          fr: Liste d'embargo
+          es: Se aplica lista de embargo
+          pt: "Lista de embargo aplicável"
+    note:
+      en: The pet must not be on Cathay Cargo's live-animal embargo list; a signed Shipper's Declaration Letter is required. Crate must be rigid, non-wooden, ventilated on all four sides and leak-proof.
+      fr: L'animal ne doit pas figurer sur la liste d'embargo animaux vivants de Cathay Cargo ; une lettre de déclaration de l'expéditeur signée est requise. Caisse rigide, non en bois, ventilée sur les quatre côtés et étanche.
+      es: La mascota no debe figurar en la lista de embargo de animales vivos de Cathay Cargo; se requiere una carta de declaración del expedidor firmada. La jaula debe ser rígida, no de madera, ventilada por los cuatro lados y estanca.
+      pt: "O animal não pode constar da lista de embargo de animais vivos da Cathay Cargo; é exigida uma Shipper's Declaration Letter (carta de declaração do expedidor) assinada. A caixa de transporte precisa ser rígida, não ser de madeira, ser ventilada nos quatro lados e ser à prova de vazamento."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Temperature-maintained hold
+        fr: Soute à température maintenue
+        es: Bodega con temperatura mantenida
+        pt: "Porão com temperatura controlada"
+    - cls: warn
+      label:
+        en: "Hold temperature: not disclosed"
+        fr: "Température soute : non communiqué"
+        es: "Temperatura de la bodega: no comunicada"
+        pt: "Temperatura do porão: não divulgada"
+  note:
+    en: Cathay Cargo holds IATA CEIV Live Animals accreditation and places pets in a temperature-maintained hold, but publishes no numeric temperature figures.
+    fr: Cathay Cargo détient l'accréditation IATA CEIV Live Animals et place les animaux dans une soute à température maintenue, mais ne publie pas de température chiffrée.
+    es: Cathay Cargo cuenta con la acreditación IATA CEIV Live Animals y coloca a las mascotas en una bodega con temperatura mantenida, pero no publica cifras de temperatura numéricas.
+    pt: "A Cathay Cargo tem a credencial IATA CEIV Live Animals e coloca os animais em um porão com temperatura controlada, mas não divulga valores numéricos de temperatura."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide, hearing and service dogs accredited by ADI, ADEu or IGDF may fly in the cabin.
+      fr: Chiens guides, d'écoute et d'assistance accrédités par ADI, ADEu ou IGDF admis en cabine.
+      es: Los perros guía, de señal y de asistencia acreditados por ADI, ADEu o IGDF pueden volar en cabina.
+      pt: "Cães-guia, para surdos e de assistência credenciados pela ADI, ADEu ou IGDF podem voar na cabine."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: For 8 h+ flights, contact Customer Care ≥ 48 h ahead; Hong Kong travel/transit needs an AFCD Special Permit.
+      fr: Pour les vols de 8 h et +, contacter le service client ≥ 48 h à l'avance ; le trajet/transit par Hong Kong nécessite un permis spécial AFCD.
+      es: Para vuelos de 8 h o más, contacta con Atención al Cliente ≥ 48 h antes; el viaje/tránsito por Hong Kong requiere un permiso especial del AFCD.
+      pt: "Para voos de 8 h ou mais, contate o Atendimento ao Cliente ≥ 48 h antes; viagem/trânsito por Hong Kong exige uma Special Permit da AFCD."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Cargo only
+      fr: Fret uniquement
+      es: Solo carga
+      pt: "Somente carga"
+    value:
+      en: All pets except accredited assistance dogs travel via Cathay Cargo, booked through a certified agent.
+      fr: Tous les animaux sauf chiens d'assistance accrédités voyagent via Cathay Cargo, réservé via un agent certifié.
+      es: Todas las mascotas salvo los perros de asistencia acreditados viajan mediante Cathay Cargo, reservado a través de un agente certificado.
+      pt: "Todos os animais, exceto cães de assistência credenciados, viajam pela Cathay Cargo, reservados por um agente certificado."
+  - icon: 🛡️
+    label:
+      en: Accreditation
+      fr: Accréditation
+      es: Acreditación
+      pt: "Credenciamento"
+    value:
+      en: Cathay Cargo is IATA CEIV Live Animals accredited and follows IATA Live Animals Regulations.
+      fr: Cathay Cargo est accrédité IATA CEIV Live Animals et suit la réglementation IATA Live Animals.
+      es: Cathay Cargo está acreditado por IATA CEIV Live Animals y sigue la Reglamentación IATA sobre Animales Vivos.
+      pt: "A Cathay Cargo tem a credencial IATA CEIV Live Animals e segue o IATA Live Animals Regulations."
+  - icon: 🐶
+    label:
+      en: Brachy seasons
+      fr: Saisons brachy
+      es: Temporadas braquicéfalas
+      pt: "Temporadas para braquicefálicos"
+    value:
+      en: Snub-nosed breeds only on three HKG routes, seasonally, via a BOAS-certified shipper.
+      fr: Races au nez écrasé uniquement sur trois routes HKG, en saison, via un expéditeur certifié BOAS.
+      es: Las razas de hocico chato solo en tres rutas de HKG, por temporada, mediante un agente certificado BOAS.
+      pt: "Raças de focinho achatado somente em três rotas de HKG, em determinadas épocas, mediante um agente certificado BOAS."
+book:
+  host: cathaypacific.com
+  url: https://www.cathaypacific.com/
+sources:
+  en: 6 Cathay Pacific & Cathay Cargo sources · last verified 11 July 2026
+  fr: 6 sources Cathay Pacific & Cathay Cargo · dernière vérification 11 juillet 2026
+  es: 6 fuentes de Cathay Pacific y Cathay Cargo · última verificación 11 julio 2026
+  pt: "6 fontes da Cathay Pacific e da Cathay Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

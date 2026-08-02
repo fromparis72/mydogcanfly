@@ -1,0 +1,407 @@
+# Country Entry Guide — Nepal (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Nepal is NOT in the EU and does not use the EU pet-passport system. Animal imports are
+# governed by the Animal Health and Livestock Services Act, 2055 (1999) and the Animal Health
+# and Livestock Services Rules, 2056 (2000), administered by the Department of Livestock Services
+# (DLS) Animal Quarantine Division (national technical authority in the animal quarantine sector).
+# Official pet documentation published by the Government of Nepal (Embassy of Nepal, London —
+# "Taking Pets to Nepal") is limited to: (a) a veterinary health certificate issued within 10 days
+# of arrival, valid 30 days; (b) a rabies vaccination card; (c) advance notification of the Animal
+# Quarantine Office at Kathmandu (Tribhuvan International Airport, TIA) 72 hours before arrival, by
+# email (ktmquarantine@gmail.com). Nepal is rabies-endemic. Several details that other countries
+# publish (a fixed microchip standard, a specific rabies interval, a rabies antibody test, parasite
+# treatment, minimum age, breed restrictions) are NOT published in the official Nepali sources
+# reviewed, and are therefore marked Unknown / not specified rather than guessed.
+# The eu/listed/nonListed slots are repurposed to Nepal's practical paths, since Nepal applies a
+# single national scheme to every dog regardless of the EU/listed distinction.
+id: country_np
+iso2: "NP"
+name: { en: "Nepal", fr: "Népal", es: "Nepal", pt: "Nepal" }
+region: { en: "South Asia", fr: "Asie du Sud", es: "Asia del Sur", pt: "Ásia do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: DLS
+  authorityUrl: https://dls.gov.np
+  intro:
+    en: "Nepal is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Department of Livestock Services / Animal Quarantine."
+    fr: "Le Népal est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Department of Livestock Services / la quarantaine animale."
+    es: "Nepal no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Department of Livestock Services / la cuarentena animal."
+    pt: "O Nepal é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pelo Department of Livestock Services / Animal Quarantine."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A licensed vet in Kathmandu completes the health certificate, which the DLS Animal Quarantine Office endorses; the international certificate is generally issued within 30 days of travel."
+        fr: "Un vétérinaire agréé à Katmandou remplit le certificat sanitaire, que le bureau de quarantaine animale du DLS vise ; le certificat international est généralement délivré dans les 30 jours du voyage."
+        es: "Un veterinario autorizado en Katmandú rellena el certificado sanitario, que la oficina de cuarentena animal del DLS refrenda; el certificado internacional se emite normalmente dentro de los 30 días del viaje."
+        pt: "Um veterinário licenciado em Kathmandu preenche o atestado de saúde, que o Animal Quarantine Office do DLS endossa; o certificado internacional geralmente é emitido dentro de 30 dias antes da viagem."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Nepal with your dog", fr: "Voyager au Népal avec ton chien", es: "Viajar a Nepal con tu perro", pt: "Viajar para o Nepal com seu cachorro" }
+  intro:
+    en: >-
+      Nepal welcomes pet dogs, but it runs its own national scheme through the Department of Livestock
+      Services (DLS) Animal Quarantine Division — not the EU pet-passport framework. Imports are governed
+      by the Animal Health and Livestock Services Act, 2055 (1999) and its Rules, 2056 (2000): every animal
+      must enter through a quarantine check post and may only be cleared once a quarantine officer has
+      examined it. The official pet documentation published by the Government of Nepal is a veterinary
+      health certificate issued within ten days of arrival (valid thirty days) plus a rabies vaccination
+      card, and you must notify the Animal Quarantine Office at Kathmandu airport 72 hours before you land.
+      Nepal is rabies-endemic, so a valid rabies vaccination is essential. Several finer details are not
+      published in the official sources, so confirm them with the Animal Quarantine Office and your vet.
+      What you must prepare also depends on your dog's country of origin and travel history — read this guide before booking.
+    fr: >-
+      Le Népal accueille les chiens de compagnie, mais applique son propre régime national via la Division
+      de quarantaine animale du Department of Livestock Services (DLS) — et non le cadre du passeport
+      européen. Les importations relèvent de l'Animal Health and Livestock Services Act, 2055 (1999) et de
+      ses Rules, 2056 (2000) : tout animal doit entrer par un poste de quarantaine et n'est dédouané qu'après
+      examen par un agent de quarantaine. La documentation officielle publiée par le Gouvernement du Népal se
+      compose d'un certificat sanitaire vétérinaire établi dans les dix jours avant l'arrivée (valable trente
+      jours) et d'une carte de vaccination antirabique, et tu dois prévenir le Bureau de quarantaine animale
+      de l'aéroport de Katmandou 72 heures avant l'atterrissage. Le Népal est un pays d'endémie rabique : une
+      vaccination antirabique valide est donc indispensable. Plusieurs détails ne sont pas publiés dans les
+      sources officielles : confirme-les auprès du Bureau de quarantaine et de ton vétérinaire. Ce que tu
+      devez préparer dépend aussi de l'origine et de l'historique de ton chien — lis ce guide avant de réserver.
+    es: >-
+      Nepal acoge a los perros de compañía, pero aplica su propio régimen nacional a través de la División de
+      Cuarentena Animal del Department of Livestock Services (DLS) — no el marco del pasaporte europeo para
+      mascotas. Las importaciones se rigen por la Animal Health and Livestock Services Act, 2055 (1999) y sus
+      Rules, 2056 (2000): todo animal debe entrar por un puesto de cuarentena y solo puede despacharse una vez
+      que un agente de cuarentena lo ha examinado. La documentación oficial para mascotas publicada por el
+      Gobierno de Nepal es un certificado sanitario veterinario expedido dentro de los diez días previos a la
+      llegada (válido treinta días) más una cartilla de vacunación antirrábica, y debes avisar a la Oficina de
+      Cuarentena Animal del aeropuerto de Katmandú 72 horas antes de aterrizar. Nepal tiene rabia endémica, por
+      lo que una vacunación antirrábica válida es esencial. Varios detalles más finos no están publicados en las
+      fuentes oficiales, así que confírmalos con la Oficina de Cuarentena Animal y tu veterinario. Lo que debes
+      preparar depende también del país de origen y el historial de viajes de tu perro — lee esta guía antes de reservar.
+
+    pt: "O Nepal recebe cachorros de estimação, mas aplica seu próprio esquema nacional por meio da Animal Quarantine Division do Department of Livestock Services (DLS) — e não o marco do passaporte de animal de estimação da UE. As importações são regidas pelo Animal Health and Livestock Services Act, 2055 (1999) e suas Rules, 2056 (2000): todo animal precisa entrar por um posto de controle de quarentena e só pode ser liberado depois que um agente de quarentena o examinar. A documentação oficial para animais de estimação publicada pelo Governo do Nepal é um atestado de saúde veterinário emitido dentro de dez dias antes da chegada (válido por trinta dias), além de uma carteira de vacinação antirrábica, e você precisa notificar o Animal Quarantine Office no aeroporto de Kathmandu 72 horas antes de pousar. O Nepal é endêmico de raiva, portanto uma vacinação antirrábica válida é essencial. Vários detalhes mais específicos não são publicados nas fontes oficiais, então confirme-os com o Animal Quarantine Office e o seu veterinário. O que você precisa preparar também depende do país de origem do seu cachorro e do histórico de viagens — leia este guia antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — health certificate, rabies card and advance quarantine notice", fr: "Modéré — certificat sanitaire, carte antirabique et préavis de quarantaine", es: "Moderado — certificado sanitario, cartilla antirrábica y aviso previo de cuarentena", pt: "Moderado — atestado de saúde, carteira antirrábica e notificação prévia à quarentena" }
+
+prepTime:
+  eu:
+    en: "Dog from the EU: ~2–4 weeks — the EU pet passport is not used, but a valid rabies vaccination and a veterinary health certificate issued within 10 days of arrival are enough, plus a 72-hour advance notice to the Animal Quarantine Office."
+    fr: "Chien venant de l'UE : ~2 à 4 semaines — le passeport européen n'est pas utilisé, mais une vaccination antirabique valide et un certificat sanitaire vétérinaire établi dans les 10 jours avant l'arrivée suffisent, plus un préavis de 72 heures au Bureau de quarantaine animale."
+    es: "Perro procedente de la UE: ~2–4 semanas — el pasaporte europeo para mascotas no se utiliza, pero bastan una vacunación antirrábica válida y un certificado sanitario veterinario expedido dentro de los 10 días previos a la llegada, más un aviso previo de 72 horas a la Oficina de Cuarentena Animal."
+    pt: "Cachorro vindo da UE: cerca de 2 a 4 semanas — o passaporte de animal de estimação da UE não é usado, mas uma vacinação antirrábica válida e um atestado de saúde veterinário emitido dentro de 10 dias antes da chegada bastam, além de uma notificação prévia de 72 horas ao Animal Quarantine Office."
+  listed:
+    en: "Dog from another country: ~2–4 weeks — the same national procedure applies: rabies vaccination card, health certificate issued within 10 days of arrival (valid 30 days) and 72-hour advance notice to the Animal Quarantine Office."
+    fr: "Chien venant d'un autre pays : ~2 à 4 semaines — la même procédure nationale s'applique : carte de vaccination antirabique, certificat sanitaire établi dans les 10 jours avant l'arrivée (valable 30 jours) et préavis de 72 heures au Bureau de quarantaine animale."
+    es: "Perro procedente de otro país: ~2–4 semanas — se aplica el mismo procedimiento nacional: cartilla de vacunación antirrábica, certificado sanitario expedido dentro de los 10 días previos a la llegada (válido 30 días) y aviso previo de 72 horas a la Oficina de Cuarentena Animal."
+    pt: "Cachorro vindo de outro país: cerca de 2 a 4 semanas — o mesmo procedimento nacional se aplica: carteira de vacinação antirrábica, atestado de saúde emitido dentro de 10 dias antes da chegada (válido por 30 dias) e notificação prévia de 72 horas ao Animal Quarantine Office."
+  nonListed:
+    en: "Non-compliant arrival, 3+ animals, or a dog that is not healthy on inspection: plan extra time — the Act allows an import permit / quarantine-check-post regime and discretionary quarantine, and a dog without the required certificate can be held, returned or destroyed."
+    fr: "Arrivée non conforme, 3 animaux ou plus, ou chien jugé non sain à l'inspection : prévois du temps supplémentaire — la loi prévoit un régime de permis d'importation / poste de quarantaine et une quarantaine discrétionnaire, et un chien sans le certificat requis peut être retenu, renvoyé ou détruit."
+    es: "Llegada no conforme, 3 o más animales, o un perro que no esté sano en la inspección: prevé tiempo adicional — la Ley admite un régimen de permiso de importación / puesto de cuarentena y una cuarentena discrecional, y un perro sin el certificado exigido puede ser retenido, devuelto o sacrificado."
+    pt: "Chegada em não conformidade, 3 ou mais animais, ou um cachorro que não esteja saudável na inspeção: planeje tempo extra — a lei prevê um regime de autorização de importação / posto de controle de quarentena e quarentena discricionária, e um cachorro sem o certificado exigido pode ficar retido, ser devolvido ou sacrificado."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with documents and notice", fr: "Oui — avec documents et préavis", es: "Sí — con documentos y aviso previo", pt: "Sim — com documentos e notificação" }
+    cls: neutral
+  - requirement: { en: "Advance notice to Animal Quarantine Office", fr: "Préavis au Bureau de quarantaine animale", es: "Aviso previo a la Oficina de Cuarentena Animal", pt: "Notificação prévia ao Animal Quarantine Office" }
+    status: { en: "Required (72 hours before arrival)", fr: "Requis (72 heures avant l'arrivée)", es: "Obligatorio (72 horas antes de la llegada)", pt: "Obrigatória (72 horas antes da chegada)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not specified in official guidance (ISO recommended)", fr: "Non précisé dans la réglementation officielle (ISO recommandée)", es: "No especificado en la normativa oficial (se recomienda ISO)", pt: "Não especificado na orientação oficial (ISO recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (valid vaccination card)", fr: "Requise (carte de vaccination valide)", es: "Obligatoria (cartilla de vacunación válida)", pt: "Obrigatória (carteira de vacinação válida)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required by Nepal", fr: "Non requis par le Népal", es: "No exigida por Nepal", pt: "Não exigido pelo Nepal" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (issued within 10 days of arrival)", fr: "Requis (établi dans les 10 jours avant l'arrivée)", es: "Obligatorio (expedido dentro de los 10 días previos a la llegada)", pt: "Obrigatório (emitido dentro de 10 dias antes da chegada)" }
+    cls: warn
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Not required for an accompanied personal pet (per official guidance)", fr: "Non requis pour un animal de compagnie accompagné (selon la réglementation officielle)", es: "No obligatorio para una mascota personal acompañada (según la normativa oficial)", pt: "Não exigida para um animal de estimação pessoal acompanhado (segundo a orientação oficial)" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "None if healthy and documented; otherwise discretionary", fr: "Aucune si sain et documenté ; sinon discrétionnaire", es: "Ninguna si está sano y documentado; de lo contrario, discrecional", pt: "Nenhuma se saudável e documentado; caso contrário, discricionária" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and Nepal's Department of Livestock Services (DLS) Animal Quarantine Office can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le Bureau de quarantaine animale du Department of Livestock Services (DLS) du Népal peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y la Oficina de Cuarentena Animal del Department of Livestock Services (DLS) de Nepal pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário e o Animal Quarantine Office do Department of Livestock Services (DLS) do Nepal podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Notify the Animal Quarantine Office at Kathmandu (Tribhuvan International Airport) 72 hours before arrival by email (ktmquarantine@gmail.com), attaching the health certificate and rabies vaccination card."
+    fr: "Préviens le Bureau de quarantaine animale de Katmandou (aéroport international de Tribhuvan) 72 heures avant l'arrivée par e-mail (ktmquarantine@gmail.com), en joignant le certificat sanitaire et la carte de vaccination antirabique."
+    es: "Avisa a la Oficina de Cuarentena Animal de Katmandú (Aeropuerto Internacional de Tribhuvan) 72 horas antes de la llegada por correo electrónico (ktmquarantine@gmail.com), adjuntando el certificado sanitario y la cartilla de vacunación antirrábica."
+    pt: "Notifique o Animal Quarantine Office em Kathmandu (Tribhuvan International Airport) 72 horas antes da chegada por e-mail (ktmquarantine@gmail.com), anexando o atestado de saúde e a carteira de vacinação antirrábica."
+  - en: "Several details (microchip standard, exact rabies interval, minimum age, parasite treatment) are not published in the official Nepali sources — confirm them before you travel."
+    fr: "Plusieurs détails (norme de puce, intervalle exact de vaccination antirabique, âge minimum, traitement antiparasitaire) ne sont pas publiés dans les sources officielles népalaises — confirme-les avant de voyager."
+    es: "Varios detalles (norma de microchip, intervalo exacto de vacunación antirrábica, edad mínima, tratamiento antiparasitario) no están publicados en las fuentes oficiales nepalíes — confírmalos antes de viajar."
+    pt: "Vários detalhes (padrão de microchip, intervalo exato da vacinação antirrábica, idade mínima, tratamento antiparasitário) não são publicados nas fontes oficiais nepalesas — confirme-os antes de viajar."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Nepal (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — le Népal (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Nepal (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — o Nepal (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Nepal", fr: "Pays de destination — Népal", es: "País de destino — Nepal", pt: "País de destino — Nepal" }
+      text:
+        en: "Nepal runs its own DLS scheme under the Animal Health and Livestock Services Act, 2055 (1999) and Rules, 2056 (2000): entry only through a quarantine check post, a rabies vaccination card, a veterinary health certificate issued within 10 days of arrival, advance notice to the Animal Quarantine Office and examination by a quarantine officer. It does not use the EU pet-passport system and does not require a rabies antibody test."
+        fr: "Le Népal applique son propre régime DLS au titre de l'Animal Health and Livestock Services Act, 2055 (1999) et des Rules, 2056 (2000) : entrée uniquement par un poste de quarantaine, carte de vaccination antirabique, certificat sanitaire vétérinaire établi dans les 10 jours avant l'arrivée, préavis au Bureau de quarantaine animale et examen par un agent de quarantaine. Il n'utilise pas le passeport européen et n'exige pas de titrage antirabique."
+        es: "Nepal aplica su propio régimen del DLS al amparo de la Animal Health and Livestock Services Act, 2055 (1999) y las Rules, 2056 (2000): entrada únicamente por un puesto de cuarentena, cartilla de vacunación antirrábica, certificado sanitario veterinario expedido dentro de los 10 días previos a la llegada, aviso previo a la Oficina de Cuarentena Animal y examen por un agente de cuarentena. No utiliza el sistema del pasaporte europeo para mascotas y no exige una prueba de titulación de rabia."
+        pt: "O Nepal aplica seu próprio esquema do DLS sob o Animal Health and Livestock Services Act, 2055 (1999) e as Rules, 2056 (2000): entrada apenas por um posto de controle de quarentena, uma carteira de vacinação antirrábica, um atestado de saúde veterinário emitido dentro de 10 dias antes da chegada, notificação prévia ao Animal Quarantine Office e exame por um agente de quarentena. O país não usa o sistema de passaporte para animais de estimação da UE nem exige um teste sorológico antirrábico."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "A licensed veterinarian in the country of departure must issue the health certificate within ten days of your arrival in Nepal. Because Nepal is rabies-endemic, the rabies vaccination status recorded at departure is central; the departure country's disease situation may also influence how closely a quarantine officer examines the dog on arrival."
+        fr: "Un vétérinaire habilité du pays de départ doit établir le certificat sanitaire dans les dix jours avant ton arrivée au Népal. Le Népal étant un pays d'endémie rabique, le statut vaccinal antirabique consigné au départ est central ; la situation sanitaire du pays de départ peut aussi influencer la rigueur de l'examen à l'arrivée."
+        es: "Un veterinario colegiado del país de salida debe expedir el certificado sanitario dentro de los diez días previos a tu llegada a Nepal. Como Nepal tiene rabia endémica, el estatus de vacunación antirrábica registrado en la salida es fundamental; la situación sanitaria del país de salida también puede influir en la minuciosidad con que un agente de cuarentena examina al perro a la llegada."
+        pt: "Um veterinário licenciado no país de partida precisa emitir o atestado de saúde dentro de dez dias antes da sua chegada ao Nepal. Como o Nepal é endêmico de raiva, a situação da vacinação antirrábica registrada na partida é central; a situação sanitária do país de partida também pode influenciar o quanto um agente de quarentena examina o cachorro na chegada."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's disease exposure and vaccination history shape the certificate wording and the quarantine officer's decision on arrival. Under the Rules, a dog that is not found healthy, or arrives without an authenticated vaccination certificate, can be held in the quarantine spot regardless of the last airport."
+        fr: "L'exposition aux maladies et l'historique de vaccination de ton chien déterminent le libellé du certificat et la décision de l'agent de quarantaine à l'arrivée. Selon les Rules, un chien jugé non sain, ou arrivant sans certificat de vaccination authentifié, peut être placé en zone de quarantaine quel que soit le dernier aéroport."
+        es: "La exposición a enfermedades y el historial de vacunación de tu perro determinan la redacción del certificado y la decisión del agente de cuarentena a la llegada. Según las Rules, un perro que no se considere sano, o que llegue sin un certificado de vacunación autenticado, puede ser retenido en la zona de cuarentena sea cual sea el último aeropuerto."
+        pt: "A exposição a doenças e o histórico de vacinação do seu cachorro determinam o texto do certificado e a decisão do agente de quarentena na chegada. Pelas Rules, um cachorro que não seja considerado saudável, ou que chegue sem um certificado de vacinação autenticado, pode ficar retido no local de quarentena, independentemente do último aeroporto."
+  note:
+    en: "So read the requirements below as Nepal's framework, then confirm your dog's exact origin, history and paperwork with your vet and the Animal Quarantine Office before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre népalais, puis confirme l'origine, l'historique et les documents exacts de ton chien avec ton vétérinaire et le Bureau de quarantaine animale avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Nepal y luego confirma el origen, el historial y la documentación exactos de tu perro con tu veterinario y la Oficina de Cuarentena Animal antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o marco do Nepal e depois confirme com o seu veterinário e o Animal Quarantine Office a origem, o histórico e a documentação exatos do seu cachorro antes de reservar."
+
+requirements:
+  - item: { en: "Advance notice (Animal Quarantine Office)", fr: "Préavis (Bureau de quarantaine animale)", es: "Aviso previo (Oficina de Cuarentena Animal)", pt: "Notificação prévia (Animal Quarantine Office)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The owner must inform the Animal Quarantine Office in Nepal of the arrival time at Tribhuvan International Airport (TIA, Kathmandu) 72 hours before arrival, sending the health certificate and rabies vaccination card to ktmquarantine@gmail.com.", fr: "Le propriétaire doit informer le Bureau de quarantaine animale au Népal de l'heure d'arrivée à l'aéroport international de Tribhuvan (TIA, Katmandou) 72 heures avant l'arrivée, en envoyant le certificat sanitaire et la carte de vaccination antirabique à ktmquarantine@gmail.com.", es: "El propietario debe informar a la Oficina de Cuarentena Animal de Nepal de la hora de llegada al Aeropuerto Internacional de Tribhuvan (TIA, Katmandú) 72 horas antes de la llegada, enviando el certificado sanitario y la cartilla de vacunación antirrábica a ktmquarantine@gmail.com.", pt: "O dono precisa informar ao Animal Quarantine Office no Nepal o horário de chegada ao Tribhuvan International Airport (TIA, Kathmandu) 72 horas antes da chegada, enviando o atestado de saúde e a carteira de vacinação antirrábica para ktmquarantine@gmail.com." }
+    exceptions: { en: "This early notice lets a quarantine officer be on hand to process the dog. Contact numbers are published by the Embassy of Nepal, London.", fr: "Ce préavis permet à un agent de quarantaine d'être présent pour traiter le chien. Des numéros de contact sont publiés par l'ambassade du Népal à Londres.", es: "Este aviso anticipado permite que un agente de cuarentena esté disponible para tramitar la entrada del perro. La Embajada de Nepal en Londres publica los números de contacto.", pt: "Essa notificação antecipada permite que um agente de quarentena esteja disponível para processar o cachorro. Os números de contato são publicados pela Embassy of Nepal, em Londres." }
+    ref: { en: "Embassy of Nepal, London — Taking Pets to Nepal (c)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (c)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (c)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (c)" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A health certificate for the pet must be issued within ten (10) days of your arrival in Nepal; it is valid for thirty (30) days. Another health certificate can be produced in Nepal.", fr: "Un certificat sanitaire pour l'animal doit être établi dans les dix (10) jours avant ton arrivée au Népal ; il est valable trente (30) jours. Un autre certificat sanitaire peut être établi au Népal.", es: "Un certificado sanitario para la mascota debe expedirse dentro de los diez (10) días previos a tu llegada a Nepal; es válido treinta (30) días. Puede expedirse otro certificado sanitario en Nepal.", pt: "Um atestado de saúde para o animal de estimação precisa ser emitido dentro de dez (10) dias antes da sua chegada ao Nepal; ele é válido por trinta (30) dias. Outro atestado de saúde pode ser providenciado no Nepal." }
+    exceptions: { en: "Under the Act, a quarantine officer may prohibit entry if the prescribed disease-free and soundness certificate is not submitted, so carry the original and copies.", fr: "En vertu de la loi, un agent de quarantaine peut interdire l'entrée si le certificat prescrit d'absence de maladie et de bon état n'est pas présenté ; munis-toi donc de l'original et de copies.", es: "En virtud de la Ley, un agente de cuarentena puede prohibir la entrada si no se presenta el certificado prescrito de ausencia de enfermedad y buen estado, así que lleva el original y copias.", pt: "Pela lei, um agente de quarentena pode proibir a entrada se o certificado prescrito de ausência de doenças e sanidade não for apresentado, então leve o original e cópias." }
+    ref: { en: "Embassy of Nepal, London — Taking Pets to Nepal (a); Animal Health and Livestock Services Act, 2055 (s.11)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (a) ; Animal Health and Livestock Services Act, 2055 (art. 11)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (a); Animal Health and Livestock Services Act, 2055 (art. 11)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (a); Animal Health and Livestock Services Act, 2055 (s.11)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A rabies vaccination card must accompany the pet. Nepal is rabies-endemic, so a current, valid rabies vaccination is essential and is checked against the health certificate on arrival.", fr: "Une carte de vaccination antirabique doit accompagner l'animal. Le Népal étant un pays d'endémie rabique, une vaccination antirabique en cours de validité est essentielle et est vérifiée par rapport au certificat sanitaire à l'arrivée.", es: "Una cartilla de vacunación antirrábica debe acompañar a la mascota. Como Nepal tiene rabia endémica, una vacunación antirrábica vigente y válida es esencial y se coteja con el certificado sanitario a la llegada.", pt: "Uma carteira de vacinação antirrábica precisa acompanhar o animal de estimação. O Nepal é endêmico de raiva, portanto uma vacinação antirrábica atual e válida é essencial e é conferida em relação ao atestado de saúde na chegada." }
+    exceptions: { en: "The official Nepali guidance reviewed does not publish a specific rabies interval (days before travel or maximum validity) — carry a complete, dated card showing current validity.", fr: "La réglementation népalaise officielle consultée ne publie pas d'intervalle antirabique précis (délai avant le voyage ou validité maximale) — munis-toi d'une carte complète et datée attestant la validité en cours.", es: "La normativa nepalí oficial consultada no publica un intervalo antirrábico específico (días antes del viaje o valide máxima) — lleva una cartilla completa y fechada que acredite la valide vigente.", pt: "A orientação oficial nepalesa analisada não publica um intervalo específico para a raiva (dias antes da viagem ou validade máxima) — leve uma carteira completa e datada que mostre a validade atual." }
+    ref: { en: "Embassy of Nepal, London — Taking Pets to Nepal (b)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (b)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (b)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (b)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "The official Nepali pet-import guidance does not call for a rabies antibody test. Only a valid rabies vaccination card is required.", fr: "La réglementation népalaise officielle d'importation d'animaux n'impose pas de titrage antirabique. Seule une carte de vaccination antirabique valide est requise.", es: "La normativa nepalí oficial de importación de mascotas no exige una prueba de titulación de rabia. Solo se requiere una cartilla de vacunación antirrábica válida.", pt: "A orientação oficial nepalesa de importação de animais de estimação não exige um teste sorológico antirrábico. Apenas uma carteira de vacinação antirrábica válida é exigida." }
+    ref: { en: "Embassy of Nepal, London — Taking Pets to Nepal (b)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (b)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (b)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (b)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not specified", fr: "Non précisée", es: "No especificado", pt: "Não especificada" }
+    when: { en: "The official Nepali pet-import guidance reviewed does not list a microchip requirement or standard. An ISO 11784/11785-compatible microchip is international best practice and is recommended so the dog can be reliably identified against its documents.", fr: "La réglementation népalaise officielle consultée ne mentionne ni exigence ni norme de puce. Une puce compatible ISO 11784/11785 est une bonne pratique internationale et est recommandée pour identifier le chien de façon fiable par rapport à ses documents.", es: "La normativa nepalí oficial de importación de mascotas consultada no menciona ningún requisito ni norma de microchip. Un microchip compatible con ISO 11784/11785 es una buena práctica internacional y se recomienda para que el perro pueda identificarse de forma fiable frente a sus documentos.", pt: "A orientação oficial nepalesa de importação de animais de estimação analisada não lista uma exigência ou padrão de microchip. Um microchip compatível com ISO 11784/11785 é a melhor prática internacional e é recomendado para que o cachorro possa ser identificado de forma confiável em relação aos seus documentos." }
+    exceptions: { en: "Because it is unpublished, confirm the current identification requirement with the Animal Quarantine Office before you travel.", fr: "Comme cela n'est pas publié, confirme l'exigence d'identification en vigueur auprès du Bureau de quarantaine animale avant de voyager.", es: "Como no está publicado, confirma el requisito de identificación vigente con la Oficina de Cuarentena Animal antes de viajar.", pt: "Como não é publicado, confirme a exigência atual de identificação com o Animal Quarantine Office antes de viajar." }
+    ref: { en: "Embassy of Nepal, London — Taking Pets to Nepal (microchip not listed)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (puce non mentionnée)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (microchip no mencionado)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (microchip não listado)" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Not specified", fr: "Non précisé", es: "No especificado", pt: "Não especificada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "The official Nepali guidance reviewed does not publish an internal/external parasite-treatment requirement for dogs. Keep any treatment records with the health certificate in case a quarantine officer asks.", fr: "La réglementation népalaise officielle consultée ne publie pas d'exigence de traitement antiparasitaire interne/externe pour les chiens. Conserve tout justificatif de traitement avec le certificat sanitaire au cas où un agent de quarantaine le demanderait.", es: "La normativa nepalí oficial consultada no publica ningún requisito de tratamiento antiparasitario interno/externo para los perros. Conserva cualquier registro de tratamiento con el certificado sanitario por si un agente de cuarentena lo solicita.", pt: "A orientação oficial nepalesa analisada não publica uma exigência de tratamento antiparasitário interno/externo para cachorros. Mantenha quaisquer registros de tratamento junto com o atestado de saúde, caso um agente de quarentena solicite." }
+    ref: { en: "Embassy of Nepal, London — Taking Pets to Nepal (not listed)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (non mentionné)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (no mencionado)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (não listado)" }
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Not required for an accompanied personal pet", fr: "Non requis pour un animal de compagnie accompagné", es: "No obligatorio para una mascota personal acompañada", pt: "Não exigida para um animal de estimação pessoal acompanhado" }
+    when: { en: "The official pet-import guidance does not require an import permit for a pet travelling with its owner. Separately, the Act operates an import-permit / quarantine-check-post regime for animal imports (application to the veterinary/quarantine authority, generally before import).", fr: "La réglementation officielle d'importation d'animaux n'exige pas de permis d'importation pour un animal voyageant avec son propriétaire. Par ailleurs, la loi prévoit un régime de permis d'importation / poste de quarantaine pour les importations d'animaux (demande à l'autorité vétérinaire/de quarantaine, en général avant l'importation).", es: "La normativa oficial de importación de mascotas no exige un permiso de importación para una mascota que viaja con su propietario. Por separado, la Ley aplica un régimen de permiso de importación / puesto de cuarentena para las importaciones de animales (solicitud a la autoridad veterinaria/de cuarentena, generalmente antes de la importación).", pt: "A orientação oficial de importação de animais de estimação não exige uma autorização de importação para um animal viajando com o dono. Separadamente, a lei opera um regime de autorização de importação / posto de controle de quarentena para importações de animais (pedido à autoridade veterinária/de quarentena, geralmente antes da importação)." }
+    exceptions: { en: "Larger or non-personal movements (for example several animals or a commercial import) may require a permit — confirm with the Animal Quarantine Office. The reviewed sources do not publish a fixed pet-number threshold.", fr: "Les mouvements plus importants ou non personnels (par exemple plusieurs animaux ou une importation commerciale) peuvent exiger un permis — confirme auprès du Bureau de quarantaine animale. Les sources consultées ne publient pas de seuil fixe du nombre d'animaux.", es: "Los movimientos más grandes o no personales (por ejemplo varios animales o una importación comercial) pueden requerir un permiso — confírmalo con la Oficina de Cuarentena Animal. Las fuentes consultadas no publican un umbral fijo de número de animales.", pt: "Deslocamentos maiores ou não pessoais (por exemplo, vários animais ou uma importação comercial) podem exigir uma autorização — confirme com o Animal Quarantine Office. As fontes analisadas não publicam um limite fixo de número de animais." }
+    ref: { en: "Animal Health and Livestock Services Act, 2055 (s.8–9); DLS Animal Quarantine Division", fr: "Animal Health and Livestock Services Act, 2055 (art. 8–9) ; Division de quarantaine animale du DLS", es: "Animal Health and Livestock Services Act, 2055 (art. 8–9); División de Cuarentena Animal del DLS", pt: "Animal Health and Livestock Services Act, 2055 (s.8-9); DLS Animal Quarantine Division" }
+  - item: { en: "Entry through a quarantine check post", fr: "Entrée par un poste de quarantaine", es: "Entrada por un puesto de cuarentena", pt: "Entrada por um posto de controle de quarentena" }
+    required: { en: "Required by law", fr: "Requise par la loi", es: "Obligatoria por ley", pt: "Obrigatório por lei" }
+    when: { en: "Animals may be imported only through the route of a quarantine check post. For pets arriving by air this is the Animal Quarantine Office at Tribhuvan International Airport, Kathmandu.", fr: "Les animaux ne peuvent être importés que par la voie d'un poste de quarantaine. Pour les animaux de compagnie arrivant par avion, il s'agit du Bureau de quarantaine animale de l'aéroport international de Tribhuvan, à Katmandou.", es: "Los animales solo pueden importarse por la vía de un puesto de cuarentena. Para las mascotas que llegan por avión, este es la Oficina de Cuarentena Animal del Aeropuerto Internacional de Tribhuvan, en Katmandú.", pt: "Os animais só podem ser importados pela via de um posto de controle de quarentena. Para animais de estimação que chegam de avião, esse posto é o Animal Quarantine Office no Tribhuvan International Airport, em Kathmandu." }
+    exceptions: { en: "A quarantine officer may prohibit entry, order return to the country of origin or order destruction if the dog is diseased or the required certificate is missing.", fr: "Un agent de quarantaine peut interdire l'entrée, ordonner le renvoi vers le pays d'origine ou ordonner la destruction si le chien est malade ou si le certificat requis manque.", es: "Un agente de cuarentena puede prohibir la entrada, ordenar la devolución al país de origen u ordenar el sacrificio si el perro está enfermo o falta el certificado exigido.", pt: "Um agente de quarentena pode proibir a entrada, determinar a devolução ao país de origem ou determinar o sacrifício se o cachorro estiver doente ou se o certificado exigido estiver ausente." }
+    ref: { en: "Animal Health and Livestock Services Act, 2055 (s.9, s.11, s.12)", fr: "Animal Health and Livestock Services Act, 2055 (art. 9, art. 11, art. 12)", es: "Animal Health and Livestock Services Act, 2055 (art. 9, art. 11, art. 12)", pt: "Animal Health and Livestock Services Act, 2055 (s.9, s.11, s.12)" }
+  - item: { en: "Arrival examination (quarantine officer)", fr: "Examen à l'arrivée (agent de quarantaine)", es: "Examen a la llegada (agente de cuarentena)", pt: "Exame na chegada (agente de quarentena)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "On arrival, a quarantine officer physically inspects and clinically examines the dog and its documents at the Animal Quarantine Office; laboratory examination may be carried out if there is doubt of disease.", fr: "À l'arrivée, un agent de quarantaine inspecte physiquement et examine cliniquement le chien et ses documents au Bureau de quarantaine animale ; un examen de laboratoire peut être réalisé en cas de doute de maladie.", es: "A la llegada, un agente de cuarentena inspecciona físicamente y examina clínicamente al perro y sus documentos en la Oficina de Cuarentena Animal; puede realizarse un examen de laboratorio si hay sospecha de enfermedad.", pt: "Na chegada, um agente de quarentena inspeciona fisicamente e examina clinicamente o cachorro e seus documentos no Animal Quarantine Office; um exame laboratorial pode ser realizado se houver dúvida sobre alguma doença." }
+    exceptions: { en: "If the dog is found healthy and its documents comply, it is released; otherwise it may be kept in the quarantine spot.", fr: "Si le chien est jugé sain et ses documents conformes, il est libéré ; sinon il peut être placé en zone de quarantaine.", es: "Si el perro se considera sano y sus documentos son conformes, se libera; de lo contrario, puede ser retenido en la zona de cuarentena.", pt: "Se o cachorro for considerado saudável e seus documentos estiverem em conformidade, ele é liberado; caso contrário, pode ser mantido no local de quarentena." }
+    ref: { en: "Animal Health and Livestock Services Rules, 2056 (r.6–8)", fr: "Animal Health and Livestock Services Rules, 2056 (art. 6–8)", es: "Animal Health and Livestock Services Rules, 2056 (art. 6–8)", pt: "Animal Health and Livestock Services Rules, 2056 (r.6-8)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "None if healthy and documented; otherwise discretionary", fr: "Aucune si sain et documenté ; sinon discrétionnaire", es: "Ninguna si está sano y documentado; de lo contrario, discrecional", pt: "Nenhuma se saudável e documentado; caso contrário, discricionária" }
+    when: { en: "There is no routine quarantine for a healthy, correctly documented dog. Under the Rules, if the dog is not found healthy or arrives without an authenticated vaccination certificate, it is kept in the quarantine spot; fixed durations are set for certain listed livestock diseases, but rabies is not among them.", fr: "Il n'existe pas de quarantaine systématique pour un chien sain et correctement documenté. Selon les Rules, si le chien n'est pas jugé sain ou arrive sans certificat de vaccination authentifié, il est placé en zone de quarantaine ; des durées fixes sont prévues pour certaines maladies du bétail listées, mais la rage n'en fait pas partie.", es: "No existe una cuarentena rutinaria para un perro sano y correctamente documentado. Según las Rules, si el perro no se considera sano o llega sin un certificado de vacunación autenticado, se retiene en la zona de cuarentena; se fijan duraciones concretas para ciertas enfermedades del ganado listadas, pero la rabia no está entre ellas.", pt: "Não há quarentena de rotina para um cachorro saudável e corretamente documentado. Pelas Rules, se o cachorro não for considerado saudável ou chegar sem um certificado de vacinação autenticado, ele é mantido no local de quarentena; durações fixas são estabelecidas para certas doenças de gado listadas, mas a raiva não está entre elas." }
+    exceptions: { en: "Quarantine costs (feeding, watering, security) are borne by the importer; no compensation is payable for an animal that dies in quarantine.", fr: "Les frais de quarantaine (nourriture, eau, sécurité) sont à la charge de l'importateur ; aucune indemnité n'est due pour un animal qui meurt en quarantaine.", es: "Los costes de cuarentena (alimentación, agua, seguridad) corren a cargo del importador; no se paga ninguna indemnización por un animal que muere en cuarentena.", pt: "Os custos da quarentena (alimentação, água, segurança) são arcados pelo importador; nenhuma compensação é devida por um animal que morra durante a quarentena." }
+    ref: { en: "Animal Health and Livestock Services Act, 2055 (s.6); Rules, 2056 (r.6)", fr: "Animal Health and Livestock Services Act, 2055 (art. 6) ; Rules, 2056 (art. 6)", es: "Animal Health and Livestock Services Act, 2055 (art. 6); Rules, 2056 (art. 6)", pt: "Animal Health and Livestock Services Act, 2055 (s.6); Rules, 2056 (r.6)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "The official Nepali sources reviewed do not publish a minimum age for importing a dog.", fr: "Les sources népalaises officielles consultées ne publient pas d'âge minimum pour l'importation d'un chien.", es: "Las fuentes oficiales nepalíes consultadas no publican una edad mínima para importar un perro.", pt: "As fontes oficiais nepalesas analisadas não publicam uma idade mínima para a importação de um cachorro." }
+    exceptions: { en: "In practice a valid rabies vaccination is required, which is only given from a certain age — confirm the minimum age and vaccination timing with the Animal Quarantine Office and your vet.", fr: "En pratique, une vaccination antirabique valide est exigée, laquelle n'est administrée qu'à partir d'un certain âge — confirme l'âge minimum et le calendrier vaccinal auprès du Bureau de quarantaine animale et de ton vétérinaire.", es: "En la práctica se exige una vacunación antirrábica válida, que solo se administra a partir de cierta edad — confirma la edad mínima y el calendario de vacunación con la Oficina de Cuarentena Animal y tu veterinario.", pt: "Na prática, uma vacinação antirrábica válida é exigida, e ela só é aplicada a partir de certa idade — confirme a idade mínima e o momento da vacinação com o Animal Quarantine Office e o seu veterinário." }
+    ref: { en: "No official Nepali source (unpublished)", fr: "Aucune source népalaise officielle (non publié)", es: "Ninguna fuente oficial nepalí (no publicado)", pt: "Nenhuma fonte oficial nepalesa (não publicado)" }
+  - item: { en: "Customs duty / valuation", fr: "Droits de douane / valorisation", es: "Derechos de aduana / valoración", pt: "Taxa alfandegária / avaliação" }
+    required: { en: "Set by the Department of Customs", fr: "Fixés par le Département des douanes", es: "Fijados por el Departamento de Aduanas", pt: "Definida pelo Department of Customs" }
+    when: { en: "Immigration and animal quarantine are separate from Customs. Any customs duty or valuation on a pet is a matter for the Department of Customs on arrival.", fr: "L'immigration et la quarantaine animale sont distinctes de la douane. Tout droit de douane ou toute valorisation d'un animal relève du Département des douanes à l'arrivée.", es: "La inmigración y la cuarentena animal son independientes de la aduana. Cualquier derecho de aduana o valoración de una mascota es competencia del Departamento de Aduanas a la llegada.", pt: "A imigração e a quarentena animal são separadas da alfândega. Qualquer taxa alfandegária ou avaliação sobre um animal de estimação é uma questão do Department of Customs na chegada." }
+    exceptions: { en: "The official sources reviewed do not publish a specific pet duty rate — confirm current charges with the Department of Customs.", fr: "Les sources officielles consultées ne publient pas de taux de droit spécifique aux animaux — confirme les frais en vigueur auprès du Département des douanes.", es: "Las fuentes oficiales consultadas no publican un tipo de derecho específico para mascotas — confirma las tasas vigentes con el Departamento de Aduanas.", pt: "As fontes oficiais analisadas não publicam uma taxa específica para animais de estimação — confirme as cobranças atuais com o Department of Customs." }
+    ref: { en: "Tribhuvan International Airport Immigration Office (refers pets to the Department of Customs)", fr: "Bureau d'immigration de l'aéroport international de Tribhuvan (renvoie les animaux au Département des douanes)", es: "Oficina de Inmigración del Aeropuerto Internacional de Tribhuvan (remite las mascotas al Departamento de Aduanas)", pt: "Tribhuvan International Airport Immigration Office (encaminha animais de estimação ao Department of Customs)" }
+
+origin:
+  eu:
+    title: { en: "Dog coming from the EU — national procedure applies", fr: "Chien venant de l'UE — procédure nationale applicable", es: "Perro procedente de la UE — se aplica el procedimiento nacional", pt: "Cachorro vindo da UE — procedimento nacional se aplica" }
+    body:
+      en: "Nepal does not recognise the EU pet passport, so an EU-origin dog follows the same national procedure as any other. You need a valid rabies vaccination card and a veterinary health certificate issued within ten days of arrival (valid thirty days), and you must notify the Animal Quarantine Office 72 hours before arrival. No rabies antibody test is required. The dog is examined by a quarantine officer on arrival and released if healthy and correctly documented."
+      fr: "Le Népal ne reconnaît pas le passeport européen : un chien d'origine UE suit donc la même procédure nationale que tout autre. Il te faut une carte de vaccination antirabique valide et un certificat sanitaire vétérinaire établi dans les dix jours avant l'arrivée (valable trente jours), et tu dois prévenir le Bureau de quarantaine animale 72 heures avant l'arrivée. Aucun titrage antirabique n'est exigé. Le chien est examiné par un agent de quarantaine à l'arrivée et libéré s'il est sain et correctement documenté."
+      es: "Nepal no reconoce el pasaporte europeo para mascotas, por lo que un perro de origen UE sigue el mismo procedimiento nacional que cualquier otro. Necesitas una cartilla de vacunación antirrábica válida y un certificado sanitario veterinario expedido dentro de los diez días previos a la llegada (válido treinta días), y debes avisar a la Oficina de Cuarentena Animal 72 horas antes de la llegada. No se exige ninguna prueba de titulación de rabia. El perro es examinado por un agente de cuarentena a la llegada y se libera si está sano y correctamente documentado."
+      pt: "O Nepal não reconhece o passaporte de animal de estimação da UE, então um cachorro de origem europeia segue o mesmo procedimento nacional que qualquer outro. Você precisa de uma carteira de vacinação antirrábica válida e de um atestado de saúde veterinário emitido dentro de dez dias antes da chegada (válido por trinta dias), e precisa notificar o Animal Quarantine Office 72 horas antes da chegada. Nenhum teste sorológico antirrábico é exigido. O cachorro é examinado por um agente de quarentena na chegada e é liberado se estiver saudável e corretamente documentado."
+    cls: warn
+  listed:
+    title: { en: "Dog from another country — same national scheme", fr: "Chien d'un autre pays — même régime national", es: "Perro de otro país — mismo régimen nacional", pt: "Cachorro vindo de outro país — mesmo esquema nacional" }
+    body:
+      en: "From any other country the requirements are the same: a rabies vaccination card, a health certificate issued within ten days of arrival, 72-hour advance notice to the Animal Quarantine Office and examination by a quarantine officer at Tribhuvan International Airport. Because Nepal is rabies-endemic, keep the rabies vaccination clearly current and consistent with the health certificate."
+      fr: "Depuis tout autre pays, les exigences sont identiques : carte de vaccination antirabique, certificat sanitaire établi dans les dix jours avant l'arrivée, préavis de 72 heures au Bureau de quarantaine animale et examen par un agent de quarantaine à l'aéroport international de Tribhuvan. Le Népal étant un pays d'endémie rabique, veille à ce que la vaccination antirabique soit clairement en cours de validité et cohérente avec le certificat sanitaire."
+      es: "Desde cualquier otro país los requisitos son los mismos: una cartilla de vacunación antirrábica, un certificado sanitario expedido dentro de los diez días previos a la llegada, un aviso previo de 72 horas a la Oficina de Cuarentena Animal y un examen por un agente de cuarentena en el Aeropuerto Internacional de Tribhuvan. Como Nepal tiene rabia endémica, mantén la vacunación antirrábica claramente vigente y coherente con el certificado sanitario."
+      pt: "Vindo de qualquer outro país, as exigências são as mesmas: uma carteira de vacinação antirrábica, um atestado de saúde emitido dentro de dez dias antes da chegada, notificação prévia de 72 horas ao Animal Quarantine Office e exame por um agente de quarentena no Tribhuvan International Airport. Como o Nepal é endêmico de raiva, mantenha a vacinação antirrábica claramente em dia e condizente com o atestado de saúde."
+    cls: warn
+  nonListed:
+    title: { en: "Non-compliant arrival, several animals or a dog that is not healthy", fr: "Arrivée non conforme, plusieurs animaux ou chien non sain", es: "Llegada no conforme, varios animales o un perro que no está sano", pt: "Chegada em não conformidade, vários animais ou um cachorro que não esteja saudável" }
+    body:
+      en: "A dog that arrives without the prescribed disease-free and soundness certificate, without a valid rabies vaccination, or that is not found healthy on inspection, can be held in the quarantine spot, ordered returned to the country of origin, or (in the worst case) destroyed, all at the importer's cost. Larger or non-personal movements may require an import permit under the Act. Confirm the exact conditions with the Animal Quarantine Office well before travel."
+      fr: "Un chien arrivant sans le certificat prescrit d'absence de maladie et de bon état, sans vaccination antirabique valide, ou jugé non sain à l'inspection, peut être placé en zone de quarantaine, faire l'objet d'un ordre de renvoi vers le pays d'origine ou (au pire) être détruit, le tout aux frais de l'importateur. Les mouvements plus importants ou non personnels peuvent exiger un permis d'importation au titre de la loi. Confirme les conditions exactes auprès du Bureau de quarantaine animale bien avant le voyage."
+      es: "Un perro que llegue sin el certificado prescrito de ausencia de enfermedad y buen estado, sin una vacunación antirrábica válida, o que no se considere sano en la inspección, puede ser retenido en la zona de cuarentena, ordenarse su devolución al país de origen o (en el peor de los casos) sacrificado, todo a cargo del importador. Los movimientos más grandes o no personales pueden requerir un permiso de importación al amparo de la Ley. Confirma las condiciones exactas con la Oficina de Cuarentena Animal mucho antes del viaje."
+      pt: "Um cachorro que chegar sem o certificado prescrito de ausência de doenças e sanidade, sem uma vacinação antirrábica válida, ou que não seja considerado saudável na inspeção, pode ficar retido no local de quarentena, ter a devolução determinada ao país de origem, ou, no pior caso, ser sacrificado, tudo às custas do importador. Deslocamentos maiores ou não pessoais podem exigir uma autorização de importação pela lei. Confirme as condições exatas com o Animal Quarantine Office bem antes da viagem."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Nepal depends on whether every condition was completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Népal dépend du fait que toutes les conditions aient été remplies avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Nepal depende de si se cumplieron todas las condiciones antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega ao Nepal depende de todas as condições terem sido cumpridas antes da partida."
+  points:
+    - en: "Before departure, notify the Animal Quarantine Office 72 hours in advance by email (ktmquarantine@gmail.com) with the health certificate and rabies vaccination card, so an officer is available for your arrival."
+      fr: "Avant le départ, préviens le Bureau de quarantaine animale 72 heures à l'avance par e-mail (ktmquarantine@gmail.com) avec le certificat sanitaire et la carte de vaccination antirabique, afin qu'un agent soit disponible à ton arrivée."
+      es: "Antes de la salida, avisa a la Oficina de Cuarentena Animal con 72 horas de antelación por correo electrónico (ktmquarantine@gmail.com) con el certificado sanitario y la cartilla de vacunación antirrábica, para que haya un agente disponible a tu llegada."
+      pt: "Antes da partida, notifique o Animal Quarantine Office com 72 horas de antecedência por e-mail (ktmquarantine@gmail.com), com o atestado de saúde e a carteira de vacinação antirrábica, para que um agente esteja disponível na sua chegada."
+    - en: "Dogs enter through Tribhuvan International Airport (TIA), Kathmandu, where the Animal Quarantine Office is the designated quarantine check post — clearance is not available outside a quarantine check post."
+      fr: "Les chiens entrent par l'aéroport international de Tribhuvan (TIA), à Katmandou, où le Bureau de quarantaine animale est le poste de quarantaine désigné — le dédouanement n'est pas possible en dehors d'un poste de quarantaine."
+      es: "Los perros entran por el Aeropuerto Internacional de Tribhuvan (TIA), en Katmandú, donde la Oficina de Cuarentena Animal es el puesto de cuarentena designado — el despacho no está disponible fuera de un puesto de cuarentena."
+      pt: "Os cachorros entram pelo Tribhuvan International Airport (TIA), em Kathmandu, onde o Animal Quarantine Office é o posto de controle de quarentena designado — a liberação não está disponível fora de um posto de controle de quarentena."
+    - en: "Present the original veterinary health certificate and the rabies vaccination card; a quarantine officer physically inspects and clinically examines the dog and its documents."
+      fr: "Présente le certificat sanitaire vétérinaire original et la carte de vaccination antirabique ; un agent de quarantaine inspecte physiquement et examine cliniquement le chien et ses documents."
+      es: "Presenta el certificado sanitario veterinario original y la cartilla de vacunación antirrábica; un agente de cuarentena inspecciona físicamente y examina clínicamente al perro y sus documentos."
+      pt: "Apresente o atestado de saúde veterinário original e a carteira de vacinação antirrábica; um agente de quarentena inspeciona fisicamente e examina clinicamente o cachorro e seus documentos."
+    - en: "If the dog is healthy and the documents comply, it is released to you. Another health certificate can be produced in Nepal if needed."
+      fr: "Si le chien est sain et les documents conformes, il tu est remis. Un autre certificat sanitaire peut être établi au Népal si nécessaire."
+      es: "Si el perro está sano y los documentos son conformes, se te entrega. Puede expedirse otro certificado sanitario en Nepal si es necesario."
+      pt: "Se o cachorro estiver saudável e os documentos estiverem em conformidade, ele é liberado para você. Outro atestado de saúde pode ser providenciado no Nepal, se necessário."
+    - en: "If the dog is diseased, or the required certificate is missing or invalid, the officer may prohibit entry, hold the dog in the quarantine spot, order its return to the country of origin, or order its destruction — all at the importer's expense."
+      fr: "Si le chien est malade, ou si le certificat requis manque ou est invalide, l'agent peut interdire l'entrée, placer le chien en zone de quarantaine, ordonner son renvoi vers le pays d'origine ou ordonner sa destruction — le tout aux frais de l'importateur."
+      es: "Si el perro está enfermo, o el certificado exigido falta o no es válido, el agente puede prohibir la entrada, retener al perro en la zona de cuarentena, ordenar su devolución al país de origen u ordenar su sacrificio — todo a cargo del importador."
+      pt: "Se o cachorro estiver doente, ou se o certificado exigido estiver ausente ou inválido, o agente pode proibir a entrada, reter o cachorro no local de quarentena, determinar a devolução ao país de origem, ou determinar o sacrifício — tudo às custas do importador."
+    - en: "Immigration and animal quarantine are separate from Customs; any customs duty on the pet is handled by the Department of Customs on arrival."
+      fr: "L'immigration et la quarantaine animale sont distinctes de la douane ; tout droit de douane sur l'animal est traité par le Département des douanes à l'arrivée."
+      es: "La inmigración y la cuarentena animal son independientes de la aduana; cualquier derecho de aduana sobre la mascota lo gestiona el Departamento de Aduanas a la llegada."
+      pt: "A imigração e a quarentena animal são separadas da alfândega; qualquer taxa alfandegária sobre o animal de estimação é tratada pelo Department of Customs na chegada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The official Nepali sources reviewed — the Animal Health and Livestock Services Act, 2055 and its Rules, 2056, and the Government of Nepal's published pet-import guidance — do not set out a breed-specific import ban. The import rules apply to dogs generally, not to named breeds."
+    fr: "Les sources népalaises officielles consultées — l'Animal Health and Livestock Services Act, 2055 et ses Rules, 2056, ainsi que la réglementation d'importation d'animaux publiée par le Gouvernement du Népal — ne prévoient pas d'interdiction d'importation liée à la race. Les règles d'importation s'appliquent aux chiens en général, et non à des races nommées."
+    es: "Las fuentes oficiales nepalíes consultadas — la Animal Health and Livestock Services Act, 2055 y sus Rules, 2056, así como la normativa de importación de mascotas publicada por el Gobierno de Nepal — no establecen ninguna prohibición de importación por raza. Las normas de importación se aplican a los perros en general, no a razas concretas."
+    pt: "As fontes oficiais nepalesas analisadas — o Animal Health and Livestock Services Act, 2055 e suas Rules, 2056, e a orientação oficial do Governo do Nepal para a importação de animais de estimação — não estabelecem uma proibição de importação por raça. As regras de importação se aplicam a cachorros em geral, não a raças nomeadas."
+  cat1:
+    en: "No national breed-specific import ban is published in the reviewed sources. Breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler and similar) are not, in those documents, named as prohibited from being imported into Nepal."
+    fr: "Aucune interdiction d'importation nationale liée à la race n'est publiée dans les sources consultées. Les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler et similaires) ne sont pas, dans ces documents, désignées comme interdites d'importation au Népal."
+    es: "No se publica ninguna prohibición nacional de importación por raza en las fuentes consultadas. Las razas restringidas en algunos otros países (tipos pit bull, Tosa, Rottweiler y similares) no figuran, en esos documentos, como prohibidas para importarse a Nepal."
+    pt: "Nenhuma proibição nacional de importação por raça é publicada nas fontes analisadas. Raças restritas em alguns outros países (tipos pit-bull, Tosa, Rottweiler e semelhantes) não são, nesses documentos, citadas como proibidas de serem importadas para o Nepal."
+  cat2:
+    en: "Restrictions come instead from airline policies: many carriers refuse or restrict snub-nosed (brachycephalic) breeds in the hold and may set their own breed rules. These are carrier rules, not Nepali import bans. Any future breed measure would come from the Department of Livestock Services, so re-check before travel."
+    fr: "Les restrictions proviennent plutôt des politiques des compagnies aériennes : de nombreux transporteurs refusent ou limitent les races brachycéphales (au nez court) en soute et peuvent fixer leurs propres règles de race. Ce sont des règles de transporteur, pas des interdictions d'importation népalaises. Toute mesure future sur les races émanerait du Department of Livestock Services : revérifiez avant de voyager."
+    es: "Las restricciones provienen más bien de las políticas de las aerolíneas: muchas compañías rechazan o restringen las razas braquicéfalas (de nariz chata) en la bodega y pueden fijar sus propias normas de razas. Son normas de la aerolínea, no prohibiciones de importación nepalíes. Cualquier medida futura sobre razas provendría del Department of Livestock Services, así que vuelve a comprobarlo antes de viajar."
+    pt: "As restrições vêm, em vez disso, das políticas das companhias aéreas: muitas recusam ou restringem raças de focinho achatado (braquicefálicas) no porão e podem estabelecer suas próprias regras de raça. Essas são regras das companhias aéreas, não proibições de importação do Nepal. Qualquer medida futura sobre raças viria do Department of Livestock Services, então verifique novamente antes de viajar."
+  note:
+    en: "Because breed policy is unpublished on the import side, confirm your dog's breed is accepted by your airline before booking, and check the Department of Livestock Services for any future change."
+    fr: "La politique de race n'étant pas publiée côté importation, vérifie que la race de ton chien est acceptée par ta compagnie avant de réserver, et consulte le Department of Livestock Services pour toute évolution future."
+    es: "Como la política de razas no está publicada en el lado de la importación, confirma que tu aerolínea acepta la raza de tu perro antes de reservar, y consulta el Department of Livestock Services por si hay algún cambio futuro."
+    pt: "Como a política de raças não é publicada do lado da importação, confirme que a raça do seu cachorro é aceita pela sua companhia aérea antes de reservar, e verifique o Department of Livestock Services para qualquer mudança futura."
+
+checklist:
+  - en: "Notify the Animal Quarantine Office 72 hours before arrival (ktmquarantine@gmail.com) with the health certificate and rabies vaccination card"
+    fr: "Prévenir le Bureau de quarantaine animale 72 heures avant l'arrivée (ktmquarantine@gmail.com) avec le certificat sanitaire et la carte de vaccination antirabique"
+    es: "Avisar a la Oficina de Cuarentena Animal 72 horas antes de la llegada (ktmquarantine@gmail.com) con el certificado sanitario y la cartilla de vacunación antirrábica"
+    pt: "Notifique o Animal Quarantine Office 72 horas antes da chegada (ktmquarantine@gmail.com), com o atestado de saúde e a carteira de vacinação antirrábica"
+  - en: "Rabies vaccination card valid and up to date (Nepal is rabies-endemic)"
+    fr: "Carte de vaccination antirabique valide et à jour (le Népal est un pays d'endémie rabique)"
+    es: "Cartilla de vacunación antirrábica válida y al día (Nepal tiene rabia endémica)"
+    pt: "Carteira de vacinação antirrábica válida e em dia (o Nepal é endêmico de raiva)"
+  - en: "Veterinary health certificate issued within 10 days of arrival, valid 30 days, by a licensed vet"
+    fr: "Certificat sanitaire vétérinaire établi dans les 10 jours avant l'arrivée, valable 30 jours, par un vétérinaire habilité"
+    es: "Certificado sanitario veterinario expedido dentro de los 10 días previos a la llegada, válido 30 días, por un veterinario colegiado"
+    pt: "Atestado de saúde veterinário emitido dentro de 10 dias antes da chegada, válido por 30 dias, por um veterinário licenciado"
+  - en: "ISO 11784/11785 microchip recommended (identification standard not published by Nepal) — confirm with the quarantine office"
+    fr: "Puce ISO 11784/11785 recommandée (norme d'identification non publiée par le Népal) — confirmer auprès du bureau de quarantaine"
+    es: "Microchip ISO 11784/11785 recomendado (norma de identificación no publicada por Nepal) — confirmar con la oficina de cuarentena"
+    pt: "Microchip ISO 11784/11785 recomendado (padrão de identificação não publicado pelo Nepal) — confirme com o Animal Quarantine Office"
+  - en: "Fly into Tribhuvan International Airport (TIA), Kathmandu, where the Animal Quarantine Office clears pets"
+    fr: "Arriver à l'aéroport international de Tribhuvan (TIA), à Katmandou, où le Bureau de quarantaine animale dédouane les animaux"
+    es: "Llegar al Aeropuerto Internacional de Tribhuvan (TIA), en Katmandú, donde la Oficina de Cuarentena Animal despacha a las mascotas"
+    pt: "Voe para o Tribhuvan International Airport (TIA), em Kathmandu, onde o Animal Quarantine Office libera animais de estimação"
+  - en: "Bring originals and copies of all documents; another health certificate can be produced in Nepal if needed"
+    fr: "Apporter les originaux et copies de tous les documents ; un autre certificat sanitaire peut être établi au Népal si nécessaire"
+    es: "Llevar originales y copias de todos los documentos; puede expedirse otro certificado sanitario en Nepal si es necesario"
+    pt: "Leve originais e cópias de todos os documentos; outro atestado de saúde pode ser providenciado no Nepal, se necessário"
+  - en: "Confirm minimum age, exact rabies interval and any parasite treatment with the quarantine office (not published)"
+    fr: "Confirmer l'âge minimum, l'intervalle exact de vaccination antirabique et tout traitement antiparasitaire auprès du bureau de quarantaine (non publié)"
+    es: "Confirmar la edad mínima, el intervalo exacto de vacunación antirrábica y cualquier tratamiento antiparasitario con la oficina de cuarentena (no publicado)"
+    pt: "Confirme a idade mínima, o intervalo exato da vacinação antirrábica e qualquer tratamento antiparasitário com o Animal Quarantine Office (não publicados)"
+  - en: "Check customs duty/valuation with the Department of Customs; IATA-compliant crate if travelling in the hold; confirm your breed with the airline"
+    fr: "Vérifier les droits de douane/valorisation auprès du Département des douanes ; caisse conforme IATA si voyage en soute ; vérifier ta race auprès de la compagnie"
+    es: "Comprobar los derechos de aduana/valoración con el Departamento de Aduanas; jaula conforme a IATA si viaja en bodega; confirmar tu raza con la aerolínea"
+    pt: "Confira a taxa/avaliação alfandegária com o Department of Customs; caixa de transporte em conformidade com a IATA se viajar no porão; confirme a raça do seu cachorro com a companhia aérea"
+
+sources:
+  - label: { en: "Embassy of Nepal, London — Taking Pets to Nepal (official pet documentation)", fr: "Ambassade du Népal, Londres — Taking Pets to Nepal (documentation officielle sur les animaux)", es: "Embajada de Nepal, Londres — Taking Pets to Nepal (documentación oficial sobre mascotas)", pt: "Embassy of Nepal, London — Taking Pets to Nepal (documentação oficial para animais de estimação)" }
+    url: "https://uk.nepalembassy.gov.np/pages/taking-pets-to-nepal/"
+  - label: { en: "Department of Livestock Services — Animal Quarantine Division", fr: "Department of Livestock Services — Division de quarantaine animale", es: "Department of Livestock Services — División de Cuarentena Animal", pt: "Department of Livestock Services — Animal Quarantine Division" }
+    url: "https://www.dls.gov.np/en/pages/47/35865569/"
+  - label: { en: "Animal Health and Livestock Services Act, 2055 (1999) — Nepal Law Commission", fr: "Animal Health and Livestock Services Act, 2055 (1999) — Commission des lois du Népal", es: "Animal Health and Livestock Services Act, 2055 (1999) — Comisión de Legislación de Nepal", pt: "Animal Health and Livestock Services Act, 2055 (1999) — Nepal Law Commission" }
+    url: "https://lawcommission.gov.np/content/12744/12744-animal-health-and-livestock-se/"
+  - label: { en: "Animal Health and Livestock Services Rules, 2056 (2000) — English text (Veterinary Council of Nepal)", fr: "Animal Health and Livestock Services Rules, 2056 (2000) — texte anglais (Conseil vétérinaire du Népal)", es: "Animal Health and Livestock Services Rules, 2056 (2000) — texto en inglés (Consejo Veterinario de Nepal)", pt: "Animal Health and Livestock Services Rules, 2056 (2000) — texto em inglês (Veterinary Council of Nepal)" }
+    url: "https://vcn.gov.np/rules/animal-health-and-livestock-services-rules-2056-1999English_1504432245-1657782197.pdf"
+  - label: { en: "Tribhuvan International Airport Immigration Office — bringing a pet to Nepal (refers to Customs/quarantine)", fr: "Bureau d'immigration de l'aéroport international de Tribhuvan — venir avec un animal au Népal (renvoie à la douane/quarantaine)", es: "Oficina de Inmigración del Aeropuerto Internacional de Tribhuvan — traer una mascota a Nepal (remite a Aduanas/cuarentena)", pt: "Tribhuvan International Airport Immigration Office — levar um animal de estimação ao Nepal (encaminha à alfândega/quarentena)" }
+    url: "https://tia.immigration.gov.np/en/post/am-i-allowed-to-bring-my-pet-to-nepal"
+
+seo:
+  title: { en: "Nepal Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Népal — Guide", es: "Requisitos de entrada de perros en Nepal — Guía de viaje", pt: "Entrada de cachorro no Nepal — guia de viagem" }
+  metaTitle: { en: "Traveling to Nepal With Your Dog: Entry Requirements (2026)", fr: "Voyager au Népal avec ton chien : formalités (2026)", es: "Viajar a Nepal con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Nepal com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official Nepal rules for bringing a dog: rabies vaccination card, veterinary health certificate within 10 days of arrival and quarantine notice. Sourced and dated."
+    fr: "Règles officielles pour faire entrer un chien au Népal : carte antirabique, certificat sanitaire dans les 10 jours et préavis de quarantaine. Sourcé et daté."
+    es: "Normas oficiales para traer un perro a Nepal: cartilla antirrábica, certificado sanitario dentro de los 10 días y aviso de cuarentena. Con fuentes y fecha."
+    pt: "Regras oficiais do Nepal: carteira de vacinação antirrábica, atestado de saúde veterinário até 10 dias antes da chegada e notificação de quarentena."
+  slug: "nepal"
+  shortDesc:
+    en: "What you need to bring a dog into Nepal: a rabies vaccination card, a health certificate within 10 days of arrival, advance quarantine notice and an arrival examination."
+    fr: "Ce qu'il faut pour faire entrer un chien au Népal : une carte de vaccination antirabique, un certificat sanitaire dans les 10 jours avant l'arrivée, un préavis de quarantaine et un examen à l'arrivée."
+    es: "Lo que necesitas para traer un perro a Nepal: una cartilla de vacunación antirrábica, un certificado sanitario dentro de los 10 días previos a la llegada, un aviso previo de cuarentena y un examen a la llegada."
+    pt: "O que você precisa para levar um cachorro ao Nepal: uma carteira de vacinação antirrábica, um atestado de saúde dentro de 10 dias antes da chegada, notificação prévia de quarentena e um exame na chegada."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

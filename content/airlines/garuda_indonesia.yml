@@ -1,0 +1,304 @@
+id: airline_garuda_indonesia
+mono: GA
+name: Garuda Indonesia
+titleH1:
+  en: Flying with a dog on Garuda Indonesia
+  fr: Voyager avec un chien sur Garuda Indonesia
+  es: Volar con un perro en Garuda Indonesia
+  pt: "Voar com um cachorro na Garuda Indonesia"
+metaDesc:
+  en: "Garuda Indonesia pet policy: hold only on short domestic flights, otherwise cargo, restrictions and official sources."
+  fr: "Politique animaux Garuda Indonesia : soute uniquement sur vols domestiques courts, sinon fret, restrictions et sources officielles."
+  es: "Política de mascotas de Garuda Indonesia: bodega solo en vuelos nacionales cortos, si no, carga, restricciones y fuentes oficiales."
+  pt: "Política de animais da Garuda Indonesia: porão somente em voos domésticos curtos, senão carga, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Indonesia · CGK
+      fr: Indonésie · CGK
+      es: Indonesia · CGK
+      pt: "Indonésia · CGK"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets except service dogs; hold only on short domestic flights — otherwise via Garuda Cargo.
+  fr: Pas d'animaux en cabine sauf chiens d'assistance ; soute uniquement sur vols domestiques courts — sinon via Garuda Cargo.
+  es: Sin mascotas en cabina salvo perros de servicio; bodega solo en vuelos nacionales cortos; si no, por Garuda Cargo.
+  pt: "Sem animais em cabine, exceto cães de assistência; porão somente em voos domésticos curtos — senão via Garuda Cargo."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 52
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: domestic ≤ 2h
+      fr: domestique ≤ 2h
+      es: nacional ≤ 2h
+      pt: "doméstico ≤ 2h"
+  - flex: 40
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: intl / large
+      fr: intl / grands
+      es: intl / grandes
+      pt: "intl. / grandes"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only trained service dogs.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance dressés.
+      es: Sin mascotas en cabina; solo perros de servicio adiestrados.
+      pt: "Sem animais na cabine — somente cães de assistência adestrados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: warn
+    statusLabel:
+      en: Domestic only
+      fr: Domestique seul
+      es: Solo nacional
+      pt: "Somente doméstico"
+    detail:
+      en: Dogs, cats & hamsters as checked baggage only on direct domestic flights ≤ 2 h (not via Denpasar); ≤ 32 kg incl. crate.
+      fr: Chiens, chats et hamsters en bagage enregistré uniquement sur vols domestiques directs ≤ 2 h (pas via Denpasar) ; ≤ 32 kg avec la caisse.
+      es: Perros, gatos y hámsteres como equipaje facturado solo en vuelos nacionales directos ≤ 2 h (no vía Denpasar); ≤ 32 kg con la jaula.
+      pt: "Cachorros, gatos e hamsters como bagagem despachada somente em voos domésticos diretos ≤ 2 h (não via Denpasar); ≤ 32 kg com a caixa."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: ✈️
+    name:
+      en: Garuda Cargo
+      fr: Garuda Cargo
+      es: Garuda Cargo
+      pt: "Garuda Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: International routes and over 32 kg via Garuda Indonesia Cargo (Air Waybill, CITES if needed).
+      fr: Routes internationales et au-delà de 32 kg via Garuda Indonesia Cargo (lettre de transport, CITES si nécessaire).
+      es: Rutas internacionales y más de 32 kg por Garuda Indonesia Cargo (carta de porte aéreo, CITES si hace falta).
+      pt: "Rotas internacionais e acima de 32 kg via Garuda Indonesia Cargo (conhecimento aéreo, CITES se necessário)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold — domestic (≤ 2 h, ≤ 32 kg)
+        fr: Soute — domestique (≤ 2 h, ≤ 32 kg)
+        es: Bodega — nacional (≤ 2 h, ≤ 32 kg)
+        pt: "Porão — doméstico (≤ 2 h, ≤ 32 kg)"
+      value:
+        en: Excess-baggage rate (min 5 kg)
+        fr: Tarif bagage excédentaire (min 5 kg)
+        es: Tarifa de exceso de equipaje (mín. 5 kg)
+        pt: "Tarifa de bagagem excedente (mín. 5 kg)"
+    - label:
+        en: Cargo (international / large)
+        fr: Fret (international / grands)
+        es: Carga (internacional / grandes)
+        pt: "Carga (internacional / grandes)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Pets never count in the free allowance — charged as excess baggage (minimum 5 kg).
+    fr: Les animaux ne comptent jamais dans la franchise — facturés en bagage excédentaire (minimum 5 kg).
+    es: Las mascotas nunca cuentan en la franquicia; se cobran como exceso de equipaje (mínimo 5 kg).
+    pt: "Animais nunca contam na franquia gratuita — cobrados como bagagem excedente (mínimo de 5 kg)."
+restrictions:
+  - icon: 🧳
+    title:
+      en: "Hold: domestic only"
+      fr: "Soute : domestique seul"
+      es: "Bodega: solo nacional"
+      pt: "Porão: somente doméstico"
+    pills:
+      - cls: no
+        label:
+          en: No pets in cabin
+          fr: Pas d'animaux en cabine
+          es: Sin mascotas en cabina
+          pt: "Sem animais em cabine"
+      - cls: warn
+        label:
+          en: Domestic ≤ 2 h
+          fr: Domestique ≤ 2 h
+          es: Nacional ≤ 2 h
+          pt: "Doméstico ≤ 2 h"
+    note:
+      en: Pets travel in the hold only on direct Garuda domestic flights of 2 h or less (Denpasar excluded). International cats & dogs must go via Garuda Cargo.
+      fr: Les animaux voyagent en soute uniquement sur les vols domestiques directs Garuda de 2 h ou moins (Denpasar exclu). Les chats et chiens internationaux passent par Garuda Cargo.
+      es: Las mascotas viajan en bodega solo en vuelos nacionales directos de Garuda de 2 h o menos (Denpasar excluido). Los perros y gatos internacionales deben ir por Garuda Cargo.
+      pt: "Os animais viajam no porão somente em voos domésticos diretos da Garuda de 2 h ou menos (Denpasar excluída). Gatos e cachorros internacionais precisam ir via Garuda Cargo."
+  - icon: 🚫
+    title:
+      en: Species & regions
+      fr: Espèces & régions
+      es: Especies y regiones
+      pt: "Espécies e regiões"
+    pills:
+      - cls: no
+        label:
+          en: No rare/endangered
+          fr: Pas d'espèces rares
+          es: Sin especies raras/amenazadas
+          pt: "Sem espécies raras/ameaçadas"
+    note:
+      en: Only domestic pets (dogs, cats, hamsters); rare or endangered animals aren't accepted. Rabies-carrying animals are barred from entering the Riau Islands (Batam, Tanjungpinang).
+      fr: Uniquement des animaux domestiques (chiens, chats, hamsters) ; les espèces rares ou menacées ne sont pas acceptées. Les animaux porteurs de la rage sont interdits d'entrée dans les îles Riau (Batam, Tanjungpinang).
+      es: Solo mascotas domésticas (perros, gatos, hámsteres); no se aceptan animales raros o amenazados. Los animales portadores de rabia tienen vetada la entrada a las islas Riau (Batam, Tanjungpinang).
+      pt: "Somente animais domésticos (cachorros, gatos, hamsters); animais raros ou ameaçados não são aceitos. Animais portadores de raiva têm entrada proibida nas Ilhas Riau (Batam, Tanjungpinang)."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Garuda publishes no numeric temperature limit; checked pets travel in the lower-deck hold per IATA Live Animals Regulations.
+    fr: Garuda ne publie pas de limite chiffrée ; les animaux en soute voyagent dans la soute inférieure selon la réglementation IATA Live Animals.
+    es: Garuda no publica un límite numérico de temperatura; las mascotas facturadas viajan en la bodega inferior según el reglamento IATA Live Animals.
+    pt: "A Garuda não divulga um limite numérico de temperatura; os animais despachados viajam no porão inferior conforme o regulamento IATA Live Animals."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Seeing-eye and hearing dogs travel free in the cabin.
+      fr: Les chiens guides et d'écoute voyagent gratuitement en cabine.
+      es: Los perros guía y de escucha viajan gratis en cabina.
+      pt: "Cães-guia e cães de audição viajam de graça na cabine."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Provide required certificates; report to check-in ≥ 1 h before departure.
+      fr: Fournir les certificats requis ; se présenter à l'enregistrement ≥ 1 h avant le départ.
+      es: Aporta los certificados requeridos; preséntate en el check-in ≥ 1 h antes de la salida.
+      pt: "Apresente os certificados exigidos; compareça ao check-in ≥ 1 h antes da partida."
+goodToKnow:
+  - icon: 🧳
+    label:
+      en: Hold domestic only
+      fr: Soute domestique seul
+      es: Bodega solo nacional
+      pt: "Porão somente doméstico"
+    value:
+      en: Pets travel in the hold only on direct domestic flights ≤ 2 h; Denpasar (DPS) is excluded.
+      fr: Les animaux voyagent en soute uniquement sur les vols domestiques directs ≤ 2 h ; Denpasar (DPS) est exclu.
+      es: Las mascotas viajan en bodega solo en vuelos nacionales directos ≤ 2 h; Denpasar (DPS) queda excluido.
+      pt: "Os animais viajam no porão somente em voos domésticos diretos ≤ 2 h; Denpasar (DPS) fica excluída."
+  - icon: ✈️
+    label:
+      en: International = cargo
+      fr: International = fret
+      es: Internacional = carga
+      pt: "Internacional = carga"
+    value:
+      en: On international flights, cats & dogs can't be checked baggage — they go via Garuda Cargo.
+      fr: Sur les vols internationaux, les chats et chiens ne peuvent pas être en bagage enregistré — ils passent par Garuda Cargo.
+      es: En vuelos internacionales, los perros y gatos no pueden ir como equipaje facturado; van por Garuda Cargo.
+      pt: "Em voos internacionais, gatos e cachorros não podem ser bagagem despachada — eles vão via Garuda Cargo."
+  - icon: 💶
+    label:
+      en: Excess baggage
+      fr: Bagage excédentaire
+      es: Exceso de equipaje
+      pt: "Bagagem excedente"
+    value:
+      en: Pets never count in the free allowance (charged as excess baggage, min 5 kg).
+      fr: Les animaux ne comptent jamais dans la franchise (facturés en bagage excédentaire, min 5 kg).
+      es: Las mascotas nunca cuentan en la franquicia (se cobran como exceso de equipaje, mín. 5 kg).
+      pt: "Animais nunca contam na franquia gratuita (cobrados como bagagem excedente, mín. 5 kg)."
+book:
+  host: garuda-indonesia.com
+  url: https://www.garuda-indonesia.com/
+sources:
+  en: 2 Garuda Indonesia sources · last verified 11 July 2026
+  fr: 2 sources Garuda Indonesia · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Garuda Indonesia · última verificación 11 de julio de 2026
+  pt: "2 fontes da Garuda Indonesia · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

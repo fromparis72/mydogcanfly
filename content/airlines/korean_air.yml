@@ -1,0 +1,322 @@
+id: airline_korean_air
+mono: KE
+name: Korean Air
+titleH1:
+  en: Flying with a dog on Korean Air
+  fr: Voyager avec un chien sur Korean Air
+  es: Viajar con un perro en Korean Air
+  pt: "Viajar com um cachorro pela Korean Air"
+metaDesc:
+  en: "Korean Air pet policy: cabin, hold and Specialized-LIVE cargo, fares by zone, breed limits and official sources."
+  fr: "Politique animaux Korean Air : cabine, soute et fret Specialized-LIVE, tarifs par zone, restrictions de races et sources officielles."
+  es: "Política de mascotas de Korean Air: cabina, bodega y carga Specialized-LIVE, tarifas por zona, límites por raza y fuentes oficiales."
+  pt: "Política de animais da Korean Air: cabine, porão e carga Specialized-LIVE, tarifas por zona, restrições de raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: South Korea · ICN
+      fr: Corée du Sud · ICN
+      es: Corea del Sur · ICN
+      pt: "Coreia do Sul · ICN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Pets in the cabin (≤ 7 kg) or hold (≤ 45 kg) on most routes — but advance approval and strict breed rules.
+  fr: Animaux en cabine (≤ 7 kg) ou en soute (≤ 45 kg) sur la plupart des routes — mais approbation préalable et règles de races strictes.
+  es: Mascotas en cabina (≤ 7 kg) o bodega (≤ 45 kg) en la mayoría de las rutas, pero con aprobación previa y normas de raza estrictas.
+  pt: "Animais na cabine (≤ 7 kg) ou no porão (≤ 45 kg) na maioria das rotas — mas exige aprovação prévia e regras rígidas de raça."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 7 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: freighter
+      fr: cargo
+      es: avión de carga
+      pt: "avião cargueiro"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & birds (min 8 weeks) ≤ 7 kg incl. carrier under the seat (max 32 × 45 × 19 cm); one per passenger.
+      fr: Chiens, chats et oiseaux (min 8 semaines) ≤ 7 kg avec le sac sous le siège (max 32 × 45 × 19 cm) ; un par passager.
+      es: Perros, gatos y aves (mín. 8 semanas) ≤ 7 kg con el bolso bajo el asiento (máx. 32 × 45 × 19 cm); uno por pasajero.
+      pt: "Cachorros, gatos e aves (mín. 8 semanas) ≤ 7 kg incluindo a bolsa de transporte sob o assento (máx. 32 × 45 × 19 cm); um por passageiro."
+    fee:
+      en: $150–300
+      fr: 150–300 $
+      es: 150–300 $
+      pt: "150–300 $"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats (min 16 weeks) up to 45 kg incl. carrier in a ventilated hold. Not on B737/A321 international or domestic Jun–Sep.
+      fr: Chiens et chats (min 16 semaines) jusqu'à 45 kg avec la caisse dans une soute ventilée. Pas sur B737/A321 en international ni en national juin–sept.
+      es: Perros y gatos (mín. 16 semanas) hasta 45 kg con la jaula en una bodega ventilada. No en B737/A321 internacional ni doméstico de jun. a sep.
+      pt: "Cachorros e gatos (mín. 16 semanas) até 45 kg incluindo a caixa de transporte em um porão ventilado. Não disponível em B737/A321 internacional nem em voos domésticos de jun. a set."
+    fee:
+      en: $150–600
+      fr: 150–600 $
+      es: 150–600 $
+      pt: "150–600 $"
+  - icon: ✈️
+    name:
+      en: Specialized-LIVE
+      fr: Specialized-LIVE
+      es: Specialized-LIVE
+      pt: "Specialized-LIVE"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: A través de agente
+      pt: "Via agente"
+    detail:
+      en: Freighter live-animal service (KE routes) via a specialist, ~10–14 days ahead. Snub-nosed breeds barred.
+      fr: Service cargo animaux vivants (routes KE) via un spécialiste, ~10–14 jours à l'avance. Races au nez écrasé exclues.
+      es: Servicio de animales vivos en avión de carga (rutas KE) a través de un especialista, ~10–14 días antes. Razas de hocico chato excluidas.
+      pt: "Serviço de animais vivos em avião cargueiro (rotas KE) por meio de um especialista, ~10–14 dias de antecedência. Raças de focinho achatado excluídas."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (short → long-haul)
+        fr: Cabine (court → long-courrier)
+        es: Cabina (corto → largo radio)
+        pt: "Cabine (curta → longa distância)"
+      value:
+        en: $150–300
+        fr: 150–300 $
+        es: 150–300 $
+        pt: "150–300 $"
+    - label:
+        en: Hold ≤ 32 kg
+        fr: Soute ≤ 32 kg
+        es: Bodega ≤ 32 kg
+        pt: "Porão ≤ 32 kg"
+      value:
+        en: $150–300
+        fr: 150–300 $
+        es: 150–300 $
+        pt: "150–300 $"
+    - label:
+        en: Hold 33–45 kg
+        fr: Soute 33–45 kg
+        es: Bodega 33–45 kg
+        pt: "Porão 33–45 kg"
+      value:
+        en: $300–600
+        fr: 300–600 $
+        es: 300–600 $
+        pt: "300–600 $"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD one-way from Korea; 30,000–60,000 KRW domestic.
+    fr: USD aller simple au départ de Corée ; 30 000–60 000 KRW en national.
+    es: USD ida desde Corea; 30 000–60 000 KRW en vuelos domésticos.
+    pt: "USD somente ida a partir da Coreia; 30.000–60.000 KRW em voos domésticos."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidas
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Snub-nosed breeds can't travel in the hold or cargo — cabin only if within limits: Boston terrier, boxer, bulldog, Brussels Griffon, Shar Pei, Shih Tzu, American Bully, chow chow, Cane Corso, pug, Pekingese, Chihuahua, Japanese Chin, and Burmese/British Shorthair/Scottish Fold/Exotic/Persian/Himalayan cats — plus Newfoundland, Dogo Argentino, Lhasa Apso."
+      fr: "Les races au nez écrasé ne peuvent pas voyager en soute ni en fret — cabine seulement dans les limites : Boston terrier, boxer, bulldog, Griffon bruxellois, Shar Pei, Shih Tzu, American Bully, chow chow, Cane Corso, carlin, pékinois, Chihuahua, Chin japonais, et chats birmans/British Shorthair/Scottish Fold/exotiques/persans/himalayens — plus Terre-Neuve, Dogo Argentino, Lhassa Apso."
+      es: "Las razas de hocico chato no pueden viajar en bodega ni carga; solo en cabina si están dentro de los límites: Boston terrier, bóxer, bulldog, Grifón de Bruselas, Shar Pei, Shih Tzu, American Bully, chow chow, Cane Corso, carlino, pekinés, Chihuahua, Chin japonés y gatos birmanos/British Shorthair/Scottish Fold/exóticos/persas/himalayos, además de Terranova, Dogo Argentino y Lhasa Apso."
+      pt: "As raças de focinho achatado não podem viajar no porão nem na carga — somente na cabine, dentro dos limites: Boston Terrier, boxer, buldogue, Grifon de Bruxelas, Shar Pei, Shih Tzu, American Bully, Chow Chow, Cane Corso, pug, Pequinês, Chihuahua, Chin Japonês, e gatos burmeses/British Shorthair/Scottish Fold/exóticos/persas/himalaios — além de Terra-nova, Dogo Argentino e Lhasa Apso."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Refusées
+          es: No aceptadas
+          pt: "Não aceitas"
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: "Not accepted at all: Tosa, pit bull types (incl. Bull Terrier, American Staffordshire, Staffordshire), Rottweiler, mastiffs, Laika, Ovcharka, Kangal, wolfdogs — and mixes. Sedated or pregnant pets are refused."
+      fr: "Totalement refusés : Tosa, types pit-bull (dont Bull Terrier, American Staffordshire, Staffordshire), Rottweiler, mastiffs, Laïka, Ovtcharka, Kangal, chiens-loups — et croisés. Animaux sédatés ou gestants refusés."
+      es: "No se aceptan en absoluto: Tosa, tipos pit bull (incl. Bull Terrier, American Staffordshire, Staffordshire), Rottweiler, mastines, Laika, Ovcharka, Kangal, perros lobo y sus cruces. Se rechazan las mascotas sedadas o preñadas."
+      pt: "Totalmente recusados: Tosa, tipos pit bull (incluindo Bull Terrier, American Staffordshire, Staffordshire), Rottweiler, mastins, Laika, Ovcharka, Kangal, cães-lobo — e seus cruzamentos. Animais sedados ou prenhes são recusados."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Adverse above 29 °C / below −7 °C
+        fr: Néfaste au-dessus de 29 °C / sous −7 °C
+        es: Perjudicial por encima de 29 °C / por debajo de −7 °C
+        pt: "Prejudicial acima de 29 °C / abaixo de −7 °C"
+    - cls: warn
+      label:
+        en: No hold Jun–Sep (domestic)
+        fr: Pas de soute juin–sept. (national)
+        es: Sin bodega de jun. a sep. (doméstico)
+        pt: "Sem porão de jun. a set. (doméstico)"
+  note:
+    en: Korean Air warns that temperatures above 29 °C (84 °F) or below −7 °C (19 °F) can harm pets; checked-pet hold transport is restricted in the warm season (Jun–Sep) on domestic flights. The hold has controlled ventilation, temperature and lighting.
+    fr: Korean Air avertit que les températures au-dessus de 29 °C (84 °F) ou sous −7 °C (19 °F) peuvent nuire aux animaux ; le transport en soute est restreint en saison chaude (juin–sept.) sur les vols nationaux. La soute dispose d'une ventilation, d'une température et d'un éclairage contrôlés.
+    es: Korean Air advierte que las temperaturas por encima de 29 °C (84 °F) o por debajo de −7 °C (19 °F) pueden perjudicar a las mascotas; el transporte en bodega está restringido en la temporada cálida (jun.–sep.) en vuelos domésticos. La bodega cuenta con ventilación, temperatura e iluminación controladas.
+    pt: "A Korean Air alerta que temperaturas acima de 29 °C (84 °F) ou abaixo de −7 °C (19 °F) podem prejudicar os animais; o transporte de animais no porão é restrito na estação quente (jun.–set.) em voos domésticos. O porão tem ventilação, temperatura e iluminação controladas."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs (min 16 weeks, max 2) travel free in the cabin, harnessed, no carrier.
+      fr: Chiens d'assistance dressés (min 16 semaines, max 2) gratuits en cabine, en harnais, sans sac.
+      es: Los perros de servicio adiestrados (mín. 16 semanas, máx. 2) viajan gratis en cabina, con arnés y sin jaula.
+      pt: "Cães de serviço treinados (mín. 16 semanas, máx. 2) viajam gratuitamente na cabine, com peitoral, sem bolsa de transporte."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Request in advance and select a pet-designated seat. US: CDC Dog Import Form, dogs 6 months+."
+      fr: "Demander à l'avance et choisir un siège dédié à l'animal. USA : formulaire CDC Dog Import, chiens 6 mois+."
+      es: "Solicítalo con antelación y elige un asiento designado para la mascota. EE. UU.: formulario CDC Dog Import, perros de 6 meses+."
+      pt: "Solicite com antecedência e escolha um assento designado para animais. EUA: formulário CDC Dog Import Form, cachorros com 6 meses ou mais."
+goodToKnow:
+  - icon: ⏱️
+    label:
+      en: Advance approval
+      fr: Approbation préalable
+      es: Aprobación previa
+      pt: "Aprovação prévia"
+    value:
+      en: Request the pet service ≥ 48 h (international) / 24 h (domestic) ahead; approval required, fare recalculated on the day by measured weight.
+      fr: Demander le service animal ≥ 48 h (international) / 24 h (national) à l'avance ; approbation requise, tarif recalculé le jour même selon le poids mesuré.
+      es: Solicite el servicio de mascota con ≥ 48 h (internacional) / 24 h (doméstico) de antelación; se requiere aprobación y la tarifa se recalcula el mismo día según el peso medido.
+      pt: "Solicite o serviço para animais com ≥ 48 h (internacional) / 24 h (doméstico) de antecedência; exige aprovação, e a tarifa é recalculada no dia com base no peso medido."
+  - icon: 🚫
+    label:
+      en: Excluded destinations
+      fr: Destinations exclues
+      es: Destinos excluidos
+      pt: "Destinos excluídos"
+    value:
+      en: New Zealand, Australia, Hong Kong and the UK don't accept pets in cabin or hold.
+      fr: Nouvelle-Zélande, Australie, Hong Kong et le R.-U. n'acceptent pas d'animaux en cabine ni en soute.
+      es: Nueva Zelanda, Australia, Hong Kong y el Reino Unido no aceptan mascotas en cabina ni en bodega.
+      pt: "Nova Zelândia, Austrália, Hong Kong e Reino Unido não aceitam animais na cabine nem no porão."
+  - icon: 🐾
+    label:
+      en: SKYPETS
+      fr: SKYPETS
+      es: SKYPETS
+      pt: "SKYPETS"
+    value:
+      en: The pet fare can be paid by card or miles — or free with SKYPETS points.
+      fr: Le tarif animal peut être payé par carte ou en miles — ou gratuit avec les points SKYPETS.
+      es: La tarifa de la mascota se puede pagar con tarjeta o con millas, o gratis con los puntos SKYPETS.
+      pt: "A tarifa para animais pode ser paga com cartão ou milhas — ou de graça com pontos SKYPETS."
+book:
+  host: koreanair.com
+  url: https://www.koreanair.com/
+sources:
+  en: 4 Korean Air & Cargo sources · last verified 11 July 2026
+  fr: 4 sources Korean Air & Cargo · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Korean Air y Cargo · última verificación 11 de julio de 2026
+  pt: "4 fontes da Korean Air e da Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

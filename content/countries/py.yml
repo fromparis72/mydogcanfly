@@ -1,0 +1,381 @@
+# Country Entry Guide — Paraguay (bilingual EN/FR).
+# Paraguay is NOT in the EU. This encodes Paraguay's own SENACSA scheme, which applies the Mercosur
+# standard now in force: Resolución GMC N° 20/2024 "Requisitos zoosanitarios de los Estados Partes para
+# el ingreso y circulación de caninos y felinos domésticos" (repealing the former GMC 17/15).
+# The key document is an International Veterinary Certificate (CVI) issued by the origin's veterinary
+# authority, presented to a SENACSA inspector at the entry point: clinical exam, rabies vaccination and
+# internal & external antiparasitic treatment. No rabies antibody test, no microchip mandate and no
+# quarantine for a compliant pet. Microchip, praziquantel and a Leishmaniosis test are Uruguay-only
+# add-ons, NOT Paraguayan entry requirements. The breed list on SENACSA's page belongs to the United
+# Arab Emirates destination section (export), not to Paraguay's own import rules.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_py
+iso2: "PY"
+name: { en: "Paraguay", fr: "Paraguay", es: "Paraguay", pt: "Paraguai" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: SENACSA
+  authorityUrl: https://senacsa.gov.py/servicios/sanidad-animal-identidad-y-trazabilidad/cuarentena/viajar-con-mascotas/
+  intro:
+    en: "Paraguay is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by SENACSA."
+    fr: "Le Paraguay est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le SENACSA."
+    es: "Paraguay no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el SENACSA."
+    pt: "O Paraguai é um país não listado, então o teste sorológico antirrábico válido é obrigatório para voltar à União Europeia — além de um atestado de saúde de exportação endossado pelo SENACSA."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "SENACSA's certification department authorises the export and issues the international veterinary certificate (CVI) in person after online application."
+        fr: "Le département de certification du SENACSA autorise l'export et délivre le certificat vétérinaire international (CVI) en présentiel après demande en ligne."
+        es: "El departamento de certificación del SENACSA autoriza la exportación y emite el certificado veterinario internacional (CVI) de forma presencial tras la solicitud en línea."
+        pt: "O departamento de certificação do SENACSA autoriza a exportação e emite o certificado veterinário internacional (CVI) presencialmente, após a solicitação on-line."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Paraguay with your dog", fr: "Voyager au Paraguay avec ton chien", es: "Viajar a Paraguay con tu perro", pt: "Viajar ao Paraguai com seu cachorro" }
+  intro:
+    en: >-
+      Paraguay welcomes dogs, and its entry rules are refreshingly uniform: the same procedure applies to
+      a personal pet arriving from almost anywhere. SENACSA (Servicio Nacional de Calidad y Salud Animal),
+      the national animal-health authority, applies the Mercosur standard in force — Resolución GMC N°
+      20/2024 — and asks for a single document: an International Veterinary Certificate (CVI) issued,
+      signed and stamped by the official veterinary authority of the country you travel from, or a current
+      official passport endorsed by that authority. The CVI must show a clinical examination, a valid
+      rabies vaccination and internal and external antiparasitic treatment. There is no rabies antibody
+      test, no compulsory microchip and no quarantine for a healthy pet — SENACSA simply inspects your dog
+      and its documents at the point of entry. This guide explains exactly what to prepare, and the timing
+      to respect, before you book your flight.
+    fr: >-
+      Le Paraguay accueille les chiens, et ses règles d'entrée sont d'une simplicité rassurante : la même
+      procédure s'applique à un animal de compagnie venant de presque partout. Le SENACSA (Servicio
+      Nacional de Calidad y Salud Animal), l'autorité sanitaire animale nationale, applique la norme
+      Mercosur en vigueur — la Resolución GMC N° 20/2024 — et demande un seul document : un Certificat
+      Vétérinaire International (CVI) émis, signé et scellé par l'autorité vétérinaire officielle du pays
+      de départ, ou un passeport officiel en cours de validité refrendé par cette autorité. Le CVI doit
+      attester un examen clinique, une vaccination antirabique valide et un traitement antiparasitaire
+      interne et externe. Pas de titrage antirabique, pas de puce obligatoire et pas de quarantaine pour
+      un animal en bonne santé — le SENACSA inspecte simplement ton chien et ses documents au point
+      d'entrée. Ce guide détaille exactement quoi préparer, et les délais à respecter, avant de réserver
+      ton vol.
+    es: >-
+      Paraguay acoge a los perros, y sus normas de entrada son de una uniformidad tranquilizadora: se
+      aplica el mismo procedimiento a una mascota personal que llega desde casi cualquier lugar. El
+      SENACSA (Servicio Nacional de Calidad y Salud Animal), la autoridad nacional de sanidad animal,
+      aplica la norma del Mercosur en vigor — la Resolución GMC N° 20/2024 — y pide un único documento: un
+      Certificado Veterinario Internacional (CVI) emitido, firmado y sellado por la autoridad veterinaria
+      oficial del país desde el que viajas, o un pasaporte oficial vigente refrendado por esa autoridad. El
+      CVI debe acreditar un examen clínico, una vacunación antirrábica válida y un tratamiento
+      antiparasitario interno y externo. No hay prueba de titulación de rabia, ni microchip obligatorio, ni
+      cuarentena para una mascota sana — el SENACSA simplemente inspecciona a tu perro y sus documentos en
+      el punto de entrada. Esta guía explica exactamente qué preparar, y los plazos que hay que respetar,
+      antes de reservar tu vuelo.
+
+    pt: "O Paraguai recebe bem os cachorros, e suas regras de entrada são de uma uniformidade tranquilizadora: o mesmo procedimento vale para um animal de estimação que chega de quase qualquer lugar. O SENACSA (Servicio Nacional de Calidad y Salud Animal), a autoridade nacional de saúde animal, aplica a norma do Mercosul em vigor — a Resolución GMC N° 20/2024 — e pede um único documento: um Certificado Veterinário Internacional (CVI) emitido, assinado e carimbado pela autoridade veterinária oficial do país de onde você parte, ou um passaporte oficial dentro da validade endossado por essa autoridade. O CVI precisa atestar um exame clínico, uma vacinação antirrábica válida e um tratamento antiparasitário interno e externo. Não há teste sorológico antirrábico, nem microchip obrigatório, nem quarentena para um animal saudável — o SENACSA simplesmente inspeciona seu cachorro e seus documentos no ponto de entrada. Este guia explica exatamente o que preparar, e os prazos a respeitar, antes de comprar a passagem."
+difficulty:
+  level: easy
+  label: { en: "Easy — one uniform Mercosur scheme for most origins", fr: "Facile — un régime Mercosur uniforme pour la plupart des origines", es: "Fácil — un régimen Mercosur uniforme para la mayoría de los orígenes", pt: "Fácil — um único procedimento do Mercosul para a maioria das origens" }
+
+prepTime:
+  eu:
+    en: "Standard case: a few days to assemble the CVI once vaccination is valid — the clinical exam is done within 10 days before the CVI, deworming within 15 days before it, and the CVI is valid 60 days."
+    fr: "Cas standard : quelques jours pour réunir le CVI une fois la vaccination valide — l'examen clinique est fait dans les 10 jours avant le CVI, la vermifugation dans les 15 jours avant, et le CVI est valable 60 jours."
+    es: "Caso estándar: unos días para reunir el CVI una vez que la vacunación es válida — el examen clínico se hace dentro de los 10 días previos al CVI, la desparasitación dentro de los 15 días previos, y el CVI es válido 60 días."
+    pt: "Caso padrão: alguns dias para montar o CVI quando a vacinação já está válida — o exame clínico é feito nos 10 dias anteriores ao CVI, a vermifugação nos 15 dias anteriores a ele, e o CVI vale 60 dias."
+  listed:
+    en: "If the first rabies shot is still needed: plan ~3 weeks, as a primary vaccination must be given at least 21 days before shipment."
+    fr: "Si la première vaccination reste à faire : prévois ~3 semaines, une primo-vaccination devant être faite au moins 21 jours avant l'embarquement."
+    es: "Si aún falta la primera vacuna antirrábica: prevé ~3 semanas, ya que una primovacunación debe aplicarse al menos 21 días antes del embarque."
+    pt: "Se ainda faltar a primeira dose antirrábica: conte cerca de 3 semanas, já que a primovacinação precisa ser aplicada no mínimo 21 dias antes do embarque."
+  nonListed:
+    en: "Puppies under 90 days: extra certification on the CVI (age + no urban-rabies contact where the pup lived in the last 90 days), so allow more preparation time."
+    fr: "Chiots de moins de 90 jours : certification supplémentaire sur le CVI (âge + aucun contact avec un cas de rage urbaine là où le chiot a vécu ces 90 derniers jours), prévois plus de temps."
+    es: "Cachorros de menos de 90 días: certificación adicional en el CVI (edad + ningún contacto con la rabia urbana donde el cachorro vivió en los últimos 90 días), así que prevé más tiempo de preparación."
+    pt: "Filhotes com menos de 90 dias: certificação extra no CVI (idade + ausência de contato com caso de raiva urbana onde o filhote viveu nos últimos 90 dias), então reserve mais tempo de preparação."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (up to 5 as pets; 6+ is a commercial import)", fr: "Oui (jusqu'à 5 comme animaux de compagnie ; 6+ = importation commerciale)", es: "Sí (hasta 5 como mascotas; 6 o más es una importación comercial)", pt: "Sim (até 5 como animais de estimação; a partir de 6 é importação comercial)" }
+    cls: ok
+  - requirement: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    status: { en: "Not required for entry (ISO 11784/11785 if used)", fr: "Non requise à l'entrée (ISO 11784/11785 si utilisée)", es: "No obligatorio para la entrada (ISO 11784/11785 si se usa)", pt: "Não obrigatório para a entrada (ISO 11784/11785 se for usado)" }
+    cls: ok
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required from 90 days of age (exemption from a rabies-free country/zone)", fr: "Requise dès 90 jours d'âge (dispense depuis un pays/zone indemne de rage)", es: "Obligatoria a partir de los 90 días de edad (exención desde un país/zona libre de rabia)", pt: "Obrigatória a partir de 90 dias de idade (dispensa para país ou zona livre de raiva)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate (CVI or endorsed passport)", fr: "Certificat vétérinaire (CVI ou passeport refrendé)", es: "Certificado veterinario (CVI o pasaporte refrendado)", pt: "Certificado veterinário (CVI ou passaporte endossado)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Antiparasitic treatment (internal & external)", fr: "Traitement antiparasitaire (interne & externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for a compliant, healthy pet", fr: "Non requise pour un animal conforme et en bonne santé", es: "No obligatoria para una mascota conforme y sana", pt: "Não exigida para um animal saudável e em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Paraguay (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Paraguay (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Paraguay (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — o Paraguai (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Paraguay", fr: "Pays de destination — Paraguay", es: "País de destino — Paraguay", pt: "País de destino — Paraguai" }
+      text:
+        en: "Paraguay applies the Mercosur standard in force (Res. GMC 20/2024) through SENACSA: one International Veterinary Certificate covering a clinical exam, a valid rabies vaccination and internal & external antiparasitic treatment. No microchip, no antibody test and no quarantine are demanded for entry, and the original CVI stays with you — it is not retained at the border."
+        fr: "Le Paraguay applique la norme Mercosur en vigueur (Rés. GMC 20/2024) via le SENACSA : un Certificat Vétérinaire International couvrant un examen clinique, une vaccination antirabique valide et un traitement antiparasitaire interne & externe. Ni puce, ni titrage, ni quarantaine ne sont exigés à l'entrée, et le CVI original reste avec toi — il n'est pas retenu à la frontière."
+        es: "Paraguay aplica la norma del Mercosur en vigor (Res. GMC 20/2024) a través del SENACSA: un Certificado Veterinario Internacional que cubre un examen clínico, una vacunación antirrábica válida y un tratamiento antiparasitario interno y externo. No se exige microchip, ni prueba de titulación, ni cuarentena para la entrada, y el CVI original se queda contigo — no se retiene en la frontera."
+        pt: "O Paraguai aplica a norma do Mercosul em vigor (Res. GMC 20/2024) por meio do SENACSA: um único Certificado Veterinário Internacional que cobre o exame clínico, a vacinação antirrábica válida e o tratamento antiparasitário interno e externo. Não se exige microchip, nem teste sorológico, nem quarentena para a entrada, e o CVI original fica com você — não é retido na fronteira."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The CVI must be issued, signed and stamped by the official veterinary authority of the country you travel from (or an official passport endorsed by that authority carrying the same data). Its timing drives your whole preparation: the clinical exam within 10 days before issue, deworming within 15 days before it, and the CVI valid 60 days."
+        fr: "Le CVI doit être émis, signé et scellé par l'autorité vétérinaire officielle du pays de départ (ou un passeport officiel refrendé par cette autorité portant les mêmes données). Ses délais rythment toute ton préparation : examen clinique dans les 10 jours avant l'émission, vermifugation dans les 15 jours avant, et CVI valable 60 jours."
+        es: "El CVI debe ser emitido, firmado y sellado por la autoridad veterinaria oficial del país desde el que viajas (o un pasaporte oficial refrendado por esa autoridad que lleve los mismos datos). Sus plazos marcan toda tu preparación: el examen clínico dentro de los 10 días previos a la emisión, la desparasitación dentro de los 15 días previos, y el CVI válido 60 días."
+        pt: "O CVI precisa ser emitido, assinado e carimbado pela autoridade veterinária oficial do país de onde você parte (ou um passaporte oficial endossado por essa autoridade, trazendo os mesmos dados). O prazo dele comanda toda a sua preparação: o exame clínico nos 10 dias anteriores à emissão, a vermifugação nos 15 dias anteriores a ela, e o CVI válido por 60 dias."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A dog from a country or zone recognised rabies-free by the WOAH (OMSA) may enter without rabies vaccination if the destination recognises that status and the CVI certifies it. For puppies under 90 days, recent residence matters: they must not have been in contact with any urban-rabies case in the last 90 days, and a dog previously diagnosed with Leishmaniosis may be refused entry."
+        fr: "Un chien d'un pays ou d'une zone reconnu indemne de rage par l'OMSA (WOAH) peut entrer sans vaccination antirabique si la destination reconnaît ce statut et que le CVI l'atteste. Pour les chiots de moins de 90 jours, le séjour récent compte : ils ne doivent avoir été en contact avec aucun cas de rage urbaine ces 90 derniers jours, et un chien déjà diagnostiqué avec la Leishmaniose peut être refusé à l'entrée."
+        es: "Un perro de un país o zona reconocido libre de rabia por la OMSA (WOAH) puede entrar sin vacunación antirrábica si el destino reconoce ese estatus y el CVI lo certifica. Para los cachorros de menos de 90 días, la residencia reciente importa: no deben haber estado en contacto con ningún caso de rabia urbana en los últimos 90 días, y un perro previamente diagnosticado con leishmaniosis puede ser rechazado en la entrada."
+        pt: "Um cachorro vindo de país ou zona reconhecido como livre de raiva pela WOAH (OMSA) pode entrar sem vacinação antirrábica se o destino reconhecer essa condição e o CVI atestar isso. Para filhotes com menos de 90 dias, a residência recente importa: eles não podem ter tido contato com nenhum caso de raiva urbana nos últimos 90 dias, e um cachorro já diagnosticado com Leishmaniose pode ter a entrada recusada."
+  note:
+    en: "So read the requirements below as Paraguay's framework, then confirm your dog's exact origin, age and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre paraguayen, puis confirme l'origine, l'âge et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Paraguay y luego confirma el origen, la edad y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral do Paraguai, e confirme com seu veterinário a origem, a idade e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not required for entry", fr: "Non requise à l'entrée", es: "No obligatorio para la entrada", pt: "Não obrigatório para a entrada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Mercosur States reserve the right to define the identification method. If an electronic system is used, the microchip must comply with ISO 11784 and/or ISO 11785, and the CVI must state its anatomical location. Paraguay does not impose a microchip for entry, but one is strongly advised for identification and the return trip.", fr: "Les États du Mercosur se réservent le droit de définir la méthode d'identification. Si un système électronique est utilisé, la puce doit être conforme aux normes ISO 11784 et/ou ISO 11785, et le CVI doit indiquer sa localisation anatomique. Le Paraguay n'impose pas de puce pour l'entrée, mais une puce reste fortement conseillée pour l'identification et le retour.", es: "Los Estados del Mercosur se reservan el derecho de definir el método de identificación. Si se usa un sistema electrónico, el microchip debe cumplir las normas ISO 11784 o ISO 11785, y el CVI debe indicar su ubicación anatómica. Paraguay no impone un microchip para la entrada, pero se aconseja encarecidamente para la identificación y el viaje de regreso.", pt: "Os Estados Partes do Mercosul reservam-se o direito de definir o método de identificação. Se for usado um sistema eletrônico, o microchip deve atender à ISO 11784 e/ou à ISO 11785, e o CVI deve indicar sua localização anatômica. O Paraguai não impõe microchip para a entrada, mas ele é fortemente recomendado para a identificação e para a viagem de volta." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 17", fr: "Mercosur Rés. GMC 20/2024, art. 17", es: "Mercosur Res. GMC 20/2024, art. 17", pt: "Res. GMC 20/2024 do Mercosul, Art. 17" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required from 90 days of age", fr: "Requise dès 90 jours d'âge", es: "Obligatoria a partir de los 90 días de edad", pt: "Obrigatória a partir de 90 dias de idade" }
+    when: { en: "Animals aged 90 days or more must enter vaccinated against rabies, with a vaccine authorised by the veterinary authority of the country where it was applied and immunity still valid. A first (primary) vaccination must be given at least 21 days before shipment; a pet not re-vaccinated before the vaccine expired is treated as primary-vaccinated.", fr: "Les animaux âgés de 90 jours ou plus doivent entrer vaccinés contre la rage, avec un vaccin autorisé par l'autorité vétérinaire du pays d'application et une immunité toujours valide. Une première vaccination (primo) doit être faite au moins 21 jours avant l'embarquement ; un animal non revacciné avant l'expiration du vaccin est considéré comme primo-vacciné.", es: "Los animales de 90 días o más deben entrar vacunados contra la rabia, con una vacuna autorizada por la autoridad veterinaria del país donde se aplicó y con la inmunidad aún vigente. Una primera vacunación (primovacunación) debe aplicarse al menos 21 días antes del embarque; una mascota no revacunada antes de que caducara la vacuna se considera con primovacunación.", pt: "Animais com 90 dias ou mais precisam entrar vacinados contra a raiva, com vacina autorizada pela autoridade veterinária do país onde ela foi aplicada e com a imunidade ainda válida. A primeira dose (primovacinação) precisa ser aplicada no mínimo 21 dias antes do embarque; um animal que não tenha sido revacinado antes do vencimento da vacina é tratado como primovacinado." }
+    exceptions: { en: "A country or zone that meets the WOAH (OMSA) Terrestrial Code conditions to be declared officially rabies-free is exempt, provided the destination State recognises this condition beforehand and it is certified on the CVI.", fr: "Un pays ou une zone remplissant les conditions du Code terrestre de l'OMSA (WOAH) pour être déclaré officiellement indemne de rage en est dispensé, à condition que l'État de destination reconnaisse préalablement cette condition et qu'elle soit certifiée sur le CVI.", es: "Un país o zona que cumpla las condiciones del Código Terrestre de la OMSA (WOAH) para ser declarado oficialmente libre de rabia queda exento, siempre que el Estado de destino reconozca previamente esta condición y se certifique en el CVI.", pt: "Um país ou zona que atenda às condições do Código Terrestre da WOAH (OMSA) para ser declarado oficialmente livre de raiva fica dispensado, desde que o Estado de destino reconheça previamente essa condição e ela seja atestada no CVI." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 9, 10 & 12", fr: "Mercosur Rés. GMC 20/2024, art. 9, 10 & 12", es: "Mercosur Res. GMC 20/2024, art. 9, 10 y 12", pt: "Res. GMC 20/2024 do Mercosul, Art. 9, 10 e 12" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Paraguay's published entry requirements (Res. GMC 20/2024) do not include a rabies antibody test for any origin. (A rabies antibody test is only demanded the other way round — for pets leaving Paraguay bound for the European Union.)", fr: "Les exigences d'entrée publiées par le Paraguay (Rés. GMC 20/2024) ne prévoient aucun titrage antirabique, quelle que soit l'origine. (Un titrage n'est exigé que dans l'autre sens — pour les animaux quittant le Paraguay à destination de l'Union européenne.)", es: "Los requisitos de entrada publicados por Paraguay (Res. GMC 20/2024) no incluyen una prueba de titulación de rabia para ningún origen. (Una prueba de titulación de rabia solo se exige en el sentido contrario — para las mascotas que salen de Paraguay con destino a la Unión Europea.)", pt: "As exigências de entrada publicadas pelo Paraguai (Res. GMC 20/2024) não incluem teste sorológico antirrábico para nenhuma origem. (O teste sorológico antirrábico só é exigido no sentido inverso — para animais que saem do Paraguai com destino à União Europeia.)" }
+    ref: { en: "Mercosur Res. GMC 20/2024 (full resolution)", fr: "Mercosur Rés. GMC 20/2024 (résolution complète)", es: "Mercosur Res. GMC 20/2024 (resolución completa)", pt: "Res. GMC 20/2024 do Mercosul (resolução completa)" }
+  - item: { en: "Clinical examination", fr: "Examen clinique", es: "Examen clínico", pt: "Exame clínico" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Carried out within the 10 days before the CVI is issued, by a registered veterinarian in the exporting country, certifying the animal shows no evidence of infectious-contagious or parasitic diseases and is fit for transport to the Mercosur States.", fr: "Réalisé dans les 10 jours avant l'émission du CVI, par un vétérinaire matriculé dans le pays exportateur, attestant que l'animal ne présente aucune évidence de maladie infectocontagieuse ou parasitaire et est apte au transport vers les États du Mercosur.", es: "Realizado dentro de los 10 días previos a la emisión del CVI, por un veterinario matriculado en el país exportador, que certifique que el animal no presenta evidencia de enfermedades infectocontagiosas ni parasitarias y está apto para el transporte hacia los Estados del Mercosur.", pt: "Realizado nos 10 dias anteriores à emissão do CVI, por médico-veterinário registrado no país exportador, atestando que o animal não apresenta evidência de doenças infectocontagiosas ou parasitárias e está apto ao transporte para os Estados Partes do Mercosul." }
+    exceptions: { en: "Its content is embedded in the International Veterinary Certificate (CVI).", fr: "Son contenu est intégré au Certificat Vétérinaire International (CVI).", es: "Su contenido está integrado en el Certificado Veterinario Internacional (CVI).", pt: "Seu conteúdo é incorporado ao Certificado Veterinário Internacional (CVI)." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 14", fr: "Mercosur Rés. GMC 20/2024, art. 14", es: "Mercosur Res. GMC 20/2024, art. 14", pt: "Res. GMC 20/2024 do Mercosul, Art. 14" }
+  - item: { en: "Antiparasitic treatment (internal & external)", fr: "Traitement antiparasitaire (interne & externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Broad-spectrum treatment against internal and external parasites within the 15 days before the CVI is issued, using veterinary products approved by the origin's veterinary authority and following the manufacturer's recommendations. The CVI records the product, laboratory, active ingredient and date.", fr: "Traitement à large spectre contre les parasites internes et externes dans les 15 jours avant l'émission du CVI, avec des produits vétérinaires approuvés par l'autorité vétérinaire d'origine et selon les recommandations du fabricant. Le CVI indique le produit, le laboratoire, le principe actif et la date.", es: "Tratamiento de amplio espectro contra los parásitos internos y externos dentro de los 15 días previos a la emisión del CVI, con productos veterinarios aprobados por la autoridad veterinaria de origen y siguiendo las recomendaciones del fabricante. El CVI registra el producto, el laboratorio, el principio activo y la fecha.", pt: "Tratamento de amplo espectro contra parasitas internos e externos nos 15 dias anteriores à emissão do CVI, com produtos veterinários aprovados pela autoridade veterinária da origem e seguindo as recomendações do fabricante. O CVI registra o produto, o laboratório, o princípio ativo e a data." }
+    exceptions: { en: "Unlike Uruguay, Paraguay does not require the internal product to contain praziquantel for its own entry — that is a Uruguay-specific add-on.", fr: "Contrairement à l'Uruguay, le Paraguay n'exige pas que le produit interne contienne du praziquantel pour sa propre entrée — c'est une exigence propre à l'Uruguay.", es: "A diferencia de Uruguay, Paraguay no exige que el producto interno contenga praziquantel para su propia entrada — eso es un requisito específico de Uruguay.", pt: "Ao contrário do Uruguai, o Paraguai não exige que o produto interno contenha praziquantel para a sua própria entrada — isso é uma exigência específica do Uruguai." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 13", fr: "Mercosur Rés. GMC 20/2024, art. 13", es: "Mercosur Res. GMC 20/2024, art. 13", pt: "Res. GMC 20/2024 do Mercosul, Art. 13" }
+  - item: { en: "International Veterinary Certificate (CVI) or endorsed passport", fr: "Certificat Vétérinaire International (CVI) ou passeport refrendé", es: "Certificado Veterinario Internacional (CVI) o pasaporte refrendado", pt: "Certificado Veterinário Internacional (CVI) ou passaporte endossado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The original CVI is issued by the veterinary authority of the exporting country under Res. GMC 20/2024, and presented to the SENACSA veterinary inspector at the entry point. It is valid 60 calendar days from issue for entry, provided the rabies vaccination remains valid.", fr: "Le CVI original est émis par l'autorité vétérinaire du pays exportateur selon la Rés. GMC 20/2024, et présenté à l'inspecteur vétérinaire du SENACSA au point d'entrée. Il est valable 60 jours calendaires depuis l'émission pour entrer, à condition que la vaccination antirabique reste valide.", es: "El CVI original es emitido por la autoridad veterinaria del país exportador según la Res. GMC 20/2024, y se presenta al inspector veterinario del SENACSA en el punto de entrada. Es válido 60 días corridos desde la emisión para la entrada, siempre que la vacunación antirrábica siga vigente.", pt: "O CVI original é emitido pela autoridade veterinária do país exportador conforme a Res. GMC 20/2024 e apresentado ao inspetor veterinário do SENACSA no ponto de entrada. Ele vale 60 dias corridos a partir da emissão para a entrada, desde que a vacinação antirrábica continue válida." }
+    exceptions: { en: "A current official passport, issued or endorsed by the origin's veterinary authority, may be accepted instead if it carries all the data required on the CVI. The original CVI is not retained — it stays with the owner.", fr: "Un passeport officiel en cours de validité, émis ou refrendé par l'autorité vétérinaire d'origine, peut être accepté à la place s'il porte toutes les données requises sur le CVI. Le CVI original n'est pas retenu — il reste au propriétaire.", es: "Un pasaporte oficial vigente, emitido o refrendado por la autoridad veterinaria de origen, puede aceptarse en su lugar si lleva todos los datos exigidos en el CVI. El CVI original no se retiene — se queda con el propietario.", pt: "Um passaporte oficial dentro da validade, emitido ou endossado pela autoridade veterinária da origem, pode ser aceito no lugar dele se trouxer todos os dados exigidos no CVI. O CVI original não é retido — fica com o tutor." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 5, 6, 7 & 8", fr: "Mercosur Rés. GMC 20/2024, art. 5, 6, 7 & 8", es: "Mercosur Res. GMC 20/2024, art. 5, 6, 7 y 8", pt: "Res. GMC 20/2024 do Mercosul, Art. 5, 6, 7 e 8" }
+  - item: { en: "Advance notification / import authorization", fr: "Notification préalable / autorisation d'importation", es: "Notificación previa / autorización de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required for an accompanied pet", fr: "Non requise pour un animal accompagné", es: "No obligatoria para una mascota acompañada", pt: "Não exigida para um animal acompanhado" }
+    when: { en: "For up to 5 pets travelling with you, no prior import authorization is needed — you present the animal and the CVI to the SENACSA inspector at the entry point. From 6 animals, the shipment is treated as a commercial import of live animals and follows SENACSA import rules.", fr: "Pour jusqu'à 5 animaux voyageant avec toi, aucune autorisation d'importation préalable n'est nécessaire — tu présente l'animal et le CVI à l'inspecteur du SENACSA au point d'entrée. À partir de 6 animaux, l'envoi est traité comme une importation commerciale d'animaux vivants et suit les règles d'importation du SENACSA.", es: "Para hasta 5 mascotas que viajen contigo, no se necesita autorización de importación previa — presentas al animal y el CVI al inspector del SENACSA en el punto de entrada. A partir de 6 animales, el envío se trata como una importación comercial de animales vivos y sigue las normas de importación del SENACSA.", pt: "Para até 5 animais de estimação viajando com você, nenhuma autorização prévia de importação é necessária — você apresenta o animal e o CVI ao inspetor do SENACSA no ponto de entrada. A partir de 6 animais, o envio é tratado como importação comercial de animais vivos e segue as regras de importação do SENACSA." }
+    exceptions: { en: "If the dog travels unaccompanied / as cargo, contact SENACSA in advance (Departamento de Certificación Sanitaria) to arrange the procedure, as additional handling applies.", fr: "Si le chien voyage non accompagné / en fret, contacte le SENACSA à l'avance (Departamento de Certificación Sanitaria) pour organiser la procédure, un traitement supplémentaire s'appliquant.", es: "Si el perro viaja sin acompañante / como carga, contacta con el SENACSA por adelantado (Departamento de Certificación Sanitaria) para organizar el procedimiento, ya que se aplica una gestión adicional.", pt: "Se o cachorro viajar desacompanhado / como carga, entre em contato com o SENACSA com antecedência (Departamento de Certificación Sanitaria) para organizar o procedimento, já que há trâmites adicionais." }
+    ref: { en: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)", fr: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)", es: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)", pt: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)" }
+  - item: { en: "Border check (SENACSA inspection)", fr: "Contrôle frontalier (inspection SENACSA)", es: "Control fronterizo (inspección del SENACSA)", pt: "Fiscalização na fronteira (inspeção do SENACSA)" }
+    required: { en: "Required on arrival", fr: "Requis à l'arrivée", es: "Obligatorio a la llegada", pt: "Obrigatória na chegada" }
+    when: { en: "At the point of entry, a SENACSA veterinary inspector carries out a documentary check (CVI or endorsed passport) and a sanitary check of the animal before authorising entry.", fr: "Au point d'entrée, un inspecteur vétérinaire du SENACSA effectue un contrôle documentaire (CVI ou passeport refrendé) et un contrôle sanitaire de l'animal avant d'autoriser l'entrée.", es: "En el punto de entrada, un inspector veterinario del SENACSA realiza un control documental (CVI o pasaporte refrendado) y un control sanitario del animal antes de autorizar la entrada.", pt: "No ponto de entrada, um inspetor veterinário do SENACSA faz a conferência documental (CVI ou passaporte endossado) e a checagem sanitária do animal antes de autorizar a entrada." }
+    exceptions: { en: "The original CVI is not retained by the officials and continues in the owner's possession.", fr: "Le CVI original n'est pas retenu par les agents et reste en possession du propriétaire.", es: "El CVI original no es retenido por los agentes y permanece en posesión del propietario.", pt: "O CVI original não é retido pelos funcionários e continua em posse do tutor." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 5 & 7; SENACSA — Viajar con Mascotas", fr: "Mercosur Rés. GMC 20/2024, art. 5 & 7 ; SENACSA — Viajar con Mascotas", es: "Mercosur Res. GMC 20/2024, art. 5 y 7; SENACSA — Viajar con Mascotas", pt: "Res. GMC 20/2024 do Mercosul, Art. 5 e 7; SENACSA — Viajar con Mascotas" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Special certification under 90 days", fr: "Certification spéciale sous 90 jours", es: "Certificación especial para menores de 90 días", pt: "Certificação especial abaixo de 90 dias" }
+    when: { en: "A dog under 90 days may enter without rabies vaccination when the exporting veterinary authority certifies on the CVI that the animal is under 90 days old and that it has not been in contact with any urban-rabies case in the last 90 days. A nursing litter under 90 days travelling with its mother is treated as one biological unit, and only the mother's health is certified.", fr: "Un chien de moins de 90 jours peut entrer sans vaccination antirabique lorsque l'autorité vétérinaire exportatrice certifie sur le CVI que l'animal a moins de 90 jours et qu'il n'a été en contact avec aucun cas de rage urbaine ces 90 derniers jours. Une portée allaitante de moins de 90 jours voyageant avec sa mère est traitée comme une unité biologique, et seule la santé de la mère est certifiée.", es: "Un perro de menos de 90 días puede entrar sin vacunación antirrábica cuando la autoridad veterinaria exportadora certifica en el CVI que el animal tiene menos de 90 días y que no ha estado en contacto con ningún caso de rabia urbana en los últimos 90 días. Una camada lactante de menos de 90 días que viaja con su madre se trata como una unidad biológica, y solo se certifica la salud de la madre.", pt: "Um cachorro com menos de 90 dias pode entrar sem vacinação antirrábica quando a autoridade veterinária exportadora atesta no CVI que o animal tem menos de 90 dias de idade e que ele não teve contato com nenhum caso de raiva urbana nos últimos 90 dias. Uma ninhada lactente com menos de 90 dias que viaja com a mãe é tratada como uma única unidade biológica, e só a saúde da mãe é atestada." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 11 & 16", fr: "Mercosur Rés. GMC 20/2024, art. 11 & 16", es: "Mercosur Res. GMC 20/2024, art. 11 y 16", pt: "Res. GMC 20/2024 do Mercosul, Art. 11 e 16" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "Paraguay's entry procedure sets no routine quarantine for a compliant, healthy pet; the dog is released after a satisfactory inspection at the point of entry.", fr: "La procédure d'entrée du Paraguay ne prévoit aucune quarantaine de routine pour un animal conforme et en bonne santé ; le chien est libéré après une inspection satisfaisante au point d'entrée.", es: "El procedimiento de entrada de Paraguay no establece ninguna cuarentena de rutina para una mascota conforme y sana; el perro se libera tras una inspección satisfactoria en el punto de entrada.", pt: "O procedimento de entrada do Paraguai não prevê quarentena de rotina para um animal saudável e em conformidade; o cachorro é liberado depois de uma inspeção satisfatória no ponto de entrada." }
+    exceptions: { en: "If an animal fails to meet the requirements on arrival, the veterinary authority may apply the sanitary measures it deems appropriate — rejection, return to the country of origin, retention or another measure — with all resulting costs borne by the owner.", fr: "Si un animal ne remplit pas les exigences à l'arrivée, l'autorité vétérinaire peut appliquer les mesures sanitaires qu'elle juge appropriées — rejet, retour au pays d'origine, rétention ou autre mesure — tous les frais qui en découlent étant à la charge du propriétaire.", es: "Si un animal no cumple los requisitos a la llegada, la autoridad veterinaria puede aplicar las medidas sanitarias que considere apropiadas — rechazo, devolución al país de origen, retención u otra medida — con todos los costos derivados a cargo del propietario.", pt: "Se um animal não cumprir as exigências na chegada, a autoridade veterinária pode aplicar as medidas sanitárias que julgar cabíveis — recusa, devolução ao país de origem, retenção ou outra medida — com todos os custos decorrentes por conta do tutor." }
+    ref: { en: "Mercosur Res. GMC 20/2024, Art. 18 & 19", fr: "Mercosur Rés. GMC 20/2024, art. 18 & 19", es: "Mercosur Res. GMC 20/2024, art. 18 y 19", pt: "Res. GMC 20/2024 do Mercosul, Art. 18 e 19" }
+
+origin:
+  eu:
+    title: { en: "Standard scheme — CVI or endorsed passport", fr: "Régime standard — CVI ou passeport refrendé", es: "Régimen estándar — CVI o pasaporte refrendado", pt: "Esquema padrão — CVI ou passaporte endossado" }
+    body:
+      en: "For almost every origin the path is the same. Your dog needs an International Veterinary Certificate (CVI) issued, signed and stamped by the official veterinary authority of the country you travel from, under Mercosur Res. GMC 20/2024. It must show a clinical exam (within 10 days), a valid rabies vaccination and internal & external antiparasitic treatment (within 15 days). A current official passport carrying the same data and endorsed by the origin's authority is accepted instead. You present the dog and the CVI to the SENACSA inspector at the entry point; travelling with up to five pets needs no import authorization, and the original CVI stays with you."
+      fr: "Pour presque toutes les origines, le parcours est identique. Ton chien a besoin d'un Certificat Vétérinaire International (CVI) émis, signé et scellé par l'autorité vétérinaire officielle du pays de départ, selon la Rés. Mercosur GMC 20/2024. Il doit attester un examen clinique (dans les 10 jours), une vaccination antirabique valide et un traitement antiparasitaire interne & externe (dans les 15 jours). Un passeport officiel en cours de validité portant les mêmes données et refrendé par l'autorité d'origine est accepté à la place. Tu présente le chien et le CVI à l'inspecteur du SENACSA au point d'entrée ; voyager avec jusqu'à cinq animaux ne nécessite aucune autorisation d'importation, et le CVI original reste avec toi."
+      es: "Para casi todos los orígenes el camino es el mismo. Tu perro necesita un Certificado Veterinario Internacional (CVI) emitido, firmado y sellado por la autoridad veterinaria oficial del país desde el que viajas, según la Res. Mercosur GMC 20/2024. Debe acreditar un examen clínico (dentro de los 10 días), una vacunación antirrábica válida y un tratamiento antiparasitario interno y externo (dentro de los 15 días). En su lugar se acepta un pasaporte oficial vigente que lleve los mismos datos y esté refrendado por la autoridad de origen. Presentas al perro y el CVI al inspector del SENACSA en el punto de entrada; viajar con hasta cinco mascotas no necesita autorización de importación, y el CVI original se queda contigo."
+      pt: "Para quase toda origem o caminho é o mesmo. Seu cachorro precisa de um Certificado Veterinário Internacional (CVI) emitido, assinado e carimbado pela autoridade veterinária oficial do país de onde você parte, conforme a Res. GMC 20/2024 do Mercosul. Ele deve trazer um exame clínico (nos 10 dias anteriores), a vacinação antirrábica válida e o tratamento antiparasitário interno e externo (nos 15 dias anteriores). Um passaporte oficial dentro da validade que traga os mesmos dados e seja endossado pela autoridade da origem é aceito no lugar dele. Você apresenta o cachorro e o CVI ao inspetor do SENACSA no ponto de entrada; viajar com até cinco animais de estimação não exige autorização de importação, e o CVI original fica com você."
+    cls: ok
+  listed:
+    title: { en: "From a rabies-free country or zone", fr: "Depuis un pays ou une zone indemne de rage", es: "Desde un país o zona libre de rabia", pt: "De um país ou zona livre de raiva" }
+    body:
+      en: "If your dog comes from a country or zone that meets the WOAH (OMSA) Terrestrial Code conditions to be declared officially rabies-free, it may enter without the rabies vaccination — provided the destination State recognises this condition beforehand and it is certified on the CVI. Every other requirement (clinical exam and internal & external antiparasitic treatment) still applies, and there is no antibody test in any case."
+      fr: "Si ton chien vient d'un pays ou d'une zone remplissant les conditions du Code terrestre de l'OMSA (WOAH) pour être déclaré officiellement indemne de rage, il peut entrer sans la vaccination antirabique — à condition que l'État de destination reconnaisse préalablement cette condition et qu'elle soit certifiée sur le CVI. Toutes les autres exigences (examen clinique et traitement antiparasitaire interne & externe) s'appliquent toujours, et il n'y a de toute façon aucun titrage."
+      es: "Si tu perro procede de un país o zona que cumple las condiciones del Código Terrestre de la OMSA (WOAH) para ser declarado oficialmente libre de rabia, puede entrar sin la vacunación antirrábica — siempre que el Estado de destino reconozca previamente esta condición y se certifique en el CVI. Todos los demás requisitos (examen clínico y tratamiento antiparasitario interno y externo) siguen aplicándose, y en cualquier caso no hay prueba de titulación."
+      pt: "Se o seu cachorro vier de um país ou zona que atenda às condições do Código Terrestre da WOAH (OMSA) para ser declarado oficialmente livre de raiva, ele pode entrar sem a vacinação antirrábica — desde que o Estado de destino reconheça previamente essa condição e ela seja atestada no CVI. Todas as demais exigências (exame clínico e tratamento antiparasitário interno e externo) continuam valendo, e em nenhum caso há teste sorológico."
+    cls: ok
+  nonListed:
+    title: { en: "Puppies, Leishmaniosis & non-compliant arrivals", fr: "Chiots, Leishmaniose & arrivées non conformes", es: "Cachorros, leishmaniosis y llegadas no conformes", pt: "Filhotes, Leishmaniose e chegadas não conformes" }
+    body:
+      en: "A puppy under 90 days may enter without rabies vaccination when the CVI certifies its age and that it has not been in contact with any urban-rabies case in the previous 90 days. A dog previously diagnosed with Leishmaniosis may be refused entry. If a dog arrives without meeting the sanitary requirements, the veterinary authority may reject it, return it to the country of origin, retain it or apply another measure it deems appropriate; the resulting costs and losses fall on the owner."
+      fr: "Un chiot de moins de 90 jours peut entrer sans vaccination antirabique lorsque le CVI certifie son âge et l'absence de contact avec un cas de rage urbaine les 90 jours précédents. Un chien déjà diagnostiqué avec la Leishmaniose peut être refusé à l'entrée. Si un chien arrive sans remplir les exigences sanitaires, l'autorité vétérinaire peut le rejeter, le renvoyer au pays d'origine, le retenir ou appliquer une autre mesure qu'elle juge appropriée ; les frais et pertes qui en résultent sont à la charge du propriétaire."
+      es: "Un cachorro de menos de 90 días puede entrar sin vacunación antirrábica cuando el CVI certifica su edad y que no ha estado en contacto con ningún caso de rabia urbana en los 90 días previos. Un perro previamente diagnosticado con leishmaniosis puede ser rechazado en la entrada. Si un perro llega sin cumplir los requisitos sanitarios, la autoridad veterinaria puede rechazarlo, devolverlo al país de origen, retenerlo o aplicar otra medida que considere apropiada; los costos y pérdidas resultantes corren a cargo del propietario."
+      pt: "Um filhote com menos de 90 dias pode entrar sem vacinação antirrábica quando o CVI atesta a sua idade e que ele não teve contato com nenhum caso de raiva urbana nos 90 dias anteriores. Um cachorro já diagnosticado com Leishmaniose pode ter a entrada recusada. Se um cachorro chegar sem cumprir as exigências sanitárias, a autoridade veterinária pode recusá-lo, devolvê-lo ao país de origem, retê-lo ou aplicar outra medida que julgar cabível; os custos e prejuízos decorrentes ficam por conta do tutor."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Paraguay centres on the SENACSA veterinary inspector at your point of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Paraguay s'articule autour de l'inspecteur vétérinaire du SENACSA à ton point d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a Paraguay gira en torno al inspector veterinario del SENACSA en tu punto de entrada."
+    pt: "O que acontece quando seu cachorro chega ao Paraguai gira em torno do inspetor veterinário do SENACSA no seu ponto de entrada."
+  points:
+    - en: "When you travel with your dog, present the animal and the CVI (or endorsed official passport) to the SENACSA veterinary inspector at the entry point for a documentary and sanitary check."
+      fr: "Lorsque tu voyages avec ton chien, présente l'animal et le CVI (ou passeport officiel refrendé) à l'inspecteur vétérinaire du SENACSA au point d'entrée pour un contrôle documentaire et sanitaire."
+      es: "Cuando viajas con tu perro, presenta al animal y el CVI (o pasaporte oficial refrendado) al inspector veterinario del SENACSA en el punto de entrada para un control documental y sanitario."
+      pt: "Quando você viaja com seu cachorro, apresente o animal e o CVI (ou o passaporte oficial endossado) ao inspetor veterinário do SENACSA no ponto de entrada para a conferência documental e sanitária."
+    - en: "Up to five pets travelling with you need no prior import authorization; from six animals, the entry follows SENACSA's commercial live-animal import rules."
+      fr: "Jusqu'à cinq animaux voyageant avec toi ne nécessitent aucune autorisation d'importation préalable ; à partir de six animaux, l'entrée suit les règles d'importation commerciale d'animaux vivants du SENACSA."
+      es: "Hasta cinco mascotas que viajen contigo no necesitan autorización de importación previa; a partir de seis animales, la entrada sigue las normas de importación comercial de animales vivos del SENACSA."
+      pt: "Até cinco animais de estimação viajando com você não exigem autorização prévia de importação; a partir de seis animais, a entrada segue as regras do SENACSA para importação comercial de animais vivos."
+    - en: "The CVI is valid for 60 calendar days from issue, provided the rabies vaccination is still valid on the day of entry; the original CVI is not retained and must stay with you."
+      fr: "Le CVI est valable 60 jours calendaires depuis l'émission, à condition que la vaccination antirabique soit encore valide le jour de l'entrée ; le CVI original n'est pas retenu et doit rester avec toi."
+      es: "El CVI es válido 60 días corridos desde la emisión, siempre que la vacunación antirrábica siga vigente el día de la entrada; el CVI original no se retiene y debe quedarse contigo."
+      pt: "O CVI vale 60 dias corridos a partir da emissão, desde que a vacinação antirrábica ainda esteja válida no dia da entrada; o CVI original não é retido e deve ficar com você."
+    - en: "The clinical exam must be within 10 days before the CVI is issued, and deworming within 15 days before it — so time your veterinary appointments and departure carefully."
+      fr: "L'examen clinique doit avoir lieu dans les 10 jours avant l'émission du CVI, et la vermifugation dans les 15 jours avant — calez donc tes rendez-vous vétérinaires et ton départ avec soin."
+      es: "El examen clínico debe hacerse dentro de los 10 días previos a la emisión del CVI, y la desparasitación dentro de los 15 días previos — así que coordina con cuidado tus citas veterinarias y tu salida."
+      pt: "O exame clínico precisa ser feito nos 10 dias anteriores à emissão do CVI, e a vermifugação nos 15 dias anteriores a ele — então planeje bem as consultas veterinárias e a data da partida."
+    - en: "If your dog travels unaccompanied or as cargo, contact SENACSA's Departamento de Certificación Sanitaria in advance to arrange the procedure."
+      fr: "Si ton chien voyage non accompagné ou en fret, contacte à l'avance le Departamento de Certificación Sanitaria du SENACSA pour organiser la procédure."
+      es: "Si tu perro viaja sin acompañante o como carga, contacta por adelantado con el Departamento de Certificación Sanitaria del SENACSA para organizar el procedimiento."
+      pt: "Se o seu cachorro viajar desacompanhado ou como carga, entre em contato com antecedência com o Departamento de Certificación Sanitaria do SENACSA para organizar o procedimento."
+    - en: "If documents are missing or invalid, or the dog is previously diagnosed with Leishmaniosis, SENACSA may reject, return or retain the animal; verify every requirement before you travel."
+      fr: "Si des documents manquent ou sont invalides, ou si le chien a été diagnostiqué avec la Leishmaniose, le SENACSA peut rejeter, renvoyer ou retenir l'animal ; vérifie chaque exigence avant de voyager."
+      es: "Si faltan documentos o no son válidos, o si el perro ha sido diagnosticado con leishmaniosis, el SENACSA puede rechazar, devolver o retener al animal; verifica cada requisito antes de viajar."
+      pt: "Se faltarem documentos ou eles estiverem inválidos, ou se o cachorro já tiver sido diagnosticado com Leishmaniose, o SENACSA pode recusar, devolver ou reter o animal; confira cada exigência antes de viajar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Paraguay's published entry framework (Mercosur Res. GMC 20/2024, applied by SENACSA) sets no breed-specific import ban for dogs entering the country. The base resolution lets a Member State create a specific regime restricting 'dangerous' breeds — but only when formally established and agreed with the exporting country, and no such national import ban is documented for Paraguay's own entry procedure."
+    fr: "Le cadre d'entrée publié par le Paraguay (Rés. Mercosur GMC 20/2024, appliquée par le SENACSA) ne prévoit aucune interdiction d'importation liée à la race pour les chiens entrant dans le pays. La résolution de base permet à un État membre de créer un régime spécifique restreignant les races « dangereuses » — mais uniquement lorsqu'il est formellement établi et convenu avec le pays exportateur, et aucune interdiction nationale de ce type n'est documentée pour la procédure d'entrée propre du Paraguay."
+    es: "El marco de entrada publicado por Paraguay (Res. Mercosur GMC 20/2024, aplicada por el SENACSA) no establece ninguna prohibición de importación por raza para los perros que entran en el país. La resolución de base permite a un Estado miembro crear un régimen específico que restrinja las razas «peligrosas» — pero solo cuando esté formalmente establecido y acordado con el país exportador, y no hay documentada ninguna prohibición nacional de este tipo para el propio procedimiento de entrada de Paraguay."
+    pt: "O quadro de entrada publicado pelo Paraguai (Res. GMC 20/2024 do Mercosul, aplicada pelo SENACSA) não estabelece nenhuma proibição de importação por raça para cachorros que entram no país. A resolução de base permite que um Estado Parte crie um regime específico restringindo raças «perigosas» — mas só quando ele for formalmente estabelecido e acordado com o país exportador, e nenhuma proibição nacional de importação desse tipo está documentada no procedimento de entrada do próprio Paraguai."
+  cat1:
+    en: "No banned category at entry: no dog breed is refused entry to Paraguay on the basis of its breed under the published SENACSA/Mercosur entry requirements, provided the sanitary requirements (CVI or endorsed passport, rabies vaccination, antiparasitic treatment, clinical exam) are met."
+    fr: "Aucune catégorie interdite à l'entrée : aucune race de chien n'est refusée à l'entrée au Paraguay en raison de sa race selon les exigences d'entrée publiées SENACSA/Mercosur, sous réserve du respect des exigences sanitaires (CVI ou passeport refrendé, vaccination antirabique, traitement antiparasitaire, examen clinique)."
+    es: "Ninguna categoría prohibida en la entrada: a ninguna raza de perro se le deniega la entrada a Paraguay por razón de su raza según los requisitos de entrada publicados por el SENACSA/Mercosur, siempre que se cumplan los requisitos sanitarios (CVI o pasaporte refrendado, vacunación antirrábica, tratamiento antiparasitario, examen clínico)."
+    pt: "Nenhuma categoria proibida na entrada: nenhuma raça de cachorro tem a entrada no Paraguai recusada por causa da raça segundo as exigências de entrada publicadas pelo SENACSA/Mercosul, desde que sejam cumpridas as exigências sanitárias (CVI ou passaporte endossado, vacinação antirrábica, tratamento antiparasitário, exame clínico)."
+  cat2:
+    en: "Important clarification: SENACSA's 'Viajar con Mascotas' page does list prohibited breeds (Pit Bull, Staffordshire, several mastiff/molosser types, etc.), but that list appears within the requirements for pets bound for the United Arab Emirates (a destination/export requirement), not within Paraguay's own import rules. Do not read it as a Paraguayan entry ban. Whether Paraguay maintains any separate national dangerous-dog import law is Unknown from official sources."
+    fr: "Clarification importante : la page « Viajar con Mascotas » du SENACSA liste bien des races interdites (Pit Bull, Staffordshire, plusieurs types de mastiffs/molosses, etc.), mais cette liste figure dans les exigences pour les animaux à destination des Émirats arabes unis (une exigence de destination/exportation), et non dans les règles d'importation propres au Paraguay. Ne la lis pas comme une interdiction d'entrée paraguayenne. L'existence d'une éventuelle loi nationale distincte sur les chiens dangereux à l'importation est Non communiqué selon les sources officielles."
+    es: "Aclaración importante: la página «Viajar con Mascotas» del SENACSA sí enumera razas prohibidas (Pit Bull, Staffordshire, varios tipos de mastín/moloso, etc.), pero esa lista aparece dentro de los requisitos para mascotas con destino a los Emiratos Árabes Unidos (un requisito de destino/exportación), y no dentro de las propias normas de importación de Paraguay. No la interpretes como una prohibición de entrada paraguaya. Si Paraguay mantiene alguna ley nacional separada de importación de perros peligrosos se desconoce según las fuentes oficiales."
+    pt: "Esclarecimento importante: a página «Viajar con Mascotas» do SENACSA de fato lista raças proibidas (Pit Bull, Staffordshire, vários tipos de mastim/molosso etc.), mas essa lista aparece dentro das exigências para animais com destino aos Emirados Árabes Unidos (uma exigência de destino/exportação), e não dentro das regras de importação do próprio Paraguai. Não a leia como uma proibição de entrada paraguaia. Se o Paraguai mantém alguma lei nacional separada sobre importação de cachorros perigosos é Desconhecido a partir das fontes oficiais."
+  note:
+    en: "Because no national breed import ban is documented for entry, focus on the SENACSA/Mercosur sanitary rules. If your dog belongs to a molosser or 'dangerous' type, confirm directly with SENACSA before you travel, and check any local ownership rules that may apply once in Paraguay."
+    fr: "Comme aucune interdiction nationale d'importation de race n'est documentée pour l'entrée, concentre-toi sur les règles sanitaires SENACSA/Mercosur. Si ton chien est de type molosse ou « dangereux », confirme directement auprès du SENACSA avant de voyager, et vérifie les éventuelles règles locales de détention une fois au Paraguay."
+    es: "Como no hay documentada ninguna prohibición nacional de importación por raza para la entrada, céntrate en las normas sanitarias del SENACSA/Mercosur. Si tu perro es de tipo moloso o «peligroso», confirma directamente con el SENACSA antes de viajar, y consulta cualquier norma local de tenencia que pueda aplicarse una vez en Paraguay."
+    pt: "Como nenhuma proibição nacional de importação por raça está documentada para a entrada, concentre-se nas regras sanitárias do SENACSA/Mercosul. Se o seu cachorro for de tipo molosso ou «perigoso», confirme diretamente com o SENACSA antes de viajar, e verifique as regras locais de posse que podem se aplicar quando você estiver no Paraguai."
+
+checklist:
+  - en: "International Veterinary Certificate (CVI) under Mercosur Res. GMC 20/2024, issued, signed and stamped by the origin's official veterinary authority — or a current official passport carrying the same data and endorsed by that authority"
+    fr: "Certificat Vétérinaire International (CVI) selon la Rés. Mercosur GMC 20/2024, émis, signé et scellé par l'autorité vétérinaire officielle d'origine — ou un passeport officiel en cours de validité portant les mêmes données et refrendé par cette autorité"
+    es: "Certificado Veterinario Internacional (CVI) según la Res. Mercosur GMC 20/2024, emitido, firmado y sellado por la autoridad veterinaria oficial de origen — o un pasaporte oficial vigente que lleve los mismos datos y esté refrendado por esa autoridad"
+    pt: "Certificado Veterinário Internacional (CVI) conforme a Res. GMC 20/2024 do Mercosul, emitido, assinado e carimbado pela autoridade veterinária oficial da origem — ou passaporte oficial dentro da validade com os mesmos dados e endossado por essa autoridade"
+  - en: "Clinical examination within 10 days before the CVI (no infectious-contagious or parasitic disease, fit to travel)"
+    fr: "Examen clinique dans les 10 jours avant le CVI (aucune maladie infectocontagieuse ou parasitaire, apte au voyage)"
+    es: "Examen clínico dentro de los 10 días previos al CVI (sin enfermedad infectocontagiosa ni parasitaria, apto para viajar)"
+    pt: "Exame clínico nos 10 dias anteriores ao CVI (sem doença infectocontagiosa ou parasitária, apto a viajar)"
+  - en: "Valid rabies vaccination for dogs 90 days or older (primary shot at least 21 days before shipment); keep the original proof with you"
+    fr: "Vaccination antirabique valide pour les chiens de 90 jours ou plus (primo-vaccination au moins 21 jours avant l'embarquement) ; garde la preuve originale avec toi"
+    es: "Vacunación antirrábica válida para perros de 90 días o más (primovacunación al menos 21 días antes del embarque); lleva contigo el comprobante original"
+    pt: "Vacinação antirrábica válida para cachorros com 90 dias ou mais (primeira dose no mínimo 21 dias antes do embarque); leve o comprovante original com você"
+  - en: "Internal & external antiparasitic treatment within 15 days before the CVI (product, laboratory, active ingredient and date recorded)"
+    fr: "Traitement antiparasitaire interne & externe dans les 15 jours avant le CVI (produit, laboratoire, principe actif et date enregistrés)"
+    es: "Tratamiento antiparasitario interno y externo dentro de los 15 días previos al CVI (producto, laboratorio, principio activo y fecha registrados)"
+    pt: "Tratamento antiparasitário interno e externo nos 15 dias anteriores ao CVI (produto, laboratório, princípio ativo e data registrados)"
+  - en: "For a puppy under 90 days: CVI certification of age and no urban-rabies contact where it lived in the last 90 days"
+    fr: "Pour un chiot de moins de 90 jours : certification sur le CVI de l'âge et de l'absence de contact avec la rage urbaine là où il a vécu ces 90 derniers jours"
+    es: "Para un cachorro de menos de 90 días: certificación en el CVI de la edad y de la ausencia de contacto con la rabia urbana donde vivió en los últimos 90 días"
+    pt: "Para filhote com menos de 90 dias: atestado no CVI da idade e da ausência de contato com raiva urbana onde ele viveu nos últimos 90 dias"
+  - en: "Check the CVI/passport is used within 60 days of issue and the rabies vaccine is still valid on arrival"
+    fr: "Vérifie que le CVI/passeport est utilisé dans les 60 jours suivant l'émission et que le vaccin antirabique est encore valide à l'arrivée"
+    es: "Verifica que el CVI/pasaporte se use dentro de los 60 días siguientes a la emisión y que la vacuna antirrábica siga vigente a la llegada"
+    pt: "Confira que o CVI/passaporte seja usado dentro de 60 dias da emissão e que a vacina antirrábica ainda esteja válida na chegada"
+  - en: "A microchip is not required for entry but is strongly recommended (ISO 11784/11785) for identification and the return trip"
+    fr: "Une puce n'est pas requise pour l'entrée mais fortement recommandée (ISO 11784/11785) pour l'identification et le retour"
+    es: "Un microchip no es obligatorio para la entrada pero se recomienda encarecidamente (ISO 11784/11785) para la identificación y el viaje de regreso"
+    pt: "O microchip não é obrigatório para a entrada, mas é fortemente recomendado (ISO 11784/11785) para a identificação e para a viagem de volta"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold; for unaccompanied/cargo, contact SENACSA in advance"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute ; pour le fret/non accompagné, contacte le SENACSA à l'avance"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega; para carga/sin acompañante, contacta con el SENACSA por adelantado"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro e caixa de transporte adequada à IATA se a viagem for no porão; para carga desacompanhada, entre em contato com o SENACSA com antecedência"
+
+sources:
+  - label: { en: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)", fr: "SENACSA — Viajar con Mascotas (Ingreso/Egreso d'animaux de compagnie)", es: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)", pt: "SENACSA — Viajar con Mascotas (Ingreso/Egreso de Animales de Compañía)" }
+    url: "https://senacsa.gov.py/servicios/sanidad-animal-identidad-y-trazabilidad/cuarentena/viajar-con-mascotas/"
+  - label: { en: "Mercosur — Resolución GMC N° 20/2024 (zoosanitary requirements for entry of domestic dogs & cats; full resolution PDF)", fr: "Mercosur — Resolución GMC N° 20/2024 (exigences zoosanitaires pour l'entrée des chiens & chats domestiques ; PDF de la résolution)", es: "Mercosur — Resolución GMC N° 20/2024 (requisitos zoosanitarios para la entrada de perros y gatos domésticos; PDF de la resolución completa)", pt: "Mercosur — Resolución GMC N° 20/2024 (exigências zoossanitárias para a entrada de cães e gatos domésticos; PDF da resolução completa)" }
+    url: "https://normas.mercosur.int/simfiles/normativas/101833_RES_020-2024_ES_Caninos%20y%20Felinos%20Domesticos.pdf"
+  - label: { en: "SENACSA — Control de tránsito / Certificado Oficial de Tránsito de animales", fr: "SENACSA — Control de tránsito / Certificado Oficial de Tránsito de animales", es: "SENACSA — Control de tránsito / Certificado Oficial de Tránsito de animales", pt: "SENACSA — Control de tránsito / Certificado Oficial de Tránsito de animales" }
+    url: "https://senacsa.gov.py/servicios/sanidad-animal-identidad-y-trazabilidad/cuarentena/control-de-transito-de-animales/certificado-oficial-de-transito-de-animales/"
+  - label: { en: "SENACSA — Trámites (SENACSA Digital, CVI procedures)", fr: "SENACSA — Trámites (SENACSA Digital, démarches CVI)", es: "SENACSA — Trámites (SENACSA Digital, gestiones del CVI)", pt: "SENACSA — Trámites (SENACSA Digital, procedimentos do CVI)" }
+    url: "https://senacsa.gov.py/tramites/"
+  - label: { en: "Portal Paraguay (gov.py) — SENACSA: Ingreso y egreso de animales de compañía", fr: "Portal Paraguay (gov.py) — SENACSA : Ingreso y egreso d'animaux de compagnie", es: "Portal Paraguay (gov.py) — SENACSA: Ingreso y egreso de animales de compañía", pt: "Portal Paraguay (gov.py) — SENACSA: Ingreso y egreso de animales de compañía" }
+    url: "https://www.paraguay.gov.py/oee/senacsa/1536"
+
+seo:
+  title: { en: "Paraguay Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Paraguay — Guide", es: "Requisitos de entrada de perros en Paraguay — Guía de viaje", pt: "Paraguai: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Paraguay With Your Dog: Entry Requirements (2026)", fr: "Voyager au Paraguay avec ton chien : formalités (2026)", es: "Viajar a Paraguay con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Paraguai: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official SENACSA / Mercosur Res. GMC 20/2024 rules for bringing a dog into Paraguay: International Veterinary Certificate or endorsed passport. Sourced and dated."
+    fr: "Règles officielles SENACSA / Rés. Mercosur GMC 20/2024 pour faire entrer un chien au Paraguay : Certificat Vétérinaire International ou passeport refrendé."
+    es: "Normas oficiales del SENACSA / Res. Mercosur GMC 20/2024 para traer un perro a Paraguay: Certificado Veterinario Internacional o pasaporte refrendado."
+    pt: "Regras oficiais do SENACSA / Res. GMC 20/2024 do Mercosul para levar um cachorro ao Paraguai: Certificado Veterinário Internacional ou passaporte endossado."
+  slug: "paraguay"
+  shortDesc:
+    en: "What you need to bring a dog into Paraguay under SENACSA / Mercosur Res. GMC 20/2024: CVI or endorsed passport, rabies vaccination, antiparasitic treatment and a clinical exam."
+    fr: "Ce qu'il faut pour faire entrer un chien au Paraguay selon SENACSA / Rés. Mercosur GMC 20/2024 : CVI ou passeport refrendé, vaccination antirabique, traitement antiparasitaire et un examen clinique."
+    es: "Lo que necesitas para traer un perro a Paraguay según el SENACSA / Res. Mercosur GMC 20/2024: CVI o pasaporte refrendado, vacunación antirrábica, tratamiento antiparasitario y un examen clínico."
+    pt: "O que é preciso para levar um cachorro ao Paraguai segundo o SENACSA / Res. GMC 20/2024 do Mercosul: CVI ou passaporte endossado, vacinação antirrábica, tratamento antiparasitário e exame clínico."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

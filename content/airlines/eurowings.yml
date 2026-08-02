@@ -1,0 +1,286 @@
+id: airline_eurowings
+mono: EW
+name: Eurowings
+titleH1:
+  en: Flying with a dog on Eurowings
+  fr: Voyager avec un chien sur Eurowings
+  es: Volar con un perro en Eurowings
+  pt: "Voar com um cachorro na Eurowings"
+metaDesc:
+  en: "Eurowings pet policy: small cabin pets only, no hold or cargo, excluded routes and official sources."
+  fr: "Politique animaux Eurowings : petits animaux en cabine seulement, pas de soute ni fret, routes exclues et sources officielles."
+  es: "Política de mascotas de Eurowings: solo mascotas pequeñas en cabina, sin bodega ni carga, rutas excluidas y fuentes oficiales."
+  pt: "Política de animais da Eurowings: somente animais pequenos em cabine, sem porão nem carga, rotas excluídas e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Germany · CGN / DUS
+      fr: Allemagne · CGN / DUS
+      es: Alemania · CGN / DUS
+      pt: "Alemanha · CGN / DUS"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Only small cats & dogs in the cabin (≤ 8 kg) — no hold or cargo, and several excluded routes.
+  fr: Seulement petits chats et chiens en cabine (≤ 8 kg) — pas de soute ni fret, et plusieurs routes exclues.
+  es: Solo perros y gatos pequeños en cabina (≤ 8 kg); sin bodega ni carga, y varias rutas excluidas.
+  pt: "Somente gatos e cachorros pequenos na cabine (≤ 8 kg) — sem porão nem carga, e várias rotas excluídas."
+ladder:
+  - flex: 24
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 76
+    color: "#8a94a3"
+    label:
+      en: Hold / cargo
+      fr: Soute / fret
+      es: Bodega / carga
+      pt: "Porão / carga"
+    sub:
+      en: not carried
+      fr: non transporté
+      es: no se transporta
+      pt: "não transportado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small dogs & cats ≤ 8 kg (pet + bag) in a soft leak/bite-proof bag under the seat (max 55 × 40 × 23 cm); 2 per bag, min 12 weeks. Short/medium-haul only. Form at check-in.
+      fr: Petits chiens et chats ≤ 8 kg (animal + sac) dans un sac souple étanche/résistant sous le siège (max 55 × 40 × 23 cm) ; 2 par sac, min 12 semaines. Court/moyen-courrier seulement. Formulaire à l'enregistrement.
+      es: Perros y gatos pequeños ≤ 8 kg (mascota + bolso) en un bolso blando estanco y resistente a mordeduras bajo el asiento (máx. 55 × 40 × 23 cm); 2 por bolso, mín. 12 semanas. Solo corto/medio radio. Formulario en el check-in.
+      pt: "Cachorros e gatos pequenos ≤ 8 kg (animal + bolsa) em uma bolsa flexível, à prova de vazamento e de mordida, embaixo do assento (máx. 55 × 40 × 23 cm); 2 por bolsa, mín. 12 semanas. Somente curta/média distância. Formulário no check-in."
+    fee:
+      en: from €60
+      fr: dès 60 €
+      es: desde 60 €
+      pt: "a partir de 60 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: Eurowings transports pets only in the cabin — no checked-hold service.
+      fr: Eurowings ne transporte les animaux qu'en cabine — pas de service en soute.
+      es: Eurowings solo transporta mascotas en cabina; no hay servicio de bodega facturada.
+      pt: "A Eurowings transporta animais somente na cabine — sem serviço de porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: No pet cargo service.
+      fr: Aucun service fret animalier.
+      es: Sin servicio de carga para mascotas.
+      pt: "Sem serviço de carga para animais."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: from €60 / £53 / $69
+        fr: dès 60 € / 53 £ / 69 $
+        es: desde 60 € / 53 £ / 69 $
+        pt: "a partir de 60 € / 53 £ / US$ 69"
+    - label:
+        en: Hold / cargo
+        fr: Soute / fret
+        es: Bodega / carga
+        pt: "Porão / carga"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per route; the pet is cabin-only.
+    fr: EUR par route ; l'animal est en cabine uniquement.
+    es: EUR por ruta; la mascota va solo en cabina.
+    pt: "EUR por rota; o animal viaja somente na cabine."
+restrictions:
+  - icon: 🐾
+    title:
+      en: Cabin only, small pets
+      fr: Cabine seule, petits animaux
+      es: Solo cabina, mascotas pequeñas
+      pt: "Somente cabine, animais pequenos"
+    pills:
+      - cls: no
+        label:
+          en: No hold/cargo
+          fr: Pas de soute/fret
+          es: Sin bodega/carga
+          pt: "Sem porão/carga"
+      - cls: no
+        label:
+          en: Category 1 dogs banned
+          fr: Chiens catégorie 1 interdits
+          es: Perros de categoría 1 vetados
+          pt: "Cachorros de categoria 1 proibidos"
+    note:
+      en: Only small dogs and cats in the cabin — no hold or cargo. Category 1 fighting dogs (pit bulls, Staffordshire bull terriers) aren't accepted.
+      fr: Seuls les petits chiens et chats en cabine — pas de soute ni fret. Les chiens de combat de catégorie 1 (pit-bulls, Staffordshire bull terriers) ne sont pas acceptés.
+      es: Solo perros y gatos pequeños en cabina; sin bodega ni carga. Los perros de pelea de categoría 1 (pit bull, staffordshire bull terrier) no se aceptan.
+      pt: "Somente cachorros e gatos pequenos na cabine — sem porão nem carga. Cachorros de briga de categoria 1 (pit bulls, Staffordshire bull terriers) não são aceitos."
+  - icon: 🚫
+    title:
+      en: Excluded routes
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    pills:
+      - cls: no
+        label:
+          en: Dubai/Marsa Alam/UK/Ireland/Keflavik
+          fr: Dubaï/Marsa Alam/R.-U./Irlande/Keflavik
+          es: Dubái/Marsa Alam/R.U./Irlanda/Keflavik
+          pt: "Dubai/Marsa Alam/R.U./Irlanda/Keflavik"
+    note:
+      en: No pet carriage to/from Dubai, Marsa Alam, the UK, Ireland or Keflavik (assistance animals exempt). Sedation only after a vet consult.
+      fr: Aucun transport d'animal de/vers Dubaï, Marsa Alam, le R.-U., l'Irlande ou Keflavik (animaux d'assistance exemptés). Sédation uniquement après avis vétérinaire.
+      es: Sin transporte de mascotas hacia/desde Dubái, Marsa Alam, el R.U., Irlanda o Keflavik (los animales de asistencia quedan exentos). Sedación solo tras consulta veterinaria.
+      pt: "Sem transporte de animais de/para Dubai, Marsa Alam, o Reino Unido, a Irlanda ou Keflavik (animais de assistência isentos). Sedação somente após consulta veterinária."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Cabin-only program
+        fr: Programme cabine seule
+        es: Programa solo de cabina
+        pt: "Programa somente cabine"
+  note:
+    en: Eurowings carries pets in the cabin only, so no hold-temperature policy applies.
+    fr: "Eurowings ne transporte les animaux qu'en cabine : aucune règle de température de soute ne s'applique."
+    es: "Eurowings solo transporta mascotas en cabina: no se aplica ninguna norma de temperatura en bodega."
+    pt: "A Eurowings transporta animais somente na cabine, portanto nenhuma regra de temperatura de porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs travel free and are exempt from the route restrictions (special rules for UK/Ireland).
+      fr: Les chiens d'assistance voyagent gratuitement et sont exemptés des restrictions de routes (règles spéciales R.-U./Irlande).
+      es: Los perros de asistencia viajan gratis y quedan exentos de las restricciones de rutas (normas especiales para R.U./Irlanda).
+      pt: "Cães de assistência viajam de graça e ficam isentos das restrições de rota (regras especiais para Reino Unido/Irlanda)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Notify assistance needs at booking or ≥ 48 h before departure.
+      fr: Signaler les besoins d'assistance à la réservation ou ≥ 48 h avant le départ.
+      es: Avisa de las necesidades de asistencia al reservar o ≥ 48 h antes de la salida.
+      pt: "Avise sobre necessidades de assistência na reserva ou com ≥ 48 h de antecedência da partida."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cabin only
+      fr: Cabine uniquement
+      es: Solo cabina
+      pt: "Somente cabine"
+    value:
+      en: Only dogs and cats in the cabin — no hold transport at all.
+      fr: Seuls les chiens et chats en cabine — aucun transport en soute.
+      es: Solo perros y gatos en cabina; sin transporte en bodega en absoluto.
+      pt: "Somente cachorros e gatos na cabine — nenhum transporte em porão."
+  - icon: 🧳
+    label:
+      en: Two per bag
+      fr: Deux par sac
+      es: Dos por bolso
+      pt: "Dois por bolsa"
+    value:
+      en: Up to 2 animals per bag/person, total (incl. bag) ≤ 8 kg.
+      fr: Jusqu'à 2 animaux par sac/personne, total (avec le sac) ≤ 8 kg.
+      es: Hasta 2 animales por bolso/persona, total (con el bolso) ≤ 8 kg.
+      pt: "Até 2 animais por bolsa/pessoa, total (com a bolsa) ≤ 8 kg."
+  - icon: 🚫
+    label:
+      en: Excluded routes
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    value:
+      en: No pets to/from Dubai, Marsa Alam, the UK, Ireland or Keflavik.
+      fr: Pas d'animaux de/vers Dubaï, Marsa Alam, le R.-U., l'Irlande ou Keflavik.
+      es: Sin mascotas hacia/desde Dubái, Marsa Alam, el R.U., Irlanda o Keflavik.
+      pt: "Sem animais de/para Dubai, Marsa Alam, o Reino Unido, a Irlanda ou Keflavik."
+book:
+  host: eurowings.com
+  url: https://www.eurowings.com/
+sources:
+  en: 4 Eurowings sources · last verified 11 July 2026
+  fr: 4 sources Eurowings · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Eurowings · última verificación 11 de julio de 2026
+  pt: "4 fontes da Eurowings · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

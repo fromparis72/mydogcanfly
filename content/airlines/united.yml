@@ -1,0 +1,312 @@
+id: airline_united
+mono: UA
+name: United Airlines
+titleH1:
+  en: Flying with a dog on United Airlines
+  fr: Voyager avec un chien sur United Airlines
+  es: Volar con un perro en United Airlines
+  pt: "Viajar com um cachorro na United Airlines"
+metaDesc:
+  en: "United Airlines pet policy: cabin-only pets, discontinued checked baggage, military cargo, restrictions and official sources."
+  fr: "Politique animaux United Airlines : animaux en cabine seulement, soute abandonnée, fret militaire, restrictions et sources officielles."
+  es: "Política de mascotas de United Airlines: mascotas solo en cabina, equipaje facturado suspendido, carga militar, restricciones y fuentes oficiales."
+  pt: "Política de animais da United Airlines: animais somente na cabine, bagagem despachada encerrada, carga militar, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: United States · ORD
+      fr: États-Unis · ORD
+      es: Estados Unidos · ORD
+      pt: "Estados Unidos · ORD"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small cats & dogs in the cabin only ($150 each way) — checked baggage ended, cargo limited to military.
+  fr: Petits chats et chiens en cabine seulement (150 $ par trajet) — soute abandonnée, fret réservé aux militaires.
+  es: Gatos y perros pequeños solo en cabina (150 $ por trayecto); el equipaje facturado se suspendió y la carga se limita a militares.
+  pt: "Gatos e cachorros pequenos somente na cabine (US$ 150 por trajeto) — bagagem despachada encerrada, carga limitada a militares."
+ladder:
+  - flex: 22
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: under-seat
+      fr: sous le siège
+      es: bajo el asiento
+      pt: "sob o assento"
+  - flex: 40
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: ended
+      fr: abandonnée
+      es: suspendida
+      pt: "encerrado"
+  - flex: 38
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: military
+      fr: militaires
+      es: militares
+      pt: "militares"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs only, in a ventilated carrier under the seat; up to 2 (buy 2 seats). No weight limit but must fit the carrier.
+      fr: Chats et chiens uniquement, dans un sac ventilé sous le siège ; jusqu'à 2 (2 sièges). Pas de limite de poids mais doit tenir dans le sac.
+      es: Solo gatos y perros, en una jaula ventilada bajo el asiento; hasta 2 (compra 2 asientos). Sin límite de peso, pero deben caber en la jaula.
+      pt: "Somente gatos e cachorros, em uma bolsa ventilada sob o assento; até 2 (compre 2 assentos). Sem limite de peso, mas devem caber na bolsa."
+    fee:
+      en: $150 / way
+      fr: 150 $ / trajet
+      es: 150 $ / trayecto
+      pt: "US$ 150 / trajeto"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Ended
+      fr: Abandonnée
+      es: Suspendida
+      pt: "Encerrado"
+    detail:
+      en: United no longer checks pets as baggage.
+      fr: United n'accepte plus les animaux en bagage enregistré.
+      es: United ya no factura mascotas como equipaje.
+      pt: "A United não despacha mais animais como bagagem."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: PetSafe cargo
+      fr: Fret PetSafe
+      es: Carga PetSafe
+      pt: "Carga PetSafe"
+    cls: no
+    statusLabel:
+      en: Military only
+      fr: Militaires uniquement
+      es: Solo militares
+      pt: "Somente militares"
+    detail:
+      en: General PetSafe cargo is discontinued — cargo only for US military & State Dept on transfer.
+      fr: Le fret PetSafe grand public est arrêté — fret réservé au personnel militaire et diplomatique américain en mutation.
+      es: La carga PetSafe general se ha suspendido; la carga solo para militares y personal del Departamento de Estado de EE. UU. en traslado.
+      pt: "A carga PetSafe geral foi encerrada — carga somente para militares dos EUA e funcionários do Departamento de Estado em transferência."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin (small pet)
+        fr: Cabine (petit animal)
+        es: Cabina (mascota pequeña)
+        pt: "Cabine (animal pequeno)"
+      value:
+        en: $150 each way
+        fr: 150 $ / trajet
+        es: 150 $ por trayecto
+        pt: "US$ 150 por trajeto"
+    - label:
+        en: Checked baggage
+        fr: Bagage enregistré
+        es: Equipaje facturado
+        pt: "Bagagem despachada"
+      value:
+        en: Not offered
+        fr: Non proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: PetSafe cargo
+        fr: Fret PetSafe
+        es: Carga PetSafe
+        pt: "Carga PetSafe"
+      value:
+        en: Military only
+        fr: Militaires uniquement
+        es: Solo militares
+        pt: "Somente militares"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD, each way. The in-cabin pet is in addition to your carry-on.
+    fr: USD, par trajet. L'animal en cabine s'ajoute à ton bagage à main.
+    es: USD, por trayecto. La mascota en cabina se suma a tu equipaje de mano.
+    pt: "USD, por trajeto. O animal na cabine se soma à sua bagagem de mão."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Excluded destinations
+      fr: Destinations exclues
+      es: Destinos excluidos
+      pt: "Destinos excluídos"
+    pills:
+      - cls: no
+        label:
+          en: Many countries barred
+          fr: Nombreux pays interdits
+          es: Muchos países vetados
+          pt: "Muitos países vetados"
+    note:
+      en: Pets are prohibited to/from/through Australia, Brazil, Cuba, Hawaii, Hong Kong, Iceland, Ireland, New Zealand, South Africa, the UK, the UAE and more.
+      fr: Animaux interdits de/vers/via l'Australie, le Brésil, Cuba, Hawaï, Hong Kong, l'Islande, l'Irlande, la Nouvelle-Zélande, l'Afrique du Sud, le R.-U., les Émirats et d'autres.
+      es: Las mascotas están prohibidas desde/hacia/a través de Australia, Brasil, Cuba, Hawái, Hong Kong, Islandia, Irlanda, Nueva Zelanda, Sudáfrica, el Reino Unido, los Emiratos y más.
+      pt: "Animais são proibidos de/para/via Austrália, Brasil, Cuba, Havaí, Hong Kong, Islândia, Irlanda, Nova Zelândia, África do Sul, Reino Unido, Emirados Árabes Unidos e outros."
+  - icon: 🐾
+    title:
+      en: Emotional-support animals
+      fr: Soutien émotionnel
+      es: Animales de apoyo emocional
+      pt: "Animais de apoio emocional"
+    pills:
+      - cls: warn
+        label:
+          en: Treated as pets
+          fr: Traités comme animaux
+          es: Tratados como mascotas
+          pt: "Tratados como animais de estimação"
+    note:
+      en: Therapy and emotional-support cats & dogs must fly as pets (in a carrier), not as service animals.
+      fr: Les chats et chiens de thérapie ou de soutien émotionnel voyagent comme animaux (en sac), pas comme animaux d'assistance.
+      es: Los gatos y perros de terapia y de apoyo emocional deben viajar como mascotas (en una jaula), no como animales de servicio.
+      pt: "Gatos e cachorros de terapia ou de apoio emocional devem viajar como animais de estimação (em uma bolsa), não como animais de serviço."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Cabin-only program
+        fr: Programme cabine seule
+        es: Programa solo cabina
+        pt: "Programa somente cabine"
+  note:
+    en: United carries pets in the cabin only, so no hold-temperature policy applies. Checked-baggage and general cargo carriage have been discontinued for the public.
+    fr: "United ne transporte les animaux qu'en cabine : aucune règle de température de soute ne s'applique. Le bagage enregistré et le fret grand public ont été supprimés."
+    es: "United transporta mascotas solo en cabina, por lo que no se aplica ninguna norma de temperatura de bodega. El equipaje facturado y la carga general se han suspendido para el público."
+    pt: "A United transporta animais somente na cabine, portanto nenhuma norma de temperatura de porão se aplica. A bagagem despachada e o transporte geral de carga foram encerrados para o público."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Up to two task-trained service dogs fly free in the cabin (min 4 months domestic, 6 international).
+      fr: Jusqu'à deux chiens d'assistance dressés gratuits en cabine (min 4 mois en national, 6 en international).
+      es: Hasta dos perros de servicio adiestrados para tareas viajan gratis en cabina (mín. 4 meses en nacional, 6 en internacional).
+      pt: "Até dois cães de serviço treinados para tarefas viajam gratuitamente na cabine (mín. 4 meses em voos domésticos, 6 em internacionais)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: DOT training + behaviour attestation form; 8 h+ flights need the relief form. Submit in My Trips or call the accessibility desk.
+      fr: "Formulaire DOT d'attestation de dressage + comportement ; vols de 8 h+ : formulaire de soulagement. Via My Trips ou le service accessibilité."
+      es: "Formulario DOT de atestación de adiestramiento y comportamiento; los vuelos de más de 8 h requieren el formulario de alivio. Envíelo en My Trips o llame al servicio de accesibilidad."
+      pt: "Formulário de atestado de treinamento e comportamento do DOT; voos de 8 h ou mais exigem o formulário de alívio. Envie pelo My Trips ou ligue para o setor de acessibilidade."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Aircraft limits
+      fr: Limites avion
+      es: Límites por avión
+      pt: "Limites por aeronave"
+    value:
+      en: Some aircraft allow only one pet per person (A319/320/321neo, 737-800/8, 737-900/9); wide-bodies up to 6.
+      fr: Certains avions n'admettent qu'un animal par personne (A319/320/321neo, 737-800/8, 737-900/9) ; gros-porteurs jusqu'à 6.
+      es: Algunos aviones solo admiten una mascota por persona (A319/320/321neo, 737-800/8, 737-900/9); los de fuselaje ancho hasta 6.
+      pt: "Algumas aeronaves permitem apenas um animal por pessoa (A319/320/321neo, 737-800/8, 737-900/9); as de fuselagem larga, até 6."
+  - icon: 🐾
+    label:
+      en: Cabin-only
+      fr: Cabine seule
+      es: Solo cabina
+      pt: "Somente cabine"
+    value:
+      en: Pets travel in the cabin only — checked baggage ended and general cargo is suspended.
+      fr: Les animaux ne voyagent qu'en cabine — soute abandonnée et fret grand public suspendu.
+      es: Las mascotas viajan solo en cabina; el equipaje facturado se suspendió y la carga general está suspendida.
+      pt: "Os animais viajam somente na cabine — a bagagem despachada foi encerrada e a carga geral está suspensa."
+  - icon: 📄
+    label:
+      en: US entry
+      fr: Entrée aux USA
+      es: Entrada a EE. UU.
+      pt: "Entrada nos EUA"
+    value:
+      en: Dogs entering the US must meet updated CDC rabies rules (new import form).
+      fr: Les chiens entrant aux USA doivent respecter les nouvelles règles rage CDC (nouveau formulaire d'importation).
+      es: Los perros que entran a EE. UU. deben cumplir las nuevas normas de rabia de los CDC (nuevo formulario de importación).
+      pt: "Cachorros que entram nos EUA devem cumprir as novas normas de raiva do CDC (novo formulário de importação)."
+book:
+  host: united.com
+  url: https://www.united.com/
+sources:
+  en: 3 United sources · last verified 11 July 2026
+  fr: 3 sources United · dernière vérification 11 juillet 2026
+  es: 3 fuentes de United · última verificación 11 de julio de 2026
+  pt: "3 fontes da United · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

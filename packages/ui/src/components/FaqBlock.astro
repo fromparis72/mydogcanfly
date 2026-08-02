@@ -1,0 +1,39 @@
+---
+// Bloc FAQ partagé (compagnies, pays). Le JSON-LD FAQPage n'est PAS émis ici :
+// il est construit par la page appelante via faqJsonLd() et passé à Base, pour garantir
+// que le balisage ne décrit que des questions réellement visibles.
+import type { FaqItem } from "../lib/faq";
+interface Props { items: FaqItem[]; title: string; note?: string }
+const { items, title, note } = Astro.props;
+---
+{items.length > 0 && (
+  <section class="faqb" aria-labelledby="faqb-h">
+    <h2 class="faqb__h" id="faqb-h">{title}</h2>
+    <div class="faqb__list">
+      {items.map((f, i) => (
+        <details class="faqb__i" open={i === 0}>
+          <summary><h3 class="faqb__q">{f.q}</h3><span class="faqb__chev" aria-hidden="true">⌄</span></summary>
+          <p class="faqb__a">{f.a}</p>
+        </details>
+      ))}
+    </div>
+    {note && <p class="faqb__note">{note}</p>}
+  </section>
+)}
+
+<style>
+  .faqb { margin: 28px 0 0; }
+  .faqb__h { font-size: 18px; font-weight: 800; color: var(--mdcf-ink, #011d48); margin: 0 0 12px; }
+  .faqb__list { border-top: 1px solid var(--mdcf-line, #e6ebf1); }
+  .faqb__i { border-bottom: 1px solid var(--mdcf-line, #e6ebf1); }
+  .faqb__i > summary {
+    cursor: pointer; list-style: none; display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 14px; padding: 13px 0;
+  }
+  .faqb__i > summary::-webkit-details-marker { display: none; }
+  .faqb__q { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--mdcf-ink, #011d48); }
+  .faqb__chev { flex: 0 0 auto; font-size: 17px; line-height: 1; color: var(--mdcf-muted, #5b6b80); transition: transform .18s ease; }
+  .faqb__i[open] .faqb__chev { transform: rotate(180deg); }
+  .faqb__a { margin: 0 0 14px; font-size: 14.5px; line-height: 1.62; color: var(--mdcf-muted, #5b6b80); }
+  .faqb__note { margin: 12px 0 0; font-size: 12.5px; color: var(--mdcf-muted, #5b6b80); }
+</style>

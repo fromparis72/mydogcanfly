@@ -1,0 +1,326 @@
+id: airline_air_india
+mono: AI
+name: Air India
+titleH1:
+  en: Flying with a dog on Air India
+  fr: Voyager avec un chien sur Air India
+  es: Volar con un perro en Air India
+  pt: "Viajar com um cachorro na Air India"
+metaDesc:
+  en: "Air India pet policy: cabin, hold and cargo, fares, banned routes, brachycephalic and temperature limits and official sources."
+  fr: "Politique animaux Air India : cabine, soute et fret, tarifs, routes interdites, limites brachy et température, sources officielles."
+  es: "Política de mascotas de Air India: cabina, bodega y carga, tarifas, rutas prohibidas, límites braquicéfalos y de temperatura, y fuentes oficiales."
+  pt: "Política de animais da Air India: cabine, porão e carga, tarifas, rotas proibidas, limites para braquicefálicos e de temperatura, e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: India · DEL
+      fr: Inde · DEL
+      es: India · DEL
+      pt: "Índia · DEL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin, hold or cargo — but manual booking and many routes barred (US, UK, Australia…).
+  fr: Chats et chiens en cabine, soute ou fret — mais réservation manuelle et de nombreuses routes exclues (USA, R.-U., Australie…).
+  es: Gatos y perros en cabina, bodega o carga — pero reserva manual y muchas rutas vetadas (EE. UU., R.U., Australia…).
+  pt: "Gatos e cachorros na cabine, no porão ou na carga — mas com reserva manual e muitas rotas proibidas (EUA, Reino Unido, Austrália…)."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: "> 32 kg / UK"
+      fr: "> 32 kg / R.-U."
+      es: "> 32 kg / R.U."
+      pt: "> 32 kg / Reino Unido"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (8 weeks+) ≤ 10 kg incl. carrier in a soft kennel under the seat (last 5 rows, Economy); max 2/flight. Not to US/Canada/UK/Australia or India–UAE.
+      fr: Chats et chiens (8 semaines+) ≤ 10 kg avec le sac dans un sac souple sous le siège (5 derniers rangs, Économique) ; max 2/vol. Pas vers USA/Canada/R.-U./Australie ni Inde–ÉAU.
+      es: Gatos y perros (8 semanas+) ≤ 10 kg incluida la jaula en una jaula blanda bajo el asiento (últimas 5 filas, Economy); máx 2/vuelo. No hacia EE. UU./Canadá/R.U./Australia ni India–EAU.
+      pt: "Gatos e cachorros (8 semanas ou mais) ≤ 10 kg com a bolsa incluída, em uma bolsa flexível sob o assento (últimas 5 fileiras, Economy); máx. 2 por voo. Não disponível para EUA/Canadá/Reino Unido/Austrália ou Índia–EAU."
+    fee:
+      en: $140–225 / ₹7,500
+      fr: 140–225 $ / 7 500 ₹
+      es: 140–225 $ / 7 500 ₹
+      pt: "140–225 $ / 7.500 ₹"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Pets 10–32 kg incl. carrier as checked baggage in a hard IATA crate; availability depends on the aircraft.
+      fr: Animaux de 10–32 kg avec le sac en bagage enregistré dans une caisse IATA rigide ; disponibilité selon l'avion.
+      es: Mascotas de 10–32 kg incluida la jaula como equipaje facturado en una jaula rígida conforme a la IATA; la disponibilidad depende de la aeronave.
+      pt: "Animais de 10–32 kg com a caixa incluída, como bagagem despachada em uma caixa rígida IATA; a disponibilidade depende da aeronave."
+    fee:
+      en: $350 / ₹16,000
+      fr: 350 $ / 16 000 ₹
+      es: 350 $ / 16 000 ₹
+      pt: "350 $ / 16.000 ₹"
+  - icon: ✈️
+    name:
+      en: Air India Cargo
+      fr: Air India Cargo
+      es: Air India Cargo
+      pt: "Air India Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Over 32 kg and UK routes via Air India Cargo (airport-to-airport); not on ultra-long-haul US/Canada.
+      fr: Au-delà de 32 kg et routes R.-U. via Air India Cargo (aéroport à aéroport) ; pas sur les ultra-long-courriers USA/Canada.
+      es: Por encima de 32 kg y rutas al R.U. vía Air India Cargo (de aeropuerto a aeropuerto); no en los ultralargos EE. UU./Canadá.
+      pt: "Acima de 32 kg e rotas para o Reino Unido via Air India Cargo (de aeroporto a aeroporto); não disponível em voos ultra longos para EUA/Canadá."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — domestic
+        fr: Cabine — domestique
+        es: Cabina — nacional
+        pt: "Cabine — doméstico"
+      value:
+        en: ₹7,500
+        fr: 7 500 ₹
+        es: 7 500 ₹
+        pt: "7.500 ₹"
+    - label:
+        en: Cabin — international
+        fr: Cabine — international
+        es: Cabina — internacional
+        pt: "Cabine — internacional"
+      value:
+        en: $140–225 / sector
+        fr: 140–225 $ / tronçon
+        es: 140–225 $ / segmento
+        pt: "140–225 $ / trecho"
+    - label:
+        en: Hold — domestic
+        fr: Soute — domestique
+        es: Bodega — nacional
+        pt: "Porão — doméstico"
+      value:
+        en: ₹16,000
+        fr: 16 000 ₹
+        es: 16 000 ₹
+        pt: "16.000 ₹"
+    - label:
+        en: Hold — international
+        fr: Soute — international
+        es: Bodega — internacional
+        pt: "Porão — internacional"
+      value:
+        en: $350
+        fr: 350 $
+        es: 350 $
+        pt: "US$ 350"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD / INR per sector, non-refundable.
+    fr: USD / INR par tronçon, non remboursable.
+    es: USD / INR por segmento, no reembolsable.
+    pt: "USD / INR por trecho, não reembolsável."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Snub-nosed breeds aren't allowed in the hold (respiratory/temperature risk); in cargo they're accepted only below 25 °C. They may fly in the cabin, but a vet fitness consult is advised.
+      fr: Les races au nez écrasé ne sont pas admises en soute (risque respiratoire/température) ; en fret, elles ne sont acceptées qu'en dessous de 25 °C. Elles peuvent voyager en cabine, mais une consultation vétérinaire d'aptitude est conseillée.
+      es: Las razas de hocico chato no se admiten en la bodega (riesgo respiratorio/de temperatura); en carga solo se aceptan por debajo de 25 °C. Pueden volar en cabina, pero se aconseja una consulta veterinaria de aptitud.
+      pt: "As raças de focinho achatado não são permitidas no porão (risco respiratório/de temperatura); na carga, só são aceitas abaixo de 25 °C. Podem voar na cabine, mas é recomendável uma consulta veterinária de aptidão."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Only domesticated cats & dogs. Sedated, tranquillised or pregnant pets are refused. Unaccompanied minors, wheelchair users, or passengers with an infant can't carry a cabin pet.
+      fr: Uniquement chats et chiens domestiques. Les animaux sédatés, tranquillisés ou gestants sont refusés. Les mineurs non accompagnés, utilisateurs de fauteuil roulant ou passagers avec un bébé ne peuvent pas emmener un animal en cabine.
+      es: Solo gatos y perros domésticos. Las mascotas sedadas, tranquilizadas o gestantes son rechazadas. Los menores no acompañados, los usuarios de silla de ruedas o los pasajeros con un bebé no pueden llevar una mascota en cabina.
+      pt: "Somente gatos e cachorros domesticados. Animais sedados, tranquilizados ou prenhes são recusados. Menores desacompanhados, usuários de cadeira de rodas ou passageiros com bebê não podem levar um animal na cabine."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Cargo brachy only below 25 °C
+        fr: Fret brachy seulement sous 25 °C
+        es: Braquicéfalos en carga solo por debajo de 25 °C
+        pt: "Braquicefálicos na carga somente abaixo de 25 °C"
+    - cls: ok
+      label:
+        en: Well-ventilated, temp-controlled hold
+        fr: Soute ventilée, température contrôlée
+        es: Bodega bien ventilada con temperatura controlada
+        pt: "Porão bem ventilado e com temperatura controlada"
+  note:
+    en: In cargo, snub-nosed breeds are carried only when the temperature is below 25 °C. Air India Cargo maintains an optimal temperature range in a well-ventilated hold, with air-conditioned ramp transfers.
+    fr: En fret, les races au nez écrasé ne sont transportées que lorsque la température est inférieure à 25 °C. Air India Cargo maintient une plage de température optimale dans une soute bien ventilée, avec des transferts au sol climatisés.
+    es: En carga, las razas de hocico chato solo se transportan cuando la temperatura es inferior a 25 °C. Air India Cargo mantiene un rango de temperatura óptimo en una bodega bien ventilada, con traslados en pista climatizados.
+    pt: "Na carga, as raças de focinho achatado só são transportadas quando a temperatura está abaixo de 25 °C. A Air India Cargo mantém uma faixa de temperatura ideal em um porão bem ventilado, com transferências de pátio climatizadas."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs fly free in the cabin (at your feet, harnessed); emotional-support animals are treated as pets.
+      fr: Les chiens d'assistance dressés voyagent gratuitement en cabine (à tes pieds, en harnais) ; les animaux de soutien émotionnel sont traités comme des animaux.
+      es: Los perros de servicio adiestrados viajan gratis en cabina (a tus pies, con arnés); los animales de apoyo emocional se tratan como mascotas.
+      pt: "Cães de serviço treinados voam grátis na cabine (aos seus pés, com peitoral); animais de apoio emocional são tratados como animais de estimação comuns."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "US flights: DOT form (+ relief form over 8 h) up to 48 h ahead; a CDC dog-import suspension may apply."
+      fr: "Vols USA : formulaire DOT (+ formulaire de soulagement au-delà de 8 h) jusqu'à 48 h avant ; une suspension d'importation de chiens CDC peut s'appliquer."
+      es: "Vuelos a EE. UU.: formulario DOT (+ formulario de desahogo si supera las 8 h) hasta 48 h antes; puede aplicarse una suspensión de importación de perros del CDC."
+      pt: "Voos para os EUA: formulário do DOT (+ formulário de alívio acima de 8 h) com até 48 h de antecedência; pode se aplicar uma suspensão de importação de cachorros do CDC."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Route limits
+      fr: Routes limitées
+      es: Rutas limitadas
+      pt: "Limites de rota"
+    value:
+      en: Cabin pets aren't allowed to the US, Canada, Australia, the UK, on India–UAE flights, or ultra-long-haul flights.
+      fr: Les animaux en cabine ne sont pas admis vers les USA, le Canada, l'Australie, le R.-U., sur les vols Inde–ÉAU ni les ultra-long-courriers.
+      es: Las mascotas en cabina no se admiten hacia EE. UU., Canadá, Australia, el R.U., en vuelos India–EAU ni en vuelos ultralargos.
+      pt: "Animais na cabine não são permitidos para EUA, Canadá, Austrália, Reino Unido, em voos Índia–EAU, nem em voos ultra longos."
+  - icon: 📄
+    label:
+      en: Manual booking
+      fr: Réservation manuelle
+      es: Reserva manual
+      pt: "Reserva manual"
+    value:
+      en: Requests are raised via the customer-support portal (not online-automated), confirmed 48 h before travel.
+      fr: Les demandes se font via le portail d'assistance client (pas automatisé en ligne), confirmées 48 h avant le voyage.
+      es: Las solicitudes se tramitan a través del portal de atención al cliente (no automatizado en línea), y se confirman 48 h antes del viaje.
+      pt: "As solicitações são feitas pelo portal de atendimento ao cliente (não automatizado on-line), confirmadas 48 h antes da viagem."
+  - icon: 🐾
+    label:
+      en: India entry
+      fr: Entrée en Inde
+      es: Entrada a la India
+      pt: "Entrada na Índia"
+    value:
+      en: Pet import/export via Bangalore, Chennai, Delhi, Kolkata, Mumbai or Hyderabad with AQCS clearance; health certificate within 7 days.
+      fr: Import/export d'animaux via Bangalore, Chennai, Delhi, Calcutta, Mumbai ou Hyderabad avec autorisation AQCS ; certificat sanitaire de moins de 7 jours.
+      es: Importación/exportación de mascotas vía Bangalore, Chennai, Delhi, Calcuta, Bombay o Hyderabad con autorización AQCS; certificado sanitario de menos de 7 días.
+      pt: "Importação/exportação de animais via Bangalore, Chennai, Delhi, Calcutá, Mumbai ou Hyderabad, com liberação da AQCS; atestado de saúde válido em até 7 dias."
+book:
+  host: airindia.com
+  url: https://www.airindia.com/
+sources:
+  en: 3 Air India sources · last verified 11 July 2026
+  fr: 3 sources Air India · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Air India · última verificación 11 de julio de 2026
+  pt: "3 fontes da Air India · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,302 @@
+id: airline_china_eastern
+mono: MU
+name: China Eastern Airlines
+titleH1:
+  en: Flying with a dog on China Eastern
+  fr: Voyager avec un chien sur China Eastern
+  es: Viajar con perro en China Eastern
+  pt: "Voar com um cachorro na China Eastern"
+metaDesc:
+  en: "China Eastern pet policy: hold-only carriage, −12 °C to 30 °C limit, strict crate rules, breed limits and official sources."
+  fr: "Politique animaux China Eastern : transport en soute uniquement, limite −12 °C à 30 °C, caisse stricte, restrictions de races et sources officielles."
+  es: "Política de mascotas de China Eastern: transporte solo en bodega, límite de −12 °C a 30 °C, reglas estrictas de jaula, límites de raza y fuentes oficiales."
+  pt: "Política de animais da China Eastern: transporte somente no porão, limite de −12 °C a 30 °C, regras rígidas de caixa de transporte, limites de raça e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: China · PVG
+      fr: Chine · PVG
+      es: China · PVG
+      pt: "China · PVG"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets except service dogs; cats & dogs travel as checked baggage — with a −12 °C to 30 °C limit.
+  fr: Pas d'animaux en cabine sauf chiens d'assistance ; chats et chiens en bagage enregistré — avec une limite de −12 °C à 30 °C.
+  es: Sin mascotas en cabina salvo perros de servicio; gatos y perros viajan como equipaje facturado, con un límite de −12 °C a 30 °C.
+  pt: "Nenhum animal na cabine, exceto cães de assistência; gatos e cachorros viajam como bagagem despachada — com um limite de −12 °C a 30 °C."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 203 cm"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets can't enter the cabin — only trained service dogs. They must travel in the cargo hold.
+      fr: Les animaux ne peuvent pas entrer en cabine — seulement les chiens d'assistance dressés. Ils voyagent en soute.
+      es: Las mascotas no pueden entrar en cabina, solo los perros de servicio adiestrados. Deben viajar en la bodega de carga.
+      pt: "Animais não podem entrar na cabine — somente cães de assistência treinados. Eles precisam viajar no porão de carga."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs as checked baggage (≤ 32 kg incl. container, ≤ 203 cm) in an oxygen-equipped hold on non-stop MU/Shanghai Airlines flights. Approved application before ticketing.
+      fr: Chats et chiens en bagage enregistré (≤ 32 kg avec le contenant, ≤ 203 cm) dans une soute équipée d'oxygène sur vols directs MU/Shanghai Airlines. Demande approuvée avant l'achat du billet.
+      es: Gatos y perros como equipaje facturado (≤ 32 kg incl. contenedor, ≤ 203 cm) en una bodega con oxígeno en vuelos directos de MU/Shanghai Airlines. Solicitud aprobada antes de emitir el billete.
+      pt: "Gatos e cachorros como bagagem despachada (≤ 32 kg incl. recipiente, ≤ 203 cm) em um porão equipado com oxigênio em voos diretos da MU/Shanghai Airlines. Solicitação aprovada antes da emissão do bilhete."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via freight
+      fr: Via fret
+      es: Mediante flete
+      pt: "Via carga"
+    detail:
+      en: Carriers over 203 cm must ship via an independent freight transporter.
+      fr: Les caisses de plus de 203 cm doivent être expédiées via un transporteur de fret indépendant.
+      es: Las jaulas de más de 203 cm deben enviarse mediante un transportista de flete independiente.
+      pt: "Caixas de transporte acima de 203 cm precisam ser enviadas por um transportador de carga independente."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold (≤ 32 kg)
+        fr: Soute (≤ 32 kg)
+        es: Bodega (≤ 32 kg)
+        pt: "Porão (≤ 32 kg)"
+      value:
+        en: Excess-baggage rate (by weight)
+        fr: Tarif bagage excédentaire (au poids)
+        es: Tarifa de exceso de equipaje (por peso)
+        pt: "Tarifa de excesso de bagagem (por peso)"
+    - label:
+        en: Cargo (> 203 cm)
+        fr: Fret (> 203 cm)
+        es: Carga (> 203 cm)
+        pt: "Carga (> 203 cm)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Charged at the airport as excess baggage on combined weight; no flat rate published.
+    fr: Facturé à l'aéroport en bagage excédentaire sur le poids combiné ; pas de tarif fixe publié.
+    es: Se cobra en el aeropuerto como exceso de equipaje sobre el peso combinado; no se publica una tarifa fija.
+    pt: "Cobrado no aeroporto como excesso de bagagem sobre o peso combinado; nenhuma tarifa fixa é divulgada."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: "Flat-nosed dogs & cats are refused: bulldogs, pugs, boxers, Boston/Brussels/American Staffordshire terriers, Pekingese, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, Japanese Chin, mastiffs, pit bull types, Tosa, Dogo Argentino, and Persian/Himalayan/Exotic/British Shorthair/Burmese cats."
+      fr: "Chiens et chats au nez plat refusés : bouledogues, carlins, boxers, Boston/Brussels/American Staffordshire terriers, pékinois, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, Chin japonais, mastiffs, types pit-bull, Tosa, Dogo Argentino, et chats persans/himalayens/exotiques/British Shorthair/birmans."
+      es: "Los perros y gatos de hocico chato son rechazados: bulldogs, carlinos, bóxers, Boston/Brussels/American Staffordshire terriers, pequinés, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, Chin japonés, mastines, tipos pit bull, Tosa, Dogo Argentino, y gatos persas/himalayos/exóticos/British Shorthair/birmanos."
+      pt: "Cachorros e gatos de focinho achatado são recusados: buldogues, pugs, boxers, Boston/Brussels/American Staffordshire terriers, Pequinês, Shih Tzu, Lhasa Apso, Chow Chow, Shar Pei, Chin Japonês, mastins, tipos pit bull, Tosa, Dogo Argentino, e gatos Persa/Himalaia/Exótico/British Shorthair/Burmês."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: Strict crate
+          fr: Caisse stricte
+          es: Jaula estricta
+          pt: "Caixa rígida"
+      - cls: warn
+        label:
+          en: Min. 6 months
+          fr: 6 mois min.
+          es: Mín. 6 meses
+          pt: "Mín. 6 meses"
+    note:
+      en: "Also refused: pregnant/due-within-48 h, under-6-month, and heat/altitude-sensitive breeds. Strict crate rules (hard body, metal-locking door, cable ties, net — no wire/soft/foldable crates)."
+      fr: "Aussi refusés : gestants/à terme sous 48 h, moins de 6 mois, et races sensibles à la chaleur/altitude. Règles de caisse strictes (corps rigide, porte à verrou métallique, colliers de serrage, filet — pas de caisses grillagées/souples/pliables)."
+      es: "También se rechazan: hembras gestantes/con parto dentro de 48 h, menores de 6 meses y razas sensibles al calor/altitud. Reglas estrictas de jaula (cuerpo rígido, puerta con cierre metálico, bridas, red; sin jaulas de alambre/blandas/plegables)."
+      pt: "Também são recusados: fêmeas gestantes/com parto previsto em até 48 h, animais com menos de 6 meses, e raças sensíveis a calor/altitude. Regras rígidas de caixa de transporte (corpo rígido, porta com trava metálica, lacres, rede — sem caixas de arame/flexíveis/dobráveis)."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Refused ≤ −12 °C or ≥ 30 °C
+        fr: Refusé ≤ −12 °C ou ≥ 30 °C
+        es: Rechazado ≤ −12 °C o ≥ 30 °C
+        pt: "Recusado ≤ −12 °C ou ≥ 30 °C"
+    - cls: ok
+      label:
+        en: Oxygen-equipped hold
+        fr: Soute équipée d'oxygène
+        es: Bodega con oxígeno
+        pt: "Porão equipado com oxigênio"
+  note:
+    en: If the forecast at any waypoint is −12 °C or below, or 30 °C or above, carriage may be refused (refund/rebook offered). Pets travel only on aircraft with an oxygen-equipped hold; a drinker is required over 6 hours.
+    fr: Si les prévisions à un point du trajet sont de −12 °C ou moins, ou 30 °C ou plus, le transport peut être refusé (remboursement/report proposé). Les animaux voyagent uniquement sur avions à soute équipée d'oxygène ; un abreuvoir est requis au-delà de 6 heures.
+    es: Si el pronóstico en cualquier punto del trayecto es de −12 °C o menos, o de 30 °C o más, el transporte puede rechazarse (se ofrece reembolso/cambio). Las mascotas viajan solo en aviones con bodega equipada con oxígeno; se requiere un bebedero para más de 6 horas.
+    pt: "Se a previsão em qualquer ponto do trajeto for de −12 °C ou menos, ou de 30 °C ou mais, o transporte pode ser recusado (reembolso/remarcação oferecidos). Os animais viajam somente em aeronaves com porão equipado com oxigênio; um bebedouro é exigido acima de 6 horas."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: One service dog per passenger travels free in the cabin, muzzled and harnessed.
+      fr: Un chien d'assistance par passager voyage gratuitement en cabine, muselé et en harnais.
+      es: Un perro de servicio por pasajero viaja gratis en cabina, con bozal y arnés.
+      pt: "Um cão de assistência por passageiro viaja gratuitamente na cabine, com focinheira e peitoral."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Apply ≥ 24 h (48 h to/from the US) with the service-animal form, credentials, quarantine + rabies certificates. US: DOT forms (+ relief form over 8 h)."
+      fr: "Demander ≥ 24 h (48 h de/vers les USA) avec le formulaire d'animal d'assistance, justificatifs, certificats quarantaine + rage. USA : formulaires DOT (+ formulaire de soulagement au-delà de 8 h)."
+      es: "Solicítalo ≥ 24 h (48 h hacia/desde EE. UU.) con el formulario de animal de asistencia, credenciales, certificados de cuarentena + rabia. EE. UU.: formularios del DOT (+ formulario de alivio si supera 8 h)."
+      pt: "Solicite ≥ 24 h (48 h de/para os EUA) com o formulário de animal de assistência, credenciais, certificados de quarentena + raiva. EUA: formulários do DOT (+ formulário de alívio acima de 8 h)."
+goodToKnow:
+  - icon: 📄
+    label:
+      en: Approval before ticketing
+      fr: Accord avant l'achat
+      es: Aprobación antes de emitir el billete
+      pt: "Aprovação antes da emissão do bilhete"
+    value:
+      en: An approved application is required before you buy the ticket; submitting online isn't approval.
+      fr: Une demande approuvée est requise avant l'achat du billet ; la soumission en ligne ne vaut pas approbation.
+      es: Se requiere una solicitud aprobada antes de comprar el billete; enviarla en línea no equivale a la aprobación.
+      pt: "É exigida uma solicitação aprovada antes de comprar o bilhete; enviar o pedido on-line não equivale à aprovação."
+  - icon: ✈️
+    label:
+      en: Non-stop only
+      fr: Vols directs seuls
+      es: Solo vuelos directos
+      pt: "Somente voos diretos"
+    value:
+      en: Offered only on non-stop China Eastern / Shanghai Airlines flights.
+      fr: Proposé uniquement sur les vols directs China Eastern / Shanghai Airlines.
+      es: Se ofrece solo en vuelos directos de China Eastern / Shanghai Airlines.
+      pt: "Oferecido somente em voos diretos da China Eastern / Shanghai Airlines."
+  - icon: 📄
+    label:
+      en: China quarantine
+      fr: Quarantaine Chine
+      es: Cuarentena en China
+      pt: "Quarentena na China"
+    value:
+      en: Pets entering China face customs quarantine (up to 30 days).
+      fr: Les animaux entrant en Chine subissent une quarantaine douanière (jusqu'à 30 jours).
+      es: Las mascotas que entran a China se enfrentan a una cuarentena aduanera (hasta 30 días).
+      pt: "Animais que entram na China enfrentam quarentena alfandegária (até 30 dias)."
+book:
+  host: ceair.com
+  url: https://www.ceair.com/
+sources:
+  en: 2 China Eastern sources · last verified 11 July 2026
+  fr: 2 sources China Eastern · dernière vérification 11 juillet 2026
+  es: 2 fuentes de China Eastern · última verificación 11 julio 2026
+  pt: "2 fontes da China Eastern · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

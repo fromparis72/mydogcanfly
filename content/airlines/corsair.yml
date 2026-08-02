@@ -1,0 +1,316 @@
+id: airline_corsair
+mono: SS
+name: Corsair
+titleH1:
+  en: Flying with a dog on Corsair
+  fr: Voyager avec un chien sur Corsair
+  es: Viajar con perro en Corsair
+  pt: "Voar com um cachorro na Corsair"
+metaDesc:
+  en: "Corsair pet policy: cabin, hold and cargo, fares by zone, snub-nosed hold ban, Mauritius exclusion and official sources."
+  fr: "Politique animaux Corsair : cabine, soute et fret, tarifs par zone, interdiction soute brachy, exclusion Maurice et sources officielles."
+  es: "Política de mascotas de Corsair: cabina, bodega y carga, tarifas por zona, veto en bodega a razas de hocico chato, exclusión de Mauricio y fuentes oficiales."
+  pt: "Política de animais da Corsair: cabine, porão e carga, tarifas por zona, veto no porão a raças de focinho achatado, exclusão de Maurício e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: France · ORY
+      fr: France · ORY
+      es: Francia · ORY
+      pt: "França · ORY"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin or hold on Corsair routes — but breed rules and no pets to/from Mauritius.
+  fr: Chats et chiens en cabine ou en soute sur les lignes Corsair — mais règles de races et rien vers/depuis Maurice.
+  es: Gatos y perros en cabina o bodega en las rutas de Corsair, pero con reglas de raza y sin mascotas hacia/desde Mauricio.
+  pt: "Gatos e cachorros na cabine ou no porão nas rotas da Corsair — mas com regras de raça e nenhum animal de/para Maurício."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 50 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 50 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One pet ≤ 8 kg incl. carrier in a soft carrier under the seat; min 2 months, microchipped. Declare 72 h ahead. Not to/from Mauritius.
+      fr: Un animal ≤ 8 kg avec le sac dans un sac souple sous le siège ; min 2 mois, pucé. Déclarer 72 h à l'avance. Pas vers/depuis Maurice.
+      es: Una mascota ≤ 8 kg incl. jaula, en una jaula blanda bajo el asiento; mín. 2 meses, con microchip. Declárala 72 h antes. No hacia/desde Mauricio.
+      pt: "Um animal ≤ 8 kg incl. bolsa de transporte, em uma bolsa de transporte macia sob o assento; mín. 2 meses, com microchip. Declare com 72 h de antecedência. Não de/para Maurício."
+    fee:
+      en: €75–150
+      fr: 75–150 €
+      es: 75–150 €
+      pt: "75–150 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Over 8 kg, up to 50 kg incl. crate, in a rigid IATA crate (no wheels/metal). Min 2 months, microchipped. Not Paris–Mauritius.
+      fr: Au-delà de 8 kg, jusqu'à 50 kg avec la caisse, en caisse IATA rigide (sans roulettes/métal). Min 2 mois, pucé. Pas Paris–Maurice.
+      es: Más de 8 kg, hasta 50 kg incl. jaula, en una jaula IATA rígida (sin ruedas/metal). Mín. 2 meses, con microchip. No París–Mauricio.
+      pt: "Acima de 8 kg, até 50 kg incl. caixa de transporte, em uma caixa de transporte IATA rígida (sem rodas/metal). Mín. 2 meses, com microchip. Não em Paris–Maurício."
+    fee:
+      en: €150–300
+      fr: 150–300 €
+      es: 150–300 €
+      pt: "150–300 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Mediante carga
+      pt: "Via carga"
+    detail:
+      en: Over 50 kg total travels via cargo.
+      fr: Au-delà de 50 kg au total, transport via fret.
+      es: Por encima de 50 kg en total, se viaja mediante carga.
+      pt: "Acima de 50 kg no total, o transporte é mediante carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Paris–Antilles/Réunion/Mayotte
+        fr: Cabine — Paris–Antilles/Réunion/Mayotte
+        es: Cabina — París–Antillas/Reunión/Mayotte
+        pt: "Cabine — Paris–Antilhas/Reunião/Mayotte"
+      value:
+        en: €75
+        fr: 75 €
+        es: 75 €
+        pt: "75 €"
+    - label:
+        en: Cabin — Paris–Madagascar/Africa
+        fr: Cabine — Paris–Madagascar/Afrique
+        es: Cabina — París–Madagascar/África
+        pt: "Cabine — Paris–Madagascar/África"
+      value:
+        en: €150
+        fr: 150 €
+        es: 150 €
+        pt: "150 €"
+    - label:
+        en: Hold — Paris–Antilles/Réunion
+        fr: Soute — Paris–Antilles/Réunion
+        es: Bodega — París–Antillas/Reunión
+        pt: "Porão — Paris–Antilhas/Reunião"
+      value:
+        en: €150
+        fr: 150 €
+        es: 150 €
+        pt: "150 €"
+    - label:
+        en: Hold — Paris–Madagascar/Abidjan
+        fr: Soute — Paris–Madagascar/Abidjan
+        es: Bodega — París–Madagascar/Abiyán
+        pt: "Porão — Paris–Madagascar/Abidjan"
+      value:
+        en: €300
+        fr: 300 €
+        es: 300 €
+        pt: "300 €"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per trip. A compliant cabin bag can be bought on-site (€50) at Orly, Pointe-à-Pitre or Fort-de-France.
+    fr: EUR par trajet. Un sac cabine conforme peut être acheté sur place (50 €) à Orly, Pointe-à-Pitre ou Fort-de-France.
+    es: EUR por trayecto. Se puede comprar una jaula de cabina conforme in situ (50 €) en Orly, Pointe-à-Pitre o Fort-de-France.
+    pt: "EUR por trajeto. Uma bolsa de cabine conforme pode ser comprada no local (50 €) em Orly, Pointe-à-Pitre ou Fort-de-France."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidas
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Snub-nosed dogs & cats aren't allowed in the hold or cargo (respiratory risk) — cabin only if within limits: boxers, bulldogs, pugs, Cane Corso, chow chow, mastiffs, Shih Tzu, Shar Pei, Staffordshire, American Bully, and Burmese/Exotic/Himalayan/Persian cats."
+      fr: "Chiens et chats au nez écrasé interdits en soute et en fret (risque respiratoire) — cabine uniquement dans les limites : boxers, bouledogues, carlins, Cane Corso, chow chow, mastiffs, Shih Tzu, Shar Pei, Staffordshire, American Bully, et chats birmans/exotiques/himalayens/persans."
+      es: "Los perros y gatos de hocico chato no se admiten en bodega ni en carga (riesgo respiratorio): solo cabina si están dentro de los límites: bóxers, bulldogs, carlinos, Cane Corso, chow chow, mastines, Shih Tzu, Shar Pei, Staffordshire, American Bully, y gatos birmanos/exóticos/himalayos/persas."
+      pt: "Cachorros e gatos de focinho achatado não são permitidos no porão nem na carga (risco respiratório) — somente na cabine, se dentro dos limites: boxers, buldogues, pugs, Cane Corso, Chow Chow, mastins, Shih Tzu, Shar Pei, Staffordshire, American Bully, e gatos Burmês/Exótico/Himalaia/Persa."
+  - icon: 🚫
+    title:
+      en: French categories 1 & 2
+      fr: Catégories françaises 1 & 2
+      es: Categorías francesas 1 y 2
+      pt: "Categorias francesas 1 e 2"
+    pills:
+      - cls: no
+        label:
+          en: Category 1 refused
+          fr: Catégorie 1 refusée
+          es: Categoría 1 rechazada
+          pt: "Categoria 1 recusada"
+      - cls: warn
+        label:
+          en: Category 2 conditions
+          fr: Catégorie 2 sous conditions
+          es: Categoría 2 con condiciones
+          pt: "Condições da categoria 2"
+    note:
+      en: French category 1 dogs (non-LOF pit-bull/Boerbull/Tosa, mastiffs) aren't accepted. Category 2 (LOF) dogs need proof of breed, liability insurance and a permit — cabin only if under 8 kg. Sedation isn't advised.
+      fr: Les chiens de catégorie 1 (pit-bull/Boerbull/Tosa non-LOF, mastiffs) ne sont pas acceptés. Les chiens de catégorie 2 (LOF) nécessitent un justificatif de race, une assurance responsabilité civile et un permis — cabine uniquement si moins de 8 kg. Sédation déconseillée.
+      es: "Los perros de categoría 1 francesa (pit bull/Boerbull/Tosa sin LOF, mastines) no se aceptan. Los perros de categoría 2 (LOF) necesitan justificante de raza, seguro de responsabilidad civil y un permiso: solo cabina si pesan menos de 8 kg. No se aconseja la sedación."
+      pt: "Cachorros de categoria 1 francesa (pit bull/Boerbull/Tosa sem LOF, mastins) não são aceitos. Cachorros de categoria 2 (LOF) precisam de comprovante de raça, seguro de responsabilidade civil e uma autorização — somente na cabine se pesarem menos de 8 kg. Sedação não é recomendada."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Corsair publishes no hold-temperature limits or seasonal embargo on its pet page.
+    fr: Corsair ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux.
+    es: Corsair no publica límites de temperatura de la bodega ni embargos estacionales en su página de mascotas.
+    pt: "A Corsair não divulga limites de temperatura do porão nem embargo sazonal em sua página de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide dogs for the visually impaired travel free in the cabin, leashed throughout.
+      fr: Les chiens guides pour déficients visuels voyagent gratuitement en cabine, en laisse tout le vol.
+      es: Los perros guía para personas con discapacidad visual viajan gratis en cabina, con correa durante todo el vuelo.
+      pt: "Cães-guia para pessoas com deficiência visual viajam gratuitamente na cabine, presos com guia durante todo o voo."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Book ≥ 48 h ahead + a live-animal form. Health certificate (within 5 days) at check-in; rabies certificate except FDF/PTP/Mayotte/Réunion.
+      fr: Réserver ≥ 48 h à l'avance + un formulaire animal vivant. Certificat sanitaire (moins de 5 jours) à l'enregistrement ; certificat de rage sauf FDF/PTP/Mayotte/Réunion.
+      es: Reserva ≥ 48 h antes + un formulario de animal vivo. Certificado sanitario (de menos de 5 días) en la facturación; certificado de rabia salvo FDF/PTP/Mayotte/Reunión.
+      pt: "Reserve ≥ 48 h antes + um formulário de animal vivo. Atestado de saúde (emitido em até 5 dias) no check-in; certificado de raiva, exceto para FDF/PTP/Mayotte/Reunião."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets to Mauritius
+      fr: Pas d'animaux vers Maurice
+      es: Sin mascotas a Mauricio
+      pt: "Nenhum animal para Maurício"
+    value:
+      en: Pet transport is prohibited to/from Mauritius (cabin, and Paris–Mauritius in the hold).
+      fr: Le transport d'animaux est interdit vers/depuis Maurice (cabine, et Paris–Maurice en soute).
+      es: El transporte de mascotas está prohibido hacia/desde Mauricio (cabina, y París–Mauricio en bodega).
+      pt: "O transporte de animais é proibido de/para Maurício (cabine, e Paris–Maurício no porão)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: A health certificate (within 5 days) is required at check-in; rabies except for the French Caribbean, Mayotte and Réunion.
+      fr: Un certificat sanitaire (moins de 5 jours) est requis à l'enregistrement ; rage sauf pour les Antilles françaises, Mayotte et Réunion.
+      es: Se exige un certificado sanitario (de menos de 5 días) en la facturación; rabia salvo para las Antillas francesas, Mayotte y Reunión.
+      pt: "É exigido um atestado de saúde (emitido em até 5 dias) no check-in; raiva, exceto para o Caribe francês, Mayotte e Reunião."
+  - icon: 🐾
+    label:
+      en: St Barth Executive
+      fr: St Barth Executive
+      es: St Barth Executive
+      pt: "St Barth Executive"
+    value:
+      en: On St Barth Executive flights, pets under 7 kg fly free in the cabin; 7–12 kg in an IATA crate at a checked-baggage fare.
+      fr: Sur les vols St Barth Executive, les animaux de moins de 7 kg volent gratuitement en cabine ; 7–12 kg en caisse IATA au tarif bagage enregistré.
+      es: En los vuelos de St Barth Executive, las mascotas de menos de 7 kg vuelan gratis en cabina; de 7 a 12 kg en una jaula IATA a tarifa de equipaje facturado.
+      pt: "Em voos St Barth Executive, animais com menos de 7 kg voam gratuitamente na cabine; de 7 a 12 kg em uma caixa de transporte IATA, na tarifa de bagagem despachada."
+book:
+  host: corsair.fr
+  url: https://www.corsair.fr/
+sources:
+  en: 2 Corsair sources · last verified 11 July 2026
+  fr: 2 sources Corsair · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Corsair · última verificación 11 julio 2026
+  pt: "2 fontes da Corsair · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

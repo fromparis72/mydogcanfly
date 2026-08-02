@@ -1,0 +1,115 @@
+---
+type: airline_guide
+entity_id: airline_malaysia_airlines
+slug: malaysia-airlines
+locale: en
+title: "Flying with a Dog on Malaysia Airlines"
+description: "Complete guide to travelling with your dog on Malaysia Airlines: cabin, hold, cargo, booking advice, import rules and the MyDogCanFly rating."
+status: draft
+author: mydogcanfly
+last_reviewed: 2026-07-10
+sources:
+  - id: src1
+    url: https://www.malaysiaairlines.com
+    publisher: Malaysia Airlines
+---
+# Flying with a Dog on Malaysia Airlines
+## Overview
+Malaysia Airlines is the flag carrier of Malaysia and a oneworld member. From its main hub at Kuala Lumpur (KUL), it connects Malaysia with Southeast Asia, Asia, the Middle East and Oceania.
+Malaysia Airlines carries companion dogs in the aircraft's climate-controlled hold, or as cargo for larger animals; only recognised assistance dogs are accepted in the passenger cabin.
+A successful journey depends on three things: the airline's transport policy, the destination country's veterinary requirements, and the operational limits of your specific route. MyDogCanFly checks all three before recommending an itinerary.
+---
+# At a glance
+| Category | Information |
+|----------|-------------|
+| ⭐ MyDogCanFly Score | {{fait: airline_malaysia_airlines \| rating_score}} / 5 |
+| 📊 Score | {{fait: airline_malaysia_airlines \| rating_points}} / 100 |
+| 🧭 Travel Difficulty | {{fait: airline_malaysia_airlines \| travel_difficulty}} |
+| ✈️ Alliance | {{fait: airline_malaysia_airlines \| alliance}} |
+| 🌍 Network | {{fait: airline_malaysia_airlines \| network_coverage}} |
+| 💰 Price Level | {{fait: airline_malaysia_airlines \| price_level}} |
+| 🏠 Main Hub | {{fait: airline_malaysia_airlines \| main_hub}} |
+| ✈️ Cabin | {{fait: airline_malaysia_airlines \| cabin_summary}} |
+| 🧳 Hold | {{fait: airline_malaysia_airlines \| hold_summary}} |
+| 📦 Cargo | {{fait: airline_malaysia_airlines \| cargo_summary}} |
+| 🦮 Assistance Dogs | {{fait: airline_malaysia_airlines \| assistance_summary}} |
+| ⚠️ Breed Restrictions | {{fait: airline_malaysia_airlines \| breed_summary}} |
+| 👍 Best suited for | {{fait: airline_malaysia_airlines \| recommended_for}} |
+| 👎 Main limitations | {{fait: airline_malaysia_airlines \| drawbacks}} |
+---
+# Why MyDogCanFly gives Malaysia Airlines {{fait: airline_malaysia_airlines | rating_score}}/5
+## Strengths
+- {{fait: airline_malaysia_airlines | strength_1}}
+- {{fait: airline_malaysia_airlines | strength_2}}
+- {{fait: airline_malaysia_airlines | strength_3}}
+## Limitations
+- {{fait: airline_malaysia_airlines | limitation_1}}
+- {{fait: airline_malaysia_airlines | limitation_2}}
+- {{fait: airline_malaysia_airlines | limitation_3}}
+---
+# Is Malaysia Airlines a good choice?
+Yes, provided your destination accepts pet imports and your itinerary meets the airline's operational requirements. Malaysia Airlines is especially relevant for journeys involving Southeast Asia, Asia, the Middle East and Oceania. As always, confirm both airline approval and the destination country's veterinary rules before booking.
+---
+# Cabin, Hold or Cargo
+## Cabin
+{{fait: airline_malaysia_airlines | cabin_policy}}
+---
+## Hold
+{{fait: airline_malaysia_airlines | hold_policy}}
+Dogs travelling in the hold must be booked in advance and carried in an IATA-compliant kennel.
+---
+## Cargo
+{{fait: airline_malaysia_airlines | cargo_policy}}
+---
+## Assistance Dogs
+{{fait: airline_malaysia_airlines | assistance_policy}}
+---
+# Travel Difficulty
+{{fait: airline_malaysia_airlines | travel_difficulty}}
+{{fait: airline_malaysia_airlines | travel_difficulty_explanation}}
+---
+# Before Booking
+Before purchasing your ticket:
+- verify the destination country's import requirements;
+- confirm that pets are accepted on your specific route;
+- reserve your dog's transport as early as possible;
+- prepare all veterinary documentation;
+- ensure your kennel complies with IATA Live Animals Regulations.
+---
+# Common Mistakes
+## Booking too late
+Pet capacity is limited on every flight.
+---
+## Underestimating destination requirements
+Import rules can be far stricter than those of your departure country.
+---
+## Using a non-compliant kennel
+Only IATA-approved kennels are accepted.
+---
+## Forgetting transit-country rules
+Some itineraries cross countries with their own animal import or transit rules.
+---
+# Expert Advice
+Malaysia Airlines can be a reliable choice for journeys involving Southeast Asia, Asia, the Middle East and Oceania, but administrative preparation matters more than the flight itself. Confirm airline approval, destination requirements and veterinary documents before booking non-refundable arrangements.
+---
+# FAQ
+### Can my dog travel in the cabin?
+{{fait: airline_malaysia_airlines | cabin_policy}}
+### Can large dogs travel?
+{{fait: airline_malaysia_airlines | hold_policy}}
+### Is cargo transport sometimes required?
+{{fait: airline_malaysia_airlines | cargo_policy}}
+### Should I reserve early?
+Yes. Advance approval is strongly recommended because pet capacity is limited.
+### Do destination-country regulations still apply?
+Always. Airline approval never replaces veterinary, customs or governmental import requirements.
+---
+# Related guides
+- Malaysia
+- Kuala Lumpur (KUL)
+- IATA Crate Guide
+- Flight Finder
+---
+# Sources
+[src1] Malaysia Airlines — official pet travel information.
+https://www.malaysiaairlines.com

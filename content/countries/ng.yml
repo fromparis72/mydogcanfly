@@ -1,0 +1,367 @@
+# Country Entry Guide — Nigeria (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ng
+iso2: "NG"
+name: { en: "Nigeria", fr: "Nigéria", es: "Nigeria", pt: "Nigéria" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: NAQS
+  authorityUrl: https://naqs.gov.ng/
+  intro:
+    en: "Nigeria is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Nigeria Agricultural Quarantine Service (NAQS)."
+    fr: "Le Nigeria est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Nigeria Agricultural Quarantine Service (NAQS)."
+    es: "Nigeria no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Nigeria Agricultural Quarantine Service (NAQS)."
+    pt: "A Nigéria é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Nigeria Agricultural Quarantine Service (NAQS)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "NAQS Animal Quarantine performs the export health inspection and certifies the veterinary health certificate, with the Chief Veterinary Officer issuing the export permit."
+        fr: "La quarantaine animale de la NAQS réalise l'inspection sanitaire d'export et certifie le certificat sanitaire vétérinaire, le vétérinaire en chef délivrant le permis d'export."
+        es: "La cuarentena animal de NAQS realiza la inspección sanitaria de exportación y certifica el certificado sanitario veterinario, con el Jefe de Veterinaria emitiendo el permiso de exportación."
+        pt: "A NAQS Animal Quarantine realiza a inspeção sanitária de exportação e certifica o atestado de saúde veterinário, com o Chief Veterinary Officer emitindo a autorização de exportação."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Nigeria with your dog", fr: "Voyager au Nigéria avec ton chien", es: "Viajar a Nigeria con tu perro", pt: "Viajar para a Nigéria com seu cachorro" }
+  intro:
+    en: >-
+      Nigeria admits pet dogs, but entry is controlled by its own veterinary authorities — the Nigeria
+      Agricultural Quarantine Service (NAQS) and the Federal Department of Livestock and Pest Control
+      Services, both under the Federal Ministry of Agriculture and Food Security. No dog should be
+      shipped without an import permit obtained in advance from the Nigerian authorities. Every dog
+      must be microchipped, carry a valid rabies vaccination and travel with an official international
+      veterinary health certificate endorsed by the exporting country's government vet. On arrival,
+      NAQS veterinary officers inspect the dog and its documents at the point of entry. Nigeria is a
+      rabies-endemic country and applies its own national scheme rather than the EU framework, so the
+      exact steps depend on where your dog is coming from. This guide explains what to prepare before
+      you book your flight.
+    fr: >-
+      Le Nigéria admet les chiens de compagnie, mais l'entrée est contrôlée par ses propres autorités
+      vétérinaires — la Nigeria Agricultural Quarantine Service (NAQS) et le Federal Department of
+      Livestock and Pest Control Services, tous deux rattachés au ministère fédéral de l'Agriculture et
+      de la Sécurité alimentaire. Aucun chien ne doit être expédié sans un permis d'importation obtenu
+      à l'avance auprès des autorités nigérianes. Chaque chien doit être identifié par puce, disposer
+      d'une vaccination antirabique valide et voyager avec un certificat vétérinaire international
+      officiel visé par le vétérinaire gouvernemental du pays d'export. À l'arrivée, les agents
+      vétérinaires de la NAQS inspectent le chien et ses documents au point d'entrée. Le Nigéria est un
+      pays d'endémie rabique et applique son propre schéma national plutôt que le cadre européen ; les
+      étapes exactes dépendent donc du pays d'où vient ton chien. Ce guide détaille quoi préparer
+      avant de réserver ton vol.
+    es: >-
+      Nigeria admite perros de compañía, pero la entrada está controlada por sus propias autoridades
+      veterinarias — el Nigeria Agricultural Quarantine Service (NAQS) y el Federal Department of
+      Livestock and Pest Control Services, ambos dependientes del Federal Ministry of Agriculture and
+      Food Security. Ningún perro debe enviarse sin un permiso de importación obtenido con antelación
+      ante las autoridades nigerianas. Todo perro debe llevar microchip, disponer de una vacunación
+      antirrábica válida y viajar con un certificado sanitario veterinario internacional oficial
+      refrendado por el veterinario gubernamental del país exportador. A la llegada, los agentes
+      veterinarios del NAQS inspeccionan al perro y sus documentos en el punto de entrada. Nigeria es un
+      país con rabia endémica y aplica su propio esquema nacional en lugar del marco europeo, por lo que
+      los pasos exactos dependen del país del que provenga tu perro. Esta guía explica qué preparar
+      antes de reservar tu vuelo.
+
+    pt: "A Nigéria admite cachorros de estimação, mas a entrada é controlada por suas próprias autoridades veterinárias — a Nigeria Agricultural Quarantine Service (NAQS) e o Federal Department of Livestock and Pest Control Services, ambos sob o Federal Ministry of Agriculture and Food Security. Nenhum cachorro deve ser embarcado sem uma autorização de importação obtida com antecedência junto às autoridades nigerianas. Todo cachorro deve ter microchip, portar uma vacinação antirrábica válida e viajar com um atestado de saúde veterinário internacional oficial endossado pelo veterinário do governo do país de exportação. Na chegada, os agentes veterinários da NAQS inspecionam o cachorro e seus documentos no ponto de entrada. A Nigéria tem raiva endêmica e aplica seu próprio esquema nacional em vez do quadro da UE, portanto as etapas exatas dependem de onde seu cachorro está vindo. Este guia explica o que preparar antes de você reservar seu voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance import permit + endorsed certificate", fr: "Modérée — permis d'importation préalable + certificat visé", es: "Moderada — permiso de importación previo + certificado refrendado", pt: "Moderada — autorização de importação prévia + certificado endossado" }
+
+prepTime:
+  eu:
+    en: "From Europe: allow ~4–6 weeks — the advance import permit is the pacing step, plus a rabies vaccination and a health certificate valid for 30 days."
+    fr: "Depuis l'Europe : prévoir ~4 à 6 semaines — le permis d'importation préalable est l'étape déterminante, plus une vaccination antirabique et un certificat sanitaire valable 30 jours."
+    es: "Desde Europa: prevé ~4–6 semanas — el permiso de importación previo es el paso que marca el ritmo, más una vacunación antirrábica y un certificado sanitario válido 30 días."
+    pt: "Da Europa: reserve ~4 a 6 semanas — a autorização de importação prévia é a etapa que determina o ritmo, além de uma vacinação antirrábica e um atestado de saúde válido por 30 dias."
+  listed:
+    en: "From a rabies-controlled country (US, Canada, Gulf states…): ~4–6 weeks, driven by the import permit and the endorsed health certificate."
+    fr: "Depuis un pays à rage maîtrisée (USA, Canada, pays du Golfe…) : ~4 à 6 semaines, selon le permis et le certificat sanitaire visé."
+    es: "Desde un país con rabia controlada (EE. UU., Canadá, países del Golfo…): ~4–6 semanas, según el permiso de importación y el certificado sanitario refrendado."
+    pt: "De um país com raiva controlada (EUA, Canadá, países do Golfo…): ~4 a 6 semanas, conforme a autorização de importação e o atestado de saúde endossado."
+  nonListed:
+    en: "From a high-rabies-risk country: similar base steps, but expect closer scrutiny at the airport; dogs from an area quarantined for rabies may be refused."
+    fr: "Depuis un pays à haut risque rabique : mêmes étapes de base, mais contrôle renforcé à l'aéroport ; un chien venant d'une zone en quarantaine rabique peut être refusé."
+    es: "Desde un país con alto riesgo de rabia: pasos básicos similares, pero espera un control más estricto en el aeropuerto; los perros procedentes de una zona en cuarentena por rabia pueden ser rechazados."
+    pt: "De um país de alto risco de raiva: etapas básicas semelhantes, mas espere um controle mais rigoroso no aeroporto; cachorros vindos de uma área em quarentena por raiva podem ser recusados."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed)", fr: "Requis (visé)", es: "Obligatorio (refrendado)", pt: "Obrigatório (endossado)" }
+    cls: warn
+  - requirement: { en: "Arrival inspection", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    status: { en: "Required (NAQS)", fr: "Requise (NAQS)", es: "Obligatoria (NAQS)", pt: "Obrigatória (NAQS)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not routine", fr: "Pas systématique", es: "No sistemática", pt: "Não sistemática" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and NAQS / the Federal Department of Livestock and Pest Control Services set the exact conditions on your import permit."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et la NAQS / le Federal Department of Livestock and Pest Control Services fixent les conditions exactes sur ton permis d'importation."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y el NAQS / el Federal Department of Livestock and Pest Control Services fijan las condiciones exactas en tu permiso de importación."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro, e a NAQS / o Federal Department of Livestock and Pest Control Services definem as condições exatas da sua autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Nigeria (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Nigéria (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Nigeria (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Nigéria (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Nigeria", fr: "Pays de destination — Nigéria", es: "País de destino — Nigeria", pt: "País de destino — Nigéria" }
+      text:
+        en: "Nigeria always requires an advance import permit from its veterinary authorities, a microchip, a valid rabies vaccination and an official international veterinary health certificate, and every dog is inspected by NAQS on arrival. No rabies antibody test is required on the official certificate."
+        fr: "Le Nigéria exige toujours un permis d'importation préalable de ses autorités vétérinaires, une puce, une vaccination antirabique valide et un certificat vétérinaire international officiel, et chaque chien est inspecté par la NAQS à l'arrivée. Aucun titrage antirabique n'est exigé sur le certificat officiel."
+        es: "Nigeria exige siempre un permiso de importación previo de sus autoridades veterinarias, un microchip, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial, y cada perro es inspeccionado por el NAQS a la llegada. No se exige ninguna prueba de titulación de rabia en el certificado oficial."
+        pt: "A Nigéria sempre exige uma autorização de importação prévia de suas autoridades veterinárias, um microchip, uma vacinação antirrábica válida e um atestado de saúde veterinário internacional oficial, e todo cachorro é inspecionado pela NAQS na chegada. Nenhum teste sorológico antirrábico é exigido no certificado oficial."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health certificate must confirm your dog comes from an area not quarantined for rabies and has not been exposed to rabies. The disease situation of your departure country shapes what the official vet must certify and how closely the dog is checked."
+        fr: "Le certificat sanitaire doit confirmer que ton chien provient d'une zone non placée en quarantaine rabique et n'a pas été exposé à la rage. La situation sanitaire du pays de départ détermine ce que le vétérinaire officiel doit certifier et l'intensité du contrôle."
+        es: "El certificado sanitario debe confirmar que tu perro procede de una zona no puesta en cuarentena por rabia y que no ha estado expuesto a la rabia. La situación sanitaria de tu país de salida determina lo que el veterinario oficial debe certificar y con qué rigor se controla al perro."
+        pt: "O atestado de saúde deve confirmar que seu cachorro vem de uma área não colocada em quarentena por raiva e que não foi exposto à raiva. A situação sanitária do seu país de partida determina o que o veterinário oficial deve certificar e o rigor do controle do cachorro."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-quarantined or high-risk area can trigger extra scrutiny at the airport. It is your dog's real origin and history that count — not only the last airport it flew from."
+        fr: "Un séjour récent dans une zone en quarantaine rabique ou à haut risque peut entraîner un contrôle renforcé à l'aéroport. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement le dernier aéroport de départ."
+        es: "Una estancia reciente en una zona en cuarentena por rabia o de alto riesgo puede provocar un control adicional en el aeropuerto. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto del que salió."
+        pt: "Uma estadia recente em uma área em quarentena por raiva ou de alto risco pode gerar um controle adicional no aeroporto. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto de onde ele partiu."
+  note:
+    en: "So read the requirements below as Nigeria's framework, then confirm your dog's exact origin and history with your vet — the import permit lists the precise conditions."
+    fr: "Lis donc les exigences ci-dessous comme le cadre nigérian, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis d'importation liste les conditions précises."
+    es: "Así que lee los requisitos siguientes como el marco de Nigeria y luego confirma el origen y el historial exactos de tu perro con tu veterinario — el permiso de importación detalla las condiciones precisas."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral da Nigéria, e depois confirme a origem exata e o histórico do seu cachorro com seu veterinário — a autorização de importação lista as condições precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply in advance to the Director, Federal Department of Livestock and Pest Control Services (Federal Ministry of Agriculture and Food Security), Area 11 Garki, Abuja, before the dog is shipped. NAQS verifies the permit at the point of entry.", fr: "À demander à l'avance au Director, Federal Department of Livestock and Pest Control Services (ministère fédéral de l'Agriculture et de la Sécurité alimentaire), Area 11 Garki, Abuja, avant l'expédition du chien. La NAQS vérifie le permis au point d'entrée.", es: "Solicítalo con antelación al Director, Federal Department of Livestock and Pest Control Services (Federal Ministry of Agriculture and Food Security), Area 11 Garki, Abuja, antes de enviar al perro. El NAQS verifica el permiso en el punto de entrada.", pt: "Solicite com antecedência ao Director, Federal Department of Livestock and Pest Control Services (Federal Ministry of Agriculture and Food Security), Area 11 Garki, Abuja, antes do embarque do cachorro. A NAQS verifica a autorização no ponto de entrada." }
+    exceptions: { en: "No exceptions — dogs without a valid import permit may be refused, seized or quarantined by NAQS. Exact fees and processing time: Unknown (not officially published).", fr: "Aucune exception — un chien sans permis valide peut être refusé, saisi ou mis en quarantaine par la NAQS. Frais exacts et délai de traitement : non communiqués (non publiés officiellement).", es: "Sin excepciones — los perros sin un permiso de importación válido pueden ser rechazados, incautados o puestos en cuarentena por el NAQS. Tasas exactas y plazo de tramitación: se desconoce (no publicado oficialmente).", pt: "Sem exceções — cachorros sem uma autorização de importação válida podem ser recusados, apreendidos ou colocados em quarentena pela NAQS. Taxas exatas e prazo de processamento: não comunicados (não publicados oficialmente)." }
+    ref: { en: "NAQS — Animal Quarantine; Federal Department of Livestock and Pest Control Services", fr: "NAQS — Animal Quarantine ; Federal Department of Livestock and Pest Control Services", es: "NAQS — Animal Quarantine; Federal Department of Livestock and Pest Control Services", pt: "NAQS — Animal Quarantine; Federal Department of Livestock and Pest Control Services" }
+  - item: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "All dogs must be microchipped; the microchip number must appear on the health certificate and be verified by the certifying vet. An internationally readable ISO 11784/11785 chip is advisable.", fr: "Tous les chiens doivent être identifiés par puce ; le numéro doit figurer sur le certificat sanitaire et être vérifié par le vétérinaire certificateur. Une puce ISO 11784/11785 lisible à l'international est conseillée.", es: "Todos los perros deben llevar microchip; el número del microchip debe figurar en el certificado sanitario y ser verificado por el veterinario certificador. Es aconsejable un microchip ISO 11784/11785 legible internacionalmente.", pt: "Todos os cachorros devem ter microchip; o número do microchip deve constar no atestado de saúde e ser verificado pelo veterinário certificador. Um microchip ISO 11784/11785 legível internacionalmente é recomendável." }
+    exceptions: { en: "The official veterinary health certificate requires a microchip but does not itself specify the ISO standard.", fr: "Le certificat vétérinaire officiel exige une puce mais ne précise pas lui-même la norme ISO.", es: "El certificado sanitario veterinario oficial exige un microchip, pero no especifica en sí la norma ISO.", pt: "O atestado de saúde veterinário oficial exige um microchip, mas não especifica a norma ISO." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Nigeria (box 21 / note)", fr: "Certificat vétérinaire pour l'export de chiens vers le Nigéria (case 21 / note)", es: "Certificado sanitario veterinario para la exportación de perros a Nigeria (casilla 21 / nota)", pt: "Atestado de saúde veterinário para exportação de cachorros para a Nigéria (campo 21 / nota)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Vaccinated against rabies within one year of the date of departure, with an inactivated rabies vaccine, and still valid on arrival. Nigeria is rabies-endemic, so a current vaccination is essential.", fr: "Vacciné contre la rage dans l'année précédant la date de départ, avec un vaccin antirabique inactivé, et encore valable à l'arrivée. Le Nigéria étant en endémie rabique, une vaccination à jour est essentielle.", es: "Vacunado contra la rabia en el año anterior a la fecha de salida, con una vacuna antirrábica inactivada, y todavía válida a la llegada. Nigeria tiene rabia endémica, por lo que una vacunación al día es esencial.", pt: "Vacinado contra a raiva dentro de um ano da data de partida, com uma vacina antirrábica inativada, e ainda válida na chegada. A Nigéria tem raiva endêmica, portanto uma vacinação em dia é essencial." }
+    exceptions: { en: "The minimum interval between vaccination and travel is not specified on the official certificate: Unknown. Confirm the exact timing with your vet.", fr: "Le délai minimum entre la vaccination et le voyage n'est pas précisé sur le certificat officiel : non communiqué. Confirme le calendrier exact avec ton vétérinaire.", es: "El intervalo mínimo entre la vacunación y el viaje no se especifica en el certificado oficial: se desconoce. Confirma el calendario exacto con tu veterinario.", pt: "O intervalo mínimo entre a vacinação e a viagem não é especificado no certificado oficial: não comunicado. Confirme o prazo exato com seu veterinário." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Nigeria (rabies statement)", fr: "Certificat vétérinaire pour l'export de chiens vers le Nigéria (attestation rage)", es: "Certificado sanitario veterinario para la exportación de perros a Nigeria (declaración de rabia)", pt: "Atestado de saúde veterinário para exportação de cachorros para a Nigéria (declaração sobre raiva)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "A rabies antibody test is not a mandatory statement on the official Nigerian veterinary health certificate (it appears only as an optional test field).", fr: "Le titrage antirabique n'est pas une mention obligatoire du certificat vétérinaire officiel nigérian (il n'apparaît que comme champ de test facultatif).", es: "La prueba de titulación de rabia no es una declaración obligatoria en el certificado sanitario veterinario oficial nigeriano (solo aparece como campo de prueba opcional).", pt: "Um teste sorológico antirrábico não é uma declaração obrigatória no atestado de saúde veterinário oficial nigeriano (aparece apenas como campo de teste opcional)." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Nigeria (optional tests section)", fr: "Certificat vétérinaire pour l'export de chiens vers le Nigéria (section tests facultatifs)", es: "Certificado sanitario veterinario para la exportación de perros a Nigeria (sección de pruebas opcionales)", pt: "Atestado de saúde veterinário para exportação de cachorros para a Nigéria (seção de testes opcionais)" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "International veterinary health certificate completed by a licensed vet and endorsed by the official (government) veterinary authority of the exporting country. It certifies the dog is free of infectious/contagious disease including rabies, and comes from an area not quarantined for rabies.", fr: "Certificat vétérinaire international établi par un vétérinaire agréé et visé par l'autorité vétérinaire officielle (gouvernementale) du pays d'export. Il atteste que le chien est indemne de maladie infectieuse/contagieuse dont la rage et provient d'une zone non placée en quarantaine rabique.", es: "Certificado sanitario veterinario internacional cumplimentado por un veterinario colegiado y refrendado por la autoridad veterinaria oficial (gubernamental) del país exportador. Certifica que el perro está libre de enfermedades infecciosas/contagiosas, incluida la rabia, y que procede de una zona no puesta en cuarentena por rabia.", pt: "Atestado de saúde veterinário internacional preenchido por um veterinário licenciado e endossado pela autoridade veterinária oficial (governamental) do país de exportação. Ele certifica que o cachorro está livre de doença infecciosa/contagiosa, incluindo raiva, e vem de uma área não colocada em quarentena por raiva." }
+    exceptions: { en: "The certificate is valid for 30 days after issuance and must still be valid on arrival; NAQS authenticates it at the point of entry.", fr: "Le certificat est valable 30 jours après émission et doit être encore valide à l'arrivée ; la NAQS l'authentifie au point d'entrée.", es: "El certificado es válido durante 30 días tras su emisión y debe seguir siendo válido a la llegada; el NAQS lo autentica en el punto de entrada.", pt: "O certificado é válido por 30 dias após a emissão e deve continuar válido na chegada; a NAQS o autentica no ponto de entrada." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Nigeria (validity + certification)", fr: "Certificat vétérinaire pour l'export de chiens vers le Nigéria (validité + certification)", es: "Certificado sanitario veterinario para la exportación de perros a Nigeria (valide + certificación)", pt: "Atestado de saúde veterinário para exportação de cachorros para a Nigéria (validade + certificação)" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Not mandatory", fr: "Non obligatoire", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "Not a mandatory item on the official Nigerian health certificate; internal/external parasite treatment may be recorded in the optional section and is good practice before travel.", fr: "Pas une exigence obligatoire du certificat sanitaire officiel nigérian ; un traitement antiparasitaire interne/externe peut être consigné dans la section facultative et reste une bonne pratique avant le voyage.", es: "No es un requisito obligatorio del certificado sanitario oficial nigeriano; el tratamiento antiparasitario interno/externo puede registrarse en la sección opcional y es una buena práctica antes del viaje.", pt: "Não é um item obrigatório no atestado de saúde oficial nigeriano; o tratamento antiparasitário interno/externo pode ser registrado na seção opcional e é uma boa prática antes da viagem." }
+    exceptions: { en: "No specific tapeworm or tick treatment is mandated in the published requirements: Unknown for individual permit conditions.", fr: "Aucun traitement spécifique contre le ténia ou les tiques n'est imposé dans les exigences publiées : non communiqué pour les conditions individuelles du permis.", es: "No se impone ningún tratamiento específico contra la tenia o las garrapatas en los requisitos publicados: se desconoce para las condiciones individuales del permiso.", pt: "Nenhum tratamento específico contra tênia ou carrapatos é exigido nas exigências publicadas: não comunicado para as condições individuais da autorização." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Nigeria (optional treatments section)", fr: "Certificat vétérinaire pour l'export de chiens vers le Nigéria (section traitements facultatifs)", es: "Certificado sanitario veterinario para la exportación de perros a Nigeria (sección de tratamientos opcionales)", pt: "Atestado de saúde veterinário para exportação de cachorros para a Nigéria (seção de tratamentos opcionais)" }
+  - item: { en: "Advance notification", fr: "Notification préalable", es: "Notificación previa", pt: "Aviso prévio" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The import permit obtained in advance is the authorisation to import. On arrival, declare the animal to NAQS for inspection and certification, presenting the full set of accompanying documents.", fr: "Le permis d'importation obtenu à l'avance constitue l'autorisation d'importer. À l'arrivée, déclare l'animal à la NAQS pour inspection et certification, en présentant l'ensemble des documents d'accompagnement.", es: "El permiso de importación obtenido con antelación constituye la autorización para importar. A la llegada, declara el animal ante el NAQS para su inspección y certificación, presentando el conjunto completo de documentos que lo acompañan.", pt: "A autorização de importação obtida com antecedência constitui a autorização para importar. Na chegada, declare o animal à NAQS para inspeção e certificação, apresentando o conjunto completo de documentos que o acompanham." }
+    exceptions: { en: "Allow ample time to obtain the permit before travel; NAQS advises applicants to plan well ahead.", fr: "Prévois un délai suffisant pour obtenir le permis avant le voyage ; la NAQS conseille d'anticiper largement.", es: "Deja tiempo de sobra para obtener el permiso antes del viaje; el NAQS aconseja a los solicitantes planificar con mucha antelación.", pt: "Reserve tempo suficiente para obter a autorização antes da viagem; a NAQS recomenda que os solicitantes planejem com bastante antecedência." }
+    ref: { en: "NAQS — Animal Quarantine (declaration and verification at point of entry)", fr: "NAQS — Animal Quarantine (déclaration et vérification au point d'entrée)", es: "NAQS — Animal Quarantine (declaración y verificación en el punto de entrada)", pt: "NAQS — Animal Quarantine (declaração e verificação no ponto de entrada)" }
+  - item: { en: "Arrival veterinary inspection", fr: "Inspection vétérinaire à l'arrivée", es: "Inspección veterinaria a la llegada", pt: "Inspeção veterinária na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "NAQS veterinary officers inspect every arriving dog at the point of entry, verify the import permit and international veterinary certificate, and check the health status of the animal.", fr: "Les agents vétérinaires de la NAQS inspectent chaque chien à l'arrivée au point d'entrée, vérifient le permis d'importation et le certificat vétérinaire international, et contrôlent l'état sanitaire de l'animal.", es: "Los agentes veterinarios del NAQS inspeccionan a cada perro que llega en el punto de entrada, verifican el permiso de importación y el certificado veterinario internacional, y comprueban el estado sanitario del animal.", pt: "Os agentes veterinários da NAQS inspecionam todo cachorro que chega no ponto de entrada, verificam a autorização de importação e o certificado veterinário internacional, e checam o estado de saúde do animal." }
+    exceptions: { en: "If a dog is suspected of carrying a contagious disease or is found to have been illegally imported, NAQS may intercept, seize, quarantine or destroy it.", fr: "Si un chien est suspecté de porter une maladie contagieuse ou s'avère importé illégalement, la NAQS peut l'intercepter, le saisir, le mettre en quarantaine ou le détruire.", es: "Si se sospecha que un perro es portador de una enfermedad contagiosa o se descubre que ha sido importado ilegalmente, el NAQS puede interceptarlo, incautarlo, ponerlo en cuarentena o sacrificarlo.", pt: "Se houver suspeita de que um cachorro carrega uma doença contagiosa, ou se for constatado que ele foi importado ilegalmente, a NAQS pode interceptá-lo, apreendê-lo, colocá-lo em quarentena ou, no pior caso, destruí-lo." }
+    ref: { en: "NAQS — Animal Quarantine (surveillance and inspection at points of entry)", fr: "NAQS — Animal Quarantine (surveillance et inspection aux points d'entrée)", es: "NAQS — Animal Quarantine (vigilancia e inspección en los puntos de entrada)", pt: "NAQS — Animal Quarantine (vigilância e inspeção nos pontos de entrada)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routine", fr: "Pas systématique", es: "No sistemática", pt: "Não sistemática" }
+    when: { en: "No automatic quarantine when the permit and documents are in order and the dog is healthy on inspection.", fr: "Pas de quarantaine automatique si le permis et les documents sont en règle et le chien sain à l'inspection.", es: "Sin cuarentena automática cuando el permiso y los documentos están en regla y el perro está sano en la inspección.", pt: "Não há quarentena automática quando a autorização e os documentos estão em ordem e o cachorro está saudável na inspeção." }
+    exceptions: { en: "NAQS may quarantine an animal for 2–3 weeks where a contagious disease is suspected or the import is irregular.", fr: "La NAQS peut mettre un animal en quarantaine 2 à 3 semaines en cas de suspicion de maladie contagieuse ou d'importation irrégulière.", es: "El NAQS puede poner un animal en cuarentena durante 2–3 semanas cuando se sospecha una enfermedad contagiosa o la importación es irregular.", pt: "A NAQS pode colocar um animal em quarentena por 2 a 3 semanas quando há suspeita de doença contagiosa ou a importação é irregular." }
+    ref: { en: "NAQS — Animal Quarantine (interception / quarantine 2–3 weeks)", fr: "NAQS — Animal Quarantine (interception / quarantaine 2 à 3 semaines)", es: "NAQS — Animal Quarantine (interceptación / cuarentena 2–3 semanas)", pt: "NAQS — Animal Quarantine (interceptação / quarentena de 2 a 3 semanas)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Se desconoce", pt: "Não comunicado" }
+    when: { en: "A dog needs a valid rabies vaccination to enter, which in practice sets a minimum age, but Nigeria's published requirements do not state an explicit minimum travelling age.", fr: "Un chien a besoin d'une vaccination antirabique valide pour entrer, ce qui fixe en pratique un âge minimum, mais les exigences publiées du Nigéria n'indiquent pas d'âge minimum de voyage explicite.", es: "Un perro necesita una vacunación antirrábica válida para entrar, lo que en la práctica fija una edad mínima, pero los requisitos publicados de Nigeria no indican una edad mínima de viaje explícita.", pt: "Um cachorro precisa de uma vacinação antirrábica válida para entrar, o que na prática fixa uma idade mínima, mas as exigências publicadas da Nigéria não indicam uma idade mínima de viagem explícita." }
+    exceptions: { en: "Exact minimum age is not officially published: Unknown. Confirm with your vet and the Nigerian authorities before booking.", fr: "L'âge minimum exact n'est pas publié officiellement : non communiqué. À confirmer avec ton vétérinaire et les autorités nigérianes avant de réserver.", es: "La edad mínima exacta no se publica oficialmente: se desconoce. Confirma con tu veterinario y las autoridades nigerianas antes de reservar.", pt: "A idade mínima exata não é publicada oficialmente: não comunicada. Confirme com seu veterinário e com as autoridades nigerianas antes de reservar." }
+    ref: { en: "No explicit minimum age in the published Nigerian requirements", fr: "Aucun âge minimum explicite dans les exigences publiées du Nigéria", es: "Sin edad mínima explícita en los requisitos publicados de Nigeria", pt: "Nenhuma idade mínima explícita nas exigências publicadas da Nigéria" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Nigeria: the EU passport is not a Nigerian document. A dog from Europe still needs an advance import permit from the Nigerian veterinary authorities, a microchip, a valid rabies vaccination and an official international veterinary health certificate endorsed by the government vet before departure. No rabies antibody test is required on the certificate."
+      fr: "Aucun raccourci « passeport européen » pour entrer au Nigéria : le passeport UE n'est pas un document nigérian. Un chien venant d'Europe a tout de même besoin d'un permis d'importation préalable des autorités vétérinaires nigérianes, d'une puce, d'une vaccination antirabique valide et d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental avant le départ. Aucun titrage antirabique n'est exigé sur le certificat."
+      es: "No hay ningún atajo de pasaporte europeo para mascotas para entrar en Nigeria: el pasaporte de la UE no es un documento nigeriano. Un perro procedente de Europa necesita igualmente un permiso de importación previo de las autoridades veterinarias nigerianas, un microchip, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial refrendado por el veterinario gubernamental antes de la salida. No se exige ninguna prueba de titulación de rabia en el certificado."
+      pt: "Não existe atalho de passaporte europeu para entrar na Nigéria: o passaporte da UE não é um documento nigeriano. Um cachorro vindo da Europa também precisa de uma autorização de importação prévia das autoridades veterinárias nigerianas, de um microchip, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial endossado pelo veterinário do governo antes da partida. Nenhum teste sorológico antirrábico é exigido no certificado."
+    cls: warn
+  listed:
+    title: { en: "From a rabies-controlled country", fr: "Depuis un pays à rage maîtrisée", es: "Desde un país con rabia controlada", pt: "De um país com raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the same core scheme applies: advance import permit, microchip, valid rabies vaccination and an endorsed international health certificate valid for 30 days. No blood test, and normally no quarantine on arrival if the dog is healthy and the documents are in order."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), le même schéma de base s'applique : permis d'importation préalable, puce, vaccination antirabique valide et certificat sanitaire international visé, valable 30 jours. Pas de prise de sang, et normalement pas de quarantaine à l'arrivée si le chien est sain et les documents en règle."
+      es: "Desde países con una situación de rabia controlada (Estados Unidos, Canadá, países del Golfo, la mayor parte de Europa y otros), se aplica el mismo esquema básico: permiso de importación previo, microchip, vacunación antirrábica válida y un certificado sanitario internacional refrendado válido durante 30 días. Sin análisis de sangre y, normalmente, sin cuarentena a la llegada si el perro está sano y los documentos están en regla."
+      pt: "Para países com situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se o mesmo esquema básico: autorização de importação prévia, microchip, vacinação antirrábica válida e um atestado de saúde internacional endossado válido por 30 dias. Sem exame de sangue, e normalmente sem quarentena na chegada se o cachorro estiver saudável e os documentos em ordem."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país con alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "Nigeria does not add a mandatory antibody test even for high-risk origins, but the health certificate must confirm the dog comes from an area not quarantined for rabies and has not been exposed to rabies. Dogs from a rabies-quarantined zone may be refused or held for examination. Expect closer scrutiny at the airport and keep original documents ready."
+      fr: "Le Nigéria n'ajoute pas de titrage obligatoire, même pour les origines à haut risque, mais le certificat sanitaire doit confirmer que le chien provient d'une zone non placée en quarantaine rabique et n'a pas été exposé à la rage. Un chien venant d'une zone en quarantaine rabique peut être refusé ou retenu pour examen. Attends-toi à un contrôle renforcé à l'aéroport et garde les documents originaux prêts."
+      es: "Nigeria no añade una prueba de titulación obligatoria ni siquiera para orígenes de alto riesgo, pero el certificado sanitario debe confirmar que el perro procede de una zona no puesta en cuarentena por rabia y que no ha estado expuesto a la rabia. Los perros procedentes de una zona en cuarentena por rabia pueden ser rechazados o retenidos para examen. Espera un control más estricto en el aeropuerto y ten preparados los documentos originales."
+      pt: "A Nigéria não acrescenta um teste sorológico obrigatório mesmo para origens de alto risco, mas o atestado de saúde deve confirmar que o cachorro vem de uma área não colocada em quarentena por raiva e que não foi exposto à raiva. Cachorros vindos de uma zona em quarentena por raiva podem ser recusados ou retidos para exame. Espere um controle mais rigoroso no aeroporto e mantenha os documentos originais prontos."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Nigeria, NAQS veterinary officers handle the check at the point of entry."
+    fr: "À l'arrivée de ton chien au Nigéria, les agents vétérinaires de la NAQS effectuent le contrôle au point d'entrée."
+    es: "Cuando tu perro llega a Nigeria, los agentes veterinarios del NAQS realizan el control en el punto de entrada."
+    pt: "Quando seu cachorro chegar à Nigéria, os agentes veterinários da NAQS realizam o controle no ponto de entrada."
+  points:
+    - en: "Declare the animal to NAQS on arrival and present the full document set — the import permit, the endorsed international veterinary health certificate and the rabies vaccination record."
+      fr: "Déclare l'animal à la NAQS à l'arrivée et présente l'ensemble des documents — le permis d'importation, le certificat vétérinaire international visé et le justificatif de vaccination antirabique."
+      es: "Declara el animal ante el NAQS a la llegada y presenta el conjunto completo de documentos — el permiso de importación, el certificado sanitario veterinario internacional refrendado y el registro de vacunación antirrábica."
+      pt: "Declare o animal à NAQS na chegada e apresente o conjunto completo de documentos — a autorização de importação, o atestado de saúde veterinário internacional endossado e o registro da vacinação antirrábica."
+    - en: "NAQS officers verify the documents against the animal and check its health status before clearing it."
+      fr: "Les agents de la NAQS vérifient la concordance des documents avec l'animal et contrôlent son état sanitaire avant de le libérer."
+      es: "Los agentes del NAQS cotejan los documentos con el animal y comprueban su estado sanitario antes de darle salida."
+      pt: "Os agentes da NAQS verificam a correspondência dos documentos com o animal e checam seu estado de saúde antes de liberá-lo."
+    - en: "Carry original documents, not copies, and keep a set with you throughout the journey; the health certificate must still be within its 30-day validity on arrival."
+      fr: "Munis-toi des documents originaux, pas de copies, et garde-en un jeu sur toi durant tout le trajet ; le certificat sanitaire doit être encore dans sa validité de 30 jours à l'arrivée."
+      es: "Lleva los documentos originales, no copias, y mantén un juego contigo durante todo el viaje; el certificado sanitario debe seguir dentro de su valide de 30 días a la llegada."
+      pt: "Leve os documentos originais, não cópias, e mantenha um conjunto com você durante toda a viagem; o atestado de saúde deve continuar dentro de seu prazo de validade de 30 dias na chegada."
+    - en: "A healthy dog with a valid permit and complete papers is normally cleared without quarantine."
+      fr: "Un chien sain, muni d'un permis valide et de documents complets, passe normalement sans quarantaine."
+      es: "Un perro sano con un permiso válido y la documentación completa suele quedar liberado sin cuarentena."
+      pt: "Um cachorro saudável, com autorização válida e documentação completa, normalmente é liberado sem quarentena."
+    - en: "If the dog is suspected of a contagious disease, or the import is irregular or the documents deficient, NAQS may quarantine the animal (2–3 weeks), seize it or, in the worst case, destroy it."
+      fr: "Si le chien est suspecté de maladie contagieuse, ou si l'importation est irrégulière ou les documents incomplets, la NAQS peut mettre l'animal en quarantaine (2 à 3 semaines), le saisir ou, au pire, le détruire."
+      es: "Si se sospecha que el perro tiene una enfermedad contagiosa, o la importación es irregular o los documentos son deficientes, el NAQS puede poner al animal en cuarentena (2–3 semanas), incautarlo o, en el peor de los casos, sacrificarlo."
+      pt: "Se houver suspeita de doença contagiosa no cachorro, ou se a importação for irregular ou os documentos deficientes, a NAQS pode colocar o animal em quarentena (2 a 3 semanas), apreendê-lo ou, no pior caso, destruí-lo."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No national breed-specific import ban for dogs is published by NAQS or the Nigeria Customs Service. Entry is controlled by the veterinary import permit and health requirements, not by breed."
+    fr: "Aucune interdiction nationale d'importation par race de chien n'est publiée par la NAQS ou la Nigeria Customs Service. L'entrée est encadrée par le permis d'importation vétérinaire et les exigences sanitaires, non par la race."
+    es: "El NAQS y el Nigeria Customs Service no publican ninguna prohibición nacional de importación por raza de perro. La entrada se controla mediante el permiso de importación veterinario y los requisitos sanitarios, no por la raza."
+    pt: "Nenhuma proibição nacional de importação por raça de cachorro é publicada pela NAQS ou pela Nigeria Customs Service. A entrada é controlada pela autorização veterinária de importação e pelas exigências sanitárias, não pela raça."
+  cat1:
+    en: "The Nigeria Customs Service import prohibition list does not list dog breeds among prohibited imports. We found no official Nigerian legislation banning specific dog breeds from import."
+    fr: "La liste des importations prohibées de la Nigeria Customs Service ne mentionne pas de races de chiens parmi les importations interdites. Nous n'avons trouvé aucune législation nigériane officielle interdisant l'importation de races de chiens précises."
+    es: "La lista de importaciones prohibidas del Nigeria Customs Service no incluye razas de perros entre las importaciones prohibidas. No encontramos ninguna legislación nigeriana oficial que prohíba la importación de razas de perros concretas."
+    pt: "A lista de proibição de importação da Nigeria Customs Service não lista raças de cachorro entre as importações proibidas. Não encontramos nenhuma legislação nigeriana oficial que proíba a importação de raças de cachorro específicas."
+  cat2:
+    en: "Wildlife and endangered species (and their derivatives) are separately restricted or prohibited, and unvaccinated puppies should not be imported, but these are not breed-specific dog rules. Any local or state ownership rules: Unknown."
+    fr: "La faune sauvage et les espèces menacées (et leurs dérivés) font l'objet de restrictions ou interdictions distinctes, et les chiots non vaccinés ne doivent pas être importés, mais ce ne sont pas des règles par race. Règles locales ou d'État de détention : non communiquées."
+    es: "La fauna silvestre y las especies amenazadas (y sus derivados) están restringidas o prohibidas por separado, y los cachorros sin vacunar no deben importarse, pero no son normas por raza de perro. Posibles normas locales o estatales de tenencia: se desconoce."
+    pt: "A fauna selvagem e as espécies ameaçadas (e seus derivados) são restritas ou proibidas separadamente, e filhotes não vacinados não devem ser importados, mas essas não são regras por raça de cachorro. Quaisquer regras locais ou estaduais de posse: não comunicadas."
+  note:
+    en: "Because published rules may change, confirm the current position on any specific breed directly with NAQS or the Federal Department of Livestock and Pest Control Services before you travel."
+    fr: "Les règles publiées pouvant évoluer, vérifie la situation à jour pour une race précise directement auprès de la NAQS ou du Federal Department of Livestock and Pest Control Services avant de voyager."
+    es: "Dado que las normas publicadas pueden cambiar, confirma la situación actual de cualquier raza concreta directamente con el NAQS o el Federal Department of Livestock and Pest Control Services antes de viajar."
+    pt: "Como as regras publicadas podem mudar, confirme a situação atual de qualquer raça específica diretamente com a NAQS ou com o Federal Department of Livestock and Pest Control Services antes de viajar."
+
+checklist:
+  - en: "Apply for the Nigerian import permit well before travel (Federal Department of Livestock and Pest Control Services)"
+    fr: "Demande le permis d'importation nigérian bien avant le voyage (Federal Department of Livestock and Pest Control Services)"
+    es: "Solicita el permiso de importación nigeriano mucho antes del viaje (Federal Department of Livestock and Pest Control Services)"
+    pt: "Solicite a autorização de importação nigeriana bem antes da viagem (Federal Department of Livestock and Pest Control Services)"
+  - en: "Microchip your dog and record the number on all veterinary documents"
+    fr: "Identifiez ton chien par puce et reportez le numéro sur tous les documents vétérinaires"
+    es: "Ponle el microchip a tu perro y anota el número en todos los documentos veterinarios"
+    pt: "Implante um microchip no seu cachorro e registre o número em todos os documentos veterinários"
+  - en: "Valid rabies vaccination (inactivated vaccine) within one year of departure"
+    fr: "Vaccination antirabique valide (vaccin inactivé) dans l'année précédant le départ"
+    es: "Vacunación antirrábica válida (vacuna inactivada) en el año anterior a la salida"
+    pt: "Vacinação antirrábica válida (vacina inativada) dentro de um ano da partida"
+  - en: "Official international veterinary health certificate, endorsed by the government vet, valid 30 days"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental, valable 30 jours"
+    es: "Certificado sanitario veterinario internacional oficial, refrendado por el veterinario gubernamental, válido 30 días"
+    pt: "Atestado de saúde veterinário internacional oficial, endossado pelo veterinário do governo, válido por 30 dias"
+  - en: "Original permit and certificates to present to NAQS at the point of entry (not copies)"
+    fr: "Permis et certificats originaux à présenter à la NAQS au point d'entrée (pas de copies)"
+    es: "Permiso y certificados originales para presentar al NAQS en el punto de entrada (no copias)"
+    pt: "Autorização e certificados originais para apresentar à NAQS no ponto de entrada (não cópias)"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+  - en: "Confirm the exact minimum age and vaccination timing with your vet before booking"
+    fr: "Confirme l'âge minimum exact et le calendrier vaccinal avec ton vétérinaire avant de réserver"
+    es: "Confirma la edad mínima exacta y el calendario de vacunación con tu veterinario antes de reservar"
+    pt: "Confirme a idade mínima exata e o prazo de vacinação com seu veterinário antes de reservar"
+
+sources:
+  - label: { en: "NAQS — Animal Quarantine (import/export of animals, inspection, quarantine)", fr: "NAQS — Animal Quarantine (import/export d'animaux, inspection, quarantaine)", es: "NAQS — Animal Quarantine (importación/exportación de animales, inspección, cuarentena)", pt: "NAQS — Animal Quarantine (importação/exportação de animais, inspeção, quarentena)" }
+    url: "https://naqs.gov.ng/animal/"
+  - label: { en: "Nigeria Agricultural Quarantine Service — home / mandate", fr: "Nigeria Agricultural Quarantine Service — accueil / mandat", es: "Nigeria Agricultural Quarantine Service — inicio / mandato", pt: "Nigeria Agricultural Quarantine Service — página inicial / mandato" }
+    url: "https://naqs.gov.ng/"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Nigeria", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Nigéria", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Nigeria", pt: "USDA APHIS — Pet Travel From the United States to Nigeria" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-nigeria"
+  - label: { en: "Veterinary Health Certificate for Export of Dogs and Cats to the Federal Republic of Nigeria (agreed with Nigerian authorities)", fr: "Certificat vétérinaire pour l'export de chiens et chats vers la République fédérale du Nigéria (convenu avec les autorités nigérianes)", es: "Certificado sanitario veterinario para la exportación de perros y gatos a la República Federal de Nigeria (acordado con las autoridades nigerianas)", pt: "Atestado de Saúde Veterinário para Exportação de Cachorros e Gatos para a República Federal da Nigéria (acordado com as autoridades nigerianas)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/nigeria-dog-cat.pdf"
+  - label: { en: "Nigeria Customs Service — Revised Import Prohibition List", fr: "Nigeria Customs Service — Liste révisée des importations prohibées", es: "Nigeria Customs Service — Lista revisada de importaciones prohibidas", pt: "Nigeria Customs Service — Revised Import Prohibition List" }
+    url: "https://customs.gov.ng/?page_id=3075"
+
+seo:
+  title: { en: "Nigeria Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Nigéria — Guide", es: "Requisitos de entrada de perros en Nigeria — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Nigéria — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Nigeria With Your Dog: Entry Requirements (2026)", fr: "Voyager au Nigéria avec ton chien : formalités (2026)", es: "Viajar a Nigeria con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Nigéria: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official NAQS rules for bringing a dog into Nigeria: import permit in advance, microchip, rabies vaccination, endorsed certificate and NAQS check. Sourced and dated."
+    fr: "Règles officielles NAQS pour faire entrer un chien au Nigéria : permis d'importation préalable, puce, vaccination antirabique. Sourcé et daté."
+    es: "Normas oficiales del NAQS para traer un perro a Nigeria: permiso de importación previo, microchip, vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais da NAQS para levar um cachorro à Nigéria: autorização de importação prévia, microchip, vacinação antirrábica e certificado endossado."
+  slug: "nigeria"
+  shortDesc:
+    en: "What you need to bring a dog into Nigeria: an advance import permit, microchip, rabies vaccination and an endorsed veterinary health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien au Nigéria : permis d'importation préalable, puce, vaccination antirabique et certificat sanitaire visé."
+    es: "Lo que necesitas para traer un perro a Nigeria: un permiso de importación previo, microchip, vacunación antirrábica y un certificado sanitario veterinario refrendado."
+    pt: "O que você precisa para levar um cachorro à Nigéria: uma autorização de importação prévia, microchip, vacinação antirrábica e um atestado de saúde veterinário endossado."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

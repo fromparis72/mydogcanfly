@@ -1,0 +1,320 @@
+id: airline_air_transat
+mono: TS
+name: Air Transat
+titleH1:
+  en: Flying with a dog on Air Transat
+  fr: Voyager avec un chien sur Air Transat
+  es: Volar con un perro en Air Transat
+  pt: "Viajar com um cachorro pela Air Transat"
+metaDesc:
+  en: "Air Transat pet policy: cabin, hold and cargo, CAD fares, banned breeds, UK cargo-only and official sources."
+  fr: "Politique animaux Air Transat : cabine, soute et fret, tarifs CAD, races interdites, R.-U. en fret et sources officielles."
+  es: "Política de mascotas de Air Transat: cabina, bodega y carga, tarifas en CAD, razas prohibidas, Reino Unido solo como carga y fuentes oficiales."
+  pt: "Política de animais da Air Transat: cabine, porão e carga, tarifas em CAD, raças proibidas, Reino Unido somente via carga e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Canada · YUL
+      fr: Canada · YUL
+      es: Canadá · YUL
+      pt: "Canadá · YUL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin or hold with clear CAD fees — but many route and breed restrictions.
+  fr: Chats et chiens en cabine ou en soute avec des tarifs CAD clairs — mais de nombreuses restrictions de routes et de races.
+  es: Gatos y perros en cabina o bodega con tarifas claras en CAD — pero muchas restricciones de ruta y de raza.
+  pt: "Gatos e cachorros na cabine ou no porão com tarifas claras em CAD — mas com muitas restrições de rota e de raça."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK / large
+      fr: R.-U. / grands
+      es: R.U. / grandes
+      pt: "Reino Unido / grande porte"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs only ≤ 8 kg (carrier + pet) in a soft carrier under the seat (max 43 × 24 × 25 cm). Reserve ≥ 24 h ahead.
+      fr: Chats et chiens uniquement ≤ 8 kg (sac + animal) dans un sac souple sous le siège (max 43 × 24 × 25 cm). Réserver ≥ 24 h à l'avance.
+      es: Solo gatos y perros ≤ 8 kg (jaula + mascota) en una jaula blanda bajo el asiento (máx 43 × 24 × 25 cm). Resérvalo con ≥ 24 h de antelación.
+      pt: "Somente gatos e cachorros ≤ 8 kg (bolsa de transporte + animal) em uma bolsa de transporte flexível embaixo do assento (máx. 43 × 24 × 25 cm). Reserve com ≥ 24 h de antecedência."
+    fee:
+      en: $50–100 CAD
+      fr: 50–100 $ CAD
+      es: 50–100 $ CAD
+      pt: "$50–100 CAD"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (≤ 45 kg incl. carrier) as checked baggage; one per cage, min 12 weeks. Cable-tied free. Payment doesn't guarantee acceptance.
+      fr: Chats et chiens (≤ 45 kg avec la caisse) en bagage enregistré ; un par caisse, min 12 semaines. Attaches fournies gratuitement. Le paiement ne garantit pas l'acceptation.
+      es: Gatos y perros (≤ 45 kg incluida la jaula) como equipaje facturado; uno por jaula, mín 12 semanas. Bridas incluidas gratis. El pago no garantiza la aceptación.
+      pt: "Gatos e cachorros (≤ 45 kg incl. caixa de transporte) como bagagem despachada; um por caixa, mín. 12 semanas. Lacres fornecidos gratuitamente. O pagamento não garante a aceitação."
+    fee:
+      en: $100–275 CAD
+      fr: 100–275 $ CAD
+      es: 100–275 $ CAD
+      pt: "$100–275 CAD"
+  - icon: ✈️
+    name:
+      en: Air Transat Cargo
+      fr: Air Transat Cargo
+      es: Air Transat Cargo
+      pt: "Air Transat Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Cats & dogs to/from the UK are cargo-only, and oversize cages travel via cargo.
+      fr: Chats et chiens de/vers le R.-U. uniquement en fret, et les caisses hors gabarit via le fret.
+      es: Los gatos y perros hacia/desde el Reino Unido solo viajan como carga, y las jaulas fuera de medidas viajan como carga.
+      pt: "Gatos e cachorros de/para o Reino Unido viajam somente via carga, e as caixas fora do padrão viajam via carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — within Canada/US
+        fr: Cabine — Canada/USA
+        es: Cabina — dentro de Canadá/EE. UU.
+        pt: "Cabine — dentro do Canadá/EUA"
+      value:
+        en: $50 CAD
+        fr: 50 $ CAD
+        es: 50 $ CAD
+        pt: "$50 CAD"
+    - label:
+        en: Cabin — Europe/Africa/South
+        fr: Cabine — Europe/Afrique/Sud
+        es: Cabina — Europa/África/Sur
+        pt: "Cabine — Europa/África/Sul"
+      value:
+        en: $100 CAD
+        fr: 100 $ CAD
+        es: 100 $ CAD
+        pt: "$100 CAD"
+    - label:
+        en: Hold — within Canada
+        fr: Soute — Canada
+        es: Bodega — dentro de Canadá
+        pt: "Porão — dentro do Canadá"
+      value:
+        en: $100 CAD
+        fr: 100 $ CAD
+        es: 100 $ CAD
+        pt: "$100 CAD"
+    - label:
+        en: Hold — US / Europe & South
+        fr: Soute — USA / Europe & Sud
+        es: Bodega — EE. UU. / Europa y Sur
+        pt: "Porão — EUA / Europa e Sul"
+      value:
+        en: $150–275 CAD
+        fr: 150–275 $ CAD
+        es: 150–275 $ CAD
+        pt: "$150–275 CAD"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: CAD per pet per segment.
+    fr: CAD par animal et par tronçon.
+    es: CAD por mascota y por segmento.
+    pt: "CAD por animal e por trecho."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Liability waiver
+          fr: Décharge de responsabilité
+          es: Exención de responsabilidad
+          pt: "Isenção de responsabilidade"
+      - cls: no
+        label:
+          en: "French bulldog: cabin only"
+          fr: "Bouledogue français : cabine seule"
+          es: "Bulldog francés: solo cabina"
+          pt: "Buldogue Francês: somente cabine"
+    note:
+      en: Snub-nosed dogs & cats (not on the exemption list) are accepted but the passenger signs an Acknowledgment and Exclusion of Liability; French bulldogs are cabin-only. The container needs ventilation on all four sides.
+      fr: Chiens et chats au nez écrasé (hors liste d'exemption) sont acceptés mais le passager signe une décharge de responsabilité ; les bouledogues français sont admis en cabine uniquement. Le contenant doit être ventilé sur les quatre côtés.
+      es: Los perros y gatos de hocico chato (no incluidos en la lista de excepciones) se aceptan, pero el pasajero firma un reconocimiento y exención de responsabilidad; los bulldogs franceses solo en cabina. La jaula necesita ventilación en los cuatro lados.
+      pt: "Cachorros e gatos de focinho achatado (não incluídos na lista de exceções) são aceitos, mas o passageiro assina um termo de reconhecimento e isenção de responsabilidade; os buldogues franceses só viajam na cabine. A caixa de transporte precisa de ventilação nos quatro lados."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+      - cls: warn
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Mastiffs, pit bull types (American Bully, American Pit Bull, American/Staffordshire terriers), American bulldogs, Dogo Argentino, Fila, Boerboel and Bandog aren't accepted (Bullmastiff & Dogue de Bordeaux are exempt). Sedation isn't recommended.
+      fr: Mastiffs, types pit-bull (American Bully, American Pit Bull, American/Staffordshire terriers), American bulldogs, Dogo Argentino, Fila, Boerboel et Bandog ne sont pas acceptés (Bullmastiff & Dogue de Bordeaux exemptés). La sédation n'est pas recommandée.
+      es: Los mastines, tipos pit bull (American Bully, American Pit Bull, American/Staffordshire terriers), bulldogs americanos, Dogo Argentino, Fila, Boerboel y Bandog no se aceptan (Bullmastiff y Dogo de Burdeos quedan exentos). No se recomienda la sedación.
+      pt: "Mastins, tipos pit bull (American Bully, American Pit Bull, American/Staffordshire terriers), buldogues americanos, Dogo Argentino, Fila, Boerboel e Bandog não são aceitos (Bullmastiff e Dogue de Bordeaux ficam isentos). A sedação não é recomendada."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Air Transat publishes no hold-temperature limits or embargo; hold acceptance is subject to loading restrictions.
+    fr: Air Transat ne publie pas de limites de température en soute ni d'embargo ; l'acceptation en soute est soumise à des restrictions de chargement.
+    es: Air Transat no publica límites de temperatura en bodega ni embargo; la aceptación en bodega está sujeta a restricciones de carga.
+    pt: "A Air Transat não divulga limites de temperatura no porão nem embargo; a aceitação no porão está sujeita a restrições de carregamento."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service animals on duty fly free in the cabin; certified service dogs are welcome.
+      fr: Les animaux d'assistance en service voyagent gratuitement en cabine ; les chiens d'assistance certifiés sont admis.
+      es: Los animales de asistencia en servicio viajan gratis en cabina; se admiten perros de asistencia certificados.
+      pt: "Os animais de serviço em atividade voam gratuitamente na cabine; cães de serviço certificados são bem-vindos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Certified service dogs to London/Manchester/Glasgow: reserve via the call centre ≥ 7 days ahead."
+      fr: "Chiens d'assistance certifiés vers Londres/Manchester/Glasgow : réserver via le centre d'appel ≥ 7 jours à l'avance."
+      es: "Perros de asistencia certificados hacia Londres/Manchester/Glasgow: resérvalos a través del centro de llamadas con ≥ 7 días de antelación."
+      pt: "Cães de serviço certificados para Londres/Manchester/Glasgow: reserve pela central de atendimento com ≥ 7 dias de antecedência."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo gatos y perros
+      pt: "Somente gatos e cachorros"
+    value:
+      en: Only domestic cats and dogs are accepted; all other animals are refused.
+      fr: Seuls les chats et chiens domestiques sont acceptés ; tous les autres animaux sont refusés.
+      es: Solo se aceptan gatos y perros domésticos; el resto de animales son rechazados.
+      pt: "Somente gatos e cachorros domésticos são aceitos; todos os demais animais são recusados."
+  - icon: 📄
+    label:
+      en: Pet Information Form
+      fr: Formulaire animal
+      es: Formulario de información de la mascota
+      pt: "Formulário de Informações do Animal"
+    value:
+      en: Complete a Pet Information Form after booking and present it at check-in; arrive 2 h ahead.
+      fr: Remplir un formulaire d'information animal après la réservation et le présenter à l'enregistrement ; arriver 2 h avant.
+      es: Rellena un formulario de información de la mascota tras la reserva y preséntalo en la facturación; llega 2 h antes.
+      pt: "Preencha um Formulário de Informações do Animal após a reserva e apresente-o no check-in; chegue com 2 h de antecedência."
+  - icon: 💶
+    label:
+      en: Canada entry
+      fr: Entrée au Canada
+      es: Entrada a Canadá
+      pt: "Entrada no Canadá"
+    value:
+      en: A CAD $30 CFIA inspection fee (per animal) applies on entry to Canada, except from the US.
+      fr: Des frais d'inspection ACIA de 30 $ CAD (par animal) s'appliquent à l'entrée au Canada, sauf en provenance des USA.
+      es: Se aplica una tasa de inspección de la CFIA de 30 $ CAD (por animal) al entrar en Canadá, salvo desde EE. UU.
+      pt: "Uma taxa de inspeção da CFIA de CAD $30 (por animal) se aplica na entrada no Canadá, exceto vindo dos EUA."
+book:
+  host: airtransat.com
+  url: https://www.airtransat.com/
+sources:
+  en: 3 Air Transat sources · last verified 11 July 2026
+  fr: 3 sources Air Transat · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Air Transat · última verificación 11 de julio de 2026
+  pt: "3 fontes da Air Transat · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

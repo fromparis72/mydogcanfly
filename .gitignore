@@ -9,3 +9,7 @@
 # Source assets (originals, not published)
 /MyDogCanFly_logo.png
 /bandeaulogoMyDog.png
+
+node_modules/
+packages/**/dist/
+.venv-pdf/

@@ -1,0 +1,397 @@
+# Country Entry Guide — Kenya (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ke
+iso2: "KE"
+name: { en: "Kenya", fr: "Kenya", es: "Kenia", pt: "Quênia" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Kenya: no national travel rule for dogs, but rabies control areas and county licensing can apply."
+    fr: "Vol intérieur au Kenya : aucune règle nationale de voyage pour les chiens, mais les zones de contrôle de la rage et les licences de comté peuvent s'appliquer."
+    es: "Vuelo nacional en Kenia: ninguna regla nacional de viaje para perros, pero pueden aplicarse zonas de control de la rabia y licencias de condado."
+    pt: "Voo doméstico no Quênia: não há regra nacional de viagem para cachorros, mas áreas de controle de raiva e o licenciamento do condado podem se aplicar."
+  points:
+    - en: "The national livestock movement permit does not cover dogs. But moving a dog into or out of a declared rabies control area requires prior written permission from a veterinary officer."
+      fr: "Le permis national de mouvement du bétail ne couvre pas les chiens. En revanche, faire entrer ou sortir un chien d'une zone déclarée de contrôle de la rage exige l'autorisation écrite préalable d'un vétérinaire officiel."
+      es: "El permiso nacional de movimiento de ganado no cubre a los perros. En cambio, sacar o meter un perro de una zona declarada de control de la rabia exige autorización escrita previa de un veterinario oficial."
+      pt: "A autorização nacional de movimentação de gado não cobre cachorros. Mas mover um cachorro para dentro ou fora de uma área declarada de controle de raiva exige permissão prévia por escrito de um agente veterinário."
+    - en: "Dog licensing is devolved to counties: in Nairobi, a licence is required to keep a dog and a rabies vaccination certificate is part of the application. Rules elsewhere vary."
+      fr: "L'octroi de licences pour chiens relève des comtés : à Nairobi, une licence est requise pour détenir un chien et un certificat de vaccination antirabique fait partie du dossier. Les règles diffèrent ailleurs."
+      es: "Las licencias para perros dependen de los condados: en Nairobi se exige licencia para tener un perro y un certificado de vacuna antirrábica forma parte de la solicitud. Las reglas varían en otros lugares."
+      pt: "O licenciamento de cachorros é descentralizado para os condados: em Nairóbi, é exigida uma licença para manter um cachorro, e um certificado de vacinação antirrábica faz parte da solicitação. As regras variam em outros lugares."
+    - en: "Several Kenyan carriers refuse pets outright or take them only as cargo — confirm before booking."
+      fr: "Plusieurs compagnies kényanes refusent purement et simplement les animaux ou ne les acceptent qu'en fret — confirme avant de réserver."
+      es: "Varias aerolíneas keniatas rechazan las mascotas o solo las aceptan como carga — confírmalo antes de reservar."
+      pt: "Várias companhias aéreas quenianas recusam animais de estimação de forma direta ou só os aceitam como carga — confirme antes de reservar."
+exit:
+  authority: DVS
+  authorityUrl: https://kilimo.go.ke/dvs-2/
+  intro:
+    en: "Kenya is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Directorate of Veterinary Services (DVS)."
+    fr: "Le Kenya est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction des services vétérinaires (DVS)."
+    es: "Kenia no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Dirección de Servicios Veterinarios (DVS)."
+    pt: "O Quênia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Directorate of Veterinary Services (DVS)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A DVS-approved veterinarian examines your dog and issues the health certificate, and the DVS issues the export permit authorising departure."
+        fr: "Un vétérinaire agréé par la DVS examine ton chien et délivre le certificat sanitaire, et la DVS délivre le permis d'export autorisant le départ."
+        es: "Un veterinario aprobado por la DVS examina a tu perro y emite el certificado sanitario, y la DVS emite el permiso de exportación que autoriza la salida."
+        pt: "Um veterinário aprovado pela DVS examina seu cachorro e emite o atestado de saúde, e a DVS emite a autorização de exportação que permite a partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Kenya with your dog", fr: "Voyager au Kenya avec ton chien", es: "Viajar a Kenia con tu perro", pt: "Viajar para o Quênia com seu cachorro" }
+  intro:
+    en: >-
+      Kenya welcomes pet dogs, but entry is controlled by its own veterinary authority — the
+      Directorate of Veterinary Services (DVS), part of the Ministry of Agriculture and Livestock
+      Development — under the Animal Diseases Act (Cap. 364) and the Rabies Act (Cap. 365). No dog
+      may arrive without an import permit obtained in advance from the DVS or a Kenyan diplomatic
+      mission. Every dog needs a valid rabies vaccination certificate and a veterinary surgeon's
+      certificate, signed no more than five days before departure, confirming the dog is free of
+      clinical signs of any contagious or infectious disease. Kenya's published conditions do not
+      require a rabies antibody test. What changes with your origin is mainly whether an extra
+      government-vet certificate is needed and whether your country is on Kenya's short list of
+      exempted rabies-free countries. This guide explains each step before you book your flight.
+    fr: >-
+      Le Kenya accueille les chiens de compagnie, mais l'entrée est contrôlée par sa propre autorité
+      vétérinaire — la Directorate of Veterinary Services (DVS), rattachée au ministère de
+      l'Agriculture et du Développement de l'élevage — au titre de l'Animal Diseases Act (Cap. 364) et
+      du Rabies Act (Cap. 365). Aucun chien ne peut arriver sans un permis d'importation obtenu à
+      l'avance auprès de la DVS ou d'une mission diplomatique kényane. Chaque chien doit disposer d'un
+      certificat de vaccination antirabique valide et d'un certificat de vétérinaire, signé au plus
+      cinq jours avant le départ, attestant l'absence de signes cliniques de maladie contagieuse ou
+      infectieuse. Les conditions publiées par le Kenya n'exigent pas de titrage antirabique. Ce qui
+      change selon l'origine, c'est surtout la nécessité d'un certificat vétérinaire gouvernemental
+      supplémentaire et l'appartenance de ton pays à la courte liste de pays indemnes de rage
+      exemptés. Ce guide détaille chaque étape avant de réserver ton vol.
+    es: >-
+      Kenia acoge a los perros de compañía, pero la entrada está controlada por su propia autoridad
+      veterinaria — la Directorate of Veterinary Services (DVS), parte del Ministerio de Agricultura y
+      Desarrollo Ganadero — en virtud de la Animal Diseases Act (Cap. 364) y la Rabies Act (Cap. 365).
+      Ningún perro puede llegar sin un permiso de importación obtenido con antelación en la DVS o en
+      una misión diplomática de Kenia. Todo perro necesita un certificado de vacunación antirrábica
+      válido y un certificado de un cirujano veterinario, firmado como máximo cinco días antes de la
+      salida, que confirme que el perro está libre de signos clínicos de cualquier enfermedad
+      contagiosa o infecciosa. Las condiciones publicadas por Kenia no exigen una prueba de titulación
+      de rabia. Lo que cambia según tu origen es sobre todo si se necesita un certificado veterinario
+      gubernamental adicional y si tu país está en la breve lista de países indemnes de rabia exentos
+      de Kenia. Esta guía explica cada paso antes de reservar tu vuelo.
+
+    pt: "O Quênia recebe bem cachorros de estimação, mas a entrada é controlada por sua própria autoridade veterinária — a Directorate of Veterinary Services (DVS), parte do Ministério da Agricultura e Desenvolvimento Pecuário — segundo o Animal Diseases Act (Cap. 364) e o Rabies Act (Cap. 365). Nenhum cachorro pode chegar sem uma autorização de importação obtida com antecedência junto à DVS ou a uma missão diplomática queniana. Todo cachorro precisa de um certificado de vacinação antirrábica válido e de um certificado de um cirurgião veterinário, assinado no máximo cinco dias antes da partida, confirmando que o cachorro está livre de sinais clínicos de qualquer doença contagiosa ou infecciosa. As condições publicadas pelo Quênia não exigem um teste sorológico antirrábico. O que muda conforme a origem é principalmente se é necessário um certificado extra de veterinário governamental e se o seu país está na pequena lista queniana de países isentos por serem livres de raiva. Este guia explica cada etapa antes de você reservar seu voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — import permit and precise timing", fr: "Modérée — permis d'importation et calendrier précis", es: "Moderada — permiso de importación y calendario preciso", pt: "Moderada — autorização de importação e prazos precisos" }
+
+prepTime:
+  eu:
+    en: "From Europe: allow ~4–6 weeks for the import permit, a rabies vaccination at least one month old and a vet certificate signed within 5 days of departure."
+    fr: "Depuis l'Europe : prévoir ~4 à 6 semaines pour le permis, une vaccination antirabique d'au moins un mois et un certificat vétérinaire signé dans les 5 jours avant le départ."
+    es: "Desde Europa: prevé ~4-6 semanas para el permiso de importación, una vacunación antirrábica de al menos un mes y un certificado veterinario firmado en los 5 días previos a la salida."
+    pt: "Da Europa: reserve ~4 a 6 semanas para a autorização de importação, uma vacinação antirrábica com pelo menos um mês e um certificado veterinário assinado em até 5 dias antes da partida."
+  listed:
+    en: "From an exempted rabies-free country (Australia, Ireland, New Zealand, Norway, Sweden, UK): ~3–5 weeks — permit and health certificate, with the rabies-certificate condition waived."
+    fr: "Depuis un pays indemne de rage exempté (Australie, Irlande, Nouvelle-Zélande, Norvège, Suède, Royaume-Uni) : ~3 à 5 semaines — permis et certificat sanitaire, la condition de certificat rabique étant levée."
+    es: "Desde un país indemne de rabia exento (Australia, Irlanda, Nueva Zelanda, Noruega, Suecia, Reino Unido): ~3-5 semanas — permiso y certificado sanitario, sin la condición del certificado antirrábico."
+    pt: "De um país isento livre de raiva (Austrália, Irlanda, Nova Zelândia, Noruega, Suécia, Reino Unido): ~3 a 5 semanas — autorização e atestado de saúde, com a condição do certificado antirrábico dispensada."
+  nonListed:
+    en: "From all other origins: ~4–8 weeks — add a government-vet certificate (no rabies within 30 miles of origin) if the rabies shot is under 6 months old, and mind the quarantine risk."
+    fr: "Depuis toute autre origine : ~4 à 8 semaines — ajoute un certificat vétérinaire gouvernemental (pas de rage dans un rayon de 30 miles de l'origine) si le vaccin a moins de 6 mois, et attention au risque de quarantaine."
+    es: "Desde cualquier otro origen: ~4-8 semanas — añade un certificado veterinario gubernamental (sin rabia en un radio de 30 millas del origen) si la vacuna antirrábica tiene menos de 6 meses, y ten en cuenta el riesgo de cuarentena."
+    pt: "De todas as outras origens: ~4 a 8 semanas — acrescente um certificado de veterinário governamental (nenhum caso de raiva em um raio de 30 milhas da origem) se a vacina antirrábica tiver menos de 6 meses, e atenção ao risco de quarentena."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (signed ≤5 days before departure)", fr: "Requis (signé ≤5 jours avant le départ)", es: "Obligatorio (firmado ≤5 días antes de la salida)", pt: "Obrigatório (assinado em até 5 dias antes da partida)" }
+    cls: warn
+  - requirement: { en: "Arrival veterinary report", fr: "Signalement vétérinaire à l'arrivée", es: "Notificación veterinaria a la llegada", pt: "Relatório veterinário na chegada" }
+    status: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Only if certificates missing (up to 6 months)", fr: "Seulement si certificats manquants (jusqu'à 6 mois)", es: "Solo si faltan certificados (hasta 6 meses)", pt: "Somente se faltarem certificados (até 6 meses)" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and the DVS sets the exact conditions on your import permit."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et la DVS fixe les conditions exactes sur ton permis d'importation."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y la DVS establece las condiciones exactas en tu permiso de importación."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro, e a DVS define as condições exatas da sua autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Kenya (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Kenya (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Kenia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Quênia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Kenya", fr: "Pays de destination — Kenya", es: "País de destino — Kenia", pt: "País de destino — Quênia" }
+      text:
+        en: "Kenya always requires an advance import permit from the DVS, a valid rabies vaccination certificate and a veterinary surgeon's certificate signed within 5 days of departure. Rules flow from the Animal Diseases Act (Cap. 364) and the Rabies Act (Cap. 365)."
+        fr: "Le Kenya exige toujours un permis d'importation préalable de la DVS, un certificat de vaccination antirabique valide et un certificat de vétérinaire signé dans les 5 jours avant le départ. Les règles découlent de l'Animal Diseases Act (Cap. 364) et du Rabies Act (Cap. 365)."
+        es: "Kenia siempre exige un permiso de importación previo de la DVS, un certificado de vacunación antirrábica válido y un certificado de cirujano veterinario firmado en los 5 días previos a la salida. Las normas derivan de la Animal Diseases Act (Cap. 364) y de la Rabies Act (Cap. 365)."
+        pt: "O Quênia sempre exige uma autorização de importação prévia da DVS, um certificado de vacinação antirrábica válido e um certificado de cirurgião veterinário assinado em até 5 dias antes da partida. As regras derivam do Animal Diseases Act (Cap. 364) e do Rabies Act (Cap. 365)."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "If you fly directly from an exempted rabies-free country (Australia, Ireland, New Zealand, Norway, Sweden, UK), the rabies-certificate condition is waived. From everywhere else the full set of certificates applies."
+        fr: "Si tu arrives directement d'un pays indemne de rage exempté (Australie, Irlande, Nouvelle-Zélande, Norvège, Suède, Royaume-Uni), la condition de certificat rabique est levée. Depuis tout autre pays, l'ensemble des certificats s'applique."
+        es: "Si vuelas directamente desde un país indemne de rabia exento (Australia, Irlanda, Nueva Zelanda, Noruega, Suecia, Reino Unido), se levanta la condición del certificado antirrábico. Desde cualquier otro lugar se aplica el conjunto completo de certificados."
+        pt: "Se você voar diretamente de um país isento livre de raiva (Austrália, Irlanda, Nova Zelândia, Noruega, Suécia, Reino Unido), a condição do certificado antirrábico é dispensada. De qualquer outro lugar, aplica-se o conjunto completo de certificados."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent rabies vaccination (under 6 months old) triggers an extra certificate from a government vet confirming no rabies within 30 miles of your dog's place of origin in the past six months. Your dog's real origin and history count."
+        fr: "Une vaccination antirabique récente (moins de 6 mois) déclenche un certificat supplémentaire d'un vétérinaire gouvernemental attestant l'absence de rage dans un rayon de 30 miles autour du lieu d'origine du chien durant les six derniers mois. C'est l'origine et l'historique réels du chien qui comptent."
+        es: "Una vacunación antirrábica reciente (menos de 6 meses) da lugar a un certificado adicional de un veterinario gubernamental que confirme la ausencia de rabia en un radio de 30 millas del lugar de origen de tu perro en los últimos seis meses. Lo que cuenta es el origen y el historial reales de tu perro."
+        pt: "Uma vacinação antirrábica recente (com menos de 6 meses) gera a exigência de um certificado extra de um veterinário governamental confirmando que não houve raiva em um raio de 30 milhas do local de origem do seu cachorro nos últimos seis meses. O que conta é a origem real e o histórico do seu cachorro."
+  note:
+    en: "So read the requirements below as Kenya's framework, then confirm your dog's exact origin and history with your vet — the import permit lists the precise conditions."
+    fr: "Lis donc les exigences ci-dessous comme le cadre kényan, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis d'importation liste les conditions précises."
+    es: "Así que lee los requisitos siguientes como el marco de Kenia, y luego confirma el origen y el historial exactos de tu perro con tu veterinario — el permiso de importación indica las condiciones precisas."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral do Quênia, e depois confirme a origem exata e o histórico do seu cachorro com seu veterinário — a autorização de importação lista as condições precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Obtained in advance from the Directorate of Veterinary Services (Kabete) or a Kenyan embassy/high commission before the dog is shipped. It is a canine/feline import licence with limited validity (e.g. 30 days at the Kenya High Commission, London).", fr: "À obtenir à l'avance auprès de la Directorate of Veterinary Services (Kabete) ou d'une ambassade/haut-commissariat du Kenya avant l'expédition du chien. C'est une licence d'importation canine/féline à validité limitée (ex. 30 jours au Haut-Commissariat du Kenya à Londres).", es: "Se obtiene con antelación en la Directorate of Veterinary Services (Kabete) o en una embajada/alto comisionado de Kenia antes de enviar al perro. Es una licencia de importación canina/felina con valide limitada (p. ej., 30 días en el Alto Comisionado de Kenia en Londres).", pt: "Obtida com antecedência junto à Directorate of Veterinary Services (Kabete) ou a uma embaixada/alto comissariado queniano antes do embarque do cachorro. É uma licença de importação canina/felina com validade limitada (por exemplo, 30 dias no Alto Comissariado do Quênia, em Londres)." }
+    exceptions: { en: "No exceptions — a prior import permit is required for all live animals.", fr: "Aucune exception — un permis d'importation préalable est requis pour tous les animaux vivants.", es: "Sin excepciones — se exige un permiso de importación previo para todos los animales vivos.", pt: "Sem exceções — é exigida uma autorização de importação prévia para todos os animais vivos." }
+    ref: { en: "Kenya missions — Import permit under Animal Diseases Act (Cap. 364) & Rabies Act (Cap. 365)", fr: "Missions du Kenya — Permis d'importation au titre de l'Animal Diseases Act (Cap. 364) et du Rabies Act (Cap. 365)", es: "Misiones de Kenia — Permiso de importación en virtud de la Animal Diseases Act (Cap. 364) y la Rabies Act (Cap. 365)", pt: "Kenya missions — Autorização de importação segundo o Animal Diseases Act (Cap. 364) e o Rabies Act (Cap. 365)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "An ISO 11784/11785 15-digit microchip is advised for identification, ideally implanted before the rabies vaccination so records match.", fr: "Une puce ISO 11784/11785 à 15 chiffres est conseillée pour l'identification, idéalement posée avant la vaccination antirabique pour que les documents concordent.", es: "Se aconseja un microchip ISO 11784/11785 de 15 dígitos para la identificación, idealmente implantado antes de la vacunación antirrábica para que los registros coincidan.", pt: "Um microchip ISO 11784/11785 de 15 dígitos é recomendado para identificação, idealmente implantado antes da vacinação antirrábica para que os registros coincidam." }
+    exceptions: { en: "Kenya's published import conditions do not make the microchip mandatory for entry, but it is strongly recommended.", fr: "Les conditions d'importation publiées du Kenya ne rendent pas la puce obligatoire à l'entrée, mais elle est fortement recommandée.", es: "Las condiciones de importación publicadas de Kenia no hacen obligatorio el microchip para la entrada, pero se recomienda encarecidamente.", pt: "As condições de importação publicadas pelo Quênia não tornam o microchip obrigatório para a entrada, mas ele é fortemente recomendado." }
+    ref: { en: "Kenya import conditions (microchip not listed as mandatory)", fr: "Conditions d'importation du Kenya (puce non listée comme obligatoire)", es: "Condiciones de importación de Kenia (el microchip no figura como obligatorio)", pt: "Kenya import conditions (microchip não listado como obrigatório)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Valid rabies vaccination certificate stating the vaccine type, manufacturer, batch number, the animal's age at vaccination and the date. An inactivated (phenolized) vaccine is valid from 1 to 12 months after the shot; a live avianized (Flury or Kelev) vaccine is valid 1 to 36 months for dogs.", fr: "Certificat de vaccination antirabique valide indiquant le type de vaccin, le fabricant, le numéro de lot, l'âge de l'animal à la vaccination et la date. Un vaccin inactivé (phénolé) est valable de 1 à 12 mois après l'injection ; un vaccin vivant avianisé (Flury ou Kelev) est valable de 1 à 36 mois pour les chiens.", es: "Certificado de vacunación antirrábica válido que indique el tipo de vacuna, el fabricante, el número de lote, la edad del animal en el momento de la vacunación y la fecha. Una vacuna inactivada (fenolada) es válida de 1 a 12 meses después de la inyección; una vacuna viva avianizada (Flury o Kelev) es válida de 1 a 36 meses para los perros.", pt: "Certificado de vacinação antirrábica válido, indicando o tipo de vacina, o fabricante, o número do lote, a idade do animal na vacinação e a data. Uma vacina inativada (fenolizada) é válida de 1 a 12 meses após a aplicação; uma vacina viva avianizada (Flury ou Kelev) é válida de 1 a 36 meses para cachorros." }
+    exceptions: { en: "The rabies-certificate condition is waived for dogs imported directly from Australia, Ireland, New Zealand, Norway, Sweden or the United Kingdom.", fr: "La condition de certificat rabique est levée pour les chiens importés directement d'Australie, d'Irlande, de Nouvelle-Zélande, de Norvège, de Suède ou du Royaume-Uni.", es: "La condición del certificado antirrábico se levanta para los perros importados directamente desde Australia, Irlanda, Nueva Zelanda, Noruega, Suecia o el Reino Unido.", pt: "A condição do certificado antirrábico é dispensada para cachorros importados diretamente da Austrália, Irlanda, Nova Zelândia, Noruega, Suécia ou Reino Unido." }
+    ref: { en: "Rabies Act (Cap. 365) — validity of rabies vaccines; Kenya missions", fr: "Rabies Act (Cap. 365) — validité des vaccins antirabiques ; missions du Kenya", es: "Rabies Act (Cap. 365) — valide de las vacunas antirrábicas; misiones de Kenia", pt: "Rabies Act (Cap. 365) — validade das vacinas antirrábicas; Kenya missions" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Kenya's published import conditions do not require a rabies antibody (blood) test to enter from any country.", fr: "Les conditions d'importation publiées du Kenya n'exigent pas de titrage antirabique (prise de sang) pour entrer, quel que soit le pays d'origine.", es: "Las condiciones de importación publicadas de Kenia no exigen una prueba de titulación de anticuerpos contra la rabia (de sangre) para entrar desde ningún país.", pt: "As condições de importação publicadas pelo Quênia não exigem um teste sorológico (de sangue) antirrábico para entrar vindo de nenhum país." }
+    ref: { en: "Kenya import conditions (no antibody test listed)", fr: "Conditions d'importation du Kenya (aucun titrage listé)", es: "Condiciones de importación de Kenia (no figura ninguna prueba de titulación)", pt: "Kenya import conditions (nenhum teste sorológico listado)" }
+  - item: { en: "Government-vet rabies-area certificate", fr: "Certificat vétérinaire gouvernemental (zone rabique)", es: "Certificado veterinario gubernamental (zona rábica)", pt: "Certificado de veterinário governamental sobre área de raiva" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Dogs vaccinated against rabies less than six months before arrival must also carry a certificate signed by a government veterinary officer of the country of origin stating there has been no case of rabies within 30 miles of the dog's place of origin in the preceding six months.", fr: "Les chiens vaccinés contre la rage moins de six mois avant l'arrivée doivent aussi être accompagnés d'un certificat signé par un vétérinaire gouvernemental du pays d'origine attestant l'absence de cas de rage dans un rayon de 30 miles autour du lieu d'origine du chien durant les six mois précédents.", es: "Los perros vacunados contra la rabia menos de seis meses antes de la llegada también deben llevar un certificado firmado por un veterinario gubernamental del país de origen que declare que no ha habido ningún caso de rabia en un radio de 30 millas del lugar de origen del perro durante los seis meses anteriores.", pt: "Cachorros vacinados contra a raiva há menos de seis meses da chegada também devem portar um certificado assinado por um agente veterinário governamental do país de origem, declarando que não houve caso de raiva em um raio de 30 milhas do local de origem do cachorro nos seis meses anteriores." }
+    exceptions: { en: "Not needed if the rabies vaccination is more than six months old at arrival.", fr: "Non requis si la vaccination antirabique date de plus de six mois à l'arrivée.", es: "No es necesario si la vacunación antirrábica tiene más de seis meses en el momento de la llegada.", pt: "Não é necessário se a vacinação antirrábica tiver mais de seis meses na chegada." }
+    ref: { en: "Kenya import conditions — para. 1(b)(ii)", fr: "Conditions d'importation du Kenya — para. 1(b)(ii)", es: "Condiciones de importación de Kenia — párr. 1(b)(ii)", pt: "Kenya import conditions — par. 1(b)(ii)" }
+  - item: { en: "Veterinary surgeon's health certificate", fr: "Certificat sanitaire de vétérinaire", es: "Certificado sanitario de cirujano veterinario", pt: "Atestado de saúde de cirurgião veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A certificate signed by a veterinary surgeon not more than five days before departure from the country of origin, certifying the dog is free of clinical symptoms of any contagious or infectious disease.", fr: "Un certificat signé par un vétérinaire au plus cinq jours avant le départ du pays d'origine, attestant que le chien est exempt de tout symptôme clinique de maladie contagieuse ou infectieuse.", es: "Un certificado firmado por un cirujano veterinario como máximo cinco días antes de la salida del país de origen, que certifique que el perro está libre de síntomas clínicos de cualquier enfermedad contagiosa o infecciosa.", pt: "Um certificado assinado por um cirurgião veterinário no máximo cinco dias antes da partida do país de origem, atestando que o cachorro está livre de sintomas clínicos de qualquer doença contagiosa ou infecciosa." }
+    exceptions: { en: "Kenyan missions also reference a health certificate not older than ten days before dispatch for live animals; use the timing stated on your permit.", fr: "Les missions kényanes évoquent aussi un certificat sanitaire ne datant pas de plus de dix jours avant l'expédition pour les animaux vivants ; suis le délai indiqué sur ton permis.", es: "Las misiones kenianas también mencionan un certificado sanitario de no más de diez días antes del envío para animales vivos; sigue el plazo indicado en tu permiso.", pt: "As missões quenianas também mencionam um atestado de saúde com no máximo dez dias antes do envio para animais vivos; use o prazo indicado na sua autorização." }
+    ref: { en: "Kenya import conditions — para. 1(a)", fr: "Conditions d'importation du Kenya — para. 1(a)", es: "Condiciones de importación de Kenia — párr. 1(a)", pt: "Kenya import conditions — par. 1(a)" }
+  - item: { en: "Carrier isolation certificate", fr: "Certificat d'isolement du transporteur", es: "Certificado de aislamiento del transportista", pt: "Certificado de isolamento da transportadora" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A certificate from the captain of the ship or aircraft certifying the dog did not leave the craft between embarkation and entry into Kenya and was kept isolated from all other dogs and cats throughout the journey.", fr: "Un certificat du commandant du navire ou de l'aéronef attestant que le chien n'a pas quitté l'appareil entre l'embarquement et l'entrée au Kenya et a été isolé de tous les autres chiens et chats durant tout le trajet.", es: "Un certificado del capitán del barco o de la aeronave que certifique que el perro no abandonó el vehículo entre el embarque y la entrada en Kenia y que permaneció aislado de todos los demás perros y gatos durante todo el trayecto.", pt: "Um certificado do capitão do navio ou da aeronave atestando que o cachorro não deixou a embarcação/aeronave entre o embarque e a entrada no Quênia e foi mantido isolado de todos os outros cachorros e gatos durante toda a viagem." }
+    exceptions: { en: "Animals in transit for less than 48 hours are kept in isolation at the owner's expense and may only leave Kenya by air or sea.", fr: "Les animaux en transit de moins de 48 heures sont gardés en isolement aux frais du propriétaire et ne peuvent quitter le Kenya que par voie aérienne ou maritime.", es: "Los animales en tránsito durante menos de 48 horas se mantienen en aislamiento a cargo del propietario y solo pueden salir de Kenia por vía aérea o marítima.", pt: "Animais em trânsito por menos de 48 horas são mantidos isolados por conta do dono e só podem deixar o Quênia por via aérea ou marítima." }
+    ref: { en: "Kenya import conditions — para. 1(c)", fr: "Conditions d'importation du Kenya — para. 1(c)", es: "Condiciones de importación de Kenia — párr. 1(c)", pt: "Kenya import conditions — par. 1(c)" }
+  - item: { en: "Arrival veterinary report", fr: "Signalement vétérinaire à l'arrivée", es: "Notificación veterinaria a la llegada", pt: "Relatório veterinário na chegada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "For any animal entering Kenya other than by sea at Mombasa or by air at Nairobi, the arrival must be reported to the nearest veterinary office within three days. Give the veterinary department, Nairobi, prior notice for inspection on arrival.", fr: "Pour tout animal entrant au Kenya autrement que par voie maritime à Mombasa ou aérienne à Nairobi, l'arrivée doit être signalée au bureau vétérinaire le plus proche dans les trois jours. Préviens à l'avance le service vétérinaire de Nairobi pour l'inspection à l'arrivée.", es: "Para cualquier animal que entre en Kenia por una vía distinta a la marítima en Mombasa o la aérea en Nairobi, la llegada debe notificarse a la oficina veterinaria más cercana en un plazo de tres días. Avisa con antelación al departamento veterinario de Nairobi para la inspección a la llegada.", pt: "Para qualquer animal que entre no Quênia por via diferente da marítima em Mombaça ou aérea em Nairóbi, a chegada deve ser comunicada ao escritório veterinário mais próximo em até três dias. Avise com antecedência o departamento veterinário de Nairóbi para que a inspeção seja providenciada na chegada." }
+    exceptions: { en: "Present the original import permit and certificates to the veterinary officer at the port of entry.", fr: "Présente le permis d'importation et les certificats originaux à l'agent vétérinaire au point d'entrée.", es: "Presenta el permiso de importación y los certificados originales al funcionario veterinario en el punto de entrada.", pt: "Apresente a autorização de importação original e os certificados ao agente veterinário no ponto de entrada." }
+    ref: { en: "Kenya import conditions — reporting on arrival", fr: "Conditions d'importation du Kenya — signalement à l'arrivée", es: "Condiciones de importación de Kenia — notificación a la llegada", pt: "Kenya import conditions — comunicação na chegada" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively about 7 months", fr: "En pratique environ 7 mois", es: "En la práctica unos 7 meses", pt: "Na prática, cerca de 7 meses" }
+    when: { en: "The rabies vaccination certificate is only valid for dogs over six months old at the time of vaccination, and the vaccine must be at least one month old — so the practical minimum travelling age is about seven months.", fr: "Le certificat de vaccination antirabique n'est valable que pour les chiens âgés de plus de six mois au moment de la vaccination, et le vaccin doit dater d'au moins un mois — l'âge minimum pratique pour voyager est donc d'environ sept mois.", es: "El certificado de vacunación antirrábica solo es válido para perros de más de seis meses en el momento de la vacunación, y la vacuna debe tener al menos un mes — por lo que la edad mínima práctica para viajar es de unos siete meses.", pt: "O certificado de vacinação antirrábica só é válido para cachorros com mais de seis meses na data da vacinação, e a vacina deve ter pelo menos um mês — portanto a idade mínima prática de viagem é de cerca de sete meses." }
+    exceptions: { en: "Dogs from the exempted rabies-free countries do not need the rabies certificate and may not be bound by this age condition.", fr: "Les chiens venant des pays indemnes de rage exemptés n'ont pas besoin du certificat rabique et peuvent ne pas être soumis à cette condition d'âge.", es: "Los perros procedentes de los países indemnes de rabia exentos no necesitan el certificado antirrábico y pueden no estar sujetos a esta condición de edad.", pt: "Cachorros vindos dos países isentos livres de raiva não precisam do certificado antirrábico e podem não estar sujeitos a essa condição de idade." }
+    ref: { en: "Rabies Act (Cap. 365) — validity of rabies vaccines", fr: "Rabies Act (Cap. 365) — validité des vaccins antirabiques", es: "Rabies Act (Cap. 365) — valide de las vacunas antirrábicas", pt: "Rabies Act (Cap. 365) — validade das vacinas antirrábicas" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Only if certificates missing", fr: "Seulement si certificats manquants", es: "Solo si faltan certificados", pt: "Somente se faltarem certificados" }
+    when: { en: "Any animal arriving without the required certificates is kept in quarantine at the owner's expense for up to six months.", fr: "Tout animal arrivant sans les certificats requis est placé en quarantaine aux frais du propriétaire, jusqu'à six mois.", es: "Cualquier animal que llegue sin los certificados exigidos se mantiene en cuarentena a cargo del propietario durante un máximo de seis meses.", pt: "Qualquer animal que chegue sem os certificados exigidos é mantido em quarentena por conta do dono por até seis meses." }
+    exceptions: { en: "Not applied when documents are complete. Direct imports from the exempted rabies-free countries need not carry the rabies certificate.", fr: "Non appliquée lorsque les documents sont complets. Les importations directes depuis les pays indemnes de rage exemptés n'ont pas à porter le certificat rabique.", es: "No se aplica cuando los documentos están completos. Las importaciones directas desde los países indemnes de rabia exentos no necesitan llevar el certificado antirrábico.", pt: "Não é aplicada quando os documentos estão completos. Importações diretas dos países isentos livres de raiva não precisam portar o certificado antirrábico." }
+    ref: { en: "Kenya import conditions — quarantine on non-compliance", fr: "Conditions d'importation du Kenya — quarantaine en cas de non-conformité", es: "Condiciones de importación de Kenia — cuarentena en caso de incumplimiento", pt: "Kenya import conditions — quarentena em caso de não conformidade" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No national import ban", fr: "Pas d'interdiction nationale", es: "Sin prohibición nacional de importación", pt: "Sem proibição nacional de importação" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Kenya's published import conditions do not set a breed-specific import ban; entry is controlled by permit and health requirements, not by breed.", fr: "Les conditions d'importation publiées du Kenya n'établissent pas d'interdiction d'importation par race ; l'entrée est encadrée par le permis et les exigences sanitaires, non par la race.", es: "Las condiciones de importación publicadas de Kenia no establecen una prohibición de importación por raza; la entrada se controla mediante el permiso y los requisitos sanitarios, no por la raza.", pt: "As condições de importação publicadas pelo Quênia não estabelecem uma proibição de importação por raça; a entrada é controlada pela autorização e pelas exigências sanitárias, não pela raça." }
+    ref: { en: "Kenya import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation du Kenya (aucune législation par race citée)", es: "Condiciones de importación de Kenia (no se cita legislación específica por raza)", pt: "Kenya import conditions (nenhuma legislação específica por raça citada)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Kenya: the EU passport is not a Kenyan document. A dog from Europe needs the DVS import permit, a valid rabies vaccination certificate and a veterinary surgeon's certificate signed within 5 days of departure. If the rabies shot is under 6 months old, add the government-vet certificate about no rabies within 30 miles of origin. No antibody test is required."
+      fr: "Aucun raccourci « passeport européen » pour entrer au Kenya : le passeport UE n'est pas un document kényan. Un chien venant d'Europe a besoin du permis d'importation DVS, d'un certificat de vaccination antirabique valide et d'un certificat de vétérinaire signé dans les 5 jours avant le départ. Si le vaccin a moins de 6 mois, ajoute le certificat vétérinaire gouvernemental sur l'absence de rage dans un rayon de 30 miles autour de l'origine. Aucun titrage n'est requis."
+      es: "No hay ningún atajo del pasaporte europeo para entrar en Kenia: el pasaporte de la UE no es un documento keniano. Un perro procedente de Europa necesita el permiso de importación de la DVS, un certificado de vacunación antirrábica válido y un certificado de cirujano veterinario firmado en los 5 días previos a la salida. Si la vacuna antirrábica tiene menos de 6 meses, añade el certificado veterinario gubernamental sobre la ausencia de rabia en un radio de 30 millas del origen. No se exige ninguna prueba de titulación."
+      pt: "Não existe atalho de passaporte europeu para entrar no Quênia: o passaporte da UE não é um documento queniano. Um cachorro vindo da Europa precisa da autorização de importação da DVS, de um certificado de vacinação antirrábica válido e de um certificado de cirurgião veterinário assinado em até 5 dias antes da partida. Se a vacina antirrábica tiver menos de 6 meses, acrescente o certificado de veterinário governamental sobre a ausência de raiva em um raio de 30 milhas da origem. Nenhum teste sorológico é exigido."
+    cls: warn
+  listed:
+    title: { en: "From an exempted rabies-free country (Australia, Ireland, New Zealand, Norway, Sweden, UK)", fr: "Depuis un pays indemne de rage exempté (Australie, Irlande, Nouvelle-Zélande, Norvège, Suède, Royaume-Uni)", es: "Desde un país indemne de rabia exento (Australia, Irlanda, Nueva Zelanda, Noruega, Suecia, Reino Unido)", pt: "De um país isento livre de raiva (Austrália, Irlanda, Nova Zelândia, Noruega, Suécia, Reino Unido)" }
+    body:
+      en: "Dogs imported directly from Australia, Ireland, New Zealand, Norway, Sweden or the United Kingdom do not need to carry the rabies vaccination certificate required of other origins. You still need the DVS import permit and the veterinary surgeon's health certificate. This is Kenya's simplest path."
+      fr: "Les chiens importés directement d'Australie, d'Irlande, de Nouvelle-Zélande, de Norvège, de Suède ou du Royaume-Uni n'ont pas à porter le certificat de vaccination antirabique exigé des autres origines. Le permis d'importation DVS et le certificat sanitaire de vétérinaire restent nécessaires. C'est le parcours le plus simple au Kenya."
+      es: "Los perros importados directamente desde Australia, Irlanda, Nueva Zelanda, Noruega, Suecia o el Reino Unido no necesitan llevar el certificado de vacunación antirrábica exigido a otros orígenes. Sigues necesitando el permiso de importación de la DVS y el certificado sanitario del cirujano veterinario. Es el camino más sencillo en Kenia."
+      pt: "Cachorros importados diretamente da Austrália, Irlanda, Nova Zelândia, Noruega, Suécia ou Reino Unido não precisam portar o certificado de vacinação antirrábica exigido de outras origens. Você ainda precisa da autorização de importação da DVS e do atestado de saúde do cirurgião veterinário. Este é o caminho mais simples do Quênia."
+    cls: ok
+  nonListed:
+    title: { en: "From all other origins", fr: "Depuis toute autre origine", es: "Desde cualquier otro origen", pt: "De todas as outras origens" }
+    body:
+      en: "From any country not on the exempted list, the full set applies: DVS import permit, valid rabies vaccination certificate, veterinary surgeon's certificate signed within 5 days of departure and the carrier isolation certificate. A rabies shot under 6 months old adds the government-vet certificate about no rabies within 30 miles of origin. Arriving without the required certificates means quarantine of up to six months at the owner's expense."
+      fr: "Depuis tout pays hors de la liste exemptée, l'ensemble s'applique : permis d'importation DVS, certificat de vaccination antirabique valide, certificat de vétérinaire signé dans les 5 jours avant le départ et certificat d'isolement du transporteur. Un vaccin de moins de 6 mois ajoute le certificat vétérinaire gouvernemental sur l'absence de rage dans un rayon de 30 miles autour de l'origine. Arriver sans les certificats requis entraîne une quarantaine pouvant aller jusqu'à six mois aux frais du propriétaire."
+      es: "Desde cualquier país que no esté en la lista exenta, se aplica el conjunto completo: permiso de importación de la DVS, certificado de vacunación antirrábica válido, certificado de cirujano veterinario firmado en los 5 días previos a la salida y certificado de aislamiento del transportista. Una vacuna antirrábica de menos de 6 meses añade el certificado veterinario gubernamental sobre la ausencia de rabia en un radio de 30 millas del origen. Llegar sin los certificados exigidos supone una cuarentena de hasta seis meses a cargo del propietario."
+      pt: "Vindo de qualquer país que não esteja na lista de isentos, aplica-se o conjunto completo: autorização de importação da DVS, certificado de vacinação antirrábica válido, certificado de cirurgião veterinário assinado em até 5 dias antes da partida e o certificado de isolamento da transportadora. Uma vacina antirrábica com menos de 6 meses acrescenta o certificado de veterinário governamental sobre a ausência de raiva em um raio de 30 milhas da origem. Chegar sem os certificados exigidos significa quarentena de até seis meses por conta do dono."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Kenya depends on your permit and the certificates you carry."
+    fr: "Ce qui se passe à l'arrivée au Kenya dépend de ton permis et des certificats que tu porte."
+    es: "Lo que ocurre cuando tu perro llega a Kenia depende de tu permiso y de los certificados que lleves."
+    pt: "O que acontece quando seu cachorro chega ao Quênia depende da sua autorização e dos certificados que você porta."
+  points:
+    - en: "Present the original import permit, the rabies vaccination certificate, the veterinary surgeon's health certificate and the carrier isolation certificate to the veterinary officer at the port of entry (air at Nairobi, sea at Mombasa)."
+      fr: "Présente le permis d'importation original, le certificat de vaccination antirabique, le certificat sanitaire de vétérinaire et le certificat d'isolement du transporteur à l'agent vétérinaire au point d'entrée (aérien à Nairobi, maritime à Mombasa)."
+      es: "Presenta el permiso de importación original, el certificado de vacunación antirrábica, el certificado sanitario del cirujano veterinario y el certificado de aislamiento del transportista al funcionario veterinario en el punto de entrada (aéreo en Nairobi, marítimo en Mombasa)."
+      pt: "Apresente a autorização de importação original, o certificado de vacinação antirrábica, o atestado de saúde do cirurgião veterinário e o certificado de isolamento da transportadora ao agente veterinário no ponto de entrada (via aérea em Nairóbi, via marítima em Mombaça)."
+    - en: "Give the veterinary department in Nairobi prior notice so an inspection can be arranged on arrival."
+      fr: "Préviens à l'avance le service vétérinaire de Nairobi afin qu'une inspection puisse être organisée à l'arrivée."
+      es: "Avisa con antelación al departamento veterinario de Nairobi para que se pueda organizar una inspección a la llegada."
+      pt: "Avise com antecedência o departamento veterinário em Nairóbi para que uma inspeção possa ser providenciada na chegada."
+    - en: "For entry other than by sea at Mombasa or by air at Nairobi, report the arrival to the nearest veterinary office within three days."
+      fr: "Pour une entrée autre que par voie maritime à Mombasa ou aérienne à Nairobi, signale l'arrivée au bureau vétérinaire le plus proche dans les trois jours."
+      es: "Para una entrada distinta a la marítima en Mombasa o la aérea en Nairobi, notifica la llegada a la oficina veterinaria más cercana en un plazo de tres días."
+      pt: "Para entradas diferentes da via marítima em Mombaça ou aérea em Nairóbi, comunique a chegada ao escritório veterinário mais próximo em até três dias."
+    - en: "Any dog arriving without the required certificates is placed in quarantine at the owner's expense for up to six months."
+      fr: "Tout chien arrivant sans les certificats requis est placé en quarantaine aux frais du propriétaire, jusqu'à six mois."
+      es: "Cualquier perro que llegue sin los certificados exigidos se pone en cuarentena a cargo del propietario durante un máximo de seis meses."
+      pt: "Qualquer cachorro que chegue sem os certificados exigidos é colocado em quarentena por conta do dono por até seis meses."
+    - en: "Carry original documents (not copies) and keep a set with you throughout the journey."
+      fr: "Munis-toi des documents originaux (pas de copies) et garde-en un jeu sur toi durant tout le trajet."
+      es: "Lleva los documentos originales (no copias) y conserva un juego contigo durante todo el trayecto."
+      pt: "Leve os documentos originais (não cópias) e mantenha um jogo com você durante todo o trajeto."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Kenya's published import conditions control entry through the import permit and health requirements, not through breed. There is no national breed-specific import ban in the DVS import conditions."
+    fr: "Les conditions d'importation publiées du Kenya encadrent l'entrée par le permis d'importation et les exigences sanitaires, non par la race. Il n'existe pas d'interdiction d'importation nationale par race dans les conditions d'importation de la DVS."
+    es: "Las condiciones de importación publicadas de Kenia controlan la entrada mediante el permiso de importación y los requisitos sanitarios, no por la raza. No existe una prohibición nacional de importación por raza en las condiciones de importación de la DVS."
+    pt: "As condições de importação publicadas pelo Quênia controlam a entrada por meio da autorização de importação e das exigências sanitárias, não pela raça. Não há proibição nacional de importação por raça nas condições de importação da DVS."
+  cat1:
+    en: "No prohibited-breed list: Kenya's import conditions do not name banned breeds. A compliant dog of any breed can be imported once the permit, rabies vaccination and health certificates are in order."
+    fr: "Pas de liste de races interdites : les conditions d'importation du Kenya ne nomment aucune race prohibée. Un chien conforme, quelle que soit sa race, peut être importé dès lors que le permis, la vaccination antirabique et les certificats sanitaires sont en règle."
+    es: "Sin lista de razas prohibidas: las condiciones de importación de Kenia no mencionan razas prohibidas. Un perro conforme de cualquier raza puede importarse una vez que el permiso, la vacunación antirrábica y los certificados sanitarios están en regla."
+    pt: "Nenhuma lista de raças proibidas: as condições de importação do Quênia não citam raças banidas. Um cachorro de qualquer raça, em conformidade, pode ser importado desde que a autorização, a vacinação antirrábica e os atestados de saúde estejam em ordem."
+  cat2:
+    en: "Kenya has general animal-welfare legislation (including the Prevention of Cruelty to Animals Act), but these are welfare rules, not breed import bans. We found no official breed-specific import restriction to report."
+    fr: "Le Kenya dispose d'une législation générale de protection animale (dont le Prevention of Cruelty to Animals Act), mais il s'agit de règles de bien-être, non d'interdictions d'importation par race. Nous n'avons trouvé aucune restriction d'importation officielle par race à signaler."
+    es: "Kenia dispone de legislación general de bienestar animal (incluida la Prevention of Cruelty to Animals Act), pero se trata de normas de bienestar, no de prohibiciones de importación por raza. No hemos encontrado ninguna restricción de importación oficial por raza que señalar."
+    pt: "O Quênia tem uma legislação geral de bem-estar animal (incluindo o Prevention of Cruelty to Animals Act), mas são regras de bem-estar, não proibições de importação por raça. Não encontramos nenhuma restrição oficial de importação por raça a relatar."
+  note:
+    en: "Because national rules can change, verify the current breed and import conditions directly with the Directorate of Veterinary Services before you travel."
+    fr: "Les règles nationales pouvant évoluer, vérifie les conditions de race et d'importation à jour directement auprès de la Directorate of Veterinary Services avant de voyager."
+    es: "Como las normas nacionales pueden cambiar, verifica las condiciones de raza e importación vigentes directamente con la Directorate of Veterinary Services antes de viajar."
+    pt: "Como as regras nacionais podem mudar, verifique as condições atuais de raça e importação diretamente com a Directorate of Veterinary Services antes de viajar."
+
+checklist:
+  - en: "Apply for the DVS import permit (or via a Kenyan mission) well before travel"
+    fr: "Demande le permis d'importation DVS (ou via une mission kényane) bien avant le voyage"
+    es: "Solicita el permiso de importación de la DVS (o a través de una misión keniana) con bastante antelación al viaje"
+    pt: "Solicite a autorização de importação da DVS (ou por meio de uma missão queniana) bem antes da viagem"
+  - en: "ISO microchip (recommended) implanted before the rabies vaccination"
+    fr: "Puce ISO (recommandée) posée avant la vaccination antirabique"
+    es: "Microchip ISO (recomendado) implantado antes de la vacunación antirrábica"
+    pt: "Microchip ISO (recomendado) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination certificate (vaccine at least 1 month old, within validity)"
+    fr: "Certificat de vaccination antirabique valide (vaccin d'au moins 1 mois, dans la validité)"
+    es: "Certificado de vacunación antirrábica válido (vacuna de al menos 1 mes, dentro de la valide)"
+    pt: "Certificado de vacinação antirrábica válido (vacina com pelo menos 1 mês, dentro da validade)"
+  - en: "Government-vet certificate (no rabies within 30 miles) if the rabies shot is under 6 months old"
+    fr: "Certificat vétérinaire gouvernemental (pas de rage dans un rayon de 30 miles) si le vaccin a moins de 6 mois"
+    es: "Certificado veterinario gubernamental (sin rabia en un radio de 30 millas) si la vacuna antirrábica tiene menos de 6 meses"
+    pt: "Certificado de veterinário governamental (nenhuma raiva em um raio de 30 milhas) se a vacina antirrábica tiver menos de 6 meses"
+  - en: "Veterinary surgeon's health certificate signed within 5 days of departure"
+    fr: "Certificat sanitaire de vétérinaire signé dans les 5 jours avant le départ"
+    es: "Certificado sanitario de cirujano veterinario firmado en los 5 días previos a la salida"
+    pt: "Atestado de saúde do cirurgião veterinário assinado em até 5 dias antes da partida"
+  - en: "Carrier isolation certificate from the aircraft/ship captain"
+    fr: "Certificat d'isolement du transporteur signé par le commandant de l'aéronef/du navire"
+    es: "Certificado de aislamiento del transportista firmado por el capitán de la aeronave/el barco"
+    pt: "Certificado de isolamento da transportadora, emitido pelo capitão da aeronave/navio"
+  - en: "Original permit and certificates to present at the port of entry"
+    fr: "Permis et certificats originaux à présenter au point d'entrée"
+    es: "Permiso y certificados originales para presentar en el punto de entrada"
+    pt: "Autorização e certificados originais para apresentar no ponto de entrada"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
+
+sources:
+  - label: { en: "Kenya High Commission (Pretoria) — Import permit & conditions for canine/feline animals (Cap. 364 & 365)", fr: "Haut-Commissariat du Kenya (Pretoria) — Permis et conditions d'importation des animaux canins/félins (Cap. 364 et 365)", es: "Alto Comisionado de Kenia (Pretoria) — Permiso y condiciones de importación de animales caninos/felinos (Cap. 364 y 365)", pt: "Kenya High Commission (Pretória) — Autorização de importação e condições para animais caninos/felinos (Cap. 364 e 365)" }
+    url: "https://kenya.org.za/import-permit/"
+  - label: { en: "Kenya Embassy (Bern) — Pet import licence and conditions", fr: "Ambassade du Kenya (Berne) — Licence et conditions d'importation d'animaux de compagnie", es: "Embajada de Kenia (Berna) — Licencia y condiciones de importación de mascotas", pt: "Kenya Embassy (Berna) — Licença e condições de importação de animais de estimação" }
+    url: "https://kenyaembassy-bern.ch/pet-import-license/"
+  - label: { en: "Kenya High Commission (London) — Issuance of pet import licences", fr: "Haut-Commissariat du Kenya (Londres) — Délivrance des licences d'importation d'animaux", es: "Alto Comisionado de Kenia (Londres) — Emisión de licencias de importación de mascotas", pt: "Kenya High Commission (Londres) — Emissão de licenças de importação de animais de estimação" }
+    url: "https://www.kenyahighcom.org.uk/issuance-of-pet-import-licenses"
+  - label: { en: "Kenya Embassy (Washington, D.C.) — Importing a canine or feline animal into Kenya", fr: "Ambassade du Kenya (Washington) — Importation d'un animal canin ou félin au Kenya", es: "Embajada de Kenia (Washington, D.C.) — Importación de un animal canino o felino a Kenia", pt: "Kenya Embassy (Washington, D.C.) — Importação de um animal canino ou felino para o Quênia" }
+    url: "https://kenyaembassydc.org/petimport/"
+  - label: { en: "MoALD — Directorate of Veterinary Services (DVS)", fr: "MoALD — Directorate of Veterinary Services (DVS)", es: "MoALD — Directorate of Veterinary Services (DVS)", pt: "MoALD — Directorate of Veterinary Services (DVS)" }
+    url: "https://kilimo.go.ke/dvs-2/"
+  - label: { en: "Directorate of Veterinary Services — eCitizen online services (import permits)", fr: "Directorate of Veterinary Services — services en ligne eCitizen (permis d'importation)", es: "Directorate of Veterinary Services — servicios en línea eCitizen (permisos de importación)", pt: "Directorate of Veterinary Services — serviços on-line eCitizen (autorizações de importação)" }
+    url: "https://dvs.ecitizen.go.ke/"
+
+seo:
+  title: { en: "Kenya Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Kenya — Guide", es: "Requisitos de entrada de perros en Kenia — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Quênia — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Kenya With Your Dog: Entry Requirements (2026)", fr: "Voyager au Kenya avec ton chien : formalités (2026)", es: "Viajar a Kenia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Quênia: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official DVS rules for bringing a dog into Kenya: import permit, rabies vaccination, vet certificate within 5 days, no antibody test. Sourced and dated."
+    fr: "Règles officielles DVS pour faire entrer un chien au Kenya : permis d'importation, vaccination antirabique, certificat vétérinaire sous 5 jours. Sourcé et daté."
+    es: "Normas oficiales de la DVS para traer un perro a Kenia: permiso de importación, vacunación antirrábica y certificado veterinario en 5 días. Con fuentes y fecha."
+    pt: "Regras oficiais da DVS para levar um cachorro ao Quênia: autorização de importação, vacinação antirrábica, certificado em até 5 dias, sem teste sorológico."
+  slug: "kenya"
+  shortDesc:
+    en: "What you need to bring a dog into Kenya: an advance DVS import permit, rabies vaccination and a vet certificate signed within 5 days of departure."
+    fr: "Ce qu'il faut pour faire entrer un chien au Kenya : un permis d'importation DVS préalable, une vaccination antirabique et un certificat vétérinaire signé dans les 5 jours avant le départ."
+    es: "Lo que necesitas para traer un perro a Kenia: un permiso de importación previo de la DVS, vacunación antirrábica y un certificado veterinario firmado en los 5 días previos a la salida."
+    pt: "O que você precisa para levar um cachorro ao Quênia: uma autorização de importação prévia da DVS, vacinação antirrábica e um certificado veterinário assinado em até 5 dias antes da partida."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

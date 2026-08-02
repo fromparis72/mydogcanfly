@@ -1,0 +1,403 @@
+# Country Entry Guide — Colombia (bilingual EN/FR).
+# Colombia is NOT in the EU. This encodes Colombia's own ICA (Instituto Colombiano Agropecuario) scheme:
+# a Sanitary Inspection Certificate (CIS) issued on arrival, after online registration and payment via SISPAP.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_co
+iso2: "CO"
+name: { en: "Colombia", fr: "Colombie", es: "Colombia", pt: "Colômbia" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Colombia: no import formality, but aviation rules require a vaccination record."
+    fr: "Vol intérieur en Colombie : aucune formalité d'import, mais la réglementation aérienne impose un carnet de vaccination."
+    es: "Vuelo nacional en Colombia: ningún trámite de importación, pero la normativa aérea exige una cartilla de vacunación."
+    pt: "Voo doméstico na Colômbia: nenhuma formalidade de importação, mas as regras da aviação exigem uma carteira de vacinação."
+  points:
+    - en: "Aviation regulation RAC 3 requires a vaccination card or certificate signed by a vet, with their professional registration number."
+      fr: "Le règlement aérien RAC 3 impose un carnet ou certificat de vaccination signé par un vétérinaire, avec son numéro d'inscription professionnelle."
+      es: "El reglamento aéreo RAC 3 exige un carné o certificado de vacunación firmado por un veterinario, con su número de matrícula profesional."
+      pt: "O regulamento aéreo RAC 3 exige uma carteira ou um certificado de vacinação assinado por um veterinário, com o número de registro profissional dele."
+    - en: "ICA states explicitly that its CIS sanitary inspection certificate is NOT required to move dogs and cats within the country."
+      fr: "L'ICA précise explicitement que son certificat d'inspection sanitaire (CIS) n'est PAS requis pour déplacer chiens et chats à l'intérieur du pays."
+      es: "El ICA precisa explícitamente que su certificado de inspección sanitaria (CIS) NO se requiere para mover perros y gatos dentro del país."
+      pt: "O ICA afirma explicitamente que o seu certificado de inspeção sanitária (CIS) NÃO é exigido para deslocar cachorros e gatos dentro do país."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+exit:
+  authority: ICA
+  authorityUrl: https://www.ica.gov.co/importacion-y-exportacion/otros-procedimientos/requisitos-para-importar-mascotas/salida-de-perros-y-gatos-desde-colombia
+  intro:
+    en: "Colombia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a sanitary inspection certificate (CIS) issued by ICA at the airport."
+    fr: "La Colombie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat d'inspection sanitaire (CIS) délivré par l'ICA à l'aéroport."
+    es: "Colombia no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de inspección sanitaria (CIS) emitido por el ICA en el aeropuerto."
+    pt: "A Colômbia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de inspeção sanitária (CIS) emitido pelo ICA no aeroporto."
+  steps:
+    - timing: longlead
+      text:
+        en: "Plan the rabies titer early: per ICA, the blood sample must be taken at least 1 month after vaccination and 3 months before travel (minimum age about 7 months)."
+        fr: "Planifie le titrage tôt : selon l'ICA, la prise de sang doit être faite au moins 1 mois après la vaccination et 3 mois avant le voyage (âge minimum ~7 mois)."
+        es: "Planifica pronto la titulación: según el ICA, la muestra de sangre debe tomarse al menos 1 mes tras la vacuna y 3 meses antes del viaje (edad mínima ~7 meses)."
+        pt: "Planeje o teste sorológico antirrábico (titulação) com antecedência: segundo o ICA, a coleta de sangue deve ser feita pelo menos 1 mês após a vacinação e 3 meses antes da viagem (idade mínima de cerca de 7 meses)."
+    - timing: window
+      text:
+        en: "Register and request the ICA inspection up to 3 days before travel; an inspection is done about 24h before departure at the ICA airport office, then the CIS is issued."
+        fr: "Inscris-toi et demande l'inspection ICA jusqu'à 3 jours avant le voyage ; une inspection est réalisée ~24 h avant le départ au bureau ICA de l'aéroport, puis le CIS est délivré."
+        es: "Regístrate y solicita la inspección del ICA hasta 3 días antes del viaje; se realiza una inspección ~24 h antes de la salida en la oficina del ICA en el aeropuerto y luego se emite el CIS."
+        pt: "Registre-se e solicite a inspeção do ICA até 3 dias antes da viagem; a inspeção é feita cerca de 24h antes da partida no escritório do ICA no aeroporto, e então o CIS é emitido."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Colombia with your dog", fr: "Voyager en Colombie avec ton chien", es: "Viajar a Colombia con tu perro", pt: "Viajar para a Colômbia com o seu cachorro" }
+  intro:
+    en: >-
+      Colombia welcomes dogs, and it runs one uniform national scheme managed by the ICA (Instituto
+      Colombiano Agropecuario), the official animal-health authority. There is no EU pet passport here:
+      the key document is a Sanitary Inspection Certificate (CIS) that the ICA issues at the airport,
+      seaport or land border when you arrive. Before you travel you register online and pay, then carry an
+      official veterinary health certificate from your country of origin (issued within 10 days), proof of
+      a valid rabies vaccination and several other canine vaccinations, and evidence of internal and
+      external parasite treatment. Colombia asks for no rabies antibody test and no routine quarantine for
+      a compliant, healthy pet. One important warning: Colombian law bans the import of certain
+      pit-bull-type and "potentially dangerous" breeds. This guide explains exactly what to prepare, and
+      when, before you book your flight.
+    fr: >-
+      La Colombie accueille les chiens et applique un régime national uniforme géré par l'ICA (Instituto
+      Colombiano Agropecuario), l'autorité sanitaire animale officielle. Pas de passeport européen ici :
+      le document clé est un Certificat d'Inspection Sanitaire (CIS) que l'ICA délivre à l'aéroport, au
+      port ou au poste-frontière à ton arrivée. Avant de partir, tu t'enregistres en ligne et
+      réglez le service, puis tu présente un certificat vétérinaire officiel du pays d'origine (émis
+      dans les 10 jours), la preuve d'une vaccination antirabique valide et de plusieurs autres
+      vaccinations canines, ainsi qu'un traitement antiparasitaire interne et externe. La Colombie
+      n'exige ni titrage antirabique ni quarantaine de routine pour un animal conforme et en bonne santé.
+      Un avertissement important : la loi colombienne interdit l'importation de certaines races de type
+      pit-bull et « potentiellement dangereuses ». Ce guide détaille exactement quoi préparer, et quand,
+      avant de réserver ton vol.
+    es: >-
+      Colombia acoge a los perros y aplica un único régimen nacional uniforme gestionado por el ICA
+      (Instituto Colombiano Agropecuario), la autoridad sanitaria animal oficial. Aquí no hay pasaporte
+      europeo para mascotas: el documento clave es un Certificado de Inspección Sanitaria (CIS) que el
+      ICA expide en el aeropuerto, el puerto o el paso fronterizo terrestre cuando llegas. Antes de
+      viajar te registras en línea y pagas, y luego llevas un certificado sanitario veterinario oficial
+      de tu país de origen (emitido dentro de los 10 días), la prueba de una vacunación antirrábica
+      válida y de varias otras vacunas caninas, y la constancia de un tratamiento antiparasitario interno
+      y externo. Colombia no exige ninguna prueba de titulación de rabia ni cuarentena de rutina para una
+      mascota conforme y sana. Una advertencia importante: la ley colombiana prohíbe la importación de
+      ciertas razas de tipo pit bull y «potencialmente peligrosas». Esta guía explica exactamente qué
+      preparar, y cuándo, antes de reservar tu vuelo.
+
+    pt: "A Colômbia recebe bem os cachorros e aplica um único regime nacional uniforme, gerido pelo ICA (Instituto Colombiano Agropecuario), a autoridade oficial de saúde animal. Aqui não existe passaporte europeu para animais de companhia: o documento-chave é um Certificado de Inspeção Sanitária (CIS) que o ICA emite no aeroporto, no porto ou na fronteira terrestre quando você chega. Antes de viajar, você se registra on-line e paga; depois, leva um certificado veterinário oficial de saúde do seu país de origem (emitido nos 10 dias anteriores), o comprovante de uma vacinação antirrábica válida e de várias outras vacinas caninas, e a comprovação do tratamento antiparasitário interno e externo. A Colômbia não exige teste sorológico antirrábico (titulação) nem quarentena de rotina para um animal em conformidade e saudável. Um aviso importante: a lei colombiana proíbe a importação de certas raças do tipo pit bull e “potencialmente perigosas”. Este guia explica exatamente o que preparar, e quando, antes de você comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — one uniform scheme, but several vaccinations and a breed import ban", fr: "Modéré — un régime uniforme, mais plusieurs vaccins et une interdiction d'importation de races", es: "Moderado — un régimen uniforme, pero varias vacunas y una prohibición de importación de razas", pt: "Moderada — um regime uniforme, mas com várias vacinas e uma proibição de importação por raça" }
+
+prepTime:
+  eu:
+    en: "Standard case: a few days to assemble the documents once the vaccinations are valid — the official health certificate must be issued within 10 calendar days before entry, and you register and pay the CIS online beforehand."
+    fr: "Cas standard : quelques jours pour réunir les documents une fois les vaccinations valides — le certificat de santé officiel doit être émis dans les 10 jours calendaires avant l'entrée, et tu enregistre et paie le CIS en ligne au préalable."
+    es: "Caso estándar: unos días para reunir los documentos una vez que las vacunas son válidas — el certificado sanitario oficial debe emitirse dentro de los 10 días naturales previos a la entrada, y registras y pagas el CIS en línea de antemano."
+    pt: "Caso padrão: alguns dias para reunir os documentos assim que as vacinas estiverem válidas — o atestado de saúde oficial deve ser emitido nos 10 dias corridos anteriores à entrada, e você se registra e paga o CIS on-line antes disso."
+  listed:
+    en: "If the first rabies shot is still needed: plan ~3 weeks, as a primary rabies vaccination must be given at least 21 days before the shipment date. Minimum entry age is 15 weeks."
+    fr: "Si la première vaccination antirabique reste à faire : prévois ~3 semaines, une primo-vaccination antirabique devant être faite au moins 21 jours avant la date d'embarquement. L'âge minimum d'entrée est de 15 semaines."
+    es: "Si aún falta la primera vacuna antirrábica: prevé ~3 semanas, ya que una primovacunación antirrábica debe administrarse al menos 21 días antes de la fecha de embarque. La edad mínima de entrada es de 15 semanas."
+    pt: "Se a primeira dose da vacina antirrábica ainda estiver pendente: conte ~3 semanas, já que a vacinação antirrábica primária deve ser aplicada pelo menos 21 dias antes da data do embarque. A idade mínima para entrar é de 15 semanas."
+  nonListed:
+    en: "Special cases: if rabies vaccination is not available in the origin country (home quarantine + vaccination in Colombia), or your dog is a restricted breed, allow much more time — some breeds cannot enter at all."
+    fr: "Cas particuliers : si la vaccination antirabique n'existe pas dans le pays d'origine (quarantaine domiciliaire + vaccination en Colombie), ou si ton chien est d'une race restreinte, prévois beaucoup plus de temps — certaines races ne peuvent pas entrer du tout."
+    es: "Casos particulares: si la vacunación antirrábica no existe en el país de origen (cuarentena domiciliaria + vacunación en Colombia), o si tu perro es de una raza restringida, prevé mucho más tiempo — algunas razas no pueden entrar en absoluto."
+    pt: "Casos especiais: se a vacinação antirrábica não estiver disponível no país de origem (quarentena domiciliar + vacinação na Colômbia), ou se o seu cachorro for de uma raça restrita, conte com muito mais tempo — algumas raças não podem entrar de jeito nenhum."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (some breeds banned)", fr: "Oui (certaines races interdites)", es: "Sí (algunas razas prohibidas)", pt: "Sim (algumas raças proibidas)" }
+    cls: neutral
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not required (recommended for ID)", fr: "Non requise (recommandée pour l'identification)", es: "No obligatorio (recomendado para la identificación)", pt: "Não obrigatório (recomendado para identificação)" }
+    cls: ok
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Other canine vaccinations", fr: "Autres vaccinations canines", es: "Otras vacunas caninas", pt: "Outras vacinações caninas" }
+    status: { en: "Required (distemper, hepatitis, leptospirosis, parvovirus, coronavirus, parainfluenza)", fr: "Requises (maladie de Carré, hépatite, leptospirose, parvovirus, coronavirus, parainfluenza)", es: "Obligatorias (moquillo, hepatitis, leptospirosis, parvovirus, coronavirus, parainfluenza)", pt: "Obrigatórias (cinomose, hepatite, leptospirose, parvovirose, coronavirose, parainfluenza)" }
+    cls: warn
+  - requirement: { en: "Official veterinary certificate + CIS", fr: "Certificat vétérinaire officiel + CIS", es: "Certificado veterinario oficial + CIS", pt: "Certificado veterinário oficial + CIS" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Parasite treatment (internal & external)", fr: "Traitement antiparasitaire (interne & externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for a compliant, healthy pet", fr: "Non requise pour un animal conforme et en bonne santé", es: "No obligatoria para una mascota conforme y sana", pt: "Não exigida para um animal saudável e em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Colombia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Colombie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Colombia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Colômbia (o seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Colombia", fr: "Pays de destination — Colombie", es: "País de destino — Colombia", pt: "País de destino — Colômbia" }
+      text:
+        en: "Colombia applies its own ICA scheme: an official health certificate, a valid rabies vaccination plus other canine vaccinations, internal and external parasite treatment, and a Sanitary Inspection Certificate (CIS) issued on arrival after online registration and payment. No microchip and no rabies antibody test are demanded — but certain breeds are banned from import."
+        fr: "La Colombie applique son propre régime ICA : un certificat de santé officiel, une vaccination antirabique valide et d'autres vaccinations canines, un traitement antiparasitaire interne et externe, et un Certificat d'Inspection Sanitaire (CIS) délivré à l'arrivée après enregistrement et paiement en ligne. Ni puce ni titrage antirabique ne sont exigés — mais certaines races sont interdites d'importation."
+        es: "Colombia aplica su propio régimen del ICA: un certificado sanitario oficial, una vacunación antirrábica válida y otras vacunas caninas, un tratamiento antiparasitario interno y externo, y un Certificado de Inspección Sanitaria (CIS) expedido a la llegada tras el registro y el pago en línea. No se exigen ni microchip ni prueba de titulación de rabia — pero ciertas razas tienen prohibida la importación."
+        pt: "A Colômbia aplica o seu próprio esquema do ICA: um atestado de saúde oficial, uma vacinação antirrábica válida somada a outras vacinas caninas, tratamento antiparasitário interno e externo, e um Certificado de Inspeção Sanitária (CIS) emitido na chegada, após registro e pagamento on-line. Não são exigidos microchip nem teste sorológico antirrábico (titulação) — mas certas raças estão proibidas de importação."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health and vaccination certificate must be issued or endorsed by the official veterinary authority of the country you travel from, with its seal and signature, and dated no more than 10 calendar days before entry. Its timing drives your whole preparation. No apostille or consular legalization is required."
+        fr: "Le certificat de santé et de vaccination doit être émis ou avalisé par l'autorité vétérinaire officielle du pays de départ, avec son sceau et sa signature, et daté de 10 jours calendaires au maximum avant l'entrée. Ses délais rythment toute ton préparation. Aucune apostille ni légalisation consulaire n'est requise."
+        es: "El certificado de salud y de vacunación debe ser emitido o refrendado por la autoridad veterinaria oficial del país desde el que viajas, con su sello y firma, y con fecha no superior a 10 días naturales antes de la entrada. Sus plazos marcan toda tu preparación. No se exige apostilla ni legalización consular."
+        pt: "O certificado de saúde e vacinação deve ser emitido ou avalizado pela autoridade veterinária oficial do país de onde você viaja, com o selo e a assinatura dela, e datado de no máximo 10 dias corridos antes da entrada. Esse prazo condiciona toda a sua preparação. Não é exigida apostila nem legalização consular."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "If rabies vaccination is not practised in the origin country, the official service must certify this; the dog may then enter only on condition of a home quarantine during which it is vaccinated in Colombia by an ICA-registered veterinarian. The dog's health status on arrival always decides acceptance."
+        fr: "Si la vaccination antirabique n'est pas pratiquée dans le pays d'origine, le service officiel doit l'attester ; le chien ne peut alors entrer qu'à condition d'une quarantaine domiciliaire durant laquelle il est vacciné en Colombie par un vétérinaire enregistré à l'ICA. L'état de santé du chien à l'arrivée décide toujours de l'acceptation."
+        es: "Si la vacunación antirrábica no se practica en el país de origen, el servicio oficial debe acreditarlo; el perro solo puede entonces entrar a condición de una cuarentena domiciliaria durante la cual se le vacuna en Colombia por un veterinario registrado ante el ICA. El estado de salud del perro a la llegada decide siempre la aceptación."
+        pt: "Se a vacinação antirrábica não for praticada no país de origem, o serviço oficial deve atestar esse fato; o cachorro só pode então entrar sob a condição de uma quarentena domiciliar, durante a qual é vacinado na Colômbia por um veterinário registrado no ICA. O estado de saúde do cachorro na chegada é sempre o que decide a aceitação."
+  note:
+    en: "So read the requirements below as Colombia's framework, then confirm your dog's exact origin, breed and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre colombien, puis confirme l'origine, la race et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Colombia y luego confirma el origen, la raza y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral da Colômbia e depois confirme com o seu veterinário a origem, a raça e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "The ICA identifies the dog by its physical characteristics (species, breed, sex, age, coat colour and distinguishing marks). A microchip is not demanded for entry, but is strongly advised for identification and the return trip.", fr: "L'ICA identifie le chien par ses caractéristiques physiques (espèce, race, sexe, âge, couleur du pelage et signes particuliers). Une puce n'est pas exigée pour l'entrée, mais fortement conseillée pour l'identification et le retour.", es: "El ICA identifica al perro por sus características físicas (especie, raza, sexo, edad, color del pelaje y señas particulares). No se exige un microchip para la entrada, pero se recomienda encarecidamente para la identificación y el viaje de regreso.", pt: "O ICA identifica o cachorro pelas suas características físicas (espécie, raça, sexo, idade, cor da pelagem e sinais particulares). O microchip não é exigido para a entrada, mas é fortemente recomendado para a identificação e para a viagem de volta." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A current rabies vaccination is required, certified with vaccine name, lot number, date and validity. A first (primary) rabies vaccination must be given at least 21 days before the shipment date.", fr: "Une vaccination antirabique en cours de validité est requise, certifiée avec le nom du vaccin, le numéro de lot, la date et la validité. Une première vaccination antirabique (primo) doit être faite au moins 21 jours avant la date d'embarquement.", es: "Se exige una vacunación antirrábica en vigor, certificada con el nombre de la vacuna, el número de lote, la fecha y la valide. Una primera vacunación antirrábica (primovacunación) debe administrarse al menos 21 días antes de la fecha de embarque.", pt: "É obrigatória uma vacinação antirrábica em dia, certificada com nome da vacina, número do lote, data e validade. A primeira vacinação antirrábica (primária) deve ser aplicada pelo menos 21 dias antes da data do embarque." }
+    exceptions: { en: "If rabies vaccination is not carried out in the origin country, the official veterinary service must certify this; the dog then enters only under a home quarantine, during which it is vaccinated in Colombia by an ICA-registered vet with ICA-registered products.", fr: "Si la vaccination antirabique n'est pas réalisée dans le pays d'origine, le service vétérinaire officiel doit l'attester ; le chien entre alors uniquement sous quarantaine domiciliaire, durant laquelle il est vacciné en Colombie par un vétérinaire enregistré à l'ICA avec des produits enregistrés par l'ICA.", es: "Si la vacunación antirrábica no se realiza en el país de origen, el servicio veterinario oficial debe acreditarlo; el perro entra entonces únicamente bajo cuarentena domiciliaria, durante la cual se le vacuna en Colombia por un veterinario registrado ante el ICA con productos registrados ante el ICA.", pt: "Se a vacinação antirrábica não for realizada no país de origem, o serviço veterinário oficial deve atestar esse fato; o cachorro só entra então sob quarentena domiciliar, durante a qual é vacinado na Colômbia por um veterinário registrado no ICA, com produtos registrados no ICA." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Colombia does not require a rabies antibody test to enter. The ICA only recommends it for pets that will later return to the European Union or to other countries that demand it — that is, before leaving Colombia, not to enter it.", fr: "La Colombie n'exige pas de titrage antirabique pour entrer. L'ICA le recommande uniquement pour les animaux qui repartiront ensuite vers l'Union européenne ou d'autres pays qui l'exigent — c'est-à-dire avant de quitter la Colombie, pas pour y entrer.", es: "Colombia no exige una prueba de titulación de rabia para entrar. El ICA solo la recomienda para las mascotas que después regresarán a la Unión Europea o a otros países que la exigen — es decir, antes de salir de Colombia, no para entrar en ella.", pt: "A Colômbia não exige teste sorológico antirrábico (titulação) para a entrada. O ICA só o recomenda para animais que depois voltarão à União Europeia ou a outros países que o exijam — ou seja, antes de sair da Colômbia, e não para entrar nela." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Other canine vaccinations", fr: "Autres vaccinations canines", es: "Otras vacunas caninas", pt: "Outras vacinações caninas" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "For dogs the certificate must show current vaccination against distemper (Carré), canine hepatitis, leptospirosis (canicola and icterohaemorrhagiae), parvovirus, coronavirus and parainfluenza, each with product name, lot, date and validity.", fr: "Pour les chiens, le certificat doit attester une vaccination en cours contre la maladie de Carré, l'hépatite canine, la leptospirose (canicola et icterohaemorrhagiae), le parvovirus, le coronavirus et la parainfluenza, chacune avec nom du produit, lot, date et validité.", es: "Para los perros, el certificado debe acreditar una vacunación en vigor contra el moquillo, la hepatitis canina, la leptospirosis (canicola e icterohaemorrhagiae), el parvovirus, el coronavirus y la parainfluenza, cada una con nombre del producto, lote, fecha y valide.", pt: "Para os cachorros, o certificado deve comprovar vacinação em dia contra cinomose (Carré), hepatite canina, leptospirose (canicola e icterohaemorrhagiae), parvovirose, coronavirose e parainfluenza, cada uma com nome do produto, lote, data e validade." }
+    exceptions: { en: "If one of these vaccinations is not administered in the origin country, the official service must certify this; the dog is then allowed to enter without a home quarantine (only missing rabies vaccination triggers quarantine).", fr: "Si l'une de ces vaccinations n'est pas administrée dans le pays d'origine, le service officiel doit l'attester ; le chien est alors admis sans quarantaine domiciliaire (seule l'absence de vaccination antirabique déclenche la quarantaine).", es: "Si una de estas vacunas no se administra en el país de origen, el servicio oficial debe acreditarlo; el perro se admite entonces sin cuarentena domiciliaria (solo la ausencia de vacunación antirrábica activa la cuarentena).", pt: "Se uma dessas vacinas não for aplicada no país de origem, o serviço oficial deve atestar esse fato; o cachorro é então autorizado a entrar sem quarentena domiciliar (só a falta da vacinação antirrábica gera quarentena)." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel de santé", es: "Certificado veterinario oficial de salud", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Original certificate issued or endorsed by the official veterinary authority of the origin country, with seal and signature (handwritten or electronic), dated no more than 10 calendar days before entry. It certifies the dog's characteristics, freedom from infectious and parasitic diseases, parasite treatment and fitness to travel.", fr: "Certificat original émis ou avalisé par l'autorité vétérinaire officielle du pays d'origine, avec sceau et signature (manuscrite ou électronique), daté de 10 jours calendaires au maximum avant l'entrée. Il atteste les caractéristiques du chien, l'absence de maladies infectieuses et parasitaires, le traitement antiparasitaire et l'aptitude au voyage.", es: "Certificado original emitido o refrendado por la autoridad veterinaria oficial del país de origen, con sello y firma (manuscrita o electrónica), con fecha no superior a 10 días naturales antes de la entrada. Acredita las características del perro, la ausencia de enfermedades infecciosas y parasitarias, el tratamiento antiparasitario y la aptitud para viajar.", pt: "Certificado original emitido ou avalizado pela autoridade veterinária oficial do país de origem, com selo e assinatura (manuscrita ou eletrônica), datado de no máximo 10 dias corridos antes da entrada. Ele atesta as características do cachorro, a ausência de doenças infecciosas e parasitárias, o tratamento antiparasitário e a aptidão para viajar." }
+    exceptions: { en: "No apostille or consular legalization is required for cats and dogs.", fr: "Aucune apostille ni légalisation consulaire n'est requise pour les chiens et chats.", es: "No se exige apostilla ni legalización consular para perros y gatos.", pt: "Não é exigida apostila nem legalização consular para cachorros e gatos." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Parasite treatment (internal & external)", fr: "Traitement antiparasitaire (interne & externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must have received internal and external antiparasitic treatment within the 60 days before travel, with products authorised in the origin country; the certificate must state the product name, active ingredient and date of administration.", fr: "Le chien doit avoir reçu un traitement antiparasitaire interne et externe dans les 60 jours avant le voyage, avec des produits autorisés dans le pays d'origine ; le certificat doit indiquer le nom du produit, le principe actif et la date d'administration.", es: "El perro debe haber recibido un tratamiento antiparasitario interno y externo dentro de los 60 días previos al viaje, con productos autorizados en el país de origen; el certificado debe indicar el nombre del producto, el principio activo y la fecha de administración.", pt: "O cachorro deve ter recebido tratamento antiparasitário interno e externo nos 60 dias anteriores à viagem, com produtos autorizados no país de origem; o certificado deve indicar o nome do produto, o princípio ativo e a data de aplicação." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Advance ICA registration & CIS request (SISPAP)", fr: "Enregistrement ICA préalable & demande de CIS (SISPAP)", es: "Registro previo ante el ICA y solicitud del CIS (SISPAP)", pt: "Registro prévio no ICA e solicitação do CIS (SISPAP)" }
+    required: { en: "Required before arrival", fr: "Requis avant l'arrivée", es: "Obligatorio antes de la llegada", pt: "Obrigatório antes da chegada" }
+    when: { en: "Before travelling, register as an ICA user online, then request the Sanitary Inspection Certificate (CIS) in the SISPAP system, enter the traveller and pet data, pay, and print the request and payment receipt to present on arrival.", fr: "Avant de voyager, enregistre-toi comme usager ICA en ligne, puis demande le Certificat d'Inspection Sanitaire (CIS) dans le système SISPAP, saisis les données du voyageur et de l'animal, paie, et imprime la demande et le justificatif de paiement à présenter à l'arrivée.", es: "Antes de viajar, regístrate como usuario del ICA en línea, luego solicita el Certificado de Inspección Sanitaria (CIS) en el sistema SISPAP, introduce los datos del viajero y de la mascota, paga, e imprime la solicitud y el comprobante de pago para presentarlos a la llegada.", pt: "Antes de viajar, registre-se como usuário do ICA on-line, depois solicite o Certificado de Inspeção Sanitária (CIS) no sistema SISPAP, informe os dados do viajante e do animal, pague e imprima a solicitação e o comprovante de pagamento para apresentar na chegada." }
+    exceptions: { en: "If the online request is impossible, it can be completed at the ICA office at the point of entry, presenting the pet and the physical documents and paying on site (card only, no cash). Up to 10 animals of the same species per request.", fr: "Si la demande en ligne est impossible, elle peut être faite au bureau de l'ICA au point d'entrée, en présentant l'animal et les documents physiques et en payant sur place (carte uniquement, pas d'espèces). Jusqu'à 10 animaux de la même espèce par demande.", es: "Si la solicitud en línea es imposible, puede hacerse en la oficina del ICA en el punto de entrada, presentando la mascota y los documentos físicos y pagando in situ (solo tarjeta, sin efectivo). Hasta 10 animales de la misma especie por solicitud.", pt: "Se a solicitação on-line não for possível, ela pode ser feita no escritório do ICA no ponto de entrada, apresentando o animal e os documentos físicos e pagando no local (somente cartão, sem dinheiro em espécie). Até 10 animais da mesma espécie por solicitação." }
+    ref: { en: "ICA — Guía de registro del viajero y pago del CIS", fr: "ICA — Guía de registro del viajero y pago del CIS", es: "ICA — Guía de registro del viajero y pago del CIS", pt: "ICA — Guía de registro del viajero y pago del CIS" }
+  - item: { en: "Border check & CIS issuance (ICA inspection)", fr: "Contrôle frontalier & émission du CIS (inspection ICA)", es: "Control fronterizo y expedición del CIS (inspección del ICA)", pt: "Controle na fronteira e emissão do CIS (inspeção do ICA)" }
+    required: { en: "Required on arrival", fr: "Requis à l'arrivée", es: "Obligatorio a la llegada", pt: "Obrigatória na chegada" }
+    when: { en: "At the airport, seaport or land border, the ICA veterinarian performs a documentary inspection (certificate, vaccination record, request and payment) and a physical inspection of the dog, then issues the Sanitary Inspection Certificate (CIS) if everything is satisfactory.", fr: "À l'aéroport, au port ou au poste-frontière, le vétérinaire de l'ICA réalise une inspection documentaire (certificat, carnet de vaccination, demande et paiement) et une inspection physique du chien, puis délivre le Certificat d'Inspection Sanitaire (CIS) si tout est satisfaisant.", es: "En el aeropuerto, el puerto o el paso fronterizo terrestre, el veterinario del ICA realiza una inspección documental (certificado, cartilla de vacunación, solicitud y pago) y una inspección física del perro, y luego expide el Certificado de Inspección Sanitaria (CIS) si todo es satisfactorio.", pt: "No aeroporto, no porto ou na fronteira terrestre, o veterinário do ICA faz uma inspeção documental (certificado, carteira de vacinação, solicitação e pagamento) e uma inspeção física do cachorro, e então emite o Certificado de Inspeção Sanitária (CIS) se estiver tudo em ordem." }
+    exceptions: { en: "If the inspection is not satisfactory, the ICA may apply retention, home quarantine, re-shipment (reembarque) or humane sanitary sacrifice, depending on the dog's health; all costs fall on the owner.", fr: "Si l'inspection n'est pas satisfaisante, l'ICA peut appliquer rétention, quarantaine domiciliaire, réexpédition (reembarque) ou sacrifice sanitaire humanitaire, selon l'état du chien ; tous les frais sont à la charge du propriétaire.", es: "Si la inspección no es satisfactoria, el ICA puede aplicar retención, cuarentena domiciliaria, reembarque o sacrificio sanitario humanitario, según el estado del perro; todos los costes corren a cargo del propietario.", pt: "Se a inspeção não for satisfatória, o ICA pode aplicar retenção, quarentena domiciliar, reembarque ou sacrifício sanitário humanitário, conforme o estado de saúde do cachorro; todos os custos ficam por conta do proprietário." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "At least 15 weeks", fr: "Au moins 15 semaines", es: "Al menos 15 semanas", pt: "Pelo menos 15 semanas" }
+    when: { en: "The minimum age to enter the country is 15 weeks. This aligns with the rule that a primary rabies vaccination must be given at least 21 days before shipment.", fr: "L'âge minimum pour entrer dans le pays est de 15 semaines. Cela correspond à la règle selon laquelle une primo-vaccination antirabique doit être faite au moins 21 jours avant l'embarquement.", es: "La edad mínima para entrar en el país es de 15 semanas. Esto concuerda con la regla de que una primovacunación antirrábica debe administrarse al menos 21 días antes del embarque.", pt: "A idade mínima para entrar no país é de 15 semanas. Isso se alinha à regra de que a vacinação antirrábica primária deve ser aplicada pelo menos 21 dias antes do embarque." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+  - item: { en: "Restricted / banned breeds", fr: "Races restreintes / interdites", es: "Razas restringidas / prohibidas", pt: "Raças restritas / proibidas" }
+    required: { en: "Import prohibited for listed breeds", fr: "Importation interdite pour les races listées", es: "Importación prohibida para las razas listadas", pt: "Importação proibida para as raças listadas" }
+    when: { en: "Colombian law prohibits importing pit-bull-type dogs — Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier and Staffordshire Terrier — and their crosses or hybrids. The ICA also states that dogs classed as 'potentially dangerous' under the National Police and Coexistence Code cannot enter the country.", fr: "La loi colombienne interdit l'importation des chiens de type pit-bull — Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier et Staffordshire Terrier — ainsi que leurs croisements ou hybrides. L'ICA précise aussi que les chiens classés « potentiellement dangereux » selon le Code national de police et de coexistence ne peuvent pas entrer dans le pays.", es: "La ley colombiana prohíbe importar perros de tipo pit bull — Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier y Staffordshire Terrier — y sus cruces o híbridos. El ICA precisa además que los perros clasificados como «potencialmente peligrosos» según el Código Nacional de Policía y Convivencia no pueden entrar en el país.", pt: "A lei colombiana proíbe a importação de cachorros do tipo pit bull — Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier e Staffordshire Terrier — e dos seus cruzamentos ou híbridos. O ICA também afirma que os cachorros classificados como “potencialmente perigosos” pelo Código Nacional de Policía y Convivencia não podem entrar no país." }
+    exceptions: { en: "Check your dog's breed against the current legislation before booking — a banned breed will be refused entry regardless of its documents.", fr: "Vérifie la race de ton chien au regard de la législation en vigueur avant de réserver — une race interdite sera refusée à l'entrée quels que soient ses documents.", es: "Verifica la raza de tu perro conforme a la legislación vigente antes de reservar — una raza prohibida será rechazada a la entrada sean cuales sean sus documentos.", pt: "Confira a raça do seu cachorro na legislação vigente antes de comprar a passagem — uma raça proibida terá a entrada recusada, independentemente dos seus documentos." }
+    ref: { en: "Ley 746 de 2002; Ley 1801 de 2016 (Código Nacional de Policía y Convivencia)", fr: "Ley 746 de 2002 ; Ley 1801 de 2016 (Code national de police et de coexistence)", es: "Ley 746 de 2002; Ley 1801 de 2016 (Código Nacional de Policía y Convivencia)", pt: "Ley 746 de 2002; Ley 1801 de 2016 (Código Nacional de Policía y Convivencia)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required (conditional cases only)", fr: "Non requise (uniquement cas conditionnels)", es: "No obligatoria (solo casos condicionales)", pt: "Não obrigatória (apenas em casos condicionais)" }
+    when: { en: "No routine quarantine for a compliant, healthy pet.", fr: "Aucune quarantaine de routine pour un animal conforme et en bonne santé.", es: "Ninguna cuarentena de rutina para una mascota conforme y sana.", pt: "Sem quarentena de rotina para um animal em conformidade e saudável." }
+    exceptions: { en: "A home quarantine applies only where rabies vaccination is not available in the origin country (to be vaccinated in Colombia), or as a sanitary measure if the arrival inspection is not satisfactory.", fr: "Une quarantaine domiciliaire s'applique uniquement lorsque la vaccination antirabique n'existe pas dans le pays d'origine (pour être vacciné en Colombie), ou comme mesure sanitaire si l'inspection à l'arrivée n'est pas satisfaisante.", es: "Una cuarentena domiciliaria se aplica únicamente cuando la vacunación antirrábica no existe en el país de origen (para ser vacunado en Colombia), o como medida sanitaria si la inspección a la llegada no es satisfactoria.", pt: "A quarentena domiciliar só se aplica quando a vacinação antirrábica não está disponível no país de origem (o cachorro é então vacinado na Colômbia), ou como medida sanitária se a inspeção de chegada não for satisfatória." }
+    ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
+
+origin:
+  eu:
+    title: { en: "Standard scheme — health certificate + CIS", fr: "Régime standard — certificat de santé + CIS", es: "Régimen estándar — certificado de salud + CIS", pt: "Esquema padrão — atestado de saúde + CIS" }
+    body:
+      en: "For almost every origin the path is the same. Before travelling you register as an ICA user online and request the Sanitary Inspection Certificate (CIS) via SISPAP, entering your and your dog's details and paying. Your dog needs an official veterinary health certificate from the origin country (issued within 10 days, with seal and signature), proof of a valid rabies vaccination and the other canine vaccinations, and internal and external parasite treatment within 60 days. On arrival the ICA inspects the documents and the dog and issues the CIS. No microchip, no antibody test and no apostille are required."
+      fr: "Pour presque toutes les origines, le parcours est identique. Avant de partir, tu t'enregistres comme usager ICA en ligne et demande le Certificat d'Inspection Sanitaire (CIS) via SISPAP, en saisissant tes données et celles du chien et en payant. Ton chien a besoin d'un certificat vétérinaire officiel du pays d'origine (émis dans les 10 jours, avec sceau et signature), de la preuve d'une vaccination antirabique valide et des autres vaccinations canines, et d'un traitement antiparasitaire interne et externe dans les 60 jours. À l'arrivée, l'ICA inspecte les documents et le chien et délivre le CIS. Ni puce, ni titrage, ni apostille ne sont requis."
+      es: "Para casi todos los orígenes el camino es el mismo. Antes de viajar te registras como usuario del ICA en línea y solicitas el Certificado de Inspección Sanitaria (CIS) mediante SISPAP, introduciendo tus datos y los de tu perro y pagando. Tu perro necesita un certificado veterinario oficial del país de origen (emitido dentro de los 10 días, con sello y firma), la prueba de una vacunación antirrábica válida y de las otras vacunas caninas, y un tratamiento antiparasitario interno y externo dentro de los 60 días. A la llegada, el ICA inspecciona los documentos y al perro y expide el CIS. No se exigen ni microchip, ni prueba de titulación, ni apostilla."
+      pt: "Para quase todas as origens, o caminho é o mesmo. Antes de viajar, você se registra como usuário do ICA on-line e solicita o Certificado de Inspeção Sanitária (CIS) pelo SISPAP, informando os seus dados e os do seu cachorro e pagando. O seu cachorro precisa de um certificado veterinário oficial de saúde do país de origem (emitido nos 10 dias anteriores, com selo e assinatura), do comprovante de uma vacinação antirrábica válida e das outras vacinas caninas, e de tratamento antiparasitário interno e externo feito nos 60 dias anteriores. Na chegada, o ICA inspeciona os documentos e o cachorro e emite o CIS. Não são exigidos microchip, teste sorológico antirrábico (titulação) nem apostila."
+    cls: ok
+  listed:
+    title: { en: "Where rabies vaccination is not available at origin", fr: "Lorsque la vaccination antirabique n'existe pas à l'origine", es: "Cuando la vacunación antirrábica no existe en el origen", pt: "Quando a vacinação antirrábica não está disponível na origem" }
+    body:
+      en: "If your dog comes from a country where rabies vaccination is not carried out, the official veterinary service must certify that fact. The dog may then enter only on condition of a home quarantine, during which it must be vaccinated against rabies in Colombia by an ICA-registered veterinarian using ICA-registered vaccines. All other requirements — health certificate, other vaccinations, parasite treatment, CIS — still apply."
+      fr: "Si ton chien vient d'un pays où la vaccination antirabique n'est pas pratiquée, le service vétérinaire officiel doit l'attester. Le chien ne peut alors entrer qu'à condition d'une quarantaine domiciliaire, durant laquelle il doit être vacciné contre la rage en Colombie par un vétérinaire enregistré à l'ICA avec des vaccins enregistrés par l'ICA. Toutes les autres exigences — certificat de santé, autres vaccinations, traitement antiparasitaire, CIS — s'appliquent toujours."
+      es: "Si tu perro viene de un país donde la vacunación antirrábica no se practica, el servicio veterinario oficial debe acreditarlo. El perro solo puede entonces entrar a condición de una cuarentena domiciliaria, durante la cual debe ser vacunado contra la rabia en Colombia por un veterinario registrado ante el ICA con vacunas registradas ante el ICA. Todos los demás requisitos — certificado de salud, otras vacunas, tratamiento antiparasitario, CIS — siguen aplicándose."
+      pt: "Se o seu cachorro vier de um país onde a vacinação antirrábica não é realizada, o serviço veterinário oficial deve atestar esse fato. O cachorro só pode então entrar sob a condição de uma quarentena domiciliar, durante a qual deve ser vacinado contra a raiva na Colômbia por um veterinário registrado no ICA, com vacinas registradas no ICA. Todas as demais exigências — atestado de saúde, outras vacinas, tratamento antiparasitário, CIS — continuam valendo."
+    cls: warn
+  nonListed:
+    title: { en: "Banned breeds & non-compliant arrivals", fr: "Races interdites & arrivées non conformes", es: "Razas prohibidas y llegadas no conformes", pt: "Raças proibidas e chegadas em desconformidade" }
+    body:
+      en: "Certain breeds cannot be imported at all: Colombian law bans pit-bull-type dogs (Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Terrier) and their crosses, and the ICA states that 'potentially dangerous' breeds under the National Police Code may not enter. If a dog arrives without meeting the sanitary requirements, the ICA may apply retention, home quarantine, re-shipment or humane sanitary sacrifice; the resulting costs fall on the owner."
+      fr: "Certaines races ne peuvent pas être importées du tout : la loi colombienne interdit les chiens de type pit-bull (Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Terrier) et leurs croisements, et l'ICA précise que les races « potentiellement dangereuses » du Code national de police ne peuvent pas entrer. Si un chien arrive sans remplir les exigences sanitaires, l'ICA peut appliquer rétention, quarantaine domiciliaire, réexpédition ou sacrifice sanitaire humanitaire ; les frais qui en résultent sont à la charge du propriétaire."
+      es: "Ciertas razas no pueden importarse en absoluto: la ley colombiana prohíbe los perros de tipo pit bull (Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Terrier) y sus cruces, y el ICA precisa que las razas «potencialmente peligrosas» del Código Nacional de Policía no pueden entrar. Si un perro llega sin cumplir los requisitos sanitarios, el ICA puede aplicar retención, cuarentena domiciliaria, reembarque o sacrificio sanitario humanitario; los costes resultantes corren a cargo del propietario."
+      pt: "Algumas raças não podem ser importadas de jeito nenhum: a lei colombiana proíbe os cachorros do tipo pit bull (Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Terrier) e os seus cruzamentos, e o ICA afirma que as raças “potencialmente perigosas” segundo o Código Nacional de Policía não podem entrar. Se um cachorro chegar sem cumprir as exigências sanitárias, o ICA pode aplicar retenção, quarentena domiciliar, reembarque ou sacrifício sanitário humanitário; os custos daí decorrentes ficam por conta do proprietário."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Colombia centres on the ICA office at your point of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Colombie s'articule autour du bureau de l'ICA à ton point d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a Colombia gira en torno a la oficina del ICA en tu punto de entrada."
+    pt: "O que acontece quando o seu cachorro chega à Colômbia gira em torno do escritório do ICA no seu ponto de entrada."
+  points:
+    - en: "Go straight to the ICA office at the airport, seaport or land border where you enter, with your dog and all documents, to obtain the Sanitary Inspection Certificate (CIS)."
+      fr: "Rends-toi directement au bureau de l'ICA à l'aéroport, au port ou au poste-frontière d'entrée, avec ton chien et tous les documents, pour obtenir le Certificat d'Inspection Sanitaire (CIS)."
+      es: "Ve directamente a la oficina del ICA en el aeropuerto, el puerto o el paso fronterizo terrestre de entrada, con tu perro y todos los documentos, para obtener el Certificado de Inspección Sanitaria (CIS)."
+      pt: "Vá direto ao escritório do ICA no aeroporto, porto ou fronteira terrestre por onde você entrar, com o seu cachorro e todos os documentos, para obter o Certificado de Inspeção Sanitária (CIS)."
+    - en: "The ICA carries out a documentary inspection (health certificate, vaccination record, printed CIS request and payment receipt) followed by a physical inspection of the dog."
+      fr: "L'ICA effectue une inspection documentaire (certificat de santé, carnet de vaccination, demande de CIS imprimée et justificatif de paiement) suivie d'une inspection physique du chien."
+      es: "El ICA realiza una inspección documental (certificado de salud, cartilla de vacunación, solicitud del CIS impresa y comprobante de pago) seguida de una inspección física del perro."
+      pt: "O ICA faz uma inspeção documental (atestado de saúde, carteira de vacinação, solicitação do CIS impressa e comprovante de pagamento), seguida de uma inspeção física do cachorro."
+    - en: "Payment is by card only (debit/credit) — the ICA does not accept cash. For pets in the cabin or as accompanied baggage, pay the ICA officer at the international pier; for pets arriving as cargo, pay by bank transfer, PSE or Baloto points."
+      fr: "Le paiement se fait uniquement par carte (débit/crédit) — l'ICA n'accepte pas d'espèces. Pour les animaux en cabine ou en bagage accompagné, paie l'agent ICA au môle international ; pour les animaux arrivant en fret, paie par virement bancaire, PSE ou points Baloto."
+      es: "El pago se hace únicamente con tarjeta (débito/crédito) — el ICA no acepta efectivo. Para las mascotas en cabina o como equipaje acompañado, paga al agente del ICA en el muelle internacional; para las mascotas que llegan como carga, paga por transferencia bancaria, PSE o puntos Baloto."
+      pt: "O pagamento é somente com cartão (débito/crédito) — o ICA não aceita dinheiro em espécie. Para animais na cabine ou como bagagem acompanhada, pague ao funcionário do ICA no píer internacional; para animais que chegam como carga, pague por transferência bancária, PSE ou pontos Baloto."
+    - en: "The official health certificate is valid only if issued within the 10 calendar days before entry, so time your departure accordingly."
+      fr: "Le certificat de santé officiel n'est valable que s'il est émis dans les 10 jours calendaires avant l'entrée, calez donc ton départ en conséquence."
+      es: "El certificado de salud oficial solo es válido si se emite dentro de los 10 días naturales previos a la entrada, así que planifica tu salida en consecuencia."
+      pt: "O atestado de saúde oficial só é válido se emitido nos 10 dias corridos anteriores à entrada, então programe a sua partida em função disso."
+    - en: "If documents are missing or the dog does not pass inspection, the ICA may apply retention, home quarantine, re-shipment or humane sanitary sacrifice, at the owner's expense."
+      fr: "Si des documents manquent ou si le chien ne passe pas l'inspection, l'ICA peut appliquer rétention, quarantaine domiciliaire, réexpédition ou sacrifice sanitaire humanitaire, aux frais du propriétaire."
+      es: "Si faltan documentos o el perro no pasa la inspección, el ICA puede aplicar retención, cuarentena domiciliaria, reembarque o sacrificio sanitario humanitario, a cargo del propietario."
+      pt: "Se faltarem documentos ou se o cachorro não passar na inspeção, o ICA pode aplicar retenção, quarentena domiciliar, reembarque ou sacrifício sanitário humanitário, às custas do proprietário."
+    - en: "A banned breed will be refused entry regardless of its paperwork, so verify the breed rules before you travel."
+      fr: "Une race interdite sera refusée à l'entrée quels que soient ses documents, vérifie donc les règles de race avant de voyager."
+      es: "Una raza prohibida será rechazada a la entrada sean cuales sean sus documentos, así que verifica las normas de razas antes de viajar."
+      pt: "Uma raça proibida terá a entrada recusada independentemente da documentação, então verifique as regras de raça antes de viajar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Unlike many countries, Colombia does restrict certain breeds at the border. Colombian law bans the import of specific pit-bull-type dogs, and the ICA's official guidance states that 'potentially dangerous' breeds cannot enter the country. This is an entry restriction, not only an ownership rule."
+    fr: "Contrairement à beaucoup de pays, la Colombie restreint certaines races à la frontière. La loi colombienne interdit l'importation de certains chiens de type pit-bull, et les consignes officielles de l'ICA indiquent que les races « potentiellement dangereuses » ne peuvent pas entrer dans le pays. Il s'agit d'une restriction d'entrée, pas seulement d'une règle de détention."
+    es: "A diferencia de muchos países, Colombia sí restringe ciertas razas en la frontera. La ley colombiana prohíbe la importación de determinados perros de tipo pit bull, y las directrices oficiales del ICA indican que las razas «potencialmente peligrosas» no pueden entrar en el país. Se trata de una restricción de entrada, no solo de una norma de tenencia."
+    pt: "Ao contrário de muitos países, a Colômbia realmente restringe certas raças na fronteira. A lei colombiana proíbe a importação de determinados cachorros do tipo pit bull, e a orientação oficial do ICA afirma que as raças “potencialmente perigosas” não podem entrar no país. Trata-se de uma restrição de entrada, não apenas de uma regra de posse."
+  cat1:
+    en: "Import prohibited: Colombian law (Ley 746 de 2002) prohibits importing Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier and Staffordshire Terrier dogs, and any crosses or hybrids of these breeds, given their classification as highly dangerous."
+    fr: "Importation interdite : la loi colombienne (Ley 746 de 2002) interdit l'importation des chiens Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier et Staffordshire Terrier, ainsi que tout croisement ou hybride de ces races, en raison de leur classement comme hautement dangereux."
+    es: "Importación prohibida: la ley colombiana (Ley 746 de 2002) prohíbe importar perros Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier y Staffordshire Terrier, y cualquier cruce o híbrido de estas razas, dada su clasificación como altamente peligrosos."
+    pt: "Importação proibida: a lei colombiana (Ley 746 de 2002) proíbe importar cachorros Pit Bull Terrier, American Pit Bull Terrier, American Staffordshire Terrier e Staffordshire Terrier, e quaisquer cruzamentos ou híbridos dessas raças, dada a sua classificação como altamente perigosos."
+  cat2:
+    en: "Potentially dangerous breeds: the National Police and Coexistence Code (Ley 1801 de 2016, Chapter IV) defines a wider list of 'potentially dangerous' dogs, and the ICA's official notice states that such dogs cannot enter Colombia. If your dog could fall into this category, confirm its status against the Code before booking."
+    fr: "Races potentiellement dangereuses : le Code national de police et de coexistence (Ley 1801 de 2016, chapitre IV) définit une liste plus large de chiens « potentiellement dangereux », et l'avis officiel de l'ICA indique que de tels chiens ne peuvent pas entrer en Colombie. Si ton chien pourrait relever de cette catégorie, vérifie son statut au regard du Code avant de réserver."
+    es: "Razas potencialmente peligrosas: el Código Nacional de Policía y Convivencia (Ley 1801 de 2016, capítulo IV) define una lista más amplia de perros «potencialmente peligrosos», y el aviso oficial del ICA indica que tales perros no pueden entrar en Colombia. Si tu perro pudiera encuadrarse en esta categoría, verifica su situación conforme al Código antes de reservar."
+    pt: "Raças potencialmente perigosas: o Código Nacional de Policía y Convivencia (Ley 1801 de 2016, Capítulo IV) define uma lista mais ampla de cachorros “potencialmente perigosos”, e o comunicado oficial do ICA afirma que esses cachorros não podem entrar na Colômbia. Se o seu cachorro puder se enquadrar nessa categoria, confirme a situação dele à luz do Código antes de comprar a passagem."
+  note:
+    en: "Because these are import restrictions, verify your dog's breed before you book. A prohibited breed will be refused entry even with a perfect health certificate and CIS request."
+    fr: "Comme il s'agit de restrictions à l'importation, vérifie la race de ton chien avant de réserver. Une race interdite sera refusée à l'entrée même avec un certificat de santé parfait et une demande de CIS."
+    es: "Como se trata de restricciones a la importación, verifica la raza de tu perro antes de reservar. Una raza prohibida será rechazada a la entrada incluso con un certificado de salud perfecto y una solicitud del CIS."
+    pt: "Como se trata de restrições de importação, verifique a raça do seu cachorro antes de comprar a passagem. Uma raça proibida terá a entrada recusada mesmo com um atestado de saúde perfeito e uma solicitação de CIS."
+
+checklist:
+  - en: "Register as an ICA user online and request the CIS via SISPAP; pay and print the request and payment receipt"
+    fr: "Enregistre-toi comme usager ICA en ligne et demande le CIS via SISPAP ; paie et imprime la demande et le justificatif de paiement"
+    es: "Regístrate como usuario del ICA en línea y solicita el CIS mediante SISPAP; paga e imprime la solicitud y el comprobante de pago"
+    pt: "Registre-se como usuário do ICA on-line e solicite o CIS pelo SISPAP; pague e imprima a solicitação e o comprovante de pagamento"
+  - en: "Official veterinary health certificate from the origin country, sealed and signed, issued within 10 calendar days before entry"
+    fr: "Certificat vétérinaire officiel du pays d'origine, scellé et signé, émis dans les 10 jours calendaires avant l'entrée"
+    es: "Certificado veterinario oficial del país de origen, sellado y firmado, emitido dentro de los 10 días naturales previos a la entrada"
+    pt: "Certificado veterinário oficial de saúde do país de origem, selado e assinado, emitido nos 10 dias corridos anteriores à entrada"
+  - en: "Valid rabies vaccination (primary shot at least 21 days before shipment); dog at least 15 weeks old"
+    fr: "Vaccination antirabique valide (primo-vaccination au moins 21 jours avant l'embarquement) ; chien d'au moins 15 semaines"
+    es: "Vacunación antirrábica válida (primovacunación al menos 21 días antes del embarque); perro de al menos 15 semanas"
+    pt: "Vacinação antirrábica válida (dose primária pelo menos 21 dias antes do embarque); cachorro com pelo menos 15 semanas"
+  - en: "Other canine vaccinations current: distemper, hepatitis, leptospirosis, parvovirus, coronavirus, parainfluenza"
+    fr: "Autres vaccinations canines en cours : maladie de Carré, hépatite, leptospirose, parvovirus, coronavirus, parainfluenza"
+    es: "Otras vacunas caninas en vigor: moquillo, hepatitis, leptospirosis, parvovirus, coronavirus, parainfluenza"
+    pt: "Outras vacinas caninas em dia: cinomose, hepatite, leptospirose, parvovirose, coronavirose, parainfluenza"
+  - en: "Internal & external parasite treatment within 60 days before travel (product, active ingredient, date)"
+    fr: "Traitement antiparasitaire interne & externe dans les 60 jours avant le voyage (produit, principe actif, date)"
+    es: "Tratamiento antiparasitario interno y externo dentro de los 60 días previos al viaje (producto, principio activo, fecha)"
+    pt: "Tratamento antiparasitário interno e externo nos 60 dias anteriores à viagem (produto, princípio ativo, data)"
+  - en: "Original vaccination record (booklet, passport or equivalent) showing product, lot, date and validity"
+    fr: "Carnet de vaccination original (livret, passeport ou équivalent) indiquant produit, lot, date et validité"
+    es: "Cartilla de vacunación original (libreta, pasaporte o equivalente) que indique producto, lote, fecha y valide"
+    pt: "Carteira de vacinação original (caderneta, passaporte ou equivalente) indicando produto, lote, data e validade"
+  - en: "Check your dog is not a banned or 'potentially dangerous' breed under Colombian law"
+    fr: "Vérifie que ton chien n'est pas une race interdite ou « potentiellement dangereuse » au regard de la loi colombienne"
+    es: "Comprueba que tu perro no sea de una raza prohibida o «potencialmente peligrosa» según la ley colombiana"
+    pt: "Verifique se o seu cachorro não é de uma raça proibida ou “potencialmente perigosa” segundo a lei colombiana"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold; a card to pay the ICA (no cash)"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute ; une carte pour payer l'ICA (pas d'espèces)"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega; una tarjeta para pagar al ICA (sin efectivo)"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão; um cartão para pagar o ICA (sem dinheiro em espécie)"
+
+sources:
+  - label: { en: "ICA — Ingreso de perros y gatos a Colombia (entry requirements)", fr: "ICA — Ingreso de perros y gatos a Colombia (formalités d'entrée)", es: "ICA — Ingreso de perros y gatos a Colombia (requisitos de entrada)", pt: "ICA — Ingreso de perros y gatos a Colombia (requisitos de entrada)" }
+    url: "https://www.ica.gov.co/importacion-y-exportacion/otros-procedimientos/requisitos-para-importar-mascotas/ingreso-de-perros-y-gatos-a-colombia"
+  - label: { en: "ICA — Entry and exit of companion animals (dogs & cats) hub", fr: "ICA — Entrée et sortie des animaux de compagnie (chiens & chats)", es: "ICA — Entrada y salida de animales de compañía (perros y gatos)", pt: "ICA — Entrada e saída de animais de companhia (cães e gatos)" }
+    url: "https://www.ica.gov.co/importacion-y-exportacion/otros-procedimientos/requisitos-para-importar-mascotas.aspx"
+  - label: { en: "ICA — Traveller registration guide & CIS payment (Guía de registro del viajero)", fr: "ICA — Guide d'enregistrement du voyageur & paiement du CIS", es: "ICA — Guía de registro del viajero y pago del CIS", pt: "ICA — Guia de registro do viajante e pagamento do CIS (Guía de registro del viajero)" }
+    url: "https://www.ica.gov.co/importacion-y-exportacion/otros-procedimientos/requisitos-para-importar-mascotas/guia-de-registro-de-viajero-importador-y-pago-del.aspx"
+  - label: { en: "ICA — News: Requirements to enter Colombia with your pet", fr: "ICA — Actualité : conditions pour entrer en Colombie avec ton animal", es: "ICA — Noticia: requisitos para entrar en Colombia con tu mascota", pt: "ICA — Notícia: requisitos para entrar na Colômbia com o seu animal" }
+    url: "https://www.ica.gov.co/noticias/requisitos-ica-importacion-mascotas-colombia"
+  - label: { en: "ICA — ABC for entering Colombia with your pet", fr: "ICA — ABC pour entrer en Colombie avec ton animal", es: "ICA — ABC para entrar en Colombia con tu mascota", pt: "ICA — ABC para entrar na Colômbia com o seu animal" }
+    url: "https://www.ica.gov.co/importacion-y-exportacion/otros-procedimientos/requisitos-para-importar-mascotas/documentos/abc-ingreso-mascotas.aspx"
+  - label: { en: "Ley 1801 de 2016 — National Police and Coexistence Code (potentially dangerous dogs, Ch. IV)", fr: "Ley 1801 de 2016 — Code national de police et de coexistence (chiens potentiellement dangereux, ch. IV)", es: "Ley 1801 de 2016 — Código Nacional de Policía y Convivencia (perros potencialmente peligrosos, cap. IV)", pt: "Ley 1801 de 2016 — Código Nacional de Policía y Convivencia (cachorros potencialmente perigosos, cap. IV)" }
+    url: "http://biblioteca.saludcapital.gov.co/img_upload/03d591f205ab80e521292987c313699c/ley_1801_2016.pdf"
+
+seo:
+  title: { en: "Colombia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Colombie — Guide", es: "Requisitos de entrada de perros en Colombia — Guía de viaje", pt: "Requisitos de entrada de cachorros na Colômbia — Guia" }
+  metaTitle: { en: "Traveling to Colombia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Colombie avec ton chien : formalités (2026)", es: "Viajar a Colombia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Colômbia com seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official ICA rules for bringing a dog into Colombia: health certificate, rabies and other vaccinations, parasite treatment. Sourced and dated."
+    fr: "Règles officielles ICA pour faire entrer un chien en Colombie : certificat de santé, vaccinations antirabique et autres, traitement antiparasitaire. Sourcé et daté."
+    es: "Normas oficiales del ICA para traer un perro a Colombia: certificado de salud, vacunación antirrábica y otras vacunas. Con fuentes y fecha."
+    pt: "Regras oficiais do ICA para levar um cachorro para a Colômbia: atestado de saúde, vacinação antirrábica e outras vacinas, antiparasitário. Com fontes e data."
+  slug: "colombia"
+  shortDesc:
+    en: "What you need to bring a dog into Colombia under ICA's rules, including the CIS and breed import bans."
+    fr: "Ce qu'il faut pour faire entrer un chien en Colombie selon les règles de l'ICA, dont le CIS et les interdictions de races."
+    es: "Lo que necesitas para traer un perro a Colombia según las normas del ICA, incluidos el CIS y las prohibiciones de importación por raza."
+    pt: "O que você precisa para levar um cachorro para a Colômbia segundo as regras do ICA, incluindo o CIS e as proibições de importação por raça."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,314 @@
+id: airline_vietnam_airlines
+mono: VN
+name: Vietnam Airlines
+titleH1:
+  en: Flying with a dog on Vietnam Airlines
+  fr: Voyager avec un chien sur Vietnam Airlines
+  es: Volar con un perro en Vietnam Airlines
+  pt: "Viajar com um cachorro na Vietnam Airlines"
+metaDesc:
+  en: "Vietnam Airlines pet policy: cabin, hold and cargo, fares by zone, banned breeds, no dogs to the US and official sources."
+  fr: "Politique animaux Vietnam Airlines : cabine, soute et fret, tarifs par zone, races interdites, pas de chiens vers les USA et sources officielles."
+  es: "Política de mascotas de Vietnam Airlines: cabina, bodega y carga, tarifas por zona, razas prohibidas, sin perros a EE. UU. y fuentes oficiales."
+  pt: "Política de animais da Vietnam Airlines: cabine, porão e carga, tarifas por zona, raças proibidas, sem cachorros para os EUA e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Vietnam · HAN / SGN
+      fr: Vietnam · HAN / SGN
+      es: Vietnam · HAN / SGN
+      pt: "Vietnã · HAN / SGN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in the hold — but many breeds banned and no dogs on Vietnam–US flights.
+  fr: Petits animaux en cabine, plus grands en soute — mais de nombreuses races interdites et aucun chien sur les vols Vietnam–USA.
+  es: Mascotas pequeñas en cabina, las más grandes en bodega, pero muchas razas están prohibidas y no se admiten perros en vuelos Vietnam–EE. UU.
+  pt: "Animais pequenos na cabine, os maiores no porão — mas muitas raças são proibidas e não há cachorros em voos Vietnã–EUA."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 6 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: "> 32 kg / UK"
+      fr: "> 32 kg / R.-U."
+      es: "> 32 kg / R. Unido"
+      pt: "> 32 kg / Reino Unido"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats (10 weeks+) ≤ 6 kg incl. carrier under the seat (max 35 × 30 × 20 cm); max 2 per cabin. No dogs on Vietnam–US flights; no birds.
+      fr: Chiens et chats (10 semaines+) ≤ 6 kg avec le sac sous le siège (max 35 × 30 × 20 cm) ; max 2 par cabine. Pas de chiens sur les vols Vietnam–USA ; pas d'oiseaux.
+      es: Perros y gatos (10 semanas o más) de ≤ 6 kg con la jaula bajo el asiento (máx. 35 × 30 × 20 cm); máx. 2 por cabina. Sin perros en vuelos Vietnam–EE. UU.; sin aves.
+      pt: "Cachorros e gatos (10 semanas ou mais) ≤ 6 kg com a bolsa sob o assento (máx. 35 × 30 × 20 cm); máx. 2 por cabine. Sem cachorros em voos Vietnã–EUA; sem aves."
+    fee:
+      en: $300–650
+      fr: 300–650 $
+      es: 300–650 $
+      pt: "US$ 300–650"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & ornamental birds (10 weeks+) as checked baggage up to 32 kg incl. cage; max 3 per passenger. No dogs on Vietnam–US flights.
+      fr: Chiens, chats et oiseaux d'ornement (10 semaines+) en bagage enregistré jusqu'à 32 kg avec la cage ; max 3 par passager. Pas de chiens sur les vols Vietnam–USA.
+      es: Perros, gatos y aves ornamentales (10 semanas o más) como equipaje facturado hasta 32 kg incluida la jaula; máx. 3 por pasajero. Sin perros en vuelos Vietnam–EE. UU.
+      pt: "Cachorros, gatos e aves ornamentais (10 semanas ou mais) como bagagem despachada até 32 kg com a caixa; máx. 3 por passageiro. Sem cachorros em voos Vietnã–EUA."
+    fee:
+      en: $100–550
+      fr: 100–550 $
+      es: 100–550 $
+      pt: "US$ 100–550"
+  - icon: ✈️
+    name:
+      en: Live Animals cargo
+      fr: Fret Live Animals
+      es: Carga Live Animals
+      pt: "Carga Live Animals"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Over 32 kg, or routes like the UK, via Vietnam Airlines Cargo Live Animals.
+      fr: Au-delà de 32 kg, ou des routes comme le R.-U., via Vietnam Airlines Cargo Live Animals.
+      es: Por encima de 32 kg, o rutas como la del Reino Unido, a través de Vietnam Airlines Cargo Live Animals.
+      pt: "Acima de 32 kg, ou rotas como a do Reino Unido, via Vietnam Airlines Cargo Live Animals."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (Zones A–D)
+        fr: Cabine (zones A–D)
+        es: Cabina (zonas A–D)
+        pt: "Cabine (zonas A–D)"
+      value:
+        en: $300–650
+        fr: 300–650 $
+        es: 300–650 $
+        pt: "US$ 300–650"
+    - label:
+        en: Hold — ≤ 9 kg
+        fr: Soute — ≤ 9 kg
+        es: Bodega — ≤ 9 kg
+        pt: "Porão — ≤ 9 kg"
+      value:
+        en: $100–350
+        fr: 100–350 $
+        es: 100–350 $
+        pt: "US$ 100–350"
+    - label:
+        en: Hold — 9–32 kg
+        fr: Soute — 9–32 kg
+        es: Bodega — 9–32 kg
+        pt: "Porão — 9–32 kg"
+      value:
+        en: $150–550
+        fr: 150–550 $
+        es: 150–550 $
+        pt: "US$ 150–550"
+    - label:
+        en: Hold — domestic (Vietnam)
+        fr: Soute — national (Vietnam)
+        es: Bodega — nacional (Vietnam)
+        pt: "Porão — doméstico (Vietnã)"
+      value:
+        en: ₫1–2M
+        fr: 1–2 M₫
+        es: 1–2 M₫
+        pt: "1–2 M₫"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD by zone (international) / VND domestic, excl. VAT.
+    fr: USD par zone (international) / VND national, hors TVA.
+    es: USD por zona (internacional) / VND nacional, sin IVA.
+    pt: "USD por zona (internacional) / VND doméstico, sem IVA."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Cabin & hold banned
+          fr: Cabine & soute interdites
+          es: Cabina y bodega prohibidas
+          pt: "Cabine e porão proibidos"
+    note:
+      en: "Snub-nosed dogs & cats aren't accepted in the cabin or hold (vulnerable to temperature/humidity/pressure/noise): bulldogs (all), boxer, pug, Boston terrier, Brussels Griffon, Pekingese, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, mastiffs, Cavalier King Charles, and Burmese/Exotic/Himalayan/Persian cats. Also barred: Akita, greyhound, pit bull types, Tosa, Dogo Argentino, Rottweiler, wolfdogs."
+      fr: "Chiens et chats au nez écrasé refusés en cabine et en soute (vulnérables à la température/humidité/pression/bruit) : bouledogues (tous), boxer, carlin, Boston terrier, Griffon bruxellois, pékinois, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, mastiffs, Cavalier King Charles, et chats birmans/exotiques/himalayens/persans. Aussi interdits : Akita, greyhound, types pit-bull, Tosa, Dogo Argentino, Rottweiler, chiens-loups."
+      es: "Los perros y gatos de hocico chato no se aceptan ni en cabina ni en bodega (vulnerables a la temperatura/humedad/presión/ruido): bulldogs (todos), bóxer, carlino, Boston terrier, grifón de Bruselas, pekinés, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, mastines, Cavalier King Charles, y gatos birmano/exótico/himalayo/persa. También vetados: Akita, galgo, tipos pit bull, Tosa, Dogo Argentino, Rottweiler, perros lobo."
+      pt: "Cachorros e gatos de focinho achatado não são aceitos na cabine nem no porão (vulneráveis a temperatura/umidade/pressão/ruído): bulldogs (todos), boxer, pug, Boston terrier, Griffon de Bruxelas, Pequinês, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, mastins, Cavalier King Charles, e gatos burmeses/exóticos/himalaios/persas. Também proibidos: Akita, galgo, tipos pit bull, Tosa, Dogo Argentino, Rottweiler, cães-lobo."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Certificate of Adaptation
+          fr: Certificat d'adaptation
+          es: Certificado de adaptación
+          pt: "Certificado de adaptação"
+    note:
+      en: A Certificate of Adaptation may be required; the captain may refuse a pet or move it to cargo if it endangers passengers or crew.
+      fr: Un certificat d'adaptation peut être exigé ; le commandant peut refuser un animal ou le transférer en fret s'il présente un risque pour les passagers ou l'équipage.
+      es: Puede exigirse un certificado de adaptación; el comandante puede rechazar una mascota o trasladarla a carga si supone un riesgo para los pasajeros o la tripulación.
+      pt: "Pode ser exigido um certificado de adaptação; o comandante pode recusar um animal ou transferi-lo para a carga se ele representar risco para passageiros ou tripulação."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: May refuse in extreme heat/cold
+        fr: Refus possible par chaleur/froid extrême
+        es: Puede rechazar en calor/frío extremo
+        pt: "Pode recusar em calor/frio extremo"
+  note:
+    en: Vietnam Airlines publishes no numeric limit but reserves the right to require a Certificate of Adaptation or refuse pets in excessively hot or cold weather.
+    fr: Vietnam Airlines ne publie pas de limite chiffrée mais se réserve le droit d'exiger un certificat d'adaptation ou de refuser les animaux par temps excessivement chaud ou froid.
+    es: Vietnam Airlines no publica ningún límite numérico, pero se reserva el derecho de exigir un certificado de adaptación o de rechazar mascotas con un clima excesivamente caluroso o frío.
+    pt: "A Vietnam Airlines não publica um limite numérico, mas se reserva o direito de exigir um certificado de adaptação ou recusar animais em clima excessivamente quente ou frio."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Reduced-mobility passengers may bring a trained service dog free in the cabin, muzzled and leashed, at their feet.
+      fr: Les passagers à mobilité réduite peuvent emmener un chien d'assistance dressé gratuitement en cabine, muselé et en laisse, à leurs pieds.
+      es: Los pasajeros con movilidad reducida pueden llevar un perro de servicio adiestrado gratis en cabina, con bozal y correa, a sus pies.
+      pt: "Passageiros com mobilidade reduzida podem levar um cão de serviço treinado gratuitamente na cabine, com focinheira e coleira, aos seus pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Advance reservation required with all documents ready.
+      fr: Réservation préalable requise, tous documents prêts.
+      es: Se requiere reserva previa con toda la documentación lista.
+      pt: "Reserva antecipada exigida, com todos os documentos prontos."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No dogs to the US
+      fr: Pas de chiens vers les USA
+      es: Sin perros a EE. UU.
+      pt: "Sem cachorros para os EUA"
+    value:
+      en: Dogs aren't carried on flights between Vietnam and the US, in any class or the hold.
+      fr: Les chiens ne sont pas transportés sur les vols entre le Vietnam et les USA, en aucune classe ni en soute.
+      es: Los perros no se transportan en vuelos entre Vietnam y EE. UU., en ninguna clase ni en bodega.
+      pt: "Cachorros não são transportados em voos entre o Vietnã e os EUA, em nenhuma classe nem no porão."
+  - icon: ✈️
+    label:
+      en: Australia / UK
+      fr: Australie / R.-U.
+      es: Australia / Reino Unido
+      pt: "Austrália / Reino Unido"
+    value:
+      en: Pets to Australia aren't accepted; UK-bound animals only as cargo.
+      fr: Les animaux vers l'Australie ne sont pas acceptés ; ceux vers le R.-U. uniquement en fret.
+      es: No se aceptan mascotas a Australia; los animales con destino al Reino Unido solo como carga.
+      pt: "Animais para a Austrália não são aceitos; animais com destino ao Reino Unido, somente como carga."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Register via a Vietnam Airlines branch ≥ 24 h before departure — not fully online.
+      fr: S'inscrire via une agence Vietnam Airlines ≥ 24 h avant le départ — pas entièrement en ligne.
+      es: Regístrate a través de una oficina de Vietnam Airlines ≥ 24 h antes de la salida; no es totalmente en línea.
+      pt: "Registre-se em uma agência da Vietnam Airlines ≥ 24 h antes da partida — não é totalmente on-line."
+book:
+  host: vietnamairlines.com
+  url: https://www.vietnamairlines.com/
+sources:
+  en: 5 Vietnam Airlines sources · last verified 11 July 2026
+  fr: 5 sources Vietnam Airlines · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Vietnam Airlines · última verificación 11 de julio de 2026
+  pt: "5 fontes da Vietnam Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

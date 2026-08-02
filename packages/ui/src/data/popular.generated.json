@@ -1,0 +1,233 @@
+{
+  "_comment": "Généré par packages/knowledge/scripts/build-popular.mjs — NE PAS ÉDITER À LA MAIN. Photographie d'un export Search Console : à régénérer à chaque nouvel export.",
+  "generated_on": "2026-07-30",
+  "source": "Google Search Console — export Performance (Pages.csv)",
+  "window_days": 28,
+  "cap": 10,
+  "totals": {
+    "countries": {
+      "entities_with_impressions": 88,
+      "impressions": 3942
+    },
+    "airlines": {
+      "entities_with_impressions": 31,
+      "impressions": 977
+    },
+    "breeds": {
+      "entities_with_impressions": 100,
+      "impressions": 453
+    },
+    "airports": {
+      "entities_with_impressions": 11,
+      "impressions": 169
+    }
+  },
+  "countries": [
+    {
+      "key": "de",
+      "impressions": 257,
+      "from": "search-console"
+    },
+    {
+      "key": "it",
+      "impressions": 197,
+      "from": "search-console"
+    },
+    {
+      "key": "tr",
+      "impressions": 192,
+      "from": "search-console"
+    },
+    {
+      "key": "ua",
+      "impressions": 180,
+      "from": "search-console"
+    },
+    {
+      "key": "pt",
+      "impressions": 167,
+      "from": "search-console"
+    },
+    {
+      "key": "kr",
+      "impressions": 159,
+      "from": "search-console"
+    },
+    {
+      "key": "cn",
+      "impressions": 150,
+      "from": "search-console"
+    },
+    {
+      "key": "fr",
+      "impressions": 128,
+      "from": "search-console"
+    },
+    {
+      "key": "kz",
+      "impressions": 118,
+      "from": "search-console"
+    },
+    {
+      "key": "kh",
+      "impressions": 117,
+      "from": "search-console"
+    }
+  ],
+  "airlines": [
+    {
+      "key": "malaysia-airlines",
+      "impressions": 126,
+      "from": "search-console"
+    },
+    {
+      "key": "thai-airways",
+      "impressions": 120,
+      "from": "search-console"
+    },
+    {
+      "key": "china-airlines",
+      "impressions": 87,
+      "from": "search-console"
+    },
+    {
+      "key": "tap",
+      "impressions": 72,
+      "from": "search-console"
+    },
+    {
+      "key": "easyjet",
+      "impressions": 70,
+      "from": "search-console"
+    },
+    {
+      "key": "transavia",
+      "impressions": 67,
+      "from": "search-console"
+    },
+    {
+      "key": "cathay-pacific",
+      "impressions": 51,
+      "from": "search-console"
+    },
+    {
+      "key": "air-europa",
+      "impressions": 50,
+      "from": "search-console"
+    },
+    {
+      "key": "norwegian",
+      "impressions": 46,
+      "from": "search-console"
+    },
+    {
+      "key": "singapore-airlines",
+      "impressions": 43,
+      "from": "search-console"
+    }
+  ],
+  "breeds": [
+    {
+      "key": "jack-russell-terrier",
+      "impressions": 29,
+      "from": "search-console"
+    },
+    {
+      "key": "cavalier-king-charles",
+      "impressions": 25,
+      "from": "search-console"
+    },
+    {
+      "key": "shetland-sheepdog-sheltie",
+      "impressions": 22,
+      "from": "search-console"
+    },
+    {
+      "key": "papillon-continental-toy-spaniel",
+      "impressions": 22,
+      "from": "search-console"
+    },
+    {
+      "key": "whippet",
+      "impressions": 20,
+      "from": "search-console"
+    },
+    {
+      "key": "german-shepherd",
+      "impressions": 16,
+      "from": "search-console"
+    },
+    {
+      "key": "miniature-schnauzer",
+      "impressions": 16,
+      "from": "search-console"
+    },
+    {
+      "key": "border-collie",
+      "impressions": 15,
+      "from": "search-console"
+    },
+    {
+      "key": "american-cocker-spaniel",
+      "impressions": 14,
+      "from": "search-console"
+    },
+    {
+      "key": "shih-tzu",
+      "impressions": 13,
+      "from": "search-console"
+    }
+  ],
+  "airports": [
+    {
+      "key": "ams",
+      "impressions": 59,
+      "from": "search-console"
+    },
+    {
+      "key": "den",
+      "impressions": 49,
+      "from": "search-console"
+    },
+    {
+      "key": "zrh",
+      "impressions": 18,
+      "from": "search-console"
+    },
+    {
+      "key": "fra",
+      "impressions": 14,
+      "from": "search-console"
+    },
+    {
+      "key": "dus",
+      "impressions": 10,
+      "from": "search-console"
+    },
+    {
+      "key": "bru",
+      "impressions": 6,
+      "from": "search-console"
+    },
+    {
+      "key": "rix",
+      "impressions": 5,
+      "from": "search-console"
+    },
+    {
+      "key": "tgd",
+      "impressions": 3,
+      "from": "search-console"
+    },
+    {
+      "key": "lis",
+      "impressions": 3,
+      "from": "search-console"
+    },
+    {
+      "key": "nte",
+      "impressions": 1,
+      "from": "search-console"
+    }
+  ]
+}

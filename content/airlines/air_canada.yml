@@ -1,0 +1,336 @@
+id: airline_air_canada
+mono: AC
+name: Air Canada
+titleH1:
+  en: Flying with a dog on Air Canada
+  fr: Voyager avec un chien sur Air Canada
+  es: Volar con un perro en Air Canada
+  pt: "Viajar com um cachorro na Air Canada"
+metaDesc:
+  en: "Air Canada pet policy: cabin, hold and AC Animals cargo, fares, seasonal temperature embargoes, breed limits and official sources."
+  fr: "Politique animaux Air Canada : cabine, soute et fret AC Animals, tarifs, embargos saisonniers, restrictions de races et sources officielles."
+  es: "Política de mascotas de Air Canada: cabina, bodega y carga AC Animals, tarifas, embargos estacionales por temperatura, límites de razas y fuentes oficiales."
+  pt: "Política de animais da Air Canada: cabine, porão e carga AC Animals, tarifas, embargos sazonais de temperatura, limites de raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Canada · YYZ
+      fr: Canada · YYZ
+      es: Canadá · YYZ
+      pt: "Canadá · YYZ"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cabin for small pets and hold for larger dogs — but heavy seasonal, aircraft and breed restrictions.
+  fr: Cabine pour petits animaux et soute pour grands chiens — mais fortes restrictions saisonnières, avion et races.
+  es: Cabina para mascotas pequeñas y bodega para perros más grandes — pero fuertes restricciones estacionales, de aeronave y de razas.
+  pt: "Cabine para animais pequenos e porão para cachorros maiores — mas com fortes restrições sazonais, de aeronave e de raça."
+ladder:
+  - flex: 20
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: under-seat
+      fr: sous le siège
+      es: bajo el asiento
+      pt: "sob o assento"
+  - flex: 60
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: AC Animals
+      fr: AC Animals
+      es: AC Animals
+      pt: "AC Animals"
+    sub:
+      en: cargo
+      fr: fret
+      es: carga
+      pt: "carga"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One cat or small dog in a soft carrier under the seat; not in Premium Economy or exit rows. Soft-sided only since June 2025.
+      fr: Un chat ou petit chien dans un sac souple sous le siège ; pas en Économique Privilège ni rangs d'issue. Sac souple uniquement depuis juin 2025.
+      es: Un gato o perro pequeño en una jaula blanda bajo el asiento; no en Económica Premium ni en filas de salida. Solo jaulas blandas desde junio de 2025.
+      pt: "Um gato ou cachorro pequeno em uma bolsa de transporte flexível sob o assento; não disponível na Premium Economy nem nas fileiras de saída de emergência. Somente bolsas flexíveis desde junho de 2025."
+    fee:
+      en: $50–120
+      fr: 50–120 $
+      es: 50–120 $
+      pt: "50–120 $"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs as checked baggage (pet + kennel ≤ 45 kg) in the pressurised hold — subject to heavy seasonal and aircraft limits.
+      fr: Chats et chiens en bagage enregistré (animal + caisse ≤ 45 kg) dans la soute pressurisée — sous fortes limites saisonnières et avion.
+      es: Gatos y perros como equipaje facturado (mascota + jaula ≤ 45 kg) en la bodega presurizada — sujeto a fuertes límites estacionales y de aeronave.
+      pt: "Gatos e cachorros como bagagem despachada (animal + caixa ≤ 45 kg) no porão pressurizado — sujeitos a fortes limites sazonais e de aeronave."
+    fee:
+      en: $105–324
+      fr: 105–324 $
+      es: 105–324 $
+      pt: "105–324 $"
+  - icon: ✈️
+    name:
+      en: AC Animals cargo
+      fr: Fret AC Animals
+      es: Carga AC Animals
+      pt: "Carga AC Animals"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo petición
+      pt: "Sob consulta"
+    detail:
+      en: Unaccompanied pets, oversize kennels, more than 2 pets, or winter transport. Drop-off at a cargo facility.
+      fr: Animaux non accompagnés, caisses hors gabarit, plus de 2 animaux, ou transport hivernal. Dépôt à un centre de fret.
+      es: Mascotas no acompañadas, jaulas fuera de medidas, más de 2 mascotas o transporte invernal. Entrega en un centro de carga.
+      pt: "Animais desacompanhados, caixas fora do tamanho, mais de 2 animais, ou transporte no inverno. Entrega em uma instalação de carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Canada / US
+        fr: Cabine — Canada / USA
+        es: Cabina — Canadá / EE. UU.
+        pt: "Cabine — Canadá / EUA"
+      value:
+        en: $50–60
+        fr: 50–60 $
+        es: 50–60 $
+        pt: "50–60 $"
+    - label:
+        en: Cabin — international
+        fr: Cabine — international
+        es: Cabina — internacional
+        pt: "Cabine — internacional"
+      value:
+        en: $100–120
+        fr: 100–120 $
+        es: 100–120 $
+        pt: "100–120 $"
+    - label:
+        en: Hold — Canada / US
+        fr: Soute — Canada / USA
+        es: Bodega — Canadá / EE. UU.
+        pt: "Porão — Canadá / EUA"
+      value:
+        en: $105–126
+        fr: 105–126 $
+        es: 105–126 $
+        pt: "105–126 $"
+    - label:
+        en: Hold — international
+        fr: Soute — international
+        es: Bodega — internacional
+        pt: "Porão — internacional"
+      value:
+        en: $270–324
+        fr: 270–324 $
+        es: 270–324 $
+        pt: "270–324 $"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: CAD/USD, one-way. AC Animals cargo is quoted separately.
+    fr: CAD/USD, aller simple. Le fret AC Animals est chiffré séparément.
+    es: CAD/USD, solo ida. La carga AC Animals se presupuesta por separado.
+    pt: "CAD/USD, somente ida. A carga AC Animals é orçada separadamente."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidos
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Snub-nosed dogs & cats are permanently embargoed from the hold and cargo (since 2015, heat/breathing risk): pugs, bulldogs, Pekingese and other snub-nosed breeds. They may still fly in the cabin if small enough. Wolf-dogs aren't carried."
+      fr: "Chiens et chats au nez écrasé sous embargo permanent en soute et en fret (depuis 2015, risque chaleur/respiration) : carlins, bouledogues, pékinois et autres races au nez écrasé. Ils peuvent voyager en cabine s'ils sont assez petits. Les chiens-loups ne sont pas transportés."
+      es: "Los perros y gatos de hocico chato están permanentemente vetados de la bodega y la carga (desde 2015, riesgo de calor/respiración): carlinos, bulldogs, pekineses y otras razas de hocico chato. Aún pueden volar en cabina si son lo bastante pequeños. Los perros lobo no se transportan."
+      pt: "Cachorros e gatos de focinho achatado estão permanentemente sob embargo no porão e na carga (desde 2015, risco de calor/respiração): pugs, bulldogues, pequinês e outras raças de focinho achatado. Ainda podem voar na cabine se forem pequenos o suficiente. Lobos-cães não são transportados."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Sedation not advised
+          fr: Sédation déconseillée
+          es: Sedación desaconsejada
+          pt: "Sedação não recomendada"
+      - cls: warn
+        label:
+          en: Reinforced crate for strong breeds
+          fr: Caisse renforcée pour races fortes
+          es: Jaula reforzada para razas fuertes
+          pt: "Caixa reforçada para raças fortes"
+    note:
+      en: Sedation isn't recommended. Certain 'strong dog' breeds must travel in a reinforced non-plastic crate (wood/metal/wire mesh) in the hold.
+      fr: La sédation n'est pas recommandée. Certaines races de « chiens puissants » doivent voyager en soute dans une caisse renforcée non plastique (bois/métal/grillage).
+      es: No se recomienda la sedación. Ciertas razas de «perros fuertes» deben viajar en la bodega en una jaula reforzada no plástica (madera/metal/malla metálica).
+      pt: "A sedação não é recomendada. Certas raças de \"cachorros fortes\" devem viajar em uma caixa reforçada e não plástica (madeira/metal/tela de arame) no porão."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Summer refusal above 29.5 °C
+        fr: Refus été au-dessus de 29,5 °C
+        es: Rechazo en verano por encima de 29,5 °C
+        pt: "Recusa no verão acima de 29,5 °C"
+    - cls: no
+      label:
+        en: Winter limits · Dec 18–Jan 4 embargo
+        fr: Limites hiver · embargo 18 déc–4 jan
+        es: Límites de invierno · embargo 18 dic–4 ene
+        pt: "Limites de inverno · embargo de 18 de dez. a 4 de jan."
+  note:
+    en: Hold travel may be refused above 29.5 °C (85 °F); country-specific summer embargoes apply (US 1 May–30 Nov, Mexico Jul–Aug). In winter (1 Nov–31 Mar or ≤ 0 °C) pets under 4.5 kg aren't accepted in the hold, and no hold/cargo pets travel 18 Dec–4 Jan. Some aircraft holds are unheated.
+    fr: La soute peut être refusée au-dessus de 29,5 °C (85 °F) ; des embargos d'été s'appliquent selon les pays (USA 1er mai–30 nov., Mexique juil.–août). En hiver (1er nov.–31 mars ou ≤ 0 °C), les animaux de moins de 4,5 kg sont refusés en soute, et aucun animal en soute/fret ne voyage du 18 déc. au 4 jan. Certaines soutes ne sont pas chauffées.
+    es: El viaje en bodega puede rechazarse por encima de 29,5 °C (85 °F); se aplican embargos de verano según el país (EE. UU. 1 may–30 nov, México jul–ago). En invierno (1 nov–31 mar o ≤ 0 °C) las mascotas de menos de 4,5 kg no se aceptan en bodega, y ninguna mascota viaja en bodega/carga del 18 dic al 4 ene. Algunas bodegas de aeronaves no están calefactadas.
+    pt: "O transporte no porão pode ser recusado acima de 29,5 °C (85 °F); aplicam-se embargos de verão específicos por país (EUA de 1º de maio a 30 de nov., México em jul.–ago.). No inverno (1º de nov. a 31 de mar. ou ≤ 0 °C), animais com menos de 4,5 kg não são aceitos no porão, e nenhum animal viaja no porão/carga de 18 de dez. a 4 de jan. Alguns porões de aeronaves não são aquecidos."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Individually trained service dogs travel free in the cabin.
+      fr: Les chiens d'assistance dressés individuellement voyagent gratuitement en cabine.
+      es: Los perros de servicio adiestrados individualmente viajan gratis en cabina.
+      pt: "Cães de serviço treinados individualmente viajam grátis na cabine."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Submit the service-dog form to accessible@aircanada.ca ≥ 48 h ahead (US routes: DOT form). Emotional-support dogs no longer qualify."
+      fr: "Envoyer le formulaire chien d'assistance à accessible@aircanada.ca ≥ 48 h à l'avance (vols USA : formulaire DOT). Chiens de soutien émotionnel non éligibles."
+      es: "Envía el formulario de perro de servicio a accessible@aircanada.ca con ≥ 48 h de antelación (rutas a EE. UU.: formulario DOT). Los perros de apoyo emocional ya no reúnen los requisitos."
+      pt: "Envie o formulário de cão de serviço para accessible@aircanada.ca com ≥ 48 h de antecedência (rotas para os EUA: formulário do DOT). Cães de apoio emocional não são mais elegíveis."
+goodToKnow:
+  - icon: 🧳
+    label:
+      en: Soft carriers only
+      fr: Sacs souples seuls
+      es: Solo jaulas blandas
+      pt: "Somente bolsas flexíveis"
+    value:
+      en: Since June 2025, cabin pets must be in soft-sided carriers — hard kennels are no longer accepted in the cabin.
+      fr: Depuis juin 2025, les animaux en cabine doivent être en sac souple — les caisses rigides ne sont plus acceptées en cabine.
+      es: Desde junio de 2025, las mascotas en cabina deben ir en jaulas blandas — las jaulas rígidas ya no se aceptan en cabina.
+      pt: "Desde junho de 2025, os animais em cabine devem estar em bolsas de transporte flexíveis — caixas rígidas não são mais aceitas na cabine."
+  - icon: 🔁
+    label:
+      en: No codeshares
+      fr: Pas de codeshare
+      es: Sin código compartido
+      pt: "Sem codeshare"
+    value:
+      en: Pets can't travel on flights operated by other airlines; Premium Economy has no cabin pets.
+      fr: Les animaux ne voyagent pas sur les vols opérés par d'autres compagnies ; pas d'animaux en Économique Privilège.
+      es: Las mascotas no pueden viajar en vuelos operados por otras aerolíneas; Económica Premium no admite mascotas en cabina.
+      pt: "Animais não podem viajar em voos operados por outras companhias; a Premium Economy não aceita animais na cabine."
+  - icon: ⏱️
+    label:
+      en: Check-in
+      fr: Enregistrement
+      es: Facturación
+      pt: "Check-in"
+    value:
+      en: Pets must be 10 weeks+; check in with an agent (no online or kiosk check-in).
+      fr: Animaux de 10 semaines+ ; enregistrement auprès d'un agent (ni en ligne ni borne).
+      es: Las mascotas deben tener 10 semanas o más; factura con un agente (no en línea ni en quiosco).
+      pt: "Os animais devem ter 10 semanas ou mais; o check-in é feito com um agente (sem check-in on-line ou em totem)."
+book:
+  host: aircanada.com
+  url: https://www.aircanada.com/
+sources:
+  en: 5 Air Canada & AC Cargo sources · last verified 11 July 2026
+  fr: 5 sources Air Canada & AC Cargo · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Air Canada y AC Cargo · última verificación 11 de julio de 2026
+  pt: "5 fontes da Air Canada e da AC Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

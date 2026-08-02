@@ -1,0 +1,386 @@
+# Country Entry Guide — Burkina Faso (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_bf
+iso2: "BF"
+name: { en: "Burkina Faso", fr: "Burkina Faso", es: "Burkina Faso", pt: "Burkina Faso" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: DGSV
+  authorityUrl: https://www.agriculture.bf
+  intro:
+    en: "Burkina Faso is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Direction Générale des Services Vétérinaires (DGSV)."
+    fr: "Le Burkina Faso est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction Générale des Services Vétérinaires (DGSV)."
+    es: "Burkina Faso no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Direction Générale des Services Vétérinaires (DGSV)."
+    pt: "O Burkina Faso é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction Générale des Services Vétérinaires (DGSV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "The DGSV, through its animal-health service, endorses the export health certificate before departure."
+        fr: "La DGSV, via sa direction de la santé animale, vise le certificat sanitaire d'export avant le départ."
+        es: "La DGSV, a través de su servicio de sanidad animal, refrenda el certificado sanitario de exportación antes de salir."
+        pt: "A DGSV, por meio do seu serviço de saúde animal, endossa o atestado de saúde de exportação antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, ele permanece válido por toda a vida enquanto a vacinação antirrábica estiver em dia — vale a pena verificar isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Burkina Faso with your dog", fr: "Voyager au Burkina Faso avec ton chien", es: "Viajar a Burkina Faso con tu perro", pt: "Viajar para o Burkina Faso com seu cachorro" }
+  intro:
+    en: >-
+      Burkina Faso admits pet dogs, but entry runs through the country's own scheme managed by the
+      Direction Générale des Services Vétérinaires (DGSV) of the Ministère de l'Agriculture, de l'Eau,
+      des Ressources Animales et Halieutiques (MAERAH), not the EU framework. Burkina Faso is
+      landlocked and rabies-endemic, so the rabies rule is central: every dog needs a valid rabies
+      vaccination and an international veterinary health certificate certifying that it is healthy and
+      comes from an area not quarantined for rabies. The country also subjects the importation of live
+      animals to prior authorization delivered after the technical opinion of the DGSV. Documents and
+      the animal are checked by the veterinary services on arrival (in practice at Ouagadougou's
+      international airport or at a land border). Because the exact procedure for a personal pet is not
+      fully published online, several details below are marked "Unknown" — confirm them directly with
+      the DGSV before you book your flight.
+    fr: >-
+      Le Burkina Faso admet les chiens, mais l'entrée passe par le dispositif propre au pays, géré par
+      la Direction Générale des Services Vétérinaires (DGSV) du Ministère de l'Agriculture, de l'Eau,
+      des Ressources Animales et Halieutiques (MAERAH), et non par le cadre de l'UE. Le Burkina Faso est
+      un pays enclavé où la rage est endémique : la règle antirabique est donc centrale — chaque chien
+      doit disposer d'une vaccination antirabique valide et d'un certificat vétérinaire international
+      attestant qu'il est en bonne santé et provient d'une zone non placée en quarantaine pour la rage.
+      Le pays soumet en outre l'importation d'animaux vivants à une autorisation préalable délivrée
+      après avis technique de la DGSV. Les documents et l'animal sont contrôlés par les services
+      vétérinaires à l'arrivée (en pratique à l'aéroport international de Ouagadougou ou à une frontière
+      terrestre). La procédure exacte pour un animal de compagnie personnel n'étant pas entièrement
+      publiée en ligne, plusieurs détails ci-dessous sont marqués « Non communiqué » — confirme-les
+      directement auprès de la DGSV avant de réserver ton vol.
+    es: >-
+      Burkina Faso admite perros, pero la entrada se rige por el sistema propio del país, gestionado por
+      la Direction Générale des Services Vétérinaires (DGSV) del Ministère de l'Agriculture, de l'Eau,
+      des Ressources Animales et Halieutiques (MAERAH), y no por el marco de la UE. Burkina Faso es un
+      país sin salida al mar y con rabia endémica, por lo que la norma antirrábica es central: cada perro
+      necesita una vacunación antirrábica válida y un certificado veterinario internacional que acredite
+      que está sano y que procede de una zona no puesta en cuarentena por rabia. El país somete además la
+      importación de animales vivos a una autorización previa expedida tras el dictamen técnico de la
+      DGSV. Los documentos y el animal son controlados por los servicios veterinarios a la llegada (en la
+      práctica, en el aeropuerto internacional de Uagadugú o en una frontera terrestre). Como el
+      procedimiento exacto para una mascota personal no está publicado por completo en internet, varios
+      detalles a continuación están marcados como «No comunicado» — confírmalos directamente con la DGSV
+      antes de reservar tu vuelo.
+
+    pt: "O Burkina Faso admite cachorros de companhia, mas a entrada segue um esquema próprio do país, administrado pela Direction Générale des Services Vétérinaires (DGSV) do Ministère de l'Agriculture, de l'Eau, des Ressources Animales et Halieutiques (MAERAH), e não o modelo europeu. O Burkina Faso não tem litoral e tem raiva endêmica, por isso a regra da raiva é central: todo cachorro precisa de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional que certifique que ele está saudável e vem de uma área não colocada em quarentena por raiva. O país também sujeita a importação de animais vivos a uma autorização prévia, concedida após parecer técnico da DGSV. Os documentos e o animal são verificados pelos serviços veterinários na chegada (na prática, no aeroporto internacional de Uagadugu ou em uma fronteira terrestre). Como o procedimento exato para um cachorro de companhia particular não está totalmente publicado on-line, vários detalhes abaixo estão marcados como \"Não comunicado\" — confirmar diretamente com a DGSV antes de reservar o voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — veterinary certificate + prior import authorization for live animals; several details unpublished", fr: "Modéré — certificat vétérinaire + autorisation préalable pour animaux vivants ; plusieurs détails non publiés", es: "Moderado — certificado veterinario + autorización previa de importación para animales vivos; varios detalles sin publicar", pt: "Moderado — certificado veterinário + autorização de importação prévia para animais vivos; vários detalhes não publicados" }
+
+prepTime:
+  eu:
+    en: "From the EU: allow a few weeks. Identification and rabies vaccination should already be in order; then confirm the import authorization requirement with the DGSV and have an official vet issue the international veterinary certificate close to departure."
+    fr: "Depuis l'UE : prévois quelques semaines. L'identification et la vaccination antirabique doivent déjà être en règle ; confirme ensuite l'exigence d'autorisation d'importation auprès de la DGSV et fais établir le certificat vétérinaire international par un vétérinaire officiel peu avant le départ."
+    es: "Desde la UE: cuenta con unas semanas. La identificación y la vacunación antirrábica deben estar ya en regla; luego confirma el requisito de autorización de importación con la DGSV y haz que un veterinario oficial expida el certificado veterinario internacional poco antes de la salida."
+    pt: "Da UE: contar com algumas semanas. A identificação e a vacinação antirrábica já devem estar em dia; depois, confirmar a exigência de autorização de importação junto da DGSV e providenciar que um veterinário oficial emita o certificado veterinário internacional perto da partida."
+  listed:
+    en: "From the United States and other third countries: similar timing. USDA/APHIS publishes the exact bilingual (French/English) veterinary health certificate for Burkina Faso, endorsed by APHIS and valid 30 days; allow at least 21 days if the rabies vaccination is a primary dose or has lapsed."
+    fr: "Depuis les États-Unis et d'autres pays tiers : délais comparables. L'USDA/APHIS publie le certificat vétérinaire bilingue (français/anglais) exact pour le Burkina Faso, visé par l'APHIS et valable 30 jours ; prévois au moins 21 jours si la vaccination antirabique est une primovaccination ou a expiré."
+    es: "Desde Estados Unidos y otros países terceros: plazos similares. USDA/APHIS publica el certificado veterinario bilingüe (francés/inglés) exacto para Burkina Faso, refrendado por APHIS y válido 30 días; cuenta con al menos 21 días si la vacunación antirrábica es una dosis primaria o ha caducado."
+    pt: "Dos Estados Unidos e de outros países terceiros: prazo semelhante. O USDA/APHIS publica o atestado de saúde veterinário bilíngue (francês/inglês) exato para o Burkina Faso, endossado pela APHIS e válido por 30 dias; contar com pelo menos 21 dias se a vacinação antirrábica for uma primeira dose ou estiver vencida."
+  nonListed:
+    en: "From a rabies-endemic or other origin: the same core steps apply — current rabies vaccination and an international veterinary certificate, with the dog coming from an area not quarantined for rabies. Confirm the import-authorization procedure and any additional condition directly with the DGSV before booking."
+    fr: "Depuis une origine où la rage est endémique ou toute autre origine : les mêmes étapes de base s'appliquent — vaccination antirabique à jour et certificat vétérinaire international, le chien provenant d'une zone non placée en quarantaine pour la rage. Confirme la procédure d'autorisation d'importation et toute condition supplémentaire directement auprès de la DGSV avant de réserver."
+    es: "Desde un origen con rabia endémica u otro origen: se aplican los mismos pasos básicos — vacunación antirrábica al día y certificado veterinario internacional, con el perro procedente de una zona no puesta en cuarentena por rabia. Confirma el procedimiento de autorización de importación y cualquier condición adicional directamente con la DGSV antes de reservar."
+    pt: "De uma origem de raiva endêmica ou outra: aplicam-se as mesmas etapas essenciais — vacinação antirrábica em dia e certificado veterinário internacional, com o cachorro proveniente de uma área não colocada em quarentena por raiva. Confirmar o procedimento de autorização de importação e qualquer condição adicional diretamente junto da DGSV antes de reservar."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (subject to veterinary requirements)", fr: "Oui (sous réserve des exigences vétérinaires)", es: "Sí (con sujeción a los requisitos veterinarios)", pt: "Sim (sujeito a exigências veterinárias)" }
+    cls: ok
+  - requirement: { en: "Prior import authorization (live animals)", fr: "Autorisation préalable d'importation (animaux vivants)", es: "Autorización previa de importación (animales vivos)", pt: "Autorização de importação prévia (animais vivos)" }
+    status: { en: "Required for imports of live animals; exact pet procedure Unknown", fr: "Requise pour l'importation d'animaux vivants ; procédure exacte pour animaux de compagnie non communiquée", es: "Obligatoria para la importación de animales vivos; procedimiento exacto para mascotas no comunicado", pt: "Obrigatória para importações de animais vivos; procedimento exato para animais de companhia não comunicado" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not officially mandated (recommended)", fr: "Non officiellement imposée (recommandée)", es: "No exigido oficialmente (recomendado)", pt: "Não obrigatório oficialmente (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (current)", fr: "Requise (à jour)", es: "Obligatoria (al día)", pt: "Obrigatória (em dia)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required by the official certificate", fr: "Non requis par le certificat officiel", es: "No exigida por el certificado oficial", pt: "Não exigido pelo certificado oficial" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario de salud", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (valid 30 days)", fr: "Requis (valable 30 jours)", es: "Obligatorio (válido 30 días)", pt: "Obrigatório (válido por 30 dias)" }
+    cls: warn
+  - requirement: { en: "Border / airport veterinary check", fr: "Contrôle vétérinaire à la frontière / aéroport", es: "Control veterinario en frontera / aeropuerto", pt: "Controle veterinário de fronteira / aeroporto" }
+    status: { en: "Applies; exact process Unknown", fr: "S'applique ; procédure exacte non communiquée", es: "Se aplica; procedimiento exacto no comunicado", pt: "Aplica-se; processo exato não comunicado" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not specified in official documents", fr: "Non prévue dans les documents officiels", es: "No prevista en los documentos oficiales", pt: "Não especificado nos documentos oficiais" }
+    cls: ok
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "No published import ban found", fr: "Aucune interdiction d'importation publiée", es: "No se ha encontrado ninguna prohibición de importación publicada", pt: "Nenhuma proibição de importação publicada foi encontrada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and the DGSV of Burkina Faso sets the exact conditions, including whether an import authorization is required for your pet."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et la DGSV du Burkina Faso fixe les conditions exactes, y compris la nécessité d'une autorisation d'importation pour ton animal."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y la DGSV de Burkina Faso fija las condiciones exactas, incluido si se requiere una autorización de importación para tu mascota."
+    pt: "Somente um médico-veterinário pode confirmar o procedimento exato para cada cachorro, e a DGSV do Burkina Faso define as condições exatas, incluindo se uma autorização de importação é exigida para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Burkina Faso (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Burkina Faso (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Burkina Faso (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Burkina Faso (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Burkina Faso", fr: "Pays de destination — Burkina Faso", es: "País de destino — Burkina Faso", pt: "País de destino — Burkina Faso" }
+      text:
+        en: "Burkina Faso runs its own DGSV scheme: a valid rabies vaccination, an international veterinary health certificate and a veterinary check on arrival are the core requirements, and the importation of live animals is subject to prior authorization delivered after the DGSV's technical opinion. There is no EU-style pet passport route."
+        fr: "Le Burkina Faso applique son propre dispositif DGSV : une vaccination antirabique valide, un certificat vétérinaire international et un contrôle vétérinaire à l'arrivée constituent les exigences de base, et l'importation d'animaux vivants est soumise à une autorisation préalable délivrée après avis technique de la DGSV. Il n'existe pas de voie « passeport » de l'UE."
+        es: "Burkina Faso aplica su propio sistema de la DGSV: una vacunación antirrábica válida, un certificado veterinario internacional y un control veterinario a la llegada son los requisitos básicos, y la importación de animales vivos está sujeta a una autorización previa expedida tras el dictamen técnico de la DGSV. No existe una vía de tipo «pasaporte» de la UE."
+        pt: "O Burkina Faso segue seu próprio esquema pela DGSV: uma vacinação antirrábica válida, um atestado de saúde veterinário internacional e uma verificação veterinária na chegada são as exigências centrais, e a importação de animais vivos está sujeita a autorização prévia, concedida após parecer técnico da DGSV. Não existe uma via de passaporte para animais de estimação nos moldes europeus."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The country of departure decides which certificate model your official vet uses and how the rabies vaccination is documented. For the United States, USDA/APHIS publishes the exact bilingual Burkina Faso certificate; other origins use their own official model confirmed by the government veterinary authority."
+        fr: "Le pays de départ détermine le modèle de certificat que ton vétérinaire officiel utilise et la manière dont la vaccination antirabique est documentée. Pour les États-Unis, l'USDA/APHIS publie le certificat bilingue exact pour le Burkina Faso ; les autres origines utilisent leur propre modèle officiel validé par l'autorité vétérinaire gouvernementale."
+        es: "El país de salida determina qué modelo de certificado utiliza tu veterinario oficial y cómo se documenta la vacunación antirrábica. Para Estados Unidos, USDA/APHIS publica el certificado bilingüe exacto para Burkina Faso; otros orígenes usan su propio modelo oficial validado por la autoridad veterinaria gubernamental."
+        pt: "O país de partida determina qual modelo de certificado o veterinário oficial utiliza e como a vacinação antirrábica é documentada. Para os Estados Unidos, o USDA/APHIS publica o certificado bilíngue exato para o Burkina Faso; outras origens utilizam seu próprio modelo oficial, confirmado pela autoridade veterinária governamental."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "The dog must come from an area not quarantined for rabies and not have been exposed to rabies. A recent stay in a country with active rabies control measures can therefore matter, not only the last airport you fly from. Burkina Faso is itself rabies-endemic, which matters for any later return to the EU."
+        fr: "Le chien doit provenir d'une zone non placée en quarantaine pour la rage et ne pas avoir été exposé à la rage. Un séjour récent dans un pays soumis à des mesures actives de lutte contre la rage peut donc compter, pas seulement le dernier aéroport de départ. Le Burkina Faso étant lui-même à rage endémique, cela compte pour un éventuel retour ultérieur vers l'UE."
+        es: "El perro debe proceder de una zona no puesta en cuarentena por rabia y no haber estado expuesto a la rabia. Una estancia reciente en un país con medidas activas de control de la rabia puede, por tanto, importar, no solo el último aeropuerto del que salgas. Burkina Faso es a su vez de rabia endémica, lo que importa para un eventual regreso posterior a la UE."
+        pt: "O cachorro deve vir de uma área não colocada em quarentena por raiva e não ter sido exposto à raiva. Uma estadia recente em um país com medidas ativas de controle da raiva pode, portanto, ser relevante — não apenas o último aeroporto de onde ele partiu. O próprio Burkina Faso tem raiva endêmica, o que é relevante para um eventual retorno à UE."
+  note:
+    en: "So read the requirements below as Burkina Faso's framework, then confirm your dog's exact origin, history and documents with your vet and the DGSV before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre burkinabè, puis confirme l'origine, l'historique et les documents exacts de ton chien avec ton vétérinaire et la DGSV avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Burkina Faso y luego confirma el origen, el historial y los documentos exactos de tu perro con tu veterinario y la DGSV antes de reservar."
+    pt: "Portanto, ler as exigências abaixo como o quadro geral do Burkina Faso e, em seguida, confirmar a origem exata, o histórico e os documentos do cachorro com o veterinário e a DGSV antes de reservar."
+
+requirements:
+  - item: { en: "Prior import authorization (live animals)", fr: "Autorisation préalable d'importation (animaux vivants)", es: "Autorización previa de importación (animales vivos)", pt: "Autorização de importação prévia (animais vivos)" }
+    required: { en: "Required for imports of live animals; exact pet procedure Unknown", fr: "Requise pour l'importation d'animaux vivants ; procédure exacte pour animaux de compagnie non communiquée", es: "Obligatoria para la importación de animales vivos; procedimiento exacto para mascotas no comunicado", pt: "Obrigatória para importações de animais vivos; procedimento exato para animais de companhia não comunicado" }
+    when: { en: "Burkina Faso subjects the importation of animals and animal by-products to a non-automatic licence (Autorisation Spéciale d'Importation, ASI) issued by the SP-GUCI after the technical opinion of the Direction Générale des Services Vétérinaires (DGSV). Whether and how this applies to a single personal pet is not published in detail — confirm with the DGSV before travel.", fr: "Le Burkina Faso soumet l'importation d'animaux et de sous-produits animaux à une licence non automatique (Autorisation Spéciale d'Importation, ASI) délivrée par le SP-GUCI après avis technique de la Direction Générale des Services Vétérinaires (DGSV). La manière dont cela s'applique à un unique animal de compagnie personnel n'est pas publiée en détail — à confirmer auprès de la DGSV avant le voyage.", es: "Burkina Faso somete la importación de animales y de subproductos animales a una licencia no automática (Autorisation Spéciale d'Importation, ASI) expedida por el SP-GUCI tras el dictamen técnico de la Direction Générale des Services Vétérinaires (DGSV). Si esto se aplica a una única mascota personal, y cómo, no se publica en detalle — confírmalo con la DGSV antes del viaje.", pt: "O Burkina Faso sujeita a importação de animais e subprodutos animais a uma licença não automática (Autorisation Spéciale d'Importation, ASI), emitida pelo SP-GUCI após parecer técnico da Direction Générale des Services Vétérinaires (DGSV). Se e como isso se aplica a um único cachorro de companhia particular não é publicado em detalhe — confirmar junto da DGSV antes da viagem." }
+    exceptions: { en: "Unknown — do not assume a personal pet is exempt; confirm the requirement in writing with the DGSV before booking.", fr: "Non communiqué — ne présume pas qu'un animal de compagnie personnel est exempté ; confirme l'exigence par écrit auprès de la DGSV avant de réserver.", es: "No comunicado — no des por hecho que una mascota personal está exenta; confirma el requisito por escrito con la DGSV antes de reservar.", pt: "Não comunicado — não presumir que um cachorro de companhia particular esteja isento; confirmar a exigência por escrito junto da DGSV antes de reservar." }
+    ref: { en: "WTO Import Licensing (G/LIC/N/3/BFA/11) — animals & animal by-products, ASI via SP-GUCI after DGSV opinion", fr: "OMC Licences d'importation (G/LIC/N/3/BFA/11) — animaux et sous-produits animaux, ASI via SP-GUCI après avis DGSV", es: "OMC Licencias de importación (G/LIC/N/3/BFA/11) — animales y subproductos animales, ASI vía SP-GUCI tras dictamen de la DGSV", pt: "Licenciamento de Importação da WTO (G/LIC/N/3/BFA/11) — animais e subprodutos animais, ASI via SP-GUCI após parecer da DGSV" }
+  - item: { en: "Identification (microchip)", fr: "Identification (puce électronique)", es: "Identificación (microchip)", pt: "Identificação (microchip)" }
+    required: { en: "Not officially mandated", fr: "Non officiellement imposée", es: "No exigido oficialmente", pt: "Não obrigatório oficialmente" }
+    when: { en: "The USDA/DGSV veterinary certificate identifies the animal by microchip number and/or name (box 21); the vet verifies any microchip that is present. An ISO 11784/11785 microchip is strongly recommended but is not published as a stand-alone obligation for entry.", fr: "Le certificat vétérinaire USDA/DGSV identifie l'animal par numéro de puce et/ou nom (case 21) ; le vétérinaire vérifie toute puce présente. Une puce ISO 11784/11785 est fortement recommandée mais n'est pas publiée comme obligation autonome pour l'entrée.", es: "El certificado veterinario USDA/DGSV identifica al animal por número de microchip o nombre (casilla 21); el veterinario verifica cualquier microchip presente. Un microchip ISO 11784/11785 se recomienda encarecidamente, pero no se publica como obligación autónoma para la entrada.", pt: "O certificado veterinário USDA/DGSV identifica o animal pelo número do microchip e/ou pelo nome (campo 21); o veterinário verifica qualquer microchip presente. Um microchip ISO 11784/11785 é fortemente recomendado, mas não é publicado como uma obrigação autônoma para a entrada." }
+    exceptions: { en: "Where a microchip is present it must match the certificate and vaccination record.", fr: "Lorsqu'une puce est présente, elle doit correspondre au certificat et au carnet de vaccination.", es: "Cuando hay un microchip, debe coincidir con el certificado y la cartilla de vacunación.", pt: "Caso haja um microchip, ele deve corresponder ao certificado e à caderneta de vacinação." }
+    ref: { en: "USDA/DGSV veterinary health certificate for dogs & cats (box 21; statement 1)", fr: "Certificat vétérinaire USDA/DGSV pour chiens et chats (case 21 ; mention 1)", es: "Certificado veterinario de salud USDA/DGSV para perros y gatos (casilla 21; mención 1)", pt: "Atestado de saúde veterinário USDA/DGSV para cachorros e gatos (campo 21; declaração 1)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be currently vaccinated against rabies; the certificate records the vaccine, date, batch number and end date of validity. Where the shot is a primary vaccination or a lapsed booster, a waiting period (generally about 21 days) applies before the vaccination is effective — the certificate itself does not state a fixed delay, so confirm with your vet and the DGSV.", fr: "Le chien doit être à jour de sa vaccination antirabique ; le certificat mentionne le vaccin, la date, le numéro de lot et la date de fin de validité. Lorsqu'il s'agit d'une primovaccination ou d'un rappel expiré, un délai d'attente (généralement environ 21 jours) s'applique avant que la vaccination soit effective — le certificat ne fixe pas de délai précis, à confirmer avec ton vétérinaire et la DGSV.", es: "El perro debe estar al día en su vacunación antirrábica; el certificado registra la vacuna, la fecha, el número de lote y la fecha de fin de valide. Cuando se trata de una primovacunación o de un refuerzo caducado, se aplica un periodo de espera (por lo general, unos 21 días) antes de que la vacunación sea efectiva — el propio certificado no fija un plazo concreto, así que confírmalo con tu veterinario y la DGSV.", pt: "O cachorro deve estar com a vacinação antirrábica em dia; o certificado registra a vacina, a data, o número do lote e a data de validade. Quando se trata de uma primeira dose ou de um reforço vencido, aplica-se um período de carência (geralmente cerca de 21 dias) antes de a vacinação ser considerada eficaz — o próprio certificado não indica um prazo fixo, portanto confirmar com o veterinário e com a DGSV." }
+    exceptions: { en: "A dog too young to be validly vaccinated against rabies cannot meet the requirement.", fr: "Un chien trop jeune pour être valablement vacciné contre la rage ne peut satisfaire l'exigence.", es: "Un perro demasiado joven para ser válidamente vacunado contra la rabia no puede cumplir el requisito.", pt: "Um cachorro jovem demais para ser validamente vacinado contra a raiva não pode cumprir essa exigência." }
+    ref: { en: "USDA/DGSV veterinary health certificate (statement 4 & rabies vaccination table)", fr: "Certificat vétérinaire USDA/DGSV (mention 4 et tableau de vaccination antirabique)", es: "Certificado veterinario de salud USDA/DGSV (mención 4 y tabla de vacunación antirrábica)", pt: "Atestado de saúde veterinário USDA/DGSV (declaração 4 e tabela de vacinação antirrábica)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "The official USDA/DGSV veterinary certificate does not require a rabies antibody test for entry to Burkina Faso; a current rabies vaccination is what is certified.", fr: "Le certificat vétérinaire officiel USDA/DGSV n'exige pas de titrage des anticorps antirabiques pour l'entrée au Burkina Faso ; c'est une vaccination antirabique à jour qui est certifiée.", es: "El certificado veterinario oficial USDA/DGSV no exige una prueba de titulación de anticuerpos contra la rabia para la entrada a Burkina Faso; lo que se certifica es una vacunación antirrábica al día.", pt: "O certificado veterinário oficial USDA/DGSV não exige um teste sorológico antirrábico para a entrada no Burkina Faso; o que é certificado é a vacinação antirrábica em dia." }
+    exceptions: { en: "None published for entry. (A rabies antibody test may still be relevant for a later return to the EU, because Burkina Faso is rabies-endemic.)", fr: "Aucune publiée pour l'entrée. (Un titrage peut toutefois rester pertinent pour un retour ultérieur vers l'UE, le Burkina Faso étant à rage endémique.)", es: "Ninguna publicada para la entrada. (Una prueba de titulación de rabia puede, no obstante, seguir siendo relevante para un regreso posterior a la UE, ya que Burkina Faso es de rabia endémica.)", pt: "Nenhum publicado para a entrada. (Um teste sorológico antirrábico ainda pode ser relevante para um eventual retorno à UE, pois o Burkina Faso tem raiva endêmica.)" }
+    ref: { en: "USDA/DGSV veterinary health certificate for dogs & cats", fr: "Certificat vétérinaire USDA/DGSV pour chiens et chats", es: "Certificado veterinario de salud USDA/DGSV para perros y gatos", pt: "Atestado de saúde veterinário USDA/DGSV para cachorros e gatos" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario de salud internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An original international veterinary certificate covering identification, rabies vaccination and clinical health accompanies the dog. The USDA model for Burkina Faso is bilingual French/English and is valid for 30 days after issuance; from the US it is issued by a USDA-accredited vet and endorsed (ink-signed and embossed) by APHIS. French-language certificates are acceptable.", fr: "Un certificat vétérinaire international original couvrant l'identification, la vaccination antirabique et l'état clinique accompagne le chien. Le modèle USDA pour le Burkina Faso est bilingue français/anglais et valable 30 jours après émission ; depuis les USA, il est établi par un vétérinaire agréé USDA et visé (signé à l'encre et embossé) par l'APHIS. Les certificats en français sont acceptés.", es: "Un certificado veterinario internacional original que cubre la identificación, la vacunación antirrábica y el estado clínico acompaña al perro. El modelo USDA para Burkina Faso es bilingüe francés/inglés y válido 30 días después de su emisión; desde EE. UU. lo expide un veterinario acreditado por el USDA y lo refrenda (firmado a tinta y con sello en relieve) APHIS. Se aceptan los certificados en francés.", pt: "Um certificado veterinário internacional original, cobrindo identificação, vacinação antirrábica e saúde clínica, acompanha o cachorro. O modelo USDA para o Burkina Faso é bilíngue francês/inglês e é válido por 30 dias após a emissão; nos Estados Unidos, é emitido por um veterinário credenciado pelo USDA e endossado (com assinatura a tinta e selo em relevo) pela APHIS. Certificados em francês são aceitos." }
+    exceptions: { en: "None — an official certificate must accompany the dog and be presented with the vaccination record.", fr: "Aucune — un certificat officiel doit accompagner le chien et être présenté avec le carnet de vaccination.", es: "Ninguna — un certificado oficial debe acompañar al perro y presentarse con la cartilla de vacunación.", pt: "Nenhuma — um certificado oficial deve acompanhar o cachorro e ser apresentado junto com a caderneta de vacinação." }
+    ref: { en: "USDA/APHIS — Pet Travel US to Burkina Faso; USDA/DGSV veterinary health certificate (validity 30 days)", fr: "USDA/APHIS — Voyage d'un animal des États-Unis vers le Burkina Faso ; certificat vétérinaire USDA/DGSV (validité 30 jours)", es: "USDA/APHIS — Viaje de una mascota de EE. UU. a Burkina Faso; certificado veterinario de salud USDA/DGSV (valide 30 días)", pt: "USDA/APHIS — Pet Travel EUA para o Burkina Faso; atestado de saúde veterinário USDA/DGSV (validade de 30 dias)" }
+  - item: { en: "Clinical examination & health statements", fr: "Examen clinique et attestations sanitaires", es: "Examen clínico y declaraciones sanitarias", pt: "Exame clínico e declarações de saúde" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog is inspected and certified free of infectious or contagious disease (including rabies), and certified to originate from an area not quarantined for rabies and not to have been exposed to rabies.", fr: "Le chien est examiné et certifié indemne de maladie infectieuse ou contagieuse (y compris la rage), et certifié provenir d'une zone non placée en quarantaine pour la rage et ne pas avoir été exposé à la rage.", es: "El perro es examinado y certificado libre de enfermedad infecciosa o contagiosa (incluida la rabia), y se certifica que procede de una zona no puesta en cuarentena por rabia y que no ha estado expuesto a la rabia.", pt: "O cachorro é inspecionado e certificado como livre de doenças infecciosas ou contagiosas (incluindo raiva), e certificado como proveniente de uma área não colocada em quarentena por raiva e não exposto à raiva." }
+    exceptions: { en: "None.", fr: "Aucune.", es: "Ninguna.", pt: "Nenhuma." }
+    ref: { en: "USDA/DGSV veterinary health certificate (statements 2–3)", fr: "Certificat vétérinaire USDA/DGSV (mentions 2–3)", es: "Certificado veterinario de salud USDA/DGSV (menciones 2–3)", pt: "Atestado de saúde veterinário USDA/DGSV (declarações 2–3)" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / échinocoque", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not officially required", fr: "Non officiellement requis", es: "No exigido oficialmente", pt: "Não exigido oficialmente" }
+    when: { en: "The USDA/DGSV certificate treats other vaccinations, treatments and tests as optional entries (box 7). No mandatory internal or external parasite treatment is published for entry to Burkina Faso.", fr: "Le certificat USDA/DGSV traite les autres vaccinations, traitements et tests comme des mentions facultatives (case 7). Aucun traitement antiparasitaire interne ou externe obligatoire n'est publié pour l'entrée au Burkina Faso.", es: "El certificado USDA/DGSV trata las demás vacunaciones, tratamientos y pruebas como entradas opcionales (casilla 7). No se publica ningún tratamiento antiparasitario interno o externo obligatorio para la entrada a Burkina Faso.", pt: "O certificado USDA/DGSV trata outras vacinas, tratamentos e testes como itens opcionais (campo 7). Nenhum tratamento antiparasitário interno ou externo obrigatório é publicado para a entrada no Burkina Faso." }
+    exceptions: { en: "A vet may still recommend parasite treatment; it is good practice but not a published entry condition.", fr: "Un vétérinaire peut néanmoins recommander un traitement antiparasitaire ; c'est une bonne pratique mais pas une condition d'entrée publiée.", es: "Un veterinario puede, no obstante, recomendar un tratamiento antiparasitario; es una buena práctica, pero no una condición de entrada publicada.", pt: "Um veterinário ainda pode recomendar o tratamento antiparasitário; é uma boa prática, mas não é uma condição de entrada publicada." }
+    ref: { en: "USDA/DGSV veterinary health certificate (box 7, optional)", fr: "Certificat vétérinaire USDA/DGSV (case 7, facultative)", es: "Certificado veterinario de salud USDA/DGSV (casilla 7, opcional)", pt: "Atestado de saúde veterinário USDA/DGSV (campo 7, opcional)" }
+  - item: { en: "Border / airport veterinary check & customs", fr: "Contrôle vétérinaire à la frontière / aéroport et douane", es: "Control veterinario en frontera / aeropuerto y aduanas", pt: "Controle veterinário de fronteira / aeroporto e alfândega" }
+    required: { en: "Applies; exact process Unknown", fr: "S'applique ; procédure exacte non communiquée", es: "Se aplica; procedimiento exacto no comunicado", pt: "Aplica-se; processo exato não comunicado" }
+    when: { en: "Burkina Faso is landlocked, so a personal pet arrives by air (Ouagadougou international airport) or a land border. The veterinary services (DGSV) control imported animals; present your dog and its documents on arrival. The exact steps and fees for a personal pet are not published in detail.", fr: "Le Burkina Faso est enclavé : un animal de compagnie personnel arrive par avion (aéroport international de Ouagadougou) ou par une frontière terrestre. Les services vétérinaires (DGSV) contrôlent les animaux importés ; présente ton chien et ses documents à l'arrivée. Les étapes et frais exacts pour un animal de compagnie personnel ne sont pas publiés en détail.", es: "Burkina Faso no tiene salida al mar, por lo que una mascota personal llega por avión (aeropuerto internacional de Uagadugú) o por una frontera terrestre. Los servicios veterinarios (DGSV) controlan los animales importados; presenta a tu perro y sus documentos a la llegada. Los pasos y tasas exactos para una mascota personal no se publican en detalle.", pt: "O Burkina Faso não tem litoral, portanto um cachorro de companhia particular chega por via aérea (aeroporto internacional de Uagadugu) ou por uma fronteira terrestre. Os serviços veterinários (DGSV) controlam os animais importados; apresentar o cachorro e seus documentos na chegada. As etapas exatas e as taxas para um cachorro de companhia particular não são publicadas em detalhe." }
+    exceptions: { en: "Unknown — confirm the arrival procedure with the DGSV when it confirms your requirements.", fr: "Non communiqué — confirme la procédure d'arrivée auprès de la DGSV lorsqu'elle confirme tes exigences.", es: "No comunicado — confirma el procedimiento de llegada con la DGSV cuando confirme tus requisitos.", pt: "Não comunicado — confirmar o procedimento de chegada junto da DGSV quando ela confirmar as exigências aplicáveis." }
+    ref: { en: "MAERAH–DGSV (border veterinary control); WTO Import Licensing (G/LIC/N/3/BFA/11)", fr: "MAERAH–DGSV (contrôle vétérinaire frontalier) ; OMC Licences d'importation (G/LIC/N/3/BFA/11)", es: "MAERAH–DGSV (control veterinario fronterizo); OMC Licencias de importación (G/LIC/N/3/BFA/11)", pt: "MAERAH–DGSV (controle veterinário de fronteira); Licenciamento de Importação da WTO (G/LIC/N/3/BFA/11)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Linked to rabies vaccination", fr: "Lié à la vaccination antirabique", es: "Vinculada a la vacunación antirrábica", pt: "Vinculada à vacinação antirrábica" }
+    when: { en: "A puppy must be old enough to be validly vaccinated against rabies (generally about 3 months / 12 weeks) and to meet the certificate's rabies statement. The DGSV does not publish a separate stand-alone minimum age.", fr: "Un chiot doit être en âge d'être valablement vacciné contre la rage (généralement environ 3 mois / 12 semaines) et de satisfaire à la mention antirabique du certificat. La DGSV ne publie pas d'âge minimum distinct spécifique.", es: "Un cachorro debe tener edad suficiente para ser válidamente vacunado contra la rabia (por lo general, unos 3 meses / 12 semanas) y para cumplir la mención antirrábica del certificado. La DGSV no publica una edad mínima específica aparte.", pt: "O filhote deve ter idade suficiente para ser validamente vacinado contra a raiva (geralmente por volta de 3 meses / 12 semanas) e atender à declaração de raiva do certificado. A DGSV não publica uma idade mínima autônoma separada." }
+    exceptions: { en: "A puppy too young to be vaccinated against rabies cannot meet the requirement.", fr: "Un chiot trop jeune pour être vacciné contre la rage ne peut satisfaire l'exigence.", es: "Un cachorro demasiado joven para ser vacunado contra la rabia no puede cumplir el requisito.", pt: "Um filhote jovem demais para ser vacinado contra a raiva não pode cumprir essa exigência." }
+    ref: { en: "USDA/DGSV veterinary health certificate (rabies statements)", fr: "Certificat vétérinaire USDA/DGSV (mentions antirabiques)", es: "Certificado veterinario de salud USDA/DGSV (menciones antirrábicas)", pt: "Atestado de saúde veterinário USDA/DGSV (declarações sobre raiva)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not specified", fr: "Non prévue", es: "No prevista", pt: "Não especificada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No quarantine is set out in the official USDA/DGSV import documents for a compliant pet dog; non-compliant animals may be held under veterinary control at the border.", fr: "Aucune quarantaine n'est prévue dans les documents d'importation officiels USDA/DGSV pour un chien de compagnie conforme ; les animaux non conformes peuvent être placés sous contrôle vétérinaire à la frontière.", es: "No se prevé ninguna cuarentena en los documentos de importación oficiales USDA/DGSV para un perro de compañía conforme; los animales no conformes pueden quedar bajo control veterinario en la frontera.", pt: "Nenhuma quarentena é estabelecida nos documentos oficiais de importação USDA/DGSV para um cachorro de companhia em conformidade; animais em não conformidade podem ficar retidos sob controle veterinário na fronteira." }
+    ref: { en: "USDA/DGSV veterinary health certificate (no quarantine requirement)", fr: "Certificat vétérinaire USDA/DGSV (aucune exigence de quarantaine)", es: "Certificado veterinario de salud USDA/DGSV (sin exigencia de cuarentena)", pt: "Atestado de saúde veterinário USDA/DGSV (sem exigência de quarentena)" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "No published import ban", fr: "Aucune interdiction d'importation publiée", es: "Sin prohibición de importación publicada", pt: "Nenhuma proibição de importação publicada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No national breed-specific import ban for dogs was found in official MAERAH/DGSV sources. Confirm current rules with the DGSV, as national legislation can change.", fr: "Aucune interdiction d'importation nationale par race de chien n'a été trouvée dans les sources officielles MAERAH/DGSV. Vérifie les règles en vigueur auprès de la DGSV, la législation nationale pouvant évoluer.", es: "No se ha encontrado ninguna prohibición nacional de importación por raza de perro en las fuentes oficiales de MAERAH/DGSV. Confirma las normas en vigor con la DGSV, ya que la legislación nacional puede cambiar.", pt: "Nenhuma proibição nacional de importação específica por raça para cachorros foi encontrada em fontes oficiais do MAERAH/DGSV. Confirmar as regras vigentes junto da DGSV, já que a legislação nacional pode mudar." }
+    ref: { en: "MAERAH–DGSV (no published breed-specific import legislation found)", fr: "MAERAH–DGSV (aucune législation d'importation par race publiée trouvée)", es: "MAERAH–DGSV (no se ha encontrado legislación de importación por raza publicada)", pt: "MAERAH–DGSV (nenhuma legislação de importação específica por raça publicada encontrada)" }
+
+origin:
+  eu:
+    title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
+    body:
+      en: "For a dog leaving the EU, there is no EU pet-passport shortcut into Burkina Faso. You need a current rabies vaccination and an international veterinary health certificate issued by an official vet of the country of origin, with the dog coming from an area not quarantined for rabies. Because Burkina Faso subjects imports of live animals to prior authorization by the DGSV, confirm before travel whether an import authorization is required for your pet. French-language certificates are accepted."
+      fr: "Pour un chien quittant l'UE, il n'existe pas de raccourci « passeport UE » vers le Burkina Faso. Tu as besoin d'une vaccination antirabique à jour et d'un certificat vétérinaire international établi par un vétérinaire officiel du pays d'origine, le chien provenant d'une zone non placée en quarantaine pour la rage. Le Burkina Faso soumettant l'importation d'animaux vivants à une autorisation préalable de la DGSV, vérifie avant le voyage si une autorisation d'importation est requise pour ton animal. Les certificats en français sont acceptés."
+      es: "Para un perro que sale de la UE, no existe un atajo de «pasaporte de la UE» hacia Burkina Faso. Necesitas una vacunación antirrábica al día y un certificado veterinario internacional expedido por un veterinario oficial del país de origen, con el perro procedente de una zona no puesta en cuarentena por rabia. Como Burkina Faso somete la importación de animales vivos a una autorización previa de la DGSV, comprueba antes del viaje si se requiere una autorización de importación para tu mascota. Se aceptan los certificados en francés."
+      pt: "Para um cachorro que sai da UE, não existe atalho pelo passaporte europeu para animais de estimação rumo ao Burkina Faso. É necessário ter uma vacinação antirrábica em dia e um atestado de saúde veterinário internacional emitido por um veterinário oficial do país de origem, com o cachorro proveniente de uma área não colocada em quarentena por raiva. Como o Burkina Faso sujeita as importações de animais vivos a autorização prévia da DGSV, confirmar antes da viagem se uma autorização de importação é exigida para o animal. Certificados em francês são aceitos."
+    cls: warn
+  listed:
+    title: { en: "From the United States & other third countries", fr: "Depuis les États-Unis et autres pays tiers", es: "Desde Estados Unidos y otros países terceros", pt: "Dos Estados Unidos e de outros países terceiros" }
+    body:
+      en: "From the US, USDA/APHIS publishes the exact bilingual (French/English) veterinary health certificate for Burkina Faso: a USDA-accredited vet issues it and APHIS endorses it with an original ink signature and embossment; it is valid 30 days after issuance. If the rabies vaccination is a primary dose or has lapsed, allow the vaccine to become effective (generally about 21 days) before travel. Other third countries use their own official export certificate model confirmed by the government veterinary authority."
+      fr: "Depuis les USA, l'USDA/APHIS publie le certificat vétérinaire bilingue (français/anglais) exact pour le Burkina Faso : un vétérinaire agréé USDA l'établit et l'APHIS le vise avec une signature à l'encre originale et un embossage ; il est valable 30 jours après émission. Si la vaccination antirabique est une primovaccination ou a expiré, laisse le vaccin devenir effectif (généralement environ 21 jours) avant de voyager. Les autres pays tiers utilisent leur propre modèle de certificat d'exportation officiel validé par l'autorité vétérinaire gouvernementale."
+      es: "Desde EE. UU., USDA/APHIS publica el certificado veterinario bilingüe (francés/inglés) exacto para Burkina Faso: lo expide un veterinario acreditado por el USDA y APHIS lo refrenda con una firma a tinta original y un sello en relieve; es válido 30 días después de su emisión. Si la vacunación antirrábica es una dosis primaria o ha caducado, deja que la vacuna se haga efectiva (por lo general, unos 21 días) antes de viajar. Otros países terceros usan su propio modelo de certificado de exportación oficial validado por la autoridad veterinaria gubernamental."
+      pt: "Dos EUA, o USDA/APHIS publica o atestado de saúde veterinário bilíngue (francês/inglês) exato para o Burkina Faso: é emitido por um veterinário credenciado pelo USDA e endossado pela APHIS com assinatura original a tinta e selo em relevo; é válido por 30 dias após a emissão. Se a vacinação antirrábica for uma primeira dose ou estiver vencida, é preciso aguardar a vacina se tornar eficaz (geralmente cerca de 21 dias) antes da viagem. Outros países terceiros utilizam seu próprio modelo oficial de certificado de exportação, confirmado pela autoridade veterinária governamental."
+    cls: warn
+  nonListed:
+    title: { en: "From a rabies-endemic or other origin", fr: "Depuis une origine endémique pour la rage ou autre", es: "Desde un origen con rabia endémica u otro", pt: "De uma origem de raiva endêmica ou outra" }
+    body:
+      en: "The core process does not change: a current rabies vaccination and an international veterinary certificate, with the dog originating from an area not quarantined for rabies. Because Burkina Faso is itself rabies-endemic, the veterinary authorities focus on the rabies status of the dog and its origin, and the DGSV may attach conditions to an import authorization. Confirm any additional condition directly with the DGSV before you travel."
+      fr: "Le processus de base ne change pas : vaccination antirabique à jour et certificat vétérinaire international, le chien provenant d'une zone non placée en quarantaine pour la rage. Le Burkina Faso étant lui-même endémique pour la rage, les autorités vétérinaires se concentrent sur le statut rabique du chien et de son origine, et la DGSV peut assortir une autorisation d'importation de conditions. Confirme toute condition supplémentaire directement auprès de la DGSV avant de voyager."
+      es: "El proceso básico no cambia: vacunación antirrábica al día y certificado veterinario internacional, con el perro procedente de una zona no puesta en cuarentena por rabia. Como Burkina Faso es a su vez de rabia endémica, las autoridades veterinarias se centran en el estado antirrábico del perro y de su origen, y la DGSV puede imponer condiciones a una autorización de importación. Confirma cualquier condición adicional directamente con la DGSV antes de viajar."
+      pt: "O processo essencial não muda: vacinação antirrábica em dia e certificado veterinário internacional, com o cachorro proveniente de uma área não colocada em quarentena por raiva. Como o próprio Burkina Faso tem raiva endêmica, as autoridades veterinárias concentram-se no status de raiva do cachorro e na sua origem, e a DGSV pode vincular condições a uma autorização de importação. Confirmar qualquer condição adicional diretamente junto da DGSV antes de viajar."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Burkina Faso depends on your documents and on the conditions the DGSV sets. Burkina Faso is landlocked, so entry is by air or a land border."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Burkina Faso dépend de tes documents et des conditions fixées par la DGSV. Le Burkina Faso est enclavé : l'entrée se fait par avion ou par une frontière terrestre."
+    es: "Lo que ocurre cuando tu perro llega a Burkina Faso depende de tus documentos y de las condiciones que fije la DGSV. Burkina Faso no tiene salida al mar, por lo que la entrada se hace por avión o por una frontera terrestre."
+    pt: "O que acontece quando o cachorro chega ao Burkina Faso depende dos documentos apresentados e das condições definidas pela DGSV. O Burkina Faso não tem litoral, portanto a entrada é feita por via aérea ou por uma fronteira terrestre."
+  points:
+    - en: "Your dog is presented to the veterinary services (DGSV), in practice at Ouagadougou's international airport or at a land-border control post."
+      fr: "Ton chien est présenté aux services vétérinaires (DGSV), en pratique à l'aéroport international de Ouagadougou ou à un poste de contrôle à une frontière terrestre."
+      es: "Tu perro se presenta a los servicios veterinarios (DGSV), en la práctica en el aeropuerto internacional de Uagadugú o en un puesto de control de una frontera terrestre."
+      pt: "O cachorro é apresentado aos serviços veterinários (DGSV), na prática no aeroporto internacional de Uagadugu ou em um posto de controle de fronteira terrestre."
+    - en: "Carry the originals: the international veterinary health certificate, the rabies vaccination record, and any import authorization confirmed by the DGSV."
+      fr: "Munis-toi des originaux : le certificat vétérinaire international, le carnet de vaccination antirabique et toute autorisation d'importation confirmée par la DGSV."
+      es: "Lleva los originales: el certificado veterinario internacional, la cartilla de vacunación antirrábica y cualquier autorización de importación confirmada por la DGSV."
+      pt: "Levar os originais: o atestado de saúde veterinário internacional, a caderneta de vacinação antirrábica e qualquer autorização de importação confirmada pela DGSV."
+    - en: "Documents must be consistent — the identification, vaccination and health statements must match across the certificate and the vaccination record; the certificate must still be within its 30-day validity."
+      fr: "Les documents doivent être cohérents — l'identification, la vaccination et les mentions sanitaires doivent concorder entre le certificat et le carnet de vaccination ; le certificat doit être encore dans sa validité de 30 jours."
+      es: "Los documentos deben ser coherentes — la identificación, la vacunación y las declaraciones sanitarias deben coincidir entre el certificado y la cartilla de vacunación; el certificado debe estar aún dentro de su valide de 30 días."
+      pt: "Os documentos devem ser coerentes entre si — a identificação, a vacinação e as declarações de saúde devem corresponder entre o certificado e a caderneta de vacinação; o certificado deve continuar dentro do prazo de validade de 30 dias."
+    - en: "If documents are missing, invalid or inconsistent, the animal may be refused, returned or held under veterinary control at the owner's expense."
+      fr: "Si les documents manquent, sont invalides ou incohérents, l'animal peut être refusé, renvoyé ou placé sous contrôle vétérinaire aux frais du propriétaire."
+      es: "Si faltan documentos, no son válidos o son incoherentes, el animal puede ser rechazado, devuelto o retenido bajo control veterinario a cargo del propietario."
+      pt: "Se os documentos estiverem incompletos, inválidos ou inconsistentes, o animal pode ser recusado, devolvido ou retido sob controle veterinário às custas do proprietário."
+    - en: "Exact arrival steps and fees for a personal pet are not published in detail; ask the DGSV when it confirms your requirements."
+      fr: "Les étapes et frais d'arrivée exacts pour un animal de compagnie personnel ne sont pas publiés en détail ; renseigne-toi auprès de la DGSV lorsqu'elle confirme tes exigences."
+      es: "Los pasos y tasas de llegada exactos para una mascota personal no se publican en detalle; consúltalo con la DGSV cuando confirme tus requisitos."
+      pt: "As etapas exatas de chegada e as taxas para um cachorro de companhia particular não são publicadas em detalhe; perguntar à DGSV quando ela confirmar as exigências aplicáveis."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No national breed-specific import ban for dogs was found in the official sources of the DGSV or MAERAH. Entry to Burkina Faso is controlled through the veterinary health requirements and the import-authorization regime for live animals, not through a published list of prohibited breeds."
+    fr: "Aucune interdiction d'importation nationale par race de chien n'a été trouvée dans les sources officielles de la DGSV ou du MAERAH. L'entrée au Burkina Faso est encadrée par les exigences sanitaires vétérinaires et le régime d'autorisation d'importation des animaux vivants, non par une liste publiée de races interdites."
+    es: "No se ha encontrado ninguna prohibición nacional de importación por raza de perro en las fuentes oficiales de la DGSV ni del MAERAH. La entrada a Burkina Faso se regula mediante los requisitos sanitarios veterinarios y el régimen de autorización de importación de animales vivos, no mediante una lista publicada de razas prohibidas."
+    pt: "Nenhuma proibição nacional de importação específica por raça para cachorros foi encontrada nas fontes oficiais da DGSV ou do MAERAH. A entrada no Burkina Faso é controlada por meio das exigências sanitárias veterinárias e do regime de autorização de importação para animais vivos, e não por uma lista publicada de raças proibidas."
+  cat1:
+    en: "No official list of prohibited dog breeds and no national breed-specific import ban was located in MAERAH/DGSV publications. This is the absence of a published rule, not a confirmation that any breed is guaranteed admissible."
+    fr: "Aucune liste officielle de races de chiens interdites ni interdiction d'importation nationale par race n'a été trouvée dans les publications MAERAH/DGSV. Il s'agit de l'absence d'une règle publiée, non d'une confirmation qu'une race serait garantie admissible."
+    es: "No se ha localizado ninguna lista oficial de razas de perros prohibidas ni ninguna prohibición nacional de importación por raza en las publicaciones de MAERAH/DGSV. Se trata de la ausencia de una norma publicada, no de una confirmación de que alguna raza esté garantizada como admisible."
+    pt: "Nenhuma lista oficial de raças de cachorros proibidas e nenhuma proibição nacional de importação específica por raça foram localizadas nas publicações do MAERAH/DGSV. Trata-se da ausência de uma regra publicada, não da confirmação de que qualquer raça tenha entrada garantida."
+  cat2:
+    en: "Because national legislation can change and local rules may exist, confirm the status of your specific breed with the DGSV before you travel, especially for guard or fighting-type dogs."
+    fr: "La législation nationale pouvant évoluer et des règles locales pouvant exister, confirme le statut de ta race précise auprès de la DGSV avant de voyager, en particulier pour les chiens de garde ou de type combat."
+    es: "Como la legislación nacional puede cambiar y pueden existir normas locales, confirma la situación de tu raza concreta con la DGSV antes de viajar, especialmente para los perros de guarda o de tipo de pelea."
+    pt: "Como a legislação nacional pode mudar e podem existir regras locais, confirmar a situação da raça específica junto da DGSV antes de viajar, especialmente para cachorros de guarda ou de tipo combate."
+  note:
+    en: "Treat any breed question as unresolved until the DGSV confirms it in writing."
+    fr: "Considère toute question de race comme non tranchée tant que la DGSV ne l'a pas confirmée par écrit."
+    es: "Considera cualquier cuestión de raza como no resuelta hasta que la DGSV la confirme por escrito."
+    pt: "Tratar qualquer dúvida sobre raça como não resolvida até que a DGSV confirme por escrito."
+
+checklist:
+  - en: "Confirm with the DGSV (MAERAH) whether an import authorization is required for your personal pet before travel"
+    fr: "Confirme auprès de la DGSV (MAERAH) si une autorisation d'importation est requise pour ton animal de compagnie avant le voyage"
+    es: "Confirma con la DGSV (MAERAH) si se requiere una autorización de importación para tu mascota personal antes del viaje"
+    pt: "Confirmar junto da DGSV (MAERAH) se uma autorização de importação é exigida para o cachorro de companhia particular antes da viagem"
+  - en: "Valid rabies vaccination, current and correctly recorded (allow the vaccine to become effective if primary/lapsed)"
+    fr: "Vaccination antirabique valide, à jour et correctement consignée (laisse le vaccin devenir effectif si primovaccination/expirée)"
+    es: "Vacunación antirrábica válida, al día y correctamente registrada (deja que la vacuna se haga efectiva si es primaria/caducada)"
+    pt: "Vacinação antirrábica válida, em dia e corretamente registrada (aguardar a vacina se tornar eficaz, se for primeira dose ou estiver vencida)"
+  - en: "Identification recorded (ISO microchip recommended) and matching all documents"
+    fr: "Identification consignée (puce ISO recommandée) et concordant avec tous les documents"
+    es: "Identificación registrada (microchip ISO recomendado) y que coincida con todos los documentos"
+    pt: "Identificação registrada (microchip ISO recomendado) e correspondente a todos os documentos"
+  - en: "International veterinary health certificate from an official vet of origin (valid 30 days)"
+    fr: "Certificat vétérinaire international d'un vétérinaire officiel d'origine (valable 30 jours)"
+    es: "Certificado veterinario de salud internacional de un veterinario oficial de origen (válido 30 días)"
+    pt: "Atestado de saúde veterinário internacional emitido por um veterinário oficial de origem (válido por 30 dias)"
+  - en: "From the US: certificate endorsed by APHIS with an original ink signature and embossment"
+    fr: "Depuis les USA : certificat visé par l'APHIS avec signature à l'encre originale et embossage"
+    es: "Desde EE. UU.: certificado refrendado por APHIS con firma a tinta original y sello en relieve"
+    pt: "Dos EUA: certificado endossado pela APHIS com assinatura original a tinta e selo em relevo"
+  - en: "Original documents ready for the veterinary check at the airport (Ouagadougou) or land border"
+    fr: "Documents originaux prêts pour le contrôle vétérinaire à l'aéroport (Ouagadougou) ou à la frontière terrestre"
+    es: "Documentos originales listos para el control veterinario en el aeropuerto (Uagadugú) o en la frontera terrestre"
+    pt: "Documentos originais prontos para o controle veterinário no aeroporto (Uagadugu) ou na fronteira terrestre"
+  - en: "Confirm any breed or additional condition with the DGSV before booking"
+    fr: "Confirme toute question de race ou condition supplémentaire auprès de la DGSV avant de réserver"
+    es: "Confirma cualquier cuestión de raza o condición adicional con la DGSV antes de reservar"
+    pt: "Confirmar qualquer condição adicional ou relativa à raça junto da DGSV antes de reservar"
+  - en: "If you will return to the EU, plan the rabies antibody test (Burkina Faso is rabies-endemic)"
+    fr: "Si tu rentre dans l'UE, prévois le titrage antirabique (le Burkina Faso est à rage endémique)"
+    es: "Si vas a regresar a la UE, planifica la prueba de titulación de rabia (Burkina Faso es de rabia endémica)"
+    pt: "Se houver retorno à UE, planejar o teste sorológico antirrábico (o Burkina Faso tem raiva endêmica)"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "USDA/APHIS — Pet Travel From the United States to Burkina Faso", fr: "USDA/APHIS — Voyage d'un animal des États-Unis vers le Burkina Faso", es: "USDA/APHIS — Viaje de una mascota de Estados Unidos a Burkina Faso", pt: "USDA/APHIS — Pet Travel dos Estados Unidos para o Burkina Faso" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-burkina-faso"
+  - label: { en: "USDA/DGSV — Veterinary Health Certificate for Export of Dogs and Cats to Burkina Faso (bilingual model, valid 30 days)", fr: "USDA/DGSV — Certificat vétérinaire pour l'exportation de chiens et chats vers le Burkina Faso (modèle bilingue, valable 30 jours)", es: "USDA/DGSV — Certificado veterinario de salud para la exportación de perros y gatos a Burkina Faso (modelo bilingüe, válido 30 días)", pt: "USDA/DGSV — Atestado de Saúde Veterinário para Exportação de Cachorros e Gatos para o Burkina Faso (modelo bilíngue, válido por 30 dias)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/burkina-faso-dog-cat.pdf"
+  - label: { en: "Ministère de l'Agriculture, de l'Eau, des Ressources Animales et Halieutiques (MAERAH) — Structures (Direction Générale des Services Vétérinaires, DGSV)", fr: "Ministère de l'Agriculture, de l'Eau, des Ressources Animales et Halieutiques (MAERAH) — Structures (Direction Générale des Services Vétérinaires, DGSV)", es: "Ministère de l'Agriculture, de l'Eau, des Ressources Animales et Halieutiques (MAERAH) — Estructuras (Direction Générale des Services Vétérinaires, DGSV)", pt: "Ministère de l'Agriculture, de l'Eau, des Ressources Animales et Halieutiques (MAERAH) — Structures (Direction Générale des Services Vétérinaires, DGSV)" }
+    url: "https://www.agriculture.bf/les-structures/"
+  - label: { en: "WTO Import Licensing Notification (G/LIC/N/3/BFA/11) — Burkina Faso: animals & animal by-products (ASI via SP-GUCI after DGSV opinion)", fr: "Notification OMC sur les licences d'importation (G/LIC/N/3/BFA/11) — Burkina Faso : animaux et sous-produits animaux (ASI via SP-GUCI après avis DGSV)", es: "Notificación de la OMC sobre licencias de importación (G/LIC/N/3/BFA/11) — Burkina Faso: animales y subproductos animales (ASI vía SP-GUCI tras dictamen de la DGSV)", pt: "Notificação de Licenciamento de Importação da WTO (G/LIC/N/3/BFA/11) — Burkina Faso: animais e subprodutos animais (ASI via SP-GUCI após parecer da DGSV)" }
+    url: "https://lic-public.wto.org/en/product-categories/1084/procedure"
+  - label: { en: "Service Public de l'Administration Burkinabè — Ministère des Ressources Animales (contact)", fr: "Service Public de l'Administration Burkinabè — Ministère des Ressources Animales (contact)", es: "Service Public de l'Administration Burkinabè — Ministère des Ressources Animales (contacto)", pt: "Service Public de l'Administration Burkinabè — Ministère des Ressources Animales (contato)" }
+    url: "https://www.servicepublic.gov.bf/contact/ministere-des-ressources-animales-et-halieutiques"
+
+seo:
+  title: { en: "Burkina Faso Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Burkina Faso — Guide", es: "Requisitos de entrada de perros en Burkina Faso — Guía de viaje", pt: "Burkina Faso: exigências de entrada para cachorros" }
+  metaTitle: { en: "Burkina Faso Dog Entry Requirements (2026)", fr: "Voyager au Burkina Faso avec ton chien : formalités (2026)", es: "Viajar a Burkina Faso con tu perro: requisitos de entrada (2026)", pt: "Exigências de Entrada de Cachorros no Burkina Faso (2026)" }
+  metaDesc:
+    en: "Official DGSV/MAERAH rules for bringing a dog into Burkina Faso: rabies vaccination, international veterinary certificate. Sourced and dated."
+    fr: "Règles officielles DGSV/MAERAH pour faire entrer un chien au Burkina Faso : vaccination antirabique, certificat vétérinaire international. Sourcé et daté."
+    es: "Normas oficiales DGSV/MAERAH para traer un perro a Burkina Faso: vacunación antirrábica, certificado veterinario internacional. Con fuentes y fecha."
+    pt: "Regras oficiais da DGSV/MAERAH para levar um cachorro ao Burkina Faso: vacinação antirrábica, certificado veterinário internacional. Com fontes e data."
+  slug: "burkina-faso"
+  shortDesc:
+    en: "What you need to bring a dog into Burkina Faso — rabies vaccination, an international veterinary certificate, a possible import authorization and a border veterinary check."
+    fr: "Ce qu'il faut pour faire entrer un chien au Burkina Faso — vaccination antirabique, certificat vétérinaire international, éventuelle autorisation d'importation et contrôle vétérinaire à la frontière."
+    es: "Lo que necesitas para traer un perro a Burkina Faso — vacunación antirrábica, un certificado veterinario internacional, una posible autorización de importación y un control veterinario fronterizo."
+    pt: "O que é preciso para levar um cachorro ao Burkina Faso — vacinação antirrábica, certificado veterinário internacional, uma possível autorização de importação e um controle veterinário de fronteira."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

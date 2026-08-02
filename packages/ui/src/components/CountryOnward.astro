@@ -1,0 +1,86 @@
+---
+import { inlineT, inlineF } from "@mydogcanfly/knowledge";
+/* Onward navigation for COUNTRY (destination) pages — sits under the "Important" box, in place of
+   the plain Finder CTA. Context-aware: when the visitor arrived from the finder while considering an
+   airline, the finder passes ?via=<airline_id>, and this block offers to (1) open that airline's
+   fiche, (2) book with it, or (3) search an alternative. On a direct (Google) arrival it falls back
+   to a clear "find a flight to <country>" call to the finder. */
+import { hrefFor, localizeHref } from "../lib/routes";
+import { airlineData } from "../data/airlines";
+
+interface Props { locale?: string; countryName: string; countryIso: string }
+const { locale = "en", countryName, countryIso } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+
+// Query string avant l'ancre (après "#", tout est fragment et n'atteint pas location.search).
+// ?to=<iso> pré-remplit « Arrivée » dans le Finder : le CTA tient enfin sa promesse.
+const finderHref = localizeHref("/", locale) + `?to=${countryIso}` + "#flight-finder";
+// id -> { name, href (airline fiche, carrying ?to=<thisCountry>), book url, host }
+const viaMap: Record<string, { name: string; href: string; book: string; host: string }> = Object.fromEntries(
+  Object.entries(airlineData as Record<string, { name: string; book: { url: string; host: string } }>).map(([id, d]) => [
+    id,
+    { name: d.name, href: `${hrefFor(id, locale)}?to=${countryIso}`, book: d.book.url, host: d.book.host },
+  ]),
+);
+
+const labels = {
+  viaTitle: T("Considering {name}?", "Tu envisagiez {name} ?", "¿Estás considerando {name}?"),
+  viaIntro: T("Book with it, or search for another flight.", "Réserve avec elle, ou cherchez un autre vol.", "Reserva con ella, o busca otro vuelo."),
+  bookOn: T("Book on ", "Réservation sur ", "Reservar en "),
+  altFinder: T("Search another flight", "Chercher un autre vol", "Buscar otro vuelo"),
+};
+const finderDefault = F("Find a flight to {0}", "{0} : trouver un vol", "Encontrar un vuelo a {0}", countryName);
+---
+<section class="conav">
+  <div class="conav__head">
+    <span class="conav__ic">🧭</span>
+    <div>
+      <h2 id="conav-title">{finderDefault}</h2>
+      <p id="conav-intro">{T("Compare the airlines that accept dogs and check their conditions.", "Compare les compagnies qui acceptent les chiens et vérifie leurs conditions.", "Compara las aerolíneas que aceptan perros y consulta sus condiciones.")}</p>
+    </div>
+  </div>
+  <div class="conav__row">
+    <a id="conav-book" class="conav__pill conav__btn" href="#" rel="nofollow noopener" target="_blank" hidden>🌐 <span id="conav-book-label"></span> ↗</a>
+    <a id="conav-finder" class="conav__pill conav__btn" data-carry="breed" href={finderHref}>🔎 {finderDefault}</a>
+  </div>
+</section>
+
+<script define:vars={{ viaMap, labels }}>
+  (function () {
+    var via = (new URLSearchParams(location.search).get("via") || "").trim();
+    var m = via && viaMap[via];
+    if (!m) return;
+    var book = document.getElementById("conav-book");
+    var bookL = document.getElementById("conav-book-label");
+    var finder = document.getElementById("conav-finder");
+    var title = document.getElementById("conav-title");
+    var intro = document.getElementById("conav-intro");
+    // Button 1 — book directly with the preselected airline (external).
+    if (book && bookL && m.book) {
+      book.href = m.book; bookL.textContent = labels.bookOn + m.name; book.hidden = false;
+      if (finder) finder.className = "conav__pill conav__ghost"; // demote the finder to secondary
+    }
+    // Button 2 — search another flight (always available).
+    if (finder) finder.textContent = "🔎 " + labels.altFinder;
+    if (title) title.textContent = labels.viaTitle.replace("{name}", m.name);
+    if (intro) intro.textContent = labels.viaIntro;
+  })();
+</script>
+
+<style>
+  .conav { background: linear-gradient(180deg, #f5f9ff, #ffffff); border: 1px solid #cfe0f5; border-radius: 16px; padding: 20px 22px; margin: 0 0 16px; }
+  .conav__head { display: flex; gap: 12px; align-items: flex-start; }
+  .conav__ic { font-size: 22px; line-height: 1.25; }
+  .conav h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: 0; }
+  .conav__head p { margin: 4px 0 0; color: var(--mdcf-muted, #5b6b7f); font-size: 14px; }
+  .conav__row { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; margin-top: 16px; }
+  .conav__pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 18px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; }
+  .conav__pill[hidden] { display: none; }
+  .conav__btn { background: var(--mdcf-surface, #fff); color: var(--mdcf-navy, #011d48); border: 1.5px solid var(--mdcf-navy, #011d48); font-weight: 600; transition: background .18s ease, color .18s ease; }
+  .conav__btn:hover { background: var(--mdcf-navy, #011d48); color: #fff; }
+  .conav__ghost { background: #fff; border: 1px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-accent-ink, #b4530a); }
+  .conav__ghost:hover { border-color: var(--mdcf-accent-ink, #b4530a); box-shadow: 0 2px 8px rgba(15, 23, 42, .06); }
+  @media (max-width: 640px) { .conav { padding: 16px 16px; } .conav__row { flex-direction: column; } .conav__pill { width: 100%; } }
+</style>

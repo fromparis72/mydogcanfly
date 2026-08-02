@@ -1,0 +1,278 @@
+id: airline_ryanair
+mono: FR
+name: Ryanair
+titleH1:
+  en: Flying with a dog on Ryanair
+  fr: Voyager avec un chien sur Ryanair
+  es: Viajar con un perro en Ryanair
+  pt: "Viajar com um cachorro na Ryanair"
+metaDesc:
+  en: "Ryanair pet policy: no pets carried, only accredited assistance dogs on eligible routes, and official sources."
+  fr: "Politique animaux Ryanair : aucun animal transporté, seulement les chiens d'assistance accrédités sur certaines routes, et sources officielles."
+  es: "Política de mascotas de Ryanair: no se transportan mascotas, solo perros de asistencia acreditados en rutas elegibles, y fuentes oficiales."
+  pt: "Política de animais da Ryanair: nenhum animal transportado, somente cães de assistência credenciados em rotas elegíveis, e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Ireland · DUB
+      fr: Irlande · DUB
+      es: Irlanda · DUB
+      pt: "Irlanda · DUB"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: No pets
+    fr: Aucun animal
+    es: Sin mascotas
+    pt: "Sem animais"
+verdictNote:
+  en: Ryanair carries no pets at all — only recognised assistance dogs on eligible routes.
+  fr: Ryanair ne transporte aucun animal — seulement les chiens d'assistance reconnus sur certaines routes.
+  es: Ryanair no transporta ninguna mascota; solo perros de asistencia reconocidos en rutas elegibles.
+  pt: "A Ryanair não transporta nenhum animal — somente cães de assistência reconhecidos em rotas elegíveis."
+ladder:
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: assistance only
+      fr: assistance seul
+      es: solo asistencia
+      pt: "somente assistência"
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 34
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: —
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    detail:
+      en: No pets in the cabin — only certified guide/assistance dogs. Emotional-support dogs aren't recognised.
+      fr: Aucun animal en cabine — seulement les chiens guides/d'assistance certifiés. Chiens de soutien émotionnel non reconnus.
+      es: No se admiten mascotas en cabina, solo perros guía/de asistencia certificados. Los perros de apoyo emocional no se reconocen.
+      pt: "Nenhum animal na cabine — somente cães-guia/de assistência certificados. Cães de suporte emocional não são reconhecidos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: Ryanair doesn't carry animals in the hold.
+      fr: Ryanair ne transporte pas d'animaux en soute.
+      es: Ryanair no transporta animales en bodega.
+      pt: "A Ryanair não transporta animais no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No se ofrece
+      pt: "Não oferecido"
+    detail:
+      en: No pet cargo or animal freight service.
+      fr: Aucun service fret ou animalier.
+      es: No hay servicio de carga de mascotas ni de flete de animales.
+      pt: "Nenhum serviço de carga de animais ou frete animal."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Pets (cabin / hold / cargo)
+        fr: Animaux (cabine / soute / fret)
+        es: Mascotas (cabina / bodega / carga)
+        pt: "Animais (cabine / porão / carga)"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transportan
+        pt: "Não transportado"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Ryanair carries no pets of any kind; only certified assistance dogs travel free in the cabin.
+    fr: Ryanair ne transporte aucun animal ; seuls les chiens d'assistance certifiés voyagent gratuitement en cabine.
+    es: Ryanair no transporta ninguna mascota; solo los perros de asistencia certificados viajan gratis en cabina.
+    pt: "A Ryanair não transporta nenhum tipo de animal; somente cães de assistência certificados viajam gratuitamente na cabine."
+restrictions:
+  - icon: 🚫
+    title:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    pills:
+      - cls: no
+        label:
+          en: Pets forbidden
+          fr: Animaux interdits
+          es: Mascotas prohibidas
+          pt: "Animais proibidos"
+    note:
+      en: No animals are carried on any Ryanair flight. Only assistance dogs certified by ADI, Assistance Dogs UK or IGDF are accepted; emotional-support/therapy dogs are refused.
+      fr: Aucun animal n'est transporté sur les vols Ryanair. Seuls les chiens d'assistance certifiés par ADI, Assistance Dogs UK ou IGDF sont acceptés ; chiens de soutien émotionnel/thérapie refusés.
+      es: No se transporta ningún animal en los vuelos de Ryanair. Solo se aceptan perros de asistencia certificados por ADI, Assistance Dogs UK o IGDF; los perros de apoyo emocional/terapia se rechazan.
+      pt: "Nenhum animal é transportado em qualquer voo da Ryanair. Somente são aceitos cães de assistência certificados pela ADI, Assistance Dogs UK ou IGDF; cães de suporte emocional/terapia são recusados."
+  - icon: 🌍
+    title:
+      en: Route limits (assistance dogs)
+      fr: Routes limitées (chiens d'assistance)
+      es: Límites de ruta (perros de asistencia)
+      pt: "Limites de rota (cães de assistência)"
+    pills:
+      - cls: no
+        label:
+          en: Not to Morocco / Israel
+          fr: Pas Maroc / Israël
+          es: No a Marruecos / Israel
+          pt: "Não para Marrocos / Israel"
+    note:
+      en: Assistance dogs are accepted on all intra-EU/EEA and domestic flights (max 4 per flight), but not on flights to/from Morocco or Israel.
+      fr: Les chiens d'assistance sont acceptés sur tous les vols intra-UE/EEE et domestiques (max 4 par vol), mais pas sur les vols de/vers le Maroc ou Israël.
+      es: Los perros de asistencia se aceptan en todos los vuelos intra-UE/EEE y nacionales (máx. 4 por vuelo), pero no en los vuelos desde/hacia Marruecos o Israel.
+      pt: "Cães de assistência são aceitos em todos os voos intra-UE/EEE e domésticos (máx. 4 por voo), mas não em voos de/para Marrocos ou Israel."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: No pets carried
+        fr: Aucun animal transporté
+        es: No se transportan mascotas
+        pt: "Nenhum animal transportado"
+  note:
+    en: Ryanair carries no pets, so no hold-temperature policy applies.
+    fr: "Ryanair ne transporte aucun animal : aucune règle de température de soute ne s'applique."
+    es: "Ryanair no transporta mascotas, por lo que no se aplica ninguna política de temperatura de bodega."
+    pt: "A Ryanair não transporta animais, então nenhuma política de temperatura de porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: A certified assistance dog (ADI/Assistance Dogs UK/IGDF) travels free in the cabin, on the floor at your feet, harnessed to the seat belt; max 4 per flight.
+      fr: Un chien d'assistance certifié (ADI/Assistance Dogs UK/IGDF) voyage gratuitement en cabine, au sol à tes pieds, harnaché à la ceinture ; max 4 par vol.
+      es: Un perro de asistencia certificado (ADI/Assistance Dogs UK/IGDF) viaja gratis en cabina, en el suelo a tus pies, sujeto con arnés al cinturón; máx. 4 por vuelo.
+      pt: "Um cão de assistência certificado (ADI/Assistance Dogs UK/IGDF) viaja gratuitamente na cabine, no chão aos seus pés, preso com arreio ao cinto de segurança; máx. 4 por voo."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Pre-advise Ryanair (online or Special Assistance), ideally at booking. EU/EEA flights need a valid EU Pet Passport or third-country vet certificate + affiliation documents.
+      fr: "Prévenir Ryanair (en ligne ou Assistance spéciale), idéalement à la réservation. Vols UE/EEE : passeport UE valide ou certificat vétérinaire pays tiers + documents d'affiliation."
+      es: "Avisa a Ryanair con antelación (en línea o Asistencia Especial), idealmente al reservar. Los vuelos UE/EEE necesitan un pasaporte de mascota de la UE válido o un certificado veterinario de un tercer país + documentos de afiliación."
+      pt: "Avise a Ryanair com antecedência (on-line ou Assistência Especial), idealmente na reserva. Voos UE/EEE exigem um passaporte europeu para animais válido ou certificado veterinário de um terceiro país + documentos de filiação."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets whatsoever
+      fr: Aucun animal
+      es: Ninguna mascota
+      pt: "Nenhum animal, de forma alguma"
+    value:
+      en: No pets in cabin, hold or cargo — only assistance dogs.
+      fr: Aucun animal en cabine, soute ou fret — seulement les chiens d'assistance.
+      es: No se admiten mascotas en cabina, bodega ni carga, solo perros de asistencia.
+      pt: "Nenhum animal na cabine, no porão ou na carga — somente cães de assistência."
+  - icon: 🛡️
+    label:
+      en: Accreditation
+      fr: Accréditation
+      es: Acreditación
+      pt: "Credenciamento"
+    value:
+      en: Only ADI / Assistance Dogs UK / IGDF-accredited dogs qualify; emotional-support/therapy dogs are refused.
+      fr: Seuls les chiens accrédités ADI / Assistance Dogs UK / IGDF sont éligibles ; chiens de soutien émotionnel/thérapie refusés.
+      es: Solo son elegibles los perros acreditados por ADI / Assistance Dogs UK / IGDF; los perros de apoyo emocional/terapia se rechazan.
+      pt: "Somente cães credenciados por ADI / Assistance Dogs UK / IGDF se qualificam; cães de suporte emocional/terapia são recusados."
+  - icon: 🌍
+    label:
+      en: Route exclusions
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    value:
+      en: Assistance dogs barred on flights to/from Morocco and Israel.
+      fr: Chiens d'assistance interdits sur les vols de/vers le Maroc et Israël.
+      es: Los perros de asistencia no se admiten en los vuelos desde/hacia Marruecos e Israel.
+      pt: "Cães de assistência são proibidos em voos de/para Marrocos e Israel."
+book:
+  host: ryanair.com
+  url: https://www.ryanair.com/
+sources:
+  en: 5 Ryanair sources · last verified 11 July 2026
+  fr: 5 sources Ryanair · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Ryanair · última verificación 11 de julio de 2026
+  pt: "5 fontes da Ryanair · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

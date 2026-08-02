@@ -1,0 +1,320 @@
+id: airline_air_caraibes
+mono: TX
+name: Air Caraïbes
+titleH1:
+  en: Flying with a dog on Air Caraïbes
+  fr: Voyager avec un chien sur Air Caraïbes
+  es: Volar con un perro en Air Caraïbes
+  pt: "Viajar com um cachorro na Air Caraïbes"
+metaDesc:
+  en: "Air Caraïbes pet policy: cabin, hold and freight, fares, snub-nosed hold ban, French category dogs and official sources."
+  fr: "Politique animaux Air Caraïbes : cabine, soute et fret, tarifs, interdiction soute brachy, chiens catégorisés et sources officielles."
+  es: "Política de mascotas de Air Caraïbes: cabina, bodega y carga, tarifas, prohibición de bodega para hocico chato, perros categorizados en Francia y fuentes oficiales."
+  pt: "Política de animais da Air Caraïbes: cabine, porão e carga, tarifas, proibição de porão para raças de focinho achatado, cachorros de categoria francesa e fontes."
+chips:
+  - icon: 📍
+    label:
+      en: France · ORY
+      fr: France · ORY
+      es: Francia · ORY
+      pt: "França · ORY"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger dogs in the hold on Paris–Caribbean — snub-nosed breeds cabin-only.
+  fr: Petits animaux en cabine, plus grands en soute sur Paris–Antilles — races au nez écrasé en cabine seulement.
+  es: Mascotas pequeñas en cabina, perros más grandes en bodega en París–Caribe — las razas de hocico chato solo en cabina.
+  pt: "Animais pequenos na cabine, cachorros maiores no porão nas rotas Paris–Caribe — raças de focinho achatado somente na cabine."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: large / species
+      fr: grands / espèces
+      es: grandes / especies
+      pt: "grande porte / espécie"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & small rodents ≤ 8 kg incl. carrier (transatlantic) in a soft bag under the seat (max 43 × 35 × 20 cm). Snub-nosed allowed here.
+      fr: Chiens, chats et petits rongeurs ≤ 8 kg avec le sac (transatlantique) dans un sac souple sous le siège (max 43 × 35 × 20 cm). Nez écrasé admis ici.
+      es: Perros, gatos y roedores pequeños ≤ 8 kg incluida la jaula (transatlántico) en una bolsa blanda bajo el asiento (máx 43 × 35 × 20 cm). Aquí se admiten los de hocico chato.
+      pt: "Cachorros, gatos e pequenos roedores ≤ 8 kg com a bolsa incluída (rotas transatlânticas), em uma bolsa flexível sob o assento (máx. 43 × 35 × 20 cm). Raças de focinho achatado permitidas aqui."
+    fee:
+      en: €10–75
+      fr: 10–75 €
+      es: 10–75 €
+      pt: "10–75 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only (AVIH) up to 75 kg incl. cage (transatlantic) in a rigid IATA crate. Two pets ≤ 14 kg each may share.
+      fr: Chiens et chats uniquement (AVIH) jusqu'à 75 kg avec la caisse (transatlantique) en caisse IATA rigide. Deux animaux ≤ 14 kg chacun peuvent partager.
+      es: Solo perros y gatos (AVIH) hasta 75 kg incluida la jaula (transatlántico) en una jaula rígida conforme a la IATA. Dos mascotas de ≤ 14 kg cada una pueden compartir.
+      pt: "Somente cachorros e gatos (AVIH) até 75 kg com a caixa incluída (rotas transatlânticas), em uma caixa rígida IATA. Dois animais ≤ 14 kg cada podem compartilhar a mesma caixa."
+    fee:
+      en: €20–150
+      fr: 20–150 €
+      es: 20–150 €
+      pt: "20–150 €"
+  - icon: ✈️
+    name:
+      en: FRET
+      fr: FRET
+      es: FRET
+      pt: "FRET"
+    cls: warn
+    statusLabel:
+      en: Via freight
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Other species, oversize, and snub-nosed dogs/cats (barred from hold & FRET on transatlantic).
+      fr: Autres espèces, hors gabarit, et chiens/chats au nez écrasé (interdits en soute & FRET sur le transatlantique).
+      es: Otras especies, fuera de medidas, y perros/gatos de hocico chato (vetados de bodega y FRET en el transatlántico).
+      pt: "Outras espécies, fora do tamanho, e cachorros/gatos de focinho achatado (proibidos no porão e na FRET nas rotas transatlânticas)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — transatlantic
+        fr: Cabine — transatlantique
+        es: Cabina — transatlántico
+        pt: "Cabine — transatlântico"
+      value:
+        en: €75
+        fr: 75 €
+        es: 75 €
+        pt: "75 €"
+    - label:
+        en: Cabin — short-haul
+        fr: Cabine — court-courrier
+        es: Cabina — corto radio
+        pt: "Cabine — curta distância"
+      value:
+        en: €10
+        fr: 10 €
+        es: 10 €
+        pt: "10 €"
+    - label:
+        en: Hold — transatlantic
+        fr: Soute — transatlantique
+        es: Bodega — transatlántico
+        pt: "Porão — transatlântico"
+      value:
+        en: €150
+        fr: 150 €
+        es: 150 €
+        pt: "150 €"
+    - label:
+        en: Hold — short-haul
+        fr: Soute — court-courrier
+        es: Bodega — corto radio
+        pt: "Porão — curta distância"
+      value:
+        en: €20
+        fr: 20 €
+        es: 20 €
+        pt: "20 €"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per trip, non-refundable. Paid at the counter on the day of departure.
+    fr: EUR par trajet, non remboursable. Payé au comptoir le jour du départ.
+    es: EUR por trayecto, no reembolsable. Se paga en el mostrador el día de la salida.
+    pt: "EUR por viagem, não reembolsável. Pago no balcão no dia da partida."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold/FRET forbidden
+          fr: Soute/FRET interdits
+          es: Bodega/FRET prohibidos
+          pt: "Porão/FRET proibidos"
+    note:
+      en: "On transatlantic flights, all snub-nosed dogs & cats are barred from the hold and FRET — cabin only: boxers, bulldogs, pugs, Cane Corso, chow chow, mastiffs, Shih Tzu, Shar Pei, Staffordshire, American Bully, and Burmese/Exotic/Himalayan/Persian cats."
+      fr: "Sur les vols transatlantiques, tous les chiens et chats au nez écrasé sont interdits en soute et en FRET — cabine uniquement : boxers, bouledogues, carlins, Cane Corso, chow chow, mastiffs, Shih Tzu, Shar Pei, Staffordshire, American Bully, et chats birmans/exotiques/himalayens/persans."
+      es: "En los vuelos transatlánticos, todos los perros y gatos de hocico chato están vetados de la bodega y de FRET — solo cabina: boxers, bulldogs, carlinos, Cane Corso, chow chow, mastines, Shih Tzu, Shar Pei, Staffordshire, American Bully y gatos birmanos/exóticos/himalayos/persas."
+      pt: "Em voos transatlânticos, todos os cachorros e gatos de focinho achatado são proibidos no porão e na FRET — somente cabine: boxers, bulldogues, pugs, Cane Corso, chow chow, mastiffs, Shih Tzu, Shar Pei, Staffordshire, American Bully, e gatos burmeses/exóticos/himalaios/persas."
+  - icon: 🚫
+    title:
+      en: French categories 1 & 2
+      fr: Catégories françaises 1 & 2
+      es: Categorías francesas 1 y 2
+      pt: "Categorias francesas 1 e 2"
+    pills:
+      - cls: no
+        label:
+          en: Category 1 banned
+          fr: Catégorie 1 interdite
+          es: Categoría 1 prohibida
+          pt: "Categoria 1 proibida"
+      - cls: warn
+        label:
+          en: Category 2 conditions
+          fr: Catégorie 2 sous conditions
+          es: Categoría 2 con condiciones
+          pt: "Condições da categoria 2"
+    note:
+      en: "French category 1 dogs (non-LOF pit-bull/Boerbull/Tosa) are import-banned. Category 2 (Staffordshire, American Staffordshire, Rottweiler, Tosa): owner only, muzzled and leashed, €200/trip. Sedation not advised; no under-8-week or in-heat animals."
+      fr: "Les chiens de catégorie 1 (pit-bull/Boerbull/Tosa non-LOF) sont interdits d'importation. Catégorie 2 (Staffordshire, American Staffordshire, Rottweiler, Tosa) : propriétaire seul, muselé et en laisse, 200 €/trajet. Sédation déconseillée ; pas d'animaux de moins de 8 semaines ni en chaleur."
+      es: "Los perros de categoría 1 en Francia (pit bull/Boerbull/Tosa sin LOF) tienen prohibida la importación. Categoría 2 (Staffordshire, American Staffordshire, Rottweiler, Tosa): solo el dueño, con bozal y correa, 200 €/trayecto. Sedación desaconsejada; sin animales de menos de 8 semanas ni en celo."
+      pt: "Os cachorros de categoria francesa 1 (pit bull/Boerbull/Tosa sem registro LOF) têm importação proibida. Categoria 2 (Staffordshire, American Staffordshire, Rottweiler, Tosa): somente o dono, com focinheira e coleira, 200 €/viagem. Sedação não recomendada; sem animais com menos de 8 semanas ou em cio."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Air Caraïbes publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Air Caraïbes ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Air Caraïbes no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Air Caraïbes não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Dogs for blind or hearing-impaired passengers travel free in the cabin (medical certificate required).
+      fr: Les chiens pour passagers aveugles ou malentendants voyagent gratuitement en cabine (certificat médical requis).
+      es: Los perros para pasajeros ciegos o con discapacidad auditiva viajan gratis en cabina (se requiere certificado médico).
+      pt: "Cães para passageiros com deficiência visual ou auditiva viajam grátis na cabine (atestado médico exigido)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Emotional-support animals may be refused. Category-2 dogs: email documents to transportspeciaux@aircaraibes.com."
+      fr: "Les animaux de soutien émotionnel peuvent être refusés. Chiens de catégorie 2 : envoyer les documents à transportspeciaux@aircaraibes.com."
+      es: "Los animales de apoyo emocional pueden ser rechazados. Perros de categoría 2: envía los documentos por correo a transportspeciaux@aircaraibes.com."
+      pt: "Animais de apoio emocional podem ser recusados. Cachorros de categoria 2: envie os documentos por e-mail para transportspeciaux@aircaraibes.com."
+goodToKnow:
+  - icon: 📄
+    label:
+      en: Declare at booking
+      fr: Déclarer à la réservation
+      es: Declarar al reservar
+      pt: "Declarar na reserva"
+    value:
+      en: The pet must be declared at booking and authorised (flight quotas apply).
+      fr: L'animal doit être déclaré à la réservation et autorisé (quotas par vol).
+      es: La mascota debe declararse al reservar y ser autorizada (se aplican cupos por vuelo).
+      pt: "O animal deve ser declarado no momento da reserva e autorizado (aplicam-se cotas por voo)."
+  - icon: 💶
+    label:
+      en: Pay at the airport
+      fr: Paiement à l'aéroport
+      es: Pago en el aeropuerto
+      pt: "Pagar no aeroporto"
+    value:
+      en: Payment is made on the day of departure at the airline counter.
+      fr: Le paiement se fait le jour du départ au comptoir de la compagnie.
+      es: El pago se realiza el día de la salida en el mostrador de la aerolínea.
+      pt: "O pagamento é feito no dia da partida, no balcão da companhia."
+  - icon: 🐾
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Microchip ID + valid rabies certificate required at check-in for animals from certain territories.
+      fr: Puce d'identification + certificat de rage valide requis à l'enregistrement pour les animaux de certains territoires.
+      es: Microchip de identificación + certificado de rabia válido requeridos en la facturación para animales de ciertos territorios.
+      pt: "Microchip de identificação + certificado antirrábico válido exigidos no check-in para animais vindos de determinados territórios."
+book:
+  host: aircaraibes.com
+  url: https://www.aircaraibes.com/
+sources:
+  en: 2 Air Caraïbes sources · last verified 11 July 2026
+  fr: 2 sources Air Caraïbes · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Air Caraïbes · última verificación 11 de julio de 2026
+  pt: "2 fontes da Air Caraïbes · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

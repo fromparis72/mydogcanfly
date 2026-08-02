@@ -1,0 +1,452 @@
+---
+/* Crate size calculator — pick the right IATA travel crate for your dog.
+   Method (IATA LAR, official): measure the dog standing — A nose→tail base, B floor→elbow,
+   C shoulder width, D floor→top of head/ears. Required interior: L = A + ½B, W = C × 2, H = D.
+   Snub-nosed (brachycephalic) breeds: +10% (one size up). The exact required interior dimensions are
+   the authoritative output; the "standard size" is indicative and must be checked against the real crate.
+   Airline cabin fit uses the real per-airline carrier dimensions from the KB where available. */
+import { loadKB, breedName, inlineT } from "@mydogcanfly/knowledge";
+import { hrefFor } from "../lib/routes";
+import { API_BASE } from "../lib/env";
+
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+
+const kb = loadKB();
+const breeds = [...kb.breeds.values()]
+  .map((b) => ({ id: b.id, label: breedName(b, locale), w: b.weight_kg, br: b.brachycephalic, size: b.size }))
+  .sort((x, y) => x.label.localeCompare(y.label));
+
+// Airlines with their real cabin carrier limits (where published) + hold/cargo availability.
+type Pol = { allowed?: boolean; max_weight_kg?: number; carrier_dims_cm?: { l: number; w: number; h: number } };
+const airlines = [...kb.airlines.values()].map((a) => {
+  const pol = (a as { premium?: { policy?: Record<string, Pol> } }).premium?.policy ?? {};
+  const cab = pol.cabin;
+  // Tri-state so a MISSING policy (many airlines have no structured premium block in the normalized KB)
+  // is treated as "unknown" — never as an explicit refusal.
+  const hold: "yes" | "no" | "unknown" = pol.hold?.allowed === true ? "yes" : pol.hold?.allowed === false ? "no" : "unknown";
+  return {
+    id: a.id,
+    name: (a as { name?: string }).name ?? a.id,
+    cabin: cab?.allowed ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null } : null,
+    hold,
+    cargo: !!pol.cargo?.allowed,
+    site: (a as { website?: string }).website ?? "",
+    fiche: hrefFor(a.id, locale),
+  };
+}).sort((x, y) => x.name.localeCompare(y.name, locale));
+const bestCratesHref = locale === "en" ? "/tools/best-crates/" : `/${locale}/tools/best-crates/`;
+const bestCarriersHref = locale === "en" ? "/tools/best-carriers/" : `/${locale}/tools/best-carriers/`;
+
+// Standard airline kennel series — TYPICAL interior dimensions (cm). Indicative only: real crates vary,
+// so the tool always shows the exact computed minimum and tells the user to verify the model's interior.
+const SIZES = [
+  { n: "100", tag: "XS", l: 48, w: 33, h: 33 },
+  { n: "200", tag: "S", l: 63, w: 43, h: 45 },
+  { n: "300", tag: "M", l: 73, w: 48, h: 55 },
+  { n: "400", tag: "L", l: 84, w: 57, h: 60 },
+  { n: "500", tag: "XL", l: 94, w: 64, h: 68 },
+  { n: "700", tag: "XXL", l: 112, w: 76, h: 82 },
+];
+
+const L = {
+  locale, apiBase: API_BASE,
+  bestCratesHref, bestCarriersHref,
+  countriesHref: locale === "en" ? "/countries/" : `/${locale}/countries/`,
+  finderHref: (locale === "en" ? "/" : `/${locale}/`) + "#flight-finder",
+  breeds: Object.fromEntries(breeds.map((b) => [b.label.toLowerCase(), { id: b.id, w: b.w, br: b.br, size: b.size }])),
+  breedById: Object.fromEntries(breeds.map((b) => [b.id, b.label])),
+  airlines: Object.fromEntries(airlines.map((a) => [a.id, a])),
+  airlineList: airlines.map((a) => ({ id: a.id, name: a.name })),
+  sizes: SIZES,
+  s: {
+    loading: T("Calculating…", "Calcul en cours…", "Calculando…"),
+    fillHint: T("Enter your dog's four measurements (or pick a breed to pre-fill an estimate).", "Saisis les quatre mesures de ton chien (ou choisis une race pour pré-remplir une estimation).", "Introduce las cuatro medidas de tu perro (o elige una raza para prerrellenar una estimación)."),
+    estBadge: T("Estimate from breed — replace the dimensions and the weight with your dog's real values.", "Estimation d'après la race — remplacez les dimensions et le poids par les valeurs réelles de ton chien.", "Estimación a partir de la raza: sustituye las dimensiones y el peso por los valores reales de tu perro."),
+    reqTitle: T("Minimum crate interior", "Intérieur minimum de la cage", "Interior mínimo de la jaula"),
+    reqNote: T("Exact IATA requirement from your measurements. The crate's interior must meet or exceed these.", "Exigence IATA exacte d'après tes mesures. L'intérieur de la cage doit atteindre au moins ces valeurs.", "Requisito IATA exacto a partir de tus medidas. El interior de la jaula debe alcanzar como mínimo estos valores."),
+    brachyNote: T("Snub-nosed breed: +10% added for breathing comfort.", "Race brachycéphale : +10 % ajouté pour le confort respiratoire.", "Raza de hocico chato: +10 % añadido para la comodidad respiratoria."),
+    sizeTitle: T("Typical standard size", "Taille standard typique", "Talla estándar típica"),
+    sizeNote: T("Indicative series — always check the real crate's interior dimensions.", "Série indicative — vérifie toujours les dimensions intérieures réelles de la cage.", "Serie orientativa: comprueba siempre las dimensiones interiores reales de la jaula."),
+    sizeOver: T("Larger than a standard 700 — a custom/XXL crate is needed.", "Plus grand qu'une 700 standard — une cage sur mesure/XXL est nécessaire.", "Más grande que una 700 estándar: se necesita una jaula a medida/XXL."),
+    cabinTitle: T("Cabin or hold?", "Cabine ou soute ?", "¿Cabina o bodega?"),
+    cabinFits: T("Cabin-eligible", "Éligible cabine", "Apto para cabina"),
+    cabinByWeight: T("Cabin-eligible by weight", "Éligible cabine (par le poids)", "Apto para cabina (por el peso)"),
+    cabinVerifyBag: T("check your soft carrier meets the airline's cabin dimensions", "vérifie que ton sac respecte les dimensions cabine de la compagnie", "comprueba que tu bolso blando cumple las dimensiones de cabina de la aerolínea"),
+    cabinNeedWeight: T("Cabin allowed up to {kg} kg — enter the weight to confirm", "Cabine acceptée jusqu'à {kg} kg — indique le poids pour confirmer", "Cabina permitida hasta {kg} kg: introduce el peso para confirmar"),
+    cabinAllowedVerify: T("Cabin accepted — check weight & carrier size on the airline's page", "Cabine acceptée — vérifie le poids et les dimensions du sac sur la fiche", "Cabina aceptada: comprueba el peso y el tamaño del bolso en la página de la aerolínea"),
+    cabinLie: T("soft carrier, dog lies down", "sac souple, chien couché", "bolso blando, el perro tumbado"),
+    cabinNoFit: T("Too big for the cabin carrier — travels in the hold", "Trop grand pour le sac cabine — voyage en soute", "Demasiado grande para el bolso de cabina: viaja en bodega"),
+    cabinWeight: T("Over the cabin weight limit — hold required", "Au-dessus de la limite de poids cabine — soute requise", "Supera el límite de peso de cabina: se requiere bodega"),
+    holdOnly: T("allows dogs to travel in the hold", "autorise le transport des chiens en soute", "permite el transporte de perros en bodega"),
+    holdAlso: T("Hold-eligible too — both are possible", "Éligible soute aussi — les deux sont possibles", "También apto para bodega: ambas opciones son posibles"),
+    holdVerify: T("Hold travel — check the airline's page for its conditions", "Transport en soute : vérifie les conditions sur la fiche de la compagnie", "Viaje en bodega: consulta las condiciones en la página de la aerolínea"),
+    noHold: T("This airline does not accept this dog in the hold — check alternatives", "Cette compagnie n'accepte pas ce chien en soute — vérifie les alternatives", "Esta aerolínea no acepta a este perro en bodega: comprueba alternativas"),
+    cabinUnknown: T("Cabin dimensions not published for this airline — verify directly.", "Dimensions cabine non publiées pour cette compagnie — à vérifier directement.", "Esta aerolínea no publica las dimensiones de cabina: verifícalo directamente."),
+    genericCabin: T("Typical hard cabin carrier max is about 44 × 30 × 19 cm — most airlines only allow small dogs in cabin.", "Une caisse cabine rigide fait environ 44 × 30 × 19 cm max — la plupart des compagnies n'admettent que les petits chiens en cabine.", "Un bolso rígido de cabina típico mide como máximo unos 44 × 30 × 19 cm; la mayoría de las aerolíneas solo admiten perros pequeños en cabina."),
+    tipsTitle: T("Safety & comfort", "Sécurité & confort", "Seguridad y comodidad"),
+    tips: locale === "fr" ? [
+      "Le chien doit pouvoir se tenir debout (oreilles sans toucher le toit), se retourner et s'allonger naturellement.",
+      "Ajoute 2–3 cm de marge de confort au-delà du minimum.",
+      "Ventilation sur au moins trois côtés ; gamelles d'eau accessibles.",
+      "Habituez ton chien à la cage plusieurs semaines avant le départ.",
+    ] : locale === "es" ? [
+      "Tu perro debe poder ponerse de pie (con las orejas sin tocar el techo), darse la vuelta y tumbarse con naturalidad.",
+      "Añade 2–3 cm de margen de comodidad por encima del mínimo.",
+      "Ventilación en al menos tres lados; bebederos accesibles.",
+      "Acostumbra a tu perro a la jaula varias semanas antes de la salida.",
+    ] : [
+      "Your dog must be able to stand (ears clear of the roof), turn around and lie down naturally.",
+      "Add 2–3 cm of comfort margin beyond the minimum.",
+      "Ventilation on at least three sides; accessible water bowls.",
+      "Get your dog used to the crate several weeks before departure.",
+    ],
+    labelBreed: T("Breed (optional — pre-fills an estimate)", "Race (facultatif — pré-remplit une estimation)", "Raza (opcional: prerrellena una estimación)"),
+    breedPh: T("Type a breed…", "Tapez une race…", "Escribe una raza…"),
+    labelAirline: T("Airline (optional)", "Compagnie (facultatif)", "Aerolínea (opcional)"),
+    airlinePh: T("Any airline", "Toutes compagnies", "Cualquier aerolínea"),
+    labelWeight: T("Weight", "Poids", "Peso"),
+    submit: T("Calculate crate size", "Calculer la taille de cage", "Calcular la talla de la jaula"),
+    mA: T("Length — nose to base of tail", "Longueur — nez à la base de la queue", "Longitud: del hocico a la base de la cola"),
+    mD: T("Height — floor to top of head/ears (standing)", "Hauteur — sol au sommet de la tête/oreilles (debout)", "Altura: del suelo a lo alto de la cabeza/orejas (de pie)"),
+    measureTitle: T("How to measure your dog for its IATA travel crate", "Comment mesurer ton chien pour sa caisse de transport IATA", "Cómo medir a tu perro para su jaula de transporte IATA"),
+    onwardTitle: T("What's next?", "Et ensuite ?", "¿Y ahora qué?"),
+    bestCrates: T("Best travel crates 2026", "Classement des meilleures cages 2026", "Mejores jaulas de viaje 2026"),
+    bestCarriers: T("Best cabin carriers 2026", "Classement des meilleurs sacs cabine 2026", "Mejores bolsos de cabina 2026"),
+    bookOn: T("Book with", "Réserver avec", "Reservar con"),
+    conditions: T("Conditions", "Conditions", "Condiciones"),
+    countryReqs: T("Check country requirements", "Vérifier les modalités pays", "Consultar los requisitos del país"),
+    findFlight: T("Find a flight for your dog", "Rechercher un vol pour ton chien", "Buscar un vuelo para tu perro"),
+  },
+};
+---
+<section id="crate-calc" class="crx" aria-label="Crate calculator">
+  {/* Le schéma de mesure porte du texte : il existe donc en quatre versions, une par langue.
+      La hauteur suit l'image réelle — l'anglais et le portugais n'ont pas le même cadrage
+      que le français et l'espagnol, et une hauteur unique aurait écrasé l'un ou l'autre. */}
+  <img class="crx__diagram" src={`/tools/iata-measure-${["en", "fr", "es", "pt"].includes(locale) ? locale : "en"}.jpg`}
+       alt={L.s.measureTitle} width="1000" height={locale === "es" || fr ? 545 : 563} loading="lazy" decoding="async" />
+
+  <form id="crx-form" class="crx__form">
+    <div class="crx__row">
+      <div class="crx__field crx__field--wide">
+        <label for="crx-breed">{L.s.labelBreed}</label>
+        <input id="crx-breed" data-ac="crx-breeds" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={L.s.breedPh} />
+        <datalist id="crx-breeds">{breeds.map((b) => <option value={b.label}></option>)}</datalist>
+      </div>
+      <div class="crx__field crx__field--sm">
+        <label for="crx-airline">{L.s.labelAirline}</label>
+        <select id="crx-airline">
+          <option value="">{L.s.airlinePh}</option>
+          {airlines.map((a) => <option value={a.id}>{a.name}</option>)}
+        </select>
+      </div>
+      <div class="crx__field crx__field--xs">
+        <span class="crx__unit-lbl">{T("Units", "Unités", "Unidades")}</span>
+        <div class="crx__units" role="group" aria-label="unit">
+          <button type="button" id="u-cm" class="crx__unit is-on" data-u="cm">cm</button>
+          <button type="button" id="u-in" class="crx__unit" data-u="in">in</button>
+        </div>
+      </div>
+    </div>
+    <div class="crx__row crx__row--m">
+      <div class="crx__field"><label for="m-a">{L.s.mA} <span class="crx__u" data-len>(cm)</span></label><input id="m-a" type="number" min="0" step="0.1" inputmode="decimal" /></div>
+      <div class="crx__field"><label for="m-d">{L.s.mD} <span class="crx__u" data-len>(cm)</span></label><input id="m-d" type="number" min="0" step="0.1" inputmode="decimal" /></div>
+      <div class="crx__wfield"><label for="crx-weight">{L.s.labelWeight} <span class="crx__u" data-wt>(kg)</span></label><input id="crx-weight" type="number" min="0" step="0.1" /></div>
+    </div>
+    <div class="crx__row crx__row--b">
+      <label class="crx__chk"><input type="checkbox" id="crx-brachy" /> {T("Snub-nosed (brachycephalic) breed — adds +10%", "Race brachycéphale (nez court) — ajoute +10 %", "Raza de hocico chato (braquicéfala): añade +10 %")}</label>
+      <button class="mdcf-btn crx__submit" type="submit">{L.s.submit}</button>
+    </div>
+    <p id="crx-est" class="crx__est" hidden>ℹ️ {L.s.estBadge}</p>
+  </form>
+  <script type="application/json" id="crx-labels" set:html={JSON.stringify(L)} is:inline />
+  <div id="crx-result" class="crx__result" aria-live="polite" hidden></div>
+</section>
+
+<script>
+  const L = JSON.parse(document.getElementById("crx-labels")?.textContent ?? "{}");
+  const S = L.s ?? {};
+  const byId = (id: string) => document.getElementById(id);
+  const gv = (id: string) => (byId(id) as HTMLInputElement | HTMLSelectElement | null)?.value ?? "";
+  const num = (id: string) => { const v = parseFloat(gv(id)); return Number.isFinite(v) ? v : NaN; };
+  const norm = (s: string) => (s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const reKey = <V,>(m: Record<string, V>): Record<string, V> => { const o: Record<string, V> = {}; for (const k in m) o[norm(k)] = m[k]; return o; };
+  const esc = (s: string) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] ?? c));
+
+  const BREEDS: Record<string, { id: string; w: number; br: boolean; size: string }> = reKey(L.breeds ?? {});
+  const AIR: Record<string, { name: string; cabin: { maxKg: number | null; dims: { l: number; w: number; h: number } | null } | null; hold: "yes" | "no" | "unknown"; cargo: boolean; site: string; fiche: string }> = L.airlines ?? {};
+  const SIZES: { n: string; tag: string; l: number; w: number; h: number }[] = L.sizes ?? [];
+
+  let unit: "cm" | "in" = "cm";
+  const IN = 2.54;      // cm per inch
+  const LBK = 2.20462;  // lb per kg
+  const toCm = (v: number) => unit === "in" ? v * IN : v;
+  const fromCm = (v: number) => unit === "in" ? v / IN : v;
+  const round = (v: number) => unit === "in" ? Math.ceil(v * 2) / 2 : Math.ceil(v);
+  const uLabel = () => unit;
+  const wUnit = () => unit === "in" ? "lb" : "kg";       // weight unit is tied to the metric/imperial switch
+  const weightKg = () => { const v = num("crx-weight"); return Number.isFinite(v) ? (unit === "in" ? v / LBK : v) : NaN; };
+
+  const breedEl = byId("crx-breed") as HTMLInputElement | null;
+  const estBadge = byId("crx-est");
+  const resolveBreed = () => BREEDS[norm(breedEl?.value ?? "")];
+
+  function updateUnitLabels() {
+    document.querySelectorAll("[data-len]").forEach((e) => (e.textContent = unit === "in" ? "(in)" : "(cm)"));
+    document.querySelectorAll("[data-wt]").forEach((e) => (e.textContent = unit === "in" ? "(lb)" : "(kg)"));
+  }
+
+  // Estimate only Length (A) and Height (D) from weight — the two measurements the tool asks for.
+  // Clearly flagged as an estimate; the user replaces them with real measurements.
+  function estimateFromBreed() {
+    const b = resolveBreed();
+    if (!b) return;
+    const w = b.w;
+    const A = Math.round(22 * Math.pow(w, 0.34));
+    const D = Math.round(23 * Math.pow(w, 0.31));
+    const set = (id: string, cm: number) => { const el = byId(id) as HTMLInputElement; if (el) el.value = String(round(fromCm(cm))); };
+    set("m-a", A); set("m-d", D);
+    (byId("crx-brachy") as HTMLInputElement).checked = b.br;
+    const wEl = byId("crx-weight") as HTMLInputElement;
+    if (w && wEl) wEl.value = String(unit === "in" ? Math.round(w * LBK * 10) / 10 : w);
+    if (estBadge) estBadge.hidden = false;
+  }
+  breedEl?.addEventListener("change", estimateFromBreed);
+
+  function setUnit(u: "cm" | "in") {
+    if (u === unit) return;
+    for (const id of ["m-a", "m-d"]) {   // length + height convert cm ↔ in
+      const el = byId(id) as HTMLInputElement; const v = parseFloat(el?.value ?? "");
+      if (el && Number.isFinite(v)) el.value = String(u === "in" ? Math.round((v / IN) * 10) / 10 : Math.round(v * IN * 10) / 10);
+    }
+    const wEl = byId("crx-weight") as HTMLInputElement; const wv = parseFloat(wEl?.value ?? "");
+    if (wEl && Number.isFinite(wv)) wEl.value = String(u === "in" ? Math.round(wv * LBK * 10) / 10 : Math.round((wv / LBK) * 10) / 10);
+    unit = u;
+    (byId("u-cm") as HTMLElement)?.classList.toggle("is-on", u === "cm");
+    (byId("u-in") as HTMLElement)?.classList.toggle("is-on", u === "in");
+    updateUnitLabels();
+  }
+  byId("u-cm")?.addEventListener("click", () => setUnit("cm"));
+  byId("u-in")?.addEventListener("click", () => setUnit("in"));
+  updateUnitLabels();
+
+  // --- Accent-insensitive autocomplete (same as the other tools) ---
+  function attachAC(input: HTMLInputElement) {
+    const dl = document.getElementById(input.getAttribute("data-ac") || "");
+    if (!dl) return;
+    const opts = [...dl.querySelectorAll("option")].map((o) => { const v = o.getAttribute("value") ?? ""; return { v, n: norm(v) }; });
+    const field = (input.closest(".crx__field") ?? input.parentElement) as HTMLElement | null;
+    if (!field) return;
+    field.classList.add("ac-host");
+    const box = document.createElement("ul"); box.className = "ac-list"; box.hidden = true; field.appendChild(box);
+    let cur = -1; let shown: { v: string; n: string }[] = [];
+    const close = () => { box.hidden = true; box.innerHTML = ""; cur = -1; };
+    const mark = () => { [...box.children].forEach((el, i) => (el as HTMLElement).classList.toggle("is-cur", i === cur)); };
+    const open = (q: string) => { const nq = norm(q); shown = (nq ? opts.filter((o) => o.n.includes(nq)) : opts).slice(0, 60);
+      if (!shown.length) { close(); return; } box.innerHTML = shown.map((o, i) => `<li class="ac-item" data-i="${i}">${esc(o.v)}</li>`).join(""); box.hidden = false; cur = -1; };
+    const choose = (i: number) => { const o = shown[i]; if (!o) return; input.value = o.v; close(); input.dispatchEvent(new Event("change", { bubbles: true })); };
+    input.addEventListener("input", () => open(input.value));
+    input.addEventListener("focus", () => open(input.value));
+    input.addEventListener("keydown", (e: KeyboardEvent) => { if (box.hidden) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); mark(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); mark(); }
+      else if (e.key === "Enter" && cur >= 0) { e.preventDefault(); choose(cur); }
+      else if (e.key === "Escape") close(); });
+    box.addEventListener("mousedown", (e: MouseEvent) => { const li = (e.target as HTMLElement).closest(".ac-item") as HTMLElement | null; if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
+    document.addEventListener("click", (e) => { if (!field.contains(e.target as Node)) close(); });
+  }
+  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => attachAC(el));
+
+  // Race et compagnie pré-remplies depuis « ?breed= » / « ?air= » UNIQUEMENT, jamais depuis la
+  // seule mémoire de session (voir le commentaire détaillé dans FlightFinder.astro) : une valeur
+  // mémorisée plus tôt n'est pas une intention. Ici l'enjeu est direct — une taille de caisse
+  // calculée pour la mauvaise race est un refus à l'embarquement.
+  const ctx = (window as { mdcfCtx?: { breed?: string; air?: string; setBreed?: (v: string) => void; setAir?: (v: string) => void } }).mdcfCtx;
+  (function () {
+    const q = new URLSearchParams(location.search);
+    const air = q.get("air") || q.get("via") || "";
+    if (air && AIR[air]) { const sel = byId("crx-airline") as HTMLSelectElement; if (sel) sel.value = air; }
+    const breed = q.get("breed") || "";
+    const label = breed ? (L.breedById ?? {})[breed] : "";
+    if (label && breedEl) { breedEl.value = label; estimateFromBreed(); }
+  })();
+  breedEl?.addEventListener("change", () => ctx?.setBreed?.(resolveBreed()?.id ?? ""));
+  (byId("crx-airline") as HTMLSelectElement | null)?.addEventListener("change", (e) => ctx?.setAir?.((e.target as HTMLSelectElement).value));
+
+  const fmt = (cm: number) => `${round(fromCm(cm))} ${uLabel()}`;
+  const pill = (cls: string, txt: string) => `<div class="crx-line crx-line--${cls}">${txt}</div>`;
+
+  const form = byId("crx-form") as HTMLFormElement | null;
+  const out = byId("crx-result") as HTMLDivElement | null;
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!out) return;
+    // Two measured inputs: length (A) and standing height (D). The elbow height (B) and shoulder width (C)
+    // that the IATA formula also needs are estimated from the height (and breed weight for width) — this
+    // reproduces the full-formula result within ~1 cm while asking only two measurements.
+    const a = toCm(num("m-a")), d = toCm(num("m-d"));
+    if (![a, d].every((x) => Number.isFinite(x) && x > 0)) {
+      out.hidden = false; out.innerHTML = `<p class="crx__hint">${esc(S.fillHint)}</p>`; return;
+    }
+    const brd = resolveBreed();
+    const bEst = 0.40 * d;                                            // elbow height ≈ 40% of standing height
+    const c = brd ? 6.5 * Math.pow(brd.w, 0.33) : 0.32 * d;           // shoulder width from breed weight, else ≈ 32% of height
+    const brachy = (byId("crx-brachy") as HTMLInputElement)?.checked;
+    const k = brachy ? 1.1 : 1;
+    // IATA formula (interior minimums), +10% for snub-nosed. L = A + ½B, W = C × 2, H = D.
+    const Lc = (a + bEst / 2) * k, Wc = (c * 2) * k, Hc = d * k;
+
+    // Standard size mapping (indicative).
+    const size = SIZES.find((s) => s.l >= Lc && s.w >= Wc && s.h >= Hc);
+
+    // Airline cabin/hold verdict. Cabin is soft-bag (dog lies down): decided by WEIGHT + footprint
+    // (length A, shoulder width C) vs the carrier — NOT the standing-height hold formula.
+    const airId = gv("crx-airline");
+    const air = airId ? AIR[airId] : null;
+    const weight = weightKg();
+    const holdLine = !air ? ""
+      : air.hold === "yes" ? pill("neutral", `🧳 ${esc(air.name)} ${esc(S.holdOnly)}`)
+      : air.hold === "no" ? pill("no", `🚫 ${esc(S.noHold)}`)
+      : pill("neutral", `🧳 ${esc(S.holdVerify)}`);
+    let cabinHtml = "";
+    let cabinEligible = false;
+    if (air) {
+      const cab = air.cabin;
+      const overW = cab && cab.maxKg != null && Number.isFinite(weight) && weight > cab.maxKg;
+      if (cab && cab.dims) {
+        const footprintFits = a <= cab.dims.l && c <= cab.dims.w;
+        if (overW) cabinHtml = pill("warn", `⚠️ <b>${esc(S.cabinWeight)}</b> — ${esc(air.name)}`) + holdLine;
+        else if (footprintFits) {
+          cabinEligible = true;
+          cabinHtml = pill("ok", `✅ <b>${esc(S.cabinFits)}</b> — ${esc(air.name)} (${esc(S.cabinLie)}; ${cab.dims.l}×${cab.dims.w} cm${cab.maxKg != null ? `, ≤ ${cab.maxKg} kg` : ""})`)
+            + (air.hold === "yes" ? pill("soute", `🧳 <b>${esc(S.holdAlso)}</b> — ${esc(air.name)}`) : air.hold === "unknown" ? pill("soute", `🧳 ${esc(S.holdVerify)}`) : "");
+        }
+        else cabinHtml = pill("warn", `🧳 <b>${esc(S.cabinNoFit)}</b>`) + holdLine;
+      } else if (cab) {
+        // Cabin allowed but no published carrier dimensions → decide on WEIGHT (the real gate).
+        const holdExtra = air.hold === "yes" ? pill("soute", `🧳 <b>${esc(S.holdAlso)}</b> — ${esc(air.name)}`) : air.hold === "unknown" ? pill("soute", `🧳 ${esc(S.holdVerify)}`) : "";
+        if (overW) cabinHtml = pill("warn", `⚠️ <b>${esc(S.cabinWeight)}</b> — ${esc(air.name)}`) + holdLine;
+        else if (cab.maxKg != null && Number.isFinite(weight)) {
+          cabinEligible = true;
+          cabinHtml = pill("ok", `✅ <b>${esc(S.cabinByWeight)}</b> — ${esc(air.name)} (≤ ${cab.maxKg} kg · ${esc(S.cabinVerifyBag)})`) + holdExtra;
+        }
+        else if (cab.maxKg != null) cabinHtml = pill("neutral", `🧳 ${esc(S.cabinNeedWeight.replace("{kg}", String(cab.maxKg)))}`) + holdLine;
+        else cabinHtml = pill("neutral", `<span class="crx-q">?</span> ${esc(S.cabinAllowedVerify)}`) + holdLine;
+      } else {
+        cabinHtml = holdLine || pill("neutral", `<span class="crx-q">?</span> ${esc(S.cabinUnknown)}`);
+      }
+    } else {
+      cabinHtml = pill("neutral", `ℹ️ ${esc(S.genericCabin)}`);
+    }
+
+    // Ranking links, contextual: cabin-eligible → carriers (bags); hold-relevant → crates. Both when both apply.
+    const bestItems: { href: string; txt: string }[] = [];
+    if (cabinEligible) bestItems.push({ href: L.bestCarriersHref, txt: S.bestCarriers });
+    if (!cabinEligible || (air && air.hold !== "no")) bestItems.push({ href: L.bestCratesHref, txt: S.bestCrates });
+    const bestLinks = bestItems.map((l) => `<a class="crx-onav crx-onav--soft" href="${esc(l.href)}">🏆 ${esc(l.txt)} →</a>`).join("");
+    // Carry the breed back to the finder (shared context across tools).
+    const breedId = brd?.id ?? "";
+    const [fbase, fhash] = String(L.finderHref).split("#");
+    const finderLink = breedId ? `${fbase}?breed=${breedId}${fhash ? "#" + fhash : ""}` : L.finderHref;
+    const bq = breedId ? `?breed=${breedId}` : "";
+    const ficheLink = air && air.fiche ? air.fiche + bq : "";
+    const countriesLink = L.countriesHref + bq;
+
+    out.hidden = false;
+    out.innerHTML = `
+      <div class="crx-card">
+        <h3>${esc(S.reqTitle)}</h3>
+        <div class="crx-dims"><span><b>${fmt(Lc)}</b><i>L</i></span><span><b>${fmt(Wc)}</b><i>${uLabel() === "cm" ? "l" : "W"}</i></span><span><b>${fmt(Hc)}</b><i>H</i></span></div>
+        <p class="crx-sub">${esc(S.reqNote)}${brachy ? " " + esc(S.brachyNote) : ""}</p>
+      </div>
+      <div class="crx-card">
+        <h3>${esc(S.sizeTitle)}</h3>
+        ${size ? `<div class="crx-size"><span class="crx-size__code">${size.n} / ${size.tag}</span><span class="crx-size__d">≈ ${size.l}×${size.w}×${size.h} cm</span></div>` : `<div class="crx-line crx-line--warn">⚠️ ${esc(S.sizeOver)}</div>`}
+        <p class="crx-sub">${esc(S.sizeNote)}</p>
+      </div>
+      <div class="crx-card">
+        <h3>${esc(S.cabinTitle)}</h3>
+        ${cabinHtml}
+      </div>
+      <div class="crx-card">
+        <h3>${esc(S.tipsTitle)}</h3>
+        <ul class="crx-tips">${(S.tips ?? []).map((t: string) => `<li>${esc(t)}</li>`).join("")}</ul>
+      </div>
+      <div class="crx-onward">
+        <span class="crx-onward__h">🧭 ${esc(S.onwardTitle)}</span>
+        <div class="crx-onward__row">
+          ${air && air.fiche ? `<a class="crx-onav crx-onav--ghost" href="${esc(ficheLink)}">🐾 ${esc(S.conditions)} ${esc(air.name)}</a>` : ""}
+          <a class="crx-onav crx-onav--ghost" href="${esc(countriesLink)}">📋 ${esc(S.countryReqs)}</a>
+          ${air && air.site ? `<a class="crx-onav crx-onav--ghost" href="${esc(air.site)}" rel="nofollow noopener" target="_blank">🌐 ${esc(S.bookOn)} ${esc(air.name)} ↗</a>` : ""}
+          ${air ? "" : `<a class="crx-onav crx-onav--ghost" href="${esc(finderLink)}">🔎 ${esc(S.findFlight)}</a>`}
+        </div>
+        <div class="crx-onward__row crx-onward__row--rank">
+          ${bestLinks}
+        </div>
+      </div>`;
+  });
+</script>
+
+<style>
+  .crx { border: 1px solid rgba(242,112,15,.35); border-radius: var(--mdcf-radius); padding: 16px; background: var(--mdcf-surface); box-shadow: 0 6px 24px rgba(15,23,42,.06), 0 0 0 3px rgba(242,112,15,.06); }
+  .crx__diagram { display: block; width: 100%; max-width: 640px; height: auto; margin: 0 auto 16px; border-radius: 12px; border: 1px solid var(--mdcf-line); }
+  .crx__u { color: var(--mdcf-muted); font-weight: 700; }
+  .crx__form { display: flex; flex-direction: column; gap: 14px; }
+  .crx__row { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+  .crx__row--m .crx__field { flex: 1 1 150px; }
+  .crx__field { display: flex; flex-direction: column; gap: 6px; flex: 1 1 180px; min-width: 0; }
+  .crx__field--wide { flex: 2 1 260px; }
+  .crx__field--sm { flex: 1 1 180px; }
+  .crx__field--xs { flex: 0 0 auto; }
+  .crx__field label, .crx__wfield label, .crx__unit-lbl { font-size: 12px; color: var(--mdcf-muted); font-weight: 600; }
+  .crx__field input, .crx__field select, .crx__wfield input { box-sizing: border-box; width: 100%; min-width: 0; height: 44px; padding: 10px 12px; border: 1px solid var(--mdcf-line); border-radius: 10px; font: inherit; background: var(--mdcf-surface); }
+  .crx__units { display: inline-flex; border: 1px solid var(--mdcf-line); border-radius: 10px; overflow: hidden; height: 44px; }
+  .crx__unit { border: 0; background: var(--mdcf-surface); color: var(--mdcf-muted); font: inherit; font-weight: 700; padding: 0 14px; cursor: pointer; }
+  .crx__unit.is-on { background: var(--mdcf-accent); color: #fff; }
+  .crx__row--b { align-items: center; }
+  .crx__chk { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; flex: 1 1 260px; }
+  .crx__wfield { display: flex; flex-direction: column; gap: 6px; flex: 0 0 120px; }
+  .crx__submit { flex: 0 0 auto; padding: 12px 22px; }
+  .crx__est { margin: 0; font-size: 13px; color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 8px; padding: 8px 10px; }
+  .crx__result { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .crx__hint { grid-column: 1/-1; color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 10px 12px; }
+
+  :global(.crx-card) { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 14px; background: var(--mdcf-surface); }
+  :global(.crx-card h3) { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted); margin: 0 0 10px; }
+  :global(.crx-dims) { display: flex; gap: 10px; }
+  :global(.crx-dims span) { flex: 1; text-align: center; background: var(--mdcf-subtle,#f5f7fa); border-radius: 10px; padding: 8px 4px; }
+  :global(.crx-dims b) { display: block; font-size: 20px; font-weight: 800; color: var(--mdcf-ink); }
+  :global(.crx-dims i) { font-style: normal; font-size: 11px; color: var(--mdcf-muted); font-weight: 700; }
+  :global(.crx-sub) { margin: 10px 0 0; font-size: 12.5px; color: var(--mdcf-muted); line-height: 1.4; }
+  :global(.crx-size) { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  :global(.crx-size__code) { font-size: 32px; font-weight: 800; letter-spacing: -.01em; text-transform: uppercase; color: var(--mdcf-accent-ink,#b4530a); line-height: 1; }
+  :global(.crx-size__d) { font-size: 14px; color: var(--mdcf-muted); font-weight: 600; }
+  :global(.crx-line) { font-size: 13.5px; line-height: 1.4; padding: 8px 10px; border-radius: 8px; margin-bottom: 6px; }
+  :global(.crx-line--ok) { background: #e7f6ec; color: #1a6b38; }
+  :global(.crx-line--warn) { background: #fdf2e0; color: #96591a; }
+  :global(.crx-line--no) { background: #fdeaea; color: #a12626; }
+  :global(.crx-line--neutral) { background: #eef1f5; color: #46566a; }
+  :global(.crx-line--soute) { background: var(--mdcf-accent-soft, #fdf1e7); color: var(--mdcf-accent-ink, #b4530a); }
+  :global(.crx-q) { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: #f5c518; color: #1a2433; font-weight: 800; font-size: 12px; line-height: 1; margin-right: 3px; vertical-align: -3px; }
+  :global(.crx-tips) { margin: 0; padding-left: 18px; font-size: 13px; color: var(--mdcf-ink); line-height: 1.5; }
+  :global(.crx-onward) { grid-column: 1 / -1; border: 1px solid #cfe0f5; border-radius: 12px; padding: 14px; background: linear-gradient(180deg,#f5f9ff,#fff); }
+  :global(.crx-onward__h) { display: block; font-size: 13px; font-weight: 800; color: var(--mdcf-ink); margin-bottom: 10px; }
+  :global(.crx-onward__row) { display: flex; flex-wrap: wrap; gap: 10px; }
+  :global(.crx-onward__row--rank) { margin-top: 8px; }
+  :global(.crx-onav) { display: inline-flex; align-items: center; gap: 7px; min-height: 42px; box-sizing: border-box; padding: 0 16px; border-radius: 999px; font-weight: 700; font-size: 13.5px; text-decoration: none; }
+  :global(.crx-onav--soft) { background: #f4f5f7; border: 1px solid rgba(242,112,15,.45); color: var(--mdcf-ink,#1a2433); }
+  :global(.crx-onav--soft:hover) { border-color: var(--mdcf-accent-ink,#b4530a); background: #eef0f3; }
+  :global(.crx-onav--ghost) { background: #fff; border: 1px solid var(--mdcf-line,#e6ebf1); color: var(--mdcf-accent-ink,#b4530a); }
+  :global(.crx-onav--ghost:hover) { border-color: var(--mdcf-accent-ink,#b4530a); }
+
+  :global(.ac-host) { position: relative; }
+  :global(.ac-list) { position: absolute; z-index: 40; top: calc(100% + 4px); left: 0; right: 0; margin: 0; padding: 4px; list-style: none; max-height: 260px; overflow-y: auto; background: var(--mdcf-surface); border: 1px solid var(--mdcf-line); border-radius: 10px; box-shadow: 0 16px 32px rgba(15,23,42,.14); }
+  :global(.ac-item) { padding: 9px 10px; border-radius: 7px; font-size: 14px; color: var(--mdcf-ink); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  :global(.ac-item:hover), :global(.ac-item.is-cur) { background: var(--mdcf-accent-soft); }
+
+  @media (max-width: 640px) { .crx__result { grid-template-columns: 1fr; } }
+</style>

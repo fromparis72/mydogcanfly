@@ -1,0 +1,30 @@
+name = "mydogcanfly-api"
+main = "src/index.ts"
+compatibility_date = "2024-09-01"
+
+# The API layer (ADR-0010). Business logic lives in @mydogcanfly/engine, data in
+# @mydogcanfly/knowledge — this Worker only does routing/HTTP/CORS.
+
+# --- Preview: deploy to a workers.dev subdomain, NO custom route (production untouched) ---
+#   npx wrangler deploy --env preview
+#   → https://mydogcanfly-api-preview.<your-subdomain>.workers.dev/v1/finder
+[env.preview]
+name = "mydogcanfly-api-preview"
+workers_dev = true
+
+# --- Production (later): route the live domain to the Worker so the UI calls same-origin /v1/* ---
+#   npx wrangler deploy --env production
+[env.production]
+name = "mydogcanfly-api"
+workers_dev = false
+# Les routes Worker sont liées à un HÔTE, pas à un domaine : « mydogcanfly.com/v1/* » ne
+# couvre pas « www.mydogcanfly.com/v1/* ». Le 30/07/2026, un visiteur arrivé par www voyait
+# donc son POST /v1/finder tomber sur le fichier statique de Pages — 405 — et l'ancien repli
+# du Finder affichait le snapshot « CDG → Tokyo » à la place de sa recherche. À chaque fois.
+# La vraie correction est une règle de redirection www → apex côté Cloudflare (un seul hôte
+# canonique). Cette seconde route est la ceinture de sécurité : même si www répond un jour,
+# l'API répond avec lui.
+routes = [
+  { pattern = "mydogcanfly.com/v1/*", zone_name = "mydogcanfly.com" },
+  { pattern = "www.mydogcanfly.com/v1/*", zone_name = "mydogcanfly.com" },
+]

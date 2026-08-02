@@ -1,0 +1,296 @@
+id: airline_malaysia_airlines
+mono: MH
+name: Malaysia Airlines
+titleH1:
+  en: Flying with a dog on Malaysia Airlines
+  fr: Voyager avec un chien sur Malaysia Airlines
+  es: Viajar con un perro en Malaysia Airlines
+  pt: "Viajar com um cachorro na Malaysia Airlines"
+metaDesc:
+  en: "Malaysia Airlines pet policy: hold (AVIH) or MASkargo Animal Hotel, breed limits, and official sources."
+  fr: "Politique animaux Malaysia Airlines : soute (AVIH) ou MASkargo Animal Hotel, restrictions de races et sources officielles."
+  es: "Política de mascotas de Malaysia Airlines: bodega (AVIH) o MASkargo Animal Hotel, límites por raza y fuentes oficiales."
+  pt: "Política de animais da Malaysia Airlines: porão (AVIH) ou MASkargo Animal Hotel, limites por raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Malaysia · KUL
+      fr: Malaisie · KUL
+      es: Malasia · KUL
+      pt: "Malásia · KUL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: No cabin pets except guide dogs; pets travel in the hold (AVIH) or via the MASkargo Animal Hotel.
+  fr: Pas d'animaux en cabine sauf chiens guides ; les animaux voyagent en soute (AVIH) ou via le MASkargo Animal Hotel.
+  es: No se admiten mascotas en cabina salvo perros guía; las mascotas viajan en bodega (AVIH) o a través del MASkargo Animal Hotel.
+  pt: "Nenhum animal na cabine, exceto cães-guia; os animais viajam no porão (AVIH) ou via o MASkargo Animal Hotel."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 62
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 30
+    color: "#9a6410"
+    label:
+      en: MASkargo
+      fr: MASkargo
+      es: MASkargo
+      pt: "MASkargo"
+    sub: "> 32 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No aceptado
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only guide dogs for sight/hearing-impaired passengers.
+      fr: Pas d'animaux en cabine — seulement les chiens guides pour passagers déficients visuels/auditifs.
+      es: No se admiten mascotas en cabina, solo perros guía para pasajeros con discapacidad visual/auditiva.
+      pt: "Nenhum animal na cabine — somente cães-guia para passageiros com deficiência visual/auditiva."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Pets as checked baggage (AVIH) up to 32 kg / 204 cm; inform the call centre at booking, pay at check-in.
+      fr: Animaux en bagage enregistré (AVIH) jusqu'à 32 kg / 204 cm ; prévenir le centre d'appel à la réservation, paiement à l'enregistrement.
+      es: Mascotas como equipaje facturado (AVIH) hasta 32 kg / 204 cm; avisa al centro de llamadas al reservar y paga en el mostrador.
+      pt: "Animais como bagagem despachada (AVIH) até 32 kg / 204 cm; informe a central de atendimento na reserva, pagamento no check-in."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: ✈️
+    name:
+      en: MASkargo Animal Hotel
+      fr: MASkargo Animal Hotel
+      es: MASkargo Animal Hotel
+      pt: "MASkargo Animal Hotel"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: A través de carga
+      pt: "Via carga"
+    detail:
+      en: Over 32 kg or via a pet shipper; drop off at the MASkargo Animal Hotel ≥ 8 h before departure (24-h vet).
+      fr: Au-delà de 32 kg ou via un expéditeur ; dépôt au MASkargo Animal Hotel ≥ 8 h avant le départ (vétérinaire 24 h).
+      es: Más de 32 kg o a través de un agente de envíos de mascotas; entrega en el MASkargo Animal Hotel ≥ 8 h antes de la salida (veterinario 24 h).
+      pt: "Acima de 32 kg ou via uma transportadora de animais; entrega no MASkargo Animal Hotel com ≥ 8 h de antecedência à partida (veterinário 24 h)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold (AVIH, ≤ 32 kg)
+        fr: Soute (AVIH, ≤ 32 kg)
+        es: Bodega (AVIH, ≤ 32 kg)
+        pt: "Porão (AVIH, ≤ 32 kg)"
+      value:
+        en: Excess-baggage rate
+        fr: Tarif bagage excédentaire
+        es: Tarifa de exceso de equipaje
+        pt: "Tarifa de excesso de bagagem"
+    - label:
+        en: MASkargo cargo
+        fr: Fret MASkargo
+        es: Carga MASkargo
+        pt: "Carga MASkargo"
+      value:
+        en: Quote (via pet shipper)
+        fr: Devis (via expéditeur)
+        es: Cotización (vía agente de envíos)
+        pt: "Cotação (via transportadora de animais)"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: AVIH is charged as excess baggage (paid at check-in); MASkargo adds an Animal Hotel handling fee.
+    fr: L'AVIH est facturé en bagage excédentaire (payé à l'enregistrement) ; MASkargo ajoute des frais de manutention Animal Hotel.
+    es: El AVIH se cobra como exceso de equipaje (pagado en el mostrador); MASkargo añade una tarifa de gestión del Animal Hotel.
+    pt: "O AVIH é cobrado como bagagem excedente (pago no check-in); a MASkargo acrescenta uma taxa de manuseio do Animal Hotel."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: "Snub-nosed breeds aren't accepted (heat-stroke/breathing risk): bulldogs (all), boxers (all), pugs (all), Boston terrier, Brussels Griffon, Cavalier King Charles, Cane Corso, Chihuahua, chow chow, Dogue de Bordeaux, Japanese Chin, Lhasa Apso, mastiffs, Pekingese, pit bull, Presa Canario, Shih Tzu."
+      fr: "Les races au nez écrasé ne sont pas acceptées (risque coup de chaleur/respiration) : bouledogues (tous), boxers (tous), carlins (tous), Boston terrier, Griffon bruxellois, Cavalier King Charles, Cane Corso, Chihuahua, chow chow, Dogue de Bordeaux, Chin japonais, Lhasa Apso, mastiffs, pékinois, pit-bull, Presa Canario, Shih Tzu."
+      es: "Las razas de hocico chato no se aceptan (riesgo de golpe de calor/respiración): bulldogs (todos), bóxers (todos), carlinos (todos), Boston terrier, Grifón de Bruselas, Cavalier King Charles, Cane Corso, Chihuahua, chow chow, Dogo de Burdeos, Chin japonés, Lhasa Apso, mastines, pekinés, pit bull, Presa Canario, Shih Tzu."
+      pt: "Raças de focinho achatado não são aceitas (risco de insolação/respiração): bulldogs (todos), boxers (todos), pugs (todos), Boston terrier, Griffon de Bruxelas, Cavalier King Charles, Cane Corso, Chihuahua, chow chow, Dogue de Bordeaux, Chin japonês, Lhasa Apso, mastiffs, Pequinês, pit bull, Presa Canario, Shih Tzu."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: Dangerous breeds banned
+          fr: Races dangereuses interdites
+          es: Razas peligrosas prohibidas
+          pt: "Raças perigosas proibidas"
+      - cls: warn
+        label:
+          en: Min. 8 weeks
+          fr: 8 semaines min.
+          es: Mín. 8 semanas
+          pt: "Mín. 8 semanas"
+    note:
+      en: "Also barred: Akita, Tosa, American Bulldog, Neapolitan Mastiff, Dogo Argentino, pit bull terrier, Fila. Puppies under 8 weeks are refused; IATA crate (≥ 16% ventilation, no straw) required."
+      fr: "Aussi interdits : Akita, Tosa, American Bulldog, Mâtin napolitain, Dogo Argentino, pit-bull terrier, Fila. Les chiots de moins de 8 semaines sont refusés ; caisse IATA (≥ 16 % de ventilation, sans paille) requise."
+      es: "También prohibidos: Akita, Tosa, Bulldog Americano, Mastín Napolitano, Dogo Argentino, pit bull terrier, Fila. Los cachorros de menos de 8 semanas se rechazan; se exige una jaula IATA (≥ 16 % de ventilación, sin paja)."
+      pt: "Também proibidos: Akita, Tosa, American Bulldog, Mastim Napolitano, Dogo Argentino, pit bull terrier, Fila. Filhotes com menos de 8 semanas são recusados; exige-se caixa de transporte IATA (≥ 16% de ventilação, sem palha)."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Malaysia Airlines publishes no numeric temperature limit but keeps a snub-nosed embargo (heat-stroke risk); inbound animals must arrive at KLIA between 08:00 and 17:00.
+    fr: Malaysia Airlines ne publie pas de limite chiffrée mais maintient un embargo brachy (risque de coup de chaleur) ; les animaux à l'arrivée doivent atterrir à KLIA entre 08:00 et 17:00.
+    es: Malaysia Airlines no publica un límite numérico de temperatura, pero mantiene un embargo para razas de hocico chato (riesgo de golpe de calor); los animales que llegan deben aterrizar en KLIA entre las 08:00 y las 17:00.
+    pt: "A Malaysia Airlines não publica um limite numérico de temperatura, mas mantém um embargo para focinho achatado (risco de insolação); os animais em chegada devem pousar em KLIA entre 08:00 e 17:00."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Guide dogs for sight/hearing-impaired passengers travel free in the cabin (with containers and food), on top of the baggage allowance.
+      fr: Les chiens guides pour passagers déficients visuels/auditifs voyagent gratuitement en cabine (avec contenants et nourriture), en plus de la franchise bagages.
+      es: Los perros guía para pasajeros con discapacidad visual/auditiva viajan gratis en cabina (con recipientes y comida), además de la franquicia de equipaje.
+      pt: "Cães-guia para passageiros com deficiência visual/auditiva viajam gratuitamente na cabine (com recipientes e alimento), além da franquia de bagagem."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Arrange via the Contact Centre; import/export needs a vet health certificate (valid 7 days) + permits.
+      fr: Organiser via le centre de contact ; import/export nécessite un certificat sanitaire (valide 7 jours) + permis.
+      es: Organícelo a través del centro de contacto; la importación/exportación requiere un certificado sanitario veterinario (válido 7 días) + permisos.
+      pt: "Organize através da Central de Contato; importação/exportação exige um atestado de saúde veterinário (válido por 7 dias) + autorizações."
+goodToKnow:
+  - icon: 🔁
+    label:
+      en: Two channels
+      fr: Deux canaux
+      es: Dos canales
+      pt: "Dois canais"
+    value:
+      en: Pets can be booked as AVIH hold baggage (call centre) or as MASkargo cargo (pet shipper).
+      fr: Les animaux se réservent en soute AVIH (centre d'appel) ou en fret MASkargo (expéditeur).
+      es: Las mascotas se pueden reservar como equipaje de bodega AVIH (centro de llamadas) o como carga MASkargo (agente de envíos).
+      pt: "Os animais podem ser reservados como bagagem de porão AVIH (central de atendimento) ou como carga MASkargo (transportadora de animais)."
+  - icon: 🏨
+    label:
+      en: Animal Hotel
+      fr: Animal Hotel
+      es: Animal Hotel
+      pt: "Animal Hotel"
+    value:
+      en: MASkargo runs a 24-h Animal Hotel at KLIA with an on-call vet.
+      fr: MASkargo exploite un Animal Hotel 24 h à KLIA avec un vétérinaire de garde.
+      es: MASkargo gestiona un Animal Hotel de 24 h en KLIA con un veterinario de guardia.
+      pt: "A MASkargo mantém um Animal Hotel 24 h em KLIA com veterinário de plantão."
+  - icon: 📄
+    label:
+      en: Import permits
+      fr: Permis d'importation
+      es: Permisos de importación
+      pt: "Autorizações de importação"
+    value:
+      en: Import/export requires a vet health certificate (valid 7 days) plus government permits.
+      fr: L'import/export exige un certificat sanitaire (valide 7 jours) plus des permis gouvernementaux.
+      es: La importación/exportación exige un certificado sanitario veterinario (válido 7 días) más permisos gubernamentales.
+      pt: "Importação/exportação exige um atestado de saúde veterinário (válido por 7 dias) mais autorizações governamentais."
+book:
+  host: malaysiaairlines.com
+  url: https://www.malaysiaairlines.com/
+sources:
+  en: Official Malaysia Airlines & MASkargo pages · last verified 11 July 2026
+  fr: Pages officielles Malaysia Airlines & MASkargo · dernière vérification 11 juillet 2026
+  es: Páginas oficiales de Malaysia Airlines y MASkargo · última verificación 11 de julio de 2026
+  pt: "Páginas oficiais da Malaysia Airlines e MASkargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,354 @@
+# Country Entry Guide — Switzerland (bilingual EN/FR).
+# Non-EU national scheme (FSVO / blv.admin.ch, Swiss customs FOCBS / bazg.admin.ch).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ch
+iso2: "CH"
+name: { en: "Switzerland", fr: "Suisse", es: "Suiza", pt: "Suíça" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Switzerland with your dog", fr: "Voyager en Suisse avec ton chien", es: "Viajar a Suiza con tu perro", pt: "Viajar para a Suíça com seu cachorro" }
+  intro:
+    en: >-
+      Switzerland welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Switzerland itself. Switzerland is not an EU member; it runs its own
+      national scheme through the Federal Food Safety and Veterinary Office (FSVO), closely aligned with
+      EU pet-movement rules. An ISO microchip and a valid rabies vaccination are always required. A dog
+      arriving from the EU simply needs a pet passport (Swiss or EU, which are mutually recognised). A dog
+      from a low-rabies-risk third country (such as the United States, Canada or the United Kingdom) needs
+      a health certificate but no blood test. A dog from a rabies-risk country faces the longest path,
+      including a rabies antibody test, a three-month wait and an FSVO import licence. This guide explains
+      each case so you know exactly what to prepare before you book your flight.
+    fr: >-
+      La Suisse accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton chien
+      voyage — pas seulement de la Suisse. La Suisse n'est pas membre de l'UE ; elle applique son propre
+      dispositif national via l'Office fédéral de la sécurité alimentaire et des affaires vétérinaires
+      (OSAV), très proche des règles européennes de mouvement des animaux. Une puce ISO et une vaccination
+      antirabique valide sont toujours exigées. Un chien arrivant de l'UE a simplement besoin d'un passeport
+      (suisse ou européen, mutuellement reconnus). Un chien venant d'un pays tiers à faible risque rabique
+      (États-Unis, Canada, Royaume-Uni…) a besoin d'un certificat sanitaire mais pas de prise de sang. Un
+      chien venant d'un pays à risque rabique suit le parcours le plus long, avec titrage antirabique, délai
+      de trois mois et autorisation d'importation de l'OSAV. Ce guide détaille chaque cas pour savoir quoi
+      préparer avant de réserver ton vol.
+    es: >-
+      Suiza acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que viaja
+      tu perro — no solo de Suiza. Suiza no es miembro de la UE; aplica su propio sistema nacional a través
+      de la Oficina Federal de Seguridad Alimentaria y Asuntos Veterinarios (OSAV), muy alineado con las
+      normas europeas de movimiento de animales de compañía. Siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de la UE solo necesita un pasaporte para mascotas
+      (suizo o europeo, mutuamente reconocidos). Un perro procedente de un país tercero con bajo riesgo de
+      rabia (como Estados Unidos, Canadá o el Reino Unido) necesita un certificado sanitario, pero no un
+      análisis de sangre. Un perro procedente de un país con riesgo de rabia se enfrenta al camino más
+      largo, que incluye una prueba de titulación de rabia, una espera de tres meses y una autorización de
+      importación de la OSAV. Esta guía explica cada caso para que sepas exactamente qué preparar antes de
+      reservar tu vuelo.
+
+    pt: "A Suíça recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Suíça em si. A Suíça não é membro da UE; ela aplica seu próprio regime nacional, conduzido pelo Departamento Federal de Segurança Alimentar e Assuntos Veterinários (OSAV/BLV) e alinhado de perto com as regras europeias de circulação de animais de estimação. Microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro que chega da UE precisa apenas de um passaporte para animais (suíço ou europeu, mutuamente reconhecidos). Um cachorro vindo de um país terceiro de baixo risco de raiva (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário, mas não de exame de sangue. Um cachorro vindo de um país de risco de raiva enfrenta o caminho mais longo, com teste sorológico antirrábico, três meses de espera e autorização de importação do OSAV. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate from a low-rabies-risk country."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire depuis un pays à faible risque rabique."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario desde un país con bajo riesgo de rabia."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário emitido em um país de baixo risco de raiva."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, a 3-month wait, plus an FSVO import licence."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, délai de 3 mois, plus une autorisation d'importation OSAV."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, una espera de 3 meses, más una autorización de importación de la OSAV."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias após a vacinação, 3 meses de espera e ainda uma autorização de importação do OSAV."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — rabies-risk origins only", fr: "Conditionnel — pays à risque rabique uniquement", es: "Condicional — solo orígenes con riesgo de rabia", pt: "Condicional — apenas origens de risco de raiva" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — third-country origins", fr: "Conditionnel — origines pays tiers", es: "Condicional — orígenes de países terceros", pt: "Condicional — origens de países terceiros" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Switzerland", fr: "Non requis pour la Suisse", es: "No obligatorio para Suiza", pt: "Não obrigatório na Suíça" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Switzerland (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Suisse (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Suiza (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Suíça (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Switzerland", fr: "Pays de destination — Suisse", es: "País de destino — Suiza", pt: "País de destino — Suíça" }
+      text:
+        en: "Switzerland applies its own FSVO scheme, aligned with EU rules: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed to enter Switzerland."
+        fr: "La Suisse applique son propre dispositif OSAV, aligné sur les règles UE : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer en Suisse."
+        es: "Suiza aplica su propio sistema de la OSAV, alineado con las normas de la UE: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en Suiza."
+        pt: "A Suíça aplica seu próprio regime do OSAV, alinhado com as regras da UE: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido para entrar na Suíça."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from the EU, a low-rabies-risk third country or a rabies-risk country decides whether an antibody test, a health certificate and an import licence are required."
+        fr: "Que ton chien parte de l'UE, d'un pays tiers à faible risque rabique ou d'un pays à risque rabique détermine si un titrage, un certificat sanitaire et une autorisation d'importation sont exigés."
+        es: "Que tu perro salga de la UE, de un país tercero con bajo riesgo de rabia o de un país con riesgo de rabia determina si se exigen una prueba de titulación, un certificado sanitario y una autorización de importación."
+        pt: "Partir da UE, de um país terceiro de baixo risco de raiva ou de um país de risco de raiva é o que define se o teste sorológico, o certificado sanitário e a autorização de importação são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from a low-risk country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays à faible risque. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país de bajo riesgo. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode obrigar ao teste sorológico mesmo que você chegue de um país de baixo risco. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Switzerland's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre suisse, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Suiza y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Então leia as exigências abaixo como o quadro suíço e depois confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination.", fr: "Doit être posée avant la vaccination antirabique.", es: "Debe implantarse antes de la vacunación antirrábica.", pt: "Deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A tattoo is accepted only if it can be proven it was done before 3 July 2011.", fr: "Un tatouage n'est accepté que s'il peut être prouvé qu'il est antérieur au 3 juillet 2011.", es: "Un tatuaje solo se acepta si se puede demostrar que se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem só é aceita se for possível provar que foi feita antes de 3 de julho de 2011." }
+    ref: { en: "IETPO (SR 916.443.14); FSVO blv.admin.ch", fr: "OITE-AC (RS 916.443.14) ; OSAV blv.admin.ch", es: "OITE-AC (RS 916.443.14); OSAV blv.admin.ch", pt: "OITE-AC (RS 916.443.14); OSAV blv.admin.ch" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; no waiting period for an early booster.", fr: "La puce doit déjà être posée ; pas de délai pour un rappel effectué avant échéance.", es: "El microchip debe estar ya implantado; sin periodo de espera para un refuerzo hecho antes del vencimiento.", pt: "O microchip já deve estar implantado; sem prazo de espera para um reforço aplicado antes do vencimento." }
+    ref: { en: "FSVO blv.admin.ch; IETPO", fr: "OSAV blv.admin.ch ; OITE-AC", es: "OSAV blv.admin.ch; OITE-AC", pt: "OSAV blv.admin.ch; OITE-AC" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Rabies-risk countries only: blood ≥30 days after vaccination, result ≥0.5 IU/ml, then a 3-month wait before entry.", fr: "Pays à risque rabique : sang ≥30 jours après le vaccin, résultat ≥0,5 UI/ml, puis délai de 3 mois avant l'entrée.", es: "Solo países con riesgo de rabia: sangre ≥30 días tras la vacuna, resultado ≥0,5 UI/ml, y luego una espera de 3 meses antes de la entrada.", pt: "Apenas países de risco de raiva: sangue coletado ≥30 dias após a vacinação, resultado ≥0,5 UI/ml e, depois, 3 meses de espera antes da entrada." }
+    exceptions: { en: "Not required from the EU or from low-rabies-risk countries (US, Canada, UK, and others on the FSVO list).", fr: "Non requis depuis l'UE ou les pays à faible risque rabique (USA, Canada, RU… selon la liste OSAV).", es: "No se exige desde la UE ni desde países con bajo riesgo de rabia (EE. UU., Canadá, RU y otros de la lista de la OSAV).", pt: "Não é exigido a partir da UE nem de países de baixo risco de raiva (EUA, Canadá, Reino Unido e outros da lista do OSAV)." }
+    ref: { en: "FSVO — list of rabies-risk countries; IETPO", fr: "OSAV — liste des pays à risque rabique ; OITE-AC", es: "OSAV — lista de países con riesgo de rabia; OITE-AC", pt: "OSAV — lista dos países de risco de raiva; OITE-AC" }
+  - item: { en: "Pet passport (Swiss or EU)", fr: "Passeport (suisse ou européen)", es: "Pasaporte para mascotas (suizo o europeo)", pt: "Passaporte para animais (suíço ou europeu)" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Records the microchip and rabies vaccination; the Swiss and EU passports are mutually recognised.", fr: "Consigne la puce et la vaccination ; les passeports suisse et européen sont mutuellement reconnus.", es: "Registra el microchip y la vacunación antirrábica; los pasaportes suizo y europeo se reconocen mutuamente.", pt: "Registra o microchip e a vacinação antirrábica; os passaportes suíço e europeu são mutuamente reconhecidos." }
+    exceptions: { en: "Replaced by a health certificate for third-country origins.", fr: "Remplacé par un certificat sanitaire pour les origines pays tiers.", es: "Se sustituye por un certificado sanitario para orígenes de países terceros.", pt: "Substituído por um certificado sanitário nas origens de países terceiros." }
+    ref: { en: "FSVO blv.admin.ch", fr: "OSAV blv.admin.ch", es: "OSAV blv.admin.ch", pt: "OSAV blv.admin.ch" }
+  - item: { en: "Animal health certificate", fr: "Certificat sanitaire", es: "Certificado sanitario animal", pt: "Atestado de saúde animal" }
+    required: { en: "Third-country origins", fr: "Origines pays tiers", es: "Orígenes de países terceros", pt: "Origens de países terceiros" }
+    when: { en: "Issued/endorsed by an official vet before departure; FSVO certificate template for non-commercial pet movements.", fr: "Établi/visé par un vétérinaire officiel avant départ ; modèle de certificat OSAV pour mouvements non commerciaux.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; modelo de certificado de la OSAV para movimientos no comerciales.", pt: "Emitido/endossado por um veterinário oficial antes da partida; modelo de certificado do OSAV para movimentações não comerciais de animais de estimação." }
+    exceptions: { en: "Not needed for EU origins (pet passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte para mascotas).", pt: "Desnecessário nas origens da UE (o passaporte para animais faz esse papel)." }
+    ref: { en: "FSVO — health certificate for pets", fr: "OSAV — certificat sanitaire pour animaux de compagnie", es: "OSAV — certificado sanitario para animales de compañía", pt: "OSAV — certificado sanitário para animais de estimação" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Switzerland does not require Echinococcus treatment on entry.", fr: "La Suisse n'exige pas de traitement contre l'échinococcose à l'entrée.", es: "Suiza no exige tratamiento contra Echinococcus a la entrada.", pt: "A Suíça não exige tratamento contra Echinococcus na entrada." }
+    ref: { en: "FSVO blv.admin.ch", fr: "OSAV blv.admin.ch", es: "OSAV blv.admin.ch", pt: "OSAV blv.admin.ch" }
+  - item: { en: "Import licence / customs declaration", fr: "Autorisation d'import / déclaration en douane", es: "Autorización de importación / declaración en aduana", pt: "Autorização de importação / declaração aduaneira" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "FSVO import licence for dogs from rabies-risk countries by air; declare the dog to customs and pay 8.1% VAT on its value above the CHF 300 travellers' allowance.", fr: "Autorisation d'import OSAV pour les chiens de pays à risque rabique par avion ; déclare le chien à la douane et paie la TVA de 8,1 % sur sa valeur au-delà de la franchise voyageurs de 300 CHF.", es: "Autorización de importación de la OSAV para los perros procedentes de países con riesgo de rabia por vía aérea; declara el perro en aduanas y paga el IVA del 8,1 % sobre su valor por encima de la franquicia para viajeros de 300 CHF.", pt: "Autorização de importação do OSAV para cachorros que chegam de avião de países de risco de raiva; declare o cachorro na alfândega e pague 8,1% de IVA sobre o valor que ultrapassar a franquia de viajante de 300 francos suíços." }
+    exceptions: { en: "No import licence for entry from the EU or from low-rabies-risk countries.", fr: "Pas d'autorisation d'import pour une entrée depuis l'UE ou un pays à faible risque rabique.", es: "Sin autorización de importación para la entrada desde la UE o desde un país con bajo riesgo de rabia.", pt: "Sem autorização de importação para a entrada a partir da UE ou de países de baixo risco de raiva." }
+    ref: { en: "FOCBS bazg.admin.ch; FSVO", fr: "OFDF bazg.admin.ch ; OSAV", es: "OFDF bazg.admin.ch; OSAV", pt: "OFDF bazg.admin.ch; OSAV" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Third-country arrivals", fr: "Arrivées pays tiers", es: "Llegadas de países terceros", pt: "Chegadas de países terceiros" }
+    when: { en: "From a third country, enter by direct air via Basel, Geneva or Zurich and present the dog at the red customs channel.", fr: "Depuis un pays tiers, entre par vol direct via Bâle, Genève ou Zurich et présente le chien au canal rouge de la douane.", es: "Desde un país tercero, entra por vuelo directo vía Basilea, Ginebra o Zúrich y presenta el perro en el canal rojo de aduanas.", pt: "Vindo de um país terceiro, entre por voo direto via Basileia, Genebra ou Zurique e apresente o cachorro no canal vermelho da alfândega." }
+    exceptions: { en: "No systematic check for arrivals from the EU — keep the pet passport with you.", fr: "Pas de contrôle systématique pour les arrivées de l'UE — garde le passeport sur toi.", es: "Sin control sistemático para las llegadas desde la UE — lleva contigo el pasaporte para mascotas.", pt: "Sem controle sistemático nas chegadas da UE — leve o passaporte para animais com você." }
+    ref: { en: "FSVO blv.admin.ch; FOCBS", fr: "OSAV blv.admin.ch ; OFDF", es: "OSAV blv.admin.ch; OFDF", pt: "OSAV blv.admin.ch; OFDF" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Age limits apply", fr: "Limites d'âge", es: "Se aplican límites de edad", pt: "Há limites de idade" }
+    when: { en: "Rabies vaccination only possible from 12 weeks; puppies under 8 weeks only with their mother.", fr: "Vaccination antirabique possible dès 12 semaines ; chiots de moins de 8 semaines uniquement avec leur mère.", es: "La vacunación antirrábica solo es posible a partir de las 12 semanas; los cachorros menores de 8 semanas, únicamente con su madre.", pt: "A vacinação antirrábica só é possível a partir das 12 semanas; filhotes com menos de 8 semanas apenas acompanhados da mãe." }
+    exceptions: { en: "Entry from a high-rabies-risk country is not permitted for dogs under 7 months of age.", fr: "L'entrée depuis un pays à haut risque rabique est interdite pour les chiens de moins de 7 mois.", es: "La entrada desde un país de alto riesgo de rabia no está permitida para perros menores de 7 meses.", pt: "A entrada a partir de um país de alto risco de raiva não é permitida para cachorros com menos de 7 meses." }
+    ref: { en: "FSVO blv.admin.ch; IETPO", fr: "OSAV blv.admin.ch ; OITE-AC", es: "OSAV blv.admin.ch; OITE-AC", pt: "OSAV blv.admin.ch; OITE-AC" }
+  - item: { en: "Docked ears/tail", fr: "Oreilles/queue coupées", es: "Orejas/cola cortadas", pt: "Orelhas/cauda cortadas" }
+    required: { en: "Import prohibited", fr: "Importation interdite", es: "Importación prohibida", pt: "Importação proibida" }
+    when: { en: "Bringing dogs with docked ears and/or tails into Switzerland is forbidden; they are refused at the border.", fr: "Il est interdit d'introduire en Suisse des chiens aux oreilles et/ou à la queue coupées ; ils sont refoulés à la frontière.", es: "Está prohibido introducir en Suiza perros con las orejas o la cola cortadas; se les rechaza en la frontera.", pt: "É proibido levar para a Suíça cachorros com as orelhas e/ou a cauda cortadas; eles são recusados na fronteira." }
+    exceptions: { en: "Owners living abroad may bring a docked dog for a short stay against a customs deposit.", fr: "Un propriétaire résidant à l'étranger peut amener un chien coupé pour un court séjour moyennant un dépôt en douane.", es: "Un propietario que reside en el extranjero puede llevar un perro con orejas o cola cortadas para una estancia corta mediante un depósito en aduanas.", pt: "Donos residentes no exterior podem levar um cachorro com orelhas ou cauda cortadas para uma estadia curta mediante depósito na alfândega." }
+    ref: { en: "FOCBS bazg.admin.ch; FSVO", fr: "OFDF bazg.admin.ch ; OSAV", es: "OFDF bazg.admin.ch; OSAV", pt: "OFDF bazg.admin.ch; OSAV" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — a non-compliant animal is taken to the border veterinary office for further processing.", fr: "Uniquement en cas de non-conformité — un animal non conforme est conduit au poste vétérinaire de frontière pour traitement.", es: "Solo en caso de incumplimiento — un animal no conforme es llevado al puesto veterinario de frontera para su tramitación.", pt: "Apenas em caso de descumprimento das regras — um animal fora das exigências é levado ao posto veterinário de fronteira para os procedimentos cabíveis." }
+    ref: { en: "FSVO blv.admin.ch", fr: "OSAV blv.admin.ch", es: "OSAV blv.admin.ch", pt: "OSAV blv.admin.ch" }
+
+origin:
+  eu:
+    title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte para mascotas", pt: "Simplificado — passaporte para animais" }
+    body:
+      en: "A dog coming from an EU country needs a pet passport (Swiss or EU — the two are mutually recognised) showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and normally no border check. Up to five pets per person travel under the pet rules."
+      fr: "Un chien venant d'un pays de l'UE a besoin d'un passeport (suisse ou européen — les deux sont mutuellement reconnus) mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et normalement pas de contrôle frontalier. Jusqu'à cinq animaux par personne voyagent sous le régime des animaux de compagnie."
+      es: "Un perro que llega de un país de la UE necesita un pasaporte para mascotas (suizo o europeo — ambos se reconocen mutuamente) que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y normalmente sin control fronterizo. Hasta cinco mascotas por persona viajan bajo el régimen de animales de compañía."
+      pt: "Um cachorro vindo de um país da UE precisa de um passaporte para animais (suíço ou europeu — os dois são mutuamente reconhecidos) que comprove microchip ISO válido e vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e, normalmente, sem controle de fronteira. Até cinco animais de estimação por pessoa viajam sob o regime de animais de companhia."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a low-rabies-risk third country (United States, Canada, United Kingdom and others on the FSVO list), your dog needs a microchip, a valid rabies vaccination and an FSVO animal health certificate endorsed by an official vet before departure. No antibody test is required. Enter by direct air via Basel, Geneva or Zurich and present the dog at the red customs channel."
+      fr: "Depuis un pays tiers à faible risque rabique (États-Unis, Canada, Royaume-Uni… selon la liste OSAV), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire OSAV visé par un vétérinaire officiel avant le départ. Pas de titrage. Entre par vol direct via Bâle, Genève ou Zurich et présente le chien au canal rouge de la douane."
+      es: "Desde un país tercero con bajo riesgo de rabia (Estados Unidos, Canadá, Reino Unido y otros de la lista de la OSAV), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la OSAV refrendado por un veterinario oficial antes de la salida. No se exige prueba de titulación. Entra por vuelo directo vía Basilea, Ginebra o Zúrich y presenta el perro en el canal rojo de aduanas."
+      pt: "Vindo de um país terceiro de baixo risco de raiva (Estados Unidos, Canadá, Reino Unido e outros da lista do OSAV), seu cachorro precisa de microchip, vacinação antirrábica válida e certificado sanitário do OSAV endossado por um veterinário oficial antes da partida. Não é exigido teste sorológico. Entre por voo direto via Basileia, Genebra ou Zurique e apresente o cachorro no canal vermelho da alfândega."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait + import licence", fr: "Titrage + 3 mois d'attente + autorisation", es: "Prueba de titulación + espera de 3 meses + autorización", pt: "Teste sorológico + 3 meses de espera + autorização de importação" }
+    body:
+      en: "From a rabies-risk country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml, then a compulsory 3-month wait before entry. An FSVO import licence and an endorsed health certificate are also required, and dogs under 7 months old cannot enter from a high-rabies-risk country."
+      fr: "Depuis un pays à risque rabique, ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml, puis un délai obligatoire de 3 mois avant l'entrée. Une autorisation d'importation OSAV et un certificat sanitaire visé sont également requis, et les chiens de moins de 7 mois ne peuvent pas entrer depuis un pays à haut risque rabique."
+      es: "Desde un país con riesgo de rabia, añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml, y luego una espera obligatoria de 3 meses antes de la entrada. También se exigen una autorización de importación de la OSAV y un certificado sanitario refrendado, y los perros menores de 7 meses no pueden entrar desde un país de alto riesgo de rabia."
+      pt: "Vindo de um país de risco de raiva, acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml e, em seguida, 3 meses obrigatórios de espera antes da entrada. Também são exigidos uma autorização de importação do OSAV e um certificado sanitário endossado, e cachorros com menos de 7 meses não podem entrar vindos de um país de alto risco de raiva."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Switzerland depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Suisse dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Suiza depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega à Suíça depende do lugar de onde você voou."
+  points:
+    - en: "From the EU: no systematic border check — keep the pet passport (Swiss or EU) with you."
+      fr: "Depuis l'UE : pas de contrôle systématique — garde le passeport (suisse ou européen) sur toi."
+      es: "Desde la UE: sin control fronterizo sistemático — lleva contigo el pasaporte para mascotas (suizo o europeo)."
+      pt: "Da UE: sem controle sistemático de fronteira — leve o passaporte para animais (suíço ou europeu) com você."
+    - en: "From a third country: entry is only via direct air transport through Basel, Geneva or Zurich airports."
+      fr: "Depuis un pays tiers : l'entrée se fait uniquement par transport aérien direct via les aéroports de Bâle, Genève ou Zurich."
+      es: "Desde un país tercero: la entrada solo se realiza por transporte aéreo directo a través de los aeropuertos de Basilea, Ginebra o Zúrich."
+      pt: "De um país terceiro: a entrada só é possível por transporte aéreo direto pelos aeroportos de Basileia, Genebra ou Zurique."
+    - en: "Present the dog at the red customs channel; customs and the border veterinary service check the animal on entry."
+      fr: "Présente le chien au canal rouge de la douane ; la douane et le service vétérinaire de frontière contrôlent l'animal à l'entrée."
+      es: "Presenta el perro en el canal rojo de aduanas; las aduanas y el servicio veterinario de frontera controlan al animal a la entrada."
+      pt: "Apresente o cachorro no canal vermelho da alfândega; a alfândega e o serviço veterinário de fronteira conferem o animal na entrada."
+    - en: "Declare the dog to customs; a purchased animal is duty-free but subject to 8.1% VAT on its value above the CHF 300 travellers' allowance."
+      fr: "Déclare le chien à la douane ; un animal acheté est exempt de droits mais soumis à la TVA de 8,1 % sur sa valeur au-delà de la franchise voyageurs de 300 CHF."
+      es: "Declara el perro en aduanas; un animal comprado está exento de derechos, pero sujeto al IVA del 8,1 % sobre su valor por encima de la franquicia para viajeros de 300 CHF."
+      pt: "Declare o cachorro na alfândega; um animal comprado é isento de direitos aduaneiros, mas sujeito a 8,1% de IVA sobre o valor que ultrapassar a franquia de viajante de 300 francos suíços."
+    - en: "If the animal does not meet the conditions or documents are incomplete, it is taken to the airport border veterinary office for further processing, at the owner's expense."
+      fr: "Si l'animal ne remplit pas les conditions ou si les documents sont incomplets, il est conduit au poste vétérinaire de frontière de l'aéroport pour traitement, aux frais du propriétaire."
+      es: "Si el animal no cumple las condiciones o los documentos están incompletos, es llevado al puesto veterinario de frontera del aeropuerto para su tramitación, a cargo del propietario."
+      pt: "Se o animal não cumprir as condições ou se os documentos estiverem incompletos, ele é levado ao posto veterinário de fronteira do aeroporto para os procedimentos cabíveis, às custas do dono."
+    - en: "Dogs with docked ears and/or tails are refused entry."
+      fr: "Les chiens aux oreilles et/ou à la queue coupées sont refoulés à l'entrée."
+      es: "A los perros con las orejas o la cola cortadas se les rechaza la entrada."
+      pt: "Cachorros com as orelhas e/ou a cauda cortadas têm a entrada recusada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Switzerland has no uniform national breed ban. Dangerous-dog rules are set by the cantons, so they differ across the country — several cantons ban or restrict certain breeds while others do not. Always check the rules of the destination canton before you travel."
+    fr: "La Suisse n'a pas d'interdiction de race uniforme au niveau national. Les règles sur les chiens dangereux relèvent des cantons et varient donc d'un canton à l'autre — plusieurs cantons interdisent ou restreignent certaines races, d'autres non. Vérifie toujours les règles du canton de destination avant de voyager."
+    es: "Suiza no tiene una prohibición de razas uniforme a nivel nacional. Las normas sobre perros peligrosos las fijan los cantones, por lo que difieren de un cantón a otro — varios cantones prohíben o restringen ciertas razas mientras que otros no. Comprueba siempre las normas del cantón de destino antes de viajar."
+    pt: "A Suíça não tem uma proibição de raças uniforme em nível nacional. As regras sobre cachorros perigosos são definidas pelos cantões e, por isso, variam pelo país — vários cantões proíbem ou restringem certas raças, outros não. Verifique sempre as regras do cantão de destino antes de viajar."
+  cat1:
+    en: "Cantons with breed blacklists: Geneva, Valais and Ticino are among the strictest. Geneva prohibits ownership of breeds such as the American Staffordshire Terrier, Pit Bull, Rottweiler, Tosa, various Mastiffs and others; Valais bans around a dozen breeds (crosses included). A ban typically covers listed breeds and their crosses, and newcomers must generally obtain a cantonal exemption."
+    fr: "Cantons avec listes de races interdites : Genève, le Valais et le Tessin figurent parmi les plus stricts. Genève interdit la détention de races comme l'American Staffordshire Terrier, le Pit Bull, le Rottweiler, le Tosa, divers Mastiffs et d'autres ; le Valais interdit une douzaine de races (croisements compris). Une interdiction vise en général les races listées et leurs croisements, et les nouveaux arrivants doivent généralement obtenir une dérogation cantonale."
+    es: "Cantones con listas de razas prohibidas: Ginebra, Valais y Tesino están entre los más estrictos. Ginebra prohíbe la tenencia de razas como el American Staffordshire Terrier, el Pit Bull, el Rottweiler, el Tosa, varios Mastines y otras; Valais prohíbe alrededor de una docena de razas (cruces incluidos). Una prohibición suele abarcar las razas listadas y sus cruces, y los recién llegados generalmente deben obtener una excepción cantonal."
+    pt: "Cantões com listas de raças proibidas: Genebra, Valais e Ticino estão entre os mais rígidos. Genebra proíbe a posse de raças como American Staffordshire Terrier, Pit Bull, Rottweiler, Tosa, vários mastins e outras; o Valais proíbe cerca de uma dúzia de raças (cruzamentos incluídos). A proibição costuma abranger as raças listadas e seus cruzamentos, e quem chega de fora precisa, em geral, obter uma isenção cantonal."
+  cat2:
+    en: "Permit/restriction cantons: many other cantons require an ownership permit, liability insurance, muzzle and lead in public, and/or a behavioural assessment for listed or large/powerful breeds instead of an outright ban. Requirements vary widely, so the same dog may be allowed in one canton and restricted in a neighbouring one."
+    fr: "Cantons à permis/restrictions : de nombreux autres cantons exigent un permis de détention, une assurance responsabilité civile, la muselière et la laisse en public et/ou une évaluation comportementale pour les races listées ou puissantes, plutôt qu'une interdiction pure. Les exigences varient fortement : un même chien peut être admis dans un canton et restreint dans le canton voisin."
+    es: "Cantones con permiso/restricciones: muchos otros cantones exigen un permiso de tenencia, un seguro de responsabilidad civil, bozal y correa en público o una evaluación del comportamiento para las razas listadas o grandes/potentes, en lugar de una prohibición absoluta. Los requisitos varían mucho, por lo que un mismo perro puede estar permitido en un cantón y restringido en el vecino."
+    pt: "Cantões com autorização/restrições: muitos outros cantões exigem autorização de posse, seguro de responsabilidade civil, focinheira e guia em locais públicos e/ou uma avaliação comportamental para raças listadas ou de grande porte e força, em vez de uma proibição total. As exigências variam muito, então o mesmo cachorro pode ser permitido em um cantão e restrito no cantão vizinho."
+  note:
+    en: "There is no federal breed ban, so you must confirm the rules of the exact destination canton (and any canton you transit) with its cantonal veterinary office before booking. A separate federal rule applies to all cantons: dogs with docked ears and/or tails are banned from import."
+    fr: "Il n'existe pas d'interdiction fédérale de race : confirme les règles du canton de destination exact (et de tout canton traversé) auprès de son service vétérinaire cantonal avant de réserver. Une règle fédérale distincte s'applique à tous les cantons : les chiens aux oreilles et/ou à la queue coupées sont interdits d'importation."
+    es: "No existe una prohibición de razas federal, así que debes confirmar las normas del cantón de destino exacto (y de cualquier cantón que atravieses) con su servicio veterinario cantonal antes de reservar. Una norma federal aparte se aplica a todos los cantones: los perros con las orejas o la cola cortadas tienen prohibida la importación."
+    pt: "Não existe proibição federal de raças, então você precisa confirmar as regras do cantão exato de destino (e de qualquer cantão de passagem) com o serviço veterinário cantonal antes de reservar. Uma regra federal separada vale para todos os cantões: cachorros com as orelhas e/ou a cauda cortadas estão proibidos de importação."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — rabies-risk countries only (≥0.5 IU/ml, then 3-month wait)"
+    fr: "Titrage antirabique — pays à risque rabique uniquement (≥0,5 UI/ml, puis 3 mois d'attente)"
+    es: "Prueba de titulación de rabia — solo países con riesgo de rabia (≥0,5 UI/ml, y luego 3 meses de espera)"
+    pt: "Teste sorológico antirrábico — apenas países de risco de raiva (≥0,5 UI/ml e depois 3 meses de espera)"
+  - en: "Pet passport (EU origin) or FSVO health certificate (third-country origin)"
+    fr: "Passeport (origine UE) ou certificat sanitaire OSAV (origine pays tiers)"
+    es: "Pasaporte para mascotas (origen UE) o certificado sanitario de la OSAV (origen de país tercero)"
+    pt: "Passaporte para animais (origem na UE) ou certificado sanitário do OSAV (origem em país terceiro)"
+  - en: "FSVO import licence if arriving by air from a rabies-risk country"
+    fr: "Autorisation d'importation OSAV si arrivée par avion depuis un pays à risque rabique"
+    es: "Autorización de importación de la OSAV si llegas por avión desde un país con riesgo de rabia"
+    pt: "Autorização de importação do OSAV se a chegada for de avião vinda de um país de risco de raiva"
+  - en: "Plan entry via Basel, Geneva or Zurich airport for third-country arrivals"
+    fr: "Prévois l'entrée via les aéroports de Bâle, Genève ou Zurich pour les arrivées pays tiers"
+    es: "Prevé la entrada por el aeropuerto de Basilea, Ginebra o Zúrich para las llegadas de países terceros"
+    pt: "Planeje a entrada pelo aeroporto de Basileia, Genebra ou Zurique nas chegadas de países terceiros"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+  - en: "Check the destination canton's dangerous-dog rules; confirm your dog is not docked (banned from import)"
+    fr: "Vérifie les règles du canton de destination sur les chiens dangereux ; confirme que ton chien n'est pas coupé (interdit d'import)"
+    es: "Comprueba las normas del cantón de destino sobre perros peligrosos; confirma que tu perro no tiene orejas ni cola cortadas (importación prohibida)"
+    pt: "Verifique as regras do cantão de destino sobre cachorros perigosos; confirme que seu cachorro não tem orelhas ou cauda cortadas (importação proibida)"
+
+sources:
+  - label: { en: "FSVO — Travelling with pets", fr: "OSAV — Voyager avec des animaux de compagnie", es: "OSAV — Viajar con animales de compañía", pt: "OSAV — Viajar com animais de estimação" }
+    url: "https://www.blv.admin.ch/blv/en/home/tiere/reisen-mit-heimtieren.html"
+  - label: { en: "FSVO — Dogs, cats and ferrets (entry and exit)", fr: "OSAV — Chiens, chats et furets (entrée et sortie)", es: "OSAV — Perros, gatos y hurones (entrada y salida)", pt: "OSAV — Cães, gatos e furões (entrada e saída)" }
+    url: "https://www.blv.admin.ch/blv/en/home/tiere/reisen-mit-heimtieren/hunde-katzen-und-frettchen.html"
+  - label: { en: "FSVO — Entry check for dogs, cats and ferrets (online help)", fr: "OSAV — Aide en ligne entrée chiens, chats et furets", es: "OSAV — Ayuda en línea para la entrada de perros, gatos y hurones", pt: "OSAV — Verificação de entrada de cães, gatos e furões (ajuda on-line)" }
+    url: "https://www.blv.admin.ch/blv/en/home/tiere/reisen-mit-heimtieren/online-hilfe-hunde-katzen-frettchen.html"
+  - label: { en: "FSVO — List of countries by rabies risk (PDF)", fr: "OSAV — Liste des pays par risque rabique (PDF)", es: "OSAV — Lista de países por riesgo de rabia (PDF)", pt: "OSAV — Lista de países por risco de raiva (PDF)" }
+    url: "https://www.blv.admin.ch/dam/blv/en/dokumente/import-export/import/laenderliste-tollwut-db.pdf.download.pdf/list-of-rabies-risk-countries-status%2006.2026.pdf"
+  - label: { en: "Federal Customs (FOCBS/BAZG) — Dogs, cats, domestic animals", fr: "Douane fédérale (OFDF/BAZG) — Chiens, chats, animaux domestiques", es: "Aduana Federal (OFDF/BAZG) — Perros, gatos, animales domésticos", pt: "Alfândega Federal (OFDF/BAZG) — Cães, gatos, animais domésticos" }
+    url: "https://www.bazg.admin.ch/en/dog-purchase-importation-pets"
+  - label: { en: "Ordinance on the Import, Transit and Export of Pet Animals (IETPO)", fr: "Ordonnance sur l'importation, le transit et l'exportation d'animaux de compagnie (OITE-AC)", es: "Ordenanza sobre la importación, el tránsito y la exportación de animales de compañía (OITE-AC)", pt: "Ordenança sobre a importação, o trânsito e a exportação de animais de companhia (OITE-AC)" }
+    url: "https://www.admin.ch/opc/fr/classified-compilation/20140652/index.html"
+  - label: { en: "FDFA (Geneva) — Manual: Pets and cantonal dangerous-dog rules", fr: "DFAE (Genève) — Manuel : animaux de compagnie et règles cantonales chiens dangereux", es: "DFAE (Ginebra) — Manual: animales de compañía y normas cantonales sobre perros peligrosos", pt: "DFAE (Genebra) — Manual: animais de estimação e regras cantonais sobre cachorros perigosos" }
+    url: "https://www.eda.admin.ch/missions/mission-onu-geneve/en/home/manual-regime-privileges-and-immunities/introduction/manual-pets.html"
+
+seo:
+  title: { en: "Switzerland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Suisse — Guide", es: "Requisitos de entrada de perros en Suiza — Guía de viaje", pt: "Suíça: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Switzerland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Suisse avec ton chien : formalités (2026)", es: "Viajar a Suiza con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Suíça com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Switzerland (FSVO/customs) — by EU, low-risk and rabies-risk origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Suisse (OSAV/douane) — selon origine UE, faible risque ou risque rabique. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Suiza (OSAV/aduanas) — según origen UE. Con fuentes y fecha."
+    pt: "Microchip, raiva e teste sorológico para levar um cachorro à Suíça: regras oficiais (OSAV/alfândega) por origem UE, baixo risco ou risco de raiva. Com fonte e data."
+  slug: "switzerland"
+  shortDesc:
+    en: "What you need to bring a dog into Switzerland, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Suisse, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Suiza, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Suíça, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

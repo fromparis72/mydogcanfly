@@ -1,0 +1,326 @@
+id: airline_air_europa
+mono: UX
+name: Air Europa
+titleH1:
+  en: Flying with a dog on Air Europa
+  fr: Voyager avec un chien sur Air Europa
+  es: Volar con un perro en Air Europa
+  pt: "Viajar com um cachorro na Air Europa"
+metaDesc:
+  en: "Air Europa pet policy: cabin, hold and cargo, fares by zone, Madrid summer embargo, UK exclusion and official sources."
+  fr: "Politique animaux Air Europa : cabine, soute et fret, tarifs par zone, embargo estival Madrid, exclusion R.-U. et sources officielles."
+  es: "Política de mascotas de Air Europa: cabina, bodega y carga, tarifas por zona, embargo estival en Madrid, exclusión del Reino Unido y fuentes oficiales."
+  pt: "Política de animais da Air Europa: cabine, porão e carga, tarifas por zona, embargo de verão em Madri, exclusão do Reino Unido e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Spain · MAD
+      fr: Espagne · MAD
+      es: España · MAD
+      pt: "Espanha · MAD"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin or hold on most routes — but a Madrid summer connection embargo and no pets to the UK.
+  fr: Chats et chiens en cabine ou en soute sur la plupart des routes — mais un embargo estival en correspondance à Madrid et rien vers le R.-U.
+  es: Gatos y perros en cabina o bodega en la mayoría de las rutas — pero un embargo estival para conexiones en Madrid y nada de mascotas al Reino Unido.
+  pt: "Gatos e cachorros na cabine ou no porão na maioria das rotas — mas com embargo de verão nas conexões em Madri e sem animais para o Reino Unido."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 50 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK / species
+      fr: R.-U. / espèces
+      es: R.U. / especies
+      pt: "Reino Unido / espécie"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only (pet ≤ 8 kg, pet + carrier ≤ 10 kg) in a soft carrier under the seat (max 40 × 30 × 30 cm). Not in Business.
+      fr: Chiens et chats uniquement (animal ≤ 8 kg, animal + sac ≤ 10 kg) dans un sac souple sous le siège (max 40 × 30 × 30 cm). Pas en Business.
+      es: Solo perros y gatos (mascota ≤ 8 kg, mascota + jaula ≤ 10 kg) en una jaula blanda bajo el asiento (máx 40 × 30 × 30 cm). No en Business.
+      pt: "Somente cachorros e gatos (animal ≤ 8 kg, animal + bolsa ≤ 10 kg) em uma bolsa de transporte flexível sob o assento (máx. 40 × 30 × 30 cm). Não disponível na Business."
+    fee:
+      en: €35–175
+      fr: 35–175 €
+      es: 35–175 €
+      pt: "35–175 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (pet + kennel ≤ 50 kg) in a rigid IATA kennel with a metal door; two similar pets ≤ 14 kg each may share.
+      fr: Chats et chiens (animal + caisse ≤ 50 kg) en caisse IATA rigide à porte métallique ; deux animaux similaires ≤ 14 kg chacun peuvent partager.
+      es: Gatos y perros (mascota + jaula ≤ 50 kg) en una jaula rígida conforme a la IATA con puerta metálica; dos mascotas similares de ≤ 14 kg cada una pueden compartir.
+      pt: "Gatos e cachorros (animal + caixa ≤ 50 kg) em uma caixa rígida IATA com porta de metal; dois animais semelhantes ≤ 14 kg cada podem compartilhar a mesma caixa."
+    fee:
+      en: €90–350
+      fr: 90–350 €
+      es: 90–350 €
+      pt: "90–350 €"
+  - icon: ✈️
+    name:
+      en: Air Europa Cargo
+      fr: Air Europa Cargo
+      es: Air Europa Cargo
+      pt: "Air Europa Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Other species, more than 5 pets, and all pets to/from the UK.
+      fr: Autres espèces, plus de 5 animaux, et tous les animaux de/vers le R.-U.
+      es: Otras especies, más de 5 mascotas y todas las mascotas hacia/desde el Reino Unido.
+      pt: "Outras espécies, mais de 5 animais, e todos os animais de/para o Reino Unido."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — domestic Spain
+        fr: Cabine — national Espagne
+        es: Cabina — nacional España
+        pt: "Cabine — doméstico Espanha"
+      value:
+        en: €35
+        fr: 35 €
+        es: 35 €
+        pt: "35 €"
+    - label:
+        en: Cabin — Europe/Africa/America
+        fr: Cabine — Europe/Afrique/Amérique
+        es: Cabina — Europa/África/América
+        pt: "Cabine — Europa/África/América"
+      value:
+        en: €50
+        fr: 50 €
+        es: 50 €
+        pt: "50 €"
+    - label:
+        en: Cabin — long-haul
+        fr: Cabine — long-courrier
+        es: Cabina — largo radio
+        pt: "Cabine — longa distância"
+      value:
+        en: €150–175
+        fr: 150–175 €
+        es: 150–175 €
+        pt: "150–175 €"
+    - label:
+        en: Hold (domestic → long-haul)
+        fr: Soute (national → long-courrier)
+        es: Bodega (nacional → largo radio)
+        pt: "Porão (doméstico → longa distância)"
+      value:
+        en: €90–350
+        fr: 90–350 €
+        es: 90–350 €
+        pt: "90–350 €"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR by zone. Up to 5 pets per passenger; non-refundable.
+    fr: EUR par zone. Jusqu'à 5 animaux par passager ; non remboursable.
+    es: EUR por zona. Hasta 5 mascotas por pasajero; no reembolsable.
+    pt: "EUR por zona. Até 5 animais por passageiro; não reembolsável."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed breeds may only travel in the cabin as pets, and only up to 10 kg incl. carrier (over 8 kg not in the hold): boxer, bulldogs (all), Boston terrier, pug, Pekingese, Shih Tzu, Shar Pei, Cane Corso, mastiffs, Lhasa Apso, and Persian/Himalayan/Exotic/Burmese/British Shorthair cats."
+      fr: "Les races au nez écrasé ne peuvent voyager qu'en cabine comme animaux, et seulement jusqu'à 10 kg avec le sac (au-delà de 8 kg, pas en soute) : boxer, bouledogues (tous), Boston terrier, carlin, pékinois, Shih Tzu, Shar Pei, Cane Corso, mastiffs, Lhasa Apso, et chats persans/himalayens/exotiques/birmans/British Shorthair."
+      es: "Las razas de hocico chato solo pueden viajar en cabina como mascotas, y únicamente hasta 10 kg incluida la jaula (por encima de 8 kg, no en bodega): boxer, bulldogs (todos), Boston terrier, carlino, pekinés, Shih Tzu, Shar Pei, Cane Corso, mastines, Lhasa Apso y gatos persas/himalayos/exóticos/birmanos/British Shorthair."
+      pt: "As raças de focinho achatado só podem viajar na cabine como animais de estimação, e apenas até 10 kg com a bolsa incluída (acima de 8 kg, não no porão): boxer, bulldogues (todos), Boston terrier, pug, pequinês, Shih Tzu, Shar Pei, Cane Corso, mastiffs, Lhasa Apso, e gatos persas/himalaios/exóticos/burmeses/British Shorthair."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: Reinforced crate
+          fr: Caisse renforcée
+          es: Jaula reforzada
+          pt: "Caixa reforçada"
+      - cls: warn
+        label:
+          en: Muzzle required
+          fr: Muselière requise
+          es: Bozal obligatorio
+          pt: "Focinheira obrigatória"
+    note:
+      en: Potentially dangerous dogs (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) need a muzzle and a reinforced IATA crate. Sedation only on vet prescription.
+      fr: Les chiens potentiellement dangereux (pit-bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) nécessitent une muselière et une caisse IATA renforcée. Sédation uniquement sur prescription vétérinaire.
+      es: Los perros potencialmente peligrosos (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) necesitan bozal y una jaula conforme a la IATA reforzada. Sedación solo con prescripción veterinaria.
+      pt: "Cachorros potencialmente perigosos (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) precisam de focinheira e de uma caixa IATA reforçada. Sedação somente com prescrição veterinária."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: No hold via Madrid 11:00–20:00, 1 Jun–15 Sep
+        fr: Pas de soute via Madrid 11h–20h, 1 juin–15 sept.
+        es: Sin bodega vía Madrid 11:00–20:00, 1 jun–15 sep
+        pt: "Sem porão via Madri das 11h às 20h, de 1º de jun. a 15 de set."
+  note:
+    en: Hold pets aren't accepted from 1 June to 15 September if the flight connects in Madrid between 11:00 and 20:00 (heat safety). Air Europa publishes no other numeric limit.
+    fr: Les animaux en soute ne sont pas acceptés du 1er juin au 15 septembre si le vol fait correspondance à Madrid entre 11h et 20h (sécurité chaleur). Air Europa ne publie pas d'autre limite chiffrée.
+    es: Las mascotas en bodega no se aceptan del 1 de junio al 15 de septiembre si el vuelo conecta en Madrid entre las 11:00 y las 20:00 (seguridad por calor). Air Europa no publica ningún otro límite numérico.
+    pt: "Animais no porão não são aceitos de 1º de junho a 15 de setembro se o voo tiver conexão em Madri entre 11h e 20h (segurança contra o calor). A Air Europa não publica outro limite numérico."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs (guide, signal, medical, autism, SAR) travel free in the cabin; min 6 months, accredited (ADI/IGDF/ONCE).
+      fr: Les chiens d'assistance dressés (guide, signal, médical, autisme, sauvetage) voyagent gratuitement en cabine ; min 6 mois, accrédités (ADI/IGDF/ONCE).
+      es: Los perros de asistencia adiestrados (guía, de aviso, médico, de autismo, de rescate) viajan gratis en cabina; mín 6 meses, acreditados (ADI/IGDF/ONCE).
+      pt: "Cães de serviço treinados (guia, sinalizador, médico, autismo, busca e resgate) viajam grátis na cabine; mín. 6 meses, credenciados (ADI/IGDF/ONCE)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Contact CS ≥ 48 h ahead. US: DOT form (+ relief over 8 h); UK: DEFRA + reception-centre approval ≥ 72 h. Emotional-support animals aren't service animals."
+      fr: "Contacter le service client ≥ 48 h à l'avance. USA : formulaire DOT (+ soulagement au-delà de 8 h) ; R.-U. : DEFRA + accord du centre d'accueil ≥ 72 h. Les animaux de soutien émotionnel ne sont pas des animaux d'assistance."
+      es: "Contacta con atención al cliente con ≥ 48 h de antelación. EE. UU.: formulario DOT (+ desahogo si supera las 8 h); R.U.: DEFRA + aprobación del centro de recepción ≥ 72 h. Los animales de apoyo emocional no son animales de asistencia."
+      pt: "Entre em contato com o atendimento ao cliente com ≥ 48 h de antecedência. EUA: formulário do DOT (+ alívio acima de 8 h); Reino Unido: DEFRA + aprovação de centro de recepção com ≥ 72 h. Animais de apoio emocional não são animais de serviço."
+goodToKnow:
+  - icon: 🌡️
+    label:
+      en: Madrid summer embargo
+      fr: Embargo estival Madrid
+      es: Embargo estival en Madrid
+      pt: "Embargo de verão em Madri"
+    value:
+      en: No hold pets from 1 Jun–15 Sep on flights connecting in Madrid between 11:00 and 20:00.
+      fr: Pas d'animaux en soute du 1er juin au 15 sept. sur les vols en correspondance à Madrid entre 11h et 20h.
+      es: Sin mascotas en bodega del 1 jun al 15 sep en vuelos con conexión en Madrid entre las 11:00 y las 20:00.
+      pt: "Sem animais no porão de 1º de jun. a 15 de set. em voos com conexão em Madri entre 11h e 20h."
+  - icon: 🚫
+    label:
+      en: No pets to the UK
+      fr: Pas d'animaux vers le R.-U.
+      es: Sin mascotas al Reino Unido
+      pt: "Sem animais para o Reino Unido"
+    value:
+      en: All pets to/from the UK travel as cargo via the Cargo Department.
+      fr: Tous les animaux de/vers le R.-U. voyagent en fret via le service Cargo.
+      es: Todas las mascotas hacia/desde el Reino Unido viajan como carga a través del departamento de carga.
+      pt: "Todos os animais de/para o Reino Unido viajam como carga, via o departamento de carga."
+  - icon: 🐾
+    label:
+      en: Up to 5 pets
+      fr: Jusqu'à 5 animaux
+      es: Hasta 5 mascotas
+      pt: "Até 5 animais"
+    value:
+      en: Each passenger may bring up to 5 pets between cabin and hold; more needs cargo.
+      fr: Chaque passager peut emmener jusqu'à 5 animaux entre cabine et soute ; au-delà, via le fret.
+      es: Cada pasajero puede llevar hasta 5 mascotas entre cabina y bodega; por encima de eso, se necesita carga.
+      pt: "Cada passageiro pode levar até 5 animais entre cabine e porão; acima disso, é necessário usar a carga."
+book:
+  host: aireuropa.com
+  url: https://www.aireuropa.com/
+sources:
+  en: 3 Air Europa sources · last verified 11 July 2026
+  fr: 3 sources Air Europa · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Air Europa · última verificación 11 de julio de 2026
+  pt: "3 fontes da Air Europa · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

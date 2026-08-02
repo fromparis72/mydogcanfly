@@ -1,0 +1,310 @@
+id: airline_egyptair
+mono: MS
+name: EgyptAir
+titleH1:
+  en: Flying with a dog on EgyptAir
+  fr: Voyager avec un chien sur EgyptAir
+  es: Volar con un perro en EgyptAir
+  pt: "Voar com um cachorro na EgyptAir"
+metaDesc:
+  en: "EgyptAir pet policy: cabin, hold and EgyptAir Cargo, breed & connection limits, cargo-only countries and official sources."
+  fr: "Politique animaux EgyptAir : cabine, soute et EgyptAir Cargo, limites de races et correspondances, pays fret-seul et sources officielles."
+  es: "Política de mascotas de EgyptAir: cabina, bodega y EgyptAir Cargo, límites de raza y conexiones, países solo carga y fuentes oficiales."
+  pt: "Política de animais da EgyptAir: cabine, porão e EgyptAir Cargo, limites de raça e conexão, países somente carga e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Egypt · CAI
+      fr: Égypte · CAI
+      es: Egipto · CAI
+      pt: "Egito · CAI"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin or hold — but 48 h booking, connection breed bans, and several cargo-only countries.
+  fr: Chats et chiens en cabine ou en soute — mais réservation 48 h, races interdites en correspondance et plusieurs pays fret-seul.
+  es: Perros y gatos en cabina o bodega, pero reserva con 48 h, razas vetadas en conexión y varios países solo carga.
+  pt: "Gatos e cachorros na cabine ou no porão — mas reserva com 48 h, raças proibidas em conexão e vários países somente carga."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK/UAE…
+      fr: R.-U./ÉAU…
+      es: R.U./EAU…
+      pt: "R.U./EAU…"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (falcons by arrangement) ≤ 8 kg incl. cage (max 55+40+20 cm); max 2 per cabin zone, first-come, first-served.
+      fr: Chats et chiens (faucons sur arrangement) ≤ 8 kg avec la cage (max 55+40+20 cm) ; max 2 par zone cabine, premier arrivé premier servi.
+      es: Perros y gatos (halcones bajo acuerdo) ≤ 8 kg con la jaula (máx. 55+40+20 cm); máx. 2 por zona de cabina, por orden de llegada.
+      pt: "Gatos e cachorros (falcões mediante acordo) ≤ 8 kg com a caixa (máx. 55+40+20 cm); máx. 2 por zona de cabine, por ordem de chegada."
+    fee:
+      en: By route
+      fr: Selon la route
+      es: Según la ruta
+      pt: "Conforme a rota"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs as checked baggage (AVIH) in a rigid ventilated crate; over 23 kg travel alone (two-piece charge). Over 32 kg not to Tunisia/Tanzania.
+      fr: Chats et chiens en bagage enregistré (AVIH) dans une caisse rigide ventilée ; au-delà de 23 kg, voyage seul (facturé deux pièces). Plus de 32 kg refusé vers la Tunisie/Tanzanie.
+      es: Perros y gatos como equipaje facturado (AVIH) en una jaula rígida y ventilada; a más de 23 kg viajan solos (cargo de dos piezas). Más de 32 kg no se acepta a Túnez/Tanzania.
+      pt: "Gatos e cachorros como bagagem despachada (AVIH) em caixa rígida ventilada; acima de 23 kg viajam sozinhos (cobrança de duas peças). Acima de 32 kg não é aceito para Tunísia/Tanzânia."
+    fee:
+      en: By route
+      fr: Selon la route
+      es: Según la ruta
+      pt: "Conforme a rota"
+  - icon: ✈️
+    name:
+      en: EgyptAir Cargo
+      fr: EgyptAir Cargo
+      es: EgyptAir Cargo
+      pt: "EgyptAir Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Other species, and all pets to/from the UK, UAE, Bahrain, Yemen, Kenya and South Africa — cargo only.
+      fr: Autres espèces, et tous les animaux de/vers le R.-U., les ÉAU, Bahreïn, le Yémen, le Kenya et l'Afrique du Sud — fret uniquement.
+      es: "Otras especies, y todas las mascotas hacia/desde el R.U., EAU, Baréin, Yemen, Kenia y Sudáfrica: solo carga."
+      pt: "Outras espécies, e todos os animais de/para o Reino Unido, os EAU, Bahrein, o Iêmen, o Quênia e a África do Sul — somente carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: Excess-baggage basis
+        fr: Base bagage excédentaire
+        es: Según exceso de equipaje
+        pt: "Base de bagagem excedente"
+    - label:
+        en: Hold (≤ 32 kg)
+        fr: Soute (≤ 32 kg)
+        es: Bodega (≤ 32 kg)
+        pt: "Porão (≤ 32 kg)"
+      value:
+        en: Excess-baggage basis
+        fr: Base bagage excédentaire
+        es: Según exceso de equipaje
+        pt: "Base de bagagem excedente"
+    - label:
+        en: EgyptAir Cargo
+        fr: EgyptAir Cargo
+        es: EgyptAir Cargo
+        pt: "EgyptAir Cargo"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EgyptAir prices pets on an excess-baggage basis rather than a flat published fare.
+    fr: EgyptAir facture les animaux sur une base de bagage excédentaire plutôt qu'un tarif fixe publié.
+    es: EgyptAir cobra las mascotas según el exceso de equipaje, no con una tarifa fija publicada.
+    pt: "A EgyptAir cobra os animais com base na bagagem excedente, em vez de uma tarifa fixa divulgada."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds (connections)
+      fr: Races brachycéphales (correspondances)
+      es: Razas de hocico chato (conexiones)
+      pt: "Raças de focinho achatado (conexões)"
+    pills:
+      - cls: warn
+        label:
+          en: "Codeshare: not accepted"
+          fr: "Codeshare : non accepté"
+          es: "Código compartido: no aceptado"
+          pt: "Codeshare: não aceito"
+      - cls: warn
+        label:
+          en: Acknowledgment form
+          fr: Formulaire d'acceptation
+          es: Formulario de aceptación
+          pt: "Formulário de aceite"
+    note:
+      en: "On connecting flights with another carrier, snub-nosed dogs & cats aren't accepted as baggage: boxers, bulldogs (all), pugs (all), pit bull, Shih Tzu, chow chow, Pekingese, Boston terrier, Cane Corso, Dogue de Bordeaux, mastiffs (except Great Danes), and Exotic/Himalayan/Persian/Burmese cats. Owners of these breeds sign an acceptance form at the airport."
+      fr: "Sur les correspondances avec une autre compagnie, les chiens et chats au nez écrasé ne sont pas acceptés en bagage : boxers, bouledogues (tous), carlins (tous), pit-bull, Shih Tzu, chow chow, pékinois, Boston terrier, Cane Corso, Dogue de Bordeaux, mastiffs (sauf dogues allemands), et chats exotiques/himalayens/persans/birmans. Les propriétaires signent un formulaire d'acceptation à l'aéroport."
+      es: "En vuelos con conexión operados por otra aerolínea, los perros y gatos de hocico chato no se aceptan como equipaje: bóxeres, bulldogs (todos), carlinos (todos), pit bull, shih tzu, chow chow, pequinés, boston terrier, cane corso, dogo de Burdeos, mastines (salvo gran danés), y gatos exóticos/himalayos/persas/birmanos. Los dueños de estas razas firman un formulario de aceptación en el aeropuerto."
+      pt: "Em voos com conexão operados por outra companhia, cachorros e gatos de focinho achatado não são aceitos como bagagem: boxers, buldogues (todos), pugs (todos), pit bull, Shih Tzu, chow chow, pequinês, Boston terrier, Cane Corso, Dogue de Bordeaux, mastins (exceto dogues alemães), e gatos exóticos/himalaios/persas/birmaneses. Os donos dessas raças assinam um formulário de aceite no aeroporto."
+  - icon: 📄
+    title:
+      en: Booking & who
+      fr: Réservation & qui
+      es: Reserva y quién
+      pt: "Reserva e quem"
+    pills:
+      - cls: warn
+        label:
+          en: 48 h booking
+          fr: Réservation 48 h
+          es: Reserva 48 h
+          pt: "Reserva 48 h"
+    note:
+      en: Book ≥ 48 h ahead. Not for unaccompanied minors. On connections, carry empty cages; transit via Cairo cargo holds is suspended until further notice.
+      fr: Réserver ≥ 48 h à l'avance. Pas pour les mineurs non accompagnés. En correspondance, emporter les cages vides ; le transit par les soutes cargo du Caire est suspendu jusqu'à nouvel ordre.
+      es: Reserva con ≥ 48 h de antelación. No para menores no acompañados. En conexiones, lleva las jaulas vacías; el tránsito por las bodegas de carga de El Cairo está suspendido hasta nuevo aviso.
+      pt: "Reserve com ≥ 48 h de antecedência. Não é permitido para menores desacompanhados. Em conexões, leve as caixas vazias; o trânsito pelos porões de carga do Cairo está suspenso até novo aviso."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: EgyptAir publishes no hold-temperature limits or seasonal embargo on its pet page.
+    fr: EgyptAir ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux.
+    es: EgyptAir no publica límites de temperatura en bodega ni embargo estacional en su página de mascotas.
+    pt: "A EgyptAir não divulga limites de temperatura no porão nem embargo sazonal em sua página de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs (dogs only) travel free in the cabin at the passenger's feet, exempt from weight/container limits; pit bulls aren't accepted.
+      fr: Les chiens d'assistance (chiens seulement) voyagent gratuitement en cabine aux pieds du passager, sans limite de poids/sac ; les pit-bulls ne sont pas acceptés.
+      es: Los perros de servicio (solo perros) viajan gratis en cabina a los pies del pasajero, sin límite de peso/jaula; los pit bull no se aceptan.
+      pt: "Cães de assistência (somente cachorros) viajam de graça na cabine, aos pés do passageiro, isentos dos limites de peso/caixa; pit bulls não são aceitos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Confirm ≥ 48 h ahead with training + health certificates. US: DOT forms + CDC approval 10 business days ahead. Emotional-support animals not accepted."
+      fr: "Confirmer ≥ 48 h à l'avance avec certificats de dressage + santé. USA : formulaires DOT + accord CDC 10 jours ouvrés avant. Chiens de soutien émotionnel non acceptés."
+      es: "Confirma con ≥ 48 h de antelación con certificados de adiestramiento y de salud. EE. UU.: formularios DOT + aprobación del CDC 10 días hábiles antes. Los animales de apoyo emocional no se aceptan."
+      pt: "Confirme com ≥ 48 h de antecedência com certificados de adestramento e de saúde. EUA: formulários do DOT + aprovação do CDC 10 dias úteis antes. Animais de suporte emocional não são aceitos."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo perros y gatos
+      pt: "Somente gatos e cachorros"
+    value:
+      en: Only cats and dogs travel with passengers (falcons by arrangement); everything else goes via cargo.
+      fr: Seuls les chats et chiens voyagent avec les passagers (faucons sur arrangement) ; tout le reste passe par le fret.
+      es: Solo perros y gatos viajan con los pasajeros (halcones bajo acuerdo); todo lo demás va por carga.
+      pt: "Somente gatos e cachorros viajam com os passageiros (falcões mediante acordo); tudo o mais vai por carga."
+  - icon: 🚫
+    label:
+      en: Cargo-only countries
+      fr: Pays fret-seul
+      es: Países solo carga
+      pt: "Países somente carga"
+    value:
+      en: To/from the UK, UAE, Bahrain, Yemen, Kenya and South Africa, pets travel only as cargo.
+      fr: De/vers le R.-U., les ÉAU, Bahreïn, le Yémen, le Kenya et l'Afrique du Sud, les animaux voyagent uniquement en fret.
+      es: Hacia/desde el R.U., EAU, Baréin, Yemen, Kenia y Sudáfrica, las mascotas viajan solo como carga.
+      pt: "De/para o Reino Unido, os EAU, Bahrein, o Iêmen, o Quênia e a África do Sul, os animais viajam somente como carga."
+  - icon: 🎫
+    label:
+      en: First-come basis
+      fr: Premier arrivé
+      es: Por orden de llegada
+      pt: "Por ordem de chegada"
+    value:
+      en: Cabin pets are first-come, first-served, max 2 per cabin zone; extras go to the hold.
+      fr: Les animaux en cabine sont au premier arrivé, max 2 par zone cabine ; les autres en soute.
+      es: Las mascotas en cabina se aceptan por orden de llegada, máx. 2 por zona de cabina; el resto va a bodega.
+      pt: "Os animais em cabine são aceitos por ordem de chegada, máx. 2 por zona de cabine; os demais vão para o porão."
+book:
+  host: egyptair.com
+  url: https://www.egyptair.com/
+sources:
+  en: Official EgyptAir pet policy · last verified 11 July 2026
+  fr: Politique animaux officielle EgyptAir · dernière vérification 11 juillet 2026
+  es: Política de mascotas oficial de EgyptAir · última verificación 11 de julio de 2026
+  pt: "Política oficial de animais de estimação da EgyptAir · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

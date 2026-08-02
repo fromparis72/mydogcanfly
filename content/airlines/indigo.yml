@@ -1,0 +1,278 @@
+id: airline_indigo
+mono: 6E
+name: IndiGo
+titleH1:
+  en: Flying with a dog on IndiGo
+  fr: Voyager avec un chien sur IndiGo
+  es: Volar con un perro en IndiGo
+  pt: "Viajar com um cachorro pela IndiGo"
+metaDesc:
+  en: "IndiGo pet policy: no pets carried, only service dogs for customers with disabilities, and official sources."
+  fr: "Politique animaux IndiGo : aucun animal transporté, seulement les chiens d'assistance pour clients handicapés, et sources officielles."
+  es: "Política de mascotas de IndiGo: no se transportan mascotas, solo perros de servicio para clientes con discapacidad, y fuentes oficiales."
+  pt: "Política de animais da IndiGo: nenhum animal é transportado, somente cães de serviço para clientes com deficiência, e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: India · DEL
+      fr: Inde · DEL
+      es: India · DEL
+      pt: "Índia · DEL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: No pets
+    fr: Aucun animal
+    es: Sin mascotas
+    pt: "Sem animais"
+verdictNote:
+  en: IndiGo doesn't carry pets — only trained service dogs for customers with disabilities.
+  fr: IndiGo ne transporte aucun animal — seulement les chiens d'assistance dressés pour les clients handicapés.
+  es: IndiGo no transporta mascotas; solo perros de servicio adiestrados para clientes con discapacidad.
+  pt: "A IndiGo não transporta animais — somente cães de serviço treinados para clientes com deficiência."
+ladder:
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: assistance only
+      fr: assistance seul
+      es: solo asistencia
+      pt: "somente assistência"
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 34
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: —
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    detail:
+      en: IndiGo doesn't carry pets in the cabin — only trained service dogs.
+      fr: IndiGo ne transporte pas d'animaux en cabine — seulement les chiens d'assistance dressés.
+      es: IndiGo no transporta mascotas en cabina; solo perros de servicio adiestrados.
+      pt: "A IndiGo não transporta animais na cabine — somente cães de serviço treinados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: Animals are listed as prohibited in checked baggage.
+      fr: Les animaux figurent parmi les articles interdits en bagage enregistré.
+      es: Los animales figuran como artículos prohibidos en el equipaje facturado.
+      pt: "Os animais constam como proibidos na bagagem despachada."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: No official pet transport via IndiGo CarGo for passengers.
+      fr: Aucun transport d'animaux officiel via IndiGo CarGo pour les passagers.
+      es: No hay transporte oficial de mascotas por IndiGo CarGo para los pasajeros.
+      pt: "Não há transporte oficial de animais pela IndiGo CarGo para passageiros."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Pets (cabin / hold / cargo)
+        fr: Animaux (cabine / soute / fret)
+        es: Mascotas (cabina / bodega / carga)
+        pt: "Animais (cabine / porão / carga)"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: IndiGo carries no pets; only trained service dogs travel in the cabin for customers with disabilities.
+    fr: IndiGo ne transporte aucun animal ; seuls les chiens d'assistance dressés voyagent en cabine pour les clients handicapés.
+    es: IndiGo no transporta mascotas; solo los perros de servicio adiestrados viajan en cabina para clientes con discapacidad.
+    pt: "A IndiGo não transporta animais; somente cães de serviço treinados viajam na cabine para clientes com deficiência."
+restrictions:
+  - icon: 🚫
+    title:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    pills:
+      - cls: no
+        label:
+          en: Pets forbidden
+          fr: Animaux interdits
+          es: Mascotas prohibidas
+          pt: "Animais proibidos"
+    note:
+      en: Animals (alive or dead) are explicitly prohibited in both cabin and checked baggage. Only trained service dogs for customers with disabilities are carried.
+      fr: Les animaux (vivants ou morts) sont explicitement interdits en cabine et en bagage enregistré. Seuls les chiens d'assistance dressés pour les clients handicapés sont transportés.
+      es: Los animales (vivos o muertos) están explícitamente prohibidos tanto en cabina como en el equipaje facturado. Solo se transportan perros de servicio adiestrados para clientes con discapacidad.
+      pt: "Animais (vivos ou mortos) são explicitamente proibidos tanto na cabine quanto na bagagem despachada. Somente cães de serviço treinados para clientes com deficiência são transportados."
+  - icon: 🐾
+    title:
+      en: No pet program
+      fr: Pas de programme animal
+      es: Sin programa de mascotas
+      pt: "Sem programa para animais"
+    pills:
+      - cls: warn
+        label:
+          en: No 'IndiGo Pets' page
+          fr: Pas de page « IndiGo Pets »
+          es: Sin página «IndiGo Pets»
+          pt: "Sem página «IndiGo Pets»"
+    note:
+      en: Despite third-party reports, no official 'IndiGo Pets' cabin/hold service exists on goindigo.in as of July 2026.
+      fr: Malgré des articles tiers, aucun service officiel « IndiGo Pets » cabine/soute n'existe sur goindigo.in en juillet 2026.
+      es: A pesar de artículos de terceros, no existe ningún servicio oficial «IndiGo Pets» de cabina/bodega en goindigo.in a fecha de julio de 2026.
+      pt: "Apesar de reportagens de terceiros, não existe nenhum serviço oficial «IndiGo Pets» de cabine/porão no goindigo.in até julho de 2026."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: No pets carried
+        fr: Aucun animal transporté
+        es: No se transportan mascotas
+        pt: "Nenhum animal transportado"
+  note:
+    en: IndiGo carries no pets, so no hold-temperature policy applies.
+    fr: "IndiGo ne transporte aucun animal : aucune règle de température de soute ne s'applique."
+    es: "IndiGo no transporta mascotas: no se aplica ninguna norma de temperatura en bodega."
+    pt: "A IndiGo não transporta animais, portanto nenhuma política de temperatura no porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs for customers with disabilities travel in the cabin, at your feet, muzzled and restrained; excluded from weight/container limits.
+      fr: Les chiens d'assistance pour clients handicapés voyagent en cabine, à tes pieds, muselés et attachés ; exclus des limites de poids/contenant.
+      es: Los perros de servicio para clientes con discapacidad viajan en cabina, a sus pies, con bozal y sujetos; sin límites de peso/jaula.
+      pt: "Os cães de serviço para clientes com deficiência viajam na cabine, aos seus pés, com focinheira e presos; sem limites de peso ou de caixa de transporte."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Add the dog by calling the call centre ≥ 48 h ahead with training + vaccination proof; bring an absorbent mat, arrive 2 h early.
+      fr: Ajouter le chien en appelant le centre d'appel ≥ 48 h à l'avance avec preuves de dressage + vaccination ; apporter un tapis absorbant, arriver 2 h avant.
+      es: Añade el perro llamando al centro de atención ≥ 48 h antes con pruebas de adiestramiento + vacunación; lleva una alfombrilla absorbente y llega 2 h antes.
+      pt: "Adicione o cachorro ligando para a central de atendimento ≥ 48 h antes, com comprovantes de treinamento e vacinação; leve um tapete absorvente e chegue 2 h antes."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    value:
+      en: Animals are prohibited in cabin and checked baggage; only service dogs are carried.
+      fr: Les animaux sont interdits en cabine et en bagage enregistré ; seuls les chiens d'assistance sont transportés.
+      es: Los animales están prohibidos en cabina y equipaje facturado; solo se transportan perros de servicio.
+      pt: "Os animais são proibidos na cabine e na bagagem despachada; somente cães de serviço são transportados."
+  - icon: 🦮
+    label:
+      en: Service dogs only
+      fr: Chiens d'assistance seuls
+      es: Solo perros de servicio
+      pt: "Somente cães de serviço"
+    value:
+      en: Only trained service dogs for customers with disabilities may travel in the cabin.
+      fr: Seuls les chiens d'assistance dressés pour clients handicapés peuvent voyager en cabine.
+      es: Solo los perros de servicio adiestrados para clientes con discapacidad pueden viajar en cabina.
+      pt: "Somente cães de serviço treinados para clientes com deficiência podem viajar na cabine."
+  - icon: 📄
+    label:
+      en: No official program
+      fr: Pas de programme officiel
+      es: Sin programa oficial
+      pt: "Sem programa oficial"
+    value:
+      en: No official IndiGo pet service exists as of July 2026.
+      fr: Aucun service animal officiel IndiGo n'existe en juillet 2026.
+      es: No existe ningún servicio oficial de mascotas de IndiGo a fecha de julio de 2026.
+      pt: "Não existe nenhum serviço oficial da IndiGo para animais até julho de 2026."
+book:
+  host: goindigo.in
+  url: https://www.goindigo.in/
+sources:
+  en: 3 IndiGo sources · last verified 11 July 2026
+  fr: 3 sources IndiGo · dernière vérification 11 juillet 2026
+  es: 3 fuentes de IndiGo · última verificación 11 de julio de 2026
+  pt: "3 fontes da IndiGo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

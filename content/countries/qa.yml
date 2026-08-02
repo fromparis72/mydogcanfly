@@ -1,0 +1,373 @@
+# Country Entry Guide — Qatar (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_qa
+iso2: "QA"
+name: { en: "Qatar", fr: "Qatar", es: "Catar", pt: "Catar" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+exit:
+  authority: Department of Animal Resources
+  authorityUrl: https://portal.www.gov.qa
+  intro:
+    en: "Qatar is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export veterinary health certificate from the Department of Animal Resources."
+    fr: "Le Qatar est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire vétérinaire d'export du Département des ressources animales."
+    es: "Catar no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario veterinario de exportación del Departamento de Recursos Animales."
+    pt: "O Catar não é um país listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado veterinário de exportação emitido pelo Department of Animal Resources (departamento de recursos animais)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Request the export veterinary health certificate via the Hukoomi e-government service with the travel health certificate, microchip and rabies records; the exit certificate is valid 15 days from issue."
+        fr: "Demande le certificat sanitaire vétérinaire d'export via le service e-gouvernement Hukoomi avec le certificat de voyage, la puce et le carnet antirabique ; le certificat de sortie est valable 15 jours."
+        es: "Solicita el certificado sanitario veterinario de exportación a través del servicio de gobierno electrónico Hukoomi con el certificado de viaje, el microchip y el registro antirrábico; el certificado de salida es válido 15 días."
+        pt: "Solicite o certificado veterinário de exportação pelo serviço de governo eletrônico Hukoomi, apresentando o atestado de saúde de viagem, o microchip e o histórico de vacinação antirrábica; o certificado de saída vale 15 dias a partir da emissão."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Qatar with your dog", fr: "Voyager au Qatar avec ton chien", es: "Viajar a Catar con tu perro", pt: "Viajar para o Catar com seu cachorro" }
+  intro:
+    en: >-
+      Qatar allows pet dogs, but entry runs through the country's own scheme, not the EU framework.
+      Every dog needs an import permit obtained in advance from the Animal Resources Department of the
+      Ministry of Municipality before it travels. On top of the permit, your dog must have an ISO
+      microchip, a valid rabies vaccination, other core vaccinations and a government veterinary health
+      certificate. Dogs coming from countries Qatar treats as higher-risk for rabies must also pass a
+      rabies antibody test before travel. Personal import is limited to one pet per year, and permits are
+      normally issued to residents. Certain dangerous breeds are banned. The exact path depends mainly on
+      the country your dog is travelling from. This guide explains the permit, the tests, the age limits,
+      the yearly quota and the banned breeds so you know what to prepare before you book.
+    fr: >-
+      Le Qatar admet les chiens, mais l'entrée passe par le dispositif propre au pays, pas par le cadre de
+      l'UE. Chaque chien doit disposer d'un permis d'importation obtenu à l'avance auprès du Département des
+      ressources animales du ministère de la Municipalité avant de voyager. Outre le permis, ton chien
+      doit avoir une puce ISO, une vaccination antirabique valide, les autres vaccinations essentielles et
+      un certificat vétérinaire officiel. Les chiens venant de pays que le Qatar considère à risque rabique
+      plus élevé doivent aussi réussir un titrage des anticorps antirabiques avant le voyage. L'importation
+      personnelle est limitée à un animal par an, et les permis sont normalement délivrés aux résidents.
+      Certaines races dangereuses sont interdites. Le parcours exact dépend surtout du pays de départ. Ce
+      guide détaille le permis, les tests, les âges minimums, le quota annuel et les races interdites pour
+      savoir quoi préparer avant de réserver.
+    es: >-
+      Catar admite a los perros, pero la entrada se rige por el sistema propio del país, no por el marco de
+      la UE. Cada perro necesita un permiso de importación obtenido con antelación ante el Departamento de
+      Recursos Animales del Ministerio de Municipalidad antes de viajar. Además del permiso, tu perro debe
+      tener un microchip ISO, una vacunación antirrábica válida, las demás vacunas básicas y un certificado
+      sanitario veterinario oficial. Los perros procedentes de países que Catar considera de mayor riesgo
+      de rabia también deben superar una prueba de titulación de rabia antes de viajar. La importación
+      personal se limita a una mascota al año, y los permisos se expiden normalmente a residentes. Algunas
+      razas peligrosas están prohibidas. El recorrido exacto depende sobre todo del país desde el que viaja
+      tu perro. Esta guía explica el permiso, las pruebas, las edades mínimas, el cupo anual y las razas
+      prohibidas para que sepas qué preparar antes de reservar.
+
+    pt: "O Catar admite cachorros de estimação, mas a entrada segue o sistema próprio do país, e não o marco da UE. Todo cachorro precisa de uma autorização de importação obtida com antecedência junto ao Animal Resources Department (departamento de recursos animais) do Ministry of Municipality (o ministério da Municipalidade) antes de viajar. Além da autorização, seu cachorro precisa ter um microchip ISO, uma vacinação antirrábica válida, as demais vacinas essenciais e um certificado veterinário oficial. Cachorros vindos de países que o Catar considera de risco mais elevado para raiva também precisam passar por um teste sorológico antirrábico antes da viagem. A importação pessoal é limitada a um animal por ano, e as autorizações são normalmente emitidas para residentes. Algumas raças perigosas são proibidas. O percurso exato depende sobretudo do país de onde o cachorro parte. Este guia explica a autorização, os exames, os limites de idade, a cota anual e as raças proibidas para você saber o que preparar antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance import permit required", fr: "Modéré — permis d'importation préalable requis", es: "Moderado — se exige permiso de importación previo", pt: "Moderado — autorização de importação prévia obrigatória" }
+
+prepTime:
+  eu:
+    en: "From a rabies-controlled origin: about 3–4 weeks — microchip, rabies vaccination valid 21 days after a first shot, core vaccinations, government health certificate and the import permit."
+    fr: "Depuis une origine à rage contrôlée : environ 3–4 semaines — puce, vaccin antirabique valide 21 jours après une primo-vaccination, vaccinations essentielles, certificat officiel et permis d'importation."
+    es: "Desde un origen con rabia controlada: unas 3–4 semanas — microchip, vacuna antirrábica válida 21 días después de la primovacunación, vacunas básicas, certificado sanitario oficial y el permiso de importación."
+    pt: "De uma origem com raiva controlada: cerca de 3–4 semanas — microchip, vacinação antirrábica válida 21 dias após a primeira dose, vacinas essenciais, certificado veterinário oficial e a autorização de importação."
+  listed:
+    en: "From a higher-risk origin: add a rabies antibody test — plan several weeks to a few months for sampling, laboratory results and any waiting period before travel."
+    fr: "Depuis une origine à risque plus élevé : ajoute un titrage antirabique — compte plusieurs semaines à quelques mois pour le prélèvement, les résultats de laboratoire et un éventuel délai avant le voyage."
+    es: "Desde un origen de mayor riesgo: añade una prueba de titulación de rabia — cuenta con varias semanas a unos meses para la extracción, los resultados de laboratorio y un posible periodo de espera antes de viajar."
+    pt: "De uma origem de risco mais elevado: acrescente um teste sorológico antirrábico (titulação) — conte de várias semanas a alguns meses para a coleta, os resultados do laboratório e um eventual período de espera antes da viagem."
+  nonListed:
+    en: "From an origin Qatar does not accept, or for a banned breed: import may be refused or require special approval from the authorities — timing is case-by-case and cannot be assumed."
+    fr: "Depuis une origine non acceptée par le Qatar, ou pour une race interdite : l'importation peut être refusée ou soumise à une autorisation spéciale des autorités — les délais sont examinés au cas par cas."
+    es: "Desde un origen que Catar no acepta, o para una raza prohibida: la importación puede ser denegada o requerir una autorización especial de las autoridades — los plazos se examinan caso por caso y no pueden darse por supuestos."
+    pt: "De uma origem que o Catar não aceita, ou no caso de uma raça proibida: a importação pode ser recusada ou exigir aprovação especial das autoridades — os prazos são analisados caso a caso e não podem ser presumidos."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (non-banned breeds)", fr: "Oui (races non interdites)", es: "Sí (razas no prohibidas)", pt: "Sim (raças não proibidas)" }
+    cls: ok
+  - requirement: { en: "Import permit (Ministry of Municipality)", fr: "Permis d'importation (ministère de la Municipalité)", es: "Permiso de importación (Ministerio de Municipalidad)", pt: "Autorização de importação (Ministry of Municipality)" }
+    status: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio con antelación", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — higher-risk origins", fr: "Conditionnel — origines à risque élevé", es: "Condicional — orígenes de mayor riesgo", pt: "Condicional — origens de risco mais elevado" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not routinely required", fr: "Non requise en routine", es: "No obligatoria de forma sistemática", pt: "Não obrigatória de forma rotineira" }
+    cls: ok
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "Several breeds prohibited", fr: "Plusieurs races interdites", es: "Varias razas prohibidas", pt: "Várias raças proibidas" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Qatar (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Qatar (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Catar (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Catar (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Qatar", fr: "Pays de destination — Qatar", es: "País de destino — Catar", pt: "País de destino — Catar" }
+      text:
+        en: "Qatar runs its own scheme: an advance import permit from the Ministry of Municipality, an ISO microchip, a valid rabies vaccination, core vaccinations and a government health certificate are always required. Certain dangerous breeds are banned, and personal import is capped at one pet per year."
+        fr: "Le Qatar applique son propre dispositif : permis d'importation préalable du ministère de la Municipalité, puce ISO, vaccination antirabique valide, vaccinations essentielles et certificat vétérinaire officiel toujours exigés. Certaines races dangereuses sont interdites, et l'importation personnelle est plafonnée à un animal par an."
+        es: "Catar aplica su propio sistema: siempre se exigen un permiso de importación previo del Ministerio de Municipalidad, un microchip ISO, una vacunación antirrábica válida, las vacunas básicas y un certificado sanitario oficial. Algunas razas peligrosas están prohibidas, y la importación personal está limitada a una mascota al año."
+        pt: "O Catar aplica um sistema próprio: autorização de importação obtida com antecedência junto ao Ministry of Municipality, microchip ISO, vacinação antirrábica válida, vacinas essenciais e atestado de saúde oficial são sempre obrigatórios. Algumas raças perigosas são proibidas, e a importação pessoal é limitada a um animal por ano."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves a rabies-controlled country or a country Qatar treats as higher-risk decides whether a rabies antibody test is required, and origins Qatar does not accept may block import altogether."
+        fr: "Que ton chien parte d'un pays à rage contrôlée ou d'un pays que le Qatar considère à risque plus élevé détermine si un titrage antirabique est exigé, et les origines non acceptées par le Qatar peuvent bloquer l'importation."
+        es: "Que tu perro salga de un país con rabia controlada o de un país que Catar considera de mayor riesgo determina si se exige una prueba de titulación de rabia, y los orígenes que Catar no acepta pueden bloquear la importación por completo."
+        pt: "Se o seu cachorro parte de um país com raiva controlada ou de um país que o Catar considera de risco mais elevado é o que determina se o teste sorológico antirrábico é obrigatório, e as origens que o Catar não aceita podem bloquear a importação por completo."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a higher-risk country can trigger the antibody test even if you fly in from a low-risk country. Your dog's real origin and history count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque plus élevé peut imposer le titrage même si tu arrives d'un pays à faible risque. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país de mayor riesgo puede obligar a la prueba de titulación aunque llegues desde un país de bajo riesgo. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco mais elevado pode acionar a exigência do teste sorológico, mesmo que você chegue voando de um país de baixo risco. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Qatar's framework, then confirm your dog's exact origin, rabies-risk status and history with your vet before applying for the permit."
+    fr: "Lis donc les exigences ci-dessous comme le cadre qatari, puis confirme l'origine, le statut de risque rabique et l'historique exacts de ton chien avec ton vétérinaire avant de demander le permis."
+    es: "Así que lee los requisitos siguientes como el marco de Catar y luego confirma con tu veterinario el origen, el nivel de riesgo de rabia y el historial exactos de tu perro antes de solicitar el permiso."
+    pt: "Portanto, leia as exigências abaixo como o marco do Catar e, depois, confirme com o seu veterinário a origem exata do seu cachorro, o status de risco de raiva e o histórico antes de solicitar a autorização."
+
+requirements:
+  - item: { en: "Import permit (Animal Resources Dept.)", fr: "Permis d'importation (Dép. des ressources animales)", es: "Permiso de importación (Dpto. de Recursos Animales)", pt: "Autorização de importação (Animal Resources Dept.)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Applied for in advance to the Livestock / Animal Resources Department of the Ministry of Municipality, once all health terms are met; the permit is valid 30 days from issue.", fr: "Demandé à l'avance au Département de l'élevage / des ressources animales du ministère de la Municipalité, une fois toutes les conditions sanitaires remplies ; le permis est valable 30 jours à compter de la délivrance.", es: "Se solicita con antelación al Departamento de Ganadería / Recursos Animales del Ministerio de Municipalidad, una vez cumplidas todas las condiciones sanitarias; el permiso es válido 30 días desde su expedición.", pt: "Solicitada com antecedência ao Livestock / Animal Resources Department (departamento de pecuária e recursos animais) do Ministry of Municipality, depois de cumpridas todas as exigências sanitárias; a autorização vale 30 dias a partir da emissão." }
+    exceptions: { en: "Permits are normally issued to residents; visitors during major events apply through the Hayya-card pet permit service.", fr: "Les permis sont normalement délivrés aux résidents ; les visiteurs lors de grands événements passent par le service de permis pour animaux des titulaires de la carte Hayya.", es: "Los permisos se expiden normalmente a residentes; los visitantes durante grandes eventos lo tramitan a través del servicio de permisos para mascotas de los titulares de la tarjeta Hayya.", pt: "As autorizações são normalmente emitidas para residentes; visitantes durante grandes eventos fazem o pedido pelo serviço de autorização para animais destinado aos titulares do cartão Hayya." }
+    ref: { en: "Hukoomi — Apply for import permit for cats and dogs", fr: "Hukoomi — Demande de permis d'importation de chats et chiens", es: "Hukoomi — Solicitud de permiso de importación de gatos y perros", pt: "Hukoomi — Solicitação de autorização de importação de cães e gatos" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Permanent microchip compatible with international standards (ISO 11784/11785), implanted before the rabies vaccination; the chip number must match the health certificate.", fr: "Puce permanente conforme aux normes internationales (ISO 11784/11785), posée avant la vaccination antirabique ; le numéro de puce doit correspondre au certificat sanitaire.", es: "Microchip permanente conforme con las normas internacionales (ISO 11784/11785), implantado antes de la vacunación antirrábica; el número del chip debe coincidir con el del certificado sanitario.", pt: "Microchip permanente compatível com os padrões internacionais (ISO 11784/11785), implantado antes da vacinação antirrábica; o número do chip deve coincidir com o do atestado de saúde." }
+    exceptions: { en: "None — identification is mandatory for every imported dog.", fr: "Aucune — l'identification est obligatoire pour tout chien importé.", es: "Ninguna — la identificación es obligatoria para todo perro importado.", pt: "Nenhuma — a identificação é obrigatória para todo cachorro importado." }
+    ref: { en: "Hukoomi — Apply for import permit for cats and dogs", fr: "Hukoomi — Demande de permis d'importation de chats et chiens", es: "Hukoomi — Solicitud de permiso de importación de gatos y perros", pt: "Hukoomi — Solicitação de autorização de importação de cães e gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Given at 12 weeks of age or older; for a first vaccination at least 21 days must pass before travel, and the vaccination must be in date.", fr: "Administrée à l'âge de 12 semaines ou plus ; pour une primo-vaccination, un délai d'au moins 21 jours est requis avant le voyage, et la vaccination doit être en cours de validité.", es: "Administrada a las 12 semanas de edad o más; para la primovacunación deben transcurrir al menos 21 días antes del viaje, y la vacunación debe estar vigente.", pt: "Aplicada a partir das 12 semanas de idade; no caso de uma primeira vacinação, devem transcorrer pelo menos 21 dias antes da viagem, e a vacinação precisa estar dentro da validade." }
+    exceptions: { en: "The microchip must already be in place; otherwise the animal is re-vaccinated.", fr: "La puce doit déjà être posée ; sinon l'animal est revacciné.", es: "El microchip debe estar ya implantado; de lo contrario, se revacuna al animal.", pt: "O microchip já deve estar implantado; caso contrário, o animal é revacinado." }
+    ref: { en: "Hukoomi — Apply for import permit for cats and dogs", fr: "Hukoomi — Demande de permis d'importation de chats et chiens", es: "Hukoomi — Solicitud de permiso de importación de gatos y perros", pt: "Hukoomi — Solicitação de autorização de importação de cães e gatos" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Required from origins Qatar treats as higher-risk for rabies: blood sampled after vaccination at an approved laboratory, showing a protective level (internationally at least 0.5 IU/ml).", fr: "Requis depuis les origines que le Qatar considère à risque rabique plus élevé : sang prélevé après la vaccination dans un laboratoire agréé, montrant un niveau protecteur (au moins 0,5 UI/ml au plan international).", es: "Se exige desde los orígenes que Catar considera de mayor riesgo de rabia: sangre extraída después de la vacunación en un laboratorio autorizado, con un nivel protector (al menos 0,5 UI/ml a nivel internacional).", pt: "Obrigatório para as origens que o Catar considera de risco mais elevado para raiva: sangue coletado após a vacinação em um laboratório aprovado, com nível protetor (internacionalmente, pelo menos 0,5 UI/ml)." }
+    exceptions: { en: "Not required from rabies-controlled origins. The exact accepted origins and any waiting period are set by the Animal Resources Department — Unknown from published sources; confirm with the authority.", fr: "Non requis depuis les origines à rage contrôlée. Les origines acceptées exactes et un éventuel délai sont fixés par le Département des ressources animales — non communiqué dans les sources publiées ; à confirmer auprès de l'autorité.", es: "No se exige desde los orígenes con rabia controlada. Los orígenes aceptados exactos y cualquier periodo de espera los fija el Departamento de Recursos Animales — no consta en las fuentes publicadas; confírmalo con la autoridad.", pt: "Não obrigatório para origens com raiva controlada. As origens exatas aceitas e um eventual período de espera são definidos pelo Animal Resources Department — não consta nas fontes publicadas; confirme junto à autoridade." }
+    ref: { en: "Animal Resources Dept. import health terms; Hukoomi", fr: "Conditions sanitaires d'import du Dép. des ressources animales ; Hukoomi", es: "Condiciones sanitarias de importación del Dpto. de Recursos Animales; Hukoomi", pt: "Exigências sanitárias de importação do Animal Resources Dept.; Hukoomi" }
+  - item: { en: "Other (core) vaccinations", fr: "Autres vaccinations (essentielles)", es: "Otras vacunas (básicas)", pt: "Outras vacinas (essenciais)" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Dogs must carry current core vaccinations against distemper, hepatitis, leptospirosis, parvovirus and parainfluenza, recorded in the vaccination book.", fr: "Les chiens doivent présenter des vaccinations essentielles à jour contre la maladie de Carré, l'hépatite, la leptospirose, la parvovirose et la parainfluenza, consignées au carnet de vaccination.", es: "Los perros deben tener al día las vacunas básicas contra el moquillo, la hepatitis, la leptospirosis, el parvovirus y la parainfluenza, consignadas en la cartilla de vacunación.", pt: "Os cachorros precisam ter em dia as vacinas essenciais contra cinomose, hepatite, leptospirose, parvovirose e parainfluenza, registradas na carteira de vacinação." }
+    exceptions: { en: "None documented for dogs.", fr: "Aucune documentée pour les chiens.", es: "Ninguna documentada para los perros.", pt: "Nenhuma documentada para cachorros." }
+    ref: { en: "Animal Resources Dept. import health terms", fr: "Conditions sanitaires d'import du Dép. des ressources animales", es: "Condiciones sanitarias de importación del Dpto. de Recursos Animales", pt: "Exigências sanitárias de importação do Animal Resources Dept." }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the competent government veterinary authority of the exporting country shortly before travel; records the microchip, vaccinations and the dog's fitness to travel.", fr: "Délivré par l'autorité vétérinaire gouvernementale compétente du pays exportateur peu avant le voyage ; consigne la puce, les vaccinations et l'aptitude du chien au voyage.", es: "Expedido por la autoridad veterinaria gubernamental competente del país exportador poco antes del viaje; consigna el microchip, las vacunas y la aptitud del perro para viajar.", pt: "Emitido pela autoridade veterinária governamental competente do país exportador pouco antes da viagem; registra o microchip, as vacinas e a aptidão do cachorro para viajar." }
+    exceptions: { en: "None — an official certificate must accompany every dog.", fr: "Aucune — un certificat officiel doit accompagner chaque chien.", es: "Ninguna — un certificado oficial debe acompañar a cada perro.", pt: "Nenhuma — um certificado oficial deve acompanhar cada cachorro." }
+    ref: { en: "Hukoomi — Apply for import permit for cats and dogs", fr: "Hukoomi — Demande de permis d'importation de chats et chiens", es: "Hukoomi — Solicitud de permiso de importación de gatos y perros", pt: "Hukoomi — Solicitação de autorização de importação de cães e gatos" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Effectively older puppies only", fr: "En pratique chiots plus âgés seulement", es: "En la práctica solo cachorros de más edad", pt: "Na prática, apenas filhotes mais velhos" }
+    when: { en: "A puppy must be at least 12 weeks old to be vaccinated against rabies; where an antibody test applies, the practical minimum age reaches several months.", fr: "Un chiot doit avoir au moins 12 semaines pour être vacciné contre la rage ; lorsqu'un titrage s'applique, l'âge minimum pratique atteint plusieurs mois.", es: "Un cachorro debe tener al menos 12 semanas para vacunarse contra la rabia; cuando se aplica una prueba de titulación, la edad mínima práctica llega a varios meses.", pt: "Um filhote precisa ter pelo menos 12 semanas de idade para ser vacinado contra a raiva; quando o teste sorológico se aplica, a idade mínima prática chega a vários meses." }
+    exceptions: { en: "Younger puppies cannot meet the rabies requirements and cannot be imported.", fr: "Les chiots plus jeunes ne peuvent satisfaire les exigences antirabiques et ne peuvent être importés.", es: "Los cachorros más jóvenes no pueden cumplir los requisitos antirrábicos y no pueden importarse.", pt: "Filhotes mais novos não conseguem cumprir as exigências relativas à raiva e não podem ser importados." }
+    ref: { en: "Animal Resources Dept. import health terms", fr: "Conditions sanitaires d'import du Dép. des ressources animales", es: "Condiciones sanitarias de importación del Dpto. de Recursos Animales", pt: "Exigências sanitárias de importação do Animal Resources Dept." }
+  - item: { en: "Maximum pets per person per year", fr: "Nombre maximum d'animaux par personne et par an", es: "Número máximo de mascotas por persona y año", pt: "Número máximo de animais por pessoa por ano" }
+    required: { en: "Limited", fr: "Limité", es: "Limitado", pt: "Limitado" }
+    when: { en: "Personal import is limited to one pet dog or cat per person per year.", fr: "L'importation personnelle est limitée à un chien ou un chat par personne et par an.", es: "La importación personal se limita a un perro o un gato por persona y año.", pt: "A importação pessoal é limitada a um cachorro ou gato de estimação por pessoa por ano." }
+    exceptions: { en: "Larger or commercial movements fall under separate rules, not personal import.", fr: "Les mouvements plus importants ou commerciaux relèvent de règles distinctes, non de l'importation personnelle.", es: "Los movimientos mayores o comerciales se rigen por normas distintas, no por la importación personal.", pt: "Movimentações maiores ou comerciais se enquadram em regras próprias, e não na importação pessoal." }
+    ref: { en: "Animal Resources Dept. import conditions", fr: "Conditions d'importation du Dép. des ressources animales", es: "Condiciones de importación del Dpto. de Recursos Animales", pt: "Condições de importação do Animal Resources Dept." }
+  - item: { en: "Border check / port examination", fr: "Contrôle frontalier / examen au port", es: "Control fronterizo / examen en el punto de entrada", pt: "Controle de fronteira / exame no ponto de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Animals are examined on arrival against the permit, microchip and health certificate at the point of entry.", fr: "Les animaux sont examinés à l'arrivée au regard du permis, de la puce et du certificat sanitaire au point d'entrée.", es: "Los animales se examinan a la llegada cotejando el permiso, el microchip y el certificado sanitario en el punto de entrada.", pt: "Os animais são examinados na chegada, no ponto de entrada, em confronto com a autorização, o microchip e o atestado de saúde." }
+    exceptions: { en: "None.", fr: "Aucune.", es: "Ninguna.", pt: "Nenhuma." }
+    ref: { en: "Hukoomi — Apply for import permit for cats and dogs", fr: "Hukoomi — Demande de permis d'importation de chats et chiens", es: "Hukoomi — Solicitud de permiso de importación de gatos y perros", pt: "Hukoomi — Solicitação de autorização de importação de cães e gatos" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routinely required", fr: "Non requise en routine", es: "No obligatoria de forma sistemática", pt: "Não obrigatória de forma rotineira" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Non-compliant or higher-risk animals may be held, refused or returned at the owner's expense.", fr: "Les animaux non conformes ou à risque plus élevé peuvent être retenus, refusés ou renvoyés aux frais du propriétaire.", es: "Los animales no conformes o de mayor riesgo pueden ser retenidos, rechazados o devueltos a cargo del propietario.", pt: "Animais fora de conformidade ou de risco mais elevado podem ser retidos, recusados ou devolvidos às custas do tutor." }
+    ref: { en: "Animal Resources Dept. import conditions", fr: "Conditions d'importation du Dép. des ressources animales", es: "Condiciones de importación del Dpto. de Recursos Animales", pt: "Condições de importação do Animal Resources Dept." }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "Prohibited", fr: "Interdites", es: "Prohibidas", pt: "Proibidas" }
+    when: { en: "Import and possession of listed dangerous dog breeds is prohibited without a prior licence under Law No. 10 of 2019.", fr: "L'importation et la détention des races de chiens dangereux listées sont interdites sans licence préalable, au titre de la loi n° 10 de 2019.", es: "La importación y la tenencia de las razas de perros peligrosos listadas están prohibidas sin licencia previa, en virtud de la Ley n.º 10 de 2019.", pt: "A importação e a posse das raças de cachorro perigosas listadas são proibidas sem licença prévia, nos termos da Law No. 10 of 2019 (lei nº 10 de 2019)." }
+    exceptions: { en: "A special dispensation from the Ministry of Interior may be sought for a proven family pet; without a licence, penalties include prison and fines.", fr: "Une dérogation spéciale du ministère de l'Intérieur peut être demandée pour un animal de compagnie familial avéré ; sans licence, les sanctions incluent prison et amendes.", es: "Puede solicitarse una dispensa especial del Ministerio del Interior para una mascota familiar acreditada; sin licencia, las sanciones incluyen prisión y multas.", pt: "É possível pedir uma dispensa especial ao Ministry of Interior (ministério do Interior) para um animal de estimação familiar comprovado; sem licença, as penas incluem prisão e multa." }
+    ref: { en: "Law No. 10 of 2019 (possession of dangerous animals); MoECC", fr: "Loi n° 10 de 2019 (détention d'animaux dangereux) ; MoECC", es: "Ley n.º 10 de 2019 (tenencia de animales peligrosos); MoECC", pt: "Law No. 10 of 2019 (lei nº 10 de 2019, posse de animais perigosos); MoECC" }
+
+origin:
+  eu:
+    title: { en: "Rabies-controlled origin — no blood test", fr: "Origine à rage contrôlée — sans prise de sang", es: "Origen con rabia controlada — sin análisis de sangre", pt: "Origem com raiva controlada — sem exame de sangue" }
+    body:
+      en: "If your dog leaves a country Qatar treats as rabies-controlled, it needs the import permit from the Ministry of Municipality, an ISO microchip, a valid rabies vaccination, current core vaccinations and a government veterinary health certificate. No rabies antibody test is required. The dog must be at least 12 weeks old and identified before its rabies shot."
+      fr: "Si ton chien part d'un pays que le Qatar considère à rage contrôlée, il lui faut le permis d'importation du ministère de la Municipalité, une puce ISO, une vaccination antirabique valide, les vaccinations essentielles à jour et un certificat vétérinaire officiel. Aucun titrage antirabique n'est requis. Le chien doit avoir au moins 12 semaines et être identifié avant son vaccin antirabique."
+      es: "Si tu perro sale de un país que Catar considera con rabia controlada, necesita el permiso de importación del Ministerio de Municipalidad, un microchip ISO, una vacunación antirrábica válida, las vacunas básicas al día y un certificado sanitario veterinario oficial. No se exige prueba de titulación de rabia. El perro debe tener al menos 12 semanas y estar identificado antes de su vacuna antirrábica."
+      pt: "Se o seu cachorro parte de um país que o Catar considera com raiva controlada, ele precisa da autorização de importação do Ministry of Municipality, de um microchip ISO, de uma vacinação antirrábica válida, das vacinas essenciais em dia e de um certificado veterinário oficial. Nenhum teste sorológico antirrábico é exigido. O cachorro precisa ter pelo menos 12 semanas de idade e estar identificado antes da vacina antirrábica."
+    cls: ok
+  listed:
+    title: { en: "Higher-risk origin — antibody test required", fr: "Origine à risque plus élevé — titrage requis", es: "Origen de mayor riesgo — se exige prueba de titulación", pt: "Origem de risco mais elevado — teste sorológico obrigatório" }
+    body:
+      en: "From a country Qatar treats as higher-risk for rabies, add a rabies antibody test: blood sampled after vaccination at an approved laboratory, showing a protective level (internationally at least 0.5 IU/ml). The permit, microchip, vaccinations and government health certificate are all still required, and the practical minimum age rises to several months. The exact accepted origins and any waiting period are set by the Animal Resources Department."
+      fr: "Depuis un pays que le Qatar considère à risque rabique plus élevé, ajoute un titrage antirabique : sang prélevé après la vaccination dans un laboratoire agréé, montrant un niveau protecteur (au moins 0,5 UI/ml au plan international). Le permis, la puce, les vaccinations et le certificat officiel restent tous requis, et l'âge minimum pratique monte à plusieurs mois. Les origines acceptées exactes et un éventuel délai sont fixés par le Département des ressources animales."
+      es: "Desde un país que Catar considera de mayor riesgo de rabia, añade una prueba de titulación de rabia: sangre extraída después de la vacunación en un laboratorio autorizado, con un nivel protector (al menos 0,5 UI/ml a nivel internacional). El permiso, el microchip, las vacunas y el certificado sanitario oficial siguen siendo todos obligatorios, y la edad mínima práctica sube a varios meses. Los orígenes aceptados exactos y cualquier periodo de espera los fija el Departamento de Recursos Animales."
+      pt: "De um país que o Catar considera de risco mais elevado para raiva, acrescente um teste sorológico antirrábico (titulação): sangue coletado após a vacinação em um laboratório aprovado, com nível protetor (internacionalmente, pelo menos 0,5 UI/ml). A autorização, o microchip, as vacinas e o certificado veterinário oficial continuam todos obrigatórios, e a idade mínima prática sobe para vários meses. As origens exatas aceitas e um eventual período de espera são definidos pelo Animal Resources Department."
+    cls: warn
+  nonListed:
+    title: { en: "Origin not accepted, or banned breed", fr: "Origine non acceptée, ou race interdite", es: "Origen no aceptado, o raza prohibida", pt: "Origem não aceita, ou raça proibida" }
+    body:
+      en: "Qatar authorises imports only once its health terms are met, and origins it does not accept — or dogs of banned dangerous breeds — may be refused or require special approval. A banned breed needs a dispensation from the Ministry of Interior. Confirm your dog's origin and breed with the Animal Resources Department before making any plans."
+      fr: "Le Qatar n'autorise l'importation qu'une fois ses conditions sanitaires remplies, et les origines non acceptées — ou les chiens de races dangereuses interdites — peuvent être refusés ou soumis à une autorisation spéciale. Une race interdite nécessite une dérogation du ministère de l'Intérieur. Vérifie l'origine et la race de ton chien auprès du Département des ressources animales avant tout projet."
+      es: "Catar autoriza la importación solo una vez cumplidas sus condiciones sanitarias, y los orígenes que no acepta — o los perros de razas peligrosas prohibidas — pueden ser rechazados o requerir una autorización especial. Una raza prohibida necesita una dispensa del Ministerio del Interior. Confirma el origen y la raza de tu perro con el Departamento de Recursos Animales antes de hacer planes."
+      pt: "O Catar só autoriza a importação depois de cumpridas as suas exigências sanitárias, e as origens que não aceita — ou os cachorros de raças perigosas proibidas — podem ser recusados ou exigir aprovação especial. Uma raça proibida precisa de uma dispensa do Ministry of Interior. Confirme a origem e a raça do seu cachorro junto ao Animal Resources Department antes de fazer qualquer plano."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Qatar depends on your permit and the country you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Qatar dépend de ton permis et du pays de départ."
+    es: "Lo que ocurre cuando tu perro llega a Catar depende de tu permiso y del país desde el que hayas volado."
+    pt: "O que acontece na chegada do seu cachorro ao Catar depende da sua autorização e do país de onde você voou."
+  points:
+    - en: "The import permit must be issued by the Ministry of Municipality before you travel and be still valid (30 days) on the day of entry."
+      fr: "Le permis d'importation doit être délivré par le ministère de la Municipalité avant le voyage et être encore valide (30 jours) le jour de l'entrée."
+      es: "El permiso de importación debe expedirlo el Ministerio de Municipalidad antes de viajar y seguir vigente (30 días) el día de la entrada."
+      pt: "A autorização de importação precisa ser emitida pelo Ministry of Municipality antes da viagem e ainda estar válida (30 dias) no dia da entrada."
+    - en: "Animals are examined at the point of entry against the permit, microchip and health certificate."
+      fr: "Les animaux sont examinés au point d'entrée au regard du permis, de la puce et du certificat sanitaire."
+      es: "Los animales se examinan en el punto de entrada cotejando el permiso, el microchip y el certificado sanitario."
+      pt: "Os animais são examinados no ponto de entrada em confronto com a autorização, o microchip e o atestado de saúde."
+    - en: "Carry original documents, including the government veterinary health certificate and vaccination book."
+      fr: "Munis-toi des documents originaux, dont le certificat vétérinaire officiel et le carnet de vaccination."
+      es: "Lleva los documentos originales, incluidos el certificado sanitario veterinario oficial y la cartilla de vacunación."
+      pt: "Leve os documentos originais, incluindo o certificado veterinário oficial e a carteira de vacinação."
+    - en: "If documents are missing or invalid, or the breed is banned without a licence, the animal may be held, refused entry or returned — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, ou si la race est interdite sans licence, l'animal peut être retenu, refusé ou renvoyé — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, o la raza está prohibida sin licencia, el animal puede ser retenido, rechazado o devuelto — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, ou se a raça for proibida e não houver licença, o animal pode ser retido, ter a entrada recusada ou ser devolvido — às custas do tutor."
+    - en: "Personal import is limited to one pet dog or cat per person per year."
+      fr: "L'importation personnelle est limitée à un chien ou un chat par personne et par an."
+      es: "La importación personal se limita a un perro o un gato por persona y año."
+      pt: "A importação pessoal é limitada a um cachorro ou gato de estimação por pessoa por ano."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Qatar regulates dangerous animals under Law No. 10 of 2019 on the possession of dangerous animals, enforced by the Ministry of Environment and Climate Change (MoECC). The law classifies a list of dog breeds as dangerous and bans importing, exporting, trading, owning or walking them without a prior licence, on pain of prison and fines."
+    fr: "Le Qatar réglemente les animaux dangereux au titre de la loi n° 10 de 2019 sur la détention d'animaux dangereux, appliquée par le ministère de l'Environnement et du Changement climatique (MoECC). La loi classe une liste de races de chiens comme dangereuses et interdit de les importer, exporter, vendre, détenir ou promener sans licence préalable, sous peine de prison et d'amendes."
+    es: "Catar regula los animales peligrosos en virtud de la Ley n.º 10 de 2019 sobre la tenencia de animales peligrosos, aplicada por el Ministerio de Medio Ambiente y Cambio Climático (MoECC). La ley clasifica una lista de razas de perros como peligrosas y prohíbe importarlos, exportarlos, comercializarlos, tenerlos o pasearlos sin licencia previa, bajo pena de prisión y multas."
+    pt: "O Catar regula os animais perigosos pela Law No. 10 of 2019 (lei nº 10 de 2019) sobre a posse de animais perigosos, aplicada pelo Ministry of Environment and Climate Change (MoECC, o ministério do Meio Ambiente e da Mudança Climática). A lei classifica uma lista de raças de cachorro como perigosas e proíbe importar, exportar, comercializar, possuir ou passear com elas sem licença prévia, sob pena de prisão e multa."
+  cat1:
+    en: "Banned dog breeds under the regulation include: Doberman, Rhodesian Ridgeback, American Staffordshire Terrier, American Pit Bull Terrier, Boston Terrier, German Pinscher, Staffordshire Terrier, Bull Terrier, Ca de Bou, Canary Dog (Presa Canario), Dogo Argentino, Brazilian Mastiff (Fila Brasileiro), Spanish Mastiff, Neapolitan Mastiff, Bulldog, Bullmastiff, Old English Mastiff, Dogue de Bordeaux, Boxer, Great Dane, Rottweiler, Shar Pei, Cane Corso, Kangal, Tibetan Mastiff, Caucasian Sheepdog, Ovcharka and Alpine Mastiff — 28 breeds in all, plus their crosses."
+    fr: "Les races de chiens interdites au titre de la réglementation comprennent : Doberman, Rhodesian Ridgeback, American Staffordshire Terrier, American Pit Bull Terrier, Boston Terrier, Pinscher allemand, Staffordshire Terrier, Bull Terrier, Ca de Bou, Dogue des Canaries (Presa Canario), Dogo Argentino, Mâtin brésilien (Fila Brasileiro), Mâtin espagnol, Mâtin napolitain, Bouledogue, Bullmastiff, Vieux Mastiff anglais, Dogue de Bordeaux, Boxer, Dogue allemand, Rottweiler, Shar Pei, Cane Corso, Kangal, Mâtin tibétain, Berger du Caucase, Ovtcharka et Mâtin des Alpes — 28 races au total, ainsi que leurs croisements."
+    es: "Las razas de perros prohibidas en virtud de la normativa incluyen: Doberman, Rhodesian Ridgeback, American Staffordshire Terrier, American Pit Bull Terrier, Boston Terrier, Pinscher alemán, Staffordshire Terrier, Bull Terrier, Ca de Bou, Presa Canario, Dogo Argentino, Mastín brasileño (Fila Brasileiro), Mastín español, Mastín napolitano, Bulldog, Bullmastiff, Mastín inglés antiguo, Dogo de Burdeos, Boxer, Gran danés, Rottweiler, Shar Pei, Cane Corso, Kangal, Mastín tibetano, Perro pastor del Cáucaso, Ovcharka y Mastín de los Alpes — 28 razas en total, además de sus cruces."
+    pt: "As raças de cachorro proibidas pela regulamentação incluem: Doberman, Rhodesian Ridgeback, American Staffordshire Terrier, American Pit Bull Terrier, Boston Terrier, Pinscher Alemão, Staffordshire Terrier, Bull Terrier, Ca de Bou, Dogo Canário (Presa Canario), Dogo Argentino, Fila Brasileiro, Mastim Espanhol, Mastim Napolitano, Buldogue, Bullmastiff, Mastim Inglês (Old English Mastiff), Dogue de Bordeaux, Boxer, Dogue Alemão, Rottweiler, Shar Pei, Cane Corso, Kangal, Mastim Tibetano, Pastor do Cáucaso, Ovcharka e Mastim Alpino — 28 raças ao todo, além de seus cruzamentos."
+  cat2:
+    en: "There is no lighter 'permitted with conditions' category for these breeds at import: they are banned outright. A special dispensation from the Ministry of Interior may be sought to import a banned breed only as a proven family pet, subject to the authority's approval."
+    fr: "Il n'existe pas de catégorie allégée « autorisée sous conditions » pour ces races à l'importation : elles sont purement interdites. Une dérogation spéciale du ministère de l'Intérieur peut être demandée pour importer une race interdite uniquement comme animal de compagnie familial avéré, sous réserve de l'accord de l'autorité."
+    es: "No existe una categoría más flexible de «permitida con condiciones» para estas razas en la importación: están prohibidas por completo. Puede solicitarse una dispensa especial del Ministerio del Interior para importar una raza prohibida únicamente como mascota familiar acreditada, con la aprobación de la autoridad."
+    pt: "Não existe uma categoria mais branda de \"permitido com condições\" para essas raças na importação: elas são proibidas de forma pura e simples. É possível pedir uma dispensa especial ao Ministry of Interior para importar uma raça proibida apenas como animal de estimação familiar comprovado, ficando a decisão a critério da autoridade."
+  note:
+    en: "Because a dog that resembles a listed breed risks refusal, confirm your dog's breed and any cross before applying for the permit. The dangerous-animals list can change; verify with the MoECC and the Animal Resources Department."
+    fr: "Un chien ressemblant à une race listée risquant le refus, confirme la race de ton chien et tout croisement avant de demander le permis. La liste des animaux dangereux peut évoluer ; vérifie auprès du MoECC et du Département des ressources animales."
+    es: "Como un perro que se parezca a una raza listada puede ser rechazado, confirma la raza de tu perro y cualquier cruce antes de solicitar el permiso. La lista de animales peligrosos puede cambiar; verifícalo con el MoECC y el Departamento de Recursos Animales."
+    pt: "Como um cachorro que se pareça com uma das raças listadas corre o risco de ser recusado, confirme a raça do seu cachorro e eventuais cruzamentos antes de solicitar a autorização. A lista de animais perigosos pode mudar; verifique junto ao MoECC e ao Animal Resources Department."
+
+checklist:
+  - en: "Import permit obtained from the Ministry of Municipality before travel (valid 30 days)"
+    fr: "Permis d'importation obtenu auprès du ministère de la Municipalité avant le voyage (valable 30 jours)"
+    es: "Permiso de importación obtenido del Ministerio de Municipalidad antes del viaje (válido 30 días)"
+    pt: "Autorização de importação obtida junto ao Ministry of Municipality antes da viagem (válida por 30 dias)"
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days for a first vaccination)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours pour une primo-vaccination)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días para la primovacunación)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na aplicação, +21 dias no caso de primeira vacinação)"
+  - en: "Rabies antibody test (protective level) — higher-risk origins only"
+    fr: "Titrage antirabique (niveau protecteur) — origines à risque plus élevé uniquement"
+    es: "Prueba de titulación de rabia (nivel protector) — solo orígenes de mayor riesgo"
+    pt: "Teste sorológico antirrábico (nível protetor) — somente para origens de risco mais elevado"
+  - en: "Core vaccinations current (distemper, hepatitis, leptospirosis, parvovirus, parainfluenza)"
+    fr: "Vaccinations essentielles à jour (Carré, hépatite, leptospirose, parvovirose, parainfluenza)"
+    es: "Vacunas básicas al día (moquillo, hepatitis, leptospirosis, parvovirus, parainfluenza)"
+    pt: "Vacinas essenciais em dia (cinomose, hepatite, leptospirose, parvovirose, parainfluenza)"
+  - en: "Government veterinary health certificate matching the microchip number"
+    fr: "Certificat vétérinaire officiel correspondant au numéro de puce"
+    es: "Certificado sanitario veterinario oficial que coincida con el número del microchip"
+    pt: "Certificado veterinário oficial coincidindo com o número do microchip"
+  - en: "Confirm your dog is not a banned breed (pit bull, Dogo Argentino, Fila Brasileiro, Tosa/mastiff types, Rottweiler…)"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite (pit-bull, Dogo Argentino, Fila Brasileiro, types tosa/mastiff, Rottweiler…)"
+    es: "Confirma que tu perro no es de una raza prohibida (pit bull, Dogo Argentino, Fila Brasileiro, tipos tosa/mastín, Rottweiler…)"
+    pt: "Confirme que o seu cachorro não é de uma raça proibida (pit bull, Dogo Argentino, Fila Brasileiro, tipos tosa/mastim, Rottweiler…)"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "Hukoomi — Apply for import permit for cats and dogs", fr: "Hukoomi — Demande de permis d'importation de chats et chiens", es: "Hukoomi — Solicitud de permiso de importación de gatos y perros", pt: "Hukoomi — Solicitação de autorização de importação de cães e gatos" }
+    url: "https://hukoomi.gov.qa/en/service/apply-for-import-permit-for-cats-and-dogs/1000"
+  - label: { en: "Hukoomi — Request Livestock Import Permit (Ministry of Municipality)", fr: "Hukoomi — Demande de permis d'importation de bétail (ministère de la Municipalité)", es: "Hukoomi — Solicitud de permiso de importación de ganado (Ministerio de Municipalidad)", pt: "Hukoomi — Solicitação de autorização de importação de animais de criação (Ministry of Municipality)" }
+    url: "https://hukoomi.gov.qa/en/service/request-livestock-import-permit"
+  - label: { en: "Hukoomi — Request veterinary health certificate for dog and cat export", fr: "Hukoomi — Demande de certificat vétérinaire pour l'exportation de chiens et chats", es: "Hukoomi — Solicitud de certificado sanitario veterinario para la exportación de perros y gatos", pt: "Hukoomi — Solicitação de certificado veterinário para a exportação de cães e gatos" }
+    url: "https://hukoomi.gov.qa/en/service/request-veterinary-health-certificate-for-dog-and-cat-export/1000"
+  - label: { en: "Hukoomi — Request pet import permits for Hayya card holders", fr: "Hukoomi — Demande de permis d'importation d'animaux pour les titulaires de la carte Hayya", es: "Hukoomi — Solicitud de permisos de importación de mascotas para titulares de la tarjeta Hayya", pt: "Hukoomi — Solicitação de autorizações de importação de animais de estimação para titulares do cartão Hayya" }
+    url: "https://hukoomi.gov.qa/ar/services/request-pet-import-permits-for-hayya-card-holders"
+  - label: { en: "Hukoomi — Laws in Qatar (Law No. 10 of 2019, possession of dangerous animals)", fr: "Hukoomi — Lois au Qatar (loi n° 10 de 2019, détention d'animaux dangereux)", es: "Hukoomi — Leyes en Catar (Ley n.º 10 de 2019, tenencia de animales peligrosos)", pt: "Hukoomi — Leis no Catar (Law No. 10 of 2019, lei nº 10 de 2019, posse de animais perigosos)" }
+    url: "https://hukoomi.gov.qa/en/laws"
+
+seo:
+  title: { en: "Qatar Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Qatar — Guide", es: "Requisitos de entrada de perros en Catar — Guía de viaje", pt: "Entrada de cachorros no Catar — Guia de viagem" }
+  metaTitle: { en: "Traveling to Qatar With Your Dog: Entry Requirements (2026)", fr: "Voyager au Qatar avec ton chien : formalités (2026)", es: "Viajar a Catar con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Catar com seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official import permit, microchip, rabies and antibody-test rules for bringing a dog into Qatar, plus banned breeds. Sourced and dated."
+    fr: "Règles officielles : permis d'importation, puce, rage et titrage pour faire entrer un chien au Qatar, plus les races interdites. Sourcé et daté."
+    es: "Normas oficiales de permiso de importación, microchip, rabia y prueba de titulación para traer un perro a Catar, más las razas prohibidas. Con fuentes y fecha."
+    pt: "Regras oficiais de autorização de importação, microchip, raiva e teste sorológico para levar um cachorro ao Catar, e as raças proibidas. Com fontes e data."
+  slug: "qatar"
+  shortDesc:
+    en: "What you need to bring a dog into Qatar — permit, microchip, rabies, antibody test and banned breeds."
+    fr: "Ce qu'il faut pour faire entrer un chien au Qatar — permis, puce, rage, titrage et races interdites."
+    es: "Lo que necesitas para traer un perro a Catar — permiso, microchip, rabia, prueba de titulación y razas prohibidas."
+    pt: "O que você precisa para levar um cachorro ao Catar — autorização, microchip, raiva, teste sorológico e raças proibidas."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

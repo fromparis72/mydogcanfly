@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["@cloudflare/workers-types"],
+    "paths": {
+      "@mydogcanfly/engine": ["../engine/src/index.ts"],
+      "@mydogcanfly/knowledge": ["../knowledge/src/index.ts"]
+    }
+  },
+  "include": ["src", "scripts"]
+}

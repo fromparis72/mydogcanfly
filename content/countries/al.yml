@@ -1,0 +1,366 @@
+# Country Entry Guide — Albania (bilingual EN/FR).
+# Non-EU national scheme (National Food Authority AKU / Ministry of Agriculture bujqesia.gov.al,
+# National Authority of Veterinary and Plant Protection AKVMB, Albanian Customs dogana.gov.al).
+# Albania applies EU-equivalent pet-movement rules through its own bilingual model health certificate.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_al
+iso2: "AL"
+name: { en: "Albania", fr: "Albanie", es: "Albania", pt: "Albânia" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: non_listed
+exit:
+  authority: AKU
+  authorityUrl: https://aku.gov.al/
+  intro:
+    en: "Albania is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate endorsed by a National Food Authority (AKU) official veterinarian."
+    fr: "L'Albanie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire visé par un vétérinaire officiel de l'Autorité nationale de l'alimentation (AKU)."
+    es: "Albania no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario refrendado por un veterinario oficial de la Autoridad Nacional de Alimentos (AKU)."
+    pt: "A Albânia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde endossado por um veterinário oficial da Autoridade Nacional de Alimentos (AKU)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The EU-model animal health certificate is completed and signed by an AKU official veterinarian shortly before the flight."
+        fr: "Le certificat sanitaire au modèle UE est rempli et signé par un vétérinaire officiel de l'AKU peu avant le vol."
+        es: "El certificado sanitario en modelo UE lo rellena y firma un veterinario oficial de la AKU poco antes del vuelo."
+        pt: "O certificado sanitário no modelo da UE é preenchido e assinado por um veterinário oficial da AKU pouco antes do voo."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Albania with your dog", fr: "Voyager en Albanie avec ton chien", es: "Viajar a Albania con tu perro", pt: "Viajar para a Albânia com seu cachorro" }
+  intro:
+    en: >-
+      Albania welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Albania itself. Albania is not an EU member; it runs its own national
+      scheme through the National Food Authority (AKU) and the veterinary authority, closely aligned with
+      EU pet-movement rules. An ISO microchip and a valid rabies vaccination are always required, together
+      with an international veterinary health certificate issued before departure. A dog arriving from the
+      EU or another listed country (such as the United States, Canada or the United Kingdom) needs the
+      certificate but no blood test. A dog from a non-listed, rabies-risk country faces the longest path,
+      including a rabies antibody test and a three-month wait. This guide explains each case so you know
+      exactly what to prepare before you book your flight.
+    fr: >-
+      L'Albanie accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton chien
+      voyage — pas seulement de l'Albanie. L'Albanie n'est pas membre de l'UE ; elle applique son propre
+      dispositif national via l'Autorité nationale de l'alimentation (AKU) et l'autorité vétérinaire, très
+      proche des règles européennes de mouvement des animaux. Une puce ISO et une vaccination antirabique
+      valide sont toujours exigées, ainsi qu'un certificat vétérinaire international établi avant le départ.
+      Un chien arrivant de l'UE ou d'un autre pays listé (États-Unis, Canada, Royaume-Uni…) a besoin du
+      certificat mais pas de prise de sang. Un chien venant d'un pays non listé, à risque rabique, suit le
+      parcours le plus long, avec un titrage antirabique et un délai de trois mois. Ce guide détaille chaque
+      cas pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Albania acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Albania. Albania no es Estado miembro de la UE; aplica su propio sistema
+      nacional a través de la Autoridad Nacional de Alimentación (AKU) y la autoridad veterinaria, muy
+      alineado con las normas europeas de movimiento de animales de compañía. Siempre se exigen un microchip
+      ISO y una vacunación antirrábica válida, junto con un certificado sanitario veterinario internacional
+      expedido antes de la salida. Un perro que llega de la UE o de otro país listado (como Estados Unidos,
+      Canadá o el Reino Unido) necesita el certificado, pero no una prueba de sangre. Un perro procedente de
+      un país no listado, con riesgo de rabia, se enfrenta al camino más largo, que incluye una prueba de
+      titulación de rabia y una espera de tres meses. Esta guía explica cada caso para que sepas exactamente
+      qué preparar antes de reservar tu vuelo.
+
+    pt: "A Albânia recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Albânia em si. A Albânia não é membro da UE; ela aplica seu próprio regime nacional, conduzido pela Autoridade Nacional de Alimentos (AKU) e pela autoridade veterinária, bem alinhado com as regras europeias de circulação de animais de estimação. Microchip ISO e vacinação antirrábica válida são sempre obrigatórios, junto com um atestado de saúde veterinário internacional emitido antes da partida. Um cachorro que chega da UE ou de outro país listado (como Estados Unidos, Canadá ou Reino Unido) precisa do certificado, mas não de exame de sangue. Um cachorro vindo de um país não listado, de risco de raiva, enfrenta o caminho mais longo, com teste sorológico antirrábico (titulação) e três meses de espera. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days to ~3 weeks: if the rabies shot is current you mainly need the health certificate; allow +21 days if the first vaccination is still needed."
+    fr: "Quelques jours à ~3 semaines : si le vaccin antirabique est à jour il reste surtout le certificat sanitaire ; compte +21 jours si la première vaccination reste à faire."
+    es: "De unos días a ~3 semanas: si la vacuna antirrábica está al día, sobre todo necesitas el certificado sanitario; calcula +21 días si aún falta la primera vacunación."
+    pt: "De alguns dias a ~3 semanas: se a vacina antirrábica estiver em dia, você precisa basicamente do atestado de saúde; conte +21 dias se a primeira vacinação ainda estiver pendente."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate endorsed within 10 days of travel."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire visé dans les 10 jours avant le voyage."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario refrendado en los 10 días previos al viaje."
+    pt: "~3–4 semanas: 21 dias de espera após a vacina antirrábica, mais um atestado de saúde endossado nos 10 dias antes da viagem."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait before entry."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois avant l'entrée."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses antes de la entrada."
+    pt: "~4–7 meses: teste sorológico antirrábico (titulação) pelo menos 30 dias após a vacinação, seguido de uma espera obrigatória de 3 meses antes da entrada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (all origins)", fr: "Requis (toutes origines)", es: "Obligatorio (todos los orígenes)", pt: "Obrigatório (todas as origens)" }
+    cls: warn
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Albania", fr: "Non requis pour l'Albanie", es: "No obligatorio para Albania", pt: "Não obrigatório para a Albânia" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Albania (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Albanie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Albania (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Albânia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Albania", fr: "Pays de destination — Albanie", es: "País de destino — Albania", pt: "País de destino — Albânia" }
+      text:
+        en: "Albania applies its own national scheme, aligned with EU rules: an ISO microchip, a valid rabies vaccination and an international veterinary health certificate are always required, and no tapeworm treatment is needed to enter Albania."
+        fr: "L'Albanie applique son propre dispositif national, aligné sur les règles UE : puce ISO, vaccination antirabique valide et certificat vétérinaire international toujours exigés, et aucun traitement contre l'échinococcose n'est requis pour entrer en Albanie."
+        es: "Albania aplica su propio sistema nacional, alineado con las normas de la UE: siempre se exigen un microchip ISO, una vacunación antirrábica válida y un certificado sanitario veterinario internacional, y no se necesita tratamiento contra la tenia para entrar en Albania."
+        pt: "A Albânia aplica seu próprio regime nacional, alinhado com as regras da UE: microchip ISO, vacinação antirrábica válida e atestado de saúde veterinário internacional são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido para entrar na Albânia."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from the EU, another listed country or a non-listed country decides whether a rabies antibody test is required on top of the certificate."
+        fr: "Que ton chien parte de l'UE, d'un autre pays listé ou d'un pays non listé détermine si un titrage antirabique est exigé en plus du certificat."
+        es: "Que tu perro salga de la UE, de otro país listado o de un país no listado determina si se exige una prueba de titulación de rabia además del certificado."
+        pt: "Se o seu cachorro parte da UE, de outro país listado ou de um país não listado é o que determina se o teste sorológico antirrábico (titulação) é exigido além do certificado."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from a listed country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays listé. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país listado. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar o teste sorológico antirrábico mesmo que você chegue de um país listado. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Albania's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre albanais, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Albania y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral da Albânia, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "15-digit ISO 11784/11785 microchip, readable at entry; must be implanted before the rabies vaccination.", fr: "Puce ISO 11784/11785 à 15 chiffres, lisible à l'entrée ; doit être posée avant la vaccination antirabique.", es: "Microchip ISO 11784/11785 de 15 dígitos, legible a la entrada; debe implantarse antes de la vacunación antirrábica.", pt: "Microchip ISO 11784/11785 de 15 dígitos, legível na entrada; deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if applied before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "Albania model health certificate; AKVMB", fr: "Certificat sanitaire modèle Albanie ; AKVMB", es: "Certificado sanitario modelo de Albania; AKVMB", pt: "Certificado sanitário modelo da Albânia; AKVMB" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination (per EU Reg. 576/2013, Annex III, referenced by Albania).", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination (selon Règl. UE 576/2013, annexe III, référencé par l'Albanie).", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación (según Regl. UE 576/2013, anexo III, referenciado por Albania).", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação (conforme o Regl. UE 576/2013, anexo III, referenciado pela Albânia)." }
+    exceptions: { en: "The microchip must already be in place; a booster given before expiry needs no new waiting period.", fr: "La puce doit déjà être posée ; un rappel effectué avant échéance n'impose pas de nouveau délai.", es: "El microchip debe estar ya implantado; un refuerzo administrado antes del vencimiento no impone un nuevo periodo de espera.", pt: "O microchip já deve estar implantado; um reforço aplicado antes do vencimento não exige novo período de espera." }
+    ref: { en: "Albania model health certificate (EU Reg. 576/2013, Annex III)", fr: "Certificat sanitaire modèle Albanie (Règl. UE 576/2013, annexe III)", es: "Certificado sanitario modelo de Albania (Regl. UE 576/2013, anexo III)", pt: "Certificado sanitário modelo da Albânia (Regl. UE 576/2013, anexo III)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood taken ≥30 days after vaccination and ≥3 months before entry, result ≥0.5 IU/ml, at an EU-approved laboratory.", fr: "Pays non listés : sang prélevé ≥30 jours après le vaccin et ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, dans un laboratoire agréé UE.", es: "Solo orígenes no listados: sangre extraída ≥30 días tras la vacuna y ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, en un laboratorio autorizado por la UE.", pt: "Somente origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório aprovado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed (Annex II) countries (US, Canada, UK, and others).", fr: "Non requis depuis l'UE ou les pays listés (annexe II) (USA, Canada, RU, et autres).", es: "No se exige desde la UE ni desde países listados (anexo II) (EE. UU., Canadá, RU y otros).", pt: "Não exigido a partir da UE nem de países listados (anexo II) (EUA, Canadá, Reino Unido e outros)." }
+    ref: { en: "Albania model health certificate (EU Reg. 577/2013, Annex II)", fr: "Certificat sanitaire modèle Albanie (Règl. UE 577/2013, annexe II)", es: "Certificado sanitario modelo de Albania (Regl. UE 577/2013, anexo II)", pt: "Certificado sanitário modelo da Albânia (Regl. UE 577/2013, anexo II)" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat vétérinaire international", es: "Certificado sanitario veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required (all origins)", fr: "Requis (toutes origines)", es: "Obligatorio (todos los orígenes)", pt: "Obrigatório (todas as origens)" }
+    when: { en: "Albania's bilingual model certificate, completed and endorsed by an official/authorised vet; valid 10 days from issue to the entry check, then up to 4 months for onward movement in Albania.", fr: "Certificat modèle bilingue de l'Albanie, rempli et visé par un vétérinaire officiel/autorisé ; valable 10 jours de l'émission au contrôle d'entrée, puis jusqu'à 4 mois pour circuler en Albanie.", es: "Certificado modelo bilingüe de Albania, cumplimentado y refrendado por un veterinario oficial/autorizado; válido 10 días desde su expedición hasta el control de entrada, y luego hasta 4 meses para circular por Albania.", pt: "O certificado modelo bilíngue da Albânia, preenchido e endossado por um veterinário oficial/autorizado; válido por 10 dias, da emissão até o controle de entrada, e depois por até 4 meses para circular dentro da Albânia." }
+    exceptions: { en: "An EU pet passport does not replace it — Albania requires its own endorsed health certificate even from the EU.", fr: "Un passeport européen ne le remplace pas — l'Albanie exige son propre certificat sanitaire visé, même depuis l'UE.", es: "Un pasaporte europeo para mascotas no lo sustituye — Albania exige su propio certificado sanitario refrendado, incluso desde la UE.", pt: "Um passaporte europeu para animais não o substitui — a Albânia exige seu próprio atestado de saúde endossado, mesmo vindo da UE." }
+    ref: { en: "Albania model health certificate; AKVMB; dogana.gov.al", fr: "Certificat sanitaire modèle Albanie ; AKVMB ; dogana.gov.al", es: "Certificado sanitario modelo de Albania; AKVMB; dogana.gov.al", pt: "Certificado sanitário modelo da Albânia; AKVMB; dogana.gov.al" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Albania's model certificate attests the dog has not been treated against Echinococcus — no tapeworm treatment is required on entry.", fr: "Le certificat modèle de l'Albanie atteste que le chien n'a pas été traité contre l'échinococcose — aucun traitement n'est exigé à l'entrée.", es: "El certificado modelo de Albania acredita que el perro no ha sido tratado contra Echinococcus — no se exige tratamiento contra la tenia a la entrada.", pt: "O certificado modelo da Albânia atesta que o cachorro não foi tratado contra a Echinococcus — nenhum tratamento contra a tênia é exigido na entrada." }
+    ref: { en: "Albania model health certificate (point II.4)", fr: "Certificat sanitaire modèle Albanie (point II.4)", es: "Certificado sanitario modelo de Albania (punto II.4)", pt: "Certificado sanitário modelo da Albânia (ponto II.4)" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "No permit for pet dogs", fr: "Pas de permis pour les chiens de compagnie", es: "Sin permiso para perros de compañía", pt: "Sem autorização para cachorros de companhia" }
+    when: { en: "No import permit is required for a pet dog accompanying its owner (non-commercial movement of five or fewer animals). Advance notice to the airport veterinary service is recommended so an inspector is available on arrival.", fr: "Aucun permis d'importation n'est exigé pour un chien de compagnie accompagnant son propriétaire (mouvement non commercial de cinq animaux ou moins). Il est recommandé de prévenir à l'avance le service vétérinaire de l'aéroport pour qu'un inspecteur soit disponible à l'arrivée.", es: "No se exige permiso de importación para un perro de compañía que acompaña a su propietario (movimiento no comercial de cinco animales o menos). Se recomienda avisar con antelación al servicio veterinario del aeropuerto para que haya un inspector disponible a la llegada.", pt: "Nenhuma autorização de importação é exigida para um cachorro de companhia que acompanha seu dono (movimento não comercial de até cinco animais). Recomenda-se dar notificação prévia ao serviço veterinário do aeroporto, para que um inspetor esteja disponível na chegada." }
+    exceptions: { en: "Movements of more than five animals, or commercial/ownership transfers, follow stricter commercial import rules.", fr: "Les mouvements de plus de cinq animaux, ou les transferts commerciaux/de propriété, relèvent de règles d'importation commerciale plus strictes.", es: "Los movimientos de más de cinco animales, o las transferencias comerciales/de propiedad, se rigen por normas de importación comercial más estrictas.", pt: "Movimentos de mais de cinco animais, ou transferências comerciais/de propriedade, seguem regras de importação comercial mais rígidas." }
+    ref: { en: "Albania model health certificate (points II.1–II.2); dogana.gov.al", fr: "Certificat sanitaire modèle Albanie (points II.1–II.2) ; dogana.gov.al", es: "Certificado sanitario modelo de Albania (puntos II.1–II.2); dogana.gov.al", pt: "Certificado sanitário modelo da Albânia (pontos II.1–II.2); dogana.gov.al" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Documentary and identity checks at the Albanian border inspection point (BIP) — typically Tirana 'Nënë Tereza' airport (Rinas) or a land/sea crossing; present the microchip, certificate and vaccination record.", fr: "Contrôles documentaires et d'identité au point d'inspection frontalier (PIF) albanais — en général l'aéroport de Tirana « Nënë Tereza » (Rinas) ou un poste terrestre/maritime ; présente la puce, le certificat et le carnet de vaccination.", es: "Controles documentales y de identidad en el punto de inspección fronterizo (PIF) albanés — normalmente el aeropuerto de Tirana «Nënë Tereza» (Rinas) o un paso terrestre/marítimo; presenta el microchip, el certificado y el registro de vacunación.", pt: "Controles documentais e de identidade no ponto de inspeção fronteiriça (PIF) albanês — normalmente o aeroporto de Tirana \"Nënë Tereza\" (Rinas) ou uma passagem terrestre/marítima; apresente o microchip, o certificado e a carteira de vacinação." }
+    exceptions: { en: "Checks apply to all arrivals; there is no passport-only fast track as within the EU.", fr: "Les contrôles s'appliquent à toutes les arrivées ; il n'existe pas de voie rapide « passeport seul » comme au sein de l'UE.", es: "Los controles se aplican a todas las llegadas; no existe una vía rápida «solo pasaporte» como dentro de la UE.", pt: "Os controles se aplicam a todas as chegadas; não existe via rápida «somente passaporte» como dentro da UE." }
+    ref: { en: "dogana.gov.al; AKVMB", fr: "dogana.gov.al ; AKVMB", es: "dogana.gov.al; AKVMB", pt: "dogana.gov.al; AKVMB" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Age limits apply", fr: "Limites d'âge", es: "Se aplican límites de edad", pt: "Há limites de idade" }
+    when: { en: "Rabies vaccination is only valid from 12 weeks + 21 days, so in practice a dog is ~15 weeks old at the earliest from a listed country.", fr: "La vaccination antirabique n'est valide qu'à partir de 12 semaines + 21 jours ; en pratique un chien a au plus tôt ~15 semaines depuis un pays listé.", es: "La vacunación antirrábica solo es válida a partir de las 12 semanas + 21 días, así que en la práctica un perro tiene ~15 semanas como muy pronto desde un país listado.", pt: "A vacinação antirrábica só é válida a partir de 12 semanas + 21 dias, então na prática um cachorro tem, no mínimo, ~15 semanas vindo de um país listado." }
+    exceptions: { en: "Young/unvaccinated puppies may only be moved under the specific derogations in Albania's model certificate (owner declaration or vaccinated mother); confirm eligibility with the veterinary authority.", fr: "Les chiots jeunes/non vaccinés ne peuvent circuler que sous les dérogations spécifiques du certificat modèle de l'Albanie (déclaration du propriétaire ou mère vaccinée) ; confirme l'éligibilité auprès de l'autorité vétérinaire.", es: "Los cachorros jóvenes/sin vacunar solo pueden desplazarse bajo las excepciones específicas del certificado modelo de Albania (declaración del propietario o madre vacunada); confirma la elegibilidad con la autoridad veterinaria.", pt: "Filhotes jovens/não vacinados só podem viajar sob as derrogações específicas previstas no certificado modelo da Albânia (declaração do dono ou mãe vacinada); confirme a elegibilidade junto à autoridade veterinária." }
+    ref: { en: "Albania model health certificate (point II.3)", fr: "Certificat sanitaire modèle Albanie (point II.3)", es: "Certificado sanitario modelo de Albania (punto II.3)", pt: "Certificado sanitário modelo da Albânia (ponto II.3)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — a non-compliant animal may be refused, returned or held at the owner's expense.", fr: "Uniquement en cas de non-conformité — un animal non conforme peut être refusé, réexpédié ou retenu aux frais du propriétaire.", es: "Solo en caso de incumplimiento — un animal no conforme puede ser rechazado, devuelto o retenido a cargo del propietario.", pt: "Somente em caso de descumprimento das regras — um animal em desconformidade pode ser recusado, devolvido ou retido às custas do dono." }
+    ref: { en: "dogana.gov.al; AKVMB", fr: "dogana.gov.al ; AKVMB", es: "dogana.gov.al; AKVMB", pt: "dogana.gov.al; AKVMB" }
+
+origin:
+  eu:
+    title: { en: "From the EU — certificate, no blood test", fr: "Depuis l'UE — certificat, sans prise de sang", es: "Desde la UE — certificado, sin análisis de sangre", pt: "Da UE — certificado, sem exame de sangue" }
+    body:
+      en: "A dog coming from an EU country needs an ISO microchip, a valid rabies vaccination and Albania's international veterinary health certificate endorsed by an official vet before departure. EU countries are on the listed (Annex II) list, so no antibody test is required. Note that an EU pet passport alone is not enough — Albania asks for its own endorsed certificate."
+      fr: "Un chien venant d'un pays de l'UE a besoin d'une puce ISO, d'une vaccination antirabique valide et du certificat vétérinaire international de l'Albanie visé par un vétérinaire officiel avant le départ. Les pays de l'UE figurent sur la liste (annexe II), donc aucun titrage n'est exigé. À noter : un passeport européen seul ne suffit pas — l'Albanie demande son propre certificat visé."
+      es: "Un perro que llega de un país de la UE necesita un microchip ISO, una vacunación antirrábica válida y el certificado sanitario veterinario internacional de Albania refrendado por un veterinario oficial antes de la salida. Los países de la UE figuran en la lista (anexo II), por lo que no se exige prueba de titulación. Ten en cuenta que un pasaporte europeo para mascotas por sí solo no basta — Albania pide su propio certificado refrendado."
+      pt: "Um cachorro vindo de um país da UE precisa de microchip ISO, vacinação antirrábica válida e do atestado de saúde veterinário internacional da Albânia, endossado por um veterinário oficial antes da partida. Os países da UE estão na lista (anexo II), então nenhum teste sorológico é exigido. Vale notar: um passaporte europeu sozinho não basta — a Albânia pede seu próprio certificado endossado."
+    cls: warn
+  listed:
+    title: { en: "Listed country — certificate, no blood test", fr: "Pays listé — certificat, sans prise de sang", es: "País listado — certificado, sin análisis de sangre", pt: "País listado — certificado, sem exame de sangue" }
+    body:
+      en: "From a listed (Annex II) non-EU country — such as the United States, Canada or the United Kingdom — your dog needs a microchip, a valid rabies vaccination and Albania's endorsed health certificate. No antibody test is required. The certificate is valid for 10 days from issue to the entry check."
+      fr: "Depuis un pays tiers listé (annexe II) — États-Unis, Canada, Royaume-Uni… — ton chien a besoin d'une puce, d'une vaccination antirabique valide et du certificat sanitaire visé de l'Albanie. Pas de titrage. Le certificat est valable 10 jours de l'émission au contrôle d'entrée."
+      es: "Desde un país tercero listado (anexo II) — como Estados Unidos, Canadá o el Reino Unido — tu perro necesita un microchip, una vacunación antirrábica válida y el certificado sanitario refrendado de Albania. No se exige prueba de titulación. El certificado es válido 10 días desde su expedición hasta el control de entrada."
+      pt: "De um país terceiro listado (anexo II) — como Estados Unidos, Canadá ou Reino Unido — seu cachorro precisa de microchip, vacinação antirrábica válida e do atestado de saúde endossado da Albânia. Nenhum teste sorológico é exigido. O certificado é válido por 10 dias, da emissão até o controle de entrada."
+    cls: warn
+  nonListed:
+    title: { en: "Non-listed country — antibody test + 3-month wait", fr: "Pays non listé — titrage + 3 mois d'attente", es: "País no listado — prueba de titulación + espera de 3 meses", pt: "País não listado — teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed, rabies-risk country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-approved laboratory, then a compulsory 3-month wait before entry. Albania's endorsed health certificate is also required."
+      fr: "Depuis un pays non listé, à risque rabique, ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Le certificat sanitaire visé de l'Albanie est également requis."
+      es: "Desde un país no listado, con riesgo de rabia, añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige el certificado sanitario refrendado de Albania."
+      pt: "De um país não listado, de risco de raiva, acrescente o teste sorológico antirrábico: sangue coletado pelo menos 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório aprovado pela UE, seguido de uma espera obrigatória de 3 meses antes da entrada. O atestado de saúde endossado da Albânia também é exigido."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Albania depends on where you flew from and on your documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Albanie dépend de ton lieu de départ et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a Albania depende del lugar desde el que hayas volado y de tus documentos."
+    pt: "O que acontece quando seu cachorro chega à Albânia depende de onde você partiu e dos seus documentos."
+  points:
+    - en: "Enter via a border inspection point — most travellers arrive at Tirana 'Nënë Tereza' International Airport (Rinas)."
+      fr: "Entre par un point d'inspection frontalier — la plupart des voyageurs arrivent à l'aéroport international de Tirana « Nënë Tereza » (Rinas)."
+      es: "Entra por un punto de inspección fronterizo — la mayoría de los viajeros llegan al Aeropuerto Internacional de Tirana «Nënë Tereza» (Rinas)."
+      pt: "Entre por um ponto de inspeção fronteiriça — a maioria dos viajantes chega pelo Aeroporto Internacional de Tirana \"Nënë Tereza\" (Rinas)."
+    - en: "Give advance notice to the airport veterinary service so an inspector is available to check your dog and its documents on arrival."
+      fr: "Préviens à l'avance le service vétérinaire de l'aéroport pour qu'un inspecteur soit disponible pour contrôler ton chien et ses documents à l'arrivée."
+      es: "Avisa con antelación al servicio veterinario del aeropuerto para que haya un inspector disponible que revise a tu perro y sus documentos a la llegada."
+      pt: "Dê notificação prévia ao serviço veterinário do aeroporto, para que um inspetor esteja disponível para conferir seu cachorro e seus documentos na chegada."
+    - en: "Present the ISO microchip, the endorsed health certificate and the rabies vaccination record; the microchip number must match the certificate."
+      fr: "Présente la puce ISO, le certificat sanitaire visé et le carnet de vaccination antirabique ; le numéro de puce doit correspondre au certificat."
+      es: "Presenta el microchip ISO, el certificado sanitario refrendado y el registro de vacunación antirrábica; el número de microchip debe coincidir con el certificado."
+      pt: "Apresente o microchip ISO, o atestado de saúde endossado e a carteira de vacinação antirrábica; o número do microchip deve coincidir com o do certificado."
+    - en: "No import permit is needed for a pet dog accompanying its owner (five or fewer animals, non-commercial)."
+      fr: "Aucun permis d'importation n'est nécessaire pour un chien de compagnie accompagnant son propriétaire (cinq animaux ou moins, non commercial)."
+      es: "No se necesita permiso de importación para un perro de compañía que acompaña a su propietario (cinco animales o menos, no comercial)."
+      pt: "Nenhuma autorização de importação é necessária para um cachorro de companhia que acompanha seu dono (até cinco animais, não comercial)."
+    - en: "Carry original documents (not copies); the bilingual certificate is designed to be read by Albanian officials."
+      fr: "Munis-toi des documents originaux (pas de copies) ; le certificat bilingue est conçu pour être lu par les agents albanais."
+      es: "Lleva los documentos originales (no copias); el certificado bilingüe está diseñado para que lo lean los funcionarios albaneses."
+      pt: "Leve os documentos originais (não cópias); o certificado bilíngue foi criado para ser lido pelos agentes albaneses."
+    - en: "If documents are missing or invalid, the animal may be refused entry, returned or held — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé, réexpédié ou retenu — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado a la entrada, devuelto o retenido — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, o animal pode ter a entrada recusada, ser devolvido ou retido — às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No breed-specific import ban for dogs is published in Albania's official veterinary or customs sources. Entry is governed by health rules (microchip, rabies, certificate) rather than by breed. Because no official list is published, treat any 'banned breed' claims from unofficial sites with caution and confirm your dog's breed is accepted before you travel."
+    fr: "Aucune interdiction d'importation liée à la race n'est publiée dans les sources officielles vétérinaires ou douanières albanaises. L'entrée est régie par des règles sanitaires (puce, rage, certificat) et non par la race. Faute de liste officielle publiée, considère avec prudence les affirmations de « races interdites » des sites non officiels et confirme que la race de ton chien est acceptée avant de voyager."
+    es: "No se publica ninguna prohibición de importación por raza de perro en las fuentes oficiales veterinarias o aduaneras albanesas. La entrada se rige por normas sanitarias (microchip, rabia, certificado) y no por la raza. Como no hay ninguna lista oficial publicada, trata con cautela cualquier afirmación de «raza prohibida» de sitios no oficiales y confirma que la raza de tu perro está aceptada antes de viajar."
+    pt: "Nenhuma proibição de importação por raça de cachorro é publicada nas fontes oficiais veterinárias ou aduaneiras da Albânia. A entrada é regida por regras sanitárias (microchip, raiva, certificado), e não pela raça. Como nenhuma lista oficial é publicada, trate com cautela qualquer alegação de \"raça proibida\" vinda de sites não oficiais e confirme que a raça do seu cachorro é aceita antes de viajar."
+  cat1:
+    en: "Prohibited breeds: none officially published. MyDogCanFly found no Albanian law or regulation establishing a list of banned dog breeds from an official source (Unknown / not published)."
+    fr: "Races interdites : aucune officiellement publiée. MyDogCanFly n'a trouvé aucune loi ni réglementation albanaise établissant une liste de races de chiens interdites dans une source officielle (Non communiqué / non publié)."
+    es: "Razas prohibidas: ninguna publicada oficialmente. MyDogCanFly no encontró ninguna ley ni reglamento albanés que establezca una lista de razas de perros prohibidas en una fuente oficial (No comunicado / no publicado)."
+    pt: "Raças proibidas: nenhuma publicada oficialmente. O MyDogCanFly não encontrou nenhuma lei ou regulamento albanês estabelecendo uma lista de raças de cachorros proibidas em fonte oficial (não comunicado / não publicado)."
+  cat2:
+    en: "Restricted/permit categories: none officially published. No national ownership-permit or dangerous-dog category scheme for imported dogs was found in an official Albanian source (Unknown / not published)."
+    fr: "Catégories restreintes/à permis : aucune officiellement publiée. Aucun régime national de permis de détention ou de catégorie de chiens dangereux pour les chiens importés n'a été trouvé dans une source officielle albanaise (Non communiqué / non publié)."
+    es: "Categorías restringidas/con permiso: ninguna publicada oficialmente. No se encontró ningún régimen nacional de permiso de tenencia ni de categoría de perros peligrosos para perros importados en una fuente oficial albanesa (No comunicado / no publicado)."
+    pt: "Categorias restritas/com autorização: nenhuma publicada oficialmente. Nenhum regime nacional de autorização de posse ou de categoria de cachorro perigoso para cachorros importados foi encontrado em fonte oficial albanesa (não comunicado / não publicado)."
+  note:
+    en: "Local municipal rules on leashing or muzzling in public may still apply. Before booking, confirm the current position with the National Food Authority (AKU) or the veterinary authority, especially for powerful or guard breeds."
+    fr: "Des règles municipales locales sur la laisse ou la muselière en public peuvent néanmoins s'appliquer. Avant de réserver, confirme la position actuelle auprès de l'Autorité nationale de l'alimentation (AKU) ou de l'autorité vétérinaire, en particulier pour les races puissantes ou de garde."
+    es: "Aún pueden aplicarse normas municipales locales sobre correa o bozal en la vía pública. Antes de reservar, confirma la situación actual con la Autoridad Nacional de Alimentación (AKU) o la autoridad veterinaria, especialmente para razas poderosas o de guarda."
+    pt: "Regras municipais locais sobre guia ou focinheira em locais públicos ainda podem se aplicar. Antes de reservar, confirme a posição atual junto à Autoridade Nacional de Alimentos (AKU) ou à autoridade veterinária, especialmente para raças fortes ou de guarda."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785, 15-digit) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785, 15 chiffres) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785, 15 dígitos) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785, 15 dígitos) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only (≥0.5 IU/ml, then 3-month wait)"
+    fr: "Titrage antirabique — pays non listés uniquement (≥0,5 UI/ml, puis 3 mois d'attente)"
+    es: "Prueba de titulación de rabia — solo países no listados (≥0,5 UI/ml, luego espera de 3 meses)"
+    pt: "Teste sorológico antirrábico — apenas países não listados (≥0,5 UI/ml e depois 3 meses de espera)"
+  - en: "Albania's international veterinary health certificate, endorsed within 10 days of travel"
+    fr: "Certificat vétérinaire international de l'Albanie, visé dans les 10 jours avant le voyage"
+    es: "Certificado sanitario veterinario internacional de Albania, refrendado en los 10 días previos al viaje"
+    pt: "Atestado de saúde veterinário internacional da Albânia, endossado nos 10 dias antes da viagem"
+  - en: "Original documents; microchip number matching the certificate"
+    fr: "Documents originaux ; numéro de puce correspondant au certificat"
+    es: "Documentos originales; número de microchip que coincida con el certificado"
+    pt: "Documentos originais; número do microchip coincidindo com o do certificado"
+  - en: "Advance notice to the airport veterinary service (Tirana Rinas)"
+    fr: "Préavis au service vétérinaire de l'aéroport (Tirana Rinas)"
+    es: "Aviso previo al servicio veterinario del aeropuerto (Tirana Rinas)"
+    pt: "Notificação prévia ao serviço veterinário do aeroporto (Tirana Rinas)"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula adecuada conforme a la IATA si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+  - en: "Confirm your dog's breed is accepted (no official breed ban published; verify with AKU)"
+    fr: "Confirme que la race de ton chien est acceptée (aucune interdiction de race officielle publiée ; vérifie auprès de l'AKU)"
+    es: "Confirma que la raza de tu perro está aceptada (no hay prohibición de razas oficial publicada; verifícalo con la AKU)"
+    pt: "Confirme que a raça do seu cachorro é aceita (nenhuma proibição de raça oficial publicada; verifique junto à AKU)"
+
+sources:
+  - label: { en: "Ministry of Agriculture — National Food Authority (AKU)", fr: "Ministère de l'Agriculture — Autorité nationale de l'alimentation (AKU)", es: "Ministerio de Agricultura — Autoridad Nacional de Alimentación (AKU)", pt: "Ministério da Agricultura — Autoridade Nacional de Alimentos (AKU)" }
+    url: "https://bujqesia.gov.al/en/autoriteti-kombetar-i-ushqimit/"
+  - label: { en: "National Authority of Veterinary and Plant Protection (AKVMB)", fr: "Autorité nationale de la vétérinaire et de la protection des végétaux (AKVMB)", es: "Autoridad Nacional de Veterinaria y Protección Vegetal (AKVMB)", pt: "Autoridade Nacional de Veterinária e Proteção Vegetal (AKVMB)" }
+    url: "https://akvmb.gov.al/"
+  - label: { en: "Albanian Customs (Dogana) — Import, transit, export", fr: "Douane albanaise (Dogana) — Import, transit, export", es: "Aduanas de Albania (Dogana) — Importación, tránsito, exportación", pt: "Alfândega albanesa (Dogana) — Importação, trânsito, exportação" }
+    url: "https://dogana.gov.al/english/c/169/181/294/import-transit-export"
+  - label: { en: "Albania — Model veterinary health certificate for non-commercial movement of dogs, cats and ferrets (bilingual)", fr: "Albanie — Certificat vétérinaire modèle pour le mouvement non commercial de chiens, chats et furets (bilingue)", es: "Albania — Certificado sanitario veterinario modelo para el movimiento no comercial de perros, gatos y hurones (bilingüe)", pt: "Albânia — Certificado sanitário veterinário modelo para o movimento não comercial de cachorros, gatos e furões (bilíngue)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/albania-dogs-cats-ferrets-hc.pdf"
+  - label: { en: "USDA APHIS — Pet travel from the United States to Albania (requirements overview)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers l'Albanie (aperçu des exigences)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Albania (resumen de requisitos)", pt: "USDA APHIS — Viagem de animais dos Estados Unidos para a Albânia (visão geral das exigências)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-albania"
+
+seo:
+  title: { en: "Albania Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Albanie — Guide", es: "Requisitos de entrada de perros en Albania — Guía de viaje", pt: "Exigências de entrada de cachorros na Albânia — Guia de viagem" }
+  metaTitle: { en: "Traveling to Albania With Your Dog: Entry Requirements (2026)", fr: "Voyager en Albanie avec ton chien : formalités (2026)", es: "Viajar a Albania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Albânia: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Albania (AKU/customs) — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Albanie (AKU/douane) — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Albania (AKU/aduanas) — según origen UE, listado o no listado. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro à Albânia (AKU/alfândega) — por origem UE, listada e não listada. Com fontes e data."
+  slug: "albania"
+  shortDesc:
+    en: "What you need to bring a dog into Albania, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Albanie, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Albania, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Albânia, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

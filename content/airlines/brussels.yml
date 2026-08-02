@@ -1,0 +1,326 @@
+id: airline_brussels
+mono: SN
+name: Brussels Airlines
+titleH1:
+  en: Flying with a dog on Brussels Airlines
+  fr: Voyager avec un chien sur Brussels Airlines
+  es: Viajar con perro en Brussels Airlines
+  pt: "Voar com um cachorro na Brussels Airlines"
+metaDesc:
+  en: "Brussels Airlines pet policy: cabin, hold and cargo, fares by zone, snub-nosed hold ban, UK exclusion and official sources."
+  fr: "Politique animaux Brussels Airlines : cabine, soute et fret, tarifs par zone, interdiction soute brachy, exclusion R.-U. et sources officielles."
+  es: "Política de mascotas de Brussels Airlines: cabina, bodega y carga, tarifas por zona, veto en bodega a razas de hocico chato, exclusión del RU y fuentes oficiales."
+  pt: "Política de animais da Brussels Airlines: cabine, porão e carga, tarifas por zona, veto no porão a raças de focinho achatado, exclusão do Reino Unido e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Belgium · BRU
+      fr: Belgique · BRU
+      es: Bélgica · BRU
+      pt: "Bélgica · BRU"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in the hold — snub-nosed breeds cabin-only, and no pets to the UK (cargo only).
+  fr: Petits animaux en cabine, plus grands en soute — races au nez écrasé en cabine seulement, et rien vers le R.-U. (fret uniquement).
+  es: Mascotas pequeñas en cabina, las más grandes en bodega; las razas de hocico chato solo en cabina, y ninguna mascota al RU (solo carga).
+  pt: "Animais pequenos na cabine, os maiores no porão — raças de focinho achatado somente na cabine, e nenhum animal para o Reino Unido (somente carga)."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: ≤ 14 kg each
+      fr: ≤ 14 kg chacun
+      es: ≤ 14 kg cada uno
+      pt: "≤ 14 kg cada"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK / other species
+      fr: R.-U. / autres espèces
+      es: RU / otras especies
+      pt: "Reino Unido / outras espécies"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & small dogs (min 15 weeks) ≤ 8 kg incl. carrier under the seat (max 55 × 40 × 23 cm); window seat, max 4/aircraft. Signed cabin form.
+      fr: Chats et petits chiens (min 15 semaines) ≤ 8 kg avec le sac sous le siège (max 55 × 40 × 23 cm) ; place hublot, max 4/avion. Formulaire cabine signé.
+      es: Gatos y perros pequeños (mín. 15 semanas) ≤ 8 kg incl. jaula, bajo el asiento (máx. 55 × 40 × 23 cm); asiento de ventanilla, máx. 4/avión. Formulario de cabina firmado.
+      pt: "Gatos e cachorros pequenos (mín. 15 semanas) ≤ 8 kg incl. bolsa de transporte, sob o assento (máx. 55 × 40 × 23 cm); assento de janela, máx. 4/avião. Formulário de cabine assinado."
+    fee:
+      en: €65–115
+      fr: 65–115 €
+      es: 65–115 €
+      pt: "65–115 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs in an IATA crate (container ≤ 125 × 75 × 85 cm) in a ventilated hold; up to 2 pets ≤ 14 kg each. Stricter ventilation from May 2026.
+      fr: Chats et chiens en caisse IATA (contenant ≤ 125 × 75 × 85 cm) dans une soute ventilée ; jusqu'à 2 animaux ≤ 14 kg chacun. Ventilation renforcée dès mai 2026.
+      es: Gatos y perros en una jaula IATA (contenedor ≤ 125 × 75 × 85 cm) en una bodega ventilada; hasta 2 mascotas ≤ 14 kg cada una. Ventilación más estricta desde mayo 2026.
+      pt: "Gatos e cachorros em uma caixa de transporte IATA (recipiente ≤ 125 × 75 × 85 cm) em um porão ventilado; até 2 animais ≤ 14 kg cada um. Ventilação mais rigorosa a partir de maio de 2026."
+    fee:
+      en: €100–380
+      fr: 100–380 €
+      es: 100–380 €
+      pt: "100–380 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Mediante carga
+      pt: "Via carga"
+    detail:
+      en: Other species, oversize containers, and all pets to/from the UK, via a pet-shipping agent.
+      fr: Autres espèces, contenants hors gabarit, et tous les animaux de/vers le R.-U., via un expéditeur animalier.
+      es: Otras especies, contenedores de gran tamaño y todas las mascotas hacia/desde el RU, mediante un agente de envío de mascotas.
+      pt: "Outras espécies, recipientes fora do padrão, e todos os animais de/para o Reino Unido, mediante um agente de transporte de animais."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (Europe → US)
+        fr: Cabine (Europe → USA)
+        es: Cabina (Europa → EE. UU.)
+        pt: "Cabine (Europa → EUA)"
+      value:
+        en: €65–115
+        fr: 65–115 €
+        es: 65–115 €
+        pt: "65–115 €"
+    - label:
+        en: Hold (Europe → US West Coast)
+        fr: Soute (Europe → USA côte Ouest)
+        es: Bodega (Europa → costa oeste de EE. UU.)
+        pt: "Porão (Europa → costa oeste dos EUA)"
+      value:
+        en: €100–380
+        fr: 100–380 €
+        es: 100–380 €
+        pt: "100–380 €"
+    - label:
+        en: Transfer surcharge (BRU/FRA/ZRH/VIE/GVA)
+        fr: Surcharge transfert (BRU/FRA/ZRH/VIE/GVA)
+        es: Recargo por conexión (BRU/FRA/ZRH/VIE/GVA)
+        pt: "Sobretaxa de conexão (BRU/FRA/ZRH/VIE/GVA)"
+      value:
+        en: €150
+        fr: 150 €
+        es: 150 €
+        pt: "150 €"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR, one-way, by zone; a transfer surcharge applies via certain hubs.
+    fr: EUR, aller simple, par zone ; une surcharge de transfert s'applique via certains hubs.
+    es: EUR, por trayecto de ida y por zona; se aplica un recargo por conexión a través de ciertos hubs.
+    pt: "EUR, por trajeto de ida, por zona; aplica-se uma sobretaxa de conexão em determinados hubs."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats aren't accepted in the hold (restricted airways) — cabin only (≤ 8 kg): bulldogs (except American), pugs (all), Boston terrier, boxer, Brussels Griffon, chow chow, Shih Tzu, Pekingese, Shar Pei, Lhasa Apso, and British Shorthair/Exotic/Himalayan/Persian/Scottish Fold cats."
+      fr: "Chiens et chats au nez écrasé refusés en soute (voies respiratoires étroites) — cabine uniquement (≤ 8 kg) : bouledogues (sauf américain), carlins (tous), Boston terrier, boxer, Griffon bruxellois, chow chow, Shih Tzu, pékinois, Shar Pei, Lhasa Apso, et chats British Shorthair/exotiques/himalayens/persans/Scottish Fold."
+      es: "Los perros y gatos de hocico chato no se aceptan en bodega (vías respiratorias estrechas): solo cabina (≤ 8 kg): bulldogs (salvo el americano), carlinos (todos), Boston terrier, bóxer, Grifón de Bruselas, chow chow, Shih Tzu, pequinés, Shar Pei, Lhasa Apso, y gatos British Shorthair/exóticos/himalayos/persas/Scottish Fold."
+      pt: "Cachorros e gatos de focinho achatado não são aceitos no porão (vias respiratórias restritas) — somente na cabine (≤ 8 kg): buldogues (exceto o americano), pugs (todos), Boston Terrier, boxer, Grifon de Bruxelas, Chow Chow, Shih Tzu, Pequinês, Shar Pei, Lhasa Apso, e gatos British Shorthair/Exótico/Himalaia/Persa/Scottish Fold."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No pets to the UK
+          fr: Pas d'animaux vers le R.-U.
+          es: Sin mascotas al RU
+          pt: "Sem animais para o Reino Unido"
+      - cls: warn
+        label:
+          en: Cats & dogs only
+          fr: Chats & chiens seuls
+          es: Solo gatos y perros
+          pt: "Somente gatos e cachorros"
+    note:
+      en: "Only cats & dogs are carried; all UK-bound pets and other species go via cargo. Not in the hold on Air Nostrum flights. Dogs to the US: 6 months+, specific airports (CDC)."
+      fr: "Seuls les chats et chiens sont transportés ; tous les animaux vers le R.-U. et les autres espèces passent par le fret. Pas en soute sur les vols Air Nostrum. Chiens vers les USA : 6 mois+, aéroports spécifiques (CDC)."
+      es: "Solo se transportan gatos y perros; todas las mascotas con destino al RU y otras especies van por carga. No viajan en bodega en vuelos de Air Nostrum. Perros a EE. UU.: 6 meses o más, aeropuertos específicos (CDC)."
+      pt: "Somente gatos e cachorros são transportados; todos os animais com destino ao Reino Unido e as outras espécies vão mediante carga. Não vai no porão em voos da Air Nostrum. Cachorros para os EUA: 6 meses ou mais, aeroportos específicos (CDC)."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Ventilated hold
+        fr: Soute ventilée
+        es: Bodega ventilada
+        pt: "Porão ventilado"
+    - cls: no
+      label:
+        en: BRU–Yerevan embargo 15 Jun–15 Sep
+        fr: Embargo BRU–Erevan 15 juin–15 sept.
+        es: Embargo BRU–Ereván 15 jun–15 sep
+        pt: "Embargo BRU–Erevã 15 jun–15 set."
+  note:
+    en: Pets travel in a ventilated part of the hold; no numeric temperature limit is published. A seasonal embargo bars hold pets on Brussels–Yerevan (both ways) from 15 June to 15 September 2026.
+    fr: Les animaux voyagent dans une partie ventilée de la soute ; aucune limite chiffrée n'est publiée. Un embargo saisonnier interdit les animaux en soute sur Bruxelles–Erevan (dans les deux sens) du 15 juin au 15 septembre 2026.
+    es: Las mascotas viajan en una parte ventilada de la bodega; no se publica ningún límite de temperatura numérico. Un embargo estacional veta las mascotas en bodega en Bruselas–Ereván (en ambos sentidos) del 15 de junio al 15 de septiembre de 2026.
+    pt: "Os animais viajam em uma parte ventilada do porão; nenhum limite numérico de temperatura é divulgado. Um embargo sazonal proíbe animais no porão em Bruxelas–Erevã (nos dois sentidos) de 15 de junho a 15 de setembro de 2026."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Recognised assistance dogs (guide, hearing, alert, mobility) fly free in the cabin on all flights, leashed at your feet.
+      fr: Les chiens d'assistance reconnus (guide, écoute, alerte, mobilité) voyagent gratuitement en cabine sur tous les vols, en laisse à tes pieds.
+      es: Los perros de asistencia reconocidos (guía, de señal, de alerta, de movilidad) viajan gratis en cabina en todos los vuelos, con correa a tus pies.
+      pt: "Cães de assistência reconhecidos (guia, para surdos, de alerta, de mobilidade) voam gratuitamente na cabine em todos os voos, presos com guia aos seus pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Book via Medical Assistance ≥ 48 h ahead with an ADI/ADEu/IGDF certificate. US: 2 DOT forms (+ relief over 8 h). Emotional-support animals not accepted."
+      fr: "Réserver via l'Assistance médicale ≥ 48 h à l'avance avec un certificat ADI/ADEu/IGDF. USA : 2 formulaires DOT (+ soulagement au-delà de 8 h). Chiens de soutien émotionnel non acceptés."
+      es: "Reserva a través de Asistencia Médica ≥ 48 h antes con un certificado ADI/ADEu/IGDF. EE. UU.: 2 formularios del DOT (+ de alivio si supera 8 h). Los animales de apoyo emocional no se aceptan."
+      pt: "Reserve pela Assistência Médica ≥ 48 h antes com um certificado ADI/ADEu/IGDF. EUA: 2 formulários do DOT (+ formulário de alívio acima de 8 h). Animais de apoio emocional não são aceitos."
+goodToKnow:
+  - icon: 🪟
+    label:
+      en: Cabin needs a window seat
+      fr: "Cabine : place hublot"
+      es: "Cabina: asiento de ventanilla"
+      pt: "Cabine: assento de janela"
+    value:
+      en: Cabin pets require a window seat — no exit/bulkhead rows or seats near other pets.
+      fr: Les animaux en cabine exigent une place hublot — pas de rangs issue/cloison ni de sièges près d'autres animaux.
+      es: Las mascotas en cabina requieren un asiento de ventanilla, sin filas de salida/mamparo ni asientos cerca de otras mascotas.
+      pt: "Os animais em cabine exigem um assento de janela — sem fileiras de saída/anteparo, nem assentos perto de outros animais."
+  - icon: 🐾
+    label:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo gatos y perros
+      pt: "Somente gatos e cachorros"
+    value:
+      en: Only cats and dogs are accepted; other species and all UK-bound pets go via cargo.
+      fr: Seuls les chats et chiens sont acceptés ; les autres espèces et tous les animaux vers le R.-U. passent par le fret.
+      es: Solo se aceptan gatos y perros; otras especies y todas las mascotas con destino al RU van por carga.
+      pt: "Somente gatos e cachorros são aceitos; outras espécies e todos os animais com destino ao Reino Unido vão mediante carga."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reservar
+      pt: "Reserva"
+    value:
+      en: "Cabin: My booking or Service Centre (max 4/aircraft). Hold: Service Centre in advance."
+      fr: "Cabine : My booking ou Service Centre (max 4/avion). Soute : Service Centre à l'avance."
+      es: "Cabina: My booking o Service Centre (máx. 4/avión). Bodega: Service Centre con antelación."
+      pt: "Cabine: My booking ou Service Centre (máx. 4/avião). Porão: Service Centre com antecedência."
+book:
+  host: brusselsairlines.com
+  url: https://www.brusselsairlines.com/
+sources:
+  en: 5 Brussels Airlines sources · last verified 11 July 2026
+  fr: 5 sources Brussels Airlines · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Brussels Airlines · última verificación 11 julio 2026
+  pt: "5 fontes da Brussels Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

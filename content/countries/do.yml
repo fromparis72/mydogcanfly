@@ -1,0 +1,382 @@
+# Country Entry Guide — Dominican Republic (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_do
+iso2: "DO"
+name: { en: "Dominican Republic", fr: "République dominicaine", es: "República Dominicana", pt: "República Dominicana" }
+region: { en: "Caribbean", fr: "Caraïbes", es: "Caribe", pt: "Caribe" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in the Dominican Republic: no State requirement — the movement guide does not cover dogs."
+    fr: "Vol intérieur en République dominicaine : aucune exigence de l'État — la guía de movilización ne couvre pas les chiens."
+    es: "Vuelo nacional en República Dominicana: ningún requisito del Estado — la guía de movilización no cubre a los perros."
+    pt: "Voo doméstico na República Dominicana: nenhuma exigência do Estado — a guía de movilización não cobre cachorros."
+  points:
+    - en: "The national movement guide applies to sheep, goats, horses, cattle and bees — dogs are not listed. Any paperwork at the airport is the airline's own."
+      fr: "La guía de movilización nationale s'applique aux ovins, caprins, équidés, bovins et abeilles — les chiens n'y figurent pas. Tout document exigé à l'aéroport est propre à la compagnie."
+      es: "La guía de movilización nacional se aplica a ovinos, caprinos, equinos, bovinos y apícolas — los perros no figuran. Cualquier documento exigido en el aeropuerto es de la aerolínea."
+      pt: "A guía de movilización nacional se aplica a ovinos, caprinos, equinos, bovinos e abelhas — os cachorros não constam nela. Qualquer documento exigido no aeroporto é da própria companhia aérea."
+    - en: "The main domestic carrier takes small dogs in the cabin only, with weight limits, a health certificate and breed restrictions."
+      fr: "La principale compagnie intérieure n'accepte les petits chiens qu'en cabine, avec limites de poids, certificat de santé et restrictions de race."
+      es: "La principal aerolínea nacional solo acepta perros pequeños en cabina, con límites de peso, certificado de salud y restricciones de raza."
+      pt: "A principal companhia aérea doméstica só aceita cachorros pequenos na cabine, com limites de peso, atestado de saúde e restrições de raça."
+exit:
+  authority: DIGEGA
+  authorityUrl: https://www.ganaderia.gob.do/index.php/servicios/item/539-autorizacion-para-la-exportacion-de-animales-productos-y-subproductos-de-origen-animal
+  intro:
+    en: "The Dominican Republic is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate validated by DIGEGA."
+    fr: "La République dominicaine est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire validé par la DIGEGA."
+    es: "República Dominicana no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario validado por la DIGEGA."
+    pt: "A República Dominicana é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde validado pela DIGEGA."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A private vet does the pre-export check and completes the EU non-commercial certificate; it is signed by the veterinary college (COLVET) where required, then submitted to DIGEGA for validation and official signature."
+        fr: "Un vétérinaire privé réalise le contrôle pré-export et remplit le certificat UE non commercial ; il est signé par l'ordre vétérinaire (COLVET) si nécessaire, puis soumis à la DIGEGA pour validation et signature officielle."
+        es: "Un veterinario privado hace el control previo a la exportación y rellena el certificado UE no comercial; lo firma el colegio veterinario (COLVET) cuando corresponde y luego se presenta a la DIGEGA para su validación y firma oficial."
+        pt: "Um veterinário particular faz o controle pré-exportação e preenche o certificado não comercial da UE; ele é assinado pelo conselho veterinário (COLVET) quando exigido e depois enviado à DIGEGA para validação e assinatura oficial."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to the Dominican Republic with your dog", fr: "Voyager en République dominicaine avec ton chien", es: "Viajar a la República Dominicana con tu perro", pt: "Viajar com seu cachorro para a República Dominicana" }
+  intro:
+    en: >-
+      The Dominican Republic welcomes dogs, and its rules are relatively straightforward: the country
+      runs its own scheme through the Directorate General of Livestock (DIGEGA), not the EU pet-passport
+      system. A dog travelling with its owner needs a veterinary health certificate issued in the country
+      of departure, a valid rabies vaccination and up-to-date core vaccines, plus internal and external
+      parasite treatment. No prior import permit is needed for a personal pet accompanying its owner —
+      only a commercial import requires a DIGEGA authorization. What you must prepare still depends on your
+      dog's country of departure and recent history, because the certificate must confirm the dog comes
+      from a disease-free zone. This guide explains exactly what to prepare before you book your flight.
+    fr: >-
+      La République dominicaine accueille les chiens, et ses règles sont relativement simples : le pays
+      applique son propre dispositif via la Direction générale de l'élevage (DIGEGA), et non le système du
+      passeport européen. Un chien voyageant avec son propriétaire a besoin d'un certificat sanitaire
+      vétérinaire établi dans le pays de départ, d'une vaccination antirabique valide et de vaccins de base
+      à jour, ainsi que d'un traitement antiparasitaire interne et externe. Aucun permis d'importation
+      préalable n'est exigé pour un animal de compagnie accompagnant son propriétaire — seule une
+      importation commerciale nécessite une autorisation de la DIGEGA. Ce qu'il faut préparer dépend tout
+      de même du pays de départ et de l'historique récent du chien, car le certificat doit confirmer qu'il
+      provient d'une zone indemne de maladies. Ce guide détaille exactement quoi préparer avant de réserver.
+    es: >-
+      La República Dominicana acoge a los perros, y sus normas son relativamente sencillas: el país
+      aplica su propio sistema a través de la Dirección General de Ganadería (DIGEGA), no el sistema del
+      pasaporte europeo para mascotas. Un perro que viaja con su propietario necesita un certificado
+      sanitario veterinario expedido en el país de salida, una vacunación antirrábica válida y las vacunas
+      básicas al día, además de un tratamiento contra parásitos internos y externos. No se exige permiso de
+      importación previo para una mascota personal que acompaña a su propietario — solo una importación
+      comercial requiere una autorización de la DIGEGA. Lo que debes preparar depende igualmente del país
+      de salida y del historial reciente de tu perro, porque el certificado debe confirmar que el perro
+      procede de una zona libre de enfermedades. Esta guía explica exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A República Dominicana recebe cachorros, e suas regras são relativamente simples: o país aplica seu próprio esquema por meio da Direção-Geral de Pecuária (DIGEGA), e não o sistema do passaporte europeu para animais. Um cachorro que viaja com seu dono precisa de um certificado veterinário de saúde emitido no país de partida, de vacinação antirrábica válida e das vacinas essenciais em dia, além de tratamento contra parasitas internos e externos. Não é preciso autorização de importação prévia para um animal de estimação que acompanha seu dono — só a importação comercial exige uma autorização da DIGEGA. O que você tem de preparar ainda depende do país de partida e do histórico recente do seu cachorro, porque o certificado precisa confirmar que o cachorro vem de uma zona livre de doenças. Este guia explica exatamente o que preparar antes de você comprar a passagem."
+difficulty:
+  level: easy
+  label: { en: "Easy — one health certificate, no permit for personal pets", fr: "Facile — un certificat sanitaire, sans permis pour les animaux de compagnie", es: "Fácil — un certificado sanitario, sin permiso para mascotas personales", pt: "Fácil — um atestado de saúde, sem autorização para animais de estimação" }
+
+prepTime:
+  eu:
+    en: "A few days if the rabies vaccine is already valid — the health certificate is issued after an exam within 72 hours of departure and is valid 10 days."
+    fr: "Quelques jours si le vaccin antirabique est déjà valide — le certificat sanitaire est établi après un examen dans les 72 heures avant le départ et est valable 10 jours."
+    es: "Unos días si la vacuna antirrábica ya es válida — el certificado sanitario se expide tras un examen dentro de las 72 horas previas a la salida y es válido 10 días."
+    pt: "Alguns dias se a vacina antirrábica já estiver válida — o atestado de saúde é emitido após um exame feito nas 72 horas anteriores à partida e vale 10 dias."
+  listed:
+    en: "~1 month if a first rabies shot is still needed: it must be given at least 30 days before departure (dog at least 3 months old)."
+    fr: "~1 mois si une première vaccination antirabique reste à faire : elle doit être administrée au moins 30 jours avant le départ (chien d'au moins 3 mois)."
+    es: "~1 mes si aún falta la primera vacuna antirrábica: debe administrarse al menos 30 días antes de la salida (perro de al menos 3 meses)."
+    pt: "~1 mês se ainda faltar a primeira dose antirrábica: ela precisa ser aplicada no mínimo 30 dias antes da partida (com o cachorro tendo pelo menos 3 meses)."
+  nonListed:
+    en: "Longer for a commercial import: allow extra time to obtain the DIGEGA authorization through the VUCE single window before shipping."
+    fr: "Plus long pour une importation commerciale : prévois du temps pour obtenir l'autorisation de la DIGEGA via le guichet unique VUCE avant l'expédition."
+    es: "Más tiempo para una importación comercial: prevé tiempo adicional para obtener la autorización de la DIGEGA a través de la ventanilla única VUCE antes del envío."
+    pt: "Mais tempo para uma importação comercial: reserve prazo extra para obter a autorização de importação da DIGEGA pela janela única VUCE antes do embarque."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Microchip or tattoo for identification", fr: "Puce ou tatouage pour l'identification", es: "Microchip o tatuaje para la identificación", pt: "Microchip ou tatuagem para identificação" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Core vaccinations & parasite treatment", fr: "Vaccins de base & traitement antiparasitaire", es: "Vacunas básicas y tratamiento antiparasitario", pt: "Vacinas essenciais e tratamento antiparasitário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorios", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in DIGEGA's published requirements", fr: "Absent des exigences publiées par la DIGEGA", es: "No figura en los requisitos publicados por la DIGEGA", pt: "Não consta nas exigências publicadas pela DIGEGA" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Import permit (personal pet)", fr: "Permis d'import (animal de compagnie)", es: "Permiso de importación (mascota personal)", pt: "Autorização de importação (animal de estimação pessoal)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Only if documents are incomplete on arrival", fr: "Uniquement si les documents sont incomplets à l'arrivée", es: "Solo si los documentos están incompletos a la llegada", pt: "Somente se a documentação estiver incompleta na chegada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — the Dominican Republic (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la République dominicaine (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — la República Dominicana (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a República Dominicana (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Dominican Republic", fr: "Pays de destination — République dominicaine", es: "País de destino — República Dominicana", pt: "País de destino — República Dominicana" }
+      text:
+        en: "DIGEGA runs a certificate-based scheme: a veterinary health certificate, a valid rabies vaccination, core vaccines and internal/external parasite treatment are always required. No import permit is needed for a personal pet."
+        fr: "La DIGEGA applique un dispositif fondé sur un certificat : certificat sanitaire vétérinaire, vaccination antirabique valide, vaccins de base et traitement antiparasitaire interne/externe toujours exigés. Aucun permis d'import n'est requis pour un animal de compagnie."
+        es: "La DIGEGA aplica un sistema basado en un certificado: siempre se exigen un certificado sanitario veterinario, una vacunación antirrábica válida, las vacunas básicas y un tratamiento contra parásitos internos y externos. No se necesita permiso de importación para una mascota personal."
+        pt: "A DIGEGA aplica um esquema baseado em certificados: um certificado veterinário de saúde, vacinação antirrábica válida, vacinas essenciais e tratamento contra parasitas internos e externos são sempre obrigatórios. Não é preciso autorização de importação para um animal de estimação."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The certificate must state that your dog comes from a zone free of species-relevant diseases in the last 60 days and was examined within 72 hours before departure, so the departure country's health status matters directly."
+        fr: "Le certificat doit indiquer que ton chien provient d'une zone indemne des maladies propres à l'espèce depuis 60 jours et a été examiné dans les 72 heures avant le départ ; le statut sanitaire du pays de départ compte donc directement."
+        es: "El certificado debe indicar que tu perro procede de una zona libre de las enfermedades propias de la especie durante los últimos 60 días y fue examinado dentro de las 72 horas previas a la salida, por lo que el estado sanitario del país de salida influye directamente."
+        pt: "O certificado precisa declarar que o seu cachorro vem de uma zona livre de doenças relevantes para a espécie nos últimos 60 dias e que ele foi examinado nas 72 horas anteriores à partida — por isso a situação sanitária do país de partida importa diretamente."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's recent residence and rabies history determine whether its vaccination record is complete and valid for the whole trip. It is the dog's real history that counts — not only the last airport."
+        fr: "La résidence récente et l'historique rabique du chien déterminent si son carnet de vaccination est complet et valide pour tout le voyage. C'est l'historique réel du chien qui compte — pas seulement l'aéroport de destination finale."
+        es: "La residencia reciente y el historial antirrábico de tu perro determinan si su cartilla de vacunación está completa y es válida para todo el viaje. Lo que cuenta es el historial real del perro — no solo el último aeropuerto."
+        pt: "Onde o seu cachorro morou recentemente e o histórico de raiva dele determinam se a carteira de vacinação está completa e válida durante toda a viagem. O que conta é o histórico real do cachorro — não só o último aeroporto."
+  note:
+    en: "So read the requirements below as the Dominican framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre dominicain, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco dominicano y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral da República Dominicana, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Identification (microchip or tattoo)", fr: "Identification (puce ou tatouage)", es: "Identificación (microchip o tatuaje)", pt: "Identificação (microchip ou tatuagem)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The health certificate must carry the full identification of the animal, including a microchip and/or tattoo number.", fr: "Le certificat sanitaire doit porter l'identification complète de l'animal, dont un numéro de puce et/ou de tatouage.", es: "El certificado sanitario debe incluir la identificación completa del animal, con un número de microchip o de tatuaje.", pt: "O atestado de saúde precisa trazer a identificação completa do animal, incluindo o número do microchip e/ou da tatuagem." }
+    exceptions: { en: "DIGEGA accepts a microchip and/or a tattoo; a microchip is recommended and is required by most airlines and by the vaccination record.", fr: "La DIGEGA accepte une puce et/ou un tatouage ; la puce est recommandée et exigée par la plupart des compagnies et par le carnet de vaccination.", es: "La DIGEGA acepta un microchip o un tatuaje; se recomienda el microchip y lo exigen la mayoría de las aerolíneas y la cartilla de vacunación.", pt: "A DIGEGA aceita microchip e/ou tatuagem; o microchip é recomendado e é exigido pela maioria das companhias aéreas e pela carteira de vacinação." }
+    ref: { en: "DIGEGA — Zoosanitary requirements for dogs and cats", fr: "DIGEGA — Exigences zoosanitaires pour chiens et chats", es: "DIGEGA — Requisitos zoosanitarios para perros y gatos", pt: "DIGEGA — Exigências zoossanitárias para cães e gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Inactivated-virus vaccine given no more than 12 months and no less than 30 days before departure; the vaccination must not expire during the trip.", fr: "Vaccin à virus inactivé administré au plus 12 mois et au moins 30 jours avant le départ ; la vaccination ne doit pas expirer pendant le voyage.", es: "Vacuna de virus inactivado administrada como máximo 12 meses y como mínimo 30 días antes de la salida; la vacunación no debe caducar durante el viaje.", pt: "Vacina de vírus inativado aplicada no máximo 12 meses e no mínimo 30 dias antes da partida; a vacinação não pode vencer durante a viagem." }
+    exceptions: { en: "Adult dogs (15 months or older) with a documented vaccination history (first shot after 3 months) plus booster records do not need to wait the 30 days.", fr: "Les chiens adultes (15 mois ou plus) avec un historique de vaccination documenté (première dose après 3 mois) et des rappels enregistrés n'ont pas à respecter le délai de 30 jours.", es: "Los perros adultos (15 meses o más) con un historial de vacunación documentado (primera dosis después de los 3 meses) y registros de refuerzos no tienen que respetar la espera de 30 días.", pt: "Cachorros adultos (de 15 meses ou mais) com histórico de vacinação documentado (primeira dose depois dos 3 meses) e registros de reforço não precisam esperar os 30 dias." }
+    ref: { en: "DIGEGA — Zoosanitary requirements for dogs and cats", fr: "DIGEGA — Exigences zoosanitaires pour chiens et chats", es: "DIGEGA — Requisitos zoosanitarios para perros y gatos", pt: "DIGEGA — Exigências zoossanitárias para cães e gatos" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Effectively ≥4 months", fr: "En pratique ≥4 mois", es: "En la práctica ≥4 meses", pt: "Na prática, ≥4 meses" }
+    when: { en: "Puppies cannot be vaccinated against rabies before 3 months (12 weeks / 90 days); with the 30-day wait, a first-time-vaccinated dog is about 4 months old at travel.", fr: "Un chiot ne peut être vacciné contre la rage avant 3 mois (12 semaines / 90 jours) ; avec le délai de 30 jours, un chien primo-vacciné a environ 4 mois au voyage.", es: "Los cachorros no pueden vacunarse contra la rabia antes de los 3 meses (12 semanas / 90 días); con la espera de 30 días, un perro vacunado por primera vez tiene unos 4 meses en el momento del viaje.", pt: "Filhotes não podem ser vacinados contra a raiva antes dos 3 meses (12 semanas / 90 dias); com a espera de 30 dias, um cachorro vacinado pela primeira vez tem cerca de 4 meses na data da viagem." }
+    exceptions: { en: "The rabies vaccination certificate must state the puppy's age or date of birth.", fr: "Le certificat de vaccination antirabique doit indiquer l'âge ou la date de naissance du chiot.", es: "El certificado de vacunación antirrábica debe indicar la edad o la fecha de nacimiento del cachorro.", pt: "O certificado de vacinação antirrábica precisa informar a idade ou a data de nascimento do filhote." }
+    ref: { en: "DIGEGA — Zoosanitary requirements for dogs and cats", fr: "DIGEGA — Exigences zoosanitaires pour chiens et chats", es: "DIGEGA — Requisitos zoosanitarios para perros y gatos", pt: "DIGEGA — Exigências zoossanitárias para cães e gatos" }
+  - item: { en: "Core vaccinations", fr: "Vaccins de base", es: "Vacunas básicas", pt: "Vacinas essenciais" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "The certificate must list the vaccines applied, with the vaccination record (labels, batch, manufacture and expiry dates).", fr: "Le certificat doit énumérer les vaccins appliqués, avec le carnet de vaccination (étiquettes, lot, dates de fabrication et de péremption).", es: "El certificado debe enumerar las vacunas aplicadas, junto con la cartilla de vacunación (etiquetas, lote, fechas de fabricación y de caducidad).", pt: "O certificado precisa listar as vacinas aplicadas, junto com a carteira de vacinação (etiquetas, lote, datas de fabricação e de validade)." }
+    exceptions: { en: "DIGEGA does not publish a fixed list of core vaccines; U.S. export guidance cites DHPP (distemper, hepatitis, parainfluenza, parvovirus). Confirm the schedule with your vet.", fr: "La DIGEGA ne publie pas de liste fixe de vaccins de base ; le guide d'export américain cite le DHPP (maladie de Carré, hépatite, parainfluenza, parvovirose). Confirme le protocole avec ton vétérinaire.", es: "La DIGEGA no publica una lista fija de vacunas básicas; la guía de exportación de EE. UU. cita la DHPP (moquillo, hepatitis, parainfluenza, parvovirus). Confirma la pauta con tu veterinario.", pt: "A DIGEGA não publica uma lista fixa de vacinas essenciais; a orientação de exportação dos Estados Unidos cita a DHPP (cinomose, hepatite, parainfluenza, parvovirose). Confirme o calendário com seu veterinário." }
+    ref: { en: "DIGEGA — Zoosanitary requirements; USDA APHIS export page", fr: "DIGEGA — Exigences zoosanitaires ; page export USDA APHIS", es: "DIGEGA — Requisitos zoosanitarios; página de exportación USDA APHIS", pt: "DIGEGA — Exigências zoossanitárias; página de exportação do USDA APHIS" }
+  - item: { en: "Anti-parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be treated against internal and external parasites; the certificate must state the dewormer used, its manufacturer and active ingredients.", fr: "Le chien doit être traité contre les parasites internes et externes ; le certificat doit indiquer le vermifuge utilisé, son fabricant et ses principes actifs.", es: "El perro debe recibir tratamiento contra parásitos internos y externos; el certificado debe indicar el desparasitante utilizado, su fabricante y sus principios activos.", pt: "O cachorro precisa ser tratado contra parasitas internos e externos; o certificado precisa indicar o vermífugo usado, o fabricante e os princípios ativos." }
+    exceptions: { en: "No specific tapeworm (Echinococcus) treatment window is published — a general internal/external parasite treatment is required.", fr: "Aucun délai spécifique de traitement contre l'échinococcose n'est publié — un traitement antiparasitaire interne/externe général est exigé.", es: "No se publica un plazo específico de tratamiento contra la tenia (Echinococcus) — se exige un tratamiento antiparasitario general interno y externo.", pt: "Não há prazo específico publicado para o tratamento contra tênia (Echinococcus) — o que se exige é um tratamento antiparasitário interno/externo geral." }
+    ref: { en: "DIGEGA — Zoosanitary requirements for dogs and cats", fr: "DIGEGA — Exigences zoosanitaires pour chiens et chats", es: "DIGEGA — Requisitos zoosanitarios para perros y gatos", pt: "DIGEGA — Exigências zoossanitárias para cães e gatos" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "DIGEGA's published zoosanitary requirements for dogs do not include a rabies antibody test. Whether one is requested for specific high-risk origins is not published — confirm with DIGEGA before travel.", fr: "Les exigences zoosanitaires publiées par la DIGEGA pour les chiens ne comprennent pas de titrage antirabique. L'éventuelle exigence pour certaines origines à haut risque n'est pas publiée — vérifie auprès de la DIGEGA avant le voyage.", es: "Los requisitos zoosanitarios publicados por la DIGEGA para perros no incluyen una prueba de titulación de rabia. Si se solicita para determinados orígenes de alto riesgo no está publicado — consúltalo con la DIGEGA antes de viajar.", pt: "As exigências zoossanitárias publicadas pela DIGEGA para cachorros não incluem teste sorológico antirrábico. Não há informação publicada sobre se ele é pedido para origens específicas de alto risco — confirme com a DIGEGA antes de viajar." }
+    ref: { en: "DIGEGA — Zoosanitary requirements for dogs and cats", fr: "DIGEGA — Exigences zoosanitaires pour chiens et chats", es: "DIGEGA — Requisitos zoosanitarios para perros y gatos", pt: "DIGEGA — Exigências zoossanitárias para cães e gatos" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat sanitaire vétérinaire international", es: "Certificado sanitario veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued and signed by a veterinarian in the country of departure; if that vet is not an official vet, it must be countersigned and stamped by an official (government) vet. It records the owner's name/address and full animal identification.", fr: "Établi et signé par un vétérinaire du pays de départ ; si ce vétérinaire n'est pas officiel, le certificat doit être contresigné et scellé par un vétérinaire officiel (gouvernemental). Il consigne le nom/adresse du propriétaire et l'identification complète de l'animal.", es: "Expedido y firmado por un veterinario del país de salida; si ese veterinario no es oficial, el certificado debe ser refrendado y sellado por un veterinario oficial (gubernamental). Recoge el nombre y la dirección del propietario y la identificación completa del animal.", pt: "Emitido e assinado por um veterinário no país de partida; se esse veterinário não for oficial, o documento precisa ser referendado e carimbado por um veterinário oficial (do governo). Ele registra o nome e o endereço do dono e a identificação completa do animal." }
+    exceptions: { en: "The dog must be examined within 72 hours before departure; the endorsed certificate is valid 10 days after issuance. Consular endorsement is not required for personal pets.", fr: "Le chien doit être examiné dans les 72 heures avant le départ ; le certificat visé est valable 10 jours après émission. Le visa consulaire n'est pas requis pour les animaux de compagnie.", es: "El perro debe ser examinado dentro de las 72 horas previas a la salida; el certificado refrendado es válido 10 días desde su expedición. No se requiere refrendo consular para las mascotas personales.", pt: "O cachorro precisa ser examinado nas 72 horas anteriores à partida; o certificado referendado vale 10 dias a partir da emissão. Não é preciso legalização consular para animais de estimação." }
+    ref: { en: "DIGEGA — Zoosanitary requirements; USDA APHIS health certificate (DO)", fr: "DIGEGA — Exigences zoosanitaires ; certificat sanitaire USDA APHIS (RD)", es: "DIGEGA — Requisitos zoosanitarios; certificado sanitario USDA APHIS (RD)", pt: "DIGEGA — Exigências zoossanitárias; atestado de saúde do USDA APHIS (DO)" }
+  - item: { en: "Import authorization (DIGEGA / VUCE)", fr: "Autorisation d'importation (DIGEGA / VUCE)", es: "Autorización de importación (DIGEGA / VUCE)", pt: "Autorização de importação (DIGEGA / VUCE)" }
+    required: { en: "Commercial imports only", fr: "Importations commerciales uniquement", es: "Solo importaciones comerciales", pt: "Somente para importações comerciais" }
+    when: { en: "Required for the commercial-scale import of dogs and cats; requested through the VUCE single window using the Importation of Domestic Animals form.", fr: "Requise pour l'importation à échelle commerciale de chiens et chats ; demandée via le guichet unique VUCE avec le formulaire d'Importation d'Animaux Domestiques.", es: "Obligatoria para la importación a escala comercial de perros y gatos; se solicita a través de la ventanilla única VUCE con el formulario de Importación de Animales Domésticos.", pt: "Obrigatória para a importação em escala comercial de cachorros e gatos; solicitada pela janela única VUCE com o formulário de Importação de Animais Domésticos." }
+    exceptions: { en: "Not required for a personal pet travelling with its owner.", fr: "Non requise pour un animal de compagnie voyageant avec son propriétaire.", es: "No obligatoria para una mascota personal que viaja con su propietario.", pt: "Não é obrigatória para um animal de estimação pessoal que viaja com o dono." }
+    ref: { en: "DIGEGA — Zoosanitary requirements (commercial import)", fr: "DIGEGA — Exigences zoosanitaires (import commercial)", es: "DIGEGA — Requisitos zoosanitarios (importación comercial)", pt: "DIGEGA — Exigências zoossanitárias (importação comercial)" }
+  - item: { en: "Inspection on arrival", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dogs and cats may enter without a prior permit but must arrive with the health certificate and an up-to-date vaccination record; DIGEGA inspects the animal and documents on arrival.", fr: "Chiens et chats peuvent entrer sans permis préalable mais doivent arriver avec le certificat sanitaire et un carnet de vaccination à jour ; la DIGEGA inspecte l'animal et les documents à l'arrivée.", es: "Los perros y gatos pueden entrar sin permiso previo, pero deben llegar con el certificado sanitario y una cartilla de vacunación al día; la DIGEGA inspecciona al animal y los documentos a la llegada.", pt: "Cachorros e gatos podem entrar sem autorização prévia, mas precisam chegar com o atestado de saúde e a carteira de vacinação em dia; a DIGEGA inspeciona o animal e os documentos na chegada." }
+    exceptions: { en: "If requirements are met the animal is released; otherwise it is sent to the quarantine station.", fr: "Si les exigences sont satisfaites, l'animal est libéré ; sinon il est envoyé à la station de quarantaine.", es: "Si se cumplen los requisitos, se libera al animal; de lo contrario, se envía a la estación de cuarentena.", pt: "Se as exigências forem cumpridas, o animal é liberado; caso contrário, ele é encaminhado à estação de quarentena." }
+    ref: { en: "DIGEGA — Frequently asked questions", fr: "DIGEGA — Questions fréquentes", es: "DIGEGA — Preguntas frecuentes", pt: "DIGEGA — Perguntas frequentes" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Only if non-compliant", fr: "Uniquement en cas de non-conformité", es: "Solo en caso de incumplimiento", pt: "Somente se não estiver em conformidade" }
+    when: { en: "There is no routine quarantine for a compliant dog.", fr: "Aucune quarantaine de routine pour un chien conforme.", es: "No hay cuarentena de rutina para un perro que cumple los requisitos.", pt: "Não há quarentena de rotina para um cachorro em conformidade." }
+    exceptions: { en: "A dog arriving without a valid certificate or vaccination record is sent to the DIGEGA quarantine station.", fr: "Un chien arrivant sans certificat valide ou sans carnet de vaccination est envoyé à la station de quarantaine de la DIGEGA.", es: "Un perro que llega sin un certificado válido o sin cartilla de vacunación se envía a la estación de cuarentena de la DIGEGA.", pt: "Um cachorro que chega sem certificado válido ou sem carteira de vacinação é encaminhado à estação de quarentena da DIGEGA." }
+    ref: { en: "DIGEGA — Frequently asked questions", fr: "DIGEGA — Questions fréquentes", es: "DIGEGA — Preguntas frecuentes", pt: "DIGEGA — Perguntas frequentes" }
+
+origin:
+  eu:
+    title: { en: "Standard — a pet travelling with its owner", fr: "Standard — un animal voyageant avec son propriétaire", es: "Estándar — una mascota que viaja con su propietario", pt: "Padrão — um animal de companhia viajando com o dono" }
+    body:
+      en: "A dog accompanying its owner needs a veterinary health certificate from the country of departure, a valid rabies vaccination, core vaccines and internal/external parasite treatment. No prior import permit is required. The dog is examined within 72 hours of departure, and the endorsed certificate is valid 10 days. On arrival DIGEGA checks the animal and papers and, if all is in order, releases it — no routine quarantine."
+      fr: "Un chien accompagnant son propriétaire a besoin d'un certificat sanitaire vétérinaire du pays de départ, d'une vaccination antirabique valide, de vaccins de base et d'un traitement antiparasitaire interne/externe. Aucun permis d'import préalable n'est requis. Le chien est examiné dans les 72 heures avant le départ, et le certificat visé est valable 10 jours. À l'arrivée, la DIGEGA contrôle l'animal et les documents et, si tout est en règle, le libère — sans quarantaine de routine."
+      es: "Un perro que acompaña a su propietario necesita un certificado sanitario veterinario del país de salida, una vacunación antirrábica válida, las vacunas básicas y un tratamiento antiparasitario interno/externo. No se requiere permiso de importación previo. El perro se examina dentro de las 72 horas previas a la salida, y el certificado refrendado es válido 10 días. A la llegada, la DIGEGA revisa al animal y los documentos y, si todo está en regla, lo libera — sin cuarentena de rutina."
+      pt: "Um cachorro que acompanha seu dono precisa de um certificado veterinário de saúde do país de partida, de vacinação antirrábica válida, das vacinas essenciais e de tratamento contra parasitas internos e externos. Não é exigida autorização de importação prévia. O cachorro é examinado nas 72 horas anteriores à partida, e o certificado referendado vale 10 dias. Na chegada, a DIGEGA confere o animal e os documentos e, se estiver tudo em ordem, o libera — sem quarentena de rotina."
+    cls: ok
+  listed:
+    title: { en: "Puppies and first-time vaccination", fr: "Chiots et primo-vaccination", es: "Cachorros y primovacunación", pt: "Filhotes e primeira vacinação" }
+    body:
+      en: "A puppy cannot be vaccinated against rabies before 3 months (12 weeks). A first rabies shot must be given at least 30 days before departure, so a first-time-vaccinated dog is about 4 months old at travel. The rabies certificate must show the date of birth or age. Adult dogs with a documented, unbroken vaccination history do not have to wait the 30 days."
+      fr: "Un chiot ne peut être vacciné contre la rage avant 3 mois (12 semaines). Une première vaccination antirabique doit être administrée au moins 30 jours avant le départ ; un chien primo-vacciné a donc environ 4 mois au voyage. Le certificat antirabique doit indiquer la date de naissance ou l'âge. Les chiens adultes avec un historique de vaccination documenté et continu n'ont pas à respecter le délai de 30 jours."
+      es: "Un cachorro no puede vacunarse contra la rabia antes de los 3 meses (12 semanas). La primera vacuna antirrábica debe administrarse al menos 30 días antes de la salida, por lo que un perro con primovacunación tiene unos 4 meses al viajar. El certificado antirrábico debe indicar la fecha de nacimiento o la edad. Los perros adultos con un historial de vacunación documentado y sin interrupciones no tienen que esperar los 30 días."
+      pt: "Um filhote não pode ser vacinado contra a raiva antes dos 3 meses (12 semanas). A primeira dose antirrábica precisa ser aplicada no mínimo 30 dias antes da partida, então um cachorro vacinado pela primeira vez tem cerca de 4 meses na data da viagem. O certificado antirrábico precisa mostrar a data de nascimento ou a idade. Cachorros adultos com histórico de vacinação documentado e sem interrupção não precisam esperar os 30 dias."
+    cls: warn
+  nonListed:
+    title: { en: "Commercial or resale imports", fr: "Importations commerciales ou de revente", es: "Importaciones comerciales o de reventa", pt: "Importações comerciais ou para revenda" }
+    body:
+      en: "Importing dogs or cats on a commercial scale requires a DIGEGA authorization, requested through the VUCE single window using the Importation of Domestic Animals form. The application lists species, sex, breed, colour, age, quantity, country of origin and departure, ports of embarkation/arrival, means of transport and commercial value, signed and stamped by the interested party. This is in addition to the health certificate and vaccination requirements above."
+      fr: "Importer des chiens ou des chats à échelle commerciale nécessite une autorisation de la DIGEGA, demandée via le guichet unique VUCE avec le formulaire d'Importation d'Animaux Domestiques. La demande indique espèce, sexe, race, couleur, âge, quantité, pays d'origine et de provenance, ports d'embarquement/arrivée, moyen de transport et valeur commerciale, signée et scellée par l'intéressé. Cela s'ajoute au certificat sanitaire et aux exigences de vaccination ci-dessus."
+      es: "Importar perros o gatos a escala comercial requiere una autorización de la DIGEGA, solicitada a través de la ventanilla única VUCE con el formulario de Importación de Animales Domésticos. La solicitud indica especie, sexo, raza, color, edad, cantidad, país de origen y de procedencia, puertos de embarque/llegada, medio de transporte y valor comercial, firmada y sellada por el interesado. Esto se suma al certificado sanitario y a los requisitos de vacunación anteriores."
+      pt: "Importar cachorros ou gatos em escala comercial exige uma autorização de importação da DIGEGA, solicitada pela janela única VUCE com o formulário de Importação de Animais Domésticos. O pedido indica espécie, sexo, raça, cor, idade, quantidade, país de origem e de partida, portos de embarque e de chegada, meio de transporte e valor comercial, assinado e carimbado pelo interessado. Tudo isso se soma às exigências de atestado de saúde e de vacinação descritas acima."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches the Dominican Republic depends on whether its documents are complete."
+    fr: "Ce qui se passe à l'arrivée de ton chien en République dominicaine dépend de la complétude de ses documents."
+    es: "Lo que ocurre cuando tu perro llega a la República Dominicana depende de que sus documentos estén completos."
+    pt: "O que acontece quando seu cachorro chega à República Dominicana depende de a documentação dele estar completa."
+  points:
+    - en: "Dogs and cats may enter without a prior import permit but must arrive with the veterinary health certificate and an up-to-date vaccination record."
+      fr: "Chiens et chats peuvent entrer sans permis d'import préalable mais doivent arriver avec le certificat sanitaire vétérinaire et un carnet de vaccination à jour."
+      es: "Los perros y gatos pueden entrar sin permiso de importación previo, pero deben llegar con el certificado sanitario veterinario y una cartilla de vacunación al día."
+      pt: "Cachorros e gatos podem entrar sem autorização de importação prévia, mas precisam chegar com o certificado veterinário de saúde e a carteira de vacinação em dia."
+    - en: "DIGEGA inspects the animal and documents on arrival; if everything is in order the dog is released with no routine quarantine."
+      fr: "La DIGEGA inspecte l'animal et les documents à l'arrivée ; si tout est en règle, le chien est libéré sans quarantaine de routine."
+      es: "La DIGEGA inspecciona al animal y los documentos a la llegada; si todo está en regla, el perro se libera sin cuarentena de rutina."
+      pt: "A DIGEGA inspeciona o animal e os documentos na chegada; se estiver tudo em ordem, o cachorro é liberado sem quarentena de rotina."
+    - en: "If the certificate or vaccination record is missing or invalid, the animal is sent to the DIGEGA quarantine station."
+      fr: "Si le certificat ou le carnet de vaccination manque ou est invalide, l'animal est envoyé à la station de quarantaine de la DIGEGA."
+      es: "Si falta el certificado o la cartilla de vacunación, o no son válidos, el animal se envía a la estación de cuarentena de la DIGEGA."
+      pt: "Se faltar o certificado ou a carteira de vacinação, ou se não forem válidos, o animal é encaminhado à estação de quarentena da DIGEGA."
+    - en: "Carry the original endorsed documents (not copies); the certificate is valid only 10 days after issuance."
+      fr: "Munis-toi des documents originaux visés (pas de copies) ; le certificat n'est valable que 10 jours après émission."
+      es: "Lleva los documentos originales refrendados (no copias); el certificado solo es válido 10 días desde su expedición."
+      pt: "Leve os documentos originais referendados (não cópias); o certificado vale apenas 10 dias a partir da emissão."
+    - en: "Consular endorsement is not required for a personal dog or cat."
+      fr: "Le visa consulaire n'est pas requis pour un chien ou un chat de compagnie."
+      es: "No se requiere refrendo consular para un perro o gato de compañía."
+      pt: "Não é preciso legalização consular para um cachorro ou gato de estimação."
+    - en: "Airlines have their own crate, breed and booking rules — confirm them separately before you fly."
+      fr: "Les compagnies ont leurs propres règles de caisse, de race et de réservation — vérifie-les séparément avant de voler."
+      es: "Las aerolíneas tienen sus propias normas de jaula, raza y reserva — confírmalas por separado antes de volar."
+      pt: "As companhias aéreas têm as próprias regras de caixa de transporte, raça e reserva — confirme-as separadamente antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The Dominican Republic has no national breed-specific import ban published by DIGEGA. Animal keeping is governed by the Animal Protection and Responsible Ownership Law (Ley 248-12), and a bill to regulate certain breeds has been proposed but is not enacted law."
+    fr: "La République dominicaine n'a aucune interdiction nationale d'importation visant une race publiée par la DIGEGA. La détention d'animaux est régie par la loi de protection animale et de détention responsable (Ley 248-12), et un projet de loi visant à réglementer certaines races a été déposé mais n'est pas une loi en vigueur."
+    es: "La República Dominicana no tiene ninguna prohibición nacional de importación por raza publicada por la DIGEGA. La tenencia de animales se rige por la Ley de Protección Animal y Tenencia Responsable (Ley 248-12), y se ha presentado un proyecto de ley para regular ciertas razas, pero no es una ley en vigor."
+    pt: "A República Dominicana não tem nenhuma proibição nacional de importação por raça publicada pela DIGEGA. A posse de animais é regida pela Ley 248-12, de Protección Animal y Tenencia Responsable, e existe um projeto de lei para regular certas raças, mas ele ainda não virou lei."
+  cat1:
+    en: "No dog breed is currently prohibited from entering the Dominican Republic under national law. Any dog meeting DIGEGA's health-certificate, vaccination and parasite-treatment requirements may be imported regardless of breed."
+    fr: "Aucune race de chien n'est actuellement interdite d'entrée en République dominicaine selon la loi nationale. Tout chien répondant aux exigences de la DIGEGA (certificat sanitaire, vaccination, traitement antiparasitaire) peut être importé, quelle que soit sa race."
+    es: "Actualmente ninguna raza de perro tiene prohibida la entrada a la República Dominicana según la ley nacional. Cualquier perro que cumpla los requisitos de la DIGEGA (certificado sanitario, vacunación y tratamiento antiparasitario) puede importarse sin importar su raza."
+    pt: "Nenhuma raça de cachorro está atualmente proibida de entrar na República Dominicana pela legislação nacional. Qualquer cachorro que cumpra as exigências da DIGEGA de atestado de saúde, vacinação e tratamento antiparasitário pode ser importado, seja qual for a raça."
+  cat2:
+    en: "A proposed bill would regulate ownership of breeds such as Pit Bull Terrier, Rottweiler, Doberman, American Staffordshire Terrier, Bull Terrier, Bullmastiff, Dogo Argentino, Dogue de Bordeaux, Fila Brasileiro and Tosa Inu (registration, sterilization, liability insurance). If enacted it would affect keeping, not necessarily import — check its status before travel."
+    fr: "Un projet de loi réglementerait la détention de races telles que Pit Bull Terrier, Rottweiler, Doberman, American Staffordshire Terrier, Bull Terrier, Bullmastiff, Dogo Argentino, Dogue de Bordeaux, Fila Brasileiro et Tosa Inu (enregistrement, stérilisation, assurance responsabilité civile). S'il est adopté, il viserait la détention, pas nécessairement l'importation — vérifie son statut avant de voyager."
+    es: "Un proyecto de ley regularía la tenencia de razas como Pit Bull Terrier, Rottweiler, Doberman, American Staffordshire Terrier, Bull Terrier, Bullmastiff, Dogo Argentino, Dogo de Burdeos, Fila Brasileiro y Tosa Inu (registro, esterilización, seguro de responsabilidad civil). Si se aprueba, afectaría a la tenencia, no necesariamente a la importación — comprueba su estado antes de viajar."
+    pt: "Um projeto de lei regularia a posse de raças como Pit Bull Terrier, Rottweiler, Doberman, American Staffordshire Terrier, Bull Terrier, Bullmastiff, Dogo Argentino, Dogue de Bordeaux, Fila Brasileiro e Tosa Inu (registro, castração, seguro de responsabilidade civil). Se for aprovado, afetaria a posse, não necessariamente a importação — verifique a situação dele antes de viajar."
+  note:
+    en: "Municipalities and airlines may set their own rules for certain breeds. Confirm current national and local rules, and your airline's breed policy, before booking."
+    fr: "Les municipalités et les compagnies aériennes peuvent fixer leurs propres règles pour certaines races. Vérifie les règles nationales et locales en vigueur, ainsi que la politique de race de ta compagnie, avant de réserver."
+    es: "Los municipios y las aerolíneas pueden fijar sus propias normas para ciertas razas. Confirma las normas nacionales y locales vigentes, así como la política de razas de tu aerolínea, antes de reservar."
+    pt: "Municípios e companhias aéreas podem ter suas próprias regras para determinadas raças. Confirme as regras nacionais e locais em vigor, e a política de raças da sua companhia aérea, antes de reservar."
+
+checklist:
+  - en: "Identification recorded on the certificate (microchip and/or tattoo)"
+    fr: "Identification consignée sur le certificat (puce et/ou tatouage)"
+    es: "Identificación registrada en el certificado (microchip o tatuaje)"
+    pt: "Identificação registrada no certificado (microchip e/ou tatuagem)"
+  - en: "Valid rabies vaccination (inactivated virus, 30 days to 12 months before departure)"
+    fr: "Vaccination antirabique valide (virus inactivé, de 30 jours à 12 mois avant le départ)"
+    es: "Vacunación antirrábica válida (virus inactivado, de 30 días a 12 meses antes de la salida)"
+    pt: "Vacinação antirrábica válida (vírus inativado, de 30 dias a 12 meses antes da partida)"
+  - en: "Core vaccines up to date with the vaccination record (labels, batches, dates)"
+    fr: "Vaccins de base à jour avec le carnet de vaccination (étiquettes, lots, dates)"
+    es: "Vacunas básicas al día con la cartilla de vacunación (etiquetas, lotes, fechas)"
+    pt: "Vacinas essenciais em dia com a carteira de vacinação (etiquetas, lotes, datas)"
+  - en: "Internal and external parasite treatment (dewormer with active ingredients noted)"
+    fr: "Traitement antiparasitaire interne et externe (vermifuge avec principes actifs indiqués)"
+    es: "Tratamiento contra parásitos internos y externos (desparasitante con principios activos indicados)"
+    pt: "Tratamento contra parasitas internos e externos (vermífugo com princípios ativos indicados)"
+  - en: "Veterinary health certificate, exam within 72 hours, endorsed by an official vet, valid 10 days"
+    fr: "Certificat sanitaire vétérinaire, examen dans les 72 heures, visé par un vétérinaire officiel, valable 10 jours"
+    es: "Certificado sanitario veterinario, examen dentro de las 72 horas, refrendado por un veterinario oficial, válido 10 días"
+    pt: "Certificado veterinário de saúde, exame nas 72 horas anteriores, referendado por um veterinário oficial, válido por 10 dias"
+  - en: "DIGEGA / VUCE import authorization only if the import is commercial"
+    fr: "Autorisation d'importation DIGEGA / VUCE uniquement si l'importation est commerciale"
+    es: "Autorización de importación DIGEGA / VUCE solo si la importación es comercial"
+    pt: "Autorização de importação DIGEGA / VUCE somente se a importação for comercial"
+  - en: "Original documents carried with you (not copies)"
+    fr: "Documents originaux transportés avec toi (pas de copies)"
+    es: "Documentos originales que lleves contigo (no copias)"
+    pt: "Documentos originais levados com você (não cópias)"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation compagnie et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "DIGEGA — Zoosanitary requirements to import dogs and cats into the Dominican Republic", fr: "DIGEGA — Exigences zoosanitaires pour importer chiens et chats en République dominicaine", es: "DIGEGA — Requisitos zoosanitarios para importar perros y gatos a la República Dominicana", pt: "DIGEGA — Exigências zoossanitárias para importar cães e gatos para a República Dominicana" }
+    url: "https://www.ganaderia.gob.do/index.php/requisitos-sanitarios-para-el-ingreso-de-mascota-hacia-la-republica-dominicana"
+  - label: { en: "DIGEGA — Zoosanitary requirements for dogs and cats (full text)", fr: "DIGEGA — Exigences zoosanitaires pour chiens et chats (texte complet)", es: "DIGEGA — Requisitos zoosanitarios para perros y gatos (texto completo)", pt: "DIGEGA — Exigências zoossanitárias para cães e gatos (texto completo)" }
+    url: "https://www.ganaderia.gob.do/index.php/component/k2/item/290-requisitos-sanitarios-para-el-ingreso-de-mascota-hacia-la-republica-dominicana"
+  - label: { en: "CNMSF / DIGEGA — Livestock updates pet import certification (2024)", fr: "CNMSF / DIGEGA — L'élevage actualise la certification d'importation de mascotas (2024)", es: "CNMSF / DIGEGA — Ganadería actualiza la certificación de importación de mascotas (2024)", pt: "CNMSF / DIGEGA — Ganadería atualiza a certificação de importação de animais de estimação (2024)" }
+    url: "https://cnmsf.gob.do/ganaderia-actualiza-certificacion-para-para-importar-mascotas/"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Dominican Republic (health certificate)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers la République dominicaine (certificat sanitaire)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a la República Dominicana (certificado sanitario)", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para a República Dominicana (atestado de saúde)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-dominican-republic"
+
+seo:
+  title: { en: "Dominican Republic Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en République dominicaine — Guide", es: "Requisitos de entrada de perros en la República Dominicana — Guía de viaje", pt: "República Dominicana: exigências de entrada para cachorros" }
+  metaTitle: { en: "Dominican Republic Dog Entry Requirements (2026)", fr: "Chien : formalités d'entrée République dominicaine (2026)", es: "Perro: requisitos de entrada República Dominicana (2026)", pt: "Viajar com cachorro para a República Dominicana (2026)" }
+  metaDesc:
+    en: "Official DIGEGA rules for bringing a dog into the Dominican Republic — health certificate, rabies, core vaccines and parasite treatment. Sourced and dated."
+    fr: "Règles officielles DIGEGA pour faire entrer un chien en République dominicaine — certificat sanitaire, rage, vaccins de base et antiparasitaire. Sourcé et daté."
+    es: "Normas oficiales de la DIGEGA para traer un perro a la República Dominicana — certificado sanitario veterinario, rabia. Con fuentes y fecha."
+    pt: "Regras oficiais da DIGEGA para levar um cachorro para a República Dominicana: certificado veterinário, raiva e vacinas essenciais. Com fonte e data."
+  slug: "dominican-republic"
+  shortDesc:
+    en: "What you need to bring a dog into the Dominican Republic, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en République dominicaine, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a la República Dominicana, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para a República Dominicana, conforme o país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

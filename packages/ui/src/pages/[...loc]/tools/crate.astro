@@ -1,0 +1,105 @@
+---
+import Base from "../../../layouts/Base.astro";
+import CrateCalculator from "../../../components/CrateCalculator.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const L = inlineT(locale);
+const title = L("Which travel crate size for my dog?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué talla de jaula de transporte para perros necesito?");
+const blurb = L(
+  "Measure your dog (length + height) and get the ideal IATA crate size — safe and comfortable — with a cabin-or-hold check by airline.",
+  "Mesurez votre chien (longueur + hauteur) et obtenez la taille de cage IATA idéale — sécurité et confort — avec vérification cabine ou soute selon la compagnie.",
+  "Mide a tu perro (longitud + altura) y obtén la talla de jaula IATA ideal —segura y cómoda— con una comprobación de cabina o bodega según la aerolínea."
+);
+
+// FAQ (GEO / AI answers + SEO). Concise, accurate, tool-specific. Rendered as an accordion + FAQPage schema.
+const FAQ_FR = [
+  { q: "Comment mesurer mon chien pour une caisse de transport ?", a: "Deux mesures suffisent, le chien debout : la longueur (du nez à la base de la queue, sans la queue) et la hauteur (du sol au sommet de la tête, oreilles comprises). Notre calculateur en déduit la taille de caisse conforme IATA." },
+  { q: "Quelle taille de caisse pour faire voyager mon chien en avion ?", a: "La caisse doit permettre au chien de se tenir debout, de se retourner et de s'allonger. La règle IATA : longueur ≥ longueur du chien + ½ hauteur du coude, largeur ≥ 2 × largeur d'épaules, hauteur ≥ hauteur debout. Saisissez vos mesures pour obtenir le résultat exact." },
+  { q: "Quelle est la formule IATA pour la taille de caisse ?", a: "Longueur = A + ½B, Largeur = C × 2, Hauteur = D, où A = longueur nez-queue, B = hauteur du coude, C = largeur d'épaules, D = hauteur debout (tête/oreilles). Notre outil estime B et C à partir de la hauteur pour ne demander que deux mesures." },
+  { q: "Les races brachycéphales ont-elles besoin d'une caisse plus grande ?", a: "Oui. Pour les chiens à nez court (bouledogue, carlin, boxer…), l'IATA impose une caisse 10 % plus grande afin de faciliter la respiration. Notre calculateur ajoute automatiquement ce +10 % si vous cochez la case." },
+  { q: "Mon chien peut-il voyager en cabine plutôt qu'en caisse soute ?", a: "En cabine, le chien voyage couché dans un sac souple sous le siège : c'est surtout une question de poids (souvent ≤ 8 kg, sac compris) et d'empreinte. Notre outil vérifie l'éligibilité cabine selon les dimensions réelles publiées par la compagnie." },
+  { q: "Quelles sont les tailles de caisse standard ?", a: "Les caisses de transport suivent une série standard, du n° 100 (XS) au n° 700 (XXL). Notre outil vous indique la taille indicative correspondant à vos mesures — vérifiez toujours les dimensions intérieures réelles du modèle." },
+];
+const FAQ_EN = [
+  { q: "How do I measure my dog for a travel crate?", a: "Two measurements are enough, with the dog standing: length (nose to the base of the tail, not the tail) and height (floor to the top of the head, ears included). Our calculator turns these into the IATA-compliant crate size." },
+  { q: "What size crate does my dog need to fly?", a: "The crate must let the dog stand, turn around and lie down. The IATA rule: length ≥ dog length + ½ elbow height, width ≥ 2 × shoulder width, height ≥ standing height. Enter your measurements for the exact result." },
+  { q: "What is the IATA crate size formula?", a: "Length = A + ½B, Width = C × 2, Height = D, where A = nose-to-tail length, B = elbow height, C = shoulder width, D = standing height (head/ears). Our tool estimates B and C from the height so you only enter two measurements." },
+  { q: "Do snub-nosed (brachycephalic) breeds need a bigger crate?", a: "Yes. For flat-faced breeds (bulldog, pug, boxer…), IATA requires a 10% larger crate to ease breathing. Our calculator adds this +10% automatically when you tick the box." },
+  { q: "Can my dog travel in the cabin instead of a crate?", a: "In the cabin, the dog travels lying down in a soft carrier under the seat: it's mainly about weight (often ≤ 8 kg incl. bag) and footprint. Our tool checks cabin eligibility against each airline's published carrier dimensions." },
+  { q: "What are the standard airline crate sizes?", a: "Travel crates follow a standard series, from size 100 (XS) to 700 (XXL). Our tool shows the indicative size matching your measurements — always verify the real model's interior dimensions." },
+];
+const FAQ_ES = [
+  { q: "¿Cómo mido a mi perro para una jaula de viaje?", a: "Bastan dos medidas, con el perro de pie: la longitud (del hocico a la base de la cola, sin la cola) y la altura (del suelo a lo alto de la cabeza, orejas incluidas). Nuestra calculadora las convierte en la talla de jaula conforme a la IATA." },
+  { q: "¿Qué talla de jaula necesita mi perro para volar?", a: "La jaula debe permitir que el perro se ponga de pie, se dé la vuelta y se tumbe. La regla IATA: longitud ≥ longitud del perro + ½ altura del codo, ancho ≥ 2 × ancho de hombros, altura ≥ altura de pie. Introduce tus medidas para obtener el resultado exacto." },
+  { q: "¿Cuál es la fórmula IATA para la talla de la jaula?", a: "Longitud = A + ½B, Ancho = C × 2, Altura = D, donde A = longitud del hocico a la cola, B = altura del codo, C = ancho de hombros, D = altura de pie (cabeza/orejas). Nuestra herramienta estima B y C a partir de la altura para pedirte solo dos medidas." },
+  { q: "¿Las razas braquicéfalas necesitan una jaula más grande?", a: "Sí. Para los perros de hocico chato (bulldog, carlino, bóxer…), la IATA exige una jaula un 10 % más grande para facilitar la respiración. Nuestra calculadora añade automáticamente ese +10 % si marcas la casilla." },
+  { q: "¿Puede mi perro viajar en cabina en lugar de en una jaula en bodega?", a: "En cabina, el perro viaja tumbado en un bolso blando bajo el asiento: es sobre todo una cuestión de peso (a menudo ≤ 8 kg, bolso incluido) y de dimensiones. Nuestra herramienta comprueba la elegibilidad para cabina según las dimensiones reales publicadas por la aerolínea." },
+  { q: "¿Cuáles son las tallas de jaula estándar?", a: "Las jaulas de viaje siguen una serie estándar, del n.º 100 (XS) al n.º 700 (XXL). Nuestra herramienta te indica la talla orientativa que corresponde a tus medidas; verifica siempre las dimensiones interiores reales del modelo." },
+];
+const FAQ_PT = [
+  { q: "Como medir meu cachorro para a caixa de transporte?", a: "Duas medidas bastam, com o cachorro de pé: comprimento (do focinho até a base do rabo, sem o rabo) e altura (do chão até o topo da cabeça, com as orelhas). Nossa calculadora converte isso no tamanho de caixa exigido pela IATA." },
+  { q: "De que tamanho de caixa meu cachorro precisa para voar?", a: "A caixa precisa permitir que o cachorro fique de pé, gire e se deite. A regra IATA: comprimento ≥ comprimento do cachorro + ½ da altura do cotovelo, largura ≥ 2 × a largura dos ombros, altura ≥ altura de pé. Informe suas medidas para o resultado exato." },
+  { q: "Qual é a fórmula IATA do tamanho da caixa?", a: "Comprimento = A + ½B, Largura = C × 2, Altura = D, em que A = comprimento do focinho ao rabo, B = altura do cotovelo, C = largura dos ombros, D = altura de pé (cabeça e orelhas). Nossa ferramenta estima B e C a partir da altura, então você informa só duas medidas." },
+  { q: "Raças de focinho achatado (braquicefálicas) precisam de uma caixa maior?", a: "Sim. Para as raças de focinho achatado (buldogue, pug, boxer…), a IATA exige uma caixa 10% maior para facilitar a respiração. Nossa calculadora acrescenta esses +10% automaticamente quando você marca a opção." },
+  { q: "Meu cachorro pode viajar na cabine em vez de ir na caixa?", a: "Na cabine, o cachorro viaja deitado em uma bolsa flexível embaixo do assento: o que conta é sobretudo o peso (muitas vezes ≤ 8 kg com a bolsa) e o espaço ocupado. Nossa ferramenta confere a elegibilidade à cabine com as dimensões de bolsa publicadas por cada companhia." },
+  { q: "Quais são os tamanhos padrão de caixa das companhias aéreas?", a: "As caixas de transporte seguem uma série padrão, do tamanho 100 (XS) ao 700 (XXL). Nossa ferramenta mostra o tamanho indicativo correspondente às suas medidas — confira sempre as dimensões internas reais do modelo." },
+];
+/* La langue est une clé, plus une branche : le ternaire à deux branches renvoyait /pt/
+   vers la FAQ anglaise, même une fois la traduction écrite. */
+const FAQS: Record<string, typeof FAQ_EN> = { fr: FAQ_FR, es: FAQ_ES, pt: FAQ_PT, en: FAQ_EN };
+const faq = FAQS[locale] ?? FAQ_EN;
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org", "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+});
+---
+<Base locale={locale} title={`${title}`} description={blurb}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <Breadcrumb locale={locale} items={[
+        { label: L("Home", "Accueil", "Inicio"), href: "/" },
+        { label: t(locale, "nav.tools"), href: "/tools/" },
+        { label: L("Crate size", "Taille de cage", "Talla de jaula") },
+      ]} />
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="crx-blurb">{blurb}</p>
+      <CrateCalculator locale={locale} />
+
+      <section class="crxfaq">
+        <h2>{L("Frequently asked questions", "Questions fréquentes", "Preguntas frecuentes")}</h2>
+        {faq.map((f) => (
+          <details class="crxfaq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+      <RelatedTools locale={locale} current="crate" />
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={faqLd} is:inline />
+</Base>
+<style>
+  .crx-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }
+  .crxfaq { margin-top: 32px; max-width: 820px; }
+  .crxfaq > h2 { font-size: 20px; margin: 0 0 14px; }
+  .crxfaq__item { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 4px 16px; margin-bottom: 10px; background: var(--mdcf-surface); }
+  .crxfaq__item summary { cursor: pointer; font-weight: 700; padding: 12px 0; list-style: none; }
+  .crxfaq__item summary::-webkit-details-marker { display: none; }
+  .crxfaq__item summary::after { content: "＋"; float: right; color: var(--mdcf-accent-ink, #b4530a); font-weight: 800; }
+  .crxfaq__item[open] summary::after { content: "－"; }
+  .crxfaq__item p { margin: 0 0 14px; color: var(--mdcf-muted); line-height: 1.55; font-size: 14.5px; }
+</style>

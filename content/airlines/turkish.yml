@@ -1,0 +1,329 @@
+id: airline_turkish
+mono: TK
+name: Turkish Airlines
+titleH1:
+  en: Flying with a dog on Turkish Airlines
+  fr: Voyager avec un chien sur Turkish Airlines
+  es: Volar con un perro en Turkish Airlines
+  pt: "Viajar com um cachorro na Turkish Airlines"
+metaDesc:
+  en: "Turkish Airlines pet policy: cabin, checked-hold and Turkish Cargo rules, fares, breed limits and official sources."
+  fr: "Politique animaux Turkish Airlines : cabine, soute et Turkish Cargo, tarifs, restrictions de races et sources officielles."
+  es: "Política de mascotas de Turkish Airlines: cabina, bodega facturada y normas de Turkish Cargo, tarifas, restricciones de razas y fuentes oficiales."
+  pt: "Política de animais da Turkish Airlines: cabine, porão despachado e regras da Turkish Cargo, tarifas, limites por raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Turkey · IST
+      fr: Turquie · IST
+      es: Turquía · IST
+      pt: "Turquia · IST"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cabin and hold pets on most routes — but strict breed limits, and no pets to the UK.
+  fr: Cabine et soute sur la plupart des lignes — mais restrictions de races strictes, et pas d'animaux vers le Royaume-Uni.
+  es: Mascotas en cabina y bodega en la mayoría de las rutas, pero con restricciones de raza estrictas y sin mascotas al Reino Unido.
+  pt: "Animais na cabine e no porão na maioria das rotas — mas com limites estritos por raça, e sem transporte de animais para o Reino Unido."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 56
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 50 kg
+  - flex: 30
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 125 cm"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats, dogs & small songbirds in a soft carrier (40 × 30 × 23 cm) under the seat; window seats only.
+      fr: Chats, chiens et petits oiseaux chanteurs dans un sac souple (40 × 30 × 23 cm) sous le siège ; places hublot uniquement.
+      es: Gatos, perros y aves canoras pequeñas en una jaula blanda (40 × 30 × 23 cm) bajo el asiento; solo asientos de ventanilla.
+      pt: "Gatos, cachorros e pequenas aves canoras em uma bolsa de transporte macia (40 × 30 × 23 cm) sob o assento; somente assentos de janela."
+    fee:
+      en: Route-based
+      fr: Selon la route
+      es: Según la ruta
+      pt: "Conforme a rota"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Larger pets as checked baggage (AVIH) in a hard, ventilated crate, up to 50 kg including the carrier.
+      fr: Animaux plus grands en bagage enregistré (AVIH) dans une caisse rigide ventilée, jusqu'à 50 kg avec la caisse.
+      es: Mascotas más grandes como equipaje facturado (AVIH) en una jaula rígida y ventilada, hasta 50 kg incluida la jaula.
+      pt: "Animais maiores como bagagem despachada (AVIH) em uma caixa de transporte rígida e ventilada, até 50 kg incluindo a caixa."
+    fee:
+      en: Route-based
+      fr: Selon la route
+      es: Según la ruta
+      pt: "Conforme a rota"
+  - icon: ✈️
+    name:
+      en: Turkish Cargo
+      fr: Turkish Cargo
+      es: Turkish Cargo
+      pt: "Turkish Cargo"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo petición
+      pt: "Sob consulta"
+    detail:
+      en: For oversize crates (> 75 × 75 × 125 cm) and accepted 'dangerous' breeds.
+      fr: Pour les caisses hors gabarit (> 75 × 75 × 125 cm) et les races « dangereuses » acceptées.
+      es: Para jaulas de gran tamaño (> 75 × 75 × 125 cm) y razas «peligrosas» aceptadas.
+      pt: "Para caixas de transporte fora do padrão (> 75 × 75 × 125 cm) e raças \"perigosas\" aceitas."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: Route-based fee
+        fr: Tarif selon la route
+        es: Tarifa según la ruta
+        pt: "Tarifa conforme a rota"
+    - label:
+        en: Hold (≤ 50 kg)
+        fr: Soute (≤ 50 kg)
+        es: Bodega (≤ 50 kg)
+        pt: "Porão (≤ 50 kg)"
+      value:
+        en: Route-based fee
+        fr: Tarif selon la route
+        es: Tarifa según la ruta
+        pt: "Tarifa conforme a rota"
+    - label:
+        en: Turkish Cargo
+        fr: Turkish Cargo
+        es: Turkish Cargo
+        pt: "Turkish Cargo"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Turkish Airlines charges a route-based pet fee (no flat amount) shown in its official pet-fee calculator; not included in the baggage allowance.
+    fr: Turkish Airlines applique un tarif animal selon la route (pas de montant fixe), affiché dans son calculateur officiel ; non inclus dans la franchise bagages.
+    es: Turkish Airlines aplica una tarifa de mascota según la ruta (sin importe fijo), mostrada en su calculadora oficial; no incluida en la franquicia de equipaje.
+    pt: "A Turkish Airlines cobra uma tarifa de animal segundo a rota (sem valor fixo), exibida em sua calculadora oficial de tarifas para animais; não incluída na franquia de bagagem."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Snub-nosed cats and flat-nosed dogs (pug, bulldog, boxer, Shih Tzu, Boston terrier, Persian/Exotic cats…) may fly only in the cabin within 8 kg; barred from the hold since Oct 2021.
+      fr: Chats au nez écrasé et chiens au nez plat (carlin, bouledogue, boxer, Shih Tzu, Boston terrier, chats persans/exotiques…) ne volent qu'en cabine sous 8 kg ; interdits en soute depuis oct. 2021.
+      es: Los gatos de hocico chato y los perros de morro plano (carlino, bulldog, bóxer, Shih Tzu, Boston terrier, gatos persa/exótico…) solo pueden volar en cabina dentro de 8 kg; con prohibición en bodega desde oct. de 2021.
+      pt: "Gatos de focinho achatado e cachorros de focinho chato (pug, buldogue, boxer, Shih Tzu, Boston terrier, gatos persa/exótico…) só podem voar na cabine, dentro de 8 kg; proibidos no porão desde out. de 2021."
+  - icon: 🚫
+    title:
+      en: Banned & 'dangerous' breeds
+      fr: Races interdites & « dangereuses »
+      es: Razas prohibidas y «peligrosas»
+      pt: "Raças proibidas e \"perigosas\""
+    pills:
+      - cls: no
+        label:
+          en: Not accepted / cargo only
+          fr: Refusées / fret seul
+          es: No aceptadas / solo carga
+          pt: "Não aceitas / somente carga"
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Pit bull, American Staffordshire, Bull Terrier, Tosa, Dogo Argentino, Fila Brasileiro, American Bully & mixes aren't accepted at all; other 'dangerous' breeds (Rottweiler, Cane Corso, Dogue de Bordeaux, Anatolian Shepherd, Boerboel…) only via Turkish Cargo. No sedated or pregnant animals; microchip + rabies vaccine required.
+      fr: "Pit-bull, American Staffordshire, Bull Terrier, Tosa, Dogo Argentino, Fila Brasileiro, American Bully et croisés : refusés ; autres races « dangereuses » (Rottweiler, Cane Corso, Dogue de Bordeaux, Berger d'Anatolie, Boerboel…) via Turkish Cargo uniquement. Pas d'animaux sédatés ni gestants ; puce et vaccin antirabique requis."
+      es: "Pit bull, American Staffordshire, Bull Terrier, Tosa, Dogo Argentino, Fila Brasileiro, American Bully y cruces: no se aceptan en absoluto; otras razas «peligrosas» (Rottweiler, Cane Corso, Dogo de Burdeos, pastor de Anatolia, Boerboel…) solo vía Turkish Cargo. Sin animales sedados ni gestantes; se exigen microchip y vacuna antirrábica."
+      pt: "Pit bull, American Staffordshire, Bull Terrier, Tosa, Dogo Argentino, Fila Brasileiro, American Bully e cruzamentos não são aceitos de forma alguma; outras raças \"perigosas\" (Rottweiler, Cane Corso, Dogue de Bordeaux, pastor da Anatólia, Boerboel…) somente via Turkish Cargo. Sem animais sedados ou prenhes; microchip e vacina antirrábica obrigatórios."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+    - cls: warn
+      label:
+        en: "Heat embargo: not disclosed"
+        fr: "Embargo chaleur : non communiqué"
+        es: "Embargo por calor: no comunicado"
+        pt: "Embargo por calor: não divulgado"
+  note:
+    en: Turkish Airlines doesn't publish hold-temperature limits or a seasonal heat embargo on its pet pages. Suitability depends on the aircraft, route and weather — confirm flight by flight.
+    fr: Turkish Airlines ne publie pas de limites de température en soute ni d'embargo saisonnier lié à la chaleur sur ses pages animaux. La compatibilité dépend de l'avion, de la route et de la météo — à confirmer vol par vol.
+    es: Turkish Airlines no publica límites de temperatura en bodega ni un embargo estacional por calor en sus páginas de mascotas. La idoneidad depende del avión, la ruta y el clima; confírmalo vuelo por vuelo.
+    pt: "A Turkish Airlines não publica limites de temperatura no porão nem embargo sazonal por calor em suas páginas de animais. A adequação depende da aeronave, da rota e do clima — confirme voo por voo."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide, hearing and medical-alert dogs (SVAN) travel free in the cabin on all routes.
+      fr: Chiens guides, d'écoute et d'alerte médicale (SVAN) voyagent gratuitement en cabine sur toutes les lignes.
+      es: Los perros guía, de señal y de alerta médica (SVAN) viajan gratis en cabina en todas las rutas.
+      pt: "Cachorros-guia, de sinalização e de alerta médico (SVAN) viajam grátis na cabine em todas as rotas."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Confirm ≥ 48 h ahead; training and vaccination certificates and ID required. US routes: DOT + CDC forms."
+      fr: "Confirmer ≥ 48 h à l'avance ; certificats de dressage et de vaccination et pièce d'identité requis. Vers les USA : formulaires DOT + CDC."
+      es: "Confírmalo ≥ 48 h antes; se exigen certificados de adiestramiento y de vacunación e identificación. Rutas a EE. UU.: formularios DOT + CDC."
+      pt: "Confirme com ≥ 48 h de antecedência; são exigidos certificados de adestramento e de vacinação e identificação. Rotas para os EUA: formulários DOT + CDC."
+  - icon: ⏱️
+    label:
+      en: London Heathrow
+      fr: Londres Heathrow
+      es: Londres Heathrow
+      pt: "Londres Heathrow"
+    value:
+      en: Flights to Heathrow need HARC pre-approval (≥ 72 h).
+      fr: Les vols vers Heathrow nécessitent une pré-approbation HARC (≥ 72 h).
+      es: Los vuelos a Heathrow requieren aprobación previa de HARC (≥ 72 h).
+      pt: "Voos para Heathrow precisam de pré-aprovação da HARC (≥ 72 h)."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets to the UK
+      fr: Pas d'animaux vers le R.-U.
+      es: Sin mascotas al Reino Unido
+      pt: "Sem animais para o Reino Unido"
+    value:
+      en: Pets aren't carried on flights to the UK, including connections (service dogs handled via HARC).
+      fr: Les animaux ne sont pas transportés vers le Royaume-Uni, correspondances comprises (chiens d'assistance traités via HARC).
+      es: Las mascotas no se transportan en vuelos al Reino Unido, incluidas las conexiones (los perros de servicio se gestionan a través de HARC).
+      pt: "Animais não são transportados em voos para o Reino Unido, incluindo conexões (cachorros de assistência são geridos via HARC)."
+  - icon: 🧳
+    label:
+      en: Shared crate
+      fr: Caisse partagée
+      es: Jaula compartida
+      pt: "Caixa de transporte compartilhada"
+    value:
+      en: Two similar dogs (≤ 14 kg each) or cats (≤ 10 kg) may share a hold crate; heavier pets travel alone.
+      fr: Deux chiens semblables (≤ 14 kg chacun) ou chats (≤ 10 kg) peuvent partager une caisse en soute ; les animaux plus lourds voyagent seuls.
+      es: Dos perros similares (≤ 14 kg cada uno) o gatos (≤ 10 kg) pueden compartir una jaula de bodega; las mascotas más pesadas viajan solas.
+      pt: "Dois cachorros semelhantes (≤ 14 kg cada) ou gatos (≤ 10 kg) podem compartilhar uma caixa de transporte no porão; animais mais pesados viajam sozinhos."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Book online with your PNR up to 6 h before the flight; service dogs can't be booked online.
+      fr: Réservation en ligne avec ton PNR jusqu'à 6 h avant le vol ; les chiens d'assistance ne se réservent pas en ligne.
+      es: Reserva en línea con tu PNR hasta 6 h antes del vuelo; los perros de servicio no se pueden reservar en línea.
+      pt: "Reserve on-line com seu PNR até 6 h antes do voo; cachorros de assistência não podem ser reservados on-line."
+book:
+  host: turkishairlines.com
+  url: https://www.turkishairlines.com/
+sources:
+  en: 7 Turkish Airlines & Turkish Cargo sources · last verified 11 July 2026
+  fr: 7 sources Turkish Airlines & Turkish Cargo · dernière vérification 11 juillet 2026
+  es: 7 fuentes de Turkish Airlines y Turkish Cargo · última verificación 11 de julio de 2026
+  pt: "7 fontes da Turkish Airlines e da Turkish Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

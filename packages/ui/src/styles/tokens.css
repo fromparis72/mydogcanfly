@@ -1,0 +1,79 @@
+/* Design system — MyDogCanFly V2 (Sprint C: visual identity).
+   Direction: sky-blue "trust", light & airy, precise. North star: Stripe · Linear · Vercel. */
+:root {
+  /* Neutrals — navy-tinted */
+  --mdcf-ink: #0e2350;
+  --mdcf-ink-soft: #33436a;
+  --mdcf-muted: #647391;
+  --mdcf-surface: #ffffff;
+  --mdcf-subtle: #f6f8fc;
+  --mdcf-line: #e5eaf3;
+
+  /* Brand — MyDogCanFly navy + orange (from the logo) */
+  --mdcf-navy: #011d48;
+  --mdcf-navy-2: #0a2a5c;
+  --mdcf-accent: #f2700f;
+  --mdcf-accent-hover: #d85f05;
+  --mdcf-accent-soft: #fff1e5;
+  --mdcf-accent-ink: #b4530a;
+  --mdcf-sky-1: #fff4ec;
+  --mdcf-sky-2: #e9eefb;
+
+  /* Verdict semantics */
+  --mdcf-ok: #16a34a;
+  --mdcf-warn: #d97706;
+  --mdcf-risk: #dc2626;
+  --mdcf-link: var(--mdcf-accent);
+
+  /* Elevation */
+  --mdcf-shadow-sm: 0 1px 2px rgba(11, 21, 38, .06), 0 1px 3px rgba(11, 21, 38, .05);
+  --mdcf-shadow: 0 8px 28px rgba(11, 21, 38, .08);
+  --mdcf-shadow-lg: 0 20px 48px rgba(11, 21, 38, .13);
+
+  /* Shape & rhythm */
+  --mdcf-radius: 14px;
+  --mdcf-radius-sm: 10px;
+  --mdcf-radius-lg: 20px;
+  --mdcf-gap: 16px;
+  --mdcf-max: 1120px;
+  --mdcf-font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: var(--mdcf-font); color: var(--mdcf-ink); background: var(--mdcf-surface);
+  line-height: 1.58; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+a { color: var(--mdcf-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { letter-spacing: -.018em; }
+:focus-visible { outline: 2px solid var(--mdcf-accent); outline-offset: 2px; border-radius: 4px; }
+
+.mdcf-container { max-width: var(--mdcf-max); margin: 0 auto; padding: 0 22px; }
+.mdcf-section { padding: 52px 0; border-bottom: 1px solid var(--mdcf-line); }
+.mdcf-section:last-of-type { border-bottom: 0; }
+.mdcf-eyebrow { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mdcf-accent-ink); font-weight: 700; margin: 0 0 8px; }
+.mdcf-h2 { font-size: clamp(20px, 2.4vw, 26px); margin: 0 0 14px; }
+
+.mdcf-btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 999px;
+  background: var(--mdcf-surface); color: var(--mdcf-navy); border: 1.5px solid var(--mdcf-navy);
+  font: inherit; font-weight: 600; cursor: pointer; text-decoration: none;
+  transition: background .18s ease, color .18s ease, border-color .18s ease, transform .12s ease;
+}
+.mdcf-btn:hover { background: var(--mdcf-navy); color: #fff; border-color: var(--mdcf-navy); text-decoration: none; }
+.mdcf-btn:active { transform: translateY(1px); }
+
+.mdcf-card {
+  border: 1px solid var(--mdcf-line); border-radius: var(--mdcf-radius); padding: 18px; background: var(--mdcf-surface);
+  box-shadow: var(--mdcf-shadow-sm);
+}
+
+/* Reveal-on-load — only when the user allows motion, so content is always visible otherwise (a11y + no-JS safe). */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes mdcf-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  .mdcf-rise { animation: mdcf-rise .55s cubic-bezier(.22, .61, .36, 1) both; }
+  .mdcf-rise-2 { animation-delay: .06s; }
+  .mdcf-rise-3 { animation-delay: .12s; }
+}

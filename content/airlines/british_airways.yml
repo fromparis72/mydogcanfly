@@ -1,0 +1,300 @@
+id: airline_british_airways
+mono: BA
+name: British Airways
+titleH1:
+  en: Flying with a dog on British Airways
+  fr: Voyager avec un chien sur British Airways
+  es: Viajar con perro en British Airways
+  pt: "Viajar com um cachorro pela British Airways"
+metaDesc:
+  en: "British Airways pet policy: cargo-only via IAG Cargo, cabin assistance dogs, restrictions and official sources."
+  fr: "Politique animaux British Airways : fret uniquement via IAG Cargo, chiens d'assistance en cabine, restrictions et sources officielles."
+  es: "Política de mascotas de British Airways: solo carga mediante IAG Cargo, perros de asistencia en cabina, restricciones y fuentes oficiales."
+  pt: "Política de animais da British Airways: somente via carga pela IAG Cargo, cães de assistência na cabine, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: United Kingdom · LHR
+      fr: Royaume-Uni · LHR
+      es: Reino Unido · LHR
+      pt: "Reino Unido · LHR"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No pets in the cabin or as checked baggage — only via IAG Cargo, plus assistance dogs in the cabin.
+  fr: Pas d'animaux en cabine ni en bagage enregistré — uniquement via IAG Cargo, plus les chiens d'assistance en cabine.
+  es: No se admiten mascotas en cabina ni como equipaje facturado, solo mediante IAG Cargo, además de perros de asistencia en cabina.
+  pt: "Nenhum animal na cabine nem como bagagem despachada — somente via IAG Cargo, além dos cães de assistência na cabine."
+ladder:
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: IAG Cargo
+      fr: IAG Cargo
+      es: IAG Cargo
+      pt: "IAG Cargo"
+    sub:
+      en: all pets
+      fr: tous animaux
+      es: todas las mascotas
+      pt: "todos os animais"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only recognised assistance dogs.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance reconnus.
+      es: No se admiten mascotas en cabina, solo perros de asistencia reconocidos.
+      pt: "Sem animais na cabine — somente cães de assistência reconhecidos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets don't travel as passenger checked baggage.
+      fr: Les animaux ne voyagent pas en bagage enregistré passager.
+      es: Las mascotas no viajan como equipaje facturado del pasajero.
+      pt: "Os animais não viajam como bagagem despachada de passageiro."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: IAG Cargo
+      fr: IAG Cargo
+      es: IAG Cargo
+      pt: "IAG Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Mediante agente
+      pt: "Via agente"
+    detail:
+      en: All pets travel via IAG Cargo in a temperature-controlled hold. From the UK, booked through PetAir UK; into the UK, via IAG Cargo agents.
+      fr: Tous les animaux voyagent via IAG Cargo dans une soute à température contrôlée. Depuis le R.-U., réservé via PetAir UK ; vers le R.-U., via des agents IAG Cargo.
+      es: Todas las mascotas viajan mediante IAG Cargo en una bodega con temperatura controlada. Desde el RU se reserva a través de PetAir UK; hacia el RU, mediante agentes de IAG Cargo.
+      pt: "Todos os animais viajam via IAG Cargo em um porão com temperatura controlada. Saindo do Reino Unido, a reserva é feita pela PetAir UK; entrando no Reino Unido, via agentes da IAG Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin / hold
+        fr: Cabine / soute
+        es: Cabina / bodega
+        pt: "Cabine / porão"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: IAG Cargo (live animal)
+        fr: IAG Cargo (animal vivant)
+        es: IAG Cargo (animal vivo)
+        pt: "IAG Cargo (animal vivo)"
+      value:
+        en: Quote via agent
+        fr: Devis via agent
+        es: Presupuesto mediante agente
+        pt: "Orçamento mediante agente"
+    - label:
+        en: Assistance dog (cabin)
+        fr: Chien d'assistance (cabine)
+        es: Perro de asistencia (cabina)
+        pt: "Cão de assistência (cabine)"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: British Airways publishes no passenger pet fare — pet transport is quoted by IAG Cargo / PetAir UK.
+    fr: British Airways ne publie pas de tarif animal passager — le transport est chiffré par IAG Cargo / PetAir UK.
+    es: British Airways no publica una tarifa de mascota para pasajeros; el transporte lo presupuesta IAG Cargo / PetAir UK.
+    pt: "A British Airways não divulga uma tarifa de animal para passageiros — o transporte de animais é orçado pela IAG Cargo / PetAir UK."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: May be refused
+          fr: Peuvent être refusées
+          es: Pueden ser rechazadas
+          pt: "Pode ser recusado"
+    note:
+      en: Snub-nosed breeds may not be accepted; where accepted, the container must be at least 10% larger than the minimum size.
+      fr: Les races au nez écrasé peuvent être refusées ; lorsqu'elles sont acceptées, la caisse doit être au moins 10 % plus grande que la taille minimale.
+      es: Las razas de hocico chato pueden no ser aceptadas; cuando se aceptan, el contenedor debe ser al menos un 10 % más grande que el tamaño mínimo.
+      pt: "As raças de focinho achatado podem não ser aceitas; quando aceitas, a caixa de transporte deve ser pelo menos 10% maior que o tamanho mínimo."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Breed & crate rules
+          fr: Règles race & caisse
+          es: Reglas de raza y jaula
+          pt: "Regras de raça e caixa de transporte"
+    note:
+      en: Some dangerous breeds may be refused; no laboratory-testing animals. A rigid crate (no wire or wicker), ventilated on all four sides with an external water pot, is required.
+      fr: Certaines races dangereuses peuvent être refusées ; aucun animal destiné aux tests de laboratoire. Caisse rigide (ni grillage ni osier), ventilée sur les quatre côtés avec gamelle d'eau externe, obligatoire.
+      es: Algunas razas peligrosas pueden ser rechazadas; no se admiten animales destinados a pruebas de laboratorio. Se requiere una jaula rígida (sin alambre ni mimbre), ventilada por los cuatro lados y con un bebedero externo.
+      pt: "Algumas raças perigosas podem ser recusadas; nenhum animal destinado a testes de laboratório. É exigida uma caixa de transporte rígida (sem grades de arame nem vime), ventilada nos quatro lados e com um recipiente de água externo."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Temperature-controlled hold
+        fr: Soute à température contrôlée
+        es: Bodega con temperatura controlada
+        pt: "Porão com temperatura controlada"
+    - cls: warn
+      label:
+        en: "Hold temperature: not disclosed"
+        fr: "Température soute : non communiqué"
+        es: "Temperatura de la bodega: no comunicada"
+        pt: "Temperatura do porão: não divulgada"
+  note:
+    en: IAG Cargo carries pets in a temperature-controlled, unlit hold (pets settle better in the dark), but publishes no numeric temperature limits.
+    fr: IAG Cargo transporte les animaux dans une soute à température contrôlée et non éclairée (les animaux se posent mieux dans l'obscurité), mais ne publie pas de limites chiffrées.
+    es: IAG Cargo transporta a las mascotas en una bodega con temperatura controlada y sin iluminación (las mascotas se tranquilizan mejor a oscuras), pero no publica límites de temperatura numéricos.
+    pt: "A IAG Cargo transporta os animais em um porão com temperatura controlada e sem iluminação (os animais se acomodam melhor no escuro), mas não divulga limites numéricos de temperatura."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Recognised assistance dogs (ADI/IGDF/ADAA) travel free in the cabin; emotional-support dogs aren't accepted.
+      fr: Chiens d'assistance reconnus (ADI/IGDF/ADAA) gratuits en cabine ; chiens de soutien émotionnel refusés.
+      es: Los perros de asistencia reconocidos (ADI/IGDF/ADAA) viajan gratis en cabina; los perros de apoyo emocional no se aceptan.
+      pt: "Cães de assistência reconhecidos (ADI/IGDF/ADAA) viajam gratuitamente na cabine; cães de apoio emocional não são aceitos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Register via Open Doors Organization ≥ 48 h ahead. UK entry: contact the Animal Reception Centre ≥ 72 h before. Provide a dog safety harness."
+      fr: "S'inscrire via Open Doors Organization ≥ 48 h à l'avance. Entrée au R.-U. : contacter l'Animal Reception Centre ≥ 72 h avant. Fournir un harnais de sécurité."
+      es: "Regístrate a través de Open Doors Organization ≥ 48 h antes. Entrada al RU: contacta con el Animal Reception Centre ≥ 72 h antes. Aporta un arnés de seguridad para el perro."
+      pt: "Registre-se pela Open Doors Organization com ≥ 48 h de antecedência. Entrada no Reino Unido: contate o Animal Reception Centre ≥ 72 h antes. Forneça um peitoral de segurança para o cachorro."
+goodToKnow:
+  - icon: 📄
+    label:
+      en: Into the UK
+      fr: Vers le R.-U.
+      es: Hacia el RU
+      pt: "Entrando no Reino Unido"
+    value:
+      en: Pets must meet the DEFRA Pet Travel Scheme; owners sign a Form of Indemnity.
+      fr: Les animaux doivent respecter le DEFRA Pet Travel Scheme ; le propriétaire signe une décharge (Form of Indemnity).
+      es: Las mascotas deben cumplir el DEFRA Pet Travel Scheme; el dueño firma un formulario de exención (Form of Indemnity).
+      pt: "Os animais devem atender ao DEFRA Pet Travel Scheme; os donos assinam um termo de indenização (Form of Indemnity)."
+  - icon: ⏱️
+    label:
+      en: Booking window
+      fr: Fenêtre de réservation
+      es: Ventana de reserva
+      pt: "Janela de reserva"
+    value:
+      en: IAG Cargo books up to 14 days ahead (6 weeks for US/Canada); check in 4 h before departure.
+      fr: IAG Cargo réserve jusqu'à 14 jours à l'avance (6 semaines pour USA/Canada) ; enregistrement 4 h avant le départ.
+      es: IAG Cargo reserva hasta con 14 días de antelación (6 semanas para EE. UU./Canadá); factura 4 h antes de la salida.
+      pt: "A IAG Cargo reserva com até 14 dias de antecedência (6 semanas para EUA/Canadá); faça o check-in 4 h antes da partida."
+  - icon: 📦
+    label:
+      en: Crate
+      fr: Caisse
+      es: Jaula
+      pt: "Caixa de transporte"
+    value:
+      en: Rigid crate (no wire or wicker), ventilated on all four sides, with an external water pot.
+      fr: Caisse rigide (ni grillage ni osier), ventilée sur les quatre côtés, avec gamelle d'eau externe.
+      es: Jaula rígida (sin alambre ni mimbre), ventilada por los cuatro lados y con un bebedero externo.
+      pt: "Caixa de transporte rígida (sem grades de arame nem vime), ventilada nos quatro lados, com um recipiente de água externo."
+book:
+  host: britishairways.com
+  url: https://www.britishairways.com/
+sources:
+  en: 4 British Airways & IAG Cargo sources · last verified 11 July 2026
+  fr: 4 sources British Airways & IAG Cargo · dernière vérification 11 juillet 2026
+  es: 4 fuentes de British Airways y IAG Cargo · última verificación 11 julio 2026
+  pt: "4 fontes da British Airways e IAG Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

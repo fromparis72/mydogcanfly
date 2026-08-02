@@ -1,0 +1,318 @@
+id: airline_saudia
+mono: SV
+name: Saudia
+titleH1:
+  en: Flying with a dog on Saudia
+  fr: Voyager avec un chien sur Saudia
+  es: Viajar con un perro en Saudia
+  pt: "Viajar com um cachorro na Saudia"
+metaDesc:
+  en: "Saudia pet policy: cats in cabin, dogs in the hold, Saudia Cargo, Saudi import rules and official sources."
+  fr: "Politique animaux Saudia : chats en cabine, chiens en soute, Saudia Cargo, règles d'importation saoudiennes et sources officielles."
+  es: "Política de mascotas de Saudia: gatos en cabina, perros en bodega, Saudia Cargo, normas de importación saudíes y fuentes oficiales."
+  pt: "Política de animais da Saudia: gatos na cabine, cachorros no porão, Saudia Cargo, regras sauditas de importação e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Saudi Arabia · JED / RUH
+      fr: Arabie saoudite · JED / RUH
+      es: Arabia Saudí · JED / RUH
+      pt: "Arábia Saudita · JED / RUH"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: Dogs are barred from the cabin (cats allowed); dogs travel in the hold — plus strict Saudi import registration.
+  fr: Les chiens sont interdits en cabine (chats admis) ; les chiens voyagent en soute — plus un enregistrement d'importation saoudien strict.
+  es: Los perros no pueden viajar en cabina (los gatos sí); los perros viajan en bodega, además de un estricto registro de importación saudí.
+  pt: "Cachorros não podem viajar na cabine (gatos são aceitos); os cachorros viajam no porão — além de um registro saudita de importação rigoroso."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: cats ≤ 5 kg
+      fr: chats ≤ 5 kg
+      es: gatos ≤ 5 kg
+      pt: "gatos ≤ 5 kg"
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: dogs
+      fr: chiens
+      es: perros
+      pt: "cachorros"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: US dogs
+      fr: chiens USA
+      es: perros a EE. UU.
+      pt: "Cachorros para os EUA"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: warn
+    statusLabel:
+      en: Cats only
+      fr: Chats uniquement
+      es: Solo gatos
+      pt: "Somente gatos"
+    detail:
+      en: Cats & small birds in the cabin (≤ 5 kg incl. container, max 52.5 × 32.5 × 40 cm); falcons hooded with a handler. Dogs aren't allowed in the cabin.
+      fr: Chats et petits oiseaux en cabine (≤ 5 kg avec le sac, max 52,5 × 32,5 × 40 cm) ; faucons encapuchonnés avec un fauconnier. Les chiens ne sont pas admis en cabine.
+      es: Gatos y aves pequeñas en cabina (≤ 5 kg con la jaula, máx. 52,5 × 32,5 × 40 cm); halcones encapuchados con un cetrero. Los perros no se admiten en cabina.
+      pt: "Gatos e aves pequenas na cabine (≤ 5 kg com o recipiente, máx. 52,5 × 32,5 × 40 cm); falcões encapuzados com um falcoeiro. Cachorros não são permitidos na cabine."
+    fee:
+      en: $100
+      fr: 100 $
+      es: 100 $
+      pt: "US$ 100"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs must travel in the ventilated hold; cats & birds may too. Service dogs are carried free in the hold.
+      fr: Les chiens doivent voyager dans la soute ventilée ; chats et oiseaux aussi. Les chiens d'assistance sont transportés gratuitement en soute.
+      es: Los perros deben viajar en la bodega ventilada; los gatos y aves también pueden. Los perros de servicio se transportan gratis en la bodega.
+      pt: "Os cachorros devem viajar no porão ventilado; gatos e aves também podem. Os cachorros de assistência são transportados grátis no porão."
+    fee:
+      en: $300
+      fr: 300 $
+      es: 300 $
+      pt: "US$ 300"
+  - icon: ✈️
+    name:
+      en: Saudia Cargo
+      fr: Saudia Cargo
+      es: Saudia Cargo
+      pt: "Saudia Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: A través de carga
+      pt: "Via carga"
+    detail:
+      en: Large or wild animals are cargo-only, and dogs to the USA are accepted only via Saudia Cargo.
+      fr: Les grands animaux ou animaux sauvages sont uniquement en fret, et les chiens vers les USA ne sont acceptés que via Saudia Cargo.
+      es: Los animales grandes o salvajes son solo de carga, y los perros hacia EE. UU. solo se aceptan a través de Saudia Cargo.
+      pt: "Animais grandes ou selvagens são somente carga, e os cachorros para os EUA só são aceitos via Saudia Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — cats (≤ 5 kg)
+        fr: Cabine — chats (≤ 5 kg)
+        es: Cabina — gatos (≤ 5 kg)
+        pt: "Cabine — gatos (≤ 5 kg)"
+      value:
+        en: $100
+        fr: 100 $
+        es: 100 $
+        pt: "US$ 100"
+    - label:
+        en: Hold — dogs / cats
+        fr: Soute — chiens / chats
+        es: Bodega — perros / gatos
+        pt: "Porão — cachorros / gatos"
+      value:
+        en: $300
+        fr: 300 $
+        es: 300 $
+        pt: "US$ 300"
+    - label:
+        en: Cargo (large / US dogs)
+        fr: Fret (grands / chiens USA)
+        es: Carga (grandes / perros a EE. UU.)
+        pt: "Carga (grandes / cachorros para os EUA)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Cotización
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free (hold)
+        fr: Gratuit (soute)
+        es: Gratis (bodega)
+        pt: "Grátis (porão)"
+  note:
+    en: USD (excludes US & Canada — check regional pages). All animals must be registered on the Saudi NAAMA portal before travel.
+    fr: USD (hors USA & Canada — voir les pages régionales). Tous les animaux doivent être enregistrés sur le portail saoudien NAAMA avant le voyage.
+    es: USD (excluye EE. UU. y Canadá; consulta las páginas regionales). Todos los animales deben registrarse en el portal saudí NAAMA antes de viajar.
+    pt: "USD (exclui EUA e Canadá — consulte as páginas regionais). Todos os animais devem ser registrados no portal saudita NAAMA antes da viagem."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Dogs & cabin
+      fr: Chiens & cabine
+      es: Perros y cabina
+      pt: "Cachorros e cabine"
+    pills:
+      - cls: no
+        label:
+          en: No dogs in cabin
+          fr: Pas de chiens en cabine
+          es: Sin perros en cabina
+          pt: "Sem cachorros na cabine"
+    note:
+      en: Dogs can't travel in the cabin — hold only (or cargo to the US). Pets must be odorless, non-aggressive and need no crew attention.
+      fr: Les chiens ne peuvent pas voyager en cabine — soute uniquement (ou fret vers les USA). Les animaux doivent être inodores, non agressifs et ne nécessiter aucune attention de l'équipage.
+      es: Los perros no pueden viajar en cabina, solo en bodega (o como carga hacia EE. UU.). Las mascotas deben ser inodoras, no agresivas y no requerir atención de la tripulación.
+      pt: "Os cachorros não podem viajar na cabine — somente no porão (ou como carga para os EUA). Os animais devem ser inodoros, não agressivos e não precisar de atenção da tripulação."
+  - icon: 📄
+    title:
+      en: Saudi import rules
+      fr: Règles d'import saoudiennes
+      es: Normas de importación saudíes
+      pt: "Regras sauditas de importação"
+    pills:
+      - cls: warn
+        label:
+          en: NAAMA registration
+          fr: Enregistrement NAAMA
+          es: Registro NAAMA
+          pt: "Registro na NAAMA"
+    note:
+      en: All live animals must be registered on the Saudi Ministry (NAAMA) portal before travel. Pets are welcomed only on direct routes with valid rabies/health certificates.
+      fr: Tous les animaux vivants doivent être enregistrés sur le portail du ministère saoudien (NAAMA) avant le voyage. Les animaux ne sont admis que sur les vols directs avec certificats rage/santé valides.
+      es: Todos los animales vivos deben registrarse en el portal del Ministerio saudí (NAAMA) antes de viajar. Las mascotas solo se admiten en vuelos directos con certificados válidos de rabia/salud.
+      pt: "Todos os animais vivos devem ser registrados no portal do Ministério saudita (NAAMA) antes da viagem. Os animais só são aceitos em voos diretos com atestados de saúde/vacinação antirrábica válidos."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Ventilated / climate-controlled hold
+        fr: Soute ventilée / climatisée
+        es: Bodega ventilada / con clima controlado
+        pt: "Porão ventilado / com clima controlado"
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Cats & birds may travel in a climate-controlled hold with ventilation systems; Saudia publishes no numeric temperature limit.
+    fr: Les chats et oiseaux peuvent voyager dans une soute climatisée avec systèmes de ventilation ; Saudia ne publie pas de limite chiffrée de température.
+    es: Los gatos y aves pueden viajar en una bodega con clima controlado y sistemas de ventilación; Saudia no publica un límite numérico de temperatura.
+    pt: "Gatos e aves podem viajar em um porão com clima controlado e sistemas de ventilação; a Saudia não publica um limite numérico de temperatura."
+assistance:
+  - icon: 🦮
+    label:
+      en: Service dog
+      fr: Chien d'assistance
+      es: Perro de servicio
+      pt: "Cão de serviço"
+    value:
+      en: Guide/service dogs for visually or hearing-impaired guests are carried free in the hold (not the cabin).
+      fr: Les chiens guides/d'assistance pour déficients visuels ou auditifs sont transportés gratuitement en soute (pas en cabine).
+      es: Los perros guía/de servicio para pasajeros con discapacidad visual o auditiva se transportan gratis en la bodega (no en cabina).
+      pt: "Cachorros-guia/de assistência para passageiros com deficiência visual ou auditiva são transportados grátis no porão (não na cabine)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "All live animals registered on NAAMA. US dogs: 6 months+, microchipped, CDC Dog Import Form (≥ 15 days ahead)."
+      fr: "Tous les animaux enregistrés sur NAAMA. Chiens USA : 6 mois+, pucés, formulaire CDC Dog Import (≥ 15 jours avant)."
+      es: "Todos los animales vivos registrados en NAAMA. Perros a EE. UU.: 6 meses+, con microchip, formulario CDC Dog Import (≥ 15 días antes)."
+      pt: "Todos os animais vivos registrados na NAAMA. Cachorros para os EUA: 6 meses+, com microchip, formulário CDC Dog Import (≥ 15 dias antes)."
+goodToKnow:
+  - icon: 📄
+    label:
+      en: NAAMA registration
+      fr: Enregistrement NAAMA
+      es: Registro NAAMA
+      pt: "Registro na NAAMA"
+    value:
+      en: All live animals must be registered on the Saudi NAAMA portal before travel.
+      fr: Tous les animaux vivants doivent être enregistrés sur le portail saoudien NAAMA avant le voyage.
+      es: Todos los animales vivos deben registrarse en el portal saudí NAAMA antes de viajar.
+      pt: "Todos os animais vivos devem ser registrados no portal saudita NAAMA antes da viagem."
+  - icon: ✈️
+    label:
+      en: Direct routes only
+      fr: Vols directs seuls
+      es: Solo vuelos directos
+      pt: "Somente voos diretos"
+    value:
+      en: Pets are welcomed only on direct routes with valid health/rabies certificates.
+      fr: Les animaux ne sont admis que sur les vols directs avec certificats de santé/rage valides.
+      es: Las mascotas solo se admiten en vuelos directos con certificados válidos de salud/rabia.
+      pt: "Os animais só são aceitos em voos diretos com atestados válidos de saúde/vacinação antirrábica."
+  - icon: 🐾
+    label:
+      en: US dogs
+      fr: Chiens USA
+      es: Perros a EE. UU.
+      pt: "Cachorros para os EUA"
+    value:
+      en: Dogs to the US must be 6 months+, microchipped, with a CDC Dog Import Form.
+      fr: Les chiens vers les USA doivent avoir 6 mois+, être pucés, avec un formulaire CDC Dog Import.
+      es: Los perros hacia EE. UU. deben tener 6 meses+, microchip y un formulario CDC Dog Import.
+      pt: "Os cachorros para os EUA devem ter 6 meses+, estar com microchip e portar um formulário CDC Dog Import."
+book:
+  host: saudia.com
+  url: https://www.saudia.com/
+sources:
+  en: 3 Saudia sources · last verified 11 July 2026
+  fr: 3 sources Saudia · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Saudia · última verificación 11 de julio de 2026
+  pt: "3 fontes da Saudia · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,308 @@
+id: airline_el_al
+mono: LY
+name: EL AL Israel Airlines
+titleH1:
+  en: Flying with a dog on EL AL
+  fr: Voyager avec un chien sur EL AL
+  es: Volar con un perro en EL AL
+  pt: "Voar com um cachorro na EL AL"
+metaDesc:
+  en: "EL AL pet policy: cabin, hold and cargo, fares, cabin route bans, Israel vet forms and official sources."
+  fr: "Politique animaux EL AL : cabine, soute et fret, tarifs, routes cabine interdites, formalités vétérinaires israéliennes et sources officielles."
+  es: "Política de mascotas de EL AL: cabina, bodega y carga, tarifas, rutas con cabina vetada, trámites veterinarios de Israel y fuentes oficiales."
+  pt: "Política de animais da EL AL: cabine, porão e carga, tarifas, rotas com cabine vetada, formulários veterinários de Israel e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Israel · TLV
+      fr: Israël · TLV
+      es: Israel · TLV
+      pt: "Israel · TLV"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in the hold — but cabin barred to London, Hong Kong, UAE, Australia and Johannesburg.
+  fr: Petits animaux en cabine, plus grands en soute — mais cabine interdite vers Londres, Hong Kong, ÉAU, Australie et Johannesburg.
+  es: Mascotas pequeñas en cabina, las más grandes en bodega, pero cabina vetada a Londres, Hong Kong, EAU, Australia y Johannesburgo.
+  pt: "Animais pequenos na cabine, os maiores no porão — mas cabine vetada para Londres, Hong Kong, EAU, Austrália e Joanesburgo."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 9 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 100 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: "> 100 kg / stations"
+      fr: "> 100 kg / stations"
+      es: "> 100 kg / estaciones"
+      pt: "> 100 kg / estações"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & exotic birds ≤ 9 kg incl. carrier with a passenger; up to 2 per carrier. Not in 777 Business. Booked via the call centre. Not on some routes.
+      fr: Chiens, chats et oiseaux exotiques ≤ 9 kg avec le sac, accompagnés ; jusqu'à 2 par sac. Pas en Business 777. Réservé via le centre d'appel. Pas sur certaines routes.
+      es: Perros, gatos y aves exóticas ≤ 9 kg con la jaula, acompañados; hasta 2 por jaula. No en Business del 777. Se reserva por el centro de atención. No en algunas rutas.
+      pt: "Cachorros, gatos e aves exóticas ≤ 9 kg com a caixa, acompanhados; até 2 por caixa. Não disponível na Business do 777. Reservado pela central de atendimento. Não disponível em algumas rotas."
+    fee:
+      en: $100 / NIS 50
+      fr: 100 $ / 50 NIS
+      es: 100 $ / 50 NIS
+      pt: "US$ 100 / 50 NIS"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Pets over 9 kg (up to 100 kg incl. container) in the hold; two adults (≤ 14 kg each) may share. A drinker is required on flights over 12 h.
+      fr: Animaux de plus de 9 kg (jusqu'à 100 kg avec le contenant) en soute ; deux adultes (≤ 14 kg chacun) peuvent partager. Un abreuvoir est requis sur les vols de plus de 12 h.
+      es: Mascotas de más de 9 kg (hasta 100 kg con el contenedor) en bodega; dos adultos (≤ 14 kg cada uno) pueden compartir. Se exige bebedero en vuelos de más de 12 h.
+      pt: "Animais acima de 9 kg (até 100 kg com o recipiente) no porão; dois adultos (≤ 14 kg cada) podem compartilhar. É exigido um bebedouro em voos acima de 12 h."
+    fee:
+      en: $200–400
+      fr: 200–400 $
+      es: 200–400 $
+      pt: "US$ 200–400"
+  - icon: ✈️
+    name:
+      en: EL AL Cargo
+      fr: EL AL Cargo
+      es: EL AL Cargo
+      pt: "EL AL Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Over 100 kg, and pets to/from London (LHR/LTN), Johannesburg, Hong Kong and Australia via EL AL Cargo.
+      fr: Au-delà de 100 kg, et les animaux de/vers Londres (LHR/LTN), Johannesburg, Hong Kong et l'Australie via EL AL Cargo.
+      es: Más de 100 kg, y las mascotas hacia/desde Londres (LHR/LTN), Johannesburgo, Hong Kong y Australia por EL AL Cargo.
+      pt: "Acima de 100 kg, e animais de/para Londres (LHR/LTN), Joanesburgo, Hong Kong e Austrália via EL AL Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — international
+        fr: Cabine — international
+        es: Cabina — internacional
+        pt: "Cabine — internacional"
+      value:
+        en: $100
+        fr: 100 $
+        es: 100 $
+        pt: "US$ 100"
+    - label:
+        en: Cabin — domestic
+        fr: Cabine — national
+        es: Cabina — nacional
+        pt: "Cabine — doméstico"
+      value:
+        en: NIS 50
+        fr: 50 NIS
+        es: 50 NIS
+        pt: "50 NIS"
+    - label:
+        en: Hold — 9–50 kg
+        fr: Soute — 9–50 kg
+        es: Bodega — 9–50 kg
+        pt: "Porão — 9–50 kg"
+      value:
+        en: $200
+        fr: 200 $
+        es: 200 $
+        pt: "US$ 200"
+    - label:
+        en: Hold — 50–100 kg
+        fr: Soute — 50–100 kg
+        es: Bodega — 50–100 kg
+        pt: "Porão — 50–100 kg"
+      value:
+        en: $400
+        fr: 400 $
+        es: 400 $
+        pt: "US$ 400"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD each way (international) / NIS domestic. Reconfirm current figures with EL AL.
+    fr: USD par trajet (international) / NIS national. Reconfirmer les montants actuels auprès d'EL AL.
+    es: USD por trayecto (internacional) / NIS nacional. Reconfirma los importes actuales con EL AL.
+    pt: "USD por trajeto (internacional) / NIS nacional. Reconfirme os valores atuais com a EL AL."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Cabin route bans
+      fr: Routes cabine interdites
+      es: Rutas con cabina vetada
+      pt: "Rotas com cabine vetada"
+    pills:
+      - cls: no
+        label:
+          en: "No cabin: London/HK/UAE/AU/JNB"
+          fr: "Pas de cabine : Londres/HK/ÉAU/AU/JNB"
+          es: "Sin cabina: Londres/HK/EAU/AU/JNB"
+          pt: "Sem cabine: Londres/HK/EAU/AU/JNB"
+    note:
+      en: Cabin carriage is barred to/from London (Heathrow, Luton), Johannesburg, Hong Kong, the UAE and Australia — those routes are hold- or cargo-only.
+      fr: Le transport en cabine est interdit de/vers Londres (Heathrow, Luton), Johannesburg, Hong Kong, les ÉAU et l'Australie — ces routes sont soute- ou fret-seul.
+      es: El transporte en cabina está vetado hacia/desde Londres (Heathrow, Luton), Johannesburgo, Hong Kong, EAU y Australia; esas rutas son solo bodega o solo carga.
+      pt: "O transporte em cabine é vetado de/para Londres (Heathrow, Luton), Joanesburgo, Hong Kong, os EAU e a Austrália — essas rotas são somente porão ou somente carga."
+  - icon: 📄
+    title:
+      en: Israel vet forms
+      fr: Formalités vétérinaires Israël
+      es: Trámites veterinarios de Israel
+      pt: "Formulários veterinários de Israel"
+    pills:
+      - cls: warn
+        label:
+          en: Ministry authorization ≤ 2 days
+          fr: Autorisation ministère ≤ 2 jours
+          es: Autorización del ministerio ≤ 2 días
+          pt: "Autorização do ministério ≤ 2 dias"
+    note:
+      en: Pets to/from Israel need Ministry of Agriculture veterinary authorization sent to EL AL no later than 2 days before the flight. A rigid, leak-proof, four-side-ventilated container is required.
+      fr: Les animaux de/vers Israël nécessitent une autorisation vétérinaire du ministère de l'Agriculture envoyée à EL AL au plus tard 2 jours avant le vol. Un contenant rigide, étanche et ventilé sur les quatre côtés est requis.
+      es: Las mascotas hacia/desde Israel necesitan una autorización veterinaria del Ministerio de Agricultura enviada a EL AL a más tardar 2 días antes del vuelo. Se exige un contenedor rígido, estanco y ventilado por los cuatro lados.
+      pt: "Animais de/para Israel precisam de autorização veterinária do Ministério da Agricultura enviada à EL AL até 2 dias antes do voo. É exigido um recipiente rígido, à prova de vazamento e ventilado nos quatro lados."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: EL AL publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: EL AL ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: EL AL no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A EL AL não divulga limites de temperatura no porão nem embargo sazonal em suas páginas de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: A service dog for a passenger with special needs flies free in the cabin, leashed, harnessed and muzzled throughout.
+      fr: Un chien d'assistance pour passager à besoins spécifiques voyage gratuitement en cabine, en laisse, harnais et muselière tout le vol.
+      es: Un perro de servicio para un pasajero con necesidades especiales viaja gratis en cabina, con correa, arnés y bozal durante todo el vuelo.
+      pt: "Um cão de assistência para um passageiro com necessidades especiais viaja de graça na cabine, com guia, peitoral e focinheira durante todo o voo."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Notify ≥ 48 h ahead with a training certificate + vet vaccination certificate; complete Israel entry/exit forms.
+      fr: Prévenir ≥ 48 h à l'avance avec un certificat de dressage + certificat vétérinaire de vaccination ; remplir les formulaires d'entrée/sortie d'Israël.
+      es: Avisa con ≥ 48 h de antelación con un certificado de adiestramiento + certificado veterinario de vacunación; completa los formularios de entrada/salida de Israel.
+      pt: "Avise com ≥ 48 h de antecedência com um certificado de adestramento e um certificado veterinário de vacinação; preencha os formulários de entrada/saída de Israel."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Cabin route bans
+      fr: Routes cabine interdites
+      es: Rutas con cabina vetada
+      pt: "Rotas com cabine vetada"
+    value:
+      en: No cabin pets to/from London, Johannesburg, Hong Kong, the UAE or Australia.
+      fr: Pas d'animaux en cabine de/vers Londres, Johannesburg, Hong Kong, les ÉAU ou l'Australie.
+      es: Sin mascotas en cabina hacia/desde Londres, Johannesburgo, Hong Kong, EAU o Australia.
+      pt: "Sem animais em cabine de/para Londres, Joanesburgo, Hong Kong, os EAU ou a Austrália."
+  - icon: 📄
+    label:
+      en: Israel vet authorization
+      fr: Autorisation vétérinaire Israël
+      es: Autorización veterinaria de Israel
+      pt: "Autorização veterinária de Israel"
+    value:
+      en: Pets to/from Israel need Ministry of Agriculture authorization ≤ 2 days before the flight.
+      fr: Les animaux de/vers Israël nécessitent une autorisation du ministère de l'Agriculture ≤ 2 jours avant le vol.
+      es: Las mascotas hacia/desde Israel necesitan una autorización del Ministerio de Agricultura ≤ 2 días antes del vuelo.
+      pt: "Animais de/para Israel precisam de autorização do Ministério da Agricultura ≤ 2 dias antes do voo."
+  - icon: 📞
+    label:
+      en: Phone booking
+      fr: Réservation par téléphone
+      es: Reserva por teléfono
+      pt: "Reserva por telefone"
+    value:
+      en: Pets are booked by phone via the EL AL service centre, not online.
+      fr: Les animaux se réservent par téléphone via le centre de service EL AL, pas en ligne.
+      es: Las mascotas se reservan por teléfono a través del centro de atención de EL AL, no en línea.
+      pt: "Os animais são reservados por telefone pela central de atendimento da EL AL, não online."
+book:
+  host: elal.com
+  url: https://www.elal.com/
+sources:
+  en: 3 EL AL sources · last verified 11 July 2026
+  fr: 3 sources EL AL · dernière vérification 11 juillet 2026
+  es: 3 fuentes de EL AL · última verificación 11 de julio de 2026
+  pt: "3 fontes da EL AL · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

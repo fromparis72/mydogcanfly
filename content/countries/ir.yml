@@ -1,0 +1,358 @@
+# Country Entry Guide — Iran (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# IMPORTANT — HONEST OFFICIAL POSITION:
+# Iran does NOT operate an open, published pet-dog import scheme. Two official facts frame this guide:
+#  1) The Iran Veterinary Organization Act (ratified 1971) makes the import/export of live animals lawful
+#     only "in agreement with the Ministry of Agriculture" (Article 7), with border quarantine officials
+#     empowered to refuse, return or destroy animals that cannot be cleared (Article 8). Import of live
+#     animals is therefore a controlled act requiring the Iran Veterinary Organization's (IVO) prior
+#     agreement — not a right.
+#  2) Iranian Customs (IRICA) classifies cats, dogs and other pets among goods that may not be brought in
+#     "unless permission has been granted" — i.e. dogs are a restricted/permission-only category, not a
+#     freely admissible one.
+#  The U.S. official animal-export authority (USDA-APHIS) further states there are NO bilaterally agreed
+#  animal trade protocols with Iran and that the importer must obtain an import permit from the relevant
+#  Iranian ministry, which will outline the conditions case by case.
+#  Consequence: there is a NARROW, conditional path (prior IVO/ministry permission), but no standardised,
+#  publicly documented pet-dog procedure. The specific health conditions (microchip, rabies timing,
+#  antibody test, certificate model, entry points, quarantine length) are NOT published in an accessible
+#  official protocol, so they are marked "Unknown" rather than invented. Confidence is LOW.
+id: country_ir
+iso2: "IR"
+name: { en: "Iran", fr: "Iran", es: "Irán", pt: "Irã" }
+region: { en: "Western Asia / Middle East", fr: "Asie de l'Ouest / Moyen-Orient", es: "Asia Occidental / Oriente Medio", pt: "Ásia Ocidental / Oriente Médio" }
+
+
+regime: non_listed
+
+hero:
+  h1: { en: "Traveling to Iran with your dog", fr: "Voyager en Iran avec ton chien", es: "Viajar a Irán con tu perro", pt: "Viajar para o Irã com seu cachorro" }
+  intro:
+    en: >-
+      Iran does not run an open, published pet-dog import scheme. Under the Iran Veterinary Organization
+      Act, importing a live animal is lawful only "in agreement with the Ministry of Agriculture," and
+      Iranian Customs (IRICA) lists cats, dogs and other pets among goods that may not be brought in
+      "unless permission has been granted." In other words, a dog is a restricted, permission-only
+      category — not a freely admissible pet — and prior authorisation from the Iran Veterinary
+      Organization (IVO) is required before travel. There is no standardised, publicly documented
+      procedure for bringing a pet dog into Iran: the U.S. export authority notes that there are no
+      agreed animal trade protocols with Iran and that the importer must obtain an import permit that
+      sets the conditions case by case. This page reports that position honestly. Where a specific rule
+      (microchip, rabies timing, antibody test, certificate, entry point, quarantine) is not published
+      by an official Iranian source, we mark it "Unknown" rather than guess.
+    fr: >-
+      L'Iran n'applique pas de régime ouvert et publié d'importation de chiens de compagnie. En vertu de
+      la loi sur l'Organisation vétérinaire iranienne, l'importation d'un animal vivant n'est licite qu'«
+      en accord avec le ministère de l'Agriculture », et la douane iranienne (IRICA) classe les chats,
+      chiens et autres animaux de compagnie parmi les biens qui ne peuvent être introduits « sauf
+      autorisation accordée ». Autrement dit, un chien relève d'une catégorie restreinte, soumise à
+      autorisation — et non d'un animal librement admis : une autorisation préalable de l'Organisation
+      vétérinaire iranienne (IVO) est requise avant le voyage. Il n'existe aucune procédure normalisée et
+      publiquement documentée pour faire entrer un chien de compagnie en Iran : l'autorité d'exportation
+      américaine indique qu'il n'existe aucun protocole commercial animalier convenu avec l'Iran et que
+      l'importateur doit obtenir un permis d'importation fixant les conditions au cas par cas. Cette page
+      rapporte honnêtement cette situation. Lorsqu'une règle précise (puce, délais de vaccination
+      antirabique, titrage, certificat, point d'entrée, quarantaine) n'est pas publiée par une source
+      officielle iranienne, nous indiquons « Non communiqué » plutôt que de deviner.
+    es: >-
+      Irán no aplica un régimen abierto y publicado de importación de perros de compañía. En virtud de la
+      Ley de la Organización Veterinaria de Irán, importar un animal vivo solo es lícito «de acuerdo con
+      el Ministerio de Agricultura», y la Aduana iraní (IRICA) incluye a gatos, perros y otras mascotas
+      entre las mercancías que no pueden introducirse «salvo que se haya concedido permiso». En otras
+      palabras, un perro es una categoría restringida, sujeta a permiso — no una mascota de libre
+      admisión — y se requiere una autorización previa de la Organización Veterinaria de Irán (IVO) antes
+      de viajar. No existe un procedimiento normalizado y documentado públicamente para traer un perro de
+      compañía a Irán: la autoridad de exportación de Estados Unidos señala que no hay protocolos
+      comerciales de animales acordados con Irán y que el importador debe obtener un permiso de
+      importación que fija las condiciones caso por caso. Esta página informa de esa situación con
+      honestidad. Cuando una norma concreta (microchip, plazos de la rabia, prueba de titulación,
+      certificado, punto de entrada, cuarentena) no está publicada por una fuente oficial iraní, la
+      marcamos como «No publicado» en lugar de suponerla.
+
+    pt: "O Irã não tem um esquema de importação de cachorros de estimação aberto e publicado. Segundo a Lei da Organização Veterinária do Irã, importar um animal vivo só é legal \"em acordo com o Ministério da Agricultura\", e a Alfândega iraniana (IRICA) lista gatos, cachorros e outros animais de estimação entre os bens que não podem ser trazidos \"a menos que a permissão tenha sido concedida\". Em outras palavras, um cachorro é uma categoria restrita, sujeita a permissão — não um animal de estimação livremente admissível — e é exigida autorização prévia da Organização Veterinária do Irã (IVO) antes da viagem. Não existe um procedimento padronizado e publicamente documentado para trazer um cachorro de estimação para o Irã: a autoridade de exportação dos Estados Unidos observa que não há protocolos de comércio de animais acordados com o Irã e que o importador precisa obter uma autorização de importação que define as condições caso a caso. Esta página relata essa posição com honestidade. Quando uma norma específica (microchip, prazo da vacinação antirrábica, teste sorológico, atestado, ponto de entrada, quarentena) não é publicada por uma fonte oficial iraniana, nós a marcamos como \"Não comunicado\" em vez de arriscar um palpite."
+difficulty:
+  level: difficult
+  label: { en: "Restricted — prior official permission required; no published pet-dog procedure", fr: "Restreint — autorisation officielle préalable requise ; aucune procédure chien publiée", es: "Restringido — se exige autorización oficial previa; sin procedimiento publicado para perros", pt: "Restrito — exige permissão oficial prévia; nenhum procedimento publicado para cachorros de estimação" }
+
+prepTime:
+  eu:
+    en: "No EU-style simplified route exists. Iran is outside the EU pet-travel system, so an EU dog still needs prior IVO/ministry permission; the timeline is Unknown because no procedure is published."
+    fr: "Aucun parcours européen simplifié n'existe. L'Iran est hors du système européen de voyage des animaux : un chien de l'UE a tout de même besoin de l'autorisation préalable de l'IVO/du ministère ; le délai est non communiqué, faute de procédure publiée."
+    es: "No existe una vía europea simplificada. Irán está fuera del sistema europeo de viaje de mascotas, por lo que un perro de la UE sigue necesitando el permiso previo de la IVO/del ministerio; el plazo es desconocido porque no hay procedimiento publicado."
+    pt: "Não existe uma via simplificada nos moldes da UE. O Irã está fora do sistema europeu de viagens com animais de estimação, portanto um cachorro vindo da UE também precisa de permissão prévia da IVO/ministério; o prazo é Não comunicado porque nenhum procedimento é publicado."
+  listed:
+    en: "Coming from a low-rabies-risk country does not create an easier path. Prior permission is still required, and the processing time is Unknown — plan well ahead and request authorisation before booking."
+    fr: "Venir d'un pays à faible risque rabique ne crée pas de voie plus simple. L'autorisation préalable reste exigée et le délai de traitement est non communiqué — anticipe largement et demande l'autorisation avant de réserver."
+    es: "Venir de un país de bajo riesgo de rabia no crea una vía más fácil. Sigue siendo necesaria la autorización previa, y el tiempo de tramitación es desconocido — planifica con mucha antelación y solicita la autorización antes de reservar."
+    pt: "Vir de um país de baixo risco de raiva não cria um caminho mais fácil. A permissão prévia continua sendo exigida, e o prazo de processamento é Não comunicado — planeje com bastante antecedência e solicite a autorização antes de reservar."
+  nonListed:
+    en: "For any other origin the same applies: no dog enters without prior IVO/ministry permission, and the conditions and timeframe are set case by case and are not published."
+    fr: "Pour toute autre origine, c'est identique : aucun chien n'entre sans autorisation préalable de l'IVO/du ministère, et les conditions et délais sont fixés au cas par cas et non publiés."
+    es: "Para cualquier otro origen se aplica lo mismo: ningún perro entra sin el permiso previo de la IVO/del ministerio, y las condiciones y los plazos se fijan caso por caso y no se publican."
+    pt: "Para qualquer outra origem, aplica-se o mesmo: nenhum cachorro entra sem permissão prévia da IVO/ministério, e as condições e o prazo são definidos caso a caso e não são publicados."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Restricted — only with prior official permission (permission-only category)", fr: "Restreint — uniquement avec autorisation officielle préalable (catégorie soumise à autorisation)", es: "Restringido — solo con autorización oficial previa (categoría sujeta a permiso)", pt: "Restrito — somente com permissão oficial prévia (categoria sujeita a permissão)" }
+    cls: no
+  - requirement: { en: "Prior authorisation / import permit (IVO / Ministry of Agriculture)", fr: "Autorisation préalable / permis d'importation (IVO / ministère de l'Agriculture)", es: "Autorización previa / permiso de importación (IVO / Ministerio de Agricultura)", pt: "Autorização prévia / autorização de importação (IVO / Ministério da Agricultura)" }
+    status: { en: "Required before travel", fr: "Requis avant le voyage", es: "Obligatorio antes del viaje", pt: "Obrigatória antes da viagem" }
+    cls: warn
+  - requirement: { en: "Published pet-dog import procedure", fr: "Procédure publiée d'importation de chien", es: "Procedimiento publicado de importación de perros", pt: "Procedimento publicado de importação de cachorros de estimação" }
+    status: { en: "None found on official sources", fr: "Aucune trouvée sur les sources officielles", es: "Ninguno encontrado en fuentes oficiales", pt: "Nenhum encontrado em fontes oficiais" }
+    cls: no
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Unknown — not published by official Iranian sources", fr: "Non communiqué — non publié par les sources officielles iraniennes", es: "Desconocido — no publicado por las fuentes oficiales iraníes", pt: "Não comunicado — não publicado por fontes oficiais iranianas" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Unknown — no official Iranian protocol published", fr: "Non communiqué — aucun protocole officiel iranien publié", es: "Desconocido — no hay protocolo oficial iraní publicado", pt: "Não comunicado — nenhum protocolo oficial iraniano publicado" }
+    cls: neutral
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Unknown — no official Iranian protocol published", fr: "Non communiqué — aucun protocole officiel iranien publié", es: "Desconocido — no hay protocolo oficial iraní publicado", pt: "Não comunicado — nenhum protocolo oficial iraniano publicado" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Expected as part of any authorised import; exact model Unknown", fr: "Attendu dans toute importation autorisée ; modèle exact non communiqué", es: "Esperado como parte de cualquier importación autorizada; modelo exacto desconocido", pt: "Previsto como parte de qualquer importação autorizada; modelo exato Não comunicado" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Border quarantine powers apply; length/terms Unknown", fr: "Pouvoirs de quarantaine frontalière applicables ; durée/modalités non communiquées", es: "Se aplican las competencias de cuarentena fronteriza; duración/condiciones desconocidas", pt: "Poderes de quarentena de fronteira se aplicam; duração/condições Não comunicado" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Iran treats pet dogs as a restricted, permission-only category: only the Iran Veterinary Organization (IVO) and the Ministry of Agriculture can authorise an import and set the exact conditions."
+    fr: "L'Iran traite les chiens de compagnie comme une catégorie restreinte, soumise à autorisation : seuls l'Organisation vétérinaire iranienne (IVO) et le ministère de l'Agriculture peuvent autoriser une importation et en fixer les conditions exactes."
+    es: "Irán trata a los perros de compañía como una categoría restringida, sujeta a permiso: solo la Organización Veterinaria de Irán (IVO) y el Ministerio de Agricultura pueden autorizar una importación y fijar las condiciones exactas."
+    pt: "O Irã trata os cachorros de estimação como uma categoria restrita, sujeita a permissão: somente a Organização Veterinária do Irã (IVO) e o Ministério da Agricultura podem autorizar uma importação e definir as condições exatas."
+  - en: "There is no standardised published procedure — do not assume a fixed microchip/rabies/certificate checklist. Obtain a written import permit and its conditions before you book any travel."
+    fr: "Il n'existe aucune procédure normalisée publiée — ne présume pas d'une liste fixe puce/rage/certificat. Obtiens un permis d'importation écrit et ses conditions avant de réserver tout voyage."
+    es: "No existe un procedimiento normalizado publicado — no des por hecho una lista fija de microchip/rabia/certificado. Obtén un permiso de importación por escrito y sus condiciones antes de reservar cualquier viaje."
+    pt: "Não existe um procedimento padronizado publicado — não presuma uma lista fixa de exigências de microchip/vacinação antirrábica/atestado. Obtenha uma autorização de importação por escrito e suas condições antes de reservar qualquer viagem."
+  - en: "Because the official conditions are not published, several requirements on this page are marked Unknown; confirm each directly with the IVO / Iranian Customs before travelling."
+    fr: "Les conditions officielles n'étant pas publiées, plusieurs exigences de cette page sont indiquées « Non communiqué » ; confirme chacune directement auprès de l'IVO / de la douane iranienne avant de voyager."
+    es: "Como las condiciones oficiales no están publicadas, varios requisitos de esta página están marcados como «No publicado»; confirma cada uno directamente con la IVO / la Aduana iraní antes de viajar."
+    pt: "Como as condições oficiais não são publicadas, várias exigências nesta página estão marcadas como Não comunicado; confirme cada uma diretamente com a IVO / Alfândega iraniana antes de viajar."
+  - en: "Requirements depend on: the destination (Iran), the country of departure, your dog's identification, vaccinations, travel history, itinerary and date — but for Iran the decisive step is obtaining prior official permission."
+    fr: "Les exigences dépendent : de la destination (Iran), du pays de départ, de l'identification du chien, des vaccinations, de l'historique de voyage, de l'itinéraire et de la date — mais pour l'Iran, l'étape déterminante est l'obtention d'une autorisation officielle préalable."
+    es: "Los requisitos dependen de: el destino (Irán), el país de salida, la identificación de tu perro, las vacunas, el historial de viajes, el itinerario y la fecha — pero para Irán el paso decisivo es obtener una autorización oficial previa."
+    pt: "As exigências dependem do destino (Irã), do país de partida, da identificação do seu cachorro, das vacinas, do histórico de viagens, do itinerário e da data — mas, no caso do Irã, a etapa decisiva é obter a permissão oficial prévia."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry to Iran is decided", fr: "Comment est décidée l'entrée de ton chien en Iran", es: "Cómo se decide la entrada de tu perro a Irán", pt: "Como é decidida a entrada do seu cachorro no Irã" }
+  intro:
+    en: "Entry normally depends on three things, but for Iran the destination rule dominates: a dog is a permission-only category, so nothing proceeds without prior IVO/ministry authorisation."
+    fr: "L'entrée dépend normalement de trois éléments, mais pour l'Iran la règle de destination domine : un chien relève d'une catégorie soumise à autorisation, de sorte que rien ne se fait sans autorisation préalable de l'IVO/du ministère."
+    es: "La entrada suele depender de tres factores, pero para Irán la regla de destino domina: un perro es una categoría sujeta a permiso, por lo que nada avanza sin la autorización previa de la IVO/del ministerio."
+    pt: "A entrada normalmente depende de três fatores, mas, no caso do Irã, a regra do destino prevalece: um cachorro é uma categoria sujeita a permissão, portanto nada avança sem a autorização prévia da IVO/ministério."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Iran", fr: "Pays de destination — Iran", es: "País de destino — Irán", pt: "País de destino — Irã" }
+      text:
+        en: "Iran is decisive. Its Veterinary Organization Act allows live-animal import only in agreement with the Ministry of Agriculture, and Customs lists dogs among goods barred unless permission is granted. There is no open scheme, so a prior written authorisation is the gate to everything else."
+        fr: "L'Iran est déterminant. Sa loi sur l'Organisation vétérinaire n'autorise l'importation d'animaux vivants qu'en accord avec le ministère de l'Agriculture, et la douane classe les chiens parmi les biens interdits sauf autorisation accordée. Il n'existe aucun régime ouvert : une autorisation écrite préalable conditionne tout le reste."
+        es: "Irán es decisivo. Su Ley de la Organización Veterinaria solo permite la importación de animales vivos de acuerdo con el Ministerio de Agricultura, y la Aduana incluye a los perros entre las mercancías vetadas salvo que se conceda permiso. No existe un régimen abierto, por lo que una autorización previa por escrito es la puerta a todo lo demás."
+        pt: "O Irã é decisivo. Sua Lei da Organização Veterinária permite a importação de animais vivos somente em acordo com o Ministério da Agricultura, e a Alfândega lista os cachorros entre os bens proibidos, a menos que a permissão seja concedida. Não existe um esquema aberto, portanto uma autorização prévia por escrito é a porta de entrada para tudo o mais."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The departure country's veterinary authority would normally endorse an export health certificate. For Iran that certificate is only meaningful once an Iranian import permit exists and sets the conditions — the U.S. export authority confirms there is no agreed protocol and that the importer must first obtain that permit."
+        fr: "L'autorité vétérinaire du pays de départ viserait normalement un certificat sanitaire d'exportation. Pour l'Iran, ce certificat n'a de sens qu'une fois qu'un permis d'importation iranien existe et en fixe les conditions — l'autorité d'exportation américaine confirme qu'il n'y a pas de protocole convenu et que l'importateur doit d'abord obtenir ce permis."
+        es: "La autoridad veterinaria del país de salida normalmente refrendaría un certificado sanitario de exportación. Para Irán, ese certificado solo tiene sentido una vez que existe un permiso de importación iraní que fija las condiciones — la autoridad de exportación de Estados Unidos confirma que no hay protocolo acordado y que el importador debe obtener primero ese permiso."
+        pt: "A autoridade veterinária do país de partida normalmente endossaria um atestado de saúde de exportação. No caso do Irã, esse atestado só tem sentido depois que existe uma autorização de importação iraniana que define as condições — a autoridade de exportação dos Estados Unidos confirma que não há protocolo acordado e que o importador precisa primeiro obter essa autorização."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Rabies status and travel history usually shape the health conditions. Here they may influence what the IVO requires in a given permit, but because Iran publishes no standard protocol, their exact effect is Unknown and is decided by the authority case by case."
+        fr: "Le statut rabique et l'historique de voyage déterminent habituellement les conditions sanitaires. Ici, ils peuvent influencer ce que l'IVO exige dans un permis donné, mais l'Iran ne publiant aucun protocole standard, leur effet exact est non communiqué et décidé par l'autorité au cas par cas."
+        es: "La situación de rabia y el historial de viajes suelen determinar las condiciones sanitarias. Aquí pueden influir en lo que la IVO exija en un permiso concreto, pero como Irán no publica ningún protocolo estándar, su efecto exacto es desconocido y lo decide la autoridad caso por caso."
+        pt: "A situação em relação à raiva e o histórico de viagens costumam moldar as condições sanitárias. Aqui, eles podem influenciar o que a IVO exige em uma determinada autorização, mas, como o Irã não publica um protocolo padrão, seu efeito exato é Não comunicado e é decidido pela autoridade caso a caso."
+  note:
+    en: "So treat this guide as an honest 'permission-first, conditions-unpublished' picture: secure written authorisation from the IVO/ministry before anything else, and confirm every health step directly with them."
+    fr: "Considère donc ce guide comme une image honnête « autorisation d'abord, conditions non publiées » : obtiens une autorisation écrite de l'IVO/du ministère avant tout, et confirme chaque étape sanitaire directement auprès d'eux."
+    es: "Así que trata esta guía como una imagen honesta de «primero el permiso, condiciones no publicadas»: consigue una autorización por escrito de la IVO/del ministerio antes que nada, y confirma cada paso sanitario directamente con ellos."
+    pt: "Portanto, trate este guia como um retrato honesto de 'permissão em primeiro lugar, condições não publicadas': garanta a autorização por escrito da IVO/ministério antes de qualquer outra coisa e confirme cada etapa sanitária diretamente com eles."
+
+requirements:
+  - item: { en: "Prior authorisation to import a dog", fr: "Autorisation préalable d'importer un chien", es: "Autorización previa para importar un perro", pt: "Autorização prévia para importar um cachorro" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Import of a live animal is lawful only in agreement with the Ministry of Agriculture / Iran Veterinary Organization. Customs bars pets unless permission has been granted. Obtain a written import permit before travel.", fr: "L'importation d'un animal vivant n'est licite qu'en accord avec le ministère de l'Agriculture / l'Organisation vétérinaire iranienne. La douane interdit les animaux de compagnie sauf autorisation accordée. Obtiens un permis d'importation écrit avant le voyage.", es: "La importación de un animal vivo solo es lícita de acuerdo con el Ministerio de Agricultura / la Organización Veterinaria de Irán. La Aduana veta las mascotas salvo que se haya concedido permiso. Obtén un permiso de importación por escrito antes de viajar.", pt: "A importação de um animal vivo só é legal em acordo com o Ministério da Agricultura / Organização Veterinária do Irã. A Alfândega proíbe animais de estimação, a menos que a permissão tenha sido concedida. Obtenha uma autorização de importação por escrito antes da viagem." }
+    exceptions: { en: "Whether a discretionary permit is granted, and on what terms, is decided case by case by the IVO/ministry. No automatic entitlement exists.", fr: "L'octroi éventuel d'un permis discrétionnaire, et à quelles conditions, est décidé au cas par cas par l'IVO/le ministère. Aucun droit automatique n'existe.", es: "Si se concede un permiso discrecional, y en qué condiciones, lo decide caso por caso la IVO/el ministerio. No existe ningún derecho automático.", pt: "Se uma autorização discricionária é concedida, e em que termos, é decidido caso a caso pela IVO/ministério. Não existe direito automático." }
+    ref: { en: "Iran Veterinary Organization Act (1971), Art. 7; IRICA prohibited/restricted goods (pets — unless permission granted)", fr: "Loi sur l'Organisation vétérinaire iranienne (1971), art. 7 ; IRICA biens interdits/réglementés (animaux de compagnie — sauf autorisation)", es: "Ley de la Organización Veterinaria de Irán (1971), art. 7; IRICA mercancías prohibidas/restringidas (mascotas — salvo autorización concedida)", pt: "Lei da Organização Veterinária do Irã (1971), art. 7; bens proibidos/restritos da IRICA (animais de estimação — salvo permissão concedida)" }
+  - item: { en: "Published standard pet-dog procedure", fr: "Procédure standard publiée pour chien", es: "Procedimiento estándar publicado para perros", pt: "Procedimento padrão publicado para cachorros de estimação" }
+    required: { en: "None found", fr: "Aucune trouvée", es: "Ninguno encontrado", pt: "Nenhum encontrado" }
+    when: { en: "No standardised, publicly documented pet-dog import protocol is published by the IVO or IRICA. The U.S. export authority confirms there are no agreed animal trade protocols with Iran.", fr: "Aucun protocole d'importation de chien normalisé et publiquement documenté n'est publié par l'IVO ou l'IRICA. L'autorité d'exportation américaine confirme l'absence de protocole commercial animalier convenu avec l'Iran.", es: "La IVO ni la IRICA publican un protocolo de importación de perros normalizado y documentado públicamente. La autoridad de exportación de Estados Unidos confirma que no hay protocolos comerciales de animales acordados con Irán.", pt: "Nenhum protocolo padronizado e publicamente documentado de importação de cachorros de estimação é publicado pela IVO ou pela IRICA. A autoridade de exportação dos Estados Unidos confirma que não há protocolos de comércio de animais acordados com o Irã." }
+    exceptions: { en: "The permit itself is expected to state the conditions; those conditions are not published in advance.", fr: "Le permis lui-même est censé énoncer les conditions ; celles-ci ne sont pas publiées à l'avance.", es: "Se espera que el propio permiso indique las condiciones; esas condiciones no se publican por adelantado.", pt: "Espera-se que a própria autorização declare as condições; essas condições não são publicadas com antecedência." }
+    ref: { en: "USDA-APHIS — Export Live Animals to Iran (no agreed protocols; importer must obtain an import permit)", fr: "USDA-APHIS — Exportation d'animaux vivants vers l'Iran (aucun protocole convenu ; l'importateur doit obtenir un permis)", es: "USDA-APHIS — Exportación de animales vivos a Irán (sin protocolos acordados; el importador debe obtener un permiso de importación)", pt: "USDA-APHIS — Exportação de Animais Vivos para o Irã (nenhum protocolo acordado; o importador deve obter uma autorização de importação)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No microchip requirement is published by an official Iranian source. A permit may impose ISO 11784/11785 identification, but this is not confirmed officially.", fr: "Aucune exigence de puce n'est publiée par une source officielle iranienne. Un permis peut imposer une identification ISO 11784/11785, mais cela n'est pas confirmé officiellement.", es: "Ninguna fuente oficial iraní publica un requisito de microchip. Un permiso puede imponer la identificación ISO 11784/11785, pero esto no está confirmado oficialmente.", pt: "Nenhuma exigência de microchip é publicada por fonte oficial iraniana. Uma autorização pode impor identificação ISO 11784/11785, mas isso não é confirmado oficialmente." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "No official Iranian instrument published — confirm with IVO", fr: "Aucun instrument officiel iranien publié — à confirmer auprès de l'IVO", es: "No se ha publicado ningún instrumento oficial iraní — confírmalo con la IVO", pt: "Nenhum instrumento oficial iraniano publicado — confirme com a IVO" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Iranian rabies-vaccination protocol (timing, minimum age, validity) is published. Any requirement would be set in the individual import permit.", fr: "Aucun protocole officiel iranien de vaccination antirabique (délais, âge minimal, validité) n'est publié. Toute exigence serait fixée dans le permis d'importation individuel.", es: "No se publica ningún protocolo oficial iraní de vacunación antirrábica (plazos, edad mínima, valide). Cualquier requisito se fijaría en el permiso de importación individual.", pt: "Nenhum protocolo oficial iraniano de vacinação antirrábica (prazo, idade mínima, validade) é publicado. Qualquer exigência seria definida na autorização de importação individual." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "No official Iranian instrument published — confirm with IVO", fr: "Aucun instrument officiel iranien publié — à confirmer auprès de l'IVO", es: "No se ha publicado ningún instrumento oficial iraní — confírmalo con la IVO", pt: "Nenhum instrumento oficial iraniano publicado — confirme com a IVO" }
+  - item: { en: "Rabies antibody (titration) test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Iranian source publishes an antibody-test requirement or threshold for pet dogs. It cannot be assumed either way.", fr: "Aucune source officielle iranienne ne publie d'exigence de titrage ou de seuil pour les chiens de compagnie. On ne peut le présumer ni dans un sens ni dans l'autre.", es: "Ninguna fuente oficial iraní publica un requisito de prueba de titulación ni un umbral para los perros de compañía. No puede presumirse en ningún sentido.", pt: "Nenhuma fonte oficial iraniana publica uma exigência de teste sorológico ou um limite para cachorros de estimação. Isso não pode ser presumido em nenhum dos dois sentidos." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "No official Iranian instrument published — confirm with IVO", fr: "Aucun instrument officiel iranien publié — à confirmer auprès de l'IVO", es: "No se ha publicado ningún instrumento oficial iraní — confírmalo con la IVO", pt: "Nenhum instrumento oficial iraniano publicado — confirme com a IVO" }
+  - item: { en: "Veterinary / export health certificate", fr: "Certificat sanitaire / d'exportation vétérinaire", es: "Certificado sanitario veterinario / de exportación", pt: "Atestado de saúde veterinário / de exportação" }
+    required: { en: "Expected", fr: "Attendu", es: "Esperado", pt: "Prevista" }
+    when: { en: "An official export health certificate endorsed by the departure country's veterinary authority is the normal basis of any authorised animal import, and the IVO issues health certificates for animals it clears. The exact Iranian model and content are Unknown and would follow the permit.", fr: "Un certificat sanitaire d'exportation officiel visé par l'autorité vétérinaire du pays de départ est la base habituelle de toute importation animale autorisée, et l'IVO délivre des certificats sanitaires pour les animaux qu'elle admet. Le modèle et le contenu iraniens exacts sont non communiqués et suivraient le permis.", es: "Un certificado sanitario de exportación oficial refrendado por la autoridad veterinaria del país de salida es la base habitual de cualquier importación de animales autorizada, y la IVO expide certificados sanitarios para los animales que admite. El modelo y el contenido iraníes exactos son desconocidos y seguirían al permiso.", pt: "Um atestado de saúde de exportação oficial, endossado pela autoridade veterinária do país de partida, é a base normal de qualquer importação de animal autorizada, e a IVO emite atestados de saúde para os animais que libera. O modelo e o conteúdo exatos no Irã são Não comunicado e seguiriam a autorização." }
+    exceptions: { en: "The certificate does not by itself authorise entry — the prior import permission does.", fr: "Le certificat n'autorise pas à lui seul l'entrée — c'est l'autorisation d'importation préalable qui le fait.", es: "El certificado no autoriza por sí solo la entrada — lo hace el permiso de importación previo.", pt: "O atestado, por si só, não autoriza a entrada — quem autoriza é a permissão de importação prévia." }
+    ref: { en: "Iran Veterinary Organization Act (1971), Art. 3(D) & 7 (health certificates; import in agreement with the Ministry)", fr: "Loi sur l'Organisation vétérinaire iranienne (1971), art. 3(D) et 7 (certificats sanitaires ; importation en accord avec le Ministère)", es: "Ley de la Organización Veterinaria de Irán (1971), art. 3(D) y 7 (certificados sanitarios; importación de acuerdo con el Ministerio)", pt: "Lei da Organização Veterinária do Irã (1971), art. 3(D) e 7 (atestados de saúde; importação em acordo com o Ministério)" }
+  - item: { en: "Entry point", fr: "Point d'entrée", es: "Punto de entrada", pt: "Ponto de entrada" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Iranian source reviewed specifies designated pet entry points. Quarantine stations exist at borders, but the required routing for a pet dog is not published.", fr: "Aucune source officielle iranienne consultée ne précise de points d'entrée désignés pour les animaux. Des postes de quarantaine existent aux frontières, mais l'itinéraire requis pour un chien de compagnie n'est pas publié.", es: "Ninguna fuente oficial iraní revisada especifica puntos de entrada designados para mascotas. Existen puestos de cuarentena en las fronteras, pero el itinerario requerido para un perro de compañía no se publica.", pt: "Nenhuma fonte oficial iraniana analisada especifica pontos de entrada designados para animais de estimação. Existem postos de quarentena nas fronteiras, mas o trajeto exigido para um cachorro de estimação não é publicado." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Iran Veterinary Organization Act (1971), Art. 3(D) (border quarantine stations); specific pet routing not published", fr: "Loi sur l'Organisation vétérinaire iranienne (1971), art. 3(D) (postes de quarantaine frontaliers) ; itinéraire spécifique non publié", es: "Ley de la Organización Veterinaria de Irán (1971), art. 3(D) (puestos de cuarentena fronterizos); itinerario específico para mascotas no publicado", pt: "Lei da Organização Veterinária do Irã (1971), art. 3(D) (postos de quarentena de fronteira); trajeto específico para animais de estimação não publicado" }
+  - item: { en: "Border check & quarantine powers", fr: "Contrôle frontalier & pouvoirs de quarantaine", es: "Control fronterizo y competencias de cuarentena", pt: "Controle de fronteira e poderes de quarentena" }
+    required: { en: "Applies", fr: "S'applique", es: "Se aplica", pt: "Aplica-se" }
+    when: { en: "Veterinary quarantine officials inspect imports at the border. If an animal cannot be cleared due to disease or contamination, it is dealt with at the owner's expense; if it cannot be cleared, it must be returned by the owner or is destroyed.", fr: "Les agents de quarantaine vétérinaire inspectent les importations à la frontière. Si un animal ne peut être admis pour cause de maladie ou de contamination, il est traité aux frais du propriétaire ; s'il ne peut être admis, il doit être réexpédié par le propriétaire ou est détruit.", es: "Los agentes de cuarentena veterinaria inspeccionan las importaciones en la frontera. Si un animal no puede ser admitido por enfermedad o contaminación, se actúa a cargo del propietario; si no puede ser admitido, el propietario debe devolverlo o se destruye.", pt: "Autoridades de quarentena veterinária inspecionam as importações na fronteira. Se um animal não puder ser liberado por doença ou contaminação, ele é tratado às custas do dono; se não puder ser liberado, deve ser devolvido pelo dono ou é destruído." }
+    exceptions: { en: "The length or terms of any quarantine for a pet dog are Unknown — not published.", fr: "La durée ou les modalités d'une éventuelle quarantaine pour un chien de compagnie sont non communiquées — non publiées.", es: "La duración o las condiciones de una eventual cuarentena para un perro de compañía son desconocidas — no publicadas.", pt: "A duração ou as condições de qualquer quarentena para um cachorro de estimação são Não comunicado — não publicadas." }
+    ref: { en: "Iran Veterinary Organization Act (1971), Art. 8 (discharge, return or destruction on the owner's expense)", fr: "Loi sur l'Organisation vétérinaire iranienne (1971), art. 8 (admission, réexpédition ou destruction aux frais du propriétaire)", es: "Ley de la Organización Veterinaria de Irán (1971), art. 8 (admisión, devolución o destrucción a cargo del propietario)", pt: "Lei da Organização Veterinária do Irã (1971), art. 8 (liberação, devolução ou destruição às custas do dono)" }
+  - item: { en: "Quarantine (duration)", fr: "Quarantaine (durée)", es: "Cuarentena (duración)", pt: "Quarentena (duração)" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "Whether a fixed quarantine period applies to an authorised pet dog, and for how long, is not published by any official Iranian source reviewed.", fr: "L'existence d'une durée de quarantaine fixe pour un chien de compagnie autorisé, et sa durée, ne sont pas publiées par aucune source officielle iranienne consultée.", es: "Si se aplica un periodo de cuarentena fijo a un perro de compañía autorizado, y durante cuánto tiempo, no lo publica ninguna fuente oficial iraní revisada.", pt: "Se um período fixo de quarentena se aplica a um cachorro de estimação autorizado, e por quanto tempo, não é publicado por nenhuma fonte oficial iraniana analisada." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "No official Iranian instrument published — confirm with IVO", fr: "Aucun instrument officiel iranien publié — à confirmer auprès de l'IVO", es: "No se ha publicado ningún instrumento oficial iraní — confírmalo con la IVO", pt: "Nenhum instrumento oficial iraniano publicado — confirme com a IVO" }
+
+origin:
+  eu:
+    title: { en: "Dog from an EU country", fr: "Chien venant d'un pays de l'UE", es: "Perro procedente de un país de la UE", pt: "Cachorro vindo de um país da UE" }
+    body:
+      en: "There is no simplified EU route into Iran. Iran is not part of the EU pet-travel system and does not recognise the EU pet passport as a basis for entry. An EU-origin dog is still a permission-only category: you must obtain prior authorisation from the Iran Veterinary Organization / Ministry of Agriculture, and the exact health conditions are set in that permit — they are not published in advance."
+      fr: "Il n'existe aucun parcours européen simplifié vers l'Iran. L'Iran ne fait pas partie du système européen de voyage des animaux et ne reconnaît pas le passeport européen comme base d'entrée. Un chien d'origine UE reste une catégorie soumise à autorisation : tu dois obtenir une autorisation préalable de l'Organisation vétérinaire iranienne / du ministère de l'Agriculture, et les conditions sanitaires exactes sont fixées dans ce permis — elles ne sont pas publiées à l'avance."
+      es: "No existe una vía europea simplificada hacia Irán. Irán no forma parte del sistema europeo de viaje de mascotas y no reconoce el pasaporte europeo para mascotas como base de entrada. Un perro de origen UE sigue siendo una categoría sujeta a permiso: debes obtener una autorización previa de la Organización Veterinaria de Irán / del Ministerio de Agricultura, y las condiciones sanitarias exactas se fijan en ese permiso — no se publican por adelantado."
+      pt: "Não existe uma via simplificada da UE para entrar no Irã. O Irã não faz parte do sistema europeu de viagens com animais de estimação e não reconhece o passaporte europeu como base para a entrada. Um cachorro de origem na UE continua sendo uma categoria sujeita a permissão: você precisa obter autorização prévia da Organização Veterinária do Irã / Ministério da Agricultura, e as condições sanitárias exatas são definidas nessa autorização — elas não são publicadas com antecedência."
+    cls: warn
+  listed:
+    title: { en: "Dog from a low-rabies-risk / listed country", fr: "Chien venant d'un pays à faible risque rabique / listé", es: "Perro procedente de un país de bajo riesgo de rabia / listado", pt: "Cachorro vindo de um país de baixo risco de raiva / listado" }
+    body:
+      en: "Iran does not operate a published listed-country scheme for pet dogs. A strong rabies-control record in the origin country may help the case for a permit, but it does not remove the need for prior IVO/ministry permission, and the conditions remain case-by-case and unpublished. Request authorisation and its conditions in writing before you travel."
+      fr: "L'Iran n'applique pas de régime publié de pays listés pour les chiens de compagnie. Un bon bilan de lutte contre la rage dans le pays d'origine peut appuyer une demande de permis, mais il ne supprime pas la nécessité d'une autorisation préalable de l'IVO/du ministère, et les conditions restent au cas par cas et non publiées. Demande l'autorisation et ses conditions par écrit avant de voyager."
+      es: "Irán no aplica un régimen publicado de países listados para perros de compañía. Un buen historial de control de la rabia en el país de origen puede favorecer la solicitud de un permiso, pero no elimina la necesidad de la autorización previa de la IVO/del ministerio, y las condiciones siguen siendo caso por caso y no publicadas. Solicita la autorización y sus condiciones por escrito antes de viajar."
+      pt: "O Irã não opera um esquema publicado de países listados para cachorros de estimação. Um bom histórico de controle da raiva no país de origem pode ajudar no pedido de autorização, mas não elimina a necessidade de permissão prévia da IVO/ministério, e as condições continuam sendo definidas caso a caso e não publicadas. Solicite a autorização e suas condições por escrito antes de viajar."
+    cls: warn
+  nonListed:
+    title: { en: "Dog from any other country", fr: "Chien venant de tout autre pays", es: "Perro procedente de cualquier otro país", pt: "Cachorro vindo de qualquer outro país" }
+    body:
+      en: "The position is the same for every other origin: no dog enters Iran without prior official permission, and there is no published antibody-test/waiting-period/certificate sequence to follow. The importer must obtain an import permit from the relevant Iranian ministry, which will state the conditions. Treat entry as uncertain until you hold that written permit."
+      fr: "La situation est identique pour toute autre origine : aucun chien n'entre en Iran sans autorisation officielle préalable, et il n'existe aucune séquence publiée titrage/délai d'attente/certificat à suivre. L'importateur doit obtenir un permis d'importation auprès du ministère iranien compétent, qui en énoncera les conditions. Considère l'entrée comme incertaine tant que tu ne détiens pas ce permis écrit."
+      es: "La situación es la misma para cualquier otro origen: ningún perro entra en Irán sin autorización oficial previa, y no hay una secuencia publicada de prueba de titulación/periodo de espera/certificado que seguir. El importador debe obtener un permiso de importación del ministerio iraní competente, que indicará las condiciones. Considera la entrada como incierta hasta que dispongas de ese permiso por escrito."
+      pt: "A posição é a mesma para qualquer outra origem: nenhum cachorro entra no Irã sem permissão oficial prévia, e não há uma sequência publicada de teste sorológico/período de espera/atestado a seguir. O importador precisa obter uma autorização de importação junto ao ministério iraniano competente, que definirá as condições. Trate a entrada como incerta até você ter essa autorização por escrito."
+    cls: no
+
+arrival:
+  intro:
+    en: "Because entry hinges on prior permission and unpublished conditions, arrival is not a routine clearance — it depends entirely on the authorisation you obtained beforehand."
+    fr: "L'entrée reposant sur une autorisation préalable et des conditions non publiées, l'arrivée n'est pas un dédouanement de routine — elle dépend entièrement de l'autorisation obtenue au préalable."
+    es: "Como la entrada depende de una autorización previa y de condiciones no publicadas, la llegada no es un despacho de rutina — depende por completo de la autorización que hayas obtenido de antemano."
+    pt: "Como a entrada depende de permissão prévia e de condições não publicadas, a chegada não é uma liberação de rotina — ela depende inteiramente da autorização obtida antecipadamente."
+  points:
+    - en: "Veterinary quarantine officials inspect the animal at the border; without a valid import permission the dog is not admissible."
+      fr: "Les agents de quarantaine vétérinaire inspectent l'animal à la frontière ; sans autorisation d'importation valide, le chien n'est pas admissible."
+      es: "Los agentes de cuarentena veterinaria inspeccionan al animal en la frontera; sin una autorización de importación válida, el perro no es admisible."
+      pt: "Autoridades de quarentena veterinária inspecionam o animal na fronteira; sem uma permissão de importação válida, o cachorro não é admissível."
+    - en: "If an animal cannot be cleared for disease or contamination reasons, action is taken at the owner's expense; if it cannot be cleared at all, the owner must return it or it is destroyed (Veterinary Organization Act, Art. 8)."
+      fr: "Si un animal ne peut être admis pour cause de maladie ou de contamination, des mesures sont prises aux frais du propriétaire ; s'il ne peut être admis du tout, le propriétaire doit le réexpédier, faute de quoi il est détruit (loi sur l'Organisation vétérinaire, art. 8)."
+      es: "Si un animal no puede ser admitido por motivos de enfermedad o contaminación, se toman medidas a cargo del propietario; si no puede ser admitido en absoluto, el propietario debe devolverlo o se destruye (Ley de la Organización Veterinaria, art. 8)."
+      pt: "Se um animal não puder ser liberado por motivos de doença ou contaminação, a medida é tomada às custas do dono; se não puder ser liberado de forma alguma, o dono deve devolvê-lo ou ele é destruído (Lei da Organização Veterinária, art. 8)."
+    - en: "Iranian Customs treats pets as restricted goods admissible only with permission; declare the dog and present the permit and health documents on arrival."
+      fr: "La douane iranienne traite les animaux de compagnie comme des biens réglementés, admissibles uniquement avec autorisation ; déclare le chien et présente le permis et les documents sanitaires à l'arrivée."
+      es: "La Aduana iraní trata a las mascotas como mercancías restringidas admisibles solo con permiso; declara al perro y presenta el permiso y los documentos sanitarios a la llegada."
+      pt: "A Alfândega iraniana trata os animais de estimação como bens restritos, admissíveis somente com permissão; declare o cachorro e apresente a autorização e os documentos sanitários na chegada."
+    - en: "Because designated pet entry points and quarantine terms are not published, confirm the exact arrival airport, documents and any quarantine directly with the IVO before flying."
+      fr: "Les points d'entrée désignés pour les animaux et les modalités de quarantaine n'étant pas publiés, confirme l'aéroport d'arrivée exact, les documents et toute quarantaine directement auprès de l'IVO avant de prendre l'avion."
+      es: "Como los puntos de entrada designados para mascotas y las condiciones de cuarentena no se publican, confirma el aeropuerto de llegada exacto, los documentos y cualquier cuarentena directamente con la IVO antes de volar."
+      pt: "Como os pontos de entrada designados para animais de estimação e as condições de quarentena não são publicados, confirme o aeroporto de chegada exato, os documentos e qualquer quarentena diretamente com a IVO antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Iran does not publish a breed-specific import list (no 'category 1 / category 2' dangerous-dog classification is issued by the IVO or IRICA for import purposes). The controlling fact is broader: dogs as a whole are a permission-only import category, so the constraint is on importing any dog, not on particular breeds."
+    fr: "L'Iran ne publie pas de liste d'importation par race (aucune classification « catégorie 1 / catégorie 2 » de chiens dangereux n'est émise par l'IVO ou l'IRICA à des fins d'importation). Le fait déterminant est plus large : les chiens dans leur ensemble constituent une catégorie d'importation soumise à autorisation ; la contrainte porte donc sur l'importation de tout chien, et non sur certaines races."
+    es: "Irán no publica una lista de importación por razas (la IVO ni la IRICA emiten ninguna clasificación de perros peligrosos «categoría 1 / categoría 2» a efectos de importación). El hecho determinante es más amplio: los perros en su conjunto son una categoría de importación sujeta a permiso, por lo que la restricción recae sobre la importación de cualquier perro, no sobre razas concretas."
+    pt: "O Irã não publica uma lista de importação específica por raça (nenhuma classificação de cão perigoso 'categoria 1 / categoria 2' é emitida pela IVO ou pela IRICA para fins de importação). O fato determinante é mais amplo: os cachorros como um todo são uma categoria de importação sujeita a permissão, portanto a restrição recai sobre a importação de qualquer cachorro, não sobre raças específicas."
+  cat1:
+    en: "No official breed-by-breed import ban list is published. Because the whole category requires permission, any dog — regardless of breed — needs prior IVO/ministry authorisation to enter."
+    fr: "Aucune liste officielle d'interdiction d'importation race par race n'est publiée. La catégorie entière étant soumise à autorisation, tout chien — quelle que soit sa race — nécessite l'autorisation préalable de l'IVO/du ministère pour entrer."
+    es: "No se publica ninguna lista oficial de prohibición de importación raza por raza. Como toda la categoría requiere permiso, cualquier perro — con independencia de su raza — necesita la autorización previa de la IVO/del ministerio para entrar."
+    pt: "Nenhuma lista oficial de proibição de importação raça por raça é publicada. Como toda a categoria exige permissão, qualquer cachorro — independentemente da raça — precisa de autorização prévia da IVO/ministério para entrar."
+  cat2:
+    en: "Beyond the import question, keeping and moving dogs in public in Iran is subject to social and local-authority restrictions. The precise national legal terms are not set out in a single published import instrument, so any breed- or ownership-specific detail is Unknown and should be verified with the Iranian authorities."
+    fr: "Au-delà de la question de l'importation, la détention et la circulation des chiens dans l'espace public en Iran font l'objet de restrictions sociales et des autorités locales. Les termes juridiques nationaux précis ne figurent pas dans un instrument d'importation publié unique : tout détail lié à la race ou à la détention est donc non communiqué et doit être vérifié auprès des autorités iraniennes."
+    es: "Más allá de la cuestión de la importación, la tenencia y la circulación de perros en público en Irán están sujetas a restricciones sociales y de las autoridades locales. Los términos jurídicos nacionales exactos no figuran en un único instrumento de importación publicado, por lo que cualquier detalle específico de raza o de tenencia es desconocido y debe verificarse con las autoridades iraníes."
+    pt: "Além da questão da importação, manter e circular com cachorros em público no Irã está sujeito a restrições sociais e das autoridades locais. Os termos legais nacionais precisos não estão definidos em um único instrumento de importação publicado, portanto qualquer detalhe específico de raça ou de posse é Não comunicado e deve ser verificado com as autoridades iranianas."
+  note:
+    en: "In short: the issue is not a restricted-breed list but a country-wide permission requirement for importing any dog. Do not assume that a particular breed is either freely allowed or specifically banned — confirm with the IVO."
+    fr: "En bref : il ne s'agit pas d'une liste de races réglementées mais d'une exigence nationale d'autorisation pour importer tout chien. Ne présume pas qu'une race donnée est soit librement admise, soit spécifiquement interdite — confirme auprès de l'IVO."
+    es: "En resumen: no se trata de una lista de razas restringidas, sino de un requisito de permiso de ámbito nacional para importar cualquier perro. No des por hecho que una raza concreta esté libremente permitida o específicamente prohibida — confírmalo con la IVO."
+    pt: "Em resumo: a questão não é uma lista de raças restritas, mas sim uma exigência de permissão em todo o país para a importação de qualquer cachorro. Não presuma que uma raça específica é livremente permitida ou especificamente proibida — confirme com a IVO."
+
+checklist:
+  - en: "Understand that a pet dog is a permission-only import category in Iran — there is no open, published procedure"
+    fr: "Comprenez qu'un chien de compagnie est une catégorie d'importation soumise à autorisation en Iran — il n'existe aucune procédure ouverte et publiée"
+    es: "Ten en cuenta que un perro de compañía es una categoría de importación sujeta a permiso en Irán — no existe un procedimiento abierto y publicado"
+    pt: "Entenda que um cachorro de estimação é uma categoria de importação sujeita a permissão no Irã — não existe um procedimento aberto e publicado"
+  - en: "Contact the Iran Veterinary Organization (IVO) and the Ministry of Agriculture before booking, and request a written import permit"
+    fr: "Contacte l'Organisation vétérinaire iranienne (IVO) et le ministère de l'Agriculture avant de réserver, et demande un permis d'importation écrit"
+    es: "Ponte en contacto con la Organización Veterinaria de Irán (IVO) y el Ministerio de Agricultura antes de reservar, y solicita un permiso de importación por escrito"
+    pt: "Entre em contato com a Organização Veterinária do Irã (IVO) e o Ministério da Agricultura antes de reservar, e solicite uma autorização de importação por escrito"
+  - en: "Do not assume a fixed microchip / rabies / antibody-test / certificate checklist — obtain the exact conditions from the permit"
+    fr: "Ne présume pas d'une liste fixe puce / rage / titrage / certificat — obtiens les conditions exactes via le permis"
+    es: "No des por hecho una lista fija de microchip / rabia / prueba de titulación / certificado — obtén las condiciones exactas del permiso"
+    pt: "Não presuma uma lista fixa de exigências de microchip / vacinação antirrábica / teste sorológico / atestado — obtenha as condições exatas na autorização"
+  - en: "Arrange an official export health certificate endorsed by your country's veterinary authority, matching whatever the permit requires"
+    fr: "Prépare un certificat sanitaire d'exportation officiel visé par l'autorité vétérinaire de ton pays, conforme à ce qu'exige le permis"
+    es: "Prepara un certificado sanitario de exportación oficial refrendado por la autoridad veterinaria de tu país, acorde con lo que exija el permiso"
+    pt: "Providencie um atestado de saúde de exportação oficial, endossado pela autoridade veterinária do seu país, correspondente ao que a autorização exigir"
+  - en: "Confirm the designated entry point, documents and any quarantine directly with the IVO before flying"
+    fr: "Confirme le point d'entrée désigné, les documents et toute quarantaine directement auprès de l'IVO avant de prendre l'avion"
+    es: "Confirma el punto de entrada designado, los documentos y cualquier cuarentena directamente con la IVO antes de volar"
+    pt: "Confirme o ponto de entrada designado, os documentos e qualquer quarentena diretamente com a IVO antes de voar"
+  - en: "Do not travel with the dog until you physically hold the written authorisation — entry is otherwise not assured and the animal may be refused"
+    fr: "Ne voyage pas avec le chien tant que tu ne détiens pas physiquement l'autorisation écrite — à défaut, l'entrée n'est pas assurée et l'animal peut être refusé"
+    es: "No viajes con el perro hasta que tengas físicamente la autorización por escrito — de lo contrario, la entrada no está asegurada y el animal puede ser rechazado"
+    pt: "Não viaje com o cachorro até ter fisicamente a autorização por escrito em mãos — caso contrário, a entrada não é garantida e o animal pode ser recusado"
+
+sources:
+  - label: { en: "Iran Veterinary Organization (IVO) — official English portal", fr: "Organisation vétérinaire iranienne (IVO) — portail officiel en anglais", es: "Organización Veterinaria de Irán (IVO) — portal oficial en inglés", pt: "Organização Veterinária do Irã (IVO) — portal oficial em inglês" }
+    url: "https://int.ivo.ir/"
+  - label: { en: "Iran Veterinary Organization — Rules (Veterinary Organization Act, incl. Art. 3, 7, 8 on live-animal import, quarantine and health certificates)", fr: "Organisation vétérinaire iranienne — Rules (loi sur l'Organisation vétérinaire, art. 3, 7, 8 : importation d'animaux vivants, quarantaine, certificats sanitaires)", es: "Organización Veterinaria de Irán — Reglas (Ley de la Organización Veterinaria, incl. art. 3, 7, 8 sobre importación de animales vivos, cuarentena y certificados sanitarios)", pt: "Organização Veterinária do Irã — Regras (Lei da Organização Veterinária, incl. arts. 3, 7 e 8 sobre importação de animais vivos, quarentena e atestados de saúde)" }
+    url: "https://int.ivo.ir/RULES"
+  - label: { en: "Iran Veterinary Organization — Quarantine & International Affairs / Import Health Requirement", fr: "Organisation vétérinaire iranienne — Quarantaine et affaires internationales / Exigences sanitaires d'importation", es: "Organización Veterinaria de Irán — Cuarentena y Asuntos Internacionales / Requisitos sanitarios de importación", pt: "Organização Veterinária do Irã — Quarentena e Assuntos Internacionais / Exigência Sanitária de Importação" }
+    url: "https://int.ivo.ir/Import-Health-Requirement"
+  - label: { en: "Islamic Republic of Iran Customs Administration (IRICA) — official website (prohibited/restricted goods; pets admissible only with permission)", fr: "Administration des douanes de la République islamique d'Iran (IRICA) — site officiel (biens interdits/réglementés ; animaux de compagnie admissibles seulement avec autorisation)", es: "Administración de Aduanas de la República Islámica de Irán (IRICA) — sitio web oficial (mercancías prohibidas/restringidas; mascotas admisibles solo con permiso)", pt: "Administração Alfandegária da República Islâmica do Irã (IRICA) — site oficial (bens proibidos/restritos; animais de estimação admissíveis somente com permissão)" }
+    url: "https://www.irica.ir/"
+  - label: { en: "USDA-APHIS — Export Live Animals to Iran (no agreed animal trade protocols; importer must obtain an import permit)", fr: "USDA-APHIS — Exportation d'animaux vivants vers l'Iran (aucun protocole commercial animalier convenu ; l'importateur doit obtenir un permis d'importation)", es: "USDA-APHIS — Exportación de animales vivos a Irán (sin protocolos comerciales de animales acordados; el importador debe obtener un permiso de importación)", pt: "USDA-APHIS — Exportação de Animais Vivos para o Irã (nenhum protocolo de comércio de animais acordado; o importador deve obter uma autorização de importação)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-iran"
+
+seo:
+  title: { en: "Iran Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Iran — Guide", es: "Requisitos de entrada de perros en Irán — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Irã — Guia de Viagem" }
+  metaTitle: { en: "Iran Dog Entry Requirements (2026)", fr: "Chien : formalités d'entrée Iran (2026)", es: "Perro: requisitos de entrada Irán (2026)", pt: "Exigências de Entrada de Cachorros no Irã (2026)" }
+  metaDesc:
+    en: "Official position: Iran treats pet dogs as a permission-only import category. Sourced, dated, honest guide."
+    fr: "Position officielle : l'Iran traite les chiens de compagnie comme une catégorie d'importation soumise à autorisation. Guide sourcé, daté et honnête."
+    es: "Posición oficial: Irán trata a los perros de compañía como una categoría de importación sujeta a permiso. Guía con fuentes, fechada y honesta."
+    pt: "Posição oficial: o Irã trata os cachorros de estimação como uma categoria de importação sujeita a permissão. Guia honesto, com fontes e data."
+  slug: "iran"
+  shortDesc:
+    en: "Iran admits pet dogs only with prior official permission and publishes no standard import procedure — obtain a written permit from the IVO before you travel."
+    fr: "L'Iran n'admet les chiens de compagnie qu'avec une autorisation officielle préalable et ne publie aucune procédure d'importation standard — obtiens un permis écrit de l'IVO avant de voyager."
+    es: "Irán admite perros de compañía solo con autorización oficial previa y no publica ningún procedimiento de importación estándar — obtén un permiso por escrito de la IVO antes de viajar."
+    pt: "O Irã só admite cachorros de estimação com permissão oficial prévia e não publica um procedimento padrão de importação — obtenha uma autorização por escrito da IVO antes de viajar."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

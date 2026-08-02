@@ -1,0 +1,386 @@
+# Country Entry Guide — New Zealand (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_nz
+iso2: "NZ"
+name: { en: "New Zealand", fr: "Nouvelle-Zélande", es: "Nueva Zelanda", pt: "Nova Zelândia" }
+region: { en: "Oceania", fr: "Océanie", es: "Oceanía", pt: "Oceania" }
+
+
+regime: island_strict
+domestic:
+  intro:
+    en: "Domestic flight in New Zealand: nothing is required to fly, including between the North and South Islands."
+    fr: "Vol intérieur en Nouvelle-Zélande : rien n'est exigé pour voler, y compris entre l'île du Nord et l'île du Sud."
+    es: "Vuelo nacional en Nueva Zelanda: no se exige nada para volar, tampoco entre la Isla Norte y la Isla Sur."
+    pt: "Voo doméstico na Nova Zelândia: nada é exigido para voar, inclusive entre a Ilha Norte e a Ilha Sul."
+  points:
+    - en: "New Zealand has never had a case of rabies, so no rabies vaccination applies. Microchipping is legally required for dog registration, but it is not a boarding condition, and no health certificate or permit exists for internal movement."
+      fr: "La Nouvelle-Zélande n'a jamais connu de cas de rage, aucune vaccination antirabique ne s'applique donc. La puce est légalement requise pour l'enregistrement du chien, mais ce n'est pas une condition d'embarquement, et aucun certificat ni permis n'existe pour un mouvement interne."
+      es: "Nueva Zelanda nunca ha tenido un caso de rabia, así que no aplica vacuna antirrábica. El microchip es legalmente obligatorio para registrar al perro, pero no es condición de embarque, y no existe certificado ni permiso para el movimiento interno."
+      pt: "A Nova Zelândia nunca teve um caso de raiva, então não há vacinação antirrábica a cumprir. O microchip é exigido por lei para o registro do cachorro, mas não é condição de embarque, e não existe atestado de saúde nem autorização para o deslocamento interno."
+    - en: "The real restriction is at destination: dogs are banned from conservation land and national parks without written approval, and a dog found there may be seized. Some areas require a permit obtained days in advance."
+      fr: "La vraie restriction est à destination : les chiens sont interdits sur les terres de conservation et dans les parcs nationaux sans autorisation écrite, et un chien qui s'y trouve peut être saisi. Certaines zones exigent un permis obtenu plusieurs jours à l'avance."
+      es: "La verdadera restricción está en destino: los perros están prohibidos en tierras de conservación y parques nacionales sin autorización escrita, y un perro allí puede ser incautado. Algunas zonas exigen un permiso obtenido días antes."
+      pt: "A verdadeira restrição está no destino: os cachorros são proibidos em terras de conservação e em parques nacionais sem autorização por escrito, e um cachorro encontrado ali pode ser apreendido. Algumas áreas exigem uma autorização obtida com dias de antecedência."
+    - en: "One national carrier takes pets in the hold with no vaccination or vet document requested at all, while another refuses animals entirely."
+      fr: "Une compagnie nationale accepte les animaux en soute sans exiger la moindre vaccination ni document vétérinaire, tandis qu'une autre les refuse totalement."
+      es: "Una aerolínea nacional acepta mascotas en bodega sin exigir vacuna ni documento veterinario alguno, mientras que otra los rechaza por completo."
+      pt: "Uma companhia aérea nacional aceita animais de estimação no porão sem exigir nenhuma vacinação nem documento veterinário, enquanto outra recusa animais por completo."
+exit:
+  authority: MPI (Nouvelle-Zélande)
+  authorityUrl: https://www.mpi.govt.nz/take-or-send-from-nz/pets-leaving-nz/information-for-vets
+  intro:
+    en: "Leaving New Zealand with your dog needs an export certificate from an MPI Official Veterinarian (plus an Animal Welfare Export Certificate for flights over 6 hours)."
+    fr: "Sortir de Nouvelle-Zélande avec ton chien demande un certificat d'export d'un vétérinaire officiel du MPI (plus un Animal Welfare Export Certificate pour les vols de plus de 6 heures)."
+    es: "Salir de Nueva Zelanda con tu perro requiere un certificado de exportación de un veterinario oficial del MPI (más un Animal Welfare Export Certificate para vuelos de más de 6 horas)."
+    pt: "Sair da Nova Zelândia com seu cachorro exige um certificado de exportação emitido por um MPI Official Veterinarian (veterinário oficial do MPI), mais um Animal Welfare Export Certificate para voos de mais de 6 horas."
+  steps:
+    - timing: window
+      text:
+        en: "Only certain MPI-authorised vets can sign the export certificate; requirements follow the destination's OMAR."
+        fr: "Seuls certains vétérinaires agréés MPI peuvent signer le certificat d'export ; les exigences suivent l'OMAR de la destination."
+        es: "Solo ciertos veterinarios autorizados por MPI pueden firmar el certificado de exportación; los requisitos siguen el OMAR del destino."
+        pt: "Só alguns veterinários autorizados pelo MPI podem assinar o certificado de exportação; as exigências seguem o OMAR do destino."
+  onSiteNote:
+    en: "Plan with an MPI-authorised vet during your stay; long-haul flights add an animal-welfare certificate."
+    fr: "Prévois avec un vétérinaire agréé MPI pendant ton séjour ; les vols long-courriers ajoutent un certificat de bien-être animal."
+    es: "Planifica con un veterinario autorizado por MPI durante tu estancia; los vuelos de larga distancia añaden un certificado de bienestar animal."
+    pt: "Planeje com um veterinário autorizado pelo MPI durante sua estadia; voos de longa distância acrescentam um certificado de bem-estar animal."
+
+hero:
+  h1: { en: "Traveling to New Zealand with your dog", fr: "Voyager en Nouvelle-Zélande avec ton chien", es: "Viajar a Nueva Zelanda con tu perro", pt: "Viajar para a Nova Zelândia com seu cachorro" }
+  intro:
+    en: >-
+      New Zealand welcomes dogs, but as a rabies-free island nation it runs one of the strictest
+      biosecurity schemes in the world — set by the Ministry for Primary Industries (MPI), not the
+      EU. Dogs can only be imported from countries MPI has approved, grouped into three categories by
+      rabies status. Every dog except those from Australia needs an import permit, and almost every
+      dog must spend a minimum of 10 days in an MPI-approved quarantine facility on arrival. Dogs from
+      rabies-controlled countries also need a rabies antibody blood test and several parasite and
+      disease treatments. A few breeds are banned from import outright. This guide explains each
+      category so you know exactly what to prepare — usually several months — before you book.
+    fr: >-
+      La Nouvelle-Zélande accueille les chiens, mais en tant qu'île indemne de rage elle applique l'un
+      des régimes de biosécurité les plus stricts au monde — fixé par le Ministry for Primary
+      Industries (MPI), pas par l'UE. Un chien ne peut être importé que depuis un pays approuvé par le
+      MPI, répartis en trois catégories selon le statut rabique. Tout chien, sauf ceux venant
+      d'Australie, exige un permis d'importation, et presque tous doivent passer au minimum 10 jours
+      dans un centre de quarantaine agréé par le MPI à l'arrivée. Les chiens venant de pays où la rage
+      est contrôlée doivent aussi subir un titrage antirabique et plusieurs traitements antiparasitaires
+      et sanitaires. Certaines races sont interdites d'importation. Ce guide détaille chaque catégorie
+      pour savoir exactement quoi préparer — souvent plusieurs mois — avant de réserver.
+    es: >-
+      Nueva Zelanda acoge a los perros, pero como país insular libre de rabia aplica uno de los
+      regímenes de bioseguridad más estrictos del mundo — fijado por el Ministry for Primary Industries
+      (MPI), no por la UE. Los perros solo pueden importarse desde países aprobados por el MPI, agrupados
+      en tres categorías según el estatus de rabia. Todo perro, salvo los procedentes de Australia,
+      necesita un permiso de importación, y casi todos deben pasar un mínimo de 10 días en un centro de
+      cuarentena aprobado por el MPI a la llegada. Los perros procedentes de países con rabia controlada
+      también necesitan una prueba de titulación de anticuerpos contra la rabia y varios tratamientos
+      antiparasitarios y de enfermedades. Algunas razas están totalmente prohibidas para la importación.
+      Esta guía explica cada categoría para que sepas exactamente qué preparar — normalmente varios
+      meses — antes de reservar.
+
+    pt: "A Nova Zelândia recebe cachorros, mas, como país insular livre de raiva, aplica um dos regimes de biossegurança mais rigorosos do mundo — definido pelo Ministry for Primary Industries (MPI), não pela UE. Os cachorros só podem ser importados de países aprovados pelo MPI, divididos em três categorias conforme a situação da raiva. Todo cachorro, exceto os que vêm da Austrália, precisa de uma autorização de importação, e quase todos precisam passar no mínimo 10 dias em uma unidade de quarentena aprovada pelo MPI na chegada. Os cachorros vindos de países onde a raiva é controlada também precisam de um teste sorológico antirrábico e de vários tratamentos antiparasitários e de doenças. Algumas raças são totalmente proibidas de importação. Este guia explica cada categoria para você saber exatamente o que preparar — normalmente vários meses — antes de comprar a passagem."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — permit, tests and quarantine required", fr: "Difficile — permis, tests et quarantaine exigés", es: "Difícil — se exigen permiso, pruebas y cuarentena", pt: "Difícil — exige autorização, exames e quarentena" }
+
+prepTime:
+  eu:
+    en: "Category 1 (Australia): the simplest path — no import permit and no quarantine, but the dog must still meet all treatment and certification rules before travel."
+    fr: "Catégorie 1 (Australie) : le parcours le plus simple — pas de permis d'importation ni de quarantaine, mais le chien doit remplir toutes les règles de traitement et de certification avant le départ."
+    es: "Categoría 1 (Australia): la ruta más sencilla — sin permiso de importación ni cuarentena, pero el perro debe cumplir igualmente todas las normas de tratamiento y certificación antes del viaje."
+    pt: "Categoria 1 (Austrália): o caminho mais simples — sem autorização de importação e sem quarentena, mas o cachorro ainda precisa cumprir todas as regras de tratamento e certificação antes da viagem."
+  listed:
+    en: "Category 2 (rabies-free countries): allow several weeks to a couple of months — import permit (apply ≥30 working days ahead), treatments, certification and a minimum 10-day quarantine."
+    fr: "Catégorie 2 (pays indemnes de rage) : prévois plusieurs semaines à quelques mois — permis d'importation (demande ≥30 jours ouvrés à l'avance), traitements, certification et quarantaine minimale de 10 jours."
+    es: "Categoría 2 (países libres de rabia): prevé de varias semanas a un par de meses — permiso de importación (solicítalo ≥30 días hábiles antes), tratamientos, certificación y una cuarentena mínima de 10 días."
+    pt: "Categoria 2 (países livres de raiva): reserve de algumas semanas a alguns meses — autorização de importação (solicite com ≥30 dias úteis de antecedência), tratamentos, certificação e quarentena mínima de 10 dias."
+  nonListed:
+    en: "Category 3 (rabies absent/well-controlled): several months — rabies vaccination and antibody test with a waiting period, multiple disease tests and treatments, permit and 10-day quarantine."
+    fr: "Catégorie 3 (rage absente/bien maîtrisée) : plusieurs mois — vaccination et titrage antirabiques avec délai d'attente, multiples tests et traitements, permis et quarantaine de 10 jours."
+    es: "Categoría 3 (rabia ausente/bien controlada): varios meses — vacunación antirrábica y prueba de titulación con período de espera, múltiples pruebas y tratamientos de enfermedades, permiso y cuarentena de 10 días."
+    pt: "Categoria 3 (raiva ausente/bem controlada): vários meses — vacinação antirrábica e teste sorológico com período de espera, vários exames e tratamentos de doenças, autorização e quarentena de 10 dias."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — from approved countries only", fr: "Oui — pays approuvés uniquement", es: "Sí — solo desde países aprobados", pt: "Sim — somente de países aprovados" }
+    cls: neutral
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required — Category 3 origins", fr: "Requise — origines catégorie 3", es: "Obligatoria — orígenes de categoría 3", pt: "Obrigatória — origens de categoria 3" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required — Category 3 (not rabies-free)", fr: "Requis — catégorie 3 (hors pays indemnes)", es: "Obligatoria — categoría 3 (no libres de rabia)", pt: "Obrigatório — categoria 3 (países não livres de raiva)" }
+    cls: warn
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (except Australia)", fr: "Requis (sauf Australie)", es: "Obligatorio (salvo Australia)", pt: "Obrigatória (exceto Austrália)" }
+    cls: warn
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Required — min 10 days (Australia exempt)", fr: "Requise — min 10 jours (Australie exemptée)", es: "Obligatoria — mín. 10 días (Australia exenta)", pt: "Obrigatória — mín. 10 dias (Austrália isenta)" }
+    cls: warn
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact procedure depends on three things — New Zealand (your destination) is only the first."
+    fr: "La procédure exacte dépend de trois éléments — la Nouvelle-Zélande (ta destination) n'est que le premier."
+    es: "El procedimiento exacto depende de tres factores — Nueva Zelanda (tu destino) es solo el primero."
+    pt: "O procedimento exato depende de três fatores — a Nova Zelândia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — New Zealand", fr: "Pays de destination — Nouvelle-Zélande", es: "País de destino — Nueva Zelanda", pt: "País de destino — Nova Zelândia" }
+      text:
+        en: "New Zealand applies MPI's Import Health Standard for cats and dogs: an import permit, microchip, veterinary certification, parasite and disease treatments and a minimum 10-day quarantine are the backbone for almost every dog."
+        fr: "La Nouvelle-Zélande applique l'Import Health Standard du MPI pour chats et chiens : permis d'importation, puce, certification vétérinaire, traitements antiparasitaires et sanitaires et quarantaine minimale de 10 jours forment le socle pour presque tout chien."
+        es: "Nueva Zelanda aplica el Import Health Standard del MPI para gatos y perros: un permiso de importación, microchip, certificación veterinaria, tratamientos antiparasitarios y de enfermedades y una cuarentena mínima de 10 días son la base para casi todo perro."
+        pt: "A Nova Zelândia aplica o Import Health Standard do MPI para cães e gatos: autorização de importação, microchip, certificação veterinária, tratamentos antiparasitários e de doenças e quarentena mínima de 10 dias são a base para quase todo cachorro."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from Australia (Category 1), a rabies-free country (Category 2) or a rabies-controlled country (Category 3) decides whether a permit, a rabies antibody test and quarantine apply. Dogs from non-approved countries cannot be imported directly at all."
+        fr: "Que ton chien parte d'Australie (catégorie 1), d'un pays indemne de rage (catégorie 2) ou d'un pays où la rage est maîtrisée (catégorie 3) détermine si un permis, un titrage antirabique et une quarantaine s'appliquent. Un chien venant d'un pays non approuvé ne peut pas être importé directement."
+        es: "Que tu perro salga de Australia (categoría 1), de un país libre de rabia (categoría 2) o de un país con rabia controlada (categoría 3) determina si se aplican un permiso, una prueba de titulación de rabia y una cuarentena. Los perros procedentes de países no aprobados no pueden importarse directamente en absoluto."
+        pt: "Se o seu cachorro parte da Austrália (categoria 1), de um país livre de raiva (categoria 2) ou de um país onde a raiva é controlada (categoria 3), isso define se a autorização, o teste sorológico antirrábico e a quarentena se aplicam. Os cachorros vindos de países não aprovados não podem ser importados diretamente de jeito nenhum."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a non-approved or higher-risk country can change your dog's category or block import until it has spent enough time in an approved country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays non approuvé ou à risque plus élevé peut changer la catégorie de ton chien ou bloquer l'importation tant qu'il n'a pas séjourné assez longtemps dans un pays approuvé. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país no aprobado o de mayor riesgo puede cambiar la categoría de tu perro o bloquear la importación hasta que haya pasado tiempo suficiente en un país aprobado. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país não aprovado ou de risco mais alto pode mudar a categoria do seu cachorro ou bloquear a importação até que ele tenha passado tempo suficiente em um país aprovado. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as New Zealand's framework, then confirm your dog's exact category and history with your vet and MPI."
+    fr: "Lis donc les exigences ci-dessous comme le cadre néo-zélandais, puis confirme la catégorie et l'historique exacts de ton chien avec ton vétérinaire et le MPI."
+    es: "Así que lee los requisitos siguientes como el marco de Nueva Zelanda y luego confirma la categoría y el historial exactos de tu perro con tu veterinario y el MPI."
+    pt: "Então leia as exigências abaixo como o marco geral da Nova Zelândia e depois confirme a categoria exata e o histórico do seu cachorro com seu veterinário e com o MPI."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must uniquely identify the dog and be scanned and recorded on the veterinary certificate.", fr: "Doit identifier le chien de façon unique et être lue et consignée sur le certificat vétérinaire.", es: "Debe identificar de forma única al perro y ser leído y registrado en el certificado veterinario.", pt: "Precisa identificar o cachorro de forma única e ser lido e registrado no certificado veterinário." }
+    exceptions: { en: "The microchip must be verified before every test and treatment is certified.", fr: "La puce doit être vérifiée avant que chaque test et traitement soit certifié.", es: "El microchip debe verificarse antes de que se certifique cada prueba y tratamiento.", pt: "O microchip precisa ser verificado antes de cada exame e tratamento ser certificado." }
+    ref: { en: "MPI Import Health Standard CATDOG.GEN", fr: "Import Health Standard CATDOG.GEN du MPI", es: "Import Health Standard CATDOG.GEN del MPI", pt: "Import Health Standard CATDOG.GEN do MPI" }
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required (except Australia)", fr: "Requis (sauf Australie)", es: "Obligatorio (salvo Australia)", pt: "Obrigatória (exceto Austrália)" }
+    when: { en: "Apply to MPI online a minimum of 30 working days before you need the permit; required for all cats and dogs except those from Australia.", fr: "Demande en ligne au MPI au minimum 30 jours ouvrés avant la date voulue ; exigé pour tous les chats et chiens sauf ceux d'Australie.", es: "Solicítalo al MPI en línea con un mínimo de 30 días hábiles de antelación; es obligatorio para todos los gatos y perros salvo los procedentes de Australia.", pt: "Solicite ao MPI pela internet no mínimo 30 dias úteis antes da data em que você precisa da autorização; obrigatória para todos os cães e gatos, exceto os que vêm da Austrália." }
+    exceptions: { en: "Category 1 (Australia, including Norfolk Island): no import permit — notify an official vet instead.", fr: "Catégorie 1 (Australie, y compris l'île Norfolk) : pas de permis — prévenir un vétérinaire officiel à la place.", es: "Categoría 1 (Australia, incluida la isla Norfolk): sin permiso de importación — en su lugar, avisa a un veterinario oficial.", pt: "Categoria 1 (Austrália, incluindo a Ilha Norfolk): sem autorização de importação — em vez disso, avise um veterinário oficial." }
+    ref: { en: "MPI — Step-by-step guide to bringing cats and dogs to NZ", fr: "MPI — Guide étape par étape pour amener chats et chiens en NZ", es: "MPI — Guía paso a paso para traer gatos y perros a NZ", pt: "MPI — guia passo a passo para levar cães e gatos para a NZ" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Category 3 origins", fr: "Origines catégorie 3", es: "Orígenes de categoría 3", pt: "Origens de categoria 3" }
+    when: { en: "Dog vaccinated against rabies when at least 3 months old, before the rabies antibody test.", fr: "Chien vacciné contre la rage à au moins 3 mois, avant le titrage antirabique.", es: "Perro vacunado contra la rabia con al menos 3 meses de edad, antes de la prueba de titulación de rabia.", pt: "Cachorro vacinado contra a raiva com pelo menos 3 meses de idade, antes do teste sorológico antirrábico." }
+    exceptions: { en: "Not required from Category 1 (Australia) or Category 2 (rabies-free) countries.", fr: "Non requise depuis la catégorie 1 (Australie) ou la catégorie 2 (pays indemnes de rage).", es: "No obligatoria desde países de categoría 1 (Australia) o categoría 2 (libres de rabia).", pt: "Não obrigatória para países de categoria 1 (Austrália) ou de categoria 2 (livres de raiva)." }
+    ref: { en: "MPI IHS — Category 3 Model Veterinary Certificate A", fr: "IHS MPI — Certificat vétérinaire modèle A, catégorie 3", es: "IHS del MPI — Certificado veterinario modelo A, categoría 3", pt: "IHS do MPI — Model Veterinary Certificate A (certificado veterinário modelo A), categoria 3" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Category 3 origins", fr: "Origines catégorie 3", es: "Orígenes de categoría 3", pt: "Origens de categoria 3" }
+    when: { en: "Blood collected at least 3 weeks after vaccination, tested in an approved laboratory, result ≥0.5 IU/ml; a waiting period applies before travel.", fr: "Sang prélevé au moins 3 semaines après le vaccin, analysé dans un laboratoire agréé, résultat ≥0,5 UI/ml ; un délai d'attente s'applique avant le voyage.", es: "Sangre extraída al menos 3 semanas después de la vacunación, analizada en un laboratorio aprobado, resultado ≥0,5 UI/ml; se aplica un período de espera antes del viaje.", pt: "Sangue coletado pelo menos 3 semanas depois da vacinação, analisado em um laboratório aprovado, resultado ≥0,5 UI/ml; há um período de espera antes da viagem." }
+    exceptions: { en: "If the result is below 0.5 IU/ml the dog must be revaccinated and retested. Not required from Category 1 or Category 2 countries.", fr: "Si le résultat est inférieur à 0,5 UI/ml, le chien doit être revacciné et retesté. Non requis depuis les pays de catégorie 1 ou 2.", es: "Si el resultado es inferior a 0,5 UI/ml, el perro debe revacunarse y volver a analizarse. No obligatoria desde países de categoría 1 o categoría 2.", pt: "Se o resultado for inferior a 0,5 UI/ml, o cachorro precisa ser revacinado e testado de novo. Não obrigatório para países de categoria 1 ou categoria 2." }
+    ref: { en: "MPI IHS — Category 3 Model Veterinary Certificate A", fr: "IHS MPI — Certificat vétérinaire modèle A, catégorie 3", es: "IHS del MPI — Certificado veterinario modelo A, categoría 3", pt: "IHS do MPI — Model Veterinary Certificate A (certificado veterinário modelo A), categoria 3" }
+  - item: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "MPI model veterinary certificate completed and endorsed by an official government vet in the exporting country before shipment.", fr: "Certificat vétérinaire modèle du MPI complété et visé par un vétérinaire officiel du pays exportateur avant l'expédition.", es: "Certificado veterinario modelo del MPI cumplimentado y refrendado por un veterinario oficial del gobierno del país exportador antes del envío.", pt: "Certificado veterinário modelo do MPI preenchido e endossado por um veterinário oficial do governo no país exportador antes do embarque." }
+    exceptions: { en: "The certificate model differs by category (A for Category 3, B for Category 2, and the Australia certificate for Category 1).", fr: "Le modèle de certificat diffère selon la catégorie (A pour la catégorie 3, B pour la catégorie 2, et le certificat Australie pour la catégorie 1).", es: "El modelo de certificado difiere según la categoría (A para la categoría 3, B para la categoría 2, y el certificado de Australia para la categoría 1).", pt: "O modelo de certificado varia conforme a categoria (A para a categoria 3, B para a categoria 2 e o certificado da Austrália para a categoria 1)." }
+    ref: { en: "MPI IHS — Model Veterinary Certificates", fr: "IHS MPI — Certificats vétérinaires modèles", es: "IHS del MPI — Certificados veterinarios modelo", pt: "IHS do MPI — certificados veterinários modelo" }
+  - item: { en: "External & internal parasite treatment", fr: "Traitement antiparasitaire externe et interne", es: "Tratamiento antiparasitario externo e interno", pt: "Tratamento antiparasitário externo e interno" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Treated twice against ticks and fleas (second treatment within 2 days of shipment) and treated with registered products against internal parasites.", fr: "Traité deux fois contre tiques et puces (second traitement dans les 2 jours précédant l'expédition) et traité avec des produits homologués contre les parasites internes.", es: "Tratado dos veces contra garrapatas y pulgas (el segundo tratamiento dentro de los 2 días previos al envío) y tratado con productos registrados contra los parásitos internos.", pt: "Tratado duas vezes contra carrapatos e pulgas (o segundo tratamento nos 2 dias anteriores ao embarque) e tratado com produtos registrados contra parasitas internos." }
+    exceptions: { en: "The dog must be certified free of external parasites at treatment.", fr: "Le chien doit être certifié indemne de parasites externes lors du traitement.", es: "El perro debe certificarse libre de parásitos externos en el momento del tratamiento.", pt: "O cachorro precisa ser certificado livre de parasitas externos no momento do tratamento." }
+    ref: { en: "MPI IHS — parasite treatment schedule", fr: "IHS MPI — calendrier des traitements antiparasitaires", es: "IHS del MPI — calendario de tratamientos antiparasitarios", pt: "IHS do MPI — calendário dos tratamentos antiparasitários" }
+  - item: { en: "Leptospirosis & Brucella (disease tests/treatments)", fr: "Leptospirose et Brucella (tests/traitements)", es: "Leptospirosis y Brucella (pruebas/tratamientos)", pt: "Leptospirose e Brucella (exames/tratamentos de doenças)" }
+    required: { en: "Category 2 & 3 dogs", fr: "Chiens catégories 2 et 3", es: "Perros de categoría 2 y 3", pt: "Cachorros das categorias 2 e 3" }
+    when: { en: "Leptospirosis: doxycycline for 14 consecutive days or a negative MAT test before shipment. Brucella canis: a dog testing positive is not eligible for import.", fr: "Leptospirose : doxycycline pendant 14 jours consécutifs ou test MAT négatif avant l'expédition. Brucella canis : un chien positif n'est pas éligible à l'importation.", es: "Leptospirosis: doxiciclina durante 14 días consecutivos o una prueba MAT negativa antes del envío. Brucella canis: un perro con resultado positivo no es apto para la importación.", pt: "Leptospirose: doxiciclina por 14 dias consecutivos ou um teste MAT negativo antes do embarque. Brucella canis: um cachorro com resultado positivo não é elegível para importação." }
+    exceptions: { en: "Exact test and treatment list is set by the dog's category in the IHS; confirm with your vet and MPI.", fr: "La liste exacte des tests et traitements dépend de la catégorie du chien dans l'IHS ; confirme avec ton vétérinaire et le MPI.", es: "La lista exacta de pruebas y tratamientos la fija la categoría del perro en el IHS; confírmalo con tu veterinario y el MPI.", pt: "A lista exata de exames e tratamentos é definida pela categoria do cachorro no IHS; confirme com seu veterinário e com o MPI." }
+    ref: { en: "MPI IHS CATDOG.GEN — Category 2 & 3 requirements", fr: "IHS CATDOG.GEN du MPI — exigences catégories 2 et 3", es: "IHS CATDOG.GEN del MPI — requisitos de categoría 2 y 3", pt: "IHS CATDOG.GEN do MPI — exigências das categorias 2 e 3" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Required — min 10 days", fr: "Requise — min 10 jours", es: "Obligatoria — mín. 10 días", pt: "Obrigatória — mín. 10 dias" }
+    when: { en: "Book an MPI-approved quarantine facility in advance; the dog is transferred there on arrival (Auckland or Christchurch) for a minimum of 10 days.", fr: "Réserve un centre de quarantaine agréé par le MPI à l'avance ; le chien y est transféré à l'arrivée (Auckland ou Christchurch) pour au minimum 10 jours.", es: "Reserva con antelación un centro de cuarentena aprobado por el MPI; el perro se traslada allí a la llegada (Auckland o Christchurch) durante un mínimo de 10 días.", pt: "Reserve com antecedência uma unidade de quarentena aprovada pelo MPI; o cachorro é transferido para lá na chegada (Auckland ou Christchurch) por no mínimo 10 dias." }
+    exceptions: { en: "Category 1 (Australia) dogs are exempt — cleared directly at the airport rather than sent to quarantine.", fr: "Les chiens de catégorie 1 (Australie) sont exemptés — dédouanés directement à l'aéroport au lieu d'être mis en quarantaine.", es: "Los perros de categoría 1 (Australia) están exentos — se despachan directamente en el aeropuerto en lugar de enviarse a cuarentena.", pt: "Os cachorros de categoria 1 (Austrália) são isentos — liberados direto no aeroporto em vez de irem para a quarentena." }
+    ref: { en: "MPI — Quarantine facilities for cats and dogs", fr: "MPI — Centres de quarantaine pour chats et chiens", es: "MPI — Centros de cuarentena para gatos y perros", pt: "MPI — unidades de quarentena para cães e gatos" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively several months", fr: "En pratique plusieurs mois", es: "En la práctica varios meses", pt: "Na prática, vários meses" }
+    when: { en: "Category 3 rabies vaccination is only valid from 3 months of age, and the antibody test and waiting period push the earliest travel date well beyond that.", fr: "La vaccination antirabique de catégorie 3 n'est valide qu'à partir de 3 mois, et le titrage plus le délai d'attente repoussent la date de voyage bien au-delà.", es: "La vacunación antirrábica de categoría 3 solo es válida a partir de los 3 meses, y la prueba de titulación y el período de espera retrasan la fecha más temprana de viaje bastante más allá.", pt: "A vacinação antirrábica da categoria 3 só é válida a partir dos 3 meses de idade, e o teste sorológico mais o período de espera empurram a data de viagem mais próxima para bem além disso." }
+    exceptions: { en: "There is no reduced quarantine or permit exemption for young puppies from Categories 2 or 3.", fr: "Aucune réduction de quarantaine ni exemption de permis pour les jeunes chiots des catégories 2 ou 3.", es: "No hay reducción de cuarentena ni exención de permiso para los cachorros jóvenes de categoría 2 o 3.", pt: "Não há redução de quarentena nem isenção de autorização para filhotes novos das categorias 2 ou 3." }
+    ref: { en: "MPI IHS CATDOG.GEN", fr: "IHS CATDOG.GEN du MPI", es: "IHS CATDOG.GEN del MPI", pt: "IHS CATDOG.GEN do MPI" }
+  - item: { en: "Prohibited breeds / hybrids", fr: "Races interdites / hybrides", es: "Razas prohibidas / híbridos", pt: "Raças proibidas / híbridos" }
+    required: { en: "Import prohibited", fr: "Importation interdite", es: "Importación prohibida", pt: "Importação proibida" }
+    when: { en: "Dogs belonging entirely or predominantly to a banned breed cannot be imported; hybrids (crossed with another species) are not eligible.", fr: "Un chien appartenant entièrement ou principalement à une race interdite ne peut être importé ; les hybrides (croisés avec une autre espèce) ne sont pas éligibles.", es: "Los perros que pertenezcan total o predominantemente a una raza prohibida no pueden importarse; los híbridos (cruzados con otra especie) no son aptos.", pt: "Os cachorros que pertençam totalmente ou predominantemente a uma raça proibida não podem ser importados; os híbridos (cruzados com outra espécie) não são elegíveis." }
+    exceptions: { en: "See the restricted breeds section below for the full list.", fr: "Voir la section races restreintes ci-dessous pour la liste complète.", es: "Consulta la sección de razas restringidas más abajo para ver la lista completa.", pt: "Veja a seção de raças restritas mais abaixo para a lista completa." }
+    ref: { en: "Dog Control Act 1996; MPI IHS CATDOG.GEN", fr: "Dog Control Act 1996 ; IHS CATDOG.GEN du MPI", es: "Dog Control Act 1996; IHS CATDOG.GEN del MPI", pt: "Dog Control Act 1996; IHS CATDOG.GEN do MPI" }
+
+origin:
+  eu:
+    title: { en: "Category 1 — Australia (simplest)", fr: "Catégorie 1 — Australie (le plus simple)", es: "Categoría 1 — Australia (la más sencilla)", pt: "Categoria 1 — Austrália (a mais simples)" }
+    body:
+      en: "A dog coming from Australia (including Norfolk Island) needs no import permit and no quarantine. It must still be microchipped, meet the treatment rules and travel with the correct veterinary certificate; you notify an official vet in New Zealand and it is cleared at Auckland or Christchurch airport."
+      fr: "Un chien venant d'Australie (y compris l'île Norfolk) n'a besoin ni de permis d'importation ni de quarantaine. Il doit toutefois être pucé, respecter les règles de traitement et voyager avec le bon certificat vétérinaire ; tu préviens un vétérinaire officiel en Nouvelle-Zélande et il est dédouané à l'aéroport d'Auckland ou de Christchurch."
+      es: "Un perro procedente de Australia (incluida la isla Norfolk) no necesita permiso de importación ni cuarentena. No obstante, debe llevar microchip, cumplir las normas de tratamiento y viajar con el certificado veterinario correcto; avisas a un veterinario oficial en Nueva Zelanda y se despacha en el aeropuerto de Auckland o de Christchurch."
+      pt: "Um cachorro vindo da Austrália (incluindo a Ilha Norfolk) não precisa de autorização de importação nem de quarentena. Mesmo assim, precisa ter microchip, cumprir as regras de tratamento e viajar com o certificado veterinário correto; você avisa um veterinário oficial na Nova Zelândia e ele é liberado no aeroporto de Auckland ou de Christchurch."
+    cls: ok
+  listed:
+    title: { en: "Category 2 — rabies-free countries", fr: "Catégorie 2 — pays indemnes de rage", es: "Categoría 2 — países libres de rabia", pt: "Categoria 2 — países livres de raiva" }
+    body:
+      en: "From an MPI-approved rabies-free country, your dog needs an import permit (apply at least 30 working days ahead), microchip, the required disease tests and treatments, an endorsed veterinary certificate and a minimum 10-day stay in an MPI-approved quarantine facility. No rabies antibody test is required because the country is rabies-free."
+      fr: "Depuis un pays indemne de rage approuvé par le MPI, ton chien a besoin d'un permis d'importation (demande au moins 30 jours ouvrés à l'avance), d'une puce, des tests et traitements requis, d'un certificat vétérinaire visé et d'un séjour minimal de 10 jours en centre de quarantaine agréé. Aucun titrage antirabique n'est exigé car le pays est indemne de rage."
+      es: "Desde un país libre de rabia aprobado por el MPI, tu perro necesita un permiso de importación (solicítalo al menos 30 días hábiles antes), microchip, las pruebas y tratamientos de enfermedades exigidos, un certificado veterinario refrendado y una estancia mínima de 10 días en un centro de cuarentena aprobado por el MPI. No se exige prueba de titulación de rabia porque el país está libre de rabia."
+      pt: "Vindo de um país livre de raiva aprovado pelo MPI, seu cachorro precisa de autorização de importação (solicite pelo menos 30 dias úteis antes), microchip, os exames e tratamentos de doenças exigidos, um certificado veterinário endossado e uma estadia mínima de 10 dias em uma unidade de quarentena aprovada pelo MPI. Não é exigido teste sorológico antirrábico porque o país é livre de raiva."
+    cls: warn
+  nonListed:
+    title: { en: "Category 3 — rabies absent/controlled", fr: "Catégorie 3 — rage absente/maîtrisée", es: "Categoría 3 — rabia ausente/controlada", pt: "Categoria 3 — raiva ausente/controlada" }
+    body:
+      en: "From an approved country where rabies is absent or well-controlled (such as the United States, United Kingdom-origin routes, most of Europe), add a rabies vaccination and an antibody test (blood ≥3 weeks after vaccination, result ≥0.5 IU/ml) with a waiting period, on top of the import permit, treatments, endorsed certificate and 10-day quarantine. Dogs from countries MPI has not approved cannot be imported directly."
+      fr: "Depuis un pays approuvé où la rage est absente ou bien maîtrisée (États-Unis, la plupart de l'Europe…), ajoute une vaccination antirabique et un titrage (sang ≥3 semaines après le vaccin, résultat ≥0,5 UI/ml) avec délai d'attente, en plus du permis, des traitements, du certificat visé et de la quarantaine de 10 jours. Un chien venant d'un pays non approuvé par le MPI ne peut pas être importé directement."
+      es: "Desde un país aprobado donde la rabia está ausente o bien controlada (como Estados Unidos, rutas de origen del Reino Unido, la mayor parte de Europa), añade una vacunación antirrábica y una prueba de titulación (sangre ≥3 semanas después de la vacunación, resultado ≥0,5 UI/ml) con un período de espera, además del permiso de importación, los tratamientos, el certificado refrendado y la cuarentena de 10 días. Los perros procedentes de países no aprobados por el MPI no pueden importarse directamente."
+      pt: "Vindo de um país aprovado onde a raiva é ausente ou bem controlada (como os Estados Unidos, rotas com origem no Reino Unido, a maior parte da Europa), acrescente vacinação antirrábica e teste sorológico (sangue coletado ≥3 semanas depois da vacinação, resultado ≥0,5 UI/ml) com período de espera, além da autorização de importação, dos tratamentos, do certificado endossado e da quarentena de 10 dias. Os cachorros vindos de países não aprovados pelo MPI não podem ser importados diretamente."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches New Zealand depends on its category and is tightly controlled by MPI."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Nouvelle-Zélande dépend de sa catégorie et est étroitement contrôlé par le MPI."
+    es: "Lo que ocurre cuando tu perro llega a Nueva Zelanda depende de su categoría y está estrictamente controlado por el MPI."
+    pt: "O que acontece quando seu cachorro chega à Nova Zelândia depende da categoria dele e é rigorosamente controlado pelo MPI."
+  points:
+    - en: "Dogs must arrive at Auckland or Christchurch international airport, where MPI biosecurity officers verify documents and identity."
+      fr: "Les chiens doivent arriver à l'aéroport international d'Auckland ou de Christchurch, où les agents de biosécurité du MPI vérifient documents et identité."
+      es: "Los perros deben llegar al aeropuerto internacional de Auckland o de Christchurch, donde los agentes de bioseguridad del MPI verifican los documentos y la identidad."
+      pt: "Os cachorros precisam chegar pelo aeroporto internacional de Auckland ou de Christchurch, onde os agentes de biossegurança do MPI conferem os documentos e a identidade."
+    - en: "From Australia (Category 1): the dog is inspected and cleared at the airport — no quarantine — provided all rules are met."
+      fr: "Depuis l'Australie (catégorie 1) : le chien est inspecté et dédouané à l'aéroport — sans quarantaine — si toutes les règles sont respectées."
+      es: "Desde Australia (categoría 1): el perro es inspeccionado y despachado en el aeropuerto — sin cuarentena — siempre que se cumplan todas las normas."
+      pt: "Vindo da Austrália (categoria 1): o cachorro é inspecionado e liberado no aeroporto — sem quarentena — desde que todas as regras sejam cumpridas."
+    - en: "From all other approved countries: the dog is transferred to a pre-booked MPI-approved quarantine facility for a minimum of 10 days."
+      fr: "Depuis tout autre pays approuvé : le chien est transféré vers un centre de quarantaine agréé par le MPI, réservé à l'avance, pour au minimum 10 jours."
+      es: "Desde cualquier otro país aprobado: el perro se traslada a un centro de cuarentena aprobado por el MPI reservado con antelación durante un mínimo de 10 días."
+      pt: "Vindo de qualquer outro país aprovado: o cachorro é transferido para uma unidade de quarentena aprovada pelo MPI, reservada com antecedência, por no mínimo 10 dias."
+    - en: "Carry the original endorsed veterinary certificate, laboratory reports and the import permit — copies are not accepted."
+      fr: "Munis-toi du certificat vétérinaire original visé, des rapports de laboratoire et du permis d'importation — les copies ne sont pas acceptées."
+      es: "Lleva el certificado veterinario refrendado original, los informes de laboratorio y el permiso de importación — no se aceptan copias."
+      pt: "Leve o certificado veterinário endossado original, os laudos de laboratório e a autorização de importação — cópias não são aceitas."
+    - en: "If requirements are not met, MPI may extend quarantine, order re-export at the owner's cost, or in the worst case euthanasia."
+      fr: "Si les exigences ne sont pas remplies, le MPI peut prolonger la quarantaine, ordonner la réexpédition aux frais du propriétaire ou, au pire, l'euthanasie."
+      es: "Si no se cumplen los requisitos, el MPI puede prolongar la cuarentena, ordenar la reexportación a cargo del propietario o, en el peor de los casos, la eutanasia."
+      pt: "Se as exigências não forem cumpridas, o MPI pode prolongar a quarentena, ordenar a reexportação às custas do dono ou, no pior caso, a eutanásia."
+    - en: "Prohibited breeds are refused entry; a dog from a non-approved country cannot be landed at all."
+      fr: "Les races interdites sont refusées à l'entrée ; un chien venant d'un pays non approuvé ne peut pas être débarqué."
+      es: "Las razas prohibidas son rechazadas en la entrada; un perro procedente de un país no aprobado no puede desembarcarse en absoluto."
+      pt: "As raças proibidas têm a entrada recusada; um cachorro vindo de um país não aprovado não pode nem desembarcar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "New Zealand bans the import of certain dog breeds under the Dog Control Act 1996, on top of MPI's biosecurity rules. The ban applies to any dog belonging entirely or predominantly to a listed breed or type."
+    fr: "La Nouvelle-Zélande interdit l'importation de certaines races de chiens au titre du Dog Control Act 1996, en plus des règles de biosécurité du MPI. L'interdiction vise tout chien appartenant entièrement ou principalement à une race ou un type listé."
+    es: "Nueva Zelanda prohíbe la importación de ciertas razas de perros al amparo de la Dog Control Act 1996, además de las normas de bioseguridad del MPI. La prohibición se aplica a todo perro que pertenezca total o predominantemente a una raza o tipo listado."
+    pt: "A Nova Zelândia proíbe a importação de certas raças de cachorro sob a Dog Control Act 1996, além das regras de biossegurança do MPI. A proibição vale para qualquer cachorro que pertença totalmente ou predominantemente a uma raça ou tipo listado."
+  cat1:
+    en: "Prohibited from import (cannot enter New Zealand): American Pit Bull Terrier, Dogo Argentino, Brazilian Fila, Japanese Tosa and Perro de Presa Canario. Dogs belonging entirely or predominantly to these breeds or types are refused importation under the Dog Control Act 1996."
+    fr: "Interdits d'importation (ne peuvent entrer en Nouvelle-Zélande) : American Pit Bull Terrier, Dogo Argentino, Fila brasileiro, Tosa japonais et Perro de Presa Canario. Les chiens appartenant entièrement ou principalement à ces races ou types sont refusés à l'importation au titre du Dog Control Act 1996."
+    es: "Prohibidos para la importación (no pueden entrar en Nueva Zelanda): American Pit Bull Terrier, Dogo Argentino, Fila Brasileiro, Tosa Inu y Perro de Presa Canario. Los perros que pertenezcan total o predominantemente a estas razas o tipos son rechazados en la importación al amparo de la Dog Control Act 1996."
+    pt: "Proibidos de importação (não podem entrar na Nova Zelândia): American Pit Bull Terrier, Dogo Argentino, Fila Brasileiro, Tosa Inu (Japanese Tosa) e Perro de Presa Canario. Os cachorros que pertençam totalmente ou predominantemente a essas raças ou tipos têm a importação recusada sob a Dog Control Act 1996."
+  cat2:
+    en: "Hybrids — the offspring of a dog crossed with another species — are also not eligible for import. Separately, breeds classified as 'menacing' under New Zealand law face domestic controls (such as muzzling in public and neutering) for dogs already in the country."
+    fr: "Les hybrides — descendants d'un chien croisé avec une autre espèce — ne sont pas non plus éligibles à l'importation. Par ailleurs, les races classées « menaçantes » (menacing) par la loi néo-zélandaise sont soumises à des contrôles internes (muselière en public, stérilisation) pour les chiens déjà présents dans le pays."
+    es: "Los híbridos — la descendencia de un perro cruzado con otra especie — tampoco son aptos para la importación. Por separado, las razas clasificadas como «amenazantes» (menacing) por la ley neozelandesa están sujetas a controles internos (como el bozal en público y la esterilización) para los perros que ya están en el país."
+    pt: "Os híbridos — descendentes de um cachorro cruzado com outra espécie — também não são elegíveis para importação. À parte disso, as raças classificadas como “menacing” (ameaçadoras) pela lei neozelandesa estão sujeitas a controles internos (como focinheira em público e castração) para os cachorros que já estão no país."
+  note:
+    en: "A dog that merely resembles a listed breed is assessed on whether it belongs entirely or predominantly to that breed or type. Confirm your dog's eligibility with MPI before making any travel arrangements."
+    fr: "Un chien qui ressemble simplement à une race listée est évalué selon qu'il appartient entièrement ou principalement à cette race ou ce type. Confirme l'éligibilité de ton chien auprès du MPI avant toute organisation de voyage."
+    es: "Un perro que simplemente se parece a una raza listada se evalúa según si pertenece total o predominantemente a esa raza o tipo. Confirma la elegibilidad de tu perro con el MPI antes de organizar cualquier viaje."
+    pt: "Um cachorro que apenas se pareça com uma raça listada é avaliado conforme pertença totalmente ou predominantemente a essa raça ou tipo. Confirme a elegibilidade do seu cachorro com o MPI antes de organizar qualquer viagem."
+
+checklist:
+  - en: "Confirm your dog's country is MPI-approved and identify its category (1, 2 or 3)"
+    fr: "Vérifie que le pays de ton chien est approuvé par le MPI et identifiez sa catégorie (1, 2 ou 3)"
+    es: "Confirma que el país de tu perro está aprobado por el MPI e identifica su categoría (1, 2 o 3)"
+    pt: "Confirme que o país do seu cachorro é aprovado pelo MPI e identifique a categoria dele (1, 2 ou 3)"
+  - en: "Confirm your dog is not a prohibited breed or a hybrid"
+    fr: "Vérifie que ton chien n'est pas une race interdite ni un hybride"
+    es: "Confirma que tu perro no es una raza prohibida ni un híbrido"
+    pt: "Confirme que seu cachorro não é de raça proibida nem híbrido"
+  - en: "ISO microchip implanted and recorded before tests and treatments"
+    fr: "Puce ISO posée et enregistrée avant les tests et traitements"
+    es: "Microchip ISO implantado y registrado antes de las pruebas y tratamientos"
+    pt: "Microchip ISO implantado e registrado antes dos exames e tratamentos"
+  - en: "Rabies vaccination and antibody test ≥0.5 IU/ml — Category 3 only"
+    fr: "Vaccination antirabique et titrage ≥0,5 UI/ml — catégorie 3 uniquement"
+    es: "Vacunación antirrábica y prueba de titulación ≥0,5 UI/ml — solo categoría 3"
+    pt: "Vacinação antirrábica e teste sorológico ≥0,5 UI/ml — somente categoria 3"
+  - en: "Apply for the MPI import permit at least 30 working days ahead (except Australia)"
+    fr: "Demande le permis d'importation MPI au moins 30 jours ouvrés à l'avance (sauf Australie)"
+    es: "Solicita el permiso de importación del MPI al menos 30 días hábiles antes (salvo Australia)"
+    pt: "Solicite a autorização de importação do MPI com pelo menos 30 dias úteis de antecedência (exceto Austrália)"
+  - en: "Complete the required parasite, leptospirosis and other disease treatments/tests"
+    fr: "Réalise les traitements/tests requis (parasites, leptospirose et autres maladies)"
+    es: "Realiza los tratamientos/pruebas exigidos (parásitos, leptospirosis y otras enfermedades)"
+    pt: "Faça os tratamentos/exames exigidos contra parasitas, leptospirose e outras doenças"
+  - en: "Endorsed model veterinary certificate signed by an official government vet"
+    fr: "Certificat vétérinaire modèle visé et signé par un vétérinaire officiel"
+    es: "Certificado veterinario modelo refrendado y firmado por un veterinario oficial del gobierno"
+    pt: "Certificado veterinário modelo endossado e assinado por um veterinário oficial do governo"
+  - en: "Book an MPI-approved quarantine facility (min 10 days) before travel"
+    fr: "Réserve un centre de quarantaine agréé par le MPI (min 10 jours) avant le voyage"
+    es: "Reserva un centro de cuarentena aprobado por el MPI (mín. 10 días) antes del viaje"
+    pt: "Reserve uma unidade de quarentena aprovada pelo MPI (mín. 10 dias) antes da viagem"
+  - en: "Fly into Auckland or Christchurch with original documents (not copies)"
+    fr: "Arrive à Auckland ou Christchurch avec les documents originaux (pas de copies)"
+    es: "Llega a Auckland o Christchurch con los documentos originales (no copias)"
+    pt: "Chegue voando a Auckland ou Christchurch com os documentos originais (não cópias)"
+
+sources:
+  - label: { en: "MPI — Step-by-step guide to bringing cats and dogs to NZ", fr: "MPI — Guide étape par étape pour amener chats et chiens en NZ", es: "MPI — Guía paso a paso para traer gatos y perros a NZ", pt: "MPI — guia passo a passo para levar cães e gatos para a NZ" }
+    url: "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/step-by-step-guide-to-bringing-cats-and-dogs-to-nz"
+  - label: { en: "MPI — Cats and dogs Import Health Standard (CATDOG.GEN)", fr: "MPI — Import Health Standard chats et chiens (CATDOG.GEN)", es: "MPI — Import Health Standard de gatos y perros (CATDOG.GEN)", pt: "MPI — Import Health Standard de cães e gatos (CATDOG.GEN)" }
+    url: "https://www.mpi.govt.nz/dmsdocument/1574-Cats-and-dogs-Import-Health-Standard"
+  - label: { en: "MPI — Cats and dogs Import Health Standard Guidance Document", fr: "MPI — Document d'orientation de l'Import Health Standard chats et chiens", es: "MPI — Documento de orientación del Import Health Standard de gatos y perros", pt: "MPI — documento de orientação do Import Health Standard de cães e gatos" }
+    url: "https://www.mpi.govt.nz/dmsdocument/1575-Cats-and-dogs-Import-Health-Standard-Guidance-Document"
+  - label: { en: "MPI — Bringing your dog to New Zealand (Category 3 support document)", fr: "MPI — Amener ton chien en Nouvelle-Zélande (document catégorie 3)", es: "MPI — Traer tu perro a Nueva Zelanda (documento de apoyo de categoría 3)", pt: "MPI — levar seu cachorro para a Nova Zelândia (documento de apoio da categoria 3)" }
+    url: "https://www.mpi.govt.nz/dmsdocument/30489-Bringing-your-dog-to-New-Zealand-Support-document-and-checklist-for-pets-coming-from-Category-3-countries"
+  - label: { en: "MPI — Quarantine facilities for importing cats and dogs", fr: "MPI — Centres de quarantaine pour l'importation de chats et chiens", es: "MPI — Centros de cuarentena para la importación de gatos y perros", pt: "MPI — unidades de quarentena para a importação de cães e gatos" }
+    url: "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/quarantine-facilities-and-importing-cats-and-dogs"
+  - label: { en: "MPI — Requirement documents for bringing pets to NZ", fr: "MPI — Documents d'exigences pour amener des animaux en NZ", es: "MPI — Documentos de requisitos para traer mascotas a NZ", pt: "MPI — documentos de exigências para levar animais de estimação para a NZ" }
+    url: "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/requirement-documents-for-bringing-pets-to-nz"
+
+seo:
+  title: { en: "New Zealand Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Nouvelle-Zélande — Guide", es: "Requisitos de entrada de perros en Nueva Zelanda — Guía de viaje", pt: "Entrada de cachorro na Nova Zelândia — guia de viagem" }
+  metaTitle: { en: "Traveling to New Zealand With Your Dog: Entry Requirements (2026)", fr: "Voyager en Nouvelle-Zélande avec ton chien : formalités (2026)", es: "Viajar a Nueva Zelanda con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Nova Zelândia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official MPI rules for bringing a dog into New Zealand: import permit, microchip, rabies antibody test, treatments and minimum 10-day quarantine. Sourced and dated."
+    fr: "Règles officielles du MPI pour la Nouvelle-Zélande : permis, puce, titrage antirabique, traitements et quarantaine minimale de 10 jours. Sourcé et daté."
+    es: "Normas oficiales del MPI para Nueva Zelanda: permiso, microchip, titulación de rabia, tratamientos y cuarentena mínima de 10 días. Con fuentes y fecha."
+    pt: "Regras oficiais do MPI para levar um cachorro à Nova Zelândia: autorização, microchip, titulação antirrábica, tratamentos e quarentena mínima de 10 dias."
+  slug: "new-zealand"
+  shortDesc:
+    en: "What you need to bring a dog into New Zealand: MPI permit, tests, treatments and quarantine, by category."
+    fr: "Ce qu'il faut pour faire entrer un chien en Nouvelle-Zélande : permis MPI, tests, traitements et quarantaine, par catégorie."
+    es: "Lo que necesitas para traer un perro a Nueva Zelanda: permiso del MPI, pruebas, tratamientos y cuarentena, por categoría."
+    pt: "O que você precisa para levar um cachorro à Nova Zelândia: autorização do MPI, exames, tratamentos e quarentena, por categoria."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,77 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+import LegalShell from "../../components/LegalShell.astro";
+import { LEGAL } from "../../lib/legal";
+export function getStaticPaths() {
+  return [{ params: { loc: undefined }, props: { locale: "en" } }, { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } }];
+}
+const { locale } = Astro.props as { locale: string };
+const base = locale === "en" ? "" : `/${locale}`;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const title = T("Terms of Use", "Conditions d'utilisation", "Condiciones de uso");
+---
+<Base locale={locale} title={`${title} — MyDogCanFly`} description={T("The terms governing use of MyDogCanFly, including accuracy, liability and governing law.", "Les conditions régissant l'usage de MyDogCanFly, notamment l'exactitude, la responsabilité et la loi applicable.", "Las condiciones que rigen el uso de MyDogCanFly, incluidas la exactitud, la responsabilidad y la ley aplicable.")}>
+  <LegalShell locale={locale} title={title}>
+    <h2>{T("1. Acceptance", "1. Acceptation", "1. Aceptación")}</h2>
+    <p>{T(
+      "By accessing MyDogCanFly you agree to these terms. If you do not agree, please do not use the site.",
+      "En accédant à MyDogCanFly, vous acceptez ces conditions. Si vous n'êtes pas d'accord, merci de ne pas utiliser le site.",
+      "Al acceder a MyDogCanFly aceptas estas condiciones. Si no estás de acuerdo, por favor no utilices el sitio.",
+    )}</p>
+
+    <h2>{T("2. Nature of the service", "2. Nature du service", "2. Naturaleza del servicio")}</h2>
+    <p>{T(
+      "MyDogCanFly is an informational and editorial service that compiles official rules on flying with a dog. It does not constitute veterinary, legal or professional advice, and it does not sell tickets or transport animals. The final responsibility for any travel decision is yours.",
+      "MyDogCanFly est un service d'information et éditorial qui compile des règles officielles sur le voyage aérien avec un chien. Il ne constitue pas un avis vétérinaire, juridique ou professionnel, et ne vend pas de billets ni ne transporte d'animaux. La responsabilité finale de toute décision de voyage vous incombe.",
+      "MyDogCanFly es un servicio informativo y editorial que recopila las reglas oficiales sobre viajar en avión con un perro. No constituye asesoramiento veterinario, jurídico ni profesional, y no vende billetes ni transporta animales. La responsabilidad final de cualquier decisión de viaje es tuya.",
+    )}</p>
+
+    <h2>{T("3. Accuracy and no warranty", "3. Exactitude et absence de garantie", "3. Exactitud y ausencia de garantía")}</h2>
+    <p>{T(
+      "We build our data from primary, official sources and verify it, but requirements change frequently and we do not warrant that every detail is current or complete at all times. Where a source does not publish a fact, we mark it \"Unknown\" rather than guessing. Before booking or travelling, always confirm the latest requirements directly with the airline, the destination country's authorities (embassy/consulate and veterinary authority) and your veterinarian.",
+      "Nous construisons nos données à partir de sources primaires officielles et les vérifions, mais les exigences changent souvent et nous ne garantissons pas que chaque détail soit à jour ou complet à tout moment. Lorsqu'une source ne publie pas une information, nous indiquons « Inconnu » plutôt que de deviner. Avant de réserver ou de voyager, validez toujours les dernières exigences directement auprès de la compagnie, des autorités du pays de destination (ambassade/consulat et autorité vétérinaire) et de votre vétérinaire.",
+      "Construimos nuestros datos a partir de fuentes primarias y oficiales y los verificamos, pero los requisitos cambian con frecuencia y no garantizamos que cada detalle esté actualizado o completo en todo momento. Cuando una fuente no publica un dato, lo marcamos como «Desconocido» en lugar de adivinar. Antes de reservar o viajar, confirma siempre los requisitos más recientes directamente con la aerolínea, las autoridades del país de destino (embajada/consulado y autoridad veterinaria) y tu veterinario.",
+    )}</p>
+
+    <h2>{T("4. Limitation of liability", "4. Limitation de responsabilité", "4. Limitación de responsabilidad")}</h2>
+    <p>{T(
+      "To the fullest extent permitted by law, the publisher is not liable for any loss or damage arising from reliance on the information or tools provided, nor for the acts of airlines, authorities, veterinarians or other third parties. We are not a party to any contract you enter with them.",
+      "Dans la mesure permise par la loi, l'éditeur n'est pas responsable des pertes ou dommages résultant de l'utilisation des informations ou outils fournis, ni des actes des compagnies aériennes, autorités, vétérinaires ou autres tiers. Nous ne sommes partie à aucun contrat que vous concluez avec eux.",
+      "En la máxima medida permitida por la ley, el editor no es responsable de ninguna pérdida o daño derivado de la confianza en la información o las herramientas facilitadas, ni de los actos de aerolíneas, autoridades, veterinarios u otros terceros. No somos parte de ningún contrato que celebres con ellos.",
+    )}</p>
+
+    <h2>{T("5. Acceptable use & intellectual property", "5. Usage acceptable & propriété intellectuelle", "5. Uso aceptable y propiedad intelectual")}</h2>
+    <p>{T(
+      "You may not scrape, bulk-download or republish the site's content or data without prior written consent. Brief quotations for editorial, research or press use are permitted with clear attribution to mydogcanfly.com and a link to the source. See the",
+      "Vous ne pouvez pas extraire, télécharger en masse ni republier le contenu ou les données du site sans autorisation écrite préalable. De brèves citations à des fins éditoriales, de recherche ou de presse sont autorisées avec une attribution claire à mydogcanfly.com et un lien vers la source. Voir les",
+      "No puedes extraer, descargar de forma masiva ni volver a publicar el contenido o los datos del sitio sin autorización escrita previa. Se permiten citas breves con fines editoriales, de investigación o de prensa con una atribución clara a mydogcanfly.com y un enlace a la fuente. Consulta el",
+    )} <a href={`${base}/legal-notice/`}>{T("legal notice", "mentions légales", "aviso legal")}</a>.</p>
+
+    <h2>{T("6. Third-party links", "6. Liens tiers", "6. Enlaces de terceros")}</h2>
+    <p>{T(
+      "The site links to third-party sources (airlines, authorities, partners). We are not responsible for the content or availability of those external sites.",
+      "Le site renvoie vers des sources tierces (compagnies, autorités, partenaires). Nous ne sommes pas responsables du contenu ou de la disponibilité de ces sites externes.",
+      "El sitio enlaza con fuentes de terceros (aerolíneas, autoridades, socios). No somos responsables del contenido ni de la disponibilidad de esos sitios externos.",
+    )}</p>
+
+    <h2>{T("7. Changes", "7. Modifications", "7. Modificaciones")}</h2>
+    <p>{T(
+      "We may update these terms; the effective date is shown above. Continued use after changes constitutes acceptance.",
+      "Nous pouvons mettre à jour ces conditions ; la date d'effet figure ci-dessus. Poursuivre l'utilisation après modification vaut acceptation.",
+      "Podemos actualizar estas condiciones; la fecha de entrada en vigor se indica arriba. Seguir utilizando el sitio tras los cambios constituye su aceptación.",
+    )}</p>
+
+    <h2>{T("8. Governing law", "8. Loi applicable", "8. Ley aplicable")}</h2>
+    <p>{T(
+      "These terms are governed by the laws of the State of Delaware, USA. Disputes shall, where permitted, be brought before the competent courts of Delaware, without prejudice to the mandatory consumer-protection rights of your place of residence.",
+      "Ces conditions sont régies par le droit de l'État du Delaware, USA. Les litiges seront, dans la mesure permise, portés devant les tribunaux compétents du Delaware, sans préjudice des droits impératifs de protection des consommateurs de votre lieu de résidence.",
+      "Estas condiciones se rigen por las leyes del Estado de Delaware, EE. UU. Los litigios se someterán, cuando esté permitido, a los tribunales competentes de Delaware, sin perjuicio de los derechos imperativos de protección de los consumidores de tu lugar de residencia.",
+    )}</p>
+
+    <h2>{T("9. Contact", "9. Contact", "9. Contacto")}</h2>
+    <p>{T("Questions about these terms:", "Questions relatives à ces conditions :", "Preguntas sobre estas condiciones:")} <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>.</p>
+  </LegalShell>
+</Base>

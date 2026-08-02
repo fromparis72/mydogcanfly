@@ -1,0 +1,46 @@
+---
+import Base from "../../layouts/Base.astro";
+import HomeSections from "../../components/HomeSections.astro";
+import LanguageSuggestion from "../../components/LanguageSuggestion.astro";
+import { t } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+// SEO title/description, une variante par langue. L'anglais garde le suffixe de marque (il tient dans
+// la limite d'affichage de Google) ; le français s'en passe pour rester court. L'espagnol avait
+// jusqu'ici les chaînes françaises par défaut — corrigé.
+const SEO: Record<string, { title: string; description: string }> = {
+  en: {
+    title: "Can My Dog Fly? Compare Dog-Friendly Airlines | MyDogCanFly",
+    description:
+      "Compare dog-friendly airlines, cabin and cargo options, breed restrictions and travel requirements. Find the best airline for your dog.",
+  },
+  fr: {
+    title: "Quelle compagnie aérienne choisir pour voyager avec son chien ?",
+    description:
+      "Votre chien peut prendre l'avion ! Comparez les compagnies aériennes qui acceptent les chiens : cabine ou soute, races et formalités.",
+  },
+  es: {
+    title: "¿Puede volar mi perro? Compara aerolíneas para perros",
+    description:
+      "Compara aerolíneas que aceptan perros, opciones en cabina, bodega, restricciones por raza y requisitos de viaje. Encuentra la mejor opción.",
+  },
+  pt: {
+    title: "Meu cachorro pode voar? Compare companhias que aceitam cães",
+    description:
+      "Compare as companhias aéreas que aceitam cachorros: cabine, porão e carga, restrições de raça e exigências de entrada. Encontre a melhor opção.",
+  },
+};
+const { title: seoTitle, description: seoDescription } = SEO[locale] ?? SEO.en;
+---
+<Base locale={locale} title={seoTitle} description={seoDescription}>
+  {/* Seulement ici : l'accueil est la seule page où l'on arrive sans avoir choisi sa langue. */}
+  <LanguageSuggestion locale={locale} />
+  <HomeSections locale={locale} />
+</Base>

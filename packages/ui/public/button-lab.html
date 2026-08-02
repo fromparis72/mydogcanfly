@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Button lab — MyDogCanFly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --navy:#011d48; --navy2:#0a2a5c; --ink:#0e2350; --muted:#647391;
+    --accent:#f2700f; --accent-h:#d85f05; --accent-ink:#b4530a;
+    --line:#e5eaf3; --subtle:#f6f8fc; --cream:#faf3e9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+  .wrap{max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:28px;letter-spacing:-.02em;margin:0 0 6px}
+  .lede{color:var(--muted);margin:0 0 32px;font-size:15px}
+  .opt{border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin:0 0 16px}
+  .opt__hd{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+  .opt__num{width:26px;height:26px;border-radius:50%;background:var(--subtle);color:var(--navy);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .opt__name{font-weight:700;font-size:16px}
+  .opt__desc{color:var(--muted);font-size:13.5px;margin:14px 0 0}
+  .row{display:flex;flex-wrap:wrap;gap:26px;align-items:center}
+  .cell{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .cap{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+  .on-cream{background:var(--cream);border-radius:12px;padding:16px 18px}
+  .b{display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;border:1.6px solid transparent;transition:background .18s ease,color .18s ease,border-color .18s ease,transform .12s ease;line-height:1}
+  .b svg{width:16px;height:16px}
+  .b:active{transform:translateY(1px)}
+  /* 1 navy solid */
+  .b1{background:var(--navy);color:#fff;border-radius:999px;padding:12px 22px}
+  .b1:hover,.b1.hv{background:var(--navy2)}
+  /* 2 navy ghost */
+  .b2{background:#fff;color:var(--navy);border-color:var(--navy);border-radius:999px;padding:11px 21px}
+  .b2:hover,.b2.hv{background:var(--navy);color:#fff}
+  /* 3 ink soft radius */
+  .b3{background:#111;color:#fff;border-radius:10px;padding:12px 22px}
+  .b3:hover,.b3.hv{background:#000}
+  /* 4 refined accent flat */
+  .b4{background:var(--accent);color:#fff;border-radius:10px;padding:11px 20px}
+  .b4:hover,.b4.hv{background:var(--accent-h)}
+  /* 5 neutral */
+  .b5{background:#eef1f5;color:var(--ink);border-color:var(--line);border-radius:10px;padding:11px 20px}
+  .b5:hover,.b5.hv{background:#e0e6f0}
+  /* 6 link underline */
+  .b6{background:none;color:var(--navy);border-radius:0;padding:7px 2px;border-bottom:1.6px solid var(--navy)}
+  .b6:hover,.b6.hv{color:var(--accent-ink);border-color:var(--accent-ink)}
+  /* 7 navy + orange icon */
+  .b7{background:var(--navy);color:#fff;border-radius:999px;padding:12px 22px}
+  .b7 svg{color:#f2b07a}
+  .b7:hover,.b7.hv{background:var(--navy2)}
+  /* 8 sepia */
+  .b8{background:#fbf7f0;color:#5a4632;border-color:#e2d6c3;border-radius:999px;padding:11px 21px}
+  .b8:hover,.b8.hv{background:#efe2cd;border-color:#d8c9b2}
+  .foot{color:var(--muted);font-size:13px;margin-top:30px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Button lab</h1>
+  <p class="lede">Pour chaque style : <b>repos</b> et <b>survol</b> montrés côte à côte, plus un bouton vivant (passe la souris dessus). Le libellé et l'icône sont ceux d'un vrai CTA du site.</p>
+  <div id="lab"></div>
+  <p class="foot">MyDogCanFly — page de test, non indexée.</p>
+</div>
+<script>
+  var PLANE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2 1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5L21 16z"/></svg>';
+  var ARROW='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var opts=[
+    {n:1,name:'Navy plein',cls:'b1',icon:PLANE,label:'Find the best airline',desc:'La couleur de marque (navy du logo) en aplat. Sobre, premium, très cohérent.'},
+    {n:2,name:'Contour navy (ghost)',cls:'b2',icon:PLANE,label:'Find the best airline',desc:'Fond blanc, fin liseré navy, se remplit au survol. Style « Google Flights », très léger.'},
+    {n:3,name:'Encre, coins doux',cls:'b3',icon:PLANE,label:'Find the best airline',desc:'Presque noir, rayon 10px. Minimal et contemporain (type Apple). Jamais « pub ».'},
+    {n:4,name:'Accent affiné',cls:'b4',icon:PLANE,label:'Find the best airline',desc:'On garde l’orange mais à plat : pas de dégradé, pas d’ombre, plus petit, coins doux.'},
+    {n:5,name:'Neutre discret',cls:'b5',icon:PLANE,label:'Find the best airline',desc:'Gris très clair, texte navy, liseré fin. Ultra sobre — idéal pour actions secondaires.'},
+    {n:6,name:'Lien souligné + flèche',cls:'b6',icon:null,arrow:true,label:'Find the best airline',desc:'Aucun « chrome » de bouton. Le plus minimal — parfait en tertiaire ou en fin de bloc.'},
+    {n:7,name:'Navy + accent orange',cls:'b7',icon:PLANE,label:'Find the best airline',desc:'Navy plein, mais l’icône reste orange : marie les deux couleurs de marque avec retenue.'},
+    {n:8,name:'Sépia (rappel crème)',cls:'b8',icon:PLANE,label:'Find the best airline',desc:'Ton sépia chaud, raccord au crème des illustrations race. Doux et élégant.'}
+  ];
+  function btn(o,extra){
+    var inner=(o.icon?o.icon:'')+' '+o.label+(o.arrow?(' '+ARROW):'');
+    return '<'+(o.arrow?'a href="#"':'button')+' class="b '+o.cls+(extra||'')+'">'+inner+(o.arrow?'</a>':'</button>');
+  }
+  document.getElementById('lab').innerHTML=opts.map(function(o){
+    return '<div class="opt">'+
+      '<div class="opt__hd"><span class="opt__num">'+o.n+'</span><span class="opt__name">'+o.name+'</span></div>'+
+      '<div class="row">'+
+        '<div class="cell"><span class="cap">Repos</span>'+btn(o)+'</div>'+
+        '<div class="cell"><span class="cap">Survol</span>'+btn(o,' hv')+'</div>'+
+        '<div class="cell"><span class="cap">Vivant</span>'+btn(o)+'</div>'+
+        '<div class="cell"><span class="cap">Sur crème</span><span class="on-cream">'+btn(o)+'</span></div>'+
+      '</div>'+
+      '<p class="opt__desc">'+o.desc+'</p>'+
+    '</div>';
+  }).join('');
+</script>
+</body>
+</html>

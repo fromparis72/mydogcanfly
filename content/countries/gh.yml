@@ -1,0 +1,387 @@
+# Country Entry Guide — Ghana (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_gh
+iso2: "GH"
+name: { en: "Ghana", fr: "Ghana", es: "Ghana", pt: "Gana" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: VSD
+  authorityUrl: https://vsd.gov.gh/
+  intro:
+    en: "Ghana is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Veterinary Services Directorate (VSD)."
+    fr: "Le Ghana est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Veterinary Services Directorate (VSD)."
+    es: "Ghana no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Veterinary Services Directorate (VSD)."
+    pt: "Gana é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Veterinary Services Directorate (VSD)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "VSD veterinary officers conduct a final inspection and issue the Veterinary Health Certificate (export permit) required at exit."
+        fr: "Les vétérinaires officiels de la VSD réalisent une inspection finale et délivrent le certificat sanitaire vétérinaire (permis d'export) exigé au départ."
+        es: "Los veterinarios oficiales de la VSD hacen una inspección final y emiten el certificado sanitario veterinario (permiso de exportación) exigido a la salida."
+        pt: "Os veterinários oficiais da VSD realizam uma inspeção final e emitem o atestado de saúde veterinário (autorização de exportação) exigido na saída."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Ghana with your dog", fr: "Voyager au Ghana avec ton chien", es: "Viajar a Ghana con tu perro", pt: "Viajar para Gana com seu cachorro" }
+  intro:
+    en: >-
+      Ghana admits pet dogs, but entry is controlled by its own veterinary authority — the Veterinary
+      Services Directorate (VSD), part of the Ministry of Food and Agriculture (MOFA) — not by the EU
+      framework. No dog may be shipped without a signed Veterinary Import Permit obtained in advance
+      from the VSD, and the permit is only issued once your dog has passed a set of disease tests
+      (Brucella canis, Trypanosoma evansi, Babesia gibsoni, Dirofilaria immitis and Leishmania), all of
+      which must be negative. Every dog also needs a valid rabies vaccination, the core canine
+      vaccinations, and an official international veterinary health certificate endorsed by the
+      exporting country's government vet. On arrival at Kotoka International Airport, VSD officers
+      inspect the dog and its documents. Ghana is a rabies-endemic country, so the exact steps depend
+      on where your dog is coming from. This guide explains what to prepare before you book your flight.
+    fr: >-
+      Le Ghana admet les chiens de compagnie, mais l'entrée est contrôlée par sa propre autorité
+      vétérinaire — la Veterinary Services Directorate (VSD), rattachée au ministère de l'Alimentation
+      et de l'Agriculture (MOFA) — et non par le cadre européen. Aucun chien ne peut être expédié sans
+      un permis d'importation vétérinaire signé, obtenu à l'avance auprès de la VSD, et ce permis n'est
+      délivré qu'une fois ton chien testé négatif à une série de maladies (Brucella canis, Trypanosoma
+      evansi, Babesia gibsoni, Dirofilaria immitis et Leishmania). Chaque chien a aussi besoin d'une
+      vaccination antirabique valide, des vaccinations canines de base et d'un certificat vétérinaire
+      international officiel visé par le vétérinaire gouvernemental du pays d'export. À l'arrivée à
+      l'aéroport international de Kotoka, les agents de la VSD inspectent le chien et ses documents. Le
+      Ghana étant un pays d'endémie rabique, les étapes exactes dépendent du pays d'où vient ton
+      chien. Ce guide détaille quoi préparer avant de réserver ton vol.
+    es: >-
+      Ghana admite a los perros de compañía, pero la entrada la controla su propia autoridad
+      veterinaria — la Veterinary Services Directorate (VSD), parte del Ministerio de Alimentación y
+      Agricultura (MOFA) — y no el marco de la UE. Ningún perro puede embarcarse sin un permiso de
+      importación veterinario firmado, obtenido con antelación de la VSD, y el permiso solo se expide
+      una vez que tu perro ha superado una serie de pruebas de enfermedades (Brucella canis, Trypanosoma
+      evansi, Babesia gibsoni, Dirofilaria immitis y Leishmania), todas ellas con resultado negativo.
+      Cada perro necesita además una vacunación antirrábica válida, las vacunaciones caninas básicas y
+      un certificado sanitario veterinario internacional oficial refrendado por el veterinario
+      gubernamental del país exportador. A la llegada al Aeropuerto Internacional de Kotoka, los agentes
+      de la VSD inspeccionan al perro y sus documentos. Ghana es un país con rabia endémica, por lo que
+      los pasos exactos dependen del país del que venga tu perro. Esta guía explica qué preparar antes
+      de reservar tu vuelo.
+
+    pt: "Gana admite cachorros de estimação, mas a entrada é controlada por sua própria autoridade veterinária — a Veterinary Services Directorate (VSD), parte do Ministério da Alimentação e Agricultura (MOFA) — e não pelo quadro da UE. Nenhum cachorro pode ser embarcado sem uma autorização veterinária de importação assinada, obtida com antecedência junto à VSD, e essa autorização só é emitida depois que seu cachorro for aprovado em uma série de testes de doenças (Brucella canis, Trypanosoma evansi, Babesia gibsoni, Dirofilaria immitis e Leishmania), todos com resultado negativo. Todo cachorro também precisa de uma vacinação antirrábica válida, das vacinações caninas essenciais e de um atestado de saúde veterinário internacional oficial endossado pelo veterinário do governo do país de exportação. Na chegada ao Aeroporto Internacional de Kotoka, os agentes da VSD inspecionam o cachorro e seus documentos. Gana é um país com raiva endêmica, portanto as etapas exatas dependem de onde seu cachorro está vindo. Este guia explica o que preparar antes de reservar seu voo."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — advance permit + negative disease tests", fr: "Difficile — permis préalable + tests de maladies négatifs", es: "Difícil — permiso previo + pruebas de enfermedades negativas", pt: "Difícil — autorização prévia + testes de doenças negativos" }
+
+prepTime:
+  eu:
+    en: "From Europe / rabies-free origins: allow ~5–8 weeks — the disease tests (all negative, originals) and the advance import permit are the pacing steps, plus an endorsed health certificate valid 30 days."
+    fr: "Depuis l'Europe / origines indemnes de rage : prévoir ~5 à 8 semaines — les tests de maladies (tous négatifs, originaux) et le permis d'importation préalable sont les étapes déterminantes, plus un certificat sanitaire visé valable 30 jours."
+    es: "Desde Europa / orígenes libres de rabia: reserva ~5 a 8 semanas — las pruebas de enfermedades (todas negativas, originales) y el permiso de importación previo son los pasos que marcan el ritmo, más un certificado sanitario refrendado válido 30 días."
+    pt: "Da Europa / origens livres de raiva: reserve ~5 a 8 semanas — os testes de doenças (todos negativos, originais) e a autorização de importação prévia são as etapas que determinam o ritmo, além de um atestado de saúde endossado válido por 30 dias."
+  listed:
+    en: "From a rabies-controlled country (US, Canada, Gulf states…): ~5–8 weeks, driven by the disease tests and the VSD import permit."
+    fr: "Depuis un pays à rage maîtrisée (USA, Canada, pays du Golfe…) : ~5 à 8 semaines, selon les tests de maladies et le permis d'importation VSD."
+    es: "Desde un país con la rabia controlada (EE. UU., Canadá, países del Golfo…): ~5 a 8 semanas, según las pruebas de enfermedades y el permiso de importación de la VSD."
+    pt: "De um país com raiva controlada (EUA, Canadá, países do Golfo…): ~5 a 8 semanas, conforme os testes de doenças e a autorização de importação da VSD."
+  nonListed:
+    en: "From a high-rabies-risk country: similar base steps, but expect closer scrutiny at the airport; dogs from an area quarantined for rabies may be refused."
+    fr: "Depuis un pays à haut risque rabique : mêmes étapes de base, mais contrôle renforcé à l'aéroport ; un chien venant d'une zone en quarantaine rabique peut être refusé."
+    es: "Desde un país con alto riesgo de rabia: los mismos pasos básicos, pero espera un control más estricto en el aeropuerto; un perro procedente de una zona en cuarentena por rabia puede ser rechazado."
+    pt: "De um país de alto risco de raiva: etapas básicas semelhantes, mas espere um controle mais rigoroso no aeroporto; cachorros vindos de uma área em quarentena por raiva podem ser recusados."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Disease tests (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)", fr: "Tests de maladies (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)", es: "Pruebas de enfermedades (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)", pt: "Testes de doenças (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)" }
+    status: { en: "Required (all negative)", fr: "Requis (tous négatifs)", es: "Obligatorias (todas negativas)", pt: "Obrigatórios (todos negativos)" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed)", fr: "Requis (visé)", es: "Obligatorio (refrendado)", pt: "Obrigatório (endossado)" }
+    cls: warn
+  - requirement: { en: "Arrival inspection", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    status: { en: "Required (VSD)", fr: "Requise (VSD)", es: "Obligatoria (VSD)", pt: "Obrigatória (VSD)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not routine", fr: "Pas systématique", es: "No sistemática", pt: "Não sistemática" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and the Veterinary Services Directorate (MOFA) sets the exact tests and conditions on your import permit."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et la Veterinary Services Directorate (MOFA) fixe les tests et conditions exacts sur ton permis d'importation."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y la Veterinary Services Directorate (MOFA) fija las pruebas y condiciones exactas en tu permiso de importación."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro, e a Veterinary Services Directorate (MOFA) define os testes e as condições exatos da sua autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Ghana (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Ghana (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Ghana (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Gana (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Ghana", fr: "Pays de destination — Ghana", es: "País de destino — Ghana", pt: "País de destino — Gana" }
+      text:
+        en: "Ghana always requires an advance Veterinary Import Permit from the VSD, a set of negative disease tests before the permit is issued, a valid rabies vaccination and an official international veterinary health certificate, and every dog is inspected by VSD officers on arrival. No rabies antibody test is required."
+        fr: "Le Ghana exige toujours un permis d'importation vétérinaire préalable de la VSD, une série de tests de maladies négatifs avant la délivrance du permis, une vaccination antirabique valide et un certificat vétérinaire international officiel, et chaque chien est inspecté par les agents de la VSD à l'arrivée. Aucun titrage antirabique n'est requis."
+        es: "Ghana exige siempre un permiso de importación veterinario previo de la VSD, una serie de pruebas de enfermedades negativas antes de expedir el permiso, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial, y cada perro es inspeccionado por los agentes de la VSD a la llegada. No se exige prueba de titulación de rabia."
+        pt: "Gana sempre exige uma autorização veterinária de importação prévia da VSD, uma série de testes de doenças negativos antes da emissão da autorização, uma vacinação antirrábica válida e um atestado de saúde veterinário internacional oficial, e todo cachorro é inspecionado pelos agentes da VSD na chegada. Nenhum teste sorológico antirrábico (titulação) é exigido."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health certificate must confirm your dog comes from an area not quarantined for rabies and has not been exposed to rabies. The disease situation of your departure country shapes what the official vet must certify and how closely the dog is checked."
+        fr: "Le certificat sanitaire doit confirmer que ton chien provient d'une zone non placée en quarantaine rabique et n'a pas été exposé à la rage. La situation sanitaire du pays de départ détermine ce que le vétérinaire officiel doit certifier et l'intensité du contrôle."
+        es: "El certificado sanitario debe confirmar que tu perro procede de una zona no puesta en cuarentena por rabia y que no ha estado expuesto a la rabia. La situación sanitaria de tu país de salida determina qué debe certificar el veterinario oficial y con qué rigor se controla al perro."
+        pt: "O atestado de saúde deve confirmar que seu cachorro vem de uma área não colocada em quarentena por raiva e que não foi exposto à raiva. A situação sanitária do seu país de partida determina o que o veterinário oficial deve certificar e o rigor do controle do cachorro."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-quarantined or high-risk area can trigger extra scrutiny at the airport. It is your dog's real origin and history that count — not only the last airport it flew from."
+        fr: "Un séjour récent dans une zone en quarantaine rabique ou à haut risque peut entraîner un contrôle renforcé à l'aéroport. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement le dernier aéroport de départ."
+        es: "Una estancia reciente en una zona en cuarentena por rabia o de alto riesgo puede provocar un control adicional en el aeropuerto. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto del que voló."
+        pt: "Uma estadia recente em uma área em quarentena por raiva ou de alto risco pode gerar um controle adicional no aeroporto. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto de onde ele partiu."
+  note:
+    en: "So read the requirements below as Ghana's framework, then confirm your dog's exact origin and history with your vet — the VSD import permit lists the precise tests and conditions."
+    fr: "Lis donc les exigences ci-dessous comme le cadre ghanéen, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis d'importation VSD liste les tests et conditions précis."
+    es: "Así que lee los requisitos siguientes como el marco de Ghana y luego confirma el origen y el historial exactos con tu veterinario — el permiso de importación de la VSD detalla las pruebas y condiciones precisas."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral de Gana e depois confirme a origem e o histórico exatos do seu cachorro com seu veterinário — a autorização de importação da VSD lista os testes e condições precisos."
+
+requirements:
+  - item: { en: "Veterinary Import Permit", fr: "Permis d'importation vétérinaire", es: "Permiso de importación veterinario", pt: "Autorização veterinária de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply in advance to the Director, Veterinary Services Directorate (Ministry of Food and Agriculture) before the dog is shipped. The VSD states that pets (dogs and cats) may only be imported on a signed Veterinary Import Permit; the permit is issued once the disease-test results are negative and vaccination records are provided.", fr: "À demander à l'avance au Director, Veterinary Services Directorate (ministère de l'Alimentation et de l'Agriculture) avant l'expédition du chien. La VSD indique que les animaux de compagnie (chiens et chats) ne peuvent être importés que sur un permis d'importation vétérinaire signé ; le permis est délivré une fois les tests de maladies négatifs et les preuves de vaccination fournis.", es: "Solicítalo con antelación al Director, Veterinary Services Directorate (Ministerio de Alimentación y Agricultura) antes de embarcar al perro. La VSD indica que las mascotas (perros y gatos) solo pueden importarse con un permiso de importación veterinario firmado; el permiso se expide una vez que los resultados de las pruebas de enfermedades son negativos y se aportan los registros de vacunación.", pt: "Solicite com antecedência ao Director, Veterinary Services Directorate (Ministério da Alimentação e Agricultura) antes do embarque do cachorro. A VSD indica que animais de estimação (cachorros e gatos) só podem ser importados com uma autorização veterinária de importação assinada; a autorização é emitida assim que os resultados dos testes de doenças forem negativos e os registros de vacinação forem apresentados." }
+    exceptions: { en: "No exceptions — airlines are instructed to carry pets only under a VSD import permit. Exact fees and processing time: Unknown (not officially published).", fr: "Aucune exception — il est demandé aux compagnies aériennes de ne transporter les animaux que sous permis d'importation VSD. Frais exacts et délai de traitement : non communiqués (non publiés officiellement).", es: "Sin excepciones — se indica a las aerolíneas que transporten mascotas solo con un permiso de importación de la VSD. Tasas exactas y plazo de tramitación: Desconocidos (no publicados oficialmente).", pt: "Sem exceções — as companhias aéreas são instruídas a transportar animais de estimação apenas com uma autorização de importação da VSD. Taxas exatas e prazo de processamento: não comunicados (não publicados oficialmente)." }
+    ref: { en: "VSD (MOFA) — Importation of dogs into Ghana; Import Requirements", fr: "VSD (MOFA) — Importation de chiens au Ghana ; Import Requirements", es: "VSD (MOFA) — Importación de perros a Ghana; Import Requirements", pt: "VSD (MOFA) — Importação de cachorros em Gana; Requisitos de Importação" }
+  - item: { en: "Disease tests (dogs)", fr: "Tests de maladies (chiens)", es: "Pruebas de enfermedades (perros)", pt: "Testes de doenças (cachorros)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Before a permit is issued, all importers must provide negative results for: Brucella canis (serum agglutination / Giemsa smear), Trypanosoma evansi (card agglutination and/or Giemsa smear), Babesia gibsoni (Giemsa smear), Dirofilaria immitis (microfilaria filtration test) and Leishmania spp. (IFAT, ELISA or direct agglutination).", fr: "Avant la délivrance du permis, tout importateur doit fournir des résultats négatifs pour : Brucella canis (agglutination sérique / frottis de Giemsa), Trypanosoma evansi (test d'agglutination sur carte et/ou frottis de Giemsa), Babesia gibsoni (frottis de Giemsa), Dirofilaria immitis (test de filtration des microfilaires) et Leishmania spp. (IFAT, ELISA ou agglutination directe).", es: "Antes de expedir un permiso, todos los importadores deben aportar resultados negativos de: Brucella canis (aglutinación sérica / frotis de Giemsa), Trypanosoma evansi (aglutinación en tarjeta o frotis de Giemsa), Babesia gibsoni (frotis de Giemsa), Dirofilaria immitis (prueba de filtración de microfilarias) y Leishmania spp. (IFAT, ELISA o aglutinación directa).", pt: "Antes da emissão da autorização, todos os importadores devem apresentar resultados negativos para: Brucella canis (aglutinação sérica / esfregaço de Giemsa), Trypanosoma evansi (aglutinação em cartão e/ou esfregaço de Giemsa), Babesia gibsoni (esfregaço de Giemsa), Dirofilaria immitis (teste de filtração de microfilárias) e Leishmania spp. (IFAT, ELISA ou aglutinação direta)." }
+    exceptions: { en: "A permit is issued only if ALL test results are negative; only original laboratory reports are accepted. Reports must be recent — the VSD import page states laboratory reports are valid about 31 days, after which the test must be repeated.", fr: "Le permis n'est délivré que si TOUS les résultats sont négatifs ; seuls les rapports de laboratoire originaux sont acceptés. Les rapports doivent être récents — la page Import de la VSD indique une validité d'environ 31 jours, au-delà de laquelle le test doit être refait.", es: "El permiso solo se expide si TODOS los resultados son negativos; solo se aceptan informes de laboratorio originales. Los informes deben ser recientes — la página de importación de la VSD indica que los informes de laboratorio son válidos unos 31 días, tras los cuales debe repetirse la prueba.", pt: "A autorização só é emitida se TODOS os resultados dos testes forem negativos; apenas relatórios laboratoriais originais são aceitos. Os relatórios devem ser recentes — a página de importação da VSD indica que os relatórios laboratoriais são válidos por cerca de 31 dias, após os quais o teste deve ser repetido." }
+    ref: { en: "VSD (MOFA) — Importation of dogs into Ghana (disease tests before permit)", fr: "VSD (MOFA) — Importation de chiens au Ghana (tests avant permis)", es: "VSD (MOFA) — Importación de perros a Ghana (pruebas de enfermedades antes del permiso)", pt: "VSD (MOFA) — Importação de cachorros em Gana (testes de doenças antes da autorização)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must carry a valid rabies vaccination, recorded on the official veterinary health certificate (vaccine, date, batch number and end of validity) and still valid on arrival. Ghana is rabies-endemic, so a current vaccination is essential.", fr: "Le chien doit disposer d'une vaccination antirabique valide, consignée sur le certificat vétérinaire officiel (vaccin, date, numéro de lot et fin de validité) et encore valable à l'arrivée. Le Ghana étant en endémie rabique, une vaccination à jour est essentielle.", es: "El perro debe llevar una vacunación antirrábica válida, registrada en el certificado sanitario veterinario oficial (vacuna, fecha, número de lote y fin de valide) y aún vigente a la llegada. Ghana tiene rabia endémica, por lo que una vacunación al día es esencial.", pt: "O cachorro deve ter uma vacinação antirrábica válida, registrada no atestado de saúde veterinário oficial (vacina, data, número do lote e fim da validade) e ainda válida na chegada. Gana tem raiva endêmica, portanto uma vacinação em dia é essencial." }
+    exceptions: { en: "The exact minimum interval between vaccination and travel is not specified in Ghana's published requirements: Unknown. Confirm the timing with your vet.", fr: "Le délai minimum exact entre la vaccination et le voyage n'est pas précisé dans les exigences publiées du Ghana : non communiqué. Confirme le calendrier avec ton vétérinaire.", es: "El intervalo mínimo exacto entre la vacunación y el viaje no se especifica en los requisitos publicados de Ghana: Desconocido. Confirma los plazos con tu veterinario.", pt: "O intervalo mínimo exato entre a vacinação e a viagem não é especificado nas exigências publicadas de Gana: não comunicado. Confirme os prazos com seu veterinário." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Ghana (rabies statement)", fr: "Certificat vétérinaire pour l'export de chiens vers le Ghana (attestation rage)", es: "Certificado sanitario veterinario para la exportación de perros a Ghana (declaración de rabia)", pt: "Atestado de saúde veterinário para exportação de cachorros para Gana (declaração sobre raiva)" }
+  - item: { en: "Other core vaccinations", fr: "Autres vaccinations de base", es: "Otras vacunaciones básicas", pt: "Outras vacinações essenciais" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Evidence of vaccination against canine distemper, hepatitis, parvovirus, Leptospira canicola and Leptospira icterohaemorrhagiae, and parainfluenza must be provided with the permit application.", fr: "La preuve de vaccination contre la maladie de Carré, l'hépatite, la parvovirose, Leptospira canicola et Leptospira icterohaemorrhagiae, et le parainfluenza doit être fournie avec la demande de permis.", es: "Debe aportarse con la solicitud del permiso la prueba de vacunación contra el moquillo canino, la hepatitis, el parvovirus, Leptospira canicola y Leptospira icterohaemorrhagiae, y la parainfluenza.", pt: "A comprovação de vacinação contra cinomose canina, hepatite, parvovirose, Leptospira canicola e Leptospira icterohaemorrhagiae, e parainfluenza deve ser apresentada com a solicitação da autorização." }
+    exceptions: { en: "Recorded in the vaccination booklet and reflected on the documents submitted to the VSD.", fr: "Consignées dans le carnet de vaccination et reprises sur les documents soumis à la VSD.", es: "Registradas en la cartilla de vacunación y reflejadas en los documentos presentados a la VSD.", pt: "Registrada na carteira de vacinação e refletida nos documentos apresentados à VSD." }
+    ref: { en: "VSD (MOFA) — Importation of dogs into Ghana (required vaccinations)", fr: "VSD (MOFA) — Importation de chiens au Ghana (vaccinations exigées)", es: "VSD (MOFA) — Importación de perros a Ghana (vacunaciones exigidas)", pt: "VSD (MOFA) — Importação de cachorros em Gana (vacinações exigidas)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "A rabies antibody test is not a mandatory requirement for entry into Ghana; it is not a required statement on the official veterinary health certificate (it can appear only in the optional tests field).", fr: "Le titrage antirabique n'est pas une exigence obligatoire pour l'entrée au Ghana ; il ne figure pas comme mention obligatoire du certificat vétérinaire officiel (il ne peut apparaître que dans le champ de tests facultatifs).", es: "La prueba de titulación de rabia no es un requisito obligatorio para la entrada en Ghana; no es una declaración exigida en el certificado sanitario veterinario oficial (solo puede figurar en el campo de pruebas opcionales).", pt: "O teste sorológico antirrábico (titulação) não é uma exigência obrigatória para entrar em Gana; não é uma declaração exigida no atestado de saúde veterinário oficial (só pode aparecer no campo de testes opcionais)." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Ghana (optional tests section)", fr: "Certificat vétérinaire pour l'export de chiens vers le Ghana (section tests facultatifs)", es: "Certificado sanitario veterinario para la exportación de perros a Ghana (sección de pruebas opcionales)", pt: "Atestado de saúde veterinário para exportação de cachorros para Gana (seção de testes opcionais)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "The official health certificate provides for a microchip number to identify the dog, verified by the certifying vet. An internationally readable ISO 11784/11785 chip, implanted before the rabies vaccination so records match, is advisable.", fr: "Le certificat sanitaire officiel prévoit un numéro de puce pour identifier le chien, vérifié par le vétérinaire certificateur. Une puce ISO 11784/11785 lisible à l'international, posée avant la vaccination antirabique pour que les documents concordent, est conseillée.", es: "El certificado sanitario oficial prevé un número de microchip para identificar al perro, verificado por el veterinario certificador. Es aconsejable un microchip ISO 11784/11785 legible a nivel internacional, implantado antes de la vacunación antirrábica para que los registros coincidan.", pt: "O atestado de saúde oficial prevê um número de microchip para identificar o cachorro, verificado pelo veterinário certificador. É recomendável um microchip ISO 11784/11785 legível internacionalmente, implantado antes da vacinação antirrábica para que os registros coincidam." }
+    exceptions: { en: "The certificate lists the microchip 'if listed', so it is not stated as strictly mandatory and the exact ISO standard is not specified: Unknown. A microchip is strongly advised for identification and to match the lab reports.", fr: "Le certificat mentionne la puce « si renseignée », elle n'est donc pas indiquée comme strictement obligatoire et la norme ISO exacte n'est pas précisée : non communiquée. Une puce est fortement conseillée pour l'identification et la concordance avec les rapports de laboratoire.", es: "El certificado menciona el microchip «si consta», por lo que no se indica como estrictamente obligatorio y la norma ISO exacta no se especifica: Desconocida. Se aconseja encarecidamente un microchip para la identificación y para que coincida con los informes de laboratorio.", pt: "O certificado lista o microchip 'se informado', portanto não é indicado como estritamente obrigatório e a norma ISO exata não é especificada: não comunicado. Um microchip é fortemente recomendado para identificação e para coincidir com os relatórios laboratoriais." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Ghana (box 21, identification)", fr: "Certificat vétérinaire pour l'export de chiens vers le Ghana (case 21, identification)", es: "Certificado sanitario veterinario para la exportación de perros a Ghana (casilla 21, identificación)", pt: "Atestado de saúde veterinário para exportação de cachorros para Gana (campo 21, identificação)" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "International veterinary health certificate completed by a licensed vet and endorsed by the official (government) veterinary authority of the exporting country. It certifies the dog is free of infectious/contagious disease including rabies, comes from an area not quarantined for rabies, and records the rabies vaccination.", fr: "Certificat vétérinaire international établi par un vétérinaire agréé et visé par l'autorité vétérinaire officielle (gouvernementale) du pays d'export. Il atteste que le chien est indemne de maladie infectieuse/contagieuse dont la rage, provient d'une zone non placée en quarantaine rabique, et consigne la vaccination antirabique.", es: "Certificado sanitario veterinario internacional cumplimentado por un veterinario colegiado y refrendado por la autoridad veterinaria oficial (gubernamental) del país exportador. Certifica que el perro está libre de enfermedad infecciosa/contagiosa, incluida la rabia, procede de una zona no puesta en cuarentena por rabia y registra la vacunación antirrábica.", pt: "Atestado de saúde veterinário internacional preenchido por um veterinário licenciado e endossado pela autoridade veterinária oficial (governamental) do país de exportação. Ele certifica que o cachorro está livre de doença infecciosa/contagiosa, incluindo raiva, vem de uma área não colocada em quarentena por raiva, e registra a vacinação antirrábica." }
+    exceptions: { en: "The certificate is valid for 30 days after issuance and must still be valid on arrival; the VSD requires the original at the point of entry.", fr: "Le certificat est valable 30 jours après émission et doit être encore valide à l'arrivée ; la VSD exige l'original au point d'entrée.", es: "El certificado es válido 30 días después de su emisión y debe seguir siendo válido a la llegada; la VSD exige el original en el punto de entrada.", pt: "O certificado é válido por 30 dias após a emissão e deve continuar válido na chegada; a VSD exige o original no ponto de entrada." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Ghana (validity + certification)", fr: "Certificat vétérinaire pour l'export de chiens vers le Ghana (validité + certification)", es: "Certificado sanitario veterinario para la exportación de perros a Ghana (valide + certificación)", pt: "Atestado de saúde veterinário para exportação de cachorros para Gana (validade + certificação)" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Not mandatory", fr: "Non obligatoire", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "Internal/external parasite treatment is not a mandatory statement on the official Ghanaian health certificate (it may be recorded in the optional section) and remains good practice before travel.", fr: "Le traitement antiparasitaire interne/externe n'est pas une mention obligatoire du certificat sanitaire officiel ghanéen (il peut être consigné dans la section facultative) et reste une bonne pratique avant le voyage.", es: "El tratamiento antiparasitario interno/externo no es una declaración obligatoria en el certificado sanitario oficial ghanés (puede registrarse en la sección opcional) y sigue siendo una buena práctica antes del viaje.", pt: "O tratamento antiparasitário interno/externo não é uma declaração obrigatória no atestado de saúde oficial ganês (pode ser registrado na seção opcional) e continua sendo uma boa prática antes da viagem." }
+    exceptions: { en: "No specific tapeworm or tick treatment is mandated in the published requirements: Unknown for individual permit conditions.", fr: "Aucun traitement spécifique contre le ténia ou les tiques n'est imposé dans les exigences publiées : non communiqué pour les conditions individuelles du permis.", es: "No se impone ningún tratamiento específico contra la tenia o las garrapatas en los requisitos publicados: Desconocido para las condiciones individuales del permiso.", pt: "Nenhum tratamento específico contra tênia ou carrapatos é exigido nas exigências publicadas: não comunicado para as condições individuais da autorização." }
+    ref: { en: "Veterinary Health Certificate for export of dogs to Ghana (optional treatments section)", fr: "Certificat vétérinaire pour l'export de chiens vers le Ghana (section traitements facultatifs)", es: "Certificado sanitario veterinario para la exportación de perros a Ghana (sección de tratamientos opcionales)", pt: "Atestado de saúde veterinário para exportação de cachorros para Gana (seção de tratamentos opcionais)" }
+  - item: { en: "Advance application / notification", fr: "Demande / notification préalable", es: "Solicitud / notificación previa", pt: "Solicitação / notificação prévia" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The VSD import permit obtained in advance is the authorisation to import. Applications and customs declarations are handled through Ghana's Integrated Customs Management System (ICUMS); on arrival, present the full document set to the VSD for inspection.", fr: "Le permis d'importation VSD obtenu à l'avance constitue l'autorisation d'importer. Les demandes et déclarations douanières passent par le système douanier intégré du Ghana (ICUMS) ; à l'arrivée, présente l'ensemble des documents à la VSD pour inspection.", es: "El permiso de importación de la VSD obtenido con antelación es la autorización para importar. Las solicitudes y declaraciones aduaneras se tramitan a través del Sistema Integrado de Gestión Aduanera de Ghana (ICUMS); a la llegada, presenta el conjunto completo de documentos a la VSD para su inspección.", pt: "A autorização de importação da VSD obtida com antecedência constitui a autorização para importar. As solicitações e declarações alfandegárias são tratadas pelo Sistema Integrado de Gestão Aduaneira de Gana (ICUMS); na chegada, apresente o conjunto completo de documentos à VSD para inspeção." }
+    exceptions: { en: "Allow ample time before travel because the disease-test reports must be negative and recent when the permit is issued.", fr: "Prévois un délai suffisant avant le voyage, car les rapports de tests doivent être négatifs et récents lors de la délivrance du permis.", es: "Reserva tiempo suficiente antes del viaje, ya que los informes de las pruebas de enfermedades deben ser negativos y recientes cuando se expide el permiso.", pt: "Reserve tempo suficiente antes da viagem, pois os relatórios dos testes de doenças devem ser negativos e recentes no momento da emissão da autorização." }
+    ref: { en: "VSD (MOFA) — Import Requirements; GRA Customs — ICUMS", fr: "VSD (MOFA) — Import Requirements ; Douanes GRA — ICUMS", es: "VSD (MOFA) — Import Requirements; Aduanas GRA — ICUMS", pt: "VSD (MOFA) — Requisitos de Importação; Alfândega GRA — ICUMS" }
+  - item: { en: "Arrival veterinary inspection", fr: "Inspection vétérinaire à l'arrivée", es: "Inspección veterinaria a la llegada", pt: "Inspeção veterinária na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "VSD veterinary officers inspect arriving dogs at the point of entry (e.g. Kotoka International Airport, Accra), verify the import permit and the international veterinary certificate, and check the animal's health; samples may be taken before clearance is granted.", fr: "Les agents vétérinaires de la VSD inspectent les chiens à l'arrivée au point d'entrée (ex. aéroport international de Kotoka, Accra), vérifient le permis d'importation et le certificat vétérinaire international, et contrôlent l'état sanitaire de l'animal ; des échantillons peuvent être prélevés avant l'octroi de la mainlevée.", es: "Los agentes veterinarios de la VSD inspeccionan a los perros que llegan en el punto de entrada (p. ej. Aeropuerto Internacional de Kotoka, Acra), verifican el permiso de importación y el certificado veterinario internacional, y comprueban el estado de salud del animal; pueden tomarse muestras antes de conceder el levante.", pt: "Os veterinários oficiais da VSD inspecionam os cachorros na chegada ao ponto de entrada (por exemplo, Aeroporto Internacional de Kotoka, Acra), verificam a autorização de importação e o certificado veterinário internacional, e checam a saúde do animal; podem ser coletadas amostras antes da liberação." }
+    exceptions: { en: "If the dog is suspected of a contagious disease or the documents are deficient, the VSD may order further examination, quarantine or refuse entry.", fr: "Si le chien est suspecté de maladie contagieuse ou si les documents sont incomplets, la VSD peut ordonner un examen complémentaire, une quarantaine ou refuser l'entrée.", es: "Si se sospecha que el perro padece una enfermedad contagiosa o los documentos son deficientes, la VSD puede ordenar un examen adicional, una cuarentena o denegar la entrada.", pt: "Se houver suspeita de doença contagiosa no cachorro ou se os documentos forem deficientes, a VSD pode determinar exame adicional, quarentena ou recusar a entrada." }
+    ref: { en: "VSD (MOFA) — Import Requirements (inspection at ports of entry)", fr: "VSD (MOFA) — Import Requirements (inspection aux points d'entrée)", es: "VSD (MOFA) — Import Requirements (inspección en los puntos de entrada)", pt: "VSD (MOFA) — Requisitos de Importação (inspeção nos pontos de entrada)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routine", fr: "Pas systématique", es: "No sistemática", pt: "Não sistemática" }
+    when: { en: "No automatic quarantine when the permit and documents are in order and the dog is healthy on inspection.", fr: "Pas de quarantaine automatique si le permis et les documents sont en règle et le chien sain à l'inspection.", es: "No hay cuarentena automática si el permiso y los documentos están en regla y el perro está sano en la inspección.", pt: "Não há quarentena automática quando a autorização e os documentos estão em ordem e o cachorro está saudável na inspeção." }
+    exceptions: { en: "Quarantine or refusal of entry may be imposed where documents are missing, requirements are not met, or a contagious disease is suspected. Exact quarantine duration: Unknown (not officially published).", fr: "Une quarantaine ou un refus d'entrée peut être imposé si des documents manquent, si les exigences ne sont pas remplies ou en cas de suspicion de maladie contagieuse. Durée exacte de quarantaine : non communiquée (non publiée officiellement).", es: "Puede imponerse una cuarentena o la denegación de entrada cuando faltan documentos, no se cumplen los requisitos o se sospecha una enfermedad contagiosa. Duración exacta de la cuarentena: Desconocida (no publicada oficialmente).", pt: "Pode ser imposta quarentena ou recusa de entrada quando faltam documentos, as exigências não são cumpridas, ou há suspeita de doença contagiosa. Duração exata da quarentena: não comunicada (não publicada oficialmente)." }
+    ref: { en: "VSD (MOFA) — Import Requirements (enforcement at point of entry)", fr: "VSD (MOFA) — Import Requirements (application au point d'entrée)", es: "VSD (MOFA) — Import Requirements (aplicación en el punto de entrada)", pt: "VSD (MOFA) — Requisitos de Importação (aplicação no ponto de entrada)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocida", pt: "Não comunicado" }
+    when: { en: "A dog needs a valid rabies vaccination and the negative disease tests to enter, which in practice set a minimum age, but Ghana's published requirements do not state an explicit minimum travelling age.", fr: "Un chien a besoin d'une vaccination antirabique valide et des tests de maladies négatifs pour entrer, ce qui fixe en pratique un âge minimum, mais les exigences publiées du Ghana n'indiquent pas d'âge minimum de voyage explicite.", es: "Un perro necesita una vacunación antirrábica válida y las pruebas de enfermedades negativas para entrar, lo que en la práctica fija una edad mínima, pero los requisitos publicados de Ghana no indican una edad mínima de viaje explícita.", pt: "Um cachorro precisa de uma vacinação antirrábica válida e dos testes de doenças negativos para entrar, o que na prática fixa uma idade mínima, mas as exigências publicadas de Gana não indicam uma idade mínima de viagem explícita." }
+    exceptions: { en: "Exact minimum age is not officially published: Unknown. Confirm with your vet and the VSD before booking.", fr: "L'âge minimum exact n'est pas publié officiellement : non communiqué. À confirmer avec ton vétérinaire et la VSD avant de réserver.", es: "La edad mínima exacta no se publica oficialmente: Desconocida. Confírmalo con tu veterinario y la VSD antes de reservar.", pt: "A idade mínima exata não é publicada oficialmente: não comunicada. Confirme com seu veterinário e com a VSD antes de reservar." }
+    ref: { en: "No explicit minimum age in the published Ghanaian requirements", fr: "Aucun âge minimum explicite dans les exigences publiées du Ghana", es: "No hay una edad mínima explícita en los requisitos publicados de Ghana", pt: "Nenhuma idade mínima explícita nas exigências publicadas de Gana" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Ghana: the EU passport is not a Ghanaian document. A dog from Europe still needs an advance VSD import permit, negative results for the required disease tests, a valid rabies vaccination and the core canine vaccinations, plus an official international veterinary health certificate endorsed by the government vet before departure. No rabies antibody test is required."
+      fr: "Aucun raccourci « passeport européen » pour entrer au Ghana : le passeport UE n'est pas un document ghanéen. Un chien venant d'Europe a tout de même besoin d'un permis d'importation VSD préalable, de résultats négatifs aux tests de maladies exigés, d'une vaccination antirabique valide et des vaccinations canines de base, ainsi que d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental avant le départ. Aucun titrage antirabique n'est requis."
+      es: "No hay atajo del pasaporte europeo para entrar en Ghana: el pasaporte de la UE no es un documento ghanés. Un perro procedente de Europa necesita igualmente un permiso de importación previo de la VSD, resultados negativos de las pruebas de enfermedades exigidas, una vacunación antirrábica válida y las vacunaciones caninas básicas, además de un certificado sanitario veterinario internacional oficial refrendado por el veterinario gubernamental antes de la salida. No se exige prueba de titulación de rabia."
+      pt: "Não existe atalho de passaporte europeu para entrar em Gana: o passaporte da UE não é um documento ganês. Um cachorro vindo da Europa também precisa de uma autorização de importação prévia da VSD, resultados negativos nos testes de doenças exigidos, uma vacinação antirrábica válida e as vacinações caninas essenciais, além de um atestado de saúde veterinário internacional oficial endossado pelo veterinário do governo antes da partida. Nenhum teste sorológico antirrábico (titulação) é exigido."
+    cls: warn
+  listed:
+    title: { en: "From a rabies-controlled country", fr: "Depuis un pays à rage maîtrisée", es: "Desde un país con la rabia controlada", pt: "De um país com raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the same core scheme applies: advance VSD import permit, negative disease tests, valid rabies vaccination, core vaccinations and an endorsed international health certificate valid for 30 days. No blood test, and normally no quarantine on arrival if the dog is healthy and the documents are in order."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), le même schéma de base s'applique : permis d'importation VSD préalable, tests de maladies négatifs, vaccination antirabique valide, vaccinations de base et certificat sanitaire international visé, valable 30 jours. Pas de prise de sang, et normalement pas de quarantaine à l'arrivée si le chien est sain et les documents en règle."
+      es: "Desde países con una situación de rabia controlada (Estados Unidos, Canadá, países del Golfo, la mayor parte de Europa y otros), se aplica el mismo esquema básico: permiso de importación previo de la VSD, pruebas de enfermedades negativas, vacunación antirrábica válida, vacunaciones básicas y un certificado sanitario internacional refrendado válido 30 días. Sin análisis de sangre y, normalmente, sin cuarentena a la llegada si el perro está sano y los documentos en regla."
+      pt: "Para países com situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se o mesmo esquema básico: autorização de importação prévia da VSD, testes de doenças negativos, vacinação antirrábica válida, vacinações essenciais e um atestado de saúde internacional endossado válido por 30 dias. Sem exame de sangue, e normalmente sem quarentena na chegada se o cachorro estiver saudável e os documentos em ordem."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país con alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "Ghana does not add a mandatory antibody test even for high-risk origins, but the health certificate must confirm the dog comes from an area not quarantined for rabies and has not been exposed to rabies. Dogs from a rabies-quarantined zone may be refused or held for examination. Expect closer scrutiny at the airport and keep original documents ready."
+      fr: "Le Ghana n'ajoute pas de titrage obligatoire, même pour les origines à haut risque, mais le certificat sanitaire doit confirmer que le chien provient d'une zone non placée en quarantaine rabique et n'a pas été exposé à la rage. Un chien venant d'une zone en quarantaine rabique peut être refusé ou retenu pour examen. Attends-toi à un contrôle renforcé à l'aéroport et garde les documents originaux prêts."
+      es: "Ghana no añade una prueba de titulación obligatoria ni siquiera para orígenes de alto riesgo, pero el certificado sanitario debe confirmar que el perro procede de una zona no puesta en cuarentena por rabia y que no ha estado expuesto a la rabia. Los perros procedentes de una zona en cuarentena por rabia pueden ser rechazados o retenidos para examen. Espera un control más estricto en el aeropuerto y ten listos los documentos originales."
+      pt: "Gana não acrescenta um teste sorológico obrigatório mesmo para origens de alto risco, mas o atestado de saúde deve confirmar que o cachorro vem de uma área não colocada em quarentena por raiva e que não foi exposto à raiva. Cachorros vindos de uma zona em quarentena por raiva podem ser recusados ou retidos para exame. Espere um controle mais rigoroso no aeroporto e mantenha os documentos originais prontos."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Ghana, VSD veterinary officers handle the check at the point of entry."
+    fr: "À l'arrivée de ton chien au Ghana, les agents vétérinaires de la VSD effectuent le contrôle au point d'entrée."
+    es: "Cuando tu perro llega a Ghana, los agentes veterinarios de la VSD se encargan del control en el punto de entrada."
+    pt: "Quando seu cachorro chegar a Gana, os veterinários oficiais da VSD realizam o controle no ponto de entrada."
+  points:
+    - en: "Present the full document set to the VSD on arrival — the signed import permit, the endorsed international veterinary health certificate, the rabies vaccination record and the original laboratory test reports."
+      fr: "Présente l'ensemble des documents à la VSD à l'arrivée — le permis d'importation signé, le certificat vétérinaire international visé, le justificatif de vaccination antirabique et les rapports de laboratoire originaux."
+      es: "Presenta el conjunto completo de documentos a la VSD a la llegada — el permiso de importación firmado, el certificado sanitario veterinario internacional refrendado, el registro de la vacunación antirrábica y los informes de laboratorio originales."
+      pt: "Apresente o conjunto completo de documentos à VSD na chegada — a autorização de importação assinada, o atestado de saúde veterinário internacional endossado, o registro da vacinação antirrábica e os relatórios laboratoriais originais."
+    - en: "Most pet arrivals are cleared in Accra through Kotoka International Airport; VSD officers verify the documents against the animal and check its health status before granting clearance."
+      fr: "La plupart des animaux arrivent à Accra via l'aéroport international de Kotoka ; les agents de la VSD vérifient la concordance des documents avec l'animal et contrôlent son état sanitaire avant d'accorder la mainlevée."
+      es: "La mayoría de las mascotas se despachan en Acra a través del Aeropuerto Internacional de Kotoka; los agentes de la VSD verifican la concordancia de los documentos con el animal y comprueban su estado de salud antes de conceder el levante."
+      pt: "A maioria dos animais de estimação é liberada em Acra pelo Aeroporto Internacional de Kotoka; os agentes da VSD verificam a correspondência dos documentos com o animal e checam seu estado de saúde antes de conceder a liberação."
+    - en: "Carry original documents, not copies, and keep a set with you throughout the journey; the health certificate must still be within its 30-day validity on arrival."
+      fr: "Munis-toi des documents originaux, pas de copies, et garde-en un jeu sur toi durant tout le trajet ; le certificat sanitaire doit être encore dans sa validité de 30 jours à l'arrivée."
+      es: "Lleva los documentos originales, no copias, y guarda un juego contigo durante todo el trayecto; el certificado sanitario debe seguir dentro de su valide de 30 días a la llegada."
+      pt: "Leve os documentos originais, não cópias, e mantenha um conjunto com você durante toda a viagem; o atestado de saúde deve continuar dentro de seu prazo de validade de 30 dias na chegada."
+    - en: "A healthy dog with a valid permit and complete papers is normally cleared without quarantine; samples may be taken from the animal for verification."
+      fr: "Un chien sain, muni d'un permis valide et de documents complets, passe normalement sans quarantaine ; des échantillons peuvent être prélevés sur l'animal pour vérification."
+      es: "Un perro sano, con un permiso válido y la documentación completa, normalmente se despacha sin cuarentena; pueden tomarse muestras del animal para su verificación."
+      pt: "Um cachorro saudável, com autorização válida e documentação completa, normalmente é liberado sem quarentena; podem ser coletadas amostras do animal para verificação."
+    - en: "If the dog is suspected of a contagious disease, or the import is irregular or the documents deficient, the VSD may order examination, quarantine or refuse entry."
+      fr: "Si le chien est suspecté de maladie contagieuse, ou si l'importation est irrégulière ou les documents incomplets, la VSD peut ordonner un examen, une quarantaine ou refuser l'entrée."
+      es: "Si se sospecha que el perro padece una enfermedad contagiosa, o si la importación es irregular o los documentos son deficientes, la VSD puede ordenar un examen, una cuarentena o denegar la entrada."
+      pt: "Se houver suspeita de doença contagiosa no cachorro, ou se a importação for irregular ou os documentos deficientes, a VSD pode determinar exame, quarentena ou recusar a entrada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No national breed-specific import ban for dogs is published by the Veterinary Services Directorate or Ghana Customs (GRA). Entry is controlled by the veterinary import permit, the disease tests and the health requirements, not by breed."
+    fr: "Aucune interdiction nationale d'importation par race de chien n'est publiée par la Veterinary Services Directorate ou les douanes ghanéennes (GRA). L'entrée est encadrée par le permis d'importation vétérinaire, les tests de maladies et les exigences sanitaires, non par la race."
+    es: "La Veterinary Services Directorate ni las aduanas ghanesas (GRA) publican ninguna prohibición nacional de importación de perros por raza. La entrada se rige por el permiso de importación veterinario, las pruebas de enfermedades y los requisitos sanitarios, no por la raza."
+    pt: "Nenhuma proibição nacional de importação por raça de cachorro é publicada pela Veterinary Services Directorate ou pela alfândega de Gana (GRA). A entrada é controlada pela autorização veterinária de importação, pelos testes de doenças e pelas exigências sanitárias, não pela raça."
+  cat1:
+    en: "We found no official Ghanaian legislation banning specific dog breeds from import. The VSD import scheme is disease- and document-based; it does not publish a list of prohibited breeds."
+    fr: "Nous n'avons trouvé aucune législation ghanéenne officielle interdisant l'importation de races de chiens précises. Le schéma d'importation de la VSD repose sur les maladies et les documents ; il ne publie pas de liste de races interdites."
+    es: "No hemos encontrado ninguna legislación oficial ghanesa que prohíba la importación de razas de perros concretas. El esquema de importación de la VSD se basa en las enfermedades y los documentos; no publica una lista de razas prohibidas."
+    pt: "Não encontramos nenhuma legislação ganesa oficial que proíba a importação de raças de cachorro específicas. O esquema de importação da VSD é baseado em doenças e documentos; não publica uma lista de raças proibidas."
+  cat2:
+    en: "Any local, district or ownership rules affecting particular dogs: Unknown (not published in the sources reviewed). Wildlife and endangered species are separately regulated, but that is not a breed-specific dog rule."
+    fr: "Règles locales, de district ou de détention visant des chiens particuliers : non communiquées (non publiées dans les sources consultées). La faune sauvage et les espèces menacées font l'objet d'une réglementation distincte, mais ce n'est pas une règle par race."
+    es: "Cualquier norma local, de distrito o de tenencia que afecte a perros concretos: Desconocida (no publicada en las fuentes consultadas). La fauna silvestre y las especies amenazadas se regulan por separado, pero eso no es una norma por raza de perro."
+    pt: "Quaisquer regras locais, distritais ou de posse que afetem cachorros específicos: não comunicadas (não publicadas nas fontes consultadas). A fauna selvagem e as espécies ameaçadas são reguladas separadamente, mas isso não é uma regra por raça de cachorro."
+  note:
+    en: "Because published rules may change, confirm the current position on any specific breed directly with the Veterinary Services Directorate before you travel."
+    fr: "Les règles publiées pouvant évoluer, vérifie la situation à jour pour une race précise directement auprès de la Veterinary Services Directorate avant de voyager."
+    es: "Como las normas publicadas pueden cambiar, confirma la situación actual de cualquier raza concreta directamente con la Veterinary Services Directorate antes de viajar."
+    pt: "Como as regras publicadas podem mudar, confirme a situação atual de qualquer raça específica diretamente com a Veterinary Services Directorate antes de viajar."
+
+checklist:
+  - en: "Apply for the VSD Veterinary Import Permit well before travel (Veterinary Services Directorate, MOFA)"
+    fr: "Demande le permis d'importation vétérinaire VSD bien avant le voyage (Veterinary Services Directorate, MOFA)"
+    es: "Solicita el permiso de importación veterinario de la VSD mucho antes del viaje (Veterinary Services Directorate, MOFA)"
+    pt: "Solicite a autorização veterinária de importação da VSD bem antes da viagem (Veterinary Services Directorate, MOFA)"
+  - en: "Negative disease tests (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) — originals only, kept recent"
+    fr: "Tests de maladies négatifs (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) — originaux uniquement, récents"
+    es: "Pruebas de enfermedades negativas (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) — solo originales, recientes"
+    pt: "Testes de doenças negativos (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) — apenas originais, recentes"
+  - en: "Valid rabies vaccination recorded on the health certificate"
+    fr: "Vaccination antirabique valide consignée sur le certificat sanitaire"
+    es: "Vacunación antirrábica válida registrada en el certificado sanitario"
+    pt: "Vacinação antirrábica válida registrada no atestado de saúde"
+  - en: "Core canine vaccinations (distemper, hepatitis, parvovirus, leptospirosis, parainfluenza)"
+    fr: "Vaccinations canines de base (Carré, hépatite, parvovirose, leptospirose, parainfluenza)"
+    es: "Vacunaciones caninas básicas (moquillo, hepatitis, parvovirus, leptospirosis, parainfluenza)"
+    pt: "Vacinações caninas essenciais (cinomose, hepatite, parvovirose, leptospirose, parainfluenza)"
+  - en: "ISO microchip (recommended) implanted before the rabies vaccination"
+    fr: "Puce ISO (recommandée) posée avant la vaccination antirabique"
+    es: "Microchip ISO (recomendado) implantado antes de la vacunación antirrábica"
+    pt: "Microchip ISO (recomendado) implantado antes da vacinação antirrábica"
+  - en: "Official international veterinary health certificate, endorsed by the government vet, valid 30 days"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental, valable 30 jours"
+    es: "Certificado sanitario veterinario internacional oficial, refrendado por el veterinario gubernamental, válido 30 días"
+    pt: "Atestado de saúde veterinário internacional oficial, endossado pelo veterinário do governo, válido por 30 dias"
+  - en: "Original permit, certificate and lab reports to present to the VSD at the point of entry (not copies)"
+    fr: "Permis, certificat et rapports de laboratoire originaux à présenter à la VSD au point d'entrée (pas de copies)"
+    es: "Permiso, certificado e informes de laboratorio originales para presentar a la VSD en el punto de entrada (no copias)"
+    pt: "Autorização, certificado e relatórios laboratoriais originais para apresentar à VSD no ponto de entrada (não cópias)"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+
+sources:
+  - label: { en: "Veterinary Services Department (MOFA) — Import Requirements", fr: "Veterinary Services Department (MOFA) — Import Requirements", es: "Veterinary Services Department (MOFA) — Import Requirements", pt: "Veterinary Services Department (MOFA) — Requisitos de Importação" }
+    url: "https://vsd.gov.gh/255-2/"
+  - label: { en: "Ministry of Food and Agriculture (Ghana) — Veterinary Services Directorate", fr: "Ministère de l'Alimentation et de l'Agriculture (Ghana) — Veterinary Services Directorate", es: "Ministerio de Alimentación y Agricultura (Ghana) — Veterinary Services Directorate", pt: "Ministério da Alimentação e Agricultura (Gana) — Veterinary Services Directorate" }
+    url: "https://mofa.gov.gh/site/directorates/technical-directorates/veterinary-services"
+  - label: { en: "Government of Ghana (Embassy) — VSD: Importation of Animals / Importation of Dogs into Ghana", fr: "Gouvernement du Ghana (ambassade) — VSD : Importation d'animaux / Importation de chiens au Ghana", es: "Gobierno de Ghana (Embajada) — VSD: Importación de animales / Importación de perros a Ghana", pt: "Governo de Gana (Embaixada) — VSD: Importação de Animais / Importação de Cachorros em Gana" }
+    url: "https://brussels.mfa.gov.gh/uploads/SectionImagWithLinks/3168_Veterinary-Services---Ghana-Importation-of-Animals.pdf"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Ghana", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Ghana", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Ghana", pt: "USDA APHIS — Viagem de Animais de Estimação dos Estados Unidos para Gana" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-ghana"
+  - label: { en: "Veterinary Health Certificate for Export of Dogs and Cats to the Republic of Ghana (agreed with Ghanaian authorities)", fr: "Certificat vétérinaire pour l'export de chiens et chats vers la République du Ghana (convenu avec les autorités ghanéennes)", es: "Certificado sanitario veterinario para la exportación de perros y gatos a la República de Ghana (acordado con las autoridades ghanesas)", pt: "Atestado de Saúde Veterinário para Exportação de Cachorros e Gatos para a República de Gana (acordado com as autoridades ganesas)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/ghana-dog-cat_4.pdf"
+  - label: { en: "Ghana Revenue Authority (GRA) — Customs Import Procedures / ICUMS", fr: "Ghana Revenue Authority (GRA) — Procédures d'importation en douane / ICUMS", es: "Ghana Revenue Authority (GRA) — Procedimientos de importación en aduana / ICUMS", pt: "Ghana Revenue Authority (GRA) — Procedimentos Alfandegários de Importação / ICUMS" }
+    url: "https://gra.gov.gh/customs/import-procedures/"
+
+seo:
+  title: { en: "Ghana Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Ghana — Guide", es: "Requisitos de entrada de perros en Ghana — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Gana — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Ghana With Your Dog: Entry Requirements (2026)", fr: "Voyager au Ghana avec ton chien : formalités (2026)", es: "Viajar a Ghana con tu perro: requisitos de entrada (2026)", pt: "Viajar para Gana com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaDesc:
+    en: "Official VSD rules for bringing a dog into Ghana: advance import permit, negative disease tests, rabies vaccination and endorsed certificate. Sourced and dated."
+    fr: "Règles officielles VSD pour faire entrer un chien au Ghana : permis d'importation préalable, tests de maladies négatifs, rage et certificat visé. Sourcé et daté."
+    es: "Normas oficiales de la VSD para traer un perro a Ghana: permiso de importación previo, pruebas de enfermedades negativas. Con fuentes y fecha."
+    pt: "Regras oficiais da VSD para levar um cachorro a Gana: autorização de importação prévia, testes de doenças negativos, vacinação antirrábica e certificado endossado."
+  slug: "ghana"
+  shortDesc:
+    en: "What you need to bring a dog into Ghana: an advance VSD import permit, negative disease tests, rabies vaccination and an endorsed veterinary health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien au Ghana : permis d'importation VSD préalable, tests de maladies négatifs, vaccination antirabique et certificat sanitaire visé."
+    es: "Lo que necesitas para traer un perro a Ghana: un permiso de importación previo de la VSD, pruebas de enfermedades negativas, vacunación antirrábica y un certificado sanitario veterinario refrendado."
+    pt: "O que você precisa para levar um cachorro a Gana: uma autorização de importação prévia da VSD, testes de doenças negativos, vacinação antirrábica e um atestado de saúde veterinário endossado."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

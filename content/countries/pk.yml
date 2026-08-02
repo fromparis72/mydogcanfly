@@ -1,0 +1,403 @@
+# Country Entry Guide — Pakistan (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Pakistan is NOT in the EU. It runs its own national scheme under the Pakistan Animal
+# Quarantine (Import and Export of Animals and Animal Products) Ordinance, 1979 and Rules,
+# 1980, administered by the Animal Quarantine Department (AQD), an attached department of the
+# Ministry of National Food Security & Research (MNFSR). AQD provides quarantine, inspection
+# and certification at its stations (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar,
+# Quetta) and clears animal imports at the port of entry (Release Order via Pakistan Single
+# Window). IMPORTANT: the official AQD/MNFSR websites publish the legal framework but do NOT
+# publish detailed pet-dog entry parameters (exact vaccination intervals, minimum age,
+# quarantine period, a pet-specific advance import-permit rule). The only official published
+# document that itemises what Pakistan requires for a pet dog is the USDA APHIS "Veterinary
+# Health Certificate for Export of Birds, Dogs and Cats from the United States of America to
+# Pakistan": microchip OR name identification, veterinary inspection (free of infectious/
+# contagious disease), origin from an area not quarantined for rabies and not exposed to
+# rabies, rabies vaccination details recorded, other vaccinations/treatments/tests "if
+# required", certificate valid 30 days after issuance, no USDA endorsement required, and NO
+# rabies antibody test. Everything not published in an official source is marked Unknown /
+# Non communiqué. Confidence is set low accordingly.
+id: country_pk
+iso2: "PK"
+name: { en: "Pakistan", fr: "Pakistan", es: "Pakistán", pt: "Paquistão" }
+region: { en: "South Asia", fr: "Asie du Sud", es: "Asia meridional", pt: "Ásia do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: AQD
+  authorityUrl: https://psw.gov.pk/aqd
+  intro:
+    en: "Pakistan is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Animal Quarantine Department (AQD)."
+    fr: "Le Pakistan est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par l'Animal Quarantine Department (AQD)."
+    es: "Pakistán no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Animal Quarantine Department (AQD)."
+    pt: "O Paquistão não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Animal Quarantine Department (AQD)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The AQD issues/endorses the export health certificate through inspection and quarantine (processed via the Pakistan Single Window), around 7 days before travel."
+        fr: "L'AQD délivre/vise le certificat sanitaire d'export via inspection et quarantaine (traité par le Pakistan Single Window), environ 7 jours avant le voyage."
+        es: "El AQD emite/refrenda el certificado sanitario de exportación mediante inspección y cuarentena (a través del Pakistan Single Window), unos 7 días antes del viaje."
+        pt: "O AQD emite/endossa o atestado de saúde de exportação por meio de inspeção e quarentena (processado pelo Pakistan Single Window), cerca de 7 dias antes da viagem."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Pakistan with your dog", fr: "Voyager au Pakistan avec ton chien", es: "Viajar a Pakistán con tu perro", pt: "Viajar para o Paquistão com seu cachorro" }
+  intro:
+    en: >-
+      Pakistan admits pet dogs, but it runs its own national scheme — not the EU framework —
+      under the Pakistan Animal Quarantine (Import and Export of Animals and Animal Products)
+      Ordinance, 1979 and its 1980 Rules. The Animal Quarantine Department (AQD), an attached
+      department of the Ministry of National Food Security & Research, inspects and clears
+      animals at its stations and at the port of entry. In practice, the only officially
+      published document that lists exactly what Pakistan wants for a pet dog is the government
+      veterinary health certificate: it records a rabies vaccination, requires that the dog be
+      inspected and free of infectious disease, and states the dog comes from an area not
+      quarantined for rabies. Pakistan does not require a rabies antibody test. Several details
+      — a pet-specific advance import permit, exact vaccination timing, a minimum age and any
+      quarantine — are not published by the authorities, so you must confirm them directly with
+      AQD and your veterinarian before you book.
+    fr: >-
+      Le Pakistan admet les chiens de compagnie, mais il applique son propre régime — et non le
+      cadre européen — au titre de la Pakistan Animal Quarantine (Import and Export of Animals
+      and Animal Products) Ordinance de 1979 et de ses règles de 1980. L'Animal Quarantine
+      Department (AQD), département rattaché au ministère de la Sécurité alimentaire nationale et
+      de la Recherche, inspecte et dédouane les animaux dans ses stations et au point d'entrée.
+      En pratique, le seul document officiellement publié qui détaille ce que le Pakistan exige
+      pour un chien de compagnie est le certificat vétérinaire gouvernemental : il consigne une
+      vaccination antirabique, impose que le chien soit inspecté et exempt de maladie
+      infectieuse, et atteste que le chien provient d'une zone non placée en quarantaine
+      antirabique. Le Pakistan n'exige pas de titrage antirabique. Plusieurs points — un permis
+      d'importation préalable propre aux animaux de compagnie, le calendrier vaccinal exact, un
+      âge minimum et une éventuelle quarantaine — ne sont pas publiés par les autorités : tu
+      devez donc les confirmer directement auprès de l'AQD et de ton vétérinaire avant de
+      réserver.
+    es: >-
+      Pakistán admite perros de compañía, pero aplica su propio régimen nacional — no el marco de
+      la UE — en virtud de la Pakistan Animal Quarantine (Import and Export of Animals and Animal
+      Products) Ordinance de 1979 y sus Rules de 1980. El Animal Quarantine Department (AQD),
+      departamento adscrito al Ministerio de Seguridad Alimentaria Nacional e Investigación,
+      inspecciona y despacha a los animales en sus estaciones y en el punto de entrada. En la
+      práctica, el único documento publicado oficialmente que detalla exactamente lo que Pakistán
+      exige para un perro de compañía es el certificado sanitario veterinario gubernamental:
+      registra una vacunación antirrábica, exige que el perro sea inspeccionado y esté libre de
+      enfermedad infecciosa, y declara que el perro procede de una zona no sometida a cuarentena
+      por rabia. Pakistán no exige una prueba de titulación de rabia. Varios detalles — un permiso
+      de importación previo específico para mascotas, el calendario de vacunación exacto, una edad
+      mínima y una posible cuarentena — no son publicados por las autoridades, así que debes
+      confirmarlos directamente con el AQD y tu veterinario antes de reservar.
+
+    pt: "O Paquistão admite cachorros de estimação, mas aplica o próprio sistema nacional — e não o regime da UE — segundo o Pakistan Animal Quarantine (Import and Export of Animals and Animal Products) Ordinance, 1979, e seu regulamento de 1980. O Animal Quarantine Department (AQD), um departamento vinculado ao Ministry of National Food Security & Research, inspeciona e libera os animais em seus postos e no ponto de entrada. Na prática, o único documento oficialmente publicado que lista exatamente o que o Paquistão exige para um cachorro de estimação é o atestado de saúde veterinário oficial: ele registra a vacinação antirrábica, exige que o cachorro seja inspecionado e esteja livre de doença infecciosa, e declara que o cachorro vem de uma área não colocada em quarentena por raiva. O Paquistão não exige teste sorológico antirrábico. Vários detalhes — uma autorização de importação prévia específica para animais de estimação, o prazo exato da vacinação, uma idade mínima e uma eventual quarentena — não são publicados pelas autoridades, portanto você deve confirmá-los diretamente com o AQD e o seu veterinário antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — light on the official certificate, but several rules are unpublished and must be confirmed with AQD", fr: "Modéré — allégé sur le certificat officiel, mais plusieurs règles ne sont pas publiées et doivent être confirmées auprès de l'AQD", es: "Moderado — ligero en cuanto al certificado oficial, pero varias normas no están publicadas y deben confirmarse con el AQD", pt: "Moderado — leve quanto ao atestado oficial, mas várias normas não são publicadas e devem ser confirmadas com o AQD" }
+
+prepTime:
+  eu:
+    en: "Dog from a country with an official government veterinary service (e.g. US/EU): ~2–4 weeks — up-to-date rabies vaccination and a government veterinary health certificate (valid 30 days after issuance), plus confirmation of AQD clearance at the port of entry."
+    fr: "Chien venant d'un pays doté d'un service vétérinaire gouvernemental officiel (ex. États-Unis / UE) : ~2 à 4 semaines — vaccination antirabique à jour et certificat vétérinaire gouvernemental (valable 30 jours après émission), plus confirmation du dédouanement AQD au point d'entrée."
+    es: "Perro procedente de un país con un servicio veterinario gubernamental oficial (p. ej. EE. UU. / UE): ~2 a 4 semanas — vacunación antirrábica al día y un certificado sanitario veterinario gubernamental (válido 30 días tras la emisión), más la confirmación del despacho del AQD en el punto de entrada."
+    pt: "Cachorro vindo de um país com serviço veterinário governamental oficial (por exemplo, EUA/UE): cerca de 2 a 4 semanas — vacinação antirrábica em dia e um atestado de saúde veterinário oficial (válido por 30 dias após a emissão), além da confirmação da liberação do AQD no ponto de entrada."
+  listed:
+    en: "Standard case (most other countries): ~3–5 weeks — allow time to obtain the exporting country's official veterinary health certificate and to confirm with AQD whether an advance import permit or any additional test/treatment applies to your route."
+    fr: "Cas standard (la plupart des autres pays) : ~3 à 5 semaines — prévois le temps d'obtenir le certificat vétérinaire officiel du pays d'export et de confirmer auprès de l'AQD si un permis d'importation préalable ou un test/traitement supplémentaire s'applique à ton trajet."
+    es: "Caso estándar (la mayoría de los demás países): ~3 a 5 semanas — prevé tiempo para obtener el certificado sanitario veterinario oficial del país exportador y para confirmar con el AQD si a tu ruta se le aplica un permiso de importación previo o alguna prueba/tratamiento adicional."
+    pt: "Caso padrão (a maioria dos outros países): cerca de 3 a 5 semanas — reserve tempo para obter o atestado de saúde veterinário oficial do país exportador e para confirmar com o AQD se uma autorização de importação prévia ou algum teste/tratamento adicional se aplica à sua rota."
+  nonListed:
+    en: "Incomplete documents, unusual origin, or a dog that raises a health concern on arrival: unpredictable — under the 1979 Ordinance AQD may inspect, detain or quarantine an animal, so allow extra time and confirm every requirement with AQD in advance."
+    fr: "Documents incomplets, origine inhabituelle, ou chien suscitant une inquiétude sanitaire à l'arrivée : imprévisible — au titre de l'ordonnance de 1979, l'AQD peut inspecter, retenir ou mettre en quarantaine un animal ; prévois donc du temps supplémentaire et confirme chaque exigence auprès de l'AQD à l'avance."
+    es: "Documentos incompletos, origen inusual o un perro que suscita una preocupación sanitaria a la llegada: impredecible — en virtud de la Ordinance de 1979, el AQD puede inspeccionar, retener o poner en cuarentena a un animal, así que prevé tiempo adicional y confirma cada requisito con el AQD por adelantado."
+    pt: "Documentos incompletos, origem incomum ou um cachorro que gera preocupação sanitária na chegada: imprevisível — segundo a Portaria de 1979, o AQD pode inspecionar, reter ou colocar em quarentena um animal, portanto reserve tempo extra e confirme cada exigência com o AQD com antecedência."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with a government veterinary certificate", fr: "Oui — avec un certificat vétérinaire gouvernemental", es: "Sí — con un certificado veterinario gubernamental", pt: "Sim — com atestado veterinário oficial" }
+    cls: neutral
+  - requirement: { en: "Advance import permit (AQD)", fr: "Permis d'importation préalable (AQD)", es: "Permiso de importación previo (AQD)", pt: "Autorização de importação prévia (AQD)" }
+    status: { en: "Not published for pets — confirm with AQD", fr: "Non publié pour les animaux de compagnie — à confirmer auprès de l'AQD", es: "No publicado para mascotas — confirmar con el AQD", pt: "Não publicado para animais de estimação — confirme com o AQD" }
+    cls: neutral
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not mandated by the official certificate (ISO chip recommended)", fr: "Non imposée par le certificat officiel (puce ISO recommandée)", es: "No exigido por el certificado oficial (se recomienda chip ISO)", pt: "Não exigido pelo atestado oficial (chip ISO recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (recorded on the certificate)", fr: "Requise (consignée sur le certificat)", es: "Obligatoria (registrada en el certificado)", pt: "Obrigatória (registrada no atestado)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required by Pakistan", fr: "Non requis par le Pakistan", es: "No exigida por Pakistán", pt: "Não exigido pelo Paquistão" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (valid 30 days after issuance)", fr: "Requis (valable 30 jours après émission)", es: "Obligatorio (válido 30 días tras la emisión)", pt: "Obrigatório (válido por 30 dias após a emissão)" }
+    cls: warn
+  - requirement: { en: "Arrival inspection (AQD)", fr: "Inspection à l'arrivée (AQD)", es: "Inspección a la llegada (AQD)", pt: "Inspeção na chegada (AQD)" }
+    status: { en: "Required at the port of entry", fr: "Requise au point d'entrée", es: "Obligatoria en el punto de entrada", pt: "Obrigatória no ponto de entrada" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published as routine — AQD retains legal powers", fr: "Non publiée comme systématique — l'AQD conserve des pouvoirs légaux", es: "No publicada como rutinaria — el AQD conserva facultades legales", pt: "Não prevista como rotina — o AQD mantém poderes legais" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and Pakistan's Animal Quarantine Department (AQD) can confirm the exact procedure for your individual dog — several requirements are not published online."
+    fr: "Seuls un vétérinaire et l'Animal Quarantine Department (AQD) du Pakistan peuvent confirmer la procédure exacte pour ton chien — plusieurs exigences ne sont pas publiées en ligne."
+    es: "Solo un veterinario y el Animal Quarantine Department (AQD) de Pakistán pueden confirmar el procedimiento exacto para tu perro — varios requisitos no están publicados en línea."
+    pt: "Somente um veterinário e o Animal Quarantine Department (AQD) do Paquistão podem confirmar o procedimento exato para o seu cachorro — várias exigências não são publicadas on-line."
+  - en: "Because official detail is limited, contact AQD before departure to confirm any advance import permit, vaccination timing, minimum age and quarantine that may apply."
+    fr: "L'information officielle étant limitée, contacte l'AQD avant le départ pour confirmer tout permis d'importation préalable, calendrier vaccinal, âge minimum et quarantaine éventuels."
+    es: "Como la información oficial es limitada, contacta con el AQD antes de la salida para confirmar cualquier permiso de importación previo, calendario de vacunación, edad mínima y cuarentena que puedan aplicarse."
+    pt: "Como o detalhamento oficial é limitado, entre em contato com o AQD antes da partida para confirmar qualquer autorização de importação prévia, o prazo da vacinação, a idade mínima e a eventual quarentena aplicáveis."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Pakistan (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — le Pakistan (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Pakistán (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — o Paquistão (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Pakistan", fr: "Pays de destination — Pakistan", es: "País de destino — Pakistán", pt: "País de destino — Paquistão" }
+      text:
+        en: "Pakistan runs its own scheme under the Animal Quarantine Ordinance, 1979 and Rules, 1980, administered by the Animal Quarantine Department (AQD). A government veterinary health certificate recording a rabies vaccination is expected, the dog is inspected and cleared at the port of entry, and no rabies antibody test is required. It does not use the EU pet-passport system."
+        fr: "Le Pakistan applique son propre régime au titre de l'Animal Quarantine Ordinance de 1979 et des règles de 1980, administré par l'Animal Quarantine Department (AQD). Un certificat vétérinaire gouvernemental consignant une vaccination antirabique est attendu, le chien est inspecté et dédouané au point d'entrée, et aucun titrage antirabique n'est exigé. Il n'utilise pas le passeport européen."
+        es: "Pakistán aplica su propio régimen en virtud de la Animal Quarantine Ordinance de 1979 y las Rules de 1980, administrado por el Animal Quarantine Department (AQD). Se espera un certificado sanitario veterinario gubernamental que registre una vacunación antirrábica, el perro es inspeccionado y despachado en el punto de entrada, y no se exige prueba de titulación de rabia. No utiliza el sistema del pasaporte europeo para mascotas."
+        pt: "O Paquistão aplica o próprio sistema segundo a Portaria de Quarentena Animal de 1979 e o regulamento de 1980, administrado pelo Animal Quarantine Department (AQD). Espera-se um atestado de saúde veterinário oficial registrando a vacinação antirrábica, o cachorro é inspecionado e liberado no ponto de entrada, e nenhum teste sorológico antirrábico é exigido. O país não utiliza o sistema de passaporte europeu para animais de estimação."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country's official government veterinary authority issues and, where required, endorses the health certificate. Its animal-health status (for example, whether it is recognised as an area not quarantined for rabies) shapes the wording the certifying veterinarian can sign."
+        fr: "L'autorité vétérinaire gouvernementale officielle du pays d'export établit et, si nécessaire, vise le certificat sanitaire. Son statut sanitaire (par exemple, s'il est reconnu comme une zone non placée en quarantaine antirabique) détermine le libellé que le vétérinaire certificateur peut signer."
+        es: "La autoridad veterinaria gubernamental oficial del país exportador emite y, cuando se requiere, refrenda el certificado sanitario. Su estatus zoosanitario (por ejemplo, si está reconocido como una zona no sometida a cuarentena por rabia) determina el texto que el veterinario certificador puede firmar."
+        pt: "A autoridade veterinária governamental oficial do país exportador emite e, quando necessário, endossa o atestado de saúde. A situação sanitária animal desse país (por exemplo, se é reconhecido como uma área não colocada em quarentena por raiva) determina o texto que o veterinário certificador pode assinar."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's disease exposure and travel history affect the certificate wording and any test or treatment a veterinarian must certify, and AQD officers may take a stricter view at the port if an animal has passed through a higher-risk area or raises a health concern on arrival."
+        fr: "L'exposition aux maladies et l'historique de voyage de ton chien influent sur le libellé du certificat et sur tout test ou traitement qu'un vétérinaire doit certifier ; les agents de l'AQD peuvent être plus stricts au point d'entrée si un animal a transité par une zone à risque plus élevé ou suscite une inquiétude sanitaire à l'arrivée."
+        es: "La exposición a enfermedades y el historial de viajes de tu perro influyen en el texto del certificado y en cualquier prueba o tratamiento que un veterinario deba certificar, y los agentes del AQD pueden adoptar un criterio más estricto en el puerto si un animal ha transitado por una zona de mayor riesgo o suscita una preocupación sanitaria a la llegada."
+        pt: "A exposição a doenças e o histórico de viagens do seu cachorro afetam o texto do atestado e qualquer teste ou tratamento que um veterinário deva certificar, e os agentes do AQD podem adotar uma postura mais rigorosa no ponto de entrada se um animal tiver passado por uma área de maior risco ou gerar preocupação sanitária na chegada."
+  note:
+    en: "So read the requirements below as Pakistan's framework, then confirm your dog's exact origin, history and paperwork with your vet and AQD before you book — especially the points marked 'not published'."
+    fr: "Lis donc les exigences ci-dessous comme le cadre pakistanais, puis confirme l'origine, l'historique et les documents exacts de ton chien avec ton vétérinaire et l'AQD avant de réserver — en particulier les points marqués « non publié »."
+    es: "Así que lee los requisitos siguientes como el marco de Pakistán y luego confirma el origen, el historial y la documentación exactos de tu perro con tu veterinario y el AQD antes de reservar — en especial los puntos marcados como «no publicado»."
+    pt: "Portanto, leia as exigências abaixo como o regime do Paquistão e depois confirme a origem exata, o histórico e a documentação do seu cachorro com o seu veterinário e o AQD antes de reservar — especialmente os pontos marcados como 'não publicado'."
+
+requirements:
+  - item: { en: "Advance import permit / AQD clearance", fr: "Permis d'importation préalable / dédouanement AQD", es: "Permiso de importación previo / despacho del AQD", pt: "Autorização de importação prévia / liberação do AQD" }
+    required: { en: "Not published for pets; port clearance applies", fr: "Non publié pour les animaux de compagnie ; dédouanement au port applicable", es: "No publicado para mascotas; se aplica el despacho en el puerto", pt: "Não publicado para animais de estimação; aplica-se a liberação no ponto de entrada" }
+    when: { en: "AQD regulates the import of all animals and clears them at the port of entry (an import Release Order is generated through the Pakistan Single Window when the import declaration is filed). Whether a pet-dog owner must obtain a separate advance import permit is not published in the official sources reviewed — confirm with AQD before departure.", fr: "L'AQD réglemente l'importation de tous les animaux et les dédouane au point d'entrée (un Release Order d'importation est généré via le Pakistan Single Window lors du dépôt de la déclaration d'importation). Le fait qu'un propriétaire de chien doive obtenir un permis d'importation préalable distinct n'est pas publié dans les sources officielles consultées — à confirmer auprès de l'AQD avant le départ.", es: "El AQD regula la importación de todos los animales y los despacha en el punto de entrada (se genera un Release Order de importación a través del Pakistan Single Window al presentar la declaración de importación). Si un propietario de un perro de compañía debe obtener un permiso de importación previo aparte no está publicado en las fuentes oficiales consultadas — confírmalo con el AQD antes de la salida.", pt: "O AQD regula a importação de todos os animais e os libera no ponto de entrada (uma Release Order de importação é gerada pelo Pakistan Single Window quando a declaração de importação é apresentada). Se o dono de um cachorro de estimação precisa obter uma autorização de importação prévia separada não é publicado nas fontes oficiais analisadas — confirme com o AQD antes da partida." }
+    exceptions: { en: "Unknown / Non communiqué — the AQD and MNFSR websites do not publish a pet-specific permit procedure. Apply the general requirement to clear the animal with AQD at the port of entry.", fr: "Inconnu / Non communiqué — les sites de l'AQD et du MNFSR ne publient pas de procédure de permis propre aux animaux de compagnie. Appliquez l'exigence générale de dédouaner l'animal auprès de l'AQD au point d'entrée.", es: "Desconocido / No comunicado — los sitios web del AQD y del MNFSR no publican un procedimiento de permiso específico para mascotas. Aplica el requisito general de despachar al animal con el AQD en el punto de entrada.", pt: "Não comunicado — os sites do AQD e do MNFSR não publicam um procedimento de autorização específico para animais de estimação. Aplica-se a exigência geral de liberar o animal com o AQD no ponto de entrada." }
+    ref: { en: "Pakistan Animal Quarantine Ordinance, 1979; AQD — Services; Pakistan Single Window — AQD", fr: "Pakistan Animal Quarantine Ordinance de 1979 ; AQD — Services ; Pakistan Single Window — AQD", es: "Pakistan Animal Quarantine Ordinance de 1979; AQD — Services; Pakistan Single Window — AQD", pt: "Portaria de Quarentena Animal do Paquistão, 1979; AQD — Serviços; Pakistan Single Window — AQD" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not mandated by the official certificate", fr: "Non imposée par le certificat officiel", es: "No exigido por el certificado oficial", pt: "Não exigido pelo atestado oficial" }
+    when: { en: "The official veterinary health certificate identifies each animal by 'microchip number or name', so a microchip is not the sole required identifier. Where a dog is microchipped, the veterinarian verifies its presence and records the number.", fr: "Le certificat vétérinaire officiel identifie chaque animal par « numéro de puce ou nom », de sorte qu'une puce n'est pas le seul identifiant requis. Lorsqu'un chien est pucé, le vétérinaire en vérifie la présence et consigne le numéro.", es: "El certificado sanitario veterinario oficial identifica a cada animal por «número de microchip o nombre», de modo que un microchip no es el único identificador exigido. Cuando un perro tiene microchip, el veterinario verifica su presencia y registra el número.", pt: "O atestado de saúde veterinário oficial identifica cada animal pelo 'número do microchip ou nome', portanto o microchip não é o único identificador exigido. Quando um cachorro tem microchip, o veterinário verifica a sua presença e registra o número." }
+    exceptions: { en: "An ISO 11784/11785-compatible microchip is strongly recommended so identity can be matched to the certificate and vaccination records; bring a scanner if in doubt. A specific Pakistani microchip standard is not published.", fr: "Une puce compatible ISO 11784/11785 est fortement recommandée pour que l'identité corresponde au certificat et au carnet de vaccination ; prévois un lecteur en cas de doute. Aucune norme de puce pakistanaise précise n'est publiée.", es: "Se recomienda encarecidamente un microchip compatible con ISO 11784/11785 para que la identidad coincida con el certificado y los registros de vacunación; lleva un lector en caso de duda. No se publica una norma de microchip pakistaní específica.", pt: "Um microchip compatível com ISO 11784/11785 é fortemente recomendado para que a identidade possa ser conferida com o atestado e os registros de vacinação; leve um leitor em caso de dúvida. Um padrão específico de microchip paquistanês não é publicado." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate (US to Pakistan), box 21", fr: "USDA APHIS — Certificat vétérinaire (États-Unis vers Pakistan), case 21", es: "USDA APHIS — Veterinary Health Certificate (EE. UU. a Pakistán), casilla 21", pt: "USDA APHIS — Atestado de Saúde Veterinário (EUA para o Paquistão), campo 21" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (recorded)", fr: "Requise (consignée)", es: "Obligatoria (registrada)", pt: "Obrigatória (registrada)" }
+    when: { en: "The official certificate records the dog's rabies vaccination — date, vaccine name and period of validity — and Pakistan is rabies-endemic, so a current, valid rabies vaccination should be in place before travel.", fr: "Le certificat officiel consigne la vaccination antirabique du chien — date, nom du vaccin et durée de validité — et le Pakistan est un pays d'endémie rabique ; une vaccination antirabique en cours de validité doit donc être en place avant le voyage.", es: "El certificado oficial registra la vacunación antirrábica del perro — fecha, nombre de la vacuna y periodo de valide — y Pakistán es un país con rabia endémica, así que debe haber una vacunación antirrábica vigente y válida antes del viaje.", pt: "O atestado oficial registra a vacinação antirrábica do cachorro — data, nome da vacina e período de validade — e o Paquistão é endêmico para raiva, portanto uma vacinação antirrábica atual e válida deve estar em dia antes da viagem." }
+    exceptions: { en: "The exact minimum interval before entry (for example a 30-day wait after vaccination) is not published in the official sources reviewed — Unknown / Non communiqué. Carry complete, dated vaccination records showing current validity.", fr: "L'intervalle minimal exact avant l'entrée (par exemple un délai de 30 jours après la vaccination) n'est pas publié dans les sources officielles consultées — Inconnu / Non communiqué. Munis-toi d'un carnet de vaccination complet et daté attestant la validité en cours.", es: "El intervalo mínimo exacto antes de la entrada (por ejemplo, una espera de 30 días tras la vacunación) no está publicado en las fuentes oficiales consultadas — Desconocido / No comunicado. Lleva un registro de vacunación completo y fechado que acredite la valide vigente.", pt: "O intervalo mínimo exato antes da entrada (por exemplo, uma espera de 30 dias após a vacinação) não é publicado nas fontes oficiais analisadas — Não comunicado. Leve registros de vacinação completos e datados, mostrando a validade atual." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate (US to Pakistan), rabies vaccination section", fr: "USDA APHIS — Certificat vétérinaire (États-Unis vers Pakistan), section vaccination antirabique", es: "USDA APHIS — Veterinary Health Certificate (EE. UU. a Pakistán), sección de vacunación antirrábica", pt: "USDA APHIS — Atestado de Saúde Veterinário (EUA para o Paquistão), seção de vacinação antirrábica" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "The official veterinary health certificate for dogs entering Pakistan does not call for a rabies antibody test. Only a recorded rabies vaccination and a declaration that the dog comes from an area not quarantined for rabies are used.", fr: "Le certificat vétérinaire officiel pour les chiens entrant au Pakistan n'exige pas de titrage antirabique. Seules une vaccination antirabique consignée et une déclaration attestant que le chien provient d'une zone non placée en quarantaine antirabique sont utilisées.", es: "El certificado sanitario veterinario oficial para los perros que entran en Pakistán no exige una prueba de titulación de rabia. Solo se usan una vacunación antirrábica registrada y una declaración de que el perro procede de una zona no sometida a cuarentena por rabia.", pt: "O atestado de saúde veterinário oficial para cachorros que entram no Paquistão não exige teste sorológico antirrábico. Utilizam-se apenas o registro da vacinação antirrábica e uma declaração de que o cachorro vem de uma área não colocada em quarentena por raiva." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate (US to Pakistan)", fr: "USDA APHIS — Certificat vétérinaire (États-Unis vers Pakistan)", es: "USDA APHIS — Veterinary Health Certificate (EE. UU. a Pakistán)", pt: "USDA APHIS — Atestado de Saúde Veterinário (EUA para o Paquistão)" }
+  - item: { en: "Rabies-free origin / no exposure", fr: "Origine indemne de rage / absence d'exposition", es: "Origen libre de rabia / sin exposición", pt: "Origem livre de raiva / sem exposição" }
+    required: { en: "Required (certified)", fr: "Requise (certifiée)", es: "Obligatorio (certificado)", pt: "Obrigatória (certificada)" }
+    when: { en: "The certifying veterinarian must state that, to their knowledge, the dog originated from an area not quarantined for rabies and has not been exposed to rabies.", fr: "Le vétérinaire certificateur doit attester que, à sa connaissance, le chien provient d'une zone non placée en quarantaine antirabique et n'a pas été exposé à la rage.", es: "El veterinario certificador debe declarar que, según su conocimiento, el perro procede de una zona no sometida a cuarentena por rabia y no ha estado expuesto a la rabia.", pt: "O veterinário certificador deve declarar que, ao seu conhecimento, o cachorro tem origem em uma área não colocada em quarentena por raiva e não foi exposto à raiva." }
+    exceptions: { en: "This is a certification statement, not a laboratory test. It is signed by the licensed veterinarian issuing the certificate.", fr: "Il s'agit d'une déclaration de certification, non d'un test de laboratoire. Elle est signée par le vétérinaire agréé qui délivre le certificat.", es: "Se trata de una declaración de certificación, no de una prueba de laboratorio. La firma el veterinario colegiado que expide el certificado.", pt: "Trata-se de uma declaração de certificação, não de um exame laboratorial. É assinada pelo veterinário licenciado que emite o atestado." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate (US to Pakistan), certification statements", fr: "USDA APHIS — Certificat vétérinaire (États-Unis vers Pakistan), déclarations de certification", es: "USDA APHIS — Veterinary Health Certificate (EE. UU. a Pakistán), declaraciones de certificación", pt: "USDA APHIS — Atestado de Saúde Veterinário (EUA para o Paquistão), declarações de certificação" }
+  - item: { en: "Other vaccinations / treatments / tests", fr: "Autres vaccinations / traitements / tests", es: "Otras vacunas / tratamientos / pruebas", pt: "Outras vacinas / tratamentos / exames" }
+    required: { en: "As required and certified", fr: "Selon les exigences et certifiés", es: "Según se exija y se certifique", pt: "Conforme exigido e certificado" }
+    when: { en: "The certificate provides space for other vaccinations, treatments and/or tests and their results 'if required'. Any additional condition set for your route must be met and certified by the veterinarian.", fr: "Le certificat prévoit un espace pour d'autres vaccinations, traitements et/ou tests et leurs résultats « si requis ». Toute condition supplémentaire fixée pour ton trajet doit être remplie et certifiée par le vétérinaire.", es: "El certificado reserva un espacio para otras vacunas, tratamientos o pruebas y sus resultados «si se requieren». Cualquier condición adicional fijada para tu ruta debe cumplirse y ser certificada por el veterinario.", pt: "O atestado tem espaço para outras vacinas, tratamentos e/ou exames e seus resultados, 'se exigidos'. Qualquer condição adicional definida para a sua rota deve ser cumprida e certificada pelo veterinário." }
+    exceptions: { en: "No specific parasite treatment or additional vaccine is mandated in the reviewed official certificate — a fixed list is not published (Unknown / Non communiqué). Carry a full, dated vaccination record as good practice.", fr: "Aucun traitement antiparasitaire ni vaccin supplémentaire précis n'est imposé dans le certificat officiel consulté — aucune liste fixe n'est publiée (Inconnu / Non communiqué). Munis-toi d'un carnet de vaccination complet et daté par prudence.", es: "No se exige ningún tratamiento antiparasitario ni vacuna adicional concretos en el certificado oficial consultado — no se publica una lista fija (Desconocido / No comunicado). Lleva un registro de vacunación completo y fechado como buena práctica.", pt: "Nenhum tratamento antiparasitário específico ou vacina adicional é exigido no atestado oficial analisado — uma lista fixa não é publicada (Não comunicado). Leve um registro de vacinação completo e datado como boa prática." }
+    ref: { en: "USDA APHIS — Veterinary Health Certificate (US to Pakistan), section 5", fr: "USDA APHIS — Certificat vétérinaire (États-Unis vers Pakistan), section 5", es: "USDA APHIS — Veterinary Health Certificate (EE. UU. a Pakistán), sección 5", pt: "USDA APHIS — Atestado de Saúde Veterinário (EUA para o Paquistão), seção 5" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A government veterinary health certificate for the dog must be issued by a licensed veterinarian in the exporting country. It certifies the animal was inspected and appears free of infectious or contagious disease, records the rabies vaccination, and is valid for 30 days after issuance.", fr: "Un certificat vétérinaire gouvernemental pour le chien doit être délivré par un vétérinaire agréé dans le pays d'export. Il atteste que l'animal a été inspecté et paraît exempt de maladie infectieuse ou contagieuse, consigne la vaccination antirabique, et est valable 30 jours après émission.", es: "Un certificado sanitario veterinario gubernamental para el perro debe ser expedido por un veterinario colegiado en el país exportador. Certifica que el animal fue inspeccionado y parece libre de enfermedad infecciosa o contagiosa, registra la vacunación antirrábica y es válido durante 30 días tras la emisión.", pt: "Um atestado de saúde veterinário oficial para o cachorro deve ser emitido por um veterinário licenciado no país exportador. Ele certifica que o animal foi inspecionado e aparenta estar livre de doença infecciosa ou contagiosa, registra a vacinação antirrábica e é válido por 30 dias após a emissão." }
+    exceptions: { en: "For US exports, USDA endorsement is not required and the licensed veterinarian issues the certificate. From other countries, use the exporting country's official government veterinary certificate for Pakistan and confirm any endorsement with your competent authority.", fr: "Pour les exports depuis les États-Unis, l'endossement de l'USDA n'est pas requis et le vétérinaire agréé délivre le certificat. Depuis d'autres pays, utilise le certificat vétérinaire gouvernemental officiel du pays d'export pour le Pakistan et confirme tout visa auprès de ton autorité compétente.", es: "Para las exportaciones desde EE. UU., no se requiere el refrendo del USDA y el veterinario colegiado expide el certificado. Desde otros países, usa el certificado veterinario gubernamental oficial del país exportador para Pakistán y confirma cualquier refrendo con tu autoridad competente.", pt: "Para exportações dos EUA, o endosso do USDA não é exigido, e o veterinário licenciado emite o atestado. De outros países, use o atestado veterinário oficial do governo do país exportador para o Paquistão e confirme qualquer endosso com a sua autoridade competente." }
+    ref: { en: "USDA APHIS — Pet Travel US to Pakistan; Veterinary Health Certificate", fr: "USDA APHIS — Voyage d'animaux États-Unis vers Pakistan ; Certificat vétérinaire", es: "USDA APHIS — Pet Travel EE. UU. a Pakistán; Veterinary Health Certificate", pt: "USDA APHIS — Viagem de Animais de Estimação dos EUA para o Paquistão; Atestado de Saúde Veterinário" }
+  - item: { en: "Arrival inspection (AQD)", fr: "Inspection à l'arrivée (AQD)", es: "Inspección a la llegada (AQD)", pt: "Inspeção na chegada (AQD)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The Animal Quarantine Department inspects and clears animals at the point of entry as part of its quarantine, inspection and certification service. Present the original veterinary health certificate and vaccination records to the AQD officer.", fr: "L'Animal Quarantine Department inspecte et dédouane les animaux au point d'entrée dans le cadre de son service de quarantaine, d'inspection et de certification. Présente le certificat vétérinaire original et le carnet de vaccination à l'agent de l'AQD.", es: "El Animal Quarantine Department inspecciona y despacha a los animales en el punto de entrada como parte de su servicio de cuarentena, inspección y certificación. Presenta el certificado sanitario veterinario original y el registro de vacunación al agente del AQD.", pt: "O Animal Quarantine Department inspeciona e libera os animais no ponto de entrada como parte do seu serviço de quarentena, inspeção e certificação. Apresente o atestado de saúde veterinário original e os registros de vacinação ao agente do AQD." }
+    exceptions: { en: "AQD stations operate at Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar and Quetta; arrive at a port served by AQD so the animal can be cleared.", fr: "Les stations de l'AQD opèrent à Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar et Quetta ; arrive dans un point d'entrée desservi par l'AQD pour que l'animal puisse être dédouané.", es: "Las estaciones del AQD operan en Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar y Quetta; llega a un punto de entrada atendido por el AQD para que el animal pueda ser despachado.", pt: "Os postos do AQD funcionam em Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar e Quetta; chegue a um ponto de entrada atendido pelo AQD para que o animal possa ser liberado." }
+    ref: { en: "AQD — Services & Introduction; Pakistan Animal Quarantine Ordinance, 1979", fr: "AQD — Services et Introduction ; Pakistan Animal Quarantine Ordinance de 1979", es: "AQD — Services e Introduction; Pakistan Animal Quarantine Ordinance de 1979", pt: "AQD — Serviços e Apresentação; Portaria de Quarentena Animal do Paquistão, 1979" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published", fr: "Non publié", es: "No publicado", pt: "Não publicado" }
+    when: { en: "The official sources reviewed do not publish a minimum age for importing a dog into Pakistan.", fr: "Les sources officielles consultées ne publient pas d'âge minimum pour l'importation d'un chien au Pakistan.", es: "Las fuentes oficiales consultadas no publican una edad mínima para importar un perro a Pakistán.", pt: "As fontes oficiais analisadas não publicam uma idade mínima para importar um cachorro para o Paquistão." }
+    exceptions: { en: "Unknown / Non communiqué — confirm any minimum age with AQD, and note that a valid rabies vaccination in practice implies a puppy old enough to be vaccinated and certified.", fr: "Inconnu / Non communiqué — confirme tout âge minimum auprès de l'AQD, et note qu'une vaccination antirabique valide implique en pratique un chiot assez âgé pour être vacciné et certifié.", es: "Desconocido / No comunicado — confirma cualquier edad mínima con el AQD, y ten en cuenta que una vacunación antirrábica válida implica en la práctica un cachorro con edad suficiente para ser vacunado y certificado.", pt: "Não comunicado — confirme qualquer idade mínima com o AQD, e observe que uma vacinação antirrábica válida, na prática, implica um filhote com idade suficiente para ser vacinado e certificado." }
+    ref: { en: "AQD / MNFSR — no published pet age rule (as reviewed)", fr: "AQD / MNFSR — aucune règle d'âge publiée pour les animaux (selon consultation)", es: "AQD / MNFSR — sin norma de edad publicada para mascotas (según lo consultado)", pt: "AQD / MNFSR — nenhuma norma de idade para animais de estimação publicada (conforme analisado)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published as routine", fr: "Non publiée comme systématique", es: "No publicada como rutinaria", pt: "Não prevista como rotina" }
+    when: { en: "No routine home or facility quarantine for pet dogs is published in the official sources reviewed. However, under the Animal Quarantine Ordinance, 1979 and Rules, 1980, AQD retains legal powers to detain, inspect and quarantine animals where necessary.", fr: "Aucune quarantaine systématique à domicile ou en établissement pour les chiens de compagnie n'est publiée dans les sources officielles consultées. Toutefois, au titre de l'Animal Quarantine Ordinance de 1979 et des règles de 1980, l'AQD conserve le pouvoir légal de retenir, d'inspecter et de mettre en quarantaine les animaux si nécessaire.", es: "No se publica ninguna cuarentena rutinaria domiciliaria o en instalaciones para perros de compañía en las fuentes oficiales consultadas. No obstante, en virtud de la Animal Quarantine Ordinance de 1979 y las Rules de 1980, el AQD conserva la facultad legal de retener, inspeccionar y poner en cuarentena a los animales cuando sea necesario.", pt: "Nenhuma quarentena domiciliar ou em instalação de rotina para cachorros de estimação é publicada nas fontes oficiais analisadas. No entanto, segundo a Portaria de Quarentena Animal de 1979 e o regulamento de 1980, o AQD mantém poderes legais para reter, inspecionar e colocar animais em quarentena quando necessário." }
+    exceptions: { en: "Unknown / Non communiqué for the routine case — a dog that fails inspection or raises a health concern may be detained or quarantined at the owner's cost. Confirm with AQD before travel.", fr: "Inconnu / Non communiqué pour le cas standard — un chien qui échoue à l'inspection ou suscite une inquiétude sanitaire peut être retenu ou mis en quarantaine aux frais du propriétaire. À confirmer auprès de l'AQD avant le voyage.", es: "Desconocido / No comunicado para el caso estándar — un perro que no supera la inspección o suscita una preocupación sanitaria puede ser retenido o puesto en cuarentena a cargo del propietario. Confírmalo con el AQD antes del viaje.", pt: "Não comunicado para o caso de rotina — um cachorro que não passa na inspeção ou gera preocupação sanitária pode ser retido ou colocado em quarentena às custas do dono. Confirme com o AQD antes de viajar." }
+    ref: { en: "Pakistan Animal Quarantine Ordinance, 1979; Rules, 1980", fr: "Pakistan Animal Quarantine Ordinance de 1979 ; règles de 1980", es: "Pakistan Animal Quarantine Ordinance de 1979; Rules de 1980", pt: "Portaria de Quarentena Animal do Paquistão, 1979; regulamento de 1980" }
+
+origin:
+  eu:
+    title: { en: "Dog from a country with an official government veterinary service", fr: "Chien venant d'un pays doté d'un service vétérinaire gouvernemental officiel", es: "Perro procedente de un país con un servicio veterinario gubernamental oficial", pt: "Cachorro vindo de um país com serviço veterinário governamental oficial" }
+    body:
+      en: "If your dog travels from a country whose government veterinary service can issue the certificate Pakistan expects (for example the United States or the EU), the path is comparatively light: an up-to-date rabies vaccination, a veterinary health certificate confirming the dog was inspected and free of infectious disease and stating it comes from an area not quarantined for rabies, and clearance by AQD at the port of entry. The certificate is valid for 30 days after issuance, and no rabies antibody test applies. Confirm with AQD whether any advance import permit is needed for your route."
+      fr: "Si ton chien voyage depuis un pays dont le service vétérinaire gouvernemental peut délivrer le certificat attendu par le Pakistan (par exemple les États-Unis ou l'UE), le parcours est relativement léger : une vaccination antirabique à jour, un certificat vétérinaire attestant que le chien a été inspecté et exempt de maladie infectieuse et provient d'une zone non placée en quarantaine antirabique, et le dédouanement par l'AQD au point d'entrée. Le certificat est valable 30 jours après émission, et aucun titrage antirabique ne s'applique. Confirme auprès de l'AQD si un permis d'importation préalable est nécessaire pour ton trajet."
+      es: "Si tu perro viaja desde un país cuyo servicio veterinario gubernamental puede expedir el certificado que Pakistán espera (por ejemplo, Estados Unidos o la UE), el camino es relativamente ligero: una vacunación antirrábica al día, un certificado sanitario veterinario que acredite que el perro fue inspeccionado y está libre de enfermedad infecciosa y declare que procede de una zona no sometida a cuarentena por rabia, y el despacho por el AQD en el punto de entrada. El certificado es válido durante 30 días tras la emisión, y no se aplica prueba de titulación de rabia. Confirma con el AQD si tu ruta necesita algún permiso de importación previo."
+      pt: "Se o seu cachorro viaja de um país cujo serviço veterinário governamental pode emitir o atestado que o Paquistão espera (por exemplo, os Estados Unidos ou a UE), o caminho é relativamente leve: uma vacinação antirrábica em dia, um atestado de saúde veterinário confirmando que o cachorro foi inspecionado e está livre de doença infecciosa e declarando que ele vem de uma área não colocada em quarentena por raiva, e a liberação pelo AQD no ponto de entrada. O atestado é válido por 30 dias após a emissão, e nenhum teste sorológico antirrábico se aplica. Confirme com o AQD se alguma autorização de importação prévia é necessária para a sua rota."
+    cls: ok
+  listed:
+    title: { en: "Standard case — most other countries", fr: "Cas standard — la plupart des autres pays", es: "Caso estándar — la mayoría de los demás países", pt: "Caso padrão — a maioria dos outros países" }
+    body:
+      en: "From most countries the same essentials apply, using your own country's official government veterinary certificate for Pakistan: a recorded rabies vaccination, a signed statement of inspection and rabies-free origin, and AQD clearance on arrival. Because Pakistan does not publish detailed pet parameters, ask AQD in advance whether a pet-specific import permit, a vaccination interval, a minimum age or any additional test or treatment applies to your particular route, and have your veterinarian certify anything required on the certificate."
+      fr: "Depuis la plupart des pays, les mêmes éléments essentiels s'appliquent, au moyen du certificat vétérinaire gouvernemental officiel de ton pays pour le Pakistan : une vaccination antirabique consignée, une déclaration signée d'inspection et d'origine indemne de rage, et le dédouanement AQD à l'arrivée. Le Pakistan ne publiant pas de paramètres détaillés pour les animaux de compagnie, demande à l'avance à l'AQD si un permis d'importation propre aux animaux, un intervalle vaccinal, un âge minimum ou un test/traitement supplémentaire s'applique à ton trajet, et fais certifier par ton vétérinaire tout élément requis sur le certificat."
+      es: "Desde la mayoría de los países se aplican los mismos elementos esenciales, mediante el certificado veterinario gubernamental oficial de tu país para Pakistán: una vacunación antirrábica registrada, una declaración firmada de inspección y de origen libre de rabia, y el despacho del AQD a la llegada. Como Pakistán no publica parámetros detallados para mascotas, pregunta al AQD con antelación si a tu ruta concreta se le aplica un permiso de importación específico para mascotas, un intervalo de vacunación, una edad mínima o alguna prueba o tratamiento adicional, y haz que tu veterinario certifique en el certificado todo lo que se requiera."
+      pt: "Da maioria dos países, aplicam-se os mesmos elementos essenciais, usando o atestado veterinário governamental oficial do seu próprio país para o Paquistão: uma vacinação antirrábica registrada, uma declaração assinada de inspeção e origem livre de raiva, e a liberação do AQD na chegada. Como o Paquistão não publica parâmetros detalhados para animais de estimação, pergunte ao AQD com antecedência se uma autorização de importação específica para animais de estimação, um intervalo de vacinação, uma idade mínima ou qualquer teste ou tratamento adicional se aplica à sua rota específica, e peça ao seu veterinário para certificar tudo o que for exigido no atestado."
+    cls: warn
+  nonListed:
+    title: { en: "Incomplete documents, unusual origin or a dog that raises a concern", fr: "Documents incomplets, origine inhabituelle ou chien suscitant une inquiétude", es: "Documentos incompletos, origen inusual o un perro que suscita una preocupación", pt: "Documentos incompletos, origem incomum ou um cachorro que gera preocupação" }
+    body:
+      en: "A dog that arrives without a valid government veterinary certificate, with paperwork that does not match the animal, or after passing through a higher-risk area, is the hardest case. Under the Animal Quarantine Ordinance, 1979 and Rules, 1980, AQD may inspect, detain, quarantine, refuse or return an animal that does not comply — potentially at the owner's expense. If your situation is unusual, contact AQD before you travel to agree the documents and process in advance."
+      fr: "Un chien qui arrive sans certificat vétérinaire gouvernemental valide, avec des documents ne correspondant pas à l'animal, ou après avoir transité par une zone à risque plus élevé, constitue le cas le plus difficile. Au titre de l'Animal Quarantine Ordinance de 1979 et des règles de 1980, l'AQD peut inspecter, retenir, mettre en quarantaine, refuser ou renvoyer un animal non conforme — potentiellement aux frais du propriétaire. Si ta situation est inhabituelle, contacte l'AQD avant de voyager pour convenir à l'avance des documents et de la procédure."
+      es: "Un perro que llega sin un certificado veterinario gubernamental válido, con documentación que no coincide con el animal, o tras haber transitado por una zona de mayor riesgo, es el caso más difícil. En virtud de la Animal Quarantine Ordinance de 1979 y las Rules de 1980, el AQD puede inspeccionar, retener, poner en cuarentena, rechazar o devolver a un animal que no cumpla — potencialmente a cargo del propietario. Si tu situación es inusual, contacta con el AQD antes de viajar para acordar de antemano la documentación y el procedimiento."
+      pt: "Um cachorro que chega sem um atestado veterinário governamental válido, com documentação que não coincide com o animal, ou depois de passar por uma área de maior risco, é o caso mais difícil. Segundo a Portaria de Quarentena Animal de 1979 e o regulamento de 1980, o AQD pode inspecionar, reter, colocar em quarentena, recusar ou devolver um animal em não conformidade — possivelmente às custas do dono. Se a sua situação for incomum, entre em contato com o AQD antes de viajar para combinar os documentos e o procedimento com antecedência."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Pakistan depends on whether the certificate and vaccination records are complete and match the animal."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Pakistan dépend du fait que le certificat et le carnet de vaccination soient complets et correspondent à l'animal."
+    es: "Lo que ocurre cuando tu perro llega a Pakistán depende de que el certificado y el registro de vacunación estén completos y coincidan con el animal."
+    pt: "O que acontece quando o seu cachorro chega ao Paquistão depende de o atestado e os registros de vacinação estarem completos e coincidirem com o animal."
+  points:
+    - en: "Arrive at a port of entry served by an AQD station (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar or Quetta) so the animal can be inspected and cleared."
+      fr: "Arrive dans un point d'entrée desservi par une station de l'AQD (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar ou Quetta) afin que l'animal puisse être inspecté et dédouané."
+      es: "Llega a un punto de entrada atendido por una estación del AQD (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar o Quetta) para que el animal pueda ser inspeccionado y despachado."
+      pt: "Chegue a um ponto de entrada atendido por um posto do AQD (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar ou Quetta) para que o animal possa ser inspecionado e liberado."
+    - en: "Present the original veterinary health certificate, vaccination records and the animal's identification to the AQD quarantine officer."
+      fr: "Présente le certificat vétérinaire original, le carnet de vaccination et l'identification de l'animal à l'agent de quarantaine de l'AQD."
+      es: "Presenta el certificado sanitario veterinario original, el registro de vacunación y la identificación del animal al oficial de cuarentena del AQD."
+      pt: "Apresente o atestado de saúde veterinário original, os registros de vacinação e a identificação do animal ao agente de quarentena do AQD."
+    - en: "The animal is cleared through the Animal Quarantine Department; import clearance (Release Order) is handled at the port, and the dog also clears Pakistan Customs (FBR) as accompanied baggage/personal effects."
+      fr: "L'animal est dédouané par l'Animal Quarantine Department ; le dédouanement d'importation (Release Order) est traité au port, et le chien passe aussi la douane pakistanaise (FBR) au titre des bagages accompagnés / effets personnels."
+      es: "El animal es despachado por el Animal Quarantine Department; el despacho de importación (Release Order) se gestiona en el puerto, y el perro también pasa la aduana pakistaní (FBR) como equipaje acompañado / efectos personales."
+      pt: "O animal é liberado pelo Animal Quarantine Department; a liberação de importação (Release Order) é processada no ponto de entrada, e o cachorro também passa pela Alfândega do Paquistão (FBR) como bagagem acompanhada/pertences pessoais."
+    - en: "If documents are missing or invalid, or the certificate does not match the dog, AQD may detain, quarantine, refuse or return the animal under the Animal Quarantine Ordinance, 1979 — potentially at the owner's expense."
+      fr: "Si des documents manquent ou sont invalides, ou si le certificat ne correspond pas au chien, l'AQD peut retenir, mettre en quarantaine, refuser ou renvoyer l'animal au titre de l'Animal Quarantine Ordinance de 1979 — potentiellement aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, o si el certificado no coincide con el perro, el AQD puede retener, poner en cuarentena, rechazar o devolver al animal en virtud de la Animal Quarantine Ordinance de 1979 — potencialmente a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, ou se o atestado não coincidir com o cachorro, o AQD pode reter, colocar em quarentena, recusar ou devolver o animal segundo a Portaria de Quarentena Animal de 1979 — possivelmente às custas do dono."
+    - en: "Because a pet-specific advance import permit and any quarantine are not published online, contact AQD before departure to confirm the exact port process for your arrival."
+      fr: "Comme un permis d'importation préalable propre aux animaux et une éventuelle quarantaine ne sont pas publiés en ligne, contacte l'AQD avant le départ pour confirmer la procédure exacte au point d'entrée pour ton arrivée."
+      es: "Como un permiso de importación previo específico para mascotas y una posible cuarentena no están publicados en línea, contacta con el AQD antes de la salida para confirmar el procedimiento exacto en el puerto para tu llegada."
+      pt: "Como uma autorização de importação prévia específica para animais de estimação e uma eventual quarentena não são publicadas on-line, entre em contato com o AQD antes da partida para confirmar o procedimento exato no ponto de entrada da sua chegada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The official sources reviewed — the Animal Quarantine Department, the Ministry of National Food Security & Research and the government veterinary health certificate for dogs — do not publish a breed-specific import ban for dogs entering Pakistan."
+    fr: "Les sources officielles consultées — l'Animal Quarantine Department, le ministère de la Sécurité alimentaire nationale et de la Recherche et le certificat vétérinaire gouvernemental pour les chiens — ne publient pas d'interdiction d'importation liée à la race pour les chiens entrant au Pakistan."
+    es: "Las fuentes oficiales consultadas — el Animal Quarantine Department, el Ministerio de Seguridad Alimentaria Nacional e Investigación y el certificado sanitario veterinario gubernamental para perros — no publican una prohibición de importación por raza para los perros que entran en Pakistán."
+    pt: "As fontes oficiais analisadas — o Animal Quarantine Department, o Ministry of National Food Security & Research e o atestado de saúde veterinário oficial para cachorros — não publicam uma proibição de importação específica por raça para cachorros que entram no Paquistão."
+  cat1:
+    en: "No national breed-specific import ban is published in the reviewed federal sources. Claims circulating on commercial pet-relocation and aggregator sites that certain breeds (for example pit-bull types or Rottweilers) are banned from import could not be confirmed in any official Pakistani source and are not relied on here."
+    fr: "Aucune interdiction nationale d'importation liée à la race n'est publiée dans les sources fédérales consultées. Les affirmations circulant sur des sites commerciaux de relocalisation d'animaux et des agrégateurs selon lesquelles certaines races (par exemple les types pit-bull ou les Rottweilers) seraient interdites d'importation n'ont pu être confirmées dans aucune source officielle pakistanaise et ne sont pas retenues ici."
+    es: "No se publica ninguna prohibición nacional de importación por raza en las fuentes federales consultadas. Las afirmaciones que circulan en sitios comerciales de reubicación de mascotas y agregadores según las cuales ciertas razas (por ejemplo, los tipos pit bull o los Rottweiler) estarían prohibidas para la importación no pudieron confirmarse en ninguna fuente oficial pakistaní y no se dan por válidas aquí."
+    pt: "Nenhuma proibição nacional de importação específica por raça é publicada nas fontes federais analisadas. Alegações que circulam em sites comerciais de mudança de animais de estimação e agregadores de que certas raças (por exemplo, tipos pit bull ou Rottweilers) são proibidas de importação não puderam ser confirmadas em nenhuma fonte oficial paquistanesa e não são usadas aqui."
+  cat2:
+    en: "Restrictions in practice may instead come from airline policies (many carriers refuse or restrict snub-nosed/brachycephalic breeds in the hold and set their own breed rules), and provincial or municipal authorities in Pakistan may regulate the keeping of certain dogs. These are not federal import bans; verify them separately with your airline and, where relevant, the local authority."
+    fr: "En pratique, les restrictions peuvent plutôt provenir des politiques des compagnies aériennes (de nombreux transporteurs refusent ou limitent les races brachycéphales / au nez court en soute et fixent leurs propres règles de race), et les autorités provinciales ou municipales au Pakistan peuvent réglementer la détention de certains chiens. Ce ne sont pas des interdictions fédérales d'importation ; vérifie-les séparément auprès de ta compagnie aérienne et, le cas échéant, de l'autorité locale."
+    es: "En la práctica, las restricciones pueden proceder, en cambio, de las políticas de las aerolíneas (muchas compañías rechazan o limitan las razas de hocico chato / braquicéfalas en la bodega y fijan sus propias normas de raza), y las autoridades provinciales o municipales de Pakistán pueden regular la tenencia de ciertos perros. No son prohibiciones federales de importación; verifícalas por separado con tu aerolínea y, cuando proceda, con la autoridad local."
+    pt: "Na prática, as restrições podem vir das políticas das companhias aéreas (muitas recusam ou restringem raças de focinho achatado/braquicefálicas no porão e definem as próprias normas de raça), e autoridades provinciais ou municipais no Paquistão podem regular a posse de certos cachorros. Essas não são proibições federais de importação; verifique-as separadamente com a sua companhia aérea e, quando relevante, com a autoridade local."
+  note:
+    en: "Because breed rules can come from airlines and local authorities rather than federal import law, confirm your dog's breed is accepted by your carrier before booking and re-check with AQD for any future change to national import rules."
+    fr: "Comme les règles de race peuvent provenir des compagnies aériennes et des autorités locales plutôt que de la loi fédérale d'importation, vérifie que la race de ton chien est acceptée par ton transporteur avant de réserver et revérifiez auprès de l'AQD toute évolution future des règles nationales d'importation."
+    es: "Como las normas de raza pueden proceder de las aerolíneas y las autoridades locales más que de la ley federal de importación, confirma que tu aerolínea acepta la raza de tu perro antes de reservar y vuelve a comprobar con el AQD cualquier cambio futuro en las normas nacionales de importación."
+    pt: "Como as normas de raça podem vir de companhias aéreas e autoridades locais, e não da lei federal de importação, confirme que a raça do seu cachorro é aceita pela sua companhia antes de reservar e verifique novamente com o AQD qualquer mudança futura nas normas nacionais de importação."
+
+checklist:
+  - en: "Contact AQD before departure to confirm any advance import permit, vaccination timing, minimum age and quarantine for your route"
+    fr: "Contacte l'AQD avant le départ pour confirmer tout permis d'importation préalable, calendrier vaccinal, âge minimum et quarantaine pour ton trajet"
+    es: "Contacta con el AQD antes de la salida para confirmar cualquier permiso de importación previo, calendario de vacunación, edad mínima y cuarentena para tu ruta"
+    pt: "Entre em contato com o AQD antes da partida para confirmar qualquer autorização de importação prévia, o prazo da vacinação, a idade mínima e a quarentena para a sua rota"
+  - en: "Rabies vaccination up to date, with complete dated records (date, vaccine, validity)"
+    fr: "Vaccination antirabique à jour, avec un carnet complet et daté (date, vaccin, validité)"
+    es: "Vacunación antirrábica al día, con un registro completo y fechado (fecha, vacuna, valide)"
+    pt: "Vacinação antirrábica em dia, com registros completos e datados (data, vacina, validade)"
+  - en: "Government veterinary health certificate for Pakistan, issued by a licensed veterinarian, valid within 30 days of issuance"
+    fr: "Certificat vétérinaire gouvernemental pour le Pakistan, délivré par un vétérinaire agréé, valable dans les 30 jours suivant l'émission"
+    es: "Certificado sanitario veterinario gubernamental para Pakistán, expedido por un veterinario colegiado, válido dentro de los 30 días siguientes a la emisión"
+    pt: "Atestado de saúde veterinário oficial para o Paquistão, emitido por um veterinário licenciado, válido dentro de 30 dias da emissão"
+  - en: "Certificate confirms inspection, freedom from infectious disease, and origin from an area not quarantined for rabies"
+    fr: "Le certificat atteste l'inspection, l'absence de maladie infectieuse et l'origine d'une zone non placée en quarantaine antirabique"
+    es: "El certificado acredita la inspección, la ausencia de enfermedad infecciosa y el origen en una zona no sometida a cuarentena por rabia"
+    pt: "O atestado confirma a inspeção, a ausência de doença infecciosa e a origem em uma área não colocada em quarentena por raiva"
+  - en: "ISO 11784/11785 microchip recommended so identity matches the certificate (bring a scanner if in doubt)"
+    fr: "Puce ISO 11784/11785 recommandée pour que l'identité corresponde au certificat (prévois un lecteur en cas de doute)"
+    es: "Microchip ISO 11784/11785 recomendado para que la identidad coincida con el certificado (lleva un lector en caso de duda)"
+    pt: "Microchip ISO 11784/11785 recomendado para que a identidade coincida com o atestado (leve um leitor em caso de dúvida)"
+  - en: "Arrive at a port served by an AQD station (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar, Quetta)"
+    fr: "Arrive dans un point d'entrée desservi par une station de l'AQD (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar, Quetta)"
+    es: "Llega a un punto de entrada atendido por una estación del AQD (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar, Quetta)"
+    pt: "Chegue a um ponto de entrada atendido por um posto do AQD (Karachi, Lahore, Islamabad, Multan, Sialkot, Peshawar, Quetta)"
+  - en: "Originals of all documents carried for AQD inspection and Pakistan Customs (FBR) clearance"
+    fr: "Originaux de tous les documents à présenter pour l'inspection AQD et le dédouanement de la douane pakistanaise (FBR)"
+    es: "Originales de todos los documentos para la inspección del AQD y el despacho de la aduana pakistaní (FBR)"
+    pt: "Originais de todos os documentos levados para a inspeção do AQD e a liberação da Alfândega do Paquistão (FBR)"
+  - en: "IATA-compliant crate if travelling in the hold; confirm your breed is accepted by the airline"
+    fr: "Caisse conforme IATA si voyage en soute ; vérifie que ta race est acceptée par la compagnie aérienne"
+    es: "Jaula conforme a IATA si viaja en bodega; confirma que la aerolínea acepta tu raza"
+    pt: "Caixa de transporte em conformidade com a IATA se for viajar no porão; confirme que a raça do seu cachorro é aceita pela companhia aérea"
+
+sources:
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Pakistan", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Pakistan", es: "USDA APHIS — Pet Travel de Estados Unidos a Pakistán", pt: "USDA APHIS — Viagem de Animais de Estimação dos Estados Unidos para o Paquistão" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-pakistan"
+  - label: { en: "USDA APHIS — Veterinary Health Certificate for Export of Birds, Dogs and Cats to Pakistan (PDF)", fr: "USDA APHIS — Certificat vétérinaire pour l'export d'oiseaux, chiens et chats vers le Pakistan (PDF)", es: "USDA APHIS — Veterinary Health Certificate para la exportación de aves, perros y gatos a Pakistán (PDF)", pt: "USDA APHIS — Atestado de Saúde Veterinário para Exportação de Aves, Cachorros e Gatos para o Paquistão (PDF)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/pakistan-dog-cat-bird.pdf"
+  - label: { en: "Animal Quarantine Department (AQD) — Services", fr: "Animal Quarantine Department (AQD) — Services", es: "Animal Quarantine Department (AQD) — Services", pt: "Animal Quarantine Department (AQD) — Serviços" }
+    url: "http://www.aqd.gov.pk/?page_id=221"
+  - label: { en: "Animal Quarantine Department (AQD) — Introduction", fr: "Animal Quarantine Department (AQD) — Introduction", es: "Animal Quarantine Department (AQD) — Introduction", pt: "Animal Quarantine Department (AQD) — Apresentação" }
+    url: "http://www.aqd.gov.pk/?page_id=176"
+  - label: { en: "Pakistan Animal Quarantine (Import and Export of Animals and Animal Products) Ordinance, 1979 (Pakistan Code)", fr: "Pakistan Animal Quarantine (Import and Export of Animals and Animal Products) Ordinance de 1979 (Pakistan Code)", es: "Pakistan Animal Quarantine (Import and Export of Animals and Animal Products) Ordinance de 1979 (Pakistan Code)", pt: "Portaria de Quarentena Animal do Paquistão (Importação e Exportação de Animais e Produtos Animais), 1979 (Código do Paquistão)" }
+    url: "https://pakistancode.gov.pk/english/UY2FqaJw1-apaUY2Fqa-cpeW-sg-jjjjjjjjjjjjj"
+  - label: { en: "Pakistan Single Window — Animal Quarantine Department (import permit / release order)", fr: "Pakistan Single Window — Animal Quarantine Department (permis d'importation / release order)", es: "Pakistan Single Window — Animal Quarantine Department (permiso de importación / release order)", pt: "Pakistan Single Window — Animal Quarantine Department (autorização de importação / release order)" }
+    url: "https://psw.gov.pk/aqd"
+  - label: { en: "Ministry of National Food Security & Research — Attachment Departments (AQD)", fr: "Ministère de la Sécurité alimentaire nationale et de la Recherche — Départements rattachés (AQD)", es: "Ministerio de Seguridad Alimentaria Nacional e Investigación — Departamentos adscritos (AQD)", pt: "Ministry of National Food Security & Research — Departamentos Vinculados (AQD)" }
+    url: "https://mnfsr.gov.pk/Detail/MWIyMGMwYmMtZTQxMS00NWIzLTg2YzYtM2ZlZTNkNTRmNzZl"
+
+seo:
+  title: { en: "Pakistan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Pakistan — Guide", es: "Requisitos de entrada de perros en Pakistán — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Paquistão — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Pakistan With Your Dog: Entry Requirements (2026)", fr: "Voyager au Pakistan avec ton chien : formalités (2026)", es: "Viajar a Pakistán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Paquistão: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official rules for bringing a dog into Pakistan: government veterinary health certificate, recorded rabies vaccination, no antibody test. Sourced and dated."
+    fr: "Règles officielles pour faire entrer un chien au Pakistan : certificat vétérinaire gouvernemental, vaccination antirabique consignée, pas de titrage. Sourcé et daté."
+    es: "Normas oficiales para traer un perro a Pakistán: certificado sanitario veterinario gubernamental, vacunación antirrábica registrada. Con fuentes y fecha."
+    pt: "Normas oficiais para levar um cachorro para o Paquistão: atestado de saúde veterinário oficial, vacinação antirrábica registrada, sem teste sorológico."
+  slug: "pakistan"
+  shortDesc:
+    en: "What you need to bring a dog into Pakistan: a government veterinary health certificate, a current rabies vaccination and AQD clearance — with several rules to confirm directly with AQD."
+    fr: "Ce qu'il faut pour faire entrer un chien au Pakistan : un certificat vétérinaire gouvernemental, une vaccination antirabique en cours et le dédouanement AQD — avec plusieurs règles à confirmer directement auprès de l'AQD."
+    es: "Lo que necesitas para traer un perro a Pakistán: un certificado sanitario veterinario gubernamental, una vacunación antirrábica vigente y el despacho del AQD — con varias normas por confirmar directamente con el AQD."
+    pt: "O que você precisa para levar um cachorro para o Paquistão: um atestado de saúde veterinário oficial, uma vacinação antirrábica em dia e a liberação do AQD — com várias normas a confirmar diretamente com o AQD."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

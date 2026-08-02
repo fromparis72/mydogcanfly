@@ -1,0 +1,378 @@
+# Country Entry Guide — Ethiopia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_et
+iso2: "ET"
+name: { en: "Ethiopia", fr: "Éthiopie", es: "Etiopía", pt: "Etiópia" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: Ministry of Agriculture
+  authorityUrl: http://moa.gov.et/
+  intro:
+    en: "Ethiopia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Ministry of Agriculture's Animal Health Regulatory Directorate."
+    fr: "L'Éthiopie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction de la réglementation de la santé animale du ministère de l'Agriculture."
+    es: "Etiopía no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Dirección Reguladora de Sanidad Animal del Ministerio de Agricultura."
+    pt: "A Etiópia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Diretoria Reguladora de Saúde Animal do Ministério da Agricultura."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "The Ministry of Agriculture's Animal Health Regulatory Directorate regulates live-animal export and issues the veterinary certificate before departure."
+        fr: "La Direction de la réglementation de la santé animale du ministère de l'Agriculture régule l'export d'animaux vivants et délivre le certificat vétérinaire avant le départ."
+        es: "La Dirección Reguladora de Sanidad Animal del Ministerio de Agricultura regula la exportación de animales vivos y emite el certificado veterinario antes de salir."
+        pt: "A Diretoria Reguladora de Saúde Animal do Ministério da Agricultura regula a exportação de animais vivos e emite o certificado veterinário antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, ele permanece válido por toda a vida enquanto a vacinação antirrábica estiver em dia — vale a pena verificar isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Ethiopia with your dog", fr: "Voyager en Éthiopie avec ton chien", es: "Viajar a Etiopía con tu perro", pt: "Viajar para a Etiópia com seu cachorro" }
+  intro:
+    en: >-
+      Ethiopia is not an EU country, and entry for a dog is controlled by its own veterinary
+      authority — the Ethiopian Agricultural Authority (EAA), the Animal Regulatory Sector under the
+      Ministry of Agriculture. The central rule is clear: live animals may not be imported without an
+      import permit obtained in advance from the Ethiopian authority, and the dog must be accompanied
+      by an official veterinary health certificate issued by the competent (government) veterinary
+      authority of the country of departure. What is unusual about Ethiopia is that the detailed pet
+      conditions are not published in a public checklist: USDA APHIS confirms that the specific
+      requirements for pets are "not known" and directs travellers to obtain the ministry import
+      permit, which itself sets out the exact conditions for your dog. Rabies is endemic in Ethiopia,
+      so a rabies vaccination will almost certainly be part of those conditions, but the precise timing,
+      microchip, blood-test and quarantine rules are decided on your permit. This guide explains what is
+      officially confirmed, and flags clearly what remains unpublished, so you know what to ask before
+      you book.
+    fr: >-
+      L'Éthiopie n'est pas un pays de l'UE, et l'entrée d'un chien est contrôlée par sa propre autorité
+      vétérinaire — l'Ethiopian Agricultural Authority (EAA), secteur de réglementation animale rattaché
+      au ministère de l'Agriculture. La règle centrale est claire : aucun animal vivant ne peut être
+      importé sans un permis d'importation obtenu à l'avance auprès de l'autorité éthiopienne, et le
+      chien doit être accompagné d'un certificat vétérinaire officiel délivré par l'autorité vétérinaire
+      compétente (gouvernementale) du pays de départ. La particularité de l'Éthiopie est que le détail
+      des conditions applicables aux animaux de compagnie n'est pas publié dans une liste publique :
+      l'USDA APHIS confirme que les exigences spécifiques aux animaux de compagnie sont « non connues »
+      et renvoie les voyageurs vers le permis d'importation du ministère, qui fixe lui-même les
+      conditions exactes pour ton chien. La rage est endémique en Éthiopie : une vaccination
+      antirabique fera donc très probablement partie de ces conditions, mais le calendrier précis, la
+      puce, le test sanguin et les règles de quarantaine sont fixés sur ton permis. Ce guide indique
+      ce qui est officiellement confirmé et signale clairement ce qui reste non publié, pour savoir quoi
+      demander avant de réserver.
+    es: >-
+      Etiopía no es un país de la UE, y la entrada de un perro está controlada por su propia autoridad
+      veterinaria — la Ethiopian Agricultural Authority (EAA), el Sector de Regulación Animal adscrito
+      al Ministerio de Agricultura. La regla central es clara: no se pueden importar animales vivos sin
+      un permiso de importación obtenido por adelantado ante la autoridad etíope, y el perro debe ir
+      acompañado de un certificado sanitario veterinario oficial expedido por la autoridad veterinaria
+      competente (gubernamental) del país de salida. Lo peculiar de Etiopía es que las condiciones
+      detalladas para las mascotas no se publican en una lista pública: USDA APHIS confirma que los
+      requisitos específicos para las mascotas son "no conocidos" y remite a los viajeros a obtener el
+      permiso de importación del ministerio, que fija por sí mismo las condiciones exactas para tu
+      perro. La rabia es endémica en Etiopía, por lo que una vacunación antirrábica formará casi con
+      seguridad parte de esas condiciones, pero el calendario preciso, el microchip, el análisis de
+      sangre y las normas de cuarentena se deciden en tu permiso. Esta guía explica lo que está
+      oficialmente confirmado y señala con claridad lo que sigue sin publicarse, para que sepas qué
+      preguntar antes de reservar.
+
+    pt: "A Etiópia não é um país da UE, e a entrada de um cachorro é controlada pela sua própria autoridade veterinária — a Ethiopian Agricultural Authority (EAA), o setor de regulação animal do Ministério da Agricultura. A regra central é clara: animais vivos não podem ser importados sem uma autorização de importação obtida com antecedência junto à autoridade etíope, e o cachorro deve estar acompanhado de um atestado de saúde veterinário oficial, emitido pela autoridade veterinária competente (governamental) do país de partida. O que é incomum na Etiópia é que as condições detalhadas para animais de companhia não são publicadas em uma lista pública: o USDA APHIS confirma que as exigências específicas para animais de companhia \"não são conhecidas\" e orienta os viajantes a obter a autorização de importação do ministério, que por sua vez define as condições exatas para o cachorro. A raiva é endêmica na Etiópia, por isso uma vacinação antirrábica quase certamente fará parte dessas condições, mas as regras precisas de calendário, microchip, exame de sangue e quarentena são decididas na autorização. Este guia explica o que é oficialmente confirmado e assinala claramente o que permanece não comunicado, para que você saiba o que perguntar antes de reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — mandatory import permit, few published specifics", fr: "Difficile — permis d'importation obligatoire, peu de détails publiés", es: "Difícil — permiso de importación obligatorio, pocos detalles publicados", pt: "Difícil — autorização de importação obrigatória, poucos detalhes publicados" }
+
+prepTime:
+  eu:
+    en: "From Europe: no EU-passport shortcut. Allow well ahead of travel to obtain the EAA import permit and an official government-vet health certificate; the permit sets the exact conditions, so start early and confirm the timeline with the authority."
+    fr: "Depuis l'Europe : aucun raccourci « passeport UE ». Prévois largement avant le départ pour obtenir le permis d'importation de l'EAA et un certificat sanitaire officiel du vétérinaire gouvernemental ; le permis fixe les conditions exactes, alors anticipe et confirme le calendrier avec l'autorité."
+    es: "Desde Europa: no hay atajo de pasaporte de la UE. Prevé mucho tiempo antes del viaje para obtener el permiso de importación de la EAA y un certificado sanitario oficial del veterinario gubernamental; el permiso fija las condiciones exactas, así que empieza pronto y confirma el calendario con la autoridad."
+    pt: "Da Europa: nenhum atalho pelo passaporte europeu. Providenciar com bastante antecedência a autorização de importação da EAA e um atestado de saúde veterinário governamental oficial; a autorização define as condições exatas, portanto começar cedo e confirmar o prazo com a autoridade."
+  listed:
+    en: "Ethiopia does not publish a listed-country / origin-tiering scheme for pet entry. The same import-permit and health-certificate process applies; plan around the permit, not around an origin list."
+    fr: "L'Éthiopie ne publie pas de schéma de pays « listés » ni de classement par origine pour l'entrée des animaux. Le même processus de permis et de certificat s'applique ; organise-toi autour du permis, pas d'une liste d'origine."
+    es: "Etiopía no publica un esquema de países listados ni de clasificación por origen para la entrada de mascotas. Se aplica el mismo proceso de permiso de importación y certificado sanitario; organízate en torno al permiso, no a una lista de orígenes."
+    pt: "A Etiópia não publica um esquema de países listados / categorização por origem para a entrada de animais de companhia. Aplica-se o mesmo processo de autorização de importação e atestado de saúde; planejar em função da autorização, e não de uma lista de origens."
+  nonListed:
+    en: "From any origin: the exact steps depend on the conditions written on your EAA import permit. Because published detail is limited, confirm each requirement directly with the authority before booking."
+    fr: "Depuis toute origine : les étapes exactes dépendent des conditions inscrites sur ton permis d'importation EAA. Le détail publié étant limité, confirme chaque exigence directement auprès de l'autorité avant de réserver."
+    es: "Desde cualquier origen: los pasos exactos dependen de las condiciones escritas en tu permiso de importación de la EAA. Como el detalle publicado es limitado, confirma cada requisito directamente con la autoridad antes de reservar."
+    pt: "De qualquer origem: as etapas exatas dependem das condições indicadas na autorização de importação da EAA. Como o detalhamento publicado é limitado, confirmar cada exigência diretamente com a autoridade antes de reservar."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (por adelantado)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (government-endorsed)", fr: "Requis (visé par le gouvernement)", es: "Obligatorio (refrendado por el gobierno)", pt: "Obrigatório (endossado pelo governo)" }
+    cls: warn
+  - requirement: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    status: { en: "Unknown (not officially published)", fr: "Non communiqué (non publié officiellement)", es: "Desconocido (no publicado oficialmente)", pt: "Não comunicado (não publicado oficialmente)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Set by permit (rabies endemic)", fr: "Fixée par le permis (rage endémique)", es: "Fijada por el permiso (rabia endémica)", pt: "Definida pela autorização (raiva endêmica)" }
+    cls: neutral
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Unknown (not officially published)", fr: "Non communiqué (non publié officiellement)", es: "Desconocido (no publicado oficialmente)", pt: "Não comunicado (não publicado oficialmente)" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Unknown (permit-defined)", fr: "Non communiqué (défini par le permis)", es: "Desconocido (definido por el permiso)", pt: "Não comunicado (definido pela autorização)" }
+    cls: neutral
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "No published breed law found", fr: "Aucune loi de race publiée trouvée", es: "No se encontró ley de razas publicada", pt: "Nenhuma legislação sobre raças publicada encontrada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Ethiopia does not publish a public pet-import checklist; the Ethiopian Agricultural Authority (EAA) sets the exact conditions on your import permit, and only a veterinarian can confirm the procedure for your individual dog."
+    fr: "L'Éthiopie ne publie pas de liste publique pour l'importation d'animaux ; l'Ethiopian Agricultural Authority (EAA) fixe les conditions exactes sur ton permis d'importation, et seul un vétérinaire peut confirmer la procédure pour ton chien."
+    es: "Etiopía no publica una lista pública para la importación de mascotas; la Ethiopian Agricultural Authority (EAA) fija las condiciones exactas en tu permiso de importación, y solo un veterinario puede confirmar el procedimiento para tu perro."
+    pt: "A Etiópia não publica uma lista pública de exigências para a importação de animais de companhia; a Ethiopian Agricultural Authority (EAA) define as condições exatas na autorização de importação, e somente um médico-veterinário pode confirmar o procedimento para cada cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Ethiopia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Éthiopie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Etiopía (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Etiópia (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Ethiopia", fr: "Pays de destination — Éthiopie", es: "País de destino — Etiopía", pt: "País de destino — Etiópia" }
+      text:
+        en: "Ethiopia applies its own scheme through the Ethiopian Agricultural Authority (EAA): a prior import permit and an official veterinary health certificate are required for live animals. The permit itself lists the exact conditions for your dog, and detailed pet rules are not published publicly."
+        fr: "L'Éthiopie applique son propre schéma via l'Ethiopian Agricultural Authority (EAA) : un permis d'importation préalable et un certificat vétérinaire officiel sont exigés pour les animaux vivants. Le permis liste lui-même les conditions exactes pour ton chien, et les règles détaillées ne sont pas publiées publiquement."
+        es: "Etiopía aplica su propio esquema a través de la Ethiopian Agricultural Authority (EAA): para los animales vivos se exigen un permiso de importación previo y un certificado sanitario veterinario oficial. El propio permiso enumera las condiciones exactas para tu perro, y las normas detalladas para mascotas no se publican públicamente."
+        pt: "A Etiópia aplica seu próprio esquema por meio da Ethiopian Agricultural Authority (EAA): uma autorização de importação prévia e um atestado de saúde veterinário oficial são exigidos para animais vivos. A própria autorização lista as condições exatas para o cachorro, e as regras detalhadas para animais de companhia não são publicadas."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The veterinary health certificate must be issued and endorsed by the competent (government) veterinary authority of your departure country. When you apply for the import permit you must state the country of origin, means of transport, date of arrival, countries transited and port of entry."
+        fr: "Le certificat vétérinaire doit être délivré et visé par l'autorité vétérinaire compétente (gouvernementale) de ton pays de départ. Lors de la demande de permis, tu dois indiquer le pays d'origine, le moyen de transport, la date d'arrivée, les pays traversés et le point d'entrée."
+        es: "El certificado sanitario veterinario debe ser expedido y refrendado por la autoridad veterinaria competente (gubernamental) de tu país de salida. Al solicitar el permiso de importación debes indicar el país de origen, el medio de transporte, la fecha de llegada, los países en tránsito y el punto de entrada."
+        pt: "O atestado de saúde veterinário deve ser emitido e endossado pela autoridade veterinária competente (governamental) do país de partida. Ao solicitar a autorização de importação, é preciso indicar o país de origem, o meio de transporte, a data de chegada, os países de trânsito e o ponto de entrada."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "Rabies is endemic in Ethiopia and the authority controls animal-disease risk, so your dog's real origin and recent movements matter. Countries transited are part of the permit application and can shape the health certification the authority asks for."
+        fr: "La rage est endémique en Éthiopie et l'autorité maîtrise le risque de maladie animale : l'origine réelle et les déplacements récents de ton chien comptent. Les pays traversés font partie de la demande de permis et peuvent influencer la certification sanitaire exigée."
+        es: "La rabia es endémica en Etiopía y la autoridad controla el riesgo de enfermedades animales, por lo que el origen real y los desplazamientos recientes de tu perro importan. Los países en tránsito forman parte de la solicitud del permiso y pueden influir en la certificación sanitaria que exige la autoridad."
+        pt: "A raiva é endêmica na Etiópia, e a autoridade controla o risco de doenças animais, por isso a origem real e os deslocamentos recentes do cachorro importam. Os países de trânsito fazem parte do pedido de autorização e podem influenciar a certificação sanitária exigida pela autoridade."
+  note:
+    en: "So read the requirements below as Ethiopia's framework, then confirm the exact conditions with the EAA and your vet — the import permit is what lists the precise rules."
+    fr: "Lis donc les exigences ci-dessous comme le cadre éthiopien, puis confirme les conditions exactes auprès de l'EAA et de ton vétérinaire — c'est le permis d'importation qui liste les règles précises."
+    es: "Así que lee los requisitos siguientes como el marco de Etiopía y luego confirma las condiciones exactas con la EAA y tu veterinario — es el permiso de importación el que enumera las reglas precisas."
+    pt: "Portanto, ler as exigências abaixo como o quadro geral da Etiópia e, em seguida, confirmar as condições exatas com a EAA e com o veterinário — é a autorização de importação que lista as regras precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Obtained in advance from the Ethiopian Agricultural Authority (Animal Regulatory Sector, Ministry of Agriculture) before the dog is shipped. The application states the animal, country of origin, means of transport, date of arrival, countries transited and port of entry; the permit then outlines the specific conditions to be met.", fr: "À obtenir à l'avance auprès de l'Ethiopian Agricultural Authority (secteur de réglementation animale, ministère de l'Agriculture) avant l'expédition du chien. La demande précise l'animal, le pays d'origine, le moyen de transport, la date d'arrivée, les pays traversés et le point d'entrée ; le permis détaille ensuite les conditions à respecter.", es: "Se obtiene por adelantado ante la Ethiopian Agricultural Authority (Sector de Regulación Animal, Ministerio de Agricultura) antes de enviar al perro. La solicitud indica el animal, el país de origen, el medio de transporte, la fecha de llegada, los países en tránsito y el punto de entrada; el permiso detalla después las condiciones específicas que deben cumplirse.", pt: "Obtida com antecedência junto à Ethiopian Agricultural Authority (setor de regulação animal, Ministério da Agricultura) antes do envio do cachorro. O pedido indica o animal, o país de origem, o meio de transporte, a data de chegada, os países de trânsito e o ponto de entrada; a autorização então define as condições específicas a cumprir." }
+    exceptions: { en: "No exceptions found — a prior import permit is required for live animals. Processing is handled via the authority's certification services and the Ethiopian Electronic Single Window.", fr: "Aucune exception trouvée — un permis d'importation préalable est requis pour les animaux vivants. Le traitement se fait via les services de certification de l'autorité et le guichet unique électronique éthiopien.", es: "No se hallaron excepciones — para los animales vivos se exige un permiso de importación previo. La tramitación se realiza a través de los servicios de certificación de la autoridad y la Ventanilla Única Electrónica de Etiopía.", pt: "Nenhuma exceção encontrada — uma autorização de importação prévia é exigida para animais vivos. O processamento é feito por meio dos serviços de certificação da autoridade e da Ethiopian Electronic Single Window." }
+    ref: { en: "USDA APHIS — Export Live Animals to Ethiopia (apply for an import permit at the appropriate ministry); EAA Animal Regulatory Sector", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Éthiopie (permis d'importation au ministère compétent) ; EAA, secteur de réglementation animale", es: "USDA APHIS — Exportación de animales vivos a Etiopía (solicitar un permiso de importación en el ministerio competente); EAA, Sector de Regulación Animal", pt: "USDA APHIS — Export Live Animals to Ethiopia (solicitar uma autorização de importação junto ao ministério competente); setor de regulação animal da EAA" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An international/export veterinary health certificate issued by the competent (government) veterinary authority of the exporting country must accompany the animal. It certifies the animal's health and the conditions set by Ethiopia's animal-health regulator.", fr: "Un certificat vétérinaire international/export délivré par l'autorité vétérinaire compétente (gouvernementale) du pays exportateur doit accompagner l'animal. Il atteste l'état de santé de l'animal et les conditions fixées par le régulateur sanitaire éthiopien.", es: "Un certificado sanitario veterinario internacional/de exportación expedido por la autoridad veterinaria competente (gubernamental) del país exportador debe acompañar al animal. Certifica el estado de salud del animal y las condiciones fijadas por el regulador sanitario animal de Etiopía.", pt: "Um atestado de saúde veterinário internacional/de exportação, emitido pela autoridade veterinária competente (governamental) do país exportador, deve acompanhar o animal. Ele certifica a saúde do animal e as condições definidas pelo regulador de saúde animal da Etiópia." }
+    exceptions: { en: "The USA has no APHIS-published dog/cat certificate for Ethiopia, so exporters use the certificate specified by the Ethiopian import permit. Content and timing follow the permit.", fr: "Les États-Unis n'ont pas de certificat chien/chat publié par l'APHIS pour l'Éthiopie ; les exportateurs utilisent donc le certificat indiqué par le permis d'importation éthiopien. Le contenu et le délai suivent le permis.", es: "EE. UU. no dispone de un certificado para perros/gatos publicado por APHIS para Etiopía, por lo que los exportadores usan el certificado indicado por el permiso de importación etíope. El contenido y los plazos siguen el permiso.", pt: "Os EUA não possuem um certificado para cachorros/gatos publicado pelo APHIS para a Etiópia, portanto os exportadores usam o certificado especificado na autorização de importação etíope. O conteúdo e o calendário seguem a autorização." }
+    ref: { en: "USDA FAS FAIRS (Ethiopia) — import permit & veterinary certificate for animal imports; USDA APHIS Ethiopia", fr: "USDA FAS FAIRS (Éthiopie) — permis d'importation et certificat vétérinaire pour les importations d'animaux ; USDA APHIS Éthiopie", es: "USDA FAS FAIRS (Etiopía) — permiso de importación y certificado veterinario para la importación de animales; USDA APHIS Etiopía", pt: "USDA FAS FAIRS (Etiópia) — autorização de importação e certificado veterinário para importação de animais; USDA APHIS Etiópia" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "Not specified in any official Ethiopian source we could verify. An ISO 11784/11785 15-digit microchip is best practice for international travel and is worth confirming with the EAA when you apply for the permit.", fr: "Non précisé dans une source officielle éthiopienne vérifiable. Une puce ISO 11784/11785 à 15 chiffres est une bonne pratique pour les voyages internationaux et mérite d'être confirmée auprès de l'EAA lors de la demande de permis.", es: "No especificado en ninguna fuente oficial etíope que hayamos podido verificar. Un microchip ISO 11784/11785 de 15 dígitos es una buena práctica para los viajes internacionales y conviene confirmarlo con la EAA al solicitar el permiso.", pt: "Não especificado em nenhuma fonte oficial etíope que se pôde verificar. Um microchip ISO 11784/11785 de 15 dígitos é a melhor prática para viagens internacionais, e vale a pena confirmá-lo com a EAA ao solicitar a autorização." }
+    exceptions: { en: "No official statement found making the microchip mandatory or optional for pet entry into Ethiopia.", fr: "Aucune déclaration officielle trouvée rendant la puce obligatoire ou facultative pour l'entrée d'un animal en Éthiopie.", es: "No se halló ninguna declaración oficial que haga el microchip obligatorio u opcional para la entrada de una mascota en Etiopía.", pt: "Nenhuma declaração oficial encontrada que torne o microchip obrigatório ou opcional para a entrada de animais de companhia na Etiópia." }
+    ref: { en: "Not published in official sources (EAA / USDA APHIS)", fr: "Non publié dans les sources officielles (EAA / USDA APHIS)", es: "No publicado en las fuentes oficiales (EAA / USDA APHIS)", pt: "Não publicado em fontes oficiais (EAA / USDA APHIS)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Set by the import permit", fr: "Fixée par le permis d'importation", es: "Fijada por el permiso de importación", pt: "Definida pela autorização de importação" }
+    when: { en: "The exact rabies-vaccination requirement (timing and validity) is not published in a public checklist; it is set by the import permit and the origin-country health certificate. Ethiopia is a rabies-endemic country, so a valid rabies vaccination should be expected and confirmed with the EAA.", fr: "L'exigence exacte de vaccination antirabique (calendrier et validité) n'est pas publiée dans une liste publique ; elle est fixée par le permis d'importation et le certificat sanitaire du pays d'origine. L'Éthiopie étant un pays où la rage est endémique, une vaccination antirabique valide est à prévoir et à confirmer auprès de l'EAA.", es: "El requisito exacto de vacunación antirrábica (calendario y valide) no se publica en una lista pública; lo fijan el permiso de importación y el certificado sanitario del país de origen. Etiopía es un país donde la rabia es endémica, por lo que cabe esperar una vacunación antirrábica válida y conviene confirmarla con la EAA.", pt: "A exigência exata de vacinação antirrábica (calendário e validade) não é publicada em uma lista pública; é definida pela autorização de importação e pelo atestado de saúde do país de origem. A Etiópia é um país de raiva endêmica, por isso deve-se esperar e confirmar com a EAA uma vacinação antirrábica válida." }
+    exceptions: { en: "No official published exemption or precise interval could be verified; rely on the conditions written on your permit.", fr: "Aucune exemption officielle ni intervalle précis n'a pu être vérifié ; fie-toi aux conditions inscrites sur ton permis.", es: "No se pudo verificar ninguna exención oficial publicada ni un intervalo preciso; guíate por las condiciones escritas en tu permiso.", pt: "Nenhuma isenção ou intervalo preciso oficial e publicado pôde ser verificado; seguir as condições indicadas na autorização." }
+    ref: { en: "Not published as a public specification (EAA / USDA APHIS); rabies endemicity is general public-health context", fr: "Non publié comme spécification publique (EAA / USDA APHIS) ; l'endémicité rabique relève du contexte de santé publique général", es: "No publicado como especificación pública (EAA / USDA APHIS); la endemicidad de la rabia es contexto general de salud pública", pt: "Não publicado como especificação pública (EAA / USDA APHIS); a endemicidade da raiva é um contexto geral de saúde pública" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Ethiopian source states whether a rabies antibody test (blood test) is required for a dog to enter. Confirm directly with the EAA before assuming it is or is not needed.", fr: "Aucune source officielle éthiopienne n'indique si un titrage des anticorps antirabiques (prise de sang) est exigé pour l'entrée d'un chien. À confirmer directement auprès de l'EAA avant de supposer qu'il est requis ou non.", es: "Ninguna fuente oficial etíope indica si se exige una prueba de titulación de rabia (análisis de sangre) para la entrada de un perro. Confírmalo directamente con la EAA antes de dar por supuesto que se necesita o no.", pt: "Nenhuma fonte oficial etíope declara se um teste sorológico antirrábico (exame de sangue) é exigido para a entrada de um cachorro. Confirmar diretamente com a EAA antes de presumir que seja ou não necessário." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (EAA / USDA APHIS)", fr: "Non publié dans les sources officielles (EAA / USDA APHIS)", es: "No publicado en las fuentes oficiales (EAA / USDA APHIS)", pt: "Não publicado em fontes oficiais (EAA / USDA APHIS)" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Ethiopian source specifies internal or external parasite (tapeworm/tick) treatment for dogs. If applicable it would appear on the import permit or health-certificate model.", fr: "Aucune source officielle éthiopienne ne précise de traitement antiparasitaire interne ou externe (ténia/tiques) pour les chiens. Le cas échéant, il figurerait sur le permis d'importation ou le modèle de certificat sanitaire.", es: "Ninguna fuente oficial etíope especifica un tratamiento antiparasitario interno o externo (tenia/garrapatas) para los perros. Si procediera, figuraría en el permiso de importación o en el modelo de certificado sanitario.", pt: "Nenhuma fonte oficial etíope especifica um tratamento antiparasitário interno ou externo (contra tênias/carrapatos) para cachorros. Se aplicável, isso constaria na autorização de importação ou no modelo de atestado de saúde." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (EAA / USDA APHIS)", fr: "Non publié dans les sources officielles (EAA / USDA APHIS)", es: "No publicado en las fuentes oficiales (EAA / USDA APHIS)", pt: "Não publicado em fontes oficiais (EAA / USDA APHIS)" }
+  - item: { en: "Veterinary control at the point of entry", fr: "Contrôle vétérinaire au point d'entrée", es: "Control veterinario en el punto de entrada", pt: "Controle veterinário no ponto de entrada" }
+    required: { en: "Yes (regulatory control)", fr: "Oui (contrôle réglementaire)", es: "Sí (control reglamentario)", pt: "Sim (controle regulamentar)" }
+    when: { en: "Live-animal imports are subject to the authority's veterinary regulatory control and certification at entry, processed through the EAA's Integrated Import and Export Certification Services and the Electronic Single Window. Present the original import permit and health certificate at the port of entry.", fr: "Les importations d'animaux vivants sont soumises au contrôle réglementaire vétérinaire et à la certification de l'autorité à l'entrée, via les services intégrés de certification import/export de l'EAA et le guichet unique électronique. Présente le permis d'importation et le certificat sanitaire originaux au point d'entrée.", es: "Las importaciones de animales vivos están sujetas al control reglamentario veterinario y a la certificación de la autoridad en la entrada, tramitados a través de los Servicios Integrados de Certificación de Importación y Exportación de la EAA y la Ventanilla Única Electrónica. Presenta el permiso de importación y el certificado sanitario originales en el punto de entrada.", pt: "As importações de animais vivos ficam sujeitas ao controle regulatório veterinário e à certificação da autoridade na entrada, processados por meio dos Integrated Import and Export Certification Services da EAA e da Electronic Single Window. Apresentar a autorização de importação original e o atestado de saúde no ponto de entrada." }
+    exceptions: { en: "The precise pet inspection procedure at the airport is not published; follow the instructions on your permit and clear with the on-duty state veterinary officer.", fr: "La procédure précise d'inspection des animaux de compagnie à l'aéroport n'est pas publiée ; suis les instructions de ton permis et présente-toi au vétérinaire d'État de service.", es: "El procedimiento preciso de inspección de mascotas en el aeropuerto no se publica; sigue las instrucciones de tu permiso y realiza el despacho con el veterinario oficial de guardia.", pt: "O procedimento exato de inspeção de animais de companhia no aeroporto não é publicado; seguir as instruções da autorização e obter a liberação junto ao veterinário estadual de plantão." }
+    ref: { en: "EAA — Integrated Import and Export Certification Services; Ethiopian Electronic Single Window", fr: "EAA — services intégrés de certification import/export ; guichet unique électronique éthiopien", es: "EAA — Servicios Integrados de Certificación de Importación y Exportación; Ventanilla Única Electrónica de Etiopía", pt: "EAA — Integrated Import and Export Certification Services; Ethiopian Electronic Single Window" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Ethiopian source publishes a routine quarantine period, or the consequence of incomplete documents, for pet dogs. Any quarantine would be at the authority's discretion under animal-disease control.", fr: "Aucune source officielle éthiopienne ne publie de période de quarantaine systématique, ni la conséquence de documents incomplets, pour les chiens de compagnie. Une éventuelle quarantaine relèverait de l'appréciation de l'autorité au titre du contrôle des maladies animales.", es: "Ninguna fuente oficial etíope publica un periodo de cuarentena sistemático, ni la consecuencia de documentos incompletos, para los perros de compañía. Cualquier cuarentena quedaría a discreción de la autoridad en el marco del control de enfermedades animales.", pt: "Nenhuma fonte oficial etíope publica um período de quarentena de rotina, nem as consequências de documentos incompletos, para cachorros de companhia. Qualquer quarentena ficaria a critério da autoridade, no âmbito do controle de doenças animais." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (EAA / USDA APHIS)", fr: "Non publié dans les sources officielles (EAA / USDA APHIS)", es: "No publicado en las fuentes oficiales (EAA / USDA APHIS)", pt: "Não publicado em fontes oficiais (EAA / USDA APHIS)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "Desconocido", pt: "Não comunicado" }
+    when: { en: "No official Ethiopian source states a minimum travelling age for puppies. Any age condition would flow from the rabies-vaccination rule written on the import permit.", fr: "Aucune source officielle éthiopienne n'indique d'âge minimum pour voyager pour les chiots. Une éventuelle condition d'âge découlerait de la règle de vaccination antirabique inscrite sur le permis.", es: "Ninguna fuente oficial etíope indica una edad mínima para viajar para los cachorros. Cualquier condición de edad se derivaría de la regla de vacunación antirrábica escrita en el permiso.", pt: "Nenhuma fonte oficial etíope declara uma idade mínima de viagem para filhotes. Qualquer condição de idade decorreria da regra de vacinação antirrábica indicada na autorização de importação." }
+    exceptions: { en: "Not addressed in the official documents reviewed.", fr: "Non traité dans les documents officiels consultés.", es: "No se aborda en los documentos oficiales consultados.", pt: "Não abordado nos documentos oficiais consultados." }
+    ref: { en: "Not published in official sources (EAA / USDA APHIS)", fr: "Non publié dans les sources officielles (EAA / USDA APHIS)", es: "No publicado en las fuentes oficiales (EAA / USDA APHIS)", pt: "Não publicado em fontes oficiais (EAA / USDA APHIS)" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No published breed law found", fr: "Aucune loi de race publiée trouvée", es: "No se encontró ley de razas publicada", pt: "Nenhuma legislação sobre raças publicada encontrada" }
+    when: { en: "We found no official Ethiopian breed-specific import ban or dangerous-dog list. Entry is controlled by the import permit and veterinary requirements, not by breed, as far as officially published.", fr: "Nous n'avons trouvé aucune interdiction d'importation par race ni liste de chiens dangereux officielle éthiopienne. L'entrée est encadrée par le permis d'importation et les exigences vétérinaires, non par la race, selon ce qui est officiellement publié.", es: "No encontramos ninguna prohibición de importación por raza ni lista de perros peligrosos oficial etíope. La entrada se controla mediante el permiso de importación y los requisitos veterinarios, no por raza, según lo publicado oficialmente.", pt: "Não foi encontrada nenhuma proibição de importação específica por raça nem lista de cachorros perigosos oficial da Etiópia. A entrada é controlada pela autorização de importação e pelas exigências veterinárias, e não por raça, até onde é publicado oficialmente." }
+    exceptions: { en: "Absence of a published list is not a guarantee; verify current breed rules with the EAA before travelling.", fr: "L'absence de liste publiée n'est pas une garantie ; vérifie les règles de race à jour auprès de l'EAA avant de voyager.", es: "La ausencia de una lista publicada no es una garantía; verifica las normas de razas actuales con la EAA antes de viajar.", pt: "A ausência de uma lista publicada não é uma garantia; verificar as regras de raça vigentes com a EAA antes de viajar." }
+    ref: { en: "No official breed-specific legislation located (EAA / customs)", fr: "Aucune législation par race officielle localisée (EAA / douane)", es: "No se localizó legislación oficial por raza (EAA / aduanas)", pt: "Nenhuma legislação específica por raça localizada (EAA / alfândega)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Ethiopia: the EU passport is not an Ethiopian document. A dog from Europe needs an EAA import permit obtained in advance and an official veterinary health certificate endorsed by the government veterinary authority of the departure country. Because Ethiopia does not publish detailed pet conditions, confirm the exact vaccination, identification and certificate wording with the EAA before you book."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Éthiopie : le passeport UE n'est pas un document éthiopien. Un chien venant d'Europe a besoin d'un permis d'importation EAA obtenu à l'avance et d'un certificat vétérinaire officiel visé par l'autorité vétérinaire gouvernementale du pays de départ. L'Éthiopie ne publiant pas le détail des conditions, confirme auprès de l'EAA la vaccination, l'identification et la formulation exacte du certificat avant de réserver."
+      es: "No hay ningún atajo de pasaporte europeo para mascotas para entrar en Etiopía: el pasaporte de la UE no es un documento etíope. Un perro procedente de Europa necesita un permiso de importación de la EAA obtenido por adelantado y un certificado sanitario veterinario oficial refrendado por la autoridad veterinaria gubernamental del país de salida. Como Etiopía no publica las condiciones detalladas para mascotas, confirma con la EAA la vacunación, la identificación y la redacción exacta del certificado antes de reservar."
+      pt: "Não existe atalho pelo passaporte europeu para animais de estimação rumo à Etiópia: o passaporte da UE não é um documento etíope. Um cachorro vindo da Europa precisa de uma autorização de importação da EAA obtida com antecedência e de um atestado de saúde veterinário oficial endossado pela autoridade veterinária governamental do país de partida. Como a Etiópia não publica condições detalhadas para animais de companhia, confirmar o texto exato sobre vacinação, identificação e certificado com a EAA antes de reservar."
+    cls: warn
+  listed:
+    title: { en: "There is no listed-country scheme", fr: "Il n'existe pas de schéma de pays listés", es: "No existe un esquema de países listados", pt: "Não existe um esquema de países listados" }
+    body:
+      en: "Unlike some countries, Ethiopia does not publish a list of exempted or 'rabies-free' origin countries with a simplified path. As far as officially published, the same import-permit and health-certificate process applies whatever your origin. Treat any origin-based easing as unconfirmed until the EAA states it on your permit."
+      fr: "Contrairement à certains pays, l'Éthiopie ne publie pas de liste de pays d'origine exemptés ou « indemnes de rage » bénéficiant d'un parcours simplifié. Selon ce qui est officiellement publié, le même processus de permis et de certificat s'applique quelle que soit l'origine. Considère tout allègement lié à l'origine comme non confirmé tant que l'EAA ne l'indique pas sur ton permis."
+      es: "A diferencia de algunos países, Etiopía no publica una lista de países de origen exentos o 'libres de rabia' con una vía simplificada. Según lo publicado oficialmente, se aplica el mismo proceso de permiso de importación y certificado sanitario sea cual sea tu origen. Considera cualquier flexibilización basada en el origen como no confirmada hasta que la EAA lo indique en tu permiso."
+      pt: "Diferentemente de alguns países, a Etiópia não publica uma lista de países de origem isentos ou 'livres de raiva' com um caminho simplificado. Até onde é publicado oficialmente, aplica-se o mesmo processo de autorização de importação e atestado de saúde, qualquer que seja a origem. Tratar qualquer flexibilização baseada na origem como não confirmada até que a EAA a declare na autorização."
+    cls: warn
+  nonListed:
+    title: { en: "From all other origins", fr: "Depuis toute autre origine", es: "Desde cualquier otro origen", pt: "De todas as outras origens" }
+    body:
+      en: "From any country, the core is the same: an advance EAA import permit and an official government-vet health certificate from the departure country. Ethiopia is rabies-endemic and controls animal-disease risk, so expect a rabies-vaccination condition and possible additional certification depending on the countries your dog transited. The permit is the document that lists the precise, binding rules for your case."
+      fr: "Depuis n'importe quel pays, la base est identique : un permis d'importation EAA préalable et un certificat sanitaire officiel du vétérinaire gouvernemental du pays de départ. L'Éthiopie, où la rage est endémique, maîtrise le risque de maladie animale : prévois une condition de vaccination antirabique et une possible certification supplémentaire selon les pays traversés. Le permis est le document qui liste les règles précises et contraignantes pour ton cas."
+      es: "Desde cualquier país, la base es la misma: un permiso de importación de la EAA previo y un certificado sanitario oficial del veterinario gubernamental del país de salida. Etiopía es endémica de rabia y controla el riesgo de enfermedades animales, así que espera una condición de vacunación antirrábica y una posible certificación adicional según los países que tu perro haya transitado. El permiso es el documento que enumera las reglas precisas y vinculantes para tu caso."
+      pt: "De qualquer país, o essencial é o mesmo: uma autorização de importação antecipada da EAA e um atestado de saúde veterinário governamental oficial do país de partida. A Etiópia tem raiva endêmica e controla o risco de doenças animais, por isso deve-se esperar uma condição de vacinação antirrábica e possível certificação adicional, conforme os países pelos quais o cachorro transitou. A autorização é o documento que lista as regras precisas e vinculantes para cada caso."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens on arrival depends on your import permit and the certificates you carry; live animals pass the authority's veterinary control at entry."
+    fr: "Ce qui se passe à l'arrivée dépend de ton permis d'importation et des certificats que tu porte ; les animaux vivants passent le contrôle vétérinaire de l'autorité à l'entrée."
+    es: "Lo que ocurre a la llegada depende de tu permiso de importación y de los certificados que lleves; los animales vivos pasan el control veterinario de la autoridad en la entrada."
+    pt: "O que acontece na chegada depende da autorização de importação e dos certificados levados; os animais vivos passam pelo controle veterinário da autoridade na entrada."
+  points:
+    - en: "Present the original EAA import permit and the endorsed veterinary health certificate to the veterinary/regulatory officer at the port of entry — carry originals, not copies."
+      fr: "Présente le permis d'importation EAA original et le certificat vétérinaire visé à l'agent vétérinaire/réglementaire au point d'entrée — munis-toi des originaux, pas de copies."
+      es: "Presenta el permiso de importación de la EAA original y el certificado sanitario veterinario refrendado al agente veterinario/reglamentario en el punto de entrada — lleva los originales, no copias."
+      pt: "Apresentar a autorização de importação original da EAA e o atestado de saúde veterinário endossado ao agente veterinário/regulatório no ponto de entrada — levar os originais, não cópias."
+    - en: "Import certification is processed through the EAA's Integrated Import and Export Certification Services and the Ethiopian Electronic Single Window."
+      fr: "La certification à l'importation est traitée via les services intégrés de certification import/export de l'EAA et le guichet unique électronique éthiopien."
+      es: "La certificación de importación se tramita a través de los Servicios Integrados de Certificación de Importación y Exportación de la EAA y la Ventanilla Única Electrónica de Etiopía."
+      pt: "A certificação de importação é processada por meio dos Integrated Import and Export Certification Services da EAA e da Ethiopian Electronic Single Window."
+    - en: "The specific pet inspection and any clearance steps at the airport are not published; follow the conditions written on your permit and the instructions of the on-duty state vet."
+      fr: "L'inspection spécifique des animaux et les éventuelles étapes de dédouanement à l'aéroport ne sont pas publiées ; suis les conditions inscrites sur ton permis et les instructions du vétérinaire d'État de service."
+      es: "La inspección específica de las mascotas y los posibles trámites de despacho en el aeropuerto no se publican; sigue las condiciones escritas en tu permiso y las instrucciones del veterinario oficial de guardia."
+      pt: "A inspeção específica de animais de companhia e quaisquer etapas de liberação no aeroporto não são publicadas; seguir as condições indicadas na autorização e as instruções do veterinário estadual de plantão."
+    - en: "Arriving without a valid import permit or the required health certificate risks refusal, delay or measures at the authority's discretion — do not travel until the permit is issued."
+      fr: "Arriver sans permis d'importation valide ou sans le certificat sanitaire requis expose à un refus, un retard ou des mesures à l'appréciation de l'autorité — ne voyage pas tant que le permis n'est pas délivré."
+      es: "Llegar sin un permiso de importación válido o sin el certificado sanitario requerido expone al rechazo, a demoras o a medidas a discreción de la autoridad — no viajes hasta que el permiso esté expedido."
+      pt: "Chegar sem uma autorização de importação válida ou sem o atestado de saúde exigido implica risco de recusa, atraso ou medidas a critério da autoridade — não viajar até que a autorização seja emitida."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Entry into Ethiopia is controlled through the import permit and veterinary requirements, not through breed. We located no official Ethiopian breed-specific import ban or dangerous-dog register."
+    fr: "L'entrée en Éthiopie est encadrée par le permis d'importation et les exigences vétérinaires, non par la race. Nous n'avons localisé aucune interdiction d'importation par race ni registre de chiens dangereux officiel éthiopien."
+    es: "La entrada en Etiopía se controla mediante el permiso de importación y los requisitos veterinarios, no por raza. No localizamos ninguna prohibición de importación por raza ni registro de perros peligrosos oficial etíope."
+    pt: "A entrada na Etiópia é controlada por meio da autorização de importação e das exigências veterinárias, e não por raça. Não foi localizado nenhum registro oficial etíope de proibição de importação por raça ou de cachorros perigosos."
+  cat1:
+    en: "No prohibited-breed list found: official Ethiopian sources do not name banned breeds for import. A compliant dog of any breed should be importable once the permit and health certificate are in order — but confirm, as absence of a published list is not a guarantee."
+    fr: "Aucune liste de races interdites trouvée : les sources officielles éthiopiennes ne nomment pas de races interdites à l'importation. Un chien conforme, quelle que soit sa race, devrait pouvoir être importé dès lors que le permis et le certificat sanitaire sont en règle — mais vérifie, car l'absence de liste publiée n'est pas une garantie."
+    es: "No se encontró lista de razas prohibidas: las fuentes oficiales etíopes no nombran razas prohibidas para la importación. Un perro conforme, de cualquier raza, debería poder importarse una vez que el permiso y el certificado sanitario estén en regla — pero confírmalo, ya que la ausencia de una lista publicada no es una garantía."
+    pt: "Nenhuma lista de raças proibidas encontrada: as fontes oficiais etíopes não nomeiam raças proibidas para importação. Um cachorro em conformidade de qualquer raça deveria poder ser importado uma vez que a autorização e o atestado de saúde estejam em ordem — mas convém confirmar, já que a ausência de uma lista publicada não é uma garantia."
+  cat2:
+    en: "No licence-category breed scheme found: we found no official Ethiopian tier of breeds requiring a special permit to import. Any such national rule would be enforced by the authority and should be checked directly before travel."
+    fr: "Aucun régime de races sous licence trouvé : nous n'avons trouvé aucune catégorie officielle éthiopienne de races nécessitant un permis spécial à l'importation. Une telle règle nationale serait appliquée par l'autorité et doit être vérifiée directement avant le voyage."
+    es: "No se encontró ningún régimen de razas con licencia: no hallamos ninguna categoría oficial etíope de razas que requieran un permiso especial para importar. Cualquier norma nacional de ese tipo la aplicaría la autoridad y debe comprobarse directamente antes de viajar."
+    pt: "Nenhum esquema de categoria de licença por raça encontrado: não foi encontrada nenhuma categoria oficial etíope de raças que exija uma autorização especial para importação. Qualquer regra nacional desse tipo seria aplicada pela autoridade e deve ser verificada diretamente antes da viagem."
+  note:
+    en: "Because national rules can change and are not fully published online, verify the current breed and import conditions directly with the Ethiopian Agricultural Authority before you travel."
+    fr: "Les règles nationales pouvant évoluer et n'étant pas entièrement publiées en ligne, vérifie les conditions de race et d'importation à jour directement auprès de l'Ethiopian Agricultural Authority avant de voyager."
+    es: "Como las normas nacionales pueden cambiar y no están totalmente publicadas en línea, verifica las condiciones de raza e importación actuales directamente con la Ethiopian Agricultural Authority antes de viajar."
+    pt: "Como as regras nacionais podem mudar e não estão totalmente publicadas on-line, verificar diretamente com a Ethiopian Agricultural Authority as condições vigentes de raça e importação antes de viajar."
+
+checklist:
+  - en: "Apply for the EAA import permit well before travel (state origin, transport, arrival date, transit countries, port of entry)"
+    fr: "Demande le permis d'importation EAA bien avant le voyage (précise origine, transport, date d'arrivée, pays traversés, point d'entrée)"
+    es: "Solicita el permiso de importación de la EAA bastante antes del viaje (indica origen, transporte, fecha de llegada, países en tránsito, punto de entrada)"
+    pt: "Solicitar a autorização de importação da EAA com bastante antecedência (indicando origem, transporte, data de chegada, países de trânsito e ponto de entrada)"
+  - en: "Ask the EAA for the exact vaccination, identification and certificate conditions for your dog"
+    fr: "Demande à l'EAA les conditions exactes de vaccination, d'identification et de certificat pour ton chien"
+    es: "Pide a la EAA las condiciones exactas de vacunación, identificación y certificado para tu perro"
+    pt: "Perguntar à EAA as condições exatas de vacinação, identificação e certificado para o cachorro"
+  - en: "Obtain an official veterinary health certificate endorsed by your country's government veterinary authority"
+    fr: "Obtiens un certificat vétérinaire officiel visé par l'autorité vétérinaire gouvernementale de ton pays"
+    es: "Obtén un certificado sanitario veterinario oficial refrendado por la autoridad veterinaria gubernamental de tu país"
+    pt: "Obter um atestado de saúde veterinário oficial endossado pela autoridade veterinária governamental do país de partida"
+  - en: "Confirm rabies-vaccination timing (Ethiopia is rabies-endemic) and whether a blood test is asked for"
+    fr: "Confirme le calendrier de la vaccination antirabique (rage endémique en Éthiopie) et si un titrage est demandé"
+    es: "Confirma el calendario de la vacunación antirrábica (Etiopía es endémica de rabia) y si se solicita un análisis de sangre"
+    pt: "Confirmar o calendário da vacinação antirrábica (a Etiópia tem raiva endêmica) e se um exame de sangue é solicitado"
+  - en: "Consider an ISO 11784/11785 microchip for identification and check it with the EAA"
+    fr: "Envisagez une puce ISO 11784/11785 pour l'identification et vérifie-la auprès de l'EAA"
+    es: "Considera un microchip ISO 11784/11785 para la identificación y compruébalo con la EAA"
+    pt: "Considerar um microchip ISO 11784/11785 para identificação e confirmá-lo com a EAA"
+  - en: "Carry original permit and certificates to present at the port of entry (not copies)"
+    fr: "Munis-toi du permis et des certificats originaux à présenter au point d'entrée (pas de copies)"
+    es: "Lleva el permiso y los certificados originales para presentarlos en el punto de entrada (no copias)"
+    pt: "Levar a autorização e os certificados originais para apresentar no ponto de entrada (não cópias)"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+  - en: "Verify current breed rules with the EAA before booking"
+    fr: "Vérifie les règles de race à jour auprès de l'EAA avant de réserver"
+    es: "Verifica las normas de razas actuales con la EAA antes de reservar"
+    pt: "Verificar as regras de raça vigentes com a EAA antes de reservar"
+
+sources:
+  - label: { en: "USDA APHIS — Export Live Animals to Ethiopia (pets: obtain an import permit at the appropriate ministry)", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Éthiopie (animaux de compagnie : permis d'importation au ministère compétent)", es: "USDA APHIS — Exportación de animales vivos a Etiopía (mascotas: obtener un permiso de importación en el ministerio competente)", pt: "USDA APHIS — Export Live Animals to Ethiopia (animais de companhia: obter uma autorização de importação junto ao ministério competente)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-ethiopia"
+  - label: { en: "Ethiopian Agricultural Authority (EAA) — official site", fr: "Ethiopian Agricultural Authority (EAA) — site officiel", es: "Ethiopian Agricultural Authority (EAA) — sitio oficial", pt: "Ethiopian Agricultural Authority (EAA) — site oficial" }
+    url: "https://eaa.gov.et/"
+  - label: { en: "EAA — Animal Regulatory Sector (mandate and objectives)", fr: "EAA — secteur de réglementation animale (mandat et objectifs)", es: "EAA — Sector de Regulación Animal (mandato y objetivos)", pt: "EAA — setor de regulação animal (mandato e objetivos)" }
+    url: "https://eaa.gov.et/read-morea/"
+  - label: { en: "EAA — Online Services (Integrated Import and Export Certification; Electronic Single Window)", fr: "EAA — services en ligne (certification import/export intégrée ; guichet unique électronique)", es: "EAA — Servicios en línea (Certificación Integrada de Importación y Exportación; Ventanilla Única Electrónica)", pt: "EAA — Online Services (Integrated Import and Export Certification; Electronic Single Window)" }
+    url: "https://eaa.gov.et/services/"
+  - label: { en: "Ethiopian Electronic Single Window — trade portal", fr: "Guichet unique électronique éthiopien — portail du commerce", es: "Ventanilla Única Electrónica de Etiopía — portal de comercio", pt: "Ethiopian Electronic Single Window — portal de comércio" }
+    url: "https://esw.et/esw-trd/"
+  - label: { en: "U.S. Dept. of Commerce (trade.gov) — Ethiopia Import Requirements and Documentation", fr: "Département du Commerce des États-Unis (trade.gov) — Exigences et documents d'importation en Éthiopie", es: "Departamento de Comercio de EE. UU. (trade.gov) — Requisitos y documentación de importación de Etiopía", pt: "U.S. Dept. of Commerce (trade.gov) — Ethiopia Import Requirements and Documentation" }
+    url: "https://www.trade.gov/country-commercial-guides/ethiopia-import-requirements-and-documentation"
+
+seo:
+  title: { en: "Ethiopia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Éthiopie — Guide", es: "Requisitos de entrada de perros en Etiopía — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Etiópia — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Ethiopia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Éthiopie avec ton chien : formalités (2026)", es: "Viajar a Etiopía con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Etiópia: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official rules for bringing a dog into Ethiopia: a mandatory EAA import permit and a government-endorsed veterinary certificate. Sourced and dated."
+    fr: "Règles officielles pour faire entrer un chien en Éthiopie : permis d'importation EAA obligatoire et certificat vétérinaire visé par le gouvernement. Sourcé et daté."
+    es: "Normas oficiales para traer un perro a Etiopía: permiso de importación EAA obligatorio y certificado veterinario refrendado por el gobierno. Con fuentes y fecha."
+    pt: "Regras oficiais para levar um cachorro à Etiópia: uma autorização de importação obrigatória da EAA e um certificado veterinário endossado pelo governo."
+  slug: "ethiopia"
+  shortDesc:
+    en: "What you need to bring a dog into Ethiopia: an advance EAA import permit and an official government-vet health certificate — detailed conditions are set by the permit."
+    fr: "Ce qu'il faut pour faire entrer un chien en Éthiopie : un permis d'importation EAA préalable et un certificat sanitaire officiel du vétérinaire gouvernemental — le détail est fixé par le permis."
+    es: "Lo que necesitas para traer un perro a Etiopía: un permiso de importación de la EAA previo y un certificado sanitario oficial del veterinario gubernamental — las condiciones detalladas las fija el permiso."
+    pt: "O que é preciso para levar um cachorro à Etiópia: uma autorização de importação antecipada da EAA e um atestado de saúde veterinário governamental oficial — as condições detalhadas são definidas pela autorização."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

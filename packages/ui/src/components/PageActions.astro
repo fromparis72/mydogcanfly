@@ -1,0 +1,89 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+/* Pied de page fonctionnel, commun aux fiches pays, compagnies, races et à la Bible.
+ *
+ * Pourquoi : jusqu'ici chaque famille de pages finissait différemment — la Bible avait
+ * réserver/imprimer/email, les compagnies un bloc « où aller ensuite », les pays un autre,
+ * et une seule des cinq boîtes à outils était accessible depuis une fiche. Le lecteur ne
+ * retrouvait donc pas les mêmes gestes au même endroit.
+ *
+ * Deux rangées, dans cet ordre : ce qu'on FAIT de la page (agir), puis où l'on CONTINUE
+ * (les outils). Le contexte connu de la page (destination, race, compagnie) est transmis
+ * aux outils pour qu'ils s'ouvrent pré-remplis.
+ */
+import RelatedTools from "./RelatedTools.astro";
+
+interface Props {
+  locale?: string;
+  /** Contexte transmis aux outils. */
+  toIso?: string;
+  breedId?: string;
+  airlineId?: string;
+  /** Outil courant, exclu de la liste (pages outils seulement). */
+  current?: string;
+  /** Réservation : affiché seulement si la page connaît un site officiel. */
+  bookUrl?: string;
+  bookLabel?: string;
+  /** Objet du courriel ; le corps est l'URL de la page, ajoutée côté client. */
+  emailSubject?: string;
+  /** Masquer la rangée d'actions (pages d'index, par exemple). */
+  noActions?: boolean;
+}
+const {
+  locale = "en", toIso, breedId, airlineId, current = "",
+  bookUrl, bookLabel, emailSubject, noActions = false,
+} = Astro.props as Props;
+
+const L = inlineT(locale);
+const subject = emailSubject ?? L("Travelling with my dog — MyDogCanFly", "Voyager avec mon chien — MyDogCanFly", "Viajar con mi perro — MyDogCanFly");
+---
+{!noActions && (
+  <section class="pact">
+    <h2 class="pact__h">{L("Take it with you", "Emporte cette page", "Llévate esta página")}</h2>
+    <div class="pact__row">
+      {bookUrl && (
+        <a class="pact__btn pact__btn--go" href={bookUrl} target="_blank" rel="nofollow noopener">
+          🎟 {bookLabel ?? L("Book the ticket", "Réserver le billet", "Reservar el billete")} ↗
+        </a>
+      )}
+      <button class="pact__btn" type="button" data-pact="print">🖨 {L("Print / PDF", "Imprimer / PDF", "Imprimir / PDF")}</button>
+      <a class="pact__btn" data-pact="email" data-subject={subject} href="#">
+        ✉ {L("Send by email", "Envoyer par email", "Enviar por email")}
+      </a>
+    </div>
+  </section>
+)}
+
+<RelatedTools locale={locale} current={current} toIso={toIso} breedId={breedId} airlineId={airlineId} />
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('[data-pact="print"]').forEach(function (b) {
+      b.addEventListener("click", function () { window.print(); });
+    });
+    // Le href est construit ici, jamais dans le HTML servi : Cloudflare chiffre tout
+    // « mailto: » présent dans la page (email-protection), et y concaténer le corps du
+    // message après coup corrompait le lien. Construit au chargement, il est intouchable.
+    document.querySelectorAll('[data-pact="email"]').forEach(function (a) {
+      a.setAttribute("href", "mailto:?subject=" + encodeURIComponent(a.getAttribute("data-subject") || "")
+        + "&body=" + encodeURIComponent(location.href));
+    });
+  })();
+</script>
+
+<style>
+  .pact { margin: 28px 0 0; }
+  .pact__h { font-size: 15px; margin: 0 0 12px; color: var(--mdcf-ink); }
+  .pact__row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pact__btn {
+    display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box;
+    padding: 0 18px; border-radius: 999px; font-weight: 600; font-size: 14px; cursor: pointer;
+    background: var(--mdcf-surface, #fff); color: var(--mdcf-ink); text-decoration: none;
+    border: 1px solid var(--mdcf-line);
+  }
+  .pact__btn:hover { border-color: var(--mdcf-ink); }
+  .pact__btn--go { background: var(--mdcf-navy, #011d48); color: #fff; border-color: var(--mdcf-navy, #011d48); }
+  .pact__btn--go:hover { background: #0a2a5c; }
+  @media (max-width: 640px) { .pact__row { flex-direction: column; } .pact__btn { width: 100%; justify-content: center; } }
+  @media print { .pact { display: none; } }
+</style>

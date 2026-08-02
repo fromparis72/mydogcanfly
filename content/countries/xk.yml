@@ -1,0 +1,368 @@
+# Country Entry Guide — Kosovo (bilingual EN/FR).
+# Non-EU national scheme. Governing instrument: Administrative Instruction No. 02/2009
+# "On the conditions of movement of non-commercial companion animals" (Food and Veterinary
+# Agency — AUV / Agjencia e Ushqimit dhe Veterinarisë, auvk.rks-gov.net), transposing the
+# EU non-commercial pet-movement model. Microchip identification also covered by AI (MAFRD)
+# No. 02/2018 on identification and registration of companion animals. Border document control
+# by Kosovo Customs (Dogana e Kosovës, dogana.rks-gov.net).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_xk
+iso2: "XK"
+name: { en: "Kosovo", fr: "Kosovo", es: "Kosovo", pt: "Kosovo" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: non_listed
+exit:
+  authority: AUV
+  authorityUrl: https://auvk.rks-gov.net/shendeti-i-kafsheve/
+  intro:
+    en: "Kosovo is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate issued by a Food and Veterinary Agency (AUV) official veterinarian."
+    fr: "Le Kosovo est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire délivré par un vétérinaire officiel de l'Agence de l'alimentation et de la vétérinaire (AUV)."
+    es: "Kosovo no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario emitido por un veterinario oficial de la Agencia de Alimentos y Veterinaria (AUV)."
+    pt: "O Kosovo é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde emitido por um veterinário oficial da Agência de Alimentos e Veterinária (AUV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The EU-model animal health certificate is issued and signed by an AUV official veterinarian before departure."
+        fr: "Le certificat sanitaire au modèle UE est délivré et signé par un vétérinaire officiel de l'AUV avant le départ."
+        es: "El certificado sanitario en modelo UE lo emite y firma un veterinario oficial de la AUV antes de salir."
+        pt: "O certificado sanitário no modelo da UE é emitido e assinado por um veterinário oficial da AUV antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Kosovo with your dog", fr: "Voyager au Kosovo avec ton chien", es: "Viajar a Kosovo con tu perro", pt: "Viajar para o Kosovo com seu cachorro" }
+  intro:
+    en: >-
+      Kosovo welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Kosovo itself. Kosovo is not an EU member; it runs its own national
+      scheme under Administrative Instruction No. 02/2009 of the Food and Veterinary Agency (AUV), which
+      mirrors the EU non-commercial pet-movement model. An ISO microchip, a valid rabies vaccination and a
+      veterinary certificate (or pet passport) are always required. A dog arriving from the EU or another
+      listed country needs the certificate but no blood test. A dog from a non-listed, rabies-risk country
+      faces the longest path — a rabies antibody test, a three-month wait and a tapeworm treatment. This
+      guide explains each case so you know exactly what to prepare before you book your flight.
+    fr: >-
+      Le Kosovo accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton chien
+      voyage — pas seulement du Kosovo. Le Kosovo n'est pas membre de l'UE ; il applique son propre
+      dispositif national selon l'Instruction administrative n° 02/2009 de l'Agence de l'alimentation et de
+      la vétérinaire (AUV), calquée sur le modèle européen de mouvement non commercial des animaux. Une puce
+      ISO, une vaccination antirabique valide et un certificat vétérinaire (ou passeport) sont toujours
+      exigés. Un chien arrivant de l'UE ou d'un autre pays listé a besoin du certificat mais pas de prise de
+      sang. Un chien venant d'un pays non listé, à risque rabique, suit le parcours le plus long — titrage
+      antirabique, délai de trois mois et traitement contre l'échinococcose. Ce guide détaille chaque cas
+      pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Kosovo acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Kosovo. Kosovo no es miembro de la UE; aplica su propio régimen
+      nacional en virtud de la Instrucción Administrativa n.º 02/2009 de la Agencia de Alimentación y
+      Veterinaria (AUV), que refleja el modelo europeo de movimiento no comercial de animales de
+      compañía. Siempre se exigen un microchip ISO, una vacunación antirrábica válida y un certificado
+      veterinario (o pasaporte para mascotas). Un perro que llega de la UE o de otro país listado
+      necesita el certificado, pero no un análisis de sangre. Un perro de un país no listado, con riesgo
+      de rabia, se enfrenta al camino más largo — una prueba de titulación de rabia, una espera de tres
+      meses y un tratamiento contra la tenia. Esta guía explica cada caso para que sepas exactamente qué
+      preparar antes de reservar tu vuelo.
+
+    pt: "O Kosovo recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só do Kosovo em si. O Kosovo não é membro da UE; ele aplica seu próprio regime nacional sob a Instrução Administrativa nº 02/2009 da Agência de Alimentos e Veterinária (AUV), que espelha o modelo europeu de circulação não comercial de animais de estimação. Microchip ISO, vacinação antirrábica válida e certificado veterinário (ou passaporte para animais) são sempre obrigatórios. Um cachorro que chega da UE ou de outro país listado precisa do certificado, mas não de exame de sangue. Um cachorro vindo de um país não listado, de risco de raiva, enfrenta o caminho mais longo — teste sorológico antirrábico, três meses de espera e tratamento contra a tênia. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days to ~3 weeks: if the rabies shot is current you mainly need the veterinary certificate; allow +21 days if the first vaccination is still needed."
+    fr: "Quelques jours à ~3 semaines : si le vaccin antirabique est à jour il reste surtout le certificat vétérinaire ; compte +21 jours si la première vaccination reste à faire."
+    es: "Desde unos días hasta ~3 semanas: si la vacuna antirrábica está al día, sobre todo necesitas el certificado veterinario; cuenta con +21 días si aún falta la primera vacunación."
+    pt: "De alguns dias a ~3 semanas: se a vacina antirrábica estiver em dia, você precisa basicamente do certificado veterinário; conte +21 dias se a primeira vacinação ainda estiver pendente."
+  listed:
+    en: "~3–4 weeks: valid rabies vaccination recorded in the passport/certificate, plus the veterinary certificate issued shortly before travel."
+    fr: "~3–4 semaines : vaccination antirabique valide consignée au passeport/certificat, plus le certificat vétérinaire établi peu avant le voyage."
+    es: "~3–4 semanas: vacunación antirrábica válida registrada en el pasaporte/certificado, más el certificado veterinario expedido poco antes del viaje."
+    pt: "~3–4 semanas: vacinação antirrábica válida registrada no passaporte/certificado, mais o certificado veterinário emitido pouco antes da viagem."
+  nonListed:
+    en: "~4–7 months: rabies vaccination at least 30 days before entry, antibody test taken ≥30 days after vaccination and 3 months before travel, plus a tapeworm treatment 30 days before import."
+    fr: "~4–7 mois : vaccination antirabique au moins 30 jours avant l'entrée, titrage prélevé ≥30 jours après le vaccin et 3 mois avant le voyage, plus un traitement contre l'échinococcose 30 jours avant l'importation."
+    es: "~4–7 meses: vacunación antirrábica al menos 30 días antes de la entrada, prueba de titulación tomada ≥30 días después de la vacuna y 3 meses antes del viaje, más un tratamiento contra la tenia 30 días antes de la importación."
+    pt: "~4–7 meses: vacinação antirrábica pelo menos 30 dias antes da entrada, teste sorológico coletado ≥30 dias após a vacinação e 3 meses antes da viagem, mais um tratamento contra a tênia 30 dias antes da importação."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (all origins)", fr: "Requis (toutes origines)", es: "Obligatorio (todos los orígenes)", pt: "Obrigatório (todas as origens)" }
+    cls: warn
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Kosovo (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Kosovo (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Kosovo (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — o Kosovo (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Kosovo", fr: "Pays de destination — Kosovo", es: "País de destino — Kosovo", pt: "País de destino — Kosovo" }
+      text:
+        en: "Kosovo applies Administrative Instruction No. 02/2009: an ISO microchip, a valid rabies vaccination and a veterinary certificate (or pet passport) are always required for a dog to enter."
+        fr: "Le Kosovo applique l'Instruction administrative n° 02/2009 : une puce ISO, une vaccination antirabique valide et un certificat vétérinaire (ou passeport) sont toujours exigés pour l'entrée d'un chien."
+        es: "Kosovo aplica la Instrucción Administrativa n.º 02/2009: siempre se exigen un microchip ISO, una vacunación antirrábica válida y un certificado veterinario (o pasaporte para mascotas) para que un perro pueda entrar."
+        pt: "O Kosovo aplica a Instrução Administrativa nº 02/2009: microchip ISO, vacinação antirrábica válida e certificado veterinário (ou passaporte para animais) são sempre obrigatórios para a entrada de um cachorro."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from the EU, a listed country or a non-listed country decides whether a rabies antibody test, a 3-month wait and a tapeworm treatment are required on top of the certificate."
+        fr: "Que ton chien parte de l'UE, d'un pays listé ou d'un pays non listé détermine si un titrage antirabique, un délai de 3 mois et un traitement contre l'échinococcose sont exigés en plus du certificat."
+        es: "Que tu perro salga de la UE, de un país listado o de un país no listado determina si se exigen una prueba de titulación de rabia, una espera de 3 meses y un tratamiento contra la tenia además del certificado."
+        pt: "Se o seu cachorro parte da UE, de um país listado ou de um país não listado é o que determina se o teste sorológico antirrábico, os 3 meses de espera e o tratamento contra a tênia são exigidos além do certificado."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from a listed country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays listé. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país listado. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar o teste sorológico antirrábico mesmo que você chegue de um país listado. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Kosovo's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre kosovar, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Kosovo y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral do Kosovo, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Electronic identification by microchip; if it follows ISO 11784 / Annex A ISO 11785, the owner must supply a reader on request. Owner name and address must be recorded.", fr: "Identification électronique par puce ; si elle suit la norme ISO 11784 / annexe A ISO 11785, le propriétaire doit fournir un lecteur sur demande. Le nom et l'adresse du propriétaire doivent être enregistrés.", es: "Identificación electrónica por microchip; si sigue la norma ISO 11784 / anexo A ISO 11785, el propietario debe facilitar un lector cuando se le solicite. Deben registrarse el nombre y la dirección del propietario.", pt: "Identificação eletrônica por microchip; se seguir a norma ISO 11784 / anexo A ISO 11785, o dono precisa fornecer um leitor quando solicitado. O nome e o endereço do dono precisam ser registrados." }
+    exceptions: { en: "A tattoo was accepted only during the transitional period; the microchip is now the standard means of identification.", fr: "Un tatouage n'était accepté que durant la période transitoire ; la puce est désormais le moyen d'identification standard.", es: "Un tatuaje solo se aceptaba durante el periodo transitorio; el microchip es ahora el medio de identificación estándar.", pt: "Uma tatuagem só era aceita durante o período de transição; o microchip agora é o meio padrão de identificação." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 4; AI (MAFRD) No. 02/2018 (identification & registration)", fr: "IA n° 02/2009 (AUV), art. 4 ; IA (MBPZHR) n° 02/2018 (identification et enregistrement)", es: "IA n.º 02/2009 (AUV), art. 4; IA (MAFRD) n.º 02/2018 (identificación y registro)", pt: "IA nº 02/2009 (AUV), art. 4; IA (MAFRD) nº 02/2018 (identificação e registro)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Valid rabies vaccination recorded by an authorised vet (inactivated vaccine, ≥1 antigenic unit per dose to WHO standards). From a non-listed country it must be given at least 30 days before entry.", fr: "Vaccination antirabique valide consignée par un vétérinaire agréé (vaccin inactivé, ≥1 unité antigénique par dose selon les normes OMS). Depuis un pays non listé, elle doit être faite au moins 30 jours avant l'entrée.", es: "Vacunación antirrábica válida registrada por un veterinario autorizado (vacuna inactivada, ≥1 unidad antigénica por dosis según las normas de la OMS). Desde un país no listado debe administrarse al menos 30 días antes de la entrada.", pt: "Vacinação antirrábica válida registrada por um veterinário autorizado (vacina inativada, ≥1 unidade antigênica por dose, conforme os padrões da OMS). Vinda de um país não listado, deve ser aplicada pelo menos 30 dias antes da entrada." }
+    exceptions: { en: "The dog must already be identified before vaccination; a booster given before expiry keeps validity running.", fr: "Le chien doit déjà être identifié avant la vaccination ; un rappel effectué avant échéance maintient la validité.", es: "El perro debe estar ya identificado antes de la vacunación; un refuerzo administrado antes del vencimiento mantiene la valide.", pt: "O cachorro já precisa estar identificado antes da vacinação; um reforço aplicado antes do vencimento mantém a validade." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 5 & Art. 8", fr: "IA n° 02/2009 (AUV), art. 5 et art. 8", es: "IA n.º 02/2009 (AUV), art. 5 y art. 8", pt: "IA nº 02/2009 (AUV), art. 5 e art. 8" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: result ≥0.5 IU/ml, on a sample taken by an authorised vet at least 30 days after the last vaccination and 3 months before the movement, in an approved laboratory.", fr: "Pays non listés uniquement : résultat ≥0,5 UI/ml, sur un échantillon prélevé par un vétérinaire agréé au moins 30 jours après la dernière vaccination et 3 mois avant le mouvement, dans un laboratoire agréé.", es: "Solo orígenes no listados: resultado ≥0,5 UI/ml, en una muestra tomada por un veterinario autorizado al menos 30 días después de la última vacunación y 3 meses antes del movimiento, en un laboratorio autorizado.", pt: "Somente origens não listadas: resultado ≥0,5 UI/ml, em amostra coletada por um veterinário autorizado pelo menos 30 dias após a última vacinação e 3 meses antes do movimento, em laboratório aprovado." }
+    exceptions: { en: "Not required from the EU or from listed countries. The 3-month wait does not apply on re-entry if the passport already shows a positive titre taken before the dog left.", fr: "Non requis depuis l'UE ou les pays listés. Le délai de 3 mois ne s'applique pas lors d'une réentrée si le passeport atteste déjà un titrage positif effectué avant le départ du chien.", es: "No se exige desde la UE ni desde países listados. La espera de 3 meses no se aplica en caso de reentrada si el pasaporte ya acredita un título positivo tomado antes de que el perro saliera.", pt: "Não exigido a partir da UE nem de países listados. Os 3 meses de espera não se aplicam em caso de reentrada, se o passaporte já mostrar um resultado positivo coletado antes de o cachorro sair." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 8 & Art. 15", fr: "IA n° 02/2009 (AUV), art. 8 et art. 15", es: "IA n.º 02/2009 (AUV), art. 8 y art. 15", pt: "IA nº 02/2009 (AUV), art. 8 e art. 15" }
+  - item: { en: "Veterinary certificate / pet passport", fr: "Certificat vétérinaire / passeport", es: "Certificado veterinario / pasaporte para mascotas", pt: "Certificado veterinário / passaporte para animais" }
+    required: { en: "Required (all origins)", fr: "Requis (toutes origines)", es: "Obligatorio (todos los orígenes)", pt: "Obrigatório (todas as origens)" }
+    when: { en: "The dog must be accompanied by a veterinary certificate issued by an authorised vet or, on re-entry, a pet passport confirming that the entry conditions are met.", fr: "Le chien doit être accompagné d'un certificat vétérinaire délivré par un vétérinaire agréé ou, en cas de réentrée, d'un passeport attestant que les conditions d'entrée sont remplies.", es: "El perro debe ir acompañado de un certificado veterinario expedido por un veterinario autorizado o, en caso de reentrada, de un pasaporte para mascotas que confirme que se cumplen las condiciones de entrada.", pt: "O cachorro precisa ser acompanhado por um certificado veterinário emitido por um veterinário autorizado ou, em caso de reentrada, por um passaporte para animais que confirme que as condições de entrada foram cumpridas." }
+    exceptions: { en: "For listed/EU origins the passport records identification and a valid rabies vaccination; no blood test is attested.", fr: "Pour les origines listées/UE, le passeport consigne l'identification et une vaccination antirabique valide ; aucun titrage n'y est attesté.", es: "Para los orígenes listados/UE, el pasaporte registra la identificación y una vacunación antirrábica válida; no se acredita ningún análisis de sangre.", pt: "Para origens listadas/da UE, o passaporte registra a identificação e a vacinação antirrábica válida; nenhum exame de sangue é atestado." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 8(2) & Art. 14", fr: "IA n° 02/2009 (AUV), art. 8(2) et art. 14", es: "IA n.º 02/2009 (AUV), art. 8(2) y art. 14", pt: "IA nº 02/2009 (AUV), art. 8(2) e art. 14" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins: dogs must be treated against Echinococcus 30 days before import, with a set dose of Praziquantel or Epsiprantel, documented in the certificate or passport.", fr: "Pays non listés : les chiens doivent être traités contre l'échinococcose 30 jours avant l'importation, avec une dose déterminée de praziquantel ou d'epsiprantel, documentée sur le certificat ou le passeport.", es: "Orígenes no listados: los perros deben tratarse contra Echinococcus 30 días antes de la importación, con una dosis determinada de praziquantel o epsiprantel, documentada en el certificado o pasaporte.", pt: "Origens não listadas: os cachorros precisam ser tratados contra Echinococcus 30 dias antes da importação, com uma dose determinada de praziquantel ou epsiprantel, documentada no certificado ou no passaporte." }
+    exceptions: { en: "Not attached to the EU/listed-country pathway, which follows the Article 5 conditions without a tapeworm treatment.", fr: "Non attaché au parcours UE/pays listé, qui suit les conditions de l'article 5 sans traitement contre l'échinococcose.", es: "No va ligado al recorrido UE/país listado, que sigue las condiciones del artículo 5 sin tratamiento contra la tenia.", pt: "Não vinculado ao caminho UE/país listado, que segue as condições do artigo 5 sem tratamento contra a tênia." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 8(1) point 1.1.6", fr: "IA n° 02/2009 (AUV), art. 8(1) point 1.1.6", es: "IA n.º 02/2009 (AUV), art. 8(1) punto 1.1.6", pt: "IA nº 02/2009 (AUV), art. 8(1), ponto 1.1.6" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "No permit for pet dogs (≤5 animals)", fr: "Pas de permis pour les chiens de compagnie (≤5 animaux)", es: "Sin permiso para perros de compañía (≤5 animales)", pt: "Sem autorização para cachorros de companhia (≤5 animais)" }
+    when: { en: "No import permit is required for up to five pets accompanying their owner; document control is done by customs at the passenger entry point. Advance notice to the airport veterinary service is advisable.", fr: "Aucun permis d'importation n'est exigé pour cinq animaux au plus accompagnant leur propriétaire ; le contrôle documentaire est effectué par la douane au point d'entrée voyageurs. Il est conseillé de prévenir le service vétérinaire de l'aéroport.", es: "No se exige permiso de importación para hasta cinco mascotas que acompañen a su propietario; el control documental lo realizan las aduanas en el punto de entrada de viajeros. Es aconsejable avisar con antelación al servicio veterinario del aeropuerto.", pt: "Nenhuma autorização de importação é exigida para até cinco animais acompanhando seu dono; o controle documental é feito pela alfândega no ponto de entrada de passageiros. Recomenda-se dar notificação prévia ao serviço veterinário do aeroporto." }
+    exceptions: { en: "Movements of five or more pets are subject to veterinary inspection by a vet inspector and must enter at an approved border crossing point.", fr: "Les mouvements de cinq animaux ou plus sont soumis à l'inspection d'un vétérinaire inspecteur et doivent entrer par un poste-frontière agréé.", es: "Los movimientos de cinco o más mascotas están sujetos a la inspección de un veterinario inspector y deben entrar por un puesto fronterizo autorizado.", pt: "Movimentos de cinco ou mais animais ficam sujeitos à inspeção veterinária de um inspetor veterinário e precisam entrar por um posto de fronteira aprovado." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 12", fr: "IA n° 02/2009 (AUV), art. 12", es: "IA n.º 02/2009 (AUV), art. 12", pt: "IA nº 02/2009 (AUV), art. 12" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Document and identity control by customs officials at the passenger point of entry (up to five pets); the owner must be able to present the passport or veterinary certificate and, if asked, a microchip reader.", fr: "Contrôle documentaire et d'identité par les agents douaniers au point d'entrée voyageurs (jusqu'à cinq animaux) ; le propriétaire doit pouvoir présenter le passeport ou le certificat vétérinaire et, sur demande, un lecteur de puce.", es: "Control documental y de identidad por los agentes de aduanas en el punto de entrada de viajeros (hasta cinco mascotas); el propietario debe poder presentar el pasaporte o el certificado veterinario y, si se le pide, un lector de microchip.", pt: "Controle documental e de identidade por agentes alfandegários no ponto de entrada de passageiros (até cinco animais); o dono precisa poder apresentar o passaporte ou o certificado veterinário e, se solicitado, um leitor de microchip." }
+    exceptions: { en: "Larger movements are checked by a veterinary inspector at an approved border crossing point.", fr: "Les mouvements plus importants sont contrôlés par un inspecteur vétérinaire à un poste-frontière agréé.", es: "Los movimientos más grandes son controlados por un inspector veterinario en un puesto fronterizo autorizado.", pt: "Movimentos maiores são conferidos por um inspetor veterinário em um posto de fronteira aprovado." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 12 & Art. 14; dogana.rks-gov.net", fr: "IA n° 02/2009 (AUV), art. 12 et art. 14 ; dogana.rks-gov.net", es: "IA n.º 02/2009 (AUV), art. 12 y art. 14; dogana.rks-gov.net", pt: "IA nº 02/2009 (AUV), art. 12 e art. 14; dogana.rks-gov.net" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Age limits apply", fr: "Limites d'âge", es: "Se aplican límites de edad", pt: "Há limites de idade" }
+    when: { en: "Rabies vaccination cannot be given before about 3 months of age, so a young puppy generally cannot meet the entry conditions from outside the listed area.", fr: "La vaccination antirabique ne peut être faite avant environ 3 mois, de sorte qu'un jeune chiot ne peut généralement pas remplir les conditions d'entrée hors de la zone listée.", es: "La vacunación antirrábica no puede administrarse antes de unos 3 meses de edad, por lo que un cachorro joven generalmente no puede cumplir las condiciones de entrada desde fuera de la zona listada.", pt: "A vacinação antirrábica não pode ser aplicada antes de cerca de 3 meses de idade, então um filhote jovem geralmente não consegue cumprir as condições de entrada vindo de fora da área listada." }
+    exceptions: { en: "Entry of unvaccinated dogs under 3 months from a non-listed country may be approved only after the rabies situation in that country is verified; special conditions apply within the EU/listed area.", fr: "L'entrée de chiens non vaccinés de moins de 3 mois depuis un pays non listé peut être approuvée seulement après vérification de la situation rabique de ce pays ; des conditions spéciales s'appliquent dans la zone UE/listée.", es: "La entrada de perros sin vacunar menores de 3 meses desde un país no listado solo puede aprobarse tras verificar la situación de la rabia en ese país; se aplican condiciones especiales dentro de la zona UE/listada.", pt: "A entrada de cachorros não vacinados com menos de 3 meses vindos de um país não listado só pode ser aprovada depois que a situação da raiva nesse país for verificada; condições especiais se aplicam dentro da área UE/listada." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 5(2) & Art. 8(3)", fr: "IA n° 02/2009 (AUV), art. 5(2) et art. 8(3)", es: "IA n.º 02/2009 (AUV), art. 5(2) y art. 8(3)", pt: "IA nº 02/2009 (AUV), art. 5(2) e art. 8(3)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required (unless non-compliant)", fr: "Non requise (sauf non-conformité)", es: "No obligatoria (salvo incumplimiento)", pt: "Não obrigatória (a menos que haja descumprimento)" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "If a dog fails the checks, customs with the border vet inspector may return it to origin, isolate it under official supervision until requirements are met (at the owner's cost), or as a last resort order humane elimination without compensation.", fr: "Si un chien échoue aux contrôles, la douane avec l'inspecteur vétérinaire frontalier peut le renvoyer à l'origine, l'isoler sous supervision officielle jusqu'au respect des exigences (aux frais du propriétaire) ou, en dernier recours, ordonner l'euthanasie sans indemnisation.", es: "Si un perro no supera los controles, las aduanas junto con el inspector veterinario fronterizo pueden devolverlo al origen, aislarlo bajo supervisión oficial hasta que se cumplan los requisitos (a cargo del propietario) o, como último recurso, ordenar la eliminación humanitaria sin indemnización.", pt: "Se um cachorro não passar nos controles, a alfândega, junto com o inspetor veterinário de fronteira, pode devolvê-lo à origem, isolá-lo sob supervisão oficial até que as exigências sejam cumpridas (às custas do dono) ou, como último recurso, determinar a eliminação humanitária sem indenização." }
+    ref: { en: "AI No. 02/2009 (AUV), Art. 14(3)", fr: "IA n° 02/2009 (AUV), art. 14(3)", es: "IA n.º 02/2009 (AUV), art. 14(3)", pt: "IA nº 02/2009 (AUV), art. 14(3)" }
+
+origin:
+  eu:
+    title: { en: "From the EU — certificate, no blood test", fr: "Depuis l'UE — certificat, sans prise de sang", es: "Desde la UE — certificado, sin análisis de sangre", pt: "Da UE — certificado, sem exame de sangue" }
+    body:
+      en: "A dog coming from an EU country needs an ISO microchip, a valid rabies vaccination and a veterinary certificate (or pet passport) issued by an authorised vet. No antibody test and no tapeworm treatment are required under the Article 5 conditions. Present yourself to customs at the passenger point of entry."
+      fr: "Un chien venant d'un pays de l'UE a besoin d'une puce ISO, d'une vaccination antirabique valide et d'un certificat vétérinaire (ou passeport) délivré par un vétérinaire agréé. Aucun titrage ni traitement contre l'échinococcose n'est exigé selon les conditions de l'article 5. Présente-toi à la douane au point d'entrée voyageurs."
+      es: "Un perro que llega de un país de la UE necesita un microchip ISO, una vacunación antirrábica válida y un certificado veterinario (o pasaporte para mascotas) expedido por un veterinario autorizado. No se exigen prueba de titulación ni tratamiento contra la tenia según las condiciones del artículo 5. Preséntate ante las aduanas en el punto de entrada de viajeros."
+      pt: "Um cachorro vindo de um país da UE precisa de microchip ISO, vacinação antirrábica válida e um certificado veterinário (ou passaporte para animais) emitido por um veterinário autorizado. Nenhum teste sorológico e nenhum tratamento contra a tênia são exigidos sob as condições do artigo 5. Apresente-se à alfândega no ponto de entrada de passageiros."
+    cls: warn
+  listed:
+    title: { en: "Listed country — certificate, no blood test", fr: "Pays listé — certificat, sans prise de sang", es: "País listado — certificado, sin análisis de sangre", pt: "País listado — certificado, sem exame de sangue" }
+    body:
+      en: "From a listed third country (rabies-controlled, per the register referenced in Article 10), your dog needs a microchip, a valid rabies vaccination and a veterinary certificate confirming the Article 5 conditions. No antibody test is required."
+      fr: "Depuis un pays tiers listé (à rage contrôlée, selon le registre visé à l'article 10), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat vétérinaire attestant les conditions de l'article 5. Aucun titrage n'est exigé."
+      es: "Desde un país tercero listado (con rabia controlada, según el registro al que se refiere el artículo 10), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado veterinario que confirme las condiciones del artículo 5. No se exige prueba de titulación."
+      pt: "De um país terceiro listado (com a raiva controlada, segundo o registro referenciado no artigo 10), seu cachorro precisa de microchip, vacinação antirrábica válida e um certificado veterinário confirmando as condições do artigo 5. Nenhum teste sorológico é exigido."
+    cls: warn
+  nonListed:
+    title: { en: "Non-listed country — antibody test + 3-month wait", fr: "Pays non listé — titrage + 3 mois d'attente", es: "País no listado — prueba de titulación + espera de 3 meses", pt: "País não listado — teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed, rabies-risk country the dog needs a microchip, a rabies vaccination at least 30 days before entry, a rabies antibody test ≥0.5 IU/ml (sample ≥30 days after vaccination and 3 months before travel), a tapeworm treatment 30 days before import, and a veterinary certificate. The 3-month wait is waived only on documented re-entry with a prior positive antibody test."
+      fr: "Depuis un pays non listé, à risque rabique, le chien a besoin d'une puce, d'une vaccination antirabique au moins 30 jours avant l'entrée, d'un titrage antirabique ≥0,5 UI/ml (échantillon ≥30 jours après le vaccin et 3 mois avant le voyage), d'un traitement contre l'échinococcose 30 jours avant l'importation, et d'un certificat vétérinaire. Le délai de 3 mois n'est levé que lors d'une réentrée documentée avec un titrage positif antérieur."
+      es: "Desde un país no listado, con riesgo de rabia, el perro necesita un microchip, una vacunación antirrábica al menos 30 días antes de la entrada, una prueba de titulación de rabia ≥0,5 UI/ml (muestra ≥30 días después de la vacuna y 3 meses antes del viaje), un tratamiento contra la tenia 30 días antes de la importación y un certificado veterinario. La espera de 3 meses solo se exime en una reentrada documentada con una prueba de titulación positiva anterior."
+      pt: "De um país não listado, de risco de raiva, o cachorro precisa de microchip, vacinação antirrábica pelo menos 30 dias antes da entrada, teste sorológico antirrábico ≥0,5 UI/ml (amostra ≥30 dias após a vacinação e 3 meses antes da viagem), tratamento contra a tênia 30 dias antes da importação e um certificado veterinário. Os 3 meses de espera só são dispensados em uma reentrada documentada com um teste sorológico positivo anterior."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Kosovo depends on where you flew from and on your documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Kosovo dépend de ton lieu de départ et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a Kosovo depende del lugar desde el que hayas volado y de tus documentos."
+    pt: "O que acontece quando seu cachorro chega ao Kosovo depende de onde você partiu e dos seus documentos."
+  points:
+    - en: "Most travellers arrive at Pristina International Airport; document control is done by customs at the passenger point of entry for up to five pets."
+      fr: "La plupart des voyageurs arrivent à l'aéroport international de Pristina ; le contrôle documentaire est effectué par la douane au point d'entrée voyageurs pour cinq animaux au plus."
+      es: "La mayoría de los viajeros llegan al Aeropuerto Internacional de Pristina; el control documental lo realizan las aduanas en el punto de entrada de viajeros para hasta cinco mascotas."
+      pt: "A maioria dos viajantes chega pelo Aeroporto Internacional de Pristina; o controle documental é feito pela alfândega no ponto de entrada de passageiros para até cinco animais."
+    - en: "Present the ISO microchip, the veterinary certificate (or pet passport) and the rabies vaccination record; the microchip number must match the documents."
+      fr: "Présente la puce ISO, le certificat vétérinaire (ou passeport) et le carnet de vaccination antirabique ; le numéro de puce doit correspondre aux documents."
+      es: "Presenta el microchip ISO, el certificado veterinario (o pasaporte para mascotas) y el registro de vacunación antirrábica; el número de microchip debe coincidir con los documentos."
+      pt: "Apresente o microchip ISO, o certificado veterinário (ou passaporte para animais) e a carteira de vacinação antirrábica; o número do microchip deve coincidir com o dos documentos."
+    - en: "Advance notice to the airport veterinary service is advisable so an inspector is available on arrival, especially for larger movements."
+      fr: "Un préavis au service vétérinaire de l'aéroport est conseillé pour qu'un inspecteur soit disponible à l'arrivée, surtout pour les mouvements plus importants."
+      es: "Es aconsejable avisar con antelación al servicio veterinario del aeropuerto para que haya un inspector disponible a la llegada, especialmente para los movimientos más grandes."
+      pt: "Recomenda-se dar notificação prévia ao serviço veterinário do aeroporto, para que um inspetor esteja disponível na chegada, especialmente para movimentos maiores."
+    - en: "No import permit is needed for a pet dog accompanying its owner (five or fewer animals, non-commercial)."
+      fr: "Aucun permis d'importation n'est nécessaire pour un chien de compagnie accompagnant son propriétaire (cinq animaux ou moins, non commercial)."
+      es: "No se necesita permiso de importación para un perro de compañía que acompaña a su propietario (cinco animales o menos, no comercial)."
+      pt: "Nenhuma autorização de importação é necessária para um cachorro de companhia que acompanha seu dono (até cinco animais, não comercial)."
+    - en: "Carry original documents (not copies) and be ready to supply a microchip reader if your chip is not ISO-standard."
+      fr: "Munis-toi des documents originaux (pas de copies) et sois prêt à fournir un lecteur de puce si ta puce n'est pas conforme à la norme ISO."
+      es: "Lleva los documentos originales (no copias) y prepárate para facilitar un lector de microchip si tu chip no cumple la norma ISO."
+      pt: "Leve os documentos originais (não cópias) e esteja pronto para fornecer um leitor de microchip, caso o seu não seja padrão ISO."
+    - en: "If documents are missing or invalid, the dog may be returned to origin, isolated at the owner's expense, or — as a last resort — humanely eliminated without compensation."
+      fr: "Si les documents manquent ou sont invalides, le chien peut être renvoyé à l'origine, isolé aux frais du propriétaire ou — en dernier recours — euthanasié sans indemnisation."
+      es: "Si faltan documentos o no son válidos, el perro puede ser devuelto al origen, aislado a cargo del propietario o — como último recurso — eliminado de forma humanitaria sin indemnización."
+      pt: "Se faltarem documentos ou eles não forem válidos, o cachorro pode ser devolvido à origem, isolado às custas do dono ou — como último recurso — eliminado de forma humanitária sem indenização."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No breed-specific import ban for dogs is published in Kosovo's official veterinary or customs sources. Entry under Administrative Instruction No. 02/2009 is governed by health rules (microchip, rabies, certificate) rather than by breed. Because no official breed list is published, treat any 'banned breed' claims from unofficial sites with caution and confirm your dog's breed is accepted before you travel."
+    fr: "Aucune interdiction d'importation liée à la race n'est publiée dans les sources officielles vétérinaires ou douanières du Kosovo. L'entrée selon l'Instruction administrative n° 02/2009 est régie par des règles sanitaires (puce, rage, certificat) et non par la race. Faute de liste officielle publiée, considère avec prudence les affirmations de « races interdites » des sites non officiels et confirme que la race de ton chien est acceptée avant de voyager."
+    es: "En las fuentes oficiales veterinarias o aduaneras de Kosovo no se publica ninguna prohibición de importación por raza para perros. La entrada según la Instrucción Administrativa n.º 02/2009 se rige por normas sanitarias (microchip, rabia, certificado) y no por la raza. Como no se publica ninguna lista oficial de razas, trata con cautela cualquier afirmación de «raza prohibida» de sitios no oficiales y confirma que la raza de tu perro está aceptada antes de viajar."
+    pt: "Nenhuma proibição de importação por raça de cachorro é publicada nas fontes oficiais veterinárias ou aduaneiras do Kosovo. A entrada sob a Instrução Administrativa nº 02/2009 é regida por regras sanitárias (microchip, raiva, certificado), e não pela raça. Como nenhuma lista oficial de raças é publicada, trate com cautela qualquer alegação de \"raça proibida\" vinda de sites não oficiais e confirme que a raça do seu cachorro é aceita antes de viajar."
+  cat1:
+    en: "Prohibited breeds: none officially published. MyDogCanFly found no Kosovo law or regulation establishing a list of banned dog breeds from an official source (Unknown / not published)."
+    fr: "Races interdites : aucune officiellement publiée. MyDogCanFly n'a trouvé aucune loi ni réglementation du Kosovo établissant une liste de races de chiens interdites dans une source officielle (Non communiqué / non publié)."
+    es: "Razas prohibidas: ninguna publicada oficialmente. MyDogCanFly no encontró ninguna ley ni reglamento de Kosovo que establezca una lista de razas de perros prohibidas en una fuente oficial (Desconocido / no publicado)."
+    pt: "Raças proibidas: nenhuma publicada oficialmente. O MyDogCanFly não encontrou nenhuma lei ou regulamento do Kosovo estabelecendo uma lista de raças de cachorros proibidas em fonte oficial (não comunicado / não publicado)."
+  cat2:
+    en: "Restricted/permit categories: none officially published. No national ownership-permit or dangerous-dog category scheme for imported dogs was found in an official Kosovo source (Unknown / not published)."
+    fr: "Catégories restreintes/à permis : aucune officiellement publiée. Aucun régime national de permis de détention ou de catégorie de chiens dangereux pour les chiens importés n'a été trouvé dans une source officielle du Kosovo (Non communiqué / non publié)."
+    es: "Categorías restringidas/con permiso: ninguna publicada oficialmente. No se encontró ningún régimen nacional de permiso de tenencia ni de categoría de perro peligroso para perros importados en una fuente oficial de Kosovo (Desconocido / no publicado)."
+    pt: "Categorias restritas/com autorização: nenhuma publicada oficialmente. Nenhum regime nacional de autorização de posse ou de categoria de cachorro perigoso para cachorros importados foi encontrado em fonte oficial do Kosovo (não comunicado / não publicado)."
+  note:
+    en: "Local municipal rules on leashing or muzzling in public may still apply. Before booking, confirm the current position with the Food and Veterinary Agency (AUV), especially for powerful or guard breeds."
+    fr: "Des règles municipales locales sur la laisse ou la muselière en public peuvent néanmoins s'appliquer. Avant de réserver, confirme la position actuelle auprès de l'Agence de l'alimentation et de la vétérinaire (AUV), en particulier pour les races puissantes ou de garde."
+    es: "Pueden seguir aplicándose normas municipales locales sobre correa o bozal en público. Antes de reservar, confirma la situación actual con la Agencia de Alimentación y Veterinaria (AUV), especialmente para razas potentes o de guarda."
+    pt: "Regras municipais locais sobre guia ou focinheira em locais públicos ainda podem se aplicar. Antes de reservar, confirme a posição atual junto à Agência de Alimentos e Veterinária (AUV), especialmente para raças fortes ou de guarda."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) with owner name and address recorded"
+    fr: "Puce (ISO 11784/11785) avec nom et adresse du propriétaire enregistrés"
+    es: "Microchip (ISO 11784/11785) con el nombre y la dirección del propietario registrados"
+    pt: "Microchip (ISO 11784/11785) com nome e endereço do dono registrados"
+  - en: "Valid rabies vaccination (at least 30 days before entry from a non-listed country)"
+    fr: "Vaccination antirabique valide (au moins 30 jours avant l'entrée depuis un pays non listé)"
+    es: "Vacunación antirrábica válida (al menos 30 días antes de la entrada desde un país no listado)"
+    pt: "Vacinação antirrábica válida (pelo menos 30 dias antes da entrada, vinda de um país não listado)"
+  - en: "Rabies antibody test ≥0.5 IU/ml — non-listed countries only (then 3-month wait)"
+    fr: "Titrage antirabique ≥0,5 UI/ml — pays non listés uniquement (puis 3 mois d'attente)"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml — solo países no listados (después, espera de 3 meses)"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml — apenas países não listados (depois, 3 meses de espera)"
+  - en: "Tapeworm (Echinococcus) treatment 30 days before import — non-listed countries only"
+    fr: "Traitement contre l'échinococcose 30 jours avant l'importation — pays non listés uniquement"
+    es: "Tratamiento contra la tenia (Echinococcus) 30 días antes de la importación — solo países no listados"
+    pt: "Tratamento contra a tênia (Echinococcus) 30 dias antes da importação — apenas países não listados"
+  - en: "Veterinary certificate from an authorised vet (or pet passport on re-entry)"
+    fr: "Certificat vétérinaire d'un vétérinaire agréé (ou passeport en cas de réentrée)"
+    es: "Certificado veterinario de un veterinario autorizado (o pasaporte para mascotas en caso de reentrada)"
+    pt: "Certificado veterinário de um veterinário autorizado (ou passaporte para animais em caso de reentrada)"
+  - en: "Original documents; microchip number matching the certificate"
+    fr: "Documents originaux ; numéro de puce correspondant au certificat"
+    es: "Documentos originales; número de microchip que coincida con el certificado"
+    pt: "Documentos originais; número do microchip coincidindo com o do certificado"
+  - en: "Advance notice to the airport veterinary service (Pristina)"
+    fr: "Préavis au service vétérinaire de l'aéroport (Pristina)"
+    es: "Aviso previo al servicio veterinario del aeropuerto (Pristina)"
+    pt: "Notificação prévia ao serviço veterinário do aeroporto (Pristina)"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "Food and Veterinary Agency (AUV) — Administrative Instructions (legislation)", fr: "Agence de l'alimentation et de la vétérinaire (AUV) — Instructions administratives (législation)", es: "Agencia de Alimentación y Veterinaria (AUV) — Instrucciones Administrativas (legislación)", pt: "Agência de Alimentos e Veterinária (AUV) — Instruções Administrativas (legislação)" }
+    url: "https://auvk.rks-gov.net/en/administrative-instructions/"
+  - label: { en: "AI No. 02/2009 — On the conditions of movement of non-commercial companion animals (governing instrument)", fr: "IA n° 02/2009 — Sur les conditions de mouvement des animaux de compagnie non commerciaux (instrument de référence)", es: "IA n.º 02/2009 — Sobre las condiciones de movimiento de animales de compañía no comerciales (instrumento de referencia)", pt: "IA nº 02/2009 — Sobre as condições de circulação de animais de companhia não comerciais (instrumento de referência)" }
+    url: "https://auvk.rks-gov.net/auvk/repository/docs/A_2009_02_aes.pdf"
+  - label: { en: "AI (MAFRD) No. 02/2018 — Identification and registration of companion animals (microchip)", fr: "IA (MBPZHR) n° 02/2018 — Identification et enregistrement des animaux de compagnie (puce)", es: "IA (MAFRD) n.º 02/2018 — Identificación y registro de animales de compañía (microchip)", pt: "IA (MAFRD) nº 02/2018 — Identificação e registro de animais de companhia (microchip)" }
+    url: "https://auvk.rks-gov.net/auvk/repository/docs/2018_05_11_164130_751_-_UA_Nr022018_per_Identifikimin_dhe_Regjistrimin_e_Kafsheve_Shoqeruese.pdf"
+  - label: { en: "AUV — Border control: veterinary certificates for import", fr: "AUV — Contrôle frontalier : certificats vétérinaires pour l'importation", es: "AUV — Control fronterizo: certificados veterinarios para la importación", pt: "AUV — Controle de fronteira: certificados veterinários para importação" }
+    url: "https://auvk.rks-gov.net/en/border-control/veterinary-certificates-for-import/"
+  - label: { en: "Kosovo Customs (Dogana e Kosovës)", fr: "Douane du Kosovo (Dogana e Kosovës)", es: "Aduanas de Kosovo (Dogana e Kosovës)", pt: "Alfândega do Kosovo (Dogana e Kosovës)" }
+    url: "https://dogana.rks-gov.net/"
+
+seo:
+  title: { en: "Kosovo Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Kosovo — Guide", es: "Requisitos de entrada de perros en Kosovo — Guía de viaje", pt: "Exigências de entrada de cachorros no Kosovo — Guia de viagem" }
+  metaTitle: { en: "Traveling to Kosovo With Your Dog: Entry Requirements (2026)", fr: "Voyager au Kosovo avec ton chien : formalités (2026)", es: "Viajar a Kosovo con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Kosovo: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official microchip, rabies, antibody-test and tapeworm rules for a dog entering Kosovo (AUV AI 02/2009) — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage, titrage et échinococcose pour faire entrer un chien au Kosovo (AUV IA 02/2009) — selon origine UE. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia, prueba de titulación y tenia para traer un perro a Kosovo (AUV IA 02/2009) — según origen UE. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva, teste sorológico e tênia para um cachorro entrar no Kosovo (AUV IA 02/2009) — por origem UE, listada e não listada."
+  slug: "kosovo"
+  shortDesc:
+    en: "What you need to bring a dog into Kosovo, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien au Kosovo, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Kosovo, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro ao Kosovo, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

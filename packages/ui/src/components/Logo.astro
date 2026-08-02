@@ -1,0 +1,19 @@
+---
+interface Props { height?: number }
+const { height = 28 } = Astro.props;
+const ratio = 884 / 120; // intrinsic wordmark.png aspect ratio
+const width = Math.round(height * ratio);
+---
+<img
+  class="mdcf-logo"
+  src="/brand/wordmark.png"
+  alt="MyDogCanFly.com"
+  width={width}
+  height={height}
+  decoding="async"
+  fetchpriority="high"
+/>
+
+<style>
+  .mdcf-logo { display: block; height: auto; max-width: 100%; }
+</style>

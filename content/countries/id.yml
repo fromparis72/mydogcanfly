@@ -1,0 +1,416 @@
+# Country Entry Guide — Indonesia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Indonesia is NOT in the EU. It runs its own scheme through the Directorate General of
+# Livestock and Animal Health Services (Ditjen PKH, Ministry of Agriculture — pertanian.go.id),
+# which issues the import permit (via the SIMREK PKH portal), and the Indonesian Quarantine
+# Agency (Badan Karantina Indonesia / Barantin — karantinaindonesia.go.id), which inspects and
+# quarantines animals at the point of entry. The defining feature is geographic: to protect
+# Indonesia's rabies-free provinces, the import of dogs from rabies-infected countries/zones INTO
+# rabies-free areas is prohibited, and Bali does not accept the direct entry of dogs at all.
+# Dogs may only be imported through designated entry points into areas where import is allowed
+# (in practice the mainland via Jakarta), with an import permit, microchip, rabies vaccination,
+# a rabies antibody test, a government health certificate and quarantine on arrival.
+# The eu/listed/nonListed slots are repurposed to Indonesia's practical paths:
+# eu = import into a permitted (rabies-endemic) entry area such as Jakarta; listed = the on-arrival
+# conditions and quarantine; nonListed = Bali and the rabies-free provinces, where entry is banned.
+id: country_id
+iso2: "ID"
+name: { en: "Indonesia", fr: "Indonésie", es: "Indonesia", pt: "Indonésia" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Indonesia: islands are separate sanitary zones — quarantine clearance is required at both ends."
+    fr: "Vol intérieur en Indonésie : les îles constituent des zones sanitaires distinctes — un passage en quarantaine est exigé au départ comme à l'arrivée."
+    es: "Vuelo nacional en Indonesia: las islas son zonas sanitarias distintas — se exige control de cuarentena tanto a la salida como a la llegada."
+    pt: "Voo doméstico na Indonésia: as ilhas são zonas sanitárias separadas — a liberação da quarentena é exigida nas duas pontas."
+  points:
+    - en: "The quarantine law requires a health certificate, use of designated exit and entry points, and reporting the animal to quarantine on departure AND on arrival."
+      fr: "La loi de quarantaine impose un certificat sanitaire, l'usage de points de sortie et d'entrée désignés, et la présentation de l'animal à la quarantaine au départ ET à l'arrivée."
+      es: "La ley de cuarentena exige un certificado sanitario, el uso de puntos de salida y entrada designados, y presentar al animal en cuarentena a la salida Y a la llegada."
+      pt: "A lei de quarentena exige um atestado de saúde, o uso de pontos de saída e entrada designados, e a notificação do animal à quarentena tanto na partida QUANTO na chegada."
+    - en: "Rabies vaccination is required, and a protective antibody titre is asked for inter-island movement. Districts are classified rabies-free or infected, and the list is revised annually."
+      fr: "La vaccination antirabique est exigée, et un titrage d'anticorps protecteur est demandé pour les mouvements entre îles. Les districts sont classés indemnes ou infectés, et la liste est révisée chaque année."
+      es: "Se exige vacuna antirrábica, y se pide una titulación de anticuerpos protectora para el movimiento entre islas. Los distritos se clasifican como libres o infectados, y la lista se revisa anualmente."
+      pt: "A vacinação antirrábica é obrigatória, e uma titulação protetora de anticorpos é exigida para o deslocamento entre ilhas. Os distritos são classificados como livres de raiva ou infectados, e a lista é revisada anualmente."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+  territories:
+    - name: { en: "Bali", fr: "Bali", es: "Bali", pt: "Bali" }
+      note:
+        en: "Bali is classified rabies-infected and the movement of dogs, cats and monkeys is prohibited both INTO and OUT OF the province. Some carriers also exclude Denpasar from pet carriage."
+        fr: "Bali est classée infectée par la rage et le mouvement des chiens, chats et singes y est interdit dans les deux sens, à l'entrée comme à la sortie. Certaines compagnies excluent aussi Denpasar du transport d'animaux."
+        es: "Bali está clasificada como infectada de rabia y el movimiento de perros, gatos y monos está prohibido en ambos sentidos, tanto de entrada como de salida. Algunas aerolíneas también excluyen Denpasar del transporte de mascotas."
+        pt: "Bali é classificada como infectada por raiva, e o deslocamento de cachorros, gatos e macacos é proibido tanto PARA DENTRO quanto PARA FORA da província. Algumas companhias aéreas também excluem Denpasar do transporte de animais de estimação."
+      url: https://distanpangan.baliprov.go.id/wp-content/uploads/2025/10/Pergub-No.-88-Th-2008-Penutupan-Sementara-HPR.pdf
+exit:
+  authority: Barantin
+  authorityUrl: https://karantinaindonesia.go.id/
+  intro:
+    en: "Indonesia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an animal quarantine certificate from the Indonesian Quarantine Authority (Barantin)."
+    fr: "L'Indonésie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat de quarantaine animale de l'Autorité indonésienne de quarantaine (Barantin)."
+    es: "Indonesia no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de cuarentena animal de la Autoridad de Cuarentena de Indonesia (Barantin)."
+    pt: "A Indonésia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado de quarentena animal da Indonesian Quarantine Authority (Barantin)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Lodge a quarantine request at your local Barantin office; a quarantine veterinarian examines the dog and, if healthy, issues the animal health certificate, with the EU-model certificate officially certified before departure."
+        fr: "Dépose une demande de quarantaine à ton bureau Barantin local ; un vétérinaire de quarantaine examine le chien et, s'il est sain, délivre le certificat sanitaire, le certificat au modèle UE étant certifié officiellement avant le départ."
+        es: "Presenta una solicitud de cuarentena en tu oficina local de Barantin; un veterinario de cuarentena examina al perro y, si está sano, emite el certificado sanitario, con el certificado en modelo UE certificado oficialmente antes de salir."
+        pt: "Registre um pedido de quarentena no escritório local do Barantin; um veterinário de quarentena examina o cachorro e, se estiver saudável, emite o atestado de saúde animal, com o certificado no modelo da UE oficialmente certificado antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Indonesia with your dog", fr: "Voyager en Indonésie avec ton chien", es: "Viajar a Indonesia con tu perro", pt: "Viajar para a Indonésia com seu cachorro" }
+  intro:
+    en: >-
+      Indonesia is one of the hardest countries in the world to bring a dog to, and where in the
+      country you are heading matters more than anything else. To protect its rabies-free provinces,
+      Indonesia prohibits importing dogs from rabies-affected countries into those areas — and Bali,
+      the destination most travellers have in mind, does not accept the direct entry of dogs at all.
+      Where import is allowed (in practice the mainland via Jakarta), you must first obtain an import
+      permit from the Directorate General of Livestock and Animal Health Services (Ditjen PKH), then
+      an ISO microchip, a valid rabies vaccination, a rabies antibody test, and a government health
+      certificate, followed by quarantine on arrival. This guide explains what is possible, what is
+      forbidden, and why you should never assume you can simply fly a dog into Bali.
+    fr: >-
+      L'Indonésie est l'un des pays les plus difficiles au monde pour faire venir un chien, et
+      l'endroit où tu te rends compte plus que tout. Pour protéger ses provinces indemnes de
+      rage, l'Indonésie interdit l'importation de chiens depuis les pays touchés par la rage vers ces
+      zones — et Bali, la destination à laquelle pensent la plupart des voyageurs, n'accepte pas du
+      tout l'entrée directe de chiens. Là où l'importation est permise (en pratique l'île principale
+      via Jakarta), tu dois d'abord obtenir un permis d'importation auprès de la Direction générale
+      de l'élevage et de la santé animale (Ditjen PKH), puis une puce ISO, une vaccination antirabique
+      valide, un test des anticorps antirabiques et un certificat sanitaire officiel, suivis d'une
+      quarantaine à l'arrivée. Ce guide explique ce qui est possible, ce qui est interdit, et pourquoi
+      il ne faut jamais présumer pouvoir simplement faire entrer un chien à Bali.
+    es: >-
+      Indonesia es uno de los países más difíciles del mundo para llevar un perro, y adónde te diriges
+      dentro del país importa más que cualquier otra cosa. Para proteger sus provincias libres de rabia,
+      Indonesia prohíbe importar perros desde países afectados por la rabia hacia esas zonas — y Bali, el
+      destino que la mayoría de los viajeros tiene en mente, no acepta en absoluto la entrada directa de
+      perros. Donde la importación está permitida (en la práctica la isla principal a través de Yakarta),
+      primero debes obtener un permiso de importación de la Dirección General de Ganadería y Servicios de
+      Salud Animal (Ditjen PKH), y luego un microchip ISO, una vacunación antirrábica válida, una prueba
+      de titulación de rabia y un certificado sanitario oficial, seguidos de cuarentena a la llegada. Esta
+      guía explica qué es posible, qué está prohibido y por qué nunca debes dar por hecho que puedes
+      simplemente llevar un perro a Bali en avión.
+
+    pt: "A Indonésia é um dos países mais difíceis do mundo para levar um cachorro, e para onde no país você está indo importa mais do que qualquer outra coisa. Para proteger suas províncias livres de raiva, a Indonésia proíbe a importação de cachorros vindos de países afetados pela raiva para essas áreas — e Bali, o destino que a maioria dos viajantes tem em mente, não aceita a entrada direta de cachorros de forma alguma. Onde a importação é permitida (na prática, o território continental via Jacarta), você precisa primeiro obter uma autorização de importação junto à Directorate General of Livestock and Animal Health Services (Ditjen PKH), depois um microchip ISO, uma vacinação antirrábica válida, um teste sorológico antirrábico e um atestado de saúde emitido pelo governo, seguidos de quarentena na chegada. Este guia explica o que é possível, o que é proibido, e por que você nunca deve presumir que pode simplesmente levar um cachorro de avião até Bali."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — many areas ban dogs entirely, notably Bali", fr: "Difficile — de nombreuses zones interdisent totalement les chiens, notamment Bali", es: "Difícil — muchas zonas prohíben totalmente los perros, en especial Bali", pt: "Difícil — muitas áreas proíbem cachorros por completo, principalmente Bali" }
+
+prepTime:
+  eu:
+    en: "Where import is allowed (rabies-endemic area, e.g. mainland via Jakarta): several months — import permit from Ditjen PKH, rabies vaccination given 30 days to 1 year before shipment, a rabies antibody test result of at least 0.5 IU/ml, a government health certificate, then at least 14 days of quarantine on arrival."
+    fr: "Là où l'importation est permise (zone d'enzootie rabique, ex. l'île principale via Jakarta) : plusieurs mois — permis d'importation du Ditjen PKH, vaccination antirabique faite 30 jours à 1 an avant l'expédition, un test des anticorps antirabiques d'au moins 0,5 UI/ml, un certificat sanitaire officiel, puis au moins 14 jours de quarantaine à l'arrivée."
+    es: "Donde la importación está permitida (zona endémica de rabia, p. ej. la isla principal a través de Yakarta): varios meses — permiso de importación de Ditjen PKH, vacunación antirrábica administrada de 30 días a 1 año antes del envío, un resultado de prueba de titulación de rabia de al menos 0,5 UI/ml, un certificado sanitario oficial, y luego al menos 14 días de cuarentena a la llegada."
+    pt: "Onde a importação é permitida (área endêmica de raiva, por exemplo, o território continental via Jacarta): vários meses — autorização de importação do Ditjen PKH, vacinação antirrábica aplicada entre 30 dias e 1 ano antes do embarque, resultado do teste sorológico antirrábico de pelo menos 0,5 UI/ml, atestado de saúde emitido pelo governo, e depois pelo menos 14 dias de quarentena na chegada."
+  listed:
+    en: "On arrival: report to the Quarantine (Barantin) officer at least 2 days before arrival; the pet is inspected, documents are verified and it is held in a quarantine facility for at least 14 days. Onward movement inside Indonesia (including into any rabies-free province) is separately restricted."
+    fr: "À l'arrivée : signale-toi à l'agent de quarantaine (Barantin) au moins 2 jours avant l'arrivée ; l'animal est inspecté, les documents vérifiés et il est placé en installation de quarantaine pendant au moins 14 jours. Les déplacements ultérieurs à l'intérieur de l'Indonésie (y compris vers toute province indemne de rage) sont réglementés séparément."
+    es: "A la llegada: preséntate ante el agente de cuarentena (Barantin) al menos 2 días antes de la llegada; se inspecciona a la mascota, se verifican los documentos y se la mantiene en una instalación de cuarentena durante al menos 14 días. El traslado posterior dentro de Indonesia (incluido hacia cualquier provincia libre de rabia) está restringido por separado."
+    pt: "Na chegada: notifique o agente da Quarentena (Barantin) pelo menos 2 dias antes da chegada; o animal é inspecionado, os documentos são verificados e ele fica retido em uma instalação de quarentena por pelo menos 14 dias. O deslocamento posterior dentro da Indonésia (inclusive para qualquer província livre de raiva) é restrito separadamente."
+  nonListed:
+    en: "Bali and the rabies-free provinces: not possible — the direct entry of dogs is prohibited, whether flown in directly or moved on from the mainland. Do not plan on bringing a dog to Bali."
+    fr: "Bali et les provinces indemnes de rage : impossible — l'entrée directe de chiens est interdite, qu'ils arrivent directement par avion ou soient acheminés depuis l'île principale. Ne prévois pas d'amener un chien à Bali."
+    es: "Bali y las provincias libres de rabia: no es posible — la entrada directa de perros está prohibida, tanto si llegan directamente en avión como si se trasladan desde la isla principal. No planees llevar un perro a Bali."
+    pt: "Bali e as províncias livres de raiva: não é possível — a entrada direta de cachorros é proibida, seja levada de avião diretamente ou deslocada a partir do território continental. Não planeje levar um cachorro para Bali."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Restricted — permit + designated entry points only", fr: "Restreint — permis + points d'entrée désignés uniquement", es: "Restringido — solo con permiso y puntos de entrada designados", pt: "Restrito — apenas com autorização + pontos de entrada designados" }
+    cls: warn
+  - requirement: { en: "Entry to Bali & rabies-free provinces", fr: "Entrée à Bali et dans les provinces indemnes de rage", es: "Entrada a Bali y las provincias libres de rabia", pt: "Entrada em Bali e nas províncias livres de raiva" }
+    status: { en: "Prohibited", fr: "Interdite", es: "Prohibida", pt: "Proibidas" }
+    cls: no
+  - requirement: { en: "Import permit (Ditjen PKH, in advance)", fr: "Permis d'importation (Ditjen PKH, à l'avance)", es: "Permiso de importación (Ditjen PKH, con antelación)", pt: "Autorização de importação (Ditjen PKH, com antecedência)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required (≥0.5 IU/ml)", fr: "Requis (≥0,5 UI/ml)", es: "Obligatoria (≥0,5 UI/ml)", pt: "Obrigatório (≥0,5 UI/ml)" }
+    cls: warn
+  - requirement: { en: "Government veterinary health certificate", fr: "Certificat sanitaire vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Required (at least 14 days)", fr: "Requise (au moins 14 jours)", es: "Obligatoria (al menos 14 días)", pt: "Obrigatória (pelo menos 14 dias)" }
+    cls: warn
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian, the Directorate General of Livestock Services (Ditjen PKH) and the Indonesian Quarantine Agency (Barantin) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire, la Direction générale de l'élevage (Ditjen PKH) et l'Agence indonésienne de quarantaine (Barantin) peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario, la Dirección General de Servicios Ganaderos (Ditjen PKH) y la Agencia Indonesia de Cuarentena (Barantin) pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário, a Directorate General of Livestock Services (Ditjen PKH) e a Indonesian Quarantine Agency (Barantin) podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Bali and Indonesia's rabies-free provinces do not accept the entry of dogs — do not book a flight assuming you can bring a dog to Bali."
+    fr: "Bali et les provinces indonésiennes indemnes de rage n'acceptent pas l'entrée de chiens — ne réserve pas un vol en supposant pouvoir amener un chien à Bali."
+    es: "Bali y las provincias indonesias libres de rabia no aceptan la entrada de perros — no reserves un vuelo dando por hecho que puedes llevar un perro a Bali."
+    pt: "Bali e as províncias livres de raiva da Indonésia não aceitam a entrada de cachorros — não reserve um voo presumindo que você pode levar um cachorro para Bali."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact outcome depends on three things — and for Indonesia the destination area within the country is decisive."
+    fr: "Le résultat exact dépend de trois éléments — et pour l'Indonésie la zone de destination à l'intérieur du pays est décisive."
+    es: "El resultado exacto depende de tres factores — y para Indonesia la zona de destino dentro del país es decisiva."
+    pt: "O resultado exato depende de três fatores — e, no caso da Indonésia, a área de destino dentro do país é decisiva."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Indonesia (and where within it)", fr: "Pays de destination — Indonésie (et où à l'intérieur)", es: "País de destino — Indonesia (y en qué parte del país)", pt: "País de destino — Indonésia (e a área dentro dela)" }
+      text:
+        en: "Indonesia runs its own scheme: an advance import permit (Ditjen PKH), microchip, rabies vaccination, a rabies antibody test, a government health certificate and quarantine. Crucially, import is only allowed into rabies-endemic areas through designated entry points; Bali and the rabies-free provinces prohibit the entry of dogs entirely."
+        fr: "L'Indonésie applique son propre régime : permis d'importation préalable (Ditjen PKH), puce, vaccination antirabique, test des anticorps antirabiques, certificat sanitaire officiel et quarantaine. Surtout, l'importation n'est permise que vers les zones d'enzootie rabique par des points d'entrée désignés ; Bali et les provinces indemnes de rage interdisent totalement l'entrée de chiens."
+        es: "Indonesia aplica su propio esquema: un permiso de importación previo (Ditjen PKH), microchip, vacunación antirrábica, una prueba de titulación de rabia, un certificado sanitario oficial y cuarentena. Y lo más importante: la importación solo se permite hacia zonas endémicas de rabia a través de puntos de entrada designados; Bali y las provincias libres de rabia prohíben totalmente la entrada de perros."
+        pt: "A Indonésia aplica seu próprio esquema: uma autorização de importação prévia (Ditjen PKH), microchip, vacinação antirrábica, um teste sorológico antirrábico, um atestado de saúde emitido pelo governo e quarentena. É fundamental notar que a importação só é permitida para áreas endêmicas de raiva, por pontos de entrada designados; Bali e as províncias livres de raiva proíbem a entrada de cachorros por completo."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country's official veterinary authority endorses the health certificate. A dog coming from a rabies-affected country cannot be imported into any rabies-free area of Indonesia — the prohibition is tied to the rabies status of both the origin and the destination area."
+        fr: "L'autorité vétérinaire officielle du pays d'export vise le certificat sanitaire. Un chien venant d'un pays touché par la rage ne peut pas être importé dans une zone indemne de rage d'Indonésie — l'interdiction est liée au statut rabique à la fois de l'origine et de la zone de destination."
+        es: "La autoridad veterinaria oficial del país exportador refrenda el certificado sanitario. Un perro que viene de un país afectado por la rabia no puede importarse a ninguna zona libre de rabia de Indonesia — la prohibición depende del estatus rábico tanto del origen como de la zona de destino."
+        pt: "A autoridade veterinária oficial do país exportador endossa o atestado de saúde. Um cachorro vindo de um país afetado pela raiva não pode ser importado para nenhuma área livre de raiva da Indonésia — a proibição está ligada à situação da raiva tanto na origem quanto na área de destino."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country shapes how the vaccination, antibody test and quarantine are assessed, and the quarantine officer may detain any animal that raises a disease concern regardless of the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique influe sur l'évaluation de la vaccination, du titrage et de la quarantaine, et l'agent de quarantaine peut retenir tout animal suscitant une inquiétude sanitaire, quel que soit le dernier aéroport."
+        es: "Una estancia reciente en un país con riesgo de rabia condiciona cómo se evalúan la vacunación, la prueba de titulación y la cuarentena, y el agente de cuarentena puede retener a cualquier animal que suscite una preocupación sanitaria, con independencia del último aeropuerto."
+        pt: "Uma estadia recente em um país com risco de raiva determina como a vacinação, o teste sorológico e a quarentena são avaliados, e o agente de quarentena pode reter qualquer animal que levante alguma preocupação sanitária, independentemente do último aeroporto."
+  note:
+    en: "So read the requirements below as Indonesia's framework, then confirm your dog's exact origin, history and destination area with your vet, Ditjen PKH and Barantin before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre indonésien, puis confirme l'origine, l'historique et la zone de destination exacts de ton chien avec ton vétérinaire, le Ditjen PKH et Barantin avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Indonesia y luego confirma el origen, el historial y la zona de destino exactos de tu perro con tu veterinario, Ditjen PKH y Barantin antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o marco da Indonésia e depois confirme com o seu veterinário, o Ditjen PKH e o Barantin a origem, o histórico e a área de destino exatos do seu cachorro antes de reservar."
+
+requirements:
+  - item: { en: "Import permit (Ditjen PKH)", fr: "Permis d'importation (Ditjen PKH)", es: "Permiso de importación (Ditjen PKH)", pt: "Autorização de importação (Ditjen PKH)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued in advance by the Directorate General of Livestock and Animal Health Services (Ditjen PKH), Ministry of Agriculture, applied for through the SIMREK PKH portal before shipment. No dog may be imported without it.", fr: "Délivré à l'avance par la Direction générale de l'élevage et de la santé animale (Ditjen PKH), ministère de l'Agriculture, demandé via le portail SIMREK PKH avant l'expédition. Aucun chien ne peut être importé sans lui.", es: "Expedido con antelación por la Dirección General de Ganadería y Servicios de Salud Animal (Ditjen PKH), Ministerio de Agricultura, solicitado a través del portal SIMREK PKH antes del envío. Ningún perro puede importarse sin él.", pt: "Emitida com antecedência pela Directorate General of Livestock and Animal Health Services (Ditjen PKH), do Ministério da Agricultura, solicitada pelo portal SIMREK PKH antes do embarque. Nenhum cachorro pode ser importado sem ela." }
+    exceptions: { en: "A permit is never issued for the entry of dogs into a rabies-free province or into Bali.", fr: "Aucun permis n'est délivré pour l'entrée de chiens dans une province indemne de rage ou à Bali.", es: "Nunca se expide un permiso para la entrada de perros en una provincia libre de rabia ni en Bali.", pt: "Uma autorização nunca é emitida para a entrada de cachorros em uma província livre de raiva ou em Bali." }
+    ref: { en: "Ditjen PKH — pet import permit (SIMREK PKH); pertanian.go.id", fr: "Ditjen PKH — permis d'importation d'animaux de compagnie (SIMREK PKH) ; pertanian.go.id", es: "Ditjen PKH — permiso de importación de mascotas (SIMREK PKH); pertanian.go.id", pt: "Ditjen PKH — autorização de importação de animais de estimação (SIMREK PKH); pertanian.go.id" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784/11785 microchip (15-digit code); the number must match the vaccination records, the antibody-test report and the health certificate.", fr: "Puce ISO 11784/11785 (code à 15 chiffres) ; le numéro doit correspondre au carnet de vaccination, au rapport de titrage et au certificat sanitaire.", es: "Microchip ISO 11784/11785 (código de 15 dígitos); el número debe coincidir con el registro de vacunación, el informe de la prueba de titulación y el certificado sanitario.", pt: "Microchip ISO 11784/11785 (código de 15 dígitos); o número precisa corresponder aos registros de vacinação, ao laudo do teste sorológico e ao atestado de saúde." }
+    exceptions: { en: "If the microchip cannot be read or does not match the documents, entry can be refused at quarantine.", fr: "Si la puce est illisible ou ne correspond pas aux documents, l'entrée peut être refusée à la quarantaine.", es: "Si el microchip no puede leerse o no coincide con los documentos, se puede denegar la entrada en la cuarentena.", pt: "Se o microchip não puder ser lido ou não corresponder aos documentos, a entrada pode ser recusada na quarentena." }
+    ref: { en: "Badan Karantina Indonesia (Barantin) — pet import requirements", fr: "Badan Karantina Indonesia (Barantin) — exigences d'importation d'animaux", es: "Badan Karantina Indonesia (Barantin) — requisitos de importación de mascotas", pt: "Badan Karantina Indonesia (Barantin) — exigências para a importação de animais de estimação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Certificate issued by a government or licensed veterinarian; the vaccination must have been performed at least 30 days and not more than 1 year before shipment/export.", fr: "Certificat délivré par un vétérinaire officiel ou agréé ; la vaccination doit avoir été effectuée au moins 30 jours et au plus 1 an avant l'expédition/l'export.", es: "Certificado expedido por un veterinario oficial o autorizado; la vacunación debe haberse realizado al menos 30 días y como máximo 1 año antes del envío/la exportación.", pt: "Certificado emitido por um veterinário do governo ou licenciado; a vacinação precisa ter sido aplicada pelo menos 30 dias e no máximo 1 ano antes do embarque/exportação." }
+    exceptions: { en: "A dog from a rabies-affected country still cannot enter any rabies-free area of Indonesia even when fully vaccinated.", fr: "Un chien venant d'un pays touché par la rage ne peut toujours pas entrer dans une zone indemne de rage d'Indonésie, même correctement vacciné.", es: "Un perro procedente de un país afectado por la rabia sigue sin poder entrar en ninguna zona libre de rabia de Indonesia, aunque esté completamente vacunado.", pt: "Um cachorro vindo de um país afetado pela raiva ainda assim não pode entrar em nenhuma área livre de raiva da Indonésia, mesmo estando totalmente vacinado." }
+    ref: { en: "Embassy of Indonesia — Animal Quarantine requirements; Barantin", fr: "Ambassade d'Indonésie — exigences de quarantaine animale ; Barantin", es: "Embajada de Indonesia — requisitos de cuarentena animal; Barantin", pt: "Embassy of Indonesia — exigências de quarentena animal; Barantin" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A rabies antibody test (serological titration) with a result of at least 0.5 IU/ml, from an approved laboratory, is required for dogs imported where import is allowed.", fr: "Un test des anticorps antirabiques (titrage sérologique) avec un résultat d'au moins 0,5 UI/ml, effectué par un laboratoire agréé, est exigé pour les chiens importés là où l'importation est permise.", es: "Para los perros importados donde la importación está permitida se exige una prueba de titulación de rabia (titulación serológica) con un resultado de al menos 0,5 UI/ml, de un laboratorio autorizado.", pt: "Um teste sorológico antirrábico (titulação sorológica) com resultado de pelo menos 0,5 UI/ml, de um laboratório aprovado, é obrigatório para cachorros importados onde a importação é permitida." }
+    exceptions: { en: "Confirm the exact validity window and approved laboratory with Barantin/Ditjen PKH before travel; the antibody test does not lift the ban on entering rabies-free provinces or Bali.", fr: "Confirme la fenêtre exacte de validité et le laboratoire agréé auprès de Barantin/Ditjen PKH avant le voyage ; le titrage ne lève pas l'interdiction d'entrer dans les provinces indemnes de rage ou à Bali.", es: "Confirma la ventana exacta de valide y el laboratorio autorizado con Barantin/Ditjen PKH antes de viajar; la prueba de titulación no levanta la prohibición de entrar en las provincias libres de rabia ni en Bali.", pt: "Confirme o prazo de validade exato e o laboratório aprovado com o Barantin/Ditjen PKH antes da viagem; o teste sorológico não suspende a proibição de entrada nas províncias livres de raiva ou em Bali." }
+    ref: { en: "Badan Karantina Indonesia (Barantin) — pet import requirements", fr: "Badan Karantina Indonesia (Barantin) — exigences d'importation d'animaux", es: "Badan Karantina Indonesia (Barantin) — requisitos de importación de mascotas", pt: "Badan Karantina Indonesia (Barantin) — exigências para a importação de animais de estimação" }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat sanitaire vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Animal health certificate (or pet passport) issued by an authorised government veterinarian in the exporting country, presented on arrival with the rabies documents.", fr: "Certificat sanitaire (ou passeport) délivré par un vétérinaire officiel du pays d'export, présenté à l'arrivée avec les documents relatifs à la rage.", es: "Certificado sanitario animal (o pasaporte para mascotas) expedido por un veterinario oficial autorizado del país exportador, presentado a la llegada junto con los documentos de la rabia.", pt: "Atestado de saúde animal (ou passaporte de animal de estimação) emitido por um veterinário do governo autorizado no país exportador, apresentado na chegada junto com os documentos de raiva." }
+    exceptions: { en: "Copies are not accepted in place of the original endorsed certificate.", fr: "Les copies ne sont pas acceptées à la place du certificat original visé.", es: "No se aceptan copias en lugar del certificado original refrendado.", pt: "Cópias não são aceitas no lugar do certificado original endossado." }
+    ref: { en: "Embassy of Indonesia — Animal Quarantine requirements; USDA APHIS (Indonesia)", fr: "Ambassade d'Indonésie — exigences de quarantaine animale ; USDA APHIS (Indonésie)", es: "Embajada de Indonesia — requisitos de cuarentena animal; USDA APHIS (Indonesia)", pt: "Embassy of Indonesia — exigências de quarentena animal; USDA APHIS (Indonésia)" }
+  - item: { en: "Minimum age / condition", fr: "Âge minimum / état", es: "Edad mínima / estado", pt: "Idade mínima / condição" }
+    required: { en: "≥90 days; not pregnant/lactating", fr: "≥90 jours ; ni gestante ni allaitante", es: "≥90 días; no gestante ni lactante", pt: "≥90 dias; não gestante/lactante" }
+    when: { en: "The pet must be at least 90 days old at the time of export/shipment and must not be pregnant or in lactation.", fr: "L'animal doit avoir au moins 90 jours au moment de l'export/l'expédition et ne doit être ni gestant ni en lactation.", es: "La mascota debe tener al menos 90 días en el momento de la exportación/el envío y no debe estar gestante ni en lactancia.", pt: "O animal precisa ter pelo menos 90 dias de vida no momento da exportação/embarque e não pode estar gestante ou em lactação." }
+    exceptions: { en: "A dog too young for a valid rabies vaccination cannot meet the entry conditions.", fr: "Un chien trop jeune pour une vaccination antirabique valide ne peut pas remplir les conditions d'entrée.", es: "Un perro demasiado joven para una vacunación antirrábica válida no puede cumplir las condiciones de entrada.", pt: "Um cachorro jovem demais para uma vacinação antirrábica válida não consegue cumprir as condições de entrada." }
+    ref: { en: "Embassy of Indonesia — Animal Quarantine requirements", fr: "Ambassade d'Indonésie — exigences de quarantaine animale", es: "Embajada de Indonesia — requisitos de cuarentena animal", pt: "Embassy of Indonesia — exigências de quarentena animal" }
+  - item: { en: "Advance notification to quarantine", fr: "Notification préalable à la quarantaine", es: "Notificación previa a la cuarentena", pt: "Notificação prévia à quarentena" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The pet must be reported to the Animal Quarantine (Barantin) officer at the point of entry at least 2 days before arrival, in addition to the pre-arrival Prior Notice.", fr: "L'animal doit être signalé à l'agent de quarantaine animale (Barantin) au point d'entrée au moins 2 jours avant l'arrivée, en plus du « Prior Notice » préalable.", es: "La mascota debe notificarse al agente de cuarentena animal (Barantin) en el punto de entrada al menos 2 días antes de la llegada, además del Prior Notice previo a la llegada.", pt: "O animal precisa ser notificado ao agente da Quarentena Animal (Barantin) no ponto de entrada pelo menos 2 dias antes da chegada, além do Prior Notice prévio à chegada." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Badan Karantina Indonesia (Barantin) — Prior Notice / arrival reporting", fr: "Badan Karantina Indonesia (Barantin) — Prior Notice / signalement à l'arrivée", es: "Badan Karantina Indonesia (Barantin) — Prior Notice / notificación de llegada", pt: "Badan Karantina Indonesia (Barantin) — Prior Notice / notificação de chegada" }
+  - item: { en: "Designated points of entry", fr: "Points d'entrée désignés", es: "Puntos de entrada designados", pt: "Pontos de entrada designados" }
+    required: { en: "Mandatory routing", fr: "Acheminement obligatoire", es: "Ruta obligatoria", pt: "Rota obrigatória" }
+    when: { en: "Dogs may only be imported through designated animal-quarantine entry points into areas where import is allowed — in practice the mainland via Jakarta (Soekarno-Hatta), with Surabaya and Medan also used for pets.", fr: "Les chiens ne peuvent être importés que par des points d'entrée de quarantaine animale désignés, vers les zones où l'importation est permise — en pratique l'île principale via Jakarta (Soekarno-Hatta), Surabaya et Medan servant aussi pour les animaux.", es: "Los perros solo pueden importarse a través de puntos de entrada de cuarentena animal designados hacia las zonas donde la importación está permitida — en la práctica la isla principal a través de Yakarta (Soekarno-Hatta), y también se usan Surabaya y Medan para las mascotas.", pt: "Os cachorros só podem ser importados por pontos de entrada de quarentena animal designados, para áreas onde a importação é permitida — na prática, o território continental via Jacarta (Soekarno-Hatta), com Surabaya e Medan também usados para animais de estimação." }
+    exceptions: { en: "Denpasar (Bali) is not an entry point for the direct import of dogs.", fr: "Denpasar (Bali) n'est pas un point d'entrée pour l'importation directe de chiens.", es: "Denpasar (Bali) no es un punto de entrada para la importación directa de perros.", pt: "Denpasar (Bali) não é um ponto de entrada para a importação direta de cachorros." }
+    ref: { en: "Badan Karantina Indonesia (Barantin) — entry points for pets", fr: "Badan Karantina Indonesia (Barantin) — points d'entrée pour animaux", es: "Badan Karantina Indonesia (Barantin) — puntos de entrada para mascotas", pt: "Badan Karantina Indonesia (Barantin) — pontos de entrada para animais de estimação" }
+  - item: { en: "Prohibited destinations (Bali & rabies-free provinces)", fr: "Destinations interdites (Bali et provinces indemnes de rage)", es: "Destinos prohibidos (Bali y provincias libres de rabia)", pt: "Destinos proibidos (Bali e províncias livres de raiva)" }
+    required: { en: "Entry prohibited", fr: "Entrée interdite", es: "Entrada prohibida", pt: "Entrada proibida" }
+    when: { en: "Importing dogs from rabies-affected countries/zones into Indonesia's rabies-free areas is prohibited by law; Bali does not accept the direct entry of dogs. Rabies-free areas cited by the authorities include Kepulauan Riau, Bangka Belitung, West Nusa Tenggara, Papua and West Papua.", fr: "L'importation de chiens depuis des pays/zones touchés par la rage vers les zones indemnes de rage d'Indonésie est interdite par la loi ; Bali n'accepte pas l'entrée directe de chiens. Les zones indemnes de rage citées par les autorités incluent les îles Riau, Bangka Belitung, Nusa Tenggara occidental, la Papouasie et la Papouasie occidentale.", es: "La importación de perros desde países/zonas afectados por la rabia hacia las zonas libres de rabia de Indonesia está prohibida por ley; Bali no acepta la entrada directa de perros. Entre las zonas libres de rabia citadas por las autoridades figuran Kepulauan Riau, Bangka Belitung, Nusa Tenggara Occidental, Papúa y Papúa Occidental.", pt: "A importação de cachorros de países/zonas afetados pela raiva para as áreas livres de raiva da Indonésia é proibida por lei; Bali não aceita a entrada direta de cachorros. As áreas livres de raiva citadas pelas autoridades incluem Kepulauan Riau, Bangka Belitung, Nusa Tenggara Ocidental, Papua e Papua Ocidental." }
+    exceptions: { en: "Onward movement of a dog into these areas after mainland quarantine is also restricted — confirm current rules with Ditjen PKH/Barantin.", fr: "Le déplacement ultérieur d'un chien vers ces zones après la quarantaine sur l'île principale est également restreint — confirme les règles en vigueur auprès du Ditjen PKH/Barantin.", es: "El traslado posterior de un perro a estas zonas tras la cuarentena en la isla principal también está restringido — confirma las reglas vigentes con Ditjen PKH/Barantin.", pt: "O deslocamento posterior de um cachorro para essas áreas após a quarentena no território continental também é restrito — confirme as regras atuais com o Ditjen PKH/Barantin." }
+    ref: { en: "Badan Karantina Indonesia (Barantin); Embassy of Indonesia — prohibitions", fr: "Badan Karantina Indonesia (Barantin) ; Ambassade d'Indonésie — interdictions", es: "Badan Karantina Indonesia (Barantin); Embajada de Indonesia — prohibiciones", pt: "Badan Karantina Indonesia (Barantin); Embassy of Indonesia — proibições" }
+  - item: { en: "Quarantine on arrival", fr: "Quarantaine à l'arrivée", es: "Cuarentena a la llegada", pt: "Quarentena na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "After the quarantine veterinarian verifies the documents and finds the dog healthy, the animal is held in a quarantine facility at the airport for at least 14 days of observation.", fr: "Après vérification des documents et constat de bonne santé par le vétérinaire de quarantaine, l'animal est placé en installation de quarantaine à l'aéroport pour au moins 14 jours d'observation.", es: "Tras verificar los documentos y comprobar que el perro está sano, el veterinario de cuarentena mantiene al animal en una instalación de cuarentena en el aeropuerto durante al menos 14 días de observación.", pt: "Depois que o veterinário da quarentena verifica os documentos e considera o cachorro saudável, o animal fica retido em uma instalação de quarentena no aeroporto por pelo menos 14 dias de observação." }
+    exceptions: { en: "If documents are incomplete or the dog is not healthy, it may be refused, returned or held; all costs fall on the owner.", fr: "Si les documents sont incomplets ou si le chien n'est pas en bonne santé, il peut être refusé, renvoyé ou retenu ; tous les frais sont à la charge du propriétaire.", es: "Si los documentos están incompletos o el perro no está sano, puede ser rechazado, devuelto o retenido; todos los costes corren a cargo del propietario.", pt: "Se os documentos estiverem incompletos ou o cachorro não estiver saudável, ele pode ser recusado, devolvido ou retido; todos os custos correm por conta do dono." }
+    ref: { en: "Embassy of Indonesia — Animal Quarantine; Min. of Agriculture Decree 422/1988, Art. 16", fr: "Ambassade d'Indonésie — quarantaine animale ; décret du min. de l'Agriculture 422/1988, art. 16", es: "Embajada de Indonesia — cuarentena animal; Decreto del Min. de Agricultura 422/1988, art. 16", pt: "Embassy of Indonesia — Animal Quarantine; Decreto do Ministério da Agricultura 422/1988, Art. 16" }
+
+origin:
+  eu:
+    title: { en: "Where import is possible — a permitted (rabies-endemic) entry area", fr: "Là où l'importation est possible — une zone d'entrée permise (enzootie rabique)", es: "Donde la importación es posible — una zona de entrada permitida (endémica de rabia)", pt: "Onde a importação é possível — uma área de entrada permitida (endêmica de raiva)" }
+    body:
+      en: "Import is only possible into areas where dogs are allowed — in practice the Indonesian mainland via Jakarta. You must first obtain an import permit from Ditjen PKH (SIMREK PKH portal), then present an ISO microchip, a rabies vaccination performed 30 days to 1 year before shipment, a rabies antibody test of at least 0.5 IU/ml and a government health certificate. The dog must be at least 90 days old and not pregnant or lactating."
+      fr: "L'importation n'est possible que vers les zones où les chiens sont admis — en pratique l'île principale d'Indonésie via Jakarta. Tu dois d'abord obtenir un permis d'importation du Ditjen PKH (portail SIMREK PKH), puis présenter une puce ISO, une vaccination antirabique effectuée 30 jours à 1 an avant l'expédition, un test des anticorps antirabiques d'au moins 0,5 UI/ml et un certificat sanitaire officiel. Le chien doit avoir au moins 90 jours et ne doit être ni gestant ni allaitant."
+      es: "La importación solo es posible hacia las zonas donde se admiten perros — en la práctica la isla principal de Indonesia a través de Yakarta. Primero debes obtener un permiso de importación de Ditjen PKH (portal SIMREK PKH), y luego presentar un microchip ISO, una vacunación antirrábica realizada de 30 días a 1 año antes del envío, una prueba de titulación de rabia de al menos 0,5 UI/ml y un certificado sanitario oficial. El perro debe tener al menos 90 días y no estar gestante ni en lactancia."
+      pt: "A importação só é possível para áreas onde cachorros são permitidos — na prática, o território continental da Indonésia via Jacarta. Você precisa primeiro obter uma autorização de importação do Ditjen PKH (portal SIMREK PKH), depois apresentar um microchip ISO, uma vacinação antirrábica aplicada entre 30 dias e 1 ano antes do embarque, um teste sorológico antirrábico de pelo menos 0,5 UI/ml e um atestado de saúde emitido pelo governo. O cachorro precisa ter pelo menos 90 dias de vida e não pode estar gestante ou lactante."
+    cls: warn
+  listed:
+    title: { en: "On arrival — reporting, inspection and 14-day quarantine", fr: "À l'arrivée — signalement, inspection et quarantaine de 14 jours", es: "A la llegada — notificación, inspección y cuarentena de 14 días", pt: "Na chegada — notificação, inspeção e quarentena de 14 dias" }
+    body:
+      en: "Report the pet to the quarantine (Barantin) officer at the point of entry at least 2 days before arrival. On arrival the quarantine veterinarian inspects the dog and verifies every document; if all is in order the dog is held in a quarantine facility for at least 14 days of observation before release. Moving the dog on to another province is separately controlled."
+      fr: "Signale l'animal à l'agent de quarantaine (Barantin) au point d'entrée au moins 2 jours avant l'arrivée. À l'arrivée, le vétérinaire de quarantaine inspecte le chien et vérifie chaque document ; si tout est en règle, le chien est placé en installation de quarantaine pour au moins 14 jours d'observation avant libération. Le transfert du chien vers une autre province est réglementé séparément."
+      es: "Notifica a la mascota al agente de cuarentena (Barantin) en el punto de entrada al menos 2 días antes de la llegada. A la llegada, el veterinario de cuarentena inspecciona al perro y verifica cada documento; si todo está en orden, el perro permanece en una instalación de cuarentena durante al menos 14 días de observación antes de ser liberado. El traslado del perro a otra provincia se controla por separado."
+      pt: "Notifique o animal ao agente da quarentena (Barantin) no ponto de entrada pelo menos 2 dias antes da chegada. Na chegada, o veterinário da quarentena inspeciona o cachorro e verifica todos os documentos; se tudo estiver em ordem, o cachorro fica retido em uma instalação de quarentena por pelo menos 14 dias de observação antes da liberação. O deslocamento do cachorro para outra província é controlado separadamente."
+    cls: warn
+  nonListed:
+    title: { en: "Bali and rabies-free provinces — entry prohibited", fr: "Bali et provinces indemnes de rage — entrée interdite", es: "Bali y provincias libres de rabia — entrada prohibida", pt: "Bali e as províncias livres de raiva — entrada proibida" }
+    body:
+      en: "This is the case most travellers get wrong. Bali does not accept the direct entry of dogs, and the law prohibits importing dogs from rabies-affected countries into any of Indonesia's rabies-free provinces. No import permit is issued for these destinations, and no vaccination or antibody test lifts the ban. Do not book travel assuming you can bring a dog to Bali — directly or by moving it on from the mainland."
+      fr: "C'est le cas que la plupart des voyageurs comprennent mal. Bali n'accepte pas l'entrée directe de chiens, et la loi interdit d'importer des chiens depuis les pays touchés par la rage vers l'une quelconque des provinces indemnes de rage d'Indonésie. Aucun permis d'importation n'est délivré pour ces destinations, et aucune vaccination ni titrage ne lève l'interdiction. Ne réserve pas un voyage en supposant pouvoir amener un chien à Bali — directement ou en l'acheminant depuis l'île principale."
+      es: "Este es el caso que la mayoría de los viajeros malinterpreta. Bali no acepta la entrada directa de perros, y la ley prohíbe importar perros desde países afectados por la rabia hacia cualquiera de las provincias libres de rabia de Indonesia. No se expide ningún permiso de importación para estos destinos, y ninguna vacunación ni prueba de titulación levanta la prohibición. No reserves un viaje dando por hecho que puedes llevar un perro a Bali — ni directamente ni trasladándolo desde la isla principal."
+      pt: "Esse é o caso em que a maioria dos viajantes se engana. Bali não aceita a entrada direta de cachorros, e a lei proíbe a importação de cachorros vindos de países afetados pela raiva para qualquer uma das províncias livres de raiva da Indonésia. Nenhuma autorização de importação é emitida para esses destinos, e nenhuma vacinação ou teste sorológico suspende a proibição. Não reserve uma viagem presumindo que você pode levar um cachorro para Bali — nem diretamente, nem deslocando-o a partir do território continental."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Indonesia depends entirely on whether it is heading to a permitted area and whether every condition was completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Indonésie dépend entièrement du fait qu'il se dirige vers une zone permise et que toutes les conditions aient été remplies avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Indonesia depende por completo de si se dirige a una zona permitida y de si se cumplieron todas las condiciones antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega à Indonésia depende inteiramente de ele estar indo para uma área permitida e de todas as condições terem sido cumpridas antes da partida."
+  points:
+    - en: "Dogs may only arrive at a designated animal-quarantine entry point into an area where import is allowed — in practice the mainland via Jakarta (Soekarno-Hatta); Surabaya and Medan are also used for pets."
+      fr: "Les chiens ne peuvent arriver qu'à un point d'entrée de quarantaine animale désigné, vers une zone où l'importation est permise — en pratique l'île principale via Jakarta (Soekarno-Hatta) ; Surabaya et Medan servent aussi pour les animaux."
+      es: "Los perros solo pueden llegar a un punto de entrada de cuarentena animal designado hacia una zona donde la importación está permitida — en la práctica la isla principal a través de Yakarta (Soekarno-Hatta); Surabaya y Medan también se usan para las mascotas."
+      pt: "Os cachorros só podem chegar por um ponto de entrada de quarentena animal designado, em uma área onde a importação é permitida — na prática, o território continental via Jacarta (Soekarno-Hatta); Surabaya e Medan também são usados para animais de estimação."
+    - en: "Denpasar (Bali) is not an entry point for the direct import of dogs — a dog flown towards Bali will be refused."
+      fr: "Denpasar (Bali) n'est pas un point d'entrée pour l'importation directe de chiens — un chien acheminé vers Bali sera refusé."
+      es: "Denpasar (Bali) no es un punto de entrada para la importación directa de perros — un perro que vuele hacia Bali será rechazado."
+      pt: "Denpasar (Bali) não é um ponto de entrada para a importação direta de cachorros — um cachorro levado de avião até Bali será recusado."
+    - en: "Present the import permit, the endorsed health certificate, the rabies vaccination certificate and the antibody-test report to the Barantin quarantine veterinarian, who checks the documents and the microchip."
+      fr: "Présente le permis d'importation, le certificat sanitaire visé, le certificat de vaccination antirabique et le rapport de titrage au vétérinaire de quarantaine Barantin, qui vérifie les documents et la puce."
+      es: "Presenta el permiso de importación, el certificado sanitario refrendado, el certificado de vacunación antirrábica y el informe de la prueba de titulación al veterinario de cuarentena de Barantin, que revisa los documentos y el microchip."
+      pt: "Apresente a autorização de importação, o atestado de saúde endossado, o certificado de vacinação antirrábica e o laudo do teste sorológico ao veterinário da quarentena do Barantin, que confere os documentos e o microchip."
+    - en: "If the dog is healthy and the documents complete, it is taken into a quarantine facility for at least 14 days of observation; quarantine and related fees are payable by the owner."
+      fr: "Si le chien est en bonne santé et les documents complets, il est placé en installation de quarantaine pour au moins 14 jours d'observation ; la quarantaine et les frais liés sont à la charge du propriétaire."
+      es: "Si el perro está sano y los documentos están completos, se lo lleva a una instalación de cuarentena durante al menos 14 días de observación; la cuarentena y las tasas relacionadas corren a cargo del propietario."
+      pt: "Se o cachorro estiver saudável e os documentos estiverem completos, ele é levado a uma instalação de quarentena por pelo menos 14 dias de observação; a quarentena e as taxas relacionadas são pagas pelo dono."
+    - en: "If documents are missing or invalid, or the dog is bound for a prohibited area, quarantine may refuse entry and order return or, in the worst case, other measures — all at the owner's expense."
+      fr: "Si des documents manquent ou sont invalides, ou si le chien est destiné à une zone interdite, la quarantaine peut refuser l'entrée et ordonner le renvoi ou, au pire, d'autres mesures — le tout aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, o si el perro se dirige a una zona prohibida, la cuarentena puede denegar la entrada y ordenar la devolución o, en el peor de los casos, otras medidas — todo a cargo del propietario."
+      pt: "Se a documentação estiver ausente ou inválida, ou se o cachorro estiver indo para uma área proibida, a quarentena pode recusar a entrada e determinar a devolução ou, no pior caso, outras medidas — tudo às custas do dono."
+    - en: "Bringing an animal in against these rules is an offence under Indonesia's quarantine law and can carry heavy fines and imprisonment."
+      fr: "Faire entrer un animal en violation de ces règles constitue une infraction à la loi indonésienne de quarantaine et peut entraîner de lourdes amendes et une peine d'emprisonnement."
+      es: "Introducir un animal infringiendo estas reglas constituye un delito según la ley de cuarentena de Indonesia y puede acarrear multas cuantiosas y penas de prisión."
+      pt: "Trazer um animal em desacordo com essas regras é uma infração pela lei de quarentena da Indonésia e pode acarretar multas pesadas e prisão."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Indonesia's controls on dogs are built around rabies geography, not dog breeds. The official import rules reviewed do not publish a national dangerous-breed import ban; the decisive restriction is the destination area, not the breed."
+    fr: "Les contrôles indonésiens sur les chiens reposent sur la géographie de la rage, non sur les races. Les règles d'importation officielles consultées ne publient pas d'interdiction nationale d'importation par race dangereuse ; la restriction décisive est la zone de destination, pas la race."
+    es: "Los controles de Indonesia sobre los perros se basan en la geografía de la rabia, no en las razas. Las reglas de importación oficiales consultadas no publican una prohibición nacional de importación por raza peligrosa; la restricción decisiva es la zona de destino, no la raza."
+    pt: "Os controles da Indonésia sobre cachorros são construídos em torno da geografia da raiva, não das raças de cachorro. As regras oficiais de importação analisadas não publicam uma proibição nacional de importação por raça perigosa; a restrição decisiva é a área de destino, não a raça."
+  cat1:
+    en: "No national breed-specific import ban is published in the sources reviewed: breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler and similar) are not named as prohibited from importation by Ditjen PKH or Barantin. The absolute prohibitions concern destination areas (Bali and the rabies-free provinces), not breeds."
+    fr: "Aucune interdiction d'importation liée à la race n'est publiée dans les sources consultées : les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler et similaires) ne sont pas désignées comme interdites d'importation par le Ditjen PKH ou Barantin. Les interdictions absolues concernent les zones de destination (Bali et les provinces indemnes de rage), pas les races."
+    es: "En las fuentes consultadas no se publica ninguna prohibición nacional de importación por raza: las razas restringidas en algunos otros países (tipos pit bull, Tosa, Rottweiler y similares) no figuran como prohibidas para la importación por Ditjen PKH ni Barantin. Las prohibiciones absolutas se refieren a las zonas de destino (Bali y las provincias libres de rabia), no a las razas."
+    pt: "Nenhuma proibição nacional de importação por raça é publicada nas fontes analisadas: raças restritas em alguns outros países (tipos pit-bull, Tosa, Rottweiler e semelhantes) não são citadas como proibidas de importação pelo Ditjen PKH ou pelo Barantin. As proibições absolutas dizem respeito às áreas de destino (Bali e as províncias livres de raiva), não às raças."
+  cat2:
+    en: "Any additional breed limits are most likely to come from airlines and local government rules rather than national import law. Many carriers refuse or restrict snub-nosed (brachycephalic) breeds in the hold, and some local authorities regulate dog keeping. These are not import bans and are outside the quarantine scheme."
+    fr: "D'éventuelles limites supplémentaires par race proviennent le plus souvent des compagnies aériennes et des règles des collectivités locales plutôt que de la loi nationale d'importation. De nombreux transporteurs refusent ou limitent les races brachycéphales (au nez court) en soute, et certaines autorités locales encadrent la détention de chiens. Ce ne sont pas des interdictions d'importation et cela n'entre pas dans le régime de quarantaine."
+    es: "Cualquier límite adicional por raza es más probable que provenga de las aerolíneas y de las reglas de los gobiernos locales que de la ley nacional de importación. Muchas aerolíneas rechazan o restringen las razas de hocico chato (braquicéfalas) en bodega, y algunas autoridades locales regulan la tenencia de perros. No son prohibiciones de importación y quedan fuera del esquema de cuarentena."
+    pt: "Quaisquer limites adicionais por raça têm mais chance de vir das companhias aéreas e de regras do governo local do que da lei nacional de importação. Muitas companhias aéreas recusam ou restringem raças de focinho achatado (braquicefálicas) no porão, e algumas autoridades locais regulam a posse de cachorros. Essas não são proibições de importação e ficam fora do esquema de quarentena."
+  note:
+    en: "Because breed status is not the barrier here — the destination area is — confirm your dog's breed is accepted by your airline, and confirm current rules directly with Ditjen PKH and Barantin before booking."
+    fr: "Comme ce n'est pas le statut de race qui fait obstacle ici — mais la zone de destination — vérifie que la race de ton chien est acceptée par ta compagnie, et confirme les règles en vigueur directement auprès du Ditjen PKH et de Barantin avant de réserver."
+    es: "Como aquí la barrera no es el estatus de la raza — sino la zona de destino — comprueba que tu aerolínea acepta la raza de tu perro y confirma las reglas vigentes directamente con Ditjen PKH y Barantin antes de reservar."
+    pt: "Como a raça não é a barreira aqui — a área de destino é —, confirme que a raça do seu cachorro é aceita pela sua companhia aérea, e confirme as regras atuais diretamente com o Ditjen PKH e o Barantin antes de reservar."
+
+checklist:
+  - en: "Confirm your destination area allows dogs — Bali and the rabies-free provinces do not"
+    fr: "Vérifie que ton zone de destination admet les chiens — Bali et les provinces indemnes de rage ne les admettent pas"
+    es: "Confirma que tu zona de destino admite perros — Bali y las provincias libres de rabia no lo hacen"
+    pt: "Confirme que a sua área de destino permite cachorros — Bali e as províncias livres de raiva não permitem"
+  - en: "Import permit obtained in advance from Ditjen PKH (SIMREK PKH portal)"
+    fr: "Permis d'importation obtenu à l'avance auprès du Ditjen PKH (portail SIMREK PKH)"
+    es: "Permiso de importación obtenido con antelación de Ditjen PKH (portal SIMREK PKH)"
+    pt: "Autorização de importação obtida com antecedência junto ao Ditjen PKH (portal SIMREK PKH)"
+  - en: "ISO 11784/11785 microchip; number matches every document"
+    fr: "Puce ISO 11784/11785 ; numéro correspondant à chaque document"
+    es: "Microchip ISO 11784/11785; el número coincide con todos los documentos"
+    pt: "Microchip ISO 11784/11785; número que coincide com todos os documentos"
+  - en: "Rabies vaccination performed 30 days to 1 year before shipment"
+    fr: "Vaccination antirabique effectuée 30 jours à 1 an avant l'expédition"
+    es: "Vacunación antirrábica realizada de 30 días a 1 año antes del envío"
+    pt: "Vacinação antirrábica aplicada entre 30 dias e 1 ano antes do embarque"
+  - en: "Rabies antibody test result of at least 0.5 IU/ml from an approved laboratory"
+    fr: "Résultat de titrage antirabique d'au moins 0,5 UI/ml d'un laboratoire agréé"
+    es: "Resultado de la prueba de titulación de rabia de al menos 0,5 UI/ml de un laboratorio autorizado"
+    pt: "Resultado do teste sorológico antirrábico de pelo menos 0,5 UI/ml em laboratório aprovado"
+  - en: "Original government-endorsed health certificate; dog ≥90 days old, not pregnant/lactating"
+    fr: "Certificat sanitaire officiel original visé ; chien ≥90 jours, ni gestant ni allaitant"
+    es: "Certificado sanitario original refrendado por el gobierno; perro ≥90 días, no gestante ni lactante"
+    pt: "Atestado de saúde original endossado pelo governo; cachorro com ≥90 dias de vida, não gestante/lactante"
+  - en: "Report the pet to Barantin quarantine at least 2 days before arrival; plan for ≥14 days quarantine"
+    fr: "Signale l'animal à la quarantaine Barantin au moins 2 jours avant l'arrivée ; prévois ≥14 jours de quarantaine"
+    es: "Notifica a la mascota a la cuarentena de Barantin al menos 2 días antes de la llegada; prevé ≥14 días de cuarentena"
+    pt: "Notifique o animal à quarentena do Barantin pelo menos 2 dias antes da chegada; planeje uma quarentena de ≥14 dias"
+  - en: "IATA-compliant crate; confirm your dog's breed is accepted by the airline"
+    fr: "Caisse conforme IATA ; vérifie que la race de ton chien est acceptée par la compagnie"
+    es: "Jaula conforme a la IATA; confirma que la aerolínea acepta la raza de tu perro"
+    pt: "Caixa de transporte conforme a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
+
+sources:
+  - label: { en: "Badan Karantina Indonesia (Barantin) — official website", fr: "Badan Karantina Indonesia (Barantin) — site officiel", es: "Badan Karantina Indonesia (Barantin) — sitio web oficial", pt: "Badan Karantina Indonesia (Barantin) — site oficial" }
+    url: "https://karantinaindonesia.go.id/"
+  - label: { en: "Directorate General of Livestock and Animal Health Services (Ditjen PKH), Ministry of Agriculture", fr: "Direction générale de l'élevage et de la santé animale (Ditjen PKH), ministère de l'Agriculture", es: "Dirección General de Ganadería y Servicios de Salud Animal (Ditjen PKH), Ministerio de Agricultura", pt: "Directorate General of Livestock and Animal Health Services (Ditjen PKH), Ministry of Agriculture" }
+    url: "https://ditjenpkh.pertanian.go.id/"
+  - label: { en: "Ministry of Agriculture of the Republic of Indonesia (Kementerian Pertanian)", fr: "Ministère de l'Agriculture de la République d'Indonésie (Kementerian Pertanian)", es: "Ministerio de Agricultura de la República de Indonesia (Kementerian Pertanian)", pt: "Ministry of Agriculture of the Republic of Indonesia (Kementerian Pertanian)" }
+    url: "https://www.pertanian.go.id/"
+  - label: { en: "Embassy of Indonesia (Washington DC) — Animal Quarantine Requirements and Procedure", fr: "Ambassade d'Indonésie (Washington DC) — Exigences et procédure de quarantaine animale", es: "Embajada de Indonesia (Washington DC) — Requisitos y procedimiento de cuarentena animal", pt: "Embassy of Indonesia (Washington DC) — exigências e procedimento de quarentena animal" }
+    url: "https://consular.embassyofindonesia.org/page/download/fdce52b11a179211873ef92ed5eac43f120eeb36.pdf"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Indonesia", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers l'Indonésie", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Indonesia", pt: "USDA APHIS — viagem de animais de estimação dos Estados Unidos para a Indonésia" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-indonesia"
+
+seo:
+  title: { en: "Indonesia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Indonésie — Guide", es: "Requisitos de entrada de perros en Indonesia — Guía de viaje", pt: "Entrada de cachorro na Indonésia — guia de viagem" }
+  metaTitle: { en: "Traveling to Indonesia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Indonésie avec ton chien : formalités (2026)", es: "Viajar a Indonesia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Indonésia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official Ditjen PKH and Barantin rules for bringing a dog into Indonesia: import permit, microchip, rabies vaccination, antibody test. Sourced and dated."
+    fr: "Règles officielles Ditjen PKH et Barantin pour faire entrer un chien en Indonésie : permis d'importation, puce, vaccination antirabique, titrage. Sourcé et daté."
+    es: "Normas oficiales de Ditjen PKH y Barantin para traer un perro a Indonesia: permiso de importación, microchip, vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais do Ditjen PKH e do Barantin para levar um cachorro à Indonésia: autorização de importação, microchip, vacinação antirrábica, teste sorológico."
+  slug: "indonesia"
+  shortDesc:
+    en: "What you need to bring a dog into Indonesia — and why Bali and the rabies-free provinces do not accept dogs."
+    fr: "Ce qu'il faut pour faire entrer un chien en Indonésie — et pourquoi Bali et les provinces indemnes de rage n'acceptent pas les chiens."
+    es: "Lo que necesitas para traer un perro a Indonesia — y por qué Bali y las provincias libres de rabia no aceptan perros."
+    pt: "O que você precisa para levar um cachorro à Indonésia — e por que Bali e as províncias livres de raiva não aceitam cachorros."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

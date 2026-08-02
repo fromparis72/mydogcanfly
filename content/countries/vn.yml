@@ -1,0 +1,399 @@
+# Country Entry Guide — Vietnam (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Vietnam is NOT in the EU. It runs its own scheme via the Department of Animal Health (Cục Thú y / DAH):
+# rabies vaccination -> international veterinary health certificate -> advance quarantine registration
+# with the DAH -> entry via a designated international airport with a border quarantine station ->
+# quarantine inspection on arrival. Microchip is recommended, not mandatory under Vietnamese law.
+# Legal basis: Law on Animal Health 2015; Decree 35/2016/ND-CP; Circular 25/2016/TT-BNNPTNT.
+# No rabies antibody test is published in Vietnam's scheme. The eu/listed/nonListed slots are
+# repurposed to Vietnam's origin-risk tiers: eu = standard compliant import from a disease-free
+# origin; listed = higher-risk origin with extended on-arrival quarantine; nonListed = origin
+# affected by notifiable diseases (import prohibited under Decree 35/2016).
+id: country_vn
+iso2: "VN"
+name: { en: "Vietnam", fr: "Vietnam", es: "Vietnam", pt: "Vietnã" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Vietnam: crossing a provincial boundary requires a veterinary quarantine certificate — there is no exemption for pets."
+    fr: "Vol intérieur au Vietnam : franchir une limite provinciale impose un certificat de quarantaine vétérinaire — il n'existe aucune exemption pour les animaux de compagnie."
+    es: "Vuelo nacional en Vietnam: cruzar un límite provincial exige un certificado de cuarentena veterinaria — no hay exención para mascotas."
+    pt: "Voo doméstico no Vietnã: cruzar uma fronteira provincial exige um certificado de quarentena veterinária — não há isenção para animais de estimação."
+  points:
+    - en: "Dogs are expressly listed among the animals needing a quarantine certificate to leave a province, issued by the provincial veterinary authority. The 'two pets' exemption people cite applies to crossing an international border, not domestic travel."
+      fr: "Les chiens figurent expressément parmi les animaux nécessitant un certificat de quarantaine pour quitter une province, délivré par l'autorité vétérinaire provinciale. L'exemption « deux animaux » souvent citée concerne le passage d'une frontière internationale, pas un trajet intérieur."
+      es: "Los perros figuran expresamente entre los animales que necesitan certificado de cuarentena para salir de una provincia, emitido por la autoridad veterinaria provincial. La exención de «dos mascotas» que se cita se refiere a cruzar una frontera internacional, no a un viaje nacional."
+      pt: "Os cachorros estão expressamente listados entre os animais que precisam de um certificado de quarentena para sair de uma província, emitido pela autoridade veterinária provincial. A isenção de 'dois animais de estimação' que as pessoas citam se aplica ao cruzamento de uma fronteira internacional, não a viagens domésticas."
+    - en: "A vaccinated dog from a disease-free area is processed faster (about one working day) than an unvaccinated one, which triggers lab testing."
+      fr: "Un chien vacciné venant d'une zone indemne est traité plus vite (environ un jour ouvré) qu'un chien non vacciné, qui déclenche des analyses de laboratoire."
+      es: "Un perro vacunado procedente de una zona libre se tramita más rápido (aproximadamente un día hábil) que uno sin vacunar, que activa análisis de laboratorio."
+      pt: "Um cachorro vacinado, vindo de uma área livre de doenças, é processado mais rápido (cerca de um dia útil) do que um não vacinado, o que aciona exames laboratoriais."
+    - en: "Where a rabies outbreak zone is declared, moving dogs in or out is suspended entirely — check the situation at your departure province before booking."
+      fr: "Là où une zone d'épizootie rabique est déclarée, tout mouvement de chiens y est suspendu dans les deux sens — vérifie la situation de ta province de départ avant de réserver."
+      es: "Donde se declara una zona de brote de rabia, el movimiento de perros queda suspendido en ambos sentidos — comprueba la situación de tu provincia de salida antes de reservar."
+      pt: "Onde uma zona de surto de raiva é declarada, o deslocamento de cachorros para dentro ou para fora é totalmente suspenso — verifique a situação na sua província de partida antes de reservar."
+exit:
+  authority: DAH
+  authorityUrl: https://cucthuy.gov.vn/en
+  intro:
+    en: "Vietnam is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export quarantine certificate from the Department of Animal Health (DAH)."
+    fr: "Le Vietnam est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat de quarantaine d'export du Département de la santé animale (DAH)."
+    es: "Vietnam no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de cuarentena de exportación del Departamento de Salud Animal (DAH)."
+    pt: "O Vietnã não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de quarentena de exportação do Department of Animal Health (DAH)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The DAH, through its regional sub-departments and border quarantine stations, inspects the dog and issues the export health certificate before departure."
+        fr: "Le DAH, via ses sous-directions régionales et postes de quarantaine frontaliers, inspecte le chien et délivre le certificat sanitaire d'export avant le départ."
+        es: "El DAH, a través de sus subdepartamentos regionales y estaciones de cuarentena fronteriza, inspecciona al perro y emite el certificado sanitario de exportación antes de salir."
+        pt: "O DAH, por meio de suas subdivisões regionais e postos de quarentena de fronteira, inspeciona o cachorro e emite o atestado de saúde de exportação antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Vietnam with your dog", fr: "Voyager au Vietnam avec ton chien", es: "Viajar a Vietnam con tu perro", pt: "Viajar para o Vietnã com seu cachorro" }
+  intro:
+    en: >-
+      Vietnam welcomes dogs, but it applies its own national scheme through the Department of Animal
+      Health (Cục Thú y) — not the EU framework. What you need depends mainly on the country your dog
+      is travelling from. In every case your dog needs a valid rabies vaccination and an international
+      veterinary health certificate from the exporting country's official authority, and you must
+      register the import for quarantine with the Department of Animal Health before you leave. A
+      microchip is not compulsory under Vietnamese law but is strongly recommended and often required
+      by airlines. Every dog is inspected by the border animal quarantine service on arrival at a
+      designated international airport. This guide explains what to prepare so your dog can clear
+      quarantine smoothly.
+    fr: >-
+      Le Vietnam accueille les chiens, mais applique son propre régime national via le Département de
+      la santé animale (Cục Thú y) — pas le cadre européen. Ce qu'il faut préparer dépend surtout du
+      pays d'où ton chien voyage. Dans tous les cas, ton chien a besoin d'une vaccination
+      antirabique valide et d'un certificat vétérinaire international délivré par l'autorité officielle
+      du pays d'export, et tu dois enregistrer l'import pour la quarantaine auprès du Département de
+      la santé animale avant de partir. La puce n'est pas obligatoire selon la loi vietnamienne mais
+      est fortement recommandée et souvent exigée par les compagnies aériennes. Chaque chien est
+      inspecté par le service de quarantaine animale à l'arrivée dans un aéroport international désigné.
+      Ce guide détaille quoi préparer pour que ton chien passe la quarantaine sans encombre.
+    es: >-
+      Vietnam acoge a los perros, pero aplica su propio régimen nacional a través del Departamento de
+      Sanidad Animal (Cục Thú y) — no el marco europeo. Lo que necesitas depende sobre todo del país
+      desde el que viaja tu perro. En todos los casos, tu perro necesita una vacunación antirrábica
+      válida y un certificado veterinario internacional de la autoridad oficial del país exportador, y
+      debes registrar la importación para la cuarentena ante el Departamento de Sanidad Animal antes de
+      salir. El microchip no es obligatorio según la ley vietnamita, pero se recomienda encarecidamente
+      y a menudo lo exigen las aerolíneas. Cada perro es inspeccionado por el servicio de cuarentena
+      animal en la frontera a su llegada a un aeropuerto internacional designado. Esta guía explica qué
+      preparar para que tu perro supere la cuarentena sin problemas.
+
+    pt: "O Vietnã recebe cachorros, mas aplica o próprio sistema nacional por meio do Department of Animal Health (Cục Thú y) — e não o regime da UE. O que você precisa depende principalmente do país de onde o seu cachorro está viajando. Em todos os casos, o seu cachorro precisa de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional da autoridade oficial do país exportador, e você precisa registrar a importação para quarentena junto ao Department of Animal Health antes de partir. O microchip não é obrigatório pela lei vietnamita, mas é fortemente recomendado e muitas vezes exigido pelas companhias aéreas. Todo cachorro é inspecionado pelo serviço de quarentena animal de fronteira na chegada a um aeroporto internacional designado. Este guia explica o que preparar para que o seu cachorro passe pela quarentena sem contratempos."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance registration and quarantine inspection", fr: "Modéré — enregistrement préalable et inspection en quarantaine", es: "Moderado — registro previo e inspección en cuarentena", pt: "Moderado — registro prévio e inspeção de quarentena" }
+
+prepTime:
+  eu:
+    en: "Standard path from a disease-free origin: ~4–6 weeks — rabies shot at least 30 days before entry, health certificate 7–10 days before departure, DAH quarantine approval within 5 working days."
+    fr: "Parcours standard depuis une origine indemne : ~4–6 semaines — vaccin antirabique au moins 30 jours avant l'entrée, certificat sanitaire 7–10 jours avant le départ, accord de quarantaine de la DAH sous 5 jours ouvrés."
+    es: "Camino estándar desde un origen libre de enfermedad: ~4–6 semanas — vacuna antirrábica al menos 30 días antes de la entrada, certificado sanitario 7–10 días antes de la salida, aprobación de cuarentena de la DAH en un plazo de 5 días hábiles."
+    pt: "Caminho padrão de uma origem livre de doenças: cerca de 4 a 6 semanas — vacina antirrábica pelo menos 30 dias antes da entrada, atestado de saúde de 7 a 10 dias antes da partida, aprovação da quarentena do DAH em até 5 dias úteis."
+  listed:
+    en: "Higher-risk origin: add on-arrival quarantine that can last up to 45 days depending on the disease risk and any sampling or testing required."
+    fr: "Origine à risque plus élevé : ajoute une quarantaine à l'arrivée pouvant durer jusqu'à 45 jours selon le risque sanitaire et les prélèvements ou tests éventuels."
+    es: "Origen de mayor riesgo: añade una cuarentena a la llegada que puede durar hasta 45 días según el riesgo sanitario y las muestras o pruebas necesarias."
+    pt: "Origem de maior risco: acrescente a quarentena na chegada, que pode durar até 45 dias, dependendo do risco de doença e de qualquer coleta de amostra ou exame exigido."
+  nonListed:
+    en: "Prohibited origin: a dog from a country affected by Vietnam's notifiable diseases cannot be imported at all — no timeline applies."
+    fr: "Origine interdite : un chien venant d'un pays touché par les maladies à déclaration obligatoire du Vietnam ne peut pas être importé — aucun délai ne s'applique."
+    es: "Origen prohibido: un perro de un país afectado por las enfermedades de declaración obligatoria de Vietnam no puede importarse en absoluto — no se aplica ningún plazo."
+    pt: "Origem proibida: um cachorro vindo de um país afetado pelas doenças de notificação obrigatória do Vietnã não pode ser importado de forma alguma — nenhum prazo se aplica."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended (not mandatory)", fr: "Recommandée (non obligatoire)", es: "Recomendado (no obligatorio)", pt: "Recomendado (não obrigatório)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Advance quarantine registration (DAH)", fr: "Enregistrement préalable en quarantaine (DAH)", es: "Registro previo de cuarentena (DAH)", pt: "Registro de quarentena prévio (DAH)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine inspection on arrival", fr: "Inspection en quarantaine à l'arrivée", es: "Inspección de cuarentena a la llegada", pt: "Inspeção de quarentena na chegada" }
+    status: { en: "Required — up to 45 days if risk", fr: "Requise — jusqu'à 45 jours si risque", es: "Obligatoria — hasta 45 días si hay riesgo", pt: "Obrigatória — até 45 dias em caso de risco" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and the Department of Animal Health (Cục Thú y) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le Département de la santé animale (Cục Thú y) peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y el Departamento de Sanidad Animal (Cục Thú y) pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Somente um veterinário e o Department of Animal Health (Cục Thú y) podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Register the import for quarantine with the Department of Animal Health before departure — approval normally takes up to 5 working days."
+    fr: "Enregistre l'import pour la quarantaine auprès du Département de la santé animale avant le départ — l'accord prend normalement jusqu'à 5 jours ouvrés."
+    es: "Registra la importación para la cuarentena ante el Departamento de Sanidad Animal antes de la salida — la aprobación normalmente tarda hasta 5 días hábiles."
+    pt: "Registre a importação para quarentena junto ao Department of Animal Health antes da partida — a aprovação normalmente leva até 5 dias úteis."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Vietnam (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — le Vietnam (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Vietnam (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — o Vietnã (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Vietnam", fr: "Pays de destination — Vietnam", es: "País de destino — Vietnam", pt: "País de destino — Vietnã" }
+      text:
+        en: "Vietnam runs its own scheme through the Department of Animal Health: a valid rabies vaccination, an international veterinary health certificate, advance quarantine registration and inspection on arrival. A microchip is recommended but not compulsory, and no EU pet passport is used."
+        fr: "Le Vietnam applique son propre régime via le Département de la santé animale : vaccination antirabique valide, certificat vétérinaire international, enregistrement préalable en quarantaine et inspection à l'arrivée. La puce est recommandée mais non obligatoire, et aucun passeport européen n'est utilisé."
+        es: "Vietnam aplica su propio régimen a través del Departamento de Sanidad Animal: una vacunación antirrábica válida, un certificado veterinario internacional, un registro previo de cuarentena e inspección a la llegada. El microchip se recomienda, pero no es obligatorio, y no se utiliza ningún pasaporte europeo para mascotas."
+        pt: "O Vietnã aplica o próprio sistema por meio do Department of Animal Health: uma vacinação antirrábica válida, um atestado de saúde veterinário internacional, registro de quarentena prévio e inspeção na chegada. Um microchip é recomendado, mas não obrigatório, e nenhum passaporte europeu para animais de estimação é utilizado."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The disease status of the departure country decides whether import is allowed at all: dogs from countries affected by Vietnam's notifiable diseases are prohibited. A higher-risk origin can also mean a longer on-arrival quarantine."
+        fr: "Le statut sanitaire du pays de départ détermine si l'import est autorisé : les chiens venant de pays touchés par les maladies à déclaration obligatoire du Vietnam sont interdits. Une origine à risque plus élevé peut aussi entraîner une quarantaine plus longue à l'arrivée."
+        es: "El estatus sanitario del país de salida determina si la importación está permitida siquiera: los perros procedentes de países afectados por las enfermedades de declaración obligatoria de Vietnam están prohibidos. Un origen de mayor riesgo también puede implicar una cuarentena más larga a la llegada."
+        pt: "A situação sanitária do país de partida determina se a importação é sequer permitida: cachorros vindos de países afetados pelas doenças de notificação obrigatória do Vietnã são proibidos. Uma origem de maior risco também pode significar uma quarentena mais longa na chegada."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a higher-risk country can affect the quarantine decision or trigger sampling and testing on arrival, even if you fly in from elsewhere. It is your dog's real origin and history that count."
+        fr: "Un séjour récent dans un pays à risque plus élevé peut influer sur la décision de quarantaine ou déclencher prélèvements et tests à l'arrivée, même si tu arrives d'ailleurs. C'est l'origine réelle et l'historique du chien qui comptent."
+        es: "Una estancia reciente en un país de mayor riesgo puede afectar a la decisión de cuarentena o provocar la toma de muestras y pruebas a la llegada, aunque llegues desde otro lugar. Lo que cuenta es el origen y el historial reales de tu perro."
+        pt: "Uma estadia recente em um país de maior risco pode afetar a decisão sobre a quarentena ou acionar coleta de amostras e exames na chegada, mesmo que você chegue voando de outro lugar. O que conta é a origem real e o histórico do seu cachorro."
+  note:
+    en: "So read the requirements below as Vietnam's framework, then confirm your dog's exact origin and history with your vet and the Department of Animal Health."
+    fr: "Lis donc les exigences ci-dessous comme le cadre vietnamien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire et le Département de la santé animale."
+    es: "Así que lee los requisitos siguientes como el marco de Vietnam y luego confirma el origen y el historial exactos de tu perro con tu veterinario y el Departamento de Sanidad Animal."
+    pt: "Portanto, leia as exigências abaixo como o regime do Vietnã e depois confirme a origem exata e o histórico do seu cachorro com o seu veterinário e o Department of Animal Health."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "ISO 11784/11785 (15-digit); the microchip number must match the rabies and health certificates.", fr: "ISO 11784/11785 (15 chiffres) ; le numéro de puce doit correspondre aux certificats de rage et sanitaire.", es: "ISO 11784/11785 (15 dígitos); el número de microchip debe coincidir con los certificados de rabia y sanitario.", pt: "ISO 11784/11785 (15 dígitos); o número do microchip deve coincidir com os atestados antirrábico e de saúde." }
+    exceptions: { en: "Not mandatory under Vietnamese law, but many airlines and exporting countries require it and it links the dog to its documents.", fr: "Non obligatoire selon la loi vietnamienne, mais exigée par de nombreuses compagnies et pays d'export ; elle relie le chien à ses documents.", es: "No es obligatorio según la ley vietnamita, pero muchas aerolíneas y países exportadores lo exigen y vincula al perro con sus documentos.", pt: "Não obrigatório pela lei vietnamita, mas muitas companhias aéreas e países exportadores o exigem, e ele vincula o cachorro aos seus documentos." }
+    ref: { en: "Circular 25/2016/TT-BNNPTNT; Vietnam DAH", fr: "Circulaire 25/2016/TT-BNNPTNT ; DAH Vietnam", es: "Circular 25/2016/TT-BNNPTNT; DAH de Vietnam", pt: "Circular 25/2016/TT-BNNPTNT; DAH do Vietnã" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Administered at least 30 days and no more than 12 months before entry; certificate stating date, vaccine type, batch number and validity period.", fr: "Administrée au moins 30 jours et au plus 12 mois avant l'entrée ; certificat indiquant date, type de vaccin, numéro de lot et période de validité.", es: "Administrada al menos 30 días y no más de 12 meses antes de la entrada; certificado que indique la fecha, el tipo de vacuna, el número de lote y el periodo de valide.", pt: "Aplicada pelo menos 30 dias e no máximo 12 meses antes da entrada; certificado indicando a data, o tipo de vacina, o número do lote e o período de validade." }
+    exceptions: { en: "A dog vaccinated less than 30 days before entry does not meet the requirement.", fr: "Un chien vacciné moins de 30 jours avant l'entrée ne satisfait pas l'exigence.", es: "Un perro vacunado menos de 30 días antes de la entrada no cumple el requisito.", pt: "Um cachorro vacinado há menos de 30 dias da entrada não cumpre a exigência." }
+    ref: { en: "Vietnam DAH; USDA APHIS — Vietnam certificate", fr: "DAH Vietnam ; USDA APHIS — certificat Vietnam", es: "DAH de Vietnam; USDA APHIS — certificado de Vietnam", pt: "DAH do Vietnã; USDA APHIS — atestado para o Vietnã" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No rabies antibody test is published in Vietnam's import scheme for dogs.", fr: "Aucun titrage antirabique n'est publié dans le régime d'importation vietnamien pour les chiens.", es: "No se publica ninguna prueba de titulación de rabia en el régimen de importación de Vietnam para perros.", pt: "Nenhum teste sorológico antirrábico é publicado no regime de importação de cachorros do Vietnã." }
+    ref: { en: "Vietnam DAH; Circular 25/2016/TT-BNNPTNT", fr: "DAH Vietnam ; Circulaire 25/2016/TT-BNNPTNT", es: "DAH de Vietnam; Circular 25/2016/TT-BNNPTNT", pt: "DAH do Vietnã; Circular 25/2016/TT-BNNPTNT" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the competent veterinary authority of the exporting country certifying the dog is healthy and fit to export; typically valid 7–10 days before departure.", fr: "Délivré par l'autorité vétérinaire compétente du pays d'export attestant que le chien est en bonne santé et apte à l'export ; généralement valable 7–10 jours avant le départ.", es: "Expedido por la autoridad veterinaria competente del país exportador que certifique que el perro está sano y apto para la exportación; normalmente válido 7–10 días antes de la salida.", pt: "Emitido pela autoridade veterinária competente do país exportador, atestando que o cachorro está saudável e apto para exportação; normalmente válido de 7 a 10 dias antes da partida." }
+    exceptions: { en: "Documents must be translated into English or Vietnamese for the Vietnamese authorities.", fr: "Les documents doivent être traduits en anglais ou en vietnamien pour les autorités vietnamiennes.", es: "Los documentos deben traducirse al inglés o al vietnamita para las autoridades vietnamitas.", pt: "Os documentos devem ser traduzidos para inglês ou vietnamita para as autoridades vietnamitas." }
+    ref: { en: "Circular 25/2016/TT-BNNPTNT; USDA APHIS — Vietnam certificate", fr: "Circulaire 25/2016/TT-BNNPTNT ; USDA APHIS — certificat Vietnam", es: "Circular 25/2016/TT-BNNPTNT; USDA APHIS — certificado de Vietnam", pt: "Circular 25/2016/TT-BNNPTNT; USDA APHIS — atestado para o Vietnã" }
+  - item: { en: "Advance quarantine registration (DAH)", fr: "Enregistrement préalable en quarantaine (DAH)", es: "Registro previo de cuarentena (DAH)", pt: "Registro de quarentena prévio (DAH)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Before departure, submit a quarantine registration dossier (Form 19, Appendix V of Circular 25) to the Department of Animal Health via the National Single Window portal or by post; approval within 5 working days.", fr: "Avant le départ, dépose un dossier d'enregistrement de quarantaine (formulaire 19, annexe V de la circulaire 25) auprès du Département de la santé animale via le portail Guichet unique national ou par courrier ; accord sous 5 jours ouvrés.", es: "Antes de la salida, presenta un expediente de registro de cuarentena (formulario 19, anexo V de la Circular 25) ante el Departamento de Sanidad Animal a través del portal de Ventanilla Única Nacional o por correo postal; aprobación en un plazo de 5 días hábiles.", pt: "Antes da partida, apresente um processo de registro de quarentena (Formulário 19, Anexo V da Circular 25) ao Department of Animal Health pelo portal National Single Window ou pelo correio; aprovação em até 5 dias úteis." }
+    exceptions: { en: "The approval is sent to the applicant and to the quarantine authority at the port of entry.", fr: "L'accord est envoyé au demandeur et à l'autorité de quarantaine du point d'entrée.", es: "La aprobación se envía al solicitante y a la autoridad de cuarentena del punto de entrada.", pt: "A aprovação é enviada ao solicitante e à autoridade de quarentena no ponto de entrada." }
+    ref: { en: "Circular 25/2016/TT-BNNPTNT, Form 19", fr: "Circulaire 25/2016/TT-BNNPTNT, formulaire 19", es: "Circular 25/2016/TT-BNNPTNT, formulario 19", pt: "Circular 25/2016/TT-BNNPTNT, Formulário 19" }
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "A foreign national may bring up to two pets without an import permit; a permit is required to import more than two.", fr: "Un ressortissant étranger peut amener jusqu'à deux animaux sans permis d'import ; un permis est requis au-delà de deux.", es: "Un ciudadano extranjero puede traer hasta dos mascotas sin permiso de importación; se requiere un permiso para importar más de dos.", pt: "Um estrangeiro pode trazer até dois animais de estimação sem autorização de importação; uma autorização é exigida para importar mais de dois." }
+    exceptions: { en: "The two-pet allowance is per person and only for household pets not on the prohibited list.", fr: "La franchise de deux animaux est par personne et uniquement pour des animaux de compagnie non inscrits sur la liste des interdictions.", es: "La franquicia de dos mascotas es por persona y solo para animales de compañía que no figuren en la lista de prohibiciones.", pt: "O limite de dois animais de estimação é por pessoa e vale apenas para animais domésticos que não estejam na lista de proibidos." }
+    ref: { en: "Circular 25/2016/TT-BNNPTNT, Article 10", fr: "Circulaire 25/2016/TT-BNNPTNT, article 10", es: "Circular 25/2016/TT-BNNPTNT, artículo 10", pt: "Circular 25/2016/TT-BNNPTNT, artigo 10" }
+  - item: { en: "Designated port of entry", fr: "Point d'entrée désigné", es: "Punto de entrada designado", pt: "Porto de entrada designado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Enter via an international airport with a border animal quarantine station (Nội Bài/Hanoi, Tân Sơn Nhất/Ho Chi Minh City, Đà Nẵng).", fr: "Entre par un aéroport international doté d'une station de quarantaine animale frontalière (Nội Bài/Hanoï, Tân Sơn Nhất/Hô Chi Minh-Ville, Đà Nẵng).", es: "Entra por un aeropuerto internacional con una estación fronteriza de cuarentena animal (Nội Bài/Hanói, Tân Sơn Nhất/Ciudad Ho Chi Minh, Đà Nẵng).", pt: "Entre por um aeroporto internacional com posto de quarentena animal de fronteira (Nội Bài/Hanói, Tân Sơn Nhất/Cidade de Ho Chi Minh, Đà Nẵng)." }
+    exceptions: { en: "Notify the quarantine station of your arrival in advance to avoid delays outside office hours.", fr: "Préviens la station de quarantaine de ton arrivée à l'avance pour éviter les retards hors heures ouvrables.", es: "Avisa a la estación de cuarentena de tu llegada con antelación para evitar retrasos fuera del horario de oficina.", pt: "Avise o posto de quarentena da sua chegada com antecedência para evitar atrasos fora do horário de expediente." }
+    ref: { en: "Vietnam DAH; Vietnam Customs", fr: "DAH Vietnam ; Douane vietnamienne", es: "DAH de Vietnam; Aduanas de Vietnam", pt: "DAH do Vietnã; Alfândega do Vietnã" }
+  - item: { en: "Quarantine inspection on arrival", fr: "Inspection en quarantaine à l'arrivée", es: "Inspección de cuarentena a la llegada", pt: "Inspeção de quarentena na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The border quarantine officer verifies identity and documents and carries out a clinical health check; supervision may last up to 45 days depending on disease risk and testing.", fr: "L'agent de quarantaine frontalier vérifie l'identité et les documents et réalise un examen clinique ; la surveillance peut durer jusqu'à 45 jours selon le risque sanitaire et les tests.", es: "El agente de cuarentena fronterizo verifica la identidad y los documentos y realiza un examen clínico de salud; la supervisión puede durar hasta 45 días según el riesgo sanitario y las pruebas.", pt: "O agente de quarentena de fronteira verifica a identidade e os documentos e realiza um exame clínico de saúde; a supervisão pode durar até 45 dias, dependendo do risco de doença e dos exames." }
+    exceptions: { en: "If the dossier is valid and the dog is healthy, a veterinary certificate is issued and the pet is released.", fr: "Si le dossier est valide et le chien en bonne santé, un certificat vétérinaire est délivré et l'animal est libéré.", es: "Si el expediente es válido y el perro está sano, se expide un certificado veterinario y se libera a la mascota.", pt: "Se o processo estiver válido e o cachorro estiver saudável, um certificado veterinário é emitido e o animal é liberado." }
+    ref: { en: "Circular 25/2016/TT-BNNPTNT; Vietnam DAH", fr: "Circulaire 25/2016/TT-BNNPTNT ; DAH Vietnam", es: "Circular 25/2016/TT-BNNPTNT; DAH de Vietnam", pt: "Circular 25/2016/TT-BNNPTNT; DAH do Vietnã" }
+  - item: { en: "Prohibited origins", fr: "Origines interdites", es: "Orígenes prohibidos", pt: "Origens proibidas" }
+    required: { en: "Blocking", fr: "Bloquant", es: "Bloqueante", pt: "Bloqueio" }
+    when: { en: "Animals from countries or territories affected by Vietnam's notifiable diseases, or by zoonotic or emerging disease agents, are prohibited from import.", fr: "Les animaux venant de pays ou territoires touchés par les maladies à déclaration obligatoire du Vietnam, ou par des agents zoonotiques ou émergents, sont interdits d'import.", es: "Los animales procedentes de países o territorios afectados por las enfermedades de declaración obligatoria de Vietnam, o por agentes patógenos zoonóticos o emergentes, tienen prohibida la importación.", pt: "Animais vindos de países ou territórios afetados pelas doenças de notificação obrigatória do Vietnã, ou por agentes de doenças zoonóticas ou emergentes, têm a importação proibida." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Decree 35/2016/ND-CP, Article 9.2", fr: "Décret 35/2016/ND-CP, article 9.2", es: "Decreto 35/2016/ND-CP, artículo 9.2", pt: "Decreto 35/2016/ND-CP, artigo 9.2" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Old enough to be vaccinated", fr: "En âge d'être vacciné", es: "Con edad suficiente para ser vacunado", pt: "Idade suficiente para ser vacinado" }
+    when: { en: "The rabies vaccination must be given at least 30 days before entry, so the puppy must be old enough to have completed a valid rabies vaccination.", fr: "La vaccination antirabique doit être faite au moins 30 jours avant l'entrée ; le chiot doit donc être en âge d'avoir une vaccination antirabique valide.", es: "La vacunación antirrábica debe administrarse al menos 30 días antes de la entrada, por lo que el cachorro debe tener edad suficiente para haber completado una vacunación antirrábica válida.", pt: "A vacinação antirrábica deve ser aplicada pelo menos 30 dias antes da entrada, portanto o filhote deve ter idade suficiente para ter completado uma vacinação antirrábica válida." }
+    exceptions: { en: "Vietnam does not publish a separate fixed minimum age; the rabies-vaccine timing governs in practice.", fr: "Le Vietnam ne publie pas d'âge minimum fixe distinct ; le calendrier du vaccin antirabique prévaut en pratique.", es: "Vietnam no publica una edad mínima fija aparte; en la práctica prevalece el calendario de la vacuna antirrábica.", pt: "O Vietnã não publica uma idade mínima fixa separada; na prática, o prazo da vacina antirrábica é o que rege." }
+    ref: { en: "Vietnam DAH; Circular 25/2016/TT-BNNPTNT", fr: "DAH Vietnam ; Circulaire 25/2016/TT-BNNPTNT", es: "DAH de Vietnam; Circular 25/2016/TT-BNNPTNT", pt: "DAH do Vietnã; Circular 25/2016/TT-BNNPTNT" }
+
+origin:
+  eu:
+    title: { en: "Standard path — compliant import", fr: "Parcours standard — import conforme", es: "Camino estándar — importación conforme", pt: "Caminho padrão — importação em conformidade" }
+    body:
+      en: "From a disease-free origin the process is straightforward: a valid rabies vaccination (given at least 30 days and no more than 12 months before entry), an international veterinary health certificate from the exporting country's official authority, and advance quarantine registration with the Department of Animal Health. A microchip is recommended. On arrival the dog is inspected by the border quarantine service and, if healthy with a valid dossier, is cleared."
+      fr: "Depuis une origine indemne, la procédure est simple : une vaccination antirabique valide (faite au moins 30 jours et au plus 12 mois avant l'entrée), un certificat vétérinaire international de l'autorité officielle du pays d'export, et un enregistrement préalable en quarantaine auprès du Département de la santé animale. Une puce est recommandée. À l'arrivée, le chien est inspecté par le service de quarantaine frontalier et, s'il est sain avec un dossier valide, il est libéré."
+      es: "Desde un origen libre de enfermedad, el proceso es sencillo: una vacunación antirrábica válida (administrada al menos 30 días y no más de 12 meses antes de la entrada), un certificado veterinario internacional de la autoridad oficial del país exportador y un registro previo de cuarentena ante el Departamento de Sanidad Animal. Se recomienda un microchip. A la llegada, el perro es inspeccionado por el servicio de cuarentena fronterizo y, si está sano y con un expediente válido, queda liberado."
+      pt: "De uma origem livre de doenças, o processo é simples: uma vacinação antirrábica válida (aplicada pelo menos 30 dias e no máximo 12 meses antes da entrada), um atestado de saúde veterinário internacional da autoridade oficial do país exportador, e registro de quarentena prévio junto ao Department of Animal Health. Um microchip é recomendado. Na chegada, o cachorro é inspecionado pelo serviço de quarentena de fronteira e, se estiver saudável e com o processo válido, é liberado."
+    cls: ok
+  listed:
+    title: { en: "Higher-risk origin — extended quarantine", fr: "Origine à risque — quarantaine prolongée", es: "Origen de mayor riesgo — cuarentena prolongada", pt: "Origem de maior risco — quarentena estendida" }
+    body:
+      en: "From an origin with a higher disease risk, the same documents are required but the on-arrival quarantine can be longer — supervision may last up to 45 days, and the quarantine service may take samples or run tests before issuing the veterinary certificate. Register early and confirm the expected quarantine duration with the Department of Animal Health."
+      fr: "Depuis une origine à risque sanitaire plus élevé, les mêmes documents sont exigés mais la quarantaine à l'arrivée peut être plus longue — la surveillance peut durer jusqu'à 45 jours, et le service de quarantaine peut effectuer des prélèvements ou des tests avant de délivrer le certificat vétérinaire. Enregistre tôt et confirme la durée prévue de quarantaine auprès du Département de la santé animale."
+      es: "Desde un origen con mayor riesgo sanitario, se exigen los mismos documentos, pero la cuarentena a la llegada puede ser más larga — la supervisión puede durar hasta 45 días, y el servicio de cuarentena puede tomar muestras o realizar pruebas antes de expedir el certificado veterinario. Regístrate pronto y confirma la duración prevista de la cuarentena con el Departamento de Sanidad Animal."
+      pt: "De uma origem com maior risco de doença, os mesmos documentos são exigidos, mas a quarentena na chegada pode ser mais longa — a supervisão pode durar até 45 dias, e o serviço de quarentena pode coletar amostras ou realizar exames antes de emitir o certificado veterinário. Registre-se com antecedência e confirme a duração prevista da quarentena com o Department of Animal Health."
+    cls: warn
+  nonListed:
+    title: { en: "Prohibited origin — import refused", fr: "Origine interdite — import refusé", es: "Origen prohibido — importación denegada", pt: "Origem proibida — importação recusada" }
+    body:
+      en: "A dog coming from a country or territory affected by one of Vietnam's notifiable animal diseases, or by a zoonotic or emerging disease agent that could spread to Vietnamese livestock or endanger public health, is prohibited from import under Decree 35/2016/ND-CP. In that case the dog cannot enter, whatever the documents. Confirm your dog's origin against Vietnam's current disease list before travelling."
+      fr: "Un chien venant d'un pays ou territoire touché par une des maladies animales à déclaration obligatoire du Vietnam, ou par un agent zoonotique ou émergent susceptible de se propager au cheptel vietnamien ou de menacer la santé publique, est interdit d'import selon le décret 35/2016/ND-CP. Dans ce cas, le chien ne peut pas entrer, quels que soient les documents. Vérifie l'origine de ton chien au regard de la liste des maladies en vigueur au Vietnam avant de voyager."
+      es: "Un perro procedente de un país o territorio afectado por una de las enfermedades animales de declaración obligatoria de Vietnam, o por un agente patógeno zoonótico o emergente que pudiera propagarse a la ganadería vietnamita o poner en peligro la salud pública, tiene prohibida la importación en virtud del Decreto 35/2016/ND-CP. En ese caso, el perro no puede entrar, sean cuales sean los documentos. Confirma el origen de tu perro con la lista de enfermedades vigente de Vietnam antes de viajar."
+      pt: "Um cachorro vindo de um país ou território afetado por uma das doenças animais de notificação obrigatória do Vietnã, ou por um agente de doença zoonótica ou emergente que possa se espalhar para o rebanho vietnamita ou colocar em risco a saúde pública, tem a importação proibida pelo Decreto 35/2016/ND-CP. Nesse caso, o cachorro não pode entrar, independentemente dos documentos. Confirme a origem do seu cachorro em relação à lista de doenças atual do Vietnã antes de viajar."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Vietnam depends on your dossier and on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Vietnam dépend de ton dossier et de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a Vietnam depende de tu expediente y del lugar desde el que hayas volado."
+    pt: "O que acontece quando o seu cachorro chega ao Vietnã depende do seu processo e de onde você voou."
+  points:
+    - en: "Enter only through an international airport with a border animal quarantine station (Nội Bài/Hanoi, Tân Sơn Nhất/Ho Chi Minh City, Đà Nẵng)."
+      fr: "Entre uniquement par un aéroport international doté d'une station de quarantaine animale (Nội Bài/Hanoï, Tân Sơn Nhất/Hô Chi Minh-Ville, Đà Nẵng)."
+      es: "Entra únicamente por un aeropuerto internacional con una estación fronteriza de cuarentena animal (Nội Bài/Hanói, Tân Sơn Nhất/Ciudad Ho Chi Minh, Đà Nẵng)."
+      pt: "Entre somente por um aeroporto internacional com posto de quarentena animal de fronteira (Nội Bài/Hanói, Tân Sơn Nhất/Cidade de Ho Chi Minh, Đà Nẵng)."
+    - en: "After immigration, collect your dog from the special baggage area and report to the border animal quarantine authority at the airport."
+      fr: "Après l'immigration, récupère ton chien à la zone des bagages spéciaux et présente-toi à l'autorité de quarantaine animale de l'aéroport."
+      es: "Tras el control de inmigración, recoge a tu perro en la zona de equipaje especial y preséntate ante la autoridad fronteriza de cuarentena animal del aeropuerto."
+      pt: "Depois da imigração, retire o seu cachorro na área de bagagem especial e apresente-se à autoridade de quarentena animal de fronteira no aeroporto."
+    - en: "The officer verifies identity (including microchip if present), examines the quarantine dossier and carries out a clinical health check."
+      fr: "L'agent vérifie l'identité (y compris la puce si présente), examine le dossier de quarantaine et réalise un examen clinique."
+      es: "El agente verifica la identidad (incluido el microchip si lo hay), examina el expediente de cuarentena y realiza un examen clínico de salud."
+      pt: "O agente verifica a identidade (incluindo o microchip, se houver), examina o processo de quarentena e realiza um exame clínico de saúde."
+    - en: "If the dossier is valid and the dog is healthy, a veterinary certificate is issued and the dog is released; supervision may last up to 45 days depending on disease risk and testing."
+      fr: "Si le dossier est valide et le chien sain, un certificat vétérinaire est délivré et le chien est libéré ; la surveillance peut durer jusqu'à 45 jours selon le risque sanitaire et les tests."
+      es: "Si el expediente es válido y el perro está sano, se expide un certificado veterinario y se libera al perro; la supervisión puede durar hasta 45 días según el riesgo sanitario y las pruebas."
+      pt: "Se o processo estiver válido e o cachorro estiver saudável, um certificado veterinário é emitido e o cachorro é liberado; a supervisão pode durar até 45 dias, dependendo do risco de doença e dos exames."
+    - en: "Carry original documents translated into English or Vietnamese, and pay any quarantine fees due."
+      fr: "Munis-toi des documents originaux traduits en anglais ou en vietnamien, et réglez les frais de quarantaine dus."
+      es: "Lleva los documentos originales traducidos al inglés o al vietnamita, y paga las tasas de cuarentena que correspondan."
+      pt: "Leve os documentos originais traduzidos para inglês ou vietnamita, e pague as taxas de quarentena devidas."
+    - en: "A dog from a prohibited origin, or one that shows signs of infectious disease or lacks a valid dossier, may be refused entry, held for testing, returned or subjected to further quarantine."
+      fr: "Un chien d'origine interdite, ou présentant des signes de maladie infectieuse ou sans dossier valide, peut être refusé, retenu pour tests, renvoyé ou soumis à une quarantaine supplémentaire."
+      es: "Un perro de un origen prohibido, o que muestre signos de enfermedad infecciosa o carezca de un expediente válido, puede ser rechazado a la entrada, retenido para pruebas, devuelto o sometido a una cuarentena adicional."
+      pt: "Um cachorro vindo de uma origem proibida, ou que apresente sinais de doença infecciosa ou não tenha um processo válido, pode ter a entrada recusada, ser retido para exames, devolvido ou submetido a quarentena adicional."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Vietnam has no national breed-specific import ban: entry requirements are the same for every breed, provided the dog is not from a prohibited (disease-affected) origin. Import restrictions are based on the origin country's disease status, not on the breed."
+    fr: "Le Vietnam n'a aucune interdiction d'importation nationale liée à la race : les exigences d'entrée sont identiques pour toutes les races, à condition que le chien ne vienne pas d'une origine interdite (touchée par une maladie). Les restrictions d'import reposent sur le statut sanitaire du pays d'origine, pas sur la race."
+    es: "Vietnam no tiene ninguna prohibición de importación nacional por raza: los requisitos de entrada son los mismos para todas las razas, siempre que el perro no proceda de un origen prohibido (afectado por una enfermedad). Las restricciones de importación se basan en el estatus sanitario del país de origen, no en la raza."
+    pt: "O Vietnã não tem proibição nacional de importação específica por raça: as exigências de entrada são as mesmas para qualquer raça, desde que o cachorro não venha de uma origem proibida (afetada por doença). As restrições de importação se baseiam na situação sanitária do país de origem, não na raça."
+  cat1:
+    en: "There is no national list of banned or 'dangerous' breeds at import. Breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler, etc.) are not prohibited from entering Vietnam on the basis of breed."
+    fr: "Il n'existe aucune liste nationale de races interdites ou « dangereuses » à l'importation. Les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler, etc.) ne sont pas interdites d'entrée au Vietnam en raison de la race."
+    es: "No existe ninguna lista nacional de razas prohibidas o «peligrosas» en la importación. Las razas restringidas en algunos otros países (tipos pit bull, Tosa, Rottweiler, etc.) no tienen prohibida la entrada en Vietnam por motivo de raza."
+    pt: "Não existe uma lista nacional de raças proibidas ou 'perigosas' na importação. Raças restritas em alguns outros países (tipos pit bull, Tosa, Rottweiler etc.) não são proibidas de entrar no Vietnã com base na raça."
+  cat2:
+    en: "What is restricted is origin, not breed: under Decree 35/2016/ND-CP, animals from countries affected by Vietnam's notifiable diseases or by zoonotic/emerging agents are prohibited. There is no additional keeping permit tied to the dog's breed at national level."
+    fr: "Ce qui est restreint, c'est l'origine, pas la race : selon le décret 35/2016/ND-CP, les animaux venant de pays touchés par les maladies à déclaration obligatoire du Vietnam ou par des agents zoonotiques/émergents sont interdits. Il n'existe pas de permis de détention supplémentaire lié à la race au niveau national."
+    es: "Lo que se restringe es el origen, no la raza: en virtud del Decreto 35/2016/ND-CP, están prohibidos los animales procedentes de países afectados por las enfermedades de declaración obligatoria de Vietnam o por agentes zoonóticos/emergentes. No existe ningún permiso de tenencia adicional ligado a la raza del perro a nivel nacional."
+    pt: "O que é restrito é a origem, não a raça: segundo o Decreto 35/2016/ND-CP, animais vindos de países afetados pelas doenças de notificação obrigatória do Vietnã ou por agentes zoonóticos/emergentes são proibidos. Não há autorização adicional de posse vinculada à raça do cachorro em nível nacional."
+  note:
+    en: "Local rules on keeping dogs (leashing, muzzling, registration) can apply where the dog will live, and airlines set their own breed and crate policies — confirm both separately."
+    fr: "Des règles locales de détention (laisse, muselière, enregistrement) peuvent s'appliquer au lieu de vie du chien, et les compagnies aériennes fixent leurs propres politiques de race et de caisse — vérifie les deux séparément."
+    es: "Las normas locales sobre la tenencia de perros (correa, bozal, registro) pueden aplicarse allí donde vaya a vivir el perro, y las aerolíneas fijan sus propias políticas de raza y de jaula — confirma ambas por separado."
+    pt: "Normas locais sobre a posse de cachorros (uso de coleira, focinheira, registro) podem se aplicar onde o cachorro vai morar, e as companhias aéreas definem as próprias políticas de raça e caixa de transporte — confirme os dois separadamente."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) recommended, with its number matching all certificates"
+    fr: "Puce (ISO 11784/11785) recommandée, son numéro correspondant à tous les certificats"
+    es: "Microchip (ISO 11784/11785) recomendado, con su número coincidiendo con todos los certificados"
+    pt: "Microchip (ISO 11784/11785) recomendado, com o número coincidindo em todos os certificados"
+  - en: "Valid rabies vaccination given at least 30 days and no more than 12 months before entry"
+    fr: "Vaccination antirabique valide, faite au moins 30 jours et au plus 12 mois avant l'entrée"
+    es: "Vacunación antirrábica válida administrada al menos 30 días y no más de 12 meses antes de la entrada"
+    pt: "Vacinação antirrábica válida, aplicada pelo menos 30 dias e no máximo 12 meses antes da entrada"
+  - en: "International veterinary health certificate from the exporting country's official authority"
+    fr: "Certificat vétérinaire international de l'autorité officielle du pays d'export"
+    es: "Certificado veterinario internacional de la autoridad oficial del país exportador"
+    pt: "Atestado de saúde veterinário internacional da autoridade oficial do país exportador"
+  - en: "Advance quarantine registration with the Department of Animal Health (Form 19, before departure)"
+    fr: "Enregistrement préalable en quarantaine auprès du Département de la santé animale (formulaire 19, avant le départ)"
+    es: "Registro previo de cuarentena ante el Departamento de Sanidad Animal (formulario 19, antes de la salida)"
+    pt: "Registro de quarentena prévio junto ao Department of Animal Health (Formulário 19, antes da partida)"
+  - en: "Vaccination record / pet passport documenting full vaccination and deworming history"
+    fr: "Carnet de vaccination / passeport documentant l'historique complet de vaccination et de vermifugation"
+    es: "Cartilla de vacunación / pasaporte de mascota que documente el historial completo de vacunación y desparasitación"
+    pt: "Carteira de vacinação / passaporte de animal de estimação documentando o histórico completo de vacinação e vermifugação"
+  - en: "Original documents translated into English or Vietnamese"
+    fr: "Documents originaux traduits en anglais ou en vietnamien"
+    es: "Documentos originales traducidos al inglés o al vietnamita"
+    pt: "Documentos originais traduzidos para inglês ou vietnamita"
+  - en: "Arrive through a designated international airport and notify the quarantine station in advance"
+    fr: "Arrive par un aéroport international désigné et préviens la station de quarantaine à l'avance"
+    es: "Llega por un aeropuerto internacional designado y avisa a la estación de cuarentena con antelación"
+    pt: "Chegue por um aeroporto internacional designado e avise o posto de quarentena com antecedência"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation aérienne et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "Department of Animal Health (Cục Thú y) — Animal quarantine", fr: "Département de la santé animale (Cục Thú y) — Quarantaine animale", es: "Departamento de Sanidad Animal (Cục Thú y) — Cuarentena animal", pt: "Department of Animal Health (Cục Thú y) — Quarentena animal" }
+    url: "https://cucthuy.gov.vn/web/guest/kiem-dich-dong-vat"
+  - label: { en: "Department of Animal Health (Cục Thú y) — Administrative procedures: animal quarantine", fr: "Département de la santé animale (Cục Thú y) — Procédures administratives : quarantaine animale", es: "Departamento de Sanidad Animal (Cục Thú y) — Procedimientos administrativos: cuarentena animal", pt: "Department of Animal Health (Cục Thú y) — Procedimentos administrativos: quarentena animal" }
+    url: "https://cucthuy.gov.vn/web/guest/tthc/kiem-dich-dong-vat"
+  - label: { en: "Vietnam Customs (Tổng cục Hải quan) — official portal", fr: "Douane du Vietnam (Tổng cục Hải quan) — portail officiel", es: "Aduanas de Vietnam (Tổng cục Hải quan) — portal oficial", pt: "Alfândega do Vietnã (Tổng cục Hải quan) — portal oficial" }
+    url: "https://www.customs.gov.vn/"
+  - label: { en: "National Single Window Portal — animal quarantine registration", fr: "Portail Guichet unique national — enregistrement de quarantaine animale", es: "Portal de Ventanilla Única Nacional — registro de cuarentena animal", pt: "Portal National Single Window — registro de quarentena animal" }
+    url: "https://vnsw.gov.vn/"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Vietnam (veterinary health certificate)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Vietnam (certificat vétérinaire)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Vietnam (certificado veterinario)", pt: "USDA APHIS — Viagem de Animais de Estimação dos Estados Unidos para o Vietnã (atestado de saúde veterinário)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-vietnam"
+
+seo:
+  title: { en: "Vietnam Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Vietnam — Guide", es: "Requisitos de entrada de perros en Vietnam — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Vietnã — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Vietnam With Your Dog: Entry Requirements (2026)", fr: "Voyager au Vietnam avec ton chien : formalités (2026)", es: "Viajar a Vietnam con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Vietnã: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official Vietnam (DAH / Cục Thú y) rules for bringing a dog: rabies vaccination, health certificate and advance quarantine registration. Sourced and dated."
+    fr: "Règles officielles du Vietnam (DAH / Cục Thú y) pour faire entrer un chien : vaccination antirabique, certificat sanitaire. Sourcé et daté."
+    es: "Normas oficiales de Vietnam (DAH / Cục Thú y) para tu perro: vacunación antirrábica, certificado sanitario y registro previo de cuarentena. Con fuentes y fecha."
+    pt: "Normas oficiais do Vietnã (DAH / Cục Thú y) para levar um cachorro: vacinação antirrábica, atestado de saúde e registro de quarentena prévio. Com fontes e data."
+  slug: "vietnam"
+  shortDesc:
+    en: "What you need to bring a dog into Vietnam: rabies vaccination, health certificate and quarantine registration."
+    fr: "Ce qu'il faut pour faire entrer un chien au Vietnam : vaccination antirabique, certificat sanitaire et enregistrement en quarantaine."
+    es: "Lo que necesitas para traer un perro a Vietnam: vacunación antirrábica, certificado sanitario y registro de cuarentena."
+    pt: "O que você precisa para levar um cachorro para o Vietnã: vacinação antirrábica, atestado de saúde e registro de quarentena."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

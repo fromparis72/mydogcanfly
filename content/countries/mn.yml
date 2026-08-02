@@ -1,0 +1,377 @@
+# Country Entry Guide — Mongolia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_mn
+iso2: "MN"
+name: { en: "Mongolia", fr: "Mongolie", es: "Mongolia", pt: "Mongólia" }
+region: { en: "East Asia", fr: "Asie de l'Est", es: "Asia Oriental", pt: "Ásia Oriental" }
+
+
+regime: non_listed
+exit:
+  authority: GAVS
+  authorityUrl: https://vet.gov.mn
+  intro:
+    en: "Mongolia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the General Authority for Veterinary Services (GAVS)."
+    fr: "La Mongolie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la General Authority for Veterinary Services (GAVS)."
+    es: "Mongolia no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la General Authority for Veterinary Services (GAVS)."
+    pt: "A Mongólia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pela General Authority for Veterinary Services (GAVS)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A licensed vet completes the certificate just before travel and a GAVS government veterinarian issues/endorses the export veterinary certificate."
+        fr: "Un vétérinaire agréé remplit le certificat juste avant le voyage et un vétérinaire officiel du GAVS délivre/vise le certificat vétérinaire d'export."
+        es: "Un veterinario autorizado rellena el certificado justo antes del viaje y un veterinario oficial de la GAVS emite/refrenda el certificado veterinario de exportación."
+        pt: "Um veterinário licenciado preenche o certificado pouco antes da viagem, e um veterinário do governo da GAVS emite/endossa o certificado veterinário de exportação."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Mongolia with your dog", fr: "Voyager en Mongolie avec ton chien", es: "Viajar a Mongolia con tu perro", pt: "Viajar para a Mongólia com seu cachorro" }
+  intro:
+    en: >-
+      Mongolia is neither an EU member nor a member of the Eurasian Economic Union (EAEU): it applies
+      its own veterinary import rules through the General Authority for Veterinary Services (GAVS), a
+      government implementing agency under the Ministry of Food, Agriculture and Light Industry. A pet
+      dog travelling with its owner is admitted, but Mongolia publishes only limited English-language
+      detail on the exact steps. The core of the published procedure is an official international
+      veterinary health certificate from the veterinary authority of the country of departure, together
+      with a passport or record showing the dog's vaccinations and antiparasitic treatment, checked by
+      veterinary and customs officers at the border. Several finer points — a mandatory microchip, the
+      exact rabies-vaccination timing, or any antibody test — are not clearly published, so this guide
+      flags them as unconfirmed and points you to GAVS and a USDA-accredited or official veterinarian
+      before you book.
+    fr: >-
+      La Mongolie n'est ni membre de l'UE, ni membre de l'Union économique eurasiatique (UEEA) : elle
+      applique ses propres règles d'importation vétérinaire via l'Autorité générale des services
+      vétérinaires (GAVS), agence d'exécution du gouvernement rattachée au ministère de l'Alimentation,
+      de l'Agriculture et de l'Industrie légère. Un chien de compagnie voyageant avec son propriétaire
+      est admis, mais la Mongolie ne publie que peu de détails en anglais sur les étapes exactes. Le
+      cœur de la procédure publiée est un certificat sanitaire vétérinaire international officiel délivré
+      par l'autorité vétérinaire du pays de départ, accompagné d'un passeport ou carnet indiquant les
+      vaccinations et le traitement antiparasitaire du chien, vérifié par les agents vétérinaires et
+      douaniers à la frontière. Plusieurs points fins — puce obligatoire, calendrier exact du vaccin
+      antirabique ou éventuel titrage — ne sont pas clairement publiés ; ce guide les signale comme non
+      confirmés et tu renvoie à la GAVS et à un vétérinaire officiel avant de réserver.
+    es: >-
+      Mongolia no es ni miembro de la UE ni de la Unión Económica Euroasiática (UEEA): aplica sus propias
+      normas de importación veterinaria a través de la Autoridad General de Servicios Veterinarios (GAVS),
+      un organismo ejecutor del gobierno dependiente del Ministerio de Alimentación, Agricultura e
+      Industria Ligera. Un perro de compañía que viaja con su propietario es admitido, pero Mongolia
+      publica pocos detalles en inglés sobre los pasos exactos. El núcleo del procedimiento publicado es
+      un certificado sanitario veterinario internacional oficial de la autoridad veterinaria del país de
+      salida, junto con un pasaporte o cartilla que acredite las vacunaciones y el tratamiento
+      antiparasitario del perro, revisado por los agentes veterinarios y de aduanas en la frontera.
+      Varios puntos más finos — un microchip obligatorio, el calendario exacto de la vacunación
+      antirrábica o una posible prueba de titulación — no están claramente publicados, por lo que esta
+      guía los señala como no confirmados y te remite a la GAVS y a un veterinario acreditado por el USDA
+      u oficial antes de reservar.
+
+    pt: "A Mongólia não é membro da UE nem da União Econômica Eurasiática (EAEU): ela aplica suas próprias regras veterinárias de importação por meio da General Authority for Veterinary Services (GAVS), um órgão executivo do governo vinculado ao Ministry of Food, Agriculture and Light Industry. Um cachorro de estimação viajando com o dono é admitido, mas a Mongólia publica apenas detalhes limitados em inglês sobre as etapas exatas. O núcleo do procedimento publicado é um atestado de saúde veterinário internacional oficial da autoridade veterinária do país de partida, junto com um passaporte ou registro que mostre as vacinas e o tratamento antiparasitário do cachorro, conferidos por agentes veterinários e da alfândega na fronteira. Vários pontos mais específicos — um microchip obrigatório, o momento exato da vacinação antirrábica, ou qualquer teste sorológico — não são publicados com clareza, então este guia os sinaliza como não confirmados e recomenda que você consulte a GAVS e um veterinário credenciado pelo USDA ou oficial antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate (health certificate + vaccinations; several details unpublished)", fr: "Modéré (certificat sanitaire + vaccins ; plusieurs détails non publiés)", es: "Moderado (certificado sanitario + vacunas; varios detalles no publicados)", pt: "Moderado (atestado de saúde + vacinas; vários detalhes não publicados)" }
+
+prepTime:
+  eu:
+    en: "No EU/EAEU simplified regime exists: the same third-country rules apply from every country of departure, so there is no fast-track lane."
+    fr: "Aucun régime simplifié UE/UEEA n'existe : les mêmes règles de pays tiers s'appliquent depuis tout pays de départ, sans voie accélérée."
+    es: "No existe un régimen simplificado UE/UEEA: las mismas normas de país tercero se aplican desde cualquier país de salida, sin vía rápida."
+    pt: "Não existe um regime simplificado UE/EAEU: as mesmas regras de país terceiro se aplicam a partir de qualquer país de partida, portanto não há um caminho rápido."
+  listed:
+    en: "Personal pet with the owner: allow roughly 2 to 4 weeks to gather vaccinations, the departure-country veterinary health certificate and its official endorsement — longer if a primary rabies shot is still needed."
+    fr: "Animal de compagnie avec le propriétaire : compte environ 2 à 4 semaines pour réunir les vaccins, le certificat sanitaire vétérinaire du pays de départ et son visa officiel — plus si une primo-vaccination antirabique reste à faire."
+    es: "Mascota personal con el propietario: prevé aproximadamente de 2 a 4 semanas para reunir las vacunas, el certificado sanitario veterinario del país de salida y su refrendo oficial — más si aún falta una primovacunación antirrábica."
+    pt: "Animal de estimação pessoal com o dono: reserve cerca de 2 a 4 semanas para reunir as vacinas, o atestado de saúde veterinário do país de partida e o seu endosso oficial — mais tempo se ainda for necessária a primeira dose da vacina antirrábica."
+  nonListed:
+    en: "Commercial import or more than the personal allowance: several weeks — an import permit / advance approval from GAVS must be obtained before shipment."
+    fr: "Import commercial ou au-delà de la franchise personnelle : plusieurs semaines — un permis d'importation / accord préalable de la GAVS doit être obtenu avant l'expédition."
+    es: "Importación comercial o más allá de la franquicia personal: varias semanas — debe obtenerse un permiso de importación / aprobación previa de la GAVS antes del envío."
+    pt: "Importação comercial ou acima do limite pessoal: várias semanas — uma autorização de importação / aprovação prévia da GAVS precisa ser obtida antes do embarque."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not officially published for import (recommended)", fr: "Non communiqué à l'import (recommandée)", es: "No comunicado para la importación (recomendado)", pt: "Não publicado oficialmente para importação (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (recorded); exact timing not published", fr: "Requise (consignée) ; calendrier exact non publié", es: "Obligatoria (registrada); calendario exacto no publicado", pt: "Obrigatória (registrada); momento exato não publicado" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not among published requirements", fr: "Absent des exigences publiées", es: "No figura entre los requisitos publicados", pt: "Não consta entre as exigências publicadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (international, from departure country)", fr: "Requis (international, du pays de départ)", es: "Obligatorio (internacional, del país de salida)", pt: "Obrigatório (internacional, do país de partida)" }
+    cls: warn
+  - requirement: { en: "Other vaccinations / antiparasitic treatment", fr: "Autres vaccins / traitement antiparasitaire", es: "Otras vacunas / tratamiento antiparasitario", pt: "Outras vacinas / tratamento antiparasitário" }
+    status: { en: "Recorded in the passport", fr: "Consignés dans le passeport", es: "Registrados en el pasaporte", pt: "Registrado no passaporte" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "No routine quarantine for compliant pets; border inspection", fr: "Pas de quarantaine systématique si conforme ; inspection frontalière", es: "Sin cuarentena rutinaria para mascotas conformes; inspección fronteriza", pt: "Sem quarentena de rotina para animais em conformidade; inspeção na fronteira" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Mongolia publishes only limited detail; several points below are marked unconfirmed and must be checked with GAVS."
+    fr: "La Mongolie publie peu de détails ; plusieurs points ci-dessous sont signalés non confirmés et doivent être vérifiés auprès de la GAVS."
+    es: "Mongolia publica pocos detalles; varios puntos a continuación se marcan como no confirmados y deben verificarse con la GAVS."
+    pt: "A Mongólia publica apenas detalhes limitados; vários pontos abaixo estão marcados como não confirmados e precisam ser verificados com a GAVS."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Mongolia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Mongolie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Mongolia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Mongólia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Mongolia", fr: "Pays de destination — Mongolie", es: "País de destino — Mongolia", pt: "País de destino — Mongólia" }
+      text:
+        en: "Mongolia requires an official international veterinary health certificate and a passport or record of the dog's vaccinations and antiparasitic treatment, verified by veterinary and customs officers at the border. It is not part of the EU or the EAEU, so no simplified movement regime applies."
+        fr: "La Mongolie exige un certificat sanitaire vétérinaire international officiel et un passeport ou carnet des vaccins et du traitement antiparasitaire du chien, vérifié par les agents vétérinaires et douaniers à la frontière. Elle n'appartient ni à l'UE ni à l'UEEA, donc aucun régime de circulation simplifié ne s'applique."
+        es: "Mongolia exige un certificado sanitario veterinario internacional oficial y un pasaporte o cartilla de las vacunas y el tratamiento antiparasitario del perro, verificado por los agentes veterinarios y de aduanas en la frontera. No forma parte de la UE ni de la UEEA, por lo que no se aplica ningún régimen de circulación simplificado."
+        pt: "A Mongólia exige um atestado de saúde veterinário internacional oficial e um passaporte ou registro das vacinas e do tratamento antiparasitário do cachorro, verificados por agentes veterinários e da alfândega na fronteira. O país não faz parte da UE nem da EAEU, portanto nenhum regime simplificado de deslocamento se aplica."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health certificate is issued by the competent veterinary authority of the country you fly from, on that country's official form. Mongolia's requirements are the same from every country, but the issuing authority, forms and the endorsement chain differ by departure country."
+        fr: "Le certificat sanitaire est délivré par l'autorité vétérinaire compétente du pays d'où tu pars, sur le formulaire officiel de ce pays. Les exigences mongoles sont identiques depuis tout pays, mais l'autorité émettrice, les formulaires et la chaîne de visa diffèrent selon le pays de départ."
+        es: "El certificado sanitario lo expide la autoridad veterinaria competente del país desde el que vuelas, en el formulario oficial de ese país. Los requisitos de Mongolia son los mismos desde cualquier país, pero la autoridad emisora, los formularios y la cadena de refrendo difieren según el país de salida."
+        pt: "O atestado de saúde é emitido pela autoridade veterinária competente do país de onde você está partindo, no formulário oficial desse país. As exigências da Mongólia são as mesmas para qualquer país, mas a autoridade emissora, os formulários e a cadeia de endosso variam conforme o país de partida."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Mongolia does not run an EU-style listed/non-listed system, but the rabies situation of your dog's real origin matters. Mongolia is a rabies-endemic country, so keep clear proof of an in-date rabies vaccination and of any treatments; border officers assess documents against the animal's history."
+        fr: "La Mongolie n'applique pas de système listé/non listé à l'européenne, mais la situation rabique de l'origine réelle du chien compte. La Mongolie est un pays d'endémie rabique : conserve une preuve claire d'une vaccination antirabique à jour et des traitements ; les agents frontaliers évaluent les documents au regard de l'historique de l'animal."
+        es: "Mongolia no aplica un sistema listado/no listado al estilo de la UE, pero la situación de rabia del origen real de tu perro importa. Mongolia es un país con rabia endémica, así que conserva una prueba clara de una vacunación antirrábica en vigor y de cualquier tratamiento; los agentes fronterizos evalúan los documentos frente al historial del animal."
+        pt: "A Mongólia não aplica um sistema de países listados/não listados no estilo da UE, mas a situação da raiva na origem real do seu cachorro importa. A Mongólia é um país endêmico de raiva, portanto mantenha comprovantes claros de uma vacinação antirrábica em dia e de quaisquer tratamentos; os agentes de fronteira avaliam os documentos em relação ao histórico do animal."
+  note:
+    en: "So read the requirements below as Mongolia's general framework, then confirm the exact steps, timings and any microchip rule with GAVS and your veterinarian for your departure country."
+    fr: "Lis donc les exigences ci-dessous comme le cadre général mongol, puis confirme les étapes exactes, les délais et toute règle de puçage auprès de la GAVS et de ton vétérinaire pour ton pays de départ."
+    es: "Así que lee los requisitos siguientes como el marco general de Mongolia y luego confirma los pasos exactos, los plazos y cualquier norma de microchip con la GAVS y tu veterinario para tu país de salida."
+    pt: "Portanto, leia as exigências abaixo como o marco geral da Mongólia e depois confirme com a GAVS e o seu veterinário as etapas exatas, os prazos e qualquer regra de microchip para o seu país de partida."
+
+requirements:
+  - item: { en: "Microchip / identification", fr: "Puce / identification", es: "Microchip / identificación", pt: "Microchip / identificação" }
+    required: { en: "Not officially published for import", fr: "Non communiqué à l'import", es: "No comunicado para la importación", pt: "Não publicado oficialmente para importação" }
+    when: { en: "No published Mongolian import rule mandates an ISO microchip for an incoming pet; an ISO 11784/11785 chip is nonetheless strongly recommended and is generally expected on the health certificate and passport.", fr: "Aucune règle d'importation mongole publiée n'impose une puce ISO pour un animal entrant ; une puce ISO 11784/11785 est néanmoins fortement recommandée et généralement attendue sur le certificat et le passeport.", es: "Ninguna norma de importación mongola publicada obliga a un microchip ISO para una mascota que entra; aun así, se recomienda encarecidamente un chip ISO 11784/11785 y por lo general se espera en el certificado sanitario y el pasaporte.", pt: "Nenhuma regra de importação mongol publicada exige um microchip ISO para um animal de estimação que entra no país; ainda assim, um chip ISO 11784/11785 é fortemente recomendado e geralmente é esperado no atestado de saúde e no passaporte." }
+    exceptions: { en: "Under the 2024 Law on Pet Animals, domestic breeders in Mongolia are required to microchip animals; this is a national keeping rule, not a published import condition.", fr: "En vertu de la loi de 2024 sur les animaux de compagnie, les éleveurs domestiques en Mongolie doivent pucer les animaux ; il s'agit d'une règle nationale de détention, non d'une condition d'importation publiée.", es: "En virtud de la Ley de Animales de Compañía de 2024, los criadores nacionales en Mongolia están obligados a colocar microchip a los animales; se trata de una norma nacional de tenencia, no de una condición de importación publicada.", pt: "Pela Law on Pet Animals de 2024, os criadores nacionais na Mongólia são obrigados a colocar microchip nos animais; essa é uma regra nacional de posse, não uma condição de importação publicada." }
+    ref: { en: "GAVS (vet.gov.mn); Law on Pet Animals (legalinfo.mn) — import microchip rule: Unknown", fr: "GAVS (vet.gov.mn) ; loi sur les animaux de compagnie (legalinfo.mn) — règle de puçage à l'import : non communiquée", es: "GAVS (vet.gov.mn); Ley de Animales de Compañía (legalinfo.mn) — norma de microchip a la importación: no comunicada", pt: "GAVS (vet.gov.mn); Law on Pet Animals (legalinfo.mn) — regra de microchip para importação: desconhecida" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (recorded)", fr: "Requise (consignée)", es: "Obligatoria (registrada)", pt: "Obrigatória (registrada)" }
+    when: { en: "A valid rabies vaccination must be recorded in the passport and certified on the veterinary health certificate. Mongolia is rabies-endemic, so an in-date vaccination is expected for any dog over the usual vaccination age.", fr: "Une vaccination antirabique valide doit être consignée dans le passeport et certifiée sur le certificat sanitaire vétérinaire. La Mongolie est en endémie rabique : une vaccination à jour est attendue pour tout chien au-delà de l'âge usuel de vaccination.", es: "Una vacunación antirrábica válida debe registrarse en el pasaporte y certificarse en el certificado sanitario veterinario. Mongolia tiene rabia endémica, por lo que se espera una vacunación en vigor para cualquier perro que supere la edad habitual de vacunación.", pt: "Uma vacinação antirrábica válida precisa estar registrada no passaporte e certificada no atestado de saúde veterinário. A Mongólia é endêmica de raiva, portanto uma vacinação em dia é esperada para qualquer cachorro acima da idade usual de vacinação." }
+    exceptions: { en: "The exact minimum interval before travel and the maximum validity accepted are not officially published (Unknown) — confirm with GAVS and your veterinarian.", fr: "Le délai minimal exact avant le voyage et la validité maximale acceptée ne sont pas officiellement publiés (non communiqués) — à confirmer auprès de la GAVS et de ton vétérinaire.", es: "El intervalo mínimo exacto antes del viaje y la valide máxima aceptada no están publicados oficialmente (no comunicados) — confirma con la GAVS y tu veterinario.", pt: "O intervalo mínimo exato antes da viagem e a validade máxima aceita não são publicados oficialmente (desconhecidos) — confirme com a GAVS e o seu veterinário." }
+    ref: { en: "GAVS (vet.gov.mn); departure-country export certificate; exact timing: Unknown", fr: "GAVS (vet.gov.mn) ; certificat d'export du pays de départ ; calendrier exact : non communiqué", es: "GAVS (vet.gov.mn); certificado de exportación del país de salida; calendario exacto: no comunicado", pt: "GAVS (vet.gov.mn); certificado de exportação do país de partida; momento exato: desconhecido" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not among published requirements", fr: "Absent des exigences publiées", es: "No figura entre los requisitos publicados", pt: "Não consta entre as exigências publicadas" }
+    when: { en: "No rabies antibody test is listed in Mongolia's published pet-import documents. It is not stated as a routine condition for personal pets.", fr: "Aucun titrage des anticorps antirabiques ne figure dans les documents d'importation d'animaux publiés par la Mongolie. Il n'est pas indiqué comme condition de routine pour les animaux de compagnie.", es: "No figura ninguna prueba de titulación de rabia en los documentos de importación de mascotas publicados por Mongolia. No se indica como condición rutinaria para las mascotas personales.", pt: "Nenhum teste sorológico antirrábico consta nos documentos de importação de animais de estimação publicados pela Mongólia. Ele não é indicado como condição de rotina para animais de estimação pessoais." }
+    exceptions: { en: "Because Mongolia publishes little detail, the absence of a published test is not a formal exemption — verify with GAVS whether any test is required for your case.", fr: "La Mongolie publiant peu de détails, l'absence de titrage publié n'est pas une dispense formelle — vérifie auprès de la GAVS si un test est exigé dans ton cas.", es: "Como Mongolia publica pocos detalles, la ausencia de una prueba publicada no es una exención formal — verifica con la GAVS si se exige alguna prueba en tu caso.", pt: "Como a Mongólia publica pouco detalhe, a ausência de um teste publicado não é uma dispensa formal — verifique com a GAVS se algum teste é exigido para o seu caso." }
+    ref: { en: "GAVS (vet.gov.mn); GASI border inspection (sbb.inspection.gov.mn) — antibody test: not published", fr: "GAVS (vet.gov.mn) ; inspection frontalière GASI (sbb.inspection.gov.mn) — titrage : non publié", es: "GAVS (vet.gov.mn); inspección fronteriza GASI (sbb.inspection.gov.mn) — prueba de titulación: no publicada", pt: "GAVS (vet.gov.mn); inspeção de fronteira da GASI (sbb.inspection.gov.mn) — teste sorológico: não publicado" }
+  - item: { en: "Other vaccinations / antiparasitic treatment", fr: "Autres vaccins / traitement antiparasitaire", es: "Otras vacunas / tratamiento antiparasitario", pt: "Outras vacinas / tratamento antiparasitário" }
+    required: { en: "Recorded in the passport", fr: "Consignés dans le passeport", es: "Registrados en el pasaporte", pt: "Registrado no passaporte" }
+    when: { en: "The published personal-pet requirement is a passport documenting the dog's vaccinations and its antiparasitic (parasite-prevention) treatment; core canine vaccinations (distemper, hepatitis, parvovirus, leptospirosis) are customary but the exact list is not detailed officially.", fr: "L'exigence publiée pour les animaux de compagnie est un passeport documentant les vaccins du chien et son traitement antiparasitaire ; les vaccins canins de base (Carré, hépatite, parvovirose, leptospirose) sont d'usage, mais la liste exacte n'est pas détaillée officiellement.", es: "El requisito publicado para las mascotas personales es un pasaporte que documente las vacunas del perro y su tratamiento antiparasitario (de prevención de parásitos); las vacunas caninas básicas (moquillo, hepatitis, parvovirus, leptospirosis) son habituales, pero la lista exacta no se detalla oficialmente.", pt: "A exigência publicada para animais de estimação pessoais é um passaporte que documente as vacinas do cachorro e seu tratamento antiparasitário (prevenção de parasitas); as vacinas caninas essenciais (cinomose, hepatite, parvovirose, leptospirose) são costumeiras, mas a lista exata não é detalhada oficialmente." }
+    exceptions: { en: "The specific products, doses and timing of the antiparasitic treatment are not officially published (Unknown).", fr: "Les produits, doses et délais précis du traitement antiparasitaire ne sont pas officiellement publiés (non communiqués).", es: "Los productos, dosis y plazos concretos del tratamiento antiparasitario no están publicados oficialmente (no comunicados).", pt: "Os produtos, doses e o momento específicos do tratamento antiparasitário não são publicados oficialmente (desconhecidos)." }
+    ref: { en: "GASI border inspection (sbb.inspection.gov.mn); GAVS (vet.gov.mn)", fr: "Inspection frontalière GASI (sbb.inspection.gov.mn) ; GAVS (vet.gov.mn)", es: "Inspección fronteriza GASI (sbb.inspection.gov.mn); GAVS (vet.gov.mn)", pt: "Inspeção de fronteira da GASI (sbb.inspection.gov.mn); GAVS (vet.gov.mn)" }
+  - item: { en: "International veterinary health certificate", fr: "Certificat sanitaire vétérinaire international", es: "Certificado sanitario veterinario internacional", pt: "Atestado de saúde veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An official international veterinary health certificate issued (or endorsed) by the competent veterinary authority of the country of departure must accompany the dog; for import into Mongolia it is expected in Mongolian, and a separate certificate is drawn up for each animal.", fr: "Un certificat sanitaire vétérinaire international officiel délivré (ou visé) par l'autorité vétérinaire compétente du pays de départ doit accompagner le chien ; pour l'import en Mongolie, il est attendu en mongol, et un certificat distinct est établi pour chaque animal.", es: "Un certificado sanitario veterinario internacional oficial expedido (o refrendado) por la autoridad veterinaria competente del país de salida debe acompañar al perro; para la importación en Mongolia se espera en mongol, y se elabora un certificado separado para cada animal.", pt: "Um atestado de saúde veterinário internacional oficial, emitido (ou endossado) pela autoridade veterinária competente do país de partida, precisa acompanhar o cachorro; para a importação na Mongólia, ele é esperado em mongol, e um certificado separado é preenchido para cada animal." }
+    exceptions: { en: "GAVS issues Mongolia's own international veterinary certificate (procedure A/51) for animals crossing the border; certificate validity is typically up to about 30 days from issue.", fr: "La GAVS délivre le certificat vétérinaire international propre à la Mongolie (procédure A/51) pour les animaux franchissant la frontière ; la validité du certificat est généralement d'environ 30 jours à compter de sa délivrance.", es: "La GAVS expide el certificado veterinario internacional propio de Mongolia (procedimiento A/51) para los animales que cruzan la frontera; la valide del certificado suele ser de unos 30 días desde su expedición.", pt: "A GAVS emite o próprio certificado veterinário internacional da Mongólia (procedimento A/51) para animais que cruzam a fronteira; a validade do certificado costuma ser de até cerca de 30 dias a partir da emissão." }
+    ref: { en: "GAVS certificate A/51 (mongoliatradeportal.gov.mn); Order on Veterinary Certificate Design and Instruction", fr: "Certificat GAVS A/51 (mongoliatradeportal.gov.mn) ; ordre sur le modèle et l'instruction du certificat vétérinaire", es: "Certificado GAVS A/51 (mongoliatradeportal.gov.mn); Orden sobre el modelo e instrucción del certificado veterinario", pt: "Certificado A/51 da GAVS (mongoliatradeportal.gov.mn); Order on Veterinary Certificate Design and Instruction" }
+  - item: { en: "Import permit / advance approval", fr: "Permis d'importation / accord préalable", es: "Permiso de importación / aprobación previa", pt: "Autorização de importação / aprovação prévia" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "A personal pet accompanying its owner does not need an import permit under the published guidance. A commercial import of animals requires an import notification / permit from GAVS in advance.", fr: "Un animal de compagnie accompagnant son propriétaire n'a pas besoin de permis d'importation selon les indications publiées. Un import commercial d'animaux nécessite une notification / permis d'importation de la GAVS à l'avance.", es: "Una mascota personal que acompaña a su propietario no necesita permiso de importación según las indicaciones publicadas. Una importación comercial de animales requiere una notificación / permiso de importación de la GAVS por adelantado.", pt: "Um animal de estimação pessoal acompanhando o dono não precisa de autorização de importação segundo a orientação publicada. Uma importação comercial de animais exige uma notificação/autorização de importação da GAVS com antecedência." }
+    exceptions: { en: "Customs treats pets as goods requiring pre-declaration; passenger customs allows no more than one animal of each type per traveller for personal use.", fr: "La douane traite les animaux comme des marchandises à déclarer au préalable ; la douane voyageurs autorise au plus un animal de chaque type par voyageur à titre personnel.", es: "La aduana trata a las mascotas como mercancías que requieren declaración previa; la aduana de pasajeros permite como máximo un animal de cada tipo por viajero para uso personal.", pt: "A alfândega trata animais de estimação como mercadorias que exigem declaração prévia; a alfândega de passageiros permite no máximo um animal de cada tipo por viajante, para uso pessoal." }
+    ref: { en: "GASI border inspection (sbb.inspection.gov.mn); Mongolian Customs (customs.gov.mn)", fr: "Inspection frontalière GASI (sbb.inspection.gov.mn) ; Douane mongole (customs.gov.mn)", es: "Inspección fronteriza GASI (sbb.inspection.gov.mn); Aduana mongola (customs.gov.mn)", pt: "Inspeção de fronteira da GASI (sbb.inspection.gov.mn); alfândega da Mongólia (customs.gov.mn)" }
+  - item: { en: "Border veterinary control", fr: "Contrôle vétérinaire frontalier", es: "Control veterinario fronterizo", pt: "Controle veterinário de fronteira" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "On arrival the dog undergoes veterinary and quarantine inspection at the border, carried out under World Organisation for Animal Health (WOAH) standards and Mongolia's border animal/plant quarantine legislation; documents and the animal's health are checked.", fr: "À l'arrivée, le chien fait l'objet d'une inspection vétérinaire et de quarantaine à la frontière, réalisée selon les normes de l'Organisation mondiale de la santé animale (WOAH) et la législation mongole sur la quarantaine animale/végétale aux frontières ; les documents et l'état de santé de l'animal sont vérifiés.", es: "A la llegada, el perro es objeto de una inspección veterinaria y de cuarentena en la frontera, realizada conforme a las normas de la Organización Mundial de Sanidad Animal (WOAH) y a la legislación mongola sobre cuarentena animal/vegetal en las fronteras; se verifican los documentos y el estado de salud del animal.", pt: "Na chegada, o cachorro passa por inspeção veterinária e de quarentena na fronteira, realizada segundo as normas da World Organisation for Animal Health (WOAH) e a legislação de quarentena animal/vegetal de fronteira da Mongólia; os documentos e a saúde do animal são conferidos." }
+    exceptions: { en: "Enter through a crossing point that operates veterinary control (e.g. Chinggis Khaan International Airport, Ulaanbaatar); declare the animal to customs.", fr: "Entre par un point de passage assurant le contrôle vétérinaire (ex. aéroport international Chinggis Khaan, Oulan-Bator) ; déclare l'animal à la douane.", es: "Entra por un punto de paso que realice control veterinario (p. ej. el Aeropuerto Internacional Chinggis Khaan, Ulán Bator); declara el animal a la aduana.", pt: "Entre por um ponto de travessia que opere controle veterinário (por exemplo, o Chinggis Khaan International Airport, em Ulaanbaatar); declare o animal à alfândega." }
+    ref: { en: "GASI border inspection (sbb.inspection.gov.mn); Mongolian Customs (customs.gov.mn)", fr: "Inspection frontalière GASI (sbb.inspection.gov.mn) ; Douane mongole (customs.gov.mn)", es: "Inspección fronteriza GASI (sbb.inspection.gov.mn); Aduana mongola (customs.gov.mn)", pt: "Inspeção de fronteira da GASI (sbb.inspection.gov.mn); alfândega da Mongólia (customs.gov.mn)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Not officially published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado oficialmente" }
+    when: { en: "Mongolia does not publish a minimum import age or a specific rule for unvaccinated puppies. In practice a puppy's earliest travel date is governed by the rabies vaccination it must carry.", fr: "La Mongolie ne publie ni âge minimal d'importation, ni règle spécifique pour les chiots non vaccinés. En pratique, la première date de voyage d'un chiot est déterminée par la vaccination antirabique qu'il doit porter.", es: "Mongolia no publica una edad mínima de importación ni una norma específica para cachorros no vacunados. En la práctica, la fecha más temprana de viaje de un cachorro la determina la vacunación antirrábica que debe llevar.", pt: "A Mongólia não publica uma idade mínima de importação nem uma regra específica para filhotes não vacinados. Na prática, a data mais cedo em que um filhote pode viajar é determinada pela vacinação antirrábica que ele precisa ter." }
+    exceptions: { en: "Any airline minimum age applies separately. Confirm the puppy rule with GAVS before travel (Unknown).", fr: "Un âge minimum de la compagnie aérienne s'applique séparément. Confirme la règle pour les chiots auprès de la GAVS avant le voyage (non communiquée).", es: "Cualquier edad mínima de la aerolínea se aplica por separado. Confirma la norma para cachorros con la GAVS antes de viajar (no comunicada).", pt: "Qualquer idade mínima da companhia aérea se aplica separadamente. Confirme a regra para filhotes com a GAVS antes da viagem (desconhecida)." }
+    ref: { en: "GAVS (vet.gov.mn) — minimum age: Unknown", fr: "GAVS (vet.gov.mn) — âge minimum : non communiqué", es: "GAVS (vet.gov.mn) — edad mínima: no comunicada", pt: "GAVS (vet.gov.mn) — idade mínima: desconhecida" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "No routine quarantine for compliant pets", fr: "Pas de quarantaine systématique si conforme", es: "Sin cuarentena rutinaria para mascotas conformes", pt: "Sem quarentena de rotina para animais em conformidade" }
+    when: { en: "A personal pet with complete, valid documents is not subject to a routine import quarantine; it is cleared after the border veterinary and customs inspection.", fr: "Un animal de compagnie avec des documents complets et valides n'est pas soumis à une quarantaine d'importation systématique ; il est dédouané après l'inspection vétérinaire et douanière à la frontière.", es: "Una mascota personal con documentos completos y válidos no está sujeta a una cuarentena de importación rutinaria; se despacha tras la inspección veterinaria y aduanera en la frontera.", pt: "Um animal de estimação pessoal com documentos completos e válidos não está sujeito a uma quarentena de importação de rotina; ele é liberado após a inspeção veterinária e alfandegária de fronteira." }
+    exceptions: { en: "If documents are missing or invalid, or a disease risk is identified, the border service may hold, isolate or refuse the animal; commercial consignments follow separate conditions.", fr: "Si les documents manquent ou sont invalides, ou si un risque sanitaire est identifié, le service frontalier peut retenir, isoler ou refuser l'animal ; les envois commerciaux suivent des conditions distinctes.", es: "Si faltan documentos o no son válidos, o se identifica un riesgo sanitario, el servicio fronterizo puede retener, aislar o rechazar al animal; los envíos comerciales siguen condiciones distintas.", pt: "Se a documentação estiver ausente ou inválida, ou se for identificado algum risco sanitário, o serviço de fronteira pode reter, isolar ou recusar o animal; remessas comerciais seguem condições separadas." }
+    ref: { en: "GASI border inspection (sbb.inspection.gov.mn); border animal/plant quarantine law", fr: "Inspection frontalière GASI (sbb.inspection.gov.mn) ; loi sur la quarantaine animale/végétale aux frontières", es: "Inspección fronteriza GASI (sbb.inspection.gov.mn); ley sobre cuarentena animal/vegetal en las fronteras", pt: "Inspeção de fronteira da GASI (sbb.inspection.gov.mn); lei de quarentena animal/vegetal de fronteira" }
+
+origin:
+  eu:
+    title: { en: "Not an EU or EAEU member", fr: "Ni membre de l'UE ni de l'UEEA", es: "Ni miembro de la UE ni de la UEEA", pt: "Não é membro da UE nem da EAEU" }
+    body:
+      en: "Mongolia belongs to neither the European Union nor the Eurasian Economic Union, so there is no simplified pet-passport movement into the country. A dog coming from an EU state, from an EAEU state (Russia, Kazakhstan and others) or from anywhere else follows the same third-country path: an official veterinary health certificate from the departure country plus vaccination and treatment records."
+      fr: "La Mongolie n'appartient ni à l'Union européenne, ni à l'Union économique eurasiatique : il n'existe donc pas de circulation simplifiée par passeport pour animaux vers le pays. Un chien venant d'un État de l'UE, d'un État de l'UEEA (Russie, Kazakhstan, etc.) ou de tout autre pays suit le même parcours de pays tiers : un certificat sanitaire vétérinaire officiel du pays de départ, plus les preuves de vaccination et de traitement."
+      es: "Mongolia no pertenece ni a la Unión Europea ni a la Unión Económica Euroasiática, por lo que no existe una circulación simplificada por pasaporte para mascotas hacia el país. Un perro procedente de un Estado de la UE, de un Estado de la UEEA (Rusia, Kazajistán y otros) o de cualquier otro lugar sigue la misma ruta de país tercero: un certificado sanitario veterinario oficial del país de salida, más los registros de vacunación y tratamiento."
+      pt: "A Mongólia não pertence à União Europeia nem à União Econômica Eurasiática, portanto não há um deslocamento simplificado por passaporte de animal de estimação para o país. Um cachorro vindo de um estado da UE, de um estado da EAEU (Rússia, Cazaquistão e outros) ou de qualquer outro lugar segue o mesmo caminho de país terceiro: um atestado de saúde veterinário oficial do país de partida, além dos registros de vacinação e tratamento."
+    cls: warn
+  listed:
+    title: { en: "Personal pet with its owner", fr: "Animal de compagnie avec son propriétaire", es: "Mascota personal con su propietario", pt: "Animal de estimação pessoal com o dono" }
+    body:
+      en: "For a dog travelling with its owner for personal use, the published requirement is an animal health certificate from the competent authority of the country of departure and a passport recording vaccinations and antiparasitic treatment. No import permit is needed, and customs allows up to one animal of each type per traveller. The animal is inspected by veterinary and customs officers at the border."
+      fr: "Pour un chien voyageant avec son propriétaire à titre personnel, l'exigence publiée est un certificat sanitaire vétérinaire de l'autorité compétente du pays de départ et un passeport consignant les vaccins et le traitement antiparasitaire. Aucun permis d'importation n'est requis, et la douane autorise au plus un animal de chaque type par voyageur. L'animal est inspecté par les agents vétérinaires et douaniers à la frontière."
+      es: "Para un perro que viaja con su propietario para uso personal, el requisito publicado es un certificado sanitario veterinario de la autoridad competente del país de salida y un pasaporte que registre las vacunas y el tratamiento antiparasitario. No se necesita permiso de importación, y la aduana permite hasta un animal de cada tipo por viajero. El animal es inspeccionado por los agentes veterinarios y de aduanas en la frontera."
+      pt: "Para um cachorro que viaja com o dono para uso pessoal, a exigência publicada é um atestado de saúde animal da autoridade competente do país de partida e um passaporte que registre as vacinas e o tratamento antiparasitário. Nenhuma autorização de importação é necessária, e a alfândega permite até um animal de cada tipo por viajante. O animal é inspecionado por agentes veterinários e da alfândega na fronteira."
+    cls: warn
+  nonListed:
+    title: { en: "Commercial import / more than the allowance", fr: "Import commercial / au-delà de la franchise", es: "Importación comercial / más allá de la franquicia", pt: "Importação comercial / acima do limite permitido" }
+    body:
+      en: "For a commercial import, or more animals than the personal customs allowance, an import notification / permit from GAVS must be obtained in advance, in addition to the exporting country's veterinary certificate and passport for each animal. Additional conditions and inspection apply, and clearance is handled as a regulated consignment rather than personal baggage."
+      fr: "Pour un import commercial, ou davantage d'animaux que la franchise douanière personnelle, une notification / permis d'importation de la GAVS doit être obtenu à l'avance, en plus du certificat vétérinaire et du passeport du pays exportateur pour chaque animal. Des conditions et une inspection supplémentaires s'appliquent, et le dédouanement se fait comme un envoi réglementé, non comme un bagage personnel."
+      es: "Para una importación comercial, o más animales que la franquicia aduanera personal, debe obtenerse por adelantado una notificación / permiso de importación de la GAVS, además del certificado veterinario y el pasaporte del país exportador para cada animal. Se aplican condiciones e inspección adicionales, y el despacho se gestiona como un envío regulado en lugar de equipaje personal."
+      pt: "Para uma importação comercial, ou mais animais do que o limite alfandegário pessoal, uma notificação/autorização de importação da GAVS precisa ser obtida com antecedência, além do certificado veterinário e do passaporte do país exportador para cada animal. Condições e inspeções adicionais se aplicam, e a liberação é tratada como uma remessa regulamentada, e não como bagagem pessoal."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Mongolia depends on where you flew from and whether the animal is a personal pet or a commercial import."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Mongolie dépend de ton lieu de départ et du statut de l'animal (compagnie ou import commercial)."
+    es: "Lo que ocurre cuando tu perro llega a Mongolia depende del lugar desde el que hayas volado y de si el animal es una mascota personal o una importación comercial."
+    pt: "O que acontece quando o seu cachorro chega à Mongólia depende de onde você partiu e de o animal ser um animal de estimação pessoal ou uma importação comercial."
+  points:
+    - en: "Enter through a crossing point that operates veterinary control, such as Chinggis Khaan International Airport in Ulaanbaatar."
+      fr: "Entre par un point de passage assurant le contrôle vétérinaire, comme l'aéroport international Chinggis Khaan à Oulan-Bator."
+      es: "Entra por un punto de paso que realice control veterinario, como el Aeropuerto Internacional Chinggis Khaan de Ulán Bator."
+      pt: "Entre por um ponto de travessia que opere controle veterinário, como o Chinggis Khaan International Airport, em Ulaanbaatar."
+    - en: "Declare the animal to customs — pets are goods requiring pre-declaration; use the red channel where airport channels apply."
+      fr: "Déclare l'animal à la douane — les animaux sont des marchandises à déclarer au préalable ; emprunte le canal rouge lorsque les canaux d'aéroport s'appliquent."
+      es: "Declara el animal a la aduana — las mascotas son mercancías que requieren declaración previa; usa el canal rojo donde apliquen los canales del aeropuerto."
+      pt: "Declare o animal à alfândega — animais de estimação são mercadorias que exigem declaração prévia; use o canal vermelho onde houver canais de aeroporto."
+    - en: "Present the international veterinary health certificate and the passport with vaccination and antiparasitic-treatment records to the veterinary officer."
+      fr: "Présente le certificat sanitaire vétérinaire international et le passeport avec les preuves de vaccination et de traitement antiparasitaire à l'agent vétérinaire."
+      es: "Presenta el certificado sanitario veterinario internacional y el pasaporte con los registros de vacunación y de tratamiento antiparasitario al agente veterinario."
+      pt: "Apresente o atestado de saúde veterinário internacional e o passaporte com os registros de vacinação e tratamento antiparasitário ao agente veterinário."
+    - en: "For a personal pet with complete, valid documents there is no routine quarantine and no import permit."
+      fr: "Pour un animal de compagnie avec des documents complets et valides, il n'y a ni quarantaine systématique, ni permis d'importation."
+      es: "Para una mascota personal con documentos completos y válidos no hay cuarentena rutinaria ni permiso de importación."
+      pt: "Para um animal de estimação pessoal com documentos completos e válidos, não há quarentena de rotina nem autorização de importação."
+    - en: "Carry original documents; for import into Mongolia the veterinary certificate is expected in Mongolian, so arrange an official translation where needed."
+      fr: "Munis-toi des documents originaux ; pour l'import en Mongolie, le certificat vétérinaire est attendu en mongol : prévois une traduction officielle si nécessaire."
+      es: "Lleva los documentos originales; para la importación en Mongolia se espera el certificado veterinario en mongol, así que gestiona una traducción oficial cuando sea necesario."
+      pt: "Leve os documentos originais; para a importação na Mongólia, o certificado veterinário é esperado em mongol, então providencie uma tradução oficial quando necessário."
+    - en: "If vaccinations or documents are missing or invalid, the border service may hold, isolate or refuse the animal, or return it at the owner's expense."
+      fr: "Si les vaccins ou documents manquent ou sont invalides, le service frontalier peut retenir, isoler ou refuser l'animal, ou le réexpédier aux frais du propriétaire."
+      es: "Si las vacunas o los documentos faltan o no son válidos, el servicio fronterizo puede retener, aislar o rechazar al animal, o devolverlo a cargo del propietario."
+      pt: "Se as vacinas ou os documentos estiverem ausentes ou inválidos, o serviço de fronteira pode reter, isolar ou recusar o animal, ou devolvê-lo, às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Mongolia does not publish a breed-specific import ban for dogs. In 2024 it adopted its first Law on Pet Animals, which regulates the keeping, breeding and welfare of companion animals inside the country rather than customs entry."
+    fr: "La Mongolie ne publie pas d'interdiction d'importation visant une race de chien. En 2024, elle a adopté sa première loi sur les animaux de compagnie, qui encadre la détention, l'élevage et le bien-être des animaux de compagnie à l'intérieur du pays, et non l'entrée douanière."
+    es: "Mongolia no publica ninguna prohibición de importación por raza para perros. En 2024 adoptó su primera Ley de Animales de Compañía, que regula la tenencia, la cría y el bienestar de los animales de compañía dentro del país, más que la entrada aduanera."
+    pt: "A Mongólia não publica uma proibição de importação por raça para cachorros. Em 2024, o país adotou sua primeira Law on Pet Animals, que regula a posse, a criação e o bem-estar de animais de companhia dentro do país, e não a entrada alfandegária."
+  cat1:
+    en: "No category of dog breed is listed as prohibited from import in Mongolia's published veterinary or customs requirements. Any breed-based restriction that may exist is not officially published (Unknown)."
+    fr: "Aucune catégorie de race de chien n'est listée comme interdite à l'importation dans les exigences vétérinaires ou douanières publiées de la Mongolie. Toute restriction fondée sur la race qui existerait n'est pas officiellement publiée (non communiquée)."
+    es: "Ninguna categoría de raza de perro figura como prohibida para la importación en los requisitos veterinarios o aduaneros publicados de Mongolia. Cualquier restricción basada en la raza que pudiera existir no está publicada oficialmente (no comunicada)."
+    pt: "Nenhuma categoria de raça de cachorro consta como proibida de importação nas exigências veterinárias ou alfandegárias publicadas pela Mongólia. Qualquer restrição baseada em raça que possa existir não é publicada oficialmente (desconhecida)."
+  cat2:
+    en: "The 2024 Law on Pet Animals places obligations on domestic keepers and breeders — for example registration and microchipping of animals by licensed breeders — with the Mongolian Bankhar, the national mastiff, given special protection. These are domestic keeping rules, not an import ban."
+    fr: "La loi de 2024 sur les animaux de compagnie impose des obligations aux détenteurs et éleveurs domestiques — par exemple l'enregistrement et le puçage des animaux par les éleveurs agréés — le Bankhar mongol, mâtin national, bénéficiant d'une protection particulière. Ce sont des règles de détention internes, non une interdiction d'importation."
+    es: "La Ley de Animales de Compañía de 2024 impone obligaciones a los tenedores y criadores nacionales — por ejemplo el registro y la colocación de microchip a los animales por parte de criadores autorizados — con el Bankhar mongol, el mastín nacional, que goza de una protección especial. Son normas internas de tenencia, no una prohibición de importación."
+    pt: "A Law on Pet Animals de 2024 impõe obrigações a donos e criadores nacionais — por exemplo, o registro e a colocação de microchip em animais por criadores licenciados —, com o Bankhar mongol, o mastim nacional, recebendo proteção especial. Essas são regras nacionais de posse, não uma proibição de importação."
+  note:
+    en: "Only the official law and GAVS guidance are authoritative. Because Mongolia publishes limited detail, confirm any breed, keeping or licensing rule with GAVS before you travel."
+    fr: "Seuls la loi officielle et les indications de la GAVS font foi. La Mongolie publiant peu de détails, confirme toute règle de race, de détention ou d'agrément auprès de la GAVS avant de voyager."
+    es: "Solo la ley oficial y las indicaciones de la GAVS son vinculantes. Como Mongolia publica pocos detalles, confirma cualquier norma de raza, tenencia o licencia con la GAVS antes de viajar."
+    pt: "Apenas a lei oficial e a orientação da GAVS têm valor normativo. Como a Mongólia publica detalhes limitados, confirme qualquer regra de raça, posse ou licenciamento com a GAVS antes de viajar."
+
+checklist:
+  - en: "Official international veterinary health certificate from the departure country's competent authority"
+    fr: "Certificat sanitaire vétérinaire international officiel de l'autorité compétente du pays de départ"
+    es: "Certificado sanitario veterinario internacional oficial de la autoridad competente del país de salida"
+    pt: "Atestado de saúde veterinário internacional oficial da autoridade competente do país de partida"
+  - en: "Passport or record showing the dog's vaccinations and antiparasitic treatment"
+    fr: "Passeport ou carnet indiquant les vaccins et le traitement antiparasitaire du chien"
+    es: "Pasaporte o cartilla que acredite las vacunas y el tratamiento antiparasitario del perro"
+    pt: "Passaporte ou registro que mostre as vacinas e o tratamento antiparasitário do cachorro"
+  - en: "Valid rabies vaccination recorded (confirm exact timing with GAVS and your vet)"
+    fr: "Vaccination antirabique valide consignée (confirme le calendrier exact auprès de la GAVS et de ton vétérinaire)"
+    es: "Vacunación antirrábica válida registrada (confirma el calendario exacto con la GAVS y tu veterinario)"
+    pt: "Vacinação antirrábica válida registrada (confirme o momento exato com a GAVS e o seu veterinário)"
+  - en: "ISO 11784/11785 microchip strongly recommended (import rule not officially published)"
+    fr: "Puce ISO 11784/11785 fortement recommandée (règle d'import non officiellement publiée)"
+    es: "Microchip ISO 11784/11785 muy recomendado (norma de importación no publicada oficialmente)"
+    pt: "Microchip ISO 11784/11785 fortemente recomendado (regra de importação não publicada oficialmente)"
+  - en: "Import permit / advance approval from GAVS only for commercial imports"
+    fr: "Permis d'importation / accord préalable de la GAVS uniquement pour les imports commerciaux"
+    es: "Permiso de importación / aprobación previa de la GAVS solo para importaciones comerciales"
+    pt: "Autorização de importação / aprovação prévia da GAVS apenas para importações comerciais"
+  - en: "Veterinary certificate in Mongolian, or with an official translation"
+    fr: "Certificat vétérinaire en mongol, ou avec une traduction officielle"
+    es: "Certificado veterinario en mongol, o con una traducción oficial"
+    pt: "Certificado veterinário em mongol, ou com tradução oficial"
+  - en: "Enter via a crossing with veterinary control; declare the animal to customs"
+    fr: "Entrée par un point de passage avec contrôle vétérinaire ; déclare l'animal à la douane"
+    es: "Entra por un punto de paso con control veterinario; declara el animal a la aduana"
+    pt: "Entre por uma travessia com controle veterinário; declare o animal à alfândega"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+
+sources:
+  - label: { en: "General Authority for Veterinary Services (GAVS) — official site", fr: "Autorité générale des services vétérinaires (GAVS) — site officiel", es: "Autoridad General de Servicios Veterinarios (GAVS) — sitio oficial", pt: "General Authority for Veterinary Services (GAVS) — site oficial" }
+    url: "https://vet.gov.mn/"
+  - label: { en: "Mongolia Trade Portal — GAVS international veterinary certificate for importing animals (procedure A/51)", fr: "Portail commercial de Mongolie — certificat vétérinaire international GAVS pour l'importation d'animaux (procédure A/51)", es: "Portal de Comercio de Mongolia — certificado veterinario internacional de la GAVS para la importación de animales (procedimiento A/51)", pt: "Mongolia Trade Portal — certificado veterinário internacional da GAVS para a importação de animais (procedimento A/51)" }
+    url: "https://mongoliatradeportal.gov.mn/index.php?r=searchProcedure/view1&id=4"
+  - label: { en: "General Agency for Specialized Inspection — documents required to carry cats/dogs for personal use", fr: "Agence générale pour l'inspection spécialisée — documents requis pour transporter chats/chiens à titre personnel", es: "Agencia General de Inspección Especializada — documentos necesarios para transportar gatos/perros para uso personal", pt: "General Agency for Specialized Inspection — documentos exigidos para levar gatos/cachorros para uso pessoal" }
+    url: "https://sbb.inspection.gov.mn/%D1%85%D1%83%D0%B2%D0%B8%D0%B9%D0%BD-%D1%85%D1%8D%D1%80%D1%8D%D0%B3%D1%86%D1%8D%D1%8D%D0%BD%D0%B8%D0%B9%D0%B7%D0%BE%D1%80%D0%B8%D1%83%D0%BB%D0%B0%D0%BB%D1%82%D0%B0%D0%B0%D1%80-%D0%BC%D1%83%D1%83%D1%80/"
+  - label: { en: "Law on Pet Animals (2024), Mongolia — legalinfo.mn", fr: "Loi sur les animaux de compagnie (2024), Mongolie — legalinfo.mn", es: "Ley de Animales de Compañía (2024), Mongolia — legalinfo.mn", pt: "Law on Pet Animals (2024), Mongólia — legalinfo.mn" }
+    url: "https://legalinfo.mn/mn/detail?lawId=17047956310041"
+  - label: { en: "Mongolian Customs (GECA) — passenger customs clearance, restricted/pre-declaration goods", fr: "Douane mongole (GECA) — dédouanement voyageurs, marchandises restreintes / à déclarer", es: "Aduana mongola (GECA) — despacho aduanero de pasajeros, mercancías restringidas / de declaración previa", pt: "Alfândega da Mongólia (GECA) — desembaraço alfandegário de passageiros, mercadorias restritas/com declaração prévia" }
+    url: "https://customs.gov.mn/?page_id=3282"
+  - label: { en: "USDA APHIS — Export Live Animals to Mongolia (no pet dog/cat certificate published)", fr: "USDA APHIS — Exportation d'animaux vivants vers la Mongolie (aucun certificat chien/chat publié)", es: "USDA APHIS — Exportación de animales vivos a Mongolia (no hay certificado de perro/gato publicado)", pt: "USDA APHIS — exportação de animais vivos para a Mongólia (nenhum certificado para cães/gatos de estimação publicado)" }
+    url: "https://www.aphis.usda.gov/export-live-animals-mongolia"
+  - label: { en: "USDA APHIS — Pet Travel: Unknown Requirements (Mongolia not listed)", fr: "USDA APHIS — Voyage d'animaux : exigences inconnues (Mongolie non listée)", es: "USDA APHIS — Viaje de mascotas: requisitos desconocidos (Mongolia no listada)", pt: "USDA APHIS — viagem de animais de estimação: exigências desconhecidas (Mongólia não listada)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/unknown-requirements"
+
+seo:
+  title: { en: "Mongolia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Mongolie — Guide", es: "Requisitos de entrada de perros en Mongolia — Guía de viaje", pt: "Entrada de cachorro na Mongólia — guia de viagem" }
+  metaTitle: { en: "Traveling to Mongolia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Mongolie avec ton chien : formalités (2026)", es: "Viajar a Mongolia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Mongólia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official GAVS, border-inspection and customs rules for bringing a dog into Mongolia: veterinary health certificate. Several details unpublished — sourced and dated."
+    fr: "Règles officielles GAVS, frontière et douane pour faire entrer un chien en Mongolie : certificat vétérinaire. Plusieurs détails non publiés — sourcé et daté."
+    es: "Normas oficiales de la GAVS, frontera y aduanas para traer un perro a Mongolia: certificado veterinario. Varios detalles no publicados — con fuentes y fecha."
+    pt: "Regras oficiais da GAVS, de inspeção de fronteira e alfandegárias para levar um cachorro à Mongólia: atestado de saúde veterinário. Vários detalhes não publicados."
+  slug: "mongolia"
+  shortDesc:
+    en: "What you need to bring a dog into Mongolia, with the points Mongolia does not officially publish clearly flagged."
+    fr: "Ce qu'il faut pour faire entrer un chien en Mongolie, avec les points non officiellement publiés clairement signalés."
+    es: "Lo que necesitas para traer un perro a Mongolia, con los puntos que Mongolia no publica oficialmente claramente señalados."
+    pt: "O que você precisa para levar um cachorro à Mongólia, com os pontos que a Mongólia não publica oficialmente claramente sinalizados."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

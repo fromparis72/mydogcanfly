@@ -1,0 +1,373 @@
+# Country Entry Guide — Armenia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_am
+iso2: "AM"
+name: { en: "Armenia", fr: "Arménie", es: "Armenia", pt: "Armênia" }
+region: { en: "Caucasus (non-EU)", fr: "Caucase (hors UE)", es: "Cáucaso (fuera de la UE)", pt: "Cáucaso (fora da UE)" }
+
+
+regime: non_listed
+exit:
+  authority: FSIB
+  authorityUrl: https://snund.am/en
+  intro:
+    en: "Armenia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Food Safety Inspection Body (FSIB)."
+    fr: "L'Arménie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Food Safety Inspection Body (FSIB)."
+    es: "Armenia no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Food Safety Inspection Body (FSIB)."
+    pt: "A Armênia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Serviço de Inspeção de Segurança Alimentar (FSIB)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A state vet issues the domestic certificate (Form 1) before travel, and the FSIB airport service exchanges it for the international veterinary certificate (Form 5a) on departure."
+        fr: "Un vétérinaire d'État délivre le certificat national (formulaire 1) avant le voyage, et le service aéroportuaire du FSIB l'échange contre le certificat vétérinaire international (formulaire 5a) au départ."
+        es: "Un veterinario estatal emite el certificado nacional (Formulario 1) antes del viaje, y el servicio aeroportuario del FSIB lo cambia por el certificado veterinario internacional (Formulario 5a) al salir."
+        pt: "Um veterinário estatal emite o certificado nacional (Formulário 1) antes da viagem, e o serviço aeroportuário do FSIB o troca pelo certificado veterinário internacional (Formulário 5a) na partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Armenia with your dog", fr: "Voyager en Arménie avec ton chien", es: "Viajar a Armenia con tu perro", pt: "Viajar para a Armênia com seu cachorro" }
+  intro:
+    en: >-
+      Armenia is not part of the EU: it is a member of the Eurasian Economic Union (EAEU) and applies
+      the Union's common veterinary requirements, enforced at the border by the Food Safety Inspection
+      Body (snund.am), which runs the state veterinary service. A dog travelling for personal use — up to
+      five dogs and cats in total per traveller — can enter without an import permit and without quarantine,
+      provided it carries a valid rabies vaccination, the other vaccinations required for dogs, and an
+      official veterinary health certificate from the state veterinary service of the country of departure,
+      issued after a clinical examination within five days of travel. What you must prepare still depends on
+      your dog's country of departure and how many animals you bring. This guide explains the standard EAEU
+      path and the cases where extra formalities apply, so you know what to organise before you fly.
+    fr: >-
+      L'Arménie ne fait pas partie de l'UE : elle est membre de l'Union économique eurasiatique (UEEA) et
+      applique les exigences vétérinaires communes de l'Union, mises en œuvre à la frontière par l'Organe
+      d'inspection de la sécurité alimentaire (snund.am), qui gère le service vétérinaire d'État. Un chien
+      voyageant à titre personnel — jusqu'à cinq chiens et chats au total par voyageur — peut entrer sans
+      permis d'importation et sans quarantaine, à condition d'avoir une vaccination antirabique valide, les
+      autres vaccins exigés pour les chiens, et un certificat sanitaire vétérinaire officiel du service
+      vétérinaire d'État du pays de départ, établi après un examen clinique dans les cinq jours précédant le
+      voyage. Ce qu'il faut préparer dépend aussi du pays de départ et du nombre d'animaux. Ce guide détaille
+      le parcours standard UEEA et les cas de formalités supplémentaires, pour savoir quoi organiser avant de partir.
+    es: >-
+      Armenia no forma parte de la UE: es miembro de la Unión Económica Euroasiática (UEEA) y aplica los
+      requisitos veterinarios comunes de la Unión, que se hacen cumplir en la frontera el Organismo de
+      Inspección de la Seguridad Alimentaria (snund.am), que gestiona el servicio veterinario estatal. Un
+      perro que viaja con fines personales — hasta cinco perros y gatos en total por viajero — puede entrar
+      sin permiso de importación y sin cuarentena, siempre que lleve una vacunación antirrábica válida, las
+      demás vacunas exigidas para los perros y un certificado sanitario veterinario oficial del servicio
+      veterinario estatal del país de salida, expedido tras un examen clínico en los cinco días previos al
+      viaje. Lo que debes preparar depende además del país de salida de tu perro y de cuántos animales
+      lleves. Esta guía explica el recorrido estándar de la UEEA y los casos en que se aplican trámites
+      adicionales, para que sepas qué organizar antes de volar.
+
+    pt: "A Armênia não faz parte da UE: ela é membro da União Econômica Eurasiática (UEE) e aplica as exigências veterinárias comuns da União, fiscalizadas na fronteira pelo Serviço de Inspeção de Segurança Alimentar (snund.am), que administra o serviço veterinário estatal. Um cachorro que viaja para uso pessoal — até cinco cachorros e gatos no total por viajante — pode entrar sem autorização de importação e sem quarentena, desde que leve uma vacinação antirrábica válida, as demais vacinas exigidas para cachorros e um atestado de saúde veterinário oficial do serviço veterinário estatal do país de partida, emitido após um exame clínico feito nos cinco dias anteriores à viagem. O que você precisa preparar ainda depende do país de partida do seu cachorro e de quantos animais você leva. Este guia explica o caminho padrão da UEE e os casos em que se aplicam formalidades extras, para você saber o que organizar antes de voar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate (vaccinations + veterinary certificate)", fr: "Modéré (vaccins + certificat vétérinaire)", es: "Moderado (vacunas + certificado veterinario)", pt: "Moderado (vacinas + certificado veterinário)" }
+
+prepTime:
+  eu:
+    en: "From another EAEU country (Russia, Belarus, Kazakhstan, Kyrgyzstan): a few days if the vaccinations are up to date and recorded in the veterinary passport."
+    fr: "Depuis un autre pays de l'UEEA (Russie, Biélorussie, Kazakhstan, Kirghizistan) : quelques jours si les vaccins sont à jour et consignés dans le passeport vétérinaire."
+    es: "Desde otro país de la UEEA (Rusia, Bielorrusia, Kazajistán, Kirguistán): unos días si las vacunas están al día y registradas en el pasaporte veterinario."
+    pt: "De outro país da UEE (Rússia, Belarus, Cazaquistão, Quirguistão): alguns dias, se as vacinas estiverem em dia e registradas no passaporte veterinário."
+  listed:
+    en: "From any other country, up to 5 pets: about 3 weeks if the primary rabies shot and the other dog vaccinations are still needed (given more than 20 days before departure), plus the clinical exam and health certificate issued within 5 days of travel."
+    fr: "Depuis tout autre pays, jusqu'à 5 animaux : environ 3 semaines si la primo-vaccination antirabique et les autres vaccins du chien restent à faire (plus de 20 jours avant le départ), plus l'examen clinique et le certificat sanitaire établis dans les 5 jours avant le voyage."
+    es: "Desde cualquier otro país, hasta 5 mascotas: unas 3 semanas si aún faltan la primovacunación antirrábica y las demás vacunas del perro (administradas más de 20 días antes de la salida), más el examen clínico y el certificado sanitario expedidos en los 5 días previos al viaje."
+    pt: "De qualquer outro país, até 5 animais: cerca de 3 semanas se ainda faltarem a primovacinação antirrábica e as demais vacinas do cachorro (aplicadas mais de 20 dias antes da partida), mais o exame clínico e o atestado de saúde emitidos nos 5 dias anteriores à viagem."
+  nonListed:
+    en: "More than 5 animals or a commercial import: several weeks — additional formalities and permissions apply beyond the personal-travel scheme; confirm the procedure with the Food Safety Inspection Body in advance."
+    fr: "Plus de 5 animaux ou import commercial : plusieurs semaines — des formalités et autorisations supplémentaires s'appliquent au-delà du régime voyageur ; confirme la procédure auprès de l'Organe d'inspection de la sécurité alimentaire à l'avance."
+    es: "Más de 5 animales o una importación comercial: varias semanas — se aplican trámites y autorizaciones adicionales más allá del régimen de viajero; confirma el procedimiento con el Organismo de Inspección de la Seguridad Alimentaria con antelación."
+    pt: "Mais de 5 animais ou importação comercial: várias semanas — formalidades e autorizações adicionais se aplicam além do regime de viajante; confirme o procedimento com o Serviço de Inspeção de Segurança Alimentar com antecedência."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Pets per traveller (no permit)", fr: "Animaux par voyageur (sans permis)", es: "Mascotas por viajero (sin permiso)", pt: "Animais por viajante (sem autorização)" }
+    status: { en: "Up to 5 (dogs and/or cats)", fr: "5 maximum (chiens et/ou chats)", es: "Hasta 5 (perros y/o gatos)", pt: "Até 5 (cachorros e/ou gatos)" }
+    cls: neutral
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended, not required by EAEU", fr: "Recommandée, non exigée par l'UEEA", es: "Recomendado, no exigido por la UEEA", pt: "Recomendado, não exigido pela UEE" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (dogs over 3 months)", fr: "Requise (chiens de plus de 3 mois)", es: "Obligatoria (perros de más de 3 meses)", pt: "Obrigatória (cachorros com mais de 3 meses)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required in general", fr: "Non requis en général", es: "No obligatoria en general", pt: "Em geral, não obrigatório" }
+    cls: ok
+  - requirement: { en: "Other vaccinations (distemper, hepatitis, parvo…)", fr: "Autres vaccins (Carré, hépatite, parvovirose…)", es: "Otras vacunas (moquillo, hepatitis, parvovirosis…)", pt: "Outras vacinações (cinomose, hepatite, parvovirose…)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (EAEU / international)", fr: "Requis (UEEA / international)", es: "Obligatorio (UEEA / internacional)", pt: "Obrigatório (UEE / internacional)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for up to 5 pets", fr: "Non requise jusqu'à 5 animaux", es: "No obligatoria hasta 5 mascotas", pt: "Não obrigatória para até 5 animais" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Armenia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Arménie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Armenia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Armênia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Armenia", fr: "Pays de destination — Arménie", es: "País de destino — Armenia", pt: "País de destino — Armênia" }
+      text:
+        en: "Armenia applies the EAEU common veterinary requirements: a valid rabies vaccination and a set of other vaccinations for dogs (distemper, hepatitis/adenovirus type 1, parvovirus, adenovirus type 2, leptospirosis), with an official veterinary health certificate issued after a clinical examination within 5 days of departure. Up to five dogs and/or cats per traveller enter under the personal-use scheme."
+        fr: "L'Arménie applique les exigences vétérinaires communes de l'UEEA : vaccination antirabique valide et une série d'autres vaccins pour les chiens (Carré, hépatite/adénovirus de type 1, parvovirose, adénovirus de type 2, leptospirose), avec un certificat sanitaire vétérinaire officiel établi après un examen clinique dans les 5 jours avant le départ. Jusqu'à cinq chiens et/ou chats par voyageur entrent au titre du régime personnel."
+        es: "Armenia aplica los requisitos veterinarios comunes de la UEEA: una vacunación antirrábica válida y una serie de otras vacunas para los perros (moquillo, hepatitis/adenovirus de tipo 1, parvovirus, adenovirus de tipo 2, leptospirosis), con un certificado sanitario veterinario oficial expedido tras un examen clínico en los 5 días previos a la salida. Hasta cinco perros y/o gatos por viajero entran bajo el régimen de uso personal."
+        pt: "A Armênia aplica as exigências veterinárias comuns da UEE: são exigidas a vacinação antirrábica válida e um conjunto de outras vacinas para cachorros (cinomose, hepatite/adenovírus tipo 1, parvovírus, adenovírus tipo 2, leptospirose), além de um atestado de saúde veterinário oficial emitido após um exame clínico feito nos 5 dias anteriores à partida. Até cinco cachorros e/ou gatos por viajante entram pelo regime de uso pessoal."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Coming from another EAEU country lets your dog move on its veterinary passport with valid vaccinations. From any other country the same core rules apply for up to five pets; more animals, or a commercial movement, fall outside the personal-travel scheme and trigger additional formalities."
+        fr: "En provenance d'un autre pays de l'UEEA, ton chien circule avec son passeport vétérinaire à jour. Depuis tout autre pays, les mêmes règles de base s'appliquent jusqu'à cinq animaux ; un nombre supérieur, ou un mouvement commercial, sortent du régime voyageur et déclenchent des formalités supplémentaires."
+        es: "Al venir de otro país de la UEEA, tu perro se desplaza con su pasaporte veterinario y las vacunas al día. Desde cualquier otro país se aplican las mismas normas básicas hasta cinco mascotas; un número mayor, o un movimiento comercial, quedan fuera del régimen de viajero y activan trámites adicionales."
+        pt: "Vir de outro país da UEE permite que seu cachorro viaje apenas com o passaporte veterinário com as vacinas em dia. De qualquer outro país, as mesmas regras básicas valem para até cinco animais; mais animais, ou um movimento comercial, ficam fora do regime de viajante e geram formalidades adicionais."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Armenia does not run an EU-style listed/non-listed system, but the rabies situation of your dog's real origin matters: keep proof of an in-date vaccination and, where a multi-year vaccine is used, evidence that immunity is still maintained (a laboratory result of at least 0.5 IU/ml is accepted when the vaccine's validity has lapsed)."
+        fr: "L'Arménie n'applique pas de système listé/non listé à l'européenne, mais la situation rabique de l'origine réelle du chien compte : conserve la preuve d'une vaccination à jour et, en cas de vaccin pluriannuel, la preuve du maintien de l'immunité (un résultat de laboratoire d'au moins 0,5 UI/ml est accepté si la validité du vaccin a expiré)."
+        es: "Armenia no aplica un sistema de listados/no listados al estilo de la UE, pero la situación rábica del origen real de tu perro importa: conserva la prueba de una vacunación vigente y, cuando se use una vacuna plurianual, la evidencia de que la inmunidad se mantiene (se acepta un resultado de laboratorio de al menos 0,5 UI/ml cuando la valide de la vacuna ha caducado)."
+        pt: "A Armênia não tem um sistema de países listados/não listados como o da UE, mas a situação da raiva na origem real do seu cachorro conta: guarde a comprovação de uma vacinação em dia e, quando for usada uma vacina plurianual, a evidência de que a imunidade ainda está mantida (aceita-se um resultado de laboratório de pelo menos 0,5 UI/ml quando a validade da vacina tiver expirado)."
+  note:
+    en: "So read the requirements below as Armenia's EAEU framework, then confirm your dog's exact origin, number of animals and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre UEEA de l'Arménie, puis confirme l'origine exacte, le nombre d'animaux et l'historique de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de la UEEA de Armenia y luego confirma el origen exacto, el número de animales y el historial de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro da UEE aplicado pela Armênia, e confirme com seu veterinário a origem exata, o número de animais e o histórico do seu cachorro."
+
+requirements:
+  - item: { en: "Microchip / identification", fr: "Puce / identification", es: "Microchip / identificación", pt: "Microchip / identificação" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "The EAEU does not require identification for personal pets (the identification box on the certificate is left blank); an ISO 11784/11785 microchip or a legible tattoo, cross-referenced by the vet, is strongly advised.", fr: "L'UEEA n'exige pas d'identification pour les animaux personnels (la case d'identification du certificat est laissée vide) ; une puce ISO 11784/11785 ou un tatouage lisible, référencé par le vétérinaire, est fortement conseillé.", es: "La UEEA no exige identificación para las mascotas personales (la casilla de identificación del certificado se deja en blanco); se recomienda encarecidamente un microchip ISO 11784/11785 o un tatuaje legible, cotejado por el veterinario.", pt: "A UEE não exige identificação para animais de uso pessoal (o campo de identificação do certificado fica em branco); recomenda-se fortemente um microchip ISO 11784/11785 ou uma tatuagem legível, conferida pelo veterinário." }
+    exceptions: { en: "A microchip is recommended for return travel and for entry to many other countries, which do require it.", fr: "Une puce est recommandée pour le voyage retour et pour l'entrée dans de nombreux autres pays qui, eux, l'exigent.", es: "Se recomienda un microchip para el viaje de vuelta y para la entrada en muchos otros países que sí lo exigen.", pt: "Recomenda-se um microchip para a viagem de volta e para a entrada em muitos outros países que, esses sim, o exigem." }
+    ref: { en: "EAEU Form for fur-bearing animals, rabbits, dogs and cats, sec.2.4 (APHIS guidance); EAEU Decision No.317, ch.15", fr: "Formulaire UEEA pour animaux à fourrure, lapins, chiens et chats, sect.2.4 (guide APHIS) ; Décision UEEA n°317, ch.15", es: "Formulario UEEA para animales de peletería, conejos, perros y gatos, secc.2.4 (guía APHIS); Decisión UEEA n.º 317, cap.15", pt: "Formulário da UEE para animais de pele, coelhos, cachorros e gatos, seç. 2.4 (orientação da APHIS); Decisão nº 317 da UEE, cap. 15" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dogs over 3 months must be vaccinated against rabies within the last 12 months. If the vaccine's validity has lapsed, revaccinate and wait more than 20 days before travel.", fr: "Les chiens de plus de 3 mois doivent être vaccinés contre la rage dans les 12 derniers mois. Si la validité du vaccin a expiré, revacciner et attendre plus de 20 jours avant le voyage.", es: "Los perros de más de 3 meses deben estar vacunados contra la rabia en los últimos 12 meses. Si la valide de la vacuna ha caducado, revacuna y espera más de 20 días antes de viajar.", pt: "Cachorros com mais de 3 meses precisam estar vacinados contra a raiva nos últimos 12 meses. Se a validade da vacina tiver expirado, revacine e espere mais de 20 dias antes da viagem." }
+    exceptions: { en: "Dogs under 3 months are not required to be vaccinated against rabies. A multi-year vaccine whose validity has not lapsed does not need repeating.", fr: "Les chiens de moins de 3 mois ne sont pas tenus d'être vaccinés contre la rage. Un vaccin pluriannuel encore valide n'a pas à être refait.", es: "Los perros de menos de 3 meses no están obligados a estar vacunados contra la rabia. Una vacuna plurianual cuya valide no haya caducado no necesita repetirse.", pt: "Cachorros com menos de 3 meses não são obrigados a ser vacinados contra a raiva. Uma vacina plurianual cuja validade não tenha expirado não precisa ser repetida." }
+    ref: { en: "EAEU common veterinary requirements, ch.15 (Decision No.317), sec.2.2; APHIS guidance", fr: "Exigences vétérinaires communes UEEA, ch.15 (Décision n°317), sect.2.2 ; guide APHIS", es: "Requisitos veterinarios comunes de la UEEA, cap.15 (Decisión n.º 317), secc.2.2; guía APHIS", pt: "Exigências veterinárias comuns da UEE, cap. 15 (Decisão nº 317), seç. 2.2; orientação da APHIS" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required in general", fr: "Non requis en général", es: "No obligatoria en general", pt: "Em geral, não obrigatório" }
+    when: { en: "No blood titration is required for a standard, in-date rabies vaccination.", fr: "Aucun titrage sanguin n'est requis pour une vaccination antirabique standard et à jour.", es: "No se exige ninguna titulación en sangre para una vacunación antirrábica estándar y vigente.", pt: "Nenhuma titulação sanguínea é exigida para uma vacinação antirrábica padrão e em dia." }
+    exceptions: { en: "It serves only as an alternative when the vaccine's validity has lapsed: a laboratory result of at least 0.5 IU/ml within 12 months of travel is then accepted instead of revaccination.", fr: "Il ne sert que d'alternative en cas d'expiration du vaccin : un résultat de laboratoire d'au moins 0,5 UI/ml dans les 12 mois avant le voyage est alors accepté à la place d'une revaccination.", es: "Solo sirve como alternativa cuando la valide de la vacuna ha caducado: se acepta entonces un resultado de laboratorio de al menos 0,5 UI/ml en los 12 meses previos al viaje en lugar de una revacunación.", pt: "Ela só serve como alternativa quando a validade da vacina tiver expirado: nesse caso, aceita-se um resultado de laboratório de pelo menos 0,5 UI/ml dentro dos 12 meses anteriores à viagem, em vez da revacinação." }
+    ref: { en: "EAEU common veterinary requirements, ch.15 (Decision No.317), sec.2.2; APHIS guidance", fr: "Exigences vétérinaires communes UEEA, ch.15 (Décision n°317), sect.2.2 ; guide APHIS", es: "Requisitos veterinarios comunes de la UEEA, cap.15 (Decisión n.º 317), secc.2.2; guía APHIS", pt: "Exigências veterinárias comuns da UEE, cap. 15 (Decisão nº 317), seç. 2.2; orientação da APHIS" }
+  - item: { en: "Other vaccinations (dogs)", fr: "Autres vaccins (chiens)", es: "Otras vacunas (perros)", pt: "Outras vacinas (cachorros)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated more than 20 days and less than 12 months before travel against distemper, hepatitis (adenovirus type 1), parvovirus, adenovirus type 2 and leptospirosis.", fr: "Les chiens doivent être vaccinés plus de 20 jours et moins de 12 mois avant le voyage contre la maladie de Carré, l'hépatite (adénovirus de type 1), la parvovirose, l'adénovirus de type 2 et la leptospirose.", es: "Los perros deben estar vacunados más de 20 días y menos de 12 meses antes del viaje contra el moquillo, la hepatitis (adenovirus de tipo 1), el parvovirus, el adenovirus de tipo 2 y la leptospirosis.", pt: "Os cachorros precisam ser vacinados entre mais de 20 dias e menos de 12 meses antes da viagem contra cinomose, hepatite (adenovírus tipo 1), parvovírus, adenovírus tipo 2 e leptospirose." }
+    exceptions: { en: "Leptospirosis vaccination may be replaced by a registered prophylactic treatment (e.g. dihydrostreptomycin). A valid multi-year record does not need repeating.", fr: "La vaccination contre la leptospirose peut être remplacée par un traitement prophylactique enregistré (ex. dihydrostreptomycine). Un enregistrement pluriannuel valide n'a pas à être refait.", es: "La vacunación contra la leptospirosis puede sustituirse por un tratamiento profiláctico registrado (p. ej. dihidroestreptomicina). Un registro plurianual válido no necesita repetirse.", pt: "A vacinação contra leptospirose pode ser substituída por um tratamento profilático registrado (por exemplo, di-hidroestreptomicina). Um registro plurianual válido não precisa ser repetido." }
+    ref: { en: "EAEU common veterinary requirements, ch.15 (Decision No.317), sec.2.2; APHIS guidance", fr: "Exigences vétérinaires communes UEEA, ch.15 (Décision n°317), sect.2.2 ; guide APHIS", es: "Requisitos veterinarios comunes de la UEEA, cap.15 (Decisión n.º 317), secc.2.2; guía APHIS", pt: "Exigências veterinárias comuns da UEE, cap. 15 (Decisão nº 317), seç. 2.2; orientação da APHIS" }
+  - item: { en: "Veterinary certificate (EAEU / international)", fr: "Certificat vétérinaire (UEEA / international)", es: "Certificado veterinario (UEEA / internacional)", pt: "Certificado veterinário (UEE / internacional)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An official veterinary health certificate issued by the state veterinary service of the country of departure, after a clinical examination within 5 days of travel. From third countries the EAEU-format international veterinary certificate is used; within the EAEU, movement relies on the veterinary passport / EAEU veterinary certificate (Form No.1).", fr: "Un certificat sanitaire vétérinaire officiel délivré par le service vétérinaire d'État du pays de départ, après un examen clinique dans les 5 jours avant le voyage. Depuis les pays tiers, le certificat vétérinaire international au format UEEA est utilisé ; au sein de l'UEEA, le mouvement repose sur le passeport vétérinaire / certificat vétérinaire UEEA (formulaire n°1).", es: "Un certificado sanitario veterinario oficial expedido por el servicio veterinario estatal del país de salida, tras un examen clínico en los 5 días previos al viaje. Desde terceros países se utiliza el certificado veterinario internacional en formato UEEA; dentro de la UEEA, el movimiento se basa en el pasaporte veterinario / certificado veterinario UEEA (formulario n.º 1).", pt: "Um atestado de saúde veterinário oficial emitido pelo serviço veterinário estatal do país de partida, após um exame clínico feito nos 5 dias anteriores à viagem. Vindo de países terceiros, usa-se o certificado veterinário internacional no formato da UEE; dentro da UEE, a circulação se baseia no passaporte veterinário / certificado veterinário da UEE (Formulário nº 1)." }
+    exceptions: { en: "A separate certificate is drawn up for each animal; at the Armenian border it is checked and, where required, re-registered by the state veterinary service.", fr: "Un certificat distinct est établi pour chaque animal ; à la frontière arménienne, il est vérifié et, si nécessaire, réenregistré par le service vétérinaire d'État.", es: "Se elabora un certificado independiente para cada animal; en la frontera armenia se comprueba y, cuando es necesario, lo vuelve a registrar el servicio veterinario estatal.", pt: "Um certificado separado é emitido para cada animal; na fronteira armênia, ele é conferido e, quando necessário, reregistrado pelo serviço veterinário estatal." }
+    ref: { en: "EAEU common veterinary requirements, ch.15 (Decision No.317); Food Safety Inspection Body (snund.am), import/export", fr: "Exigences vétérinaires communes UEEA, ch.15 (Décision n°317) ; Organe d'inspection de la sécurité alimentaire (snund.am), import/export", es: "Requisitos veterinarios comunes de la UEEA, cap.15 (Decisión n.º 317); Organismo de Inspección de la Seguridad Alimentaria (snund.am), importación/exportación", pt: "Exigências veterinárias comuns da UEE, cap. 15 (Decisão nº 317); Serviço de Inspeção de Segurança Alimentar (snund.am), importação/exportação" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Not mandatory", fr: "Non obligatoire", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "Deworming and other treatments are not a mandatory EAEU import condition; the certificate has an optional section, and any treatment given before export is recorded there.", fr: "Le vermifuge et autres traitements ne sont pas une condition d'importation obligatoire de l'UEEA ; le certificat comporte une section facultative, et tout traitement administré avant l'export y est noté.", es: "La desparasitación y otros tratamientos no son una condición de importación obligatoria de la UEEA; el certificado tiene una sección opcional, y cualquier tratamiento administrado antes de la exportación se registra ahí.", pt: "A desverminação e outros tratamentos não são uma condição obrigatória de importação da UEE; o certificado tem uma seção opcional, na qual é registrado qualquer tratamento aplicado antes da exportação." }
+    exceptions: { en: "This optional section (sec.2.3) is completed only if additional veterinary treatments were given; otherwise it is left blank.", fr: "Cette section facultative (sect.2.3) n'est remplie que si des traitements vétérinaires supplémentaires ont été administrés ; sinon elle reste vide.", es: "Esta sección opcional (secc.2.3) solo se cumplimenta si se administraron tratamientos veterinarios adicionales; de lo contrario, se deja en blanco.", pt: "Essa seção opcional (seç. 2.3) só é preenchida se tratamentos veterinários adicionais tiverem sido aplicados; caso contrário, fica em branco." }
+    ref: { en: "EAEU Form for fur-bearing animals, rabbits, dogs and cats, sec.2.3 (APHIS guidance)", fr: "Formulaire UEEA pour animaux à fourrure, lapins, chiens et chats, sect.2.3 (guide APHIS)", es: "Formulario UEEA para animales de peletería, conejos, perros y gatos, secc.2.3 (guía APHIS)", pt: "Formulário da UEE para animais de pele, coelhos, cachorros e gatos, seç. 2.3 (orientação da APHIS)" }
+  - item: { en: "Import permit / advance notification", fr: "Permis d'importation / notification préalable", es: "Permiso de importación / notificación previa", pt: "Autorização de importação / notificação prévia" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Not required when importing up to 5 dogs and cats in total for personal needs, accompanied by an endorsed veterinary health certificate. Additional permissions apply for more than 5 animals or a commercial consignment.", fr: "Non requis pour l'importation de 5 chiens et chats maximum au total à titre personnel, accompagnés d'un certificat sanitaire vétérinaire visé. Des autorisations supplémentaires s'appliquent pour plus de 5 animaux ou un envoi commercial.", es: "No se exige al importar hasta 5 perros y gatos en total para necesidades personales, acompañados de un certificado sanitario veterinario refrendado. Se aplican autorizaciones adicionales para más de 5 animales o un envío comercial.", pt: "Não exigida ao importar até 5 cachorros e gatos no total para fins pessoais, acompanhados de um atestado de saúde veterinário endossado. Autorizações adicionais se aplicam para mais de 5 animais ou uma remessa comercial." }
+    exceptions: { en: "For consignments outside the personal scheme, confirm the procedure with the Food Safety Inspection Body before travel.", fr: "Pour les envois hors du régime personnel, confirme la procédure auprès de l'Organe d'inspection de la sécurité alimentaire avant le voyage.", es: "Para los envíos fuera del régimen personal, confirma el procedimiento con el Organismo de Inspección de la Seguridad Alimentaria antes de viajar.", pt: "Para remessas fora do regime pessoal, confirme o procedimento com o Serviço de Inspeção de Segurança Alimentar antes de viajar." }
+    ref: { en: "APHIS Pet Travel US–Armenia (max 5 pets, no permit/quarantine); Food Safety Inspection Body (snund.am)", fr: "APHIS voyage animaux É.-U.–Arménie (5 animaux max, sans permis/quarantaine) ; Organe d'inspection de la sécurité alimentaire (snund.am)", es: "APHIS Viaje de mascotas EE. UU.–Armenia (máx. 5 mascotas, sin permiso/cuarentena); Organismo de Inspección de la Seguridad Alimentaria (snund.am)", pt: "APHIS Pet Travel EUA–Armênia (máx. 5 animais, sem autorização/quarentena); Serviço de Inspeção de Segurança Alimentar (snund.am)" }
+  - item: { en: "Border / airport veterinary control", fr: "Contrôle vétérinaire à la frontière / aéroport", es: "Control veterinario en la frontera / aeropuerto", pt: "Controle veterinário de fronteira / aeroporto" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Enter through a checkpoint operating state veterinary control (e.g. Zvartnots International Airport); present the certificate and vaccination records to the state veterinary service.", fr: "Entre par un point de passage assurant le contrôle vétérinaire d'État (ex. aéroport international de Zvartnots) ; présente le certificat et les preuves de vaccination au service vétérinaire d'État.", es: "Entra por un punto de paso que realice el control veterinario estatal (p. ej. el Aeropuerto Internacional de Zvartnots); presenta el certificado y los registros de vacunación al servicio veterinario estatal.", pt: "Entre por um posto que opere controle veterinário estatal (por exemplo, o Aeroporto Internacional de Zvartnots); apresente o certificado e a carteira de vacinação ao serviço veterinário estatal." }
+    exceptions: { en: "Border veterinary control is run by the Food Safety Inspection Body of the Republic of Armenia.", fr: "Le contrôle vétérinaire frontalier est assuré par l'Organe d'inspection de la sécurité alimentaire de la République d'Arménie.", es: "El control veterinario fronterizo lo realiza el Organismo de Inspección de la Seguridad Alimentaria de la República de Armenia.", pt: "O controle veterinário de fronteira é conduzido pelo Serviço de Inspeção de Segurança Alimentar da República da Armênia." }
+    ref: { en: "Food Safety Inspection Body (snund.am), border control; gov.am — Food Safety Inspectorate", fr: "Organe d'inspection de la sécurité alimentaire (snund.am), contrôle frontalier ; gov.am — Inspection de la sécurité alimentaire", es: "Organismo de Inspección de la Seguridad Alimentaria (snund.am), control fronterizo; gov.am — Inspección de la Seguridad Alimentaria", pt: "Serviço de Inspeção de Segurança Alimentar (snund.am), controle de fronteira; gov.am — Inspetoria de Segurança Alimentar" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Dogs under 3 months are not required to be vaccinated against rabies under the EAEU rules and may travel with the other conditions met.", fr: "Les chiens de moins de 3 mois ne sont pas tenus d'être vaccinés contre la rage selon les règles UEEA et peuvent voyager si les autres conditions sont remplies.", es: "Los perros de menos de 3 meses no están obligados a estar vacunados contra la rabia según las normas de la UEEA y pueden viajar si se cumplen las demás condiciones.", pt: "Cachorros com menos de 3 meses não são obrigados a ser vacinados contra a raiva pelas regras da UEE e podem viajar se as demais condições forem cumpridas." }
+    exceptions: { en: "Once a dog is over 3 months, the rabies shot (more than 20 days before departure if newly given) governs the earliest travel date. Any airline age minimum applies separately.", fr: "Dès que le chien a plus de 3 mois, le vaccin antirabique (plus de 20 jours avant le départ si nouvellement fait) détermine la première date de voyage possible. Un âge minimum de la compagnie aérienne s'applique séparément.", es: "En cuanto el perro supera los 3 meses, la vacuna antirrábica (más de 20 días antes de la salida si es reciente) determina la primera fecha de viaje posible. Cualquier edad mínima de la aerolínea se aplica por separado.", pt: "Assim que o cachorro passa dos 3 meses, é a vacina antirrábica (aplicada há mais de 20 dias antes da partida, se recente) que determina a data mais cedo em que dá para viajar. Qualquer idade mínima exigida pela companhia aérea vale à parte." }
+    ref: { en: "EAEU common veterinary requirements, ch.15 (Decision No.317), sec.2.2; APHIS guidance", fr: "Exigences vétérinaires communes UEEA, ch.15 (Décision n°317), sect.2.2 ; guide APHIS", es: "Requisitos veterinarios comunes de la UEEA, cap.15 (Decisión n.º 317), secc.2.2; guía APHIS", pt: "Exigências veterinárias comuns da UEE, cap. 15 (Decisão nº 317), seç. 2.2; orientação da APHIS" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "No import quarantine for up to 5 dogs and cats in total travelling with the owner, accompanied by a veterinary health certificate stating the animals were examined within 5 days of travel.", fr: "Aucune quarantaine à l'import pour 5 chiens et chats maximum au total voyageant avec le propriétaire, accompagnés d'un certificat sanitaire vétérinaire indiquant que les animaux ont été examinés dans les 5 jours avant le voyage.", es: "No hay cuarentena de importación para hasta 5 perros y gatos en total que viajen con el propietario, acompañados de un certificado sanitario veterinario que indique que los animales fueron examinados en los 5 días previos al viaje.", pt: "Sem quarentena de importação para até 5 cachorros e gatos no total que viajam com o dono, acompanhados de um atestado de saúde veterinário que declare que os animais foram examinados nos 5 dias anteriores à viagem." }
+    exceptions: { en: "For consignments outside the personal scheme, additional conditions may apply; confirm with the Food Safety Inspection Body.", fr: "Pour les envois hors du régime personnel, des conditions supplémentaires peuvent s'appliquer ; confirme auprès de l'Organe d'inspection de la sécurité alimentaire.", es: "Para los envíos fuera del régimen personal pueden aplicarse condiciones adicionales; confírmalo con el Organismo de Inspección de la Seguridad Alimentaria.", pt: "Para remessas fora do regime pessoal, condições adicionais podem se aplicar; confirme com o Serviço de Inspeção de Segurança Alimentar." }
+    ref: { en: "APHIS Pet Travel US–Armenia (EAEU Form, sec.2.2); EAEU Decision No.317, ch.15", fr: "APHIS voyage animaux É.-U.–Arménie (formulaire UEEA, sect.2.2) ; Décision UEEA n°317, ch.15", es: "APHIS Viaje de mascotas EE. UU.–Armenia (formulario UEEA, secc.2.2); Decisión UEEA n.º 317, cap.15", pt: "APHIS Pet Travel EUA–Armênia (Formulário da UEE, seç. 2.2); Decisão nº 317 da UEE, cap. 15" }
+
+origin:
+  eu:
+    title: { en: "From another EAEU country", fr: "Depuis un autre pays de l'UEEA", es: "Desde otro país de la UEEA", pt: "De outro país da UEE" }
+    body:
+      en: "A dog coming from another Eurasian Economic Union country (Russia, Belarus, Kazakhstan, Kyrgyzstan) moves on its veterinary passport showing valid rabies and other required vaccinations, and the EAEU veterinary certificate for interstate movement. No import permit and no quarantine for up to five pets travelling with the owner for personal needs."
+      fr: "Un chien venant d'un autre pays de l'Union économique eurasiatique (Russie, Biélorussie, Kazakhstan, Kirghizistan) circule avec son passeport vétérinaire mentionnant la rage et les autres vaccins exigés à jour, et le certificat vétérinaire UEEA pour les mouvements entre États. Pas de permis ni de quarantaine pour cinq animaux maximum voyageant avec le propriétaire à titre personnel."
+      es: "Un perro que viene de otro país de la Unión Económica Euroasiática (Rusia, Bielorrusia, Kazajistán, Kirguistán) se desplaza con su pasaporte veterinario que acredita la rabia y las demás vacunas exigidas al día, y el certificado veterinario UEEA para el movimiento entre Estados. Sin permiso de importación ni cuarentena para hasta cinco mascotas que viajen con el propietario por necesidades personales."
+      pt: "Um cachorro vindo de outro país da União Econômica Eurasiática (Rússia, Belarus, Cazaquistão, Quirguistão) viaja com seu passaporte veterinário mostrando a vacinação antirrábica e as demais vacinas exigidas em dia, e o certificado veterinário da UEE para movimentação entre Estados. Sem autorização de importação e sem quarentena para até cinco animais que viajam com o dono para fins pessoais."
+    cls: ok
+  listed:
+    title: { en: "From any other country — up to 5 pets", fr: "Depuis tout autre pays — jusqu'à 5 animaux", es: "Desde cualquier otro país — hasta 5 mascotas", pt: "De qualquer outro país — até 5 animais" }
+    body:
+      en: "From a non-EAEU country, up to five dogs and cats in total for personal use enter without an import permit and without quarantine, accompanied by the owner and an official veterinary health certificate from the country of departure's state veterinary service, issued after a clinical exam within 5 days of travel, with valid vaccinations. Present yourself to the state veterinary service at the airport or border checkpoint, where the certificate is checked."
+      fr: "Depuis un pays hors UEEA, cinq chiens et chats maximum au total à titre personnel entrent sans permis d'importation ni quarantaine, accompagnés du propriétaire et d'un certificat sanitaire vétérinaire officiel du service vétérinaire d'État du pays de départ, établi après un examen clinique dans les 5 jours avant le voyage, avec vaccins valides. Présente-toi au service vétérinaire d'État à l'aéroport ou au poste frontière, où le certificat est vérifié."
+      es: "Desde un país fuera de la UEEA, hasta cinco perros y gatos en total para uso personal entran sin permiso de importación ni cuarentena, acompañados por el propietario y con un certificado sanitario veterinario oficial del servicio veterinario estatal del país de salida, expedido tras un examen clínico en los 5 días previos al viaje, con las vacunas al día. Preséntate ante el servicio veterinario estatal en el aeropuerto o el paso fronterizo, donde se comprueba el certificado."
+      pt: "Vindo de um país fora da UEE, até cinco cachorros e gatos no total para uso pessoal entram sem autorização de importação e sem quarentena, acompanhados pelo dono e por um atestado de saúde veterinário oficial do serviço veterinário estatal do país de partida, emitido após um exame clínico feito nos 5 dias anteriores à viagem, com as vacinas em dia. Apresente-se ao serviço veterinário estatal no aeroporto ou no posto de fronteira, onde o certificado é conferido."
+    cls: warn
+  nonListed:
+    title: { en: "More than 5 animals / commercial import", fr: "Plus de 5 animaux / import commercial", es: "Más de 5 animales / importación comercial", pt: "Mais de 5 animais / importação comercial" }
+    body:
+      en: "For more than five animals in total, or a commercial import, the movement falls outside the personal-travel scheme: additional formalities and permissions apply, and you should confirm the exact procedure with the Food Safety Inspection Body in advance. The same core vaccination requirements and the veterinary certificate remain mandatory for each animal."
+      fr: "Pour plus de cinq animaux au total, ou un import commercial, le mouvement sort du régime voyageur : des formalités et autorisations supplémentaires s'appliquent, et il convient de confirmer la procédure exacte auprès de l'Organe d'inspection de la sécurité alimentaire à l'avance. Les mêmes exigences vaccinales de base et le certificat vétérinaire restent obligatoires pour chaque animal."
+      es: "Para más de cinco animales en total, o una importación comercial, el movimiento queda fuera del régimen de viajero: se aplican trámites y autorizaciones adicionales, y conviene confirmar el procedimiento exacto con el Organismo de Inspección de la Seguridad Alimentaria con antelación. Los mismos requisitos básicos de vacunación y el certificado veterinario siguen siendo obligatorios para cada animal."
+      pt: "Para mais de cinco animais no total, ou uma importação comercial, a movimentação fica fora do regime de viajante: aplicam-se formalidades e autorizações adicionais, e você deve confirmar o procedimento exato com o Serviço de Inspeção de Segurança Alimentar com antecedência. As mesmas exigências básicas de vacinação e o certificado veterinário continuam obrigatórios para cada animal."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Armenia depends on where you flew from and how many animals you bring."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Arménie dépend de ton lieu de départ et du nombre d'animaux."
+    es: "Lo que ocurre cuando tu perro llega a Armenia depende del lugar desde el que hayas volado y de cuántos animales lleves."
+    pt: "O que acontece quando seu cachorro chega à Armênia depende de onde você partiu e de quantos animais você leva."
+  points:
+    - en: "Enter through a checkpoint that operates state veterinary control (e.g. Zvartnots International Airport in Yerevan), run by the Food Safety Inspection Body."
+      fr: "Entre par un point de passage assurant le contrôle vétérinaire d'État (ex. aéroport international de Zvartnots à Erevan), géré par l'Organe d'inspection de la sécurité alimentaire."
+      es: "Entra por un punto de paso que realice el control veterinario estatal (p. ej. el Aeropuerto Internacional de Zvartnots en Ereván), gestionado por el Organismo de Inspección de la Seguridad Alimentaria."
+      pt: "Entre por um posto que opere controle veterinário estatal (por exemplo, o Aeroporto Internacional de Zvartnots, em Erevã), conduzido pelo Serviço de Inspeção de Segurança Alimentar."
+    - en: "Present the veterinary health certificate and vaccination records to the state veterinary service; a separate certificate is shown for each animal."
+      fr: "Présente le certificat sanitaire vétérinaire et les preuves de vaccination au service vétérinaire d'État ; un certificat distinct est présenté pour chaque animal."
+      es: "Presenta el certificado sanitario veterinario y los registros de vacunación al servicio veterinario estatal; se muestra un certificado independiente por cada animal."
+      pt: "Apresente o atestado de saúde veterinário e a carteira de vacinação ao serviço veterinário estatal; um certificado separado é mostrado para cada animal."
+    - en: "For up to 5 dogs and cats in total travelling with you for personal needs, no import permit and no quarantine are required."
+      fr: "Pour 5 chiens et chats maximum au total voyageant avec toi à titre personnel, aucun permis d'importation ni quarantaine ne sont exigés."
+      es: "Para hasta 5 perros y gatos en total que viajen contigo por necesidades personales, no se exigen permiso de importación ni cuarentena."
+      pt: "Para até 5 cachorros e gatos no total que viajam com você para fins pessoais, nenhuma autorização de importação nem quarentena são exigidas."
+    - en: "For more than 5 animals or a commercial import, the movement falls outside the personal scheme and additional formalities apply."
+      fr: "Pour plus de 5 animaux ou un import commercial, le mouvement sort du régime personnel et des formalités supplémentaires s'appliquent."
+      es: "Para más de 5 animales o una importación comercial, el movimiento queda fuera del régimen personal y se aplican trámites adicionales."
+      pt: "Para mais de 5 animais ou uma importação comercial, a movimentação fica fora do regime pessoal e formalidades adicionais se aplicam."
+    - en: "Carry original documents; where they are not in Armenian, Russian or English, an official translation is recommended."
+      fr: "Munis-toi des documents originaux ; s'ils ne sont ni en arménien, ni en russe, ni en anglais, une traduction officielle est recommandée."
+      es: "Lleva los documentos originales; si no están en armenio, ruso o inglés, se recomienda una traducción oficial."
+      pt: "Leve os documentos originais; quando eles não estiverem em armênio, russo ou inglês, recomenda-se uma tradução oficial."
+    - en: "If vaccinations or documents are missing or invalid, entry can be refused, or the animal quarantined or returned at the owner's expense."
+      fr: "Si les vaccins ou documents manquent ou sont invalides, l'entrée peut être refusée, ou l'animal mis en quarantaine ou réexpédié aux frais du propriétaire."
+      es: "Si faltan vacunas o documentos, o no son válidos, la entrada puede denegarse, o el animal puede ser puesto en cuarentena o devuelto a cargo del propietario."
+      pt: "Se faltarem vacinas ou documentos, ou se eles não forem válidos, a entrada pode ser recusada, ou o animal colocado em quarentena ou devolvido às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No official breed-specific import ban for dogs was identified in Armenian government or EAEU sources at the verification date. The standard EAEU procedure applies to all dogs regardless of breed. A comprehensive national animal-treatment law was under development, so keeping and identification rules inside the country may change — only the enacted official text would be authoritative."
+    fr: "Aucune interdiction d'importation visant une race de chien n'a été identifiée dans les sources gouvernementales arméniennes ou de l'UEEA à la date de vérification. La procédure standard de l'UEEA s'applique à tous les chiens, quelle que soit la race. Une loi nationale globale sur le traitement des animaux était en préparation ; les règles de détention et d'identification dans le pays peuvent donc évoluer — seul le texte officiel adopté ferait foi."
+    es: "No se identificó ninguna prohibición oficial de importación por raza de perro en las fuentes gubernamentales armenias o de la UEEA en la fecha de verificación. El procedimiento estándar de la UEEA se aplica a todos los perros, sea cual sea su raza. Estaba en preparación una ley nacional integral sobre el trato a los animales, por lo que las normas de tenencia e identificación dentro del país pueden cambiar — solo el texto oficial promulgado tendría valor vinculante."
+    pt: "Nenhuma proibição oficial de importação por raça de cachorro foi identificada em fontes governamentais armênias ou da UEE na data da verificação. O procedimento padrão da UEE se aplica a todos os cachorros, independentemente da raça. Uma lei nacional abrangente sobre o tratamento de animais estava em preparação, então as regras de posse e identificação dentro do país podem mudar — só o texto oficial promulgado teria valor vinculante."
+  cat1:
+    en: "No published list of prohibited or dangerous breeds under Armenian law was found in official sources. If your dog is a breed restricted in other countries, confirm its status directly with the Food Safety Inspection Body before you travel."
+    fr: "Aucune liste publiée de races interdites ou dangereuses au titre de la loi arménienne n'a été trouvée dans les sources officielles. Si ton chien est d'une race restreinte dans d'autres pays, confirme son statut directement auprès de l'Organe d'inspection de la sécurité alimentaire avant de voyager."
+    es: "No se encontró en las fuentes oficiales ninguna lista publicada de razas prohibidas o peligrosas conforme a la legislación armenia. Si tu perro es de una raza restringida en otros países, confirma su situación directamente con el Organismo de Inspección de la Seguridad Alimentaria antes de viajar."
+    pt: "Nenhuma lista publicada de raças proibidas ou perigosas segundo a lei armênia foi encontrada em fontes oficiais. Se o seu cachorro for de uma raça restrita em outros países, confirme a situação dele diretamente com o Serviço de Inspeção de Segurança Alimentar antes de viajar."
+  cat2:
+    en: "Because no breed ban is documented, the deciding factors for entry are the veterinary requirements (rabies and other vaccinations, health certificate) rather than the breed. This is an absence of documented restriction, not a guarantee — verify before booking."
+    fr: "En l'absence d'interdiction de race documentée, les facteurs déterminants pour l'entrée sont les exigences vétérinaires (rage et autres vaccins, certificat sanitaire) plutôt que la race. Il s'agit d'une absence de restriction documentée, non d'une garantie — vérifie avant de réserver."
+    es: "Como no hay ninguna prohibición de razas documentada, los factores determinantes para la entrada son los requisitos veterinarios (rabia y otras vacunas, certificado sanitario) y no la raza. Se trata de una ausencia de restricción documentada, no de una garantía — verifícalo antes de reservar."
+    pt: "Como nenhuma proibição de raça está documentada, os fatores decisivos para a entrada são as exigências veterinárias (raiva e demais vacinas, atestado de saúde), e não a raça. Isso é uma ausência de restrição documentada, não uma garantia — verifique antes de reservar."
+  note:
+    en: "Requirements can change and local keeping rules may exist. Only official Armenian legislation is authoritative — confirm your dog's status before you travel."
+    fr: "Les exigences peuvent changer et des règles locales de détention peuvent exister. Seule la législation arménienne officielle fait foi — confirme le statut de ton chien avant de voyager."
+    es: "Los requisitos pueden cambiar y pueden existir normas locales de tenencia. Solo la legislación armenia oficial tiene valor vinculante — confirma la situación de tu perro antes de viajar."
+    pt: "As exigências podem mudar e podem existir regras locais de posse. Só a legislação armênia oficial tem valor vinculante — confirme a situação do seu cachorro antes de viajar."
+
+checklist:
+  - en: "Veterinary passport or record identifying the dog and its vaccinations"
+    fr: "Passeport ou carnet vétérinaire identifiant le chien et ses vaccinations"
+    es: "Pasaporte o cartilla veterinaria que identifique al perro y sus vacunas"
+    pt: "Passaporte ou carteira veterinária identificando o cachorro e suas vacinas"
+  - en: "Valid rabies vaccination (dogs over 3 months; revaccinate and wait >20 days if lapsed)"
+    fr: "Vaccination antirabique valide (chiens de plus de 3 mois ; revacciner et attendre >20 jours si expirée)"
+    es: "Vacunación antirrábica válida (perros de más de 3 meses; revacuna y espera >20 días si ha caducado)"
+    pt: "Vacinação antirrábica válida (cachorros com mais de 3 meses; revacine e espere >20 dias se estiver vencida)"
+  - en: "Other required dog vaccinations: distemper, hepatitis, parvovirus, adenovirus type 2, leptospirosis"
+    fr: "Autres vaccins exigés pour le chien : Carré, hépatite, parvovirose, adénovirus de type 2, leptospirose"
+    es: "Otras vacunas exigidas para el perro: moquillo, hepatitis, parvovirus, adenovirus de tipo 2, leptospirosis"
+    pt: "Outras vacinas obrigatórias para cachorros: cinomose, hepatite, parvovírus, adenovírus tipo 2, leptospirose"
+  - en: "Official veterinary health certificate from the country of departure, issued after a clinical exam within 5 days of travel"
+    fr: "Certificat sanitaire vétérinaire officiel du pays de départ, établi après un examen clinique dans les 5 jours avant le voyage"
+    es: "Certificado sanitario veterinario oficial del país de salida, expedido tras un examen clínico en los 5 días previos al viaje"
+    pt: "Atestado de saúde veterinário oficial do país de partida, emitido após um exame clínico feito nos 5 dias anteriores à viagem"
+  - en: "ISO 11784/11785 microchip or legible tattoo recommended (identification not required by the EAEU)"
+    fr: "Puce ISO 11784/11785 ou tatouage lisible recommandé (identification non exigée par l'UEEA)"
+    es: "Microchip ISO 11784/11785 o tatuaje legible recomendado (identificación no exigida por la UEEA)"
+    pt: "Microchip ISO 11784/11785 ou tatuagem legível recomendado (identificação não exigida pela UEE)"
+  - en: "Documents for each animal separately (up to 5 dogs and cats in total per traveller)"
+    fr: "Documents distincts pour chaque animal (jusqu'à 5 chiens et chats au total par voyageur)"
+    es: "Documentos independientes para cada animal (hasta 5 perros y gatos en total por viajero)"
+    pt: "Documentos separados para cada animal (até 5 cachorros e gatos no total por viajante)"
+  - en: "Documents in Armenian, Russian or English, or with an official translation"
+    fr: "Documents en arménien, russe ou anglais, ou avec une traduction officielle"
+    es: "Documentos en armenio, ruso o inglés, o con una traducción oficial"
+    pt: "Documentos em armênio, russo ou inglês, ou com tradução oficial"
+  - en: "Enter via a checkpoint with veterinary control (e.g. Zvartnots Airport); suitable IATA crate if travelling in the hold"
+    fr: "Entrée par un point de passage avec contrôle vétérinaire (ex. aéroport de Zvartnots) ; caisse IATA adaptée si voyage en soute"
+    es: "Entra por un punto de paso con control veterinario (p. ej. el aeropuerto de Zvartnots); jaula adecuada conforme a la IATA si viaja en bodega"
+    pt: "Entre por um posto com controle veterinário (por exemplo, o Aeroporto de Zvartnots); caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "Food Safety Inspection Body of the Republic of Armenia — official site (State Food Safety Service, snund.am)", fr: "Organe d'inspection de la sécurité alimentaire de la République d'Arménie — site officiel (Service d'État de sécurité alimentaire, snund.am)", es: "Organismo de Inspección de la Seguridad Alimentaria de la República de Armenia — sitio oficial (Servicio Estatal de Seguridad Alimentaria, snund.am)", pt: "Serviço de Inspeção de Segurança Alimentar da República da Armênia — site oficial (Serviço Estatal de Segurança Alimentar, snund.am)" }
+    url: "https://snund.am/en"
+  - label: { en: "Food Safety Inspection Body — Veterinary section (legal acts, requirements, border control)", fr: "Organe d'inspection de la sécurité alimentaire — section Vétérinaire (actes juridiques, exigences, contrôle frontalier)", es: "Organismo de Inspección de la Seguridad Alimentaria — sección Veterinaria (actos jurídicos, requisitos, control fronterizo)", pt: "Serviço de Inspeção de Segurança Alimentar — seção Veterinária (atos legais, exigências, controle de fronteira)" }
+    url: "https://snund.am/en/page/veterinary/160"
+  - label: { en: "Food Safety Inspection Body — Import / export information", fr: "Organe d'inspection de la sécurité alimentaire — informations import / export", es: "Organismo de Inspección de la Seguridad Alimentaria — información de importación / exportación", pt: "Serviço de Inspeção de Segurança Alimentar — informações de importação / exportação" }
+    url: "https://snund.am/en/page/import-export/131"
+  - label: { en: "Government of the Republic of Armenia — Food Safety Inspectorate (body under the Government)", fr: "Gouvernement de la République d'Arménie — Inspection de la sécurité alimentaire (organe relevant du Gouvernement)", es: "Gobierno de la República de Armenia — Inspección de la Seguridad Alimentaria (organismo dependiente del Gobierno)", pt: "Governo da República da Armênia — Inspetoria de Segurança Alimentar (órgão vinculado ao Governo)" }
+    url: "https://www.gov.am/en/bodies-under-government/207/"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Armenia (max 5 pets, no permit/quarantine, EAEU certificate)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers l'Arménie (5 animaux max, sans permis/quarantaine, certificat UEEA)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Armenia (máx. 5 mascotas, sin permiso/cuarentena, certificado UEEA)", pt: "USDA APHIS — Viagem de animais dos Estados Unidos para a Armênia (máx. 5 animais, sem autorização/quarentena, certificado da UEE)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-armenia"
+  - label: { en: "USDA APHIS — EAEU veterinary health certificate guidance (rabies, other vaccinations, quarantine; incl. Armenia)", fr: "USDA APHIS — Guide du certificat sanitaire vétérinaire UEEA (rage, autres vaccins, quarantaine ; Arménie incluse)", es: "USDA APHIS — Guía del certificado sanitario veterinario UEEA (rabia, otras vacunas, cuarentena; Armenia incluida)", pt: "USDA APHIS — Orientação sobre o atestado de saúde veterinário da UEE (raiva, demais vacinas, quarentena; incl. Armênia)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/russia-dog-cat-guidance_0.pdf"
+
+seo:
+  title: { en: "Armenia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Arménie — Guide", es: "Requisitos de entrada de perros en Armenia — Guía de viaje", pt: "Exigências de entrada de cachorros na Armênia — Guia de viagem" }
+  metaTitle: { en: "Traveling to Armenia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Arménie avec ton chien : formalités (2026)", es: "Viajar a Armenia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Armênia: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official EAEU and Armenian veterinary rules for bringing a dog into Armenia: rabies and other vaccinations, veterinary health certificate. Sourced and dated."
+    fr: "Règles officielles UEEA et arméniennes pour faire entrer un chien en Arménie : rage et autres vaccins, certificat sanitaire vétérinaire. Sourcé et daté."
+    es: "Normas oficiales de la UEEA y armenias para traer un perro a Armenia: rabia y otras vacunas, certificado sanitario veterinario. Con fuentes y fecha."
+    pt: "Regras oficiais da UEE e da Armênia para levar um cachorro à Armênia: raiva e demais vacinas, atestado de saúde veterinário. Com fontes e data."
+  slug: "armenia"
+  shortDesc:
+    en: "What you need to bring a dog into Armenia, depending on your country of departure and number of animals."
+    fr: "Ce qu'il faut pour faire entrer un chien en Arménie, selon ton pays de départ et le nombre d'animaux."
+    es: "Lo que necesitas para traer un perro a Armenia, según tu país de salida y el número de animales."
+    pt: "O que você precisa para levar um cachorro à Armênia, dependendo do país de partida e do número de animais."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

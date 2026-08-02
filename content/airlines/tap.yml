@@ -1,0 +1,316 @@
+id: airline_tap
+mono: TP
+name: TAP Air Portugal
+titleH1:
+  en: Flying with a dog on TAP Air Portugal
+  fr: Voyager avec un chien sur TAP Air Portugal
+  es: Volar con un perro en TAP Air Portugal
+  pt: "Viajar com um cachorro na TAP Air Portugal"
+metaDesc:
+  en: "TAP Air Portugal pet policy: cabin, hold and cargo, fares by zone, snub-nosed hold ban, UK exclusion and official sources."
+  fr: "Politique animaux TAP Air Portugal : cabine, soute et fret, tarifs par zone, interdiction soute brachy, exclusion R.-U. et sources officielles."
+  es: "Política de mascotas de TAP Air Portugal: cabina, bodega y carga, tarifas por zona, veto braquicéfalo en bodega, exclusión del Reino Unido y fuentes oficiales."
+  pt: "Política de animais da TAP Air Portugal: cabine, porão e carga, tarifas por zona, proibição de raças de focinho achatado no porão, exclusão do Reino Unido e fontes."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Portugal · LIS
+      fr: Portugal · LIS
+      es: Portugal · LIS
+      pt: "Portugal · LIS"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & small dogs in the cabin easily, larger in the hold — but many snub-nosed breeds are hold-banned and no pets to the UK.
+  fr: Chats et petits chiens facilement en cabine, plus grands en soute — mais de nombreuses races au nez écrasé interdites en soute et rien vers le R.-U.
+  es: Gatos y perros pequeños fácilmente en cabina, los más grandes en bodega, pero muchas razas de hocico chato tienen prohibida la bodega y no se admiten mascotas al Reino Unido.
+  pt: "Gatos e cachorros pequenos com facilidade na cabine, os maiores no porão — mas muitas raças de focinho achatado têm o porão proibido e não há transporte de animais para o Reino Unido."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: other species
+      fr: autres espèces
+      es: otras especies
+      pt: "outras espécies"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only (min 10 weeks) ≤ 8 kg incl. carrier in a soft carrier under the seat (max 45 × 30 × 23 cm); 1 carrier per passenger. Not in long-haul Business.
+      fr: Chiens et chats uniquement (min 10 semaines) ≤ 8 kg avec le sac dans un sac souple sous le siège (max 45 × 30 × 23 cm) ; 1 sac par passager. Pas en Business long-courrier.
+      es: Solo perros y gatos (mín. 10 semanas) de ≤ 8 kg con la jaula en una jaula blanda bajo el asiento (máx. 45 × 30 × 23 cm); 1 jaula por pasajero. No en Business de largo radio.
+      pt: "Somente cachorros e gatos (mín. 10 semanas) ≤ 8 kg com a bolsa em uma bolsa de transporte macia sob o assento (máx. 45 × 30 × 23 cm); 1 bolsa por passageiro. Não em Business de longo curso."
+    fee:
+      en: €40–170
+      fr: 40–170 €
+      es: 40–170 €
+      pt: "€40–170"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats in a hard carrier; up to 32 kg (to US/Hungary/France/Netherlands) or 45 kg elsewhere. Snub-nosed breeds barred.
+      fr: Chiens et chats dans un contenant rigide ; jusqu'à 32 kg (vers USA/Hongrie/France/Pays-Bas) ou 45 kg ailleurs. Races au nez écrasé exclues.
+      es: Perros y gatos en una jaula rígida; hasta 32 kg (a EE. UU./Hungría/Francia/Países Bajos) o 45 kg en el resto. Razas de hocico chato excluidas.
+      pt: "Cachorros e gatos em uma caixa de transporte rígida; até 32 kg (para EUA/Hungria/França/Países Baixos) ou 45 kg nas demais rotas. Raças de focinho achatado são proibidas."
+    fee:
+      en: €78–320
+      fr: 78–320 €
+      es: 78–320 €
+      pt: "€78–320"
+  - icon: ✈️
+    name:
+      en: TAP Air Cargo
+      fr: TAP Air Cargo
+      es: TAP Air Cargo
+      pt: "TAP Air Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Other species, over hold limits, and always on Lisbon–Luanda.
+      fr: Autres espèces, au-delà des limites soute, et toujours sur Lisbonne–Luanda.
+      es: Otras especies, por encima de los límites de bodega, y siempre en Lisboa–Luanda.
+      pt: "Outras espécies, acima dos limites do porão, e sempre na rota Lisboa–Luanda."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (domestic → intercontinental)
+        fr: Cabine (domestique → intercontinental)
+        es: Cabina (nacional → intercontinental)
+        pt: "Cabine (doméstico → intercontinental)"
+      value:
+        en: €40–170
+        fr: 40–170 €
+        es: 40–170 €
+        pt: "€40–170"
+    - label:
+        en: Hold — up to 32 kg
+        fr: Soute — jusqu'à 32 kg
+        es: Bodega — hasta 32 kg
+        pt: "Porão — até 32 kg"
+      value:
+        en: €78–250
+        fr: 78–250 €
+        es: 78–250 €
+        pt: "€78–250"
+    - label:
+        en: Hold — 32–45 kg
+        fr: Soute — 32–45 kg
+        es: Bodega — 32–45 kg
+        pt: "Porão — 32–45 kg"
+      value:
+        en: €128–320
+        fr: 128–320 €
+        es: 128–320 €
+        pt: "€128–320"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR (online, low/high season). Max five pets per passenger.
+    fr: EUR (en ligne, basse/haute saison). Max cinq animaux par passager.
+    es: EUR (en línea, temporada baja/alta). Máx. cinco mascotas por pasajero.
+    pt: "EUR (on-line, baixa/alta temporada). Máx. cinco animais por passageiro."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Brachycephalic dogs & cats aren't allowed in the hold (death risk at the 10–19 °C hold range): bulldogs (all), boxer, pug (all), Boston terrier, Pekingese, Shih Tzu, chow chow, Shar Pei, mastiffs/Cane Corso, Cavalier King Charles, Chihuahua, and Persian/Exotic/Himalayan/Burmese/Scottish Fold cats. Accepted only with a vet certificate (corrective surgery or no breed traits)."
+      fr: "Les chiens et chats brachycéphales ne sont pas admis en soute (risque de mort dans la plage 10–19 °C) : bouledogues (tous), boxer, carlin (tous), Boston terrier, pékinois, Shih Tzu, chow chow, Shar Pei, mastiffs/Cane Corso, Cavalier King Charles, Chihuahua, et chats persans/exotiques/himalayens/birmans/Scottish Fold. Acceptés uniquement avec un certificat vétérinaire (chirurgie corrective ou absence de traits de race)."
+      es: "Los perros y gatos braquicéfalos no se admiten en bodega (riesgo de muerte en el rango de 10–19 °C de la bodega): bulldogs (todos), bóxer, carlino (todos), Boston terrier, pekinés, Shih Tzu, chow chow, Shar Pei, mastines/Cane Corso, Cavalier King Charles, Chihuahua, y gatos persa/exótico/himalayo/birmano/Scottish Fold. Aceptados solo con un certificado veterinario (cirugía correctiva o ausencia de rasgos de la raza)."
+      pt: "Cachorros e gatos braquicefálicos não são permitidos no porão (risco de morte na faixa de 10–19 °C do porão): buldogues (todos), boxer, pug (todos), Boston terrier, pequinês, Shih Tzu, chow chow, Shar Pei, mastins/Cane Corso, Cavalier King Charles, Chihuahua, e gatos persa/exótico/himalaia/birmanês/Scottish Fold. Aceitos somente com um atestado de saúde veterinário (cirurgia corretiva ou ausência de traços da raça)."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: CR82 crate
+          fr: Caisse CR82
+          es: Jaula CR82
+          pt: "Caixa CR82"
+      - cls: warn
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Potentially dangerous breeds (Fila, Dogo Argentino, pit bull, Rottweiler, Tosa Inu, 6 months+) need a CR82 wood/metal container. No sedation; no pregnant pets.
+      fr: Les races potentiellement dangereuses (Fila, Dogo Argentino, pit-bull, Rottweiler, Tosa Inu, 6 mois+) nécessitent un contenant CR82 bois/métal. Pas de sédation ; pas d'animaux gestants.
+      es: Las razas potencialmente peligrosas (Fila, Dogo Argentino, pit bull, Rottweiler, Tosa Inu, 6 meses o más) necesitan una jaula CR82 de madera/metal. Sin sedación; sin animales gestantes.
+      pt: "Raças potencialmente perigosas (Fila, Dogo Argentino, pit bull, Rottweiler, Tosa Inu, 6 meses+) precisam de uma caixa de transporte CR82 de madeira/metal. Sem sedação; sem animais prenhes."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Hold range 10–19 °C (brachy risk)
+        fr: Soute 10–19 °C (risque brachy)
+        es: Bodega 10–19 °C (riesgo braquicéfalo)
+        pt: "Porão na faixa de 10–19 °C (risco para raças braquicefálicas)"
+  note:
+    en: TAP warns brachycephalic pets risk death in the hold's typical temperature range of 10–19 °C. Pets travel in a ventilated hold area prepared for the purpose.
+    fr: TAP avertit que les animaux brachycéphales risquent la mort dans la plage de température habituelle de la soute (10–19 °C). Les animaux voyagent dans une zone de soute ventilée prévue à cet effet.
+    es: TAP advierte de que las mascotas braquicéfalas corren riesgo de muerte en el rango de temperatura habitual de la bodega (10–19 °C). Las mascotas viajan en una zona de bodega ventilada preparada para tal fin.
+    pt: "A TAP alerta que animais braquicefálicos correm risco de morte na faixa de temperatura típica do porão (10–19 °C). Os animais viajam em uma área do porão ventilada e preparada para essa finalidade."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs (guide/hearing/service) fly free in the cabin, leashed at your feet, no carrier; min 10 weeks.
+      fr: Les chiens d'assistance (guide/écoute/service) voyagent gratuitement en cabine, en laisse à tes pieds, sans sac ; min 10 semaines.
+      es: Los perros de asistencia (guía/de señal/de servicio) viajan gratis en cabina, con correa a tus pies, sin jaula; mín. 10 semanas.
+      pt: "Cachorros de assistência (guia/de sinalização/de serviço) voam grátis na cabine, na guia a seus pés, sem bolsa de transporte; mín. 10 semanas."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Request ≥ 48 h ahead. US: two DOT forms; UK arrivals need airport coordination. Emotional-support animals aren't accepted."
+      fr: "Demander ≥ 48 h à l'avance. USA : deux formulaires DOT ; arrivées au R.-U. : coordination avec l'aéroport. Animaux de soutien émotionnel non acceptés."
+      es: "Solicítalo ≥ 48 h antes. EE. UU.: dos formularios DOT; las llegadas al Reino Unido requieren coordinación con el aeropuerto. No se aceptan animales de apoyo emocional."
+      pt: "Solicite com ≥ 48 h de antecedência. EUA: dois formulários DOT; chegadas ao Reino Unido exigem coordenação com o aeroporto. Animais de suporte emocional não são aceitos."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets to the UK
+      fr: Pas d'animaux vers le R.-U.
+      es: Sin mascotas al Reino Unido
+      pt: "Sem animais para o Reino Unido"
+    value:
+      en: Pets aren't permitted (cabin or hold) to/from the UK or from London Gatwick, except assistance dogs in the cabin.
+      fr: Les animaux ne sont pas admis (cabine ou soute) de/vers le R.-U. ni au départ de Londres Gatwick, sauf chiens d'assistance en cabine.
+      es: No se admiten mascotas (cabina ni bodega) desde/hacia el Reino Unido ni con salida de Londres Gatwick, salvo perros de asistencia en cabina.
+      pt: "Animais não são permitidos (na cabine ou no porão) de/para o Reino Unido nem saindo de Londres Gatwick, exceto cachorros de assistência na cabine."
+  - icon: 🔁
+    label:
+      en: Brazil connections
+      fr: Correspondances Brésil
+      es: Conexiones a Brasil
+      pt: "Conexões no Brasil"
+    value:
+      en: Pets can't travel on TAP itineraries connecting to GOL- or Azul-operated Brazil flights.
+      fr: Les animaux ne peuvent pas voyager sur les itinéraires TAP en correspondance avec des vols Brésil opérés par GOL ou Azul.
+      es: Las mascotas no pueden viajar en itinerarios de TAP con conexión a vuelos a Brasil operados por GOL o Azul.
+      pt: "Animais não podem viajar em itinerários da TAP com conexão para voos ao Brasil operados pela GOL ou pela Azul."
+  - icon: ⏱️
+    label:
+      en: Lisbon layovers
+      fr: Escales Lisbonne
+      es: Escalas en Lisboa
+      pt: "Escalas em Lisboa"
+    value:
+      en: A 6 h+ layover in Lisbon/Porto with a hold pet means collecting and re-checking it.
+      fr: Une escale de 6 h+ à Lisbonne/Porto avec un animal en soute implique de le récupérer et le réenregistrer.
+      es: Una escala de 6 h o más en Lisboa/Oporto con una mascota en bodega implica recogerla y volver a facturarla.
+      pt: "Uma escala de 6 h ou mais em Lisboa/Porto com um animal no porão significa retirá-lo e despachá-lo novamente."
+book:
+  host: flytap.com
+  url: https://www.flytap.com/
+sources:
+  en: 2 TAP Air Portugal sources · last verified 11 July 2026
+  fr: 2 sources TAP Air Portugal · dernière vérification 11 juillet 2026
+  es: 2 fuentes de TAP Air Portugal · última verificación 11 de julio de 2026
+  pt: "2 fontes da TAP Air Portugal · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

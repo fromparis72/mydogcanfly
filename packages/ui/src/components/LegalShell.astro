@@ -1,0 +1,43 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import { LEGAL } from "../lib/legal";
+interface Props { locale: string; title: string; updated?: boolean }
+const { locale, title, updated = true } = Astro.props as Props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+const pages = [
+  { href: "/legal-notice/", en: "Legal notice", fr: "Mentions légales", es: "Aviso legal" },
+  { href: "/privacy/", en: "Privacy", fr: "Confidentialité", es: "Privacidad" },
+  { href: "/cookies/", en: "Cookies", fr: "Cookies", es: "Cookies" },
+  { href: "/terms/", en: "Terms", fr: "Conditions", es: "Términos" },
+];
+---
+<section class="mdcf-section">
+  <div class="mdcf-container legal">
+    <p class="mdcf-eyebrow">{T("Legal", "Informations légales", "Información legal")}</p>
+    <h1 class="mdcf-h2">{title}</h1>
+    {updated && <p class="legal-upd">{T("Last updated", "Dernière mise à jour", "Última actualización")}: {locale === "fr" ? LEGAL.lastUpdatedFr : locale === "es" ? "16 de julio de 2026" : LEGAL.lastUpdated}</p>}
+    <div class="legal-body"><slot /></div>
+    <nav class="legal-nav">
+      {pages.map((p) => <a href={`${base}${p.href}`}>{locale === "fr" ? p.fr : locale === "es" ? p.es : p.en}</a>)}
+    </nav>
+  </div>
+</section>
+<style is:global>
+  .legal { max-width: 760px; }
+  .legal-upd { color: var(--mdcf-muted); font-size: 13px; margin: 0 0 20px; }
+  .legal-body h2 { font-size: 18px; margin: 26px 0 8px; color: var(--mdcf-ink); }
+  .legal-body h3 { font-size: 15px; margin: 18px 0 6px; color: var(--mdcf-ink); }
+  .legal-body p, .legal-body li { color: var(--mdcf-ink-soft, #33436a); line-height: 1.7; font-size: 15px; }
+  .legal-body p { margin: 0 0 12px; }
+  .legal-body ul { margin: 0 0 14px; padding-left: 20px; }
+  .legal-body li { margin: 0 0 6px; }
+  .legal-body a { color: var(--mdcf-accent-ink, #b4530a); }
+  .legal-body address { font-style: normal; color: var(--mdcf-ink); line-height: 1.6; }
+  .legal-nav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--mdcf-line); font-size: 13.5px; }
+  .legal-nav a { color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  .legal-nav a:hover { text-decoration: underline; }
+</style>

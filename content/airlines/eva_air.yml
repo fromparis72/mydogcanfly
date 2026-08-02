@@ -1,0 +1,266 @@
+id: airline_eva_air
+mono: BR
+name: EVA Air
+titleH1:
+  en: Flying with a dog on EVA Air
+  fr: Voyager avec un chien sur EVA Air
+  es: Volar con un perro en EVA Air
+  pt: "Voar com um cachorro na EVA Air"
+metaDesc:
+  en: "EVA Air pet policy: hold-only carriage, seasonal snub-nosed embargo, fares and official sources."
+  fr: "Politique animaux EVA Air : transport en soute uniquement, embargo brachy saisonnier, tarifs et sources officielles."
+  es: "Política de mascotas de EVA Air: transporte solo en bodega, embargo estacional a hocicos chatos, tarifas y fuentes oficiales."
+  pt: "Política de animais da EVA Air: transporte somente em porão, embargo sazonal para focinho achatado, tarifas e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Taiwan · TPE
+      fr: Taïwan · TPE
+      es: Taiwán · TPE
+      pt: "Taiwan · TPE"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets (service dogs only); dogs, cats & rabbits travel as checked baggage, with a seasonal snub-nosed embargo.
+  fr: Pas d'animaux en cabine (chiens d'assistance seuls) ; chiens, chats et lapins en bagage enregistré, avec un embargo brachy saisonnier.
+  es: Sin mascotas en cabina (solo perros de servicio); perros, gatos y conejos viajan como equipaje facturado, con un embargo estacional a los hocicos chatos.
+  pt: "Sem animais em cabine (somente cães de assistência); cachorros, gatos e coelhos viajam como bagagem despachada, com embargo sazonal para focinho achatado."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 92
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets aren't accepted in the cabin — only service dogs.
+      fr: Les animaux ne sont pas acceptés en cabine — seulement les chiens d'assistance.
+      es: Las mascotas no se aceptan en cabina; solo los perros de servicio.
+      pt: "Animais não são aceitos na cabine — somente cães de assistência."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & rabbits as checked baggage on EVA Air/UNI Air international flights; one per container, max 2 per passenger. Min 4 months, not pregnant.
+      fr: Chiens, chats et lapins en bagage enregistré sur les vols internationaux EVA Air/UNI Air ; un par contenant, max 2 par passager. Min 4 mois, non gestants.
+      es: Perros, gatos y conejos como equipaje facturado en vuelos internacionales de EVA Air/UNI Air; uno por contenedor, máx. 2 por pasajero. Mín. 4 meses, no gestantes.
+      pt: "Cachorros, gatos e coelhos como bagagem despachada em voos internacionais da EVA Air/UNI Air; um por recipiente, máx. 2 por passageiro. Mín. 4 meses, não gestantes."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+fareList:
+  rows:
+    - label:
+        en: Hold (≤ 32 kg)
+        fr: Soute (≤ 32 kg)
+        es: Bodega (≤ 32 kg)
+        pt: "Porão (≤ 32 kg)"
+      value:
+        en: 2× excess-baggage charge
+        fr: 2× tarif bagage excédentaire
+        es: 2× tarifa de exceso de equipaje
+        pt: "2× a tarifa de bagagem excedente"
+    - label:
+        en: Hold (> 32 kg)
+        fr: Soute (> 32 kg)
+        es: Bodega (> 32 kg)
+        pt: "Porão (> 32 kg)"
+      value:
+        en: 4× excess-baggage charge
+        fr: 4× tarif bagage excédentaire
+        es: 4× tarifa de exceso de equipaje
+        pt: "4× a tarifa de bagagem excedente"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Charged as excess baggage (excluded from the free allowance); tiered by pet + container weight.
+    fr: Facturé en bagage excédentaire (hors franchise) ; par palier selon le poids animal + contenant.
+    es: Se cobra como exceso de equipaje (fuera de la franquicia); por tramos según el peso de la mascota + contenedor.
+    pt: "Cobrado como bagagem excedente (fora da franquia gratuita); em faixas conforme o peso do animal + recipiente."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Seasonal embargo
+          fr: Embargo saisonnier
+          es: Embargo estacional
+          pt: "Embargo sazonal"
+    note:
+      en: Snub-nosed breeds & mixes aren't accepted 1 Apr–30 Nov (Northern Hemisphere) or 1 Oct–31 Mar (Southern Hemisphere), and year-round to/from Southeast Asia.
+      fr: Les races au nez écrasé et croisés ne sont pas acceptées du 1er avr. au 30 nov. (hémisphère Nord) ou du 1er oct. au 31 mars (hémisphère Sud), et toute l'année de/vers l'Asie du Sud-Est.
+      es: Las razas de hocico chato y sus cruces no se aceptan del 1 abr al 30 nov (hemisferio norte) ni del 1 oct al 31 mar (hemisferio sur), y todo el año hacia/desde el Sudeste Asiático.
+      pt: "Raças de focinho achatado e suas misturas não são aceitas de 1º de abr. a 30 de nov. (Hemisfério Norte) nem de 1º de out. a 31 de mar. (Hemisfério Sul), e o ano todo de/para o Sudeste Asiático."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 4 months
+          fr: 4 mois min.
+          es: Mín. 4 meses
+          pt: "Mín. 4 meses"
+    note:
+      en: Pregnant animals and pets under 4 months aren't accepted.
+      fr: Les animaux gestants et les animaux de moins de 4 mois ne sont pas acceptés.
+      es: No se aceptan animales gestantes ni mascotas de menos de 4 meses.
+      pt: "Animais gestantes e animais com menos de 4 meses não são aceitos."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Same pressure & temperature as the cabin
+        fr: Même pression & température que la cabine
+        es: Misma presión y temperatura que la cabina
+        pt: "Mesma pressão e temperatura da cabine"
+    - cls: no
+      label:
+        en: Seasonal snub-nosed embargo
+        fr: Embargo brachy saisonnier
+        es: Embargo estacional a hocicos chatos
+        pt: "Embargo sazonal para focinho achatado"
+  note:
+    en: The pet compartment has the same pressure and temperature as the cabin. There's no numeric limit, but snub-nosed breeds face a seasonal embargo (1 Apr–30 Nov N. Hemisphere, 1 Oct–31 Mar S. Hemisphere, year-round for SE Asia).
+    fr: Le compartiment animal a la même pression et température que la cabine. Aucune limite chiffrée, mais les races au nez écrasé subissent un embargo saisonnier (1er avr.–30 nov. hém. Nord, 1er oct.–31 mars hém. Sud, toute l'année pour l'Asie du Sud-Est).
+    es: El compartimento de mascotas tiene la misma presión y temperatura que la cabina. No hay límite numérico, pero las razas de hocico chato tienen un embargo estacional (1 abr–30 nov hemisferio norte, 1 oct–31 mar hemisferio sur, todo el año para el Sudeste Asiático).
+    pt: "O compartimento de animais tem a mesma pressão e temperatura da cabine. Não há limite numérico, mas as raças de focinho achatado enfrentam um embargo sazonal (1º abr.–30 nov. Hemisfério Norte, 1º out.–31 mar. Hemisfério Sul, o ano todo para o Sudeste Asiático)."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Fully-trained service & psychiatric service dogs fly free in the cabin if requirements are met.
+      fr: Les chiens d'assistance et d'assistance psychiatrique pleinement dressés voyagent gratuitement en cabine si les conditions sont remplies.
+      es: Los perros de servicio y de servicio psiquiátrico plenamente adiestrados viajan gratis en cabina si se cumplen los requisitos.
+      pt: "Cães de assistência e de assistência psiquiátrica plenamente adestrados voam de graça na cabine se os requisitos forem cumpridos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Submit forms to EVA reservations ≥ 48 h ahead. US routes: DOT form (+ relief form over 8 h)."
+      fr: "Soumettre les formulaires à la réservation EVA ≥ 48 h à l'avance. Vols USA : formulaire DOT (+ formulaire de soulagement au-delà de 8 h)."
+      es: "Envía los formularios a reservas de EVA ≥ 48 h antes. Rutas a EE. UU.: formulario DOT (+ formulario de alivio en vuelos de más de 8 h)."
+      pt: "Envie os formulários para as reservas da EVA com ≥ 48 h de antecedência. Rotas para os EUA: formulário do DOT (+ formulário de alívio em voos acima de 8 h)."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Species & flights
+      fr: Espèces & vols
+      es: Especies y vuelos
+      pt: "Espécies e voos"
+    value:
+      en: Only dogs, cats and rabbits, and only on EVA Air / UNI Air international flights.
+      fr: Uniquement chiens, chats et lapins, et seulement sur les vols internationaux EVA Air / UNI Air.
+      es: Solo perros, gatos y conejos, y únicamente en vuelos internacionales de EVA Air / UNI Air.
+      pt: "Somente cachorros, gatos e coelhos, e somente em voos internacionais da EVA Air / UNI Air."
+  - icon: 🧳
+    label:
+      en: Per container
+      fr: Par contenant
+      es: Por contenedor
+      pt: "Por recipiente"
+    value:
+      en: One pet per container, max 2 containers per seated passenger; some aircraft/routes restrict pets.
+      fr: Un animal par contenant, max 2 contenants par passager assis ; certains avions/routes restreignent les animaux.
+      es: Una mascota por contenedor, máx. 2 contenedores por pasajero con asiento; algunos aviones/rutas restringen las mascotas.
+      pt: "Um animal por recipiente, máx. 2 recipientes por passageiro sentado; alguns aviões/rotas restringem animais."
+  - icon: 💶
+    label:
+      en: Excess baggage
+      fr: Bagage excédentaire
+      es: Exceso de equipaje
+      pt: "Bagagem excedente"
+    value:
+      en: Pet + container is charged as excess baggage, outside the free allowance.
+      fr: Animal + contenant facturé en bagage excédentaire, hors franchise.
+      es: La mascota + contenedor se cobra como exceso de equipaje, fuera de la franquicia.
+      pt: "Animal + recipiente é cobrado como bagagem excedente, fora da franquia gratuita."
+book:
+  host: evaair.com
+  url: https://www.evaair.com/
+sources:
+  en: 2 EVA Air sources · last verified 11 July 2026
+  fr: 2 sources EVA Air · dernière vérification 11 juillet 2026
+  es: 2 fuentes de EVA Air · última verificación 11 de julio de 2026
+  pt: "2 fontes da EVA Air · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

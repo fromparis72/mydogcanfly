@@ -1,0 +1,390 @@
+# Country Entry Guide — Malaysia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_my
+iso2: "MY"
+name: { en: "Malaysia", fr: "Malaisie", es: "Malasia", pt: "Malásia" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: listed
+domestic:
+  intro:
+    en: "Domestic flight in Malaysia: flying to Sabah or Sarawak is legally an import, with permit, titer and quarantine."
+    fr: "Vol intérieur en Malaisie : rejoindre Sabah ou Sarawak constitue juridiquement une importation, avec permis, titrage et quarantaine."
+    es: "Vuelo nacional en Malasia: volar a Sabah o Sarawak es jurídicamente una importación, con permiso, titulación y cuarentena."
+    pt: "Voo doméstico na Malásia: voar para Sabah ou Sarawak é legalmente uma importação, com autorização, titulação e quarentena."
+  points:
+    - en: "Sabah and Sarawak run their own animal-health legislation and treat a dog from Peninsular Malaysia as an imported animal."
+      fr: "Sabah et Sarawak appliquent leur propre législation sanitaire et traitent un chien venant de Malaisie péninsulaire comme un animal importé."
+      es: "Sabah y Sarawak aplican su propia legislación sanitaria y tratan a un perro procedente de Malasia peninsular como un animal importado."
+      pt: "Sabah e Sarawak aplicam sua própria legislação de saúde animal e tratam um cachorro vindo da Malásia Peninsular como um animal importado."
+    - en: "Airlines take pets in the hold rather than the cabin, and at least one Malaysian carrier refuses animals entirely."
+      fr: "Les compagnies acceptent les animaux en soute plutôt qu'en cabine, et au moins une compagnie malaisienne les refuse totalement."
+      es: "Las aerolíneas aceptan mascotas en bodega más que en cabina, y al menos una aerolínea malasia las rechaza por completo."
+      pt: "As companhias aéreas levam animais de estimação no porão, e não na cabine, e pelo menos uma companhia aérea malaia recusa animais por completo."
+  territories:
+    - name: { en: "Sabah", fr: "Sabah", es: "Sabah", pt: "Sabah" }
+      note:
+        en: "An import licence from the state veterinary service is mandatory, with rabies vaccination between 6 months and 1 year old, a rabies antibody titer of at least 0.5 IU/ml, a microchip, and a minimum 14-day quarantine — extended to 60 days if the titer is missing."
+        fr: "Une licence d'importation du service vétérinaire de l'État est obligatoire, avec vaccination antirabique datant de 6 mois à 1 an, un titrage antirabique d'au moins 0,5 UI/ml, une puce, et une quarantaine minimale de 14 jours — portée à 60 jours en l'absence de titrage."
+        es: "Se exige una licencia de importación del servicio veterinario estatal, con vacuna antirrábica de entre 6 meses y 1 año, titulación antirrábica de al menos 0,5 UI/ml, microchip y cuarentena mínima de 14 días — ampliada a 60 días si falta la titulación."
+        pt: "Uma licença de importação do serviço veterinário estadual é obrigatória, com vacinação antirrábica entre 6 meses e 1 ano de idade, um teste sorológico antirrábico (titulação) de pelo menos 0,5 UI/ml, um microchip e uma quarentena mínima de 14 dias — estendida para 60 dias se a titulação estiver ausente."
+      url: https://vet.sabah.gov.my/import
+    - name: { en: "Sarawak", fr: "Sarawak", es: "Sarawak", pt: "Sarawak" }
+      note:
+        en: "An import permit is required, the dog must be at least 3 months old and microchipped, with a health certificate within 7 days. Quarantine is 14 days, but can be waived entirely if the rabies titer exceeds 0.5 IU/ml."
+        fr: "Un permis d'importation est exigé, le chien doit avoir au moins 3 mois et être pucé, avec un certificat sanitaire de moins de 7 jours. La quarantaine est de 14 jours, mais peut être totalement levée si le titrage antirabique dépasse 0,5 UI/ml."
+        es: "Se exige permiso de importación, el perro debe tener al menos 3 meses y microchip, con certificado sanitario de menos de 7 días. La cuarentena es de 14 días, pero puede eliminarse por completo si la titulación antirrábica supera 0,5 UI/ml."
+        pt: "Uma autorização de importação é obrigatória, o cachorro precisa ter pelo menos 3 meses de idade e microchip, com um atestado de saúde emitido dentro de 7 dias. A quarentena é de 14 dias, mas pode ser totalmente dispensada se a titulação antirrábica for superior a 0,5 UI/ml."
+      url: https://dvs.sarawak.gov.my/web/subpage/download_list/
+exit:
+  authority: DVS
+  authorityUrl: https://www.dvs.gov.my/
+  intro:
+    en: "Malaysia is a listed country, so no rabies titer is needed to return to the EU — the Department of Veterinary Services (DVS) issues the export veterinary health certificate."
+    fr: "La Malaisie est un pays listé : pas de titrage pour rentrer dans l'UE — le Département des services vétérinaires (DVS) délivre le certificat sanitaire vétérinaire d'export."
+    es: "Malasia es un país listado: no hace falta titulación para volver a la UE — el Departamento de Servicios Veterinarios (DVS) emite el certificado sanitario veterinario de exportación."
+    pt: "A Malásia é um país listado, portanto nenhuma titulação antirrábica é necessária para retornar à UE — o Department of Veterinary Services (DVS) emite o atestado de saúde veterinário de exportação."
+  steps:
+    - timing: window
+      text:
+        en: "Apply for the veterinary health certificate and export permit online through the DVS e-Permit / MAQIS system; DVS advises applying at least a week before travel (permit valid 30 days)."
+        fr: "Demande le certificat sanitaire vétérinaire et le permis d'export en ligne via le système e-Permit / MAQIS du DVS ; le DVS conseille de s'y prendre au moins une semaine avant (permis valable 30 jours)."
+        es: "Solicita el certificado sanitario veterinario y el permiso de exportación en línea a través del sistema e-Permit / MAQIS del DVS; el DVS recomienda hacerlo al menos una semana antes (permiso válido 30 días)."
+        pt: "Solicite o atestado de saúde veterinário e a autorização de exportação on-line pelo sistema e-Permit do DVS / MAQIS; o DVS recomenda solicitar pelo menos uma semana antes da viagem (autorização válida por 30 dias)."
+  onSiteNote:
+    en: "A licensed vet completes the EU health certificate; the DVS endorsement is the official step — allow a few working days."
+    fr: "Un vétérinaire agréé remplit le certificat sanitaire UE ; l'endossement DVS est l'étape officielle — prévois quelques jours ouvrés."
+    es: "Un veterinario autorizado rellena el certificado sanitario UE; el refrendo del DVS es el paso oficial — prevé unos días hábiles."
+    pt: "Um veterinário licenciado preenche o atestado de saúde da UE; o endosso do DVS é a etapa oficial — reserve alguns dias úteis."
+
+hero:
+  h1: { en: "Traveling to Malaysia with your dog", fr: "Voyager en Malaisie avec ton chien", es: "Viajar a Malasia con tu perro", pt: "Viajar para a Malásia com seu cachorro" }
+  intro:
+    en: >-
+      Malaysia allows dogs to enter, but it runs its own national scheme — not the EU framework — and
+      what you must prepare depends mainly on the country your dog is travelling from. An import permit
+      from the Malaysian Quarantine and Inspection Services Department (MAQIS), an ISO microchip, a valid
+      rabies vaccination and a government veterinary health certificate are the foundation for every dog.
+      From a small list of rabies-free "scheduled" countries (such as the United Kingdom, Japan, Singapore
+      or Australia) a healthy dog can often enter without quarantine. From other countries a rabies
+      antibody test and a quarantine period apply, and certain breeds are banned outright. This guide
+      explains each case so you know exactly what to prepare before you book your flight.
+    fr: >-
+      La Malaisie autorise l'entrée des chiens, mais elle applique son propre système national — pas le
+      cadre européen — et ce qu'il faut préparer dépend surtout du pays d'où ton chien voyage. Un permis
+      d'importation du Département malaisien de quarantaine et d'inspection (MAQIS), une puce ISO, une
+      vaccination antirabique valide et un certificat sanitaire vétérinaire officiel constituent la base
+      pour tout chien. Depuis une courte liste de pays « répertoriés » indemnes de rage (Royaume-Uni,
+      Japon, Singapour, Australie…), un chien en bonne santé peut souvent entrer sans quarantaine. Depuis
+      les autres pays s'appliquent un titrage antirabique et une période de quarantaine, et certaines races
+      sont totalement interdites. Ce guide détaille chaque cas pour savoir exactement quoi préparer avant
+      de réserver ton vol.
+    es: >-
+      Malasia permite la entrada de perros, pero aplica su propio sistema nacional — no el marco de la UE
+      — y lo que debes preparar depende sobre todo del país desde el que viaja tu perro. Un permiso de
+      importación del Departamento de Servicios de Cuarentena e Inspección de Malasia (MAQIS), un microchip
+      ISO, una vacunación antirrábica válida y un certificado sanitario veterinario oficial son la base
+      para todo perro. Desde una corta lista de países «listados» libres de rabia (como el Reino Unido,
+      Japón, Singapur o Australia), un perro sano puede a menudo entrar sin cuarentena. Desde otros países
+      se aplican una prueba de titulación de rabia y un periodo de cuarentena, y ciertas razas están
+      directamente prohibidas. Esta guía explica cada caso para que sepas exactamente qué preparar antes
+      de reservar tu vuelo.
+
+    pt: "A Malásia permite a entrada de cachorros, mas aplica seu próprio esquema nacional — e não o marco da UE —, e o que você precisa preparar depende principalmente do país de onde o seu cachorro está viajando. Uma autorização de importação do Malaysian Quarantine and Inspection Services Department (MAQIS), um microchip ISO, uma vacinação antirrábica válida e um atestado de saúde veterinário do governo são a base para todo cachorro. Vindo de uma pequena lista de países \"programados\" livres de raiva (como o Reino Unido, o Japão, Singapura ou a Austrália), um cachorro saudável muitas vezes pode entrar sem quarentena. Vindo de outros países, um teste sorológico antirrábico e um período de quarentena se aplicam, e certas raças são banidas por completo. Este guia explica cada caso para você saber exatamente o que preparar antes de reservar o seu voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate to difficult (permit + possible quarantine)", fr: "Modéré à difficile (permis + quarantaine possible)", es: "De moderado a difícil (permiso + posible cuarentena)", pt: "Moderado a difícil (autorização + possível quarentena)" }
+
+prepTime:
+  eu:
+    en: "Scheduled (rabies-free) countries: allow a few weeks for the MAQIS import permit; often no quarantine if all documents are in order."
+    fr: "Pays répertoriés (indemnes de rage) : compte quelques semaines pour le permis MAQIS ; souvent sans quarantaine si tous les documents sont en règle."
+    es: "Países listados (libres de rabia): calcula unas semanas para el permiso de importación de MAQIS; a menudo sin cuarentena si todos los documentos están en regla."
+    pt: "Países programados (livres de raiva): reserve algumas semanas para a autorização de importação do MAQIS; muitas vezes sem quarentena se todos os documentos estiverem em ordem."
+  listed:
+    en: "Other permitted countries: 2–4 weeks for the DVS/MAQIS permit, plus a health certificate issued within 7 days of export and a minimum 7-day quarantine on arrival."
+    fr: "Autres pays autorisés : 2 à 4 semaines pour le permis DVS/MAQIS, plus un certificat sanitaire établi dans les 7 jours avant l'export et une quarantaine d'au moins 7 jours à l'arrivée."
+    es: "Otros países autorizados: 2–4 semanas para el permiso del DVS/MAQIS, más un certificado sanitario expedido dentro de los 7 días previos a la exportación y una cuarentena mínima de 7 días a la llegada."
+    pt: "Outros países permitidos: 2 a 4 semanas para a autorização do DVS/MAQIS, além de um atestado de saúde emitido dentro de 7 dias antes da exportação e uma quarentena mínima de 7 dias na chegada."
+  nonListed:
+    en: "Rabies-risk countries: several months — rabies vaccination, a rabies antibody test (≥0.5 IU/ml) and quarantine that can be extended based on risk assessment."
+    fr: "Pays à risque rabique : plusieurs mois — vaccination antirabique, titrage antirabique (≥0,5 UI/ml) et quarantaine pouvant être prolongée selon l'évaluation du risque."
+    es: "Países con riesgo de rabia: varios meses — vacunación antirrábica, una prueba de titulación de rabia (≥0,5 UI/ml) y una cuarentena que puede prolongarse según la evaluación del riesgo."
+    pt: "Países de risco de raiva: vários meses — vacinação antirrábica, um teste sorológico antirrábico (≥0,5 UI/ml) e quarentena que pode ser estendida com base na avaliação de risco."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (except banned breeds)", fr: "Oui (sauf races interdites)", es: "Sí (salvo razas prohibidas)", pt: "Sim (exceto raças proibidas)" }
+    cls: warn
+  - requirement: { en: "Import permit / licence", fr: "Permis / licence d'importation", es: "Permiso / licencia de importación", pt: "Autorização / licença de importação" }
+    status: { en: "Required (MAQIS, before travel)", fr: "Requis (MAQIS, avant le voyage)", es: "Obligatorio (MAQIS, antes del viaje)", pt: "Obrigatória (MAQIS, antes da viagem)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required (ISO 11784/11785)", fr: "Requise (ISO 11784/11785)", es: "Obligatorio (ISO 11784/11785)", pt: "Obrigatório (ISO 11784/11785)" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — rabies-risk origins", fr: "Conditionnel — origines à risque rabique", es: "Condicional — orígenes con riesgo de rabia", pt: "Condicional — origens de risco de raiva" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (government-issued)", fr: "Requis (délivré par l'État)", es: "Obligatorio (expedido por el Estado)", pt: "Obrigatório (emitido pelo governo)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Often required (min. 7 days)", fr: "Souvent requise (min. 7 jours)", es: "A menudo obligatoria (mín. 7 días)", pt: "Frequentemente obrigatória (mín. 7 dias)" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian, and the DVS/MAQIS import permit, can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le permis d'importation DVS/MAQIS peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario, y el permiso de importación del DVS/MAQIS, pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário, e a autorização de importação do DVS/MAQIS, podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Malaysia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Malaisie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Malasia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Malásia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Malaysia", fr: "Pays de destination — Malaisie", es: "País de destino — Malasia", pt: "País de destino — Malásia" }
+      text:
+        en: "Malaysia runs its own scheme under the Animals Act 1953: a MAQIS import permit, an ISO microchip, a valid rabies vaccination and a government veterinary health certificate are always required, and certain breeds are banned."
+        fr: "La Malaisie applique son propre système au titre de l'Animals Act 1953 : permis d'importation MAQIS, puce ISO, vaccination antirabique valide et certificat sanitaire vétérinaire officiel toujours exigés, et certaines races sont interdites."
+        es: "Malasia aplica su propio sistema en virtud de la Animals Act 1953: siempre se exigen un permiso de importación de MAQIS, un microchip ISO, una vacunación antirrábica válida y un certificado sanitario veterinario oficial, y ciertas razas están prohibidas."
+        pt: "A Malásia aplica seu próprio esquema sob o Animals Act 1953: uma autorização de importação do MAQIS, um microchip ISO, uma vacinação antirrábica válida e um atestado de saúde veterinário do governo são sempre exigidos, e certas raças são banidas."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from a rabies-free 'scheduled' country (no quarantine possible) or from another country decides whether a rabies antibody test and a quarantine period apply."
+        fr: "Que ton chien parte d'un pays « répertorié » indemne de rage (quarantaine évitable) ou d'un autre pays détermine si un titrage antirabique et une quarantaine s'appliquent."
+        es: "Que tu perro salga de un país «listado» libre de rabia (donde se puede evitar la cuarentena) o de otro país determina si se aplican una prueba de titulación de rabia y un periodo de cuarentena."
+        pt: "O fato de o seu cachorro partir de um país 'programado' livre de raiva (sem quarentena possível) ou de outro país determina se um teste sorológico antirrábico e um período de quarentena se aplicam."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "The certificate must confirm the dog was not imported into the exporting country in the previous six months; a recent stay in a rabies-risk country can change the requirements and the quarantine outcome."
+        fr: "Le certificat doit confirmer que le chien n'a pas été importé dans le pays exportateur au cours des six mois précédents ; un séjour récent dans un pays à risque rabique peut modifier les exigences et la quarantaine."
+        es: "El certificado debe confirmar que el perro no fue importado al país exportador en los seis meses previos; una estancia reciente en un país con riesgo de rabia puede cambiar los requisitos y el resultado de la cuarentena."
+        pt: "O certificado precisa confirmar que o cachorro não foi importado para o país exportador nos seis meses anteriores; uma estadia recente em um país de risco de raiva pode mudar as exigências e o resultado da quarentena."
+  note:
+    en: "So read the requirements below as Malaysia's framework, then confirm your dog's exact origin and history with your vet and with MAQIS before applying."
+    fr: "Lis donc les exigences ci-dessous comme le cadre malaisien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire et le MAQIS avant toute demande."
+    es: "Así que lee los requisitos siguientes como el marco de Malasia y luego confirma el origen y el historial exactos de tu perro con tu veterinario y con MAQIS antes de solicitarlo."
+    pt: "Portanto, leia as exigências abaixo como o marco da Malásia e depois confirme com o seu veterinário e o MAQIS a origem e o histórico exatos do seu cachorro antes de solicitar."
+
+requirements:
+  - item: { en: "Import permit / licence", fr: "Permis / licence d'importation", es: "Permiso / licencia de importación", pt: "Autorização / licença de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Obtained from MAQIS (with DVS approval, via the e-Permit system) before the animal leaves the exporting country; valid 30 days from issue.", fr: "Obtenu auprès du MAQIS (avec l'accord du DVS, via le système e-Permit) avant le départ de l'animal du pays exportateur ; valable 30 jours.", es: "Se obtiene de MAQIS (con la aprobación del DVS, a través del sistema e-Permit) antes de que el animal salga del país exportador; válido 30 días desde su expedición.", pt: "Obtida junto ao MAQIS (com aprovação do DVS, pelo sistema e-Permit) antes de o animal deixar o país exportador; válida por 30 dias a partir da emissão." }
+    exceptions: { en: "For Sabah and Sarawak, the permit/licence is issued by the state DVS instead.", fr: "Pour Sabah et Sarawak, le permis/la licence est délivré par le DVS de l'État concerné.", es: "Para Sabah y Sarawak, el permiso/la licencia lo expide en cambio el DVS del estado.", pt: "Para Sabah e Sarawak, a autorização/licença é emitida pelo DVS estadual em vez disso." }
+    ref: { en: "MAQIS Act 2011; maqis.gov.my; dvs.gov.my", fr: "MAQIS Act 2011 ; maqis.gov.my ; dvs.gov.my", es: "MAQIS Act 2011; maqis.gov.my; dvs.gov.my", pt: "MAQIS Act 2011; maqis.gov.my; dvs.gov.my" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be identified with an ISO 11784/11785 compliant microchip, recorded on the certificate.", fr: "Le chien doit être identifié par une puce conforme ISO 11784/11785, consignée sur le certificat.", es: "El perro debe estar identificado con un microchip conforme a la norma ISO 11784/11785, registrado en el certificado.", pt: "O cachorro precisa ser identificado com um microchip em conformidade com a norma ISO 11784/11785, registrado no certificado." }
+    exceptions: { en: "For restricted breeds the microchip code must also appear on the pedigree certificate.", fr: "Pour les races restreintes, le code de la puce doit aussi figurer sur le certificat de pedigree.", es: "Para las razas restringidas, el código del microchip también debe figurar en el certificado de pedigrí.", pt: "Para raças restritas, o código do microchip também precisa constar no certificado de pedigree." }
+    ref: { en: "DVS Importation Regulations, clause 2.2", fr: "Règlement d'importation DVS, clause 2.2", es: "Reglamento de importación del DVS, cláusula 2.2", pt: "DVS Importation Regulations, cláusula 2.2" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Vaccinated with an approved anti-rabies vaccine before export; the vaccination must be valid on arrival, and at least 30 days before entry from rabies-risk countries.", fr: "Vacciné avec un vaccin antirabique agréé avant l'export ; la vaccination doit être valide à l'arrivée, et au moins 30 jours avant l'entrée depuis les pays à risque rabique.", es: "Vacunado con una vacuna antirrábica aprobada antes de la exportación; la vacunación debe estar vigente a la llegada, y realizada al menos 30 días antes de la entrada desde países con riesgo de rabia.", pt: "Vacinado com uma vacina antirrábica aprovada antes da exportação; a vacinação precisa estar válida na chegada, e ter sido aplicada pelo menos 30 dias antes da entrada quando vinda de países de risco de raiva." }
+    exceptions: { en: "Core vaccines up to date within 12 months prior to export are also required.", fr: "Les vaccins essentiels à jour dans les 12 mois précédant l'export sont également exigés.", es: "También se exige que las vacunas esenciales estén al día dentro de los 12 meses previos a la exportación.", pt: "As vacinas essenciais em dia, aplicadas dentro dos 12 meses anteriores à exportação, também são exigidas." }
+    ref: { en: "DVS Importation Regulations, clause 3", fr: "Règlement d'importation DVS, clause 3", es: "Reglamento de importación del DVS, cláusula 3", pt: "DVS Importation Regulations, cláusula 3" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Required for dogs from rabies-risk (non-scheduled) countries: result ≥0.5 IU/ml from an approved laboratory.", fr: "Requis pour les chiens venant de pays à risque rabique (non répertoriés) : résultat ≥0,5 UI/ml dans un laboratoire agréé.", es: "Obligatoria para los perros procedentes de países con riesgo de rabia (no listados): resultado ≥0,5 UI/ml de un laboratorio autorizado.", pt: "Obrigatório para cachorros vindos de países de risco de raiva (não programados): resultado ≥0,5 UI/ml de um laboratório aprovado." }
+    exceptions: { en: "Not required from rabies-free scheduled countries; confirm the exact rule for your origin with DVS/MAQIS.", fr: "Non requis depuis les pays répertoriés indemnes de rage ; confirme la règle exacte pour ton origine auprès du DVS/MAQIS.", es: "No se exige desde países listados libres de rabia; confirma la norma exacta para tu origen con el DVS/MAQIS.", pt: "Não obrigatório vindo de países programados livres de raiva; confirme a regra exata para a sua origem com o DVS/MAQIS." }
+    ref: { en: "dvs.gov.my (country import conditions)", fr: "dvs.gov.my (conditions d'importation par pays)", es: "dvs.gov.my (condiciones de importación por país)", pt: "dvs.gov.my (condições de importação por país)" }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat sanitaire vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the government veterinary authority of the exporting country within 7 days before export; certifies rabies-freedom of the country (6 months), vaccinations and clinical health.", fr: "Délivré par l'autorité vétérinaire gouvernementale du pays exportateur dans les 7 jours avant l'export ; atteste l'absence de rage dans le pays (6 mois), les vaccinations et l'état de santé.", es: "Expedido por la autoridad veterinaria gubernamental del país exportador dentro de los 7 días previos a la exportación; certifica que el país está libre de rabia (6 meses), las vacunaciones y el estado clínico de salud.", pt: "Emitido pela autoridade veterinária do governo do país exportador dentro de 7 dias antes da exportação; atesta que o país está livre de raiva (6 meses), as vacinas e a saúde clínica." }
+    exceptions: { en: "From the US/Canada the Malaysia veterinary certificate must be endorsed by USDA/CFIA.", fr: "Depuis les USA/Canada, le certificat vétérinaire Malaisie doit être visé par l'USDA/CFIA.", es: "Desde EE. UU./Canadá, el certificado veterinario de Malasia debe ser refrendado por el USDA/CFIA.", pt: "Vindo dos EUA/Canadá, o certificado veterinário para a Malásia precisa ser endossado pelo USDA/CFIA." }
+    ref: { en: "DVS Importation Regulations, clause 3", fr: "Règlement d'importation DVS, clause 3", es: "Reglamento de importación del DVS, cláusula 3", pt: "DVS Importation Regulations, cláusula 3" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "≥3 months", fr: "≥3 mois", es: "≥3 meses", pt: "≥3 meses" }
+    when: { en: "The dog must be over 3 months old at the time of import.", fr: "Le chien doit avoir plus de 3 mois au moment de l'importation.", es: "El perro debe tener más de 3 meses en el momento de la importación.", pt: "O cachorro precisa ter mais de 3 meses de idade no momento da importação." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "DVS — Procedure to import dogs and cats", fr: "DVS — Procédure d'importation des chiens et chats", es: "DVS — Procedimiento de importación de perros y gatos", pt: "DVS — procedimento para importar cães e gatos" }
+  - item: { en: "Prohibited breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    required: { en: "Import banned", fr: "Importation interdite", es: "Importación prohibida", pt: "Importação proibida" }
+    when: { en: "Pit Bull (incl. American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Bull Terrier), Akita, American Bulldog, Dogo Argentino, Fila Braziliero, Japanese Tosa and Neapolitan Mastiff cannot be imported.", fr: "Pit Bull (dont American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Bull Terrier), Akita, American Bulldog, Dogo Argentino, Fila Braziliero, Tosa japonais et Mâtin napolitain ne peuvent être importés.", es: "El Pit Bull (incl. American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Bull Terrier), Akita, American Bulldog, Dogo Argentino, Fila Braziliero, Tosa Japonés y Mastín Napolitano no pueden importarse.", pt: "Pit Bull (incluindo American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Bull Terrier), Akita, American Bulldog, Dogo Argentino, Fila Brasileiro, Tosa Japonês e Mastim Napolitano não podem ser importados." }
+    exceptions: { en: "Crosses of these breeds are also refused.", fr: "Les croisements de ces races sont aussi refusés.", es: "Los cruces de estas razas también se rechazan.", pt: "Cruzamentos dessas raças também são recusados." }
+    ref: { en: "DVS Importation Regulations, clause 5.2", fr: "Règlement d'importation DVS, clause 5.2", es: "Reglamento de importación del DVS, cláusula 5.2", pt: "DVS Importation Regulations, cláusula 5.2" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "Prior written approval", fr: "Accord écrit préalable", es: "Aprobación previa por escrito", pt: "Aprovação prévia por escrito" }
+    when: { en: "Bull Mastiff, Bull Terrier, Doberman, German Shepherd/Alsatian (incl. Belgian & East European Shepherd), Perro de Presa Canario and Rottweiler need written MAQIS approval before the permit.", fr: "Bull Mastiff, Bull Terrier, Doberman, Berger allemand/Alsatian (dont Berger belge et est-européen), Perro de Presa Canario et Rottweiler exigent un accord écrit du MAQIS avant le permis.", es: "El Bull Mastiff, Bull Terrier, Doberman, Pastor Alemán/Alsaciano (incl. Pastor Belga y de Europa del Este), Perro de Presa Canario y Rottweiler necesitan la aprobación por escrito de MAQIS antes del permiso.", pt: "Bull Mastiff, Bull Terrier, Doberman, Pastor Alemão/Alsaciano (incluindo Pastor Belga e Pastor da Europa Oriental), Perro de Presa Canario e Rottweiler precisam de aprovação por escrito do MAQIS antes da autorização." }
+    exceptions: { en: "Requires a pedigree certificate, ISO microchip, premises inspection and owner declarations.", fr: "Exige un certificat de pedigree, une puce ISO, une inspection des lieux et des déclarations du propriétaire.", es: "Exige un certificado de pedigrí, un microchip ISO, una inspección del recinto y declaraciones del propietario.", pt: "Exige um certificado de pedigree, microchip ISO, inspeção do local de residência e declarações do dono." }
+    ref: { en: "DVS Importation Regulations, clauses 5.1 & 6", fr: "Règlement d'importation DVS, clauses 5.1 et 6", es: "Reglamento de importación del DVS, cláusulas 5.1 y 6", pt: "DVS Importation Regulations, cláusulas 5.1 e 6" }
+  - item: { en: "Border check", fr: "Contrôle frontalier", es: "Control fronterizo", pt: "Controle de fronteira" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog is flown directly to a prescribed landing place/approved airport and inspected by MAQIS/DVS on arrival.", fr: "Le chien est acheminé directement vers un lieu de débarquement prescrit/aéroport agréé et inspecté par le MAQIS/DVS à l'arrivée.", es: "El perro se transporta directamente en avión a un lugar de desembarque prescrito/aeropuerto autorizado y es inspeccionado por MAQIS/DVS a la llegada.", pt: "O cachorro é levado de avião diretamente a um local de desembarque prescrito/aeroporto aprovado e é inspecionado pelo MAQIS/DVS na chegada." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "DVS Importation Regulations, clause 4", fr: "Règlement d'importation DVS, clause 4", es: "Reglamento de importación del DVS, cláusula 4", pt: "DVS Importation Regulations, cláusula 4" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Often required", fr: "Souvent requise", es: "A menudo obligatoria", pt: "Frequentemente obrigatória" }
+    when: { en: "On arrival the dog may be quarantined for a compulsory period of not less than 7 days; can be extended up to 6 months based on risk assessment.", fr: "À l'arrivée, le chien peut être mis en quarantaine pour une période obligatoire d'au moins 7 jours ; prolongeable jusqu'à 6 mois selon l'évaluation du risque.", es: "A la llegada, el perro puede ser puesto en cuarentena por un periodo obligatorio no inferior a 7 días; puede prolongarse hasta 6 meses según la evaluación del riesgo.", pt: "Na chegada, o cachorro pode ser colocado em quarentena por um período obrigatório de no mínimo 7 dias; pode ser estendida até 6 meses com base na avaliação de risco." }
+    exceptions: { en: "A dog from a scheduled rabies-free country meeting all conditions may enter without quarantine.", fr: "Un chien venant d'un pays répertorié indemne de rage et remplissant toutes les conditions peut entrer sans quarantaine.", es: "Un perro procedente de un país listado libre de rabia que cumpla todas las condiciones puede entrar sin cuarentena.", pt: "Um cachorro vindo de um país programado livre de raiva que cumpra todas as condições pode entrar sem quarentena." }
+    ref: { en: "animalpassport.dvs.gov.my; DVS scheduled-country regulations", fr: "animalpassport.dvs.gov.my ; règlement DVS pays répertoriés", es: "animalpassport.dvs.gov.my; reglamento del DVS sobre países listados", pt: "animalpassport.dvs.gov.my; regulamentação do DVS para países programados" }
+
+origin:
+  eu:
+    title: { en: "Scheduled rabies-free countries — no quarantine", fr: "Pays répertoriés indemnes de rage — sans quarantaine", es: "Países listados libres de rabia — sin cuarentena", pt: "Países programados livres de raiva — sem quarentena" }
+    body:
+      en: "From a scheduled rabies-free country (United Kingdom, Eire, Northern Ireland, New Zealand, Japan, Sweden, Brunei, Singapore and Australia), a healthy dog with a MAQIS import permit, ISO microchip, valid rabies vaccination and a government veterinary health certificate can generally enter without quarantine. Singapore requires an import licence and a six-month residence declaration."
+      fr: "Depuis un pays répertorié indemne de rage (Royaume-Uni, Eire, Irlande du Nord, Nouvelle-Zélande, Japon, Suède, Brunei, Singapour et Australie), un chien en bonne santé muni d'un permis MAQIS, d'une puce ISO, d'une vaccination antirabique valide et d'un certificat sanitaire officiel peut généralement entrer sans quarantaine. Singapour exige une licence d'importation et une déclaration de résidence de six mois."
+      es: "Desde un país listado libre de rabia (Reino Unido, Eire, Irlanda del Norte, Nueva Zelanda, Japón, Suecia, Brunéi, Singapur y Australia), un perro sano con un permiso de importación de MAQIS, un microchip ISO, una vacunación antirrábica válida y un certificado sanitario veterinario oficial puede entrar por lo general sin cuarentena. Singapur exige una licencia de importación y una declaración de residencia de seis meses."
+      pt: "Vindo de um país programado livre de raiva (Reino Unido, Eire, Irlanda do Norte, Nova Zelândia, Japão, Suécia, Brunei, Singapura e Austrália), um cachorro saudável com autorização de importação do MAQIS, microchip ISO, vacinação antirrábica válida e atestado de saúde veterinário do governo geralmente pode entrar sem quarentena. Singapura exige uma licença de importação e uma declaração de residência de seis meses."
+    cls: ok
+  listed:
+    title: { en: "Other permitted countries — permit + short quarantine", fr: "Autres pays autorisés — permis + quarantaine courte", es: "Otros países autorizados — permiso + cuarentena corta", pt: "Outros países permitidos — autorização + quarentena curta" }
+    body:
+      en: "From other permitted countries, your dog needs a MAQIS import permit, an ISO microchip, a valid rabies vaccination and a government veterinary health certificate issued within 7 days of export (endorsed by USDA/CFIA from the US/Canada). Expect a compulsory quarantine of at least 7 days at an approved station on arrival."
+      fr: "Depuis les autres pays autorisés, ton chien a besoin d'un permis MAQIS, d'une puce ISO, d'une vaccination antirabique valide et d'un certificat sanitaire officiel établi dans les 7 jours avant l'export (visé par l'USDA/CFIA depuis les USA/Canada). Prévois une quarantaine obligatoire d'au moins 7 jours dans une station agréée à l'arrivée."
+      es: "Desde otros países autorizados, tu perro necesita un permiso de importación de MAQIS, un microchip ISO, una vacunación antirrábica válida y un certificado sanitario veterinario oficial expedido dentro de los 7 días previos a la exportación (refrendado por el USDA/CFIA desde EE. UU./Canadá). Cuenta con una cuarentena obligatoria de al menos 7 días en una estación autorizada a la llegada."
+      pt: "Vindo de outros países permitidos, o seu cachorro precisa de uma autorização de importação do MAQIS, um microchip ISO, uma vacinação antirrábica válida e um atestado de saúde veterinário do governo emitido dentro de 7 dias antes da exportação (endossado pelo USDA/CFIA quando vindo dos EUA/Canadá). Espere uma quarentena obrigatória de pelo menos 7 dias em uma estação aprovada na chegada."
+    cls: warn
+  nonListed:
+    title: { en: "Rabies-risk countries — antibody test + extended quarantine", fr: "Pays à risque rabique — titrage + quarantaine prolongée", es: "Países con riesgo de rabia — prueba de titulación + cuarentena prolongada", pt: "Países de risco de raiva — teste sorológico + quarentena estendida" }
+    body:
+      en: "From a rabies-risk country, add a rabies antibody test (result ≥0.5 IU/ml from an approved laboratory) and rabies vaccination at least 30 days before entry. Quarantine on arrival can be extended well beyond the 7-day minimum, up to 6 months, based on a case-by-case risk assessment. Confirm the exact conditions with DVS/MAQIS before you travel."
+      fr: "Depuis un pays à risque rabique, ajoute un titrage antirabique (résultat ≥0,5 UI/ml dans un laboratoire agréé) et une vaccination antirabique au moins 30 jours avant l'entrée. La quarantaine à l'arrivée peut être prolongée bien au-delà du minimum de 7 jours, jusqu'à 6 mois, selon une évaluation du risque au cas par cas. Confirme les conditions exactes auprès du DVS/MAQIS avant de voyager."
+      es: "Desde un país con riesgo de rabia, añade una prueba de titulación de rabia (resultado ≥0,5 UI/ml de un laboratorio autorizado) y una vacunación antirrábica al menos 30 días antes de la entrada. La cuarentena a la llegada puede prolongarse mucho más allá del mínimo de 7 días, hasta 6 meses, según una evaluación del riesgo caso por caso. Confirma las condiciones exactas con el DVS/MAQIS antes de viajar."
+      pt: "Vindo de um país de risco de raiva, acrescente um teste sorológico antirrábico (resultado ≥0,5 UI/ml de um laboratório aprovado) e vacinação antirrábica aplicada pelo menos 30 dias antes da entrada. A quarentena na chegada pode ser estendida bem além do mínimo de 7 dias, até 6 meses, com base em uma avaliação de risco caso a caso. Confirme as condições exatas com o DVS/MAQIS antes de viajar."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Malaysia depends on where you flew from and on the import permit conditions."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Malaisie dépend de ton lieu de départ et des conditions du permis d'importation."
+    es: "Lo que ocurre cuando tu perro llega a Malasia depende del lugar desde el que hayas volado y de las condiciones del permiso de importación."
+    pt: "O que acontece quando o seu cachorro chega à Malásia depende de onde você partiu e das condições da autorização de importação."
+  points:
+    - en: "The dog must be flown directly to a prescribed landing place or approved airport designated by DVS/MAQIS."
+      fr: "Le chien doit être acheminé directement vers un lieu de débarquement prescrit ou un aéroport agréé désigné par le DVS/MAQIS."
+      es: "El perro debe transportarse directamente en avión a un lugar de desembarque prescrito o aeropuerto autorizado designado por el DVS/MAQIS."
+      pt: "O cachorro precisa ser levado de avião diretamente a um local de desembarque prescrito ou aeroporto aprovado designado pelo DVS/MAQIS."
+    - en: "MAQIS officers check the import permit, microchip, rabies vaccination and the government veterinary health certificate on arrival."
+      fr: "Les agents du MAQIS vérifient à l'arrivée le permis d'importation, la puce, la vaccination antirabique et le certificat sanitaire officiel."
+      es: "Los agentes de MAQIS comprueban a la llegada el permiso de importación, el microchip, la vacunación antirrábica y el certificado sanitario veterinario oficial."
+      pt: "Os agentes do MAQIS conferem a autorização de importação, o microchip, a vacinação antirrábica e o atestado de saúde veterinário do governo na chegada."
+    - en: "Dogs that require quarantine are detained at an approved animal quarantine station for a compulsory period of not less than 7 days."
+      fr: "Les chiens soumis à quarantaine sont retenus dans une station de quarantaine agréée pour une période obligatoire d'au moins 7 jours."
+      es: "Los perros que requieren cuarentena quedan retenidos en una estación de cuarentena animal autorizada por un periodo obligatorio no inferior a 7 días."
+      pt: "Os cachorros que precisam de quarentena ficam retidos em uma estação de quarentena animal aprovada por um período obrigatório de no mínimo 7 dias."
+    - en: "Since 2024, import permit applications are filed online, in practice through a MAQIS-registered agent rather than by the owner directly."
+      fr: "Depuis 2024, les demandes de permis se font en ligne, en pratique via un agent enregistré auprès du MAQIS plutôt que par le propriétaire directement."
+      es: "Desde 2024, las solicitudes de permiso de importación se presentan en línea, en la práctica a través de un agente registrado en MAQIS y no directamente por el propietario."
+      pt: "Desde 2024, os pedidos de autorização de importação são feitos on-line, na prática por um agente registrado no MAQIS, e não diretamente pelo dono."
+    - en: "If documents are missing or invalid, the dog may be refused entry, returned, quarantined at the owner's expense or, as a last resort, put down."
+      fr: "Si les documents manquent ou sont invalides, le chien peut être refusé, réexpédié, mis en quarantaine aux frais du propriétaire ou, en dernier recours, euthanasié."
+      es: "Si faltan documentos o no son válidos, se puede denegar la entrada al perro, devolverlo, ponerlo en cuarentena a cargo del propietario o, como último recurso, sacrificarlo."
+      pt: "Se a documentação estiver ausente ou inválida, o cachorro pode ter a entrada recusada, ser devolvido, colocado em quarentena às custas do dono ou, em último caso, sacrificado."
+    - en: "Banned breeds are refused entry; restricted breeds are refused unless prior written MAQIS approval was obtained."
+      fr: "Les races interdites sont refusées ; les races restreintes sont refusées sauf accord écrit préalable du MAQIS."
+      es: "A las razas prohibidas se les deniega la entrada; a las razas restringidas se les deniega salvo que se haya obtenido la aprobación previa por escrito de MAQIS."
+      pt: "As raças proibidas têm a entrada recusada; as raças restritas são recusadas, a menos que a aprovação prévia por escrito do MAQIS tenha sido obtida."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Malaysia's Department of Veterinary Services classifies certain dog breeds as banned (import prohibited) or restricted (import only with prior written approval). Classification follows the breed and its crosses, not an individual assessment."
+    fr: "Le Département vétérinaire malaisien classe certaines races de chiens comme interdites (importation prohibée) ou restreintes (importation seulement avec accord écrit préalable). Le classement suit la race et ses croisements, pas une évaluation individuelle."
+    es: "El Departamento de Servicios Veterinarios de Malasia clasifica ciertas razas de perro como prohibidas (importación prohibida) o restringidas (importación solo con aprobación previa por escrito). La clasificación sigue la raza y sus cruces, no una evaluación individual."
+    pt: "O Department of Veterinary Services da Malásia classifica certas raças de cachorro como banidas (importação proibida) ou restritas (importação apenas com aprovação prévia por escrito). A classificação segue a raça e seus cruzamentos, não uma avaliação individual."
+  cat1:
+    en: "Banned (import prohibited): Pit Bull Terrier / Pit Bull — including American Pit Bull, American Pit Bull Terrier, American Staffordshire Terrier and Staffordshire Bull Terrier — Akita, American Bulldog, Dogo Argentino, Fila Braziliero (Brazilian Fila), Japanese Tosa and Neapolitan Mastiff, and their crosses. These dogs cannot be imported into Malaysia."
+    fr: "Interdites (importation prohibée) : Pit Bull Terrier / Pit Bull — dont American Pit Bull, American Pit Bull Terrier, American Staffordshire Terrier et Staffordshire Bull Terrier — Akita, American Bulldog, Dogo Argentino, Fila Braziliero (Fila de Sao Miguel), Tosa japonais et Mâtin napolitain, ainsi que leurs croisements. Ces chiens ne peuvent pas être importés en Malaisie."
+    es: "Prohibidas (importación prohibida): Pit Bull Terrier / Pit Bull — incluidos American Pit Bull, American Pit Bull Terrier, American Staffordshire Terrier y Staffordshire Bull Terrier — Akita, American Bulldog, Dogo Argentino, Fila Braziliero (Fila Brasileño), Tosa Japonés y Mastín Napolitano, y sus cruces. Estos perros no pueden importarse a Malasia."
+    pt: "Banidas (importação proibida): Pit Bull Terrier / Pit Bull — incluindo American Pit Bull, American Pit Bull Terrier, American Staffordshire Terrier e Staffordshire Bull Terrier —, Akita, American Bulldog, Dogo Argentino, Fila Brasileiro, Tosa Japonês e Mastim Napolitano, e seus cruzamentos. Esses cachorros não podem ser importados para a Malásia."
+  cat2:
+    en: "Restricted (prior written MAQIS approval required): Bull Mastiff, Bull Terrier, Doberman, German Shepherd/Alsatian (including Belgian Shepherd and East European Shepherd), Perro de Presa Canario (Canary Dog) and Rottweiler. Approval requires a pedigree certificate, an ISO microchip, a premises inspection and owner declarations (secured, leashed and muzzled in public)."
+    fr: "Restreintes (accord écrit préalable du MAQIS requis) : Bull Mastiff, Bull Terrier, Doberman, Berger allemand/Alsatian (y compris Berger belge et Berger est-européen), Perro de Presa Canario (chien des Canaries) et Rottweiler. L'accord exige un certificat de pedigree, une puce ISO, une inspection des lieux et des déclarations du propriétaire (chien sécurisé, tenu en laisse et muselé en public)."
+    es: "Restringidas (se requiere aprobación previa por escrito de MAQIS): Bull Mastiff, Bull Terrier, Doberman, Pastor Alemán/Alsaciano (incluidos Pastor Belga y Pastor de Europa del Este), Perro de Presa Canario y Rottweiler. La aprobación exige un certificado de pedigrí, un microchip ISO, una inspección del recinto y declaraciones del propietario (perro asegurado, con correa y bozal en público)."
+    pt: "Restritas (exige aprovação prévia por escrito do MAQIS): Bull Mastiff, Bull Terrier, Doberman, Pastor Alemão/Alsaciano (incluindo Pastor Belga e Pastor da Europa Oriental), Perro de Presa Canario (Cão das Canárias) e Rottweiler. A aprovação exige um certificado de pedigree, um microchip ISO, uma inspeção do local de residência e declarações do dono (contido, na guia e com focinheira em público)."
+  note:
+    en: "Owning a dog in Malaysia also requires a local dog licence from your municipal council. Confirm the current banned/restricted lists with MAQIS before purchasing tickets, as they may be updated."
+    fr: "Détenir un chien en Malaisie exige aussi une licence locale délivrée par ton conseil municipal. Confirme les listes interdites/restreintes à jour auprès du MAQIS avant d'acheter tes billets, car elles peuvent être modifiées."
+    es: "Tener un perro en Malasia también requiere una licencia canina local de tu ayuntamiento. Confirma las listas de razas prohibidas/restringidas vigentes con MAQIS antes de comprar los billetes, ya que pueden actualizarse."
+    pt: "Ter um cachorro na Malásia também exige uma licença local emitida pela sua prefeitura. Confirme as listas atuais de raças banidas/restritas com o MAQIS antes de comprar as passagens, pois elas podem ser atualizadas."
+
+checklist:
+  - en: "MAQIS import permit obtained before departure (via DVS e-Permit / registered agent)"
+    fr: "Permis d'importation MAQIS obtenu avant le départ (via e-Permit DVS / agent enregistré)"
+    es: "Permiso de importación de MAQIS obtenido antes de la salida (a través del e-Permit del DVS / agente registrado)"
+    pt: "Autorização de importação do MAQIS obtida antes da partida (pelo e-Permit do DVS / agente registrado)"
+  - en: "ISO 11784/11785 microchip implanted and recorded on the certificate"
+    fr: "Puce ISO 11784/11785 posée et consignée sur le certificat"
+    es: "Microchip ISO 11784/11785 implantado y registrado en el certificado"
+    pt: "Microchip ISO 11784/11785 implantado e registrado no certificado"
+  - en: "Valid rabies vaccination (and ≥30 days before entry from rabies-risk countries)"
+    fr: "Vaccination antirabique valide (et ≥30 jours avant l'entrée depuis les pays à risque rabique)"
+    es: "Vacunación antirrábica válida (y ≥30 días antes de la entrada desde países con riesgo de rabia)"
+    pt: "Vacinação antirrábica válida (e ≥30 dias antes da entrada quando vinda de países de risco de raiva)"
+  - en: "Rabies antibody test ≥0.5 IU/ml — rabies-risk origins only"
+    fr: "Titrage antirabique ≥0,5 UI/ml — origines à risque rabique uniquement"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml — solo orígenes con riesgo de rabia"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml — apenas origens de risco de raiva"
+  - en: "Government veterinary health certificate issued within 7 days of export"
+    fr: "Certificat sanitaire vétérinaire officiel établi dans les 7 jours avant l'export"
+    es: "Certificado sanitario veterinario oficial expedido dentro de los 7 días previos a la exportación"
+    pt: "Atestado de saúde veterinário do governo emitido dentro de 7 dias antes da exportação"
+  - en: "Confirm your dog is not a banned breed and, if restricted, that approval was granted"
+    fr: "Vérifie que ton chien n'est pas une race interdite et, si restreinte, que l'accord a été obtenu"
+    es: "Confirma que tu perro no es de una raza prohibida y, si es restringida, que se concedió la aprobación"
+    pt: "Confirme que o seu cachorro não é de uma raça banida e, se for restrita, que a aprovação foi concedida"
+  - en: "Direct flight to an approved landing place; plan for possible quarantine (min. 7 days)"
+    fr: "Vol direct vers un lieu de débarquement agréé ; prévois une quarantaine possible (min. 7 jours)"
+    es: "Vuelo directo a un lugar de desembarque autorizado; prevé una posible cuarentena (mín. 7 días)"
+    pt: "Voo direto para um local de desembarque aprovado; planeje uma possível quarentena (mín. 7 dias)"
+  - en: "Suitable IATA crate if travelling in the hold, and original documents"
+    fr: "Caisse IATA adaptée si voyage en soute, et documents originaux"
+    es: "Jaula IATA adecuada si viaja en bodega, y documentos originales"
+    pt: "Caixa de transporte adequada, em conformidade com a IATA, se viajar no porão, e documentos originais"
+
+sources:
+  - label: { en: "DVS Malaysia — Procedure to import dogs and cats into Malaysia", fr: "DVS Malaisie — Procédure d'importation des chiens et chats en Malaisie", es: "DVS Malasia — Procedimiento de importación de perros y gatos a Malasia", pt: "DVS Malásia — procedimento para importar cães e gatos para a Malásia" }
+    url: "https://www.dvs.gov.my/dvs/resources/auto%20download%20images/56499641c998c.pdf"
+  - label: { en: "DVS Malaysia — Regulations for the importation of dogs and cats (scheduled countries)", fr: "DVS Malaisie — Règlement d'importation des chiens et chats (pays répertoriés)", es: "DVS Malasia — Reglamento para la importación de perros y gatos (países listados)", pt: "DVS Malásia — regulamentação para a importação de cães e gatos (países programados)" }
+    url: "https://www.dvs.gov.my/dvs/resources/user_1/DVS%20pdf/SQIE/2017/(R2)-CatsNdogs-SCHEDULED_COUNTRIES-revised131213.pdf"
+  - label: { en: "DVS Malaysia — Animal Passport portal: pet immigration rules & quarantine", fr: "DVS Malaisie — Portail Animal Passport : règles d'importation et quarantaine", es: "DVS Malasia — Portal Animal Passport: normas de importación de mascotas y cuarentena", pt: "DVS Malásia — portal Animal Passport: regras de imigração e quarentena para animais de estimação" }
+    url: "https://animalpassport.dvs.gov.my/portal-main/article-content?id=547a0544-1743-11ef-ba49-fa163eda1aa9"
+  - label: { en: "DVS Malaysia — Import/Export permit system (e-Permit)", fr: "DVS Malaisie — Système de permis import/export (e-Permit)", es: "DVS Malasia — Sistema de permisos de importación/exportación (e-Permit)", pt: "DVS Malásia — sistema de autorização de importação/exportação (e-Permit)" }
+    url: "https://www.dvs.gov.my/index.php/pages/view/781"
+  - label: { en: "MAQIS — Malaysian Quarantine and Inspection Services Department", fr: "MAQIS — Département malaisien de quarantaine et d'inspection", es: "MAQIS — Departamento de Servicios de Cuarentena e Inspección de Malasia", pt: "MAQIS — Malaysian Quarantine and Inspection Services Department" }
+    url: "https://www.maqis.gov.my/"
+
+seo:
+  title: { en: "Malaysia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Malaisie — Guide", es: "Requisitos de entrada de perros en Malasia — Guía de viaje", pt: "Entrada de cachorro na Malásia — guia de viagem" }
+  metaTitle: { en: "Traveling to Malaysia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Malaisie avec ton chien : formalités (2026)", es: "Viajar a Malasia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Malásia com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official MAQIS permit, microchip, rabies and antibody-test rules for bringing a dog into Malaysia, plus quarantine and banned breeds. Sourced and dated."
+    fr: "Règles officielles permis MAQIS, puce, rage et titrage pour faire entrer un chien en Malaisie, plus quarantaine et races interdites. Sourcé et daté."
+    es: "Normas oficiales de permiso MAQIS, microchip, rabia y prueba de titulación para traer un perro a Malasia, más cuarentena y razas prohibidas. Con fuentes y fecha."
+    pt: "Regras oficiais do MAQIS de autorização, microchip, raiva e teste sorológico para levar um cachorro à Malásia, além de quarentena e raças banidas. Com fontes e data."
+  slug: "malaysia"
+  shortDesc:
+    en: "What you need to bring a dog into Malaysia: MAQIS permit, microchip, rabies, quarantine and breed rules."
+    fr: "Ce qu'il faut pour faire entrer un chien en Malaisie : permis MAQIS, puce, rage, quarantaine et races."
+    es: "Lo que necesitas para traer un perro a Malasia: permiso MAQIS, microchip, rabia, cuarentena y normas por raza."
+    pt: "O que você precisa para levar um cachorro à Malásia: autorização do MAQIS, microchip, raiva, quarentena e regras de raça."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

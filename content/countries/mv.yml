@@ -1,0 +1,342 @@
+# Country Entry Guide — Maldives (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# IMPORTANT: The Maldives PROHIBITS the importation of dogs. This is stated explicitly on the
+# official Maldives Customs "Prohibited & Restricted Items for import" pages (both the personal-use
+# and the importers versions): "Note: the import of dogs and dangerous animals are strictly
+# prohibited." Import of most other pets is allowed only with a veterinary health certificate, but
+# dogs are banned outright. No official service-dog / guide-dog / assistance-dog exception is
+# published by Maldives Customs — that exception status is therefore left as Unknown, not invented.
+# There is no legal import procedure for a dog, so the requirements/origin/arrival blocks describe
+# the prohibition honestly rather than a (non-existent) admission process.
+id: country_mv
+iso2: "MV"
+name: { en: "Maldives", fr: "Maldives", es: "Maldivas", pt: "Maldivas" }
+region: { en: "South Asia", fr: "Asie du Sud", es: "Asia del Sur", pt: "Ásia do Sul" }
+
+
+regime: non_listed
+
+hero:
+  h1: { en: "Traveling to the Maldives with your dog", fr: "Voyager aux Maldives avec ton chien", es: "Viajar a las Maldivas con tu perro", pt: "Viajar para as Maldivas com seu cachorro" }
+  intro:
+    en: >-
+      The Maldives does not allow you to bring a pet dog into the country. The official Maldives Customs
+      list of prohibited and restricted items for import states plainly that, while other animals may be
+      imported with a veterinary health certificate confirming they are free of infectious or contagious
+      disease, "the import of dogs and dangerous animals are strictly prohibited." There is no published
+      admission procedure, quarantine route or permit that would let a dog enter — the ban applies
+      regardless of the dog's breed, country of origin, vaccination status or travel history, and it
+      applies to residents and visitors alike. Maldives Customs does not publish any exception for
+      service, guide or assistance dogs, so you should not assume one exists. This page exists to give
+      you an honest, sourced answer: a dog cannot be imported into the Maldives, and you will need to
+      make separate arrangements for your dog before you travel.
+    fr: >-
+      Les Maldives n'autorisent pas l'entrée d'un chien de compagnie sur leur territoire. La liste
+      officielle des articles interdits et réglementés à l'importation des douanes maldiviennes indique
+      clairement que, si d'autres animaux peuvent être importés avec un certificat sanitaire vétérinaire
+      attestant l'absence de maladie infectieuse ou contagieuse, « l'importation de chiens et d'animaux
+      dangereux est strictement interdite ». Aucune procédure d'admission, voie de quarantaine ou permis
+      publié ne permet à un chien d'entrer — l'interdiction s'applique quels que soient la race, le pays
+      d'origine, le statut vaccinal ou l'historique de voyage du chien, et vaut autant pour les résidents
+      que pour les visiteurs. Les douanes maldiviennes ne publient aucune exception pour les chiens
+      d'assistance, guides ou de service : ne présume donc pas qu'il en existe une. Cette page tu donne
+      une réponse honnête et sourcée : un chien ne peut pas être importé aux Maldives, et tu devras
+      prévoir une autre solution pour ton chien avant de voyager.
+    es: >-
+      Las Maldivas no te permiten introducir un perro de compañía en el país. La lista oficial de artículos
+      prohibidos y restringidos a la importación de la Aduana de las Maldivas indica claramente que, si bien
+      otros animales pueden importarse con un certificado sanitario veterinario que acredite que están
+      libres de enfermedad infecciosa o contagiosa, «la importación de perros y animales peligrosos está
+      estrictamente prohibida». No existe ningún procedimiento de admisión, vía de cuarentena ni permiso
+      publicado que permita entrar a un perro — la prohibición se aplica sea cual sea la raza, el país de
+      origen, el estatus de vacunación o el historial de viajes del perro, y se aplica por igual a
+      residentes y visitantes. La Aduana de las Maldivas no publica ninguna excepción para perros de
+      servicio, guía o de asistencia, así que no debes suponer que exista una. Esta página existe para
+      darte una respuesta honesta y con fuentes: un perro no puede importarse a las Maldivas, y tendrás que
+      buscar una solución aparte para tu perro antes de viajar.
+
+    pt: "As Maldivas não permitem que você leve um cachorro de estimação para o país. A lista oficial da Maldives Customs de itens proibidos e restritos para importação declara claramente que, embora outros animais possam ser importados com um atestado de saúde veterinário que confirme que estão livres de doenças infecciosas ou contagiosas, \"a importação de cachorros e animais perigosos é estritamente proibida\". Não existe procedimento de admissão, rota de quarentena ou autorização publicados que permitam a entrada de um cachorro — a proibição se aplica independentemente da raça do cachorro, do país de origem, da situação vacinal ou do histórico de viagens, e vale tanto para residentes quanto para visitantes. A Maldives Customs não publica nenhuma exceção para cães de serviço, de guia ou de assistência, então você não deve presumir que exista uma. Esta página existe para dar a você uma resposta honesta e fundamentada em fontes: um cachorro não pode ser importado para as Maldivas, e você precisará fazer providências separadas para o seu cachorro antes de viajar."
+difficulty:
+  level: difficult
+  label: { en: "Prohibited — dogs cannot be imported into the Maldives", fr: "Interdit — les chiens ne peuvent pas être importés aux Maldives", es: "Prohibido — los perros no pueden importarse a las Maldivas", pt: "Proibido — cachorros não podem ser importados para as Maldivas" }
+
+prepTime:
+  eu:
+    en: "Not applicable — there is no legal path to import a dog into the Maldives, so no preparation time will make entry possible. Plan instead for your dog to stay elsewhere."
+    fr: "Sans objet — il n'existe aucune voie légale pour importer un chien aux Maldives ; aucun délai de préparation ne rendra l'entrée possible. Prévois plutôt une solution de garde ailleurs pour ton chien."
+    es: "No aplica — no existe ninguna vía legal para importar un perro a las Maldivas, por lo que ningún tiempo de preparación hará posible la entrada. En su lugar, prevé que tu perro se quede en otro lugar."
+    pt: "Não aplicável — não existe um caminho legal para importar um cachorro para as Maldivas, portanto nenhum tempo de preparação tornará a entrada possível. Planeje, em vez disso, que o seu cachorro fique em outro lugar."
+  listed:
+    en: "Not applicable — the prohibition applies to dogs from every country, whatever their vaccination or travel history."
+    fr: "Sans objet — l'interdiction s'applique aux chiens de tous les pays, quel que soit leur statut vaccinal ou leur historique de voyage."
+    es: "No aplica — la prohibición se aplica a los perros de todos los países, sea cual sea su estatus de vacunación o su historial de viajes."
+    pt: "Não aplicável — a proibição se aplica a cachorros de qualquer país, qualquer que seja o histórico de vacinação ou de viagens."
+  nonListed:
+    en: "Not applicable — no permit, quarantine or waiting period is published because dogs are banned outright."
+    fr: "Sans objet — aucun permis, quarantaine ni délai d'attente n'est publié, l'importation de chiens étant purement et simplement interdite."
+    es: "No aplica — no se publica ningún permiso, cuarentena ni período de espera porque los perros están totalmente prohibidos."
+    pt: "Não aplicável — nenhuma autorização, quarentena ou período de espera é publicado, porque os cachorros são banidos por completo."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "No — import strictly prohibited", fr: "Non — importation strictement interdite", es: "No — importación estrictamente prohibida", pt: "Não — importação estritamente proibida" }
+    cls: no
+  - requirement: { en: "Import permit for a dog", fr: "Permis d'importation pour un chien", es: "Permiso de importación para un perro", pt: "Autorização de importação para um cachorro" }
+    status: { en: "Not available (dogs banned)", fr: "Indisponible (chiens interdits)", es: "No disponible (perros prohibidos)", pt: "Não disponível (cachorros banidos)" }
+    cls: no
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not applicable — dogs cannot enter", fr: "Sans objet — les chiens ne peuvent pas entrer", es: "No aplica — los perros no pueden entrar", pt: "Não aplicável — cachorros não podem entrar" }
+    cls: no
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Not applicable — dogs cannot enter", fr: "Sans objet — les chiens ne peuvent pas entrer", es: "No aplica — los perros no pueden entrar", pt: "Não aplicável — cachorros não podem entrar" }
+    cls: no
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not applicable — dogs cannot enter", fr: "Sans objet — les chiens ne peuvent pas entrer", es: "No aplica — los perros no pueden entrar", pt: "Não aplicável — cachorros não podem entrar" }
+    cls: no
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required for permitted animals, but does not lift the dog ban", fr: "Exigé pour les animaux autorisés, mais ne lève pas l'interdiction des chiens", es: "Obligatorio para los animales autorizados, pero no levanta la prohibición de perros", pt: "Obrigatório para animais permitidos, mas não suspende a proibição para cachorros" }
+    cls: no
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "No quarantine route exists for dogs", fr: "Aucune voie de quarantaine n'existe pour les chiens", es: "No existe ninguna vía de cuarentena para los perros", pt: "Não existe rota de quarentena para cachorros" }
+    cls: no
+  - requirement: { en: "Service / assistance dog exception", fr: "Exception chien d'assistance / de service", es: "Excepción para perro de servicio / de asistencia", pt: "Exceção para cães de serviço / assistência" }
+    status: { en: "Unknown — none published by Maldives Customs", fr: "Non communiqué — aucune publiée par les douanes maldiviennes", es: "No comunicada — ninguna publicada por la Aduana de las Maldivas", pt: "Desconhecido — nenhuma publicada pela Maldives Customs" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "The Maldives officially prohibits the import of dogs; only Maldives Customs and the relevant Maldivian authorities can confirm your specific situation."
+    fr: "Les Maldives interdisent officiellement l'importation de chiens ; seules les douanes maldiviennes et les autorités maldiviennes compétentes peuvent confirmer ta situation particulière."
+    es: "Las Maldivas prohíben oficialmente la importación de perros; solo la Aduana de las Maldivas y las autoridades maldivas competentes pueden confirmar tu situación concreta."
+    pt: "As Maldivas proíbem oficialmente a importação de cachorros; só a Maldives Customs e as autoridades maldivas competentes podem confirmar a sua situação específica."
+  - en: "Because dogs are banned, there is no procedure to prepare — do not rely on microchip, vaccination or quarantine steps to gain entry for a dog."
+    fr: "Les chiens étant interdits, il n'y a aucune procédure à préparer — ne compte pas sur des étapes de puçage, vaccination ou quarantaine pour faire entrer un chien."
+    es: "Como los perros están prohibidos, no hay ningún procedimiento que preparar — no cuentes con pasos de microchip, vacunación o cuarentena para lograr la entrada de un perro."
+    pt: "Como os cachorros são banidos, não há procedimento a preparar — não conte com etapas de microchip, vacinação ou quarentena para conseguir a entrada de um cachorro."
+  - en: "If you believe a narrow exception (for example an assistance dog) might apply, contact Maldives Customs directly and in advance for a written decision — do not assume it is allowed."
+    fr: "Si tu pense qu'une exception étroite (par exemple un chien d'assistance) pourrait s'appliquer, contacte directement et à l'avance les douanes maldiviennes pour une décision écrite — ne présume pas que c'est autorisé."
+    es: "Si crees que podría aplicarse una excepción concreta (por ejemplo un perro de asistencia), contacta directamente y con antelación con la Aduana de las Maldivas para obtener una decisión por escrito — no supongas que está permitido."
+    pt: "Se você acredita que uma exceção pontual (por exemplo, um cão de assistência) possa se aplicar, entre em contato diretamente com a Maldives Customs, com antecedência, para obter uma decisão por escrito — não presuma que é permitido."
+  - en: "Requirements and prohibitions depend on: the destination (Maldives), the country of departure, your dog's identification, vaccinations, travel history, itinerary and date — but for the Maldives the destination rule alone (a ban) is decisive for dogs."
+    fr: "Les exigences et interdictions dépendent : de la destination (Maldives), du pays de départ, de l'identification du chien, des vaccinations, de l'historique de voyage, de l'itinéraire et de la date — mais pour les Maldives, la règle de destination à elle seule (une interdiction) est déterminante pour les chiens."
+    es: "Los requisitos y prohibiciones dependen de: el destino (Maldivas), el país de salida, la identificación de tu perro, las vacunas, el historial de viajes, el itinerario y la fecha — pero para las Maldivas la regla de destino por sí sola (una prohibición) es decisiva para los perros."
+    pt: "As exigências e proibições dependem: do destino (Maldivas), do país de partida, da identificação, das vacinas, do histórico de viagens, do itinerário e da data do seu cachorro — mas, no caso das Maldivas, a regra do destino sozinha (uma proibição) já é decisiva para cachorros."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "Why your dog cannot enter the Maldives", fr: "Pourquoi ton chien ne peut pas entrer aux Maldives", es: "Por qué tu perro no puede entrar en las Maldivas", pt: "Por que o seu cachorro não pode entrar nas Maldivas" }
+  intro:
+    en: "Entry requirements normally depend on three things, but for the Maldives the destination rule is an outright ban on dogs, so the other two factors cannot change the outcome."
+    fr: "Les formalités d'entrée dépendent normalement de trois éléments, mais pour les Maldives la règle de destination est une interdiction pure et simple des chiens, de sorte que les deux autres facteurs ne peuvent pas changer le résultat."
+    es: "Los requisitos de entrada dependen normalmente de tres factores, pero para las Maldivas la regla de destino es una prohibición total de perros, de modo que los otros dos factores no pueden cambiar el resultado."
+    pt: "As exigências de entrada normalmente dependem de três fatores, mas, no caso das Maldivas, a regra do destino é uma proibição total para cachorros, de modo que os outros dois fatores não conseguem mudar o resultado."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Maldives", fr: "Pays de destination — Maldives", es: "País de destino — Maldivas", pt: "País de destino — Maldivas" }
+      text:
+        en: "The Maldives is decisive: its official Customs prohibited-items list states that the import of dogs and dangerous animals is strictly prohibited. This ban overrides every other consideration, so no amount of documentation makes a dog admissible."
+        fr: "Les Maldives sont déterminantes : leur liste douanière officielle des articles interdits indique que l'importation de chiens et d'animaux dangereux est strictement interdite. Cette interdiction prime sur toute autre considération : aucun document ne rend un chien admissible."
+        es: "Las Maldivas son decisivas: su lista oficial de artículos prohibidos de la Aduana indica que la importación de perros y animales peligrosos está estrictamente prohibida. Esta prohibición prevalece sobre cualquier otra consideración, así que ninguna cantidad de documentación hace admisible a un perro."
+        pt: "As Maldivas são decisivas: a lista oficial de itens proibidos da alfândega declara que a importação de cachorros e animais perigosos é estritamente proibida. Essa proibição se sobrepõe a qualquer outra consideração, de modo que nenhuma quantidade de documentação torna um cachorro admissível."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Normally the departure country's veterinary authority endorses a health certificate. Here it makes no difference: the certificate that lets other animals in does not lift the ban on dogs, and no exporting country is exempt from it."
+        fr: "Normalement, l'autorité vétérinaire du pays de départ vise un certificat sanitaire. Ici, cela ne change rien : le certificat qui permet l'entrée d'autres animaux ne lève pas l'interdiction des chiens, et aucun pays d'export n'en est exempté."
+        es: "Normalmente la autoridad veterinaria del país de salida refrenda un certificado sanitario. Aquí no cambia nada: el certificado que permite la entrada de otros animales no levanta la prohibición de perros, y ningún país exportador está exento de ella."
+        pt: "Normalmente, a autoridade veterinária do país de partida endossa um atestado de saúde. Aqui isso não faz diferença: o certificado que permite a entrada de outros animais não suspende a proibição para cachorros, e nenhum país exportador está isento dela."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Travel history, rabies-free status or vaccination record would matter for a country that admits dogs. For the Maldives they are irrelevant to the import question, because the ban applies to all dogs regardless of origin or history."
+        fr: "L'historique de voyage, le statut indemne de rage ou le carnet de vaccination compteraient pour un pays qui admet les chiens. Pour les Maldives, ils sont sans incidence sur la question de l'importation, car l'interdiction s'applique à tous les chiens quels que soient l'origine ou l'historique."
+        es: "El historial de viajes, el estatus libre de rabia o la cartilla de vacunación importarían para un país que admite perros. Para las Maldivas son irrelevantes para la cuestión de la importación, porque la prohibición se aplica a todos los perros sea cual sea su origen o historial."
+        pt: "O histórico de viagens, a situação de país livre de raiva ou o registro de vacinação importariam para um país que admite cachorros. Para as Maldivas, eles são irrelevantes para a questão da importação, porque a proibição se aplica a todos os cachorros, independentemente da origem ou do histórico."
+  note:
+    en: "So read this guide as a clear 'no' for dogs: the destination rule alone is decisive, and you should plan alternative care for your dog rather than a Maldivian import procedure."
+    fr: "Lis donc ce guide comme un « non » clair pour les chiens : la règle de destination à elle seule est déterminante, et tu dois prévoir une solution de garde pour ton chien plutôt qu'une procédure d'importation maldivienne."
+    es: "Así que lee esta guía como un «no» claro para los perros: la regla de destino por sí sola es decisiva, y debes planificar un cuidado alternativo para tu perro en lugar de un procedimiento de importación maldivo."
+    pt: "Portanto, leia este guia como um 'não' claro para cachorros: a regra do destino, sozinha, já é decisiva, e você deve planejar cuidados alternativos para o seu cachorro, em vez de um procedimento de importação maldivo."
+
+requirements:
+  - item: { en: "Dog import", fr: "Importation de chien", es: "Importación de perro", pt: "Importação de cachorro" }
+    required: { en: "Prohibited", fr: "Interdite", es: "Prohibida", pt: "Proibidas" }
+    when: { en: "At all times. Maldives Customs lists the import of dogs (and dangerous animals) as strictly prohibited, with no published exception for breed, purpose or origin.", fr: "En tout temps. Les douanes maldiviennes classent l'importation de chiens (et d'animaux dangereux) comme strictement interdite, sans exception publiée pour la race, le motif ou l'origine.", es: "En todo momento. La Aduana de las Maldivas clasifica la importación de perros (y animales peligrosos) como estrictamente prohibida, sin ninguna excepción publicada por raza, finalidad u origen.", pt: "Em qualquer situação. A Maldives Customs lista a importação de cachorros (e animais perigosos) como estritamente proibida, sem nenhuma exceção publicada por raça, finalidade ou origem." }
+    exceptions: { en: "No exception is published. Whether any narrow exception (e.g. assistance dogs) exists is Unknown — confirm directly with Maldives Customs before travelling.", fr: "Aucune exception n'est publiée. L'existence d'une éventuelle exception étroite (p. ex. chiens d'assistance) est non communiquée — à confirmer directement auprès des douanes maldiviennes avant de voyager.", es: "No se publica ninguna excepción. Si existe alguna excepción concreta (p. ej. perros de asistencia) es No comunicado — confírmalo directamente con la Aduana de las Maldivas antes de viajar.", pt: "Nenhuma exceção é publicada. Se existe alguma exceção pontual (por exemplo, cães de assistência) é desconhecido — confirme diretamente com a Maldives Customs antes de viajar." }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import (Note: import of dogs and dangerous animals strictly prohibited)", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation (Note : importation de chiens et d'animaux dangereux strictement interdite)", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación (Nota: importación de perros y animales peligrosos estrictamente prohibida)", pt: "Maldives Customs — itens proibidos e restritos para importação (nota: importação de cachorros e animais perigosos estritamente proibida)" }
+  - item: { en: "Import permit for a dog", fr: "Permis d'importation pour un chien", es: "Permiso de importación para un perro", pt: "Autorização de importação para um cachorro" }
+    required: { en: "Not available", fr: "Indisponible", es: "No disponible", pt: "Não disponível" }
+    when: { en: "No permit route is published that would authorise importing a dog, because dogs are prohibited outright.", fr: "Aucune voie de permis publiée n'autoriserait l'importation d'un chien, celui-ci étant purement interdit.", es: "No se publica ninguna vía de permiso que autorice la importación de un perro, ya que los perros están totalmente prohibidos.", pt: "Nenhuma rota de autorização é publicada que permita importar um cachorro, porque os cachorros são proibidos por completo." }
+    exceptions: { en: "None published.", fr: "Aucune publiée.", es: "Ninguna publicada.", pt: "Nenhuma publicada." }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación", pt: "Maldives Customs — itens proibidos e restritos para importação" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not applicable", fr: "Sans objet", es: "No aplica", pt: "Não aplicável" }
+    when: { en: "Identification cannot make a prohibited animal admissible; a microchip does not create a right of entry for a dog.", fr: "L'identification ne peut pas rendre admissible un animal interdit ; une puce ne crée aucun droit d'entrée pour un chien.", es: "La identificación no puede hacer admisible a un animal prohibido; un microchip no crea ningún derecho de entrada para un perro.", pt: "A identificação não pode tornar um animal proibido admissível; um microchip não cria um direito de entrada para um cachorro." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación", pt: "Maldives Customs — itens proibidos e restritos para importação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Not applicable", fr: "Sans objet", es: "No aplica", pt: "Não aplicável" }
+    when: { en: "A rabies vaccination is not a route to entry for a dog, because the ban applies regardless of vaccination status.", fr: "La vaccination antirabique n'est pas une voie d'entrée pour un chien, l'interdiction s'appliquant quel que soit le statut vaccinal.", es: "La vacunación antirrábica no es una vía de entrada para un perro, ya que la prohibición se aplica sea cual sea el estatus de vacunación.", pt: "Uma vacinação antirrábica não é uma via de entrada para um cachorro, porque a proibição se aplica independentemente da situação vacinal." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación", pt: "Maldives Customs — itens proibidos e restritos para importação" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not applicable", fr: "Sans objet", es: "No aplica", pt: "Não aplicável" }
+    when: { en: "No antibody test is published for dogs because there is no dog-import procedure.", fr: "Aucun titrage n'est publié pour les chiens, faute de procédure d'importation de chien.", es: "No se publica ninguna prueba de titulación para los perros porque no existe un procedimiento de importación de perros.", pt: "Nenhum teste sorológico é publicado para cachorros, porque não existe procedimento de importação de cachorros." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación", pt: "Maldives Customs — itens proibidos e restritos para importação" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Does not lift the dog ban", fr: "Ne lève pas l'interdiction des chiens", es: "No levanta la prohibición de perros", pt: "Não suspende a proibição para cachorros" }
+    when: { en: "For animals that ARE permitted, Maldives Customs requires a health certificate from an authorised veterinarian confirming the animal is free from infectious or contagious diseases. This requirement applies to admissible animals only and does not create an entry route for dogs, which remain prohibited.", fr: "Pour les animaux QUI sont autorisés, les douanes maldiviennes exigent un certificat d'un vétérinaire agréé attestant que l'animal est exempt de maladies infectieuses ou contagieuses. Cette exigence ne vaut que pour les animaux admissibles et ne crée aucune voie d'entrée pour les chiens, qui restent interdits.", es: "Para los animales que SÍ están permitidos, la Aduana de las Maldivas exige un certificado de un veterinario autorizado que acredite que el animal está libre de enfermedades infecciosas o contagiosas. Este requisito se aplica únicamente a los animales admisibles y no crea ninguna vía de entrada para los perros, que siguen prohibidos.", pt: "Para os animais que SÃO permitidos, a Maldives Customs exige um atestado de saúde de um veterinário autorizado confirmando que o animal está livre de doenças infecciosas ou contagiosas. Essa exigência se aplica apenas a animais admissíveis e não cria uma via de entrada para cachorros, que permanecem proibidos." }
+    exceptions: { en: "The dog prohibition is stated as a Note directly alongside this animal health-certificate requirement.", fr: "L'interdiction des chiens figure sous forme de Note directement à côté de cette exigence de certificat sanitaire animal.", es: "La prohibición de perros figura como una Nota directamente junto a este requisito de certificado sanitario animal.", pt: "A proibição para cachorros é declarada em uma nota diretamente ao lado dessa exigência de atestado de saúde animal." }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import (animal health certificate + dog prohibition note)", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation (certificat sanitaire animal + note d'interdiction des chiens)", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación (certificado sanitario animal + nota de prohibición de perros)", pt: "Maldives Customs — itens proibidos e restritos para importação (atestado de saúde animal + nota de proibição para cachorros)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "No route for dogs", fr: "Aucune voie pour les chiens", es: "Ninguna vía para los perros", pt: "Nenhuma rota para cachorros" }
+    when: { en: "No quarantine facility or procedure is published that would allow a dog to be held and then admitted, because dogs cannot be imported.", fr: "Aucune installation ou procédure de quarantaine publiée ne permettrait de garder puis d'admettre un chien, celui-ci ne pouvant être importé.", es: "No se publica ninguna instalación ni procedimiento de cuarentena que permita retener y luego admitir a un perro, ya que los perros no pueden importarse.", pt: "Nenhuma instalação ou procedimento de quarentena é publicado que permitiria reter um cachorro e depois admiti-lo, porque cachorros não podem ser importados." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación", pt: "Maldives Customs — itens proibidos e restritos para importação" }
+  - item: { en: "Enforcement on arrival", fr: "Application à l'arrivée", es: "Aplicación a la llegada", pt: "Fiscalização na chegada" }
+    required: { en: "Applies", fr: "S'applique", es: "Se aplica", pt: "Aplica-se" }
+    when: { en: "Prohibited goods are defined by Maldives Customs as goods that are banned completely. A dog presented for import falls under this prohibition and would not be cleared into the country.", fr: "Les marchandises interdites sont définies par les douanes maldiviennes comme des biens totalement bannis. Un chien présenté à l'importation relève de cette interdiction et ne serait pas admis dans le pays.", es: "La Aduana de las Maldivas define las mercancías prohibidas como bienes totalmente vetados. Un perro presentado a la importación queda comprendido en esta prohibición y no sería despachado para entrar en el país.", pt: "Mercadorias proibidas são definidas pela Maldives Customs como mercadorias completamente banidas. Um cachorro apresentado para importação se enquadra nessa proibição e não seria liberado para entrar no país." }
+    exceptions: { en: "The consequences of attempting to import a prohibited animal (penalties, return, disposal) are not detailed in the reviewed Customs pages — confirm with Maldives Customs. Do not attempt import.", fr: "Les conséquences d'une tentative d'importation d'un animal interdit (sanctions, renvoi, sort de l'animal) ne sont pas détaillées dans les pages douanières consultées — à confirmer auprès des douanes maldiviennes. Ne tentez pas l'importation.", es: "Las consecuencias de intentar importar un animal prohibido (sanciones, devolución, destino del animal) no se detallan en las páginas aduaneras consultadas — confírmalo con la Aduana de las Maldivas. No intentes la importación.", pt: "As consequências de tentar importar um animal proibido (penalidades, devolução, destinação) não são detalhadas nas páginas da alfândega analisadas — confirme com a Maldives Customs. Não tente a importação." }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items (definition of prohibited goods)", fr: "Douanes maldiviennes — Articles interdits et réglementés (définition des marchandises interdites)", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos (definición de mercancías prohibidas)", pt: "Maldives Customs — itens proibidos e restritos (definição de mercadorias proibidas)" }
+  - item: { en: "Service / assistance / guide dog exception", fr: "Exception chien d'assistance / de service / guide", es: "Excepción para perro de servicio / de asistencia / guía", pt: "Exceção para cães de serviço / assistência / guia" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "Maldives Customs publishes no assistance-dog, guide-dog or service-dog exception to the prohibition. Its existence is Unknown and must not be assumed.", fr: "Les douanes maldiviennes ne publient aucune exception pour chien d'assistance, chien guide ou chien de service à l'interdiction. Son existence est non communiquée et ne doit pas être présumée.", es: "La Aduana de las Maldivas no publica ninguna excepción a la prohibición para perro de asistencia, perro guía o perro de servicio. Su existencia es No comunicado y no debe presumirse.", pt: "A Maldives Customs não publica nenhuma exceção à proibição para cães de assistência, de guia ou de serviço. Sua existência é desconhecida e não deve ser presumida." }
+    exceptions: { en: "If you have a documented need, request a written ruling from Maldives Customs well before any travel.", fr: "Si tu as un besoin documenté, demande une décision écrite aux douanes maldiviennes bien avant tout voyage.", es: "Si tienes una necesidad documentada, solicita una decisión por escrito a la Aduana de las Maldivas mucho antes de cualquier viaje.", pt: "Se você tiver uma necessidade documentada, solicite uma decisão por escrito da Maldives Customs bem antes de qualquer viagem." }
+    ref: { en: "Maldives Customs — Prohibited & Restricted Items for import (no exception published)", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation (aucune exception publiée)", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación (ninguna excepción publicada)", pt: "Maldives Customs — itens proibidos e restritos para importação (nenhuma exceção publicada)" }
+
+origin:
+  eu:
+    title: { en: "Dog from an EU country", fr: "Chien venant d'un pays de l'UE", es: "Perro procedente de un país de la UE", pt: "Cachorro vindo de um país da UE" }
+    body:
+      en: "There is no simplified EU route into the Maldives. The Maldives is not part of the EU pet-travel system and does not recognise the EU pet passport for entry. A dog coming from an EU member state is still covered by the outright ban — it cannot be imported, whatever its microchip, EU passport, rabies vaccination or antibody-test status."
+      fr: "Il n'existe aucun parcours européen simplifié vers les Maldives. Les Maldives ne font pas partie du système européen de voyage des animaux et ne reconnaissent pas le passeport européen pour l'entrée. Un chien venant d'un État membre de l'UE reste couvert par l'interdiction totale — il ne peut pas être importé, quels que soient sa puce, son passeport européen, sa vaccination antirabique ou son titrage."
+      es: "No existe ninguna vía europea simplificada hacia las Maldivas. Las Maldivas no forman parte del sistema europeo de viaje de mascotas y no reconocen el pasaporte europeo para mascotas para la entrada. Un perro que llega de un Estado miembro de la UE sigue estando cubierto por la prohibición total — no puede importarse, sean cuales sean su microchip, su pasaporte europeo, su vacunación antirrábica o su prueba de titulación."
+      pt: "Não existe uma via simplificada da UE para as Maldivas. As Maldivas não fazem parte do sistema de viagem de animais de estimação da UE e não reconhecem o passaporte de animal de estimação da UE para entrada. Um cachorro vindo de um estado membro da UE ainda assim é abrangido pela proibição total — ele não pode ser importado, qualquer que seja o seu microchip, passaporte da UE, vacinação antirrábica ou situação do teste sorológico."
+    cls: no
+  listed:
+    title: { en: "Dog from a rabies-controlled / listed country", fr: "Chien venant d'un pays à rage contrôlée / listé", es: "Perro procedente de un país con rabia controlada / listado", pt: "Cachorro vindo de um país listado / com controle de raiva" }
+    body:
+      en: "Coming from a country with a strong rabies-control record does not help either. The Maldives does not operate a listed-country scheme for dogs, and the prohibition is not tied to rabies status. A well-documented dog from a low-risk country is still refused, because the ban is categorical."
+      fr: "Venir d'un pays au bon bilan de lutte contre la rage n'aide pas davantage. Les Maldives n'appliquent pas de régime de pays listés pour les chiens, et l'interdiction n'est pas liée au statut rabique. Un chien bien documenté venant d'un pays à faible risque est tout de même refusé, l'interdiction étant catégorique."
+      es: "Venir de un país con un buen historial de control de la rabia tampoco ayuda. Las Maldivas no aplican un régimen de países listados para perros, y la prohibición no está ligada al estatus de rabia. Un perro bien documentado procedente de un país de bajo riesgo también es rechazado, porque la prohibición es categórica."
+      pt: "Vir de um país com um forte histórico de controle da raiva também não ajuda. As Maldivas não operam um esquema de países listados para cachorros, e a proibição não está ligada à situação da raiva. Um cachorro bem documentado, vindo de um país de baixo risco, ainda assim é recusado, porque a proibição é categórica."
+    cls: no
+  nonListed:
+    title: { en: "Dog from any other country", fr: "Chien venant de tout autre pays", es: "Perro procedente de cualquier otro país", pt: "Cachorro vindo de qualquer outro país" }
+    body:
+      en: "The usual non-listed procedure (antibody test, waiting period, endorsed certificate, quarantine) does not exist for dogs entering the Maldives, because dogs are prohibited from the outset. No combination of tests, permits or waiting periods opens a legal path. Plan for your dog to remain outside the Maldives."
+      fr: "La procédure habituelle des pays non listés (titrage, délai d'attente, certificat visé, quarantaine) n'existe pas pour les chiens à destination des Maldives, ceux-ci étant interdits d'emblée. Aucune combinaison de tests, de permis ou de délais n'ouvre de voie légale. Prévois que ton chien reste hors des Maldives."
+      es: "El procedimiento habitual de país no listado (prueba de titulación, período de espera, certificado refrendado, cuarentena) no existe para los perros que entran en las Maldivas, ya que los perros están prohibidos de entrada. Ninguna combinación de pruebas, permisos o períodos de espera abre una vía legal. Prevé que tu perro permanezca fuera de las Maldivas."
+      pt: "O procedimento usual para países não listados (teste sorológico, período de espera, certificado endossado, quarentena) não existe para cachorros que entram nas Maldivas, porque os cachorros são proibidos desde o início. Nenhuma combinação de exames, autorizações ou períodos de espera abre um caminho legal. Planeje que o seu cachorro permaneça fora das Maldivas."
+    cls: no
+
+arrival:
+  intro:
+    en: "Because dogs are prohibited, there is no arrival clearance process for a pet dog — the relevant fact is that a dog will not be admitted."
+    fr: "Les chiens étant interdits, il n'existe aucun processus de dédouanement à l'arrivée pour un chien de compagnie — le point essentiel est qu'un chien ne sera pas admis."
+    es: "Como los perros están prohibidos, no existe ningún proceso de despacho a la llegada para un perro de compañía — el hecho relevante es que un perro no será admitido."
+    pt: "Como os cachorros são proibidos, não há processo de liberação na chegada para um cachorro de estimação — o fato relevante é que um cachorro não será admitido."
+  points:
+    - en: "Maldives Customs classifies dogs among goods that are 'banned completely', so a dog presented at the border falls under a full import prohibition."
+      fr: "Les douanes maldiviennes classent les chiens parmi les biens « totalement bannis » ; un chien présenté à la frontière relève donc d'une interdiction totale d'importation."
+      es: "La Aduana de las Maldivas clasifica a los perros entre los bienes «totalmente vetados», por lo que un perro presentado en la frontera queda comprendido en una prohibición total de importación."
+      pt: "A Maldives Customs classifica os cachorros entre as mercadorias 'completamente banidas', portanto um cachorro apresentado na fronteira se enquadra em uma proibição total de importação."
+    - en: "Other animals may be cleared only with a veterinary health certificate confirming freedom from infectious or contagious disease — but this route is explicitly not open to dogs."
+      fr: "D'autres animaux ne peuvent être admis qu'avec un certificat sanitaire vétérinaire attestant l'absence de maladie infectieuse ou contagieuse — mais cette voie n'est explicitement pas ouverte aux chiens."
+      es: "Otros animales solo pueden despacharse con un certificado sanitario veterinario que acredite la ausencia de enfermedad infecciosa o contagiosa — pero esta vía explícitamente no está abierta a los perros."
+      pt: "Outros animais só podem ser liberados com um atestado de saúde veterinário confirmando que estão livres de doenças infecciosas ou contagiosas — mas essa via está explicitamente fechada para cachorros."
+    - en: "The reviewed Customs pages do not detail the penalties or the handling of a dog brought in breach of the ban; do not attempt to import a dog, and contact Maldives Customs in advance if you have any doubt about your situation."
+      fr: "Les pages douanières consultées ne détaillent pas les sanctions ni le sort d'un chien introduit en violation de l'interdiction ; ne tentez pas d'importer un chien et contacte à l'avance les douanes maldiviennes en cas de doute sur ta situation."
+      es: "Las páginas aduaneras consultadas no detallan las sanciones ni el destino de un perro introducido en incumplimiento de la prohibición; no intentes importar un perro y contacta con antelación con la Aduana de las Maldivas si tienes cualquier duda sobre tu situación."
+      pt: "As páginas da alfândega analisadas não detalham as penalidades ou o tratamento de um cachorro trazido em violação da proibição; não tente importar um cachorro, e entre em contato com a Maldives Customs com antecedência se tiver qualquer dúvida sobre a sua situação."
+    - en: "Any claimed exception (for example an assistance dog) is Unknown and would need explicit, prior written confirmation from Maldives Customs — it cannot be relied upon at the border."
+      fr: "Toute exception alléguée (par exemple un chien d'assistance) est non communiquée et nécessiterait une confirmation écrite explicite et préalable des douanes maldiviennes — on ne peut s'y fier à la frontière."
+      es: "Cualquier excepción alegada (por ejemplo un perro de asistencia) es No comunicado y necesitaría una confirmación por escrito explícita y previa de la Aduana de las Maldivas — no se puede confiar en ella en la frontera."
+      pt: "Qualquer exceção alegada (por exemplo, um cão de assistência) é desconhecida e precisaria de confirmação explícita e prévia por escrito da Maldives Customs — não se pode contar com ela na fronteira."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The Maldives does not operate a breed-by-breed import scheme, because no dog of any breed may be imported. The prohibition is on dogs as a whole, not on specific breeds, so there is no 'category 1 / category 2' dangerous-dog classification for import purposes."
+    fr: "Les Maldives n'appliquent pas de régime d'importation race par race, puisqu'aucun chien, quelle que soit sa race, ne peut être importé. L'interdiction porte sur les chiens dans leur ensemble, et non sur des races précises : il n'existe donc pas de classification « catégorie 1 / catégorie 2 » de chiens dangereux à des fins d'importation."
+    es: "Las Maldivas no aplican un régimen de importación raza por raza, ya que no puede importarse ningún perro de ninguna raza. La prohibición recae sobre los perros en su conjunto, no sobre razas concretas, por lo que no existe una clasificación de perro peligroso «categoría 1 / categoría 2» a efectos de importación."
+    pt: "As Maldivas não operam um esquema de importação raça por raça, porque nenhum cachorro de qualquer raça pode ser importado. A proibição recai sobre os cachorros como um todo, não sobre raças específicas, portanto não há classificação de cães perigosos em 'categoria 1 / categoria 2' para fins de importação."
+  cat1:
+    en: "All breeds are affected equally. Maldives Customs bans the import of dogs and 'dangerous animals' together; every breed of dog, from the smallest companion dog to large guarding breeds, is covered by the same ban."
+    fr: "Toutes les races sont concernées de la même manière. Les douanes maldiviennes interdisent ensemble l'importation des chiens et des « animaux dangereux » ; toutes les races de chiens, du plus petit chien de compagnie aux grandes races de garde, relèvent de la même interdiction."
+    es: "Todas las razas se ven afectadas por igual. La Aduana de las Maldivas prohíbe conjuntamente la importación de perros y «animales peligrosos»; todas las razas de perro, desde el perro de compañía más pequeño hasta las grandes razas de guarda, quedan cubiertas por la misma prohibición."
+    pt: "Todas as raças são afetadas igualmente. A Maldives Customs bane a importação de cachorros e de 'animais perigosos' juntos; toda raça de cachorro, do menor cão de companhia às grandes raças de guarda, é abrangida pela mesma proibição."
+  cat2:
+    en: "No breed is exempt. There is no 'accepted breeds' list, because the prohibition is categorical rather than breed-specific. Airline breed policies (for example on snub-nosed breeds) are a separate matter and do not override or soften the Maldivian import ban."
+    fr: "Aucune race n'est exemptée. Il n'existe pas de liste de « races acceptées », l'interdiction étant catégorique et non liée à la race. Les politiques de race des compagnies aériennes (par exemple sur les races au nez court) sont une question distincte et ne modifient ni n'atténuent l'interdiction d'importation maldivienne."
+    es: "Ninguna raza está exenta. No existe una lista de «razas aceptadas», ya que la prohibición es categórica y no específica por raza. Las políticas de razas de las aerolíneas (por ejemplo sobre las razas braquicéfalas) son una cuestión aparte y no anulan ni suavizan la prohibición de importación maldiva."
+    pt: "Nenhuma raça está isenta. Não há uma lista de 'raças aceitas', porque a proibição é categórica, e não específica por raça. As políticas de raça das companhias aéreas (por exemplo, para raças de focinho achatado) são uma questão separada e não anulam nem suavizam a proibição de importação maldiva."
+  note:
+    en: "In short: this is a country-wide ban on importing dogs, not a restricted-breed law. Do not read the ban as applying only to certain breeds."
+    fr: "En bref : il s'agit d'une interdiction nationale d'importer des chiens, et non d'une loi sur les races réglementées. Ne lis pas l'interdiction comme ne visant que certaines races."
+    es: "En resumen: se trata de una prohibición nacional de importar perros, no de una ley de razas restringidas. No interpretes la prohibición como aplicable solo a ciertas razas."
+    pt: "Em resumo: esta é uma proibição em todo o país sobre a importação de cachorros, e não uma lei de raças restritas. Não interprete a proibição como aplicável apenas a certas raças."
+
+checklist:
+  - en: "Understand that a pet dog cannot be legally imported into the Maldives — the import of dogs is strictly prohibited"
+    fr: "Comprenez qu'un chien de compagnie ne peut pas être importé légalement aux Maldives — l'importation de chiens est strictement interdite"
+    es: "Ten claro que un perro de compañía no puede importarse legalmente a las Maldivas — la importación de perros está estrictamente prohibida"
+    pt: "Entenda que um cachorro de estimação não pode ser legalmente importado para as Maldivas — a importação de cachorros é estritamente proibida"
+  - en: "Do not book travel assuming microchip, rabies vaccination or quarantine will make your dog admissible — they will not"
+    fr: "Ne réserve pas de voyage en supposant que puce, vaccination antirabique ou quarantaine rendront ton chien admissible — ce ne sera pas le cas"
+    es: "No reserves el viaje suponiendo que el microchip, la vacunación antirrábica o la cuarentena harán admisible a tu perro — no será así"
+    pt: "Não reserve uma viagem presumindo que microchip, vacinação antirrábica ou quarentena tornarão o seu cachorro admissível — eles não tornarão"
+  - en: "Arrange alternative care for your dog (trusted carer, boarding, or leaving the dog in your home country) before you travel"
+    fr: "Organise une solution de garde pour ton chien (personne de confiance, pension, ou maintien dans ton pays d'origine) avant de partir"
+    es: "Organiza un cuidado alternativo para tu perro (persona de confianza, residencia, o dejar al perro en tu país de origen) antes de viajar"
+    pt: "Providencie cuidados alternativos para o seu cachorro (cuidador de confiança, hospedagem, ou deixar o cachorro no seu país de origem) antes de viajar"
+  - en: "If you think a narrow exception (e.g. an assistance dog) could apply, request a written ruling from Maldives Customs well in advance — do not assume approval"
+    fr: "Si tu pense qu'une exception étroite (p. ex. chien d'assistance) pourrait s'appliquer, demande une décision écrite aux douanes maldiviennes bien à l'avance — ne présume pas l'accord"
+    es: "Si crees que podría aplicarse una excepción concreta (p. ej. un perro de asistencia), solicita una decisión por escrito a la Aduana de las Maldivas con mucha antelación — no des por hecho la aprobación"
+    pt: "Se você acha que uma exceção pontual (por exemplo, um cão de assistência) pode se aplicar, solicite uma decisão por escrito da Maldives Customs com bastante antecedência — não presuma aprovação"
+  - en: "Verify the current prohibited-items rules directly on the Maldives Customs website before you rely on them"
+    fr: "Vérifie les règles actuelles sur les articles interdits directement sur le site des douanes maldiviennes avant de toi y fier"
+    es: "Verifica las normas actuales sobre artículos prohibidos directamente en el sitio web de la Aduana de las Maldivas antes de confiar en ellas"
+    pt: "Verifique as regras atuais de itens proibidos diretamente no site da Maldives Customs antes de contar com elas"
+  - en: "Never attempt to bring a dog in undeclared — dogs fall under goods that are 'banned completely'"
+    fr: "Ne tentez jamais d'introduire un chien sans le déclarer — les chiens relèvent des biens « totalement bannis »"
+    es: "Nunca intentes introducir un perro sin declararlo — los perros están comprendidos entre los bienes «totalmente vetados»"
+    pt: "Nunca tente trazer um cachorro sem declarar — cachorros se enquadram nas mercadorias 'completamente banidas'"
+
+sources:
+  - label: { en: "Maldives Customs — Prohibited & Restricted Items for import (Items for Personal Use)", fr: "Douanes maldiviennes — Articles interdits et réglementés à l'importation (usage personnel)", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos a la importación (uso personal)", pt: "Maldives Customs — itens proibidos e restritos para importação (itens para uso pessoal)" }
+    url: "https://www.customs.gov.mv/Individuals/Items%20for%20Personal%20Use/Individual-Prohibited-and-Restricted-Items-for-Import"
+  - label: { en: "Maldives Customs — Prohibited & Restricted Items (Importers)", fr: "Douanes maldiviennes — Articles interdits et réglementés (importateurs)", es: "Aduana de las Maldivas — Artículos prohibidos y restringidos (importadores)", pt: "Maldives Customs — itens proibidos e restritos (importadores)" }
+    url: "https://www.customs.gov.mv/Business/Importers/dec-prohibited-and-restricted"
+  - label: { en: "Maldives Customs Service — official website", fr: "Service des douanes des Maldives — site officiel", es: "Servicio de Aduanas de las Maldivas — sitio web oficial", pt: "Maldives Customs Service — site oficial" }
+    url: "https://www.customs.gov.mv/"
+  - label: { en: "Ministry of Fisheries and Ocean Resources / Agriculture — official portal (animal & plant import authority)", fr: "Ministère de la Pêche et des Ressources océaniques / Agriculture — portail officiel (autorité d'importation animale et végétale)", es: "Ministerio de Pesca y Recursos Oceánicos / Agricultura — portal oficial (autoridad de importación animal y vegetal)", pt: "Ministry of Fisheries and Ocean Resources / Agriculture — portal oficial (autoridade de importação animal e vegetal)" }
+    url: "https://www.gov.mv/en"
+
+seo:
+  title: { en: "Maldives Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Maldives — Guide", es: "Requisitos de entrada de perros en las Maldivas — Guía de viaje", pt: "Entrada de cachorro nas Maldivas — guia de viagem" }
+  metaTitle: { en: "Can You Bring a Dog to the Maldives? Import Is Prohibited (2026)", fr: "Chien : formalités d'entrée Maldives (2026)", es: "Perro: requisitos de entrada Maldivas (2026)", pt: "Cachorro nas Maldivas? Importação proibida (2026)" }
+  metaDesc:
+    en: "Official Maldives Customs rules: the import of dogs is strictly prohibited. No microchip, vaccination. Sourced and dated guide for travellers."
+    fr: "Règles officielles des douanes maldiviennes : l'importation de chiens est strictement interdite. Aucune puce, vaccination. Guide sourcé et daté pour voyageurs."
+    es: "Normas oficiales de la Aduana de las Maldivas: la importación de perros está estrictamente prohibida. Guía con fuentes y fecha para viajeros."
+    pt: "Regras oficiais da Maldives Customs: a importação de cachorros é estritamente proibida. Nenhum microchip, nenhuma vacinação. Guia para viajantes com fontes e data."
+  slug: "maldives"
+  shortDesc:
+    en: "The Maldives strictly prohibits the import of dogs — there is no legal entry procedure for a pet dog."
+    fr: "Les Maldives interdisent strictement l'importation de chiens — il n'existe aucune procédure légale d'entrée pour un chien de compagnie."
+    es: "Las Maldivas prohíben estrictamente la importación de perros — no existe ningún procedimiento legal de entrada para un perro de compañía."
+    pt: "As Maldivas proíbem estritamente a importação de cachorros — não existe procedimento legal de entrada para um cachorro de estimação."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

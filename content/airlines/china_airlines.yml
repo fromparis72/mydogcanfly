@@ -1,0 +1,310 @@
+id: airline_china_airlines
+mono: CI
+name: China Airlines
+titleH1:
+  en: Flying with a dog on China Airlines
+  fr: Voyager avec un chien sur China Airlines
+  es: Viajar con perro en China Airlines
+  pt: "Voar com um cachorro na China Airlines"
+metaDesc:
+  en: "China Airlines (Taiwan) pet policy: hold and cargo, seasonal breed limits, cold-weather rules and official sources."
+  fr: "Politique animaux China Airlines (Taïwan) : soute et fret, restrictions de races saisonnières, règles par temps froid et sources officielles."
+  es: "Política de mascotas de China Airlines (Taiwán): bodega y carga, límites de raza estacionales, reglas para clima frío y fuentes oficiales."
+  pt: "Política de animais da China Airlines (Taiwan): porão e carga, limites de raça sazonais, regras para clima frio e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Taiwan · TPE
+      fr: Taïwan · TPE
+      es: Taiwán · TPE
+      pt: "Taiwan · TPE"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets (service dogs only); cats & dogs travel as checked baggage or cargo, with seasonal breed limits.
+  fr: Pas d'animaux en cabine (chiens d'assistance seuls) ; chats et chiens en bagage enregistré ou en fret, avec des restrictions de races saisonnières.
+  es: Sin mascotas en cabina (solo perros de servicio); gatos y perros viajan como equipaje facturado o carga, con límites de raza estacionales.
+  pt: "Nenhum animal na cabine (somente cães de assistência); gatos e cachorros viajam como bagagem despachada ou carga, com limites de raça sazonais."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: HK / large
+      fr: HK / grands
+      es: HK / grandes
+      pt: "HK / grandes"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets (incl. emotional-support animals) aren't allowed in the cabin — only trained service dogs.
+      fr: Les animaux (y compris de soutien émotionnel) ne sont pas admis en cabine — seulement les chiens d'assistance dressés.
+      es: Las mascotas (incluidos los animales de apoyo emocional) no se admiten en cabina, solo los perros de servicio adiestrados.
+      pt: "Animais (incluindo animais de apoio emocional) não são permitidos na cabine — somente cães de assistência treinados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs as checked baggage (AVIH) up to 32 kg incl. container on CI/Mandarin flights; not on B738/32C or Taiwan–Hong Kong. Max 2 per passenger, min 10 weeks.
+      fr: Chats et chiens en bagage enregistré (AVIH) jusqu'à 32 kg avec le contenant sur vols CI/Mandarin ; pas sur B738/32C ni Taïwan–Hong Kong. Max 2 par passager, min 10 semaines.
+      es: Gatos y perros como equipaje facturado (AVIH) hasta 32 kg incl. contenedor en vuelos CI/Mandarin; no en B738/32C ni Taiwán–Hong Kong. Máx. 2 por pasajero, mín. 10 semanas.
+      pt: "Gatos e cachorros como bagagem despachada (AVIH) até 32 kg incl. recipiente em voos CI/Mandarin; não em B738/32C nem em Taiwan–Hong Kong. Máx. 2 por passageiro, mín. 10 semanas."
+    fee:
+      en: By weight (fixed rate)
+      fr: Au poids (tarif fixe)
+      es: Por peso (tarifa fija)
+      pt: "Por peso (tarifa fixa)"
+  - icon: ✈️
+    name:
+      en: Live Animals cargo
+      fr: Fret Live Animals
+      es: Carga Live Animals
+      pt: "Carga Live Animals"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Mediante carga
+      pt: "Via carga"
+    detail:
+      en: Some countries (e.g. Hong Kong) require cargo; needs an Air Waybill + Shipper's Certification.
+      fr: Certains pays (ex. Hong Kong) imposent le fret ; nécessite une lettre de transport aérien + certification de l'expéditeur.
+      es: Algunos países (p. ej. Hong Kong) exigen carga; requiere una carta de porte aéreo + certificación del expedidor.
+      pt: "Alguns países (por exemplo, Hong Kong) exigem carga; é necessário um conhecimento aéreo (Air Waybill) + certificação do expedidor."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold (≤ 32 kg)
+        fr: Soute (≤ 32 kg)
+        es: Bodega (≤ 32 kg)
+        pt: "Porão (≤ 32 kg)"
+      value:
+        en: Fixed rate (by weight)
+        fr: Tarif fixe (au poids)
+        es: Tarifa fija (por peso)
+        pt: "Tarifa fixa (por peso)"
+    - label:
+        en: Hold (> 32 kg)
+        fr: Soute (> 32 kg)
+        es: Bodega (> 32 kg)
+        pt: "Porão (> 32 kg)"
+      value:
+        en: Double the fixed rate
+        fr: Double du tarif fixe
+        es: El doble de la tarifa fija
+        pt: "O dobro da tarifa fixa"
+    - label:
+        en: Cargo (HK / large)
+        fr: Fret (HK / grands)
+        es: Carga (HK / grandes)
+        pt: "Carga (HK / grandes)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: "Over 292 cm total: two pieces of excess baggage. Local airport weight limits may apply."
+    fr: "Au-delà de 292 cm au total : deux pièces de bagage excédentaire. Des limites de poids locales peuvent s'appliquer."
+    es: "Por encima de 292 cm en total: dos piezas de exceso de equipaje. Pueden aplicarse límites de peso locales del aeropuerto."
+    pt: "Acima de 292 cm no total: duas peças de excesso de bagagem. Podem se aplicar limites de peso locais do aeroporto."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Seasonal / regional only
+          fr: Saisonnier / régional
+          es: Solo estacional / regional
+          pt: "Somente sazonal / regional"
+    note:
+      en: "Snub-nosed dogs & cats (and mixes) are accepted only seasonally/regionally (China/HK/Japan/Korea/Taiwan Dec–Mar; Australia/NZ Apr–Nov), journey ≤ 6 h, kennel one size larger: boxer, bulldogs, pug, Shih Tzu, Pekingese, chow chow, Boston terrier, Lhasa Apso, and Persian/Himalayan/British Shorthair/Burmese/Exotic/Scottish Fold cats."
+      fr: "Chiens et chats au nez écrasé (et croisés) acceptés uniquement de façon saisonnière/régionale (Chine/HK/Japon/Corée/Taïwan déc.–mars ; Australie/N.-Z. avr.–nov.), trajet ≤ 6 h, caisse une taille au-dessus : boxer, bouledogues, carlin, Shih Tzu, pékinois, chow chow, Boston terrier, Lhasa Apso, et chats persans/himalayens/British Shorthair/birmans/exotiques/Scottish Fold."
+      es: "Los perros y gatos de hocico chato (y sus cruces) se aceptan solo de forma estacional/regional (China/HK/Japón/Corea/Taiwán dic–mar; Australia/NZ abr–nov), trayecto ≤ 6 h, jaula una talla mayor: bóxer, bulldogs, carlino, Shih Tzu, pequinés, chow chow, Boston terrier, Lhasa Apso, y gatos persas/himalayos/British Shorthair/birmanos/exóticos/Scottish Fold."
+      pt: "Cachorros e gatos de focinho achatado (e mestiços) são aceitos somente em determinadas épocas/regiões (China/HK/Japão/Coreia/Taiwan dez.–mar.; Austrália/NZ abr.–nov.), trajeto ≤ 6 h, caixa de transporte um tamanho acima: boxer, buldogues, pug, Shih Tzu, Pequinês, Chow Chow, Boston Terrier, Lhasa Apso, e gatos Persa/Himalaia/British Shorthair/Burmês/Exótico/Scottish Fold."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Dangerous breeds banned
+          fr: Races dangereuses interdites
+          es: Razas peligrosas prohibidas
+          pt: "Raças perigosas proibidas"
+    note:
+      en: "Not accepted: pit bull types, American Bully, Fila, Tosa, Dogo Argentino, mastiffs (Neapolitan/Tibetan/Bull/Cane Corso/Dogue de Bordeaux). Pregnant pets only if under 40 days and not within 7 days post-partum."
+      fr: "Non acceptés : types pit-bull, American Bully, Fila, Tosa, Dogo Argentino, mastiffs (Napolitain/Tibétain/Bull/Cane Corso/Dogue de Bordeaux). Femelles gestantes seulement si moins de 40 jours et pas à moins de 7 jours post-partum."
+      es: "No se aceptan: tipos pit bull, American Bully, Fila, Tosa, Dogo Argentino, mastines (napolitano/tibetano/Bull/Cane Corso/Dogo de Burdeos). Hembras gestantes solo si es de menos de 40 días y no dentro de los 7 días posparto."
+      pt: "Não são aceitos: tipos pit bull, American Bully, Fila, Tosa, Dogo Argentino, mastins (napolitano/tibetano/bull/Cane Corso/Dogue de Bordeaux). Fêmeas gestantes somente se com menos de 40 dias de gestação e fora dos 7 dias pós-parto."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Tropical / cold-blooded refused ≤ 10 °C
+        fr: Tropicaux / à sang froid refusés ≤ 10 °C
+        es: Tropicales / de sangre fría rechazados ≤ 10 °C
+        pt: "Tropicais / de sangue frio recusados ≤ 10 °C"
+    - cls: ok
+      label:
+        en: Same pressure/temp as cabin
+        fr: Même pression/temp. que la cabine
+        es: Misma presión/temp. que la cabina
+        pt: "Mesma pressão/temperatura da cabine"
+  note:
+    en: Live animals from tropical regions and cold-blooded species aren't accepted if the temperature anywhere on the journey is 10 °C or below. B738 holds can't carry pets needing ventilation/warmth. The pet compartment matches the cabin's pressure, temperature and humidity.
+    fr: Les animaux des régions tropicales et les espèces à sang froid ne sont pas acceptés si la température, à un point du trajet, est de 10 °C ou moins. Les soutes B738 ne peuvent pas transporter d'animaux nécessitant ventilation/chaleur. Le compartiment animal égale la pression, la température et l'humidité de la cabine.
+    es: Los animales de regiones tropicales y las especies de sangre fría no se aceptan si la temperatura, en cualquier punto del trayecto, es de 10 °C o menos. Las bodegas del B738 no pueden transportar mascotas que necesiten ventilación/calor. El compartimento de mascotas iguala la presión, la temperatura y la humedad de la cabina.
+    pt: "Animais de regiões tropicais e espécies de sangue frio não são aceitos se a temperatura, em qualquer ponto do trajeto, for de 10 °C ou menos. Os porões dos B738 não podem transportar animais que precisem de ventilação/calor. O compartimento de animais tem a mesma pressão, temperatura e umidade da cabine."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs (medical assistance) fly free in the cabin, harnessed and rabies-vaccinated.
+      fr: Les chiens d'assistance dressés (assistance médicale) voyagent gratuitement en cabine, en harnais et vaccinés contre la rage.
+      es: Los perros de servicio adiestrados (asistencia médica) viajan gratis en cabina, con arnés y vacunados contra la rabia.
+      pt: "Cães de assistência treinados (assistência médica) voam gratuitamente na cabine, com peitoral e vacinados contra a raiva."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "US routes: DOT + CDC forms (+ relief form over 8 h); non-US: Service Dogs Declaration Form. Contact CS ≥ 48 h ahead. Psychiatric assistance dogs go in the hold (paid)."
+      fr: "Vols USA : formulaires DOT + CDC (+ formulaire de soulagement au-delà de 8 h) ; hors USA : Service Dogs Declaration Form. Contacter le service client ≥ 48 h à l'avance. Les chiens d'assistance psychiatrique voyagent en soute (payant)."
+      es: "Rutas a EE. UU.: formularios del DOT + CDC (+ formulario de alivio si supera 8 h); fuera de EE. UU.: Service Dogs Declaration Form. Contacta con Atención al Cliente ≥ 48 h antes. Los perros de asistencia psiquiátrica viajan en bodega (de pago)."
+      pt: "Rotas para os EUA: formulários do DOT + CDC (+ formulário de alívio acima de 8 h); fora dos EUA: Service Dogs Declaration Form. Contate o Atendimento ao Cliente ≥ 48 h antes. Cães de assistência psiquiátrica viajam no porão (pago)."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets Taiwan–HK
+      fr: Pas d'animaux Taïwan–HK
+      es: Sin mascotas Taiwán–HK
+      pt: "Nenhum animal Taiwan–HK"
+    value:
+      en: Pets aren't accepted as checked baggage on Taiwan–Hong Kong flights (Hong Kong is cargo-only).
+      fr: Les animaux ne sont pas acceptés en bagage enregistré sur les vols Taïwan–Hong Kong (Hong Kong est fret uniquement).
+      es: Las mascotas no se aceptan como equipaje facturado en los vuelos Taiwán–Hong Kong (Hong Kong es solo carga).
+      pt: "Animais não são aceitos como bagagem despachada em voos Taiwan–Hong Kong (Hong Kong é somente carga)."
+  - icon: 📄
+    label:
+      en: Declaration
+      fr: Déclaration
+      es: Declaración
+      pt: "Declaração"
+    value:
+      en: A Passenger's Declaration for Live Animals (2 copies) is required; arrive 2 h before departure.
+      fr: Une déclaration passager pour animaux vivants (2 exemplaires) est requise ; arriver 2 h avant le départ.
+      es: Se requiere una declaración del pasajero para animales vivos (2 copias); llega 2 h antes de la salida.
+      pt: "É exigida uma Declaração do Passageiro para Animais Vivos (2 cópias); chegue 2 h antes da partida."
+  - icon: 🐾
+    label:
+      en: US Air Waybill
+      fr: Lettre de transport USA
+      es: Carta de porte de EE. UU.
+      pt: "Conhecimento aéreo dos EUA"
+    value:
+      en: For dogs to the US, China Airlines provides the CDC-required Air Waybill to present at check-in and US entry.
+      fr: Pour les chiens vers les USA, China Airlines fournit la lettre de transport exigée par la CDC à présenter à l'enregistrement et à l'entrée aux USA.
+      es: Para perros hacia EE. UU., China Airlines facilita la carta de porte aéreo exigida por los CDC para presentar en la facturación y en la entrada a EE. UU.
+      pt: "Para cachorros com destino aos EUA, a China Airlines fornece o conhecimento aéreo (Air Waybill) exigido pelo CDC, a ser apresentado no check-in e na entrada nos EUA."
+book:
+  host: china-airlines.com
+  url: https://www.china-airlines.com/
+sources:
+  en: 3 China Airlines sources · last verified 11 July 2026
+  fr: 3 sources China Airlines · dernière vérification 11 juillet 2026
+  es: 3 fuentes de China Airlines · última verificación 11 julio 2026
+  pt: "3 fontes da China Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

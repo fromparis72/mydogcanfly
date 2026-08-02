@@ -1,0 +1,105 @@
+---
+import Base from "../../../layouts/Base.astro";
+import TravelTimeline from "../../../components/TravelTimeline.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const L = inlineT(locale);
+const title = L("Pet travel timeline: plan your dog's trip backwards", "Rétro-planning : préparer le voyage de mon chien", "Cronograma de viaje: planifica el viaje de tu perro hacia atrás");
+const blurb = L(
+  "Enter the destination country and date: get a dated backwards plan of every step (microchip, rabies, titration, tapeworm, certificate…), exportable to your calendar and printable.",
+  "Indiquez le pays de destination et la date : obtenez un rétro-planning daté des étapes (puce, vaccin rage, titrage, vermifuge, certificat…), exportable en calendrier et imprimable.",
+  "Indica el país de destino y la fecha: obtén una retroplanificación con fechas de cada paso (microchip, rabia, titulación, tenia, certificado…), exportable a tu calendario e imprimible."
+);
+
+const FAQ_FR = [
+  { q: "Combien de temps à l'avance préparer un voyage en avion avec un chien ?", a: "Cela dépend de la destination. Sans test sérologique, comptez au minimum ~3 semaines (délai de validité du vaccin antirabique). Avec titrage antirabique exigé (pays non listés), il faut souvent 4 mois ou plus : le vaccin, puis la prise de sang ≥30 jours après, puis 3 mois d'attente avant l'entrée. Notre outil calcule les dates limites à rebours." },
+  { q: "Dans quel ordre faire les démarches pour faire voyager son chien ?", a: "L'ordre est imposé : d'abord la puce ISO, puis la vaccination antirabique (le vaccin ne compte que si la puce est posée avant), puis — si exigé — le titrage antirabique, puis le traitement antiparasitaire et enfin le certificat vétérinaire juste avant le départ. L'outil affiche cette séquence datée." },
+  { q: "Qu'est-ce que le titrage antirabique et quand est-il obligatoire ?", a: "C'est une prise de sang qui vérifie que le vaccin a produit assez d'anticorps (≥0,5 UI/ml). Il est exigé pour entrer dans certains pays/zones depuis un pays « non listé » (à haut risque rabique). La prise de sang doit être ≥30 jours après le vaccin et ≥3 mois avant l'entrée." },
+  { q: "Le certificat vétérinaire, quand doit-il être établi ?", a: "En général peu avant le départ — souvent dans les 10 jours précédant l'entrée pour un certificat de type UE. Les modalités exactes varient : notre outil affiche le texte officiel du pays choisi et renvoie à la fiche complète." },
+  { q: "Ce planning remplace-t-il les règles officielles ?", a: "Non. Les dates s'appuient sur les délais standard officiels ; le texte exact de chaque pays est affiché par étape et peut différer. C'est une aide à la planification : confirmez toujours avec l'autorité vétérinaire de destination et votre vétérinaire." },
+];
+const FAQ_EN = [
+  { q: "How far in advance should I plan flying with a dog?", a: "It depends on the destination. Without a blood test, allow at least ~3 weeks (the rabies vaccine's validity delay). When a rabies antibody test is required (non-listed countries), it often takes 4 months or more: the vaccine, then the blood sample ≥30 days later, then a 3-month wait before entry. Our tool computes the deadlines backwards." },
+  { q: "In what order do the steps for pet travel go?", a: "The order is fixed: first the ISO microchip, then the rabies vaccination (the vaccine only counts if the chip was implanted first), then — if required — the rabies antibody test, then the parasite treatment and finally the vet health certificate just before departure. The tool shows this sequence, dated." },
+  { q: "What is the rabies antibody (titration) test and when is it required?", a: "It's a blood test confirming the vaccine produced enough antibodies (≥0.5 IU/ml). It's required to enter certain countries/zones from a 'non-listed' (high-risk) country. The blood sample must be ≥30 days after the vaccine and ≥3 months before entry." },
+  { q: "When must the veterinary health certificate be issued?", a: "Usually shortly before departure — often within 10 days of entry for an EU-style certificate. Exact rules vary: our tool shows the chosen country's official wording and links to the full guide." },
+  { q: "Does this timeline replace the official rules?", a: "No. Dates use documented standard intervals; each country's exact wording is shown per step and may differ. It's a planning aid — always confirm with the destination's veterinary authority and your vet." },
+];
+const FAQ_ES = [
+  { q: "¿Con cuánta antelación hay que preparar un viaje en avión con un perro?", a: "Depende del destino. Sin prueba serológica, calcula al menos ~3 semanas (el plazo de validez de la vacuna antirrábica). Cuando se exige una prueba de titulación de rabia (países no listados), suele llevar 4 meses o más: la vacuna, luego la extracción de sangre ≥30 días después y, después, una espera de 3 meses antes de la entrada. Nuestra herramienta calcula las fechas límite hacia atrás." },
+  { q: "¿En qué orden se hacen los trámites para hacer viajar a tu perro?", a: "El orden es obligatorio: primero el microchip ISO, luego la vacunación antirrábica (la vacuna solo cuenta si el chip se implantó antes), luego —si se exige— la prueba de titulación de rabia, después el tratamiento antiparasitario y, por último, el certificado veterinario justo antes de la salida. La herramienta muestra esta secuencia con fechas." },
+  { q: "¿Qué es la prueba de titulación de rabia y cuándo es obligatoria?", a: "Es un análisis de sangre que comprueba que la vacuna ha producido suficientes anticuerpos (≥0,5 UI/ml). Se exige para entrar en ciertos países/zonas desde un país «no listado» (de alto riesgo de rabia). La extracción de sangre debe hacerse ≥30 días después de la vacuna y ≥3 meses antes de la entrada." },
+  { q: "¿Cuándo debe expedirse el certificado veterinario?", a: "Por lo general poco antes de la salida, a menudo dentro de los 10 días previos a la entrada para un certificado de tipo UE. Las condiciones exactas varían: nuestra herramienta muestra el texto oficial del país elegido y remite a la ficha completa." },
+  { q: "¿Este cronograma sustituye a las normas oficiales?", a: "No. Las fechas se basan en los plazos estándar oficiales; el texto exacto de cada país se muestra por etapa y puede diferir. Es una ayuda para planificar: confirma siempre con la autoridad veterinaria del destino y con tu veterinario." },
+];
+const FAQ_PT = [
+  { q: "Com quanta antecedência devo planejar uma viagem de avião com cachorro?", a: "Depende do destino. Sem exame de sangue, conte com pelo menos ~3 semanas (o prazo de validade da vacina antirrábica). Quando o teste sorológico antirrábico é exigido (países não listados), costuma levar 4 meses ou mais: a vacina, depois a coleta de sangue ≥30 dias mais tarde, e então 3 meses de espera antes da entrada. Nossa ferramenta calcula os prazos de trás para frente." },
+  { q: "Em que ordem vêm as etapas da viagem com animal?", a: "A ordem é fixa: primeiro o microchip ISO, depois a vacinação antirrábica (a vacina só vale se o chip já estiver implantado), em seguida — se exigido — o teste sorológico antirrábico, depois o tratamento antiparasitário e, por fim, o atestado de saúde veterinário pouco antes da partida. A ferramenta mostra essa sequência com as datas." },
+  { q: "O que é o teste sorológico antirrábico (titulação) e quando ele é exigido?", a: "É um exame de sangue que confirma que a vacina produziu anticorpos suficientes (≥0,5 UI/ml). É exigido para entrar em certos países ou zonas quando se vem de um país « não listado » (de alto risco). A coleta precisa ser feita ≥30 dias depois da vacina e ≥3 meses antes da entrada." },
+  { q: "Quando o atestado de saúde veterinário deve ser emitido?", a: "Em geral pouco antes da partida — muitas vezes dentro dos 10 dias que antecedem a entrada, no caso do certificado no modelo europeu. As regras exatas variam: nossa ferramenta mostra o texto oficial do país escolhido e leva ao guia completo." },
+  { q: "Esta linha do tempo substitui as regras oficiais?", a: "Não. As datas usam intervalos padrão documentados; o texto exato de cada país aparece em cada etapa e pode ser diferente. É um apoio ao planejamento — confirme sempre com a autoridade veterinária do destino e com seu veterinário." },
+];
+/* La langue est une clé, plus une branche : le ternaire à deux branches renvoyait /pt/
+   vers la FAQ anglaise, même une fois la traduction écrite. */
+const FAQS: Record<string, typeof FAQ_EN> = { fr: FAQ_FR, es: FAQ_ES, pt: FAQ_PT, en: FAQ_EN };
+const faq = FAQS[locale] ?? FAQ_EN;
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org", "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+});
+const metaDesc = fr
+  ? "Rétroplanning chien : quand faire la puce, le vaccin antirabique, le titrage et le certificat sanitaire avant ton vol."
+  : locale === "es"
+    ? "Cuenta atrás para viajar con tu perro: cuándo hacer el microchip, la vacuna antirrábica, la titulación y el certificado sanitario."
+    : "Dog travel countdown: when to do the microchip, rabies vaccination, blood test and health certificate before your flight.";
+---
+<Base locale={locale} title={`${title}`} description={metaDesc} noindex={true}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <Breadcrumb locale={locale} items={[
+        { label: L("Home", "Accueil", "Inicio"), href: "/" },
+        { label: t(locale, "nav.tools"), href: "/tools/" },
+        { label: L("Travel timeline", "Rétro-planning", "Cronograma de viaje") },
+      ]} />
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="tl-blurb">{blurb}</p>
+      <TravelTimeline locale={locale} />
+
+      <section class="tlfaq">
+        <h2>{L("Frequently asked questions", "Questions fréquentes", "Preguntas frecuentes")}</h2>
+        {faq.map((f) => (
+          <details class="tlfaq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+      <RelatedTools locale={locale} current="timeline" />
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={faqLd} is:inline />
+</Base>
+<style>
+  .tl-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }
+  .tlfaq { margin-top: 32px; max-width: 820px; }
+  .tlfaq > h2 { font-size: 20px; margin: 0 0 14px; }
+  .tlfaq__item { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 4px 16px; margin-bottom: 10px; background: var(--mdcf-surface); }
+  .tlfaq__item summary { cursor: pointer; font-weight: 700; padding: 12px 0; list-style: none; }
+  .tlfaq__item summary::-webkit-details-marker { display: none; }
+  .tlfaq__item summary::after { content: "＋"; float: right; color: var(--mdcf-accent-ink, #b4530a); font-weight: 800; }
+  .tlfaq__item[open] summary::after { content: "－"; }
+  .tlfaq__item p { margin: 0 0 14px; color: var(--mdcf-muted); line-height: 1.55; font-size: 14.5px; }
+</style>

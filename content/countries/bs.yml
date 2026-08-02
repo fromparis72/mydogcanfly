@@ -1,0 +1,391 @@
+# Country Entry Guide — The Bahamas (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_bs
+iso2: "BS"
+name: { en: "The Bahamas", fr: "Bahamas", es: "Bahamas", pt: "Bahamas" }
+region: { en: "Caribbean", fr: "Caraïbes", es: "Caribe", pt: "Caribe" }
+
+
+regime: non_listed
+exit:
+  authority: BAHFSA
+  authorityUrl: https://bahfsabahamas.com/sectors/animals
+  intro:
+    en: "Bahamas is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Bahamas Agricultural Health and Food Safety Authority (BAHFSA)."
+    fr: "Les Bahamas est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Bahamas Agricultural Health and Food Safety Authority (BAHFSA)."
+    es: "Bahamas no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Bahamas Agricultural Health and Food Safety Authority (BAHFSA)."
+    pt: "As Bahamas são um país não listado, então uma titulação de anticorpos antirrábicos válida é obrigatória para voltar à UE — além de um atestado de saúde de exportação endossado pela Bahamas Agricultural Health and Food Safety Authority (BAHFSA)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "BAHFSA's Veterinary Services Unit is the national competent authority; an international veterinary certificate endorsed by a registered official vet is required to leave."
+        fr: "L'unité des services vétérinaires de la BAHFSA est l'autorité nationale compétente ; un certificat vétérinaire international visé par un vétérinaire officiel enregistré est exigé pour partir."
+        es: "La Unidad de Servicios Veterinarios de BAHFSA es la autoridad nacional competente; se exige un certificado veterinario internacional refrendado por un veterinario oficial registrado para salir."
+        pt: "A Unidade de Serviços Veterinários da BAHFSA é a autoridade nacional competente; para sair, é exigido um certificado veterinário internacional endossado por um veterinário oficial registrado."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to The Bahamas with your dog", fr: "Voyager aux Bahamas avec ton chien", es: "Viajar a Bahamas con tu perro", pt: "Viajar para as Bahamas com o seu cachorro" }
+  intro:
+    en: >-
+      The Bahamas welcomes dogs, but unlike many destinations it requires an import permit obtained in
+      advance for every dog and cat — you cannot simply arrive with your pet. Permits are issued by the
+      Bahamas Agricultural Health and Food Safety Authority (BAHFSA) through the Customs Click2Clear
+      platform, and the permit must accompany the animal on entry. Beyond the permit, your dog must be
+      more than six months old, carry an ISO microchip, be vaccinated against rabies and several core
+      diseases, be free of internal and external parasites, and travel with an international veterinary
+      certificate issued shortly before departure. What exactly you must prepare also depends on whether
+      your dog is leaving a country that is rabies-free or not, because that changes the rabies-vaccine
+      timing. This guide explains each step before you book your flight.
+    fr: >-
+      Les Bahamas accueillent les chiens, mais contrairement à de nombreuses destinations, elles exigent
+      un permis d'importation obtenu à l'avance pour chaque chien et chat — tu ne pouvez pas simplement
+      arriver avec ton animal. Les permis sont délivrés par la Bahamas Agricultural Health and Food
+      Safety Authority (BAHFSA) via la plateforme douanière Click2Clear, et le permis doit accompagner
+      l'animal à l'entrée. Au-delà du permis, ton chien doit avoir plus de six mois, porter une puce
+      ISO, être vacciné contre la rage et plusieurs maladies de base, être exempt de parasites internes et
+      externes, et voyager avec un certificat vétérinaire international établi peu avant le départ. Ce que
+      tu dois préparer dépend aussi du fait que ton chien quitte un pays indemne ou non de rage, car
+      cela change le calendrier du vaccin antirabique. Ce guide détaille chaque étape avant de réserver.
+    es: >-
+      Bahamas acoge a los perros, pero, a diferencia de muchos destinos, exige un permiso de importación
+      obtenido por adelantado para cada perro y gato — no puedes simplemente llegar con tu mascota. Los
+      permisos los expide la Bahamas Agricultural Health and Food Safety Authority (BAHFSA) a través de
+      la plataforma aduanera Click2Clear, y el permiso debe acompañar al animal a la entrada. Más allá
+      del permiso, tu perro debe tener más de seis meses, llevar un microchip ISO, estar vacunado contra
+      la rabia y varias enfermedades básicas, estar libre de parásitos internos y externos, y viajar con
+      un certificado veterinario internacional expedido poco antes de la salida. Lo que debes preparar
+      exactamente depende también de si tu perro sale de un país libre de rabia o no, porque eso cambia
+      el calendario de la vacuna antirrábica. Esta guía explica cada paso antes de reservar tu vuelo.
+
+    pt: "As Bahamas recebem cachorros, mas, ao contrário de muitos destinos, exigem uma autorização de importação obtida com antecedência para cada cachorro e gato — você não pode simplesmente chegar com o seu animal. As autorizações são emitidas pela Bahamas Agricultural Health and Food Safety Authority (BAHFSA) pela plataforma alfandegária Click2Clear, e a autorização precisa acompanhar o animal na entrada. Além da autorização, o seu cachorro precisa ter mais de seis meses, portar um microchip ISO, estar vacinado contra a raiva e várias doenças essenciais, estar livre de parasitas internos e externos e viajar com um certificado veterinário internacional emitido pouco antes da partida. O que exatamente você precisa preparar também depende de o seu cachorro sair de um país livre de raiva ou não, porque isso muda o calendário da vacina antirrábica. Este guia explica cada etapa antes de você comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — a prior import permit is mandatory, plus vaccines and a vet certificate", fr: "Modéré — un permis d'importation préalable est obligatoire, plus vaccins et certificat vétérinaire", es: "Moderado — un permiso de importación previo es obligatorio, más vacunas y un certificado veterinario", pt: "Moderado — é obrigatória uma autorização de importação prévia, além das vacinas e de um certificado veterinário" }
+
+prepTime:
+  eu:
+    en: "Core timeline: apply for the BAHFSA import permit through Click2Clear (processed within about two business days), then have a vet complete the veterinarian form 24 hours before travel and the international certificate within 10 days of import."
+    fr: "Calendrier de base : demande le permis d'importation BAHFSA via Click2Clear (traité en environ deux jours ouvrables), puis fais remplir le formulaire vétérinaire 24 heures avant le voyage et le certificat international dans les 10 jours précédant l'import."
+    es: "Calendario básico: solicita el permiso de importación de la BAHFSA a través de Click2Clear (procesado en unos dos días hábiles), luego haz que un veterinario rellene el formulario veterinario 24 horas antes del viaje y el certificado internacional dentro de los 10 días previos a la importación."
+    pt: "Prazo principal: solicite a autorização de importação da BAHFSA pelo Click2Clear (processada em cerca de dois dias úteis), depois peça a um veterinário que preencha o formulário veterinário 24 horas antes da viagem e o certificado internacional nos 10 dias anteriores à importação."
+  listed:
+    en: "From a rabies-free country: quickest, provided the dog is already immunized against rabies and the core diseases — you mainly need the permit and the certificate within the required windows."
+    fr: "Depuis un pays indemne de rage : le plus rapide, si le chien est déjà immunisé contre la rage et les maladies de base — il faut surtout le permis et le certificat dans les délais requis."
+    es: "Desde un país libre de rabia: lo más rápido, siempre que el perro ya esté inmunizado contra la rabia y las enfermedades básicas — necesitas sobre todo el permiso y el certificado dentro de las ventanas requeridas."
+    pt: "De um país livre de raiva: é o caminho mais rápido, desde que o cachorro já esteja imunizado contra a raiva e as doenças essenciais — você precisa basicamente da autorização e do certificado dentro dos prazos exigidos."
+  nonListed:
+    en: "From a country not free of rabies: allow at least about one month — a one-year rabies vaccine must be given at least 1 month (and no more than 10 months) before import; a three-year vaccine no more than 34 months and no less than 1 month before."
+    fr: "Depuis un pays non indemne de rage : prévois au moins environ un mois — un vaccin antirabique d'un an doit être administré au moins 1 mois (et au plus 10 mois) avant l'import ; un vaccin de trois ans au plus 34 mois et au moins 1 mois avant."
+    es: "Desde un país no libre de rabia: prevé al menos alrededor de un mes — una vacuna antirrábica de un año debe administrarse al menos 1 mes (y no más de 10 meses) antes de la importación; una vacuna de tres años no más de 34 meses y no menos de 1 mes antes."
+    pt: "De um país não livre de raiva: reserve pelo menos cerca de um mês — a vacina antirrábica de um ano precisa ser aplicada no mínimo 1 mês (e no máximo 10 meses) antes da importação; a vacina de três anos, no máximo 34 meses e no mínimo 1 mês antes."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes, with an import permit", fr: "Oui, avec un permis d'importation", es: "Sí, con un permiso de importación", pt: "Sim, com autorização de importação" }
+    cls: ok
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required in advance (BAHFSA / Click2Clear)", fr: "Requis à l'avance (BAHFSA / Click2Clear)", es: "Obligatorio por adelantado (BAHFSA / Click2Clear)", pt: "Obrigatória com antecedência (BAHFSA / Click2Clear)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "ISO microchip required", fr: "Puce ISO requise", es: "Microchip ISO obligatorio", pt: "Microchip ISO obrigatório" }
+    cls: warn
+  - requirement: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    status: { en: "More than 6 months", fr: "Plus de 6 mois", es: "Más de 6 meses", pt: "Mais de 6 meses" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Core vaccinations & parasite treatment", fr: "Vaccins de base & traitement antiparasitaire", es: "Vacunas básicas y tratamiento antiparasitario", pt: "Vacinas essenciais e tratamento antiparasitário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorios", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in BAHFSA's published conditions", fr: "Absent des conditions publiées par la BAHFSA", es: "No figura en las condiciones publicadas por la BAHFSA", pt: "Não consta nas condições publicadas pela BAHFSA" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required (within 10 days of import)", fr: "Requis (dans les 10 jours avant l'import)", es: "Obligatorio (dentro de los 10 días previos a la importación)", pt: "Obrigatório (nos 10 dias anteriores à importação)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "No routine quarantine if compliant", fr: "Aucune quarantaine de routine si conforme", es: "Sin cuarentena rutinaria si se cumplen los requisitos", pt: "Sem quarentena de rotina se estiver em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — The Bahamas (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — les Bahamas (ta destination) ne sont que le premier."
+    es: "Los documentos exactos dependen de tres factores — Bahamas (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — as Bahamas (o seu destino) são apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — The Bahamas", fr: "Pays de destination — Bahamas", es: "País de destino — Bahamas", pt: "País de destino — Bahamas" }
+      text:
+        en: "BAHFSA runs its own permit-based scheme (not the EU passport): a prior import permit is mandatory, and the dog must be over 6 months, ISO-microchipped, vaccinated against rabies and core diseases, parasite-free, and carry an international veterinary certificate."
+        fr: "La BAHFSA applique son propre dispositif fondé sur un permis (pas le passeport UE) : un permis d'importation préalable est obligatoire, et le chien doit avoir plus de 6 mois, être pucé ISO, vacciné contre la rage et les maladies de base, exempt de parasites, et disposer d'un certificat vétérinaire international."
+        es: "La BAHFSA aplica su propio sistema basado en un permiso (no el pasaporte de la UE): un permiso de importación previo es obligatorio, y el perro debe tener más de 6 meses, llevar un microchip ISO, estar vacunado contra la rabia y las enfermedades básicas, estar libre de parásitos y disponer de un certificado veterinario internacional."
+        pt: "A BAHFSA aplica o seu próprio esquema baseado em autorização (e não o passaporte europeu): uma autorização de importação prévia é obrigatória, e o cachorro precisa ter mais de 6 meses, ter microchip ISO, estar vacinado contra a raiva e as doenças essenciais, estar livre de parasitas e portar um certificado veterinário internacional."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether the departure country is free of rabies (per the World Organisation for Animal Health) is decisive: it sets the rabies-vaccine timing. From a non-rabies-free country, a strict vaccination window applies before import."
+        fr: "Le fait que le pays de départ soit indemne de rage (selon l'Organisation mondiale de la santé animale) est décisif : il fixe le calendrier du vaccin antirabique. Depuis un pays non indemne, une fenêtre de vaccination stricte s'applique avant l'import."
+        es: "Que el país de salida esté libre de rabia (según la Organización Mundial de Sanidad Animal) es decisivo: fija el calendario de la vacuna antirrábica. Desde un país no libre de rabia, se aplica una ventana de vacunación estricta antes de la importación."
+        pt: "O país de partida ser ou não livre de raiva (segundo a Organização Mundial de Saúde Animal) é decisivo: é isso que define o calendário da vacina antirrábica. Vindo de um país não livre de raiva, aplica-se um prazo estrito de vacinação antes da importação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's recent residence and rabies history determine whether its vaccination record is complete and valid, and which of the two rabies pathways (rabies-free vs not) applies. The dog's real history counts — not only the last airport."
+        fr: "La résidence récente et l'historique rabique du chien déterminent si son carnet est complet et valide, et lequel des deux parcours antirabiques (indemne ou non) s'applique. C'est l'historique réel du chien qui compte — pas seulement le dernier aéroport."
+        es: "La residencia reciente y el historial de rabia de tu perro determinan si su cartilla de vacunación está completa y válida, y cuál de las dos vías de rabia (libre de rabia o no) se aplica. Cuenta el historial real del perro — no solo el último aeropuerto."
+        pt: "Onde o seu cachorro morou recentemente e o histórico de raiva dele determinam se a carteira de vacinação está completa e válida, e qual dos dois caminhos relativos à raiva (país livre de raiva ou não) se aplica. O que conta é o histórico real do cachorro — não só o último aeroporto."
+  note:
+    en: "So read the requirements below as the Bahamian framework, then confirm your dog's exact origin and history with your vet and with BAHFSA."
+    fr: "Lis donc les exigences ci-dessous comme le cadre bahamien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire et la BAHFSA."
+    es: "Así que lee los requisitos siguientes como el marco de Bahamas y luego confirma el origen y el historial exactos de tu perro con tu veterinario y con la BAHFSA."
+    pt: "Leia então as exigências abaixo como o quadro geral das Bahamas, e confirme a origem e o histórico exatos do seu cachorro com o seu veterinário e com a BAHFSA."
+
+requirements:
+  - item: { en: "Import permit (BAHFSA / Click2Clear)", fr: "Permis d'importation (BAHFSA / Click2Clear)", es: "Permiso de importación (BAHFSA / Click2Clear)", pt: "Autorização de importação (BAHFSA / Click2Clear)" }
+    required: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio por adelantado", pt: "Obrigatória com antecedência" }
+    when: { en: "A permit is required for every dog and must accompany the animal at import. Since 1 September 2024 it is applied for online: register on Click2Clear, email click2clear@bahamas.gov.bs to activate a pet-permit login, pay the fee, and download the approved permit. Processed within about two business days.", fr: "Un permis est requis pour chaque chien et doit accompagner l'animal à l'import. Depuis le 1er septembre 2024, la demande est en ligne : inscris-toi sur Click2Clear, écrivez à click2clear@bahamas.gov.bs pour activer un accès permis animalier, paie les frais et télécharge le permis approuvé. Traité en environ deux jours ouvrables.", es: "Se requiere un permiso para cada perro y debe acompañar al animal en la importación. Desde el 1 de septiembre de 2024 se solicita en línea: regístrate en Click2Clear, escribe a click2clear@bahamas.gov.bs para activar un acceso de permiso de mascotas, paga la tasa y descarga el permiso aprobado. Se procesa en unos dos días hábiles.", pt: "É exigida uma autorização para cada cachorro, e ela precisa acompanhar o animal na importação. Desde 1º de setembro de 2024 o pedido é feito on-line: cadastre-se no Click2Clear, escreva para click2clear@bahamas.gov.bs para ativar um login de autorização para animais, pague a taxa e baixe a autorização aprovada. Processada em cerca de dois dias úteis." }
+    exceptions: { en: "Application fee published on the online service page is US$10 + 12% VAT (US$11.20); the Department of Agriculture paper form (Rev. July 2023) lists US$40 + 10% VAT (US$44) for a first permit and US$11 for each additional permit, maximum ten per animal. Confirm the current fee with BAHFSA.", fr: "Frais indiqués sur la page de service en ligne : 10 USD + 12 % de TVA (11,20 USD) ; le formulaire papier du Département de l'Agriculture (rév. juillet 2023) indique 40 USD + 10 % de TVA (44 USD) pour un premier permis et 11 USD par permis supplémentaire, dix au maximum par animal. Confirme le tarif en vigueur auprès de la BAHFSA.", es: "La tasa de solicitud publicada en la página del servicio en línea es de 10 USD + 12 % de IVA (11,20 USD); el formulario en papel del Departamento de Agricultura (rev. julio de 2023) indica 40 USD + 10 % de IVA (44 USD) para un primer permiso y 11 USD por cada permiso adicional, máximo diez por animal. Confirma la tarifa vigente con la BAHFSA.", pt: "A taxa de solicitação publicada na página do serviço on-line é de US$ 10 + 12% de IVA (US$ 11,20); o formulário em papel do Department of Agriculture (Rev. julho de 2023) indica US$ 40 + 10% de IVA (US$ 44) para a primeira autorização e US$ 11 para cada autorização adicional, no máximo dez por animal. Confirme a taxa em vigor com a BAHFSA." }
+    ref: { en: "Bahamas Customs — Pet Import Rules; Application for Permit to Import Domestic Animals", fr: "Douanes des Bahamas — Règles d'import d'animaux ; Demande de permis d'importation d'animaux domestiques", es: "Aduanas de Bahamas — Normas de importación de mascotas; Solicitud de permiso para importar animales domésticos", pt: "Bahamas Customs — regras de importação de animais de estimação; Application for Permit to Import Domestic Animals (solicitação de autorização de importação)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must carry an ISO microchip, and all documents (permit, certificate, vaccination record) must reflect the microchip number, which is recorded on the import-permit application.", fr: "Le chien doit porter une puce ISO, et tous les documents (permis, certificat, carnet de vaccination) doivent reprendre le numéro de puce, consigné sur la demande de permis d'importation.", es: "El perro debe llevar un microchip ISO, y todos los documentos (permiso, certificado, cartilla de vacunación) deben reflejar el número de microchip, que se registra en la solicitud del permiso de importación.", pt: "O cachorro precisa ter um microchip ISO, e todos os documentos (autorização, certificado, carteira de vacinação) precisam trazer o número do microchip, que é registrado no pedido de autorização de importação." }
+    exceptions: { en: "No published tattoo alternative for the microchip requirement.", fr: "Aucune alternative par tatouage publiée pour l'exigence de puce.", es: "No hay una alternativa por tatuaje publicada para el requisito de microchip.", pt: "Não há alternativa de tatuagem publicada para a exigência de microchip." }
+    ref: { en: "Bahamas Department of Agriculture — Animal import requirements / application form", fr: "Département de l'Agriculture des Bahamas — Exigences d'import / formulaire de demande", es: "Departamento de Agricultura de Bahamas — Requisitos de importación de animales / formulario de solicitud", pt: "Bahamas Department of Agriculture — exigências de importação de animais / formulário de solicitação" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "More than 6 months", fr: "Plus de 6 mois", es: "Más de 6 meses", pt: "Mais de 6 meses" }
+    when: { en: "The international veterinary certificate must attest that the dog is more than six (6) months of age.", fr: "Le certificat vétérinaire international doit attester que le chien a plus de six (6) mois.", es: "El certificado veterinario internacional debe acreditar que el perro tiene más de seis (6) meses de edad.", pt: "O certificado veterinário internacional precisa atestar que o cachorro tem mais de seis (6) meses de idade." }
+    exceptions: { en: "No published exception for younger puppies.", fr: "Aucune exception publiée pour les chiots plus jeunes.", es: "No hay excepción publicada para cachorros más jóvenes.", pt: "Não há exceção publicada para filhotes mais novos." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "From a country not free of rabies: a 1-year vaccine must be given no more than 10 months and no less than 1 month before import; a 3-year vaccine no more than 34 months and no less than 1 month before import. From a rabies-free country: the dog must be actively immunized against rabies (no specific window is published).", fr: "Depuis un pays non indemne de rage : un vaccin d'un an doit être administré au plus 10 mois et au moins 1 mois avant l'import ; un vaccin de trois ans au plus 34 mois et au moins 1 mois avant l'import. Depuis un pays indemne : le chien doit être activement immunisé contre la rage (aucune fenêtre spécifique n'est publiée).", es: "Desde un país no libre de rabia: una vacuna de 1 año debe administrarse no más de 10 meses y no menos de 1 mes antes de la importación; una vacuna de 3 años no más de 34 meses y no menos de 1 mes antes de la importación. Desde un país libre de rabia: el perro debe estar activamente inmunizado contra la rabia (no se publica ninguna ventana específica).", pt: "De um país não livre de raiva: a vacina de 1 ano precisa ser aplicada no máximo 10 meses e no mínimo 1 mês antes da importação; a vacina de 3 anos, no máximo 34 meses e no mínimo 1 mês antes da importação. De um país livre de raiva: o cachorro precisa estar ativamente imunizado contra a raiva (nenhum prazo específico é publicado)." }
+    exceptions: { en: "Boosters must be given before the previous vaccination expires. The vaccination must not lapse during the trip.", fr: "Les rappels doivent être faits avant l'expiration de la vaccination précédente. La vaccination ne doit pas expirer pendant le voyage.", es: "Los refuerzos deben administrarse antes de que caduque la vacunación anterior. La vacunación no debe caducar durante el viaje.", pt: "Os reforços precisam ser aplicados antes de a vacinação anterior vencer. A vacinação não pode vencer durante a viagem." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
+  - item: { en: "Core vaccinations", fr: "Vaccins de base", es: "Vacunas básicas", pt: "Vacinas essenciais" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "The dog must be actively immunized against Distemper, Hepatitis, Leptospirosis, Parvovirus and Adenovirus, in addition to rabies. These vaccinations are certified on the international veterinary certificate.", fr: "Le chien doit être activement immunisé contre la maladie de Carré, l'hépatite, la leptospirose, la parvovirose et l'adénovirus, en plus de la rage. Ces vaccinations sont certifiées sur le certificat vétérinaire international.", es: "El perro debe estar activamente inmunizado contra el moquillo, la hepatitis, la leptospirosis, el parvovirus y el adenovirus, además de la rabia. Estas vacunaciones se certifican en el certificado veterinario internacional.", pt: "O cachorro precisa estar ativamente imunizado contra cinomose, hepatite, leptospirose, parvovirose e adenovírus, além da raiva. Essas vacinações são atestadas no certificado veterinário internacional." }
+    exceptions: { en: "Confirm the exact schedule and any booster timing with your vet.", fr: "Confirme le protocole exact et le calendrier des rappels avec ton vétérinaire.", es: "Confirma el protocolo exacto y el calendario de refuerzos con tu veterinario.", pt: "Confirme com o seu veterinário o calendário exato e o momento de eventuais reforços." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
+  - item: { en: "Internal and external parasite freedom", fr: "Absence de parasites internes et externes", es: "Ausencia de parásitos internos y externos", pt: "Ausência de parasitas internos e externos" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be free of internal parasites (certified by a negative faecal/stool test) and free of external parasites; both are attested on the international veterinary certificate.", fr: "Le chien doit être exempt de parasites internes (certifié par un test de selles négatif) et de parasites externes ; les deux sont attestés sur le certificat vétérinaire international.", es: "El perro debe estar libre de parásitos internos (certificado mediante una prueba de heces negativa) y de parásitos externos; ambos se acreditan en el certificado veterinario internacional.", pt: "O cachorro precisa estar livre de parasitas internos (comprovado por um exame de fezes negativo) e livre de parasitas externos; os dois pontos são atestados no certificado veterinário internacional." }
+    exceptions: { en: "Ectoparasites found on arrival can lead to refused entry.", fr: "La présence d'ectoparasites à l'arrivée peut entraîner un refus d'entrée.", es: "La presencia de ectoparásitos a la llegada puede provocar un rechazo de entrada.", pt: "Ectoparasitas encontrados na chegada podem levar à recusa de entrada." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "BAHFSA's published import conditions for dogs do not include a rabies antibody test. Confirm with BAHFSA if your dog is coming from a high-risk origin.", fr: "Les conditions d'import publiées par la BAHFSA pour les chiens ne comprennent pas de titrage antirabique. Vérifie auprès de la BAHFSA si ton chien vient d'une origine à haut risque.", es: "Las condiciones de importación publicadas por la BAHFSA para perros no incluyen una prueba de titulación de rabia. Confirma con la BAHFSA si tu perro procede de un origen de alto riesgo.", pt: "As condições de importação publicadas pela BAHFSA para cachorros não incluem teste sorológico antirrábico. Confirme com a BAHFSA se o seu cachorro vier de uma origem de alto risco." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
+  - item: { en: "International veterinary certificate", fr: "Certificat vétérinaire international", es: "Certificado veterinario internacional", pt: "Certificado veterinário internacional" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued within ten (10) days of importation by a licensed veterinarian, in English, attesting the dog's age, vaccinations, parasite freedom and general health (including active immunity against rabies).", fr: "Établi dans les dix (10) jours précédant l'import par un vétérinaire agréé, en anglais, attestant l'âge, les vaccinations, l'absence de parasites et l'état de santé général du chien (y compris l'immunité active contre la rage).", es: "Expedido dentro de los diez (10) días previos a la importación por un veterinario autorizado, en inglés, acreditando la edad del perro, las vacunaciones, la ausencia de parásitos y el estado de salud general (incluida la inmunidad activa contra la rabia).", pt: "Emitido nos dez (10) dias anteriores à importação por um veterinário habilitado, em inglês, atestando a idade do cachorro, as vacinações, a ausência de parasitas e o estado geral de saúde (incluindo a imunidade ativa contra a raiva)." }
+    exceptions: { en: "A separate BAHFSA veterinarian form (AGR/VS/1A) must also be completed by a registered veterinarian 24 hours before travel and presented with the permit at the port.", fr: "Un formulaire vétérinaire BAHFSA distinct (AGR/VS/1A) doit aussi être rempli par un vétérinaire agréé 24 heures avant le voyage et présenté avec le permis au port d'entrée.", es: "Un formulario veterinario aparte de la BAHFSA (AGR/VS/1A) también debe ser rellenado por un veterinario registrado 24 horas antes del viaje y presentado con el permiso en el puerto de entrada.", pt: "Um formulário veterinário específico da BAHFSA (AGR/VS/1A) também precisa ser preenchido por um veterinário registrado 24 horas antes da viagem e apresentado junto com a autorização no ponto de entrada." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1); Application for Permit to Import Domestic Animals", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1) ; Demande de permis d'importation d'animaux domestiques", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1); Solicitud de permiso para importar animales domésticos", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1); Application for Permit to Import Domestic Animals" }
+  - item: { en: "Advance notification", fr: "Notification préalable", es: "Notificación previa", pt: "Aviso prévio" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "BAHFSA Veterinary Services must be given 72 hours' notice before the animal arrives in The Bahamas.", fr: "Les services vétérinaires de la BAHFSA doivent être prévenus 72 heures avant l'arrivée de l'animal aux Bahamas.", es: "Debe avisarse a los Servicios Veterinarios de la BAHFSA con 72 horas de antelación antes de que el animal llegue a Bahamas.", pt: "É preciso avisar os Serviços Veterinários da BAHFSA com 72 horas de antecedência antes de o animal chegar às Bahamas." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Bahamas Department of Agriculture — Animal import requirements", fr: "Département de l'Agriculture des Bahamas — Exigences d'importation d'animaux", es: "Departamento de Agricultura de Bahamas — Requisitos de importación de animales", pt: "Bahamas Department of Agriculture — exigências de importação de animais" }
+  - item: { en: "Inspection on arrival", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "At the first port of entry, all documents and animals are inspected and examined by a BAHFSA Veterinary Officer.", fr: "Au premier point d'entrée, tous les documents et animaux sont inspectés et examinés par un vétérinaire officiel de la BAHFSA.", es: "En el primer punto de entrada, todos los documentos y animales son inspeccionados y examinados por un veterinario oficial de la BAHFSA.", pt: "No primeiro ponto de entrada, todos os documentos e animais são inspecionados e examinados por um veterinário oficial da BAHFSA." }
+    exceptions: { en: "Incomplete documentation, or a communicable disease or ectoparasites found on the animal, may result in refused entry, or confiscation and disposal as a disease risk.", fr: "Une documentation incomplète, ou la présence d'une maladie contagieuse ou d'ectoparasites, peut entraîner un refus d'entrée, ou la confiscation et l'élimination comme risque sanitaire.", es: "Una documentación incompleta, o la presencia de una enfermedad contagiosa o de ectoparásitos en el animal, puede provocar un rechazo de entrada, o la confiscación y eliminación como riesgo sanitario.", pt: "Documentação incompleta, ou a constatação de uma doença transmissível ou de ectoparasitas no animal, pode resultar em recusa de entrada, ou na apreensão e eliminação do animal como risco sanitário." }
+    ref: { en: "Bahamas Customs — Pet Import Rules; Department of Agriculture application", fr: "Douanes des Bahamas — Règles d'import ; demande du Département de l'Agriculture", es: "Aduanas de Bahamas — Normas de importación; solicitud del Departamento de Agricultura", pt: "Bahamas Customs — regras de importação de animais de estimação; formulário de solicitação do Department of Agriculture" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "No routine quarantine", fr: "Aucune quarantaine de routine", es: "Sin cuarentena rutinaria", pt: "Sem quarentena de rotina" }
+    when: { en: "There is no published routine quarantine for a compliant dog.", fr: "Aucune quarantaine de routine publiée pour un chien conforme.", es: "No hay cuarentena rutinaria publicada para un perro conforme.", pt: "Não há quarentena de rotina publicada para um cachorro em conformidade." }
+    exceptions: { en: "A non-compliant animal may instead be refused entry or confiscated at the port.", fr: "Un animal non conforme peut être refusé à l'entrée ou confisqué au port.", es: "Un animal no conforme puede en cambio ser rechazado a la entrada o confiscado en el puerto.", pt: "Um animal fora das exigências pode, em vez disso, ter a entrada recusada ou ser apreendido no ponto de entrada." }
+    ref: { en: "Bahamas Customs — Pet Import Rules", fr: "Douanes des Bahamas — Règles d'import", es: "Aduanas de Bahamas — Normas de importación de mascotas", pt: "Bahamas Customs — regras de importação de animais de estimação" }
+  - item: { en: "Restricted or banned breeds", fr: "Races restreintes ou interdites", es: "Razas restringidas o prohibidas", pt: "Raças restritas ou proibidas" }
+    required: { en: "Confirm with BAHFSA", fr: "À vérifier auprès de la BAHFSA", es: "Confirmar con la BAHFSA", pt: "Confirmar com a BAHFSA" }
+    when: { en: "BAHFSA's published import conditions for dogs do not list breed-specific rules.", fr: "Les conditions d'import publiées par la BAHFSA pour les chiens n'énumèrent pas de règles propres à la race.", es: "Las condiciones de importación publicadas por la BAHFSA para perros no enumeran normas propias de cada raza.", pt: "As condições de importação publicadas pela BAHFSA para cachorros não trazem regras específicas por raça." }
+    exceptions: { en: "Whether any breed is restricted for import is not confirmed in the official documents reviewed — confirm the current breed policy directly with BAHFSA before booking.", fr: "L'éventuelle restriction d'une race à l'import n'est pas confirmée dans les documents officiels consultés — vérifie la politique de race en vigueur directement auprès de la BAHFSA avant de réserver.", es: "La posible restricción de alguna raza para la importación no está confirmada en los documentos oficiales consultados — confirma la política de razas vigente directamente con la BAHFSA antes de reservar.", pt: "Se alguma raça é restrita para importação não foi confirmado nos documentos oficiais consultados — confirme a política de raças em vigor diretamente com a BAHFSA antes de reservar." }
+    ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
+
+origin:
+  eu:
+    title: { en: "Standard — the Bahamian permit scheme", fr: "Standard — le dispositif de permis bahamien", es: "Estándar — el sistema de permisos de Bahamas", pt: "Padrão — o esquema de autorização das Bahamas" }
+    body:
+      en: "The Bahamas is not part of the EU pet-passport system. Every dog needs a BAHFSA import permit obtained in advance through Click2Clear, an ISO microchip, and an international veterinary certificate (issued within 10 days of import) confirming it is over 6 months old, vaccinated against rabies plus distemper, hepatitis, leptospirosis, parvovirus and adenovirus, and free of internal and external parasites. BAHFSA must be notified 72 hours before arrival, and the animal and papers are inspected at the port of entry."
+      fr: "Les Bahamas ne font pas partie du système du passeport européen. Chaque chien a besoin d'un permis d'importation BAHFSA obtenu à l'avance via Click2Clear, d'une puce ISO et d'un certificat vétérinaire international (établi dans les 10 jours avant l'import) confirmant qu'il a plus de 6 mois, qu'il est vacciné contre la rage plus la maladie de Carré, l'hépatite, la leptospirose, la parvovirose et l'adénovirus, et qu'il est exempt de parasites internes et externes. La BAHFSA doit être prévenue 72 heures avant l'arrivée, et l'animal et les documents sont inspectés au point d'entrée."
+      es: "Bahamas no forma parte del sistema del pasaporte europeo para mascotas. Cada perro necesita un permiso de importación de la BAHFSA obtenido por adelantado a través de Click2Clear, un microchip ISO y un certificado veterinario internacional (expedido dentro de los 10 días previos a la importación) que confirme que tiene más de 6 meses, que está vacunado contra la rabia más el moquillo, la hepatitis, la leptospirosis, el parvovirus y el adenovirus, y que está libre de parásitos internos y externos. La BAHFSA debe ser avisada 72 horas antes de la llegada, y el animal y los documentos se inspeccionan en el punto de entrada."
+      pt: "As Bahamas não fazem parte do sistema do passaporte europeu para animais. Todo cachorro precisa de uma autorização de importação da BAHFSA obtida com antecedência pelo Click2Clear, de um microchip ISO e de um certificado veterinário internacional (emitido nos 10 dias anteriores à importação) confirmando que ele tem mais de 6 meses, que está vacinado contra a raiva mais cinomose, hepatite, leptospirose, parvovirose e adenovírus, e que está livre de parasitas internos e externos. A BAHFSA precisa ser avisada 72 horas antes da chegada, e o animal e os documentos são inspecionados no ponto de entrada."
+    cls: warn
+  listed:
+    title: { en: "From a rabies-free country", fr: "Depuis un pays indemne de rage", es: "Desde un país libre de rabia", pt: "De um país livre de raiva" }
+    body:
+      en: "If the dog is exported from a country, zone or compartment recognised as free of rabies by the World Organisation for Animal Health, the international veterinary certificate must attest that the dog is over 6 months old, actively immunised against rabies plus the five core diseases, and free of internal parasites (negative faecal test) and external parasites. No specific rabies-vaccine timing window is published for this pathway — but the import permit and the certificate rules still apply."
+      fr: "Si le chien est exporté d'un pays, d'une zone ou d'un compartiment reconnu indemne de rage par l'Organisation mondiale de la santé animale, le certificat vétérinaire international doit attester que le chien a plus de 6 mois, qu'il est activement immunisé contre la rage plus les cinq maladies de base, et qu'il est exempt de parasites internes (test de selles négatif) et externes. Aucune fenêtre spécifique de vaccination antirabique n'est publiée pour ce parcours — mais le permis d'importation et les règles de certificat s'appliquent tout de même."
+      es: "Si el perro se exporta desde un país, zona o compartimento reconocido como libre de rabia por la Organización Mundial de Sanidad Animal, el certificado veterinario internacional debe acreditar que el perro tiene más de 6 meses, que está activamente inmunizado contra la rabia más las cinco enfermedades básicas, y que está libre de parásitos internos (prueba de heces negativa) y externos. No se publica ninguna ventana específica de vacunación antirrábica para esta vía — pero el permiso de importación y las normas del certificado siguen aplicándose."
+      pt: "Se o cachorro for exportado de um país, zona ou compartimento reconhecido como livre de raiva pela Organização Mundial de Saúde Animal, o certificado veterinário internacional precisa atestar que ele tem mais de 6 meses, que está ativamente imunizado contra a raiva e as cinco doenças essenciais, e que está livre de parasitas internos (exame de fezes negativo) e externos. Nenhum prazo específico para a vacina antirrábica é publicado para esse caminho — mas as regras da autorização de importação e do certificado continuam valendo."
+    cls: ok
+  nonListed:
+    title: { en: "From a country not free of rabies", fr: "Depuis un pays non indemne de rage", es: "Desde un país no libre de rabia", pt: "De um país não livre de raiva" }
+    body:
+      en: "If the departure country is not recognised as rabies-free, the rabies vaccination is time-bound: a one-year vaccine must have been given no more than 10 months and no less than 1 month before import, or a three-year vaccine no more than 34 months and no less than 1 month before import. The dog must still be over 6 months old, immunised against the five core diseases, parasite-free, hold the import permit and travel with the international certificate issued within 10 days of import."
+      fr: "Si le pays de départ n'est pas reconnu indemne de rage, la vaccination antirabique est encadrée dans le temps : un vaccin d'un an doit avoir été administré au plus 10 mois et au moins 1 mois avant l'import, ou un vaccin de trois ans au plus 34 mois et au moins 1 mois avant l'import. Le chien doit toujours avoir plus de 6 mois, être immunisé contre les cinq maladies de base, exempt de parasites, détenir le permis d'importation et voyager avec le certificat international établi dans les 10 jours avant l'import."
+      es: "Si el país de salida no está reconocido como libre de rabia, la vacunación antirrábica tiene límites de tiempo: una vacuna de un año debe haberse administrado no más de 10 meses y no menos de 1 mes antes de la importación, o una vacuna de tres años no más de 34 meses y no menos de 1 mes antes de la importación. El perro debe seguir teniendo más de 6 meses, estar inmunizado contra las cinco enfermedades básicas, libre de parásitos, tener el permiso de importación y viajar con el certificado internacional expedido dentro de los 10 días previos a la importación."
+      pt: "Se o país de partida não for reconhecido como livre de raiva, a vacinação antirrábica tem prazo: a vacina de um ano precisa ter sido aplicada no máximo 10 meses e no mínimo 1 mês antes da importação, ou a vacina de três anos no máximo 34 meses e no mínimo 1 mês antes da importação. O cachorro ainda precisa ter mais de 6 meses, estar imunizado contra as cinco doenças essenciais, estar livre de parasitas, ter a autorização de importação e viajar com o certificado internacional emitido nos 10 dias anteriores à importação."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches The Bahamas depends on whether its permit and documents are complete."
+    fr: "Ce qui se passe à l'arrivée de ton chien aux Bahamas dépend de la complétude de son permis et de ses documents."
+    es: "Lo que ocurre cuando tu perro llega a Bahamas depende de si su permiso y sus documentos están completos."
+    pt: "O que acontece quando o seu cachorro chega às Bahamas depende de a autorização e a documentação dele estarem completas."
+  points:
+    - en: "Give BAHFSA Veterinary Services 72 hours' notice before the animal arrives in The Bahamas."
+      fr: "Préviens les services vétérinaires de la BAHFSA 72 heures avant l'arrivée de l'animal aux Bahamas."
+      es: "Avisa a los Servicios Veterinarios de la BAHFSA con 72 horas de antelación antes de que el animal llegue a Bahamas."
+      pt: "Avise os Serviços Veterinários da BAHFSA com 72 horas de antecedência antes de o animal chegar às Bahamas."
+    - en: "At the first port of entry, a BAHFSA Veterinary Officer inspects and examines the animal and all documents; present the import permit and the completed veterinarian form."
+      fr: "Au premier point d'entrée, un vétérinaire officiel de la BAHFSA inspecte et examine l'animal et tous les documents ; présente le permis d'importation et le formulaire vétérinaire rempli."
+      es: "En el primer punto de entrada, un veterinario oficial de la BAHFSA inspecciona y examina al animal y todos los documentos; presenta el permiso de importación y el formulario veterinario cumplimentado."
+      pt: "No primeiro ponto de entrada, um veterinário oficial da BAHFSA inspeciona e examina o animal e todos os documentos; apresente a autorização de importação e o formulário veterinário preenchido."
+    - en: "The import permit must accompany the animal, and all conditions listed on it must be satisfied."
+      fr: "Le permis d'importation doit accompagner l'animal, et toutes les conditions qui y figurent doivent être satisfaites."
+      es: "El permiso de importación debe acompañar al animal, y deben cumplirse todas las condiciones que figuran en él."
+      pt: "A autorização de importação precisa acompanhar o animal, e todas as condições nela listadas precisam ser cumpridas."
+    - en: "Incomplete documentation, or a communicable disease or ectoparasites found on the dog, may result in refused entry, or confiscation and disposal as a disease risk."
+      fr: "Une documentation incomplète, ou la présence d'une maladie contagieuse ou d'ectoparasites, peut entraîner un refus d'entrée, ou la confiscation et l'élimination comme risque sanitaire."
+      es: "Una documentación incompleta, o la presencia de una enfermedad contagiosa o de ectoparásitos en el perro, puede provocar un rechazo de entrada, o la confiscación y eliminación como riesgo sanitario."
+      pt: "Documentação incompleta, ou a constatação de uma doença transmissível ou de ectoparasitas no cachorro, pode resultar em recusa de entrada, ou na apreensão e eliminação do animal como risco sanitário."
+    - en: "Carry original documents in English; the international veterinary certificate is valid only within 10 days of import."
+      fr: "Munis-toi des documents originaux en anglais ; le certificat vétérinaire international n'est valable que dans les 10 jours précédant l'import."
+      es: "Lleva los documentos originales en inglés; el certificado veterinario internacional solo es válido dentro de los 10 días previos a la importación."
+      pt: "Leve os documentos originais em inglês; o certificado veterinário internacional só vale dentro dos 10 dias anteriores à importação."
+    - en: "Airlines have their own crate, breed and booking rules — confirm them separately before you fly."
+      fr: "Les compagnies ont leurs propres règles de caisse, de race et de réservation — vérifie-les séparément avant de voler."
+      es: "Las aerolíneas tienen sus propias normas de jaula, raza y reserva — confírmalas por separado antes de volar."
+      pt: "As companhias aéreas têm as próprias regras de caixa de transporte, raça e reserva — confirme-as separadamente antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "BAHFSA's published import conditions for cats and dogs are framed around health, vaccination and parasite status, not breed. They do not contain a breed-specific import list."
+    fr: "Les conditions d'import publiées par la BAHFSA pour les chats et chiens portent sur l'état sanitaire, la vaccination et les parasites, pas sur la race. Elles ne comportent pas de liste d'importation propre à une race."
+    es: "Las condiciones de importación publicadas por la BAHFSA para gatos y perros se centran en el estado sanitario, la vacunación y los parásitos, no en la raza. No contienen una lista de importación propia de cada raza."
+    pt: "As condições de importação publicadas pela BAHFSA para cães e gatos são construídas em torno da saúde, da vacinação e da situação parasitária, e não da raça. Elas não trazem uma lista de importação por raça."
+  cat1:
+    en: "In the official import documents reviewed, no dog breed is expressly listed as prohibited from entering The Bahamas: any dog meeting the permit, microchip, age, vaccination, parasite and certificate requirements is addressed by the health rules regardless of breed."
+    fr: "Dans les documents officiels d'importation consultés, aucune race de chien n'est expressément indiquée comme interdite d'entrée aux Bahamas : tout chien répondant aux exigences de permis, puce, âge, vaccination, parasites et certificat relève des règles sanitaires, quelle que soit sa race."
+    es: "En los documentos oficiales de importación consultados, ninguna raza de perro figura expresamente como prohibida de entrar en Bahamas: cualquier perro que cumpla los requisitos de permiso, microchip, edad, vacunación, parásitos y certificado se rige por las normas sanitarias, sea cual sea su raza."
+    pt: "Nos documentos oficiais de importação consultados, nenhuma raça de cachorro é expressamente listada como proibida de entrar nas Bahamas: qualquer cachorro que cumpra as exigências de autorização, microchip, idade, vacinação, parasitas e certificado é tratado pelas regras sanitárias, seja qual for a raça."
+  cat2:
+    en: "However, whether The Bahamas restricts certain breeds (for example pit-bull-type dogs) could not be confirmed from the official sources accessed for this guide. Because breed policy can change and may be handled at the permit stage, confirm the current breed rules directly with BAHFSA before booking."
+    fr: "Toutefois, l'éventuelle restriction de certaines races par les Bahamas (par exemple les chiens de type pit-bull) n'a pas pu être confirmée à partir des sources officielles consultées pour ce guide. La politique de race pouvant évoluer et être traitée au stade du permis, vérifie les règles en vigueur directement auprès de la BAHFSA avant de réserver."
+    es: "Sin embargo, no se pudo confirmar a partir de las fuentes oficiales consultadas para esta guía si Bahamas restringe ciertas razas (por ejemplo, los perros de tipo pit bull). Como la política de razas puede cambiar y tratarse en la fase del permiso, confirma las normas de razas vigentes directamente con la BAHFSA antes de reservar."
+    pt: "No entanto, não foi possível confirmar, nas fontes oficiais consultadas para este guia, se as Bahamas restringem determinadas raças (por exemplo, cachorros do tipo pit bull). Como a política de raças pode mudar e pode ser tratada na etapa da autorização, confirme as regras de raça em vigor diretamente com a BAHFSA antes de reservar."
+  note:
+    en: "Airlines may also set their own rules for certain breeds. Confirm both the national breed policy (with BAHFSA) and your airline's breed policy before you book."
+    fr: "Les compagnies aériennes peuvent aussi fixer leurs propres règles pour certaines races. Confirme la politique nationale de race (auprès de la BAHFSA) et celle de ta compagnie avant de réserver."
+    es: "Las aerolíneas también pueden fijar sus propias normas para ciertas razas. Confirma tanto la política nacional de razas (con la BAHFSA) como la política de razas de tu aerolínea antes de reservar."
+    pt: "As companhias aéreas também podem ter suas próprias regras para determinadas raças. Confirme tanto a política nacional de raças (com a BAHFSA) quanto a política de raças da sua companhia aérea antes de reservar."
+
+checklist:
+  - en: "BAHFSA import permit applied for in advance via Click2Clear and carried with the animal"
+    fr: "Permis d'importation BAHFSA demandé à l'avance via Click2Clear et transporté avec l'animal"
+    es: "Permiso de importación de la BAHFSA solicitado por adelantado a través de Click2Clear y llevado con el animal"
+    pt: "Autorização de importação da BAHFSA solicitada com antecedência pelo Click2Clear e levada junto com o animal"
+  - en: "ISO microchip implanted, with its number on every document"
+    fr: "Puce ISO posée, avec son numéro sur chaque document"
+    es: "Microchip ISO implantado, con su número en cada documento"
+    pt: "Microchip ISO implantado, com o número em todos os documentos"
+  - en: "Dog more than 6 months old at import"
+    fr: "Chien de plus de 6 mois à l'import"
+    es: "Perro de más de 6 meses en la importación"
+    pt: "Cachorro com mais de 6 meses na importação"
+  - en: "Rabies vaccination valid in the required window for your departure country (rabies-free vs not)"
+    fr: "Vaccination antirabique valide dans la fenêtre requise selon le pays de départ (indemne ou non de rage)"
+    es: "Vacunación antirrábica válida en la ventana requerida según tu país de salida (libre de rabia o no)"
+    pt: "Vacinação antirrábica válida dentro do prazo exigido para o seu país de partida (livre de raiva ou não)"
+  - en: "Core vaccines: distemper, hepatitis, leptospirosis, parvovirus, adenovirus"
+    fr: "Vaccins de base : maladie de Carré, hépatite, leptospirose, parvovirose, adénovirus"
+    es: "Vacunas básicas: moquillo, hepatitis, leptospirosis, parvovirus, adenovirus"
+    pt: "Vacinas essenciais: cinomose, hepatite, leptospirose, parvovirose, adenovírus"
+  - en: "Internal parasite test (negative faecal) and external parasite treatment done"
+    fr: "Test de parasites internes (selles négatif) et traitement antiparasitaire externe effectués"
+    es: "Prueba de parásitos internos (heces negativa) y tratamiento antiparasitario externo realizados"
+    pt: "Exame de parasitas internos (fezes negativo) e tratamento contra parasitas externos realizados"
+  - en: "International veterinary certificate issued within 10 days of import (in English)"
+    fr: "Certificat vétérinaire international établi dans les 10 jours avant l'import (en anglais)"
+    es: "Certificado veterinario internacional expedido dentro de los 10 días previos a la importación (en inglés)"
+    pt: "Certificado veterinário internacional emitido nos 10 dias anteriores à importação (em inglês)"
+  - en: "BAHFSA veterinarian form (AGR/VS/1A) completed 24 hours before travel"
+    fr: "Formulaire vétérinaire BAHFSA (AGR/VS/1A) rempli 24 heures avant le voyage"
+    es: "Formulario veterinario de la BAHFSA (AGR/VS/1A) cumplimentado 24 horas antes del viaje"
+    pt: "Formulário veterinário da BAHFSA (AGR/VS/1A) preenchido 24 horas antes da viagem"
+  - en: "72 hours' advance notice given to BAHFSA Veterinary Services"
+    fr: "Préavis de 72 heures donné aux services vétérinaires de la BAHFSA"
+    es: "Aviso previo de 72 horas dado a los Servicios Veterinarios de la BAHFSA"
+    pt: "Aviso prévio de 72 horas dado aos Serviços Veterinários da BAHFSA"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation compagnie et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula adecuada conforme a la IATA si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "Bahamas Customs — Pet Import Rules (bringing pets)", fr: "Douanes des Bahamas — Règles d'import d'animaux (amener des animaux)", es: "Aduanas de Bahamas — Normas de importación de mascotas (traer mascotas)", pt: "Bahamas Customs — regras de importação de animais de estimação (levar animais)" }
+    url: "https://www.bahamas.gov.bs/bringing-pets"
+  - label: { en: "Government of The Bahamas — Application for Permit to Import Domestic Animals", fr: "Gouvernement des Bahamas — Demande de permis d'importation d'animaux domestiques", es: "Gobierno de Bahamas — Solicitud de permiso para importar animales domésticos", pt: "Governo das Bahamas — Application for Permit to Import Domestic Animals (solicitação de autorização para importar animais domésticos)" }
+    url: "https://www.bahamas.gov.bs/service/application-for-permit-to-import-domestic-animals"
+  - label: { en: "BAHFSA — Trade Facilitation Unit: Cats and Dogs (import conditions, Appendix 1)", fr: "BAHFSA — Unité de facilitation des échanges : chats et chiens (conditions d'import, Annexe 1)", es: "BAHFSA — Unidad de Facilitación del Comercio: gatos y perros (condiciones de importación, Anexo 1)", pt: "BAHFSA — Trade Facilitation Unit: cães e gatos (condições de importação, anexo 1)" }
+    url: "https://bahfsabahamas.com/sectors/international/trade-facilitation-unit-cats-dogs"
+  - label: { en: "Bahamas Department of Agriculture — Application form to Import Domestic Animals (PDF, Rev. July 2023)", fr: "Département de l'Agriculture des Bahamas — Formulaire de demande d'importation d'animaux domestiques (PDF, rév. juillet 2023)", es: "Departamento de Agricultura de Bahamas — Formulario de solicitud para importar animales domésticos (PDF, rev. julio de 2023)", pt: "Bahamas Department of Agriculture — formulário de solicitação para importar animais domésticos (PDF, Rev. julho de 2023)" }
+    url: "https://cdn.bahamas.gov.bs/tenant/tenanttgotb/documents/ImportApplicationRevisedJuly2023-20240131192708-20250528042152.pdf"
+  - label: { en: "BAHFSA — Pet Import Permits: Click2Clear step-by-step user guide (PDF, 2025)", fr: "BAHFSA — Permis d'importation d'animaux : guide Click2Clear pas à pas (PDF, 2025)", es: "BAHFSA — Permisos de importación de mascotas: guía paso a paso de Click2Clear (PDF, 2025)", pt: "BAHFSA — autorizações de importação de animais de estimação: guia passo a passo do Click2Clear (PDF, 2025)" }
+    url: "https://bahfsabahamas.com/ePermitting/Pet-Permitting-Instructions-2025.pdf"
+
+seo:
+  title: { en: "Bahamas Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Bahamas — Guide", es: "Requisitos de entrada de perros en Bahamas — Guía de viaje", pt: "Bahamas: exigências de entrada para cachorros" }
+  metaTitle: { en: "Traveling to The Bahamas With Your Dog: Entry Requirements (2026)", fr: "Voyager aux Bahamas avec ton chien : formalités (2026)", es: "Viajar a Bahamas con tu perro: requisitos de entrada (2026)", pt: "Viajar com cachorro para as Bahamas: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official BAHFSA rules for bringing a dog into The Bahamas — mandatory import permit via Click2Clear, ISO microchip, rabies and core vaccines. Sourced and dated."
+    fr: "Règles officielles BAHFSA pour faire entrer un chien aux Bahamas — permis d'importation obligatoire via Click2Clear, puce ISO. Sourcé et daté."
+    es: "Normas oficiales de la BAHFSA para traer un perro a Bahamas — permiso de importación obligatorio a través de Click2Clear, microchip ISO. Con fuentes y fecha."
+    pt: "Regras oficiais da BAHFSA para levar um cachorro para as Bahamas: autorização pelo Click2Clear, microchip ISO e vacinas. Com fonte e data."
+  slug: "bahamas"
+  shortDesc:
+    en: "What you need to bring a dog into The Bahamas, including the mandatory import permit."
+    fr: "Ce qu'il faut pour faire entrer un chien aux Bahamas, y compris le permis d'importation obligatoire."
+    es: "Lo que necesitas para traer un perro a Bahamas, incluido el permiso de importación obligatorio."
+    pt: "O que você precisa para levar um cachorro para as Bahamas, incluindo a autorização de importação obrigatória."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

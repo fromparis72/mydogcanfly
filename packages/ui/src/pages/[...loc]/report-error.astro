@@ -1,0 +1,56 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const fr = locale === "fr";
+const es = locale === "es";
+const EMAIL = "contact@mydogcanfly.com";
+const title = T("Report an error", "Signaler une erreur", "Informar de un error");
+const blurb = T("Our mission is to provide accurate, sourced and up-to-date information. If you spot an error — an airline rule, a country requirement, a breed or calculation detail — tell us: we verify and fix it quickly.", "Notre mission est de fournir des informations exactes, sourcées et à jour. Si vous repérez une erreur — une règle de compagnie, une formalité pays, une donnée de race ou de calcul — dites-le-nous : nous vérifions et corrigeons rapidement.", "Nuestra misión es ofrecer información exacta, con fuentes y actualizada. Si detectas un error — una regla de una aerolínea, un requisito de un país, un dato de raza o de cálculo — dínoslo: lo verificamos y lo corregimos rápidamente.");
+const subject = T("Error report — MyDogCanFly", "Signalement d'une erreur — MyDogCanFly", "Informe de un error — MyDogCanFly");
+const bodyTemplate = T("Page: \nDescription of the error: \nSource / official link (if possible): ", "Page concernée : \nDescription de l'erreur : \nSource / lien officiel (si possible) : ", "Página afectada: \nDescripción del error: \nFuente / enlace oficial (si es posible): ");
+const mailto = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyTemplate)}`;
+const metaDesc = T("Spotted an error on MyDogCanFly? Report an airline rule, a country requirement or a breed detail — every report is reviewed.", "Une erreur sur MyDogCanFly ? Signale une règle de compagnie, une formalité pays ou une donnée de race — chaque signalement est relu.", "¿Has visto un error en MyDogCanFly? Informa de una regla de aerolínea, un requisito de país o un dato de raza — todo se revisa.");
+---
+<Base locale={locale} title={`${title} — MyDogCanFly`} description={metaDesc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container re-wrap">
+      <p class="mdcf-eyebrow">{T("Accuracy", "Fiabilité", "Fiabilidad")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="re-blurb">{blurb}</p>
+
+      <div class="re-card">
+        <p class="re-lead">{T("The simplest way: email us.", "Le plus simple : écrivez-nous par e-mail.", "Lo más sencillo: escríbenos por correo electrónico.")}</p>
+        <a class="re-btn" href={mailto}>✉️ {T("Report by email", "Signaler par e-mail", "Informar por correo electrónico")}</a>
+        <p class="re-mail">{T("or directly:", "ou directement :", "o directamente:")} <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+        <ul class="re-tips">
+          <li>{T("Include the page (copy the URL).", "Indiquez la page concernée (copiez l'adresse).", "Indica la página afectada (copia la dirección).")}</li>
+          <li>{T("Describe the error in one sentence.", "Décrivez l'erreur en une phrase.", "Describe el error en una frase.")}</li>
+          <li>{T("Add an official source if you have one.", "Ajoutez une source officielle si vous en avez une.", "Añade una fuente oficial si tienes una.")}</li>
+        </ul>
+      </div>
+      <p class="re-thanks">{T("Thank you — every report helps keep MyDogCanFly reliable for all four-legged travellers. 🐾", "Merci — chaque signalement aide à garder MyDogCanFly fiable pour tous les voyageurs à quatre pattes. 🐾", "Gracias — cada aviso ayuda a mantener MyDogCanFly fiable para todos los viajeros de cuatro patas. 🐾")}</p>
+    </div>
+  </section>
+</Base>
+<style>
+  .re-wrap { max-width: 760px; }
+  .re-blurb { color: var(--mdcf-muted); line-height: 1.6; margin: 0 0 22px; }
+  .re-card { border: 1px solid var(--mdcf-line); border-radius: 16px; padding: 22px; background: var(--mdcf-surface); }
+  .re-lead { margin: 0 0 14px; font-weight: 600; }
+  .re-btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 999px; background: var(--mdcf-surface, #fff); color: var(--mdcf-navy, #011d48); border: 1.5px solid var(--mdcf-navy, #011d48); font-weight: 600; text-decoration: none; transition: background .18s ease, color .18s ease; }
+  .re-btn:hover { background: var(--mdcf-navy, #011d48); color: #fff; }
+  .re-mail { margin: 14px 0 0; color: var(--mdcf-muted); font-size: 14px; }
+  .re-mail a { color: var(--mdcf-accent-ink, #b4530a); }
+  .re-tips { margin: 16px 0 0; padding-left: 18px; color: var(--mdcf-ink); line-height: 1.6; font-size: 14.5px; }
+  .re-thanks { margin: 22px 0 0; color: var(--mdcf-muted); font-size: 14px; }
+</style>

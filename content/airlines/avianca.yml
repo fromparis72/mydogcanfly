@@ -1,0 +1,318 @@
+id: airline_avianca
+mono: AV
+name: Avianca
+titleH1:
+  en: Flying with a dog on Avianca
+  fr: Voyager avec un chien sur Avianca
+  es: Viajar con perro en Avianca
+  pt: "Viajar com um cachorro pela Avianca"
+metaDesc:
+  en: "Avianca pet policy: cabin, hold and Avianca Cargo, fares by zone, seasonal route embargoes, breed limits and official sources."
+  fr: "Politique animaux Avianca : cabine, soute et Avianca Cargo, tarifs par zone, embargos saisonniers, restrictions de races et sources officielles."
+  es: "Política de mascotas de Avianca: cabina, bodega y Avianca Cargo, tarifas por zona, embargos de rutas estacionales, límites de raza y fuentes oficiales."
+  pt: "Política de animais da Avianca: cabine, porão e Avianca Cargo, tarifas por zona, embargos sazonais de rotas, limites de raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Colombia · BOG
+      fr: Colombie · BOG
+      es: Colombia · BOG
+      pt: "Colômbia · BOG"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cabin (≤ 10 kg) and hold (≤ 70 kg) for cats & dogs — but many seasonal route embargoes and breed limits.
+  fr: Cabine (≤ 10 kg) et soute (≤ 70 kg) pour chats et chiens — mais nombreux embargos de routes saisonniers et restrictions de races.
+  es: Cabina (≤ 10 kg) y bodega (≤ 70 kg) para gatos y perros, pero con muchos embargos de rutas estacionales y límites de raza.
+  pt: "Cabine (≤ 10 kg) e porão (≤ 70 kg) para gatos e cachorros — mas com muitos embargos sazonais de rotas e limites de raça."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 70 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 70 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One dog or cat ≤ 10 kg incl. carrier in a soft carrier under the seat; not in B787 Business.
+      fr: Un chien ou chat ≤ 10 kg avec le sac dans un sac souple sous le siège ; pas en Business B787.
+      es: Un perro o gato ≤ 10 kg incl. jaula, en una jaula blanda bajo el asiento; no en Business del B787.
+      pt: "Um cachorro ou gato ≤ 10 kg incl. bolsa de transporte, em uma bolsa de transporte flexível embaixo do assento; não na Business do B787."
+    fee:
+      en: $45–235
+      fr: 45–235 $
+      es: 45–235 $
+      pt: "$45–235"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dog or cat up to 70 kg incl. container in a rigid, ventilated crate you provide. Ventilated-hold aircraft only.
+      fr: Chien ou chat jusqu'à 70 kg avec la caisse, caisse rigide ventilée fournie par tu. Uniquement avions à soute ventilée.
+      es: Perro o gato de hasta 70 kg incl. contenedor, en una jaula rígida y ventilada que tú aportas. Solo aviones con bodega ventilada.
+      pt: "Cachorro ou gato de até 70 kg incl. caixa de transporte, em uma caixa rígida e ventilada fornecida por você. Somente aeronaves com porão ventilado."
+    fee:
+      en: $70–345
+      fr: 70–345 $
+      es: 70–345 $
+      pt: "$70–345"
+  - icon: ✈️
+    name:
+      en: Avianca Cargo
+      fr: Avianca Cargo
+      es: Avianca Cargo
+      pt: "Avianca Cargo"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo presupuesto
+      pt: "Sob consulta"
+    detail:
+      en: Pets over 70 kg incl. container and all UK shipments, via Avianca Cargo live-animal service.
+      fr: Animaux de plus de 70 kg avec la caisse et toutes les expéditions vers le R.-U., via le service animaux vivants d'Avianca Cargo.
+      es: Mascotas de más de 70 kg incl. contenedor y todos los envíos al RU, mediante el servicio de animales vivos de Avianca Cargo.
+      pt: "Animais com mais de 70 kg incl. caixa de transporte e todos os envios para o Reino Unido, via o serviço de animais vivos da Avianca Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (regional → Europe)
+        fr: Cabine (régional → Europe)
+        es: Cabina (regional → Europa)
+        pt: "Cabine (regional → Europa)"
+      value:
+        en: $45–235
+        fr: 45–235 $
+        es: 45–235 $
+        pt: "$45–235"
+    - label:
+        en: Hold (regional → Europe)
+        fr: Soute (régional → Europe)
+        es: Bodega (regional → Europa)
+        pt: "Porão (regional → Europa)"
+      value:
+        en: $70–345
+        fr: 70–345 $
+        es: 70–345 $
+        pt: "$70–345"
+    - label:
+        en: Avianca Cargo
+        fr: Avianca Cargo
+        es: Avianca Cargo
+        pt: "Avianca Cargo"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD (or local currency at origin), one-way per segment.
+    fr: USD (ou monnaie locale à l'origine), aller simple par tronçon.
+    es: USD (o moneda local en el origen), por trayecto de ida y por tramo.
+    pt: "USD (ou moeda local na origem), ida por trecho."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats and crosses travel only in the cabin (barred from the hold), with a signed pet form: Shar Pei, boxer, Dogue de Bordeaux, bulldogs, Brussels Griffon, Boston terrier, King Charles/Cavalier, Pekingese, pug, and Burmese/Persian/Exotic/Himalayan cats."
+      fr: "Chiens et chats au nez écrasé et croisés ne voyagent qu'en cabine (interdits en soute), avec un formulaire animal signé : Shar Pei, boxer, Dogue de Bordeaux, bouledogues, Griffon bruxellois, Boston terrier, King Charles/Cavalier, pékinois, carlin, et chats birmans/persans/exotiques/himalayens."
+      es: "Los perros y gatos de hocico chato y sus cruces viajan solo en cabina (vetados en bodega), con un formulario de mascota firmado: Shar Pei, bóxer, Dogo de Burdeos, bulldogs, Grifón de Bruselas, Boston terrier, King Charles/Cavalier, pequinés, carlino, y gatos birmanos/persas/exóticos/himalayos."
+      pt: "Cachorros e gatos de focinho achatado e seus cruzamentos viajam somente na cabine (vetados no porão), com um formulário de animal assinado: Shar Pei, boxer, Dogue de Bordeaux, buldogues, Grifon de Bruxelas, Boston Terrier, King Charles/Cavalier, pequinês, pug, e gatos birmaneses/persas/exóticos/himalaios."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: Hold, metal crate
+          fr: Soute, caisse métal
+          es: Bodega, jaula metálica
+          pt: "Porão, caixa de metal"
+      - cls: warn
+        label:
+          en: Colombia import ban
+          fr: Import interdit Colombie
+          es: Importación vetada a Colombia
+          pt: "Importação proibida na Colômbia"
+    note:
+      en: "'Dangerous' breeds (pit bull, Rottweiler, Doberman, Presa Canario, Dogo Argentino, mastiffs, Fila, Bull Terrier, American Staffordshire, Tosa) travel only in the hold in a metal-walled crate; pit-bull types are import-banned into Colombia."
+      fr: Races « dangereuses » (pit-bull, Rottweiler, Doberman, Presa Canario, Dogo Argentino, mastiffs, Fila, Bull Terrier, American Staffordshire, Tosa) uniquement en soute dans une caisse à parois métalliques ; les types pit-bull sont interdits d'importation en Colombie.
+      es: "Las razas «peligrosas» (pit bull, Rottweiler, Doberman, Presa Canario, Dogo Argentino, mastines, Fila, Bull Terrier, American Staffordshire, Tosa) viajan solo en bodega en una jaula de paredes metálicas; los tipos pit bull tienen prohibida la importación a Colombia."
+      pt: "As raças “perigosas” (pit bull, Rottweiler, Dobermann, Presa Canário, Dogo Argentino, mastins, Fila, Bull Terrier, American Staffordshire, Tosa) viajam somente no porão em uma caixa de paredes metálicas; os tipos pit bull têm importação proibida na Colômbia."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Seasonal route embargoes
+        fr: Embargos de routes saisonniers
+        es: Embargos de rutas estacionales
+        pt: "Embargos sazonais de rotas"
+    - cls: warn
+      label:
+        en: Ventilated hold only
+        fr: Soute ventilée uniquement
+        es: Solo bodega ventilada
+        pt: "Somente porão ventilado"
+  note:
+    en: "Avianca publishes no degree thresholds but applies seasonal hold embargoes on many routes: summer (24 Jun–30 Sep 2026) to/from Orlando, Miami, Houston, Madrid, Barcelona and others; winter (15 Dec 2026–31 Mar 2027) to/from New York, Boston, Chicago, Toronto and more. Pets travel only on aircraft with a ventilated hold."
+    fr: "Avianca ne publie pas de seuils en degrés mais applique des embargos de soute saisonniers sur de nombreuses routes : été (24 juin–30 sept. 2026) de/vers Orlando, Miami, Houston, Madrid, Barcelone et d'autres ; hiver (15 déc. 2026–31 mars 2027) de/vers New York, Boston, Chicago, Toronto et plus. Les animaux voyagent uniquement sur avions à soute ventilée."
+    es: "Avianca no publica umbrales en grados, pero aplica embargos de bodega estacionales en muchas rutas: verano (24 jun–30 sep 2026) hacia/desde Orlando, Miami, Houston, Madrid, Barcelona y otras; invierno (15 dic 2026–31 mar 2027) hacia/desde Nueva York, Boston, Chicago, Toronto y más. Las mascotas viajan solo en aviones con bodega ventilada."
+    pt: "A Avianca não divulga limiares em graus, mas aplica embargos sazonais de porão em muitas rotas: verão (24 jun.–30 set. 2026) de/para Orlando, Miami, Houston, Madri, Barcelona e outras; inverno (15 dez. 2026–31 mar. 2027) de/para Nova York, Boston, Chicago, Toronto e mais. Os animais viajam somente em aeronaves com porão ventilado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service dogs (max 2) travel free in the cabin, no container, regardless of size.
+      fr: Chiens d'assistance dressés (max 2) gratuits en cabine, sans sac, quelle que soit la taille.
+      es: Los perros de asistencia adiestrados (máx. 2) viajan gratis en cabina, sin jaula, sin importar su tamaño.
+      pt: "Cães de serviço treinados (máx. 2) viajam gratuitamente na cabine, sem caixa de transporte, independentemente do tamanho."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: DOT service-animal + relief forms; request ≤ 48 h ahead. Emotional-support dogs are treated as pets.
+      fr: Formulaires DOT d'animal d'assistance + soulagement ; demande ≤ 48 h à l'avance. Chiens de soutien émotionnel traités comme animaux.
+      es: Formularios del DOT de animal de asistencia + de alivio; solicítalos ≤ 48 h antes. Los perros de apoyo emocional se tratan como mascotas.
+      pt: "Formulários do DOT de animal de serviço + de necessidades fisiológicas; solicite com ≤ 48 h de antecedência. Cães de apoio emocional são tratados como animais comuns."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Excluded destinations
+      fr: Destinations exclues
+      es: Destinos excluidos
+      pt: "Destinos excluídos"
+    value:
+      en: No live animals to the Galápagos; no service to the UK or to/from Aruba and Curaçao (except permanent relocation).
+      fr: Pas d'animaux vivants vers les Galápagos ; pas de service vers le R.-U. ni de/vers Aruba et Curaçao (sauf déménagement définitif).
+      es: No se admiten animales vivos a las Galápagos; sin servicio al RU ni hacia/desde Aruba y Curazao (salvo mudanza permanente).
+      pt: "Nenhum animal vivo para as Galápagos; sem serviço para o Reino Unido nem de/para Aruba e Curaçao (exceto mudança definitiva)."
+  - icon: 🐾
+    label:
+      en: One cabin pet
+      fr: Un animal en cabine
+      es: Una mascota en cabina
+      pt: "Um animal por cabine"
+    value:
+      en: Only one pet per cabin; extra pets travel in the hold.
+      fr: Un seul animal par cabine ; les animaux supplémentaires voyagent en soute.
+      es: Solo una mascota por cabina; las mascotas adicionales viajan en bodega.
+      pt: "Somente um animal por cabine; os animais adicionais viajam no porão."
+  - icon: 🔁
+    label:
+      en: Avianca-operated only
+      fr: Opéré par Avianca seul
+      es: Solo operado por Avianca
+      pt: "Somente operado pela Avianca"
+    value:
+      en: Not available on partner or codeshare bookings.
+      fr: Non disponible sur les réservations partenaires ou codeshare.
+      es: No disponible en reservas de socios ni en código compartido.
+      pt: "Não disponível em reservas de parceiras ou em codeshare."
+book:
+  host: avianca.com
+  url: https://www.avianca.com/
+sources:
+  en: 4 Avianca sources · last verified 11 July 2026
+  fr: 4 sources Avianca · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Avianca · última verificación 11 julio 2026
+  pt: "4 fontes da Avianca · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

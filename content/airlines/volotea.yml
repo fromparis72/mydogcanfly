@@ -1,0 +1,280 @@
+id: airline_volotea
+mono: V7
+name: Volotea
+titleH1:
+  en: Flying with a dog on Volotea
+  fr: Voyager avec un chien sur Volotea
+  es: Volar con un perro en Volotea
+  pt: "Viajar com um cachorro na Volotea"
+metaDesc:
+  en: "Volotea pet policy: small cabin pets only, no hold or cargo, UK/Ireland/Malta exclusion and official sources."
+  fr: "Politique animaux Volotea : petits animaux en cabine seulement, pas de soute ni fret, exclusion R.-U./Irlande/Malte et sources officielles."
+  es: "Política de mascotas de Volotea: solo mascotas pequeñas en cabina, sin bodega ni carga, exclusión de Reino Unido/Irlanda/Malta y fuentes oficiales."
+  pt: "Política de animais da Volotea: somente animais pequenos na cabine, sem porão nem carga, exclusão de Reino Unido/Irlanda/Malta e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Spain / France
+      fr: Espagne / France
+      es: España / Francia
+      pt: "Espanha / França"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: Small cats & dogs in the cabin for a modest fee — but no hold, and no pets to the UK, Ireland or Malta.
+  fr: Petits chats et chiens en cabine pour un tarif modéré — mais pas de soute, et rien vers le R.-U., l'Irlande ou Malte.
+  es: Gatos y perros pequeños en cabina por una tarifa moderada, pero sin bodega y sin mascotas a Reino Unido, Irlanda ni Malta.
+  pt: "Gatos e cachorros pequenos na cabine por uma tarifa modesta — mas sem porão, e nenhum animal para o Reino Unido, a Irlanda ou Malta."
+ladder:
+  - flex: 24
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 76
+    color: "#8a94a3"
+    label:
+      en: Hold / cargo
+      fr: Soute / fret
+      es: Bodega / carga
+      pt: "Porão / carga"
+    sub:
+      en: not offered
+      fr: non proposé
+      es: no disponible
+      pt: "não oferecido"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small dogs & cats (min 8 weeks) ≤ 10 kg (pet + carrier) in a soft carrier under the seat (max 50 × 40 × 20 cm); one per passenger, max 5/flight.
+      fr: Petits chiens et chats (min 8 semaines) ≤ 10 kg (animal + sac) dans un sac souple sous le siège (max 50 × 40 × 20 cm) ; un par passager, max 5/vol.
+      es: Perros y gatos pequeños (mín. 8 semanas) ≤ 10 kg (mascota + jaula) en una jaula blanda bajo el asiento (máx. 50 × 40 × 20 cm); uno por pasajero, máx. 5 por vuelo.
+      pt: "Cachorros e gatos pequenos (mín. 8 semanas) ≤ 10 kg (animal + bolsa) em uma bolsa flexível sob o assento (máx. 50 × 40 × 20 cm); um por passageiro, máx. 5 por voo."
+    fee:
+      en: €39–60
+      fr: 39–60 €
+      es: 39–60 €
+      pt: "€39–60"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No disponible
+      pt: "Não oferecido"
+    detail:
+      en: Volotea doesn't transport pets in the hold.
+      fr: Volotea ne transporte pas les animaux en soute.
+      es: Volotea no transporta mascotas en la bodega.
+      pt: "A Volotea não transporta animais no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No disponible
+      pt: "Não oferecido"
+    detail:
+      en: Volotea doesn't carry cargo.
+      fr: Volotea ne transporte pas de fret.
+      es: Volotea no transporta carga.
+      pt: "A Volotea não transporta carga."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 10 kg)
+        fr: Cabine (≤ 10 kg)
+        es: Cabina (≤ 10 kg)
+        pt: "Cabine (≤ 10 kg)"
+      value:
+        en: €39 online / €60 airport
+        fr: 39 € en ligne / 60 € aéroport
+        es: 39 € en línea / 60 € en el aeropuerto
+        pt: "€39 on-line / €60 no aeroporto"
+    - label:
+        en: Hold / cargo
+        fr: Soute / fret
+        es: Bodega / carga
+        pt: "Porão / carga"
+      value:
+        en: Not offered
+        fr: Non proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR each way; check in at the airport when travelling with a pet.
+    fr: EUR par trajet ; enregistrement à l'aéroport avec un animal.
+    es: EUR por trayecto; factura en el aeropuerto cuando viajes con una mascota.
+    pt: "EUR por trajeto; faça check-in no aeroporto quando viajar com um animal."
+restrictions:
+  - icon: 🐾
+    title:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo gatos y perros
+      pt: "Somente gatos e cachorros"
+    pills:
+      - cls: no
+        label:
+          en: No hold
+          fr: Pas de soute
+          es: Sin bodega
+          pt: "Sem porão"
+    note:
+      en: Only cats and dogs are accepted (no other animals) and there's no hold option. Pets are refused if pregnant, unwell, unhygienic, malodorous or aggressive.
+      fr: Seuls les chats et chiens sont acceptés (pas d'autres animaux) et il n'y a pas d'option soute. Les animaux sont refusés s'ils sont gestants, malades, malpropres, malodorants ou agressifs.
+      es: Solo se aceptan gatos y perros (ningún otro animal) y no hay opción de bodega. Se rechazan las mascotas gestantes, enfermas, poco higiénicas, malolientes o agresivas.
+      pt: "Somente gatos e cachorros são aceitos (nenhum outro animal) e não há opção de porão. Os animais são recusados se estiverem prenhes, doentes, sem higiene, com mau cheiro ou agressivos."
+  - icon: 🚫
+    title:
+      en: Excluded countries
+      fr: Pays exclus
+      es: Países excluidos
+      pt: "Países excluídos"
+    pills:
+      - cls: no
+        label:
+          en: UK / Ireland / Malta
+          fr: R.-U. / Irlande / Malte
+          es: Reino Unido / Irlanda / Malta
+          pt: "Reino Unido / Irlanda / Malta"
+    note:
+      en: No pet transport to/from the UK, Ireland or Malta. The carrier must be soft with breathing holes and a waterproof base (homemade boxes rejected).
+      fr: Aucun transport d'animal de/vers le R.-U., l'Irlande ou Malte. Le sac doit être souple avec des trous d'aération et un fond étanche (boîtes artisanales refusées).
+      es: No se transportan mascotas desde/hacia Reino Unido, Irlanda ni Malta. La jaula debe ser blanda, con orificios de ventilación y base impermeable (se rechazan las cajas caseras).
+      pt: "Nenhum transporte de animais de/para o Reino Unido, a Irlanda ou Malta. A bolsa deve ser flexível, com furos de ventilação e base impermeável (caixas artesanais são recusadas)."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Cabin-only program
+        fr: Programme cabine seule
+        es: Programa solo cabina
+        pt: "Programa somente cabine"
+  note:
+    en: Volotea carries pets in the cabin only, so no hold-temperature policy applies.
+    fr: "Volotea ne transporte les animaux qu'en cabine : aucune règle de température de soute ne s'applique."
+    es: Volotea transporta mascotas solo en cabina, por lo que no se aplica ninguna norma de temperatura de bodega.
+    pt: "A Volotea transporta animais somente na cabine, portanto nenhuma norma de temperatura de porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide dogs for visually-impaired passengers travel free in the cabin, correctly secured.
+      fr: Les chiens guides pour passagers déficients visuels voyagent gratuitement en cabine, correctement attachés.
+      es: Los perros guía para pasajeros con discapacidad visual viajan gratis en cabina, correctamente sujetos.
+      pt: "Cães-guia de passageiros com deficiência visual viajam gratuitamente na cabine, devidamente presos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Book via Special Assistance; carry ID/passport + health certificate.
+      fr: Réserver via l'Assistance spéciale ; se munir de la pièce/passeport + certificat sanitaire.
+      es: Reserva a través de Asistencia Especial; lleva el DNI/pasaporte + certificado sanitario.
+      pt: "Reserve pela Assistência Especial; leve identidade/passaporte + atestado de saúde veterinário."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cabin only
+      fr: Cabine uniquement
+      es: Solo cabina
+      pt: "Somente cabine"
+    value:
+      en: Volotea carries pets in the cabin only — no hold or cargo.
+      fr: Volotea ne transporte les animaux qu'en cabine — pas de soute ni fret.
+      es: Volotea transporta mascotas solo en cabina; sin bodega ni carga.
+      pt: "A Volotea transporta animais somente na cabine — sem porão nem carga."
+  - icon: 🚫
+    label:
+      en: No UK/Ireland/Malta
+      fr: Pas R.-U./Irlande/Malte
+      es: Ni Reino Unido/Irlanda/Malta
+      pt: "Sem Reino Unido/Irlanda/Malta"
+    value:
+      en: No pet transport to/from the UK, Ireland or Malta.
+      fr: Aucun transport d'animal de/vers le R.-U., l'Irlande ou Malte.
+      es: No se transportan mascotas desde/hacia Reino Unido, Irlanda ni Malta.
+      pt: "Nenhum transporte de animais de/para o Reino Unido, a Irlanda ou Malta."
+  - icon: 🎫
+    label:
+      en: Airport check-in
+      fr: Enregistrement aéroport
+      es: Facturación en el aeropuerto
+      pt: "Check-in no aeroporto"
+    value:
+      en: Passengers travelling with a pet must check in at the airport (not online); max 5 pets/flight.
+      fr: Les passagers avec un animal doivent s'enregistrer à l'aéroport (pas en ligne) ; max 5 animaux/vol.
+      es: Los pasajeros que viajan con una mascota deben facturar en el aeropuerto (no en línea); máx. 5 mascotas por vuelo.
+      pt: "Passageiros que viajam com um animal devem fazer check-in no aeroporto (não on-line); máx. 5 animais por voo."
+book:
+  host: volotea.com
+  url: https://www.volotea.com/
+sources:
+  en: 3 Volotea sources · last verified 11 July 2026
+  fr: 3 sources Volotea · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Volotea · última verificación 11 de julio de 2026
+  pt: "3 fontes da Volotea · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

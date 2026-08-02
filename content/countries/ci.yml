@@ -1,0 +1,378 @@
+# Country Entry Guide — Ivory Coast / Côte d'Ivoire (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ci
+iso2: "CI"
+name: { en: "Ivory Coast", fr: "Côte d'Ivoire", es: "Costa de Marfil", pt: "Costa do Marfim" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: DSV (MIRAH)
+  authorityUrl: https://ressourcesanimales.gouv.ci/direction/direction-des-services-veterinaires-dsv/
+  intro:
+    en: "Ivory Coast is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate validated by the Veterinary Services (DSV)."
+    fr: "La Côte d'Ivoire est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire validé par les Services vétérinaires (DSV)."
+    es: "Costa de Marfil no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario validado por los Servicios Veterinarios (DSV)."
+    pt: "A Costa do Marfim é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde validado pelos Serviços Veterinários (DSV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "Request the health certificate from an authorized vet a few days before departure (in French or with an official translation); it is validated within the DSV/MIRAH framework, which runs border sanitary control."
+        fr: "Demande le certificat sanitaire à un vétérinaire autorisé quelques jours avant le départ (en français ou avec traduction officielle) ; il est validé dans le cadre DSV/MIRAH, qui assure le contrôle sanitaire aux frontières."
+        es: "Solicita el certificado sanitario a un veterinario autorizado unos días antes de salir (en francés o con traducción oficial); se valida en el marco DSV/MIRAH, que ejerce el control sanitario fronterizo."
+        pt: "Solicitar o atestado de saúde a um veterinário autorizado alguns dias antes da partida (em francês ou com tradução oficial); ele é validado dentro do quadro da DSV/MIRAH, que administra o controle sanitário de fronteira."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o cachorro já tinha um teste sorológico antirrábico (titulação) válido para a UE antes da partida, ele permanece válido por toda a vida enquanto a vacinação antirrábica estiver em dia — vale a pena verificar isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Ivory Coast with your dog", fr: "Voyager en Côte d'Ivoire avec ton chien", es: "Viajar a Costa de Marfil con tu perro", pt: "Viajar para a Costa do Marfim com seu cachorro" }
+  intro:
+    en: >-
+      Ivory Coast welcomes pet dogs, but entry runs through the country's own scheme managed by the
+      Direction des Services Vétérinaires (DSV) of the Ministère des Ressources Animales et Halieutiques
+      (MIRAH), not the EU framework. Every dog needs a prior import authorization (autorisation préalable
+      d'importation) obtained before travel, a valid rabies vaccination and an international veterinary
+      health certificate (certificate of good health) issued by a veterinarian in the country of origin.
+      Ivory Coast is a rabies-endemic country, so the rabies rule is central: the dog must come from an
+      area not quarantined for rabies and be current on its vaccination. On arrival, your dog is presented
+      to the border veterinary inspection service, which operates at ports and airports. This guide explains
+      the import authorization, the rabies rule and the certificate so you know exactly what to prepare
+      before you book your flight.
+    fr: >-
+      La Côte d'Ivoire accueille les chiens, mais l'entrée passe par le dispositif propre au pays, géré par
+      la Direction des Services Vétérinaires (DSV) du Ministère des Ressources Animales et Halieutiques
+      (MIRAH), et non par le cadre de l'UE. Chaque chien doit disposer d'une autorisation préalable
+      d'importation obtenue avant le voyage, d'une vaccination antirabique valide et d'un certificat
+      vétérinaire international (certificat de bonne santé) établi par un vétérinaire du pays d'origine.
+      La Côte d'Ivoire est un pays où la rage est endémique : la règle antirabique est donc centrale — le
+      chien doit provenir d'une zone non placée en quarantaine pour la rage et être à jour de sa
+      vaccination. À l'arrivée, ton chien est présenté au service d'inspection vétérinaire aux frontières,
+      qui opère dans les ports et aéroports. Ce guide détaille l'autorisation d'importation, la règle
+      antirabique et le certificat, pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Costa de Marfil acoge a los perros de compañía, pero la entrada se rige por el sistema propio del
+      país gestionado por la Direction des Services Vétérinaires (DSV) del Ministère des Ressources
+      Animales et Halieutiques (MIRAH), y no por el marco de la UE. Cada perro necesita una autorización
+      previa de importación (autorisation préalable d'importation) obtenida antes del viaje, una vacunación
+      antirrábica válida y un certificado sanitario veterinario internacional (certificado de buena salud)
+      expedido por un veterinario del país de origen. Costa de Marfil es un país donde la rabia es
+      endémica, por lo que la norma antirrábica es central: el perro debe proceder de una zona no puesta en
+      cuarentena por rabia y estar al día de su vacunación. A la llegada, tu perro se presenta al servicio
+      de inspección veterinaria en frontera, que opera en puertos y aeropuertos. Esta guía explica la
+      autorización de importación, la norma antirrábica y el certificado para que sepas exactamente qué
+      preparar antes de reservar tu vuelo.
+
+    pt: "A Costa do Marfim recebe cachorros de companhia, mas a entrada segue um esquema próprio do país, administrado pela Direction des Services Vétérinaires (DSV) do Ministère des Ressources Animales et Halieutiques (MIRAH), e não o modelo europeu. Todo cachorro precisa de uma autorização de importação prévia (autorisation préalable d'importation) obtida antes da viagem, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional (certificate of good health) emitido por um veterinário no país de origem. A Costa do Marfim é um país de raiva endêmica, por isso a regra da raiva é central: o cachorro deve vir de uma área não colocada em quarentena por raiva e estar com a vacinação em dia. Na chegada, o cachorro é apresentado ao serviço de inspeção veterinária de fronteira, que atua em portos e aeroportos. Este guia explica a autorização de importação, a regra da raiva e o atestado, para que você saiba exatamente o que preparar antes de reservar o voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — prior import authorization + veterinary certificate required", fr: "Modéré — autorisation préalable d'importation et certificat vétérinaire requis", es: "Moderado — se requieren autorización previa de importación y certificado veterinario", pt: "Moderado — autorização de importação prévia + certificado veterinário obrigatórios" }
+
+prepTime:
+  eu:
+    en: "From the EU: allow a few weeks. Identification and rabies vaccination should already be in order, then obtain the prior import authorization from the DSV and the international veterinary certificate close to departure."
+    fr: "Depuis l'UE : prévois quelques semaines. L'identification et la vaccination antirabique doivent déjà être en règle, puis obtiens l'autorisation préalable d'importation auprès de la DSV et le certificat vétérinaire international peu avant le départ."
+    es: "Desde la UE: reserva unas semanas. La identificación y la vacunación antirrábica deben estar ya en regla y, después, obtén la autorización previa de importación de la DSV y el certificado veterinario internacional poco antes de la salida."
+    pt: "Da UE: contar com algumas semanas. A identificação e a vacinação antirrábica já devem estar em dia; depois, obter a autorização de importação prévia junto da DSV e o certificado veterinário internacional perto da partida."
+  listed:
+    en: "From the United States and other third countries: similar timing. USDA/APHIS documents the DSV import-permit process; allow at least 21 days if the rabies vaccination is a primary dose or has lapsed."
+    fr: "Depuis les États-Unis et d'autres pays tiers : délais comparables. L'USDA/APHIS documente la procédure de permis d'importation de la DSV ; prévois au moins 21 jours si la vaccination antirabique est une primovaccination ou a expiré."
+    es: "Desde Estados Unidos y otros países terceros: plazos similares. El USDA/APHIS documenta el proceso de permiso de importación de la DSV; reserva al menos 21 días si la vacunación antirrábica es una dosis primaria o ha caducado."
+    pt: "Dos Estados Unidos e de outros países terceiros: prazo semelhante. O USDA/APHIS documenta o processo de autorização de importação da DSV; contar com pelo menos 21 dias se a vacinação antirrábica for uma primeira dose ou estiver vencida."
+  nonListed:
+    en: "From a rabies-endemic or other origin: the same core steps apply — import authorization, current rabies vaccination and veterinary certificate. Confirm any additional condition directly with the DSV before booking."
+    fr: "Depuis une origine où la rage est endémique ou toute autre origine : les mêmes étapes de base s'appliquent — autorisation d'importation, vaccination antirabique à jour et certificat vétérinaire. Confirme toute condition supplémentaire directement auprès de la DSV avant de réserver."
+    es: "Desde un origen donde la rabia es endémica u otro origen: se aplican los mismos pasos básicos — autorización de importación, vacunación antirrábica al día y certificado veterinario. Confirma cualquier condición adicional directamente con la DSV antes de reservar."
+    pt: "De uma origem de raiva endêmica ou outra: aplicam-se as mesmas etapas essenciais — autorização de importação, vacinação antirrábica em dia e certificado veterinário. Confirmar qualquer condição adicional diretamente junto da DSV antes de reservar."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with prior import authorization)", fr: "Oui (avec autorisation préalable d'importation)", es: "Sí (con autorización previa de importación)", pt: "Sim (mediante autorização de importação prévia)" }
+    cls: ok
+  - requirement: { en: "Prior import authorization", fr: "Autorisation préalable d'importation", es: "Autorización previa de importación", pt: "Autorização de importação prévia" }
+    status: { en: "Required (in advance)", fr: "Requise (à l'avance)", es: "Obligatoria (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not officially mandated (recommended)", fr: "Non officiellement imposée (recommandée)", es: "No obligatorio oficialmente (recomendado)", pt: "Não obrigatório oficialmente (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (current)", fr: "Requise (à jour)", es: "Obligatoria (al día)", pt: "Obrigatória (em dia)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required by the official certificate", fr: "Non requis par le certificat officiel", es: "No exigida por el certificado oficial", pt: "Não exigido pelo certificado oficial" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Border veterinary inspection", fr: "Inspection vétérinaire à la frontière", es: "Inspección veterinaria en frontera", pt: "Inspeção veterinária na fronteira" }
+    status: { en: "Required (port/airport)", fr: "Requise (port/aéroport)", es: "Obligatoria (puerto/aeropuerto)", pt: "Obrigatória (porto/aeroporto)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not specified in official documents", fr: "Non prévue dans les documents officiels", es: "No prevista en los documentos oficiales", pt: "Não especificado nos documentos oficiais" }
+    cls: ok
+  - requirement: { en: "Banned breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "No published import ban found", fr: "Aucune interdiction d'importation publiée", es: "No se encontró ninguna prohibición de importación publicada", pt: "Nenhuma proibição de importação publicada foi encontrada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly fornece informações gerais — não constitui aconselhamento veterinário nem jurídico."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and the DSV of Ivory Coast confirms the exact conditions when it issues your import authorization."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et la DSV de Côte d'Ivoire confirme les conditions exactes lors de la délivrance de ton autorisation d'importation."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y la DSV de Costa de Marfil confirma las condiciones exactas al expedir tu autorización de importación."
+    pt: "Somente um médico-veterinário pode confirmar o procedimento exato para cada cachorro, e a DSV da Costa do Marfim confirma as condições exatas ao emitir a autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: país de origem, histórico de viagens anteriores, identificação, vacinas, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consultar sempre o médico-veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Ivory Coast (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Côte d'Ivoire (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Costa de Marfil (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Costa do Marfim (o destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Ivory Coast", fr: "Pays de destination — Côte d'Ivoire", es: "País de destino — Costa de Marfil", pt: "País de destino — Costa do Marfim" }
+      text:
+        en: "Ivory Coast runs its own DSV/MIRAH scheme: a prior import authorization obtained before travel, a valid rabies vaccination, an international veterinary health certificate and a border veterinary inspection are the core requirements. There is no EU-style pet passport route."
+        fr: "La Côte d'Ivoire applique son propre dispositif DSV/MIRAH : une autorisation préalable d'importation obtenue avant le voyage, une vaccination antirabique valide, un certificat vétérinaire international et une inspection vétérinaire à la frontière constituent les exigences de base. Il n'existe pas de voie « passeport » de l'UE."
+        es: "Costa de Marfil aplica su propio sistema DSV/MIRAH: una autorización previa de importación obtenida antes del viaje, una vacunación antirrábica válida, un certificado sanitario veterinario internacional y una inspección veterinaria en frontera son los requisitos básicos. No existe una vía de tipo «pasaporte» de la UE."
+        pt: "A Costa do Marfim segue seu próprio esquema pela DSV/MIRAH: uma autorização de importação prévia obtida antes da viagem, uma vacinação antirrábica válida, um atestado de saúde veterinário internacional e uma inspeção veterinária de fronteira são as exigências centrais. Não existe uma via de passaporte para animais de estimação nos moldes europeus."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The country of departure decides which certificate model your official vet uses and how the rabies vaccination is documented. For the United States, USDA/APHIS publishes the exact DSV certificate and import-permit process; other origins follow the same DSV requirements confirmed at authorization."
+        fr: "Le pays de départ détermine le modèle de certificat que ton vétérinaire officiel utilise et la manière dont la vaccination antirabique est documentée. Pour les États-Unis, l'USDA/APHIS publie le certificat DSV exact et la procédure de permis d'importation ; les autres origines suivent les mêmes exigences DSV confirmées au moment de l'autorisation."
+        es: "El país de salida determina qué modelo de certificado utiliza tu veterinario oficial y cómo se documenta la vacunación antirrábica. Para Estados Unidos, el USDA/APHIS publica el certificado exacto de la DSV y el proceso de permiso de importación; los demás orígenes siguen los mismos requisitos de la DSV confirmados en el momento de la autorización."
+        pt: "O país de partida determina qual modelo de certificado o veterinário oficial utiliza e como a vacinação antirrábica é documentada. Para os Estados Unidos, o USDA/APHIS publica o certificado exato da DSV e o processo de autorização de importação; outras origens seguem as mesmas exigências da DSV, confirmadas no momento da autorização."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde o cachorro esteve recentemente" }
+      text:
+        en: "The dog must come from an area not quarantined for rabies and not have been exposed to rabies. A recent stay in a country with active rabies control measures can therefore matter, not only the last airport you fly from."
+        fr: "Le chien doit provenir d'une zone non placée en quarantaine pour la rage et ne pas avoir été exposé à la rage. Un séjour récent dans un pays soumis à des mesures actives de lutte contre la rage peut donc compter, pas seulement le dernier aéroport de départ."
+        es: "El perro debe proceder de una zona no puesta en cuarentena por rabia y no haber estado expuesto a la rabia. Una estancia reciente en un país con medidas activas de control de la rabia puede por tanto influir, no solo el último aeropuerto desde el que vueles."
+        pt: "O cachorro deve vir de uma área não colocada em quarentena por raiva e não ter sido exposto à raiva. Uma estadia recente em um país com medidas ativas de controle da raiva pode, portanto, ser relevante — não apenas o último aeroporto de onde ele partiu."
+  note:
+    en: "So read the requirements below as Ivory Coast's framework, then confirm your dog's exact origin, history and documents with your vet and the DSV before booking."
+    fr: "Lis donc les exigences ci-dessous comme le cadre ivoirien, puis confirme l'origine, l'historique et les documents exacts de ton chien avec ton vétérinaire et la DSV avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Costa de Marfil y luego confirma el origen, el historial y los documentos exactos de tu perro con tu veterinario y la DSV antes de reservar."
+    pt: "Portanto, ler as exigências abaixo como o quadro geral da Costa do Marfim e, em seguida, confirmar a origem exata, o histórico e os documentos do cachorro com o veterinário e a DSV antes de reservar."
+
+requirements:
+  - item: { en: "Prior import authorization (autorisation préalable d'importation)", fr: "Autorisation préalable d'importation", es: "Autorización previa de importación (autorisation préalable d'importation)", pt: "Autorização de importação prévia (autorisation préalable d'importation)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Obtained from the Directorate of Veterinary Services (DSV) of MIRAH before the dog travels. The application form plus a copy of the rabies vaccination record is submitted to the DSV; USDA/APHIS lists the DSV email addresses for the permit.", fr: "Obtenue auprès de la Direction des Services Vétérinaires (DSV) du MIRAH avant le voyage du chien. Le formulaire de demande et une copie du carnet de vaccination antirabique sont adressés à la DSV ; l'USDA/APHIS indique les adresses e-mail de la DSV pour le permis.", es: "Se obtiene de la Dirección de Servicios Veterinarios (DSV) del MIRAH antes de que el perro viaje. El formulario de solicitud junto con una copia de la cartilla de vacunación antirrábica se presenta a la DSV; el USDA/APHIS indica las direcciones de correo de la DSV para el permiso.", pt: "Obtida junto à Direction des Services Vétérinaires (DSV) do MIRAH antes de o cachorro viajar. O formulário de pedido, junto com uma cópia da caderneta de vacinação antirrábica, é enviado à DSV; o USDA/APHIS lista os endereços de e-mail da DSV para a autorização." }
+    exceptions: { en: "None documented — no dog should travel without the authorization confirmed by the DSV.", fr: "Aucune documentée — aucun chien ne devrait voyager sans l'autorisation confirmée par la DSV.", es: "Ninguna documentada — ningún perro debería viajar sin la autorización confirmada por la DSV.", pt: "Nenhuma documentada — nenhum cachorro deve viajar sem a autorização confirmada pela DSV." }
+    ref: { en: "MIRAH–DSV import authorization form; USDA/APHIS — Pet Travel US to Ivory Coast", fr: "Formulaire d'autorisation d'importation MIRAH–DSV ; USDA/APHIS — Pet Travel US to Ivory Coast", es: "Formulario de autorización de importación MIRAH–DSV; USDA/APHIS — Pet Travel US to Ivory Coast", pt: "Formulário de autorização de importação MIRAH–DSV; USDA/APHIS — Pet Travel EUA para a Costa do Marfim" }
+  - item: { en: "Identification (microchip)", fr: "Identification (puce électronique)", es: "Identificación (microchip)", pt: "Identificação (microchip)" }
+    required: { en: "Not officially mandated", fr: "Non officiellement imposée", es: "No obligatoria oficialmente", pt: "Não obrigatório oficialmente" }
+    when: { en: "The DSV/USDA veterinary certificate identifies the animal by microchip number and/or name; the vet verifies any microchip present. An ISO 11784/11785 microchip is strongly recommended but is not published as a stand-alone obligation.", fr: "Le certificat vétérinaire DSV/USDA identifie l'animal par numéro de puce et/ou nom ; le vétérinaire vérifie toute puce présente. Une puce ISO 11784/11785 est fortement recommandée mais n'est pas publiée comme obligation autonome.", es: "El certificado veterinario DSV/USDA identifica al animal por número de microchip o nombre; el veterinario verifica cualquier microchip presente. Un microchip ISO 11784/11785 se recomienda encarecidamente, pero no se publica como obligación autónoma.", pt: "O certificado veterinário DSV/USDA identifica o animal pelo número do microchip e/ou pelo nome; o veterinário verifica qualquer microchip presente. Um microchip ISO 11784/11785 é fortemente recomendado, mas não é publicado como uma obrigação autônoma." }
+    exceptions: { en: "Where a microchip is present it must match the certificate and vaccination record.", fr: "Lorsqu'une puce est présente, elle doit correspondre au certificat et au carnet de vaccination.", es: "Cuando hay un microchip, debe coincidir con el certificado y la cartilla de vacunación.", pt: "Caso haja um microchip, ele deve corresponder ao certificado e à caderneta de vacinação." }
+    ref: { en: "DSV/USDA veterinary health certificate for dogs & cats (box 21)", fr: "Certificat vétérinaire DSV/USDA pour chiens et chats (case 21)", es: "Certificado sanitario veterinario DSV/USDA para perros y gatos (casilla 21)", pt: "Atestado de saúde veterinário DSV/USDA para cachorros e gatos (campo 21)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be current on rabies vaccination. If it is a primary vaccination, or a booster given outside the validity of the previous dose, the dog must wait at least 21 days after vaccination before travel.", fr: "Le chien doit être à jour de sa vaccination antirabique. S'il s'agit d'une primovaccination, ou d'un rappel effectué en dehors de la validité de la dose précédente, le chien doit attendre au moins 21 jours après la vaccination avant de voyager.", es: "El perro debe estar al día de su vacunación antirrábica. Si se trata de una primovacunación, o de un refuerzo administrado fuera de la valide de la dosis anterior, el perro debe esperar al menos 21 días tras la vacunación antes de viajar.", pt: "O cachorro deve estar com a vacinação antirrábica em dia. Se for uma primeira dose, ou um reforço aplicado fora da validade da dose anterior, o cachorro deve aguardar pelo menos 21 dias após a vacinação antes de viajar." }
+    exceptions: { en: "If the booster is given within the validity of the previous vaccination, no waiting period applies before import.", fr: "Si le rappel est effectué pendant la validité de la vaccination précédente, aucun délai d'attente ne s'applique avant l'importation.", es: "Si el refuerzo se administra durante la valide de la vacunación anterior, no se aplica ningún periodo de espera antes de la importación.", pt: "Se o reforço for aplicado dentro da validade da vacinação anterior, nenhum período de carência se aplica antes da importação." }
+    ref: { en: "DSV/USDA veterinary health certificate (statements 5–6)", fr: "Certificat vétérinaire DSV/USDA (mentions 5–6)", es: "Certificado sanitario veterinario DSV/USDA (menciones 5–6)", pt: "Atestado de saúde veterinário DSV/USDA (declarações 5–6)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "The official DSV/USDA veterinary certificate does not require a rabies antibody test for entry to Ivory Coast; a current rabies vaccination is what is certified.", fr: "Le certificat vétérinaire officiel DSV/USDA n'exige pas de titrage des anticorps antirabiques pour l'entrée en Côte d'Ivoire ; c'est une vaccination antirabique à jour qui est certifiée.", es: "El certificado veterinario oficial DSV/USDA no exige una prueba de titulación de rabia para la entrada a Costa de Marfil; lo que se certifica es una vacunación antirrábica al día.", pt: "O certificado veterinário oficial DSV/USDA não exige um teste sorológico antirrábico para a entrada na Costa do Marfim; o que é certificado é a vacinação antirrábica em dia." }
+    exceptions: { en: "None published. Confirm with the DSV if your dog travels from an origin with specific conditions.", fr: "Aucune publiée. Vérifie auprès de la DSV si ton chien voyage depuis une origine soumise à des conditions particulières.", es: "Ninguna publicada. Confirma con la DSV si tu perro viaja desde un origen con condiciones específicas.", pt: "Nenhum publicado. Confirmar com a DSV se o cachorro viajar de uma origem com condições específicas." }
+    ref: { en: "DSV/USDA veterinary health certificate for dogs & cats", fr: "Certificat vétérinaire DSV/USDA pour chiens et chats", es: "Certificado sanitario veterinario DSV/USDA para perros y gatos", pt: "Atestado de saúde veterinário DSV/USDA para cachorros e gatos" }
+  - item: { en: "International veterinary health certificate (certificate of good health)", fr: "Certificat vétérinaire international (certificat de bonne santé)", es: "Certificado sanitario veterinario internacional (certificado de buena salud)", pt: "Atestado de saúde veterinário internacional (certificate of good health)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The original certificate of good health is issued by a veterinarian in the country of origin and covers identification, rabies vaccination and clinical health. French is acceptable (the DSV form is bilingual French/English). From the US it is issued by a USDA-accredited vet and endorsed by APHIS, valid 10 days.", fr: "Le certificat de bonne santé original est établi par un vétérinaire du pays d'origine et couvre l'identification, la vaccination antirabique et l'état clinique. Le français est accepté (le formulaire DSV est bilingue français/anglais). Depuis les USA, il est établi par un vétérinaire agréé USDA et visé par l'APHIS, valable 10 jours.", es: "El certificado de buena salud original lo expide un veterinario del país de origen y cubre la identificación, la vacunación antirrábica y el estado clínico. El francés es aceptable (el formulario de la DSV es bilingüe francés/inglés). Desde EE. UU. lo expide un veterinario acreditado por el USDA y lo refrenda APHIS, con valide de 10 días.", pt: "O atestado original de boa saúde é emitido por um veterinário no país de origem e cobre identificação, vacinação antirrábica e saúde clínica. O francês é aceito (o formulário da DSV é bilíngue francês/inglês). Nos Estados Unidos, é emitido por um veterinário credenciado pelo USDA e endossado pela APHIS, válido por 10 dias." }
+    exceptions: { en: "None — an official certificate must accompany the dog and be presented with the vaccination record.", fr: "Aucune — un certificat officiel doit accompagner le chien et être présenté avec le carnet de vaccination.", es: "Ninguna — un certificado oficial debe acompañar al perro y presentarse con la cartilla de vacunación.", pt: "Nenhuma — um certificado oficial deve acompanhar o cachorro e ser apresentado junto com a caderneta de vacinação." }
+    ref: { en: "MIRAH–DSV import authorization form; DSV/USDA veterinary health certificate", fr: "Formulaire d'autorisation d'importation MIRAH–DSV ; certificat vétérinaire DSV/USDA", es: "Formulario de autorización de importación MIRAH–DSV; certificado sanitario veterinario DSV/USDA", pt: "Formulário de autorização de importação MIRAH–DSV; atestado de saúde veterinário DSV/USDA" }
+  - item: { en: "Clinical examination & health statements", fr: "Examen clinique et attestations sanitaires", es: "Examen clínico y declaraciones sanitarias", pt: "Exame clínico e declarações de saúde" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog is inspected and certified free of infectious or contagious disease, free of mange for at least the last 6 months, and originating from an area not quarantined for rabies and not exposed to rabies.", fr: "Le chien est examiné et certifié indemne de maladie infectieuse ou contagieuse, indemne de gale depuis au moins les 6 derniers mois, et provenant d'une zone non placée en quarantaine pour la rage et non exposée à la rage.", es: "El perro se examina y se certifica libre de enfermedad infecciosa o contagiosa, libre de sarna durante al menos los últimos 6 meses, y procedente de una zona no puesta en cuarentena por rabia y no expuesta a la rabia.", pt: "O cachorro é inspecionado e certificado como livre de doenças infecciosas ou contagiosas, livre de sarna nos últimos 6 meses pelo menos, e proveniente de uma área não colocada em quarentena por raiva e não exposto à raiva." }
+    exceptions: { en: "None.", fr: "Aucune.", es: "Ninguna.", pt: "Nenhuma." }
+    ref: { en: "DSV/USDA veterinary health certificate (statements 2–4)", fr: "Certificat vétérinaire DSV/USDA (mentions 2–4)", es: "Certificado sanitario veterinario DSV/USDA (menciones 2–4)", pt: "Atestado de saúde veterinário DSV/USDA (declarações 2–4)" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / échinocoque", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not officially required", fr: "Non officiellement requis", es: "No obligatorio oficialmente", pt: "Não exigido oficialmente" }
+    when: { en: "The DSV/USDA certificate treats other vaccinations, treatments and tests as optional entries. No mandatory tapeworm or parasite treatment is published for entry to Ivory Coast.", fr: "Le certificat DSV/USDA traite les autres vaccinations, traitements et tests comme des mentions facultatives. Aucun traitement antiparasitaire ou contre l'échinocoque obligatoire n'est publié pour l'entrée en Côte d'Ivoire.", es: "El certificado DSV/USDA trata las demás vacunaciones, tratamientos y pruebas como menciones opcionales. No se publica ningún tratamiento obligatorio contra la tenia o antiparasitario para la entrada a Costa de Marfil.", pt: "O certificado DSV/USDA trata outras vacinas, tratamentos e testes como itens opcionais. Nenhum tratamento antiparasitário ou contra tênias obrigatório é publicado para a entrada na Costa do Marfim." }
+    exceptions: { en: "A vet may still recommend parasite treatment; it is good practice but not a published entry condition.", fr: "Un vétérinaire peut néanmoins recommander un traitement antiparasitaire ; c'est une bonne pratique mais pas une condition d'entrée publiée.", es: "Un veterinario puede recomendar igualmente un tratamiento antiparasitario; es buena práctica, pero no una condición de entrada publicada.", pt: "Um veterinário ainda pode recomendar o tratamento antiparasitário; é uma boa prática, mas não é uma condição de entrada publicada." }
+    ref: { en: "DSV/USDA veterinary health certificate (statement 7, optional)", fr: "Certificat vétérinaire DSV/USDA (mention 7, facultative)", es: "Certificado sanitario veterinario DSV/USDA (mención 7, opcional)", pt: "Atestado de saúde veterinário DSV/USDA (declaração 7, opcional)" }
+  - item: { en: "Border veterinary inspection & customs declaration", fr: "Inspection vétérinaire frontalière et déclaration en douane", es: "Inspección veterinaria en frontera y declaración en aduana", pt: "Inspeção veterinária na fronteira e declaração aduaneira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Ivory Coast operates a border veterinary inspection and control service (Service d'Inspection et de Contrôle Sanitaires Vétérinaires en Frontières) at customs offices including ports and airports; present your dog and its documents on arrival.", fr: "La Côte d'Ivoire dispose d'un service d'inspection et de contrôle sanitaires vétérinaires en frontières dans les bureaux de douane, y compris ports et aéroports ; présente ton chien et ses documents à l'arrivée.", es: "Costa de Marfil cuenta con un servicio de inspección y control sanitario veterinario en frontera (Service d'Inspection et de Contrôle Sanitaires Vétérinaires en Frontières) en las oficinas de aduanas, incluidos puertos y aeropuertos; presenta a tu perro y sus documentos a la llegada.", pt: "A Costa do Marfim opera um serviço de inspeção e controle veterinário de fronteira (Service d'Inspection et de Contrôle Sanitaires Vétérinaires en Frontières) em postos aduaneiros, incluindo portos e aeroportos; apresentar o cachorro e seus documentos na chegada." }
+    exceptions: { en: "Exact fees and steps for a personal pet at the airport are not published in detail; confirm with the DSV.", fr: "Les frais et étapes exacts pour un animal de compagnie personnel à l'aéroport ne sont pas publiés en détail ; à confirmer auprès de la DSV.", es: "Las tasas y los pasos exactos para una mascota personal en el aeropuerto no se publican en detalle; confírmalos con la DSV.", pt: "As taxas e etapas exatas para um cachorro de companhia particular no aeroporto não são publicadas em detalhe; confirmar junto da DSV." }
+    ref: { en: "MIRAH–DSV; GUCE Ivory Coast (PWIC) — Live animals procedure", fr: "MIRAH–DSV ; GUCE Côte d'Ivoire (PWIC) — Procédure animaux vivants", es: "MIRAH–DSV; GUCE Costa de Marfil (PWIC) — Procedimiento de animales vivos", pt: "MIRAH–DSV; GUCE Costa do Marfim (PWIC) — Procedimento para animais vivos" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Linked to rabies vaccination", fr: "Lié à la vaccination antirabique", es: "Vinculada a la vacunación antirrábica", pt: "Vinculada à vacinação antirrábica" }
+    when: { en: "A puppy must be old enough to be validly vaccinated against rabies and to meet the certificate's rabies statement. The DSV does not publish a separate stand-alone minimum age.", fr: "Un chiot doit être en âge d'être valablement vacciné contre la rage et de satisfaire à la mention antirabique du certificat. La DSV ne publie pas d'âge minimum distinct spécifique.", es: "Un cachorro debe tener la edad suficiente para ser vacunado válidamente contra la rabia y cumplir la mención antirrábica del certificado. La DSV no publica una edad mínima autónoma aparte.", pt: "O filhote deve ter idade suficiente para ser validamente vacinado contra a raiva e atender à declaração de raiva do certificado. A DSV não publica uma idade mínima autônoma separada." }
+    exceptions: { en: "A puppy too young to be vaccinated against rabies cannot meet the requirement.", fr: "Un chiot trop jeune pour être vacciné contre la rage ne peut satisfaire l'exigence.", es: "Un cachorro demasiado joven para ser vacunado contra la rabia no puede cumplir el requisito.", pt: "Um filhote jovem demais para ser vacinado contra a raiva não pode cumprir essa exigência." }
+    ref: { en: "DSV/USDA veterinary health certificate (rabies statements)", fr: "Certificat vétérinaire DSV/USDA (mentions antirabiques)", es: "Certificado sanitario veterinario DSV/USDA (menciones antirrábicas)", pt: "Atestado de saúde veterinário DSV/USDA (declarações sobre raiva)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not specified", fr: "Non prévue", es: "No prevista", pt: "Não especificada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No quarantine is set out in the official DSV/USDA import documents for a compliant pet dog; non-compliant animals may be held under veterinary control at the border.", fr: "Aucune quarantaine n'est prévue dans les documents d'importation officiels DSV/USDA pour un chien de compagnie conforme ; les animaux non conformes peuvent être placés sous contrôle vétérinaire à la frontière.", es: "No se establece ninguna cuarentena en los documentos oficiales de importación DSV/USDA para un perro de compañía que cumple los requisitos; los animales no conformes pueden quedar bajo control veterinario en la frontera.", pt: "Nenhuma quarentena é estabelecida nos documentos oficiais de importação DSV/USDA para um cachorro de companhia em conformidade; animais em não conformidade podem ficar retidos sob controle veterinário na fronteira." }
+    ref: { en: "DSV/USDA veterinary health certificate (no quarantine requirement)", fr: "Certificat vétérinaire DSV/USDA (aucune exigence de quarantaine)", es: "Certificado sanitario veterinario DSV/USDA (sin exigencia de cuarentena)", pt: "Atestado de saúde veterinário DSV/USDA (sem exigência de quarentena)" }
+  - item: { en: "Banned / restricted breeds", fr: "Races interdites / restreintes", es: "Razas prohibidas / restringidas", pt: "Raças proibidas / restritas" }
+    required: { en: "No published import ban", fr: "Aucune interdiction d'importation publiée", es: "No hay prohibición de importación publicada", pt: "Nenhuma proibição de importação publicada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No national breed-specific import ban for dogs was found in official DSV/MIRAH sources. Confirm current rules with the DSV, as national legislation can change.", fr: "Aucune interdiction d'importation nationale par race de chien n'a été trouvée dans les sources officielles DSV/MIRAH. Vérifie les règles en vigueur auprès de la DSV, la législation nationale pouvant évoluer.", es: "No se encontró ninguna prohibición de importación nacional por raza de perro en las fuentes oficiales DSV/MIRAH. Confirma las normas vigentes con la DSV, ya que la legislación nacional puede cambiar.", pt: "Nenhuma proibição nacional de importação específica por raça para cachorros foi encontrada em fontes oficiais da DSV/MIRAH. Confirmar as regras vigentes junto da DSV, já que a legislação nacional pode mudar." }
+    ref: { en: "MIRAH–DSV (no published breed-specific import legislation found)", fr: "MIRAH–DSV (aucune législation d'importation par race publiée trouvée)", es: "MIRAH–DSV (no se encontró legislación de importación por raza publicada)", pt: "MIRAH–DSV (nenhuma legislação de importação específica por raça publicada encontrada)" }
+
+origin:
+  eu:
+    title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
+    body:
+      en: "For a dog leaving the EU, there is no EU pet-passport shortcut into Ivory Coast. You still need a prior import authorization from the DSV, a current rabies vaccination and an international veterinary health certificate issued by an official vet of the country of origin. The dog must come from an area not quarantined for rabies. French-language certificates are accepted."
+      fr: "Pour un chien quittant l'UE, il n'existe pas de raccourci « passeport UE » vers la Côte d'Ivoire. Tu as tout de même besoin d'une autorisation préalable d'importation de la DSV, d'une vaccination antirabique à jour et d'un certificat vétérinaire international établi par un vétérinaire officiel du pays d'origine. Le chien doit provenir d'une zone non placée en quarantaine pour la rage. Les certificats en français sont acceptés."
+      es: "Para un perro que sale de la UE, no existe un atajo de «pasaporte europeo» hacia Costa de Marfil. Aun así necesitas una autorización previa de importación de la DSV, una vacunación antirrábica al día y un certificado sanitario veterinario internacional expedido por un veterinario oficial del país de origen. El perro debe proceder de una zona no puesta en cuarentena por rabia. Se aceptan los certificados en francés."
+      pt: "Para um cachorro que sai da UE, não existe atalho pelo passaporte europeu para animais de estimação rumo à Costa do Marfim. Ainda é preciso ter uma autorização de importação prévia da DSV, uma vacinação antirrábica em dia e um atestado de saúde veterinário internacional emitido por um veterinário oficial do país de origem. O cachorro deve vir de uma área não colocada em quarentena por raiva. Certificados em francês são aceitos."
+    cls: warn
+  listed:
+    title: { en: "From the United States & other third countries", fr: "Depuis les États-Unis et autres pays tiers", es: "Desde Estados Unidos y otros países terceros", pt: "Dos Estados Unidos e de outros países terceiros" }
+    body:
+      en: "From the US, USDA/APHIS documents the full path: apply to the DSV for the import permit (application form plus a copy of the rabies vaccination certificate), then a USDA-accredited vet issues the veterinary health certificate, endorsed by APHIS within 10 days of travel. If the rabies vaccination is a primary dose or has lapsed, wait at least 21 days before travel. Other third countries follow the same DSV requirements."
+      fr: "Depuis les USA, l'USDA/APHIS documente tout le parcours : demande le permis d'importation à la DSV (formulaire de demande et copie du certificat de vaccination antirabique), puis un vétérinaire agréé USDA établit le certificat vétérinaire, visé par l'APHIS dans les 10 jours avant le voyage. Si la vaccination antirabique est une primovaccination ou a expiré, attends au moins 21 jours avant de voyager. Les autres pays tiers suivent les mêmes exigences DSV."
+      es: "Desde EE. UU., el USDA/APHIS documenta todo el recorrido: solicita a la DSV el permiso de importación (formulario de solicitud más una copia del certificado de vacunación antirrábica), luego un veterinario acreditado por el USDA expide el certificado sanitario veterinario, refrendado por APHIS dentro de los 10 días previos al viaje. Si la vacunación antirrábica es una dosis primaria o ha caducado, espera al menos 21 días antes de viajar. Los demás países terceros siguen los mismos requisitos de la DSV."
+      pt: "Dos EUA, o USDA/APHIS documenta todo o caminho: solicitar à DSV a autorização de importação (formulário de pedido mais uma cópia do certificado de vacinação antirrábica), depois um veterinário credenciado pelo USDA emite o atestado de saúde veterinário, endossado pela APHIS até 10 dias antes da viagem. Se a vacinação antirrábica for uma primeira dose ou estiver vencida, aguardar pelo menos 21 dias antes da viagem. Outros países terceiros seguem as mesmas exigências da DSV."
+    cls: warn
+  nonListed:
+    title: { en: "From a rabies-endemic or other origin", fr: "Depuis une origine endémique pour la rage ou autre", es: "Desde un origen endémico de rabia u otro", pt: "De uma origem de raiva endêmica ou outra" }
+    body:
+      en: "The core process does not change: prior import authorization, a current rabies vaccination and an international veterinary certificate, with the dog originating from an area not quarantined for rabies. Because Ivory Coast is itself rabies-endemic, the veterinary authorities focus on the rabies status of the dog and its origin. Confirm any additional condition directly with the DSV before you travel."
+      fr: "Le processus de base ne change pas : autorisation préalable d'importation, vaccination antirabique à jour et certificat vétérinaire international, le chien provenant d'une zone non placée en quarantaine pour la rage. La Côte d'Ivoire étant elle-même endémique pour la rage, les autorités vétérinaires se concentrent sur le statut rabique du chien et de son origine. Confirme toute condition supplémentaire directement auprès de la DSV avant de voyager."
+      es: "El proceso básico no cambia: autorización previa de importación, una vacunación antirrábica al día y un certificado veterinario internacional, con el perro procedente de una zona no puesta en cuarentena por rabia. Como Costa de Marfil es en sí misma endémica de rabia, las autoridades veterinarias se centran en el estatus rábico del perro y de su origen. Confirma cualquier condición adicional directamente con la DSV antes de viajar."
+      pt: "O processo essencial não muda: autorização de importação prévia, vacinação antirrábica em dia e certificado veterinário internacional, com o cachorro proveniente de uma área não colocada em quarentena por raiva. Como a própria Costa do Marfim tem raiva endêmica, as autoridades veterinárias se concentram no status de raiva do cachorro e na sua origem. Confirmar qualquer condição adicional diretamente junto da DSV antes de viajar."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Ivory Coast depends on your import authorization and the documents you carry."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Côte d'Ivoire dépend de ton autorisation d'importation et des documents que tu présente."
+    es: "Lo que ocurre cuando tu perro llega a Costa de Marfil depende de tu autorización de importación y de los documentos que lleves."
+    pt: "O que acontece quando o cachorro chega à Costa do Marfim depende da autorização de importação e dos documentos levados."
+  points:
+    - en: "Your dog is presented to the border veterinary inspection service (Service d'Inspection et de Contrôle Sanitaires Vétérinaires en Frontières), which operates at customs offices including ports and the airport."
+      fr: "Ton chien est présenté au service d'inspection et de contrôle sanitaires vétérinaires en frontières, qui opère dans les bureaux de douane, y compris les ports et l'aéroport."
+      es: "Tu perro se presenta al servicio de inspección y control sanitario veterinario en frontera (Service d'Inspection et de Contrôle Sanitaires Vétérinaires en Frontières), que opera en las oficinas de aduanas, incluidos los puertos y el aeropuerto."
+      pt: "O cachorro é apresentado ao serviço de inspeção veterinária de fronteira (Service d'Inspection et de Contrôle Sanitaires Vétérinaires en Frontières), que atua em postos aduaneiros, incluindo portos e o aeroporto."
+    - en: "Carry the originals: the prior import authorization, the international veterinary health certificate and the rabies vaccination record."
+      fr: "Munis-toi des originaux : l'autorisation préalable d'importation, le certificat vétérinaire international et le carnet de vaccination antirabique."
+      es: "Lleva los originales: la autorización previa de importación, el certificado sanitario veterinario internacional y la cartilla de vacunación antirrábica."
+      pt: "Levar os originais: a autorização de importação prévia, o atestado de saúde veterinário internacional e a caderneta de vacinação antirrábica."
+    - en: "Documents must be consistent — the identification, vaccination and health statements must match across the certificate and the vaccination record."
+      fr: "Les documents doivent être cohérents — l'identification, la vaccination et les mentions sanitaires doivent concorder entre le certificat et le carnet de vaccination."
+      es: "Los documentos deben ser coherentes — la identificación, la vacunación y las menciones sanitarias deben coincidir entre el certificado y la cartilla de vacunación."
+      pt: "Os documentos devem ser coerentes entre si — a identificação, a vacinação e as declarações de saúde devem corresponder entre o certificado e a caderneta de vacinação."
+    - en: "If documents are missing, invalid or inconsistent, the animal may be refused, returned or held under veterinary control at the owner's expense."
+      fr: "Si les documents manquent, sont invalides ou incohérents, l'animal peut être refusé, renvoyé ou placé sous contrôle vétérinaire aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos o coherentes, el animal puede ser rechazado, devuelto o retenido bajo control veterinario a cargo del propietario."
+      pt: "Se os documentos estiverem incompletos, inválidos ou inconsistentes, o animal pode ser recusado, devolvido ou retido sob controle veterinário às custas do proprietário."
+    - en: "Exact airport fees and steps for a personal pet are not published in detail; ask the DSV when it confirms your import authorization."
+      fr: "Les frais et étapes exacts à l'aéroport pour un animal de compagnie personnel ne sont pas publiés en détail ; renseigne-toi auprès de la DSV lorsqu'elle confirme ton autorisation d'importation."
+      es: "Las tasas y los pasos exactos en el aeropuerto para una mascota personal no se publican en detalle; consúltalos con la DSV cuando confirme tu autorización de importación."
+      pt: "As taxas e etapas exatas no aeroporto para um cachorro de companhia particular não são publicadas em detalhe; perguntar à DSV quando ela confirmar a autorização de importação."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No national breed-specific import ban for dogs was found in the official sources of the DSV or MIRAH. Entry to Ivory Coast is controlled through the import authorization and the veterinary health requirements, not through a published list of prohibited breeds."
+    fr: "Aucune interdiction d'importation nationale par race de chien n'a été trouvée dans les sources officielles de la DSV ou du MIRAH. L'entrée en Côte d'Ivoire est encadrée par l'autorisation d'importation et les exigences sanitaires vétérinaires, non par une liste publiée de races interdites."
+    es: "No se encontró ninguna prohibición de importación nacional por raza de perro en las fuentes oficiales de la DSV o del MIRAH. La entrada a Costa de Marfil se controla mediante la autorización de importación y los requisitos sanitarios veterinarios, no mediante una lista publicada de razas prohibidas."
+    pt: "Nenhuma proibição nacional de importação específica por raça para cachorros foi encontrada nas fontes oficiais da DSV ou do MIRAH. A entrada na Costa do Marfim é controlada por meio da autorização de importação e das exigências sanitárias veterinárias, e não por uma lista publicada de raças proibidas."
+  cat1:
+    en: "No official list of prohibited dog breeds and no national breed-specific import ban was located in DSV/MIRAH publications. This is the absence of a published rule, not a confirmation that any breed is guaranteed admissible."
+    fr: "Aucune liste officielle de races de chiens interdites ni interdiction d'importation nationale par race n'a été trouvée dans les publications DSV/MIRAH. Il s'agit de l'absence d'une règle publiée, non d'une confirmation qu'une race serait garantie admissible."
+    es: "No se localizó ninguna lista oficial de razas de perros prohibidas ni ninguna prohibición de importación nacional por raza en las publicaciones de la DSV/MIRAH. Se trata de la ausencia de una norma publicada, no de una confirmación de que se garantice la admisión de raza alguna."
+    pt: "Nenhuma lista oficial de raças de cachorros proibidas e nenhuma proibição nacional de importação específica por raça foram localizadas nas publicações da DSV/MIRAH. Trata-se da ausência de uma regra publicada, não da confirmação de que qualquer raça tenha entrada garantida."
+  cat2:
+    en: "Because national legislation can change and local rules may exist, confirm the status of your specific breed with the DSV before you travel, especially for guard or fighting-type dogs."
+    fr: "La législation nationale pouvant évoluer et des règles locales pouvant exister, confirme le statut de ta race précise auprès de la DSV avant de voyager, en particulier pour les chiens de garde ou de type combat."
+    es: "Como la legislación nacional puede cambiar y pueden existir normas locales, confirma el estatus de tu raza concreta con la DSV antes de viajar, especialmente para perros de guarda o de tipo pelea."
+    pt: "Como a legislação nacional pode mudar e podem existir regras locais, confirmar a situação da raça específica junto da DSV antes de viajar, especialmente para cachorros de guarda ou de tipo combate."
+  note:
+    en: "Treat any breed question as unresolved until the DSV confirms it in writing with your import authorization."
+    fr: "Considère toute question de race comme non tranchée tant que la DSV ne l'a pas confirmée par écrit avec ton autorisation d'importation."
+    es: "Considera cualquier cuestión de raza como no resuelta hasta que la DSV la confirme por escrito con tu autorización de importación."
+    pt: "Tratar qualquer dúvida sobre raça como não resolvida até que a DSV confirme por escrito junto com a autorização de importação."
+
+checklist:
+  - en: "Apply to the DSV (MIRAH) for the prior import authorization before travel"
+    fr: "Demande à la DSV (MIRAH) l'autorisation préalable d'importation avant le voyage"
+    es: "Solicita a la DSV (MIRAH) la autorización previa de importación antes del viaje"
+    pt: "Solicitar à DSV (MIRAH) a autorização de importação prévia antes da viagem"
+  - en: "Valid rabies vaccination, current and correctly recorded (allow 21 days if primary/lapsed)"
+    fr: "Vaccination antirabique valide, à jour et correctement consignée (prévoir 21 jours si primovaccination/expirée)"
+    es: "Vacunación antirrábica válida, al día y correctamente registrada (prevé 21 días si es primovacunación/caducada)"
+    pt: "Vacinação antirrábica válida, em dia e corretamente registrada (aguardar 21 dias se for primeira dose ou estiver vencida)"
+  - en: "Identification recorded (ISO microchip recommended) and matching all documents"
+    fr: "Identification consignée (puce ISO recommandée) et concordant avec tous les documents"
+    es: "Identificación registrada (microchip ISO recomendado) que coincida con todos los documentos"
+    pt: "Identificação registrada (microchip ISO recomendado) e correspondente a todos os documentos"
+  - en: "International veterinary health certificate (certificate of good health) from an official vet of origin"
+    fr: "Certificat vétérinaire international (certificat de bonne santé) d'un vétérinaire officiel d'origine"
+    es: "Certificado sanitario veterinario internacional (certificado de buena salud) de un veterinario oficial de origen"
+    pt: "Atestado de saúde veterinário internacional (certificate of good health) emitido por um veterinário oficial de origem"
+  - en: "From the US: certificate endorsed by APHIS within 10 days of travel"
+    fr: "Depuis les USA : certificat visé par l'APHIS dans les 10 jours avant le voyage"
+    es: "Desde EE. UU.: certificado refrendado por APHIS dentro de los 10 días previos al viaje"
+    pt: "Dos EUA: certificado endossado pela APHIS até 10 dias antes da viagem"
+  - en: "Original documents ready for the border veterinary inspection at the airport/port"
+    fr: "Documents originaux prêts pour l'inspection vétérinaire à la frontière (aéroport/port)"
+    es: "Documentos originales listos para la inspección veterinaria en frontera (aeropuerto/puerto)"
+    pt: "Documentos originais prontos para a inspeção veterinária de fronteira no aeroporto/porto"
+  - en: "Confirm any breed or additional condition with the DSV before booking"
+    fr: "Confirme toute question de race ou condition supplémentaire auprès de la DSV avant de réserver"
+    es: "Confirma cualquier cuestión de raza o condición adicional con la DSV antes de reservar"
+    pt: "Confirmar qualquer condição adicional ou relativa à raça junto da DSV antes de reservar"
+  - en: "Airline reservation confirming your dog's travel option and suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
+
+sources:
+  - label: { en: "USDA/APHIS — Pet Travel From the United States to the Ivory Coast", fr: "USDA/APHIS — Voyage d'un animal des États-Unis vers la Côte d'Ivoire", es: "USDA/APHIS — Viaje de mascotas de Estados Unidos a Costa de Marfil", pt: "USDA/APHIS — Pet Travel dos Estados Unidos para a Costa do Marfim" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-ivory-coast"
+  - label: { en: "MIRAH–DSV — Prior import authorization / international veterinary certificate application form", fr: "MIRAH–DSV — Formulaire d'autorisation préalable d'importation / certificat vétérinaire international", es: "MIRAH–DSV — Formulario de autorización previa de importación / certificado veterinario internacional", pt: "MIRAH–DSV — Formulário de pedido de autorização de importação prévia / certificado veterinário internacional" }
+    url: "https://www.aphis.usda.gov/sites/default/files/ptw-ivory-coast-import-permit-application.pdf"
+  - label: { en: "DSV/USDA — Veterinary health certificate for export of dogs and cats to Ivory Coast (model)", fr: "DSV/USDA — Certificat vétérinaire pour l'export de chiens et chats vers la Côte d'Ivoire (modèle)", es: "DSV/USDA — Certificado sanitario veterinario para la exportación de perros y gatos a Costa de Marfil (modelo)", pt: "DSV/USDA — Atestado de saúde veterinário para exportação de cachorros e gatos para a Costa do Marfim (modelo)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/ivory-coast-cat-dog_2.pdf"
+  - label: { en: "Ministère des Ressources Animales et Halieutiques (MIRAH) — Direction des Services Vétérinaires (DSV)", fr: "Ministère des Ressources Animales et Halieutiques (MIRAH) — Direction des Services Vétérinaires (DSV)", es: "Ministère des Ressources Animales et Halieutiques (MIRAH) — Direction des Services Vétérinaires (DSV)", pt: "Ministère des Ressources Animales et Halieutiques (MIRAH) — Direction des Services Vétérinaires (DSV)" }
+    url: "https://ressourcesanimales.gouv.ci/direction/direction-des-services-veterinaires-dsv/"
+  - label: { en: "GUCE Ivory Coast (PWIC) — Import procedure for live animals (border veterinary control)", fr: "GUCE Côte d'Ivoire (PWIC) — Procédure d'importation des animaux vivants (contrôle vétérinaire frontalier)", es: "GUCE Costa de Marfil (PWIC) — Procedimiento de importación de animales vivos (control veterinario en frontera)", pt: "GUCE Costa do Marfim (PWIC) — Procedimento de importação para animais vivos (controle veterinário de fronteira)" }
+    url: "https://www.gucecotedivoire.ci/pwic/animaux-vivants/"
+
+seo:
+  title: { en: "Ivory Coast Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Côte d'Ivoire — Guide", es: "Requisitos de entrada de perros en Costa de Marfil — Guía de viaje", pt: "Costa do Marfim: exigências de entrada para cachorros" }
+  metaTitle: { en: "Traveling to Ivory Coast With Your Dog: Entry Requirements (2026)", fr: "Voyager en Côte d'Ivoire avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Costa de Marfil (2026)", pt: "Cachorro: exigências de entrada Costa do Marfim (2026)" }
+  metaDesc:
+    en: "Official DSV/MIRAH rules for bringing a dog into Ivory Coast: prior import authorization, rabies vaccination and veterinary health certificate. Sourced and dated."
+    fr: "Règles officielles DSV/MIRAH pour faire entrer un chien en Côte d'Ivoire : autorisation préalable d'importation, vaccination antirabique. Sourcé et daté."
+    es: "Normas oficiales DSV/MIRAH para traer un perro a Costa de Marfil: autorización previa de importación, vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais da DSV/MIRAH para levar um cachorro à Costa do Marfim: autorização de importação prévia, vacinação antirrábica e atestado de saúde veterinário."
+  slug: "ivory-coast"
+  shortDesc:
+    en: "What you need to bring a dog into Ivory Coast — DSV import authorization, rabies vaccination, veterinary certificate and border inspection."
+    fr: "Ce qu'il faut pour faire entrer un chien en Côte d'Ivoire — autorisation d'importation DSV, vaccination antirabique, certificat vétérinaire et inspection frontalière."
+    es: "Lo que necesitas para traer un perro a Costa de Marfil — autorización de importación de la DSV, vacunación antirrábica, certificado veterinario e inspección en frontera."
+    pt: "O que é preciso para levar um cachorro à Costa do Marfim — autorização de importação da DSV, vacinação antirrábica, certificado veterinário e inspeção de fronteira."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

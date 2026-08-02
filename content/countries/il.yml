@@ -1,0 +1,408 @@
+# Country Entry Guide — Israel (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Israel is NOT in the EU. It runs its own scheme via the Ministry of Agriculture and Food
+# Security — Veterinary Services and Animal Health, under the Animal Diseases Regulations
+# (Import of Animals), 1974. Key national feature: a rabies antibody test (>=0.5 IU/ml,
+# blood taken >30 days after the primary rabies vaccination, OIE/WOAH-approved lab) is
+# MANDATORY for every dog, from every origin, in addition to microchip + rabies vaccination.
+# A government-endorsed veterinary health certificate must be issued no more than 10 days
+# before arrival, and a "Notification of Pet Arrival" (Annex B) must be sent to the Veterinary
+# Services at the port of entry at least 2 working days before departure. Up to two dogs/cats
+# accompanying their owner on the same flight (in their care >=90 days) are exempt from an
+# import licence; more than two pets, unaccompanied/cargo pets, and dangerous-breed cases
+# require an import permit from the Director of Veterinary Services. Eight dog breeds are
+# prohibited from import except by case-by-case permit. No routine quarantine if compliant.
+# The eu/listed/nonListed slots are repurposed to Israel's practical paths:
+# eu = up-to-date dog with a valid lifelong antibody result (fastest, licence-exempt);
+# listed = primary/lapsed rabies vaccination (30-day wait + new antibody test);
+# nonListed = import-permit cases (>2 pets, cargo, or a restricted/dangerous breed).
+id: country_il
+iso2: "IL"
+name: { en: "Israel", fr: "Israël", es: "Israel", pt: "Israel" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+exit:
+  authority: IVSAH (MOAG)
+  authorityUrl: https://www.gov.il/en/departments/ministry_of_agriculture
+  intro:
+    en: "Israel is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export certificate approved by a government veterinarian."
+    fr: "Israël est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat d'export approuvé par un vétérinaire officiel."
+    es: "Israel no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de exportación aprobado por un veterinario oficial."
+    pt: "Israel é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de exportação aprovado por um veterinário oficial."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The export health certificate must be signed and approved by a government veterinarian of the MOAG Veterinary Services (a private-vet certificate alone is not valid), issued at the regional veterinary offices."
+        fr: "Le certificat sanitaire d'export doit être signé et approuvé par un vétérinaire officiel des Services vétérinaires du MOAG (un certificat de vétérinaire privé seul ne suffit pas), délivré dans les bureaux vétérinaires régionaux."
+        es: "El certificado sanitario de exportación debe ser firmado y aprobado por un veterinario oficial de los Servicios Veterinarios del MOAG (un certificado de veterinario privado por sí solo no es válido), emitido en las oficinas veterinarias regionales."
+        pt: "O atestado de saúde para exportação precisa ser assinado e aprovado por um veterinário oficial dos Veterinary Services do MOAG (um certificado emitido apenas por veterinário particular não vale), emitido nos escritórios veterinários regionais."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Israel with your dog", fr: "Voyager en Israël avec ton chien", es: "Viajar a Israel con tu perro", pt: "Viajar para Israel com o seu cachorro" }
+  intro:
+    en: >-
+      Israel welcomes dogs, but it is not part of the EU pet-passport system — it runs its own
+      import scheme through the Ministry of Agriculture and Food Security (Veterinary Services and
+      Animal Health), under the Animal Diseases Regulations (Import of Animals), 1974. The step that
+      surprises many travellers is that a rabies antibody test is mandatory for every dog, from every
+      country, on top of an ISO microchip and a valid rabies vaccination. Your dog must be at least
+      4 months old, carry a government-endorsed veterinary health certificate issued no more than
+      10 days before arrival, and you must send a Notification of Pet Arrival to the Veterinary Services
+      at your port of entry at least two working days before departure. Up to two pets travelling with
+      their owner on the same flight are exempt from an import licence; more pets, cargo shipments and
+      restricted breeds need a permit. This guide explains each case before you book.
+    fr: >-
+      Israël accueille les chiens, mais ne fait pas partie du système du passeport européen : le pays
+      applique son propre régime d'importation via le ministère de l'Agriculture et de la Sécurité
+      alimentaire (Services vétérinaires et santé animale), au titre du règlement sur les maladies
+      animales (importation d'animaux) de 1974. L'étape qui surprend beaucoup de voyageurs est qu'un
+      titrage des anticorps antirabiques est obligatoire pour tout chien, quel que soit le pays d'origine,
+      en plus d'une puce ISO et d'une vaccination antirabique valide. Ton chien doit avoir au moins
+      4 mois, disposer d'un certificat sanitaire vétérinaire visé par l'autorité établi au plus tôt
+      10 jours avant l'arrivée, et tu dois envoyer une notification d'arrivée aux Services vétérinaires
+      de ton point d'entrée au moins deux jours ouvrés avant le départ. Jusqu'à deux animaux voyageant
+      avec leur propriétaire sur le même vol sont dispensés de licence d'importation ; au-delà, le fret
+      et les races restreintes exigent un permis. Ce guide détaille chaque cas avant de réserver.
+    es: >-
+      Israel acoge a los perros, pero no forma parte del sistema del pasaporte europeo para mascotas —
+      aplica su propio régimen de importación a través del Ministerio de Agricultura y Seguridad
+      Alimentaria (Servicios Veterinarios y Sanidad Animal), en virtud del Reglamento de Enfermedades
+      Animales (Importación de Animales) de 1974. El paso que sorprende a muchos viajeros es que una
+      prueba de titulación de anticuerpos contra la rabia es obligatoria para todo perro, de cualquier
+      país, además de un microchip ISO y una vacunación antirrábica válida. Tu perro debe tener al
+      menos 4 meses, llevar un certificado sanitario veterinario refrendado por el gobierno expedido
+      como máximo 10 días antes de la llegada, y debes enviar una notificación de llegada de mascota a
+      los Servicios Veterinarios en tu punto de entrada al menos dos días laborables antes de la
+      salida. Hasta dos mascotas que viajen con su propietario en el mismo vuelo están exentas de
+      licencia de importación; más mascotas, los envíos como carga y las razas restringidas necesitan
+      un permiso. Esta guía explica cada caso antes de que reserves.
+
+    pt: "Israel recebe bem os cachorros, mas não faz parte do sistema do passaporte europeu para animais de estimação — o país aplica o seu próprio regime de importação por meio do Ministry of Agriculture and Food Security (Veterinary Services and Animal Health), com base no Animal Diseases Regulations (Import of Animals), 1974, o regulamento sobre doenças animais. A etapa que surpreende muitos viajantes é que o teste sorológico antirrábico é obrigatório para todo cachorro, seja qual for o país de origem, além do microchip ISO e da vacinação antirrábica válida. O seu cachorro precisa ter pelo menos 4 meses, levar um certificado veterinário de saúde visado pela autoridade oficial emitido no máximo 10 dias antes da chegada, e você precisa enviar uma Notification of Pet Arrival aos Veterinary Services do seu ponto de entrada pelo menos dois dias úteis antes da partida. Até dois animais que viajam com o dono no mesmo voo estão dispensados da licença de importação; acima disso, os envios como carga e as raças restritas exigem uma autorização. Este guia detalha cada caso antes de você reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — a mandatory rabies antibody test for every dog", fr: "Modéré — un titrage antirabique obligatoire pour chaque chien", es: "Moderado — una prueba de titulación de rabia obligatoria para cada perro", pt: "Moderado — teste sorológico antirrábico obrigatório para todo cachorro" }
+
+prepTime:
+  eu:
+    en: "Up-to-date dog with a valid lifelong rabies antibody result: ~2-3 weeks — issue the government-endorsed health certificate within 10 days of arrival and send the arrival notification at least 2 working days before departure; no import licence for up to two accompanied pets."
+    fr: "Chien à jour avec un titrage antirabique valable à vie : ~2-3 semaines — établissez le certificat sanitaire visé dans les 10 jours avant l'arrivée et envoie la notification d'arrivée au moins 2 jours ouvrés avant le départ ; pas de licence pour jusqu'à deux animaux accompagnés."
+    es: "Perro al día con un resultado de titulación de rabia válido de por vida: ~2-3 semanas — expide el certificado sanitario refrendado por el gobierno dentro de los 10 días previos a la llegada y envía la notificación de llegada al menos 2 días laborables antes de la salida; sin licencia de importación para hasta dos mascotas acompañadas."
+    pt: "Cachorro em dia com um resultado sorológico antirrábico válido por toda a vida: ~2-3 semanas — emita o atestado de saúde visado pela autoridade oficial dentro dos 10 dias que antecedem a chegada e envie a notificação de chegada pelo menos 2 dias úteis antes da partida; sem licença de importação para até dois animais acompanhados."
+  listed:
+    en: "Primary or lapsed rabies vaccination (new antibody test needed): ~2-3 months — vaccinate, wait, draw blood more than 30 days after the vaccination for an OIE/WOAH-approved laboratory, then a 30-day wait before import."
+    fr: "Vaccination antirabique primaire ou périmée (nouveau titrage requis) : ~2-3 mois — vaccinez, patientez, prélevez le sang plus de 30 jours après la vaccination pour un laboratoire agréé OIE/OMSA, puis un délai de 30 jours avant l'importation."
+    es: "Vacunación antirrábica primaria o caducada (se necesita nueva prueba de titulación): ~2-3 meses — vacuna, espera, extrae sangre más de 30 días después de la vacunación para un laboratorio aprobado por la OIE/WOAH, y luego una espera de 30 días antes de la importación."
+    pt: "Vacinação antirrábica primária ou vencida (é preciso um novo teste sorológico): ~2-3 meses — vacine, espere, colete o sangue mais de 30 dias após a vacinação para um laboratório aprovado pela OIE/WOAH e, depois, aguarde 30 dias antes da importação."
+  nonListed:
+    en: "Import-permit cases (more than two pets, unaccompanied/cargo, or a dangerous breed): add several weeks — a permit from the Director of Veterinary Services is needed; dangerous breeds are only admitted case-by-case, if at all."
+    fr: "Cas soumis à permis (plus de deux animaux, non accompagnés/fret, ou race dangereuse) : ajoute plusieurs semaines — un permis du directeur des Services vétérinaires est requis ; les races dangereuses ne sont admises qu'au cas par cas, si tant est."
+    es: "Casos con permiso de importación (más de dos mascotas, sin acompañante/carga, o raza peligrosa): añade varias semanas — se necesita un permiso del director de los Servicios Veterinarios; las razas peligrosas solo se admiten caso por caso, si es que se admiten."
+    pt: "Casos sujeitos a autorização de importação (mais de dois animais, desacompanhados/em carga ou raça perigosa): acrescente várias semanas — é preciso uma autorização do Director of Veterinary Services; raças perigosas só são admitidas caso a caso, quando o são."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Required for every dog (>=0.5 IU/ml)", fr: "Requis pour chaque chien (>=0,5 UI/ml)", es: "Obligatoria para cada perro (>=0,5 UI/ml)", pt: "Obrigatório para todo cachorro (>=0,5 UI/ml)" }
+    cls: warn
+  - requirement: { en: "Import licence", fr: "Licence d'importation", es: "Licencia de importación", pt: "Licença de importação" }
+    status: { en: "Exempt for up to 2 accompanied pets; otherwise required", fr: "Dispense jusqu'à 2 animaux accompagnés ; sinon requise", es: "Exenta para hasta 2 mascotas acompañadas; en caso contrario, obligatoria", pt: "Dispensada para até 2 animais acompanhados; obrigatória nos demais casos" }
+    cls: neutral
+  - requirement: { en: "Pre-arrival notification", fr: "Notification préalable d'arrivée", es: "Notificación previa de llegada", pt: "Notificação prévia de chegada" }
+    status: { en: "Required (>=2 working days before departure)", fr: "Requise (>=2 jours ouvrés avant le départ)", es: "Obligatoria (>=2 días laborables antes de la salida)", pt: "Obrigatória (>=2 dias úteis antes da partida)" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed, <=10 days before arrival)", fr: "Requis (visé, <=10 jours avant l'arrivée)", es: "Obligatorio (refrendado, <=10 días antes de la llegada)", pt: "Obrigatório (visado pela autoridade oficial, <=10 dias antes da chegada)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    cls: ok
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "8 dangerous breeds prohibited (permit only)", fr: "8 races dangereuses interdites (permis uniquement)", es: "8 razas peligrosas prohibidas (solo con permiso)", pt: "8 raças perigosas proibidas (somente com autorização)" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and Israel's Veterinary Services (Ministry of Agriculture and Food Security) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et les Services vétérinaires d'Israël (ministère de l'Agriculture et de la Sécurité alimentaire) peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y los Servicios Veterinarios de Israel (Ministerio de Agricultura y Seguridad Alimentaria) pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Somente um veterinário e os Veterinary Services de Israel (Ministry of Agriculture and Food Security) podem confirmar o procedimento exato para o seu cachorro."
+  - en: "The rabies antibody test takes time (blood drawn more than 30 days after vaccination, then lab processing) — start it well before you book."
+    fr: "Le titrage antirabique prend du temps (sang prélevé plus de 30 jours après la vaccination, puis analyse en laboratoire) — commence-le bien avant de réserver."
+    es: "La prueba de titulación de rabia lleva tiempo (sangre extraída más de 30 días después de la vacunación, y luego el análisis de laboratorio) — empieza el proceso bien antes de reservar."
+    pt: "O teste sorológico antirrábico leva tempo (sangue coletado mais de 30 dias após a vacinação e, depois, o processamento no laboratório) — comece bem antes de reservar."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Israel (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — Israël (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Israel (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três coisas — Israel (o seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Israel", fr: "Pays de destination — Israël", es: "País de destino — Israel", pt: "País de destino — Israel" }
+      text:
+        en: "Israel runs its own Veterinary Services scheme (not the EU passport): an ISO microchip, a valid rabies vaccination, a mandatory rabies antibody test (>=0.5 IU/ml), a government-endorsed health certificate issued within 10 days, and a pre-arrival notification. Dogs must be at least 4 months old."
+        fr: "Israël applique son propre régime des Services vétérinaires (pas le passeport UE) : puce ISO, vaccination antirabique valide, titrage antirabique obligatoire (>=0,5 UI/ml), certificat sanitaire visé établi dans les 10 jours, et notification préalable d'arrivée. Les chiens doivent avoir au moins 4 mois."
+        es: "Israel aplica su propio régimen de los Servicios Veterinarios (no el pasaporte de la UE): un microchip ISO, una vacunación antirrábica válida, una prueba de titulación de rabia obligatoria (>=0,5 UI/ml), un certificado sanitario refrendado por el gobierno expedido dentro de los 10 días, y una notificación previa de llegada. Los perros deben tener al menos 4 meses."
+        pt: "Israel aplica o seu próprio regime, pelos Veterinary Services (não é o passaporte europeu): microchip ISO, vacinação antirrábica válida, teste sorológico antirrábico obrigatório (>=0,5 UI/ml), atestado de saúde visado pela autoridade oficial emitido nos 10 dias anteriores e notificação prévia de chegada. Os cachorros precisam ter pelo menos 4 meses."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country decides which official government veterinary authority endorses your health certificate and where the arrival notification is sent. Israel requires the rabies antibody test from all origins — including EU countries — so departing from the EU does not waive it."
+        fr: "Le pays d'export détermine quelle autorité vétérinaire gouvernementale vise ton certificat sanitaire et où envoyer la notification d'arrivée. Israël exige le titrage antirabique depuis toutes les origines — y compris les pays de l'UE — ; partir de l'UE ne l'exempte donc pas."
+        es: "El país de exportación determina qué autoridad veterinaria oficial del gobierno refrenda tu certificado sanitario y a dónde se envía la notificación de llegada. Israel exige la prueba de titulación de rabia desde todos los orígenes — incluidos los países de la UE — por lo que salir desde la UE no la exime."
+        pt: "O país exportador define qual autoridade veterinária oficial visa o seu atestado de saúde e para onde a notificação de chegada é enviada. Israel exige o teste sorológico antirrábico de todas as origens — inclusive dos países da UE —, ou seja, sair da UE não dispensa o teste."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog must have been under its owner's personal care for at least 90 days before the flight to qualify for the import-licence exemption. Travel history and health status can prompt extra checks at the port of entry, and a non-compliant animal may be held or refused."
+        fr: "Ton chien doit avoir été sous la garde personnelle de son propriétaire pendant au moins 90 jours avant le vol pour bénéficier de la dispense de licence d'importation. L'historique de voyage et l'état sanitaire peuvent entraîner des contrôles supplémentaires au point d'entrée, et un animal non conforme peut être retenu ou refoulé."
+        es: "Tu perro debe haber estado bajo el cuidado personal de su propietario durante al menos 90 días antes del vuelo para optar a la exención de licencia de importación. El historial de viajes y el estado de salud pueden dar lugar a controles adicionales en el punto de entrada, y un animal que no cumpla los requisitos puede ser retenido o rechazado."
+        pt: "O seu cachorro precisa ter estado sob os cuidados pessoais do dono por pelo menos 90 dias antes do voo para ter direito à dispensa da licença de importação. O histórico de viagens e o estado de saúde podem motivar verificações extras no ponto de entrada, e um animal fora das regras pode ser retido ou recusado."
+  note:
+    en: "So read the requirements below as Israel's framework, then confirm your dog's exact origin, history and timeline with your vet and the Veterinary Services before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre israélien, puis confirme l'origine, l'historique et le calendrier exacts de ton chien avec ton vétérinaire et les Services vétérinaires avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Israel y luego confirma el origen, el historial y el calendario exactos de tu perro con tu veterinario y los Servicios Veterinarios antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral de Israel e depois confirme a origem, o histórico e o cronograma exatos do seu cachorro com o seu veterinário e com os Veterinary Services antes de reservar."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784 / Annex A of ISO 11785 microchip (134.2 kHz). It must be implanted before the most recent rabies vaccination, and the number must match every document.", fr: "Puce ISO 11784 / annexe A de l'ISO 11785 (134,2 kHz). Elle doit être posée avant la vaccination antirabique la plus récente, et le numéro doit correspondre à chaque document.", es: "Microchip ISO 11784 / anexo A de la ISO 11785 (134,2 kHz). Debe implantarse antes de la vacunación antirrábica más reciente, y el número debe coincidir en todos los documentos.", pt: "Microchip ISO 11784 / anexo A da ISO 11785 (134,2 kHz). Precisa ser implantado antes da vacinação antirrábica mais recente, e o número deve coincidir em todos os documentos." }
+    exceptions: { en: "If the microchip is not ISO-compliant, the owner must provide a compatible reader to the import official at the port of entry.", fr: "Si la puce n'est pas conforme ISO, le propriétaire doit fournir un lecteur compatible à l'agent d'importation au point d'entrée.", es: "Si el microchip no cumple la norma ISO, el propietario debe proporcionar un lector compatible al funcionario de importación en el punto de entrada.", pt: "Se o microchip não seguir o padrão ISO, o dono precisa fornecer um leitor compatível ao agente de importação no ponto de entrada." }
+    ref: { en: "Israel Veterinary Services — import requirements (microchip); USDA APHIS guidance", fr: "Services vétérinaires d'Israël — exigences d'importation (puce) ; guidance USDA APHIS", es: "Servicios Veterinarios de Israel — requisitos de importación (microchip); guía de USDA APHIS", pt: "Veterinary Services de Israel — exigências de importação (microchip); orientações do USDA APHIS" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "At least 4 months", fr: "Au moins 4 mois", es: "Al menos 4 meses", pt: "Pelo menos 4 meses" }
+    when: { en: "Dogs and cats must be no less than 4 months of age upon arrival in Israel.", fr: "Les chiens et chats doivent avoir au moins 4 mois à leur arrivée en Israël.", es: "Los perros y gatos deben tener al menos 4 meses de edad a su llegada a Israel.", pt: "Cães e gatos precisam ter no mínimo 4 meses de idade na chegada em Israel." }
+    exceptions: { en: "The age rule combines with the rabies and antibody-test timing, so plan the schedule from the first vaccination.", fr: "La règle d'âge se combine au calendrier de la rage et du titrage ; planifie donc à partir de la première vaccination.", es: "La norma de edad se combina con el calendario de la rabia y de la prueba de titulación, así que planifica el calendario desde la primera vacunación.", pt: "A regra de idade se soma aos prazos da vacinação antirrábica e do teste sorológico, então monte o cronograma a partir da primeira vacinação." }
+    ref: { en: "Israel Veterinary Services — import requirements (age); USDA APHIS guidance", fr: "Services vétérinaires d'Israël — exigences d'importation (âge) ; guidance USDA APHIS", es: "Servicios Veterinarios de Israel — requisitos de importación (edad); guía de USDA APHIS", pt: "Veterinary Services de Israel — exigências de importação (idade); orientações do USDA APHIS" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be current on rabies vaccination. A primary vaccination, or a booster given after the previous vaccine expired, counts as a primary vaccination: the dog must then wait at least 30 days before import.", fr: "Le chien doit être à jour de sa vaccination antirabique. Une primo-vaccination, ou un rappel administré après l'expiration du vaccin précédent, compte comme une primo-vaccination : le chien doit alors attendre au moins 30 jours avant l'importation.", es: "El perro debe estar al día con la vacunación antirrábica. Una primovacunación, o un refuerzo administrado después de que la vacuna anterior haya caducado, cuenta como primovacunación: el perro debe entonces esperar al menos 30 días antes de la importación.", pt: "O cachorro precisa estar com a vacinação antirrábica em dia. Uma vacinação primária, ou um reforço aplicado depois que a vacina anterior venceu, conta como vacinação primária: nesse caso, o cachorro precisa esperar pelo menos 30 dias antes da importação." }
+    exceptions: { en: "A valid booster given within the previous vaccine's validity imposes no new 30-day wait, provided the antibody result remains valid.", fr: "Un rappel valide administré dans la validité du vaccin précédent n'impose pas de nouveau délai de 30 jours, à condition que le titrage reste valable.", es: "Un refuerzo válido administrado dentro del periodo de valide de la vacuna anterior no impone una nueva espera de 30 días, siempre que el resultado de la prueba de titulación siga siendo válido.", pt: "Um reforço aplicado dentro da validade da vacina anterior não impõe nova espera de 30 dias, desde que o resultado sorológico continue válido." }
+    ref: { en: "Israel Veterinary Services — import requirements (rabies); USDA APHIS guidance", fr: "Services vétérinaires d'Israël — exigences d'importation (rage) ; guidance USDA APHIS", es: "Servicios Veterinarios de Israel — requisitos de importación (rabia); guía de USDA APHIS", pt: "Veterinary Services de Israel — exigências de importação (raiva); orientações do USDA APHIS" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Required for every dog", fr: "Requis pour chaque chien", es: "Obligatoria para cada perro", pt: "Obrigatório para todo cachorro" }
+    when: { en: "A rabies neutralising antibody titre of at least 0.5 IU/ml from an OIE/WOAH-approved laboratory. The blood sample must be taken more than 30 days after the primary rabies vaccination. A positive result is required before the health certificate is completed.", fr: "Un titrage des anticorps neutralisants antirabiques d'au moins 0,5 UI/ml par un laboratoire agréé OIE/OMSA. Le prélèvement sanguin doit être réalisé plus de 30 jours après la primo-vaccination antirabique. Un résultat positif est exigé avant l'établissement du certificat sanitaire.", es: "Un título de anticuerpos neutralizantes contra la rabia de al menos 0,5 UI/ml de un laboratorio aprobado por la OIE/WOAH. La muestra de sangre debe tomarse más de 30 días después de la primovacunación antirrábica. Se requiere un resultado positivo antes de completar el certificado sanitario.", pt: "Titulação de anticorpos neutralizantes da raiva de pelo menos 0,5 UI/ml, feita em laboratório aprovado pela OIE/WOAH. A amostra de sangue precisa ser coletada mais de 30 dias após a vacinação antirrábica primária. É preciso um resultado positivo antes de o atestado de saúde ser preenchido." }
+    exceptions: { en: "The laboratory result is valid for the life of the animal, as long as the dog stays current on rabies vaccination per the vaccine manufacturer's instructions.", fr: "Le résultat de laboratoire est valable toute la vie de l'animal, tant que le chien reste à jour de sa vaccination antirabique selon les instructions du fabricant du vaccin.", es: "El resultado del laboratorio es válido de por vida para el animal, siempre que el perro se mantenga al día con la vacunación antirrábica según las instrucciones del fabricante de la vacuna.", pt: "O resultado do laboratório vale por toda a vida do animal, desde que o cachorro mantenha a vacinação antirrábica em dia conforme as instruções do fabricante da vacina." }
+    ref: { en: "Israel Veterinary Services — import requirements (rabies serology); USDA APHIS guidance", fr: "Services vétérinaires d'Israël — exigences d'importation (sérologie rabique) ; guidance USDA APHIS", es: "Servicios Veterinarios de Israel — requisitos de importación (serología de la rabia); guía de USDA APHIS", pt: "Veterinary Services de Israel — exigências de importação (sorologia antirrábica); orientações do USDA APHIS" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Official veterinary health certificate for import to Israel, issued by the exporting country's veterinarian and endorsed by its government veterinary authority no more than 10 days before arrival. It confirms the microchip, valid rabies vaccination, the antibody test and that the animal shows no signs of infectious disease.", fr: "Certificat sanitaire vétérinaire officiel pour l'import en Israël, établi par le vétérinaire du pays d'export et visé par son autorité vétérinaire gouvernementale au plus tôt 10 jours avant l'arrivée. Il atteste la puce, une vaccination antirabique valide, le titrage et l'absence de signes de maladie infectieuse.", es: "Certificado sanitario veterinario oficial para la importación a Israel, expedido por el veterinario del país de exportación y refrendado por su autoridad veterinaria gubernamental como máximo 10 días antes de la llegada. Confirma el microchip, la vacunación antirrábica válida, la prueba de titulación y que el animal no muestra signos de enfermedad infecciosa.", pt: "Certificado veterinário de saúde oficial para importação para Israel, emitido pelo veterinário do país exportador e visado pela autoridade veterinária oficial desse país no máximo 10 dias antes da chegada. Ele confirma o microchip, a vacinação antirrábica válida, o teste sorológico e que o animal não apresenta sinais de doença infecciosa." }
+    exceptions: { en: "A printed paper copy of the completed certificate must accompany each shipment; documents should be in English (or with a certified English translation).", fr: "Une copie papier imprimée du certificat complété doit accompagner chaque envoi ; les documents doivent être en anglais (ou avec une traduction certifiée en anglais).", es: "Una copia impresa en papel del certificado completado debe acompañar cada envío; los documentos deben estar en inglés (o con una traducción certificada al inglés).", pt: "Uma via impressa em papel do certificado preenchido precisa acompanhar cada remessa; os documentos devem estar em inglês (ou com tradução juramentada para o inglês)." }
+    ref: { en: "Israel Veterinary Services — health certificate; USDA APHIS — Veterinary Health Certificate for Dogs and Cats", fr: "Services vétérinaires d'Israël — certificat sanitaire ; USDA APHIS — certificat sanitaire chiens et chats", es: "Servicios Veterinarios de Israel — certificado sanitario; USDA APHIS — Certificado Sanitario Veterinario para Perros y Gatos", pt: "Veterinary Services de Israel — atestado de saúde; USDA APHIS — Veterinary Health Certificate for Dogs and Cats" }
+  - item: { en: "Owner declaration (90-day care)", fr: "Déclaration du propriétaire (garde de 90 jours)", es: "Declaración del propietario (cuidado de 90 días)", pt: "Declaração do dono (90 dias de cuidados)" }
+    required: { en: "Required for licence exemption", fr: "Requise pour la dispense de licence", es: "Obligatoria para la exención de licencia", pt: "Obrigatória para a dispensa da licença" }
+    when: { en: "An owner declaration (Annex C) that the animal has been under the owner's personal care for at least 90 days before being brought to Israel, and will stay with that owner.", fr: "Une déclaration du propriétaire (annexe C) attestant que l'animal est sous sa garde personnelle depuis au moins 90 jours avant son arrivée en Israël et qu'il restera avec ce propriétaire.", es: "Una declaración del propietario (anexo C) de que el animal ha estado bajo su cuidado personal durante al menos 90 días antes de ser llevado a Israel, y de que permanecerá con ese propietario.", pt: "Uma declaração do dono (anexo C) de que o animal esteve sob os seus cuidados pessoais por pelo menos 90 dias antes de ser levado para Israel e de que continuará com esse dono." }
+    exceptions: { en: "Without the 90-day care condition, the animal is not eligible for the import-licence exemption and an import permit is needed.", fr: "Sans la condition de garde de 90 jours, l'animal ne peut bénéficier de la dispense de licence et un permis d'importation est requis.", es: "Sin la condición de los 90 días de cuidado, el animal no puede optar a la exención de licencia de importación y se necesita un permiso de importación.", pt: "Sem a condição dos 90 dias de cuidados, o animal não tem direito à dispensa da licença de importação e passa a ser preciso uma autorização de importação." }
+    ref: { en: "Israel Veterinary Services — import-licence exemption conditions (Annex C)", fr: "Services vétérinaires d'Israël — conditions de dispense de licence (annexe C)", es: "Servicios Veterinarios de Israel — condiciones de exención de licencia de importación (anexo C)", pt: "Veterinary Services de Israel — condições de dispensa da licença de importação (anexo C)" }
+  - item: { en: "Pre-arrival notification (Annex B)", fr: "Notification préalable d'arrivée (annexe B)", es: "Notificación previa de llegada (anexo B)", pt: "Notificação prévia de chegada (anexo B)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Send a Notification of Pet Arrival (Annex B) plus a copy of the endorsed veterinary certificate to the Veterinary Services at the port of entry (Ben Gurion Airport: vs-airport@moag.gov.il) at least two working days before departure.", fr: "Envoie une notification d'arrivée (annexe B) et une copie du certificat vétérinaire visé aux Services vétérinaires du point d'entrée (aéroport Ben Gourion : vs-airport@moag.gov.il) au moins deux jours ouvrés avant le départ.", es: "Envía una Notificación de Llegada de Mascota (anexo B) más una copia del certificado veterinario refrendado a los Servicios Veterinarios del punto de entrada (aeropuerto Ben Gurión: vs-airport@moag.gov.il) al menos dos días laborables antes de la salida.", pt: "Envie uma Notification of Pet Arrival (anexo B) e uma cópia do certificado veterinário visado aos Veterinary Services do ponto de entrada (aeroporto Ben Gurion: vs-airport@moag.gov.il) pelo menos dois dias úteis antes da partida." }
+    exceptions: { en: "The shipment is not released in Israel until the Veterinary Services at the port of entry have authorised it.", fr: "L'envoi n'est pas libéré en Israël tant que les Services vétérinaires du point d'entrée ne l'ont pas autorisé.", es: "El envío no se libera en Israel hasta que los Servicios Veterinarios del punto de entrada lo hayan autorizado.", pt: "A remessa só é liberada em Israel depois que os Veterinary Services do ponto de entrada a autorizarem." }
+    ref: { en: "Israel Veterinary Services — Notification of Pet Arrival (Annex B); USDA APHIS guidance", fr: "Services vétérinaires d'Israël — notification d'arrivée (annexe B) ; guidance USDA APHIS", es: "Servicios Veterinarios de Israel — Notificación de Llegada de Mascota (anexo B); guía de USDA APHIS", pt: "Veterinary Services de Israel — Notification of Pet Arrival (anexo B); orientações do USDA APHIS" }
+  - item: { en: "Import licence / permit", fr: "Licence / permis d'importation", es: "Licencia / permiso de importación", pt: "Licença / autorização de importação" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Under the Animal Diseases Regulations (Import of Animals), 1974, an import licence is required. It is waived when up to two dogs/cats travel as their owner's accompanied baggage on the same flight, under 90-day care, meeting all health rules and not a restricted breed.", fr: "Au titre du règlement sur les maladies animales (importation d'animaux) de 1974, une licence d'importation est requise. Elle est dispensée lorsque jusqu'à deux chiens/chats voyagent comme bagage accompagné de leur propriétaire sur le même vol, sous garde de 90 jours, en respectant toutes les règles sanitaires et sans être d'une race restreinte.", es: "Conforme al Reglamento de Enfermedades Animales (Importación de Animales) de 1974, se exige una licencia de importación. Se dispensa cuando hasta dos perros/gatos viajan como equipaje acompañado de su propietario en el mismo vuelo, bajo 90 días de cuidado, cumpliendo todas las normas sanitarias y sin ser de una raza restringida.", pt: "Nos termos do Animal Diseases Regulations (Import of Animals), 1974, é exigida uma licença de importação. Ela é dispensada quando até dois cães/gatos viajam como bagagem acompanhada do dono no mesmo voo, sob a condição dos 90 dias de cuidados, cumprindo todas as regras sanitárias e sem serem de raça restrita." }
+    exceptions: { en: "More than two pets, unaccompanied/cargo animals and dangerous breeds require a permit from the Director of Veterinary Services (apply to vs-ie@moag.gov.il). Permitted animals arrive as cargo manifest only.", fr: "Plus de deux animaux, les animaux non accompagnés/en fret et les races dangereuses exigent un permis du directeur des Services vétérinaires (demande à vs-ie@moag.gov.il). Les animaux sous permis arrivent uniquement en manifeste fret.", es: "Más de dos mascotas, los animales sin acompañante/como carga y las razas peligrosas requieren un permiso del director de los Servicios Veterinarios (solicitar a vs-ie@moag.gov.il). Los animales con permiso llegan solo como manifiesto de carga.", pt: "Mais de dois animais, animais desacompanhados/em carga e raças perigosas exigem uma autorização do Director of Veterinary Services (peça pelo e-mail vs-ie@moag.gov.il). Os animais autorizados chegam apenas no manifesto de carga." }
+    ref: { en: "Animal Diseases Regulations (Import of Animals), 1974; Israel Veterinary Services", fr: "Règlement sur les maladies animales (importation d'animaux) de 1974 ; Services vétérinaires d'Israël", es: "Reglamento de Enfermedades Animales (Importación de Animales) de 1974; Servicios Veterinarios de Israel", pt: "Animal Diseases Regulations (Import of Animals), 1974; Veterinary Services de Israel" }
+  - item: { en: "Tapeworm treatment", fr: "Traitement contre le ténia", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    required: { en: "Not required per reviewed official sources", fr: "Non requis selon les sources officielles consultées", es: "No obligatorio según las fuentes oficiales revisadas", pt: "Não obrigatório segundo as fontes oficiais consultadas" }
+    when: { en: "The Israeli import requirements and health certificate reviewed do not list an echinococcus/tapeworm treatment for dogs entering Israel.", fr: "Les exigences d'importation et le certificat sanitaire israéliens consultés ne mentionnent pas de traitement contre l'échinococcose/le ténia pour les chiens entrant en Israël.", es: "Los requisitos de importación israelíes y el certificado sanitario revisados no incluyen un tratamiento contra la equinococosis/tenia para los perros que entran en Israel.", pt: "As exigências de importação e o atestado de saúde israelenses consultados não preveem tratamento contra equinococos/tênias para cachorros que entram em Israel." }
+    exceptions: { en: "Confirm the current certificate with your official veterinarian, as certificate templates are updated periodically.", fr: "Vérifie le certificat en vigueur avec ton vétérinaire officiel, les modèles de certificat étant mis à jour régulièrement.", es: "Confirma el certificado vigente con tu veterinario oficial, ya que las plantillas de certificado se actualizan periódicamente.", pt: "Confirme o modelo atual do certificado com o seu veterinário oficial, já que os modelos são atualizados periodicamente." }
+    ref: { en: "Israel Veterinary Services — Veterinary Health Certificate for Dogs and Cats", fr: "Services vétérinaires d'Israël — certificat sanitaire chiens et chats", es: "Servicios Veterinarios de Israel — Certificado Sanitario Veterinario para Perros y Gatos", pt: "Veterinary Services de Israel — Veterinary Health Certificate for Dogs and Cats" }
+  - item: { en: "Port of entry", fr: "Point d'entrée", es: "Punto de entrada", pt: "Ponto de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Pets must enter through an approved port: Ben Gurion Airport, Haifa seaport, Ashdod seaport or Eilat seaport. Cargo (permitted) animals are inspected at the cargo warehouse Sunday to Thursday, 06:00-24:00.", fr: "Les animaux doivent entrer par un point d'entrée agréé : aéroport Ben Gourion, port de Haïfa, port d'Ashdod ou port d'Eilat. Les animaux en fret (sous permis) sont inspectés à l'entrepôt fret du dimanche au jeudi, de 06h00 à 24h00.", es: "Las mascotas deben entrar por un puerto aprobado: aeropuerto Ben Gurión, puerto marítimo de Haifa, puerto marítimo de Ashdod o puerto marítimo de Eilat. Los animales de carga (con permiso) se inspeccionan en el almacén de carga de domingo a jueves, de 06:00 a 24:00.", pt: "Os animais só podem entrar por um ponto autorizado: aeroporto Ben Gurion, porto de Haifa, porto de Ashdod ou porto de Eilat. Os animais em carga (com autorização) são inspecionados no armazém de carga de domingo a quinta-feira, das 06:00 às 24:00." }
+    exceptions: { en: "Plan cargo arrivals within the inspection window; there is no inspection on Friday or Saturday.", fr: "Planifie les arrivées en fret dans la plage d'inspection ; il n'y a pas d'inspection le vendredi ni le samedi.", es: "Planifica las llegadas de carga dentro del horario de inspección; no hay inspección los viernes ni los sábados.", pt: "Programe as chegadas em carga dentro da janela de inspeção; não há inspeção na sexta-feira nem no sábado." }
+    ref: { en: "USDA APHIS guidance — ports of entry to Israel", fr: "Guidance USDA APHIS — points d'entrée en Israël", es: "Guía de USDA APHIS — puntos de entrada a Israel", pt: "Orientações do USDA APHIS — pontos de entrada em Israel" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumplen los requisitos", pt: "Não obrigatória se estiver tudo em conformidade" }
+    when: { en: "Compliant dogs are released after the veterinary check; there is no routine quarantine.", fr: "Les chiens conformes sont libérés après le contrôle vétérinaire ; il n'y a pas de quarantaine de routine.", es: "Los perros que cumplen los requisitos se liberan tras el control veterinario; no hay cuarentena de rutina.", pt: "Os cachorros em conformidade são liberados depois da verificação veterinária; não há quarentena de rotina." }
+    exceptions: { en: "A dog that does not meet the requirements can be detained, quarantined, returned to the exporting country or refused entry — costs borne by the owner.", fr: "Un chien qui ne remplit pas les conditions peut être retenu, mis en quarantaine, renvoyé vers le pays d'export ou refoulé — frais à la charge du propriétaire.", es: "Un perro que no cumpla los requisitos puede ser retenido, puesto en cuarentena, devuelto al país de exportación o rechazado en la entrada — los costes corren a cargo del propietario.", pt: "Um cachorro que não cumpre as exigências pode ser retido, colocado em quarentena, devolvido ao país exportador ou ter a entrada recusada — com os custos por conta do dono." }
+    ref: { en: "Israel Veterinary Services — import requirements (non-compliance)", fr: "Services vétérinaires d'Israël — exigences d'importation (non-conformité)", es: "Servicios Veterinarios de Israel — requisitos de importación (incumplimiento)", pt: "Veterinary Services de Israel — exigências de importação (descumprimento)" }
+
+origin:
+  eu:
+    title: { en: "Up-to-date dog with a valid antibody result — fastest path", fr: "Chien à jour avec un titrage valide — parcours le plus rapide", es: "Perro al día con un resultado de titulación válido — la vía más rápida", pt: "Cachorro em dia com um resultado sorológico válido — o caminho mais rápido" }
+    body:
+      en: "A dog that is microchipped, currently vaccinated against rabies and already holds a valid rabies antibody result (>=0.5 IU/ml, blood taken more than 30 days after a primary vaccination) follows the shortest path. It travels as its owner's accompanied baggage (up to two pets, in the owner's care at least 90 days), so no import licence is needed. Have the government-endorsed health certificate issued within 10 days of arrival, send the Notification of Pet Arrival at least two working days before departure, and there is no quarantine if every condition is met."
+      fr: "Un chien pucé, à jour de sa vaccination antirabique et disposant déjà d'un titrage antirabique valide (>=0,5 UI/ml, sang prélevé plus de 30 jours après une primo-vaccination) suit le parcours le plus court. Il voyage comme bagage accompagné de son propriétaire (jusqu'à deux animaux, sous sa garde depuis au moins 90 jours), sans licence d'importation. Fais établir le certificat sanitaire visé dans les 10 jours avant l'arrivée, envoie la notification d'arrivée au moins deux jours ouvrés avant le départ ; aucune quarantaine si toutes les conditions sont remplies."
+      es: "Un perro con microchip, con la vacunación antirrábica al día y que ya cuenta con un resultado de titulación de rabia válido (>=0,5 UI/ml, sangre extraída más de 30 días después de una primovacunación) sigue la vía más corta. Viaja como equipaje acompañado de su propietario (hasta dos mascotas, bajo su cuidado durante al menos 90 días), por lo que no se necesita licencia de importación. Haz que se expida el certificado sanitario refrendado por el gobierno dentro de los 10 días previos a la llegada, envía la Notificación de Llegada de Mascota al menos dos días laborables antes de la salida; no hay cuarentena si se cumplen todas las condiciones."
+      pt: "Um cachorro com microchip, com a vacinação antirrábica em dia e que já tenha um resultado sorológico antirrábico válido (>=0,5 UI/ml, sangue coletado mais de 30 dias após uma vacinação primária) segue o caminho mais curto. Ele viaja como bagagem acompanhada do dono (até dois animais, sob os cuidados do dono há pelo menos 90 dias), então não é preciso licença de importação. Emita o atestado de saúde visado pela autoridade oficial dentro dos 10 dias que antecedem a chegada, envie a Notification of Pet Arrival pelo menos dois dias úteis antes da partida — e não há quarentena se todas as condições forem cumpridas."
+    cls: ok
+  listed:
+    title: { en: "Primary or lapsed rabies vaccination — new antibody test", fr: "Vaccination antirabique primaire ou périmée — nouveau titrage", es: "Vacunación antirrábica primaria o caducada — nueva prueba de titulación", pt: "Vacinação antirrábica primária ou vencida — novo teste sorológico" }
+    body:
+      en: "If your dog needs a primary rabies vaccination, or a booster given after the previous vaccine expired, that dose counts as primary: the blood for the antibody test must be drawn more than 30 days after it, and the dog must wait at least 30 days before import. Budget for the laboratory turnaround too. The microchip must already be in place before the vaccination, and the dog must be at least 4 months old. The endorsed health certificate and pre-arrival notification are still required."
+      fr: "Si ton chien a besoin d'une primo-vaccination antirabique, ou d'un rappel administré après l'expiration du vaccin précédent, cette dose compte comme primaire : le sang du titrage doit être prélevé plus de 30 jours après, et le chien doit attendre au moins 30 jours avant l'importation. Prévois aussi le délai du laboratoire. La puce doit déjà être posée avant la vaccination, et le chien doit avoir au moins 4 mois. Le certificat sanitaire visé et la notification préalable restent exigés."
+      es: "Si tu perro necesita una primovacunación antirrábica, o un refuerzo administrado después de que la vacuna anterior haya caducado, esa dosis cuenta como primaria: la sangre para la prueba de titulación debe extraerse más de 30 días después, y el perro debe esperar al menos 30 días antes de la importación. Prevé también el plazo de respuesta del laboratorio. El microchip debe estar ya implantado antes de la vacunación, y el perro debe tener al menos 4 meses. El certificado sanitario refrendado y la notificación previa de llegada siguen siendo obligatorios."
+      pt: "Se o seu cachorro precisa de uma vacinação antirrábica primária, ou de um reforço aplicado depois de a vacina anterior ter vencido, essa dose conta como primária: o sangue para o teste sorológico precisa ser coletado mais de 30 dias depois dela, e o cachorro precisa esperar pelo menos 30 dias antes da importação. Conte também com o prazo de resposta do laboratório. O microchip já deve estar implantado antes da vacinação, e o cachorro precisa ter pelo menos 4 meses. O certificado veterinário de saúde visado e a notificação prévia de chegada continuam obrigatórios."
+    cls: warn
+  nonListed:
+    title: { en: "Import-permit cases — more than two pets, cargo, or a dangerous breed", fr: "Cas soumis à permis — plus de deux animaux, fret, ou race dangereuse", es: "Casos con permiso de importación — más de dos mascotas, carga o una raza peligrosa", pt: "Casos sujeitos a autorização de importação — mais de dois animais, carga ou raça perigosa" }
+    body:
+      en: "More than two dogs/cats, unaccompanied animals, animals not under the owner's 90-day care, and dangerous breeds all require an import permit from the Director of Veterinary Services (apply to vs-ie@moag.gov.il); permitted animals arrive as cargo manifest only. Eight dangerous breeds — and any cross or dog with their physical traits — are prohibited from import except by a case-by-case permit. A dog arriving without the required documents, a matching microchip, a valid antibody result or a permit can be detained, returned or refused, at the owner's expense."
+      fr: "Plus de deux chiens/chats, les animaux non accompagnés, les animaux non sous garde de 90 jours et les races dangereuses exigent tous un permis d'importation du directeur des Services vétérinaires (demande à vs-ie@moag.gov.il) ; les animaux sous permis arrivent uniquement en manifeste fret. Huit races dangereuses — ainsi que tout croisement ou chien présentant leurs traits physiques — sont interdites d'import sauf permis au cas par cas. Un chien arrivant sans les documents requis, sans puce correspondante, sans titrage valide ou sans permis peut être retenu, renvoyé ou refoulé, aux frais du propriétaire."
+      es: "Más de dos perros/gatos, los animales sin acompañante, los animales que no estén bajo el cuidado del propietario durante 90 días y las razas peligrosas requieren todos un permiso de importación del director de los Servicios Veterinarios (solicitar a vs-ie@moag.gov.il); los animales con permiso llegan solo como manifiesto de carga. Ocho razas peligrosas — y cualquier cruce o perro con sus rasgos físicos — están prohibidas para la importación salvo con un permiso caso por caso. Un perro que llegue sin los documentos requeridos, sin un microchip coincidente, sin un resultado de titulación válido o sin un permiso puede ser retenido, devuelto o rechazado, a cargo del propietario."
+      pt: "Mais de dois cães/gatos, animais desacompanhados, animais que não estiveram sob os cuidados do dono pelos 90 dias exigidos e raças perigosas precisam de uma autorização de importação do Director of Veterinary Services (peça pelo e-mail vs-ie@moag.gov.il); os animais autorizados chegam apenas no manifesto de carga. Oito raças perigosas — e qualquer cruzamento ou cachorro com as características físicas delas — estão proibidas de importação, salvo autorização caso a caso. Um cachorro que chegar sem os documentos exigidos, sem microchip correspondente, sem um resultado sorológico válido ou sem autorização pode ser retido, devolvido ou recusado, às custas do dono."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Israel depends on whether every condition was completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Israël dépend du fait que toutes les conditions aient été remplies avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Israel depende de si todas las condiciones se completaron antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega a Israel depende de todas as condições terem sido cumpridas antes da partida."
+  points:
+    - en: "Pets enter only through an approved port: Ben Gurion Airport, Haifa seaport, Ashdod seaport or Eilat seaport."
+      fr: "Les animaux entrent uniquement par un point d'entrée agréé : aéroport Ben Gourion, port de Haïfa, port d'Ashdod ou port d'Eilat."
+      es: "Las mascotas entran únicamente por un puerto aprobado: aeropuerto Ben Gurión, puerto marítimo de Haifa, puerto marítimo de Ashdod o puerto marítimo de Eilat."
+      pt: "Os animais só entram por um ponto autorizado: aeroporto Ben Gurion, porto de Haifa, porto de Ashdod ou porto de Eilat."
+    - en: "The Veterinary Services must already have received your Notification of Pet Arrival (Annex B) and a copy of the endorsed certificate at least two working days before departure — the animal is not released until they authorise it."
+      fr: "Les Services vétérinaires doivent déjà avoir reçu ton notification d'arrivée (annexe B) et une copie du certificat visé au moins deux jours ouvrés avant le départ — l'animal n'est pas libéré tant qu'ils ne l'ont pas autorisé."
+      es: "Los Servicios Veterinarios deben haber recibido ya tu Notificación de Llegada de Mascota (anexo B) y una copia del certificado refrendado al menos dos días laborables antes de la salida — el animal no se libera hasta que lo autoricen."
+      pt: "Os Veterinary Services precisam já ter recebido a sua Notification of Pet Arrival (anexo B) e uma cópia do certificado visado pelo menos dois dias úteis antes da partida — o animal só é liberado quando eles autorizarem."
+    - en: "Present the original endorsed health certificate, proof of the rabies antibody test and the owner declaration; the officer checks the documents and scans the microchip (bring a compatible reader if the chip is not ISO-compliant)."
+      fr: "Présente le certificat sanitaire original visé, la preuve du titrage antirabique et la déclaration du propriétaire ; l'agent vérifie les documents et lit la puce (apporte un lecteur compatible si la puce n'est pas conforme ISO)."
+      es: "Presenta el certificado sanitario original refrendado, la prueba de la titulación de rabia y la declaración del propietario; el agente revisa los documentos y lee el microchip (lleva un lector compatible si el chip no cumple la norma ISO)."
+      pt: "Apresente o atestado de saúde visado original, o comprovante do teste sorológico antirrábico e a declaração do dono; o agente confere os documentos e faz a leitura do microchip (leve um leitor compatível se o chip não seguir o padrão ISO)."
+    - en: "Cargo (permitted) animals are inspected at the cargo warehouse Sunday to Thursday, 06:00-24:00 — arrange arrival within that window."
+      fr: "Les animaux en fret (sous permis) sont inspectés à l'entrepôt fret du dimanche au jeudi, de 06h00 à 24h00 — organise l'arrivée dans cette plage."
+      es: "Los animales de carga (con permiso) se inspeccionan en el almacén de carga de domingo a jueves, de 06:00 a 24:00 — organiza la llegada dentro de ese horario."
+      pt: "Os animais em carga (com autorização) são inspecionados no armazém de carga de domingo a quinta-feira, das 06:00 às 24:00 — programe a chegada dentro dessa janela."
+    - en: "If documents are missing or invalid, the microchip does not match, or the antibody result is absent, the animal may be detained, quarantined, returned to the exporting country or refused entry — all costs borne by the owner."
+      fr: "Si des documents manquent ou sont invalides, si la puce ne correspond pas, ou si le titrage est absent, l'animal peut être retenu, mis en quarantaine, renvoyé vers le pays d'export ou refoulé — tous frais à la charge du propriétaire."
+      es: "Si faltan documentos o no son válidos, el microchip no coincide, o falta el resultado de titulación, el animal puede ser retenido, puesto en cuarentena, devuelto al país de exportación o rechazado en la entrada — todos los costes a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, se o microchip não corresponder ou se o resultado sorológico não existir, o animal pode ser retido, colocado em quarentena, devolvido ao país exportador ou ter a entrada recusada — com todos os custos por conta do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Israel restricts the import of dogs classed as dangerous under the Regulations for the Control of Dogs (Import of Dangerous Dogs), 5765-2004. Importing a dangerous-breed dog, a cross with one, or a dog with their physical traits is prohibited except by a case-by-case permit from the Director of Veterinary Services."
+    fr: "Israël restreint l'import des chiens classés dangereux au titre du règlement sur le contrôle des chiens (importation de chiens dangereux), 5765-2004. Importer un chien de race dangereuse, un croisement, ou un chien présentant leurs traits physiques est interdit, sauf permis au cas par cas du directeur des Services vétérinaires."
+    es: "Israel restringe la importación de perros clasificados como peligrosos en virtud del Reglamento para el Control de Perros (Importación de Perros Peligrosos), 5765-2004. Importar un perro de una raza peligrosa, un cruce con una de ellas, o un perro con sus rasgos físicos está prohibido salvo con un permiso caso por caso del director de los Servicios Veterinarios."
+    pt: "Israel restringe a importação de cachorros classificados como perigosos pelo Regulations for the Control of Dogs (Import of Dangerous Dogs), 5765-2004. Importar um cachorro de raça perigosa, um cruzamento com uma delas ou um cachorro com as características físicas dessas raças é proibido, salvo autorização caso a caso do Director of Veterinary Services."
+  cat1:
+    en: "Prohibited (dangerous) breeds: American Staffordshire Bull Terrier (Amstaff), Bull Terrier, Dogo Argentino, Japanese Tosa, Staffordshire Bull Terrier (English Staff), Pit Bull Terrier, Fila Brasileiro (Brazilian Mastiff) and Rottweiler — plus any cross with these breeds or any dog showing their physical traits."
+    fr: "Races interdites (dangereuses) : American Staffordshire Bull Terrier (Amstaff), Bull Terrier, Dogo Argentino, Tosa japonais, Staffordshire Bull Terrier (English Staff), Pit Bull Terrier, Fila Brasileiro (mâtin brésilien) et Rottweiler — ainsi que tout croisement avec ces races ou tout chien présentant leurs traits physiques."
+    es: "Razas prohibidas (peligrosas): American Staffordshire Bull Terrier (Amstaff), Bull Terrier, Dogo Argentino, Tosa japonés, Staffordshire Bull Terrier (English Staff), Pit Bull Terrier, Fila Brasileiro (mastín brasileño) y Rottweiler — además de cualquier cruce con estas razas o cualquier perro que muestre sus rasgos físicos."
+    pt: "Raças perigosas proibidas: American Staffordshire Bull Terrier (Amstaff), Bull Terrier, Dogo Argentino, Tosa Japonês, Staffordshire Bull Terrier (English Staff), Pit Bull Terrier, Fila Brasileiro e Rottweiler — além de qualquer cruzamento com essas raças ou qualquer cachorro que apresente as características físicas delas."
+  cat2:
+    en: "Exception route: entry is only possible with a valid, translated Israeli import permit specific to dangerous dogs, granted case-by-case by the Director of Veterinary Services (apply to vs-ie@moag.gov.il). Official veterinarians must not issue or endorse export certificates for these dogs without that permit."
+    fr: "Voie d'exception : l'entrée n'est possible qu'avec un permis d'importation israélien valide et traduit, spécifique aux chiens dangereux, accordé au cas par cas par le directeur des Services vétérinaires (demande à vs-ie@moag.gov.il). Les vétérinaires officiels ne doivent pas établir ni viser de certificat d'export pour ces chiens sans ce permis."
+    es: "Vía de excepción: la entrada solo es posible con un permiso de importación israelí válido y traducido, específico para perros peligrosos, concedido caso por caso por el director de los Servicios Veterinarios (solicitar a vs-ie@moag.gov.il). Los veterinarios oficiales no deben expedir ni refrendar certificados de exportación para estos perros sin ese permiso."
+    pt: "Via de exceção: a entrada só é possível com uma autorização de importação israelense válida e traduzida, específica para cães perigosos, concedida caso a caso pelo Director of Veterinary Services (peça pelo e-mail vs-ie@moag.gov.il). Os veterinários oficiais não devem emitir nem visar certificados de exportação para esses cachorros sem essa autorização."
+  note:
+    en: "Because the restriction covers crosses and look-alike dogs, have your dog's breed clearly stated on the export certificate and confirm its status with the Veterinary Services before booking. Airline breed policies (for example brachycephalic dogs in the hold) can be stricter still."
+    fr: "Comme la restriction vise les croisements et les chiens au type similaire, fais clairement mentionner la race de ton chien sur le certificat d'export et confirme son statut auprès des Services vétérinaires avant de réserver. Les politiques de race des compagnies (par exemple les chiens brachycéphales en soute) peuvent être encore plus strictes."
+    es: "Como la restricción abarca los cruces y los perros de aspecto similar, haz que la raza de tu perro conste claramente en el certificado de exportación y confirma su situación con los Servicios Veterinarios antes de reservar. Las políticas de razas de las aerolíneas (por ejemplo, los perros braquicéfalos en bodega) pueden ser aún más estrictas."
+    pt: "Como a restrição abrange cruzamentos e cachorros parecidos, peça que a raça do seu cachorro fique claramente indicada no certificado de exportação e confirme a situação dele com os Veterinary Services antes de reservar. As políticas de raça das companhias aéreas (por exemplo, cachorros de raças braquicefálicas no porão) podem ser ainda mais rígidas."
+
+checklist:
+  - en: "ISO 11784/11785 microchip (134.2 kHz), implanted before the most recent rabies vaccination"
+    fr: "Puce ISO 11784/11785 (134,2 kHz), posée avant la vaccination antirabique la plus récente"
+    es: "Microchip ISO 11784/11785 (134,2 kHz), implantado antes de la vacunación antirrábica más reciente"
+    pt: "Microchip ISO 11784/11785 (134,2 kHz), implantado antes da vacinação antirrábica mais recente"
+  - en: "Dog at least 4 months old on arrival"
+    fr: "Chien d'au moins 4 mois à l'arrivée"
+    es: "Perro de al menos 4 meses a la llegada"
+    pt: "Cachorro com pelo menos 4 meses na chegada"
+  - en: "Valid rabies vaccination (30-day wait if primary or lapsed)"
+    fr: "Vaccination antirabique valide (délai de 30 jours si primaire ou périmée)"
+    es: "Vacunación antirrábica válida (espera de 30 días si es primaria o caducada)"
+    pt: "Vacinação antirrábica válida (espera de 30 dias se for primária ou vencida)"
+  - en: "Rabies antibody test >=0.5 IU/ml (OIE/WOAH-approved lab, blood >30 days after primary vaccination)"
+    fr: "Titrage antirabique >=0,5 UI/ml (labo agréé OIE/OMSA, sang >30 jours après la primo-vaccination)"
+    es: "Prueba de titulación de rabia >=0,5 UI/ml (laboratorio aprobado por la OIE/WOAH, sangre >30 días después de la primovacunación)"
+    pt: "Teste sorológico antirrábico >=0,5 UI/ml (laboratório aprovado pela OIE/WOAH, sangue coletado >30 dias após a vacinação primária)"
+  - en: "Government-endorsed veterinary health certificate issued <=10 days before arrival (original, in English)"
+    fr: "Certificat sanitaire vétérinaire visé établi <=10 jours avant l'arrivée (original, en anglais)"
+    es: "Certificado sanitario veterinario refrendado por el gobierno expedido <=10 días antes de la llegada (original, en inglés)"
+    pt: "Certificado veterinário de saúde visado pela autoridade oficial, emitido <=10 dias antes da chegada (original, em inglês)"
+  - en: "Owner declaration (Annex C): animal in the owner's care >=90 days"
+    fr: "Déclaration du propriétaire (annexe C) : animal sous la garde du propriétaire >=90 jours"
+    es: "Declaración del propietario (anexo C): animal bajo el cuidado del propietario >=90 días"
+    pt: "Declaração do dono (anexo C): animal sob os cuidados do dono há >=90 dias"
+  - en: "Notification of Pet Arrival (Annex B) emailed to the port-of-entry Veterinary Services >=2 working days before departure"
+    fr: "Notification d'arrivée (annexe B) envoyée aux Services vétérinaires du point d'entrée >=2 jours ouvrés avant le départ"
+    es: "Notificación de Llegada de Mascota (anexo B) enviada por correo a los Servicios Veterinarios del punto de entrada >=2 días laborables antes de la salida"
+    pt: "Notification of Pet Arrival (anexo B) enviada por e-mail aos Veterinary Services do ponto de entrada >=2 dias úteis antes da partida"
+  - en: "Import permit if more than two pets, cargo, or a dangerous breed"
+    fr: "Permis d'importation si plus de deux animaux, fret, ou race dangereuse"
+    es: "Permiso de importación si hay más de dos mascotas, carga, o una raza peligrosa"
+    pt: "Autorização de importação se forem mais de dois animais, carga ou raça perigosa"
+  - en: "Confirm your dog's breed is not restricted, and accepted by your airline; IATA-compliant crate if in the hold"
+    fr: "Vérifie que la race de ton chien n'est pas restreinte et est acceptée par la compagnie ; caisse conforme IATA si en soute"
+    es: "Confirma que la raza de tu perro no esté restringida y que la acepte tu aerolínea; jaula conforme a IATA si viaja en bodega"
+    pt: "Confirme que a raça do seu cachorro não é restrita e que é aceita pela sua companhia aérea; caixa de transporte em conformidade com a IATA se for no porão"
+
+sources:
+  - label: { en: "Ministry of Agriculture and Food Security — Procedure for the Import of Dogs and Cats into Israel", fr: "Ministère de l'Agriculture et de la Sécurité alimentaire — Procédure d'importation des chiens et chats en Israël", es: "Ministerio de Agricultura y Seguridad Alimentaria — Procedimiento para la importación de perros y gatos a Israel", pt: "Ministry of Agriculture and Food Security — Procedimento para a importação de cães e gatos para Israel" }
+    url: "https://www.gov.il/en/service/import_pets_cats_dogs"
+  - label: { en: "Israel Tax Authority / gov.il — Import of dogs and cats to the State of Israel", fr: "Autorité fiscale israélienne / gov.il — Importation de chiens et chats vers l'État d'Israël", es: "Autoridad Fiscal de Israel / gov.il — Importación de perros y gatos al Estado de Israel", pt: "Israel Tax Authority / gov.il — Importação de cães e gatos para o Estado de Israel" }
+    url: "https://www.gov.il/en/pages/importdogs"
+  - label: { en: "Ministry of Agriculture — Forms and Guidelines for the Import of Dogs and Cats (moag-pro-061)", fr: "Ministère de l'Agriculture — Formulaires et directives pour l'importation de chiens et chats (moag-pro-061)", es: "Ministerio de Agricultura — Formularios y directrices para la importación de perros y gatos (moag-pro-061)", pt: "Ministry of Agriculture — Formulários e diretrizes para a importação de cães e gatos (moag-pro-061)" }
+    url: "https://www.gov.il/en/pages/moag-pro-061"
+  - label: { en: "Animal Diseases Regulations (Import of Animals), 1974 (gov.il)", fr: "Règlement sur les maladies animales (importation d'animaux), 1974 (gov.il)", es: "Reglamento de Enfermedades Animales (Importación de Animales), 1974 (gov.il)", pt: "Animal Diseases Regulations (Import of Animals), 1974 (gov.il)" }
+    url: "https://www.gov.il/he/pages/regulations-animal-diseases-import-animals-1974"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Israel", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers Israël", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Israel", pt: "USDA APHIS — Viagem com animais de estimação dos Estados Unidos para Israel" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-israel"
+  - label: { en: "USDA APHIS — Guidance Information for Exporting Pet Dogs and Cats to the State of Israel (PDF)", fr: "USDA APHIS — Guide pour l'exportation de chiens et chats de compagnie vers l'État d'Israël (PDF)", es: "USDA APHIS — Guía para la exportación de perros y gatos de compañía al Estado de Israel (PDF)", pt: "USDA APHIS — Orientações para a exportação de cães e gatos de estimação para o Estado de Israel (PDF)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/guidance-information-for-pets-to-israel_1.pdf"
+  - label: { en: "European Commission — Designated laboratories performing rabies antibody titration tests", fr: "Commission européenne — Laboratoires agréés pour le titrage des anticorps antirabiques", es: "Comisión Europea — Laboratorios autorizados que realizan pruebas de titulación de anticuerpos contra la rabia", pt: "Comissão Europeia — Laboratórios autorizados para a titulação de anticorpos antirrábicos" }
+    url: "https://food.ec.europa.eu/animals/movement-pets/designated-laboratories-performing-rabies-antibody-titration-tests_en"
+
+seo:
+  title: { en: "Israel Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Israël — Guide", es: "Requisitos de entrada de perros en Israel — Guía de viaje", pt: "Entrada de cachorro em Israel — Guia de viagem" }
+  metaTitle: { en: "Traveling to Israel With Your Dog: Entry Requirements (2026)", fr: "Voyager en Israël avec ton chien : formalités (2026)", es: "Viajar a Israel con tu perro: requisitos de entrada (2026)", pt: "Viajar para Israel com seu cachorro: formalidades (2026)" }
+  metaDesc:
+    en: "Official Israeli Veterinary Services rules for bringing a dog into Israel: ISO microchip, rabies vaccination, mandatory rabies antibody test. Sourced and dated."
+    fr: "Règles officielles des Services vétérinaires israéliens pour faire entrer un chien en Israël : puce ISO, vaccination antirabique. Sourcé et daté."
+    es: "Normas oficiales de los Servicios Veterinarios de Israel para traer un perro a Israel: microchip ISO, vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais dos Veterinary Services de Israel para levar um cachorro a Israel: microchip ISO, vacinação antirrábica, teste sorológico. Com fontes e data."
+  slug: "israel"
+  shortDesc:
+    en: "What you need to bring a dog into Israel: a mandatory rabies antibody test, an endorsed health certificate and a pre-arrival notification."
+    fr: "Ce qu'il faut pour faire entrer un chien en Israël : un titrage antirabique obligatoire, un certificat sanitaire visé et une notification préalable d'arrivée."
+    es: "Lo que necesitas para traer un perro a Israel: una prueba de titulación de rabia obligatoria, un certificado sanitario refrendado y una notificación previa de llegada."
+    pt: "O que é preciso para levar um cachorro a Israel: teste sorológico antirrábico obrigatório, atestado de saúde visado e notificação prévia de chegada."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

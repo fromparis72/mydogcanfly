@@ -1,0 +1,348 @@
+# Country Entry Guide — Fiji (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_fj
+iso2: "FJ"
+name: { en: "Fiji", fr: "Fidji", es: "Fiyi", pt: "Fiji" }
+region: { en: "Oceania", fr: "Océanie", es: "Oceanía", pt: "Oceania" }
+
+
+regime: listed
+
+hero:
+  h1: { en: "Traveling to Fiji with your dog", fr: "Voyager à Fidji avec ton chien", es: "Viajar a Fiyi con tu perro", pt: "Viajando para Fiji com seu cachorro" }
+  intro:
+    en: >-
+      Fiji welcomes dogs, but as a rabies-free island nation it runs strict biosecurity controls set by
+      the Biosecurity Authority of Fiji (BAF) under the Biosecurity Act 2008. Your dog can only be
+      imported directly from a BAF-approved country, must hold a BAF import permit obtained in advance,
+      and must complete a mandatory quarantine at BAF's Post Entry Quarantine (PEQ) station in Koronivia,
+      Nausori — home quarantine is not allowed. What you prepare depends heavily on where your dog is
+      coming from: approved countries are split into Group A (rabies-free) and Group B (rabies present but
+      controlled), and a dog from a country on neither list cannot be imported directly at all. Dogs from
+      Group B must also be vaccinated against rabies and pass a rabies antibody test. This guide explains
+      each pathway so you know exactly what to prepare before you book.
+    fr: >-
+      Fidji accueille les chiens, mais en tant qu'île indemne de rage, le pays applique des contrôles de
+      biosécurité stricts fixés par la Biosecurity Authority of Fiji (BAF) au titre du Biosecurity Act
+      2008. Ton chien ne peut être importé que directement depuis un pays approuvé par la BAF, doit
+      disposer d'un permis d'importation BAF obtenu à l'avance, et doit effectuer une quarantaine
+      obligatoire à la station de quarantaine post-entrée (PEQ) de la BAF à Koronivia, Nausori — la
+      quarantaine à domicile n'est pas autorisée. Ce qu'il faut préparer dépend fortement du pays de
+      provenance : les pays approuvés sont répartis en groupe A (indemnes de rage) et groupe B (rage
+      présente mais maîtrisée), et un chien venant d'un pays ne figurant sur aucune des deux listes ne
+      peut pas être importé directement. Les chiens du groupe B doivent en outre être vaccinés contre la
+      rage et réussir un test des anticorps antirabiques. Ce guide détaille chaque parcours.
+    es: >-
+      Fiyi acoge a los perros, pero como nación insular libre de rabia aplica estrictos controles de
+      bioseguridad fijados por la Biosecurity Authority of Fiji (BAF) en virtud del Biosecurity Act
+      2008. Tu perro solo puede importarse directamente desde un país aprobado por la BAF, debe disponer
+      de un permiso de importación de la BAF obtenido por adelantado, y debe completar una cuarentena
+      obligatoria en la estación de cuarentena post-entrada (PEQ) de la BAF en Koronivia, Nausori — la
+      cuarentena en el domicilio no está permitida. Lo que debes preparar depende en gran medida de dónde
+      venga tu perro: los países aprobados se dividen en Grupo A (libres de rabia) y Grupo B (con rabia
+      presente pero controlada), y un perro de un país que no figure en ninguna de las dos listas no
+      puede importarse directamente en absoluto. Los perros del Grupo B deben además estar vacunados
+      contra la rabia y superar una prueba de titulación de rabia. Esta guía explica cada vía para que
+      sepas exactamente qué preparar antes de reservar.
+
+    pt: "Fiji recebe cachorros, mas, por ser uma nação insular livre de raiva, aplica controles rígidos de biossegurança definidos pela Biosecurity Authority of Fiji (BAF) sob o Biosecurity Act 2008. Seu cachorro só pode ser importado diretamente de um país aprovado pela BAF, precisa ter uma autorização de importação da BAF obtida com antecedência e precisa cumprir uma quarentena obrigatória na estação de quarentena pós-entrada (PEQ) da BAF em Koronivia, Nausori — quarentena domiciliar não é permitida. O que você precisa preparar depende muito de onde o cachorro está vindo: os países aprovados são divididos em Grupo A (livre de raiva) e Grupo B (com raiva presente, mas controlada), e um cachorro de um país que não esteja em nenhuma das duas listas não pode ser importado diretamente de forma alguma. Cachorros do Grupo B também precisam ser vacinados contra a raiva e passar por um teste sorológico antirrábico. Este guia explica cada caminho para que você saiba exatamente o que preparar antes de reservar a viagem."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — permit, tests and quarantine required", fr: "Difficile — permis, tests et quarantaine exigés", es: "Difícil — se exigen permiso, pruebas y cuarentena", pt: "Difícil — exige autorização, exames e quarentena" }
+
+prepTime:
+  eu:
+    en: "Group A (rabies-free countries, e.g. Australia, New Zealand and Pacific neighbours): the simplest path — import permit, ISO microchip and a minimum 7-day quarantine, but no rabies antibody test."
+    fr: "Groupe A (pays indemnes de rage, ex. Australie, Nouvelle-Zélande et voisins du Pacifique) : le parcours le plus simple — permis d'importation, puce ISO et quarantaine minimale de 7 jours, mais pas de test des anticorps antirabiques."
+    es: "Grupo A (países libres de rabia, p. ej. Australia, Nueva Zelanda y vecinos del Pacífico): la vía más sencilla — permiso de importación, microchip ISO y una cuarentena mínima de 7 días, pero sin prueba de titulación de rabia."
+    pt: "Grupo A (países livres de raiva, por exemplo Austrália, Nova Zelândia e vizinhos do Pacífico): o caminho mais simples — autorização de importação, microchip ISO e quarentena mínima de 7 dias, mas sem teste sorológico antirrábico."
+  listed:
+    en: "Group B (rabies-controlled approved countries, e.g. USA, UK, EU, Canada): allow ~6+ months — rabies vaccination, a rabies antibody test taken 180–365 days before export, import permit and a minimum 30-day quarantine."
+    fr: "Groupe B (pays approuvés où la rage est maîtrisée, ex. USA, Royaume-Uni, UE, Canada) : compte ~6 mois et plus — vaccination antirabique, titrage antirabique prélevé 180 à 365 jours avant l'export, permis d'importation et quarantaine minimale de 30 jours."
+    es: "Grupo B (países aprobados con la rabia controlada, p. ej. EE. UU., RU, UE, Canadá): prevé ~6 meses o más — vacunación antirrábica, una prueba de titulación de rabia tomada 180–365 días antes de la exportación, permiso de importación y una cuarentena mínima de 30 días."
+    pt: "Grupo B (países aprovados com raiva controlada, por exemplo EUA, Reino Unido, UE, Canadá): reserve cerca de 6 meses ou mais — vacinação antirrábica, teste sorológico antirrábico colhido entre 180 e 365 dias antes da exportação, autorização de importação e quarentena mínima de 30 dias."
+  nonListed:
+    en: "Non-approved country (not on Group A or B): direct import is not possible — your dog must first move to an approved country and complete a six-month residency before it can qualify."
+    fr: "Pays non approuvé (ni groupe A ni groupe B) : l'importation directe est impossible — ton chien doit d'abord s'installer dans un pays approuvé et y accomplir une résidence de six mois pour devenir éligible."
+    es: "País no aprobado (ni Grupo A ni Grupo B): la importación directa no es posible — tu perro debe trasladarse primero a un país aprobado y completar una residencia de seis meses antes de poder cumplir los requisitos."
+    pt: "País não aprovado (que não está no Grupo A nem no B): a importação direta não é possível — seu cachorro precisa primeiro se mudar para um país aprovado e cumprir seis meses de residência antes de poder se qualificar."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — from approved countries only", fr: "Oui — depuis les pays approuvés uniquement", es: "Sí — solo desde países aprobados", pt: "Sim — somente de países aprovados" }
+    cls: neutral
+  - requirement: { en: "Import permit (BAF)", fr: "Permis d'importation (BAF)", es: "Permiso de importación (BAF)", pt: "Autorização de importação (BAF)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required — ISO-compatible", fr: "Requise — compatible ISO", es: "Obligatorio — compatible con ISO", pt: "Obrigatório — compatível com ISO" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required — Group B origins", fr: "Requise — origines groupe B", es: "Obligatoria — orígenes del Grupo B", pt: "Obrigatório — origens do Grupo B" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test (RNATT/FAVN)", fr: "Titrage antirabique (RNATT/FAVN)", es: "Prueba de titulación de rabia (RNATT/FAVN)", pt: "Teste sorológico antirrábico (RNATT/FAVN)" }
+    status: { en: "Required — Group B (180–365 days before export)", fr: "Requis — groupe B (180 à 365 jours avant l'export)", es: "Obligatoria — Grupo B (180–365 días antes de la exportación)", pt: "Obrigatório — Grupo B (180 a 365 dias antes da exportação)" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine (PEQ, Koronivia)", fr: "Quarantaine (PEQ, Koronivia)", es: "Cuarentena (PEQ, Koronivia)", pt: "Quarentena (PEQ, Koronivia)" }
+    status: { en: "Required — min 7 days (A) / 30 days (B)", fr: "Requise — min 7 jours (A) / 30 jours (B)", es: "Obligatoria — mín. 7 días (A) / 30 días (B)", pt: "Obrigatório — mínimo de 7 dias (Grupo A) / 30 dias (Grupo B)" }
+    cls: no
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and BAF's import permit conditions can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire et les conditions du permis d'importation de la BAF peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y las condiciones del permiso de importación de la BAF pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Somente um veterinário e as condições da autorização de importação da BAF podem confirmar o procedimento exato para o seu cachorro em particular."
+  - en: "Requirements depend on: the country of origin and its group, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine et de son groupe, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen y su grupo, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem: do país de origem e do grupo dele, do histórico de viagens anteriores, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Sempre consulte seu veterinário antes de reservar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como as exigências de entrada do seu cachorro são decididas" }
+  intro:
+    en: "The exact steps depend on three things — Fiji (your destination) sets a strict national scheme, but your dog's origin decides the detail."
+    fr: "Les étapes exactes dépendent de trois éléments — Fidji (ta destination) impose un régime national strict, mais l'origine de ton chien en détermine le détail."
+    es: "Los pasos exactos dependen de tres factores — Fiyi (tu destino) impone un régimen nacional estricto, pero el origen de tu perro determina el detalle."
+    pt: "As etapas exatas dependem de três fatores — Fiji (seu destino) define um esquema nacional rígido, mas a origem do seu cachorro decide os detalhes."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Fiji", fr: "Pays de destination — Fidji", es: "País de destino — Fiyi", pt: "País de destino — Fiji" }
+      text:
+        en: "Fiji's biosecurity scheme applies to every dog: a BAF import permit, an ISO-compatible microchip, veterinary certification and a mandatory quarantine at the PEQ station in Koronivia, Nausori. Home quarantine is never allowed."
+        fr: "Le régime de biosécurité de Fidji s'applique à tout chien : permis d'importation BAF, puce compatible ISO, certification vétérinaire et quarantaine obligatoire à la station PEQ de Koronivia, Nausori. La quarantaine à domicile n'est jamais autorisée."
+        es: "El régimen de bioseguridad de Fiyi se aplica a todo perro: un permiso de importación de la BAF, un microchip compatible con ISO, certificación veterinaria y una cuarentena obligatoria en la estación PEQ de Koronivia, Nausori. La cuarentena en el domicilio nunca está permitida."
+        pt: "O esquema de biossegurança de Fiji se aplica a todo cachorro: autorização de importação da BAF, microchip compatível com ISO, certificação veterinária e quarentena obrigatória na estação PEQ em Koronivia, Nausori. Quarentena domiciliar nunca é permitida."
+    - stars: 5
+      label: { en: "Country of departure and its group", fr: "Pays de départ et son groupe", es: "País de salida y su grupo", pt: "País de partida e seu grupo" }
+      text:
+        en: "Dogs may only be imported directly from a BAF-approved country. Group A (rabies-free) needs only a 7-day quarantine; Group B (rabies-controlled) adds rabies vaccination, a rabies antibody test and a 30-day quarantine. A country on neither list is not eligible for direct import."
+        fr: "Un chien ne peut être importé que directement depuis un pays approuvé par la BAF. Le groupe A (indemne de rage) n'exige qu'une quarantaine de 7 jours ; le groupe B (rage maîtrisée) ajoute la vaccination antirabique, un titrage antirabique et une quarantaine de 30 jours. Un pays ne figurant sur aucune liste n'est pas éligible à l'importation directe."
+        es: "Un perro solo puede importarse directamente desde un país aprobado por la BAF. El Grupo A (libre de rabia) solo exige una cuarentena de 7 días; el Grupo B (con la rabia controlada) añade la vacunación antirrábica, una prueba de titulación de rabia y una cuarentena de 30 días. Un país que no figure en ninguna lista no es elegible para la importación directa."
+        pt: "Cachorros só podem ser importados diretamente de um país aprovado pela BAF. O Grupo A (livre de raiva) exige apenas quarentena de 7 dias; o Grupo B (com raiva controlada) acrescenta vacinação antirrábica, teste sorológico antirrábico e quarentena de 30 dias. Um país que não esteja em nenhuma das duas listas não é elegível para importação direta."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro morou recentemente" }
+      text:
+        en: "A dog from a non-approved country must first move to an approved country or territory and complete a six-month residency there, plus the other veterinary-certificate conditions, before it can qualify for Fiji. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un chien venant d'un pays non approuvé doit d'abord s'installer dans un pays ou territoire approuvé et y accomplir une résidence de six mois, ainsi que les autres conditions du certificat vétérinaire, avant de pouvoir prétendre à Fidji. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement le dernier aéroport."
+        es: "Un perro de un país no aprobado debe trasladarse primero a un país o territorio aprobado y completar allí una residencia de seis meses, además de las demás condiciones del certificado veterinario, antes de poder cumplir los requisitos para Fiyi. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Um cachorro vindo de um país não aprovado precisa primeiro se mudar para um país ou território aprovado e cumprir seis meses de residência ali, além das demais condições do certificado veterinário, antes de se qualificar para Fiji. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Fiji's framework, then confirm your dog's group, origin and history against your BAF import permit and your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre fidjien, puis confirme le groupe, l'origine et l'historique de ton chien avec ton permis d'importation BAF et ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Fiyi y luego confirma el grupo, el origen y el historial de tu perro con tu permiso de importación de la BAF y tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o marco geral de Fiji e depois confirme o grupo, a origem e o histórico do seu cachorro junto à sua autorização de importação da BAF e ao seu veterinário."
+
+requirements:
+  - item: { en: "Import permit (BAF)", fr: "Permis d'importation (BAF)", es: "Permiso de importación (BAF)", pt: "Autorização de importação (BAF)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply to BAF in advance; a fee applies at lodgement and processing takes about 5 working days. The permit is valid for six months and its original must travel with the dog; conditions vary by country of origin.", fr: "À demander à la BAF à l'avance ; des frais s'appliquent au dépôt et le traitement prend environ 5 jours ouvrés. Le permis est valable six mois et son original doit voyager avec le chien ; les conditions varient selon le pays d'origine.", es: "Solicítalo a la BAF por adelantado; se aplica una tasa al presentar la solicitud y la tramitación tarda unos 5 días hábiles. El permiso es válido durante seis meses y su original debe viajar con el perro; las condiciones varían según el país de origen.", pt: "Solicite à BAF com antecedência; uma taxa é cobrada no momento do pedido e o processamento leva cerca de 5 dias úteis. A autorização é válida por seis meses e o original deve viajar junto com o cachorro; as condições variam conforme o país de origem." }
+    exceptions: { en: "None — a valid import permit is required for every cat and dog before departure from an approved country.", fr: "Aucune — un permis d'importation valide est exigé pour chaque chat et chien avant le départ d'un pays approuvé.", es: "Ninguna — se exige un permiso de importación válido para cada gato y perro antes de salir de un país aprobado.", pt: "Nenhuma — uma autorização de importação válida é exigida para todo gato e cachorro antes da partida de um país aprovado." }
+    ref: { en: "BAF Notice — Bringing in cats and dogs into Fiji (Sep 2024)", fr: "Notice BAF — Importation de chats et chiens à Fidji (sept. 2024)", es: "Aviso BAF — Importación de gatos y perros a Fiyi (sept. 2024)", pt: "BAF Notice — Bringing in cats and dogs into Fiji (Sep 2024)" }
+  - item: { en: "Approved country of origin", fr: "Pays d'origine approuvé", es: "País de origen aprobado", pt: "País de origem aprovado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must come from a BAF-approved Group A or Group B country. The approved list is published in BAF's official notice.", fr: "Le chien doit provenir d'un pays approuvé par la BAF (groupe A ou groupe B). La liste approuvée est publiée dans la notice officielle de la BAF.", es: "El perro debe proceder de un país aprobado por la BAF (Grupo A o Grupo B). La lista aprobada se publica en el aviso oficial de la BAF.", pt: "O cachorro precisa vir de um país aprovado pela BAF no Grupo A ou no Grupo B. A lista de países aprovados é publicada na notificação oficial da BAF." }
+    exceptions: { en: "If the country is not approved, the dog must first relocate to an approved country and complete a six-month residency (plus that country's veterinary-certificate conditions), or BAF must be asked to add the country to a veterinary certificate.", fr: "Si le pays n'est pas approuvé, le chien doit d'abord s'installer dans un pays approuvé et y accomplir une résidence de six mois (plus les conditions du certificat vétérinaire de ce pays), ou demander à la BAF d'ajouter le pays à un certificat vétérinaire.", es: "Si el país no está aprobado, el perro debe trasladarse primero a un país aprobado y completar una residencia de seis meses (además de las condiciones del certificado veterinario de ese país), o debe solicitarse a la BAF que añada el país a un certificado veterinario.", pt: "Se o país não for aprovado, o cachorro precisa primeiro se mudar para um país aprovado e cumprir seis meses de residência (além das condições do certificado veterinário desse país), ou então a BAF precisa ser solicitada a incluir o país em um certificado veterinário." }
+    ref: { en: "BAF Notice — List of Approved Countries (Groups A & B, Sep 2024)", fr: "Notice BAF — Liste des pays approuvés (groupes A et B, sept. 2024)", es: "Aviso BAF — Lista de países aprobados (Grupos A y B, sept. 2024)", pt: "BAF Notice — List of Approved Countries (Groups A & B, Sep 2024)" }
+  - item: { en: "ISO-compatible microchip", fr: "Puce compatible ISO", es: "Microchip compatible con ISO", pt: "Microchip compatível com ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Every cat and dog entering by air or sea must carry a microchip readable by an AVID, TROVAN, DESTRON or other ISO-compatible reader; it identifies the animal throughout the process.", fr: "Chaque chat et chien entrant par air ou mer doit porter une puce lisible par un lecteur AVID, TROVAN, DESTRON ou autre compatible ISO ; elle identifie l'animal tout au long de la procédure.", es: "Todo gato y perro que entre por aire o mar debe llevar un microchip legible por un lector AVID, TROVAN, DESTRON u otro compatible con ISO; identifica al animal durante todo el proceso.", pt: "Todo gato e cachorro que entra por via aérea ou marítima precisa ter um microchip legível por leitor AVID, TROVAN, DESTRON ou outro compatível com ISO; ele identifica o animal ao longo de todo o processo." }
+    exceptions: { en: "None — the microchip is the required means of identification.", fr: "Aucune — la puce est le moyen d'identification exigé.", es: "Ninguna — el microchip es el medio de identificación exigido.", pt: "Nenhuma — o microchip é o meio de identificação exigido." }
+    ref: { en: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (Identification)", fr: "BAF — Importation de chats, chiens et autres animaux à Fidji (Identification)", es: "BAF — Importación de gatos, perros y otras mascotas a Fiyi (Identificación)", pt: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (Identification)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (Group B origins)", fr: "Requise (origines groupe B)", es: "Obligatoria (orígenes del Grupo B)", pt: "Obrigatório (origens do Grupo B)" }
+    when: { en: "Group B dogs must be vaccinated against rabies per the manufacturer's recommendations at least 30 days before the date of export, and the vaccination must stay valid at least until the dog is released from quarantine.", fr: "Les chiens du groupe B doivent être vaccinés contre la rage selon les recommandations du fabricant au moins 30 jours avant la date d'export, et la vaccination doit rester valide au moins jusqu'à la sortie de quarantaine.", es: "Los perros del Grupo B deben estar vacunados contra la rabia según las recomendaciones del fabricante al menos 30 días antes de la fecha de exportación, y la vacunación debe seguir siendo válida al menos hasta que el perro salga de la cuarentena.", pt: "Cachorros do Grupo B precisam ser vacinados contra a raiva conforme as recomendações do fabricante, pelo menos 30 dias antes da data da exportação, e a vacinação precisa continuar válida pelo menos até a liberação do cachorro da quarentena." }
+    exceptions: { en: "Not required from Group A (rabies-free) countries.", fr: "Non requise depuis les pays du groupe A (indemnes de rage).", es: "No obligatoria desde los países del Grupo A (libres de rabia).", pt: "Não exigido para países do Grupo A (livres de raiva)." }
+    ref: { en: "BAF Notice — Importing cats and dogs from a Group B country (Sep 2024)", fr: "Notice BAF — Importation de chats et chiens depuis un pays du groupe B (sept. 2024)", es: "Aviso BAF — Importación de gatos y perros desde un país del Grupo B (sept. 2024)", pt: "BAF Notice — Importing cats and dogs from a Group B country (Sep 2024)" }
+  - item: { en: "Rabies antibody test (RNATT/FAVN)", fr: "Titrage antirabique (RNATT/FAVN)", es: "Prueba de titulación de rabia (RNATT/FAVN)", pt: "Teste sorológico antirrábico (RNATT/FAVN)" }
+    required: { en: "Required (Group B origins)", fr: "Requis (origines groupe B)", es: "Obligatoria (orígenes del Grupo B)", pt: "Obrigatório (origens do Grupo B)" }
+    when: { en: "Group B dogs must pass a Rabies Neutralizing Antibody Titer Test (RNATT) or Fluorescent Antibody Virus Neutralization (FAVN) test with a result of at least 0.5 IU/ml; blood must be taken at least 180 and not more than 365 days before the date of export.", fr: "Les chiens du groupe B doivent réussir un test RNATT (Rabies Neutralizing Antibody Titer Test) ou FAVN (Fluorescent Antibody Virus Neutralization) avec un résultat d'au moins 0,5 UI/ml ; le sang doit être prélevé au moins 180 et au plus 365 jours avant la date d'export.", es: "Los perros del Grupo B deben superar una prueba RNATT (Rabies Neutralizing Antibody Titer Test) o FAVN (Fluorescent Antibody Virus Neutralization) con un resultado de al menos 0,5 UI/ml; la sangre debe extraerse al menos 180 y no más de 365 días antes de la fecha de exportación.", pt: "Cachorros do Grupo B precisam passar em um teste RNATT (Rabies Neutralizing Antibody Titer Test) ou FAVN (Fluorescent Antibody Virus Neutralization) com resultado de pelo menos 0,5 UI/ml; o sangue precisa ser coletado no mínimo 180 dias e no máximo 365 dias antes da data da exportação." }
+    exceptions: { en: "The test result is valid for one year (365 days) from blood collection; if that window lapses, a further RNATT/FAVN ≥0.5 IU/ml must show continuation. Not required from Group A countries.", fr: "Le résultat est valable un an (365 jours) à compter du prélèvement ; si ce délai expire, un nouveau test RNATT/FAVN ≥0,5 UI/ml doit démontrer la continuité. Non requis depuis les pays du groupe A.", es: "El resultado es válido durante un año (365 días) desde la extracción de sangre; si ese plazo caduca, una nueva prueba RNATT/FAVN ≥0,5 UI/ml debe demostrar la continuidad. No obligatoria desde los países del Grupo A.", pt: "O resultado do teste é válido por um ano (365 dias) a partir da coleta de sangue; se esse prazo expirar, um novo RNATT/FAVN ≥0,5 UI/ml precisa comprovar a continuidade. Não exigido para países do Grupo A." }
+    ref: { en: "BAF Notice — Group B rabies antibody test (Sep 2024)", fr: "Notice BAF — Titrage antirabique groupe B (sept. 2024)", es: "Aviso BAF — Prueba de titulación de rabia del Grupo B (sept. 2024)", pt: "BAF Notice — Group B rabies antibody test (Sep 2024)" }
+  - item: { en: "Veterinary tests & treatments", fr: "Tests et traitements vétérinaires", es: "Pruebas y tratamientos veterinarios", pt: "Exames e tratamentos veterinários" }
+    required: { en: "Required (set by permit)", fr: "Requis (fixés par le permis)", es: "Obligatorios (fijados por el permiso)", pt: "Obrigatório (definido pela autorização)" }
+    when: { en: "Various treatments and tests are required before leaving the country of origin; the exact list and the interval between treatments depend on the origin country and are set out on your individual BAF import permit.", fr: "Divers traitements et tests sont requis avant le départ du pays d'origine ; la liste exacte et l'intervalle entre traitements dépendent du pays d'origine et figurent sur ton permis d'importation BAF individuel.", es: "Se exigen diversos tratamientos y pruebas antes de salir del país de origen; la lista exacta y el intervalo entre tratamientos dependen del país de origen y figuran en tu permiso de importación de la BAF individual.", pt: "Diversos tratamentos e exames são exigidos antes da partida do país de origem; a lista exata e o intervalo entre os tratamentos dependem do país de origem e são definidos na sua autorização de importação individual da BAF." }
+    exceptions: { en: "The specific fixed schedule is not published as a single list — it is issued case by case on the permit. Confirm the exact tests and treatments with BAF and your vet.", fr: "Le calendrier précis n'est pas publié sous forme de liste unique — il est délivré au cas par cas sur le permis. Confirme les tests et traitements exacts avec la BAF et ton vétérinaire.", es: "El calendario específico no se publica como una lista única — se emite caso por caso en el permiso. Confirma las pruebas y tratamientos exactos con la BAF y tu veterinario.", pt: "Não existe um cronograma fixo publicado em uma única lista — ele é definido caso a caso na autorização. Confirme os exames e tratamentos exatos com a BAF e com seu veterinário." }
+    ref: { en: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (permit conditions)", fr: "BAF — Importation de chats, chiens et autres animaux à Fidji (conditions du permis)", es: "BAF — Importación de gatos, perros y otras mascotas a Fiyi (condiciones del permiso)", pt: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (permit conditions)" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A health certificate and veterinary certificates from the home country, completed and certified by a registered or government veterinarian and including all laboratory results and vaccination records, must accompany the dog.", fr: "Un certificat sanitaire et des certificats vétérinaires du pays d'origine, remplis et certifiés par un vétérinaire agréé ou officiel et incluant tous les résultats de laboratoire et les carnets de vaccination, doivent accompagner le chien.", es: "Un certificado sanitario y los certificados veterinarios del país de origen, cumplimentados y certificados por un veterinario colegiado u oficial e incluyendo todos los resultados de laboratorio y los registros de vacunación, deben acompañar al perro.", pt: "Um atestado de saúde e certificados veterinários do país de origem, preenchidos e certificados por um veterinário registrado ou oficial e incluindo todos os resultados laboratoriais e registros de vacinação, precisam acompanhar o cachorro." }
+    exceptions: { en: "Permit forms must be completed and certified by a registered or government veterinarian in the exporting country.", fr: "Les formulaires du permis doivent être remplis et certifiés par un vétérinaire agréé ou officiel du pays exportateur.", es: "Los formularios del permiso deben ser cumplimentados y certificados por un veterinario colegiado u oficial del país exportador.", pt: "Os formulários da autorização precisam ser preenchidos e certificados por um veterinário registrado ou oficial no país exportador." }
+    ref: { en: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (Documentation)", fr: "BAF — Importation de chats, chiens et autres animaux à Fidji (Documentation)", es: "BAF — Importación de gatos, perros y otras mascotas a Fiyi (Documentación)", pt: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (Documentation)" }
+  - item: { en: "Entry point & transport", fr: "Point d'entrée et transport", es: "Punto de entrada y transporte", pt: "Ponto de entrada e transporte" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must travel by a direct or most-direct route, in an IATA Live Animal Regulations container (one animal per crate), and enter only at a designated port. Official crate seals must remain intact on arrival, and the dog goes straight to the PEQ station.", fr: "Le chien doit voyager par route directe ou la plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caisse), et entrer uniquement à un point d'entrée désigné. Les scellés officiels de la caisse doivent rester intacts à l'arrivée, et le chien est conduit directement à la station PEQ.", es: "El perro debe viajar por la ruta directa o más directa, en un contenedor conforme a las IATA Live Animal Regulations (un animal por jaula), y entrar únicamente por un puerto designado. Los precintos oficiales de la jaula deben permanecer intactos a la llegada, y el perro va directamente a la estación PEQ.", pt: "O cachorro precisa viajar por rota direta ou o mais direta possível, em uma caixa de transporte conforme o IATA Live Animal Regulations (um animal por caixa), e entrar apenas por um porto designado. Os lacres oficiais da caixa precisam permanecer intactos na chegada, e o cachorro segue direto para a estação PEQ." }
+    exceptions: { en: "Any transit must be through Group A/B countries under veterinary-authority supervision. Prior notice must be given to the BAF office at Nadi International Airport and to the Chief Veterinary Officer.", fr: "Tout transit doit se faire par des pays du groupe A/B sous supervision de l'autorité vétérinaire. Un préavis doit être donné au bureau BAF de l'aéroport international de Nadi et au Chief Veterinary Officer.", es: "Cualquier tránsito debe realizarse por países del Grupo A/B bajo supervisión de la autoridad veterinaria. Debe darse un preaviso a la oficina de la BAF en el Aeropuerto Internacional de Nadi y al Chief Veterinary Officer.", pt: "Qualquer trânsito precisa ser feito por países do Grupo A/B sob supervisão da autoridade veterinária. É preciso dar notificação prévia ao escritório da BAF no Aeroporto Internacional de Nadi e ao Chief Veterinary Officer." }
+    ref: { en: "BAF Notice — General conditions & transport (Sep 2024)", fr: "Notice BAF — Conditions générales et transport (sept. 2024)", es: "Aviso BAF — Condiciones generales y transporte (sept. 2024)", pt: "BAF Notice — General conditions & transport (Sep 2024)" }
+  - item: { en: "Quarantine (PEQ, Koronivia)", fr: "Quarantaine (PEQ, Koronivia)", es: "Cuarentena (PEQ, Koronivia)", pt: "Quarentena (PEQ, Koronivia)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Mandatory at BAF's Post Entry Quarantine station in Koronivia, Nausori: minimum 7 days from a Group A country, minimum 30 days from a Group B country. Home quarantine is not allowed; book kennel space 6–8 weeks ahead of departure.", fr: "Obligatoire à la station de quarantaine post-entrée de la BAF à Koronivia, Nausori : minimum 7 jours depuis un pays du groupe A, minimum 30 jours depuis un pays du groupe B. La quarantaine à domicile n'est pas autorisée ; réserve un box 6 à 8 semaines avant le départ.", es: "Obligatoria en la estación de cuarentena post-entrada de la BAF en Koronivia, Nausori: mínimo 7 días desde un país del Grupo A, mínimo 30 días desde un país del Grupo B. La cuarentena en el domicilio no está permitida; reserva plaza en la perrera 6–8 semanas antes de la salida.", pt: "Obrigatória na estação de quarentena pós-entrada (PEQ) da BAF em Koronivia, Nausori: mínimo de 7 dias para quem vem de um país do Grupo A, mínimo de 30 dias para quem vem de um país do Grupo B. Quarentena domiciliar não é permitida; reserve o espaço no canil com 6 a 8 semanas de antecedência da partida." }
+    exceptions: { en: "Trained service or assistance dogs are exempted from quarantine (assessed case by case); all other documentation still applies. The dog is released only after the minimum period if it stays healthy and all fees are paid.", fr: "Les chiens d'assistance ou de service formés sont exemptés de quarantaine (évaluation au cas par cas) ; toute la documentation reste exigée. Le chien n'est libéré qu'après la période minimale s'il reste en bonne santé et si tous les frais sont réglés.", es: "Los perros de servicio o de asistencia adiestrados están exentos de cuarentena (evaluación caso por caso); toda la demás documentación sigue siendo exigible. El perro solo se libera tras el periodo mínimo si se mantiene sano y se han pagado todas las tasas.", pt: "Cães de serviço ou de assistência treinados são isentos de quarentena (avaliados caso a caso); toda a demais documentação continua se aplicando. O cachorro só é liberado após o período mínimo, desde que permaneça saudável e todas as taxas estejam pagas." }
+    ref: { en: "BAF Notice — Quarantine (Group A & B, Sep 2024); BAF — Post Entry Quarantine", fr: "Notice BAF — Quarantaine (groupes A et B, sept. 2024) ; BAF — Quarantaine post-entrée", es: "Aviso BAF — Cuarentena (Grupos A y B, sept. 2024); BAF — Cuarentena post-entrada", pt: "BAF Notice — Quarantine (Group A & B, Sep 2024); BAF — Post Entry Quarantine" }
+  - item: { en: "Minimum age & pregnancy", fr: "Âge minimum et gestation", es: "Edad mínima y gestación", pt: "Idade mínima e gestação" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Cats and dogs below 4 months of age are prohibited, and females more than 21 days pregnant at the time of export are prohibited.", fr: "Les chats et chiens de moins de 4 mois sont interdits, de même que les femelles gestantes de plus de 21 jours au moment de l'export.", es: "Los gatos y perros de menos de 4 meses de edad están prohibidos, así como las hembras con más de 21 días de gestación en el momento de la exportación.", pt: "Gatos e cachorros com menos de 4 meses de idade são proibidos, e fêmeas com mais de 21 dias de gestação no momento da exportação são proibidas." }
+    exceptions: { en: "None stated. From Group B origins the rabies vaccination and antibody-test timing push the earliest travel date well beyond 4 months of age.", fr: "Aucune mentionnée. Depuis les origines du groupe B, le calendrier de vaccination et de titrage antirabiques repousse la date de voyage bien au-delà de 4 mois.", es: "Ninguna indicada. Desde los orígenes del Grupo B, el calendario de vacunación y de la prueba de titulación de rabia empuja la fecha de viaje más temprana bastante más allá de los 4 meses de edad.", pt: "Nenhuma indicada. Para origens do Grupo B, os prazos da vacinação antirrábica e do teste sorológico empurram a data mais cedo possível de viagem para bem além dos 4 meses de idade." }
+    ref: { en: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (prohibited animals)", fr: "BAF — Importation de chats, chiens et autres animaux à Fidji (animaux interdits)", es: "BAF — Importación de gatos, perros y otras mascotas a Fiyi (animales prohibidos)", pt: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (prohibited animals)" }
+
+origin:
+  eu:
+    title: { en: "Group A — rabies-free, simplest path", fr: "Groupe A — indemne de rage, parcours le plus simple", es: "Grupo A — libre de rabia, la vía más sencilla", pt: "Grupo A — livre de raiva, o caminho mais simples" }
+    body:
+      en: "Group A covers rabies-free countries and territories such as Australia, New Zealand and Fiji's Pacific neighbours (American Samoa, Cook Islands, French Polynesia, Kiribati, Nauru, New Caledonia, Niue, Palau, Papua New Guinea, Samoa, Solomon Islands, Tonga, Tuvalu, Vanuatu, Wallis & Futuna and others). Your dog needs a BAF import permit, an ISO microchip and a minimum 7-day quarantine at the PEQ station — but no rabies vaccination or antibody test, because these countries are rabies-free."
+      fr: "Le groupe A couvre les pays et territoires indemnes de rage comme l'Australie, la Nouvelle-Zélande et les voisins du Pacifique de Fidji (Samoa américaines, îles Cook, Polynésie française, Kiribati, Nauru, Nouvelle-Calédonie, Niue, Palau, Papouasie-Nouvelle-Guinée, Samoa, îles Salomon, Tonga, Tuvalu, Vanuatu, Wallis-et-Futuna, etc.). Ton chien a besoin d'un permis d'importation BAF, d'une puce ISO et d'une quarantaine minimale de 7 jours à la station PEQ — mais ni vaccination ni titrage antirabiques, car ces pays sont indemnes de rage."
+      es: "El Grupo A abarca los países y territorios libres de rabia como Australia, Nueva Zelanda y los vecinos del Pacífico de Fiyi (Samoa Americana, Islas Cook, Polinesia Francesa, Kiribati, Nauru, Nueva Caledonia, Niue, Palaos, Papúa Nueva Guinea, Samoa, Islas Salomón, Tonga, Tuvalu, Vanuatu, Wallis y Futuna y otros). Tu perro necesita un permiso de importación de la BAF, un microchip ISO y una cuarentena mínima de 7 días en la estación PEQ — pero ni vacunación ni prueba de titulación de rabia, porque estos países están libres de rabia."
+      pt: "O Grupo A reúne países e territórios livres de raiva, como Austrália, Nova Zelândia e os vizinhos de Fiji no Pacífico (Samoa Americana, Ilhas Cook, Polinésia Francesa, Kiribati, Nauru, Nova Caledônia, Niue, Palau, Papua-Nova Guiné, Samoa, Ilhas Salomão, Tonga, Tuvalu, Vanuatu, Wallis e Futuna, entre outros). Seu cachorro precisa de uma autorização de importação da BAF, um microchip ISO e uma quarentena mínima de 7 dias na estação PEQ — mas sem vacinação antirrábica nem teste sorológico, porque esses países são livres de raiva."
+    cls: ok
+  listed:
+    title: { en: "Group B — rabies-controlled approved countries", fr: "Groupe B — pays approuvés où la rage est maîtrisée", es: "Grupo B — países aprobados con la rabia controlada", pt: "Grupo B — países aprovados com raiva controlada" }
+    body:
+      en: "Group B covers approved countries where rabies is present but controlled — including the United States (with Guam and Hawaii), United Kingdom, Canada, EU member states, Japan, Singapore, South Africa and many more. On top of the import permit, microchip and veterinary certificate, your dog must be vaccinated against rabies at least 30 days before export and pass a rabies antibody test (RNATT/FAVN ≥0.5 IU/ml) taken 180–365 days before export, then complete a minimum 30-day quarantine at the PEQ station."
+      fr: "Le groupe B couvre les pays approuvés où la rage est présente mais maîtrisée — dont les États-Unis (avec Guam et Hawaï), le Royaume-Uni, le Canada, les États membres de l'UE, le Japon, Singapour, l'Afrique du Sud et bien d'autres. En plus du permis, de la puce et du certificat vétérinaire, ton chien doit être vacciné contre la rage au moins 30 jours avant l'export et réussir un titrage antirabique (RNATT/FAVN ≥0,5 UI/ml) prélevé 180 à 365 jours avant l'export, puis effectuer une quarantaine minimale de 30 jours à la station PEQ."
+      es: "El Grupo B abarca los países aprobados donde la rabia está presente pero controlada — entre ellos Estados Unidos (con Guam y Hawái), Reino Unido, Canadá, los Estados miembros de la UE, Japón, Singapur, Sudáfrica y muchos más. Además del permiso de importación, el microchip y el certificado veterinario, tu perro debe estar vacunado contra la rabia al menos 30 días antes de la exportación y superar una prueba de titulación de rabia (RNATT/FAVN ≥0,5 UI/ml) tomada 180–365 días antes de la exportación, y luego completar una cuarentena mínima de 30 días en la estación PEQ."
+      pt: "O Grupo B reúne países aprovados onde a raiva está presente, mas controlada — incluindo Estados Unidos (com Guam e Havaí), Reino Unido, Canadá, países-membros da UE, Japão, Singapura, África do Sul e muitos outros. Além da autorização de importação, do microchip e do certificado veterinário, seu cachorro precisa ser vacinado contra a raiva pelo menos 30 dias antes da exportação e passar em um teste sorológico antirrábico (RNATT/FAVN ≥0,5 UI/ml) colhido entre 180 e 365 dias antes da exportação, além de cumprir uma quarentena mínima de 30 dias na estação PEQ."
+    cls: warn
+  nonListed:
+    title: { en: "Non-approved country — no direct import", fr: "Pays non approuvé — pas d'importation directe", es: "País no aprobado — sin importación directa", pt: "País não aprovado — sem importação direta" }
+    body:
+      en: "If your country is on neither the Group A nor the Group B list, your dog is not eligible for direct import into Fiji. You must first move it to an approved country or territory, where it completes a six-month residency and the other conditions of that country's veterinary certificate before it can travel to Fiji. Alternatively, an official request can be submitted to BAF to have a country or territory added to a cats-and-dogs veterinary certificate."
+      fr: "Si ton pays ne figure ni sur la liste du groupe A ni sur celle du groupe B, ton chien n'est pas éligible à l'importation directe à Fidji. Tu dois d'abord l'installer dans un pays ou territoire approuvé, où il accomplit une résidence de six mois et les autres conditions du certificat vétérinaire de ce pays avant de pouvoir voyager vers Fidji. Autre option : soumettre à la BAF une demande officielle d'ajout d'un pays ou territoire à un certificat vétérinaire chats et chiens."
+      es: "Si tu país no figura ni en la lista del Grupo A ni en la del Grupo B, tu perro no es elegible para la importación directa a Fiyi. Debes trasladarlo primero a un país o territorio aprobado, donde completa una residencia de seis meses y las demás condiciones del certificado veterinario de ese país antes de poder viajar a Fiyi. Como alternativa, puede presentarse una solicitud oficial a la BAF para que se añada un país o territorio a un certificado veterinario de gatos y perros."
+      pt: "Se o seu país não estiver na lista do Grupo A nem na do Grupo B, seu cachorro não é elegível para importação direta em Fiji. Você precisa primeiro levá-lo a um país ou território aprovado, onde ele cumpre seis meses de residência e as demais condições do certificado veterinário desse país, antes de poder viajar para Fiji. Como alternativa, um pedido oficial pode ser enviado à BAF para que um país ou território seja incluído em um certificado veterinário de gatos e cachorros."
+    cls: no
+
+arrival:
+  intro:
+    en: "Every dog imported by air follows the same path on arrival: a designated port of entry, then straight to the PEQ quarantine station in Koronivia."
+    fr: "Tout chien importé par air suit le même parcours à l'arrivée : un point d'entrée désigné, puis directement à la station de quarantaine PEQ de Koronivia."
+    es: "Todo perro importado por aire sigue el mismo recorrido a la llegada: un puerto de entrada designado y luego directamente a la estación de cuarentena PEQ de Koronivia."
+    pt: "Todo cachorro importado por via aérea segue o mesmo caminho na chegada: um porto de entrada designado e, em seguida, direto para a estação de quarentena PEQ em Koronivia."
+  points:
+    - en: "Give prior notice of arrival to the BAF office at Nadi International Airport (+679-6720053) and to the Chief Veterinary Officer (+679-3312512) for clearance and PEQ accommodation."
+      fr: "Donnez un préavis d'arrivée au bureau BAF de l'aéroport international de Nadi (+679-6720053) et au Chief Veterinary Officer (+679-3312512) pour le dédouanement et l'hébergement en PEQ."
+      es: "Da un preaviso de llegada a la oficina de la BAF en el Aeropuerto Internacional de Nadi (+679-6720053) y al Chief Veterinary Officer (+679-3312512) para el despacho y el alojamiento en la PEQ."
+      pt: "Dê notificação prévia de chegada ao escritório da BAF no Aeroporto Internacional de Nadi (+679-6720053) e ao Chief Veterinary Officer (+679-3312512) para liberação e acomodação na PEQ."
+    - en: "The dog must be transported by the most direct route, with official crate seals intact on arrival, and taken immediately to BAF's Post Entry Quarantine station in Koronivia, Nausori."
+      fr: "Le chien doit être transporté par la route la plus directe, scellés de caisse officiels intacts à l'arrivée, et conduit immédiatement à la station de quarantaine post-entrée de la BAF à Koronivia, Nausori."
+      es: "El perro debe transportarse por la ruta más directa, con los precintos oficiales de la jaula intactos a la llegada, y llevarse de inmediato a la estación de cuarentena post-entrada de la BAF en Koronivia, Nausori."
+      pt: "O cachorro precisa ser transportado pela rota mais direta, com os lacres oficiais da caixa de transporte intactos na chegada, e levado imediatamente à estação de quarentena pós-entrada da BAF em Koronivia, Nausori."
+    - en: "Carry the original BAF import permit, the health certificate, veterinary certificates with all laboratory results, and vaccination records; the microchip is scanned to confirm identity."
+      fr: "Munis-toi du permis d'importation BAF original, du certificat sanitaire, des certificats vétérinaires avec tous les résultats de laboratoire et des carnets de vaccination ; la puce est lue pour confirmer l'identité."
+      es: "Lleva el permiso de importación de la BAF original, el certificado sanitario, los certificados veterinarios con todos los resultados de laboratorio y los registros de vacunación; el microchip se escanea para confirmar la identidad."
+      pt: "Leve consigo a autorização de importação original da BAF, o atestado de saúde, os certificados veterinários com todos os resultados laboratoriais e os registros de vacinação; o microchip é escaneado para confirmar a identidade."
+    - en: "Quarantine lasts a minimum of 7 days (Group A) or 30 days (Group B); home quarantine is never allowed and the dog is released only after the minimum period, if healthy and once all fees are paid."
+      fr: "La quarantaine dure au minimum 7 jours (groupe A) ou 30 jours (groupe B) ; la quarantaine à domicile n'est jamais autorisée et le chien n'est libéré qu'après la période minimale, s'il est en bonne santé et une fois tous les frais réglés."
+      es: "La cuarentena dura un mínimo de 7 días (Grupo A) o 30 días (Grupo B); la cuarentena en el domicilio nunca está permitida y el perro solo se libera tras el periodo mínimo, si está sano y una vez pagadas todas las tasas."
+      pt: "A quarentena dura no mínimo 7 dias (Grupo A) ou 30 dias (Grupo B); quarentena domiciliar nunca é permitida, e o cachorro só é liberado após o período mínimo, se estiver saudável e assim que todas as taxas forem pagas."
+    - en: "If any condition is breached or not fulfilled, the dog will be reshipped out of Fiji or destroyed at the importer's expense; a dog showing rabies symptoms is euthanised and disposed of at the owner's cost."
+      fr: "Si une condition est enfreinte ou non remplie, le chien sera réexpédié hors de Fidji ou détruit aux frais de l'importateur ; un chien présentant des symptômes de rage est euthanasié et éliminé aux frais du propriétaire."
+      es: "Si se incumple o no se cumple alguna condición, el perro será reexpedido fuera de Fiyi o sacrificado a cargo del importador; un perro que muestre síntomas de rabia es sometido a eutanasia y eliminado a cargo del propietario."
+      pt: "Se qualquer condição for descumprida ou não atendida, o cachorro será reembarcado para fora de Fiji ou sacrificado às custas do importador; um cachorro que apresente sintomas de raiva é submetido a eutanásia e descartado às custas do dono."
+    - en: "Dogs arriving by sea (on vessels) cannot be officially imported and must stay onboard throughout their stay in Fiji waters, under a separate BAF entry permit."
+      fr: "Les chiens arrivant par mer (à bord de navires) ne peuvent pas être officiellement importés et doivent rester à bord pendant tout leur séjour dans les eaux fidjiennes, sous un permis d'entrée BAF distinct."
+      es: "Los perros que llegan por mar (a bordo de embarcaciones) no pueden importarse oficialmente y deben permanecer a bordo durante toda su estancia en aguas de Fiyi, bajo un permiso de entrada de la BAF distinto."
+      pt: "Cachorros que chegam por via marítima (em embarcações) não podem ser oficialmente importados e precisam permanecer a bordo durante toda a estadia nas águas de Fiji, sob uma autorização de entrada separada da BAF."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Fiji prohibits the import of certain dog breeds outright, in addition to the biosecurity rules. A prohibited-breed dog cannot enter Fiji even if all other conditions are met."
+    fr: "Fidji interdit purement et simplement l'importation de certaines races de chiens, en plus des règles de biosécurité. Un chien d'une race interdite ne peut entrer à Fidji même si toutes les autres conditions sont remplies."
+    es: "Fiyi prohíbe rotundamente la importación de ciertas razas de perros, además de las normas de bioseguridad. Un perro de una raza prohibida no puede entrar en Fiyi aunque se cumplan todas las demás condiciones."
+    pt: "Fiji proíbe totalmente a importação de determinadas raças de cachorro, além das regras de biossegurança. Um cachorro de raça proibida não pode entrar em Fiji mesmo que todas as demais condições sejam cumpridas."
+  cat1:
+    en: "Prohibited breeds (cannot enter Fiji): Dogo Argentino, Fila Brasileiro, Japanese Tosa, and Pit Bull Terriers — including American Pit Bull Terriers — or crosses of any of these breeds."
+    fr: "Races interdites (ne peuvent entrer à Fidji) : Dogo Argentino, Fila brasileiro, Tosa japonais et Pit Bull Terriers — y compris les American Pit Bull Terriers — ou tout croisement de ces races."
+    es: "Razas prohibidas (no pueden entrar en Fiyi): Dogo Argentino, Fila Brasileiro, Tosa japonés y Pit Bull Terriers — incluidos los American Pit Bull Terriers — o cruces de cualquiera de estas razas."
+    pt: "Raças proibidas (não podem entrar em Fiji): Dogo Argentino, Fila Brasileiro, Tosa Japonês e Pit Bull Terriers — incluindo American Pit Bull Terriers — ou cruzamentos de qualquer uma dessas raças."
+  cat2:
+    en: "Emotional support or comfort dogs are not treated as service or assistance animals and are not exempt from quarantine. Only dogs trained to perform a task for a person's disability, evidenced by a recognised accredited organisation (e.g. International Guide Dog Federation or Assistance Dogs International member), qualify as service or assistance dogs."
+    fr: "Les chiens de soutien émotionnel ou de réconfort ne sont pas considérés comme des animaux d'assistance ou de service et ne sont pas exemptés de quarantaine. Seuls les chiens formés pour accomplir une tâche liée au handicap d'une personne, attestés par une organisation accréditée reconnue (ex. membre de l'International Guide Dog Federation ou d'Assistance Dogs International), sont reconnus comme chiens d'assistance ou de service."
+    es: "Los perros de apoyo emocional o de compañía no se consideran animales de servicio o de asistencia y no están exentos de cuarentena. Solo los perros adiestrados para realizar una tarea relacionada con la discapacidad de una persona, acreditados por una organización reconocida (p. ej. miembro de la International Guide Dog Federation o de Assistance Dogs International), se reconocen como perros de servicio o de asistencia."
+    pt: "Cachorros de apoio emocional ou de conforto não são tratados como animais de serviço ou de assistência e não são isentos de quarentena. Somente cachorros treinados para realizar uma tarefa relacionada à deficiência de uma pessoa, comprovada por uma organização credenciada reconhecida (por exemplo, a International Guide Dog Federation ou um membro da Assistance Dogs International), se qualificam como cães de serviço ou de assistência."
+  note:
+    en: "Applications to bring cats and dogs into Fiji are also assessed on a case-by-case basis, and entry may be refused depending on the animal-health status of the country of origin."
+    fr: "Les demandes d'importation de chats et chiens à Fidji sont également évaluées au cas par cas, et l'entrée peut être refusée selon le statut sanitaire animal du pays d'origine."
+    es: "Las solicitudes para traer gatos y perros a Fiyi también se evalúan caso por caso, y la entrada puede denegarse según el estatus sanitario animal del país de origen."
+    pt: "Os pedidos para trazer gatos e cachorros para Fiji também são avaliados caso a caso, e a entrada pode ser recusada dependendo da situação sanitária animal do país de origem."
+
+checklist:
+  - en: "Confirm your dog's origin is a BAF-approved country and identify its group (A or B)"
+    fr: "Vérifie que l'origine de ton chien est un pays approuvé par la BAF et identifiez son groupe (A ou B)"
+    es: "Confirma que el origen de tu perro es un país aprobado por la BAF e identifica su grupo (A o B)"
+    pt: "Confirme que a origem do seu cachorro é um país aprovado pela BAF e identifique o grupo dele (A ou B)"
+  - en: "Confirm your dog is not a prohibited breed (Dogo Argentino, Fila Brasileiro, Japanese Tosa, Pit Bull Terrier or crosses)"
+    fr: "Vérifie que ton chien n'est pas d'une race interdite (Dogo Argentino, Fila brasileiro, Tosa japonais, Pit Bull Terrier ou croisements)"
+    es: "Confirma que tu perro no es de una raza prohibida (Dogo Argentino, Fila Brasileiro, Tosa japonés, Pit Bull Terrier o cruces)"
+    pt: "Confirme que seu cachorro não é de uma raça proibida (Dogo Argentino, Fila Brasileiro, Tosa Japonês, Pit Bull Terrier ou cruzamentos)"
+  - en: "Confirm your dog is at least 4 months old and (if female) not more than 21 days pregnant at export"
+    fr: "Vérifie que ton chien a au moins 4 mois et (si femelle) n'est pas gestant de plus de 21 jours à l'export"
+    es: "Confirma que tu perro tiene al menos 4 meses y (si es hembra) no más de 21 días de gestación en la exportación"
+    pt: "Confirme que seu cachorro tem pelo menos 4 meses de idade e, se for fêmea, no máximo 21 dias de gestação no momento da exportação"
+  - en: "Implant an ISO-compatible microchip (AVID, TROVAN, DESTRON or other ISO reader)"
+    fr: "Posez une puce compatible ISO (lecteur AVID, TROVAN, DESTRON ou autre ISO)"
+    es: "Implanta un microchip compatible con ISO (lector AVID, TROVAN, DESTRON u otro ISO)"
+    pt: "Implante um microchip compatível com ISO (AVID, TROVAN, DESTRON ou outro leitor ISO)"
+  - en: "Group B: rabies vaccination ≥30 days before export, valid until release from quarantine"
+    fr: "Groupe B : vaccination antirabique ≥30 jours avant l'export, valide jusqu'à la sortie de quarantaine"
+    es: "Grupo B: vacunación antirrábica ≥30 días antes de la exportación, válida hasta la salida de la cuarentena"
+    pt: "Grupo B: vacinação antirrábica ≥30 dias antes da exportação, válida até a liberação da quarentena"
+  - en: "Group B: rabies antibody test (RNATT/FAVN) ≥0.5 IU/ml, blood taken 180–365 days before export"
+    fr: "Groupe B : titrage antirabique (RNATT/FAVN) ≥0,5 UI/ml, sang prélevé 180 à 365 jours avant l'export"
+    es: "Grupo B: prueba de titulación de rabia (RNATT/FAVN) ≥0,5 UI/ml, sangre extraída 180–365 días antes de la exportación"
+    pt: "Grupo B: teste sorológico antirrábico (RNATT/FAVN) ≥0,5 UI/ml, sangue coletado entre 180 e 365 dias antes da exportação"
+  - en: "Apply for the BAF import permit in advance (valid 6 months; original travels with the dog)"
+    fr: "Demande le permis d'importation BAF à l'avance (valable 6 mois ; l'original voyage avec le chien)"
+    es: "Solicita el permiso de importación de la BAF por adelantado (válido 6 meses; el original viaja con el perro)"
+    pt: "Solicite a autorização de importação da BAF com antecedência (válida por 6 meses; o original viaja com o cachorro)"
+  - en: "Complete the tests and treatments listed on your permit, plus the endorsed veterinary health certificate and lab results"
+    fr: "Réalise les tests et traitements listés sur ton permis, ainsi que le certificat sanitaire vétérinaire visé et les résultats de laboratoire"
+    es: "Realiza las pruebas y tratamientos indicados en tu permiso, además del certificado sanitario veterinario refrendado y los resultados de laboratorio"
+    pt: "Complete os exames e tratamentos listados na sua autorização, além do atestado de saúde veterinário endossado e dos resultados laboratoriais"
+  - en: "Book PEQ quarantine (Koronivia) 6–8 weeks ahead; fly a direct route in an IATA crate with seals intact"
+    fr: "Réserve la quarantaine PEQ (Koronivia) 6 à 8 semaines à l'avance ; voyage par route directe dans une caisse IATA aux scellés intacts"
+    es: "Reserva la cuarentena PEQ (Koronivia) con 6–8 semanas de antelación; vuela por una ruta directa en una jaula IATA con los precintos intactos"
+    pt: "Reserve a quarentena na PEQ (Koronivia) com 6 a 8 semanas de antecedência; voe por rota direta em uma caixa de transporte IATA com os lacres intactos"
+
+sources:
+  - label: { en: "BAF — Biosecurity Notice: Bringing in Cats and Dogs into Fiji (Sep 2024)", fr: "BAF — Notice de biosécurité : Importation de chats et chiens à Fidji (sept. 2024)", es: "BAF — Aviso de bioseguridad: Importación de gatos y perros a Fiyi (sept. 2024)", pt: "BAF — Biosecurity Notice: Bringing in Cats and Dogs into Fiji (Sep 2024)" }
+    url: "https://baf.com.fj/wp-content/uploads/2024/10/BAF-Notice-for-BRINGING-CATS-AND-DOGS-INTO-FIJI-Sep-2024.pdf"
+  - label: { en: "BAF — Bringing Cats, Dogs and Other Pets to Fiji", fr: "BAF — Importation de chats, chiens et autres animaux à Fidji", es: "BAF — Importación de gatos, perros y otras mascotas a Fiyi", pt: "BAF — Bringing Cats, Dogs and Other Pets to Fiji" }
+    url: "https://www.baf.com.fj/bringing-catsdogs-and-other-pets-to-fijidr-bhaheedr-sian/"
+  - label: { en: "BAF — Biosecurity Notice: Bringing Cats and Dogs into Fiji on Vessels", fr: "BAF — Notice de biosécurité : Chats et chiens à Fidji à bord de navires", es: "BAF — Aviso de bioseguridad: Gatos y perros a Fiyi a bordo de embarcaciones", pt: "BAF — Biosecurity Notice: Bringing Cats and Dogs into Fiji on Vessels" }
+    url: "https://www.baf.com.fj/wp-content/uploads/2021/05/FINAL_BRINGING-CATS-AND-DOGS-INTO-FIJI-ON-VESSELS.pdf"
+  - label: { en: "BAF — Animals and Animal Products (imports)", fr: "BAF — Animaux et produits animaux (importations)", es: "BAF — Animales y productos animales (importaciones)", pt: "BAF — Animals and Animal Products (imports)" }
+    url: "https://www.baf.com.fj/animals-and-animal-products/"
+  - label: { en: "BAF — Permit Application System", fr: "BAF — Système de demande de permis", es: "BAF — Sistema de solicitud de permisos", pt: "BAF — Permit Application System" }
+    url: "https://permit.baf.com.fj/"
+
+seo:
+  title: { en: "Fiji Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Fidji — Guide", es: "Requisitos de entrada de perros en Fiyi — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Fiji — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Fiji With Your Dog: Entry Requirements (2026)", fr: "Voyager à Fidji avec ton chien : formalités (2026)", es: "Viajar a Fiyi con tu perro: requisitos de entrada (2026)", pt: "Viajando para Fiji com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaDesc:
+    en: "Official BAF rules for bringing a dog into Fiji: import permit, approved Group A/B countries, rabies antibody test for Group B. Sourced and dated."
+    fr: "Règles officielles de la BAF pour faire entrer un chien à Fidji : permis, pays approuvés groupes A/B, titrage antirabique pour le groupe B. Sourcé et daté."
+    es: "Normas oficiales de la BAF para traer un perro a Fiyi: permiso, países aprobados de los Grupos A/B y titulación de rabia para el Grupo B. Con fuentes y fecha."
+    pt: "Regras oficiais da BAF para trazer um cachorro para Fiji: autorização de importação, países aprovados dos Grupos A/B, teste sorológico antirrábico para o Grupo B."
+  slug: "fiji"
+  shortDesc:
+    en: "What you need to bring a dog into Fiji: BAF permit, approved-country origin, rabies test (Group B) and mandatory PEQ quarantine."
+    fr: "Ce qu'il faut pour faire entrer un chien à Fidji : permis BAF, origine approuvée, titrage (groupe B) et quarantaine PEQ obligatoire."
+    es: "Lo que necesitas para traer un perro a Fiyi: permiso de la BAF, origen en un país aprobado, prueba de titulación de rabia (Grupo B) y cuarentena PEQ obligatoria."
+    pt: "O que você precisa para trazer um cachorro para Fiji: autorização da BAF, origem em país aprovado, teste antirrábico (Grupo B) e quarentena obrigatória na PEQ."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

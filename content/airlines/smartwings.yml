@@ -1,0 +1,254 @@
+id: airline_smartwings
+mono: QS
+name: Smartwings
+titleH1:
+  en: Flying with a dog on Smartwings
+  fr: Voyager avec un chien sur Smartwings
+  es: Volar con un perro en Smartwings
+  pt: "Viajar com um cachorro na Smartwings"
+metaDesc:
+  en: "Smartwings pet policy: cabin and hold, fares, phone booking, excluded routes and official sources."
+  fr: "Politique animaux Smartwings : cabine et soute, tarifs, réservation par téléphone, routes exclues et sources officielles."
+  es: "Política de mascotas de Smartwings: cabina y bodega, tarifas, reserva por teléfono, rutas excluidas y fuentes oficiales."
+  pt: "Política de animais da Smartwings: cabine e porão, tarifas, reserva por telefone, rotas excluídas e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Czech Republic · PRG
+      fr: Tchéquie · PRG
+      es: República Checa · PRG
+      pt: "República Tcheca · PRG"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin or hold — but phone-only booking 48 h ahead and several excluded routes.
+  fr: Chats et chiens en cabine ou en soute — mais réservation par téléphone 48 h à l'avance et plusieurs routes exclues.
+  es: Gatos y perros en cabina o bodega, pero reserva solo por teléfono 48 h antes y varias rutas excluidas.
+  pt: "Gatos e cachorros na cabine ou no porão — mas reserva somente por telefone 48 h antes e várias rotas excluídas."
+ladder:
+  - flex: 20
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 8–32 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs ≤ 8 kg incl. crate in a waterproof-bottomed crate under the seat (max 43 × 30 × 27 cm); max 2 dogs per flight.
+      fr: Chats et chiens ≤ 8 kg avec la caisse dans une caisse à fond étanche sous le siège (max 43 × 30 × 27 cm) ; max 2 chiens par vol.
+      es: Gatos y perros de ≤ 8 kg con la jaula en una jaula de fondo impermeable bajo el asiento (máx. 43 × 30 × 27 cm); máx. 2 perros por vuelo.
+      pt: "Gatos e cachorros ≤ 8 kg com a caixa de transporte em uma caixa de fundo impermeável sob o assento (máx. 43 × 30 × 27 cm); máx. 2 cachorros por voo."
+    fee:
+      en: €100
+      fr: 100 €
+      es: 100 €
+      pt: "€100"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Animals over cabin limits (8–32 kg incl. box) as checked baggage if the aircraft allows.
+      fr: Animaux dépassant les limites cabine (8–32 kg avec la caisse) en bagage enregistré si l'avion le permet.
+      es: Animales que superan los límites de cabina (8–32 kg con la jaula) como equipaje facturado si el avión lo permite.
+      pt: "Animais acima dos limites de cabine (8–32 kg com a caixa) como bagagem despachada, se a aeronave permitir."
+    fee:
+      en: €200
+      fr: 200 €
+      es: 200 €
+      pt: "€200"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: €100 / way
+        fr: 100 € / trajet
+        es: 100 € / trayecto
+        pt: "€100 / trecho"
+    - label:
+        en: Hold (8–32 kg)
+        fr: Soute (8–32 kg)
+        es: Bodega (8–32 kg)
+        pt: "Porão (8–32 kg)"
+      value:
+        en: €200 / way
+        fr: 200 € / trajet
+        es: 200 € / trayecto
+        pt: "€200 / trecho"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per animal each way. Purchased by phone ≥ 48 h ahead with written carrier approval.
+    fr: EUR par animal et par trajet. Acheté par téléphone ≥ 48 h à l'avance avec accord écrit de la compagnie.
+    es: EUR por animal y trayecto. Se compra por teléfono ≥ 48 h antes con aprobación por escrito de la aerolínea.
+    pt: "EUR por animal, por trecho. Comprado por telefone ≥ 48 h antes, com aprovação por escrito da companhia aérea."
+restrictions:
+  - icon: 🐾
+    title:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo gatos y perros
+      pt: "Somente gatos e cachorros"
+    pills:
+      - cls: no
+        label:
+          en: No reptiles/rodents
+          fr: Pas de reptiles/rongeurs
+          es: Sin reptiles/roedores
+          pt: "Sem répteis/roedores"
+    note:
+      en: Only dogs and cats are accepted; reptiles and rodents aren't carried. Max 2 dogs per flight in the cabin.
+      fr: Seuls les chiens et chats sont acceptés ; reptiles et rongeurs non transportés. Max 2 chiens par vol en cabine.
+      es: Solo se aceptan perros y gatos; no se transportan reptiles ni roedores. Máx. 2 perros por vuelo en cabina.
+      pt: "Somente cachorros e gatos são aceitos; répteis e roedores não são transportados. Máx. 2 cachorros por voo na cabine."
+  - icon: 🚫
+    title:
+      en: Excluded routes
+      fr: Routes exclues
+      es: Rutas excluidas
+      pt: "Rotas excluídas"
+    pills:
+      - cls: no
+        label:
+          en: Dubai/Keflavik/RAK/Marsa Alam
+          fr: Dubaï/Keflavik/RAK/Marsa Alam
+          es: Dubái/Keflavik/RAK/Marsa Alam
+          pt: "Dubai/Keflavik/RAK/Marsa Alam"
+    note:
+      en: No animals on flights to/from Dubai, Keflavik, Ras Al Khaimah or Marsa Alam, nor on flights operated by Israir or Eurowings.
+      fr: Aucun animal sur les vols de/vers Dubaï, Keflavik, Ras Al Khaimah ou Marsa Alam, ni sur les vols opérés par Israir ou Eurowings.
+      es: No se admiten animales en vuelos desde/hacia Dubái, Keflavik, Ras Al Khaimah o Marsa Alam, ni en vuelos operados por Israir o Eurowings.
+      pt: "Nenhum animal em voos de/para Dubai, Keflavik, Ras Al Khaimah ou Marsa Alam, nem em voos operados pela Israir ou Eurowings."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Smartwings publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Smartwings ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Smartwings no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Smartwings não publica limites de temperatura no porão nem embargo sazonal em suas páginas de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide/service dogs for disabled passengers travel free in the cabin, no crate, on a leash with a training certificate.
+      fr: Les chiens guides/d'assistance pour passagers handicapés voyagent gratuitement en cabine, sans caisse, en laisse avec un certificat de dressage.
+      es: Los perros guía/de asistencia para pasajeros con discapacidad viajan gratis en cabina, sin jaula, con correa y un certificado de adiestramiento.
+      pt: "Cachorros-guia/de assistência para passageiros com deficiência viajam grátis na cabine, sem caixa de transporte, na guia e com um certificado de adestramento."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Valid health/vaccination certificates and destination entry documents required.
+      fr: Certificats de santé/vaccination valides et documents d'entrée de la destination requis.
+      es: Se requieren certificados de salud/vacunación válidos y documentos de entrada del destino.
+      pt: "São exigidos atestados de saúde/vacinação válidos e documentos de entrada do destino."
+goodToKnow:
+  - icon: 📞
+    label:
+      en: Phone booking 48 h
+      fr: Réservation téléphone 48 h
+      es: Reserva por teléfono 48 h
+      pt: "Reserva por telefone 48 h"
+    value:
+      en: Pet carriage is purchased by phone ≥ 48 h before departure, with prior written carrier approval.
+      fr: Le transport animal s'achète par téléphone ≥ 48 h avant le départ, avec accord écrit préalable de la compagnie.
+      es: El transporte de la mascota se compra por teléfono ≥ 48 h antes de la salida, con aprobación previa por escrito de la aerolínea.
+      pt: "O transporte do animal é comprado por telefone ≥ 48 h antes da partida, com aprovação prévia por escrito da companhia aérea."
+  - icon: 📦
+    label:
+      en: Own crate
+      fr: Sa propre caisse
+      es: Jaula propia
+      pt: "Caixa própria"
+    value:
+      en: Each animal needs its own breathable crate with a firm bottom, big enough to stand and turn.
+      fr: Chaque animal a besoin de sa propre caisse respirante à fond ferme, assez grande pour se tenir et se retourner.
+      es: Cada animal necesita su propia jaula ventilada con fondo firme, lo bastante grande para estar de pie y darse la vuelta.
+      pt: "Cada animal precisa de sua própria caixa de transporte ventilada com fundo firme, grande o suficiente para ficar em pé e se virar."
+  - icon: ⚠️
+    label:
+      en: May be refused
+      fr: Refus possible
+      es: Puede ser rechazado
+      pt: "Pode ser recusado"
+    value:
+      en: Smartwings may refuse carriage for operational or capacity reasons.
+      fr: Smartwings peut refuser le transport pour raisons opérationnelles ou de capacité.
+      es: Smartwings puede rechazar el transporte por motivos operativos o de capacidad.
+      pt: "A Smartwings pode recusar o transporte por motivos operacionais ou de capacidade."
+book:
+  host: smartwings.com
+  url: https://www.smartwings.com/
+sources:
+  en: 3 Smartwings sources · last verified 11 July 2026
+  fr: 3 sources Smartwings · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Smartwings · última verificación 11 de julio de 2026
+  pt: "3 fontes da Smartwings · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,51 @@
+---
+import Base from "../../layouts/Base.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const fr = locale === "fr";
+const es = locale === "es";
+const base = locale === "en" ? "" : `/${locale}`;
+interface Tool { label: string; href?: string; live?: boolean }
+const tools: Tool[] = [
+  { label: T("Where can I take my dog?", "Où partir avec mon chien ?", "¿Adónde puedo llevar a mi perro?"), href: `${base}/tools/destinations/`, live: true },
+  { label: T("Which travel crate size?", "Quelle taille de cage de transport ?", "¿Qué tamaño de jaula?"), href: `${base}/tools/crate/`, live: true },
+  { label: T("Flight Finder", "Rechercher un vol", "Buscador de vuelos"), href: `${base}/#flight-finder`, live: true },
+  { label: T("Summer heat risk?", "Risque chaleur en soute ?", "¿Riesgo de calor en bodega?"), href: `${base}/tools/heat/`, live: true },
+  { label: T("Airport pet relief finder", "Coins pipi pour chiens en aéroport", "Zonas de alivio para perros en aeropuertos"), href: `${base}/tools/pet-relief/`, live: true },
+  /* Sixième entrée, ajoutée le 01/08/2026 avec le Travel Hub. Ce n'est pas un outil au sens
+   * des cinq autres — on n'y calcule rien — mais c'est là qu'un lecteur va chercher la suite
+   * quand l'outil a répondu à sa question. Le même bouton figure dans « Outils liés », en bas
+   * des fiches : les deux blocs doivent rester d'accord. */
+  { label: T("Travel Hub guides", "Guides Travel Hub", "Guías Travel Hub"), href: `${base}/travel-hub/`, live: true },
+];
+const seoTitle = T("Free tools for flying with your dog", "Outils gratuits pour voyager en avion avec ton chien", "Herramientas gratuitas para volar con tu perro");
+---
+<Base locale={locale} title={seoTitle}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{t(locale, "home.tools.title")}</h1>
+      <div class="grid">{tools.map((x) => (
+        x.href
+          ? <a class="mdcf-card tool tool--live" href={x.href}>{x.label}<span class="tool__go">→</span></a>
+          : <div class="mdcf-card tool">{x.label}</div>
+      ))}</div>
+    </div>
+  </section>
+</Base>
+<style>
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr 1fr}}
+  .tool{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .tool--live{text-decoration:none;color:var(--mdcf-ink);border-color:var(--mdcf-accent);background:var(--mdcf-accent-soft);font-weight:700;transition:transform .15s,box-shadow .15s}
+  .tool--live:hover{transform:translateY(-1px);box-shadow:var(--mdcf-shadow)}
+  .tool__go{color:var(--mdcf-accent-ink)}
+</style>

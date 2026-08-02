@@ -1,0 +1,18 @@
+---
+import EntityIndex from "../../../components/EntityIndex.astro";
+import { loadKB, t, inlineT } from "@mydogcanfly/knowledge";
+import { indexItems } from "../../../lib/pagedata";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const items = indexItems(loadKB(), "country", locale);
+const seoTitle = T("Dog entry requirements by country (2026)", "Formalités d'entrée par pays pour voyager avec ton chien", "Requisitos de entrada por país para viajar con tu perro");
+---
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.country")} title={t(locale, "index.countries.title")} blurb={t(locale, "index.countries.blurb")} items={items} locale={locale} />

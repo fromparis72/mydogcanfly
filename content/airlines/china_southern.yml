@@ -1,0 +1,314 @@
+id: airline_china_southern
+mono: CZ
+name: China Southern Airlines
+titleH1:
+  en: Flying with a dog on China Southern
+  fr: Voyager avec un chien sur China Southern
+  es: Viajar con perro en China Southern
+  pt: "Voar com um cachorro na China Southern"
+metaDesc:
+  en: "China Southern pet policy: hold-only carriage, fares by weight, breed limits and official sources."
+  fr: "Politique animaux China Southern : transport en soute uniquement, tarifs au poids, restrictions de races et sources officielles."
+  es: "Política de mascotas de China Southern: transporte solo en bodega, tarifas por peso, límites de raza y fuentes oficiales."
+  pt: "Política de animais da China Southern: transporte somente no porão, tarifas por peso, limites de raça e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: China · CAN
+      fr: Chine · CAN
+      es: China · CAN
+      pt: "China · CAN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets except service dogs; cats, dogs & birds travel as checked baggage in the hold.
+  fr: Pas d'animaux en cabine sauf chiens d'assistance ; chats, chiens et oiseaux en bagage enregistré en soute.
+  es: Sin mascotas en cabina salvo perros de servicio; gatos, perros y aves viajan como equipaje facturado en bodega.
+  pt: "Nenhum animal na cabine, exceto cães de assistência; gatos, cachorros e aves viajam como bagagem despachada no porão."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 72
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: HK / large
+      fr: HK / grands
+      es: HK / grandes
+      pt: "HK / grandes"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only service dogs. Emotional-support dogs aren't accepted (since 2021).
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance. Chiens de soutien émotionnel non acceptés (depuis 2021).
+      es: No se admiten mascotas en cabina, solo perros de servicio. Los perros de apoyo emocional no se aceptan (desde 2021).
+      pt: "Nenhum animal na cabine — somente cães de assistência. Cães de apoio emocional não são aceitos (desde 2021)."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs, cats & birds as checked baggage (≤ 32 kg incl. cage, max 90 × 60 × 66 cm); not on connecting flights. Approve ≥ 24 h (domestic) / 48 h (intl).
+      fr: Chiens, chats et oiseaux en bagage enregistré (≤ 32 kg avec la cage, max 90 × 60 × 66 cm) ; pas en correspondance. Accord ≥ 24 h (national) / 48 h (intl).
+      es: Perros, gatos y aves como equipaje facturado (≤ 32 kg incl. jaula, máx. 90 × 60 × 66 cm); no en vuelos con conexión. Aprobación ≥ 24 h (nacional) / 48 h (internacional).
+      pt: "Cachorros, gatos e aves como bagagem despachada (≤ 32 kg incl. gaiola, máx. 90 × 60 × 66 cm); não em voos com conexão. Aprovação ≥ 24 h (doméstico) / 48 h (internacional)."
+    fee:
+      en: $200–500
+      fr: 200–500 $
+      es: 200–500 $
+      pt: "200–500 $"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Mediante carga
+      pt: "Via carga"
+    detail:
+      en: Some airports (e.g. Hong Kong) only allow pets to travel as cargo.
+      fr: Certains aéroports (ex. Hong Kong) n'autorisent les animaux qu'en fret.
+      es: Algunos aeropuertos (p. ej. Hong Kong) solo permiten que las mascotas viajen como carga.
+      pt: "Alguns aeroportos (por exemplo, Hong Kong) só permitem que os animais viajem como carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold — international 2–8 kg
+        fr: Soute — international 2–8 kg
+        es: Bodega — internacional 2–8 kg
+        pt: "Porão — internacional 2–8 kg"
+      value:
+        en: $200 / €190
+        fr: 200 $ / 190 €
+        es: 200 $ / 190 €
+        pt: "200 $ / 190 €"
+    - label:
+        en: Hold — international 8–23 kg
+        fr: Soute — international 8–23 kg
+        es: Bodega — internacional 8–23 kg
+        pt: "Porão — internacional 8–23 kg"
+      value:
+        en: $300 / €280
+        fr: 300 $ / 280 €
+        es: 300 $ / 280 €
+        pt: "300 $ / 280 €"
+    - label:
+        en: Hold — international 23–32 kg
+        fr: Soute — international 23–32 kg
+        es: Bodega — internacional 23–32 kg
+        pt: "Porão — internacional 23–32 kg"
+      value:
+        en: $500 / €470
+        fr: 500 $ / 470 €
+        es: 500 $ / 470 €
+        pt: "500 $ / 470 €"
+    - label:
+        en: Hold — domestic (China)
+        fr: Soute — national (Chine)
+        es: Bodega — nacional (China)
+        pt: "Porão — doméstico (China)"
+      value:
+        en: ¥398–1398
+        fr: 398–1398 ¥
+        es: 398–1398 ¥
+        pt: "398–1398 ¥"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: By weight band; currency depends on origin. The domestic fare includes a pet lounge and up to ¥5,000 insurance.
+    fr: Par tranche de poids ; devise selon l'origine. Le tarif national inclut un salon animalier et jusqu'à 5 000 ¥ d'assurance.
+    es: Por tramo de peso; la moneda depende del origen. La tarifa nacional incluye una sala para mascotas y un seguro de hasta 5000 ¥.
+    pt: "Por faixa de peso; a moeda depende da origem. A tarifa doméstica inclui uma sala para animais e seguro de até ¥5.000."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: "Snub-nosed cats & dogs can't be carried: bulldogs (all), boxers (all), pugs (all), Boston terrier, Brussels Griffon, Pekingese, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, Japanese Chin, Cane Corso, mastiffs, pit bull/Staffordshire types, and Persian/Himalayan/Exotic/British Shorthair/Burmese cats."
+      fr: "Chats et chiens au nez écrasé refusés : bouledogues (tous), boxers (tous), carlins (tous), Boston terrier, Griffon bruxellois, pékinois, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, Chin japonais, Cane Corso, mastiffs, types pit-bull/Staffordshire, et chats persans/himalayens/exotiques/British Shorthair/birmans."
+      es: "Los gatos y perros de hocico chato no pueden transportarse: bulldogs (todos), bóxers (todos), carlinos (todos), Boston terrier, Grifón de Bruselas, pequinés, Shih Tzu, Lhasa Apso, chow chow, Shar Pei, Chin japonés, Cane Corso, mastines, tipos pit bull/Staffordshire, y gatos persas/himalayos/exóticos/British Shorthair/birmanos."
+      pt: "Gatos e cachorros de focinho achatado não podem ser transportados: buldogues (todos), boxers (todos), pugs (todos), Boston Terrier, Grifon de Bruxelas, Pequinês, Shih Tzu, Lhasa Apso, Chow Chow, Shar Pei, Chin Japonês, Cane Corso, mastins, tipos pit bull/Staffordshire, e gatos Persa/Himalaia/Exótico/British Shorthair/Burmês."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No pregnancy
+          fr: Pas de gestation
+          es: Sin gestación
+          pt: "Sem gestação"
+    note:
+      en: Pregnant animals aren't accepted; pets must be healthy, clean and odorless. Too small (mice, fish), wild or offensive animals are refused.
+      fr: Les animaux gestants ne sont pas acceptés ; les animaux doivent être sains, propres et inodores. Les animaux trop petits (souris, poissons), sauvages ou repoussants sont refusés.
+      es: No se aceptan animales gestantes; las mascotas deben estar sanas, limpias y sin olor. Se rechazan los animales demasiado pequeños (ratones, peces), salvajes o desagradables.
+      pt: "Animais gestantes não são aceitos; os animais precisam estar saudáveis, limpos e sem odor. Animais pequenos demais (camundongos, peixes), selvagens ou desagradáveis são recusados."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Oxygen-equipped hold required
+        fr: Soute équipée d'oxygène requise
+        es: Se requiere bodega con oxígeno
+        pt: "Porão equipado com oxigênio obrigatório"
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: China Southern only accepts pets on aircraft with a suitable oxygen-equipped hold; it publishes no numeric temperature limit but won't carry animals unsuited to the hold.
+    fr: China Southern n'accepte les animaux que sur les avions dotés d'une soute adaptée équipée d'oxygène ; elle ne publie pas de limite chiffrée mais ne transporte pas d'animaux inadaptés à la soute.
+    es: China Southern solo acepta mascotas en aviones con una bodega adecuada equipada con oxígeno; no publica un límite de temperatura numérico, pero no transporta animales no aptos para la bodega.
+    pt: "A China Southern só aceita animais em aeronaves com porão adequado equipado com oxigênio; ela não divulga limite numérico de temperatura, mas não transporta animais inadequados para o porão."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs (guide, hearing, support) travel free in the cabin, muzzled and leashed at your feet; not counted in baggage.
+      fr: Les chiens d'assistance (guide, écoute, soutien) voyagent gratuitement en cabine, muselés et en laisse à tes pieds ; hors franchise bagages.
+      es: Los perros de servicio (guía, de señal, de apoyo) viajan gratis en cabina, con bozal y con correa a tus pies; no cuentan en la franquicia de equipaje.
+      pt: "Cães de assistência (guia, para surdos, de apoio) viajam gratuitamente na cabine, com focinheira e presos com guia aos seus pés; não contam na franquia de bagagem."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Emotional-support dogs not accepted since Feb 2021. Provide training + quarantine certificates.
+      fr: Chiens de soutien émotionnel non acceptés depuis fév. 2021. Fournir les certificats de dressage + quarantaine.
+      es: Los perros de apoyo emocional no se aceptan desde feb 2021. Aporta los certificados de adiestramiento + cuarentena.
+      pt: "Cães de apoio emocional não são aceitos desde fev. de 2021. Apresente certificados de treinamento + quarentena."
+goodToKnow:
+  - icon: 🔁
+    label:
+      en: No connections
+      fr: Pas de correspondance
+      es: Sin conexiones
+      pt: "Sem conexões"
+    value:
+      en: Pets aren't carried on connecting flights.
+      fr: Les animaux ne sont pas transportés en correspondance.
+      es: Las mascotas no se transportan en vuelos con conexión.
+      pt: "Animais não são transportados em voos com conexão."
+  - icon: 🛋️
+    label:
+      en: Domestic perks
+      fr: Avantages national
+      es: Ventajas en vuelos nacionales
+      pt: "Vantagens em voos domésticos"
+    value:
+      en: The domestic fare includes a protective net, pet lounge, priority collection and up to ¥5,000 insurance.
+      fr: Le tarif national inclut un filet de protection, un salon animalier, une récupération prioritaire et jusqu'à 5 000 ¥ d'assurance.
+      es: La tarifa nacional incluye una red de protección, una sala para mascotas, recogida prioritaria y un seguro de hasta 5000 ¥.
+      pt: "A tarifa doméstica inclui uma rede de proteção, sala para animais, retirada prioritária e seguro de até ¥5.000."
+  - icon: 📄
+    label:
+      en: China quarantine
+      fr: Quarantaine Chine
+      es: Cuarentena en China
+      pt: "Quarentena na China"
+    value:
+      en: Dogs/cats to China (one per passenger) need an ISO microchip and may face 30-day quarantine unless exempt.
+      fr: Les chiens/chats vers la Chine (un par passager) ont besoin d'une puce ISO et peuvent subir 30 jours de quarantaine sauf exemption.
+      es: Los perros/gatos hacia China (uno por pasajero) necesitan un microchip ISO y pueden enfrentar 30 días de cuarentena salvo exención.
+      pt: "Cachorros/gatos com destino à China (um por passageiro) precisam de microchip ISO e podem enfrentar quarentena de 30 dias, salvo isenção."
+book:
+  host: csair.com
+  url: https://www.csair.com/
+sources:
+  en: 2 China Southern sources · last verified 11 July 2026
+  fr: 2 sources China Southern · dernière vérification 11 juillet 2026
+  es: 2 fuentes de China Southern · última verificación 11 julio 2026
+  pt: "2 fontes da China Southern · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

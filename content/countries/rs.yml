@@ -1,0 +1,361 @@
+# Country Entry Guide — Serbia (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_rs
+iso2: "RS"
+name: { en: "Serbia", fr: "Serbie", es: "Serbia", pt: "Sérvia" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: listed
+exit:
+  authority: Uprava za veterinu
+  authorityUrl: https://www.vet.minpolj.gov.rs/movement-of-pets/
+  intro:
+    en: "Serbia is a listed country, so no rabies titer is needed to return to the EU — the EU health certificate is issued by an official veterinarian of the Veterinary Directorate."
+    fr: "La Serbie est un pays listé : pas de titrage pour rentrer dans l'UE — le certificat sanitaire UE est délivré par un vétérinaire officiel de la Direction vétérinaire."
+    es: "Serbia es un país listado: no hace falta titulación para volver a la UE — el certificado sanitario UE lo emite un veterinario oficial de la Dirección Veterinaria."
+    pt: "A Sérvia é um país listado: não é preciso teste sorológico antirrábico para voltar à UE — o certificado sanitário europeu é emitido por um veterinário oficial da Uprava za veterinu (Direção Veterinária)."
+  steps:
+    - timing: window
+      text:
+        en: "Your dog needs a microchip and valid rabies vaccination (at least 21 days after the primary shot); the EU-model health certificate is completed and endorsed by an official veterinarian of the Veterinary Directorate before departure."
+        fr: "Ton chien doit être pucé et vacciné contre la rage (au moins 21 jours après la primo-vaccination) ; le certificat sanitaire au modèle UE est rempli et visé par un vétérinaire officiel de la Direction vétérinaire avant le départ."
+        es: "Tu perro necesita microchip y vacuna antirrábica válida (al menos 21 días tras la primovacunación); el certificado sanitario en modelo UE lo rellena y refrenda un veterinario oficial de la Dirección Veterinaria antes de salir."
+        pt: "Seu cachorro precisa de microchip e de vacinação antirrábica válida (no mínimo 21 dias após a primovacinação); o certificado sanitário no modelo da UE é preenchido e endossado por um veterinário oficial da Uprava za veterinu antes da partida."
+  onSiteNote:
+    en: "The certificate is valid 10 days to reach the EU border check — arrange it close to departure."
+    fr: "Le certificat est valable 10 jours pour atteindre le contrôle à la frontière UE — organise-le peu avant le départ."
+    es: "El certificado vale 10 días para llegar al control fronterizo de la UE — organízalo cerca de la salida."
+    pt: "O certificado vale 10 dias para chegar ao controle de fronteira da UE — providencie-o pouco antes da partida."
+
+hero:
+  h1: { en: "Traveling to Serbia with your dog", fr: "Voyager en Serbie avec ton chien", es: "Viajar a Serbia con tu perro", pt: "Viajar para a Sérvia com seu cachorro" }
+  intro:
+    en: >-
+      Serbia welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Serbia itself. Serbia is not an EU member, yet it applies
+      EU-aligned pet-movement rules: an ISO microchip and a valid rabies vaccination are always
+      required. A dog coming from an EU country (or from Switzerland, Norway and similar territories)
+      simply needs a properly completed pet passport. A dog from a listed country (such as the United
+      States, Canada, Japan or Australia) also needs a veterinary certificate from the origin country,
+      but no blood test. A dog from a non-listed country faces the longest path, including a rabies
+      antibody test and a three-month wait. This guide explains each case so you know exactly what to
+      prepare before you book your flight.
+    fr: >-
+      La Serbie accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de la Serbie. La Serbie n'est pas membre de l'UE, mais elle applique
+      des règles de mouvement des animaux alignées sur celles de l'UE : une puce ISO et une vaccination
+      antirabique valide sont toujours exigées. Un chien venant d'un pays de l'UE (ou de Suisse, de
+      Norvège et de territoires assimilés) a simplement besoin d'un passeport correctement rempli. Un
+      chien venant d'un pays listé (États-Unis, Canada, Japon, Australie…) a aussi besoin d'un
+      certificat vétérinaire du pays d'origine, mais pas de prise de sang. Un chien en provenance d'un
+      pays non listé suit le parcours le plus long, avec un titrage antirabique et un délai de trois
+      mois. Ce guide détaille chaque cas pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Serbia acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Serbia. Serbia no es miembro de la UE, pero aplica normas de
+      movimiento de animales alineadas con las de la UE: siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de un país de la UE (o de Suiza, Noruega y
+      territorios asimilados) solo necesita un pasaporte correctamente cumplimentado. Un perro que llega
+      de un país listado (como Estados Unidos, Canadá, Japón o Australia) necesita además un certificado
+      veterinario del país de origen, pero no una prueba de sangre. Un perro de un país no listado se
+      enfrenta al camino más largo, que incluye una prueba de titulación de rabia y una espera de tres
+      meses. Esta guía explica cada caso para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Sérvia recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro está viajando — e não apenas da Sérvia em si. A Sérvia não é membro da UE, mas aplica regras de circulação de animais de estimação alinhadas com as europeias: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de um país da UE (ou da Suíça, da Noruega e de territórios semelhantes) precisa apenas de um passaporte para animais corretamente preenchido. Um cachorro vindo de um país listado (como Estados Unidos, Canadá, Japão ou Austrália) precisa também de um certificado veterinário do país de origem, mas sem exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, que inclui um teste sorológico antirrábico e uma espera de três meses. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed (21-day wait)."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire (délai de 21 jours)."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica (espera de 21 días)."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica (21 dias de espera)."
+  listed:
+    en: "~3 weeks: 21-day wait after the rabies shot, plus a veterinary certificate issued by the origin country's authority."
+    fr: "~3 semaines : délai de 21 jours après le vaccin, plus un certificat vétérinaire délivré par l'autorité du pays d'origine."
+    es: "~3 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado veterinario expedido por la autoridad del país de origen."
+    pt: "Cerca de 3 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado veterinário emitido pela autoridade do país de origem."
+  nonListed:
+    en: "~4–5 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait before entry."
+    fr: "~4–5 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois avant l'entrée."
+    es: "~4–5 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses antes de la entrada."
+    pt: "Cerca de 4 a 5 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera antes da entrada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Serbia", fr: "Non requis pour la Serbie", es: "No obligatorio para Serbia", pt: "Não obrigatório na Sérvia" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Serbia (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Serbie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Serbia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Sérvia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Serbia", fr: "Pays de destination — Serbie", es: "País de destino — Serbia", pt: "País de destino — Sérvia" }
+      text:
+        en: "Serbia applies EU-aligned pet-movement rules: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed to enter Serbia."
+        fr: "La Serbie applique des règles alignées sur celles de l'UE : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer en Serbie."
+        es: "Serbia aplica normas de movimiento de animales alineadas con las de la UE: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en Serbia."
+        pt: "A Sérvia aplica regras de circulação de animais de estimação alinhadas com as da UE: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido para entrar na Sérvia."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU/assimilated country, a country on Serbia's Annex 2 list, or a non-listed country decides whether an antibody test and a certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE/assimilé, d'un pays figurant sur l'annexe 2 serbe ou d'un pays non listé détermine si un titrage et un certificat sont exigés."
+        es: "Que tu perro salga de un país de la UE/asimilado, de un país que figure en el anexo 2 serbio o de un país no listado determina si se exigen una prueba de titulación y un certificado."
+        pt: "Partir de um país da UE ou assimilado, de um país da lista do anexo 2 da Sérvia ou de um país não listado é o que define se o teste sorológico e o certificado são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a non-listed rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays non listé à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país no listado con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país não listado de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Serbia's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre serbe, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Serbia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Então leia as exigências abaixo como o quadro geral da Sérvia e depois confirme a origem exata e o histórico do seu cachorro com o seu veterinário."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Compliant with ISO 11784/11785; must be implanted before (or at the latest on the day of) the rabies vaccination.", fr: "Conforme ISO 11784/11785 ; doit être posée avant (ou au plus tard le jour de) la vaccination antirabique.", es: "Conforme con ISO 11784/11785; debe implantarse antes (o, como muy tarde, el mismo día) de la vacunación antirrábica.", pt: "Em conformidade com a ISO 11784/11785; precisa ser implantado antes da vacinação antirrábica (ou, no máximo, no mesmo dia)." }
+    exceptions: { en: "A clearly legible tattoo is accepted only if applied before 3 July 2011.", fr: "Un tatouage clairement lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje claramente legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem claramente legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "Uprava za veterinu — Movement of pets", fr: "Uprava za veterinu — Mouvement des animaux", es: "Uprava za veterinu — Movimiento de animales de compañía", pt: "Uprava za veterinu — Circulação de animais de estimação" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Inactivated or recombinant vaccine with ≥1 antigenic unit per dose; 21 days must have passed since the primary vaccination.", fr: "Vaccin inactivé ou recombinant à ≥1 unité antigénique par dose ; 21 jours doivent s'être écoulés depuis la primo-vaccination.", es: "Vacuna inactivada o recombinante con ≥1 unidad antigénica por dosis; deben haber transcurrido 21 días desde la primovacunación.", pt: "Vacina inativada ou recombinante com ≥1 unidade antigênica por dose; precisam ter passado 21 dias desde a primovacinação." }
+    exceptions: { en: "The microchip must already be in place before the shot; otherwise the vaccination may be considered invalid.", fr: "La puce doit être posée avant le vaccin ; sinon la vaccination peut être jugée invalide.", es: "El microchip debe estar implantado antes de la vacuna; de lo contrario, la vacunación puede considerarse inválida.", pt: "O microchip já deve estar implantado antes da aplicação; caso contrário, a vacinação pode ser considerada inválida." }
+    ref: { en: "Uprava za veterinu — Movement of pets", fr: "Uprava za veterinu — Mouvement des animaux", es: "Uprava za veterinu — Movimiento de animales de compañía", pt: "Uprava za veterinu — Circulação de animais de estimação" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination and ≥3 months before entry, result ≥0.5 IU/ml, EU-authorised lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin et ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna y ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório autorizado pela UE." }
+    exceptions: { en: "Not required from the EU/assimilated territories or from Serbia's Annex 2 listed countries (US, Canada, Japan, Australia…).", fr: "Non requis depuis l'UE/territoires assimilés ou les pays listés à l'annexe 2 serbe (USA, Canada, Japon, Australie…).", es: "No se exige desde la UE/territorios asimilados ni desde los países listados en el anexo 2 serbio (EE. UU., Canadá, Japón, Australia…).", pt: "Não exigido para quem vem da UE e dos territórios assimilados nem dos países listados no anexo 2 da Sérvia (EUA, Canadá, Japão, Austrália…)." }
+    ref: { en: "Uprava za veterinu — Movement of pets, Annex 2", fr: "Uprava za veterinu — Mouvement des animaux, annexe 2", es: "Uprava za veterinu — Movimiento de animales de compañía, anexo 2", pt: "Uprava za veterinu — Circulação de animais de estimação, anexo 2" }
+  - item: { en: "Pet passport", fr: "Passeport pour animal", es: "Pasaporte para mascotas", pt: "Passaporte para animais" }
+    required: { en: "EU / assimilated origins", fr: "Origines UE / assimilées", es: "Orígenes UE / asimilados", pt: "Origens na UE / assimiladas" }
+    when: { en: "A correctly completed passport issued by an authorised vet, recording the microchip and rabies vaccination.", fr: "Un passeport correctement rempli délivré par un vétérinaire agréé, consignant la puce et la vaccination.", es: "Un pasaporte correctamente cumplimentado, expedido por un veterinario autorizado, que registre el microchip y la vacunación antirrábica.", pt: "Passaporte corretamente preenchido, emitido por um veterinário autorizado, registrando o microchip e a vacinação antirrábica." }
+    exceptions: { en: "For these origins no separate veterinary certificate is required.", fr: "Pour ces origines, aucun certificat vétérinaire distinct n'est exigé.", es: "Para estos orígenes no se exige un certificado veterinario aparte.", pt: "Para essas origens não é exigido certificado veterinário à parte." }
+    ref: { en: "Uprava za veterinu — Movement of pets", fr: "Uprava za veterinu — Mouvement des animaux", es: "Uprava za veterinu — Movimiento de animales de compañía", pt: "Uprava za veterinu — Circulação de animais de estimação" }
+  - item: { en: "Veterinary certificate (origin authority)", fr: "Certificat vétérinaire (autorité d'origine)", es: "Certificado veterinario (autoridad de origen)", pt: "Certificado veterinário (autoridade de origem)" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued by the competent authority of the country of origin; for the US it must be issued and endorsed within 10 days of travel.", fr: "Délivré par l'autorité compétente du pays d'origine ; pour les USA, établi et visé dans les 10 jours précédant le voyage.", es: "Expedido por la autoridad competente del país de origen; para EE. UU. debe emitirse y refrendarse dentro de los 10 días previos al viaje.", pt: "Emitido pela autoridade competente do país de origem; no caso dos EUA, precisa ser emitido e endossado nos 10 dias anteriores à viagem." }
+    exceptions: { en: "Not needed for EU/assimilated origins (passport instead).", fr: "Inutile pour les origines UE/assimilées (passeport à la place).", es: "No necesario para orígenes de la UE/asimilados (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE ou assimiladas (usa-se o passaporte)." }
+    ref: { en: "Uprava za veterinu — Movement of pets; APHIS (US)", fr: "Uprava za veterinu — Mouvement des animaux ; APHIS (USA)", es: "Uprava za veterinu — Movimiento de animales de compañía; APHIS (EE. UU.)", pt: "Uprava za veterinu — Circulação de animais de estimação; APHIS (EUA)" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Serbia does not require Echinococcus treatment for entry.", fr: "La Serbie n'exige pas de traitement contre l'échinococcose à l'entrée.", es: "Serbia no exige tratamiento contra el Echinococcus para la entrada.", pt: "A Sérvia não exige tratamento contra Echinococcus para a entrada." }
+    ref: { en: "Uprava za veterinu — Movement of pets", fr: "Uprava za veterinu — Mouvement des animaux", es: "Uprava za veterinu — Movimiento de animales de compañía", pt: "Uprava za veterinu — Circulação de animais de estimação" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Commercial imports only", fr: "Importations commerciales uniquement", es: "Solo importaciones comerciales", pt: "Somente para importações comerciais" }
+    when: { en: "Change of owner, sale/gift, >5 pets or an unaccompanied animal: apply to the Veterinary Directorate (rešenje), ~10 working days, 7,700 RSD fee.", fr: "Changement de propriétaire, vente/don, >5 animaux ou animal non accompagné : demande à l'Uprava za veterinu (rešenje), ~10 jours ouvrés, taxe de 7 700 RSD.", es: "Cambio de propietario, venta/donación, >5 mascotas o un animal no acompañado: solicitud a la Uprava za veterinu (rešenje), ~10 días hábiles, tasa de 7.700 RSD.", pt: "Mudança de dono, venda/doação, mais de 5 animais ou animal desacompanhado: solicite à Uprava za veterinu (rešenje), cerca de 10 dias úteis, taxa de 7.700 RSD." }
+    exceptions: { en: "Non-commercial movement (up to 5 accompanied pets) needs no import permit.", fr: "Le mouvement non commercial (jusqu'à 5 animaux accompagnés) ne nécessite aucun permis d'import.", es: "El movimiento no comercial (hasta 5 mascotas acompañadas) no necesita permiso de importación.", pt: "A circulação não comercial (até 5 animais acompanhados) não exige autorização de importação." }
+    ref: { en: "Uprava za veterinu; Veterinary Law art. 124", fr: "Uprava za veterinu ; Loi vétérinaire art. 124", es: "Uprava za veterinu; Ley Veterinaria art. 124", pt: "Uprava za veterinu; Lei Veterinária, art. 124" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "All arrivals", fr: "Toutes les arrivées", es: "Todas las llegadas", pt: "Todas as chegadas" }
+    when: { en: "Veterinary border inspection and customs may read the microchip and verify documents at the point of entry.", fr: "L'inspection vétérinaire frontalière et la douane peuvent lire la puce et vérifier les documents au point d'entrée.", es: "La inspección veterinaria fronteriza y las aduanas pueden leer el microchip y verificar los documentos en el punto de entrada.", pt: "A inspeção veterinária de fronteira e a alfândega podem ler o microchip e conferir os documentos no ponto de entrada." }
+    exceptions: { en: "A passport alone is not enough to cross the border.", fr: "Le seul passeport ne suffit pas pour franchir la frontière.", es: "El pasaporte por sí solo no basta para cruzar la frontera.", pt: "O passaporte sozinho não basta para cruzar a fronteira." }
+    ref: { en: "Uprava carina — Pets; Uprava za veterinu", fr: "Uprava carina — Animaux ; Uprava za veterinu", es: "Uprava carina — Mascotas; Uprava za veterinu", pt: "Uprava carina (alfândega sérvia) — Animais de estimação; Uprava za veterinu" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "Rabies shot from 12 weeks + 21-day wait. Under 12 or 12–16 weeks only under strict conditions.", fr: "Vaccin dès 12 semaines + 21 jours d'attente. Moins de 12 ou 12–16 semaines seulement sous conditions strictes.", es: "Vacuna desde las 12 semanas + espera de 21 días. Menos de 12 o 12–16 semanas solo bajo condiciones estrictas.", pt: "Vacina antirrábica a partir das 12 semanas + 21 dias de espera. Abaixo de 12 semanas, ou entre 12 e 16 semanas, apenas sob condições estritas." }
+    exceptions: { en: "Young dogs may enter from EU/assimilated origins (and favourable Annex 2 origins) with a signed no-contact declaration or accompanied by their vaccinated mother.", fr: "Les jeunes chiens peuvent entrer depuis l'UE/assimilé (et les origines annexe 2 favorables) avec une déclaration d'absence de contact signée ou accompagnés de leur mère vaccinée.", es: "Los perros jóvenes pueden entrar desde orígenes UE/asimilados (y orígenes favorables del anexo 2) con una declaración firmada de ausencia de contacto o acompañados de su madre vacunada.", pt: "Cachorros jovens podem entrar vindos de origens na UE ou assimiladas (e de origens favoráveis do anexo 2) com uma declaração assinada de ausência de contato ou acompanhados da mãe vacinada." }
+    ref: { en: "Uprava za veterinu — Movement of pets, Annex 5", fr: "Uprava za veterinu — Mouvement des animaux, annexe 5", es: "Uprava za veterinu — Movimiento de animales de compañía, anexo 5", pt: "Uprava za veterinu — Circulação de animais de estimação, anexo 5" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — the border veterinary inspection may then refuse entry or order corrective measures.", fr: "Uniquement en cas de non-conformité — l'inspection vétérinaire frontalière peut alors refuser l'entrée ou ordonner des mesures correctives.", es: "Solo en caso de incumplimiento — la inspección veterinaria fronteriza puede entonces denegar la entrada u ordenar medidas correctoras.", pt: "Apenas em caso de descumprimento das regras — a inspeção veterinária de fronteira pode então recusar a entrada ou determinar medidas corretivas." }
+    ref: { en: "Uprava za veterinu — Movement of pets", fr: "Uprava za veterinu — Mouvement des animaux", es: "Uprava za veterinu — Movimiento de animales de compañía", pt: "Uprava za veterinu — Circulação de animais de estimação" }
+
+origin:
+  eu:
+    title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte", pt: "Simplificado — passaporte para animais" }
+    body:
+      en: "A dog coming from an EU member state — or from Andorra, Switzerland, the Faroe Islands, Gibraltar, Greenland, Iceland, Liechtenstein, Monaco, Norway, San Marino or the Vatican — needs a valid ISO microchip, an in-date rabies vaccination (21 days after the primary shot) and a correctly completed pet passport. No antibody test and no separate veterinary certificate are required."
+      fr: "Un chien venant d'un État membre de l'UE — ou d'Andorre, Suisse, Îles Féroé, Gibraltar, Groenland, Islande, Liechtenstein, Monaco, Norvège, Saint-Marin ou du Vatican — a besoin d'une puce ISO valide, d'une vaccination antirabique à jour (21 jours après la primo-vaccination) et d'un passeport correctement rempli. Ni titrage ni certificat vétérinaire distinct ne sont requis."
+      es: "Un perro que llega de un Estado miembro de la UE — o de Andorra, Suiza, las Islas Feroe, Gibraltar, Groenlandia, Islandia, Liechtenstein, Mónaco, Noruega, San Marino o el Vaticano — necesita un microchip ISO válido, una vacunación antirrábica en vigor (21 días después de la primovacunación) y un pasaporte correctamente cumplimentado. No se exigen prueba de titulación ni certificado veterinario aparte."
+      pt: "Um cachorro vindo de um Estado-membro da UE — ou de Andorra, Suíça, Ilhas Faroé, Gibraltar, Groenlândia, Islândia, Liechtenstein, Mônaco, Noruega, San Marino ou Vaticano — precisa de microchip ISO válido, vacinação antirrábica em dia (21 dias após a primovacinação) e passaporte para animais corretamente preenchido. Não são exigidos teste sorológico nem certificado veterinário à parte."
+    cls: ok
+  listed:
+    title: { en: "Certificate, no blood test", fr: "Certificat, sans prise de sang", es: "Certificado, sin análisis de sangre", pt: "Certificado, sem exame de sangue" }
+    body:
+      en: "From a country on Serbia's Annex 2 list (United States, Canada, Japan, Australia, Russia, North Macedonia, Bosnia and Herzegovina and many others), your dog needs a microchip, a valid rabies vaccination and a veterinary certificate issued by the competent authority of the country of origin. No antibody test is required."
+      fr: "Depuis un pays figurant sur l'annexe 2 serbe (États-Unis, Canada, Japon, Australie, Russie, Macédoine du Nord, Bosnie-Herzégovine et bien d'autres), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat vétérinaire délivré par l'autorité compétente du pays d'origine. Pas de titrage."
+      es: "Desde un país que figure en el anexo 2 serbio (Estados Unidos, Canadá, Japón, Australia, Rusia, Macedonia del Norte, Bosnia y Herzegovina y muchos otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado veterinario expedido por la autoridad competente del país de origen. No se exige prueba de titulación."
+      pt: "Vindo de um país da lista do anexo 2 da Sérvia (Estados Unidos, Canadá, Japão, Austrália, Rússia, Macedônia do Norte, Bósnia e Herzegovina e muitos outros), seu cachorro precisa de microchip, vacinação antirrábica válida e certificado veterinário emitido pela autoridade competente do país de origem. Não é exigido teste sorológico."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination and at least 3 months before entry, result ≥0.5 IU/ml at an EU-authorised laboratory. A veterinary certificate from the origin country's authority is also required."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin et au moins 3 mois avant l'entrée, résultat ≥0,5 UI/ml dans un laboratoire agréé UE. Un certificat vétérinaire de l'autorité du pays d'origine est également requis."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna y al menos 3 meses antes de la entrada, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE. También se exige un certificado veterinario de la autoridad del país de origen."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação e pelo menos 3 meses antes da entrada, resultado ≥0,5 UI/ml em laboratório autorizado pela UE. Também é exigido um certificado veterinário da autoridade do país de origem."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Serbia depends on where you flew from, but every arrival can be checked at the border."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Serbie dépend de ton lieu de départ, mais toute arrivée peut être contrôlée à la frontière."
+    es: "Lo que ocurre cuando tu perro llega a Serbia depende del lugar desde el que hayas volado, pero toda llegada puede ser controlada en la frontera."
+    pt: "O que acontece quando seu cachorro chega à Sérvia depende de onde você veio, mas toda chegada pode ser conferida na fronteira."
+  points:
+    - en: "The veterinary border inspection and customs may read the microchip and verify the passport or certificate — a passport alone is not enough to cross the border."
+      fr: "L'inspection vétérinaire frontalière et la douane peuvent lire la puce et vérifier le passeport ou le certificat — le seul passeport ne suffit pas pour franchir la frontière."
+      es: "La inspección veterinaria fronteriza y las aduanas pueden leer el microchip y verificar el pasaporte o el certificado — el pasaporte por sí solo no basta para cruzar la frontera."
+      pt: "A inspeção veterinária de fronteira e a alfândega podem ler o microchip e conferir o passaporte ou o certificado — o passaporte sozinho não basta para cruzar a fronteira."
+    - en: "Non-commercial movement covers up to five pets accompanying their owner or an authorised person; it needs no import permit."
+      fr: "Le mouvement non commercial couvre jusqu'à cinq animaux accompagnant leur propriétaire ou une personne autorisée ; aucun permis d'import n'est requis."
+      es: "El movimiento no comercial cubre hasta cinco mascotas que acompañan a su propietario o a una persona autorizada; no necesita permiso de importación."
+      pt: "A circulação não comercial abrange até cinco animais que acompanham o dono ou uma pessoa autorizada; não exige autorização de importação."
+    - en: "Commercial movement (sale, change of owner, more than five animals, or an unaccompanied animal) requires a prior import decision (rešenje) from the Veterinary Directorate."
+      fr: "Le mouvement commercial (vente, changement de propriétaire, plus de cinq animaux ou animal non accompagné) exige une décision d'importation préalable (rešenje) de l'Uprava za veterinu."
+      es: "El movimiento comercial (venta, cambio de propietario, más de cinco animales o un animal no acompañado) exige una decisión de importación previa (rešenje) de la Uprava za veterinu."
+      pt: "A circulação comercial (venda, mudança de dono, mais de cinco animais ou animal desacompanhado) exige uma decisão prévia de importação (rešenje) da Uprava za veterinu."
+    - en: "Carry original documents (not copies); a certified translation may be requested if they are not in Serbian."
+      fr: "Munis-toi des documents originaux (pas de copies) ; une traduction certifiée peut être demandée s'ils ne sont pas en serbe."
+      es: "Lleva los documentos originales (no copias); puede solicitarse una traducción certificada si no están en serbio."
+      pt: "Leve os documentos originais (não cópias); pode ser pedida uma tradução juramentada se eles não estiverem em sérvio."
+    - en: "If documents are missing or invalid, the border veterinary inspection may refuse entry or order corrective measures — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'inspection vétérinaire frontalière peut refuser l'entrée ou ordonner des mesures correctives — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, la inspección veterinaria fronteriza puede denegar la entrada u ordenar medidas correctoras — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, a inspeção veterinária de fronteira pode recusar a entrada ou determinar medidas corretivas — às custas do dono."
+    - en: "Temporary import/transit bans may apply to shipments from countries with active disease outbreaks (e.g. foot-and-mouth) — check before you travel."
+      fr: "Des interdictions temporaires d'importation/transit peuvent viser les envois en provenance de pays touchés par une épizootie active (ex. fièvre aphteuse) — vérifie avant de partir."
+      es: "Pueden aplicarse prohibiciones temporales de importación/tránsito a los envíos procedentes de países con brotes activos de enfermedades (p. ej. fiebre aftosa) — comprueba antes de viajar."
+      pt: "Proibições temporárias de importação ou de trânsito podem valer para remessas vindas de países com surtos de doenças em curso (por exemplo, febre aftosa) — confira antes de viajar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Serbia has no national breed-specific law banning or categorising dangerous dogs, and there is no national ban on importing particular breeds. Keeping of potentially dangerous dogs is regulated mainly at provincial and local (municipal) level."
+    fr: "La Serbie n'a pas de loi nationale spécifique interdisant ou catégorisant les chiens dangereux, et il n'existe aucune interdiction nationale d'importer des races particulières. La détention de chiens potentiellement dangereux est réglementée surtout au niveau provincial et local (communal)."
+    es: "Serbia no tiene una ley nacional específica que prohíba o categorice a los perros peligrosos, y no existe ninguna prohibición nacional de importar razas concretas. La tenencia de perros potencialmente peligrosos se regula sobre todo a nivel provincial y local (municipal)."
+    pt: "A Sérvia não tem uma lei nacional específica por raça que proíba ou classifique cachorros perigosos, e não existe proibição nacional de importar determinadas raças. A posse de cachorros potencialmente perigosos é regulada principalmente em nível provincial e local (municipal)."
+  cat1:
+    en: "There is no national Category 1 equivalent and no breed is banned from entry at the national level. Import formalities follow the standard veterinary rules (microchip, rabies vaccination, certificate/passport) regardless of breed."
+    fr: "Il n'existe pas d'équivalent national de la catégorie 1 et aucune race n'est interdite d'entrée au niveau national. Les formalités d'importation suivent les règles vétérinaires standard (puce, vaccination antirabique, certificat/passeport) quelle que soit la race."
+    es: "No existe un equivalente nacional de la categoría 1 y ninguna raza está prohibida de entrada a nivel nacional. Los trámites de importación siguen las normas veterinarias estándar (microchip, vacunación antirrábica, certificado/pasaporte) sea cual sea la raza."
+    pt: "Não existe equivalente nacional a uma categoria 1 e nenhuma raça é proibida de entrar em nível nacional. As formalidades de importação seguem as regras veterinárias padrão (microchip, vacinação antirrábica, certificado/passaporte), qualquer que seja a raça."
+  cat2:
+    en: "Local rules (for example in Vojvodina and the City of Belgrade) can require owners of dogs deemed dangerous to hold a permit, take out third-party insurance, and keep the dog leashed and usually muzzled in public. These are keeping rules for residents, not entry conditions."
+    fr: "Des règles locales (par exemple en Voïvodine et dans la Ville de Belgrade) peuvent imposer aux propriétaires de chiens jugés dangereux de détenir un permis, de souscrire une assurance responsabilité civile et de tenir le chien en laisse, généralement muselé, en public. Ce sont des règles de détention pour les résidents, pas des conditions d'entrée."
+    es: "Las normas locales (por ejemplo en Voivodina y en la Ciudad de Belgrado) pueden exigir a los propietarios de perros considerados peligrosos disponer de un permiso, contratar un seguro de responsabilidad civil y mantener al perro con correa y, por lo general, con bozal en público. Son normas de tenencia para residentes, no condiciones de entrada."
+    pt: "As regras locais (por exemplo, na Voivodina e na cidade de Belgrado) podem exigir que os donos de cachorros considerados perigosos tenham uma autorização, contratem seguro de responsabilidade civil contra terceiros e mantenham o cachorro na guia e, em geral, com focinheira em local público. São regras de posse para os residentes, não condições de entrada."
+  note:
+    en: "Because rules vary by municipality, confirm local keeping obligations with the relevant authority if you plan to stay with a powerful or guard-type dog. As official Serbian sources publish no national restricted-breed list, we mark that detail as not published rather than infer one."
+    fr: "Les règles variant selon la commune, confirme les obligations locales de détention auprès de l'autorité compétente si tu séjourne avec un chien puissant ou de type garde. Les sources officielles serbes ne publiant aucune liste nationale de races réglementées, nous indiquons ce point comme non communiqué plutôt que de l'inférer."
+    es: "Como las normas varían según el municipio, confirma las obligaciones locales de tenencia con la autoridad competente si vas a alojarte con un perro potente o de tipo guardián. Como las fuentes oficiales serbias no publican ninguna lista nacional de razas restringidas, marcamos ese dato como no publicado en lugar de inferirlo."
+    pt: "Como as regras variam de município para município, confirme as obrigações locais de posse com a autoridade competente se você pretende ficar com um cachorro potente ou de guarda. Como as fontes oficiais sérvias não publicam nenhuma lista nacional de raças restritas, marcamos esse dado como não publicado em vez de deduzir uma."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (21 days after the primary shot)"
+    fr: "Vaccination antirabique valide (21 jours après la primo-vaccination)"
+    es: "Vacunación antirrábica válida (21 días después de la primovacunación)"
+    pt: "Vacinação antirrábica válida (21 dias após a primovacinação)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "Pet passport (EU/assimilated) or veterinary certificate from the origin authority (other countries)"
+    fr: "Passeport (UE/assimilé) ou certificat vétérinaire de l'autorité d'origine (autres pays)"
+    es: "Pasaporte (UE/asimilado) o certificado veterinario de la autoridad de origen (otros países)"
+    pt: "Passaporte para animais (UE/assimilados) ou certificado veterinário da autoridade de origem (demais países)"
+  - en: "Original documents; certified Serbian translation if requested"
+    fr: "Documents originaux ; traduction serbe certifiée si demandée"
+    es: "Documentos originales; traducción certificada al serbio si se solicita"
+    pt: "Documentos originais; tradução juramentada para o sérvio, se for pedida"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "For sale/change of owner or >5 dogs: import decision (rešenje) from the Veterinary Directorate"
+    fr: "Pour vente/changement de propriétaire ou >5 chiens : décision d'importation (rešenje) de l'Uprava za veterinu"
+    es: "Para venta/cambio de propietario o >5 perros: decisión de importación (rešenje) de la Uprava za veterinu"
+    pt: "Para venda/mudança de dono ou mais de 5 cachorros: decisão de importação (rešenje) da Uprava za veterinu"
+
+sources:
+  - label: { en: "Veterinary Directorate (Uprava za veterinu) — Movement of pets", fr: "Uprava za veterinu (Direction vétérinaire) — Mouvement des animaux de compagnie", es: "Uprava za veterinu (Dirección Veterinaria) — Movimiento de animales de compañía", pt: "Uprava za veterinu (Direção Veterinária) — Circulação de animais de estimação" }
+    url: "https://www.vet.minpolj.gov.rs/medjunarodni-promet-i-sertifikacija/kretanje-kucnih-ljubimaca/"
+  - label: { en: "Veterinary Directorate — Annex 2 list of countries (Prilog 2)", fr: "Uprava za veterinu — Annexe 2, liste des pays (Prilog 2)", es: "Uprava za veterinu — Anexo 2, lista de países (Prilog 2)", pt: "Uprava za veterinu — Lista de países do anexo 2 (Prilog 2)" }
+    url: "https://www.vet.minpolj.gov.rs/uprava/Sertifikati/Prilog%202%20lista%20zemalja%20Annex%202.pdf"
+  - label: { en: "Serbian Customs (Uprava carina) — Pets", fr: "Douane serbe (Uprava carina) — Animaux de compagnie", es: "Aduanas de Serbia (Uprava carina) — Animales de compañía", pt: "Alfândega sérvia (Uprava carina) — Animais de estimação" }
+    url: "https://www.carina.rs/putnici/pitanja-i-odgovori/kucni-ljubimci.html"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Serbia", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers la Serbie", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Serbia", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para a Sérvia" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-serbia"
+  - label: { en: "European Commission — Bringing a pet into the EU (Serbia now exempt from the antibody test)", fr: "Commission européenne — Faire entrer un animal dans l'UE (la Serbie désormais dispensée du titrage)", es: "Comisión Europea — Traer una mascota a la UE (Serbia ahora exenta de la prueba de titulación)", pt: "Comissão Europeia — Levar um animal de estimação para a UE (a Sérvia agora está isenta do teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+
+seo:
+  title: { en: "Serbia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Serbie — Guide", es: "Requisitos de entrada de perros en Serbia — Guía de viaje", pt: "Sérvia: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Serbia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Serbie avec ton chien : formalités (2026)", es: "Viajar a Serbia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Sérvia: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Serbia — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Serbie — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a Serbia — según origen UE, listado o no listado. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro à Sérvia — por origem UE, listada e não listada. Com fonte e data."
+  slug: "serbia"
+  shortDesc:
+    en: "What you need to bring a dog into Serbia, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Serbie, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Serbia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Sérvia, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

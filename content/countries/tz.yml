@@ -1,0 +1,373 @@
+# Country Entry Guide — Tanzania (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_tz
+iso2: "TZ"
+name: { en: "Tanzania", fr: "Tanzanie", es: "Tanzania", pt: "Tanzânia" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: Veterinary Services (DVS)
+  authorityUrl: https://mifugouvuvi.go.tz/
+  intro:
+    en: "Tanzania is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Veterinary Services (Ministry of Livestock and Fisheries)."
+    fr: "La Tanzanie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par les Services vétérinaires (ministère de l'Élevage et de la Pêche)."
+    es: "Tanzania no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por los Servicios Veterinarios (Ministerio de Ganadería y Pesca)."
+    pt: "A Tanzânia não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pelos Veterinary Services (Ministry of Livestock and Fisheries)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "After a licensed vet's exam and health certificate, the Ministry's Veterinary Services issue the export certificate authorising departure."
+        fr: "Après l'examen et le certificat d'un vétérinaire agréé, les Services vétérinaires du ministère délivrent le certificat d'export autorisant le départ."
+        es: "Tras el examen y el certificado de un veterinario autorizado, los Servicios Veterinarios del ministerio emiten el certificado de exportación que autoriza la salida."
+        pt: "Depois do exame e do atestado de saúde de um veterinário licenciado, os Veterinary Services do ministério emitem o certificado de exportação que autoriza a partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico (titulação) da UE válido antes de sair, ele continua válido por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Tanzania with your dog", fr: "Voyager en Tanzanie avec ton chien", es: "Viajar a Tanzania con tu perro", pt: "Viajar para a Tanzânia com seu cachorro" }
+  intro:
+    en: >-
+      Tanzania welcomes pet dogs, but entry is controlled by its own veterinary authority — the
+      Directorate of Veterinary Services within the Ministry of Livestock and Fisheries — under the
+      Animal Diseases Act and the Animal Ordinance (Cap. 156). No dog may arrive without an import
+      permit obtained in advance from the Director of Veterinary Services. Every dog needs a valid
+      rabies vaccination and a sanitary (veterinary health) certificate signed by a qualified
+      veterinary surgeon in the country of export. Tanzania is not an EU country and does not
+      recognise the EU pet passport as an entry document. Its published conditions do not list a
+      rabies antibody test. What mainly changes with your origin is the endorsement path for your
+      health certificate; the core Tanzanian requirements — permit, rabies vaccination and
+      certificate — apply to every dog. This guide explains each step before you book your flight.
+    fr: >-
+      La Tanzanie accueille les chiens de compagnie, mais l'entrée est contrôlée par sa propre
+      autorité vétérinaire — la Directorate of Veterinary Services au sein du ministère de l'Élevage
+      et de la Pêche — au titre de l'Animal Diseases Act et de l'Animal Ordinance (Cap. 156). Aucun
+      chien ne peut arriver sans un permis d'importation obtenu à l'avance auprès du Director of
+      Veterinary Services. Chaque chien doit disposer d'une vaccination antirabique valide et d'un
+      certificat sanitaire (certificat vétérinaire) signé par un vétérinaire qualifié du pays
+      d'export. La Tanzanie n'est pas un pays de l'UE et ne reconnaît pas le passeport européen comme
+      document d'entrée. Ses conditions publiées ne mentionnent pas de titrage antirabique. Ce qui
+      change surtout selon l'origine, c'est le circuit de visa du certificat sanitaire ; les
+      exigences tanzaniennes de base — permis, vaccination et certificat — s'appliquent à tout chien.
+      Ce guide détaille chaque étape avant de réserver ton vol.
+    es: >-
+      Tanzania acoge a los perros de compañía, pero la entrada está controlada por su propia
+      autoridad veterinaria — la Directorate of Veterinary Services, dentro del Ministry of Livestock
+      and Fisheries — al amparo del Animal Diseases Act y del Animal Ordinance (Cap. 156). Ningún
+      perro puede llegar sin un permiso de importación obtenido con antelación del Director of
+      Veterinary Services. Todo perro necesita una vacunación antirrábica válida y un certificado
+      sanitario (certificado veterinario) firmado por un veterinario cualificado del país de
+      exportación. Tanzania no es un país de la UE y no reconoce el pasaporte europeo para mascotas
+      como documento de entrada. Sus condiciones publicadas no incluyen una prueba de titulación de
+      rabia. Lo que cambia sobre todo según el origen es el circuito de refrendo de tu certificado
+      sanitario; los requisitos básicos de Tanzania — permiso, vacunación antirrábica y certificado —
+      se aplican a todos los perros. Esta guía explica cada paso antes de que reserves tu vuelo.
+
+    pt: "A Tanzânia recebe bem os cachorros de estimação, mas a entrada é controlada pela sua própria autoridade veterinária — a Directorate of Veterinary Services, dentro do Ministry of Livestock and Fisheries — segundo o Animal Diseases Act e o Animal Ordinance (Cap. 156). Nenhum cachorro pode chegar sem uma autorização de importação obtida com antecedência junto ao Director of Veterinary Services. Todo cachorro precisa de uma vacinação antirrábica válida e de um certificado sanitário (atestado de saúde veterinário) assinado por um médico-veterinário qualificado no país de exportação. A Tanzânia não é um país da UE e não reconhece o passaporte europeu para animais de estimação como documento de entrada. Suas condições publicadas não incluem um teste sorológico antirrábico. O que muda principalmente conforme a sua origem é o caminho de endosso do seu certificado veterinário; as exigências centrais da Tanzânia — autorização, vacinação antirrábica e certificado — se aplicam a todo cachorro. Este guia explica cada etapa antes de você reservar o seu voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance import permit and health certificate", fr: "Modérée — permis d'importation préalable et certificat sanitaire", es: "Moderada — permiso de importación previo y certificado sanitario", pt: "Moderado — exige autorização de importação prévia e certificado veterinário" }
+
+prepTime:
+  eu:
+    en: "From Europe: allow ~4–6 weeks for the import permit from the Director of Veterinary Services, a rabies vaccination at least one month old and a veterinary health certificate before departure."
+    fr: "Depuis l'Europe : prévoir ~4 à 6 semaines pour le permis du Director of Veterinary Services, une vaccination antirabique d'au moins un mois et un certificat sanitaire vétérinaire avant le départ."
+    es: "Desde Europa: prevé ~4–6 semanas para el permiso de importación del Director of Veterinary Services, una vacunación antirrábica de al menos un mes y un certificado sanitario veterinario antes de la salida."
+    pt: "Da Europa: reserve cerca de 4 a 6 semanas para a autorização de importação do Director of Veterinary Services, uma vacinação antirrábica com pelo menos um mês e um certificado veterinário antes da partida."
+  listed:
+    en: "From other non-EU countries: ~4–6 weeks — the same core steps (import permit, rabies vaccination, veterinary health certificate), with the certificate endorsed by your national veterinary authority."
+    fr: "Depuis d'autres pays hors UE : ~4 à 6 semaines — mêmes étapes de base (permis, vaccination antirabique, certificat sanitaire), le certificat étant visé par ton autorité vétérinaire nationale."
+    es: "Desde otros países fuera de la UE: ~4–6 semanas — los mismos pasos básicos (permiso de importación, vacunación antirrábica, certificado sanitario veterinario), con el certificado refrendado por tu autoridad veterinaria nacional."
+    pt: "De outros países fora da UE: cerca de 4 a 6 semanas — as mesmas etapas básicas (autorização de importação, vacinação antirrábica, certificado veterinário), com o certificado endossado pela sua autoridade veterinária nacional."
+  nonListed:
+    en: "From all origins: Tanzania applies the same import-permit and certificate requirements; allow extra time so the rabies vaccination is at least one month old and the permit is issued before travel."
+    fr: "Depuis toute origine : la Tanzanie applique les mêmes exigences de permis et de certificat ; prévois une marge pour que le vaccin ait au moins un mois et que le permis soit délivré avant le voyage."
+    es: "Desde cualquier origen: Tanzania aplica los mismos requisitos de permiso de importación y certificado; deja tiempo extra para que la vacunación antirrábica tenga al menos un mes y el permiso se emita antes del viaje."
+    pt: "De todas as origens: a Tanzânia aplica as mesmas exigências de autorização de importação e certificado; reserve tempo extra para que a vacinação antirrábica tenha pelo menos um mês e a autorização seja emitida antes da viagem."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended (not mandatory)", fr: "Recommandée (non obligatoire)", es: "Recomendado (no obligatorio)", pt: "Recomendado (não obrigatório)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (1 month to 3 years before entry)", fr: "Requise (1 mois à 3 ans avant l'entrée)", es: "Obligatoria (de 1 mes a 3 años antes de la entrada)", pt: "Obrigatória (de 1 mês a 3 anos antes da entrada)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not listed in published conditions", fr: "Non mentionné dans les conditions publiées", es: "No mencionada en las condiciones publicadas", pt: "Não consta das condições publicadas" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (from export-country vet)", fr: "Requis (vétérinaire du pays d'export)", es: "Obligatorio (del veterinario del país de exportación)", pt: "Obrigatório (emitido por veterinário do país de exportação)" }
+    cls: warn
+  - requirement: { en: "Port-of-entry veterinary inspection", fr: "Inspection vétérinaire au point d'entrée", es: "Inspección veterinaria en el punto de entrada", pt: "Inspeção veterinária no ponto de entrada" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Only if required by the port vet", fr: "Seulement si exigée par le vétérinaire du port", es: "Solo si la exige el veterinario del puerto", pt: "Apenas se exigida pelo veterinário do porto" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and the Director of Veterinary Services sets the exact conditions on your import permit."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et le Director of Veterinary Services fixe les conditions exactes sur ton permis d'importation."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y el Director of Veterinary Services fija las condiciones exactas en tu permiso de importación."
+    pt: "Somente um médico-veterinário pode confirmar o procedimento exato para o seu cachorro, e o Director of Veterinary Services define as condições exatas na sua autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Tanzania (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Tanzanie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Tanzania (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Tanzânia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Tanzania", fr: "Pays de destination — Tanzanie", es: "País de destino — Tanzania", pt: "País de destino — Tanzânia" }
+      text:
+        en: "Tanzania always requires an advance import permit from the Director of Veterinary Services, a valid rabies vaccination (given 1 month to 3 years before entry) and a veterinary health certificate from a vet in the country of export. Rules flow from the Animal Diseases Act and the Animal Ordinance (Cap. 156)."
+        fr: "La Tanzanie exige toujours un permis d'importation préalable du Director of Veterinary Services, une vaccination antirabique valide (faite de 1 mois à 3 ans avant l'entrée) et un certificat sanitaire vétérinaire d'un vétérinaire du pays d'export. Les règles découlent de l'Animal Diseases Act et de l'Animal Ordinance (Cap. 156)."
+        es: "Tanzania siempre exige un permiso de importación previo del Director of Veterinary Services, una vacunación antirrábica válida (administrada de 1 mes a 3 años antes de la entrada) y un certificado sanitario veterinario de un veterinario del país de exportación. Las normas se derivan del Animal Diseases Act y del Animal Ordinance (Cap. 156)."
+        pt: "A Tanzânia sempre exige uma autorização de importação prévia do Director of Veterinary Services, uma vacinação antirrábica válida (aplicada de 1 mês a 3 anos antes da entrada) e um certificado veterinário de um veterinário no país de exportação. As regras decorrem do Animal Diseases Act e do Animal Ordinance (Cap. 156)."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Your departure country decides who endorses the health certificate — for example, an EU official veterinarian, or a USDA-accredited vet with APHIS endorsement from the United States. Tanzania's published conditions do not set easier or harder tiers by origin; the core documents are the same."
+        fr: "Ton pays de départ détermine qui vise le certificat sanitaire — par exemple un vétérinaire officiel de l'UE, ou un vétérinaire agréé USDA avec visa APHIS depuis les États-Unis. Les conditions publiées de la Tanzanie n'établissent pas de niveaux plus ou moins stricts selon l'origine ; les documents de base sont identiques."
+        es: "Tu país de salida decide quién refrenda el certificado sanitario — por ejemplo, un veterinario oficial de la UE, o un veterinario acreditado por el USDA con refrendo de APHIS desde Estados Unidos. Las condiciones publicadas de Tanzania no establecen niveles más o menos estrictos según el origen; los documentos básicos son los mismos."
+        pt: "O seu país de partida determina quem endossa o certificado veterinário — por exemplo, um veterinário oficial da UE, ou um veterinário credenciado pelo USDA com endosso do APHIS, no caso dos Estados Unidos. As condições publicadas da Tanzânia não estabelecem níveis mais fáceis ou mais difíceis por origem; os documentos centrais são os mesmos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's real origin and recent movements can affect what the country-of-export vet is able to certify and what the port veterinarian asks for on arrival. Confirm your dog's history with your vet before you finalise the permit application."
+        fr: "L'origine réelle et les déplacements récents de ton chien peuvent influer sur ce que le vétérinaire du pays d'export peut attester et sur ce que le vétérinaire du port demande à l'arrivée. Confirme l'historique de ton chien avec ton vétérinaire avant de finaliser la demande de permis."
+        es: "El origen real y los desplazamientos recientes de tu perro pueden influir en lo que el veterinario del país de exportación puede certificar y en lo que el veterinario del puerto pide a la llegada. Confirma el historial de tu perro con tu veterinario antes de finalizar la solicitud del permiso."
+        pt: "A origem real e os deslocamentos recentes do seu cachorro podem afetar o que o veterinário do país de exportação consegue certificar e o que o veterinário do porto pede na chegada. Confirme o histórico do seu cachorro com o seu veterinário antes de finalizar o pedido de autorização."
+  note:
+    en: "So read the requirements below as Tanzania's framework, then confirm your dog's exact origin and history with your vet — the import permit lists the precise conditions."
+    fr: "Lis donc les exigences ci-dessous comme le cadre tanzanien, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis d'importation liste les conditions précises."
+    es: "Así que lee los requisitos siguientes como el marco de Tanzania y luego confirma el origen y el historial exactos de tu perro con tu veterinario — el permiso de importación detalla las condiciones precisas."
+    pt: "Portanto, leia as exigências abaixo como o marco da Tanzânia e, depois, confirme a origem exata e o histórico do seu cachorro com o seu veterinário — a autorização de importação lista as condições precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Obtained in advance from the Director of Veterinary Services (Ministry of Livestock and Fisheries) before the dog travels. Apply by letter of request to the Director/Permanent Secretary stating the type/breed of pet, its age, the port of entry, and attaching the vaccination certificates. An import fee applies (published as Tsh. 30,000 for bringing a pet in).", fr: "À obtenir à l'avance auprès du Director of Veterinary Services (ministère de l'Élevage et de la Pêche) avant le voyage du chien. Fais une demande par lettre au Director/Secrétaire permanent indiquant le type/la race, l'âge, le point d'entrée, en joignant les certificats de vaccination. Des frais s'appliquent (publiés à 30 000 Tsh pour l'entrée d'un animal).", es: "Se obtiene con antelación del Director of Veterinary Services (Ministry of Livestock and Fisheries) antes de que el perro viaje. Solicítalo mediante carta de solicitud dirigida al Director/Permanent Secretary indicando el tipo/la raza de la mascota, su edad, el punto de entrada, y adjuntando los certificados de vacunación. Se aplica una tasa de importación (publicada como 30 000 Tsh para la entrada de una mascota).", pt: "Obtida com antecedência junto ao Director of Veterinary Services (Ministry of Livestock and Fisheries) antes de o cachorro viajar. Solicite por meio de carta de pedido ao Director/Permanent Secretary indicando o tipo/raça do animal de estimação, a sua idade, o ponto de entrada, e anexando os certificados de vacinação. Uma taxa de importação se aplica (publicada como Tsh. 30.000 para trazer um animal de estimação)." }
+    exceptions: { en: "No exceptions — a permit from the Veterinary Services is required for the importation of dogs (and cats). Imported animals may enter only at designated ports.", fr: "Aucune exception — un permis des Veterinary Services est requis pour l'importation de chiens (et de chats). Les animaux importés ne peuvent entrer que par des points d'entrée désignés.", es: "Sin excepciones — se exige un permiso de los Veterinary Services para la importación de perros (y gatos). Los animales importados solo pueden entrar por puntos de entrada designados.", pt: "Sem exceções — uma autorização dos Veterinary Services é exigida para a importação de cachorros (e gatos). Os animais importados só podem entrar por portos designados." }
+    ref: { en: "Tanzania missions — Import permit for pets; Ministry of Livestock and Fisheries, Veterinary Services", fr: "Missions de Tanzanie — Permis d'importation d'animaux ; ministère de l'Élevage et de la Pêche, Veterinary Services", es: "Misiones de Tanzania — Permiso de importación de mascotas; Ministry of Livestock and Fisheries, Veterinary Services", pt: "Tanzania missions — Import permit for pets; Ministry of Livestock and Fisheries, Veterinary Services" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "An ISO 11784/11785 15-digit microchip is advised for identification, ideally implanted before the rabies vaccination so the records match.", fr: "Une puce ISO 11784/11785 à 15 chiffres est conseillée pour l'identification, idéalement posée avant la vaccination antirabique pour que les documents concordent.", es: "Se aconseja un microchip ISO 11784/11785 de 15 dígitos para la identificación, idealmente implantado antes de la vacunación antirrábica para que los registros coincidan.", pt: "Um microchip ISO 11784/11785 de 15 dígitos é aconselhado para identificação, idealmente implantado antes da vacinação antirrábica, para que os registros coincidam." }
+    exceptions: { en: "Tanzania's published import conditions do not make the microchip mandatory for entry, but it is strongly recommended.", fr: "Les conditions d'importation publiées de la Tanzanie ne rendent pas la puce obligatoire à l'entrée, mais elle est fortement recommandée.", es: "Las condiciones de importación publicadas de Tanzania no hacen obligatorio el microchip para la entrada, pero se recomienda encarecidamente.", pt: "As condições de importação publicadas da Tanzânia não tornam o microchip obrigatório para a entrada, mas ele é fortemente recomendado." }
+    ref: { en: "Tanzania import conditions (microchip not listed as mandatory)", fr: "Conditions d'importation de la Tanzanie (puce non listée comme obligatoire)", es: "Condiciones de importación de Tanzania (microchip no listado como obligatorio)", pt: "Condições de importação da Tanzânia (microchip não listado como obrigatório)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated against rabies at least 1 month and not more than 3 years before entry into Tanzania (within the vaccine's validity). The vaccination certificate is attached to the import-permit application.", fr: "Les chiens doivent être vaccinés contre la rage au moins 1 mois et au plus 3 ans avant l'entrée en Tanzanie (dans la validité du vaccin). Le certificat de vaccination est joint à la demande de permis d'importation.", es: "Los perros deben estar vacunados contra la rabia al menos 1 mes y no más de 3 años antes de la entrada en Tanzania (dentro de la valide de la vacuna). El certificado de vacunación se adjunta a la solicitud del permiso de importación.", pt: "Os cachorros precisam ser vacinados contra a raiva pelo menos 1 mês e no máximo 3 anos antes da entrada na Tanzânia (dentro da validade da vacina). O certificado de vacinação é anexado ao pedido de autorização de importação." }
+    exceptions: { en: "None published. Tanzania is a rabies-endemic country and treats the rabies vaccination as a core requirement.", fr: "Aucune exception publiée. La Tanzanie est un pays d'enzootie rabique et considère la vaccination antirabique comme une exigence de base.", es: "Ninguna publicada. Tanzania es un país con rabia endémica y considera la vacunación antirrábica un requisito básico.", pt: "Nenhuma publicada. A Tanzânia é um país com raiva endêmica e trata a vacinação antirrábica como uma exigência central." }
+    ref: { en: "Tanzania missions — Procedure for bringing pets (rabies 1 month to 3 years before entry)", fr: "Missions de Tanzanie — Procédure d'entrée des animaux (rage de 1 mois à 3 ans avant l'entrée)", es: "Misiones de Tanzania — Procedimiento de entrada de mascotas (rabia de 1 mes a 3 años antes de la entrada)", pt: "Tanzania missions — Procedure for bringing pets (raiva de 1 mês a 3 anos antes da entrada)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not listed in published conditions", fr: "Non mentionné dans les conditions publiées", es: "No mencionada en las condiciones publicadas", pt: "Não consta das condições publicadas" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Tanzania's published import conditions do not list a rabies antibody test to enter. Because the requirement is not published, confirm directly with the Director of Veterinary Services for your specific origin.", fr: "Les conditions d'importation publiées de la Tanzanie ne mentionnent pas de titrage antirabique pour entrer. Cette exigence n'étant pas publiée, vérifie directement auprès du Director of Veterinary Services pour ton origine précise.", es: "Las condiciones de importación publicadas de Tanzania no incluyen una prueba de titulación de rabia para entrar. Como el requisito no está publicado, confírmalo directamente con el Director of Veterinary Services para tu origen concreto.", pt: "As condições de importação publicadas da Tanzânia não incluem um teste sorológico antirrábico para entrar. Como a exigência não é publicada, confirme diretamente com o Director of Veterinary Services para a sua origem específica." }
+    ref: { en: "Tanzania import conditions (no antibody test listed)", fr: "Conditions d'importation de la Tanzanie (aucun titrage listé)", es: "Condiciones de importación de Tanzania (ninguna prueba de titulación listada)", pt: "Condições de importação da Tanzânia (nenhum teste sorológico listado)" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A sanitary certificate from a qualified veterinary surgeon in the country of export must accompany every imported animal, certifying the dog's health. From the United States it must be issued by a USDA-accredited veterinarian and endorsed by USDA-APHIS on the official Tanzania dog/cat certificate.", fr: "Un certificat sanitaire d'un vétérinaire qualifié du pays d'export doit accompagner tout animal importé, attestant la santé du chien. Depuis les États-Unis, il doit être établi par un vétérinaire agréé USDA et visé par l'USDA-APHIS sur le certificat officiel chien/chat de la Tanzanie.", es: "Todo animal importado debe ir acompañado de un certificado sanitario de un veterinario cualificado del país de exportación, que acredite la salud del perro. Desde Estados Unidos debe ser expedido por un veterinario acreditado por el USDA y refrendado por el USDA-APHIS en el certificado oficial de perro/gato de Tanzania.", pt: "Um certificado sanitário de um médico-veterinário qualificado no país de exportação precisa acompanhar todo animal importado, certificando a saúde do cachorro. Dos Estados Unidos, ele precisa ser emitido por um veterinário credenciado pelo USDA e endossado pelo USDA-APHIS no certificado oficial para cachorros/gatos da Tanzânia." }
+    exceptions: { en: "Use the certificate format required by your national veterinary authority / the Tanzanian permit; keep photocopies of the animal's records for entry.", fr: "Utilise le format de certificat exigé par ton autorité vétérinaire nationale / le permis tanzanien ; conserve des photocopies des documents de l'animal pour l'entrée.", es: "Usa el formato de certificado exigido por tu autoridad veterinaria nacional / el permiso de Tanzania; conserva fotocopias de los registros del animal para la entrada.", pt: "Use o formato de certificado exigido pela sua autoridade veterinária nacional / pela autorização tanzaniana; mantenha fotocópias dos registros do animal para a entrada." }
+    ref: { en: "Tanzania missions — sanitary certificate from export-country vet; USDA APHIS Tanzania dog/cat certificate", fr: "Missions de Tanzanie — certificat sanitaire du vétérinaire du pays d'export ; certificat chien/chat USDA APHIS pour la Tanzanie", es: "Misiones de Tanzania — certificado sanitario del veterinario del país de exportación; certificado de perro/gato del USDA APHIS para Tanzania", pt: "Tanzania missions — certificado sanitário do veterinário do país de exportação; certificado USDA APHIS para cachorros/gatos da Tanzânia" }
+  - item: { en: "Parasite / deworming treatment", fr: "Traitement antiparasitaire / vermifuge", es: "Tratamiento antiparasitario / desparasitación", pt: "Tratamento antiparasitário / vermifugação" }
+    required: { en: "Recommended", fr: "Recommandé", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "Deworming is recommended (published guidance: worm treatment every three months, or worm tablets roughly every 45 days). DHLP-type vaccinations (distemper, hepatitis, leptospirosis, parvovirus) are also recommended alongside rabies.", fr: "La vermifugation est recommandée (indication publiée : traitement tous les trois mois, ou comprimés vermifuges environ tous les 45 jours). Les vaccinations de type DHLP (maladie de Carré, hépatite, leptospirose, parvovirose) sont aussi recommandées en plus de la rage.", es: "Se recomienda la desparasitación (indicación publicada: tratamiento antiparasitario cada tres meses, o comprimidos antiparasitarios aproximadamente cada 45 días). Las vacunaciones de tipo DHLP (moquillo, hepatitis, leptospirosis, parvovirosis) también se recomiendan además de la rabia.", pt: "A vermifugação é recomendada (orientação publicada: tratamento antiparasitário a cada três meses, ou comprimidos vermífugos aproximadamente a cada 45 dias). Vacinações do tipo DHLP (cinomose, hepatite, leptospirose, parvovirose) também são recomendadas junto com a raiva." }
+    exceptions: { en: "These are recommendations in the published guidance, not stated as mandatory entry conditions; confirm any compulsory treatment on your permit.", fr: "Il s'agit de recommandations de l'information publiée, non présentées comme des conditions d'entrée obligatoires ; confirme tout traitement obligatoire sur ton permis.", es: "Son recomendaciones de la información publicada, no presentadas como condiciones de entrada obligatorias; confirma cualquier tratamiento obligatorio en tu permiso.", pt: "Estas são recomendações da orientação publicada, não indicadas como condições de entrada obrigatórias; confirme qualquer tratamento obrigatório na sua autorização." }
+    ref: { en: "Tanzania missions — recommended vaccinations and worming", fr: "Missions de Tanzanie — vaccinations et vermifugation recommandées", es: "Misiones de Tanzania — vacunaciones y desparasitación recomendadas", pt: "Tanzania missions — vacinações e vermifugação recomendadas" }
+  - item: { en: "Port-of-entry veterinary inspection", fr: "Inspection vétérinaire au point d'entrée", es: "Inspección veterinaria en el punto de entrada", pt: "Inspeção veterinária no ponto de entrada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Imported animals are subject to examination by a veterinarian (the Zoo-Sanitary Inspector) at the port of entry under the Animal Ordinance (Cap. 156), and may enter only at designated ports. Present the import permit and certificates on arrival.", fr: "Les animaux importés sont soumis à un examen par un vétérinaire (le Zoo-Sanitary Inspector) au point d'entrée au titre de l'Animal Ordinance (Cap. 156), et ne peuvent entrer que par des points désignés. Présente le permis et les certificats à l'arrivée.", es: "Los animales importados están sujetos a un examen por un veterinario (el Zoo-Sanitary Inspector) en el punto de entrada al amparo del Animal Ordinance (Cap. 156), y solo pueden entrar por puntos designados. Presenta el permiso de importación y los certificados a la llegada.", pt: "Os animais importados estão sujeitos a exame por um veterinário (o Zoo-Sanitary Inspector) no ponto de entrada, segundo o Animal Ordinance (Cap. 156), e só podem entrar por portos designados. Apresente a autorização de importação e os certificados na chegada." }
+    exceptions: { en: "None — inspection applies to imported live animals at the designated port of entry.", fr: "Aucune — l'inspection s'applique aux animaux vivants importés au point d'entrée désigné.", es: "Ninguna — la inspección se aplica a los animales vivos importados en el punto de entrada designado.", pt: "Nenhuma — a inspeção se aplica a animais vivos importados no porto de entrada designado." }
+    ref: { en: "Animal Ordinance (Cap. 156) — Zoo-Sanitary Inspector; examination at port of entry", fr: "Animal Ordinance (Cap. 156) — Zoo-Sanitary Inspector ; examen au point d'entrée", es: "Animal Ordinance (Cap. 156) — Zoo-Sanitary Inspector; examen en el punto de entrada", pt: "Animal Ordinance (Cap. 156) — Zoo-Sanitary Inspector; exame no porto de entrada" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Only if required", fr: "Seulement si exigée", es: "Solo si se exige", pt: "Apenas se exigida" }
+    when: { en: "Imported animals are subject to quarantine regulations and may be quarantined if the port veterinarian considers it necessary. With a valid permit, rabies vaccination and health certificate, routine quarantine is not stated.", fr: "Les animaux importés sont soumis à la réglementation de quarantaine et peuvent être placés en quarantaine si le vétérinaire du port l'estime nécessaire. Avec un permis, une vaccination antirabique et un certificat sanitaire valides, aucune quarantaine systématique n'est indiquée.", es: "Los animales importados están sujetos a la normativa de cuarentena y pueden ser puestos en cuarentena si el veterinario del puerto lo considera necesario. Con un permiso, una vacunación antirrábica y un certificado sanitario válidos, no se indica una cuarentena sistemática.", pt: "Os animais importados estão sujeitos a normas de quarentena e podem ser colocados em quarentena se o veterinário do porto considerar necessário. Com uma autorização, vacinação antirrábica e certificado veterinário válidos, uma quarentena de rotina não é indicada." }
+    exceptions: { en: "Applied at the discretion of the veterinary authority; the exact duration is not published. Confirm on your permit.", fr: "Appliquée à la discrétion de l'autorité vétérinaire ; la durée exacte n'est pas publiée. À confirmer sur ton permis.", es: "Se aplica a discreción de la autoridad veterinaria; la duración exacta no está publicada. Confírmalo en tu permiso.", pt: "Aplicada a critério da autoridade veterinária; a duração exata não é publicada. Confirme na sua autorização." }
+    ref: { en: "Tanzania import conditions — quarantine at port of entry (Animal Ordinance Cap. 156)", fr: "Conditions d'importation de la Tanzanie — quarantaine au point d'entrée (Animal Ordinance Cap. 156)", es: "Condiciones de importación de Tanzania — cuarentena en el punto de entrada (Animal Ordinance Cap. 156)", pt: "Condições de importação da Tanzânia — quarentena no porto de entrada (Animal Ordinance Cap. 156)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Not explicitly published", fr: "Non explicitement publié", es: "No publicado explícitamente", pt: "Não publicado expressamente" }
+    when: { en: "No specific minimum travelling age is published. In practice the rabies vaccination must be at least one month old at entry, and puppies are typically vaccinated against rabies with their third vaccination in the standard puppy schedule, so a young puppy cannot yet meet the rabies condition.", fr: "Aucun âge minimum de voyage précis n'est publié. En pratique, le vaccin antirabique doit dater d'au moins un mois à l'entrée, et les chiots sont généralement vaccinés contre la rage lors de leur troisième vaccination du calendrier standard, si bien qu'un très jeune chiot ne peut pas encore remplir la condition rabique.", es: "No se publica una edad mínima de viaje específica. En la práctica, la vacunación antirrábica debe tener al menos un mes en la entrada, y los cachorros suelen vacunarse contra la rabia en su tercera vacunación del calendario estándar, de modo que un cachorro joven aún no puede cumplir la condición de la rabia.", pt: "Nenhuma idade mínima de viagem específica é publicada. Na prática, a vacinação antirrábica precisa ter pelo menos um mês na entrada, e os filhotes normalmente são vacinados contra a raiva na terceira vacinação do calendário-padrão para filhotes, então um filhote muito jovem ainda não consegue cumprir a condição antirrábica." }
+    exceptions: { en: "Confirm the minimum age for your dog with the Director of Veterinary Services and your vet.", fr: "Confirme l'âge minimum pour ton chien auprès du Director of Veterinary Services et de ton vétérinaire.", es: "Confirma la edad mínima para tu perro con el Director of Veterinary Services y tu veterinario.", pt: "A idade mínima aplicável ao cachorro deve ser confirmada junto do Director dos Serviços de Veterinária e do médico veterinário." }
+    ref: { en: "Tanzania missions — rabies timing; puppy vaccination schedule (minimum age not published)", fr: "Missions de Tanzanie — délais de la rage ; calendrier de vaccination des chiots (âge minimum non publié)", es: "Misiones de Tanzania — plazos de la rabia; calendario de vacunación de cachorros (edad mínima no publicada)", pt: "Tanzania missions — prazos relativos à raiva; calendário de vacinação de filhotes (idade mínima não publicada)" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No national import ban found", fr: "Aucune interdiction nationale trouvée", es: "No se ha encontrado prohibición nacional de importación", pt: "Nenhuma proibição nacional de importação encontrada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "We found no official Tanzanian breed-specific import ban; entry is controlled by permit and health requirements, not by breed. The permit application does ask for the breed.", fr: "Nous n'avons trouvé aucune interdiction d'importation officielle par race en Tanzanie ; l'entrée est encadrée par le permis et les exigences sanitaires, non par la race. La demande de permis mentionne toutefois la race.", es: "No encontramos ninguna prohibición de importación oficial de Tanzania por raza; la entrada se controla mediante el permiso y los requisitos sanitarios, no por la raza. La solicitud del permiso sí pide la raza.", pt: "Não encontramos nenhuma proibição de importação oficial da Tanzânia por raça; a entrada é controlada pela autorização e pelas exigências sanitárias, não pela raça. O pedido de autorização pede a raça, no entanto." }
+    ref: { en: "Tanzania import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation de la Tanzanie (aucune législation par race citée)", es: "Condiciones de importación de Tanzania (ninguna legislación por raza citada)", pt: "Condições de importação da Tanzânia (nenhuma legislação por raça citada)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Tanzania: the EU passport is not a Tanzanian document. A dog from Europe needs the import permit from the Director of Veterinary Services, a valid rabies vaccination (given 1 month to 3 years before entry) and a veterinary health certificate signed by a vet in the country of export, ideally endorsed by the national official veterinary authority. No rabies antibody test is listed in the published conditions."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Tanzanie : le passeport UE n'est pas un document tanzanien. Un chien venant d'Europe a besoin du permis d'importation du Director of Veterinary Services, d'une vaccination antirabique valide (faite de 1 mois à 3 ans avant l'entrée) et d'un certificat sanitaire signé par un vétérinaire du pays d'export, idéalement visé par l'autorité vétérinaire officielle nationale. Aucun titrage antirabique n'est mentionné dans les conditions publiées."
+      es: "No hay ningún atajo por pasaporte europeo para entrar en Tanzania: el pasaporte europeo no es un documento de Tanzania. Un perro que llega de Europa necesita el permiso de importación del Director of Veterinary Services, una vacunación antirrábica válida (administrada de 1 mes a 3 años antes de la entrada) y un certificado sanitario veterinario firmado por un veterinario del país de exportación, idealmente refrendado por la autoridad veterinaria oficial nacional. No se incluye ninguna prueba de titulación de rabia en las condiciones publicadas."
+      pt: "Não existe um atalho de passaporte europeu para entrar na Tanzânia: o passaporte da UE não é um documento tanzaniano. Um cachorro vindo da Europa precisa da autorização de importação do Director of Veterinary Services, de uma vacinação antirrábica válida (aplicada de 1 mês a 3 anos antes da entrada) e de um certificado veterinário assinado por um veterinário no país de exportação, idealmente endossado pela autoridade veterinária oficial nacional. Nenhum teste sorológico antirrábico é listado nas condições publicadas."
+    cls: warn
+  listed:
+    title: { en: "From other non-EU countries", fr: "Depuis d'autres pays hors UE", es: "Desde otros países fuera de la UE", pt: "De outros países fora da UE" }
+    body:
+      en: "Tanzania does not operate an EU-style list of approved countries for pet entry. From any non-EU origin the same core requirements apply: import permit, rabies vaccination and veterinary health certificate. From the United States, for example, the certificate must be issued by a USDA-accredited veterinarian and endorsed by USDA-APHIS on Tanzania's official dog/cat form."
+      fr: "La Tanzanie n'applique pas de liste de pays approuvés à l'européenne pour l'entrée des animaux. Depuis toute origine hors UE, les mêmes exigences de base s'appliquent : permis d'importation, vaccination antirabique et certificat sanitaire vétérinaire. Depuis les États-Unis, par exemple, le certificat doit être établi par un vétérinaire agréé USDA et visé par l'USDA-APHIS sur le formulaire officiel chien/chat de la Tanzanie."
+      es: "Tanzania no aplica una lista de países aprobados al estilo de la UE para la entrada de mascotas. Desde cualquier origen fuera de la UE se aplican los mismos requisitos básicos: permiso de importación, vacunación antirrábica y certificado sanitario veterinario. Desde Estados Unidos, por ejemplo, el certificado debe ser expedido por un veterinario acreditado por el USDA y refrendado por el USDA-APHIS en el formulario oficial de perro/gato de Tanzania."
+      pt: "A Tanzânia não opera uma lista de países aprovados no estilo da UE para a entrada de animais de estimação. De qualquer origem fora da UE, aplicam-se as mesmas exigências centrais: autorização de importação, vacinação antirrábica e certificado veterinário. Dos Estados Unidos, por exemplo, o certificado precisa ser emitido por um veterinário credenciado pelo USDA e endossado pelo USDA-APHIS no formulário oficial para cachorros/gatos da Tanzânia."
+    cls: warn
+  nonListed:
+    title: { en: "From all other origins", fr: "Depuis toute autre origine", es: "Desde cualquier otro origen", pt: "De todas as outras origens" }
+    body:
+      en: "Whatever the origin, Tanzania's framework is the same: apply in advance for the import permit, carry a valid rabies vaccination and a veterinary health certificate, and present everything to the port veterinarian, who inspects the dog and may quarantine it if he considers it necessary. Arriving without a permit or the required certificates risks refusal, quarantine or return at the owner's expense."
+      fr: "Quelle que soit l'origine, le cadre tanzanien est le même : demande le permis d'importation à l'avance, munis-toi d'une vaccination antirabique valide et d'un certificat sanitaire vétérinaire, et présente l'ensemble au vétérinaire du port, qui inspecte le chien et peut le placer en quarantaine s'il l'estime nécessaire. Arriver sans permis ou sans les certificats requis expose à un refus, une quarantaine ou un renvoi aux frais du propriétaire."
+      es: "Sea cual sea el origen, el marco de Tanzania es el mismo: solicita con antelación el permiso de importación, lleva una vacunación antirrábica válida y un certificado sanitario veterinario, y preséntalo todo al veterinario del puerto, que inspecciona al perro y puede ponerlo en cuarentena si lo considera necesario. Llegar sin permiso o sin los certificados exigidos expone a una denegación, una cuarentena o una devolución a cargo del propietario."
+      pt: "Seja qual for a origem, o marco da Tanzânia é o mesmo: solicite a autorização de importação com antecedência, leve uma vacinação antirrábica válida e um certificado veterinário, e apresente tudo ao veterinário do porto, que inspeciona o cachorro e pode colocá-lo em quarentena se considerar necessário. Chegar sem uma autorização ou sem os certificados exigidos arrisca recusa, quarentena ou devolução às custas do dono."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Tanzania depends on your permit and the certificates you carry."
+    fr: "Ce qui se passe à l'arrivée en Tanzanie dépend de ton permis et des certificats que tu porte."
+    es: "Lo que ocurre cuando tu perro llega a Tanzania depende de tu permiso y de los certificados que lleves."
+    pt: "O que acontece quando o seu cachorro chega à Tanzânia depende da sua autorização e dos certificados que você leva."
+  points:
+    - en: "Enter only at a designated port of entry and present the original import permit, the rabies vaccination certificate and the veterinary health certificate to the veterinary officer (Zoo-Sanitary Inspector)."
+      fr: "Entre uniquement par un point d'entrée désigné et présente le permis d'importation original, le certificat de vaccination antirabique et le certificat sanitaire vétérinaire à l'agent vétérinaire (Zoo-Sanitary Inspector)."
+      es: "Entra únicamente por un punto de entrada designado y presenta el permiso de importación original, el certificado de vacunación antirrábica y el certificado sanitario veterinario al agente veterinario (Zoo-Sanitary Inspector)."
+      pt: "Entre apenas por um porto de entrada designado e apresente a autorização de importação original, o certificado de vacinação antirrábica e o certificado veterinário ao agente veterinário (Zoo-Sanitary Inspector)."
+    - en: "The dog is examined by a veterinarian at the port of entry under the Animal Ordinance (Cap. 156); keep photocopies of the animal's records available."
+      fr: "Le chien est examiné par un vétérinaire au point d'entrée au titre de l'Animal Ordinance (Cap. 156) ; garde des photocopies des documents de l'animal à disposition."
+      es: "El perro es examinado por un veterinario en el punto de entrada al amparo del Animal Ordinance (Cap. 156); ten disponibles fotocopias de los registros del animal."
+      pt: "O cachorro é examinado por um veterinário no porto de entrada, segundo o Animal Ordinance (Cap. 156); mantenha fotocópias dos registros do animal disponíveis."
+    - en: "Imported animals are subject to quarantine regulations; the port veterinarian may place the dog in quarantine if he considers it necessary."
+      fr: "Les animaux importés sont soumis à la réglementation de quarantaine ; le vétérinaire du port peut placer le chien en quarantaine s'il l'estime nécessaire."
+      es: "Los animales importados están sujetos a la normativa de cuarentena; el veterinario del puerto puede poner al perro en cuarentena si lo considera necesario."
+      pt: "Os animais importados estão sujeitos a normas de quarentena; o veterinário do porto pode colocar o cachorro em quarentena se considerar necessário."
+    - en: "If you plan to leave Tanzania later with your dog, apply for an export permit and obtain a Tanzanian veterinarian's health recommendation before departure."
+      fr: "Si tu prévois de quitter la Tanzanie plus tard avec ton chien, demande un permis d'exportation et obtiens une recommandation sanitaire d'un vétérinaire tanzanien avant le départ."
+      es: "Si prevés salir de Tanzania más adelante con tu perro, solicita un permiso de exportación y obtén una recomendación sanitaria de un veterinario tanzano antes de la salida."
+      pt: "Se você planeja sair da Tanzânia mais tarde com o seu cachorro, solicite uma autorização de exportação e obtenha uma recomendação de saúde de um veterinário tanzaniano antes da partida."
+    - en: "Carry original documents (not copies) and keep a set with you throughout the journey."
+      fr: "Munis-toi des documents originaux (pas de copies) et garde-en un jeu sur toi durant tout le trajet."
+      es: "Lleva los documentos originales (no copias) y guarda un juego contigo durante todo el trayecto."
+      pt: "Leve os documentos originais (não cópias) e mantenha um jogo com você durante todo o trajeto."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Tanzania's published import conditions control entry through the import permit and health requirements, not through breed. We found no national breed-specific import ban in the official conditions, although the permit application does record the dog's breed."
+    fr: "Les conditions d'importation publiées de la Tanzanie encadrent l'entrée par le permis d'importation et les exigences sanitaires, non par la race. Nous n'avons trouvé aucune interdiction d'importation nationale par race dans les conditions officielles, même si la demande de permis enregistre la race du chien."
+    es: "Las condiciones de importación publicadas de Tanzania controlan la entrada mediante el permiso de importación y los requisitos sanitarios, no mediante la raza. No encontramos ninguna prohibición de importación nacional por raza en las condiciones oficiales, aunque la solicitud del permiso sí registra la raza del perro."
+    pt: "As condições de importação publicadas da Tanzânia controlam a entrada por meio da autorização de importação e das exigências sanitárias, não pela raça. Não encontramos nenhuma proibição nacional de importação por raça nas condições oficiais, embora o pedido de autorização registre a raça do cachorro."
+  cat1:
+    en: "No prohibited-breed list: the official Tanzanian import conditions do not name banned breeds. A compliant dog of any breed can be imported once the permit, rabies vaccination and health certificate are in order."
+    fr: "Pas de liste de races interdites : les conditions d'importation officielles de la Tanzanie ne nomment aucune race prohibée. Un chien conforme, quelle que soit sa race, peut être importé dès lors que le permis, la vaccination antirabique et le certificat sanitaire sont en règle."
+    es: "Ninguna lista de razas prohibidas: las condiciones de importación oficiales de Tanzania no nombran razas prohibidas. Un perro que cumpla los requisitos, sea cual sea su raza, puede importarse una vez que el permiso, la vacunación antirrábica y el certificado sanitario estén en regla."
+    pt: "Nenhuma lista de raças proibidas: as condições de importação oficiais da Tanzânia não citam raças proibidas. Um cachorro em conformidade, de qualquer raça, pode ser importado assim que a autorização, a vacinação antirrábica e o certificado veterinário estiverem em ordem."
+  cat2:
+    en: "We found no official Tanzanian breed-specific ownership or import legislation to report. Because national rules are not always published in full, treat this as 'none found' rather than a guarantee, and verify with the Director of Veterinary Services if you own a breed sometimes restricted elsewhere."
+    fr: "Nous n'avons trouvé aucune législation tanzanienne officielle par race, à la détention ou à l'importation, à signaler. Les règles nationales n'étant pas toujours publiées en intégralité, considère cela comme « rien de trouvé » plutôt qu'une garantie, et vérifie auprès du Director of Veterinary Services si tu détiens une race parfois restreinte ailleurs."
+    es: "No encontramos ninguna legislación tanzana oficial por raza, de tenencia o de importación, que señalar. Como las normas nacionales no siempre se publican de forma íntegra, considéralo como «nada encontrado» más que como una garantía, y verifica con el Director of Veterinary Services si tienes una raza a veces restringida en otros lugares."
+    pt: "Não encontramos nenhuma legislação oficial da Tanzânia por raça, de posse ou de importação, a relatar. Como as regras nacionais nem sempre são publicadas na íntegra, trate isso como \"nada encontrado\", e não como uma garantia, e verifique com o Director of Veterinary Services se você tem uma raça às vezes restrita em outros lugares."
+  note:
+    en: "Zanzibar is semi-autonomous within the United Republic of Tanzania and may apply its own procedures; we found no separately published Zanzibar pet-import rules, so confirm directly with the Zanzibar veterinary authority if you are travelling there."
+    fr: "Zanzibar est semi-autonome au sein de la République-Unie de Tanzanie et peut appliquer ses propres procédures ; nous n'avons trouvé aucune règle d'importation d'animaux publiée séparément pour Zanzibar, vérifie donc directement auprès de l'autorité vétérinaire de Zanzibar si tu t'y rends."
+    es: "Zanzíbar es semiautónomo dentro de la República Unida de Tanzania y puede aplicar sus propios procedimientos; no encontramos ninguna norma de importación de mascotas publicada por separado para Zanzíbar, así que confírmalo directamente con la autoridad veterinaria de Zanzíbar si viajas allí."
+    pt: "Zanzibar é semiautônoma dentro da República Unida da Tanzânia e pode aplicar os seus próprios procedimentos; não encontramos nenhuma regra de importação de animais de estimação publicada separadamente para Zanzibar, então confirme diretamente com a autoridade veterinária de Zanzibar se você for viajar para lá."
+
+checklist:
+  - en: "Apply to the Director of Veterinary Services for the import permit well before travel (letter stating breed, age, port of entry, with vaccination certificates attached)"
+    fr: "Demande le permis d'importation au Director of Veterinary Services bien avant le voyage (lettre indiquant race, âge, point d'entrée, avec les certificats de vaccination joints)"
+    es: "Solicita el permiso de importación al Director of Veterinary Services mucho antes del viaje (carta indicando raza, edad, punto de entrada, con los certificados de vacunación adjuntos)"
+    pt: "Solicite a autorização de importação ao Director of Veterinary Services bem antes da viagem (carta indicando raça, idade, porto de entrada, com os certificados de vacinação anexados)"
+  - en: "ISO microchip (recommended) implanted before the rabies vaccination"
+    fr: "Puce ISO (recommandée) posée avant la vaccination antirabique"
+    es: "Microchip ISO (recomendado) implantado antes de la vacunación antirrábica"
+    pt: "Microchip ISO (recomendado) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination given 1 month to 3 years before entry"
+    fr: "Vaccination antirabique valide faite de 1 mois à 3 ans avant l'entrée"
+    es: "Vacunación antirrábica válida administrada de 1 mes a 3 años antes de la entrada"
+    pt: "Vacinação antirrábica válida, aplicada de 1 mês a 3 anos antes da entrada"
+  - en: "Veterinary health certificate from a vet in the country of export (USDA-APHIS endorsed from the US)"
+    fr: "Certificat sanitaire vétérinaire d'un vétérinaire du pays d'export (visé USDA-APHIS depuis les États-Unis)"
+    es: "Certificado sanitario veterinario de un veterinario del país de exportación (refrendado por el USDA-APHIS desde EE. UU.)"
+    pt: "Certificado veterinário de um veterinário no país de exportação (endossado pelo USDA-APHIS, no caso dos EUA)"
+  - en: "Recommended DHLP vaccinations and up-to-date worming"
+    fr: "Vaccinations DHLP recommandées et vermifugation à jour"
+    es: "Vacunaciones DHLP recomendadas y desparasitación al día"
+    pt: "Vacinações DHLP recomendadas e vermifugação em dia"
+  - en: "Original permit and certificates to present to the port veterinarian at a designated port of entry"
+    fr: "Permis et certificats originaux à présenter au vétérinaire du port, à un point d'entrée désigné"
+    es: "Permiso y certificados originales para presentar al veterinario del puerto en un punto de entrada designado"
+    pt: "Autorização e certificados originais para apresentar ao veterinário do porto em um porto de entrada designado"
+  - en: "Keep photocopies of the animal's records; plan an export permit if you will leave with the dog"
+    fr: "Conserve des photocopies des documents de l'animal ; prévois un permis d'exportation si tu repartez avec le chien"
+    es: "Conserva fotocopias de los registros del animal; prevé un permiso de exportación si te vas con el perro"
+    pt: "Mantenha fotocópias dos registros do animal; planeje uma autorização de exportação se você for sair do país com o cachorro"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
+
+sources:
+  - label: { en: "Tanzania Embassy (Berlin) — Import Permit Food, Plants, Pets and Animal Products", fr: "Ambassade de Tanzanie (Berlin) — Permis d'importation aliments, plantes, animaux de compagnie et produits animaux", es: "Embajada de Tanzania (Berlín) — Permiso de importación de alimentos, plantas, mascotas y productos animales", pt: "Embaixada da Tanzânia (Berlim) — Import Permit Food, Plants, Pets and Animal Products" }
+    url: "https://www.de.tzembassy.go.tz/services/import-permit-food-plants-pets-and-animal-products"
+  - label: { en: "Tanzania Mission to the UN (Geneva) — Import Permit Food, Plants, Pets and Animal Products", fr: "Mission de Tanzanie auprès de l'ONU (Genève) — Permis d'importation aliments, plantes, animaux de compagnie et produits animaux", es: "Misión de Tanzania ante la ONU (Ginebra) — Permiso de importación de alimentos, plantas, mascotas y productos animales", pt: "Missão da Tanzânia junto à ONU (Genebra) — Import Permit Food, Plants, Pets and Animal Products" }
+    url: "https://www.ch.tzembassy.go.tz/services/import-permit-food-plants-pets-and-animal-products"
+  - label: { en: "Application for Importing Pet Animals (Tanzania Embassy form, PDF)", fr: "Formulaire de demande d'importation d'animaux de compagnie (ambassade de Tanzanie, PDF)", es: "Solicitud de importación de animales de compañía (formulario de la Embajada de Tanzania, PDF)", pt: "Application for Importing Pet Animals (formulário da Embaixada da Tanzânia, PDF)" }
+    url: "https://www.de.tzembassy.go.tz/uploads/forms/Application_for_Importing_Pet_Animals.pdf"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Tanzania (import permit & health certificate)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers la Tanzanie (permis d'importation et certificat sanitaire)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Tanzania (permiso de importación y certificado sanitario)", pt: "USDA APHIS — Pet Travel from the United States to Tanzania (autorização de importação e certificado veterinário)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-tanzania"
+  - label: { en: "Ministry of Livestock and Fisheries (Wizara ya Mifugo na Uvuvi) — official site", fr: "Ministère de l'Élevage et de la Pêche (Wizara ya Mifugo na Uvuvi) — site officiel", es: "Ministry of Livestock and Fisheries (Wizara ya Mifugo na Uvuvi) — sitio oficial", pt: "Ministry of Livestock and Fisheries (Wizara ya Mifugo na Uvuvi) — site oficial" }
+    url: "https://www.mifugouvuvi.go.tz/"
+  - label: { en: "Tanzania Trade Portal — Zoosanitary inspectorate: export and import protocols", fr: "Portail du commerce de la Tanzanie — Inspectorat zoosanitaire : protocoles d'export et d'import", es: "Portal de Comercio de Tanzania — Inspección zoosanitaria: protocolos de exportación e importación", pt: "Tanzania Trade Portal — Inspetoria zoossanitária: protocolos de exportação e importação" }
+    url: "https://trade.tanzania.go.tz/procedure/492?l=en"
+
+seo:
+  title: { en: "Tanzania Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Tanzanie — Guide", es: "Requisitos de entrada de perros en Tanzania — Guía de viaje", pt: "Exigências de entrada de cachorros na Tanzânia — Guia de viagem" }
+  metaTitle: { en: "Traveling to Tanzania With Your Dog: Entry Requirements (2026)", fr: "Voyager en Tanzanie avec ton chien : formalités (2026)", es: "Viajar a Tanzania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Tanzânia: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official rules for a dog entering Tanzania: import permit from the Director of Veterinary Services, rabies vaccination and health certificate. Sourced and dated."
+    fr: "Règles officielles pour un chien entrant en Tanzanie : permis du Director of Veterinary Services, vaccination antirabique et certificat sanitaire. Sourcé et daté."
+    es: "Normas oficiales para traer un perro a Tanzania: permiso del Director of Veterinary Services, vacunación antirrábica y certificado sanitario. Con fuentes y fecha."
+    pt: "Regras oficiais para um cachorro entrar na Tanzânia: autorização de importação do Director of Veterinary Services, vacinação antirrábica e certificado veterinário."
+  slug: "tanzania"
+  shortDesc:
+    en: "What you need to bring a dog into Tanzania: an advance import permit from the Director of Veterinary Services, a rabies vaccination and a veterinary health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien en Tanzanie : un permis d'importation préalable du Director of Veterinary Services, une vaccination antirabique et un certificat sanitaire vétérinaire."
+    es: "Lo que necesitas para traer un perro a Tanzania: un permiso de importación previo del Director of Veterinary Services, una vacunación antirrábica y un certificado sanitario veterinario."
+    pt: "O que você precisa para levar um cachorro à Tanzânia: uma autorização de importação prévia do Director of Veterinary Services, uma vacinação antirrábica e um certificado veterinário."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

@@ -1,0 +1,442 @@
+---
+/* Destination finder — "Where can I take my dog on holiday?".
+   Reuses the engine's route graph + climate model (via the /v1/destinations Worker endpoint), then
+   enriches each reachable country with a formalities estimate derived from the country guide's
+   difficulty + the documents the traveller already holds. Soft scoring: everything reachable is shown,
+   ranked, with unfavourable destinations sinking to the bottom under a warning. */
+import { loadKB, t, breedName, cityName, inlineT } from "@mydogcanfly/knowledge";
+import { API_BASE } from "../lib/env";
+import { countryData } from "../data/countries";
+
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const fr = locale === "fr";
+const T = inlineT(locale);
+
+const kb = loadKB();
+const countryName = (id: string) => { const c = kb.countries.get(id); return c ? ((c.name as Record<string, string>)[locale] ?? c.name.en) : ""; };
+const airports = [...kb.airports.values()].map((a) => ({ id: a.id, iata: a.iata, label: `${a.iata} · ${cityName(a, locale)} · ${countryName(a.country_id)}` })).sort((x, y) => x.label.localeCompare(y.label));
+const airportPop = new Map<string, number>();
+for (const a of kb.airlines.values()) for (const id of ((a as { served_airport_ids?: string[] }).served_airport_ids ?? [])) airportPop.set(id, (airportPop.get(id) ?? 0) + 1);
+const allLabel = t(locale, "finder.all_airports");
+const cityGroups = new Map<string, { city: string; country: string; ids: string[] }>();
+for (const a of kb.airports.values()) {
+  const key = `${cityName(a, locale)}|${countryName(a.country_id)}`;
+  const g = cityGroups.get(key) ?? { city: cityName(a, locale), country: countryName(a.country_id), ids: [] };
+  g.ids.push(a.id); cityGroups.set(key, g);
+}
+const cities = [...cityGroups.values()].filter((g) => g.ids.length >= 2)
+  .map((g) => ({ label: `${g.city} · ${g.country} · ${allLabel}`, ids: [...g.ids].sort((x, y) => (airportPop.get(y) ?? 0) - (airportPop.get(x) ?? 0)) }))
+  .sort((x, y) => x.label.localeCompare(y.label));
+const breeds = [...kb.breeds.values()].map((b) => ({ id: b.id, label: breedName(b, locale), weight: b.weight_kg, brachy: b.brachycephalic })).sort((x, y) => x.label.localeCompare(y.label));
+const defOriginLabel = airports.find((a) => a.id === "airport_cdg")?.label ?? "";
+
+// Per-country metadata for the formalities layer: difficulty level + region + whether a full guide exists.
+// Keyed by ISO2 (lowercase) to match the destination matches returned by the engine.
+const countryMeta: Record<string, { level: string; eu: boolean; guide: boolean }> = {};
+for (const g of Object.values(countryData)) {
+  const region = `${g.region?.en ?? ""} ${g.region?.fr ?? ""}`;
+  countryMeta[g.iso2.toLowerCase()] = {
+    level: g.difficulty?.level ?? "moderate",
+    eu: /\b(EU|UE|Schengen)\b/i.test(region),
+    guide: true,
+  };
+}
+
+const cbase = locale === "en" ? "/countries/" : `/${locale}/countries/`;
+
+const L = {
+  locale, apiBase: API_BASE, cbase,
+  breeds: Object.fromEntries(breeds.map((b) => [b.label.toLowerCase(), { id: b.id, w: b.weight, br: b.brachy }])),
+  breedById: Object.fromEntries(breeds.map((b) => [b.id, b.label])),   // for ?breed= deep-link prefill
+  airMap: Object.fromEntries(airports.map((a) => [a.label.toLowerCase(), a.id])),
+  airRev: Object.fromEntries(airports.map((a) => [a.id, a.label])),
+  cityMap: Object.fromEntries(cities.map((c) => [c.label.toLowerCase(), c.ids])),
+  countryMeta,
+  // UI strings (trilingual EN/FR/ES) — kept local like the other onward blocks.
+  s: {
+    loading: T("Scanning destinations…", "Analyse des destinations…", "Analizando destinos…"),
+    fillHint: T("Choose a departure city and your dog's breed.", "Choisis une ville de départ et la race de ton chien.", "Elige una ciudad de salida y la raza de tu perro."),
+    topTitle: T("Best cities right now", "Meilleures villes du moment", "Mejores ciudades ahora mismo"),
+    altShow: T("Show other cities", "Voir les autres villes", "Ver otras ciudades"),
+    altHide: T("Hide other cities", "Masquer les autres villes", "Ocultar otras ciudades"),
+    noResults: T("No direct destination found from this city. Try a larger hub.", "Aucune destination directe depuis cette ville. Essaie un grand hub.", "No se encontró ningún destino directo desde esta ciudad. Prueba con un hub más grande."),
+    reachable: T("cities with a direct flight", "villes accessibles en direct", "ciudades con vuelo directo"),
+    directOnly: T("Direct flights only", "Vols directs uniquement", "Solo vuelos directos"),
+    tempFilter: T("Temperature filter applied — some cities set aside due to heat", "Filtre de température appliqué — certaines villes écartées pour cause de chaleur", "Filtro de temperatura aplicado: algunas ciudades descartadas por el calor"),
+    dateForClimate: T("Add a date to estimate the climate", "Ajoute une date pour estimer le climat", "Añade una fecha para estimar el clima"),
+    estimate: T("Estimate — always confirm the exact rules on each country's page.", "Estimation — vérifie toujours les règles exactes sur la fiche de chaque pays.", "Estimación: confirma siempre las normas exactas en la página de cada país."),
+    viewGuide: T("View country guide", "Voir la fiche pays", "Ver la ficha del país"),
+    climate: T("Climate", "Climat", "Clima"),
+    formalities: T("Formalities", "Formalités", "Trámites"),
+    flights: T("Flights", "Vols", "Vuelos"),
+    // climate
+    climComfort: T("Comfortable on your date", "Confortable à ta date", "Cómodo en tu fecha"),
+    climRisk: T("Possible heat wave — watch the hold", "Canicule possible — attention à la soute", "Posible ola de calor: cuidado con la bodega"),
+    climEmbargo: T("Heat too high — hold/cargo often suspended", "Chaleur trop forte — soute souvent suspendue", "Calor demasiado alto: la bodega/carga suele estar suspendida"),
+    climEmbargoBrachy: T("Too hot for a snub-nosed dog on this date", "Trop chaud pour un chien brachycéphale à cette date", "Demasiado calor para un perro de hocico chato en esta fecha"),
+    // formalities
+    fmLight: T("Light — you already hold the key documents", "Légères — tu as déjà les documents clés", "Ligeros: ya tienes los documentos clave"),
+    fmModerate: T("Moderate — a step or two to prepare", "Modérées — une ou deux étapes à prévoir", "Moderados: uno o dos pasos por preparar"),
+    fmHeavy: T("Heavy — antibody test and waiting period likely", "Lourdes — titrage et délai probables", "Pesados: probablemente prueba serológica y periodo de espera"),
+    fmNeedBase: T("Microchip + rabies vaccine required first", "Puce + vaccin antirabique requis d'abord", "Primero se requieren microchip + vacuna antirrábica"),
+    fmUnknown: T("To be checked — no detailed guide yet", "À vérifier — pas encore de fiche détaillée", "Por comprobar: aún no hay ficha detallada"),
+    // flights
+    flDirect: T("Direct flight available", "Vol direct disponible", "Vuelo directo disponible"),
+    flLimited: T("Direct, but placement is limited", "Direct, mais placement limité", "Directo, pero la disponibilidad es limitada"),
+    warnLabel: T("Not recommended on this date", "Déconseillé à cette date", "No recomendado en esta fecha"),
+    hours: T("direct", "en direct", "directo"),
+  },
+};
+---
+<section id="dest-finder" class="dfx" aria-label="Destination Finder">
+  <p class="dfx__criteria">
+    🐾 <b>{T("Ranked for your dog's wellbeing", "Classé pour le bien-être de ton chien", "Clasificado para el bienestar de tu perro")}</b> —
+    {T("we prioritise a pleasant, bearable temperature on arrival and a direct flight. The distance stays your choice, via the “Trip distance” filter.", "nous privilégions une température agréable et supportable à l'arrivée et un vol direct. La distance, elle, reste ton choix, via le filtre « Distance de voyage ».", "priorizamos una temperatura agradable y llevadera a la llegada y un vuelo directo. La distancia sigue siendo tu elección, mediante el filtro «Distancia de viaje».")}
+  </p>
+  <form id="dfx-form" class="dfx__form">
+    <div class="dfx__row">
+      <div class="dfx__field">
+        <label for="dfx-origin">{T("Departure city", "Ville de départ", "Ciudad de salida")}</label>
+        <input id="dfx-origin" data-ac="dfx-airports" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" value={defOriginLabel} placeholder={t(locale, "finder.choose_airport")} />
+      </div>
+      <datalist id="dfx-airports">{cities.map((c) => <option value={c.label}></option>)}{airports.map((a) => <option value={a.label}></option>)}</datalist>
+      <div class="dfx__field dfx__field--sm">
+        <label for="dfx-date">{T("Travel date", "Date de voyage", "Fecha de viaje")}</label>
+        <input id="dfx-date" type="date" />
+      </div>
+      <div class="dfx__field">
+        <label for="dfx-breed">{t(locale, "finder.breed")}</label>
+        <input id="dfx-breed" data-ac="dfx-breeds" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" placeholder={t(locale, "finder.breed_ph")} />
+        <datalist id="dfx-breeds">{breeds.map((b) => <option value={b.label}></option>)}</datalist>
+      </div>
+      <div class="dfx__field dfx__field--sm">
+        <label for="dfx-placement">{T("Placement", "Placement", "Ubicación")}</label>
+        <select id="dfx-placement">
+          <option value="any">{T("Any", "Indifférent", "Indiferente")}</option>
+          <option value="cabin">{t(locale, "placement.cabin")}</option>
+          <option value="hold">{t(locale, "placement.hold")}</option>
+        </select>
+      </div>
+      <div class="dfx__field dfx__field--sm">
+        <label for="dfx-range">{T("Trip distance", "Distance de voyage", "Distancia de viaje")}</label>
+        <select id="dfx-range">
+          <option value="">{T("Any", "Indifférent", "Indiferente")}</option>
+          <option value="0-3">{T("Short haul (< 3 h)", "Proche (< 3 h)", "Corta distancia (< 3 h)")}</option>
+          <option value="3-6">{T("Medium haul (3–6 h)", "Moyen (3–6 h)", "Media distancia (3–6 h)")}</option>
+          <option value="6-">{T("Long haul (> 6 h)", "Lointain (> 6 h)", "Larga distancia (> 6 h)")}</option>
+        </select>
+      </div>
+    </div>
+    <div class="dfx__docs">
+      <span class="dfx__docs-label">{T("Documents you already have", "Documents que tu as déjà", "Documentos que ya tienes")}</span>
+      <label class="dfx__chk"><input type="checkbox" id="doc-base" checked /> {T("Microchip + rabies vaccine", "Puce + vaccin antirabique", "Microchip + vacuna antirrábica")}</label>
+      <label class="dfx__chk"><input type="checkbox" id="doc-eu" /> {T("EU pet passport", "Passeport européen", "Pasaporte europeo para mascotas")}</label>
+      <label class="dfx__chk"><input type="checkbox" id="doc-titer" /> {T("Rabies antibody test", "Titrage antirabique", "Prueba de titulación de rabia")}</label>
+      <label class="dfx__chk"><input type="checkbox" id="doc-cert" /> {T("Health certificate", "Certificat sanitaire", "Certificado de salud")}</label>
+    </div>
+    <div class="dfx__actions">
+      <button class="mdcf-btn dfx__submit" type="submit">{T("Find destinations", "Trouver des destinations", "Buscar destinos")}</button>
+    </div>
+  </form>
+  <script type="application/json" id="dfx-labels" set:html={JSON.stringify(L)} is:inline />
+  <div id="dfx-result" class="dfx__result" aria-live="polite" hidden></div>
+</section>
+
+<script>
+  const L = JSON.parse(document.getElementById("dfx-labels")?.textContent ?? "{}");
+  const S = L.s ?? {};
+  const byId = (id: string) => document.getElementById(id);
+  const gv = (id: string) => (byId(id) as HTMLInputElement | HTMLSelectElement | null)?.value ?? "";
+  const norm = (s: string) => (s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const reKey = <V,>(m: Record<string, V>): Record<string, V> => { const o: Record<string, V> = {}; for (const k in m) o[norm(k)] = m[k]; return o; };
+  const esc = (s: string) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] ?? c));
+  const flag = (iso2: string) => iso2 && iso2.length === 2 ? String.fromCodePoint(...[...iso2.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : "";
+
+  const BREEDS: Record<string, { id: string; w: number; br: boolean }> = reKey(L.breeds ?? {});
+  const AIRMAP: Record<string, string> = reKey(L.airMap ?? {});
+  const CITYMAP: Record<string, string[]> = reKey(L.cityMap ?? {});
+  const META: Record<string, { level: string; eu: boolean; guide: boolean }> = L.countryMeta ?? {};
+
+  const breedEl = byId("dfx-breed") as HTMLInputElement | null;
+  const placeEl = byId("dfx-placement") as HTMLSelectElement | null;
+  const resolveBreed = () => BREEDS[norm(breedEl?.value ?? "")];
+
+  // Deduce a default placement from the breed (small → cabin) — the user can still override it.
+  let placementTouched = false;
+  placeEl?.addEventListener("change", () => { placementTouched = true; });
+  const deducePlacement = () => {
+    if (placementTouched || !placeEl) return;
+    const b = resolveBreed();
+    if (!b) return;
+    placeEl.value = b.br ? "any" : b.w <= 8 ? "cabin" : "hold";
+  };
+  breedEl?.addEventListener("change", deducePlacement);
+
+  const resolveEndpoint = (id: string): { ids: string[]; primary: string } => {
+    const v = norm(gv(id));
+    const cityIds = CITYMAP[v];
+    if (cityIds && cityIds.length) return { ids: cityIds, primary: cityIds[0] };
+    const aid = AIRMAP[v];
+    return aid ? { ids: [aid], primary: aid } : { ids: [], primary: "" };
+  };
+
+  // --- Custom accent-insensitive autocomplete (same behaviour as the flight finder) ---
+  function attachAC(input: HTMLInputElement) {
+    const listId = input.getAttribute("data-ac");
+    const dl = listId ? document.getElementById(listId) : null;
+    if (!dl) return;
+    const opts = [...dl.querySelectorAll("option")].map((o) => { const v = o.getAttribute("value") ?? ""; return { v, n: norm(v) }; });
+    const field = (input.closest(".dfx__field") ?? input.parentElement) as HTMLElement | null;
+    if (!field) return;
+    field.classList.add("ac-host");
+    const box = document.createElement("ul");
+    box.className = "ac-list"; box.setAttribute("role", "listbox"); box.hidden = true;
+    field.appendChild(box);
+    let cur = -1; let shown: { v: string; n: string }[] = [];
+    const close = () => { box.hidden = true; box.innerHTML = ""; cur = -1; input.setAttribute("aria-expanded", "false"); };
+    const mark = () => { [...box.children].forEach((el, i) => (el as HTMLElement).classList.toggle("is-cur", i === cur)); (box.children[cur] as HTMLElement | undefined)?.scrollIntoView({ block: "nearest" }); };
+    const openWith = (q: string) => {
+      const nq = norm(q);
+      shown = (nq ? opts.filter((o) => o.n.includes(nq)) : opts).slice(0, 60);
+      if (!shown.length) { close(); return; }
+      box.innerHTML = shown.map((o, i) => `<li class="ac-item" role="option" data-i="${i}">${esc(o.v)}</li>`).join("");
+      box.hidden = false; cur = -1; input.setAttribute("aria-expanded", "true");
+    };
+    const choose = (i: number) => { const o = shown[i]; if (!o) return; input.value = o.v; close(); input.dispatchEvent(new Event("change", { bubbles: true })); };
+    input.addEventListener("input", () => openWith(input.value));
+    input.addEventListener("focus", () => openWith(input.value));
+    input.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (box.hidden) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); mark(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); mark(); }
+      else if (e.key === "Enter" && cur >= 0) { e.preventDefault(); choose(cur); }
+      else if (e.key === "Escape") { close(); }
+    });
+    box.addEventListener("mousedown", (e: MouseEvent) => { const li = (e.target as HTMLElement).closest(".ac-item") as HTMLElement | null; if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
+    document.addEventListener("click", (e) => { if (!field.contains(e.target as Node)) close(); });
+  }
+  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => attachAC(el));
+
+  // Race pré-remplie depuis « ?breed= » UNIQUEMENT, jamais depuis la seule mémoire de session :
+  // une valeur mémorisée plus tôt n'est pas une intention, et un outil qui décide seul de quel
+  // chien il parle produit une réponse juste… pour un autre animal. Même règle que le Finder
+  // (voir le commentaire détaillé dans FlightFinder.astro). L'écriture, elle, reste : choisir
+  // une race ici la transmet aux liens porteurs de contexte.
+  const ctx = (window as { mdcfCtx?: { breed?: string; setBreed?: (v: string) => void } }).mdcfCtx;
+  (function () {
+    const bid = new URLSearchParams(location.search).get("breed") || "";
+    const label = bid ? (L.breedById ?? {})[bid] : "";
+    if (label && breedEl) { breedEl.value = label; breedEl.dispatchEvent(new Event("change", { bubbles: true })); }
+  })();
+  breedEl?.addEventListener("change", () => ctx?.setBreed?.(resolveBreed()?.id ?? ""));
+
+  // Prefill "From" with the nearest airport (Cloudflare edge geolocation, no permission prompt).
+  (async () => {
+    try {
+      const r = await fetch(`${L.apiBase}/v1/nearest-airport`);
+      if (!r.ok) return;
+      const { airport_id } = (await r.json()) as { airport_id?: string };
+      const label = airport_id ? (L.airRev?.[airport_id] as string | undefined) : undefined;
+      const originEl = byId("dfx-origin") as HTMLInputElement | null;
+      if (originEl && label && !originEl.value) originEl.value = label;
+    } catch { /* keep default */ }
+  })();
+
+  type Match = {
+    airport_id: string; iata: string; city: string; country_id: string; iso2: string; country_name: string; region: string;
+    temperature_c: number; climate_estimated: boolean; heat_embargo: boolean; heat_risk: boolean;
+    airlines_total: number; cabin_ok: boolean; hold_ok: boolean; placement_ok: boolean; entry_allowed: boolean; flight_hours: number;
+  };
+  type Docs = { base: boolean; eu: boolean; titer: boolean; cert: boolean };
+
+  // --- Formalities estimate: destination difficulty × documents held. Honest heuristic, clearly labelled. ---
+  function formalities(m: Match, docs: Docs): { level: 0 | 1 | 2 | 3; label: string; score: number } {
+    if (!docs.base) return { level: 3, label: S.fmNeedBase, score: 0.15 };
+    const meta = META[m.iso2.toLowerCase()];
+    if (!meta) return { level: 1, label: S.fmUnknown, score: 0.55 };
+    if (meta.level === "difficult") {
+      return docs.titer ? { level: 1, label: S.fmModerate, score: 0.6 } : { level: 2, label: S.fmHeavy, score: 0.3 };
+    }
+    if (meta.level === "moderate") {
+      const covered = (meta.eu && docs.eu) || docs.cert;
+      return covered ? { level: 0, label: S.fmLight, score: 1 } : { level: 1, label: S.fmModerate, score: 0.65 };
+    }
+    return { level: 0, label: S.fmLight, score: 1 };
+  }
+
+  function climate(m: Match, brachy: boolean): { level: 0 | 1 | 2; label: string; score: number; known: boolean } {
+    if (!m.climate_estimated) return { level: 1, label: S.dateForClimate, score: 0.7, known: false };
+    if (m.heat_embargo) return brachy ? { level: 2, label: S.climEmbargoBrachy, score: 0.08, known: true } : { level: 2, label: S.climEmbargo, score: 0.3, known: true };
+    if (m.heat_risk) return { level: 1, label: S.climRisk, score: 0.62, known: true };
+    return { level: 0, label: S.climComfort, score: 1, known: true };
+  }
+
+  function flights(m: Match): { level: 0 | 1 | 2; label: string; score: number } {
+    if (!m.placement_ok) return { level: 2, label: S.flLimited, score: 0.4 };
+    return { level: 0, label: S.flDirect, score: 1 };
+  }
+
+  const CLS = ["ok", "warn", "no", "no"];  // formalities level → pill class
+  const CLIMCLS = ["ok", "warn", "no"];
+  const NEUTRAL = "neutral";
+  const pill = (cls: string, word: string, txt: string) =>
+    `<span class="dfx-pill dfx-pill--${cls}"><b>${esc(word)}</b> ${esc(txt)}</span>`;
+
+  function card(m: Match, docs: Docs, brachy: boolean): { html: string; score: number } {
+    const cl = climate(m, brachy), fm = formalities(m, docs), fl = flights(m);
+    const gate = m.entry_allowed ? 1 : 0.05;
+    const score = Math.round(100 * gate * (0.4 * cl.score + 0.3 * fl.score + 0.3 * fm.score));
+    const bad = score < 40;
+    const href = `${L.cbase}${m.iso2.toLowerCase()}/`;
+    const temp = cl.known ? `${S.climate} ~${m.temperature_c}°C` : S.climate;
+    const climCls = cl.known ? CLIMCLS[cl.level] : NEUTRAL;
+    const hrs = m.flight_hours > 0 ? `<span class="dfx-card__hrs">✈ ≈${m.flight_hours} h</span>` : "";
+    const html = `<article class="dfx-card${bad ? " dfx-card--bad" : ""}">
+      <a class="dfx-card__head" href="${esc(href)}">
+        <span class="dfx-card__flag" aria-hidden="true">${flag(m.iso2)}</span>
+        <span class="dfx-card__name"><b>${esc(m.city)}</b><span class="dfx-card__ctry">${esc(m.country_name)} · ${esc(m.iata)}</span></span>
+        ${hrs}
+        <span class="dfx-card__score" title="${score}/100">${score}</span>
+      </a>
+      <div class="dfx-card__pills">
+        ${pill(climCls, temp, cl.label)}
+        ${pill(CLS[fm.level], S.formalities, fm.label)}
+        ${pill(CLIMCLS[fl.level], `${S.flights} (${m.airlines_total})`, fl.label)}
+      </div>
+      ${bad ? `<div class="dfx-card__warn">⚠️ ${esc(S.warnLabel)}</div>` : ""}
+      <a class="dfx-card__link" href="${esc(href)}">${esc(S.viewGuide)} →</a>
+    </article>`;
+    return { html, score };
+  }
+
+  const form = byId("dfx-form") as HTMLFormElement | null;
+  const out = byId("dfx-result") as HTMLDivElement | null;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!out) return;
+    const o = resolveEndpoint("dfx-origin");
+    const b = resolveBreed();
+    if (!o.primary || !b) {
+      out.hidden = false;
+      out.innerHTML = `<p class="dfx__hint">${esc(S.fillHint)}</p>`;
+      return;
+    }
+    const docs: Docs = { base: (byId("doc-base") as HTMLInputElement)?.checked ?? false, eu: (byId("doc-eu") as HTMLInputElement)?.checked ?? false, titer: (byId("doc-titer") as HTMLInputElement)?.checked ?? false, cert: (byId("doc-cert") as HTMLInputElement)?.checked ?? false };
+    const req = {
+      origin: o.primary, origins: o.ids.length > 1 ? o.ids : undefined,
+      dog: { breed_id: b.id, weight_kg: b.w, brachycephalic: b.br },
+      placement: gv("dfx-placement") || "any", date: gv("dfx-date") || undefined, locale: L.locale,
+    };
+    out.hidden = false;
+    out.innerHTML = `<p class="dfx__loading">${esc(S.loading)}</p>`;
+    let matches: Match[] = [];
+    try {
+      const res = await fetch(`${L.apiBase}/v1/destinations`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(req) });
+      const data = await res.json();
+      matches = (data.matches ?? []) as Match[];
+    } catch { matches = []; }
+    if (!matches.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noResults)}</p>`; return; }
+
+    // Optional hard filter: trip-distance band (estimated direct flight time). Mutually exclusive bands
+    // ("6-" = long haul, no upper cap) so "Long haul" shows far cities only, not nearby Europe.
+    const rangeSel = byId("dfx-range") as HTMLSelectElement | null;
+    const rangeVal = rangeSel?.value ?? "";
+    const totalReachable = matches.length;
+    let banded = false;
+    if (rangeVal) {
+      const [lo, hi] = rangeVal.split("-");
+      const min = parseFloat(lo) || 0;
+      const max = hi === "" ? Infinity : parseFloat(hi);
+      matches = matches.filter((m) => m.flight_hours > 0 && m.flight_hours >= min && m.flight_hours < max);
+      banded = true;
+    }
+    if (!matches.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noResults)}</p>`; return; }
+
+    const scored = matches.map((m) => card(m, docs, b.br)).sort((x, y) => y.score - x.score);
+    const top = scored.slice(0, 5), rest = scored.slice(5);
+    const rangeLabel = rangeSel?.selectedOptions[0]?.textContent ?? "";
+    const metaCount = banded
+      ? `<b>${matches.length}</b>/${totalReachable} ${esc(S.reachable)} · ${esc(rangeLabel)}`
+      : `<b>${matches.length}</b> ${esc(S.reachable)}`;
+    // Heat notice: shown only when the chosen period is hot enough to sideline some cities on welfare grounds.
+    const heatApplied = matches.some((m) => m.heat_embargo);
+    const heatBadge = heatApplied ? ` · <span class="dfx__heat">☀️ ${esc(S.tempFilter)}</span>` : "";
+    out.innerHTML = `
+      <div class="dfx__meta">${metaCount} · <span class="dfx__direct">✈ ${esc(S.directOnly)}</span>${heatBadge} · <span class="dfx__est">${esc(S.estimate)}</span></div>
+      <h3 class="dfx__toph">${esc(S.topTitle)}</h3>
+      <div class="dfx__grid">${top.map((c) => c.html).join("")}</div>
+      ${rest.length ? `<button type="button" class="dfx__more" id="dfx-more">${esc(S.altShow)} (${rest.length}) ▾</button>
+        <div class="dfx__grid dfx__grid--rest" id="dfx-rest" hidden>${rest.map((c) => c.html).join("")}</div>` : ""}`;
+    const moreBtn = byId("dfx-more");
+    const restBox = byId("dfx-rest");
+    moreBtn?.addEventListener("click", () => {
+      const open = restBox?.hidden;
+      if (restBox) restBox.hidden = !open;
+      if (moreBtn) moreBtn.textContent = (open ? `${S.altHide} ▴` : `${S.altShow} (${rest.length}) ▾`);
+    });
+  });
+</script>
+
+<style>
+  .dfx { border: 1px solid var(--mdcf-line); border-radius: var(--mdcf-radius); padding: 16px; background: var(--mdcf-surface); box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06); }
+  .dfx__criteria { margin: 0 0 14px; padding: 11px 14px; background: var(--mdcf-accent-soft, #fdf1e7); border: 1px solid #f5d9c2; border-radius: 10px; font-size: 13.5px; line-height: 1.4; color: var(--mdcf-ink); }
+  .dfx__criteria b { color: var(--mdcf-accent-ink, #b4530a); }
+  .dfx__form { display: flex; flex-direction: column; gap: 14px; }
+  .dfx__row { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+  .dfx__field { display: flex; flex-direction: column; gap: 6px; flex: 1 1 180px; min-width: 0; }
+  .dfx__field--sm { flex: 1 1 130px; }
+  .dfx__field label { font-size: 12px; color: var(--mdcf-muted); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dfx__field input, .dfx__field select { box-sizing: border-box; width: 100%; min-width: 0; height: 44px; padding: 10px 12px; border: 1px solid var(--mdcf-line); border-radius: 10px; font: inherit; line-height: 1.2; background: var(--mdcf-surface); }
+  .dfx__docs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 10px 12px; background: var(--mdcf-subtle, #f5f7fa); border-radius: 10px; }
+  .dfx__docs-label { font-size: 12px; font-weight: 700; color: var(--mdcf-muted); width: 100%; }
+  .dfx__chk { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; cursor: pointer; }
+  .dfx__actions { display: flex; }
+  .dfx__submit { padding: 12px 24px; font-size: 15px; }
+  .dfx__result { margin-top: 18px; }
+  /* Everything below is injected via innerHTML at runtime, so it lacks Astro's scoped data-attribute —
+     these rules MUST be :global() or the result cards render completely unstyled. */
+  :global(.dfx__loading), :global(.dfx__hint) { color: var(--mdcf-muted); margin: 8px 0; }
+  :global(.dfx__hint) { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 10px 12px; }
+  :global(.dfx__meta) { color: var(--mdcf-muted); font-size: 13px; margin-bottom: 4px; }
+  :global(.dfx__meta b) { color: var(--mdcf-ink); }
+  :global(.dfx__est) { font-style: italic; }
+  :global(.dfx__direct) { font-weight: 700; color: var(--mdcf-accent-ink, #b4530a); }
+  :global(.dfx__heat) { font-weight: 800; color: #b8860b; }
+  :global(.dfx__toph) { font-size: 16px; margin: 10px 0 12px; }
+  :global(.dfx__grid) { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  :global(.dfx__grid--rest) { margin-top: 12px; }
+  :global(.dfx__more) { margin-top: 14px; background: none; border: 1px solid var(--mdcf-line); border-radius: 999px; padding: 9px 16px; font: inherit; font-weight: 700; font-size: 14px; color: var(--mdcf-ink); cursor: pointer; }
+  :global(.dfx__more:hover) { border-color: var(--mdcf-accent); color: var(--mdcf-accent-ink); }
+
+  :global(.dfx-card) { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 12px 14px; background: var(--mdcf-surface); display: flex; flex-direction: column; gap: 10px; }
+  :global(.dfx-card--bad) { opacity: .82; background: #fbfcfd; }
+  :global(.dfx-card__head) { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--mdcf-ink); }
+  :global(.dfx-card__flag) { font-size: 22px; line-height: 1; }
+  :global(.dfx-card__name) { display: flex; flex-direction: column; gap: 1px; flex: 1 1 auto; min-width: 0; }
+  :global(.dfx-card__name b) { font-weight: 800; font-size: 16px; line-height: 1.2; }
+  :global(.dfx-card__ctry) { font-size: 12px; color: var(--mdcf-muted); }
+  :global(.dfx-card__hrs) { flex: 0 0 auto; font-size: 12px; font-weight: 700; color: var(--mdcf-muted); white-space: nowrap; }
+  :global(.dfx-card__score) { flex: 0 0 auto; font-weight: 800; font-size: 15px; color: #fff; background: var(--mdcf-accent, #f2700f); border-radius: 8px; padding: 3px 9px; }
+  :global(.dfx-card__pills) { display: flex; flex-direction: column; gap: 6px; }
+  :global(.dfx-pill) { font-size: 12.5px; line-height: 1.35; padding: 5px 9px; border-radius: 7px; background: #f2f5f9; color: var(--mdcf-ink); }
+  :global(.dfx-pill b) { font-weight: 800; }
+  :global(.dfx-pill--ok) { background: #e7f6ec; color: #1a6b38; }
+  :global(.dfx-pill--warn) { background: #fdf2e0; color: #96591a; }
+  :global(.dfx-pill--no) { background: #fdeaea; color: #a12626; }
+  :global(.dfx-pill--neutral) { background: #eef1f5; color: #5b6b7f; }
+  :global(.dfx-card__warn) { font-size: 12.5px; font-weight: 700; color: #a12626; }
+  :global(.dfx-card__link) { font-size: 13px; font-weight: 700; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  :global(.dfx-card__link:hover) { text-decoration: underline; }
+
+  :global(.ac-host) { position: relative; }
+  :global(.ac-list) { position: absolute; z-index: 40; top: calc(100% + 4px); left: 0; right: 0; margin: 0; padding: 4px; list-style: none; max-height: 260px; overflow-y: auto; background: var(--mdcf-surface); border: 1px solid var(--mdcf-line); border-radius: 10px; box-shadow: 0 16px 32px rgba(15, 23, 42, 0.14); }
+  :global(.ac-item) { padding: 9px 10px; border-radius: 7px; font-size: 14px; color: var(--mdcf-ink); cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  :global(.ac-item:hover), :global(.ac-item.is-cur) { background: var(--mdcf-accent-soft); }
+
+  @media (max-width: 640px) {
+    :global(.dfx__grid) { grid-template-columns: 1fr; }
+    .dfx__field, .dfx__field--sm { flex: 1 1 100%; }
+  }
+</style>

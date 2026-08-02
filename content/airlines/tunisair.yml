@@ -1,0 +1,304 @@
+id: airline_tunisair
+mono: TU
+name: Tunisair
+titleH1:
+  en: Flying with a dog on Tunisair
+  fr: Voyager avec un chien sur Tunisair
+  es: Volar con un perro en Tunisair
+  pt: "Viajar com um cachorro na Tunisair"
+metaDesc:
+  en: "Tunisair pet policy: cabin, hold and cargo, fares by zone, prior approval and official sources."
+  fr: "Politique animaux Tunisair : cabine, soute et fret, tarifs par zone, accord préalable et sources officielles."
+  es: "Política de mascotas de Tunisair: cabina, bodega y carga, tarifas por zona, aprobación previa y fuentes oficiales."
+  pt: "Política de animais da Tunisair: cabine, porão e carga, tarifas por zona, aprovação prévia e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Tunisia · TUN
+      fr: Tunisie · TUN
+      es: Túnez · TUN
+      pt: "Tunísia · TUN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in the hold — but prior approval and call-centre booking are required.
+  fr: Petits animaux en cabine, plus grands en soute — mais accord préalable et réservation par centre d'appel requis.
+  es: Mascotas pequeñas en cabina, las más grandes en bodega, pero se requieren aprobación previa y reserva por el centro de llamadas.
+  pt: "Animais pequenos na cabine, os maiores no porão — mas são exigidas aprovação prévia e reserva pela central de atendimento."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 32 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats, dogs, hamsters, turtles & small birds in a closed carrier the pet can stand and turn in (birds' cage covered); ≤ 8 kg incl. carrier and food.
+      fr: Chats, chiens, hamsters, tortues et petits oiseaux dans un sac fermé où l'animal peut se tenir et se retourner (cage des oiseaux couverte) ; ≤ 8 kg avec le sac et la nourriture.
+      es: Gatos, perros, hámsteres, tortugas y aves pequeñas en una jaula cerrada donde el animal pueda estar de pie y darse la vuelta (la jaula de las aves cubierta); ≤ 8 kg con la jaula y la comida.
+      pt: "Gatos, cachorros, hamsters, tartarugas e aves pequenas em uma bolsa de transporte fechada onde o animal possa ficar em pé e se virar (a gaiola das aves coberta); ≤ 8 kg com a bolsa e a comida."
+    fee:
+      en: €50–275 / 100–225 TND
+      fr: 50–275 € / 100–225 TND
+      es: 50–275 € / 100–225 TND
+      pt: "€50–275 / 100–225 TND"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Live animals over 8 kg (up to 32 kg) in the hold; pet + crate billed as excess baggage.
+      fr: Animaux vivants de plus de 8 kg (jusqu'à 32 kg) en soute ; animal + caisse facturés en bagage excédentaire.
+      es: Animales vivos de más de 8 kg (hasta 32 kg) en bodega; mascota + jaula se facturan como equipaje en exceso.
+      pt: "Animais vivos com mais de 8 kg (até 32 kg) no porão; animal + caixa de transporte cobrados como excesso de bagagem."
+    fee:
+      en: €75–400 / 125–275 TND
+      fr: 75–400 € / 125–275 TND
+      es: 75–400 € / 125–275 TND
+      pt: "€75–400 / 125–275 TND"
+  - icon: ✈️
+    name:
+      en: Tunisair Cargo
+      fr: Tunisair Cargo
+      es: Tunisair Cargo
+      pt: "Tunisair Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Over 32 kg via the Cargo Department.
+      fr: Au-delà de 32 kg via le service Cargo.
+      es: Por encima de 32 kg a través del Departamento de Carga.
+      pt: "Acima de 32 kg via o Departamento de Carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — from Tunisia (zones 1–4)
+        fr: Cabine — de Tunisie (zones 1–4)
+        es: Cabina — desde Túnez (zonas 1–4)
+        pt: "Cabine — saindo da Tunísia (zonas 1–4)"
+      value:
+        en: 100–225 TND
+        fr: 100–225 TND
+        es: 100–225 TND
+        pt: "100–225 TND"
+    - label:
+        en: Cabin — to Tunisia (zones 1–4)
+        fr: Cabine — vers la Tunisie (zones 1–4)
+        es: Cabina — hacia Túnez (zonas 1–4)
+        pt: "Cabine — para a Tunísia (zonas 1–4)"
+      value:
+        en: €50–125
+        fr: 50–125 €
+        es: 50–125 €
+        pt: "€50–125"
+    - label:
+        en: Hold — from Tunisia
+        fr: Soute — de Tunisie
+        es: Bodega — desde Túnez
+        pt: "Porão — saindo da Tunísia"
+      value:
+        en: 125–275 TND
+        fr: 125–275 TND
+        es: 125–275 TND
+        pt: "125–275 TND"
+    - label:
+        en: Hold — to Tunisia
+        fr: Soute — vers la Tunisie
+        es: Bodega — hacia Túnez
+        pt: "Porão — para a Tunísia"
+      value:
+        en: €75–150 (Libya €400)
+        fr: 75–150 € (Libye 400 €)
+        es: 75–150 € (Libia 400 €)
+        pt: "€75–150 (Líbia €400)"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Charged as excess baggage; TND from Tunisia, EUR to Tunisia, by zone.
+    fr: Facturé en bagage excédentaire ; TND au départ de Tunisie, EUR vers la Tunisie, par zone.
+    es: Se factura como equipaje en exceso; TND desde Túnez, EUR hacia Túnez, por zona.
+    pt: "Cobrado como excesso de bagagem; TND saindo da Tunísia, EUR para a Tunísia, por zona."
+restrictions:
+  - icon: ✈️
+    title:
+      en: Aircraft & route limits
+      fr: Limites avion & route
+      es: Límites de avión y ruta
+      pt: "Limites de aeronave e rota"
+    pills:
+      - cls: warn
+        label:
+          en: May be restricted
+          fr: Peut être restreint
+          es: Puede estar restringido
+          pt: "Pode ser restrito"
+    note:
+      en: On some aircraft types and to certain destinations, pet carriage may be restricted or prohibited.
+      fr: Sur certains types d'avions et vers certaines destinations, le transport d'animaux peut être restreint ou interdit.
+      es: En algunos tipos de avión y hacia ciertos destinos, el transporte de mascotas puede estar restringido o prohibido.
+      pt: "Em alguns tipos de aeronave e para certos destinos, o transporte de animais pode ser restrito ou proibido."
+  - icon: 🎫
+    title:
+      en: Always excess baggage
+      fr: Toujours bagage excédentaire
+      es: Siempre equipaje en exceso
+      pt: "Sempre como excesso de bagagem"
+    pills:
+      - cls: warn
+        label:
+          en: Prior approval 48 h
+          fr: Accord préalable 48 h
+          es: Aprobación previa 48 h
+          pt: "Aprovação prévia 48 h"
+    note:
+      en: Pets are never in the free allowance — the animal + crate is charged as excess baggage. The pet stays fully in its carrier the whole flight; prior approval ≥ 48 h.
+      fr: Les animaux ne sont jamais dans la franchise — l'animal + la caisse est facturé en bagage excédentaire. L'animal reste entièrement dans son sac tout le vol ; accord préalable ≥ 48 h.
+      es: Las mascotas nunca están en la franquicia; el animal + la jaula se factura como equipaje en exceso. La mascota permanece por completo en su jaula durante todo el vuelo; aprobación previa ≥ 48 h.
+      pt: "Os animais nunca estão incluídos na franquia gratuita — o animal + a caixa de transporte é cobrado como excesso de bagagem. O animal permanece totalmente em sua bolsa de transporte durante todo o voo; aprovação prévia ≥ 48 h."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Tunisair publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Tunisair ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Tunisair no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Tunisair não publica limites de temperatura no porão nem embargo sazonal em suas páginas de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs travel free (not in the baggage allowance); a guide dog for a blind passenger rides in the cabin, harnessed and muzzled at your feet.
+      fr: Les chiens d'assistance voyagent gratuitement (hors franchise) ; un chien guide pour passager aveugle voyage en cabine, en harnais et muselé à tes pieds.
+      es: Los perros de asistencia viajan gratis (fuera de la franquicia); un perro guía para un pasajero ciego viaja en cabina, con arnés y bozal a sus pies.
+      pt: "Cachorros de assistência viajam grátis (fora da franquia de bagagem); um cachorro-guia para um passageiro cego viaja na cabine, com peitoral e focinheira a seus pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Declare at booking with prior approval ≥ 48 h. Book via casspeciaux@tunisair.com.tn or +216 70 101 310.
+      fr: Déclarer à la réservation avec accord préalable ≥ 48 h. Réserver via casspeciaux@tunisair.com.tn ou +216 70 101 310.
+      es: Decláralo al reservar con aprobación previa ≥ 48 h. Reserva a través de casspeciaux@tunisair.com.tn o +216 70 101 310.
+      pt: "Declare no momento da reserva com aprovação prévia ≥ 48 h. Reserve via casspeciaux@tunisair.com.tn ou +216 70 101 310."
+goodToKnow:
+  - icon: ⏱️
+    label:
+      en: Prior approval
+      fr: Accord préalable
+      es: Aprobación previa
+      pt: "Aprovação prévia"
+    value:
+      en: Pets need the carrier's prior approval ≥ 48 h before the flight, arranged via the call centre.
+      fr: Les animaux nécessitent l'accord préalable de la compagnie ≥ 48 h avant le vol, via le centre d'appel.
+      es: Las mascotas necesitan la aprobación previa de la aerolínea ≥ 48 h antes del vuelo, gestionada a través del centro de llamadas.
+      pt: "Os animais precisam da aprovação prévia da companhia aérea ≥ 48 h antes do voo, providenciada pela central de atendimento."
+  - icon: 💶
+    label:
+      en: Always excess baggage
+      fr: Toujours bagage excédentaire
+      es: Siempre equipaje en exceso
+      pt: "Sempre como excesso de bagagem"
+    value:
+      en: The animal + crate is always charged as excess baggage, never in the free allowance.
+      fr: L'animal + la caisse est toujours facturé en bagage excédentaire, jamais dans la franchise.
+      es: El animal + la jaula siempre se factura como equipaje en exceso, nunca dentro de la franquicia.
+      pt: "O animal + a caixa de transporte é sempre cobrado como excesso de bagagem, nunca incluído na franquia gratuita."
+  - icon: 🐾
+    label:
+      en: Stay in the carrier
+      fr: Rester dans le sac
+      es: Permanecer en la jaula
+      pt: "Permanecer na bolsa de transporte"
+    value:
+      en: You must not take the animal out of its carrier, even partly, during the flight.
+      fr: Tu ne devez pas sortir l'animal de son sac, même partiellement, pendant le vol.
+      es: No debes sacar al animal de su jaula, ni siquiera en parte, durante el vuelo.
+      pt: "Você não deve tirar o animal de sua bolsa de transporte, nem parcialmente, durante o voo."
+book:
+  host: tunisair.com
+  url: https://www.tunisair.com/
+sources:
+  en: 4 Tunisair sources · last verified 11 July 2026
+  fr: 4 sources Tunisair · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Tunisair · última verificación 11 de julio de 2026
+  pt: "4 fontes da Tunisair · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

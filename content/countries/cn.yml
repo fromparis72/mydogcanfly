@@ -1,0 +1,379 @@
+# Country Entry Guide — China (mainland) (source of truth, bilingual EN/FR).
+# China is NOT in the EU — this encodes China's own GACC pet-entry scheme.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_cn
+iso2: "CN"
+name: { en: "China", fr: "Chine", es: "China", pt: "China" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in China: this is the strictest domestic regime of all — a per-animal quarantine certificate is mandatory by law."
+    fr: "Vol intérieur en Chine : c'est le régime domestique le plus strict qui soit — un certificat de quarantaine par animal est obligatoire par la loi."
+    es: "Vuelo nacional en China: es el régimen nacional más estricto — un certificado de cuarentena por animal es obligatorio por ley."
+    pt: "Voo doméstico na China: este é o regime interno mais rígido que existe — um certificado de quarentena por animal é obrigatório por lei."
+  points:
+    - en: "The Animal Epidemic Prevention Law requires a quarantine certificate for every animal moved by air; without it the carrier may not accept the dog."
+      fr: "La loi sur la prévention des épizooties impose un certificat de quarantaine pour chaque animal transporté par avion ; sans lui, la compagnie n'a pas le droit d'accepter le chien."
+      es: "La ley de prevención de epizootias exige un certificado de cuarentena por cada animal transportado en avión; sin él, la aerolínea no puede aceptar al perro."
+      pt: "A Animal Epidemic Prevention Law (Lei de Prevenção de Epidemias Animais) exige um certificado de quarentena para cada animal transportado de avião; sem ele, a companhia aérea não pode aceitar o cachorro."
+    - en: "The national protocol requires a valid rabies vaccination AND a passing rabies antibody titre test. Several provinces add their own conditions."
+      fr: "Le protocole national exige une vaccination antirabique valide ET un titrage des anticorps antirabiques satisfaisant. Plusieurs provinces ajoutent leurs propres conditions."
+      es: "El protocolo nacional exige una vacuna antirrábica válida Y una titulación de anticuerpos antirrábicos satisfactoria. Varias provincias añaden sus propias condiciones."
+      pt: "O protocolo nacional exige uma vacinação antirrábica válida E um teste sorológico antirrábico (titulação) com resultado satisfatório. Várias províncias acrescentam as próprias condições."
+    - en: "Most Chinese carriers take pets in the hold or as cargo only, not in the cabin."
+      fr: "La plupart des compagnies chinoises n'acceptent les animaux qu'en soute ou en fret, pas en cabine."
+      es: "La mayoría de aerolíneas chinas solo aceptan mascotas en bodega o carga, no en cabina."
+      pt: "A maioria das companhias aéreas chinesas só aceita animais no porão ou como carga, não na cabine."
+exit:
+  authority: GACC
+  authorityUrl: http://english.customs.gov.cn
+  intro:
+    en: "China is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an exit quarantine certificate from Customs (GACC)."
+    fr: "La Chine est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat de quarantaine de sortie délivré par les douanes (GACC)."
+    es: "China no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de cuarentena de salida emitido por la Aduana (GACC)."
+    pt: "A China é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de quarentena de saída emitido pela alfândega (GACC)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "GACC (Customs) at the exit port carries out the quarantine inspection and issues the exit health certificate; the dog must be microchipped and rabies-vaccinated between 30 days and 12 months before travel."
+        fr: "La GACC (douanes) au point de sortie réalise l'inspection de quarantaine et délivre le certificat sanitaire de sortie ; le chien doit être pucé et vacciné contre la rage entre 30 jours et 12 mois avant le voyage."
+        es: "La GACC (Aduana) en el puerto de salida realiza la inspección de cuarentena y emite el certificado sanitario de salida; el perro debe estar microchipado y vacunado contra la rabia entre 30 días y 12 meses antes del viaje."
+        pt: "A GACC (alfândega) no porto de saída faz a inspeção de quarentena e emite o atestado de saúde de saída; o cachorro precisa estar com microchip e vacinado contra a raiva entre 30 dias e 12 meses antes da viagem."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to China with your dog", fr: "Voyager en Chine avec ton chien", es: "Viajar a China con tu perro", pt: "Viajar para a China com seu cachorro" }
+  intro:
+    en: >-
+      Mainland China runs its own national pet-entry scheme through the General Administration of
+      Customs (GACC) — it is not part of the EU system. Each traveller may bring only one dog (or one
+      cat) per entry, and the dog needs an ISO microchip, a valid rabies vaccination and an official
+      quarantine and vaccination certificate from the exit country. The key question is where your dog
+      is coming from: dogs from GACC-designated countries or regions, and dogs from other countries
+      carrying a valid rabies antibody test, are released after an on-site check, while dogs without a
+      valid antibody test face 30 days of isolation quarantine on arrival. This guide explains each
+      path so you know exactly what to prepare before you book your flight.
+    fr: >-
+      La Chine continentale applique son propre régime national d'entrée des animaux via
+      l'Administration générale des douanes (GACC) — elle ne fait pas partie du système de l'UE. Chaque
+      voyageur ne peut amener qu'un seul chien (ou un seul chat) par entrée, et le chien doit avoir une
+      puce ISO, une vaccination antirabique valide et un certificat officiel de quarantaine et de
+      vaccination du pays de départ. La question clé est la provenance : les chiens venant de pays ou
+      régions désignés par la GACC, et ceux munis d'un titrage antirabique valide, sont libérés après un
+      contrôle sur place, tandis que les chiens sans titrage valide subissent 30 jours de quarantaine à
+      l'arrivée. Ce guide détaille chaque cas pour savoir quoi préparer avant de réserver ton vol.
+    es: >-
+      La China continental aplica su propio régimen nacional de entrada de animales a través de la
+      Administración General de Aduanas (GACC) — no forma parte del sistema de la UE. Cada viajero solo
+      puede llevar un perro (o un gato) por entrada, y el perro necesita un microchip ISO, una vacunación
+      antirrábica válida y un certificado oficial de cuarentena y vacunación del país de salida. La
+      cuestión clave es la procedencia: los perros que llegan de países o regiones designados por la
+      GACC, y los perros de otros países que llevan una prueba de titulación de rabia válida, se liberan
+      tras un control in situ, mientras que los perros sin una prueba de titulación válida se enfrentan a
+      30 días de cuarentena de aislamiento a la llegada. Esta guía explica cada caso para que sepas
+      exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A China continental aplica o seu próprio regime nacional de entrada de animais por meio da General Administration of Customs (GACC, a administração-geral das alfândegas) — ela não faz parte do sistema da UE. Cada viajante só pode levar um cachorro (ou um gato) por entrada, e o cachorro precisa de um microchip ISO, de uma vacinação antirrábica válida e de um certificado oficial de quarentena e vacinação do país de saída. A pergunta decisiva é de onde vem o seu cachorro: os cachorros que chegam de países ou regiões designados pela GACC, e os cachorros de outros países que levam um teste sorológico antirrábico válido, são liberados depois de uma inspeção no local, enquanto os cachorros sem teste sorológico válido enfrentam 30 dias de quarentena de isolamento na chegada. Este guia explica cada caminho para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — difficult without a rabies antibody test", fr: "Modérée — difficile sans titrage antirabique", es: "Moderada — difícil sin una prueba de titulación de rabia", pt: "Moderada — difícil sem teste sorológico antirrábico" }
+
+prepTime:
+  eu:
+    en: "Designated country/region: a few weeks — microchip, valid rabies vaccination and an official exit certificate; no blood test and no isolation quarantine."
+    fr: "Pays/région désigné : quelques semaines — puce, vaccination antirabique valide et certificat officiel de départ ; pas de prise de sang ni de quarantaine d'isolement."
+    es: "País/región designado: unas semanas — microchip, vacunación antirrábica válida y un certificado oficial de salida; sin análisis de sangre ni cuarentena de aislamiento."
+    pt: "País/região designado: algumas semanas — microchip, vacinação antirrábica válida e um certificado oficial de saída; sem coleta de sangue e sem quarentena de isolamento."
+  listed:
+    en: "Non-designated country with a rabies antibody test: about 1–3 months — allow time for the blood test at a GACC-designated laboratory (result ≥0.5 IU/ml)."
+    fr: "Pays non désigné avec titrage antirabique : environ 1 à 3 mois — prévoir le délai du titrage dans un laboratoire agréé par la GACC (résultat ≥0,5 UI/ml)."
+    es: "País no designado con una prueba de titulación de rabia: entre 1 y 3 meses aproximadamente — prevé el plazo de la prueba en un laboratorio autorizado por la GACC (resultado ≥0,5 UI/ml)."
+    pt: "País não designado com teste sorológico antirrábico: cerca de 1 a 3 meses — reserve tempo para a coleta de sangue em um laboratório designado pela GACC (resultado ≥0,5 UI/ml)."
+  nonListed:
+    en: "No valid antibody test: add 30 days of isolation quarantine on arrival, at a port equipped with quarantine facilities, at the owner's expense."
+    fr: "Sans titrage valide : ajoute 30 jours de quarantaine d'isolement à l'arrivée, dans un port doté d'installations de quarantaine, aux frais du propriétaire."
+    es: "Sin una prueba de titulación válida: añade 30 días de cuarentena de aislamiento a la llegada, en un puerto dotado de instalaciones de cuarentena, a cargo del propietario."
+    pt: "Sem teste sorológico válido: acrescente 30 dias de quarentena de isolamento na chegada, em um porto com instalações de quarentena, às custas do proprietário."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — one pet per person per entry", fr: "Oui — un animal par personne et par entrée", es: "Sí — una mascota por persona y por entrada", pt: "Sim — um animal por pessoa e por entrada" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-designated origins, to avoid quarantine", fr: "Conditionnel — origines non désignées, pour éviter la quarantaine", es: "Condicional — orígenes no designados, para evitar la cuarentena", pt: "Condicional — origens não designadas, para evitar a quarentena" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required — official quarantine & vaccination certificate", fr: "Requis — certificat officiel de quarantaine et de vaccination", es: "Obligatorio — certificado oficial de cuarentena y vacunación", pt: "Obrigatório — certificado oficial de quarentena e vacinação" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "30 days unless exempt", fr: "30 jours sauf exemption", es: "30 días salvo exención", pt: "30 dias, salvo isenção" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact procedure depends on three things — China (your destination) is only the first."
+    fr: "La procédure exacte dépend de trois éléments — la Chine (ta destination) n'est que le premier."
+    es: "El procedimiento exacto depende de tres factores — China (tu destino) es solo el primero."
+    pt: "O procedimento exato depende de três coisas — a China (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — China", fr: "Pays de destination — Chine", es: "País de destino — China", pt: "País de destino — China" }
+      text:
+        en: "China applies the GACC scheme: one pet per person, an ISO microchip, a valid rabies vaccination and an official exit certificate are always required, and entry must be at a designated port."
+        fr: "La Chine applique le régime GACC : un animal par personne, une puce ISO, une vaccination antirabique valide et un certificat officiel de départ toujours exigés, et l'entrée doit se faire par un port désigné."
+        es: "China aplica el régimen de la GACC: una mascota por persona, un microchip ISO, una vacunación antirrábica válida y un certificado oficial de salida siempre obligatorios, y la entrada debe hacerse por un puerto designado."
+        pt: "A China aplica o regime da GACC: um animal por pessoa, microchip ISO, vacinação antirrábica válida e certificado oficial de saída são sempre obrigatórios, e a entrada tem que ser por um porto designado."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from a GACC-designated country/region or a non-designated one decides whether a rabies antibody test is needed to avoid the 30-day isolation quarantine."
+        fr: "Que ton chien parte d'un pays/région désigné par la GACC ou non désigné détermine si un titrage antirabique est nécessaire pour éviter la quarantaine d'isolement de 30 jours."
+        es: "Que tu perro salga de un país/región designado por la GACC o de uno no designado determina si se necesita una prueba de titulación de rabia para evitar la cuarentena de aislamiento de 30 días."
+        pt: "Partir de um país/região designado pela GACC ou de um não designado é o que define se é preciso um teste sorológico antirrábico para evitar a quarentena de isolamento de 30 dias."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay or transit in a non-designated country can change your dog's classification, so its real origin and travel history matter — not only the last airport."
+        fr: "Un séjour ou un transit récent dans un pays non désigné peut modifier le classement du chien : son origine réelle et son historique comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia o un tránsito reciente en un país no designado puede cambiar la clasificación de tu perro, por lo que importan su origen real y su historial de viajes — no solo el último aeropuerto."
+        pt: "Uma estadia ou um trânsito recente em um país não designado pode mudar a classificação do seu cachorro: contam a origem real e o histórico de viagens dele — não só o último aeroporto."
+  note:
+    en: "So read the requirements below as China's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre chinois, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de China y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral da China, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "One pet per person", fr: "Un animal par personne", es: "Una mascota por persona", pt: "Um animal por pessoa" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Limited to one dog or one cat per person per entry; more is treated as a commercial import.", fr: "Limité à un chien ou un chat par personne et par entrée ; au-delà, c'est un import commercial.", es: "Limitado a un perro o un gato por persona y por entrada; más allá, se considera una importación comercial.", pt: "Limitado a um cachorro ou um gato por pessoa e por entrada; acima disso, é tratado como importação comercial." }
+    exceptions: { en: "Multiple pets require a licensed agent and different rules.", fr: "Plusieurs animaux nécessitent un agent agréé et des règles différentes.", es: "Varias mascotas requieren un agente autorizado y normas distintas.", pt: "Vários animais exigem um agente licenciado e seguem regras diferentes." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. I", fr: "Annonce GACC [2019] n° 5, art. I", es: "Anuncio GACC [2019] n.º 5, art. I", pt: "Anúncio GACC [2019] nº 5, art. I" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The pet must carry an electronic chip; an ISO 11784/11785 15-digit chip is the standard.", fr: "L'animal doit porter une puce électronique ; une puce ISO 11784/11785 à 15 chiffres est la norme.", es: "La mascota debe llevar un microchip electrónico; un microchip ISO 11784/11785 de 15 dígitos es la norma.", pt: "O animal precisa ter um chip eletrônico; o padrão é um chip ISO 11784/11785 de 15 dígitos." }
+    exceptions: { en: "If the chip is not ISO-standard, bring a compatible scanner.", fr: "Si la puce n'est pas ISO, apporte un lecteur compatible.", es: "Si el microchip no es de norma ISO, lleva un lector compatible.", pt: "Se o chip não for do padrão ISO, leve um leitor compatível." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. I", fr: "Annonce GACC [2019] n° 5, art. I", es: "Anuncio GACC [2019] n.º 5, art. I", pt: "Anúncio GACC [2019] nº 5, art. I" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Valid rabies vaccination attested by the exit country's official authority; China does not recognise multi-year vaccines.", fr: "Vaccination antirabique valide attestée par l'autorité officielle du pays de départ ; la Chine ne reconnaît pas les vaccins pluriannuels.", es: "Vacunación antirrábica válida acreditada por la autoridad oficial del país de salida; China no reconoce las vacunas plurianuales.", pt: "Vacinação antirrábica válida atestada pela autoridade oficial do país de saída; a China não reconhece vacinas plurianuais." }
+    exceptions: { en: "Assistance dogs without a vaccination certificate may be vaccinated at a qualified institution on the carrier's application.", fr: "Un chien d'assistance sans certificat de vaccination peut être vacciné dans un établissement qualifié à la demande du convoyeur.", es: "Un perro de asistencia sin certificado de vacunación puede ser vacunado en un establecimiento cualificado a petición del acompañante.", pt: "Um cão de assistência sem certificado de vacinação pode ser vacinado em um estabelecimento qualificado a pedido do acompanhante." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. I & III", fr: "Annonce GACC [2019] n° 5, art. I & III", es: "Anuncio GACC [2019] n.º 5, art. I y III", pt: "Anúncio GACC [2019] nº 5, art. I e III" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-designated origins: report from a GACC-designated laboratory with an antibody level above 0.5 IU/ml, to be exempt from the 30-day quarantine.", fr: "Origines non désignées : rapport d'un laboratoire agréé par la GACC avec un titrage supérieur à 0,5 UI/ml, pour être exempté de la quarantaine de 30 jours.", es: "Orígenes no designados: informe de un laboratorio autorizado por la GACC con un nivel de anticuerpos superior a 0,5 UI/ml, para quedar exento de la cuarentena de 30 días.", pt: "Origens não designadas: laudo de um laboratório designado pela GACC com nível de anticorpos acima de 0,5 UI/ml, para ficar isento da quarentena de 30 dias." }
+    exceptions: { en: "Not required from GACC-designated countries or regions.", fr: "Non requis depuis les pays ou régions désignés par la GACC.", es: "No se exige desde los países o regiones designados por la GACC.", pt: "Não obrigatório para quem vem de países ou regiões designados pela GACC." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. II(2)", fr: "Annonce GACC [2019] n° 5, art. II(2)", es: "Anuncio GACC [2019] n.º 5, art. II(2)", pt: "Anúncio GACC [2019] nº 5, art. II(2)" }
+  - item: { en: "Official quarantine & vaccination certificate", fr: "Certificat officiel de quarantaine et de vaccination", es: "Certificado oficial de cuarentena y vacunación", pt: "Certificado oficial de quarentena e vacinação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the official animal quarantine authority of the exit country or region; identifies the pet and its microchip.", fr: "Délivré par l'autorité officielle de quarantaine animale du pays ou de la région de départ ; identifie l'animal et sa puce.", es: "Emitido por la autoridad oficial de cuarentena animal del país o región de salida; identifica a la mascota y su microchip.", pt: "Emitido pela autoridade oficial de quarentena animal do país ou região de saída; identifica o animal e o microchip dele." }
+    exceptions: { en: "Missing or invalid certificates lead to return or disposal of the pet.", fr: "Un certificat manquant ou invalide entraîne la réexpédition ou l'élimination de l'animal.", es: "Un certificado ausente o no válido conlleva la devolución o la eliminación de la mascota.", pt: "Certificado ausente ou inválido leva à devolução ou à eliminação do animal." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. I & III", fr: "Annonce GACC [2019] n° 5, art. I & III", es: "Anuncio GACC [2019] n.º 5, art. I y III", pt: "Anúncio GACC [2019] nº 5, art. I e III" }
+  - item: { en: "Import permit / advance notification", fr: "Permis d'import / notification préalable", es: "Permiso de importación / notificación previa", pt: "Autorização de importação / notificação prévia" }
+    required: { en: "Generally not required", fr: "En général non requis", es: "En general no obligatorio", pt: "Em geral, não obrigatório" }
+    when: { en: "No import permit for one accompanied pet on a short-term visa; unaccompanied or commercial imports have separate rules.", fr: "Aucun permis pour un animal accompagné sous visa court séjour ; les imports non accompagnés ou commerciaux relèvent de règles distinctes.", es: "No se necesita permiso de importación para una mascota acompañada con visado de corta duración; las importaciones no acompañadas o comerciales se rigen por normas distintas.", pt: "Nenhuma autorização de importação para um animal acompanhado com visto de curta duração; importações desacompanhadas ou comerciais seguem regras próprias." }
+    exceptions: { en: "Some visa categories or agents may require additional documents.", fr: "Certaines catégories de visa ou agents peuvent exiger des documents supplémentaires.", es: "Algunas categorías de visado o agentes pueden exigir documentos adicionales.", pt: "Algumas categorias de visto ou alguns agentes podem exigir documentos adicionais." }
+    ref: { en: "GACC Announcement [2019] No. 5", fr: "Annonce GACC [2019] n° 5", es: "Anuncio GACC [2019] n.º 5", pt: "Anúncio GACC [2019] nº 5" }
+  - item: { en: "Designated port of entry", fr: "Port d'entrée désigné", es: "Puerto de entrada designado", pt: "Porto de entrada designado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Any pet that may need isolation must enter through a port equipped with isolation and quarantine facilities (list set by GACC).", fr: "Tout animal susceptible d'isolement doit entrer par un port doté d'installations d'isolement et de quarantaine (liste fixée par la GACC).", es: "Toda mascota que pueda necesitar aislamiento debe entrar por un puerto dotado de instalaciones de aislamiento y cuarentena (lista fijada por la GACC).", pt: "Todo animal que possa precisar de isolamento tem que entrar por um porto com instalações de isolamento e quarentena (lista definida pela GACC)." }
+    exceptions: { en: "Exempt pets may enter through other ports, but confirm the current GACC list.", fr: "Les animaux exemptés peuvent entrer par d'autres ports, mais vérifie la liste GACC en vigueur.", es: "Las mascotas exentas pueden entrar por otros puertos, pero verifica la lista vigente de la GACC.", pt: "Animais isentos podem entrar por outros portos, mas confirme a lista da GACC em vigor." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. II & III", fr: "Annonce GACC [2019] n° 5, art. II & III", es: "Anuncio GACC [2019] n.º 5, art. II y III", pt: "Anúncio GACC [2019] nº 5, art. II e III" }
+  - item: { en: "On-arrival quarantine", fr: "Quarantaine à l'arrivée", es: "Cuarentena a la llegada", pt: "Quarentena na chegada" }
+    required: { en: "30 days unless exempt", fr: "30 jours sauf exemption", es: "30 días salvo exención", pt: "30 dias, salvo isenção" }
+    when: { en: "30 days of isolation at a customs-designated facility (withholding period included), unless the pet qualifies for exemption.", fr: "30 jours d'isolement dans une installation désignée par la douane (période de rétention incluse), sauf si l'animal remplit les conditions d'exemption.", es: "30 días de aislamiento en una instalación designada por las aduanas (periodo de retención incluido), salvo que la mascota cumpla las condiciones de exención.", pt: "30 dias de isolamento em uma instalação designada pela alfândega (período de retenção incluído), a menos que o animal cumpra as condições de isenção." }
+    exceptions: { en: "Exempt: designated-country pets, or non-designated pets with a valid antibody test, that pass the on-site quarantine; also qualified assistance dogs.", fr: "Exemptés : animaux de pays désignés, ou de pays non désignés avec titrage valide, qui passent la quarantaine sur place ; également les chiens d'assistance qualifiés.", es: "Exentos: las mascotas de países designados, o de países no designados con una prueba de titulación válida, que superan la cuarentena in situ; también los perros de asistencia cualificados.", pt: "Isentos: animais de países designados, ou de países não designados com teste sorológico válido, que passem na quarentena no local; também os cães de assistência qualificados." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. II", fr: "Annonce GACC [2019] n° 5, art. II", es: "Anuncio GACC [2019] n.º 5, art. II", pt: "Anúncio GACC [2019] nº 5, art. II" }
+  - item: { en: "Assistance dogs (guide / hearing / search-and-rescue)", fr: "Chiens d'assistance (guide / d'aide auditive / de sauvetage)", es: "Perros de asistencia (guía / de audición / de búsqueda y rescate)", pt: "Cães de assistência (guia / de audição / de busca e salvamento)" }
+    required: { en: "Special path", fr: "Voie particulière", es: "Vía especial", pt: "Via especial" }
+    when: { en: "May be exempt from isolation with a valid microchip plus user and professional-training certificates, on passing on-site quarantine.", fr: "Peuvent être exemptés d'isolement avec une puce valide plus les certificats d'utilisateur et de formation professionnelle, en passant la quarantaine sur place.", es: "Pueden quedar exentos de aislamiento con un microchip válido más los certificados de usuario y de formación profesional, al superar la cuarentena in situ.", pt: "Podem ficar isentos do isolamento com um microchip válido mais os certificados de usuário e de treinamento profissional, ao passarem na quarentena no local." }
+    exceptions: { en: "Assistance dogs without a vaccination certificate may be vaccinated on arrival on application.", fr: "Un chien d'assistance sans certificat de vaccination peut être vacciné à l'arrivée sur demande.", es: "Un perro de asistencia sin certificado de vacunación puede ser vacunado a la llegada, previa solicitud.", pt: "Um cão de assistência sem certificado de vacinação pode ser vacinado na chegada, mediante pedido." }
+    ref: { en: "GACC Announcement [2019] No. 5, Art. II(3) & III", fr: "Annonce GACC [2019] n° 5, art. II(3) & III", es: "Anuncio GACC [2019] n.º 5, art. II(3) y III", pt: "Anúncio GACC [2019] nº 5, art. II(3) e III" }
+  - item: { en: "Parasite (tick / tapeworm) treatment", fr: "Traitement antiparasitaire (tiques / échinococcose)", es: "Tratamiento antiparasitario (garrapatas / tenia)", pt: "Tratamento antiparasitário (carrapatos / tênia)" }
+    required: { en: "Recommended, not mandatory", fr: "Recommandé, non obligatoire", es: "Recomendado, no obligatorio", pt: "Recomendado, não obrigatório" }
+    when: { en: "GACC does not mandate a tapeworm treatment; treating against ticks and worms before travel is good practice.", fr: "La GACC n'impose pas de traitement contre l'échinococcose ; traiter contre les tiques et les vers avant le voyage est une bonne pratique.", es: "La GACC no exige un tratamiento contra la tenia; tratar contra las garrapatas y los gusanos antes del viaje es una buena práctica.", pt: "A GACC não exige tratamento contra tênia; tratar contra carrapatos e vermes antes da viagem é uma boa prática." }
+    exceptions: { en: "Confirm any additional treatments with your vet.", fr: "Confirme tout traitement supplémentaire avec ton vétérinaire.", es: "Confirma cualquier tratamiento adicional con tu veterinario.", pt: "Confirme com seu veterinário qualquer tratamento adicional." }
+    ref: { en: "GACC Announcement [2019] No. 5", fr: "Annonce GACC [2019] n° 5", es: "Anuncio GACC [2019] n.º 5", pt: "Anúncio GACC [2019] nº 5" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not specified", fr: "Non précisé", es: "No especificada", pt: "Não especificada" }
+    when: { en: "GACC's announcement sets no explicit minimum age; a valid rabies vaccination is nonetheless required.", fr: "L'annonce GACC ne fixe pas d'âge minimum explicite ; une vaccination antirabique valide reste néanmoins exigée.", es: "El anuncio de la GACC no fija una edad mínima explícita; no obstante, se exige una vacunación antirrábica válida.", pt: "O anúncio da GACC não fixa idade mínima explícita; ainda assim, é exigida uma vacinação antirrábica válida." }
+    exceptions: { en: "Unknown — confirm with the destination customs district for very young puppies.", fr: "Non communiqué — vérifier auprès du bureau de douane de destination pour les très jeunes chiots.", es: "Desconocido — verifícalo con la oficina de aduanas de destino para los cachorros muy jóvenes.", pt: "Não informado — verifique com a repartição aduaneira de destino no caso de filhotes muito novos." }
+    ref: { en: "GACC Announcement [2019] No. 5", fr: "Annonce GACC [2019] n° 5", es: "Anuncio GACC [2019] n.º 5", pt: "Anúncio GACC [2019] nº 5" }
+
+origin:
+  eu:
+    title: { en: "Designated country/region — no isolation", fr: "Pays/région désigné — pas d'isolement", es: "País/región designado — sin aislamiento", pt: "País/região designado — sem isolamento" }
+    body:
+      en: "A dog coming from a GACC-designated country or region needs a valid electronic microchip, a valid rabies vaccination and the official quarantine and vaccination certificate from the exit authority. No rabies antibody test is required: if the dog passes the on-site quarantine at the port, it is released without the 30-day isolation. The list of designated countries/regions is set by GACC and can change — verify it before you travel."
+      fr: "Un chien venant d'un pays ou d'une région désigné par la GACC a besoin d'une puce électronique valide, d'une vaccination antirabique valide et du certificat officiel de quarantaine et de vaccination de l'autorité de départ. Aucun titrage antirabique n'est exigé : si le chien passe la quarantaine sur place au port, il est libéré sans les 30 jours d'isolement. La liste des pays/régions désignés est fixée par la GACC et peut évoluer — vérifie-la avant de partir."
+      es: "Un perro que llega de un país o región designado por la GACC necesita un microchip electrónico válido, una vacunación antirrábica válida y el certificado oficial de cuarentena y vacunación de la autoridad de salida. No se exige ninguna prueba de titulación de rabia: si el perro supera la cuarentena in situ en el puerto, se libera sin los 30 días de aislamiento. La lista de países/regiones designados la fija la GACC y puede cambiar — verifícala antes de viajar."
+      pt: "Um cachorro que vem de um país ou região designado pela GACC precisa de um microchip eletrônico válido, de uma vacinação antirrábica válida e do certificado oficial de quarentena e vacinação da autoridade do país de saída. Nenhum teste sorológico antirrábico é exigido: se o cachorro passar na quarentena no local, no porto, ele é liberado sem os 30 dias de isolamento. A lista de países/regiões designados é definida pela GACC e pode mudar — confira antes de viajar."
+    cls: ok
+  listed:
+    title: { en: "Non-designated + rabies antibody test", fr: "Non désigné + titrage antirabique", es: "No designado + prueba de titulación de rabia", pt: "Não designado + teste sorológico antirrábico" }
+    body:
+      en: "From a non-designated country, add a rabies antibody test: a report from a GACC-designated laboratory showing an antibody level above 0.5 IU/ml. With the microchip, valid rabies vaccination, official exit certificate and this test, and after passing the on-site quarantine, the dog is exempt from the 30-day isolation. Plan ahead: the blood test and its processing take time."
+      fr: "Depuis un pays non désigné, ajoute un titrage antirabique : un rapport d'un laboratoire agréé par la GACC indiquant un titrage supérieur à 0,5 UI/ml. Avec la puce, la vaccination antirabique valide, le certificat officiel de départ et ce test, et après avoir passé la quarantaine sur place, le chien est exempté des 30 jours d'isolement. Anticipe : la prise de sang et son traitement prennent du temps."
+      es: "Desde un país no designado, añade una prueba de titulación de rabia: un informe de un laboratorio autorizado por la GACC que indique un nivel de anticuerpos superior a 0,5 UI/ml. Con el microchip, la vacunación antirrábica válida, el certificado oficial de salida y esta prueba, y tras superar la cuarentena in situ, el perro queda exento de los 30 días de aislamiento. Anticípate: el análisis de sangre y su tramitación llevan tiempo."
+      pt: "Vindo de um país não designado, acrescente um teste sorológico antirrábico: um laudo de laboratório designado pela GACC indicando um nível de anticorpos acima de 0,5 UI/ml. Com o microchip, a vacinação antirrábica válida, o certificado oficial de saída e esse teste, e depois de passar na quarentena no local, o cachorro fica isento dos 30 dias de isolamento. Antecipe-se: a coleta de sangue e o processamento levam tempo."
+    cls: warn
+  nonListed:
+    title: { en: "No valid antibody test — 30-day quarantine", fr: "Sans titrage valide — quarantaine de 30 jours", es: "Sin prueba de titulación válida — cuarentena de 30 días", pt: "Sem teste sorológico válido — quarentena de 30 dias" }
+    body:
+      en: "A dog from a non-designated country without a valid rabies antibody test is placed in isolation quarantine for 30 days (withholding period included) at a customs-designated facility, and must enter through a port equipped with quarantine facilities. The owner bears all costs. If the quota, certificates or port conditions are not met, customs may return or dispose of the pet."
+      fr: "Un chien venant d'un pays non désigné sans titrage antirabique valide est placé en quarantaine d'isolement pendant 30 jours (période de rétention incluse) dans une installation désignée par la douane, et doit entrer par un port doté d'installations de quarantaine. Le propriétaire en assume tous les frais. Si le quota, les certificats ou les conditions de port ne sont pas respectés, la douane peut réexpédier ou éliminer l'animal."
+      es: "Un perro que llega de un país no designado sin una prueba de titulación de rabia válida es puesto en cuarentena de aislamiento durante 30 días (periodo de retención incluido) en una instalación designada por las aduanas, y debe entrar por un puerto dotado de instalaciones de cuarentena. El propietario asume todos los costes. Si no se cumplen el cupo, los certificados o las condiciones de puerto, las aduanas pueden devolver o eliminar a la mascota."
+      pt: "Um cachorro vindo de um país não designado sem teste sorológico antirrábico válido é colocado em quarentena de isolamento por 30 dias (período de retenção incluído) em uma instalação designada pela alfândega, e precisa entrar por um porto com instalações de quarentena. O proprietário arca com todos os custos. Se a cota, os certificados ou as condições do porto não forem cumpridos, a alfândega pode devolver ou eliminar o animal."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches China depends on its classification and your documents."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Chine dépend de son classement et de tes documents."
+    es: "Lo que ocurre cuando tu perro llega a China depende de su clasificación y de tus documentos."
+    pt: "O que acontece quando seu cachorro chega à China depende da classificação dele e dos seus documentos."
+  points:
+    - en: "Enter through a port with isolation and quarantine facilities if your dog may need quarantine; the list of such ports is published by GACC."
+      fr: "Entre par un port doté d'installations d'isolement et de quarantaine si ton chien peut nécessiter une quarantaine ; la liste de ces ports est publiée par la GACC."
+      es: "Entra por un puerto con instalaciones de aislamiento y cuarentena si tu perro puede necesitar cuarentena; la lista de esos puertos la publica la GACC."
+      pt: "Entre por um porto com instalações de isolamento e quarentena se o seu cachorro puder precisar de quarentena; a lista desses portos é publicada pela GACC."
+    - en: "Declare the pet to Customs (red channel) and present the microchip, rabies vaccination certificate, official quarantine certificate and, if applicable, the rabies antibody test report."
+      fr: "Déclare l'animal à la douane (couloir rouge) et présente la puce, le certificat de vaccination antirabique, le certificat officiel de quarantaine et, le cas échéant, le rapport de titrage antirabique."
+      es: "Declara la mascota en la aduana (canal rojo) y presenta el microchip, el certificado de vacunación antirrábica, el certificado oficial de cuarentena y, si procede, el informe de la prueba de titulación de rabia."
+      pt: "Declare o animal à alfândega (canal vermelho) e apresente o microchip, o certificado de vacinação antirrábica, o certificado oficial de quarentena e, se for o caso, o laudo do teste sorológico antirrábico."
+    - en: "Customs carries out an on-site quarantine check; dogs that qualify for exemption are released, others are held for 30 days of isolation."
+      fr: "La douane effectue un contrôle de quarantaine sur place ; les chiens éligibles à l'exemption sont libérés, les autres sont retenus 30 jours en isolement."
+      es: "La aduana realiza un control de cuarentena in situ; los perros que reúnen las condiciones de exención se liberan, los demás quedan retenidos 30 días en aislamiento."
+      pt: "A alfândega faz uma inspeção de quarentena no local; os cachorros que se enquadram na isenção são liberados, os demais ficam retidos 30 dias em isolamento."
+    - en: "Only one dog or one cat per person is accepted; exceeding the quota triggers return or disposal of the extra pet."
+      fr: "Un seul chien ou chat par personne est accepté ; dépasser le quota entraîne la réexpédition ou l'élimination de l'animal en trop."
+      es: "Solo se acepta un perro o un gato por persona; superar el cupo conlleva la devolución o la eliminación de la mascota sobrante."
+      pt: "Só é aceito um cachorro ou um gato por pessoa; passar da cota leva à devolução ou à eliminação do animal excedente."
+    - en: "If certificates are missing or invalid, or the dog fails the on-site check, customs may return the pet within a set period or dispose of it — at the owner's expense."
+      fr: "Si les certificats manquent ou sont invalides, ou si le chien échoue au contrôle sur place, la douane peut réexpédier l'animal dans un délai fixé ou l'éliminer — aux frais du propriétaire."
+      es: "Si faltan certificados o no son válidos, o si el perro no supera el control in situ, las aduanas pueden devolver a la mascota en un plazo fijado o eliminarla — a cargo del propietario."
+      pt: "Se faltarem certificados ou eles forem inválidos, ou se o cachorro não passar na inspeção no local, a alfândega pode devolver o animal dentro de um prazo fixado ou eliminá-lo — às custas do proprietário."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "China sets no national breed ban for importing pet dogs — dogs and cats are admitted as pets under customs rules. However, many Chinese cities restrict large or so-called 'fierce' dogs locally, so a dog you may legally import can still be barred from being kept in a given city."
+    fr: "La Chine n'impose aucune interdiction nationale de race à l'importation — chiens et chats sont admis comme animaux de compagnie selon les règles douanières. Toutefois, de nombreuses villes chinoises restreignent localement les grands chiens ou chiens dits « féroces », de sorte qu'un chien légalement importable peut néanmoins être interdit de détention dans une ville donnée."
+    es: "China no impone ninguna prohibición nacional de razas para la importación de perros de compañía — los perros y gatos se admiten como mascotas según las normas aduaneras. No obstante, muchas ciudades chinas restringen localmente a los perros grandes o llamados «feroces», de modo que un perro que puedes importar legalmente puede quedar, aun así, prohibido para su tenencia en una ciudad determinada."
+    pt: "A China não impõe nenhuma proibição nacional de raças para a importação de cachorros de estimação — cães e gatos são admitidos como animais de estimação segundo as regras aduaneiras. No entanto, muitas cidades chinesas restringem localmente os cachorros grandes ou considerados “ferozes”, de modo que um cachorro que você pode importar legalmente ainda assim pode ser proibido de ser mantido em determinada cidade."
+  cat1:
+    en: "City-level bans: Beijing, for example, prohibits keeping dogs taller than about 35 cm at the shoulder in its central management districts and lists dozens of large breeds; Shanghai and Chengdu publish their own lists of restricted 'fierce' breeds (mastiff types, pit bull / Staffordshire types, Rottweiler and similar). These are local dog-keeping rules, not import rules."
+    fr: "Interdictions au niveau des villes : Pékin, par exemple, interdit la détention de chiens de plus d'environ 35 cm au garrot dans ses districts centraux et liste des dizaines de grandes races ; Shanghai et Chengdu publient leurs propres listes de races « féroces » restreintes (types mastiff, type pit-bull / Staffordshire, Rottweiler et similaires). Ce sont des règles locales de détention, non des règles d'importation."
+    es: "Prohibiciones a nivel de ciudad: Pekín, por ejemplo, prohíbe la tenencia de perros de más de unos 35 cm a la cruz en sus distritos centrales de gestión y enumera decenas de razas grandes; Shanghái y Chengdú publican sus propias listas de razas «feroces» restringidas (tipos mastín, tipo pit bull / Staffordshire, Rottweiler y similares). Son normas locales de tenencia, no normas de importación."
+    pt: "Proibições municipais: Pequim, por exemplo, proíbe manter cachorros com mais de cerca de 35 cm de altura na cernelha nos seus distritos centrais de gestão e lista dezenas de raças grandes; Xangai e Chengdu publicam as próprias listas de raças “ferozes” restritas (tipos mastim, tipo pit bull / Staffordshire, Rottweiler e semelhantes). São regras locais de posse, não regras de importação."
+  cat2:
+    en: "These municipal lists vary from city to city and are updated periodically. Confirm the current rules with the local public-security bureau or dog-registration authority of your destination city before you travel."
+    fr: "Ces listes municipales varient d'une ville à l'autre et sont mises à jour périodiquement. Vérifie les règles en vigueur auprès du bureau de la sécurité publique ou de l'autorité d'enregistrement canin de ta ville de destination avant de partir."
+    es: "Estas listas municipales varían de una ciudad a otra y se actualizan periódicamente. Confirma las normas vigentes con la oficina local de seguridad pública o la autoridad de registro canino de tu ciudad de destino antes de viajar."
+    pt: "Essas listas municipais variam de cidade para cidade e são atualizadas periodicamente. Confirme as regras em vigor com o órgão local de segurança pública ou com a autoridade de registro canino da sua cidade de destino antes de viajar."
+  note:
+    en: "A dog that clears customs may still be un-keepable in a particular city because of its breed or size. Always check the destination city's list, not only the national import scheme."
+    fr: "Un chien qui passe la douane peut néanmoins être impossible à détenir dans une ville donnée en raison de sa race ou de sa taille. Vérifie toujours la liste de la ville de destination, pas seulement le régime national d'importation."
+    es: "Un perro que pasa la aduana puede, aun así, resultar imposible de tener en una ciudad determinada por su raza o su tamaño. Verifica siempre la lista de la ciudad de destino, no solo el régimen nacional de importación."
+    pt: "Um cachorro que passa pela alfândega ainda assim pode ser impossível de manter em determinada cidade por causa da raça ou do porte. Confira sempre a lista da cidade de destino, não só o regime nacional de importação."
+
+checklist:
+  - en: "Only one dog (or one cat) per person for this trip"
+    fr: "Un seul chien (ou chat) par personne pour ce voyage"
+    es: "Solo un perro (o un gato) por persona para este viaje"
+    pt: "Um só cachorro (ou um só gato) por pessoa nesta viagem"
+  - en: "ISO microchip implanted and readable"
+    fr: "Puce ISO posée et lisible"
+    es: "Microchip ISO implantado y legible"
+    pt: "Microchip ISO implantado e legível"
+  - en: "Valid rabies vaccination (no multi-year vaccine)"
+    fr: "Vaccination antirabique valide (pas de vaccin pluriannuel)"
+    es: "Vacunación antirrábica válida (sin vacuna plurianual)"
+    pt: "Vacinação antirrábica válida (sem vacina plurianual)"
+  - en: "Rabies antibody test ≥0.5 IU/ml from a GACC-designated lab — non-designated origins"
+    fr: "Titrage antirabique ≥0,5 UI/ml dans un labo agréé GACC — origines non désignées"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml de un laboratorio autorizado por la GACC — orígenes no designados"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml em laboratório designado pela GACC — origens não designadas"
+  - en: "Official quarantine & vaccination certificate from the exit country authority"
+    fr: "Certificat officiel de quarantaine et de vaccination de l'autorité du pays de départ"
+    es: "Certificado oficial de cuarentena y vacunación de la autoridad del país de salida"
+    pt: "Certificado oficial de quarentena e vacinação da autoridade do país de saída"
+  - en: "Confirm your arrival port has isolation/quarantine facilities if needed"
+    fr: "Vérifie que ton port d'arrivée dispose d'installations d'isolement/quarantaine si besoin"
+    es: "Confirma que tu puerto de llegada dispone de instalaciones de aislamiento/cuarentena si es necesario"
+    pt: "Confirme que o seu porto de chegada tem instalações de isolamento/quarentena, se for preciso"
+  - en: "Airline reservation confirming your dog's travel option and IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport et caisse IATA si voyage en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
+  - en: "Check the destination city's restricted-breed and size rules"
+    fr: "Vérifie les règles de races et de taille restreintes de la ville de destination"
+    es: "Consulta las normas de razas restringidas y de tamaño de la ciudad de destino"
+    pt: "Confira as regras de raças restritas e de porte da cidade de destino"
+
+sources:
+  - label: { en: "GACC Announcement [2019] No. 5 on the Quarantine and Supervision of Pets Entering China (English)", fr: "Annonce GACC [2019] n° 5 sur la quarantaine et la supervision des animaux entrant en Chine (anglais)", es: "Anuncio GACC [2019] n.º 5 sobre la cuarentena y la supervisión de las mascotas que entran en China (inglés)", pt: "Anúncio GACC [2019] nº 5 sobre a quarentena e a supervisão dos animais de estimação que entram na China (em inglês)" }
+    url: "https://english.beijing.gov.cn/latest/lawsandpolicies/202104/t20210407_2346645.html"
+  - label: { en: "General Administration of Customs (GACC) — Announcement [2019] No. 5 (Chinese, authoritative)", fr: "Administration générale des douanes (GACC) — Annonce [2019] n° 5 (chinois, version faisant foi)", es: "Administración General de Aduanas (GACC) — Anuncio [2019] n.º 5 (chino, versión auténtica)", pt: "General Administration of Customs (GACC) — Anúncio [2019] nº 5 (em chinês, versão que faz fé)" }
+    url: "http://www.customs.gov.cn/customs/302249/302266/302269/2168059/index.html"
+  - label: { en: "China Customs — Customs Clearance Guide for International Passengers (dogs/cats admitted as pets)", fr: "Douane chinoise — Guide de dédouanement des voyageurs internationaux (chiens/chats admis comme animaux)", es: "Aduana china — Guía de despacho aduanero para viajeros internacionales (perros/gatos admitidos como mascotas)", pt: "Alfândega da China — Guia de desembaraço aduaneiro para passageiros internacionais (cães e gatos admitidos como animais de estimação)" }
+    url: "http://english.customs.gov.cn/statics/88707c1e-aa4e-40ca-a968-bdbdbb565e4f.html"
+
+seo:
+  title: { en: "China Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Chine — Guide", es: "Requisitos de entrada de perros en China — Guía de viaje", pt: "Entrada de cachorros na China — Guia de viagem" }
+  metaTitle: { en: "Traveling to China With Your Dog: Entry Requirements (2026)", fr: "Voyager en Chine avec ton chien : formalités (2026)", es: "Viajar a China con tu perro: requisitos de entrada (2026)", pt: "Viajar para a China com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official GACC rules for bringing a dog into mainland China — microchip, rabies, antibody test, quarantine and city breed limits. Sourced and dated."
+    fr: "Règles officielles GACC pour faire entrer un chien en Chine continentale — puce, rage, titrage, quarantaine et limites de races par ville. Sourcé et daté."
+    es: "Normas oficiales de la GACC para traer un perro a la China continental — microchip, rabia, titulación, cuarentena y límites de razas por ciudad. Con fuentes y fecha."
+    pt: "Regras oficiais da GACC para levar um cachorro à China continental: microchip, raiva, teste sorológico, quarentena e limites de raça por cidade. Com fontes e data."
+  slug: "china"
+  shortDesc:
+    en: "What you need to bring a dog into mainland China, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Chine continentale, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a la China continental, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para a China continental, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

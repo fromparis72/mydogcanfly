@@ -1,0 +1,391 @@
+# Country Entry Guide — India (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_in
+iso2: "IN"
+name: { en: "India", fr: "Inde", es: "India", pt: "Índia" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in India: no import formality, but a veterinary health certificate is legally required."
+    fr: "Vol intérieur en Inde : aucune formalité d'import, mais un certificat sanitaire vétérinaire est légalement exigé."
+    es: "Vuelo nacional en India: ningún trámite de importación, pero se exige legalmente un certificado sanitario veterinario."
+    pt: "Voo doméstico na Índia: nenhuma formalidade de importação, mas um atestado de saúde veterinário é exigido por lei."
+  points:
+    - en: "The Transport of Animals Rules 1978 require a health certificate from a qualified vet, certifying the dog is fit to travel and free of infectious disease including rabies; the animal must be examined within 12 hours of departure."
+      fr: "Les Transport of Animals Rules de 1978 imposent un certificat de santé d'un vétérinaire qualifié, attestant que le chien est apte au voyage et indemne de maladie contagieuse dont la rage ; l'animal doit être examiné dans les 12 heures précédant le départ."
+      es: "Las Transport of Animals Rules de 1978 exigen un certificado de salud de un veterinario cualificado, que acredite que el perro está apto para viajar y libre de enfermedad contagiosa incluida la rabia; debe examinarse en las 12 horas previas a la salida."
+      pt: "As Transport of Animals Rules 1978 (normas indianas de transporte de animais) exigem um atestado de saúde emitido por um veterinário habilitado, certificando que o cachorro está apto a viajar e livre de doenças infecciosas, inclusive a raiva; o animal deve ser examinado nas 12 horas anteriores à partida."
+    - en: "Without that certificate the carrier must refuse the animal. Cabin, hold and breed conditions are then set by each airline."
+      fr: "Sans ce certificat, la compagnie doit refuser l'animal. Les conditions de cabine, de soute et de race sont ensuite propres à chaque compagnie."
+      es: "Sin ese certificado, la aerolínea debe rechazar al animal. Las condiciones de cabina, bodega y raza las fija luego cada aerolínea."
+      pt: "Sem esse atestado, a transportadora deve recusar o animal. As condições de cabine, de porão e de raça são definidas por cada companhia aérea."
+exit:
+  authority: AQCS
+  authorityUrl: https://aqcsindia.gov.in/Home/ExportPets
+  intro:
+    en: "India is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an AQCS export certificate."
+    fr: "L'Inde est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat d'export AQCS."
+    es: "India no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de exportación de AQCS."
+    pt: "A Índia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de exportação da AQCS."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Get a fit-to-fly certificate from a registered vet, then submit the dog and documents to the AQCS quarantine office 7 days before departure (by appointment); the AQCS export certificate is valid 10 days from issue."
+        fr: "Obtiens un certificat d'aptitude au vol d'un vétérinaire enregistré, puis présente le chien et les documents au bureau de quarantaine AQCS 7 jours avant le départ (sur rendez-vous) ; le certificat d'export AQCS est valable 10 jours."
+        es: "Consigue un certificado de aptitud para volar de un veterinario registrado y luego presenta al perro y los documentos en la oficina de cuarentena de AQCS 7 días antes de salir (con cita); el certificado de exportación de AQCS es válido 10 días."
+        pt: "Obtenha um atestado de aptidão para voar com um veterinário registrado e depois apresente o cachorro e os documentos ao escritório de quarentena da AQCS 7 dias antes da partida (com hora marcada); o certificado de exportação da AQCS é válido por 10 dias a partir da emissão."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to India with your dog", fr: "Voyager en Inde avec ton chien", es: "Viajar a la India con tu perro", pt: "Viajar para a Índia com o seu cachorro" }
+  intro:
+    en: >-
+      India welcomes pet dogs, but under a strict national scheme run by the Animal Quarantine and
+      Certification Services (AQCS) of the Department of Animal Husbandry & Dairying (DAHD). Every dog
+      needs an advance No Objection Certificate (NOC) from an AQCS station before it can be flown in, and
+      is physically examined on arrival. What you can bring depends mainly on your own situation: a
+      returning resident transferring residence to India may import up to two pets as baggage, while
+      short visits or other purposes require a licence from the Directorate General of Foreign Trade
+      (DGFT). India does not require a rabies antibody test, but it does require a certified rabies
+      vaccination and an official health certificate. This guide explains each case so you know exactly
+      what to prepare before you book your flight.
+    fr: >-
+      L'Inde accueille les chiens de compagnie, mais dans le cadre d'un régime national strict géré par
+      les Animal Quarantine and Certification Services (AQCS) du Department of Animal Husbandry & Dairying
+      (DAHD). Chaque chien doit obtenir à l'avance un No Objection Certificate (NOC) auprès d'une station
+      AQCS avant de pouvoir voyager, et fait l'objet d'un examen physique à l'arrivée. Ce que tu peux
+      importer dépend surtout de ta situation : un résident de retour qui transfère sa résidence en
+      Inde peut importer jusqu'à deux animaux comme bagage, tandis qu'un court séjour ou un autre motif
+      exige une licence de la Directorate General of Foreign Trade (DGFT). L'Inde n'exige pas de titrage
+      antirabique, mais impose une vaccination antirabique certifiée et un certificat sanitaire officiel.
+      Ce guide détaille chaque cas pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      La India acoge a los perros de compañía, pero bajo un estricto régimen nacional gestionado por los
+      Animal Quarantine and Certification Services (AQCS) del Department of Animal Husbandry & Dairying
+      (DAHD). Todo perro necesita un No Objection Certificate (NOC) previo de una estación AQCS antes de
+      poder volar, y es examinado físicamente a la llegada. Lo que puedes traer depende sobre todo de tu
+      propia situación: un residente que regresa y traslada su residencia a la India puede importar hasta
+      dos mascotas como equipaje, mientras que las visitas cortas u otros motivos requieren una licencia
+      de la Directorate General of Foreign Trade (DGFT). La India no exige una prueba de titulación de
+      rabia, pero sí una vacunación antirrábica certificada y un certificado sanitario oficial. Esta guía
+      explica cada caso para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "A Índia aceita cachorros de estimação, mas dentro de um regime nacional rigoroso conduzido pelo Animal Quarantine and Certification Services (AQCS), do Department of Animal Husbandry & Dairying (DAHD). Todo cachorro precisa de um No Objection Certificate (NOC) prévio, emitido por uma estação da AQCS, antes de poder ser embarcado, e é examinado fisicamente na chegada. O que você pode levar depende sobretudo da sua própria situação: um residente que retorna e transfere seu domicílio para a Índia pode importar até dois animais de estimação como bagagem, enquanto visitas curtas ou outras finalidades exigem uma licença do Directorate General of Foreign Trade (DGFT). A Índia não exige teste sorológico antirrábico, mas exige uma vacinação antirrábica certificada e um atestado de saúde oficial. Este guia explica cada caso para que você saiba exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: difficult
+  label: { en: "Moderate to difficult (NOC + eligibility rules)", fr: "Modéré à difficile (NOC + règles d'éligibilité)", es: "De moderado a difícil (NOC + reglas de elegibilidad)", pt: "Moderada a difícil (NOC + regras de elegibilidade)" }
+
+prepTime:
+  eu:
+    en: "Transfer of residence (up to 2 pets as baggage): allow ~2–4 weeks — advance NOC from AQCS issued within about 7 working days, plus vaccination and health-certificate preparation."
+    fr: "Transfert de résidence (jusqu'à 2 animaux en bagage) : compte ~2 à 4 semaines — NOC anticipé de l'AQCS délivré sous environ 7 jours ouvrés, plus la vaccination et le certificat sanitaire."
+    es: "Traslado de residencia (hasta 2 mascotas como equipaje): prevé ~2–4 semanas — NOC previo de la AQCS emitido en unos 7 días laborables, más la preparación de la vacunación y del certificado sanitario."
+    pt: "Transferência de domicílio (até 2 animais como bagagem): conte com cerca de 2 a 4 semanas — NOC prévio da AQCS emitido em cerca de 7 dias úteis, mais o preparo da vacinação e do atestado de saúde."
+  listed:
+    en: "Short visits / other purposes (DGFT licence): allow ~1–2 months — the DGFT import licence alone takes around a month, then the AQCS NOC on top."
+    fr: "Courts séjours / autres motifs (licence DGFT) : compte ~1 à 2 mois — la licence d'importation DGFT prend à elle seule environ un mois, puis le NOC AQCS s'y ajoute."
+    es: "Visitas cortas / otros motivos (licencia DGFT): prevé ~1–2 meses — la licencia de importación DGFT tarda por sí sola alrededor de un mes, y luego se añade el NOC de la AQCS."
+    pt: "Visitas curtas / outras finalidades (licença DGFT): conte com cerca de 1 a 2 meses — só a licença de importação do DGFT leva cerca de um mês e, depois dela, ainda vem o NOC da AQCS."
+  nonListed:
+    en: "Re-import of a dog previously exported from India: allow ~2–4 weeks — advance NOC plus proof of the dog's earlier AQCS certification and current health certificate."
+    fr: "Ré-importation d'un chien déjà exporté d'Inde : compte ~2 à 4 semaines — NOC anticipé, plus preuve de la certification AQCS antérieure et certificat sanitaire à jour."
+    es: "Reimportación de un perro exportado previamente desde la India: prevé ~2–4 semanas — NOC previo, más prueba de la certificación AQCS anterior y un certificado sanitario vigente."
+    pt: "Reimportação de um cachorro anteriormente exportado da Índia: conte com cerca de 2 a 4 semanas — NOC prévio, mais a comprovação da certificação anterior da AQCS e o atestado de saúde atual."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with NOC and eligibility", fr: "Oui — avec NOC et éligibilité", es: "Sí — con NOC y elegibilidad", pt: "Sim — com NOC e elegibilidade" }
+    cls: neutral
+  - requirement: { en: "Import NOC / permit (AQCS)", fr: "NOC / permis d'import (AQCS)", es: "NOC / permiso de importación (AQCS)", pt: "NOC / autorização de importação (AQCS)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required by India", fr: "Non requis par l'Inde", es: "No obligatoria por la India", pt: "Não obrigatório pela Índia" }
+    cls: ok
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Only if unfit on arrival", fr: "Seulement si inapte à l'arrivée", es: "Solo si no está apto a la llegada", pt: "Somente se inapto na chegada" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and the AQCS import conditions can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire et les conditions d'importation de l'AQCS peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y las condiciones de importación de la AQCS pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Somente um veterinário e as condições de importação da AQCS podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: your import category (transfer of residence, DGFT licence or re-import), previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : de ton catégorie d'import (transfert de résidence, licence DGFT ou ré-importation), de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: tu categoría de importación (traslado de residencia, licencia DGFT o reimportación), el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem de: sua categoria de importação (transferência de domicílio, licença DGFT ou reimportação), histórico de viagens anteriores, identificação, vacinações, itinerário e data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — India (your destination) sets the national scheme, but your own situation decides which path applies."
+    fr: "Les documents exacts dépendent de trois éléments — l'Inde (ta destination) fixe le régime national, mais ta situation détermine le parcours applicable."
+    es: "Los documentos exactos dependen de tres factores — la India (tu destino) fija el régimen nacional, pero tu propia situación determina qué vía se aplica."
+    pt: "Os documentos exatos dependem de três fatores — a Índia (seu destino) define o regime nacional, mas a sua situação pessoal determina qual caminho se aplica."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — India", fr: "Pays de destination — Inde", es: "País de destino — India", pt: "País de destino — Índia" }
+      text:
+        en: "India's own scheme applies to every dog: an advance NOC from an AQCS station, a microchip, a certified rabies vaccination, an official health certificate and a physical inspection on arrival — with quarantine only if the dog is found unfit."
+        fr: "Le régime propre à l'Inde s'applique à tout chien : NOC anticipé d'une station AQCS, puce électronique, vaccination antirabique certifiée, certificat sanitaire officiel et examen physique à l'arrivée — avec quarantaine uniquement si le chien est jugé inapte."
+        es: "El régimen propio de la India se aplica a todo perro: un NOC previo de una estación AQCS, un microchip, una vacunación antirrábica certificada, un certificado sanitario oficial y una inspección física a la llegada — con cuarentena solo si el perro se considera no apto."
+        pt: "O regime próprio da Índia se aplica a todo cachorro: um NOC prévio de uma estação da AQCS, um microchip, uma vacinação antirrábica certificada, um atestado de saúde oficial e uma inspeção física na chegada — com quarentena apenas se o cachorro for considerado inapto."
+    - stars: 5
+      label: { en: "Your import category and purpose", fr: "Ton catégorie et motif d'import", es: "Tu categoría y motivo de importación", pt: "Sua categoria e finalidade de importação" }
+      text:
+        en: "Whether you qualify under the baggage rule (transfer of residence), need a DGFT licence (short visits, defence, R&D and other purposes) or re-import a dog previously exported from India decides which documents you must produce."
+        fr: "Que tu releviez de la règle du bagage (transfert de résidence), ayez besoin d'une licence DGFT (courts séjours, défense, R&D et autres motifs) ou ré-importiez un chien déjà exporté d'Inde détermine les documents à fournir."
+        es: "Que reúnas los requisitos de la regla del equipaje (traslado de residencia), necesites una licencia DGFT (visitas cortas, defensa, I+D y otros motivos) o reimportes un perro exportado previamente desde la India determina qué documentos debes presentar."
+        pt: "Enquadrar-se na regra da bagagem (transferência de domicílio), precisar de uma licença DGFT (visitas curtas, defesa, P&D e outras finalidades) ou reimportar um cachorro anteriormente exportado da Índia: é isso que determina quais documentos você deve apresentar."
+    - stars: 4
+      label: { en: "Your period of stay abroad", fr: "Ta durée de séjour à l'étranger", es: "Tu periodo de estancia en el extranjero", pt: "Seu tempo de permanência no exterior" }
+      text:
+        en: "The baggage-rule path for up to two pets requires proof of at least two continuous years abroad and of transferring your residence to India. Without it, you fall under the DGFT-licence route instead."
+        fr: "Le parcours « bagage » pour deux animaux au maximum exige la preuve d'au moins deux années continues à l'étranger et du transfert de ton résidence en Inde. À défaut, tu relevez du parcours par licence DGFT."
+        es: "La vía de la regla del equipaje para hasta dos mascotas exige acreditar al menos dos años continuos en el extranjero y el traslado de tu residencia a la India. Sin ello, quedas dentro de la vía de la licencia DGFT."
+        pt: "A via da regra da bagagem, para até dois animais de estimação, exige a comprovação de pelo menos dois anos contínuos no exterior e da transferência do seu domicílio para a Índia. Sem isso, você passa a se enquadrar na via da licença DGFT."
+  note:
+    en: "So read the requirements below as India's framework, then confirm your eligibility and category with AQCS and your vet before you travel."
+    fr: "Lis donc les exigences ci-dessous comme le cadre indien, puis confirme ton éligibilité et ton catégorie auprès de l'AQCS et de ton vétérinaire avant de voyager."
+    es: "Así que lee los requisitos siguientes como el marco de la India y luego confirma tu elegibilidad y tu categoría con la AQCS y tu veterinario antes de viajar."
+    pt: "Portanto, leia as exigências abaixo como o marco geral da Índia e depois confirme sua elegibilidade e sua categoria com a AQCS e com o seu veterinário antes de viajar."
+
+requirements:
+  - item: { en: "Import NOC (AQCS)", fr: "NOC d'import (AQCS)", es: "NOC de importación (AQCS)", pt: "NOC de importação (AQCS)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply to an AQCS station at least 7 working days before embarkation; an advance NOC is issued (about 1 working day after review) and the airline will not load the dog without it.", fr: "À demander à une station AQCS au moins 7 jours ouvrés avant l'embarquement ; un NOC anticipé est délivré (environ 1 jour ouvré après examen) et la compagnie n'embarquera pas le chien sans ce document.", es: "Solicítalo a una estación AQCS al menos 7 días laborables antes del embarque; se emite un NOC previo (aproximadamente 1 día laborable tras la revisión) y la aerolínea no embarcará al perro sin él.", pt: "Faça o pedido em uma estação da AQCS pelo menos 7 dias úteis antes do embarque; um NOC prévio é emitido (cerca de 1 dia útil após a análise) e a companhia aérea não embarcará o cachorro sem ele." }
+    exceptions: { en: "The advance NOC is provisional; a final NOC is issued on arrival after physical examination.", fr: "Le NOC anticipé est provisoire ; un NOC final est délivré à l'arrivée après examen physique.", es: "El NOC previo es provisional; a la llegada se emite un NOC definitivo tras el examen físico.", pt: "O NOC prévio é provisório; um NOC definitivo é emitido na chegada, após o exame físico." }
+    ref: { en: "AQCS — SOP for import of pet dogs; DAHD", fr: "AQCS — Procédure d'import de chiens ; DAHD", es: "AQCS — Procedimiento para la importación de perros; DAHD", pt: "AQCS — Procedimento para importação de cachorros de estimação; DAHD" }
+  - item: { en: "Import eligibility (2 pets / permit)", fr: "Éligibilité à l'import (2 animaux / permis)", es: "Elegibilidad de importación (2 mascotas / permiso)", pt: "Elegibilidade para importação (2 animais / autorização)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Up to two pets (dogs/cats) per passenger may be imported as baggage on transfer of residence (proof of ≥2 years abroad + transfer of residence to India).", fr: "Jusqu'à deux animaux (chiens/chats) par passager peuvent être importés en bagage lors d'un transfert de résidence (preuve de ≥2 ans à l'étranger + transfert de résidence en Inde).", es: "Se pueden importar hasta dos mascotas (perros/gatos) por pasajero como equipaje en un traslado de residencia (prueba de ≥2 años en el extranjero + traslado de residencia a la India).", pt: "Até dois animais de estimação (cães e gatos) por passageiro podem ser importados como bagagem em caso de transferência de domicílio (comprovação de ≥2 anos no exterior + transferência de domicílio para a Índia)." }
+    exceptions: { en: "More than two pets, or imports outside the baggage rule, require an import sanitary permit from DAHD or an import licence from DGFT. Commercial import for breeding is not permitted.", fr: "Plus de deux animaux, ou les imports hors règle du bagage, exigent un permis sanitaire d'import du DAHD ou une licence d'import de la DGFT. L'import commercial pour l'élevage n'est pas autorisé.", es: "Más de dos mascotas, o las importaciones fuera de la regla del equipaje, requieren un permiso sanitario de importación del DAHD o una licencia de importación de la DGFT. No se permite la importación comercial para cría.", pt: "Mais de dois animais, ou importações fora da regra da bagagem, exigem uma autorização sanitária de importação do DAHD ou uma licença de importação do DGFT. A importação comercial para criação não é permitida." }
+    ref: { en: "Customs Circular 15/2013; CBIC baggage rules", fr: "Circulaire douanière 15/2013 ; règles bagage CBIC", es: "Circular aduanera 15/2013; reglas de equipaje de la CBIC", pt: "Circular aduaneira 15/2013; regras de bagagem da CBIC" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must be microchipped; the number is recorded on the AQCS application and must match the microchip/health certificate presented.", fr: "Le chien doit être pucé ; le numéro est consigné sur la demande AQCS et doit correspondre au certificat de puce / sanitaire présenté.", es: "El perro debe llevar microchip; el número se registra en la solicitud AQCS y debe coincidir con el certificado de microchip/sanitario presentado.", pt: "O cachorro deve ter microchip; o número é registrado no pedido feito à AQCS e deve coincidir com o microchip/atestado de saúde apresentados." }
+    exceptions: { en: "AQCS does not publish a specific chip standard — bring an ISO 11784/11785-compatible microchip and a scanner, and make sure it can be read on arrival.", fr: "L'AQCS ne publie pas de norme de puce précise — prévois une puce compatible ISO 11784/11785 et un lecteur, et assure-toi qu'elle soit lisible à l'arrivée.", es: "La AQCS no publica una norma de chip específica — lleva un microchip compatible con ISO 11784/11785 y un lector, y asegúrate de que pueda leerse a la llegada.", pt: "A AQCS não publica um padrão específico de chip — leve um microchip compatível com ISO 11784/11785 e um leitor, e garanta que ele possa ser lido na chegada." }
+    ref: { en: "AQCS — Import of pet under baggage rule", fr: "AQCS — Import d'animal sous règle du bagage", es: "AQCS — Importación de mascota bajo la regla del equipaje", pt: "AQCS — Importação de animal de estimação sob a regra da bagagem" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog three months of age or older, vaccinated against rabies more than one month but within 12 months before embarkation; details officially certified.", fr: "Chien âgé de trois mois ou plus, vacciné contre la rage depuis plus d'un mois mais dans les 12 mois précédant l'embarquement ; détails officiellement certifiés.", es: "Perro de tres meses de edad o más, vacunado contra la rabia hace más de un mes pero dentro de los 12 meses previos al embarque; datos certificados oficialmente.", pt: "Cachorro com três meses de idade ou mais, vacinado contra a raiva há mais de um mês e dentro dos 12 meses anteriores ao embarque; dados oficialmente certificados." }
+    exceptions: { en: "A three-year vaccine given more than one year earlier is not accepted — the dog must be re-vaccinated to fall within the 12-month window.", fr: "Un vaccin triennal administré depuis plus d'un an n'est pas accepté — le chien doit être revacciné pour rester dans la fenêtre de 12 mois.", es: "Una vacuna trienal administrada hace más de un año no se acepta — el perro debe ser revacunado para quedar dentro de la ventana de 12 meses.", pt: "Uma vacina trienal aplicada há mais de um ano não é aceita — o cachorro precisa ser revacinado para ficar dentro da janela de 12 meses." }
+    ref: { en: "AQCS — Import of pet under baggage rule (pt. 3)", fr: "AQCS — Import d'animal sous règle du bagage (pt 3)", es: "AQCS — Importación de mascota bajo la regla del equipaje (pt. 3)", pt: "AQCS — Importação de animal de estimação sob a regra da bagagem (item 3)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "India's baggage-rule scheme does not require a rabies antibody test. A DGFT import licence may set additional pre-import test conditions, which must then be met under official certification.", fr: "Le régime « bagage » de l'Inde n'exige pas de titrage antirabique. Une licence d'import DGFT peut fixer des conditions de tests pré-import supplémentaires, à respecter alors sous certification officielle.", es: "El régimen de la regla del equipaje de la India no exige una prueba de titulación de rabia. Una licencia de importación DGFT puede establecer condiciones adicionales de pruebas previas a la importación, que deben cumplirse entonces bajo certificación oficial.", pt: "O regime da regra da bagagem da Índia não exige teste sorológico antirrábico. Uma licença de importação do DGFT pode estabelecer condições adicionais de exames antes da importação, que então devem ser cumpridas mediante certificação oficial." }
+    ref: { en: "AQCS — Import of pet under baggage rule; DGFT", fr: "AQCS — Import d'animal sous règle du bagage ; DGFT", es: "AQCS — Importación de mascota bajo la regla del equipaje; DGFT", pt: "AQCS — Importação de animal de estimação sob a regra da bagagem; DGFT" }
+  - item: { en: "Other vaccinations", fr: "Autres vaccinations", es: "Otras vacunaciones", pt: "Outras vacinações" }
+    required: { en: "Certified on the health certificate", fr: "Certifiées sur le certificat sanitaire", es: "Certificadas en el certificado sanitario", pt: "Certificadas no atestado de saúde" }
+    when: { en: "The health certificate must certify the dog is free from clinical signs of infectious/contagious diseases including rabies, canine distemper, parvovirus and leptospirosis; other vaccination records are certified too.", fr: "Le certificat sanitaire doit attester que le chien est exempt de signes cliniques de maladies infectieuses/contagieuses dont la rage, la maladie de Carré, la parvovirose et la leptospirose ; les autres vaccinations sont également certifiées.", es: "El certificado sanitario debe acreditar que el perro está libre de signos clínicos de enfermedades infecciosas/contagiosas, incluidas la rabia, el moquillo canino, el parvovirus y la leptospirosis; también se certifican los demás registros de vacunación.", pt: "O atestado de saúde deve certificar que o cachorro está livre de sinais clínicos de doenças infecciosas/contagiosas, inclusive raiva, cinomose canina, parvovirose e leptospirose; os demais registros de vacinação também são certificados." }
+    exceptions: { en: "AQCS does not publish a fixed vaccine list beyond rabies — carry a full, officially certified vaccination record.", fr: "L'AQCS ne publie pas de liste vaccinale fixe au-delà de la rage — munis-toi d'un carnet de vaccination complet et officiellement certifié.", es: "La AQCS no publica una lista fija de vacunas más allá de la rabia — lleva un registro de vacunación completo y certificado oficialmente.", pt: "A AQCS não publica uma lista fixa de vacinas além da raiva — leve um registro de vacinação completo e oficialmente certificado." }
+    ref: { en: "AQCS — Import of pet under baggage rule (pt. 2–3)", fr: "AQCS — Import d'animal sous règle du bagage (pt 2–3)", es: "AQCS — Importación de mascota bajo la regla del equipaje (pt. 2–3)", pt: "AQCS — Importação de animal de estimação sob a regra da bagagem (itens 2–3)" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Official health certificate from the country of origin (AQCS Annexure 1.1.1), signed by the competent authority; the owner's name must match the ticket to prove ownership.", fr: "Certificat sanitaire officiel du pays d'origine (annexe 1.1.1 AQCS), signé par l'autorité compétente ; le nom du propriétaire doit correspondre au billet pour établir la propriété.", es: "Certificado sanitario oficial del país de origen (anexo 1.1.1 de la AQCS), firmado por la autoridad competente; el nombre del propietario debe coincidir con el billete para acreditar la propiedad.", pt: "Atestado de saúde oficial do país de origem (anexo 1.1.1 da AQCS), assinado pela autoridade competente; o nome do dono deve coincidir com o da passagem para comprovar a propriedade." }
+    exceptions: { en: "The original is retained by AQCS at examination. A declaration that the dog is a bonafide pet with no commercial/gift/breeding purpose is also required.", fr: "L'original est conservé par l'AQCS lors de l'examen. Une déclaration que le chien est un animal de compagnie de bonne foi, sans but commercial/cadeau/élevage, est aussi exigée.", es: "El original lo conserva la AQCS en el examen. También se exige una declaración de que el perro es una mascota de buena fe, sin fines comerciales/de regalo/de cría.", pt: "O original fica retido pela AQCS no momento do exame. Também é exigida uma declaração de que o cachorro é um animal de estimação de boa-fé, sem finalidade comercial, de doação ou de criação." }
+    ref: { en: "AQCS — SOP for import of pet dogs (Annexure 1.1.1)", fr: "AQCS — Procédure d'import de chiens (annexe 1.1.1)", es: "AQCS — Procedimiento para la importación de perros (anexo 1.1.1)", pt: "AQCS — Procedimento para importação de cachorros de estimação (anexo 1.1.1)" }
+  - item: { en: "Advance customs / transfer-of-residence proof", fr: "Douane anticipée / preuve de transfert de résidence", es: "Aduana previa / prueba de traslado de residencia", pt: "Autorização aduaneira prévia / comprovação de transferência de domicílio" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Baggage rule: visa/immigration proof of at least two continuous years abroad plus proof of transferring residence to India. Accompanied: owner's ticket; unaccompanied: within one month of the owner's arrival.", fr: "Règle du bagage : preuve visa/immigration d'au moins deux années continues à l'étranger plus preuve du transfert de résidence en Inde. Accompagné : billet du propriétaire ; non accompagné : dans le mois suivant l'arrivée du propriétaire.", es: "Regla del equipaje: prueba de visado/inmigración de al menos dos años continuos en el extranjero más prueba del traslado de residencia a la India. Acompañado: billete del propietario; no acompañado: dentro del mes siguiente a la llegada del propietario.", pt: "Regra da bagagem: comprovação de visto/imigração de pelo menos dois anos contínuos no exterior, mais a comprovação da transferência de domicílio para a Índia. Acompanhado: passagem do dono; desacompanhado: até um mês após a chegada do dono." }
+    exceptions: { en: "If the pet is sent more than one month after the owner arrives, or before the owner, advance customs permission is needed.", fr: "Si l'animal est envoyé plus d'un mois après l'arrivée du propriétaire, ou avant lui, une autorisation douanière anticipée est nécessaire.", es: "Si la mascota se envía más de un mes después de la llegada del propietario, o antes que el propietario, se necesita una autorización aduanera previa.", pt: "Se o animal for enviado mais de um mês depois da chegada do dono, ou antes do dono, é necessária autorização aduaneira prévia." }
+    ref: { en: "Customs Circular 15/2013; AQCS baggage rule", fr: "Circulaire douanière 15/2013 ; règle du bagage AQCS", es: "Circular aduanera 15/2013; regla del equipaje de la AQCS", pt: "Circular aduaneira 15/2013; regra da bagagem da AQCS" }
+  - item: { en: "Arrival inspection (AQCS station)", fr: "Inspection à l'arrivée (station AQCS)", es: "Inspección a la llegada (estación AQCS)", pt: "Inspeção na chegada (estação da AQCS)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "An AQCS officer physically examines the dog at the port of entry (Delhi, Mumbai, Chennai, Kolkata, Bengaluru or Hyderabad); if fit and healthy, the final NOC is issued at the port.", fr: "Un agent AQCS examine physiquement le chien au point d'entrée (Delhi, Mumbai, Chennai, Kolkata, Bengaluru ou Hyderabad) ; si apte et sain, le NOC final est délivré sur place.", es: "Un funcionario de la AQCS examina físicamente al perro en el punto de entrada (Delhi, Mumbai, Chennai, Kolkata, Bengaluru o Hyderabad); si está apto y sano, el NOC definitivo se emite en el punto de entrada.", pt: "Um agente da AQCS examina fisicamente o cachorro no ponto de entrada (Delhi, Mumbai, Chennai, Kolkata, Bengaluru ou Hyderabad); se ele estiver apto e saudável, o NOC definitivo é emitido no próprio ponto de entrada." }
+    exceptions: { en: "Import is only cleared at these designated AQCS airport stations, not at other airports.", fr: "L'import n'est dédouané que dans ces stations aéroportuaires AQCS désignées, pas dans d'autres aéroports.", es: "La importación solo se despacha en estas estaciones aeroportuarias designadas de la AQCS, no en otros aeropuertos.", pt: "A importação só é liberada nessas estações aeroportuárias designadas da AQCS, e não em outros aeroportos." }
+    ref: { en: "AQCS — SOP for import of pet dogs (on arrival)", fr: "AQCS — Procédure d'import de chiens (à l'arrivée)", es: "AQCS — Procedimiento para la importación de perros (a la llegada)", pt: "AQCS — Procedimento para importação de cachorros de estimação (na chegada)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Effectively ≥3 months", fr: "En pratique ≥3 mois", es: "En la práctica ≥3 meses", pt: "Na prática, ≥3 meses" }
+    when: { en: "The rabies-vaccination rule applies to dogs three months of age and older, and the shot must be more than one month old — so an imported dog is at least about four months old.", fr: "La règle de vaccination antirabique s'applique aux chiens de trois mois et plus, et le vaccin doit dater de plus d'un mois — un chien importé a donc au moins environ quatre mois.", es: "La regla de la vacunación antirrábica se aplica a los perros de tres meses de edad en adelante, y la vacuna debe tener más de un mes — por lo que un perro importado tiene al menos unos cuatro meses.", pt: "A regra de vacinação antirrábica se aplica a cachorros a partir de três meses de idade, e a dose precisa ter sido aplicada há mais de um mês — ou seja, um cachorro importado tem pelo menos cerca de quatro meses." }
+    exceptions: { en: "AQCS does not publish a separate puppy exemption; a certified rabies vaccination is expected for import.", fr: "L'AQCS ne publie pas d'exemption spécifique pour les chiots ; une vaccination antirabique certifiée est attendue pour l'import.", es: "La AQCS no publica una exención específica para cachorros; se espera una vacunación antirrábica certificada para la importación.", pt: "A AQCS não publica uma isenção específica para filhotes; espera-se uma vacinação antirrábica certificada para a importação." }
+    ref: { en: "AQCS — Import of pet under baggage rule (pt. 3)", fr: "AQCS — Import d'animal sous règle du bagage (pt 3)", es: "AQCS — Importación de mascota bajo la regla del equipaje (pt. 3)", pt: "AQCS — Importação de animal de estimação sob a regra da bagagem (item 3)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Only if unfit", fr: "Seulement si inapte", es: "Solo si no está apto", pt: "Somente se inapto" }
+    when: { en: "No routine quarantine for a fit, correctly documented dog. If the dog fails examination or shows clinical signs, it is quarantined 15 days at the AQCS station with testing at the owner's cost.", fr: "Pas de quarantaine systématique pour un chien apte et correctement documenté. Si le chien échoue à l'examen ou présente des signes cliniques, il est mis en quarantaine 15 jours à la station AQCS avec tests aux frais du propriétaire.", es: "Sin cuarentena de rutina para un perro apto y correctamente documentado. Si el perro no supera el examen o muestra signos clínicos, se pone en cuarentena 15 días en la estación AQCS con pruebas a cargo del propietario.", pt: "Sem quarentena de rotina para um cachorro apto e com a documentação correta. Se o cachorro não passar no exame ou apresentar sinais clínicos, fica 15 dias em quarentena na estação da AQCS, com os exames por conta do dono." }
+    exceptions: { en: "In doubtful cases the dog may be held under observation and final clearance issued after 30 days; positive test or death means deportation/post-mortem and incineration at the owner's cost.", fr: "En cas de doute, le chien peut être gardé en observation et le dédouanement final délivré après 30 jours ; un test positif ou un décès entraîne réexpédition/autopsie et incinération aux frais du propriétaire.", es: "En casos dudosos, el perro puede mantenerse en observación y el despacho definitivo se emite tras 30 días; una prueba positiva o la muerte suponen la deportación/autopsia e incineración a cargo del propietario.", pt: "Em casos duvidosos, o cachorro pode ser mantido em observação e a liberação definitiva ser emitida após 30 dias; resultado positivo ou morte significa deportação/necropsia e incineração por conta do dono." }
+    ref: { en: "AQCS — SOP for import of pet dogs (quarantine)", fr: "AQCS — Procédure d'import de chiens (quarantaine)", es: "AQCS — Procedimiento para la importación de perros (cuarentena)", pt: "AQCS — Procedimento para importação de cachorros de estimação (quarentena)" }
+
+origin:
+  eu:
+    title: { en: "Baggage rule — transfer of residence (up to 2 pets)", fr: "Règle du bagage — transfert de résidence (jusqu'à 2 animaux)", es: "Regla del equipaje — traslado de residencia (hasta 2 mascotas)", pt: "Regra da bagagem — transferência de domicílio (até 2 animais)" }
+    body:
+      en: "If you are relocating to India after at least two continuous years abroad, you may import up to two pets (dogs/cats) as baggage. You need the advance AQCS NOC, an ISO microchip, a certified rabies vaccination (dog ≥3 months, shot >1 month and <12 months old), an official health certificate, and proof of your two-year stay and transfer of residence. No rabies antibody test is required."
+      fr: "Si tu te réinstalles en Inde après au moins deux années continues à l'étranger, tu peux importer jusqu'à deux animaux (chiens/chats) en bagage. Il te faut le NOC anticipé de l'AQCS, une puce ISO, une vaccination antirabique certifiée (chien ≥3 mois, vaccin de plus d'un mois et de moins de 12 mois), un certificat sanitaire officiel, et la preuve de tes deux ans à l'étranger et du transfert de résidence. Aucun titrage antirabique n'est exigé."
+      es: "Si te trasladas a la India tras al menos dos años continuos en el extranjero, puedes importar hasta dos mascotas (perros/gatos) como equipaje. Necesitas el NOC previo de la AQCS, un microchip ISO, una vacunación antirrábica certificada (perro ≥3 meses, vacuna de más de 1 mes y de menos de 12 meses), un certificado sanitario oficial, y la prueba de tus dos años en el extranjero y del traslado de residencia. No se exige prueba de titulación de rabia."
+      pt: "Se você está se mudando para a Índia após pelo menos dois anos contínuos no exterior, pode importar até dois animais de estimação (cães e gatos) como bagagem. Você precisa do NOC prévio da AQCS, de um microchip ISO, de uma vacinação antirrábica certificada (cachorro com ≥3 meses, dose aplicada há >1 mês e <12 meses), de um atestado de saúde oficial e da comprovação dos dois anos de permanência e da transferência de domicílio. Não é exigido teste sorológico antirrábico."
+    cls: warn
+  listed:
+    title: { en: "DGFT licence — short visits & other purposes", fr: "Licence DGFT — courts séjours et autres motifs", es: "Licencia DGFT — visitas cortas y otros motivos", pt: "Licença DGFT — visitas curtas e outras finalidades" }
+    body:
+      en: "If you do not qualify under the baggage rule (for example short visits, defence, police or R&D), you must obtain an import licence from the Directorate General of Foreign Trade (DGFT) before applying for the AQCS NOC. Any pre-import health conditions and tests set on the licence must be met under official certification. Commercial import of dogs for breeding is not permitted."
+      fr: "Si tu ne relevez pas de la règle du bagage (par exemple courts séjours, défense, police ou R&D), tu dois obtenir une licence d'import de la Directorate General of Foreign Trade (DGFT) avant de demander le NOC AQCS. Toute condition sanitaire et tout test pré-import fixés sur la licence doivent être respectés sous certification officielle. L'import commercial de chiens pour l'élevage n'est pas autorisé."
+      es: "Si no reúnes los requisitos de la regla del equipaje (por ejemplo, visitas cortas, defensa, policía o I+D), debes obtener una licencia de importación de la Directorate General of Foreign Trade (DGFT) antes de solicitar el NOC de la AQCS. Cualquier condición sanitaria y prueba previa a la importación fijada en la licencia debe cumplirse bajo certificación oficial. No se permite la importación comercial de perros para cría."
+      pt: "Se você não se enquadra na regra da bagagem (por exemplo, visitas curtas, defesa, polícia ou P&D), precisa obter uma licença de importação do Directorate General of Foreign Trade (DGFT) antes de solicitar o NOC da AQCS. Quaisquer condições sanitárias e exames prévios à importação previstos na licença devem ser cumpridos mediante certificação oficial. A importação comercial de cachorros para criação não é permitida."
+    cls: warn
+  nonListed:
+    title: { en: "Re-import — dog previously exported from India", fr: "Ré-importation — chien déjà exporté d'Inde", es: "Reimportación — perro exportado previamente desde la India", pt: "Reimportação — cachorro anteriormente exportado da Índia" }
+    body:
+      en: "If the dog was taken out of India in the past, it can return under the re-import category (Customs Circular 25/2013). You must show proof of the earlier movement — preferably the AQCS export health certificate — to establish the dog's identity, plus a current official health certificate with vaccination details and the owner's ticket, then obtain the advance AQCS NOC."
+      fr: "Si le chien a été sorti d'Inde par le passé, il peut revenir sous la catégorie ré-importation (circulaire douanière 25/2013). Tu dois présenter la preuve du mouvement antérieur — de préférence le certificat sanitaire d'export AQCS — pour établir l'identité du chien, plus un certificat sanitaire officiel à jour avec les détails de vaccination et le billet du propriétaire, puis obtenir le NOC anticipé de l'AQCS."
+      es: "Si el perro salió de la India en el pasado, puede regresar bajo la categoría de reimportación (Circular aduanera 25/2013). Debes mostrar la prueba del movimiento anterior — preferentemente el certificado sanitario de exportación de la AQCS — para acreditar la identidad del perro, más un certificado sanitario oficial vigente con los datos de vacunación y el billete del propietario, y luego obtener el NOC previo de la AQCS."
+      pt: "Se o cachorro saiu da Índia no passado, ele pode voltar pela categoria de reimportação (Circular aduaneira 25/2013). Você deve apresentar a comprovação do trânsito anterior — de preferência o atestado de saúde de exportação da AQCS — para estabelecer a identidade do cachorro, além de um atestado de saúde oficial atual com os dados de vacinação e da passagem do dono, e então obter o NOC prévio da AQCS."
+    cls: ok
+
+arrival:
+  intro:
+    en: "Your dog is cleared only at a designated AQCS airport station, after a physical examination on arrival."
+    fr: "Ton chien n'est dédouané que dans une station aéroportuaire AQCS désignée, après un examen physique à l'arrivée."
+    es: "Tu perro solo se despacha en una estación aeroportuaria designada de la AQCS, tras un examen físico a la llegada."
+    pt: "O seu cachorro só é liberado em uma estação aeroportuária designada da AQCS, após um exame físico na chegada."
+  points:
+    - en: "Fly into an airport with an AQCS station: Delhi, Mumbai, Chennai, Kolkata, Bengaluru or Hyderabad — clearance is not available elsewhere."
+      fr: "Atterrissez dans un aéroport doté d'une station AQCS : Delhi, Mumbai, Chennai, Kolkata, Bengaluru ou Hyderabad — le dédouanement n'est pas disponible ailleurs."
+      es: "Aterriza en un aeropuerto con estación AQCS: Delhi, Mumbai, Chennai, Kolkata, Bengaluru o Hyderabad — el despacho no está disponible en otros lugares."
+      pt: "Chegue por um aeroporto com estação da AQCS: Delhi, Mumbai, Chennai, Kolkata, Bengaluru ou Hyderabad — não há liberação em outros aeroportos."
+    - en: "Present the advance NOC, the original health certificate, vaccination/microchip records and your ownership/eligibility documents to the AQCS quarantine officer."
+      fr: "Présente le NOC anticipé, le certificat sanitaire original, les carnets de vaccination/puce et tes documents de propriété/éligibilité à l'agent de quarantaine AQCS."
+      es: "Presenta el NOC previo, el certificado sanitario original, los registros de vacunación/microchip y tus documentos de propiedad/elegibilidad al funcionario de cuarentena de la AQCS."
+      pt: "Apresente ao agente de quarentena da AQCS o NOC prévio, o atestado de saúde original, os registros de vacinação/microchip e os seus documentos de propriedade/elegibilidade."
+    - en: "The officer physically examines the dog; if it is found fit and healthy, the final NOC is issued at the port of entry."
+      fr: "L'agent examine physiquement le chien ; s'il est jugé apte et sain, le NOC final est délivré au point d'entrée."
+      es: "El funcionario examina físicamente al perro; si se considera apto y sano, el NOC definitivo se emite en el punto de entrada."
+      pt: "O agente examina fisicamente o cachorro; se ele for considerado apto e saudável, o NOC definitivo é emitido no ponto de entrada."
+    - en: "If the dog fails the examination or shows clinical signs of disease, it is quarantined at the AQCS station for 15 days, with testing at the owner's cost."
+      fr: "Si le chien échoue à l'examen ou présente des signes cliniques de maladie, il est mis en quarantaine à la station AQCS pendant 15 jours, avec tests aux frais du propriétaire."
+      es: "Si el perro no supera el examen o muestra signos clínicos de enfermedad, se pone en cuarentena en la estación AQCS durante 15 días, con pruebas a cargo del propietario."
+      pt: "Se o cachorro não passar no exame ou apresentar sinais clínicos de doença, fica em quarentena na estação da AQCS por 15 dias, com os exames por conta do dono."
+    - en: "The airline will not load your dog without an advance NOC, so obtain it before departure — it is issued free of charge by AQCS."
+      fr: "La compagnie n'embarquera pas ton chien sans NOC anticipé ; obtiens-le donc avant le départ — il est délivré gratuitement par l'AQCS."
+      es: "La aerolínea no embarcará a tu perro sin un NOC previo, así que obtenlo antes de la salida — la AQCS lo emite de forma gratuita."
+      pt: "A companhia aérea não embarcará o seu cachorro sem um NOC prévio, então obtenha-o antes da partida — a AQCS o emite gratuitamente."
+    - en: "In doubtful cases the dog may be held under observation, with final clearance after 30 days; a positive test or death leads to deportation or post-mortem and incineration at the owner's cost."
+      fr: "En cas de doute, le chien peut être gardé en observation, avec dédouanement final après 30 jours ; un test positif ou un décès entraîne réexpédition ou autopsie et incinération aux frais du propriétaire."
+      es: "En casos dudosos, el perro puede mantenerse en observación, con despacho definitivo tras 30 días; una prueba positiva o la muerte conllevan la deportación o la autopsia e incineración a cargo del propietario."
+      pt: "Em casos duvidosos, o cachorro pode ser mantido em observação, com a liberação definitiva após 30 dias; um resultado positivo ou a morte leva à deportação ou à necropsia e incineração por conta do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "In March 2024 India's Department of Animal Husbandry & Dairying issued a circular advising states not to allow the import, sale, breeding or keeping of about 23 dog breeds considered 'ferocious' and dangerous to human life (including pit bull terrier, Rottweiler, Tosa Inu, dogo Argentino, fila Brasileiro, American bulldog, Boerboel, presa Canario, wolf-dog hybrids and others)."
+    fr: "En mars 2024, le Department of Animal Husbandry & Dairying indien a émis une circulaire conseillant aux États de ne pas autoriser l'import, la vente, l'élevage ou la détention d'environ 23 races de chiens jugées « féroces » et dangereuses pour la vie humaine (dont pit bull terrier, Rottweiler, Tosa Inu, dogo Argentino, fila Brasileiro, American bulldog, boerboel, presa Canario, hybrides chien-loup et autres)."
+    es: "En marzo de 2024, el Department of Animal Husbandry & Dairying de la India emitió una circular que aconsejaba a los estados no permitir la importación, venta, cría o tenencia de unas 23 razas de perros consideradas «feroces» y peligrosas para la vida humana (entre ellas pit bull terrier, Rottweiler, Tosa Inu, dogo argentino, fila brasileño, American bulldog, boerboel, presa canario, híbridos de perro y lobo y otras)."
+    pt: "Em março de 2024, o Department of Animal Husbandry & Dairying da Índia emitiu uma circular orientando os estados a não permitir a importação, a venda, a criação ou a posse de cerca de 23 raças de cachorros consideradas “ferozes” e perigosas para a vida humana (entre elas pit bull terrier, rottweiler, tosa inu, dogo argentino, fila brasileiro, american bulldog, boerboel, presa canário, híbridos de lobo com cachorro e outras)."
+  cat1:
+    en: "Legal status: the 2024 circular was challenged and stayed or set aside by several High Courts (the Delhi High Court set it aside for lack of procedural fairness; the Karnataka and Calcutta High Courts stayed it), and the central government told the Bombay High Court it would not enforce the circular while it reconsiders after a public notice inviting objections. It is therefore not currently in force as a nationwide import ban."
+    fr: "Statut juridique : la circulaire de 2024 a été contestée et suspendue ou annulée par plusieurs Hautes Cours (la Haute Cour de Delhi l'a annulée pour absence d'équité procédurale ; les Hautes Cours du Karnataka et de Calcutta l'ont suspendue), et le gouvernement central a indiqué à la Haute Cour de Bombay qu'il ne l'appliquerait pas pendant son réexamen après un avis public appelant des objections. Elle n'est donc pas actuellement en vigueur comme interdiction d'import nationale."
+    es: "Situación jurídica: la circular de 2024 fue impugnada y suspendida o anulada por varios Tribunales Superiores (el Tribunal Superior de Delhi la anuló por falta de equidad procesal; los Tribunales Superiores de Karnataka y Calcuta la suspendieron), y el gobierno central comunicó al Tribunal Superior de Bombay que no la aplicaría mientras la reconsidera tras un aviso público que invita a presentar objeciones. Por tanto, no está actualmente en vigor como prohibición de importación de ámbito nacional."
+    pt: "Situação jurídica: a circular de 2024 foi contestada e suspensa ou anulada por vários High Courts (o Delhi High Court a anulou por falta de devido processo; os High Courts de Karnataka e de Calcutá a suspenderam), e o governo central informou ao Bombay High Court que não aplicaria a circular enquanto a reexamina, após um edital público convidando à apresentação de objeções. Portanto, ela não está atualmente em vigor como proibição nacional de importação."
+  cat2:
+    en: "Practical effect: because the circular has been stayed/set aside and is not being enforced, breed status is uncertain and may change once the government finalises its decision. No settled national breed-import ban currently applies, but some states may act independently."
+    fr: "Effet pratique : la circulaire ayant été suspendue/annulée et n'étant pas appliquée, le statut des races est incertain et peut évoluer une fois la décision du gouvernement finalisée. Aucune interdiction nationale d'import de races n'est actuellement établie, mais certains États peuvent agir de leur propre chef."
+    es: "Efecto práctico: como la circular ha sido suspendida/anulada y no se está aplicando, la situación de las razas es incierta y puede cambiar una vez que el gobierno finalice su decisión. Actualmente no se aplica ninguna prohibición nacional consolidada de importación por razas, pero algunos estados pueden actuar de forma independiente."
+    pt: "Efeito prático: como a circular foi suspensa/anulada e não está sendo aplicada, a situação das raças é incerta e pode mudar quando o governo concluir sua decisão. Nenhuma proibição nacional consolidada de importação por raça se aplica atualmente, mas alguns estados podem agir por conta própria."
+  note:
+    en: "Because this area is unsettled, confirm the current breed rules with AQCS/DAHD and your destination state before you travel — do not rely on the 2024 list being either in force or fully withdrawn."
+    fr: "Ce domaine étant instable, vérifie les règles de races actuelles auprès de l'AQCS/DAHD et de ton État de destination avant de voyager — ne présume pas que la liste de 2024 est en vigueur ni totalement retirée."
+    es: "Como este ámbito no está resuelto, confirma las normas de razas vigentes con la AQCS/DAHD y con tu estado de destino antes de viajar — no des por hecho que la lista de 2024 esté en vigor ni totalmente retirada."
+    pt: "Como o tema está indefinido, confirme as regras atuais sobre raças com a AQCS/DAHD e com o estado de destino antes de viajar — não presuma que a lista de 2024 esteja em vigor nem que tenha sido totalmente revogada."
+
+checklist:
+  - en: "Confirm your import category: transfer of residence (baggage), DGFT licence, or re-import"
+    fr: "Confirme ton catégorie d'import : transfert de résidence (bagage), licence DGFT ou ré-importation"
+    es: "Confirma tu categoría de importación: traslado de residencia (equipaje), licencia DGFT o reimportación"
+    pt: "Confirme sua categoria de importação: transferência de domicílio (bagagem), licença DGFT ou reimportação"
+  - en: "Advance NOC applied for at an AQCS station at least 7 working days before departure"
+    fr: "NOC anticipé demandé à une station AQCS au moins 7 jours ouvrés avant le départ"
+    es: "NOC previo solicitado en una estación AQCS al menos 7 días laborables antes de la salida"
+    pt: "NOC prévio solicitado em uma estação da AQCS pelo menos 7 dias úteis antes da partida"
+  - en: "Microchip readable on arrival (ISO 11784/11785 recommended)"
+    fr: "Puce lisible à l'arrivée (ISO 11784/11785 recommandée)"
+    es: "Microchip legible a la llegada (se recomienda ISO 11784/11785)"
+    pt: "Microchip legível na chegada (recomendado ISO 11784/11785)"
+  - en: "Rabies vaccination certified: dog ≥3 months, shot >1 month and <12 months before embarkation"
+    fr: "Vaccination antirabique certifiée : chien ≥3 mois, vaccin de plus d'un mois et de moins de 12 mois avant l'embarquement"
+    es: "Vacunación antirrábica certificada: perro ≥3 meses, vacuna de más de 1 mes y de menos de 12 meses antes del embarque"
+    pt: "Vacinação antirrábica certificada: cachorro com ≥3 meses, dose aplicada há >1 mês e <12 meses antes do embarque"
+  - en: "Official health certificate from the country of origin, signed by the competent authority, owner name matching the ticket"
+    fr: "Certificat sanitaire officiel du pays d'origine, signé par l'autorité compétente, nom du propriétaire correspondant au billet"
+    es: "Certificado sanitario oficial del país de origen, firmado por la autoridad competente, con el nombre del propietario coincidiendo con el billete"
+    pt: "Atestado de saúde oficial do país de origem, assinado pela autoridade competente, com o nome do dono igual ao da passagem"
+  - en: "Transfer-of-residence proof (≥2 years abroad + relocation) or a valid DGFT licence"
+    fr: "Preuve de transfert de résidence (≥2 ans à l'étranger + relocalisation) ou licence DGFT valide"
+    es: "Prueba de traslado de residencia (≥2 años en el extranjero + mudanza) o una licencia DGFT válida"
+    pt: "Comprovação de transferência de domicílio (≥2 anos no exterior + mudança) ou licença DGFT válida"
+  - en: "Flight arriving at an AQCS airport (Delhi, Mumbai, Chennai, Kolkata, Bengaluru, Hyderabad)"
+    fr: "Vol arrivant dans un aéroport AQCS (Delhi, Mumbai, Chennai, Kolkata, Bengaluru, Hyderabad)"
+    es: "Vuelo que llega a un aeropuerto AQCS (Delhi, Mumbai, Chennai, Kolkata, Bengaluru, Hyderabad)"
+    pt: "Voo que chega a um aeroporto com AQCS (Delhi, Mumbai, Chennai, Kolkata, Bengaluru, Hyderabad)"
+  - en: "Suitable IATA crate if travelling in the hold, plus airway bill / passport / e-ticket copies"
+    fr: "Caisse IATA adaptée si voyage en soute, plus copies de la lettre de transport aérien / passeport / e-billet"
+    es: "Jaula IATA adecuada si viaja en bodega, más copias de la carta de porte aéreo / pasaporte / billete electrónico"
+    pt: "Caixa de transporte IATA adequada se viajar no porão, mais cópias do conhecimento aéreo / passaporte / passagem eletrônica"
+  - en: "Check the current status of the 2024 'ferocious breeds' guidance for your breed and destination state"
+    fr: "Vérifie le statut actuel de la directive 2024 sur les « races féroces » pour ta race et ton État de destination"
+    es: "Comprueba la situación actual de la directriz de 2024 sobre «razas feroces» para tu raza y tu estado de destino"
+    pt: "Verifique a situação atual da orientação de 2024 sobre “raças ferozes” para a sua raça e o seu estado de destino"
+
+sources:
+  - label: { en: "AQCS — Import of pet under baggage rule (Dog/Cat)", fr: "AQCS — Import d'animal sous règle du bagage (chien/chat)", es: "AQCS — Importación de mascota bajo la regla del equipaje (perro/gato)", pt: "AQCS — Importação de animal de estimação sob a regra da bagagem (cães e gatos)" }
+    url: "https://aqcsindia.gov.in/Home/ImportPetUnderBaggage"
+  - label: { en: "AQCS — Standard Operating Procedure for import of pet dog(s) into India", fr: "AQCS — Procédure standard pour l'import de chiens en Inde", es: "AQCS — Procedimiento operativo estándar para la importación de perros de compañía a la India", pt: "AQCS — Procedimento operacional padrão para importação de cachorros de estimação para a Índia" }
+    url: "https://aqcsindia.gov.in/pdfs/india-dogs-guidance.pdf"
+  - label: { en: "AQCS — Import / Export of pets", fr: "AQCS — Import / Export d'animaux de compagnie", es: "AQCS — Importación / exportación de mascotas", pt: "AQCS — Importação / exportação de animais de estimação" }
+    url: "https://aqcsindia.gov.in/Home/ImportExportPets"
+  - label: { en: "Department of Animal Husbandry & Dairying (DAHD)", fr: "Department of Animal Husbandry & Dairying (DAHD)", es: "Department of Animal Husbandry & Dairying (DAHD)", pt: "Department of Animal Husbandry & Dairying (DAHD)" }
+    url: "https://dahd.gov.in/"
+  - label: { en: "Directorate General of Foreign Trade (DGFT)", fr: "Directorate General of Foreign Trade (DGFT)", es: "Directorate General of Foreign Trade (DGFT)", pt: "Directorate General of Foreign Trade (DGFT)" }
+    url: "https://dgft.gov.in"
+
+seo:
+  title: { en: "India Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Inde — Guide", es: "Requisitos de entrada de perros en la India — Guía de viaje", pt: "Entrada de cachorros na Índia — guia de viagem" }
+  metaTitle: { en: "Traveling to India With Your Dog: Entry Requirements (2026)", fr: "Voyager en Inde avec ton chien : formalités (2026)", es: "Viajar a la India con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Índia com seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official AQCS/DAHD rules for bringing a dog into India: advance NOC, up to 2 pets on transfer of residence, microchip. Sourced and dated."
+    fr: "Règles officielles AQCS/DAHD pour faire entrer un chien en Inde : NOC anticipé, 2 animaux max en transfert de résidence, puce. Sourcé et daté."
+    es: "Normas oficiales de la AQCS/DAHD para traer un perro a la India: NOC previo, hasta 2 mascotas en traslado de residencia, microchip. Con fuentes y fecha."
+    pt: "Regras oficiais da AQCS/DAHD para levar um cachorro à Índia: NOC prévio, até 2 animais em transferência de domicílio, microchip. Com fontes e data."
+  slug: "india"
+  shortDesc:
+    en: "What you need to bring a dog into India: AQCS NOC, eligibility category, microchip, rabies vaccination and health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien en Inde : NOC AQCS, catégorie d'éligibilité, puce, vaccination antirabique et certificat sanitaire."
+    es: "Lo que necesitas para traer un perro a la India: NOC de la AQCS, categoría de elegibilidad, microchip, vacunación antirrábica y certificado sanitario."
+    pt: "O que você precisa para levar um cachorro à Índia: NOC da AQCS, categoria de elegibilidade, microchip, vacinação antirrábica e atestado de saúde."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

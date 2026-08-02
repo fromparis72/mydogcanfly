@@ -1,0 +1,375 @@
+# Country Entry Guide — Honduras (bilingual EN/FR).
+# Honduras is NOT in the EU. This encodes Honduras' own SENASA scheme.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_hn
+iso2: "HN"
+name: { en: "Honduras", fr: "Honduras", es: "Honduras", pt: "Honduras" }
+region: { en: "Central America", fr: "Amérique centrale", es: "América Central", pt: "América Central" }
+
+
+regime: non_listed
+exit:
+  authority: SENASA
+  authorityUrl: https://senasa.gob.hn/exportacion-de-animales-vivos/
+  intro:
+    en: "Honduras is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by SENASA (SAG)."
+    fr: "Le Honduras est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le SENASA (SAG)."
+    es: "Honduras no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el SENASA (SAG)."
+    pt: "Honduras é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo SENASA (SAG)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Register on SENASA's online export platform (SECEH) and submit the export certificate request; SENASA reviews, approves and issues it (dedicated EU pet instructions are published)."
+        fr: "Inscris-toi sur la plateforme d'export en ligne du SENASA (SECEH) et dépose la demande de certificat ; le SENASA l'examine, l'approuve et le délivre (instructions UE dédiées publiées)."
+        es: "Regístrate en la plataforma de exportación en línea del SENASA (SECEH) y presenta la solicitud del certificado; el SENASA lo revisa, aprueba y emite (hay instrucciones específicas para la UE)."
+        pt: "Cadastre-se na plataforma de exportação on-line do SENASA (SECEH) e envie o pedido de certificado de exportação; o SENASA analisa, aprova e emite o documento (há instruções específicas publicadas para animais de estimação com destino à UE)."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Honduras with your dog", fr: "Voyager au Honduras avec ton chien", es: "Viajar a Honduras con tu perro", pt: "Viajar para Honduras com seu cachorro" }
+  intro:
+    en: >-
+      Honduras welcomes dogs, and its rules are handled by its own animal-health authority — the
+      National Service for Agri-Food Health and Safety (SENASA, Servicio Nacional de Sanidad e
+      Inocuidad Agroalimentaria), part of the Secretariat of Agriculture and Livestock (SAG), not the
+      EU pet-passport system. A dog travelling with its owner needs an official export veterinary
+      certificate issued in the country of departure, together with an up-to-date vaccination card
+      showing current vaccines. When only one or two pets travel at a time, no advance SENASA import
+      permit is required: the documents are presented to the quarantine authority at the customs point
+      of entry, where a SENASA officer inspects the animal and charges a fixed inspection fee. What you
+      must prepare still depends on your dog's country of departure and recent history, because the
+      export certificate is issued by the veterinary authority of that country. This guide explains what
+      to prepare before you book your flight.
+    fr: >-
+      Le Honduras accueille les chiens, et ses règles relèvent de sa propre autorité sanitaire animale —
+      le Service national de santé et de sécurité agroalimentaires (SENASA, Servicio Nacional de Sanidad
+      e Inocuidad Agroalimentaria), rattaché au Secrétariat de l'Agriculture et de l'Élevage (SAG), et
+      non du système du passeport européen. Un chien voyageant avec son propriétaire a besoin d'un
+      certificat vétérinaire officiel d'exportation établi dans le pays de départ, accompagné d'une
+      cartilla de vaccination à jour indiquant des vaccins en cours de validité. Lorsque seuls un ou deux
+      animaux voyagent à la fois, aucun permis d'importation préalable du SENASA n'est exigé : les
+      documents sont présentés à l'autorité de quarantaine au poste de douane d'entrée, où un agent du
+      SENASA inspecte l'animal et perçoit des frais d'inspection fixes. Ce qu'il faut préparer dépend tout
+      de même du pays de départ et de l'historique récent du chien, car le certificat d'exportation est
+      délivré par l'autorité vétérinaire de ce pays. Ce guide détaille quoi préparer avant de réserver.
+    es: >-
+      Honduras acoge a los perros, y sus normas las gestiona su propia autoridad de sanidad animal — el
+      Servicio Nacional de Sanidad e Inocuidad Agroalimentaria (SENASA), dependiente de la Secretaría de
+      Agricultura y Ganadería (SAG), y no el sistema del pasaporte europeo para mascotas. Un perro que
+      viaja con su propietario necesita un certificado veterinario oficial de exportación expedido en el
+      país de salida, junto con una cartilla de vacunación al día que muestre vacunas vigentes. Cuando
+      solo viajan uno o dos animales a la vez, no se exige un permiso de importación previo del SENASA:
+      los documentos se presentan a la autoridad de cuarentena en el punto aduanero de entrada, donde un
+      agente del SENASA inspecciona al animal y cobra una tasa de inspección fija. Lo que debes preparar
+      depende igualmente del país de salida y del historial reciente de tu perro, porque el certificado
+      de exportación lo expide la autoridad veterinaria de ese país. Esta guía explica qué preparar antes
+      de reservar tu vuelo.
+
+    pt: "Honduras recebe cachorros, e suas regras são conduzidas pela própria autoridade de saúde animal do país — o Serviço Nacional de Sanidade e Inocuidade Agroalimentar (SENASA, Servicio Nacional de Sanidad e Inocuidad Agroalimentaria), vinculado à Secretaria de Agricultura e Pecuária (SAG), e não o sistema do passaporte europeu para animais. Um cachorro que viaja com o dono precisa de um certificado veterinário oficial de exportação emitido no país de partida, junto com uma carteira de vacinação em dia mostrando vacinas vigentes. Quando viajam apenas um ou dois animais por vez, nenhuma autorização de importação prévia do SENASA é exigida: os documentos são apresentados à autoridade de quarentena no ponto aduaneiro de entrada, onde um agente do SENASA inspeciona o animal e cobra uma taxa de inspeção fixa. O que você tem de preparar também depende do país de partida e do histórico recente do seu cachorro, porque o certificado de exportação é emitido pela autoridade veterinária desse país. Este guia explica o que preparar antes de você reservar o voo."
+difficulty:
+  level: easy
+  label: { en: "Easy — one export certificate, no prior permit for one or two pets", fr: "Facile — un certificat d'exportation, sans permis préalable pour un ou deux animaux", es: "Fácil — un certificado de exportación, sin permiso previo para uno o dos animales", pt: "Fácil — um certificado de exportação, sem autorização prévia para um ou dois animais" }
+
+prepTime:
+  eu:
+    en: "A few days if the vaccination card is already up to date — you mainly need an official export veterinary certificate from the country of departure plus the current vaccination card."
+    fr: "Quelques jours si la cartilla de vaccination est déjà à jour — il faut surtout un certificat vétérinaire officiel d'exportation du pays de départ et la cartilla de vaccination en cours de validité."
+    es: "Unos días si la cartilla de vacunación ya está al día — sobre todo necesitas un certificado veterinario oficial de exportación del país de salida y la cartilla de vacunación vigente."
+    pt: "Alguns dias se a carteira de vacinação já estiver em dia — você precisa basicamente de um certificado veterinário oficial de exportação do país de partida e da carteira de vacinação vigente."
+  listed:
+    en: "From the United States: allow time for a USDA-accredited veterinarian to prepare the export health certificate and the vaccination record; APHIS endorsement is not required by Honduras for pets."
+    fr: "Depuis les États-Unis : prévois du temps pour qu'un vétérinaire agréé USDA établisse le certificat sanitaire d'exportation et le carnet de vaccination ; le visa de l'APHIS n'est pas exigé par le Honduras pour les animaux de compagnie."
+    es: "Desde Estados Unidos: prevé tiempo para que un veterinario acreditado por el USDA prepare el certificado sanitario de exportación y el registro de vacunación; Honduras no exige el refrendo de APHIS para las mascotas."
+    pt: "Dos Estados Unidos: reserve tempo para que um veterinário credenciado pelo USDA prepare o atestado de saúde de exportação e o registro de vacinação; Honduras não exige o endosso do APHIS para animais de estimação."
+  nonListed:
+    en: "Longer if three or more pets travel together: you then need a SENASA Zoosanitary Import Permit and a fiduciary-quarantine certificate before arrival, requested through the SENASA import platform."
+    fr: "Plus long si trois animaux ou plus voyagent ensemble : il faut alors un Permis zoosanitaire d'importation du SENASA et une attestation de quarantaine fiduciaire avant l'arrivée, demandés via la plateforme d'importation du SENASA."
+    es: "Más largo si viajan juntos tres animales o más: entonces necesitas un Permiso Zoosanitario de Importación del SENASA y un certificado de cuarentena fiduciaria antes de la llegada, solicitados a través de la plataforma de importación del SENASA."
+    pt: "Mais longo se viajarem três animais ou mais juntos: aí você precisa de uma Autorização Zoossanitária de Importação do SENASA e de um certificado de quarentena fiduciária antes da chegada, solicitados pela plataforma de importação do SENASA."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not in SENASA's published import requirements", fr: "Absente des exigences d'importation publiées par le SENASA", es: "No figura en los requisitos de importación publicados por el SENASA", pt: "Não consta nas exigências de importação publicadas pelo SENASA" }
+    cls: neutral
+  - requirement: { en: "Rabies / current vaccinations", fr: "Rage / vaccins en cours de validité", es: "Rabia / vacunas vigentes", pt: "Raiva / vacinas vigentes" }
+    status: { en: "Vaccination card with current vaccines required", fr: "Cartilla de vaccination à jour requise", es: "Se exige cartilla de vacunación con vacunas vigentes", pt: "Exigida carteira de vacinação com vacinas vigentes" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in SENASA's published import requirements", fr: "Absent des exigences d'importation publiées par le SENASA", es: "No figura en los requisitos de importación publicados por el SENASA", pt: "Não consta nas exigências de importação publicadas pelo SENASA" }
+    cls: ok
+  - requirement: { en: "Export veterinary certificate", fr: "Certificat vétérinaire d'exportation", es: "Certificado veterinario de exportación", pt: "Certificado veterinário de exportação" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Import permit (1–2 pets)", fr: "Permis d'import (1–2 animaux)", es: "Permiso de importación (1–2 animales)", pt: "Autorização de importação (1–2 animais)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Import permit (3+ pets)", fr: "Permis d'import (3 animaux ou plus)", es: "Permiso de importación (3 animales o más)", pt: "Autorização de importação (3 animais ou mais)" }
+    status: { en: "Required (Zoosanitary Import Permit)", fr: "Requis (Permis zoosanitaire d'importation)", es: "Obligatorio (Permiso Zoosanitario de Importación)", pt: "Obrigatória (Autorização Zoossanitária de Importação)" }
+    cls: neutral
+  - requirement: { en: "Border inspection & fee", fr: "Inspection & frais à la frontière", es: "Inspección y tasa en la frontera", pt: "Inspeção e taxa na fronteira" }
+    status: { en: "Required — Lps. 525.00 for 1–2 pets", fr: "Requise — 525,00 Lps pour 1–2 animaux", es: "Obligatoria — 525,00 Lps para 1–2 animales", pt: "Obrigatória — Lps. 525,00 para 1–2 animais" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "None for 1–2 pets; home fiduciary quarantine for 3+", fr: "Aucune pour 1–2 animaux ; quarantaine fiduciaire à domicile pour 3+", es: "Ninguna para 1–2 animales; cuarentena fiduciaria en el domicilio para 3 o más", pt: "Nenhuma para 1–2 animais; quarentena fiduciária domiciliar a partir de 3" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Honduras (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Honduras (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Honduras (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — Honduras (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Honduras", fr: "Pays de destination — Honduras", es: "País de destino — Honduras", pt: "País de destino — Honduras" }
+      text:
+        en: "SENASA runs a certificate-based scheme: an official export veterinary certificate and an up-to-date vaccination card are always required. One or two pets travelling at a time need no prior import permit; three or more do."
+        fr: "Le SENASA applique un dispositif fondé sur un certificat : un certificat vétérinaire officiel d'exportation et une cartilla de vaccination à jour sont toujours exigés. Un ou deux animaux à la fois ne nécessitent aucun permis préalable ; trois ou plus, oui."
+        es: "El SENASA aplica un esquema basado en certificados: siempre se exigen un certificado veterinario oficial de exportación y una cartilla de vacunación al día. Uno o dos animales que viajan a la vez no necesitan permiso de importación previo; tres o más, sí."
+        pt: "O SENASA aplica um esquema baseado em certificado: são sempre exigidos um certificado veterinário oficial de exportação e uma carteira de vacinação em dia. Um ou dois animais viajando por vez não precisam de autorização de importação prévia; três ou mais precisam."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The certificate must be an export veterinary certificate issued by the competent authority of the exporting country, so that country's veterinary services and health status matter directly. Arrivals from the United States use a USDA-accredited veterinarian; Honduras does not require APHIS endorsement for pets."
+        fr: "Le certificat doit être un certificat vétérinaire d'exportation délivré par l'autorité compétente du pays exportateur ; les services vétérinaires et le statut sanitaire de ce pays comptent donc directement. Les arrivées des États-Unis passent par un vétérinaire agréé USDA ; le Honduras n'exige pas le visa de l'APHIS pour les animaux de compagnie."
+        es: "El certificado debe ser un certificado veterinario de exportación expedido por la autoridad competente del país exportador, por lo que los servicios veterinarios y el estatus sanitario de ese país importan directamente. Las llegadas desde Estados Unidos pasan por un veterinario acreditado por el USDA; Honduras no exige el refrendo de APHIS para las mascotas."
+        pt: "O certificado precisa ser um certificado veterinário de exportação emitido pela autoridade competente do país exportador, de modo que os serviços veterinários e o estado sanitário desse país importam diretamente. As chegadas dos Estados Unidos passam por um veterinário credenciado pelo USDA; Honduras não exige o endosso do APHIS para animais de estimação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's recent residence and vaccination history determine whether its vaccination card is complete and valid. It is the dog's real history that counts — not only the last airport."
+        fr: "La résidence récente et l'historique de vaccination du chien déterminent si sa cartilla de vaccination est complète et valide. C'est l'historique réel du chien qui compte — pas seulement le dernier aéroport."
+        es: "La residencia reciente y el historial de vacunación de tu perro determinan si su cartilla de vacunación está completa y es válida. Lo que cuenta es el historial real del perro — no solo el último aeropuerto."
+        pt: "Onde o seu cachorro morou recentemente e o histórico de vacinação dele determinam se a carteira de vacinação está completa e válida. O que conta é o histórico real do cachorro — não só o último aeroporto."
+  note:
+    en: "So read the requirements below as Honduras' framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre hondurien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Honduras y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Então leia as exigências abaixo como o marco de Honduras e depois confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Identification (microchip)", fr: "Identification (puce électronique)", es: "Identificación (microchip)", pt: "Identificação (microchip)" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "SENASA's published import instructions for pets do not mention a microchip as an entry requirement; identification is carried through the export certificate and vaccination card.", fr: "Les instructions d'importation publiées par le SENASA pour les animaux de compagnie ne mentionnent pas la puce comme condition d'entrée ; l'identification passe par le certificat d'exportation et la cartilla de vaccination.", es: "Las instrucciones de importación publicadas por el SENASA para mascotas no mencionan el microchip como requisito de entrada; la identificación se realiza mediante el certificado de exportación y la cartilla de vacunación.", pt: "As instruções de importação publicadas pelo SENASA para animais de estimação não mencionam o microchip como exigência de entrada; a identificação é feita pelo certificado de exportação e pela carteira de vacinação." }
+    exceptions: { en: "A microchip is not required by SENASA but is strongly advised for identification, for the return trip and because most airlines require it.", fr: "La puce n'est pas exigée par le SENASA mais fortement conseillée pour l'identification, le retour et parce que la plupart des compagnies l'exigent.", es: "El SENASA no exige el microchip, pero es muy recomendable para la identificación, para el viaje de regreso y porque la mayoría de las aerolíneas lo exigen.", pt: "O SENASA não exige o microchip, mas ele é fortemente recomendado para a identificação, para a viagem de volta e porque a maioria das companhias aéreas o exige." }
+    ref: { en: "SENASA — Instructions for pet import procedures to Honduras", fr: "SENASA — Instructions pour les démarches d'importation d'animaux de compagnie au Honduras", es: "SENASA — Instrucciones para los trámites de importación de mascotas a Honduras", pt: "SENASA — Instruções para os trâmites de importação de animais de estimação para Honduras" }
+  - item: { en: "Vaccination card / rabies", fr: "Cartilla de vaccination / rage", es: "Cartilla de vacunación / rabia", pt: "Carteira de vacinação / raiva" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The pet must arrive with its vaccination card showing current (valid, not expired) vaccines; SENASA's instructions refer to an annexed list of vaccines for dogs and cats. The card is presented to the quarantine officer at entry.", fr: "L'animal doit arriver avec sa cartilla de vaccination indiquant des vaccins en cours de validité (non expirés) ; les instructions du SENASA renvoient à une liste annexée de vaccins pour chiens et chats. La cartilla est présentée à l'agent de quarantaine à l'entrée.", es: "La mascota debe llegar con su cartilla de vacunación que muestre vacunas vigentes (válidas, no caducadas); las instrucciones del SENASA remiten a una lista anexa de vacunas para perros y gatos. La cartilla se presenta al agente de cuarentena a la entrada.", pt: "O animal precisa chegar com a carteira de vacinação mostrando vacinas vigentes (válidas, não vencidas); as instruções do SENASA remetem a uma lista anexa de vacinas para cães e gatos. A carteira é apresentada ao agente da quarentena na entrada." }
+    exceptions: { en: "The exact required vaccines and their timing windows (including the specific rabies interval) are set by that annexed list rather than in the main instructions — confirm the current list with SENASA and your vet.", fr: "Les vaccins exigés précis et leurs délais (dont l'intervalle rabique spécifique) figurent dans cette liste annexée plutôt que dans les instructions principales — vérifie la liste en vigueur auprès du SENASA et de ton vétérinaire.", es: "Las vacunas exactas exigidas y sus plazos (incluido el intervalo específico de la rabia) figuran en esa lista anexa y no en las instrucciones principales — confirma la lista vigente con el SENASA y tu veterinario.", pt: "As vacinas exatas exigidas e seus prazos (incluindo o intervalo específico da raiva) constam dessa lista anexa, e não das instruções principais — confirme a lista em vigor com o SENASA e com seu veterinário." }
+    ref: { en: "SENASA — Instructions for pet import procedures to Honduras", fr: "SENASA — Instructions pour les démarches d'importation d'animaux de compagnie au Honduras", es: "SENASA — Instrucciones para los trámites de importación de mascotas a Honduras", pt: "SENASA — Instruções para os trâmites de importação de animais de estimação para Honduras" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "SENASA's published import instructions for pets do not include a rabies antibody test. Whether one is requested for specific high-risk origins is not published — confirm with SENASA before travel.", fr: "Les instructions d'importation publiées par le SENASA pour les animaux de compagnie ne comprennent pas de titrage antirabique. L'éventuelle exigence pour certaines origines à haut risque n'est pas publiée — vérifie auprès du SENASA avant le voyage.", es: "Las instrucciones de importación publicadas por el SENASA para mascotas no incluyen una prueba de titulación de rabia. Si se solicita para orígenes concretos de alto riesgo no está publicado — confírmalo con el SENASA antes de viajar.", pt: "As instruções de importação publicadas pelo SENASA para animais de estimação não incluem teste sorológico antirrábico. Se ele é pedido para origens específicas de alto risco não está publicado — confirme com o SENASA antes de viajar." }
+    ref: { en: "SENASA — Instructions for pet import procedures to Honduras", fr: "SENASA — Instructions pour les démarches d'importation d'animaux de compagnie au Honduras", es: "SENASA — Instrucciones para los trámites de importación de mascotas a Honduras", pt: "SENASA — Instruções para os trâmites de importação de animais de estimação para Honduras" }
+  - item: { en: "Export veterinary certificate", fr: "Certificat vétérinaire d'exportation", es: "Certificado veterinario de exportación", pt: "Certificado veterinário de exportação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Present the original Export Veterinary Certificate issued by the competent veterinary authority of the exporting country, together with the vaccination card. This is the core document SENASA requires for a personal pet.", fr: "Présente le Certificat vétérinaire d'exportation original délivré par l'autorité vétérinaire compétente du pays exportateur, accompagné de la cartilla de vaccination. C'est le document central exigé par le SENASA pour un animal de compagnie.", es: "Presenta el Certificado veterinario de exportación original expedido por la autoridad veterinaria competente del país exportador, junto con la cartilla de vacunación. Es el documento central que el SENASA exige para una mascota personal.", pt: "Apresente o Certificado Veterinário de Exportação original emitido pela autoridade veterinária competente do país exportador, junto com a carteira de vacinação. É o documento central que o SENASA exige para um animal de estimação pessoal." }
+    exceptions: { en: "From the United States, a USDA-accredited veterinarian issues the certificate; Honduras does not require APHIS endorsement for pets, but confirm your airline's paperwork rules.", fr: "Depuis les États-Unis, un vétérinaire agréé USDA établit le certificat ; le Honduras n'exige pas le visa de l'APHIS pour les animaux de compagnie, mais vérifie les règles documentaires de ta compagnie.", es: "Desde Estados Unidos, un veterinario acreditado por el USDA expide el certificado; Honduras no exige el refrendo de APHIS para las mascotas, pero confirma las reglas documentales de tu aerolínea.", pt: "Dos Estados Unidos, quem emite o certificado é um veterinário credenciado pelo USDA; Honduras não exige o endosso do APHIS para animais de estimação, mas confirme as regras de documentação da sua companhia aérea." }
+    ref: { en: "SENASA — Instructions for pet import procedures; USDA APHIS — Pet travel to Honduras", fr: "SENASA — Instructions pour l'importation ; USDA APHIS — Voyage d'animaux vers le Honduras", es: "SENASA — Instrucciones para la importación; USDA APHIS — Viaje de mascotas a Honduras", pt: "SENASA — Instruções para a importação; USDA APHIS — Viagem de animais de estimação para Honduras" }
+  - item: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "SENASA's published import instructions for pets do not set out a specific internal/external parasite (deworming or tapeworm) treatment requirement for entry.", fr: "Les instructions d'importation publiées par le SENASA pour les animaux de compagnie ne prévoient pas d'exigence spécifique de traitement antiparasitaire interne/externe (vermifuge ou échinococcose) pour l'entrée.", es: "Las instrucciones de importación publicadas por el SENASA para mascotas no establecen un requisito específico de tratamiento antiparasitario interno/externo (desparasitación o contra la tenia) para la entrada.", pt: "As instruções de importação publicadas pelo SENASA para animais de estimação não estabelecem uma exigência específica de tratamento antiparasitário interno/externo (vermifugação ou contra a tênia) para a entrada." }
+    exceptions: { en: "A parasite treatment is nonetheless good practice and may be required by the exporting country's own export certificate — confirm with your vet.", fr: "Un traitement antiparasitaire reste une bonne pratique et peut être exigé par le certificat d'exportation du pays exportateur lui-même — vérifie avec ton vétérinaire.", es: "Aun así, un tratamiento antiparasitario es una buena práctica y puede ser exigido por el propio certificado de exportación del país exportador — confírmalo con tu veterinario.", pt: "Ainda assim, o tratamento antiparasitário é uma boa prática e pode ser exigido pelo próprio certificado de exportação do país exportador — confirme com seu veterinário." }
+    ref: { en: "SENASA — Instructions for pet import procedures to Honduras", fr: "SENASA — Instructions pour les démarches d'importation d'animaux de compagnie au Honduras", es: "SENASA — Instrucciones para los trámites de importación de mascotas a Honduras", pt: "SENASA — Instruções para os trâmites de importação de animais de estimação para Honduras" }
+  - item: { en: "Zoosanitary Import Permit", fr: "Permis zoosanitaire d'importation", es: "Permiso Zoosanitario de Importación", pt: "Autorização Zoossanitária de Importação" }
+    required: { en: "Only for 3 or more pets", fr: "Uniquement pour 3 animaux ou plus", es: "Solo para 3 animales o más", pt: "Somente para 3 animais ou mais" }
+    when: { en: "When one or two pets travel at a time, no Zoosanitary Import Permit is required. From three pets onward the permit is required: it needs the export certificate, the vaccination card, a fiduciary-quarantine certificate from a licensed private vet, a TGR1 payment of Lps. 750.00 and two Lps. 10.00 veterinary-college stamps, submitted on the SENASA import platform.", fr: "Lorsque un ou deux animaux voyagent à la fois, aucun Permis zoosanitaire d'importation n'est requis. À partir de trois animaux, le permis est exigé : il faut le certificat d'exportation, la cartilla de vaccination, une attestation de quarantaine fiduciaire d'un vétérinaire privé agréé, un paiement TGR1 de 750,00 Lps et deux timbres du Collège vétérinaire à 10,00 Lps, soumis sur la plateforme d'importation du SENASA.", es: "Cuando viajan uno o dos animales a la vez, no se exige ningún Permiso Zoosanitario de Importación. A partir de tres animales, el permiso es obligatorio: requiere el certificado de exportación, la cartilla de vacunación, un certificado de cuarentena fiduciaria de un veterinario privado autorizado, un pago TGR1 de 750,00 Lps y dos timbres del Colegio de Veterinarios de 10,00 Lps, presentados en la plataforma de importación del SENASA.", pt: "Quando viajam um ou dois animais por vez, nenhuma Autorização Zoossanitária de Importação é exigida. A partir de três animais a autorização passa a ser obrigatória: exige o certificado de exportação, a carteira de vacinação, um certificado de quarentena fiduciária emitido por um veterinário particular autorizado, um pagamento TGR1 de Lps. 750,00 e dois selos de Lps. 10,00 do Colégio de Veterinários, apresentados na plataforma de importação do SENASA." }
+    exceptions: { en: "Species other than dogs and cats (reptiles, birds, etc.) carry additional requirements per their nature and the exporting country's health status.", fr: "Les espèces autres que chiens et chats (reptiles, oiseaux, etc.) comportent des exigences supplémentaires selon leur nature et le statut sanitaire du pays exportateur.", es: "Las especies distintas de perros y gatos (reptiles, aves, etc.) conllevan requisitos adicionales según su naturaleza y el estatus sanitario del país exportador.", pt: "Espécies que não sejam cães e gatos (répteis, aves etc.) têm exigências adicionais conforme sua natureza e o estado sanitário do país exportador." }
+    ref: { en: "SENASA — Instructions for pet import procedures; Agreement N. 331-2009", fr: "SENASA — Instructions pour l'importation ; Accord N. 331-2009", es: "SENASA — Instrucciones para la importación; Acuerdo N. 331-2009", pt: "SENASA — Instruções para a importação; Acuerdo N. 331-2009" }
+  - item: { en: "Border inspection & fee", fr: "Inspection & frais à la frontière", es: "Inspección y tasa en la frontera", pt: "Inspeção e taxa na fronteira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "On arrival the owner reports to the quarantine authority at the land, air or sea customs point of entry. The quarantine officer inspects the pet and charges Lps. 525.00, issuing a receipt that must be handed to the owner.", fr: "À l'arrivée, le propriétaire se présente à l'autorité de quarantaine au poste de douane d'entrée terrestre, aérien ou maritime. L'agent de quarantaine inspecte l'animal et perçoit 525,00 Lps, en remettant un reçu au propriétaire.", es: "A la llegada, el propietario se presenta ante la autoridad de cuarentena en el punto aduanero de entrada terrestre, aéreo o marítimo. El agente de cuarentena inspecciona a la mascota y cobra 525,00 Lps, entregando un recibo al propietario.", pt: "Na chegada, o dono se apresenta à autoridade de quarentena no ponto aduaneiro de entrada terrestre, aéreo ou marítimo. O agente da quarentena inspeciona o animal e cobra Lps. 525,00, emitindo um recibo que deve ser entregue ao dono." }
+    exceptions: { en: "Fees are set by SENASA's fee regulation (Agreement C.D. SENASA-005-2019) and may be updated — confirm the current amount.", fr: "Les frais sont fixés par le règlement des tarifs du SENASA (Accord C.D. SENASA-005-2019) et peuvent être actualisés — vérifie le montant en vigueur.", es: "Las tasas las fija el reglamento de tarifas del SENASA (Acuerdo C.D. SENASA-005-2019) y pueden actualizarse — confirma el importe vigente.", pt: "As taxas são fixadas pelo regulamento de tarifas do SENASA (Acuerdo C.D. SENASA-005-2019) e podem ser atualizadas — confirme o valor em vigor." }
+    ref: { en: "SENASA — Instructions for pet import procedures; Agreement C.D. SENASA-005-2019", fr: "SENASA — Instructions pour l'importation ; Accord C.D. SENASA-005-2019", es: "SENASA — Instrucciones para la importación; Acuerdo C.D. SENASA-005-2019", pt: "SENASA — Instruções para a importação; Acuerdo C.D. SENASA-005-2019" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "SENASA does not publish a minimum entry age for pets in its import instructions.", fr: "Le SENASA ne publie pas d'âge minimum d'entrée pour les animaux de compagnie dans ses instructions d'importation.", es: "El SENASA no publica una edad mínima de entrada para las mascotas en sus instrucciones de importación.", pt: "O SENASA não publica idade mínima de entrada para animais de estimação em suas instruções de importação." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter — confirm both.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes — vérifie les deux.", es: "Las reglas de edad de las aerolíneas y las reglas de regreso de tu país pueden ser más estrictas — confirma ambas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas — confirme as duas." }
+    ref: { en: "SENASA — Instructions for pet import procedures to Honduras", fr: "SENASA — Instructions pour les démarches d'importation d'animaux de compagnie au Honduras", es: "SENASA — Instrucciones para los trámites de importación de mascotas a Honduras", pt: "SENASA — Instruções para os trâmites de importação de animais de estimação para Honduras" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "None for 1–2 pets", fr: "Aucune pour 1–2 animaux", es: "Ninguna para 1–2 animales", pt: "Nenhuma para 1–2 animais" }
+    when: { en: "For one or two pets there is no routine quarantine — entry is handled by document review and physical inspection at the border. For three or more pets, a fiduciary quarantine is carried out at the owner's home by a licensed private veterinarian.", fr: "Pour un ou deux animaux, il n'y a pas de quarantaine de routine — l'entrée se fait par contrôle documentaire et inspection physique à la frontière. Pour trois animaux ou plus, une quarantaine fiduciaire est réalisée au domicile du propriétaire par un vétérinaire privé agréé.", es: "Para uno o dos animales no hay cuarentena rutinaria — la entrada se resuelve con revisión documental e inspección física en la frontera. Para tres animales o más, se realiza una cuarentena fiduciaria en el domicilio del propietario por un veterinario privado autorizado.", pt: "Para um ou dois animais não há quarentena de rotina — a entrada é resolvida com a análise dos documentos e a inspeção física na fronteira. Para três animais ou mais, é feita uma quarentena fiduciária na casa do dono por um veterinário particular autorizado." }
+    exceptions: { en: "Handling of a non-compliant or sick animal on arrival is not detailed in the published instructions — confirm with SENASA.", fr: "Le traitement d'un animal non conforme ou malade à l'arrivée n'est pas détaillé dans les instructions publiées — vérifie auprès du SENASA.", es: "El tratamiento de un animal no conforme o enfermo a la llegada no se detalla en las instrucciones publicadas — confírmalo con el SENASA.", pt: "O tratamento dado na chegada a um animal fora das regras ou doente não é detalhado nas instruções publicadas — confirme com o SENASA." }
+    ref: { en: "SENASA — Instructions for pet import procedures; Agreement N. 331-2009", fr: "SENASA — Instructions pour l'importation ; Accord N. 331-2009", es: "SENASA — Instrucciones para la importación; Acuerdo N. 331-2009", pt: "SENASA — Instruções para a importação; Acuerdo N. 331-2009" }
+
+origin:
+  eu:
+    title: { en: "Standard — one or two personal pets", fr: "Standard — un ou deux animaux de compagnie", es: "Estándar — una o dos mascotas personales", pt: "Padrão — um ou dois animais de estimação pessoais" }
+    body:
+      en: "A dog arriving with its owner needs an official export veterinary certificate from the country of departure plus an up-to-date vaccination card showing current vaccines. When one or two pets travel at a time, no prior import permit is required. On arrival you report to the quarantine authority at the land, air or sea customs point, the pet is physically inspected, and a Lps. 525.00 fee is charged with a receipt. There is no routine quarantine for a compliant pet."
+      fr: "Un chien arrivant avec son propriétaire a besoin d'un certificat vétérinaire officiel d'exportation du pays de départ et d'une cartilla de vaccination à jour indiquant des vaccins en cours de validité. Lorsque un ou deux animaux voyagent à la fois, aucun permis d'import préalable n'est requis. À l'arrivée, tu te présente à l'autorité de quarantaine au poste de douane terrestre, aérien ou maritime, l'animal est inspecté physiquement, et des frais de 525,00 Lps sont perçus avec un reçu. Aucune quarantaine de routine pour un animal conforme."
+      es: "Un perro que llega con su propietario necesita un certificado veterinario oficial de exportación del país de salida y una cartilla de vacunación al día que muestre vacunas vigentes. Cuando viajan uno o dos animales a la vez, no se exige ningún permiso de importación previo. A la llegada te presentas ante la autoridad de cuarentena en el punto aduanero terrestre, aéreo o marítimo, se inspecciona físicamente a la mascota y se cobra una tasa de 525,00 Lps con recibo. No hay cuarentena rutinaria para una mascota que cumpla los requisitos."
+      pt: "Um cachorro que chega com o dono precisa de um certificado veterinário oficial de exportação do país de partida e de uma carteira de vacinação em dia mostrando vacinas vigentes. Quando viajam um ou dois animais por vez, nenhuma autorização de importação prévia é exigida. Na chegada, você se apresenta à autoridade de quarentena no ponto aduaneiro terrestre, aéreo ou marítimo, o animal passa por inspeção física e é cobrada uma taxa de Lps. 525,00 com recibo. Não há quarentena de rotina para um animal em conformidade."
+    cls: ok
+  listed:
+    title: { en: "Arriving from the United States", fr: "Arrivée depuis les États-Unis", es: "Llegada desde Estados Unidos", pt: "Chegando dos Estados Unidos" }
+    body:
+      en: "From the United States a USDA-accredited veterinarian prepares the export health certificate and the vaccination record. Honduras does not require APHIS endorsement of pet health certificates, but you should contact SENASA/INFOAGRO to confirm the current documents and check your airline's own paperwork rules before departure."
+      fr: "Depuis les États-Unis, un vétérinaire agréé USDA établit le certificat sanitaire d'exportation et le carnet de vaccination. Le Honduras n'exige pas le visa de l'APHIS sur les certificats sanitaires d'animaux de compagnie, mais contacte le SENASA/INFOAGRO pour confirmer les documents en vigueur et vérifie les règles documentaires de ta compagnie avant le départ."
+      es: "Desde Estados Unidos, un veterinario acreditado por el USDA prepara el certificado sanitario de exportación y el registro de vacunación. Honduras no exige el refrendo de APHIS en los certificados sanitarios de mascotas, pero conviene contactar con el SENASA/INFOAGRO para confirmar los documentos vigentes y revisar las reglas documentales de tu aerolínea antes de la salida."
+      pt: "Dos Estados Unidos, um veterinário credenciado pelo USDA prepara o atestado de saúde de exportação e o registro de vacinação. Honduras não exige o endosso do APHIS nos atestados de saúde de animais de estimação, mas convém entrar em contato com o SENASA/INFOAGRO para confirmar os documentos em vigor e checar as regras de documentação da sua companhia aérea antes da partida."
+    cls: ok
+  nonListed:
+    title: { en: "Three or more pets — import permit & fiduciary quarantine", fr: "Trois animaux ou plus — permis d'import & quarantaine fiduciaire", es: "Tres animales o más — permiso de importación y cuarentena fiduciaria", pt: "Três animais ou mais — autorização de importação e quarentena fiduciária" }
+    body:
+      en: "From three pets onward SENASA requires a Zoosanitary Import Permit. In addition to the export certificate and vaccination card, you need a fiduciary-quarantine certificate from a licensed private veterinarian (who carries out the quarantine at the owner's home), a TGR1 payment of Lps. 750.00 paid by online banking to SENASA, and two Lps. 10.00 stamps from the Veterinary College. You then complete the import-permit application on the SENASA import platform and attach these documents; the permit is reviewed and returned by email to show to quarantine on arrival."
+      fr: "À partir de trois animaux, le SENASA exige un Permis zoosanitaire d'importation. En plus du certificat d'exportation et de la cartilla de vaccination, il faut une attestation de quarantaine fiduciaire d'un vétérinaire privé agréé (qui réalise la quarantaine au domicile du propriétaire), un paiement TGR1 de 750,00 Lps réglé par banque en ligne au SENASA, et deux timbres du Collège vétérinaire à 10,00 Lps. Tu remplis ensuite la demande de permis sur la plateforme d'importation du SENASA et y joignez ces documents ; le permis est examiné et renvoyé par courriel à présenter à la quarantaine à l'arrivée."
+      es: "A partir de tres animales, el SENASA exige un Permiso Zoosanitario de Importación. Además del certificado de exportación y la cartilla de vacunación, necesitas un certificado de cuarentena fiduciaria de un veterinario privado autorizado (que realiza la cuarentena en el domicilio del propietario), un pago TGR1 de 750,00 Lps abonado por banca en línea al SENASA y dos timbres del Colegio de Veterinarios de 10,00 Lps. Después completas la solicitud de permiso en la plataforma de importación del SENASA y adjuntas estos documentos; el permiso se revisa y se devuelve por correo electrónico para mostrarlo a cuarentena a la llegada."
+      pt: "A partir de três animais, o SENASA exige uma Autorização Zoossanitária de Importação. Além do certificado de exportação e da carteira de vacinação, você precisa de um certificado de quarentena fiduciária emitido por um veterinário particular autorizado (que realiza a quarentena na casa do dono), de um pagamento TGR1 de Lps. 750,00 feito por internet banking ao SENASA e de dois selos de Lps. 10,00 do Colégio de Veterinários. Depois você preenche o pedido de autorização de importação na plataforma de importação do SENASA e anexa esses documentos; a autorização é analisada e devolvida por e-mail para ser mostrada à quarentena na chegada."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Honduras centres on the quarantine document check and physical inspection at the customs point of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Honduras tourne autour du contrôle documentaire de la quarantaine et de l'inspection physique au poste de douane d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a Honduras gira en torno al control documental de la cuarentena y la inspección física en el punto aduanero de entrada."
+    pt: "O que acontece quando seu cachorro chega a Honduras gira em torno da conferência de documentos pela quarentena e da inspeção física no ponto aduaneiro de entrada."
+  points:
+    - en: "The owner reports to the quarantine authority (Cuarentena) at the land, air or sea customs point of entry."
+      fr: "Le propriétaire se présente à l'autorité de quarantaine (Cuarentena) au poste de douane d'entrée terrestre, aérien ou maritime."
+      es: "El propietario se presenta ante la autoridad de cuarentena (Cuarentena) en el punto aduanero de entrada terrestre, aéreo o marítimo."
+      pt: "O dono se apresenta à autoridade de quarentena (Cuarentena) no ponto aduaneiro de entrada terrestre, aéreo ou marítimo."
+    - en: "The quarantine officer physically inspects the pet and charges Lps. 525.00 (for one or two pets), issuing a receipt that must be handed to the owner."
+      fr: "L'agent de quarantaine inspecte physiquement l'animal et perçoit 525,00 Lps (pour un ou deux animaux), en remettant un reçu au propriétaire."
+      es: "El agente de cuarentena inspecciona físicamente a la mascota y cobra 525,00 Lps (para uno o dos animales), entregando un recibo al propietario."
+      pt: "O agente da quarentena inspeciona fisicamente o animal e cobra Lps. 525,00 (para um ou dois animais), emitindo um recibo que deve ser entregue ao dono."
+    - en: "Carry the original export veterinary certificate from the country of departure plus the vaccination card with current vaccines."
+      fr: "Munis-toi du certificat vétérinaire d'exportation original du pays de départ et de la cartilla de vaccination avec des vaccins en cours de validité."
+      es: "Lleva el certificado veterinario de exportación original del país de salida y la cartilla de vacunación con vacunas vigentes."
+      pt: "Leve o certificado veterinário de exportação original do país de partida e a carteira de vacinação com as vacinas vigentes."
+    - en: "One or two pets need no prior import permit; three or more must arrive with an approved Zoosanitary Import Permit (obtained in advance)."
+      fr: "Un ou deux animaux ne nécessitent aucun permis préalable ; trois ou plus doivent arriver avec un Permis zoosanitaire d'importation approuvé (obtenu à l'avance)."
+      es: "Uno o dos animales no necesitan permiso previo; tres o más deben llegar con un Permiso Zoosanitario de Importación aprobado (obtenido con antelación)."
+      pt: "Um ou dois animais não precisam de autorização de importação prévia; três ou mais precisam chegar com uma Autorização Zoossanitária de Importação aprovada (obtida com antecedência)."
+    - en: "Missing or invalid documents can delay clearance — confirm the current requirements with SENASA/INFOAGRO before you fly."
+      fr: "Des documents manquants ou invalides peuvent retarder le dédouanement — confirme les exigences en vigueur auprès du SENASA/INFOAGRO avant de voler."
+      es: "Documentos que falten o no sean válidos pueden retrasar el despacho — confirma los requisitos vigentes con el SENASA/INFOAGRO antes de volar."
+      pt: "Documentos ausentes ou inválidos podem atrasar a liberação — confirme as exigências em vigor com o SENASA/INFOAGRO antes de voar."
+    - en: "Airlines have their own crate, breed and booking rules — confirm them separately before you fly."
+      fr: "Les compagnies ont leurs propres règles de caisse, de race et de réservation — vérifie-les séparément avant de voler."
+      es: "Las aerolíneas tienen sus propias reglas de jaula, raza y reserva — confírmalas por separado antes de volar."
+      pt: "As companhias aéreas têm as próprias regras de caixa de transporte, raça e reserva — confirme-as separadamente antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "SENASA publishes no breed-specific import ban for dogs entering Honduras. Breed restrictions instead come from local government: the municipality of the Central District (Tegucigalpa) regulates and, for some breeds, prohibits the keeping of dogs classed as potentially dangerous. This governs ownership within that municipality rather than entry at the national border."
+    fr: "Le SENASA ne publie aucune interdiction d'importation visant une race pour les chiens entrant au Honduras. Les restrictions de race relèvent en revanche du pouvoir local : la municipalité du Distrito Central (Tegucigalpa) réglemente et, pour certaines races, interdit la détention de chiens classés potentiellement dangereux. Cela encadre la détention dans cette municipalité plutôt que l'entrée à la frontière nationale."
+    es: "El SENASA no publica ninguna prohibición de importación por raza para los perros que entran en Honduras. Las restricciones por raza provienen, en cambio, del gobierno local: la municipalidad del Distrito Central (Tegucigalpa) regula y, para algunas razas, prohíbe la tenencia de perros clasificados como potencialmente peligrosos. Esto rige la tenencia dentro de esa municipalidad, no la entrada en la frontera nacional."
+    pt: "O SENASA não publica nenhuma proibição de importação por raça para os cachorros que entram em Honduras. As restrições por raça vêm, na verdade, do governo local: o município do Distrito Central (Tegucigalpa) regula e, para algumas raças, proíbe a posse de cachorros classificados como potencialmente perigosos. Isso rege a posse dentro desse município, e não a entrada na fronteira nacional."
+  cat1:
+    en: "No dog breed is refused entry to Honduras under SENASA's published import rules: any dog meeting the export-certificate and vaccination-card requirements may be imported regardless of breed. Border formalities are health-based, not breed-based."
+    fr: "Aucune race de chien n'est refusée à l'entrée du Honduras selon les règles d'importation publiées du SENASA : tout chien répondant aux exigences de certificat d'exportation et de cartilla de vaccination peut être importé, quelle que soit sa race. Les formalités frontalières sont sanitaires, non fondées sur la race."
+    es: "Ninguna raza de perro tiene la entrada denegada en Honduras según las reglas de importación publicadas del SENASA: cualquier perro que cumpla los requisitos de certificado de exportación y cartilla de vacunación puede importarse, con independencia de la raza. Los trámites fronterizos son sanitarios, no basados en la raza."
+    pt: "Nenhuma raça de cachorro tem a entrada em Honduras recusada segundo as regras de importação publicadas pelo SENASA: qualquer cachorro que cumpra as exigências de certificado de exportação e de carteira de vacinação pode ser importado, seja qual for a raça. Os trâmites de fronteira são sanitários, não baseados na raça."
+  cat2:
+    en: "Under the Central District municipal ordinance (Acta 014-2003), keeping American Pit Bull Terrier, American Staffordshire Terrier, Bull Terrier, Staffordshire Bull Terrier and Dogo Argentino (and their hybrids) is prohibited in that municipality. A further list — including German Shepherd, Boxer, Fila Brasileiro, Siberian Husky, Akita, Bullmastiff, Doberman, Neapolitan Mastiff, Rottweiler, Great Dane and others — must be registered and licensed, muzzled and leashed on public roads. This affects keeping in Tegucigalpa, not entry at the border."
+    fr: "En vertu de l'ordonnance municipale du Distrito Central (Acta 014-2003), la détention de l'American Pit Bull Terrier, de l'American Staffordshire Terrier, du Bull Terrier, du Staffordshire Bull Terrier et du Dogo Argentino (et de leurs hybrides) est interdite dans cette municipalité. Une autre liste — dont Berger allemand, Boxer, Fila Brasileiro, Husky sibérien, Akita, Bullmastiff, Doberman, Mastin napolitain, Rottweiler, Dogue allemand et autres — doit être enregistrée et faire l'objet d'une licence, muselée et tenue en laisse sur la voie publique. Cela concerne la détention à Tegucigalpa, pas l'entrée à la frontière."
+    es: "En virtud de la ordenanza municipal del Distrito Central (Acta 014-2003), la tenencia de American Pit Bull Terrier, American Staffordshire Terrier, Bull Terrier, Staffordshire Bull Terrier y Dogo Argentino (y sus híbridos) está prohibida en esa municipalidad. Otra lista — que incluye Pastor Alemán, Bóxer, Fila Brasileiro, Husky Siberiano, Akita, Bullmastiff, Doberman, Mastín Napolitano, Rottweiler, Gran Danés y otros — debe estar registrada y con licencia, con bozal y correa en la vía pública. Esto afecta a la tenencia en Tegucigalpa, no a la entrada en la frontera."
+    pt: "Pela ordenança municipal do Distrito Central (Acta 014-2003), é proibido manter American Pit Bull Terrier, American Staffordshire Terrier, Bull Terrier, Staffordshire Bull Terrier e Dogo Argentino (e seus cruzamentos) nesse município. Outra lista — que inclui Pastor Alemão, Boxer, Fila Brasileiro, Husky Siberiano, Akita, Bullmastiff, Doberman, Mastim Napolitano, Rottweiler, Dogue Alemão e outros — precisa ser registrada e licenciada, com focinheira e guia nas vias públicas. Isso afeta a posse em Tegucigalpa, não a entrada na fronteira."
+  note:
+    en: "So no breed is refused entry for its breed alone, but if you will live in Tegucigalpa with a listed breed you must comply with the municipal ordinance, and other municipalities may have their own rules. Confirm current national and local rules, and your airline's breed policy, before booking."
+    fr: "Ainsi, aucune race n'est refusée à l'entrée du seul fait de sa race, mais si tu résideras à Tegucigalpa avec une race listée, tu dois respecter l'ordonnance municipale, et d'autres municipalités peuvent avoir leurs propres règles. Vérifie les règles nationales et locales en vigueur, ainsi que la politique de race de ta compagnie, avant de réserver."
+    es: "Así que ninguna raza tiene la entrada denegada solo por su raza, pero si vas a vivir en Tegucigalpa con una raza listada debes cumplir la ordenanza municipal, y otras municipalidades pueden tener sus propias reglas. Confirma las reglas nacionales y locales vigentes, y la política de razas de tu aerolínea, antes de reservar."
+    pt: "Portanto, nenhuma raça tem a entrada recusada só por ser aquela raça, mas, se você for morar em Tegucigalpa com uma raça listada, terá de cumprir a ordenança municipal, e outros municípios podem ter suas próprias regras. Confirme as regras nacionais e locais em vigor, e a política de raças da sua companhia aérea, antes de reservar."
+
+checklist:
+  - en: "Official export veterinary certificate from the country of departure (competent veterinary authority)"
+    fr: "Certificat vétérinaire officiel d'exportation du pays de départ (autorité vétérinaire compétente)"
+    es: "Certificado veterinario oficial de exportación del país de salida (autoridad veterinaria competente)"
+    pt: "Certificado veterinário oficial de exportação do país de partida (autoridade veterinária competente)"
+  - en: "Vaccination card up to date with current (valid, not expired) vaccines"
+    fr: "Cartilla de vaccination à jour avec des vaccins en cours de validité (non expirés)"
+    es: "Cartilla de vacunación al día con vacunas vigentes (válidas, no caducadas)"
+    pt: "Carteira de vacinação em dia, com vacinas vigentes (válidas, não vencidas)"
+  - en: "From the US: export health certificate issued by a USDA-accredited veterinarian (no APHIS endorsement required by Honduras)"
+    fr: "Depuis les États-Unis : certificat sanitaire d'exportation établi par un vétérinaire agréé USDA (pas de visa APHIS exigé par le Honduras)"
+    es: "Desde EE. UU.: certificado sanitario de exportación expedido por un veterinario acreditado por el USDA (Honduras no exige el refrendo de APHIS)"
+    pt: "Dos EUA: atestado de saúde de exportação emitido por um veterinário credenciado pelo USDA (Honduras não exige o endosso do APHIS)"
+  - en: "For 3 or more pets: Zoosanitary Import Permit obtained in advance, plus fiduciary-quarantine certificate and SENASA fees (TGR1 Lps. 750.00 + two Lps. 10.00 stamps)"
+    fr: "Pour 3 animaux ou plus : Permis zoosanitaire d'importation obtenu à l'avance, plus attestation de quarantaine fiduciaire et frais SENASA (TGR1 750,00 Lps + deux timbres à 10,00 Lps)"
+    es: "Para 3 animales o más: Permiso Zoosanitario de Importación obtenido con antelación, más certificado de cuarentena fiduciaria y tasas del SENASA (TGR1 750,00 Lps + dos timbres de 10,00 Lps)"
+    pt: "Para 3 animais ou mais: Autorização Zoossanitária de Importação obtida com antecedência, mais certificado de quarentena fiduciária e taxas do SENASA (TGR1 Lps. 750,00 + dois selos de Lps. 10,00)"
+  - en: "Budget for the Lps. 525.00 border inspection fee (1–2 pets)"
+    fr: "Prévois les frais d'inspection frontalière de 525,00 Lps (1–2 animaux)"
+    es: "Prevé la tasa de inspección fronteriza de 525,00 Lps (1–2 animales)"
+    pt: "Reserve orçamento para a taxa de inspeção de fronteira de Lps. 525,00 (1–2 animais)"
+  - en: "Microchip fitted (not required by SENASA, but advised for ID, return trip and airlines)"
+    fr: "Puce posée (non exigée par le SENASA, mais conseillée pour l'ID, le retour et les compagnies)"
+    es: "Microchip implantado (no exigido por el SENASA, pero recomendado para la identificación, el viaje de regreso y las aerolíneas)"
+    pt: "Microchip implantado (não exigido pelo SENASA, mas recomendado para a identificação, a viagem de volta e as companhias aéreas)"
+  - en: "Check municipal breed rules if you will live in Tegucigalpa (Central District ordinance)"
+    fr: "Vérifie les règles municipales de race si tu résideras à Tegucigalpa (ordonnance du Distrito Central)"
+    es: "Revisa las reglas municipales de razas si vas a vivir en Tegucigalpa (ordenanza del Distrito Central)"
+    pt: "Confira as regras municipais de raças se você for morar em Tegucigalpa (ordenança do Distrito Central)"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation compagnie et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "SENASA Honduras — Instructions for pet import procedures to Honduras (PDF)", fr: "SENASA Honduras — Instructions pour les démarches d'importation d'animaux de compagnie au Honduras (PDF)", es: "SENASA Honduras — Instrucciones para los trámites de importación de mascotas a Honduras (PDF)", pt: "SENASA Honduras — Instruções para os trâmites de importação de animais de estimação para Honduras (PDF)" }
+    url: "https://senasa.gob.hn/wp-content/uploads/2023/08/INSTRUCTIVO-PARA-TRAMITES-DE-IMPORTACION-DE-MASCOTAS.pdf"
+  - label: { en: "SENASA Honduras — Instructions for pet export procedures (PDF)", fr: "SENASA Honduras — Instructions pour les démarches d'exportation d'animaux de compagnie (PDF)", es: "SENASA Honduras — Instrucciones para los trámites de exportación de mascotas (PDF)", pt: "SENASA Honduras — Instruções para os trâmites de exportação de animais de estimação (PDF)" }
+    url: "https://senasa.gob.hn/wp-content/uploads/2023/06/INSTRUCTIVO-PARA-TRAMITES-DE-EXPORTACION-DE-MASCOTAS.pdf"
+  - label: { en: "SENASA Honduras — Export of live animals", fr: "SENASA Honduras — Exportation d'animaux vivants", es: "SENASA Honduras — Exportación de animales vivos", pt: "SENASA Honduras — Exportação de animais vivos" }
+    url: "https://senasa.gob.hn/exportacion-de-animales-vivos/"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Honduras", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Honduras", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Honduras", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para Honduras" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-honduras"
+  - label: { en: "Municipality of the Central District — Ordinance on prohibition, registration and control of potentially dangerous dogs (Acta 014-2003, PDF)", fr: "Municipalité du Distrito Central — Ordonnance de prohibition, enregistrement et contrôle des chiens potentiellement dangereux (Acta 014-2003, PDF)", es: "Municipalidad del Distrito Central — Ordenanza de prohibición, registro y control de perros potencialmente peligrosos (Acta 014-2003, PDF)", pt: "Município do Distrito Central — Ordenança de proibição, registro e controle de cachorros potencialmente perigosos (Acta 014-2003, PDF)" }
+    url: "https://amdc.hn/wp-content/uploads/2023/01/ORDENANZA-MUNICIPAL-PROHIBICION-Y-REGISTRO-DE-PERROS.pdf"
+
+seo:
+  title: { en: "Honduras Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Honduras — Guide", es: "Requisitos de entrada de perros en Honduras — Guía de viaje", pt: "Honduras: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Honduras With Your Dog: Entry Requirements (2026)", fr: "Voyager au Honduras avec ton chien : formalités (2026)", es: "Viajar a Honduras con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Honduras: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official SENASA rules for bringing a dog into Honduras — export veterinary certificate and up-to-date vaccination card. Sourced and dated."
+    fr: "Règles officielles SENASA pour faire entrer un chien au Honduras — certificat vétérinaire d'exportation et cartilla de vaccination à jour. Sourcé et daté."
+    es: "Normas oficiales del SENASA para traer un perro a Honduras — certificado veterinario de exportación y cartilla de vacunación al día. Con fuentes y fecha."
+    pt: "Regras oficiais do SENASA para levar um cachorro a Honduras: certificado veterinário de exportação e carteira de vacinação em dia. Com fonte e data."
+  slug: "honduras"
+  shortDesc:
+    en: "What you need to bring a dog into Honduras, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien au Honduras, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Honduras, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro a Honduras, conforme o país de onde você vem."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

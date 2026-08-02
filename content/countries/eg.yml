@@ -1,0 +1,387 @@
+# Country Entry Guide — Egypt (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_eg
+iso2: "EG"
+name: { en: "Egypt", fr: "Égypte", es: "Egipto", pt: "Egito" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Egypt: no travel certificate is required, but owning a dog requires a licence and several common breeds are classed as dangerous."
+    fr: "Vol intérieur en Égypte : aucun certificat de voyage n'est exigé, mais détenir un chien requiert une licence et plusieurs races courantes sont classées dangereuses."
+    es: "Vuelo nacional en Egipto: no se exige certificado de viaje, pero tener un perro requiere licencia y varias razas comunes se clasifican como peligrosas."
+    pt: "Voo doméstico no Egito: nenhum certificado de viagem é exigido, mas ter um cachorro exige uma licença e várias raças comuns são classificadas como perigosas."
+  points:
+    - en: "Rabies vaccination is a general legal obligation, and keeping a dog requires a possession licence from the veterinary services. Identification is by numbered collar tag, not microchip."
+      fr: "La vaccination antirabique est une obligation légale générale, et détenir un chien exige une licence de possession délivrée par les services vétérinaires. L'identification se fait par médaille numérotée, pas par puce."
+      es: "La vacuna antirrábica es una obligación legal general, y tener un perro exige una licencia de posesión de los servicios veterinarios. La identificación es por chapa numerada, no por microchip."
+      pt: "A vacinação antirrábica é uma obrigação legal geral, e manter um cachorro exige uma licença de posse emitida pelos serviços veterinários. A identificação é feita por plaqueta numerada na coleira, não por microchip."
+    - en: "The law treats transporting an animal from one place to another as 'circulation', and breeds listed as dangerous — German Shepherd, Rottweiler, Boxer, Husky, Doberman among others — may not circulate without a licence. Confirm your breed's status before booking."
+      fr: "La loi assimile le transport d'un animal d'un lieu à un autre à une « circulation », et les races classées dangereuses — berger allemand, rottweiler, boxer, husky, doberman notamment — ne peuvent circuler sans licence. Vérifie le statut de ta race avant de réserver."
+      es: "La ley asimila transportar un animal de un lugar a otro a «circulación», y las razas clasificadas como peligrosas — pastor alemán, rottweiler, bóxer, husky, doberman entre otras — no pueden circular sin licencia. Verifica el estatus de tu raza antes de reservar."
+      pt: "A lei trata o transporte de um animal de um lugar a outro como «circulação», e as raças listadas como perigosas — pastor-alemão, rottweiler, boxer, husky, doberman, entre outras — não podem circular sem licença. Confirme a situação da sua raça antes de reservar."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+exit:
+  authority: GOVS
+  authorityUrl: https://www.govs.gov.eg
+  intro:
+    en: "Egypt is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate endorsed by the General Organization for Veterinary Services (GOVS)."
+    fr: "L'Égypte est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire visé par l'Organisation générale des services vétérinaires (GOVS)."
+    es: "Egipto no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario refrendado por la Organización General de Servicios Veterinarios (GOVS)."
+    pt: "O Egito é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde endossado pela General Organization for Veterinary Services (GOVS)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "GOVS veterinary quarantine endorses the EU entry health certificate at the port before departure — a private-vet certificate alone is not enough."
+        fr: "La quarantaine vétérinaire de la GOVS vise le certificat sanitaire d'entrée UE au port avant le départ — un certificat de vétérinaire privé seul ne suffit pas."
+        es: "La cuarentena veterinaria de la GOVS refrenda el certificado sanitario de entrada a la UE en el puerto antes de salir — un certificado de veterinario privado por sí solo no basta."
+        pt: "A quarentena veterinária da GOVS endossa o atestado de saúde de entrada na UE no porto antes da partida — um certificado de veterinário particular sozinho não basta."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Egypt with your dog", fr: "Voyager en Égypte avec ton chien", es: "Viajar a Egipto con tu perro", pt: "Viajar para o Egito com o seu cachorro" }
+  intro:
+    en: >-
+      Egypt welcomes pet dogs, and its entry rules are set by its own veterinary authority — the
+      General Organization for Veterinary Services (GOVS), part of the Ministry of Agriculture and
+      Land Reclamation — not by the EU framework. The core requirements are the same wherever you fly
+      from: a valid rabies vaccination, an official international veterinary health certificate issued
+      shortly before departure, and a veterinary inspection on arrival. A microchip is recommended for
+      identification. Good news for many travellers: Egypt does not require a rabies antibody (blood)
+      test to enter from any country. What changes with your origin is mainly the disease situation of
+      your departure country, which the health certificate must reflect. This guide explains exactly
+      what to prepare before you book your flight.
+    fr: >-
+      L'Égypte accueille les chiens de compagnie, et ses règles d'entrée sont fixées par sa propre
+      autorité vétérinaire — la General Organization for Veterinary Services (GOVS), rattachée au
+      ministère de l'Agriculture et de la Mise en valeur des terres — et non par le cadre européen.
+      Les exigences de base sont les mêmes quel que soit le pays de départ : une vaccination
+      antirabique valide, un certificat vétérinaire international officiel établi peu avant le départ,
+      et une inspection vétérinaire à l'arrivée. Une puce électronique est recommandée pour
+      l'identification. Bonne nouvelle : l'Égypte n'exige pas de test de titrage (prise de sang)
+      antirabique pour entrer, quel que soit le pays d'origine. Ce qui change selon l'origine, c'est
+      surtout la situation sanitaire du pays de départ, que le certificat doit refléter. Ce guide
+      détaille exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Egipto acoge a los perros de compañía, y sus normas de entrada las fija su propia autoridad
+      veterinaria — la General Organization for Veterinary Services (GOVS), adscrita al Ministerio de
+      Agricultura y Recuperación de Tierras — y no el marco de la UE. Los requisitos básicos son los
+      mismos sea cual sea el país de salida: una vacunación antirrábica válida, un certificado
+      sanitario veterinario internacional oficial expedido poco antes de la salida, y una inspección
+      veterinaria a la llegada. Se recomienda un microchip para la identificación. Buena noticia para
+      muchos viajeros: Egipto no exige una prueba de titulación de rabia (análisis de sangre) para
+      entrar desde ningún país. Lo que cambia según el origen es sobre todo la situación sanitaria de
+      tu país de salida, que el certificado sanitario debe reflejar. Esta guía explica exactamente qué
+      preparar antes de reservar tu vuelo.
+
+    pt: "O Egito acolhe cachorros de estimação, e suas regras de entrada são definidas pela sua própria autoridade veterinária — a General Organization for Veterinary Services (GOVS), vinculada ao Ministério da Agricultura e da Recuperação de Terras — e não pelo marco da UE. As exigências básicas são as mesmas, seja qual for o país de partida: uma vacinação antirrábica válida, um certificado veterinário internacional oficial emitido pouco antes da partida e uma inspeção veterinária na chegada. Um microchip é recomendado para a identificação. Boa notícia para muitos viajantes: o Egito não exige teste sorológico antirrábico (coleta de sangue) para entrar, seja qual for o país de origem. O que muda conforme a origem é sobretudo a situação sanitária do país de partida, que o atestado de saúde deve refletir. Este guia explica exatamente o que preparar antes de você reservar o seu voo."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — clear rules, careful timing", fr: "Modérée — règles claires, calendrier à respecter", es: "Moderada — reglas claras, calendario cuidadoso", pt: "Moderado — regras claras, prazos a planejar com cuidado" }
+
+prepTime:
+  eu:
+    en: "~4–5 weeks from Europe: rabies shot must be at least 30 days old, plus a health certificate issued within ~10–14 days of travel."
+    fr: "~4–5 semaines depuis l'Europe : le vaccin antirabique doit dater d'au moins 30 jours, plus un certificat sanitaire établi dans les ~10–14 jours avant le voyage."
+    es: "~4–5 semanas desde Europa: la vacuna antirrábica debe tener al menos 30 días, más un certificado sanitario expedido dentro de los ~10–14 días previos al viaje."
+    pt: "~4–5 semanas a partir da Europa: a vacina antirrábica deve ter pelo menos 30 dias, mais um atestado de saúde emitido no prazo de ~10–14 dias antes da viagem."
+  listed:
+    en: "~4–5 weeks from a rabies-controlled country: same 30-day post-vaccination wait and a short-validity health certificate."
+    fr: "~4–5 semaines depuis un pays à rage maîtrisée : même délai de 30 jours après le vaccin et un certificat sanitaire à validité courte."
+    es: "~4–5 semanas desde un país con la rabia controlada: la misma espera de 30 días tras la vacuna y un certificado sanitario de valide corta."
+    pt: "~4–5 semanas a partir de um país com a raiva controlada: a mesma espera de 30 dias após a vacinação e um atestado de saúde de validade curta."
+  nonListed:
+    en: "~4–6 weeks from a high-rabies-risk country: same base steps, but dogs from areas under rabies restriction may face extra checks or refusal."
+    fr: "~4–6 semaines depuis un pays à haut risque rabique : mêmes étapes de base, mais un chien venant d'une zone sous restriction rabique peut subir des contrôles supplémentaires ou un refus."
+    es: "~4–6 semanas desde un país con alto riesgo de rabia: los mismos pasos básicos, pero los perros procedentes de zonas bajo restricción por rabia pueden sufrir controles adicionales o el rechazo."
+    pt: "~4–6 semanas a partir de um país de alto risco de raiva: as mesmas etapas básicas, mas cachorros vindos de áreas sob restrição por raiva podem enfrentar controles adicionais ou recusa."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Arrival inspection", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not routine", fr: "Pas systématique", es: "No sistemática", pt: "Não sistemática" }
+    cls: ok
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "Yes — some banned/licensed", fr: "Oui — certaines interdites/sous licence", es: "Sí — algunas prohibidas/con licencia", pt: "Sim — algumas proibidas/sob licença" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Egypt (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Égypte (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Egipto (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Egito (o seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Egypt", fr: "Pays de destination — Égypte", es: "País de destino — Egipto", pt: "País de destino — Egito" }
+      text:
+        en: "Egypt applies its own GOVS scheme: a valid rabies vaccination and an official international veterinary health certificate are always required, and every dog is inspected on arrival. No rabies antibody test is required."
+        fr: "L'Égypte applique son propre schéma GOVS : une vaccination antirabique valide et un certificat vétérinaire international officiel sont toujours exigés, et chaque chien est inspecté à l'arrivée. Aucun titrage antirabique n'est requis."
+        es: "Egipto aplica su propio esquema de la GOVS: siempre se exigen una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial, y todo perro es inspeccionado a la llegada. No se exige prueba de titulación de rabia."
+        pt: "O Egito aplica o seu próprio esquema da GOVS: uma vacinação antirrábica válida e um certificado veterinário internacional oficial são sempre exigidos, e todo cachorro é inspecionado na chegada. Nenhum teste sorológico antirrábico é exigido."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The health certificate must confirm your dog does not come from an area under rabies restriction. The disease status of your departure country shapes what the official vet must certify."
+        fr: "Le certificat sanitaire doit confirmer que ton chien ne provient pas d'une zone sous restriction rabique. La situation sanitaire du pays de départ détermine ce que le vétérinaire officiel doit certifier."
+        es: "El certificado sanitario debe confirmar que tu perro no procede de una zona bajo restricción por rabia. La situación sanitaria de tu país de salida determina lo que el veterinario oficial debe certificar."
+        pt: "O atestado de saúde deve confirmar que o seu cachorro não vem de uma área sob restrição por raiva. A situação sanitária do seu país de partida determina o que o veterinário oficial deve certificar."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-quarantined or high-risk area can trigger extra scrutiny at the airport. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans une zone sous quarantaine rabique ou à haut risque peut entraîner un contrôle renforcé à l'aéroport. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en una zona bajo cuarentena por rabia o de alto riesgo puede provocar un control reforzado en el aeropuerto. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em uma área sob quarentena por raiva ou de alto risco pode gerar um controle reforçado no aeroporto. O que conta é a origem real e o histórico do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Egypt's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre égyptien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Egipto y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o marco egípcio e depois confirme com o seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Recommended", fr: "Recommandée", es: "Recomendado", pt: "Recomendado" }
+    when: { en: "ISO 11784/11785 chip, ideally implanted before the rabies vaccination so records match.", fr: "Puce ISO 11784/11785, idéalement posée avant la vaccination antirabique pour que les documents concordent.", es: "Microchip ISO 11784/11785, idealmente implantado antes de la vacunación antirrábica para que los registros coincidan.", pt: "Microchip ISO 11784/11785, de preferência implantado antes da vacinação antirrábica para que os registros coincidam." }
+    exceptions: { en: "Egypt does not make the microchip mandatory for entry, but it is strongly advised for identification. Tattoos are not accepted.", fr: "L'Égypte ne rend pas la puce obligatoire à l'entrée, mais elle est fortement conseillée pour l'identification. Les tatouages ne sont pas acceptés.", es: "Egipto no hace obligatorio el microchip para la entrada, pero se aconseja encarecidamente para la identificación. Los tatuajes no se aceptan.", pt: "O Egito não torna o microchip obrigatório na entrada, mas ele é fortemente recomendado para a identificação. Tatuagens não são aceitas." }
+    ref: { en: "GOVS / USDA APHIS Egypt export health certificate", fr: "GOVS / certificat sanitaire export Égypte USDA APHIS", es: "GOVS / certificado sanitario de exportación a Egipto USDA APHIS", pt: "GOVS / atestado de saúde de exportação para o Egito USDA APHIS" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Given at least 30 days before arrival and still valid — the dog must arrive no later than 11 months after the shot (within the 1-year validity).", fr: "Administrée au moins 30 jours avant l'arrivée et encore valide — le chien doit arriver au plus tard 11 mois après le vaccin (dans la validité d'un an).", es: "Administrada al menos 30 días antes de la llegada y aún válida — el perro debe llegar a más tardar 11 meses después de la vacuna (dentro de la valide de 1 año).", pt: "Aplicada pelo menos 30 dias antes da chegada e ainda válida — o cachorro deve chegar no máximo 11 meses após a aplicação (dentro da validade de 1 ano)." }
+    exceptions: { en: "First rabies shot may be given from 12 weeks of age; puppies must be at least 4 months old to travel.", fr: "La primo-vaccination peut être faite dès 12 semaines ; un chiot doit avoir au moins 4 mois pour voyager.", es: "La primera vacuna antirrábica puede administrarse a partir de las 12 semanas; los cachorros deben tener al menos 4 meses para viajar.", pt: "A primeira dose antirrábica pode ser aplicada a partir das 12 semanas de idade; filhotes devem ter pelo menos 4 meses para viajar." }
+    ref: { en: "GOVS; USDA APHIS Egypt health certificate", fr: "GOVS ; certificat sanitaire Égypte USDA APHIS", es: "GOVS; certificado sanitario Egipto USDA APHIS", pt: "GOVS; atestado de saúde Egito USDA APHIS" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Egypt does not require a rabies antibody (titer) test to enter from any country.", fr: "L'Égypte n'exige pas de titrage antirabique pour entrer, quel que soit le pays d'origine.", es: "Egipto no exige una prueba de titulación de rabia para entrar desde ningún país.", pt: "O Egito não exige teste sorológico antirrábico (titulação) para entrar, seja qual for o país de origem." }
+    ref: { en: "Embassy of Egypt (Washington) — Bringing Pets", fr: "Ambassade d'Égypte (Washington) — Bringing Pets", es: "Embajada de Egipto (Washington) — Bringing Pets", pt: "Embaixada do Egito (Washington) — Bringing Pets" }
+  - item: { en: "Other core vaccinations", fr: "Autres vaccinations de base", es: "Otras vacunas básicas", pt: "Outras vacinações essenciais" }
+    required: { en: "Required for dogs", fr: "Requises pour les chiens", es: "Obligatorias para perros", pt: "Obrigatórias para cachorros" }
+    when: { en: "Distemper, hepatitis, parvovirus and parainfluenza, according to the origin country's disease status.", fr: "Maladie de Carré, hépatite, parvovirose et parainfluenza, selon la situation sanitaire du pays d'origine.", es: "Moquillo, hepatitis, parvovirus y parainfluenza, según la situación sanitaria del país de origen.", pt: "Cinomose, hepatite, parvovirose e parainfluenza, conforme a situação sanitária do país de origem." }
+    exceptions: { en: "Recorded in the vaccination booklet and reflected on the health certificate.", fr: "Consignées dans le carnet de vaccination et reprises sur le certificat sanitaire.", es: "Registradas en la cartilla de vacunación y reflejadas en el certificado sanitario.", pt: "Registradas na carteira de vacinação e refletidas no atestado de saúde." }
+    ref: { en: "GOVS import requirements", fr: "Exigences d'importation GOVS", es: "Requisitos de importación de la GOVS", pt: "Exigências de importação da GOVS" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "International/export health certificate completed by a licensed vet just before travel and endorsed by the origin country's official (government) veterinary authority.", fr: "Certificat sanitaire international/export établi par un vétérinaire agréé juste avant le voyage et visé par l'autorité vétérinaire officielle (gouvernementale) du pays d'origine.", es: "Certificado sanitario internacional/de exportación cumplimentado por un veterinario autorizado justo antes del viaje y refrendado por la autoridad veterinaria oficial (gubernamental) del país de origen.", pt: "Atestado de saúde internacional/de exportação preenchido por um veterinário habilitado pouco antes da viagem e endossado pela autoridade veterinária oficial (governamental) do país de origem." }
+    exceptions: { en: "Short validity (about 10–14 days) and must still be valid on arrival; it must state the dog is healthy and not from a rabies-restricted area.", fr: "Validité courte (environ 10–14 jours) et doit être encore valable à l'arrivée ; il doit attester que le chien est sain et ne provient pas d'une zone sous restriction rabique.", es: "Valide corta (unos 10–14 días) y debe seguir siendo válido a la llegada; debe indicar que el perro está sano y no procede de una zona bajo restricción por rabia.", pt: "Validade curta (cerca de 10–14 dias) e deve continuar válido na chegada; deve declarar que o cachorro está saudável e não vem de uma área sob restrição por raiva." }
+    ref: { en: "GOVS; USDA APHIS Egypt health certificate", fr: "GOVS ; certificat sanitaire Égypte USDA APHIS", es: "GOVS; certificado sanitario Egipto USDA APHIS", pt: "GOVS; atestado de saúde Egito USDA APHIS" }
+  - item: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Endo- and ecto-parasite treatment by a licensed vet shortly before departure.", fr: "Traitement endo- et ecto-parasitaire par un vétérinaire agréé peu avant le départ.", es: "Tratamiento contra endo- y ectoparásitos por un veterinario autorizado poco antes de la salida.", pt: "Tratamento contra endo e ectoparasitas por um veterinário habilitado pouco antes da partida." }
+    exceptions: { en: "Recorded on veterinary documents; treatment typically considered valid for a few days.", fr: "Consigné sur les documents vétérinaires ; traitement généralement considéré valable quelques jours.", es: "Registrado en los documentos veterinarios; el tratamiento suele considerarse válido durante unos días.", pt: "Registrado nos documentos veterinários; o tratamento costuma ser considerado válido por alguns dias." }
+    ref: { en: "GOVS import requirements", fr: "Exigences d'importation GOVS", es: "Requisitos de importación de la GOVS", pt: "Exigências de importação da GOVS" }
+  - item: { en: "Import approval / advance notification", fr: "Autorisation d'importation / notification préalable", es: "Autorización de importación / notificación previa", pt: "Autorização de importação / notificação prévia" }
+    required: { en: "Conditional", fr: "Conditionnelle", es: "Condicional", pt: "Condicional" }
+    when: { en: "Usually not required for a personal pet dog, but GOVS may request prior import approval in some cases.", fr: "En général non requise pour un chien de compagnie personnel, mais la GOVS peut demander une autorisation d'importation préalable dans certains cas.", es: "Normalmente no obligatoria para un perro de compañía personal, pero la GOVS puede solicitar una autorización de importación previa en algunos casos.", pt: "Em geral não é exigida para um cachorro de estimação pessoal, mas a GOVS pode solicitar uma autorização de importação prévia em alguns casos." }
+    exceptions: { en: "Confirm with the airline and GOVS before travel, especially for multiple animals or commercial import.", fr: "À confirmer avec la compagnie et la GOVS avant le voyage, surtout pour plusieurs animaux ou une importation commerciale.", es: "Confírmalo con la aerolínea y la GOVS antes del viaje, sobre todo en caso de varios animales o de importación comercial.", pt: "Confirme com a companhia aérea e com a GOVS antes da viagem, sobretudo no caso de vários animais ou de importação comercial." }
+    ref: { en: "GOVS (Ministry of Agriculture)", fr: "GOVS (ministère de l'Agriculture)", es: "GOVS (Ministerio de Agricultura)", pt: "GOVS (Ministério da Agricultura)" }
+  - item: { en: "Arrival veterinary inspection", fr: "Inspection vétérinaire à l'arrivée", es: "Inspección veterinaria a la llegada", pt: "Inspeção veterinária na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "GOVS veterinary quarantine officers inspect every arriving dog at the airport and check the documents.", fr: "Les agents de la quarantaine vétérinaire GOVS inspectent chaque chien à l'arrivée à l'aéroport et vérifient les documents.", es: "Los agentes de cuarentena veterinaria de la GOVS inspeccionan a cada perro que llega al aeropuerto y comprueban los documentos.", pt: "Os agentes da quarentena veterinária da GOVS inspecionam cada cachorro que chega ao aeroporto e conferem os documentos." }
+    exceptions: { en: "If the dog shows signs of contagious disease, further examination or a short quarantine may be imposed.", fr: "Si le chien présente des signes de maladie contagieuse, un examen complémentaire ou une courte quarantaine peut être imposé.", es: "Si el perro muestra signos de enfermedad contagiosa, puede imponerse un examen adicional o una cuarentena breve.", pt: "Se o cachorro apresentar sinais de doença contagiosa, pode ser imposto um exame adicional ou uma quarentena curta." }
+    ref: { en: "GOVS Veterinary Quarantine (WOAH)", fr: "Quarantaine vétérinaire GOVS (WOAH)", es: "Cuarentena veterinaria de la GOVS (WOAH)", pt: "Quarentena veterinária GOVS (WOAH)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "At least 4 months", fr: "Au moins 4 mois", es: "Al menos 4 meses", pt: "Pelo menos 4 meses" }
+    when: { en: "A puppy cannot travel on its mother's vaccination; it needs its own valid rabies shot (from 12 weeks) plus the 30-day wait.", fr: "Un chiot ne peut voyager sous la vaccination de sa mère ; il lui faut sa propre vaccination antirabique valide (dès 12 semaines) plus le délai de 30 jours.", es: "Un cachorro no puede viajar con la vacunación de su madre; necesita su propia vacuna antirrábica válida (desde las 12 semanas) más la espera de 30 días.", pt: "Um filhote não pode viajar sob a vacinação da mãe; ele precisa da própria vacinação antirrábica válida (a partir das 12 semanas) mais a espera de 30 dias." }
+    exceptions: { en: "In practice this makes the minimum travelling age about 4 months.", fr: "En pratique, l'âge minimum pour voyager est donc d'environ 4 mois.", es: "En la práctica, esto hace que la edad mínima para viajar sea de unos 4 meses.", pt: "Na prática, isso faz com que a idade mínima para viajar seja de cerca de 4 meses." }
+    ref: { en: "GOVS import requirements", fr: "Exigences d'importation GOVS", es: "Requisitos de importación de la GOVS", pt: "Exigências de importação da GOVS" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routine", fr: "Pas systématique", es: "No sistemática", pt: "Não sistemática" }
+    when: { en: "No automatic quarantine when documents are complete and the dog is healthy on inspection.", fr: "Pas de quarantaine automatique si les documents sont complets et le chien sain à l'inspection.", es: "Sin cuarentena automática si los documentos están completos y el perro está sano en la inspección.", pt: "Nenhuma quarentena automática quando os documentos estão completos e o cachorro está saudável na inspeção." }
+    exceptions: { en: "A quarantine of up to about 15 days may be imposed if disease is suspected or paperwork is deficient.", fr: "Une quarantaine pouvant aller jusqu'à ~15 jours peut être imposée en cas de suspicion de maladie ou de documents incomplets.", es: "Puede imponerse una cuarentena de hasta unos 15 días si se sospecha enfermedad o la documentación es deficiente.", pt: "Uma quarentena de até cerca de 15 dias pode ser imposta em caso de suspeita de doença ou de documentação incompleta." }
+    ref: { en: "GOVS Veterinary Quarantine (WOAH)", fr: "Quarantaine vétérinaire GOVS (WOAH)", es: "Cuarentena veterinaria de la GOVS (WOAH)", pt: "Quarentena veterinária GOVS (WOAH)" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Egypt: the EU passport is not an Egyptian document. A dog from Europe needs a valid rabies vaccination (at least 30 days old), the core dog vaccinations, parasite treatment and an official international veterinary health certificate endorsed by the government vet before departure. No antibody test is required."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Égypte : le passeport UE n'est pas un document égyptien. Un chien venant d'Europe a besoin d'une vaccination antirabique valide (d'au moins 30 jours), des vaccinations canines de base, d'un traitement antiparasitaire et d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental avant le départ. Aucun titrage n'est requis."
+      es: "No hay ningún atajo de pasaporte europeo para mascotas para entrar en Egipto: el pasaporte de la UE no es un documento egipcio. Un perro procedente de Europa necesita una vacunación antirrábica válida (de al menos 30 días), las vacunas caninas básicas, tratamiento antiparasitario y un certificado sanitario veterinario internacional oficial refrendado por el veterinario gubernamental antes de la salida. No se exige prueba de titulación."
+      pt: "Não existe atalho de «passaporte europeu para animais» para entrar no Egito: o passaporte da UE não é um documento egípcio. Um cachorro vindo da Europa precisa de vacinação antirrábica válida (com pelo menos 30 dias), das vacinas caninas básicas, de tratamento antiparasitário e de um certificado veterinário internacional oficial endossado pelo veterinário governamental antes da partida. Nenhum teste sorológico é exigido."
+    cls: warn
+  listed:
+    title: { en: "From a rabies-controlled country", fr: "Depuis un pays à rage maîtrisée", es: "Desde un país con la rabia controlada", pt: "De um país com a raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the base scheme applies: microchip (recommended), valid rabies vaccination, core vaccinations, parasite treatment and an endorsed health certificate. No blood test, and normally no quarantine on arrival if the dog is healthy and documents are in order."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), le schéma de base s'applique : puce (recommandée), vaccination antirabique valide, vaccinations de base, traitement antiparasitaire et certificat sanitaire visé. Pas de prise de sang, et normalement pas de quarantaine à l'arrivée si le chien est sain et les documents en règle."
+      es: "Desde países con una situación de rabia controlada (Estados Unidos, Canadá, países del Golfo, la mayor parte de Europa y otros), se aplica el esquema básico: microchip (recomendado), vacunación antirrábica válida, vacunas básicas, tratamiento antiparasitario y un certificado sanitario refrendado. Sin análisis de sangre y, normalmente, sin cuarentena a la llegada si el perro está sano y los documentos en regla."
+      pt: "Nos países com situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se o esquema básico: microchip (recomendado), vacinação antirrábica válida, vacinas básicas, tratamento antiparasitário e um atestado de saúde endossado. Nenhuma coleta de sangue e, normalmente, nenhuma quarentena na chegada se o cachorro estiver saudável e a documentação em ordem."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país con alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "Egypt does not add a mandatory antibody test even for high-risk origins, but the health certificate must confirm the dog is not from an area under rabies restriction and has not been exposed to rabies. Dogs from a rabies-quarantined zone may be refused or held for examination. Expect closer scrutiny at the airport and keep original documents ready."
+      fr: "L'Égypte n'ajoute pas de titrage obligatoire, même pour les origines à haut risque, mais le certificat sanitaire doit confirmer que le chien ne provient pas d'une zone sous restriction rabique et n'a pas été exposé à la rage. Un chien venant d'une zone sous quarantaine rabique peut être refusé ou retenu pour examen. Attends-toi à un contrôle renforcé à l'aéroport et garde les documents originaux prêts."
+      es: "Egipto no añade una prueba de titulación obligatoria ni siquiera para orígenes de alto riesgo, pero el certificado sanitario debe confirmar que el perro no procede de una zona bajo restricción por rabia y que no ha estado expuesto a la rabia. Los perros procedentes de una zona bajo cuarentena por rabia pueden ser rechazados o retenidos para examen. Espera un control más estricto en el aeropuerto y ten listos los documentos originales."
+      pt: "O Egito não acrescenta um teste sorológico obrigatório nem mesmo para origens de alto risco, mas o atestado de saúde deve confirmar que o cachorro não vem de uma área sob restrição por raiva e não foi exposto à raiva. Cachorros vindos de uma zona sob quarentena por raiva podem ser recusados ou retidos para exame. Espere um controle mais rigoroso no aeroporto e mantenha os documentos originais à mão."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Egypt, GOVS veterinary quarantine handles the check at the airport."
+    fr: "À l'arrivée de ton chien en Égypte, la quarantaine vétérinaire GOVS effectue le contrôle à l'aéroport."
+    es: "Cuando tu perro llega a Egipto, la cuarentena veterinaria de la GOVS se encarga del control en el aeropuerto."
+    pt: "Quando o seu cachorro chega ao Egito, é a quarentena veterinária da GOVS que faz a conferência no aeroporto."
+  points:
+    - en: "GOVS is the sole authority that inspects arriving pets and issues/clears veterinary documents at ports of entry."
+      fr: "La GOVS est la seule autorité qui inspecte les animaux à l'arrivée et valide les documents vétérinaires aux points d'entrée."
+      es: "La GOVS es la única autoridad que inspecciona a las mascotas que llegan y expide/tramita los documentos veterinarios en los puntos de entrada."
+      pt: "A GOVS é a única autoridade que inspeciona os animais de estimação que chegam e emite/libera os documentos veterinários nos pontos de entrada."
+    - en: "Present the original vaccination booklet, microchip record and the endorsed health certificate — carry originals, not copies."
+      fr: "Présente le carnet de vaccination original, le justificatif de puce et le certificat sanitaire visé — munis-toi des originaux, pas de copies."
+      es: "Presenta la cartilla de vacunación original, el registro del microchip y el certificado sanitario refrendado — lleva los originales, no copias."
+      pt: "Apresente a carteira de vacinação original, o comprovante do microchip e o atestado de saúde endossado — leve os originais, não cópias."
+    - en: "The dog must be free of signs of contagious disease at inspection; a healthy dog with complete papers is normally cleared without quarantine."
+      fr: "Le chien ne doit présenter aucun signe de maladie contagieuse à l'inspection ; un chien sain avec des papiers complets passe normalement sans quarantaine."
+      es: "El perro no debe presentar signos de enfermedad contagiosa en la inspección; un perro sano con los papeles completos suele pasar sin cuarentena."
+      pt: "O cachorro deve estar sem sinais de doença contagiosa na inspeção; um cachorro saudável com a documentação completa normalmente é liberado sem quarentena."
+    - en: "Arrive on a weekday during office hours where possible, to ensure timely clearance through customs and the on-duty state vet."
+      fr: "Arrive si possible en semaine et pendant les heures de bureau, pour un dédouanement rapide auprès de la douane et du vétérinaire d'État de service."
+      es: "Llega, si es posible, en día laborable y en horario de oficina, para asegurar un despacho ágil en aduanas y con el veterinario oficial de guardia."
+      pt: "Chegue, sempre que possível, em um dia útil e no horário comercial, para garantir a liberação em tempo pela alfândega e pelo veterinário oficial de plantão."
+    - en: "If documents are missing or the dog looks unwell, GOVS may order further examination, a short quarantine (up to ~15 days), or refuse entry."
+      fr: "Si les documents manquent ou si le chien semble malade, la GOVS peut ordonner un examen complémentaire, une courte quarantaine (jusqu'à ~15 jours) ou refuser l'entrée."
+      es: "Si faltan documentos o el perro parece enfermo, la GOVS puede ordenar un examen adicional, una cuarentena breve (hasta ~15 días) o denegar la entrada."
+      pt: "Se faltarem documentos ou se o cachorro parecer doente, a GOVS pode determinar um exame adicional, uma quarentena curta (até ~15 dias) ou recusar a entrada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Egypt regulates dangerous dogs under Law 29/2023 on the possession of dangerous animals and dogs, enforced by GOVS. The list of prohibited breeds was later narrowed by ministerial decree, splitting affected breeds into an outright-banned group and a licence-required group."
+    fr: "L'Égypte réglemente les chiens dangereux par la loi 29/2023 sur la détention d'animaux et de chiens dangereux, appliquée par la GOVS. La liste des races interdites a ensuite été réduite par décret ministériel, séparant les races concernées en un groupe totalement interdit et un groupe soumis à licence."
+    es: "Egipto regula los perros peligrosos mediante la Ley 29/2023 sobre la tenencia de animales y perros peligrosos, aplicada por la GOVS. La lista de razas prohibidas se redujo después mediante decreto ministerial, dividiendo las razas afectadas en un grupo totalmente prohibido y un grupo que requiere licencia."
+    pt: "O Egito regulamenta os cachorros perigosos pela Lei 29/2023 sobre a posse de animais e cachorros perigosos, aplicada pela GOVS. A lista de raças proibidas foi depois reduzida por decreto ministerial, dividindo as raças afetadas em um grupo totalmente proibido e um grupo que exige licença."
+  cat1:
+    en: "Banned breeds: a 2024 ministerial decree (Official Gazette) narrowed the prohibited list to three breeds — the Fila Brasileiro (Brazilian Mastiff), the South African Boerboel, and the Presa Canario (Dogo Canario). These may not be kept or imported."
+    fr: "Races interdites : un décret ministériel de 2024 (Journal officiel) a réduit la liste interdite à trois races — le Fila Brasileiro (mastiff brésilien), le Boerboel sud-africain et le Presa Canario (Dogo Canario). Ces races ne peuvent être ni détenues ni importées."
+    es: "Razas prohibidas: un decreto ministerial de 2024 (Boletín Oficial) redujo la lista prohibida a tres razas — el Fila Brasileiro (mastín brasileño), el Boerboel sudafricano y el Presa Canario (Dogo Canario). No pueden tenerse ni importarse."
+    pt: "Raças proibidas: um decreto ministerial de 2024 (Diário Oficial) reduziu a lista de proibições a três raças — o Fila Brasileiro (mastim brasileiro), o Boerboel sul-africano e o Presa Canario (Dogo Canario). Elas não podem ser mantidas nem importadas."
+  cat2:
+    en: "Licence-required (restricted) breeds: around 16 breeds — including the pit bull, Rottweiler, German Shepherd, boxer, husky, Caucasian Shepherd, bullmastiff, Doberman, Alaskan Malamute, Great Dane, Akita, American Bully, Alabai (Central Asian Shepherd), Cane Corso, Dogo Argentino and Tosa Inu — are allowed only under a government safety/licensing process, and may be confiscated if not licensed. Confirm current status with GOVS before travelling."
+    fr: "Races sous licence (restreintes) : une seizaine de races — dont le pit-bull, le Rottweiler, le berger allemand, le boxer, le husky, le berger du Caucase, le bullmastiff, le doberman, le malamute d'Alaska, le dogue allemand, l'akita, l'American Bully, l'alabai (berger d'Asie centrale), le cane corso, le dogue argentin et le tosa — ne sont admises que dans le cadre d'une procédure gouvernementale de sécurité/licence, et peuvent être confisquées faute de licence. Vérifie le statut à jour auprès de la GOVS avant de voyager."
+    es: "Razas restringidas (con licencia): alrededor de 16 razas — entre ellas el pit bull, el Rottweiler, el pastor alemán, el bóxer, el husky, el pastor del Cáucaso, el bullmastiff, el dóberman, el malamute de Alaska, el gran danés, el akita, el American Bully, el alabai (pastor de Asia Central), el cane corso, el dogo argentino y el tosa inu — solo se admiten mediante un proceso gubernamental de seguridad/licencia, y pueden ser confiscadas si no tienen licencia. Confirma el estado actual con la GOVS antes de viajar."
+    pt: "Raças que exigem licença (restritas): cerca de 16 raças — incluindo pit bull, rottweiler, pastor-alemão, boxer, husky, pastor-do-cáucaso, bullmastiff, doberman, malamute-do-alasca, dogue alemão, akita, american bully, alabai (pastor-da-ásia-central), cane corso, dogo argentino e tosa inu — só são permitidas mediante um processo governamental de segurança/licenciamento, e podem ser confiscadas se não estiverem licenciadas. Confirme a situação atual com a GOVS antes de viajar."
+  note:
+    en: "Breed rules have changed repeatedly since 2023; before booking, verify the current banned and licence-required lists directly with GOVS or an Egyptian consulate, as the exact breeds can be updated by decree."
+    fr: "Les règles de races ont changé plusieurs fois depuis 2023 ; avant de réserver, vérifie les listes à jour des races interdites et sous licence directement auprès de la GOVS ou d'un consulat égyptien, car les races exactes peuvent être modifiées par décret."
+    es: "Las normas sobre razas han cambiado varias veces desde 2023; antes de reservar, verifica las listas actuales de razas prohibidas y con licencia directamente con la GOVS o un consulado egipcio, ya que las razas exactas pueden actualizarse por decreto."
+    pt: "As regras sobre raças mudaram várias vezes desde 2023; antes de reservar, verifique as listas atuais de raças proibidas e de raças que exigem licença diretamente com a GOVS ou com um consulado egípcio, pois as raças exatas podem ser atualizadas por decreto."
+
+checklist:
+  - en: "ISO microchip (recommended) implanted before the rabies vaccination"
+    fr: "Puce ISO (recommandée) posée avant la vaccination antirabique"
+    es: "Microchip ISO (recomendado) implantado antes de la vacunación antirrábica"
+    pt: "Microchip ISO (recomendado) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination — at least 30 days old, within 1-year validity"
+    fr: "Vaccination antirabique valide — au moins 30 jours, dans la validité d'un an"
+    es: "Vacunación antirrábica válida — de al menos 30 días, dentro de la valide de 1 año"
+    pt: "Vacinação antirrábica válida — com pelo menos 30 dias, dentro da validade de 1 ano"
+  - en: "Core dog vaccinations (distemper, hepatitis, parvovirus, parainfluenza)"
+    fr: "Vaccinations canines de base (Carré, hépatite, parvovirose, parainfluenza)"
+    es: "Vacunas caninas básicas (moquillo, hepatitis, parvovirus, parainfluenza)"
+    pt: "Vacinas caninas básicas (cinomose, hepatite, parvovirose, parainfluenza)"
+  - en: "Internal and external parasite treatment before departure"
+    fr: "Traitement antiparasitaire interne et externe avant le départ"
+    es: "Tratamiento antiparasitario interno y externo antes de la salida"
+    pt: "Tratamento antiparasitário interno e externo antes da partida"
+  - en: "Official international veterinary health certificate, endorsed by the government vet"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental"
+    es: "Certificado sanitario veterinario internacional oficial, refrendado por el veterinario gubernamental"
+    pt: "Certificado veterinário internacional oficial, endossado pelo veterinário governamental"
+  - en: "Original vaccination booklet and microchip record (not copies)"
+    fr: "Carnet de vaccination et justificatif de puce originaux (pas de copies)"
+    es: "Cartilla de vacunación y registro del microchip originales (no copias)"
+    pt: "Carteira de vacinação e comprovante do microchip originais (não cópias)"
+  - en: "Airline reservation confirming your dog's travel option and IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport du chien et caisse IATA si voyage en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
+  - en: "Confirm your dog's breed is not banned and, if listed, check licensing rules with GOVS"
+    fr: "Vérifie que la race de ton chien n'est pas interdite et, si elle est listée, vérifie les règles de licence auprès de la GOVS"
+    es: "Confirma que la raza de tu perro no está prohibida y, si está listada, comprueba las normas de licencia con la GOVS"
+    pt: "Confirme que a raça do seu cachorro não é proibida e, se estiver listada, verifique as regras de licenciamento com a GOVS"
+
+sources:
+  - label: { en: "Embassy of Egypt (Washington, D.C.) — Bringing Pets", fr: "Ambassade d'Égypte (Washington) — Bringing Pets", es: "Embajada de Egipto (Washington, D.C.) — Bringing Pets", pt: "Embaixada do Egito (Washington, D.C.) — Bringing Pets" }
+    url: "https://www.egyptembassy.org/travel/bringing-pets"
+  - label: { en: "USDA APHIS — Export Live Animals to Egypt", fr: "USDA APHIS — Exportation d'animaux vivants vers l'Égypte", es: "USDA APHIS — Exportación de animales vivos a Egipto", pt: "USDA APHIS — Exportação de animais vivos para o Egito" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-egypt"
+  - label: { en: "USDA APHIS — Veterinary Health Certificate for Dogs and Cats to Egypt (GOVS-agreed)", fr: "USDA APHIS — Certificat vétérinaire pour chiens et chats vers l'Égypte (convenu avec la GOVS)", es: "USDA APHIS — Certificado sanitario veterinario para perros y gatos a Egipto (acordado con la GOVS)", pt: "USDA APHIS — Certificado veterinário para cães e gatos com destino ao Egito (acordado com a GOVS)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/egypt-dog-cat.pdf"
+  - label: { en: "GOVS — Veterinary Quarantine (WOAH regional presentation)", fr: "GOVS — Quarantaine vétérinaire (présentation régionale WOAH)", es: "GOVS — Cuarentena veterinaria (presentación regional de la WOAH)", pt: "GOVS — Quarentena veterinária (apresentação regional da WOAH)" }
+    url: "https://rr-europe.woah.org/app/uploads/2022/11/woah_wjs_egypt.pdf"
+  - label: { en: "Ahram Online (state press) — Egypt reduces banned dog breeds to three (2024 decree)", fr: "Ahram Online (presse d'État) — L'Égypte réduit à trois les races interdites (décret 2024)", es: "Ahram Online (prensa estatal) — Egipto reduce a tres las razas de perros prohibidas (decreto de 2024)", pt: "Ahram Online (imprensa estatal) — O Egito reduz a três as raças de cachorros proibidas (decreto de 2024)" }
+    url: "https://english.ahram.org.eg/NewsContent/1/2/546288/Egypt/Society/Egypt-reduces-number-of-banned-dog-breeds-from--to.aspx"
+
+seo:
+  title: { en: "Egypt Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Égypte — Guide", es: "Requisitos de entrada de perros en Egipto — Guía de viaje", pt: "Entrada de cachorros no Egito — Guia de viagem" }
+  metaTitle: { en: "Traveling to Egypt With Your Dog: Entry Requirements (2026)", fr: "Voyager en Égypte avec ton chien : formalités (2026)", es: "Viajar a Egipto con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Egito com seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official GOVS rules for bringing a dog into Egypt: rabies vaccination, health certificate, arrival check — no antibody test, plus banned breeds. Sourced and dated."
+    fr: "Règles officielles GOVS pour faire entrer un chien en Égypte : vaccination antirabique, certificat sanitaire, inspection à l'arrivée — sans titrage. Sourcé et daté."
+    es: "Normas oficiales de la GOVS para traer un perro a Egipto: vacunación antirrábica, certificado sanitario, inspección al llegar — sin titulación. Con fuentes y fecha."
+    pt: "Regras oficiais da GOVS para levar um cachorro ao Egito: vacinação antirrábica, atestado de saúde, inspeção na chegada — sem teste sorológico. Com fontes e data."
+  slug: "egypt"
+  shortDesc:
+    en: "What you need to bring a dog into Egypt: rabies vaccination, health certificate and arrival inspection — no antibody test."
+    fr: "Ce qu'il faut pour faire entrer un chien en Égypte : vaccination antirabique, certificat sanitaire et inspection à l'arrivée — sans titrage."
+    es: "Lo que necesitas para traer un perro a Egipto: vacunación antirrábica, certificado sanitario e inspección a la llegada — sin prueba de titulación."
+    pt: "O que você precisa para levar um cachorro ao Egito: vacinação antirrábica, atestado de saúde e inspeção na chegada — sem teste sorológico."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

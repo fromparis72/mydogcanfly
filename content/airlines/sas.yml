@@ -1,0 +1,300 @@
+id: airline_sas
+mono: SK
+name: SAS Scandinavian Airlines
+titleH1:
+  en: Flying with a dog on SAS
+  fr: Voyager avec un chien sur SAS
+  es: Viajar con un perro en SAS
+  pt: "Viajar com um cachorro na SAS"
+metaDesc:
+  en: "SAS pet policy: cabin, hold and cargo, fares by zone, snub-nosed hold ban, cargo-only routes and official sources."
+  fr: "Politique animaux SAS : cabine, soute et fret, tarifs par zone, interdiction soute brachy, routes fret-seul et sources officielles."
+  es: "Política de mascotas de SAS: cabina, bodega y carga, tarifas por zona, veto en bodega a razas de hocico chato, rutas solo de carga y fuentes oficiales."
+  pt: "Política de animais da SAS: cabine, porão e carga, tarifas por zona, proibição de raças de focinho achatado no porão, rotas somente carga e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Scandinavia · CPH
+      fr: Scandinavie · CPH
+      es: Escandinavia · CPH
+      pt: "Escandinávia · CPH"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small cats & dogs in the cabin or hold — but snub-nosed breeds are barred from the hold and the UK/China/UAE are cargo-only.
+  fr: Petits chats et chiens en cabine ou en soute — mais races au nez écrasé interdites en soute et R.-U./Chine/ÉAU en fret.
+  es: Gatos y perros pequeños en cabina o bodega, pero las razas de hocico chato no pueden viajar en bodega y el Reino Unido/China/EAU son solo de carga.
+  pt: "Gatos e cachorros pequenos na cabine ou no porão — mas raças de focinho achatado são proibidas no porão e Reino Unido/China/EAU são somente carga."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 50 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK/China/UAE
+      fr: R.-U./Chine/ÉAU
+      es: Reino Unido/China/EAU
+      pt: "Reino Unido/China/EAU"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Small dog or cat (8 weeks+) ≤ 8 kg incl. carrier in a soft carrier under the seat (max 40 × 25 × 23 cm); up to 2 per carrier. Not in Business to N. America/Asia.
+      fr: Petit chien ou chat (8 semaines+) ≤ 8 kg avec le sac dans un sac souple sous le siège (max 40 × 25 × 23 cm) ; jusqu'à 2 par sac. Pas en Business vers l'Amérique du N./l'Asie.
+      es: Perro o gato pequeño (8 semanas+) ≤ 8 kg con el bolso en una jaula blanda bajo el asiento (máx. 40 × 25 × 23 cm); hasta 2 por jaula. No en Business hacia Norteamérica/Asia.
+      pt: "Cachorro ou gato pequeno (8 semanas+) ≤ 8 kg com a bolsa em uma bolsa de transporte macia sob o assento (máx. 40 × 25 × 23 cm); até 2 por bolsa. Não em Business para a América do Norte/Ásia."
+    fee:
+      en: €55–149
+      fr: 55–149 €
+      es: 55–149 €
+      pt: "€55–149"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only (≤ 50 kg incl. container) in an IATA crate; two similar pets (≤ 14 kg each) may share, except to the US.
+      fr: Chiens et chats uniquement (≤ 50 kg avec le contenant) en caisse IATA ; deux animaux similaires (≤ 14 kg chacun) peuvent partager, sauf vers les USA.
+      es: Solo perros y gatos (≤ 50 kg con la jaula) en una jaula IATA; dos mascotas similares (≤ 14 kg cada una) pueden compartir, salvo hacia EE. UU.
+      pt: "Somente cachorros e gatos (≤ 50 kg com o recipiente) em uma caixa de transporte IATA; dois animais semelhantes (≤ 14 kg cada) podem compartilhar, exceto para os EUA."
+    fee:
+      en: €90–725
+      fr: 90–725 €
+      es: 90–725 €
+      pt: "€90–725"
+  - icon: ✈️
+    name:
+      en: SAS Cargo
+      fr: SAS Cargo
+      es: SAS Cargo
+      pt: "SAS Cargo"
+    cls: warn
+    statusLabel:
+      en: Via forwarder
+      fr: Via transitaire
+      es: A través de transitario
+      pt: "Via transitário"
+    detail:
+      en: Required to China, the UK and the UAE, or if the pet doesn't meet hold criteria. Via a freight forwarder.
+      fr: Obligatoire vers la Chine, le R.-U. et les ÉAU, ou si l'animal ne remplit pas les critères soute. Via un transitaire.
+      es: Obligatorio hacia China, el Reino Unido y los EAU, o si la mascota no cumple los criterios de bodega. A través de un transitario.
+      pt: "Obrigatório para a China, o Reino Unido e os EAU, ou se o animal não atender aos critérios do porão. Via um transitário."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (domestic → China)
+        fr: Cabine (domestique → Chine)
+        es: Cabina (nacional → China)
+        pt: "Cabine (doméstico → China)"
+      value:
+        en: €55–149
+        fr: 55–149 €
+        es: 55–149 €
+        pt: "€55–149"
+    - label:
+        en: Hold (domestic → China)
+        fr: Soute (domestique → Chine)
+        es: Bodega (nacional → China)
+        pt: "Porão (doméstico → China)"
+      value:
+        en: €90–725
+        fr: 90–725 €
+        es: 90–725 €
+        pt: "€90–725"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per pet, one-way; higher to Asia/US and highest to China.
+    fr: EUR par animal, aller simple ; plus élevé vers l'Asie/USA et maximal vers la Chine.
+    es: EUR por mascota, ida; más alto hacia Asia/EE. UU. y máximo hacia China.
+    pt: "EUR por animal, somente ida; mais alto para a Ásia/EUA e máximo para a China."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Snub-nosed dogs (bulldogs, pugs, Pekingese and crossbreeds) may not travel in the hold for health reasons; they may fly in the cabin if within limits.
+      fr: Les chiens au nez écrasé (bouledogues, carlins, pékinois et croisés) ne peuvent pas voyager en soute pour raisons de santé ; ils peuvent voyager en cabine dans les limites.
+      es: Los perros de hocico chato (bulldogs, carlinos, pekineses y sus cruces) no pueden viajar en bodega por motivos de salud; pueden viajar en cabina si están dentro de los límites.
+      pt: "Cachorros de focinho achatado (buldogues, pugs, pequineses e seus cruzamentos) não podem viajar no porão por motivos de saúde; podem voar na cabine se estiverem dentro dos limites."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 8 weeks
+          fr: 8 semaines min.
+          es: Mín. 8 semanas
+          pt: "Mín. 8 semanas"
+    note:
+      en: "Pets under 14 weeks need a vet certificate; the pet stays in the carrier throughout. US: dogs 6 months+, microchipped, CDC form (from 22 Apr 2025)."
+      fr: "Les animaux de moins de 14 semaines nécessitent un certificat vétérinaire ; l'animal reste dans le sac tout le vol. USA : chiens 6 mois+, pucés, formulaire CDC (dès le 22 avr. 2025)."
+      es: "Las mascotas de menos de 14 semanas necesitan un certificado veterinario; la mascota permanece en la jaula durante todo el vuelo. EE. UU.: perros de 6 meses+, con microchip, formulario CDC (desde el 22 abr. 2025)."
+      pt: "Animais com menos de 14 semanas precisam de um atestado de saúde veterinário; o animal permanece na bolsa durante todo o voo. EUA: cachorros com 6 meses+, com microchip, formulário CDC (a partir de 22 abr. 2025)."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: SAS publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: SAS ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: SAS no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A SAS não publica limites de temperatura no porão nem embargo sazonal em suas páginas de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Fully trained service dogs travel free in the cabin; emotional-support animals must travel as pets.
+      fr: Les chiens d'assistance pleinement dressés voyagent gratuitement en cabine ; les animaux de soutien émotionnel voyagent comme animaux.
+      es: Los perros de servicio plenamente adiestrados viajan gratis en cabina; los animales de apoyo emocional deben viajar como mascotas.
+      pt: "Cachorros de assistência plenamente adestrados viajam grátis na cabine; animais de suporte emocional devem viajar como animais comuns."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Book ≥ 48 h ahead; Certificate for Transportation of Animals (2 copies) + medical/vaccination/trainer records. US: DOT forms."
+      fr: "Réserver ≥ 48 h à l'avance ; Certificate for Transportation of Animals (2 exemplaires) + dossiers médical/vaccination/dressage. USA : formulaires DOT."
+      es: "Reserva con ≥ 48 h de antelación; Certificate for Transportation of Animals (2 copias) + registros médicos/de vacunación/del adiestrador. EE. UU.: formularios DOT."
+      pt: "Reserve com ≥ 48 h de antecedência; Certificate for Transportation of Animals (2 cópias) + registros médicos/de vacinação/do adestrador. EUA: formulários DOT."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Cargo-only
+      fr: Fret-seul
+      es: Solo carga
+      pt: "Somente carga"
+    value:
+      en: Pets to China, the UK and the UAE must travel as cargo via a freight forwarder.
+      fr: Les animaux vers la Chine, le R.-U. et les ÉAU doivent voyager en fret via un transitaire.
+      es: Las mascotas hacia China, el Reino Unido y los EAU deben viajar como carga a través de un transitario.
+      pt: "Animais para a China, o Reino Unido e os EAU devem viajar como carga via um transitário."
+  - icon: 🐾
+    label:
+      en: US entry
+      fr: Entrée aux USA
+      es: Entrada a EE. UU.
+      pt: "Entrada nos EUA"
+    value:
+      en: For US flights (from 22 Apr 2025), dogs must be 6 months+, microchipped, with a CDC dog-import form.
+      fr: Pour les vols USA (dès le 22 avr. 2025), les chiens doivent avoir 6 mois+, être pucés, avec un formulaire CDC.
+      es: Para los vuelos a EE. UU. (desde el 22 abr. 2025), los perros deben tener 6 meses+, microchip y un formulario CDC de importación de perros.
+      pt: "Para voos aos EUA (a partir de 22 abr. 2025), os cachorros devem ter 6 meses+, estar com microchip e portar um formulário CDC de importação de cachorros."
+  - icon: 📄
+    label:
+      en: Special permits
+      fr: Permis spéciaux
+      es: Permisos especiales
+      pt: "Permissões especiais"
+    value:
+      en: Greenland, Svalbard (dogs only; cats banned) and Iceland need import permits.
+      fr: Groenland, Svalbard (chiens seulement ; chats interdits) et Islande nécessitent des permis d'importation.
+      es: Groenlandia, Svalbard (solo perros; gatos prohibidos) e Islandia requieren permisos de importación.
+      pt: "Groenlândia, Svalbard (somente cachorros; gatos proibidos) e Islândia exigem permissões de importação."
+book:
+  host: flysas.com
+  url: https://www.flysas.com/
+sources:
+  en: 5 SAS sources · last verified 11 July 2026
+  fr: 5 sources SAS · dernière vérification 11 juillet 2026
+  es: 5 fuentes de SAS · última verificación 11 de julio de 2026
+  pt: "5 fontes da SAS · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

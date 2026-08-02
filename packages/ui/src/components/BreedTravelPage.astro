@@ -1,0 +1,392 @@
+---
+import { inlineT, localizer, localized } from "@mydogcanfly/knowledge";
+import Breadcrumb from "./Breadcrumb.astro";
+import PageActions from "./PageActions.astro";
+import type { BreedTravelProfile, Bi, Level } from "../lib/breedTravel";
+interface Props { profile: BreedTravelProfile; locale: string; compare?: { slug: string; name: string }[]; image?: string | null }
+const { profile: p, locale, compare = [], image = null } = Astro.props as Props;
+const T = inlineT(locale);
+const fr = locale === "fr";
+const es = locale === "es";
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+const t = localizer(locale);
+const flag = (iso: string) => (iso.length === 2 ? String.fromCodePoint(...[...iso.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : "");
+const star = (n: number) => "★".repeat(Math.round(n)) + "☆".repeat(Math.max(0, 5 - Math.round(n)));
+// La query string DOIT précéder l'ancre : tout ce qui suit "#" est un fragment, donc
+// "/#flight-finder?breed=x" ne transmet rien à location.search et le Finder ne pré-remplit pas.
+const finderHref = `${base}/?breed=${p.id}#flight-finder`;
+const crateHref = `${base}/tools/crate/?breed=${p.id}`;
+const heatHref = `${base}/tools/heat/?breed=${p.id}`;
+const destHref = `${base}/tools/destinations/?breed=${p.id}`;
+/* Le nom de la race suit la langue de la page. Le portugais n'a pas encore ses 172 noms
+   traduits : `namePt` retombe alors sur l'anglais, ce qui est le bon repli — un nom de race
+   inventé serait pire qu'un nom anglais. */
+const name = fr ? p.nameFr : es ? p.nameEs : locale === "pt" ? p.namePt : p.name;
+const sub = [
+  fr ? ({ toy: "Toy", small: "Petit", medium: "Moyen", large: "Grand", giant: "Géant" }[p.size] ?? p.size)
+     : es ? ({ toy: "Toy", small: "Pequeño", medium: "Mediano", large: "Grande", giant: "Gigante" }[p.size] ?? p.size)
+     : locale === "pt" ? ({ toy: "Toy", small: "Pequeno", medium: "Médio", large: "Grande", giant: "Gigante" }[p.size] ?? p.size)
+     : p.size.charAt(0).toUpperCase() + p.size.slice(1),
+  `${p.weightKg} kg`,
+  p.brachy ? (T("Snub-nosed", "Brachycéphale", "Braquicéfalo")) : null,
+].filter(Boolean).join(" · ");
+const seasonRows: [string, string, number][] = [
+  ["❄", T("Winter", "Hiver", "Invierno"), p.season.winter],
+  ["🌸", T("Spring", "Printemps", "Primavera"), p.season.spring],
+  ["🍂", T("Autumn", "Automne", "Otoño"), p.season.autumn],
+  ["☀️", T("Summer", "Été", "Verano"), p.season.summer],
+].sort((a, b) => b[2] - a[2]);
+const indicators: [string, string, Level][] = [
+  ["🌡", T("Heat risk", "Risque chaleur", "Riesgo de calor"), p.heat],
+  ["🫁", T("Respiratory risk", "Risque respiratoire", "Riesgo respiratorio"), p.respiratory],
+  ["❄", T("Cold tolerance", "Tolérance au froid", "Tolerancia al frío"), p.cold],
+  ["🚫", T("Climate-embargo risk", "Risque d'embargo climatique", "Riesgo de embargo climático"), p.embargo],
+  ["🛫", T("Long-haul", "Longs courriers", "Largo recorrido"), p.longHaul],
+  ["🧳", T("Prep difficulty", "Difficulté de préparation", "Dificultad de preparación"), p.prep],
+];
+---
+<div class="mdcf-container bt2">
+  <Breadcrumb locale={locale} items={[
+    { label: T("Home", "Accueil", "Inicio"), href: "/" },
+    { label: T("Breeds", "Races", "Razas"), href: "/breeds/" },
+    { label: name },
+  ]} />
+
+  <!-- HERO -->
+  <section class={`bt2-hero tone-${p.difficulty.tone} ${image ? "has-img" : ""}`}>
+    {/* width/height = taille d'AFFICHAGE, pas taille source. Avec 800×800 le portrait
+        s'affichait en pleine résolution tant que la feuille de style externe n'était pas
+        appliquée (flash de contenu non stylé), d'autant plus visible que l'image est en
+        loading="eager". Le ratio 1:1 est conservé, donc aucun décalage de mise en page. */}
+    {image && (
+      <div class="bt2-heroimg">
+        <img src={image} width="230" height="230" alt={fr ? `Illustration ${p.nameFr}` : es ? `Ilustración de ${p.nameEs}` : locale === "pt" ? `Ilustração de ${p.namePt}` : `${p.name} illustration`} loading="eager" decoding="async" />
+      </div>
+    )}
+    <div class="bt2-herotext">
+      <p class="mdcf-eyebrow">{T("Breed travel report", "Rapport voyage — race", "Informe de viaje — raza")}</p>
+      <h1 class="bt2-h1">{name}{T(" — flying", " en avion", " — en avión")}</h1>
+      <p class="bt2-sub">{sub}</p>
+      <div class="bt2-verdict">
+        <span class="bt2-diff">{p.difficulty.emoji} {t(p.difficulty)}</span>
+        <span class="bt2-score"><b>{p.difficulty.stars.toFixed(1)}</b><small>/5</small> · {p.difficulty.score}/100</span>
+      </div>
+      <div class="bt2-ctas">
+        <a class="bt2-cta" href={finderHref}>✈ {T("Find the best airline for this breed", "Trouver la meilleure compagnie pour cette race", "Encuentra la mejor aerolínea para esta raza")}</a>
+        <a class="bt2-cta bt2-cta--sun" href={heatHref}>🌡 {fr ? `Fait-il trop chaud pour un ${name} ?` : es ? `¿Hace demasiado calor para un ${name}?` : locale === "pt" ? `Está quente demais para um ${name}?` : `Is it too hot for a ${name}?`}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL SNAPSHOT -->
+  <section class="bt2-card">
+    <h2 class="bt2-h2">{T("Travel Snapshot", "Aperçu voyage", "Resumen del viaje")}</h2>
+    <div class="bt2-snap">
+      {[["✈", T("Cabin", "Cabine", "Cabina"), p.cabin.level],["🛄", T("Hold", "Soute", "Bodega"), p.hold.level],["📦", "Cargo", p.cargo.level],["🌡", T("Heat", "Chaleur", "Calor"), p.heat],["❄", T("Cold", "Froid", "Frío"), p.cold]].map(([ic, lbl, lv]) => (
+        <div class="bt2-snapcell">
+          <div class="bt2-snapic">{ic}</div>
+          <div class="bt2-snaplbl">{lbl}</div>
+          <span class={`bt2-pill tone-${(lv as Level).tone}`}>{t(lv as Level)}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- TRAVEL DNA -->
+  <section class="bt2-card">
+    {/* Ce titre était écrit en dur, donc en anglais dans les quatre langues. Il n'a rien
+        d'une marque — contrairement à « Decision Engine™ », il ne porte pas de ™ et
+        n'apparaît nulle part ailleurs sur le site ni dans le dossier de presse. C'était
+        une chaîne oubliée par la traduction, pas un choix. */}
+    <h2 class="bt2-h2">🧬 {T("Travel DNA", "ADN de voyage", "ADN de viaje")}</h2>
+    <div class="bt2-dna">
+      {p.dna.map((d) => (
+        <div class="bt2-dnarow">
+          <span class="bt2-dnaic">{d.icon}</span>
+          <span class="bt2-dnalbl">{t(d.label)}</span>
+          <span class={`bt2-dot tone-${d.value.tone}`} aria-hidden="true"></span>
+          <span class={`bt2-dnaval tone-${d.value.tone}`}>{t(d.value)}</span>
+        </div>
+      ))}
+    </div>
+    <p class="bt2-note">{T("Each axis is derived from breed data and airline policies — nothing is fabricated.", "Chaque axe est déduit des données de la race et des politiques des compagnies — rien n'est inventé.", "Cada eje se deriva de los datos de la raza y de las políticas de las aerolíneas — nada es inventado.")}</p>
+  </section>
+
+  <!-- CABIN / HOLD / CARGO -->
+  <section class="bt2-card">
+    <h2 class="bt2-h2">{T("Cabin / hold / cargo suitability", "Compatibilité cabine / soute / cargo", "Idoneidad de cabina / bodega / carga")}</h2>
+    <div class="bt2-chan">
+      {[["✈", T("Cabin", "Cabine", "Cabina"), p.cabin],["🛄", T("Hold", "Soute", "Bodega"), p.hold],["📦", "Cargo", p.cargo]].map(([ic, lbl, ch]: any) => (
+        <div class="bt2-chancard">
+          <div class="bt2-chanhd"><span>{ic}</span> {lbl}</div>
+          <span class={`bt2-pill tone-${ch.level.tone}`}>{t(ch.level)}</span>
+          <p class="bt2-chandet">{t(ch.detail)}</p>
+        </div>
+      ))}
+    </div>
+    <p class={`bt2-headline tone-${p.airlineHeadline.tone}`}>{T("Airline summary: ", "Synthèse compagnies : ", "Resumen de aerolíneas: ")}<b>{t(p.airlineHeadline)}</b></p>
+  </section>
+
+  <!-- BEST AIRLINES -->
+  <section class="bt2-card">
+    <h2 class="bt2-h2">{T("Best airlines for this breed", "Meilleures compagnies pour cette race", "Mejores aerolíneas para esta raza")}</h2>
+    <div class="bt2-airlines">
+      {p.bestAirlines.map((a) => (
+        <a class={`bt2-air tone-${a.tone}`} href={`${base}/airlines/${a.slug}/`} data-carry="breed">
+          <span class="bt2-airbadge">{a.badge}</span>
+          <span class="bt2-airname">{a.name}</span>
+          <span class="bt2-airreason">{t(a.reason)}</span>
+        </a>
+      ))}
+    </div>
+    <p class="bt2-note">{T("Ranking derived from published policies (cabin weight, snub-nosed hold bans). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (poids cabine, interdictions soute museau court). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (peso en cabina, prohibiciones de hocico chato en bodega). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>
+  </section>
+
+  <!-- INDICATORS -->
+  <section class="bt2-card">
+    <h2 class="bt2-h2">{T("Key indicators", "Indicateurs clés", "Indicadores clave")}</h2>
+    <div class="bt2-ind">
+      {indicators.map(([ic, lbl, lv]) => (
+        <div class="bt2-indcell">
+          <div class="bt2-indtop"><span class="bt2-indic">{ic}</span> {lbl}</div>
+          <span class={`bt2-pill tone-${lv.tone}`}>{t(lv)}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- SEASON + CLIMATES -->
+  <section class="bt2-card">
+    <h2 class="bt2-h2">{T("Ideal season & climates", "Saison idéale & climats", "Temporada ideal y climas")}</h2>
+    <div class="bt2-season">
+      {seasonRows.map(([ic, lbl, n]) => (
+        <div class="bt2-seasonrow">
+          <span class="bt2-seasonlbl">{ic} {lbl}</span>
+          <span class="bt2-seasonstars">{star(n)}</span>
+        </div>
+      ))}
+    </div>
+    {/* Les drapeaux climatiques désignent des pays qui ont tous une fiche : ce sont des
+        liens, pas des étiquettes. Volontairement SANS `data-carry` : consulter les
+        formalités d'un pays n'est pas une étape de l'entonnoir de la race, et cliquer sur
+        un drapeau ne doit pas désigner le chien du visiteur pour le reste de sa visite. */}
+    <div class="bt2-clim">
+      <div>
+        <div class="bt2-climhd tone-ok">{T("Recommended", "Recommandés", "Recomendados")}</div>
+        <div class="bt2-badges">{p.climates.recommended.map((c) => (
+          <a class="bt2-badge bt2-badge--link" href={`${base}/countries/${c.iso2.toLowerCase()}/`}
+             title={`${T("Entry requirements", "Formalités d'entrée", "Requisitos de entrada")} — ${localized(locale, c)}`}>
+            {flag(c.iso2)} {localized(locale, c)}
+          </a>
+        ))}</div>
+      </div>
+      <div>
+        <div class="bt2-climhd tone-no">{T("Avoid", "À éviter", "Evitar")}</div>
+        <div class="bt2-badges">{p.climates.avoid.map((c) => (
+          <a class="bt2-badge bt2-badge--link" href={`${base}/countries/${c.iso2.toLowerCase()}/`}
+             title={`${T("Entry requirements", "Formalités d'entrée", "Requisitos de entrada")} — ${localized(locale, c)}`}>
+            {flag(c.iso2)} {localized(locale, c)}
+          </a>
+        ))}</div>
+      </div>
+    </div>
+    <p class="bt2-note">{t(p.climates.basis)}</p>
+    <a class="bt2-onav bt2-onav--inline" href={heatHref}>🌡 {T("Calculate the heat risk for your date and route", "Calculer le risque chaleur pour ta date et ton trajet", "Calcular el riesgo de calor para tu fecha y ruta")}</a>
+  </section>
+
+  <!-- CRATE + EXPERIENCE -->
+  <section class="bt2-card bt2-two">
+    <div>
+      <h2 class="bt2-h2">📦 {T("Typical IATA crate", "Caisse IATA type", "Jaula IATA típica")}</h2>
+      <div class="bt2-crate"><b>{p.crate.code}</b> <small>{p.crate.sizeLabel}</small></div>
+      <p class="bt2-chandet">{p.crate.dims}</p>
+      <a class="bt2-link" href={crateHref}>→ {T("Check the exact size with the calculator", "Vérifier la taille exacte avec le calculateur", "Comprueba el tamaño exacto con la calculadora")}</a>
+    </div>
+    <div>
+      <h2 class="bt2-h2">🎓 {T("Recommended experience", "Niveau recommandé", "Experiencia recomendada")}</h2>
+      <span class={`bt2-pill tone-${p.experience.tone}`}>{t(p.experience)}</span>
+      <p class="bt2-chandet">{T("Based on overall difficulty and snub-nosed status.", "Basé sur la difficulté globale et le caractère brachycéphale.", "Según la dificultad global y la condición de hocico chato.")}</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bt2-card">
+    <h2 class="bt2-h2">FAQ</h2>
+    {p.faq.map((f) => (
+      <details class="bt2-faq"><summary><h3 class="bt2-faqq">{t(f.q)}</h3></summary><p>{t(f.a)}</p></details>
+    ))}
+  </section>
+
+  <!-- COMPARE + ONWARD -->
+  {compare.length > 0 && (
+    <section class="bt2-card">
+      <h2 class="bt2-h2">{T("Compare with", "Comparer avec", "Comparar con")}</h2>
+      <div class="bt2-badges">
+        {compare.map((c) => <a class="bt2-badge bt2-cmp" href={`${base}/breeds/${c.slug}/`}>{c.name}</a>)}
+      </div>
+    </section>
+  )}
+
+
+  {p.source && (
+    <p class="bt2-src">{T("Breed traits from ", "Traits de la race d'après ", "Rasgos de la raza de ")}{
+      /* Le crédit reste, le lien part — pour DogTime seulement (151 fiches sur 172, soit 604
+       * liens sortants une fois les quatre langues comptées). Motif : DogTime est un site de
+       * contenu commercial, pas une autorité canine ; il détonnait dans un profil sortant fait
+       * de gov.uk, de la Commission européenne et de l'USDA. Retirer l'ancre n'enlève rien au
+       * lecteur — le lien était déjà en `nofollow`, il ne transmettait aucune valeur — mais
+       * effacer la mention aurait présenté leurs données de tempérament comme les nôtres.
+       * La FCI et l'UKC gardent leur lien : ce sont de vraies références de race. */
+      p.source.url.includes("dogtime.com")
+        ? <span>DogTime</span>
+        : <a href={p.source.url} rel="nofollow">{new URL(p.source.url).host}</a>
+    } · {T("verified", "vérifié", "verificado")} {p.source.date} · {T("confidence", "confiance", "confianza")} {p.source.confidence}/5. {T("Travel interpretation by MyDogCanFly.", "Interprétation voyage propre à MyDogCanFly.", "Interpretación de viaje por MyDogCanFly.")}</p>
+  )}
+  <PageActions locale={locale} breedId={p.id} emailSubject={name} />
+</div>
+
+{/* Le contexte de race voyage avec le CLIC, jamais avec la simple lecture de la fiche.
+    Première version (30/07) : la fiche inscrivait sa race dans `sessionStorage`. Effet de
+    bord immédiat — ouvrir la fiche du Jack Russell par curiosité, puis revenir à l'accueil,
+    et le Finder proposait « Jack Russell, 7 kg » comme si c'était le chien du visiteur.
+    Consulter n'est pas déclarer. On se contente donc d'ajouter « ?breed= » aux liens
+    d'entonnoir de CETTE page (compagnies, outils), au moment du rendu : le paramètre reste
+    absent du HTML servi — donc pas de variantes paramétrées pour le crawler — et la page
+    d'arrivée reçoit le contexte parce qu'on a cliqué, pas parce qu'on a lu.
+    S'exécute sur DOMContentLoaded, donc avant le script de Base.astro qui écoute `load`. */}
+<script is:inline set:html={`(function(){var b=${JSON.stringify(p.id)};
+document.addEventListener("DOMContentLoaded",function(){
+  document.querySelectorAll('a[data-carry~="breed"]').forEach(function(a){
+    try{var u=new URL(a.getAttribute("href"),location.origin);
+      if(u.origin!==location.origin||u.searchParams.has("breed"))return;
+      u.searchParams.set("breed",b);
+      a.setAttribute("href",u.pathname+u.search+u.hash);
+    }catch(e){}
+  });
+});})();`} />
+
+<style>
+  .bt2 { padding-bottom: 40px; }
+  .bt2-hero { border: 1px solid var(--mdcf-line); border-radius: 18px; padding: 26px 30px; margin: 8px 0 18px; background: linear-gradient(180deg, #faf3e9, var(--mdcf-surface)); }
+  .bt2-hero.has-img { display: flex; align-items: center; gap: 30px; }
+  .bt2-herotext { flex: 1 1 auto; min-width: 0; }
+  .bt2-heroimg { flex: 0 0 auto; width: 230px; }
+  .bt2-heroimg img { width: 230px; height: 230px; border-radius: 16px; object-fit: cover; background: #faf3e9; border: 1px solid rgba(120, 90, 50, .14); display: block; }
+  .bt2-h1 { font-size: clamp(26px, 4vw, 38px); margin: 4px 0 2px; color: var(--mdcf-ink); letter-spacing: -.02em; }
+  .bt2-sub { color: var(--mdcf-muted); margin: 0 0 14px; font-weight: 600; }
+  .bt2-verdict { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+  .bt2-diff { font-size: clamp(18px, 2.4vw, 24px); font-weight: 800; color: var(--mdcf-ink); }
+  .bt2-score { color: var(--mdcf-muted); font-size: 15px; }
+  .bt2-score b { color: var(--mdcf-ink); font-size: 20px; }
+  .bt2-cta { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 999px; background: var(--mdcf-surface); color: var(--mdcf-navy); border: 1.5px solid var(--mdcf-navy); font-weight: 600; font-size: 14px; text-decoration: none; transition: background .15s ease, color .15s ease, border-color .15s ease; }
+  .bt2-cta:hover { background: var(--mdcf-navy); color: #fff; text-decoration: none; }
+
+  .bt2-card { border: 1px solid var(--mdcf-line); border-radius: 16px; padding: 20px 22px; margin: 0 0 16px; background: var(--mdcf-surface); }
+  .bt2-h2 { font-size: 18px; margin: 0 0 14px; color: var(--mdcf-ink); }
+  .bt2-note { color: var(--mdcf-muted); font-size: 12.5px; margin: 12px 0 0; line-height: 1.5; }
+
+  .bt2-pill { display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 13px; font-weight: 700; border: 1px solid transparent; }
+  .tone-ok { --c: #1a7f43; --bg: #e7f7ec; }
+  .tone-warn { --c: #9a6400; --bg: #fdf3df; }
+  .tone-no { --c: #b23016; --bg: #fdeae4; }
+  .tone-crit { --c: #8a1414; --bg: #fbdcd7; }
+  .tone-neutral { --c: #4a5666; --bg: #eef1f5; }
+  .bt2-pill.tone-ok, .bt2-pill.tone-warn, .bt2-pill.tone-no, .bt2-pill.tone-crit, .bt2-pill.tone-neutral { color: var(--c); background: var(--bg); border-color: color-mix(in srgb, var(--c) 25%, transparent); }
+
+  .bt2-snap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .bt2-snapcell { text-align: center; border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 12px 6px; }
+  .bt2-snapic { font-size: 22px; }
+  .bt2-snaplbl { font-size: 12px; color: var(--mdcf-muted); margin: 4px 0 8px; font-weight: 600; }
+
+  .bt2-dna { display: grid; gap: 8px; }
+  .bt2-dnarow { display: grid; grid-template-columns: 26px 1fr auto auto; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: var(--mdcf-subtle); }
+  .bt2-dnaic { font-size: 17px; }
+  .bt2-dnalbl { font-weight: 600; color: var(--mdcf-ink); }
+  .bt2-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c, #999); }
+  .bt2-dnaval { font-weight: 700; font-size: 14px; color: var(--c); }
+
+  .bt2-chan { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .bt2-chancard { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 14px; }
+  .bt2-chanhd { font-weight: 700; color: var(--mdcf-ink); margin-bottom: 10px; }
+  .bt2-chandet { color: var(--mdcf-muted); font-size: 12.5px; line-height: 1.5; margin: 10px 0 0; }
+  .bt2-headline { margin: 16px 0 0; font-size: 15px; color: var(--mdcf-ink); }
+  .bt2-headline.tone-no b { color: #b23016; } .bt2-headline.tone-warn b { color: #9a6400; } .bt2-headline.tone-ok b { color: #1a7f43; }
+
+  .bt2-airlines { display: grid; gap: 8px; }
+  .bt2-air { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--mdcf-line); text-decoration: none; background: var(--mdcf-surface); }
+  .bt2-air:hover { background: var(--mdcf-subtle); }
+  .bt2-airbadge { font-size: 16px; }
+  .bt2-airname { font-weight: 700; color: var(--mdcf-ink); }
+  .bt2-airreason { font-size: 12.5px; color: var(--mdcf-muted); }
+  .bt2-air.tone-no .bt2-airname { color: var(--mdcf-muted); }
+
+  .bt2-ind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .bt2-indcell { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 12px; }
+  .bt2-indtop { font-size: 13px; color: var(--mdcf-muted); font-weight: 600; margin-bottom: 8px; }
+
+  .bt2-season { display: grid; gap: 6px; margin-bottom: 16px; }
+  .bt2-seasonrow { display: flex; justify-content: space-between; align-items: center; padding: 6px 4px; border-bottom: 1px solid var(--mdcf-line); }
+  .bt2-seasonlbl { font-weight: 600; color: var(--mdcf-ink); }
+  .bt2-seasonstars { color: #e2a500; letter-spacing: 2px; }
+  .bt2-clim { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .bt2-climhd { font-weight: 800; font-size: 13px; margin-bottom: 8px; }
+  .bt2-climhd.tone-ok { color: #1a7f43; } .bt2-climhd.tone-no { color: #b23016; }
+  .bt2-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .bt2-badge { display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--mdcf-subtle); border: 1px solid var(--mdcf-line); font-size: 13.5px; font-weight: 600; color: var(--mdcf-ink); text-decoration: none; }
+  .bt2-cmp:hover { background: var(--mdcf-line); }
+  /* Un badge cliquable doit se voir comme tel avant le survol : le soulignement pointillé
+     est la seule différence visible sur une pastille déjà bordée et colorée. */
+  .bt2-badge--link { text-decoration: underline dotted var(--mdcf-line); text-underline-offset: 3px; }
+  .bt2-badge--link:hover, .bt2-badge--link:focus-visible { background: var(--mdcf-line); text-decoration: underline solid; }
+
+  .bt2-two { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .bt2-crate { font-size: 28px; color: var(--mdcf-ink); }
+  .bt2-crate small { font-size: 14px; color: var(--mdcf-muted); }
+  .bt2-link { display: inline-block; margin-top: 8px; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; font-weight: 600; font-size: 14px; }
+
+  .bt2-ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+  /* CTA « trop chaud ? » — halo solaire. Le bouton porte le sujet de la page (la chaleur),
+     il doit donc se distinguer du CTA compagnie sans l'écraser : fond crème, bordure ambrée
+     et une pulsation dorée discrète. */
+  .bt2-cta--sun {
+    position: relative;
+    background: linear-gradient(180deg, #fffaf0, #fff2d8);
+    color: #7d4c06;
+    border: 1.5px solid #e5a52b;
+    animation: bt2SunPulse 3s ease-in-out infinite;
+  }
+  .bt2-cta--sun:hover {
+    background: linear-gradient(180deg, #fff6e2, #ffeac0);
+    color: #6a3f04;
+    border-color: #d9931c;
+  }
+  @keyframes bt2SunPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(233, 165, 43, .40), 0 2px 10px rgba(233, 165, 43, .18); }
+    50%      { box-shadow: 0 0 0 8px rgba(233, 165, 43, 0),  0 3px 18px rgba(233, 165, 43, .35); }
+  }
+  /* Respect du confort visuel : plus aucune animation si l'utilisateur l'a demandé. */
+  @media (prefers-reduced-motion: reduce) {
+    .bt2-cta--sun { animation: none; }
+  }
+  .bt2-onav--inline { display: inline-flex; margin-top: 14px; }
+  .bt2-faq { border-top: 1px solid var(--mdcf-line); padding: 10px 0; }
+  .bt2-faq summary { cursor: pointer; list-style: none; display: flex; }
+  .bt2-faqq { margin: 0; font-size: 15px; font-weight: 600; color: var(--mdcf-ink); }
+  .bt2-faq p { color: var(--mdcf-muted); line-height: 1.6; margin: 8px 0 0; }
+
+  .bt2-onward { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
+  .bt2-onav { flex: 1 1 180px; text-align: center; padding: 12px; border-radius: 12px; border: 1px solid var(--mdcf-line); background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; }
+  .bt2-onav:hover { background: var(--mdcf-line); }
+  .bt2-src { color: var(--mdcf-muted); font-size: 12px; line-height: 1.5; }
+  .bt2-src a { color: var(--mdcf-accent-ink, #b4530a); }
+
+  @media (max-width: 720px) {
+    .bt2-snap { grid-template-columns: repeat(2, 1fr); }
+    .bt2-chan, .bt2-ind { grid-template-columns: 1fr; }
+    .bt2-two, .bt2-clim { grid-template-columns: 1fr; }
+    .bt2-hero.has-img { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+    .bt2-heroimg, .bt2-heroimg img { width: 150px; height: 150px; }
+  }
+</style>

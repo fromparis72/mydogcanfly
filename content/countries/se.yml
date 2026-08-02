@@ -1,0 +1,348 @@
+# Country Entry Guide — Sweden (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_se
+iso2: "SE"
+name: { en: "Sweden", fr: "Suède", es: "Suecia", pt: "Suécia" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Sweden with your dog", fr: "Voyager en Suède avec ton chien", es: "Viajar a Suecia con tu perro", pt: "Viajar para a Suécia com seu cachorro" }
+  intro:
+    en: >-
+      Sweden welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Sweden itself. As an EU member, Sweden applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from
+      another EU country simply needs an EU pet passport. A dog from a listed non-EU country (such as
+      the United States, Canada or the United Kingdom) needs an EU animal health certificate but no
+      blood test. A dog from a non-listed country faces the longest path, including a rabies antibody
+      test and a three-month wait. One Swedish specificity: whoever brings a dog into Sweden must
+      notify Swedish Customs. This guide explains each case so you know exactly what to prepare.
+    fr: >-
+      La Suède accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de la Suède. En tant qu'État membre de l'UE, la Suède applique les
+      règles européennes de mouvement des animaux : une puce ISO et une vaccination antirabique valide
+      sont toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un passeport
+      européen. Un chien en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…) a besoin
+      d'un certificat sanitaire européen mais pas de prise de sang. Un chien venant d'un pays non listé
+      suit le parcours le plus long, avec un titrage antirabique et un délai de trois mois. Une
+      spécificité suédoise : quiconque fait entrer un chien en Suède doit le déclarer à la douane
+      suédoise. Ce guide détaille chaque cas pour savoir exactement quoi préparer.
+    es: >-
+      Suecia acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Suecia. Como Estado miembro de la UE, Suecia aplica las normas
+      europeas de movimiento de animales de compañía: siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte
+      europeo para mascotas. Un perro procedente de un país tercero listado (como Estados Unidos, Canadá
+      o el Reino Unido) necesita un certificado sanitario animal de la UE, pero no una prueba de sangre.
+      Un perro de un país no listado se enfrenta al camino más largo, que incluye una prueba de
+      titulación de anticuerpos contra la rabia y una espera de tres meses. Una particularidad sueca:
+      quien introduzca un perro en Suecia debe declararlo ante la Aduana sueca. Esta guía explica cada
+      caso para que sepas exactamente qué preparar.
+
+    pt: "A Suécia recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Suécia em si. Como membro da União Europeia, a Suécia aplica as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico e três meses de espera. Uma particularidade sueca: quem leva um cachorro para a Suécia precisa declará-lo à alfândega sueca. Este guia explica cada caso para você saber exatamente o que preparar."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate valid 10 days."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario válido 10 días."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required (only recommended)", fr: "Non requis (seulement recommandé)", es: "No obligatorio (solo recomendado)", pt: "Não obrigatório (apenas recomendado)" }
+    cls: ok
+  - requirement: { en: "Notify Swedish Customs", fr: "Déclaration à la douane suédoise", es: "Declaración ante la Aduana sueca", pt: "Declaração à alfândega sueca" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Sweden (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Suède (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Suecia (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Suécia (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Sweden", fr: "Pays de destination — Suède", es: "País de destino — Suecia", pt: "País de destino — Suécia" }
+      text:
+        en: "Sweden applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is required to enter Sweden (it is only recommended)."
+        fr: "La Suède applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer en Suède (il est seulement recommandé)."
+        es: "Suecia aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en Suecia (solo se recomienda)."
+        pt: "A Suécia aplica o quadro europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido para entrar na Suécia (ele é apenas recomendado)."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Sweden's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre suédois, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Suecia y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro sueco, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before (or at the same time as) the rabies vaccination.", fr: "Doit être posée avant (ou en même temps que) la vaccination antirabique.", es: "Debe implantarse antes (o al mismo tiempo) de la vacunación antirrábica.", pt: "Deve ser implantado antes da vacinação antirrábica (ou no mesmo momento)." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; jordbruksverket.se", fr: "Règl. UE 576/2013 ; jordbruksverket.se", es: "Regl. UE 576/2013; jordbruksverket.se", pt: "Regulamento UE 576/2013; jordbruksverket.se" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; otherwise re-vaccination is needed.", fr: "La puce doit déjà être posée ; sinon il faut revacciner.", es: "El microchip debe estar ya implantado; de lo contrario, hay que revacunar.", pt: "O microchip já deve estar implantado; caso contrário, é preciso revacinar." }
+    ref: { en: "EU Reg. 576/2013, Annex III", fr: "Règl. UE 576/2013, annexe III", es: "Regl. UE 576/2013, anexo III", pt: "Regulamento UE 576/2013, anexo III" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-designated lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório designado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; jordbruksverket.se", fr: "Règl. UE 2020/692 ; jordbruksverket.se", es: "Regl. UE 2020/692; jordbruksverket.se", pt: "Regulamento UE 2020/692; jordbruksverket.se" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e, depois, por até 4 meses para circular pela UE." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV", fr: "Règl. UE 577/2013, annexe IV", es: "Regl. UE 577/2013, anexo IV", pt: "Regulamento UE 577/2013, anexo IV" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Sweden dropped its national tapeworm requirement in 2011 (the fox tapeworm is now present in Sweden); Jordbruksverket only recommends deworming before travel.", fr: "La Suède a supprimé son exigence nationale de vermifugation en 2011 (l'échinocoque du renard est désormais présent en Suède) ; Jordbruksverket ne fait que recommander un vermifuge avant le voyage.", es: "Suecia suprimió su requisito nacional contra la tenia en 2011 (la tenia del zorro ya está presente en Suecia); Jordbruksverket solo recomienda desparasitar antes de viajar.", pt: "A Suécia acabou com sua exigência nacional de tratamento contra a tênia em 2011 (a tênia da raposa já está presente na Suécia); o Jordbruksverket apenas recomenda vermifugar antes da viagem." }
+    ref: { en: "jordbruksverket.se — fox tapeworm", fr: "jordbruksverket.se — échinocoque du renard", es: "jordbruksverket.se — tenia del zorro", pt: "jordbruksverket.se — tênia da raposa" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Customs notification required", fr: "Déclaration douanière requise", es: "Declaración en aduana obligatoria", pt: "Declaração aduaneira obrigatória" }
+    when: { en: "Whoever brings a dog into Sweden must notify Swedish Customs (Tullverket) — including after a temporary holiday abroad with your own dog.", fr: "Quiconque fait entrer un chien en Suède doit le déclarer à la douane suédoise (Tullverket) — y compris après de simples vacances à l'étranger avec son propre chien.", es: "Quien introduzca un perro en Suecia debe declararlo ante la Aduana sueca (Tullverket) — incluso tras unas simples vacaciones en el extranjero con su propio perro.", pt: "Quem leva um cachorro para a Suécia precisa declará-lo à alfândega sueca (Tullverket) — inclusive depois de umas simples férias no exterior com o próprio cachorro." }
+    exceptions: { en: "EU residents travelling from another EU country with an EU pet passport may register online; otherwise notify at the red lane at the border. No separate import permit is issued.", fr: "Les résidents de l'UE arrivant d'un autre pays de l'UE avec un passeport européen peuvent s'enregistrer en ligne ; sinon, déclare au couloir rouge à la frontière. Aucun permis d'import distinct n'est délivré.", es: "Los residentes de la UE que llegan de otro país de la UE con un pasaporte europeo para mascotas pueden registrarse en línea; de lo contrario, declara en el pasillo rojo en la frontera. No se expide ningún permiso de importación aparte.", pt: "Residentes na UE que chegam de outro país da UE com passaporte europeu para animais podem fazer o registro on-line; caso contrário, faça a declaração no canal vermelho da fronteira. Não é emitida nenhuma autorização de importação à parte." }
+    ref: { en: "tullverket.se — travelling with a dog or cat", fr: "tullverket.se — voyager avec un chien ou un chat", es: "tullverket.se — viajar con un perro o gato", pt: "tullverket.se — viajar com um cão ou gato" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Non-EU arrivals", fr: "Arrivées hors UE", es: "Llegadas de fuera de la UE", pt: "Chegadas de fora da UE" }
+    when: { en: "At a border crossing with customs staffing; contact a customs official (red lane) and present your declaration number and documents.", fr: "À un point de passage frontalier avec douane ; contacte un agent des douanes (couloir rouge) et présente ton numéro de déclaration et tes documents.", es: "En un paso fronterizo con presencia aduanera; contacta con un agente de aduanas (pasillo rojo) y presenta tu número de declaración y los documentos.", pt: "Em um ponto de passagem de fronteira com equipe alfandegária; procure um agente da alfândega (canal vermelho) e apresente seu número de declaração e os documentos." }
+    exceptions: { en: "No systematic veterinary check for intra-EU (Schengen) arrivals, but the customs notification still applies.", fr: "Pas de contrôle vétérinaire systématique pour les arrivées intra-UE (Schengen), mais la déclaration douanière reste requise.", es: "Sin control veterinario sistemático para las llegadas intracomunitarias (Schengen), pero la declaración en aduana sigue siendo obligatoria.", pt: "Sem controle veterinário sistemático para as chegadas de dentro da UE (Schengen), mas a declaração à alfândega continua obrigatória." }
+    ref: { en: "tullverket.se; jordbruksverket.se", fr: "tullverket.se ; jordbruksverket.se", es: "tullverket.se; jordbruksverket.se", pt: "tullverket.se; jordbruksverket.se" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter from outside the EU.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer depuis hors UE.", es: "Los cachorros de menos de 12 semanas no pueden vacunarse, por lo que no pueden entrar desde fuera de la UE.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não podem entrar vindos de fora da UE." }
+    ref: { en: "EU Reg. 576/2013; jordbruksverket.se", fr: "Règl. UE 576/2013 ; jordbruksverket.se", es: "Regl. UE 576/2013; jordbruksverket.se", pt: "Regulamento UE 576/2013; jordbruksverket.se" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — an animal with incorrect documents may be denied entry, quarantined at the owner's expense or, in the worst case, euthanised.", fr: "Uniquement en cas de non-conformité — un animal aux documents incorrects peut être refusé, mis en quarantaine aux frais du propriétaire ou, au pire, euthanasié.", es: "Solo en caso de incumplimiento — un animal con documentos incorrectos puede ser rechazado, puesto en cuarentena a cargo del propietario o, en el peor de los casos, sacrificado.", pt: "Somente em caso de descumprimento das regras — um animal com documentos incorretos pode ter a entrada recusada, ser colocado em quarentena às custas do dono ou, na pior das hipóteses, ser sacrificado." }
+    ref: { en: "jordbruksverket.se", fr: "jordbruksverket.se", es: "jordbruksverket.se", pt: "jordbruksverket.se" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test and no health certificate. There is no systematic veterinary check, but you must still notify Swedish Customs — EU residents can do this online with the EU pet passport."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage ni de certificat sanitaire. Pas de contrôle vétérinaire systématique, mais tu dois tout de même le déclarer à la douane suédoise — les résidents de l'UE peuvent le faire en ligne avec le passeport européen."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación ni certificado sanitario. No hay control veterinario sistemático, pero aun así debes declararlo ante la Aduana sueca — los residentes de la UE pueden hacerlo en línea con el pasaporte europeo para mascotas."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu para animais que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico e sem certificado sanitário. Não há controle veterinário sistemático, mas você ainda assim precisa declarar o cachorro à alfândega sueca — residentes na UE podem fazer isso on-line com o passaporte europeu para animais."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by an official vet before departure. No antibody test is required. On arrival, notify Swedish Customs at the red lane."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par un vétérinaire officiel avant le départ. Pas de titrage. À l'arrivée, déclare-le à la douane suédoise au couloir rouge."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por un veterinario oficial antes de la salida. No se exige prueba de titulación. A la llegada, decláralo ante la Aduana sueca en el pasillo rojo."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e certificado sanitário europeu endossado por um veterinário oficial antes da partida. Não é exigido teste sorológico. Na chegada, declare o cachorro à alfândega sueca no canal vermelho."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-designated laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate is also required, and you must notify Swedish Customs on arrival."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé est également requis, et tu dois déclarer l'animal à la douane suédoise à l'arrivée."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige un certificado sanitario animal de la UE refrendado, y debes declararlo ante la Aduana sueca a la llegada."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório designado pela UE e, depois, 3 meses obrigatórios de espera antes da entrada. Também é exigido um certificado sanitário europeu endossado, e você precisa declarar o cachorro à alfândega sueca na chegada."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Sweden depends on where you flew from — but a customs notification is always required."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Suède dépend de ton lieu de départ — mais une déclaration douanière est toujours requise."
+    es: "Lo que ocurre cuando tu perro llega a Suecia depende del lugar desde el que hayas volado — pero siempre se exige una declaración en aduana."
+    pt: "O que acontece quando seu cachorro chega à Suécia depende de onde você embarcou — mas a declaração à alfândega é sempre obrigatória."
+  points:
+    - en: "Everyone bringing a dog into Sweden must notify Swedish Customs (Tullverket) — this even applies after a short holiday abroad with your own dog."
+      fr: "Toute personne faisant entrer un chien en Suède doit le déclarer à la douane suédoise (Tullverket) — cela vaut même après de courtes vacances à l'étranger avec son propre chien."
+      es: "Toda persona que introduzca un perro en Suecia debe declararlo ante la Aduana sueca (Tullverket) — esto rige incluso tras unas cortas vacaciones en el extranjero con su propio perro."
+      pt: "Toda pessoa que leva um cachorro para a Suécia precisa declará-lo à alfândega sueca (Tullverket) — isso vale inclusive depois de férias curtas no exterior com o próprio cachorro."
+    - en: "From another EU country with an EU pet passport, an EU resident can make this entry registration online before or during the trip."
+      fr: "Depuis un autre pays de l'UE avec un passeport européen, un résident de l'UE peut faire cette déclaration d'entrée en ligne avant ou pendant le voyage."
+      es: "Desde otro país de la UE con un pasaporte europeo para mascotas, un residente de la UE puede hacer este registro de entrada en línea antes o durante el viaje."
+      pt: "Vindo de outro país da UE com passaporte europeu para animais, quem reside na UE pode fazer esse registro de entrada on-line antes ou durante a viagem."
+    - en: "From a non-EU country (or if you live outside the EU), you cannot register online: choose the red lane at the border crossing and contact a customs official."
+      fr: "Depuis un pays hors UE (ou si tu résidez hors UE), l'enregistrement en ligne est impossible : emprunte le couloir rouge au passage frontalier et contacte un agent des douanes."
+      es: "Desde un país fuera de la UE (o si resides fuera de la UE), no puedes registrarte en línea: elige el pasillo rojo en el paso fronterizo y contacta con un agente de aduanas."
+      pt: "Vindo de um país fora da UE (ou se você mora fora da UE), o registro on-line não é possível: escolha o canal vermelho no ponto de passagem de fronteira e procure um agente da alfândega."
+    - en: "You must also follow the Swedish Board of Agriculture's rules and be able to show your declaration number and the animal's documents if asked."
+      fr: "Tu dois aussi respecter les règles du Jordbruksverket et pouvoir présenter ton numéro de déclaration et les documents de l'animal sur demande."
+      es: "También debes cumplir las normas de la Junta Sueca de Agricultura y poder mostrar tu número de declaración y los documentos del animal si te los piden."
+      pt: "Você também precisa cumprir as regras do Jordbruksverket e conseguir apresentar seu número de declaração e os documentos do animal, se pedirem."
+    - en: "A dog bought, adopted or received as a gift from a non-EU country may be subject to customs duty and VAT."
+      fr: "Un chien acheté, adopté ou reçu en cadeau depuis un pays hors UE peut être soumis aux droits de douane et à la TVA."
+      es: "Un perro comprado, adoptado o recibido como regalo desde un país fuera de la UE puede estar sujeto a derechos de aduana e IVA."
+      pt: "Um cachorro comprado, adotado ou recebido de presente em um país fora da UE pode estar sujeito a imposto de importação e IVA."
+    - en: "If documents are missing or invalid, the animal may be denied entry, quarantined at the owner's expense or, in the worst case, euthanised."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être refusé, mis en quarantaine aux frais du propriétaire ou, au pire, euthanasié."
+      es: "Si faltan documentos o no son válidos, el animal puede ser rechazado, puesto en cuarentena a cargo del propietario o, en el peor de los casos, sacrificado."
+      pt: "Se faltarem documentos ou eles não forem válidos, o animal pode ter a entrada recusada, ser colocado em quarentena às custas do dono ou, na pior das hipóteses, ser sacrificado."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Sweden has no breed-specific legislation: no dog breed is banned from ownership or import. Instead, Sweden follows an owner-responsibility model under the Act on the supervision of dogs and cats (Lag 2007:1150, the 'Tillsynslagen')."
+    fr: "La Suède n'a aucune législation par race : aucune race de chien n'est interdite de détention ou d'importation. La Suède applique au contraire un modèle de responsabilité du propriétaire, encadré par la loi sur la surveillance des chiens et des chats (Lag 2007:1150, la « Tillsynslagen »)."
+    es: "Suecia no tiene legislación específica por razas: ninguna raza de perro está prohibida para la tenencia o la importación. En su lugar, Suecia sigue un modelo de responsabilidad del propietario en virtud de la Ley de supervisión de perros y gatos (Lag 2007:1150, la «Tillsynslagen»)."
+    pt: "A Suécia não tem legislação específica por raça: nenhuma raça de cachorro é proibida de ser mantida ou importada. Em vez disso, a Suécia adota um modelo de responsabilidade do dono, previsto na Lei de supervisão de cães e gatos (Lag 2007:1150, a “Tillsynslagen”)."
+  cat1:
+    en: "There is no 'Category 1' of prohibited breeds in Sweden. No breed — including types banned elsewhere, such as the pit bull or XL Bully — is refused entry on the basis of breed alone."
+    fr: "Il n'existe pas de « catégorie 1 » de races interdites en Suède. Aucune race — y compris les types interdits ailleurs, comme le pit-bull ou l'XL Bully — n'est refusée à l'entrée sur le seul fondement de la race."
+    es: "No existe una «categoría 1» de razas prohibidas en Suecia. Ninguna raza — incluidos los tipos prohibidos en otros lugares, como el pit bull o el XL Bully — es rechazada en la entrada únicamente por su raza."
+    pt: "Não existe “categoria 1” de raças proibidas na Suécia. Nenhuma raça — nem mesmo os tipos proibidos em outros países, como o pit bull ou o XL Bully — tem a entrada recusada apenas por causa da raça."
+  cat2:
+    en: "There is no 'Category 2' of specially regulated breeds either. Any dog can be individually assessed by the police or the county administrative board (länsstyrelsen), which may order a muzzle, a leash, supervision or, for a genuinely dangerous individual dog, that it be put down — regardless of breed."
+    fr: "Il n'existe pas non plus de « catégorie 2 » de races spécialement réglementées. Tout chien peut faire l'objet d'une évaluation individuelle par la police ou la préfecture régionale (länsstyrelsen), qui peut imposer muselière, laisse, surveillance ou, pour un chien individuellement dangereux, son euthanasie — quelle que soit la race."
+    es: "Tampoco existe una «categoría 2» de razas especialmente reguladas. Cualquier perro puede ser evaluado individualmente por la policía o la administración provincial (länsstyrelsen), que puede ordenar bozal, correa, vigilancia o, para un perro individualmente peligroso, su sacrificio — con independencia de la raza."
+    pt: "Também não existe “categoria 2” de raças com regulamentação especial. Qualquer cachorro pode ser avaliado individualmente pela polícia ou pela administração do condado (länsstyrelsen), que pode determinar o uso de focinheira, de guia, supervisão ou, no caso de um cachorro realmente perigoso, o sacrifício do animal — seja qual for a raça."
+  note:
+    en: "Because the rules target individual behaviour, not breed, owners must keep dogs under proper supervision so they do not cause harm or serious disturbance. The police may also bar an unsuitable person from keeping a dog."
+    fr: "Comme les règles visent le comportement individuel et non la race, les propriétaires doivent tenir leur chien sous surveillance appropriée pour éviter tout dommage ou trouble grave. La police peut aussi interdire à une personne inapte de détenir un chien."
+    es: "Como las normas se dirigen al comportamiento individual y no a la raza, los propietarios deben mantener a sus perros bajo la debida vigilancia para que no causen daños ni molestias graves. La policía también puede prohibir a una persona no apta tener un perro."
+    pt: "Como as regras miram o comportamento individual, e não a raça, os donos precisam manter o cachorro sob supervisão adequada para que ele não cause danos nem perturbação grave. A polícia também pode proibir uma pessoa inapta de ter um cachorro."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Notify Swedish Customs (online with an EU passport, otherwise red lane)"
+    fr: "Déclarer à la douane suédoise (en ligne avec un passeport européen, sinon couloir rouge)"
+    es: "Declara ante la Aduana sueca (en línea con un pasaporte europeo, si no, pasillo rojo)"
+    pt: "Declarar à alfândega sueca (on-line com passaporte europeu; caso contrário, canal vermelho)"
+  - en: "Tapeworm deworming recommended (not required) before travel"
+    fr: "Vermifuge contre l'échinococcose recommandé (non requis) avant le voyage"
+    es: "Desparasitación contra la tenia recomendada (no obligatoria) antes de viajar"
+    pt: "Vermifugação contra a tênia recomendada (não obrigatória) antes da viagem"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+
+sources:
+  - label: { en: "Swedish Board of Agriculture (Jordbruksverket) — Movement of dogs, cats and ferrets to Sweden", fr: "Office suédois de l'agriculture (Jordbruksverket) — Entrée des chiens, chats et furets en Suède", es: "Junta Sueca de Agricultura (Jordbruksverket) — Entrada de perros, gatos y hurones en Suecia", pt: "Conselho Sueco de Agricultura (Jordbruksverket) — Circulação de cães, gatos e furões para a Suécia" }
+    url: "https://jordbruksverket.se/languages/english/swedish-board-of-agriculture/animals/pets---trade-and-travel/movement-of-dogs-cats-and-ferrets-to-sweden"
+  - label: { en: "Jordbruksverket — Travel guide for dogs and cats", fr: "Jordbruksverket — Guide de voyage pour chiens et chats", es: "Jordbruksverket — Guía de viaje para perros y gatos", pt: "Jordbruksverket — Guia de viagem para cães e gatos" }
+    url: "https://jordbruksverket.se/languages/english/swedish-board-of-agriculture/animals/pets---trade-and-travel/movement-of-dogs-cats-and-ferrets-to-sweden/travel-guide-for-dogs-and-cats"
+  - label: { en: "Swedish Customs (Tullverket) — Travelling with a dog or cat", fr: "Douane suédoise (Tullverket) — Voyager avec un chien ou un chat", es: "Aduana sueca (Tullverket) — Viajar con un perro o gato", pt: "Alfândega sueca (Tullverket) — Viajar com um cão ou gato" }
+    url: "https://www.tullverket.se/en/startpage/private/travelling/bringinggoodswhentravelling/travellingwithanimals/travellingwithdogorcat.4.311bf4f016e69d6ea0d93c.html"
+  - label: { en: "Tullverket — Entry registration of dog or cat (online service)", fr: "Tullverket — Enregistrement d'entrée d'un chien ou d'un chat (service en ligne)", es: "Tullverket — Registro de entrada de perro o gato (servicio en línea)", pt: "Tullverket — Registro de entrada de cão ou gato (serviço on-line)" }
+    url: "https://privattjanster-djuranmalan.tullverket.se/"
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Travelling with a pet within the EU", fr: "Commission européenne — Voyager avec un animal dans l'UE", es: "Comisión Europea — Viajar con una mascota dentro de la UE", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - label: { en: "European Commission — Listing of non-EU countries (antibody-test exemption)", fr: "Commission européenne — Liste des pays tiers (dispense de titrage)", es: "Comisión Europea — Lista de países no pertenecientes a la UE (exención de la prueba de titulación)", pt: "Comissão Europeia — Lista dos países terceiros (isenção de teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en"
+
+seo:
+  title: { en: "Sweden Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Suède — Guide", es: "Requisitos de entrada de perros en Suecia — Guía de viaje", pt: "Suécia: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Sweden With Your Dog: Entry Requirements (2026)", fr: "Voyager en Suède avec ton chien : formalités (2026)", es: "Viajar a Suecia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Suécia: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies, antibody-test and customs-notification rules for bringing a dog into Sweden — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage, titrage et déclaration douanière pour faire entrer un chien en Suède — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia, prueba de titulación y declaración en aduana para traer un perro a Suecia — según origen UE. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva, teste sorológico e declaração aduaneira para o cachorro na Suécia: origem na UE, país listado ou não. Com fonte e data."
+  slug: "sweden"
+  shortDesc:
+    en: "What you need to bring a dog into Sweden, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Suède, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Suecia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para a Suécia, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

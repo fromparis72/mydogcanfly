@@ -1,0 +1,417 @@
+# Country Entry Guide — Philippines (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# The Philippines is NOT in the EU. It runs its own national scheme through the
+# Department of Agriculture — Bureau of Animal Industry (DA-BAI) and its National
+# Veterinary Quarantine Services Division (NVQSD). The single mandatory step is to
+# secure an approved Sanitary and Phytosanitary Import Clearance (SPSIC / import permit)
+# ONLINE before travel; the SPSIC is then presented to the exporting country's veterinary
+# authority to obtain the export permit / international veterinary health certificate
+# (EP/IVHC). ISO microchip -> rabies + core vaccinations -> internal/external parasite
+# treatment -> EP/IVHC issued within 10 days of departure -> on arrival a BAI Veterinary
+# Quarantine Officer (VQO) inspects the animal and clears it. No rabies antibody test is
+# required, and there is no routine quarantine if every condition is met.
+# The eu/listed/nonListed slots are repurposed to the Philippines' practical paths:
+# eu = fully compliant dog with valid vaccinations (standard, no quarantine);
+# listed = dog from a WOAH rabies-free country (rabies vaccine may be waived by attestation);
+# nonListed = non-compliant arrival or missing SPSIC/IVHC (seized/refused/returned).
+id: country_ph
+iso2: "PH"
+name: { en: "Philippines", fr: "Philippines", es: "Filipinas", pt: "Filipinas" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in the Philippines: every inter-island move of a pet needs a national shipping permit."
+    fr: "Vol intérieur aux Philippines : tout déplacement d'animal entre îles requiert un permis national de transport."
+    es: "Vuelo nacional en Filipinas: todo traslado de mascota entre islas requiere un permiso nacional de transporte."
+    pt: "Voo doméstico nas Filipinas: todo deslocamento entre ilhas de um animal de estimação precisa de uma autorização nacional de transporte."
+  points:
+    - en: "A Local Shipping Permit from the Bureau of Animal Industry is required for domestic movement, including inter-island. It is free and takes about 3 working days, applied for online."
+      fr: "Un Local Shipping Permit du Bureau of Animal Industry est exigé pour tout mouvement intérieur, y compris entre îles. Il est gratuit, s'obtient en ligne et prend environ 3 jours ouvrés."
+      es: "Se exige un Local Shipping Permit del Bureau of Animal Industry para el movimiento nacional, incluido entre islas. Es gratuito, se solicita en línea y tarda unos 3 días hábiles."
+      pt: "Um Local Shipping Permit do Bureau of Animal Industry é obrigatório para o deslocamento doméstico, inclusive entre ilhas. É gratuito e leva cerca de 3 dias úteis, solicitado on-line."
+    - en: "Rabies vaccination must be at least 14 days and at most 1 year old, and the dog must be about 4 months minimum to be shipped."
+      fr: "La vaccination antirabique doit dater d'au moins 14 jours et d'au plus 1 an, et le chien doit avoir environ 4 mois minimum pour être transporté."
+      es: "La vacuna antirrábica debe tener al menos 14 días y como máximo 1 año, y el perro debe tener unos 4 meses mínimo para ser transportado."
+      pt: "A vacinação antirrábica precisa ter pelo menos 14 dias e no máximo 1 ano, e o cachorro precisa ter cerca de 4 meses no mínimo para ser transportado."
+    - en: "Some provinces are declared rabies-free and add their own entry rules at local level — check with the destination provincial or city veterinary office."
+      fr: "Certaines provinces sont déclarées indemnes de rage et ajoutent leurs propres règles d'entrée au niveau local — renseigne-toi auprès du bureau vétérinaire provincial ou municipal de destination."
+      es: "Algunas provincias están declaradas libres de rabia y añaden sus propias reglas de entrada a nivel local — consulta la oficina veterinaria provincial o municipal de destino."
+      pt: "Algumas províncias são declaradas livres de raiva e acrescentam suas próprias regras de entrada em nível local — confira com o escritório veterinário provincial ou municipal de destino."
+exit:
+  authority: BAI
+  authorityUrl: https://www.bai.gov.ph/
+  intro:
+    en: "The Philippines is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export permit and international veterinary health certificate (EP/IVHC) from the Bureau of Animal Industry (BAI)."
+    fr: "Les Philippines sont un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un permis d'export et un certificat sanitaire vétérinaire international (EP/IVHC) du Bureau de l'industrie animale (BAI)."
+    es: "Filipinas no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un permiso de exportación y un certificado sanitario veterinario internacional (EP/IVHC) del Buró de Industria Animal (BAI)."
+    pt: "As Filipinas são um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de uma autorização de exportação e de um atestado de saúde veterinário internacional (EP/IVHC) do Bureau of Animal Industry (BAI)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The BAI issues the export permit / international veterinary health certificate (EP/IVHC) within 10 days before departure — apply to the BAI as the official veterinary authority."
+        fr: "Le BAI délivre le permis d'export / certificat sanitaire vétérinaire international (EP/IVHC) dans les 10 jours avant le départ — adresse-toi au BAI, l'autorité vétérinaire officielle."
+        es: "El BAI emite el permiso de exportación / certificado sanitario veterinario internacional (EP/IVHC) dentro de los 10 días antes de salir — dirígete al BAI, la autoridad veterinaria oficial."
+        pt: "O BAI emite a autorização de exportação / atestado de saúde veterinário internacional (EP/IVHC) dentro de 10 dias antes da partida — solicite ao BAI como autoridade veterinária oficial."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to the Philippines with your dog", fr: "Voyager aux Philippines avec ton chien", es: "Viajar a Filipinas con tu perro", pt: "Viajar para as Filipinas com seu cachorro" }
+  intro:
+    en: >-
+      The Philippines welcomes dogs, but it runs its own import scheme through the Department of
+      Agriculture — Bureau of Animal Industry (DA-BAI), not the EU framework. The single most important
+      step is to secure an approved Sanitary and Phytosanitary Import Clearance (SPSIC) — the import
+      permit — online before you fly. Your dog needs an ISO-compatible microchip, a valid rabies
+      vaccination (minimum age 84 days, given at least 14 days before you apply), core vaccinations and
+      a preventive treatment against internal and external parasites. Once the SPSIC is approved you
+      present it to the exporting country's veterinary authority to obtain an export permit / international
+      veterinary health certificate (EP/IVHC) issued within 10 days of departure. A rabies antibody test
+      is not required. On arrival a BAI Veterinary Quarantine Officer inspects your dog; meet every
+      condition and there is no quarantine.
+    fr: >-
+      Les Philippines accueillent les chiens, mais appliquent leur propre régime d'importation via le
+      Département de l'agriculture — Bureau de l'industrie animale (DA-BAI), et non le cadre européen.
+      L'étape la plus importante est d'obtenir une autorisation sanitaire et phytosanitaire d'importation
+      (SPSIC) — le permis d'importation — en ligne avant de partir. Ton chien a besoin d'une puce
+      compatible ISO, d'une vaccination antirabique valide (âge minimal 84 jours, administrée au moins
+      14 jours avant la demande), de vaccins de base et d'un traitement préventif contre les parasites
+      internes et externes. Une fois le SPSIC approuvé, tu le présente à l'autorité vétérinaire du pays
+      exportateur pour obtenir un permis d'export / certificat vétérinaire international (EP/IVHC) établi
+      dans les 10 jours avant le départ. Un titrage des anticorps antirabiques n'est pas exigé. À
+      l'arrivée, un agent de quarantaine vétérinaire du BAI inspecte ton chien ; si toutes les
+      conditions sont remplies, il n'y a pas de quarantaine.
+    es: >-
+      Filipinas acoge a los perros, pero aplica su propio régimen de importación a través del
+      Departamento de Agricultura — Oficina de Industria Animal (DA-BAI), no el marco de la UE. El paso
+      más importante es obtener una autorización sanitaria y fitosanitaria de importación aprobada
+      (SPSIC) — el permiso de importación — en línea antes de volar. Tu perro necesita un microchip
+      compatible con ISO, una vacunación antirrábica válida (edad mínima 84 días, administrada al menos
+      14 días antes de la solicitud), las vacunas básicas y un tratamiento preventivo contra los
+      parásitos internos y externos. Una vez aprobada la SPSIC, la presentas a la autoridad veterinaria
+      del país exportador para obtener un permiso de exportación / certificado sanitario veterinario
+      internacional (EP/IVHC) emitido dentro de los 10 días previos a la salida. No se exige una prueba
+      de titulación de rabia. A la llegada, un oficial de cuarentena veterinaria del BAI inspecciona a tu
+      perro; si cumples todas las condiciones, no hay cuarentena.
+
+    pt: "As Filipinas recebem cachorros, mas aplicam seu próprio esquema de importação por meio do Department of Agriculture — Bureau of Animal Industry (DA-BAI), e não o marco da UE. A etapa mais importante é obter, on-line, um Sanitary and Phytosanitary Import Clearance (SPSIC) aprovado — a autorização de importação — antes de voar. Seu cachorro precisa de um microchip compatível com ISO, uma vacinação antirrábica válida (idade mínima de 84 dias, aplicada pelo menos 14 dias antes do pedido), vacinas essenciais e um tratamento preventivo contra parasitas internos e externos. Depois que o SPSIC for aprovado, você o apresenta à autoridade veterinária do país exportador para obter uma autorização de exportação / atestado de saúde veterinário internacional (EP/IVHC) emitido dentro de 10 dias antes da partida. Um teste sorológico antirrábico não é exigido. Na chegada, um Veterinary Quarantine Officer do BAI inspeciona o seu cachorro; cumprindo todas as condições, não há quarentena."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — an advance import clearance (SPSIC) is mandatory", fr: "Modéré — une autorisation d'importation préalable (SPSIC) est obligatoire", es: "Moderado — una autorización de importación previa (SPSIC) es obligatoria", pt: "Moderado — uma autorização de importação prévia (SPSIC) é obrigatória" }
+
+prepTime:
+  eu:
+    en: "Compliant dog (valid vaccinations): ~2-3 weeks — apply online for the SPSIC (valid 60 days), then obtain the EP/IVHC within 10 days before departure; no quarantine if fully compliant."
+    fr: "Chien conforme (vaccins valides) : ~2-3 semaines — demande du SPSIC en ligne (valable 60 jours), puis obtention de l'EP/IVHC dans les 10 jours avant le départ ; pas de quarantaine si totalement conforme."
+    es: "Perro conforme (vacunas válidas): ~2-3 semanas — solicita la SPSIC en línea (válida 60 días) y luego obtén el EP/IVHC dentro de los 10 días previos a la salida; sin cuarentena si cumple del todo."
+    pt: "Cachorro em conformidade (vacinas válidas): cerca de 2 a 3 semanas — solicite on-line o SPSIC (válido por 60 dias), depois obtenha o EP/IVHC dentro de 10 dias antes da partida; sem quarentena se totalmente em conformidade."
+  listed:
+    en: "Primary or lapsed rabies vaccination: allow more time — the initial rabies vaccine must be given at least 14 days before the SPSIC application, so plan the vaccination schedule several weeks ahead."
+    fr: "Vaccination antirabique primaire ou périmée : prévois plus de temps — le premier vaccin antirabique doit être administré au moins 14 jours avant la demande de SPSIC ; planifie le calendrier vaccinal plusieurs semaines à l'avance."
+    es: "Vacunación antirrábica primaria o caducada: prevé más tiempo — la primera vacuna antirrábica debe administrarse al menos 14 días antes de la solicitud de la SPSIC, así que planifica el calendario de vacunación varias semanas antes."
+    pt: "Primeira dose ou vacinação antirrábica vencida: reserve mais tempo — a primeira dose da vacina antirrábica precisa ser aplicada pelo menos 14 dias antes do pedido do SPSIC, então planeje o calendário de vacinação com várias semanas de antecedência."
+  nonListed:
+    en: "Non-compliant arrival or missing SPSIC/IVHC: no legal entry path — a dog arriving without an approved SPSIC and original EP/IVHC is refused, seized or returned to the country of origin at the owner's expense."
+    fr: "Arrivée non conforme ou SPSIC/IVHC manquant : aucune voie d'entrée légale — un chien arrivant sans SPSIC approuvé ni EP/IVHC original est refusé, saisi ou renvoyé vers le pays d'origine aux frais du propriétaire."
+    es: "Llegada no conforme o SPSIC/IVHC ausente: no hay vía de entrada legal — un perro que llega sin una SPSIC aprobada y el EP/IVHC original es rechazado, incautado o devuelto al país de origen a cargo del propietario."
+    pt: "Chegada em não conformidade ou SPSIC/IVHC ausente: nenhum caminho legal de entrada — um cachorro que chega sem um SPSIC aprovado e o EP/IVHC original é recusado, apreendido ou devolvido ao país de origem, às custas do dono."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Import clearance / permit (SPSIC, in advance)", fr: "Autorisation / permis d'importation (SPSIC, à l'avance)", es: "Autorización / permiso de importación (SPSIC, por adelantado)", pt: "Autorização / liberação de importação (SPSIC, com antecedência)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (may be waived from rabies-free countries)", fr: "Requise (dispense possible depuis les pays indemnes de rage)", es: "Obligatoria (puede eximirse desde países libres de rabia)", pt: "Obrigatória (pode ser dispensada quando vinda de países livres de raiva)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Other vaccinations (distemper, hepatitis, parvovirus, parainfluenza, leptospirosis)", fr: "Autres vaccins (Carré, hépatite, parvovirose, para-influenza, leptospirose)", es: "Otras vacunas (moquillo, hepatitis, parvovirus, parainfluenza, leptospirosis)", pt: "Outras vacinas (cinomose, hepatite, parvovirose, parainfluenza, leptospirose)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Parasite treatment (internal & external)", fr: "Traitement antiparasitaire (interne et externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "International veterinary health certificate (EP/IVHC)", fr: "Certificat vétérinaire international (EP/IVHC)", es: "Certificado sanitario veterinario internacional (EP/IVHC)", pt: "Atestado de saúde veterinário internacional (EP/IVHC)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si cumple", pt: "Não obrigatória se estiver tudo em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and the Philippine Bureau of Animal Industry (BAI) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le Bureau de l'industrie animale (BAI) des Philippines peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y la Oficina de Industria Animal (BAI) de Filipinas pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário e o Bureau of Animal Industry (BAI) das Filipinas podem confirmar o procedimento exato para o seu cachorro."
+  - en: "The SPSIC import clearance must be approved before departure and presented to the exporting country's veterinary authority — without it the dog can be refused entry."
+    fr: "L'autorisation SPSIC doit être approuvée avant le départ et présentée à l'autorité vétérinaire du pays exportateur — sans elle, le chien peut se voir refuser l'entrée."
+    es: "La autorización de importación SPSIC debe aprobarse antes de la salida y presentarse a la autoridad veterinaria del país exportador — sin ella, se le puede denegar la entrada al perro."
+    pt: "A liberação de importação SPSIC precisa ser aprovada antes da partida e apresentada à autoridade veterinária do país exportador — sem ela, o cachorro pode ter a entrada recusada."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — the Philippines (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — les Philippines (ta destination) ne sont que le premier."
+    es: "Los pasos exactos dependen de tres factores — Filipinas (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — as Filipinas (seu destino) são apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — the Philippines", fr: "Pays de destination — les Philippines", es: "País de destino — Filipinas", pt: "País de destino — Filipinas" }
+      text:
+        en: "The Philippines runs its own DA-BAI scheme: an advance online SPSIC import clearance, an ISO-compatible microchip, a valid rabies vaccination, core vaccinations, parasite treatment and an international veterinary health certificate. It does not use the EU pet-passport system, and no rabies antibody test is required."
+        fr: "Les Philippines appliquent leur propre régime DA-BAI : autorisation SPSIC préalable en ligne, puce compatible ISO, vaccination antirabique valide, vaccins de base, traitement antiparasitaire et certificat vétérinaire international. Elles n'utilisent pas le passeport européen, et aucun titrage antirabique n'est exigé."
+        es: "Filipinas aplica su propio régimen DA-BAI: una autorización de importación SPSIC previa en línea, un microchip compatible con ISO, una vacunación antirrábica válida, las vacunas básicas, tratamiento antiparasitario y un certificado sanitario veterinario internacional. No utiliza el sistema del pasaporte europeo para mascotas y no se exige prueba de titulación de rabia."
+        pt: "As Filipinas aplicam seu próprio esquema do DA-BAI: uma liberação de importação SPSIC prévia solicitada on-line, um microchip compatível com ISO, uma vacinação antirrábica válida, vacinas essenciais, tratamento antiparasitário e um atestado de saúde veterinário internacional. O país não usa o sistema de passaporte para animais de estimação da UE, e nenhum teste sorológico antirrábico é exigido."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country's government veterinary authority endorses the export permit / international veterinary health certificate (EP/IVHC), which must be issued within 10 days of departure. If your dog comes from a WOAH-recognised rabies-free country, the rabies vaccination can be waived provided the veterinary authority attests to it in the EP/IVHC."
+        fr: "L'autorité vétérinaire gouvernementale du pays exportateur vise le permis d'export / certificat vétérinaire international (EP/IVHC), qui doit être établi dans les 10 jours avant le départ. Si ton chien vient d'un pays reconnu indemne de rage par la WOAH, la vaccination antirabique peut être dispensée à condition que l'autorité vétérinaire l'atteste dans l'EP/IVHC."
+        es: "La autoridad veterinaria gubernamental del país exportador refrenda el permiso de exportación / certificado sanitario veterinario internacional (EP/IVHC), que debe emitirse dentro de los 10 días previos a la salida. Si tu perro procede de un país reconocido libre de rabia por la WOAH, la vacunación antirrábica puede eximirse siempre que la autoridad veterinaria lo certifique en el EP/IVHC."
+        pt: "A autoridade veterinária do governo do país exportador endossa a autorização de exportação / atestado de saúde veterinário internacional (EP/IVHC), que precisa ser emitido dentro de 10 dias antes da partida. Se o seu cachorro vier de um país reconhecido pela WOAH como livre de raiva, a vacinação antirrábica pode ser dispensada, desde que a autoridade veterinária ateste isso no EP/IVHC."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "The vaccination and parasite records attached to the SPSIC and the EP/IVHC must match; a recent stay or a documentation mismatch can affect the health certification the exporting authority is willing to issue. The BAI quarantine officer verifies the dog and documents on arrival regardless of the last airport."
+        fr: "Les enregistrements de vaccination et de traitement antiparasitaire joints au SPSIC et à l'EP/IVHC doivent concorder ; un séjour récent ou une incohérence documentaire peut affecter la certification sanitaire que l'autorité exportatrice acceptera de délivrer. L'agent de quarantaine du BAI vérifie le chien et les documents à l'arrivée, quel que soit le dernier aéroport."
+        es: "Los registros de vacunación y tratamiento antiparasitario adjuntos a la SPSIC y al EP/IVHC deben coincidir; una estancia reciente o una incoherencia documental puede afectar a la certificación sanitaria que la autoridad exportadora esté dispuesta a emitir. El oficial de cuarentena del BAI verifica al perro y los documentos a la llegada, sea cual sea el último aeropuerto."
+        pt: "Os registros de vacinação e de tratamento antiparasitário anexados ao SPSIC e ao EP/IVHC precisam corresponder; uma estadia recente ou uma divergência na documentação pode afetar a certificação de saúde que a autoridade exportadora está disposta a emitir. O agente de quarentena do BAI verifica o cachorro e os documentos na chegada, independentemente do último aeroporto."
+  note:
+    en: "So read the requirements below as the Philippines' framework, then confirm your dog's exact origin, history and timeline with your vet and the BAI before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre philippin, puis confirme l'origine, l'historique et le calendrier exacts de ton chien avec ton vétérinaire et le BAI avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Filipinas y luego confirma el origen, el historial y el calendario exactos de tu perro con tu veterinario y el BAI antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o marco das Filipinas e depois confirme com o seu veterinário e o BAI a origem, o histórico e o cronograma exatos do seu cachorro antes de reservar."
+
+requirements:
+  - item: { en: "Import clearance (SPSIC)", fr: "Autorisation d'importation (SPSIC)", es: "Autorización de importación (SPSIC)", pt: "Liberação de importação (SPSIC)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Apply online for an approved Sanitary and Phytosanitary Import Clearance from DA-BAI before travel, uploading vaccination and antiparasitic records, proof of microchip, a photo of the pet and the pet passport if available. The permit is valid 60 days; a maximum of 3 pets may be imported at one time.", fr: "Demande en ligne une autorisation sanitaire et phytosanitaire d'importation approuvée auprès du DA-BAI avant le voyage, en téléversant les enregistrements de vaccination et antiparasitaires, la preuve de puce, une photo de l'animal et le passeport si disponible. Le permis est valable 60 jours ; 3 animaux maximum peuvent être importés en une seule fois.", es: "Solicita en línea una autorización sanitaria y fitosanitaria de importación aprobada al DA-BAI antes de viajar, cargando los registros de vacunación y antiparasitarios, la prueba del microchip, una foto de la mascota y el pasaporte de la mascota si dispones de él. El permiso es válido 60 días; se puede importar un máximo de 3 mascotas a la vez.", pt: "Solicite on-line um Sanitary and Phytosanitary Import Clearance aprovado junto ao DA-BAI antes da viagem, enviando os registros de vacinação e de tratamento antiparasitário, comprovante do microchip, uma foto do animal e o passaporte de animal de estimação, se disponível. A autorização é válida por 60 dias; no máximo 3 animais de estimação podem ser importados de uma vez." }
+    exceptions: { en: "The approved SPSIC must be presented to the exporting country's veterinary authority to obtain the EP/IVHC. Documents must be PDF/JPG, merged per item and under 5MB.", fr: "Le SPSIC approuvé doit être présenté à l'autorité vétérinaire du pays exportateur pour obtenir l'EP/IVHC. Les documents doivent être en PDF/JPG, fusionnés par pièce et inférieurs à 5 Mo.", es: "La SPSIC aprobada debe presentarse a la autoridad veterinaria del país exportador para obtener el EP/IVHC. Los documentos deben ser PDF/JPG, unidos por concepto y de menos de 5 MB.", pt: "O SPSIC aprovado precisa ser apresentado à autoridade veterinária do país exportador para obter o EP/IVHC. Os documentos precisam estar em PDF/JPG, mesclados por item e com menos de 5 MB." }
+    ref: { en: "DA-BAI — Pet (Dog/Cat) import; NVQSD SPSIC", fr: "DA-BAI — Importation d'animaux de compagnie (chien/chat) ; SPSIC NVQSD", es: "DA-BAI — Importación de mascotas (perro/gato); SPSIC NVQSD", pt: "DA-BAI — importação de animais de estimação (cães/gatos); NVQSD SPSIC" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An ISO-compatible microchip readable by an ISO-compatible reader must be implanted; the number must match the vaccination records and the EP/IVHC.", fr: "Une puce compatible ISO lisible par un lecteur compatible ISO doit être implantée ; le numéro doit correspondre aux enregistrements de vaccination et à l'EP/IVHC.", es: "Debe implantarse un microchip compatible con ISO legible por un lector compatible con ISO; el número debe coincidir con los registros de vacunación y el EP/IVHC.", pt: "Um microchip compatível com ISO, legível por um leitor compatível com ISO, precisa ser implantado; o número precisa corresponder aos registros de vacinação e ao EP/IVHC." }
+    exceptions: { en: "For any non-ISO chip, the importer must bring their own compatible microchip scanner.", fr: "Pour toute puce non ISO, l'importateur doit apporter son propre lecteur compatible.", es: "Para cualquier chip no ISO, el importador debe llevar su propio lector de microchip compatible.", pt: "Para qualquer chip não ISO, o importador precisa levar seu próprio leitor de microchip compatível." }
+    ref: { en: "DA-BAI — Pet import requirements (microchip)", fr: "DA-BAI — Exigences d'importation (puce)", es: "DA-BAI — Requisitos de importación (microchip)", pt: "DA-BAI — exigências de importação de animais de estimação (microchip)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (waivable from rabies-free countries)", fr: "Requise (dispense possible depuis les pays indemnes de rage)", es: "Obligatoria (eximible desde países libres de rabia)", pt: "Obrigatória (dispensável quando vinda de países livres de raiva)" }
+    when: { en: "Dog vaccinated against rabies from a minimum age of 84 days; the initial rabies vaccination must be at least 14 days before the SPSIC application. For an annual booster, the animal may be shipped immediately upon vaccination. The vaccination must remain valid until arrival.", fr: "Chien vacciné contre la rage à partir de 84 jours minimum ; la primo-vaccination antirabique doit dater d'au moins 14 jours avant la demande de SPSIC. Pour un rappel annuel, l'animal peut être expédié immédiatement après la vaccination. La vaccination doit rester valide jusqu'à l'arrivée.", es: "Perro vacunado contra la rabia a partir de una edad mínima de 84 días; la vacunación antirrábica inicial debe ser al menos 14 días antes de la solicitud de la SPSIC. Para un refuerzo anual, el animal puede enviarse inmediatamente tras la vacunación. La vacunación debe seguir siendo válida hasta la llegada.", pt: "Cachorro vacinado contra a raiva a partir de uma idade mínima de 84 dias; a primeira vacinação antirrábica precisa ser aplicada pelo menos 14 dias antes do pedido do SPSIC. Para uma dose de reforço anual, o animal pode ser transportado imediatamente após a vacinação. A vacinação precisa permanecer válida até a chegada." }
+    exceptions: { en: "For dogs from a WOAH-recognised rabies-free country, the rabies vaccination may be waived provided the exporting veterinary authority attests to it in the EP/IVHC.", fr: "Pour les chiens venant d'un pays reconnu indemne de rage par la WOAH, la vaccination antirabique peut être dispensée à condition que l'autorité vétérinaire exportatrice l'atteste dans l'EP/IVHC.", es: "Para los perros procedentes de un país reconocido libre de rabia por la WOAH, la vacunación antirrábica puede eximirse siempre que la autoridad veterinaria exportadora lo certifique en el EP/IVHC.", pt: "Para cachorros vindos de um país reconhecido pela WOAH como livre de raiva, a vacinação antirrábica pode ser dispensada, desde que a autoridade veterinária exportadora ateste isso no EP/IVHC." }
+    ref: { en: "DA-BAI — Pet import requirements (rabies)", fr: "DA-BAI — Exigences d'importation (rage)", es: "DA-BAI — Requisitos de importación (rabia)", pt: "DA-BAI — exigências de importação de animais de estimação (raiva)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "The published DA-BAI dog/cat import requirements do not call for a rabies antibody test to enter the Philippines.", fr: "Les exigences publiées d'importation chien/chat du DA-BAI ne prévoient pas de titrage des anticorps antirabiques pour entrer aux Philippines.", es: "Los requisitos de importación de perros/gatos publicados por el DA-BAI no exigen una prueba de titulación de rabia para entrar en Filipinas.", pt: "As exigências publicadas pelo DA-BAI para a importação de cães/gatos não exigem um teste sorológico antirrábico para entrar nas Filipinas." }
+    exceptions: { en: "Confirm with the BAI that no test applies to your dog's specific origin before you book.", fr: "Confirme auprès du BAI qu'aucun test ne s'applique à l'origine spécifique de ton chien avant de réserver.", es: "Confirma con el BAI que no se aplica ninguna prueba al origen específico de tu perro antes de reservar.", pt: "Confirme com o BAI que nenhum teste se aplica à origem específica do seu cachorro antes de reservar." }
+    ref: { en: "DA-BAI — Pet import requirements", fr: "DA-BAI — Exigences d'importation", es: "DA-BAI — Requisitos de importación", pt: "DA-BAI — exigências de importação de animais de estimação" }
+  - item: { en: "Other vaccinations (dogs)", fr: "Autres vaccins (chiens)", es: "Otras vacunas (perros)", pt: "Outras vacinas (cachorros)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "At least one dose of canine distemper, infectious hepatitis, canine parvovirus, canine parainfluenza and leptospirosis vaccine, administered at least 14 days before the SPSIC application and valid until arrival.", fr: "Au moins une dose de vaccin contre la maladie de Carré, l'hépatite infectieuse, la parvovirose canine, la para-influenza canine et la leptospirose, administrée au moins 14 jours avant la demande de SPSIC et valide jusqu'à l'arrivée.", es: "Al menos una dosis de vacuna contra el moquillo canino, la hepatitis infecciosa, el parvovirus canino, la parainfluenza canina y la leptospirosis, administrada al menos 14 días antes de la solicitud de la SPSIC y válida hasta la llegada.", pt: "Pelo menos uma dose das vacinas contra cinomose canina, hepatite infecciosa, parvovirose canina, parainfluenza canina e leptospirose, aplicada pelo menos 14 dias antes do pedido do SPSIC e válida até a chegada." }
+    exceptions: { en: "For countries free of or not practising vaccination, a certificate of no vaccination/treatment from the exporting veterinary authority may be submitted instead.", fr: "Pour les pays indemnes ou ne pratiquant pas la vaccination, un certificat d'absence de vaccination/traitement de l'autorité vétérinaire exportatrice peut être soumis à la place.", es: "Para los países libres de la enfermedad o que no practican la vacunación, puede presentarse en su lugar un certificado de ausencia de vacunación/tratamiento de la autoridad veterinaria exportadora.", pt: "Para países livres dessas doenças ou que não praticam a vacinação, um certificado de ausência de vacinação/tratamento da autoridade veterinária exportadora pode ser apresentado em vez disso." }
+    ref: { en: "DA-BAI — Pet import requirements (vaccinations)", fr: "DA-BAI — Exigences d'importation (vaccinations)", es: "DA-BAI — Requisitos de importación (vacunas)", pt: "DA-BAI — exigências de importação de animais de estimação (vacinas)" }
+  - item: { en: "Parasite treatment (internal & external)", fr: "Traitement antiparasitaire (interne et externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Preventive medication against internal and external parasites administered by a licensed veterinarian, between 91 days and 7 days before the SPSIC application.", fr: "Médication préventive contre les parasites internes et externes administrée par un vétérinaire agréé, entre 91 jours et 7 jours avant la demande de SPSIC.", es: "Medicación preventiva contra los parásitos internos y externos administrada por un veterinario colegiado, entre 91 días y 7 días antes de la solicitud de la SPSIC.", pt: "Medicação preventiva contra parasitas internos e externos, aplicada por um veterinário licenciado, entre 91 dias e 7 dias antes do pedido do SPSIC." }
+    exceptions: { en: "The treatment details must appear on the vaccination/antiparasitic records and match the EP/IVHC.", fr: "Les détails du traitement doivent figurer sur les enregistrements de vaccination/antiparasitaires et correspondre à l'EP/IVHC.", es: "Los detalles del tratamiento deben figurar en los registros de vacunación/antiparasitarios y coincidir con el EP/IVHC.", pt: "Os detalhes do tratamento precisam constar nos registros de vacinação/tratamento antiparasitário e corresponder ao EP/IVHC." }
+    ref: { en: "DA-BAI — Pet import requirements (antiparasitic)", fr: "DA-BAI — Exigences d'importation (antiparasitaire)", es: "DA-BAI — Requisitos de importación (antiparasitario)", pt: "DA-BAI — exigências de importação de animais de estimação (antiparasitário)" }
+  - item: { en: "International veterinary health certificate (EP/IVHC)", fr: "Certificat vétérinaire international (EP/IVHC)", es: "Certificado sanitario veterinario internacional (EP/IVHC)", pt: "Atestado de saúde veterinário internacional (EP/IVHC)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An export permit / international veterinary health certificate issued by the exporting country's government veterinary authority within 10 calendar days before departure, in English or with an English translation, matching the SPSIC and vaccination records.", fr: "Un permis d'export / certificat vétérinaire international délivré par l'autorité vétérinaire gouvernementale du pays exportateur dans les 10 jours calendaires avant le départ, en anglais ou avec traduction anglaise, concordant avec le SPSIC et les enregistrements de vaccination.", es: "Un permiso de exportación / certificado sanitario veterinario internacional emitido por la autoridad veterinaria gubernamental del país exportador dentro de los 10 días naturales previos a la salida, en inglés o con traducción al inglés, que coincida con la SPSIC y los registros de vacunación.", pt: "Uma autorização de exportação / atestado de saúde veterinário internacional emitido pela autoridade veterinária do governo do país exportador dentro de 10 dias corridos antes da partida, em inglês ou com tradução para o inglês, condizente com o SPSIC e os registros de vacinação." }
+    exceptions: { en: "The consignee/consignor name must match the name on the EP/IVHC. Original required on arrival.", fr: "Le nom du destinataire/expéditeur doit correspondre à celui de l'EP/IVHC. Original exigé à l'arrivée.", es: "El nombre del destinatario/remitente debe coincidir con el que figura en el EP/IVHC. Se exige el original a la llegada.", pt: "O nome do destinatário/remetente precisa corresponder ao nome no EP/IVHC. O original é exigido na chegada." }
+    ref: { en: "DA-BAI — EP/IVHC; Bureau of Customs — Pet importation", fr: "DA-BAI — EP/IVHC ; Bureau des douanes — Importation d'animaux", es: "DA-BAI — EP/IVHC; Oficina de Aduanas — Importación de mascotas", pt: "DA-BAI — EP/IVHC; Bureau of Customs — importação de animais de estimação" }
+  - item: { en: "Border check on arrival", fr: "Contrôle frontalier à l'arrivée", es: "Control fronterizo a la llegada", pt: "Controle de fronteira na chegada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "On arrival at any international port of entry, present the printed approved SPSIC and the original EP/IVHC (plus the stamped air waybill for cargo) to the BAI Veterinary Quarantine Officer, who inspects the dog and documents. Fees are paid on arrival.", fr: "À l'arrivée dans tout point d'entrée international, présente le SPSIC approuvé imprimé et l'EP/IVHC original (plus la lettre de transport aérien tamponnée pour le fret) à l'agent de quarantaine vétérinaire du BAI, qui inspecte le chien et les documents. Les frais sont payés à l'arrivée.", es: "A la llegada a cualquier puerto de entrada internacional, presenta la SPSIC aprobada impresa y el EP/IVHC original (además de la carta de porte aéreo sellada en caso de carga) al oficial de cuarentena veterinaria del BAI, que inspecciona al perro y los documentos. Las tasas se pagan a la llegada.", pt: "Na chegada a qualquer ponto de entrada internacional, apresente o SPSIC aprovado impresso e o EP/IVHC original (além da guia aérea carimbada, no caso de carga) ao Veterinary Quarantine Officer do BAI, que inspeciona o cachorro e os documentos. As taxas são pagas na chegada." }
+    exceptions: { en: "Fees: SPSIC Php 100; SPS lodgement Php 55; inspection Php 250/head for the first 2 pets, Php 300/head thereafter.", fr: "Frais : SPSIC 100 PHP ; enregistrement SPS 55 PHP ; inspection 250 PHP/tête pour les 2 premiers animaux, 300 PHP/tête ensuite.", es: "Tasas: SPSIC 100 PHP; presentación SPS 55 PHP; inspección 250 PHP/cabeza para las 2 primeras mascotas, 300 PHP/cabeza a partir de ahí.", pt: "Taxas: SPSIC Php 100; protocolo SPS Php 55; inspeção Php 250 por animal para os 2 primeiros animais de estimação, Php 300 por animal a partir do terceiro." }
+    ref: { en: "DA-BAI — Arrival procedure; Bureau of Customs", fr: "DA-BAI — Procédure d'arrivée ; Bureau des douanes", es: "DA-BAI — Procedimiento de llegada; Oficina de Aduanas", pt: "DA-BAI — procedimento de chegada; Bureau of Customs" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "≥120 days at SPSIC application", fr: "≥120 jours à la demande de SPSIC", es: "≥120 días en la solicitud de la SPSIC", pt: "≥120 dias no momento do pedido do SPSIC" }
+    when: { en: "Only dogs 120 days (about 4 months) and above at the time of the SPSIC application are allowed. Pregnant dogs are not accepted; a dam that has given birth may be cleared only if birth was at least 12 weeks before travel and a vet certifies dam and litter are fit to travel.", fr: "Seuls les chiens de 120 jours (environ 4 mois) et plus au moment de la demande de SPSIC sont admis. Les chiennes gestantes ne sont pas acceptées ; une chienne ayant mis bas ne peut être autorisée que si la mise bas date d'au moins 12 semaines avant le voyage et qu'un vétérinaire certifie la mère et la portée aptes au voyage.", es: "Solo se admiten perros de 120 días (unos 4 meses) o más en el momento de la solicitud de la SPSIC. No se aceptan perras gestantes; una perra que haya parido solo puede autorizarse si el parto fue al menos 12 semanas antes del viaje y un veterinario certifica que la madre y la camada están aptas para viajar.", pt: "Somente cachorros com 120 dias (cerca de 4 meses) ou mais no momento do pedido do SPSIC são permitidos. Cadelas prenhas não são aceitas; uma mãe que já teve a ninhada só pode ser liberada se o parto tiver ocorrido pelo menos 12 semanas antes da viagem e um veterinário certificar que a mãe e a ninhada estão aptas a viajar." }
+    exceptions: { en: "For young litters under specific ages, the exporting authority may certify that the vaccinated mother accompanies the litter.", fr: "Pour les jeunes portées en deçà d'âges précis, l'autorité exportatrice peut certifier que la mère vaccinée accompagne la portée.", es: "Para camadas jóvenes por debajo de ciertas edades, la autoridad exportadora puede certificar que la madre vacunada acompaña a la camada.", pt: "Para ninhadas jovens abaixo de determinadas idades, a autoridade exportadora pode certificar que a mãe vacinada acompanha a ninhada." }
+    ref: { en: "DA-BAI — Pet import requirements (age)", fr: "DA-BAI — Exigences d'importation (âge)", es: "DA-BAI — Requisitos de importación (edad)", pt: "DA-BAI — exigências de importação de animais de estimação (idade)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si cumple", pt: "Não obrigatória se estiver tudo em conformidade" }
+    when: { en: "A dog that meets every requirement and passes the arrival inspection is released the same day; there is no routine quarantine.", fr: "Un chien qui remplit toutes les exigences et passe l'inspection d'arrivée est libéré le jour même ; il n'y a pas de quarantaine de routine.", es: "Un perro que cumple todos los requisitos y supera la inspección de llegada es liberado el mismo día; no hay cuarentena de rutina.", pt: "Um cachorro que cumpre todas as exigências e passa na inspeção de chegada é liberado no mesmo dia; não há quarentena de rotina." }
+    exceptions: { en: "A dog that does not meet the requirements is seized, refused admission or returned to the country of origin at the owner's expense.", fr: "Un chien qui ne remplit pas les exigences est saisi, refusé ou renvoyé vers le pays d'origine aux frais du propriétaire.", es: "Un perro que no cumple los requisitos es incautado, se le deniega la admisión o se le devuelve al país de origen a cargo del propietario.", pt: "Um cachorro que não cumpre as exigências é apreendido, tem a admissão recusada ou é devolvido ao país de origem, às custas do dono." }
+    ref: { en: "DA-BAI — Pet import requirements (quarantine); Bureau of Customs", fr: "DA-BAI — Exigences d'importation (quarantaine) ; Bureau des douanes", es: "DA-BAI — Requisitos de importación (cuarentena); Oficina de Aduanas", pt: "DA-BAI — exigências de importação de animais de estimação (quarentena); Bureau of Customs" }
+
+origin:
+  eu:
+    title: { en: "Fully compliant dog — standard path, no quarantine", fr: "Chien totalement conforme — parcours standard, sans quarantaine", es: "Perro totalmente conforme — vía estándar, sin cuarentena", pt: "Cachorro totalmente em conformidade — caminho padrão, sem quarentena" }
+    body:
+      en: "A dog with a valid rabies vaccination, current core vaccinations, an ISO-compatible microchip and a recent parasite treatment follows the standard path: apply online for the DA-BAI SPSIC import clearance, then present it to the exporting country's government veterinary authority to obtain the export permit / international veterinary health certificate (EP/IVHC) within 10 days of departure. On arrival the BAI Veterinary Quarantine Officer inspects the dog and, provided every document is in order, releases it the same day with no quarantine."
+      fr: "Un chien avec une vaccination antirabique valide, des vaccins de base à jour, une puce compatible ISO et un traitement antiparasitaire récent suit le parcours standard : demande en ligne l'autorisation SPSIC du DA-BAI, puis présente-la à l'autorité vétérinaire gouvernementale du pays exportateur pour obtenir le permis d'export / certificat vétérinaire international (EP/IVHC) dans les 10 jours avant le départ. À l'arrivée, l'agent de quarantaine du BAI inspecte le chien et, si tous les documents sont en règle, le libère le jour même sans quarantaine."
+      es: "Un perro con una vacunación antirrábica válida, las vacunas básicas al día, un microchip compatible con ISO y un tratamiento antiparasitario reciente sigue la vía estándar: solicita en línea la autorización de importación SPSIC del DA-BAI y luego preséntala a la autoridad veterinaria gubernamental del país exportador para obtener el permiso de exportación / certificado sanitario veterinario internacional (EP/IVHC) dentro de los 10 días previos a la salida. A la llegada, el oficial de cuarentena veterinaria del BAI inspecciona al perro y, si todos los documentos están en regla, lo libera el mismo día sin cuarentena."
+      pt: "Um cachorro com vacinação antirrábica válida, vacinas essenciais em dia, um microchip compatível com ISO e um tratamento antiparasitário recente segue o caminho padrão: solicite on-line a liberação de importação SPSIC do DA-BAI, depois apresente-a à autoridade veterinária do governo do país exportador para obter a autorização de exportação / atestado de saúde veterinário internacional (EP/IVHC) dentro de 10 dias antes da partida. Na chegada, o Veterinary Quarantine Officer do BAI inspeciona o cachorro e, desde que todos os documentos estejam em ordem, o libera no mesmo dia, sem quarentena."
+    cls: ok
+  listed:
+    title: { en: "Dog from a rabies-free country — rabies vaccine may be waived", fr: "Chien d'un pays indemne de rage — vaccin antirabique dispensable", es: "Perro de un país libre de rabia — la vacuna antirrábica puede eximirse", pt: "Cachorro vindo de um país livre de raiva — a vacina antirrábica pode ser dispensada" }
+    body:
+      en: "If your dog comes from a country recognised rabies-free by the World Organisation for Animal Health (WOAH), the rabies vaccination can be waived — but only if the exporting country's veterinary authority explicitly attests to this in the EP/IVHC. The SPSIC import clearance, ISO microchip, core vaccinations and parasite treatment are still required, and the dog must still be at least 120 days old at the SPSIC application. Confirm your country's WOAH status and the exact attestation wording with the BAI before you travel."
+      fr: "Si ton chien vient d'un pays reconnu indemne de rage par l'Organisation mondiale de la santé animale (WOAH), la vaccination antirabique peut être dispensée — mais uniquement si l'autorité vétérinaire du pays exportateur l'atteste explicitement dans l'EP/IVHC. L'autorisation SPSIC, la puce ISO, les vaccins de base et le traitement antiparasitaire restent exigés, et le chien doit toujours avoir au moins 120 jours à la demande de SPSIC. Confirme le statut WOAH de ton pays et le libellé exact de l'attestation avec le BAI avant de voyager."
+      es: "Si tu perro procede de un país reconocido libre de rabia por la Organización Mundial de Sanidad Animal (WOAH), la vacunación antirrábica puede eximirse — pero solo si la autoridad veterinaria del país exportador lo certifica explícitamente en el EP/IVHC. La autorización de importación SPSIC, el microchip ISO, las vacunas básicas y el tratamiento antiparasitario siguen siendo obligatorios, y el perro debe tener al menos 120 días en la solicitud de la SPSIC. Confirma el estatus WOAH de tu país y el texto exacto de la certificación con el BAI antes de viajar."
+      pt: "Se o seu cachorro vier de um país reconhecido pela World Organisation for Animal Health (WOAH) como livre de raiva, a vacinação antirrábica pode ser dispensada — mas apenas se a autoridade veterinária do país exportador atestar isso explicitamente no EP/IVHC. A liberação de importação SPSIC, o microchip ISO, as vacinas essenciais e o tratamento antiparasitário ainda são exigidos, e o cachorro ainda precisa ter pelo menos 120 dias no momento do pedido do SPSIC. Confirme a situação do seu país junto à WOAH e o texto exato da atestação com o BAI antes de viajar."
+    cls: warn
+  nonListed:
+    title: { en: "Non-compliant arrival or missing documents", fr: "Arrivée non conforme ou documents manquants", es: "Llegada no conforme o documentos ausentes", pt: "Chegada em não conformidade ou documentos ausentes" }
+    body:
+      en: "A dog that arrives without an approved SPSIC and the original EP/IVHC, or whose microchip, vaccinations or age do not meet the requirements, has no legal entry path: under the rules of the Bureau of Animal Industry and the Bureau of Customs it can be seized, confiscated, refused admission or returned to the country of origin — entirely at the owner's expense. There is no on-arrival cure for a missing import clearance, so complete every step before departure."
+      fr: "Un chien qui arrive sans SPSIC approuvé ni EP/IVHC original, ou dont la puce, les vaccinations ou l'âge ne satisfont pas aux exigences, n'a aucune voie d'entrée légale : selon les règles du Bureau de l'industrie animale et du Bureau des douanes, il peut être saisi, confisqué, refusé ou renvoyé vers le pays d'origine — entièrement aux frais du propriétaire. Aucune régularisation n'est possible à l'arrivée pour une autorisation d'importation manquante ; effectuez donc chaque étape avant le départ."
+      es: "Un perro que llega sin una SPSIC aprobada y el EP/IVHC original, o cuyo microchip, vacunas o edad no cumplen los requisitos, no tiene vía de entrada legal: según las normas de la Oficina de Industria Animal y la Oficina de Aduanas, puede ser incautado, confiscado, se le puede denegar la admisión o devolverse al país de origen — enteramente a cargo del propietario. No hay solución a la llegada para una autorización de importación ausente, así que completa cada paso antes de la salida."
+      pt: "Um cachorro que chega sem um SPSIC aprovado e o EP/IVHC original, ou cujo microchip, vacinas ou idade não cumpram as exigências, não tem caminho legal de entrada: pelas regras do Bureau of Animal Industry e do Bureau of Customs, ele pode ser apreendido, confiscado, ter a admissão recusada ou ser devolvido ao país de origem — inteiramente às custas do dono. Não há como resolver na chegada a falta de uma liberação de importação, então complete todas as etapas antes da partida."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches the Philippines depends on whether the SPSIC and EP/IVHC were completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien aux Philippines dépend du fait que le SPSIC et l'EP/IVHC aient été complétés avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Filipinas depende de si la SPSIC y el EP/IVHC se completaron antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega às Filipinas depende de o SPSIC e o EP/IVHC terem sido concluídos antes da partida."
+  points:
+    - en: "Dogs enter through any international port of entry where a BAI Veterinary Quarantine Officer (VQO) is stationed to inspect arriving animals."
+      fr: "Les chiens entrent par tout point d'entrée international où un agent de quarantaine vétérinaire (VQO) du BAI est en poste pour inspecter les animaux arrivants."
+      es: "Los perros entran por cualquier puerto de entrada internacional donde un oficial de cuarentena veterinaria (VQO) del BAI está destinado para inspeccionar a los animales que llegan."
+      pt: "Os cachorros entram por qualquer ponto de entrada internacional onde um Veterinary Quarantine Officer (VQO) do BAI esteja posicionado para inspecionar os animais que chegam."
+    - en: "For a hand-carried or checked-in dog, present the printed approved SPSIC and the original EP/IVHC issued by the exporting country's veterinary authority."
+      fr: "Pour un chien en cabine ou en soute, présente le SPSIC approuvé imprimé et l'EP/IVHC original délivré par l'autorité vétérinaire du pays exportateur."
+      es: "Para un perro que viaja en cabina o facturado, presenta la SPSIC aprobada impresa y el EP/IVHC original emitido por la autoridad veterinaria del país exportador."
+      pt: "Para um cachorro levado à mão ou despachado, apresente o SPSIC aprovado impresso e o EP/IVHC original emitido pela autoridade veterinária do país exportador."
+    - en: "For a dog released at the cargo terminal, also present the air waybill stamped by the airline indicating arrival."
+      fr: "Pour un chien récupéré au terminal cargo, présente aussi la lettre de transport aérien tamponnée par la compagnie indiquant l'arrivée."
+      es: "Para un perro recogido en la terminal de carga, presenta también la carta de porte aéreo sellada por la aerolínea que indica la llegada."
+      pt: "Para um cachorro liberado no terminal de carga, apresente também a guia aérea carimbada pela companhia aérea indicando a chegada."
+    - en: "Fees are paid on arrival at the Veterinary Quarantine office: SPSIC Php 100, SPS lodgement Php 55, and inspection Php 250 per head for the first two pets (Php 300 per head thereafter)."
+      fr: "Les frais sont payés à l'arrivée au bureau de quarantaine vétérinaire : SPSIC 100 PHP, enregistrement SPS 55 PHP, et inspection 250 PHP/tête pour les deux premiers animaux (300 PHP/tête ensuite)."
+      es: "Las tasas se pagan a la llegada en la oficina de cuarentena veterinaria: SPSIC 100 PHP, presentación SPS 55 PHP, e inspección 250 PHP por cabeza para las dos primeras mascotas (300 PHP por cabeza a partir de ahí)."
+      pt: "As taxas são pagas na chegada, no escritório de quarentena veterinária: SPSIC Php 100, protocolo SPS Php 55, e inspeção Php 250 por animal para os dois primeiros animais de estimação (Php 300 por animal a partir do terceiro)."
+    - en: "With all documents in order the animal can be released the same day, with no quarantine."
+      fr: "Avec tous les documents en règle, l'animal peut être libéré le jour même, sans quarantaine."
+      es: "Con todos los documentos en regla, el animal puede ser liberado el mismo día, sin cuarentena."
+      pt: "Com todos os documentos em ordem, o animal pode ser liberado no mesmo dia, sem quarentena."
+    - en: "A dog arriving without the required EP/IVHC and SPSIC is seized, confiscated or refused admission, and may be returned to the country of origin at the owner's expense."
+      fr: "Un chien arrivant sans l'EP/IVHC et le SPSIC requis est saisi, confisqué ou refusé, et peut être renvoyé vers le pays d'origine aux frais du propriétaire."
+      es: "Un perro que llega sin el EP/IVHC y la SPSIC requeridos es incautado, confiscado o se le deniega la admisión, y puede ser devuelto al país de origen a cargo del propietario."
+      pt: "Um cachorro que chega sem o EP/IVHC e o SPSIC exigidos é apreendido, confiscado ou tem a admissão recusada, e pode ser devolvido ao país de origem, às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The Philippine Bureau of Animal Industry does not ban any dog breed from importation: no breed is prohibited from entering the country, and the import requirements are the same for every breed."
+    fr: "Le Bureau de l'industrie animale des Philippines n'interdit aucune race de chien à l'importation : aucune race n'est prohibée d'entrée, et les exigences d'importation sont identiques pour toutes les races."
+    es: "La Oficina de Industria Animal de Filipinas no prohíbe la importación de ninguna raza de perro: ninguna raza tiene prohibida la entrada al país, y los requisitos de importación son los mismos para todas las razas."
+    pt: "O Bureau of Animal Industry das Filipinas não proíbe a importação de nenhuma raça de cachorro: nenhuma raça é proibida de entrar no país, e as exigências de importação são as mesmas para todas as raças."
+  cat1:
+    en: "There is no national breed-specific import ban. Breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler and similar) are not prohibited from entering the Philippines by the BAI, provided the dog meets the standard SPSIC, vaccination, microchip and certificate requirements."
+    fr: "Il n'existe aucune interdiction d'importation liée à la race au niveau national. Les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler et similaires) ne sont pas interdites d'entrée aux Philippines par le BAI, à condition que le chien satisfasse aux exigences standard de SPSIC, vaccination, puce et certificat."
+    es: "No existe ninguna prohibición de importación por raza a nivel nacional. Las razas restringidas en algunos otros países (tipos pit bull, Tosa, Rottweiler y similares) no tienen prohibida la entrada a Filipinas por parte del BAI, siempre que el perro cumpla los requisitos estándar de SPSIC, vacunación, microchip y certificado."
+    pt: "Não há uma proibição nacional de importação por raça. Raças restritas em alguns outros países (tipos pit-bull, Tosa, Rottweiler e semelhantes) não são proibidas de entrar nas Filipinas pelo BAI, desde que o cachorro cumpra as exigências padrão de SPSIC, vacinação, microchip e certificado."
+  cat2:
+    en: "Restrictions can instead come from local government units and airlines. Under the Anti-Rabies Act, local ordinances may declare individual dogs 'dangerous' and impose keeping rules once you are resident, and many carriers refuse or restrict snub-nosed (brachycephalic) breeds in the hold. These are keeping and transport rules, not import bans."
+    fr: "Les restrictions peuvent provenir des collectivités locales et des compagnies aériennes. Au titre de l'Anti-Rabies Act, des arrêtés locaux peuvent déclarer certains chiens « dangereux » et imposer des règles de détention une fois résident, et de nombreux transporteurs refusent ou limitent les races brachycéphales (au nez court) en soute. Ce sont des règles de détention et de transport, pas des interdictions d'importation."
+    es: "Las restricciones pueden proceder, en cambio, de las administraciones locales y de las aerolíneas. En virtud de la Anti-Rabies Act, las ordenanzas locales pueden declarar «peligrosos» a perros concretos e imponer normas de tenencia una vez que seas residente, y muchas compañías rechazan o limitan las razas de hocico chato (braquicéfalas) en la bodega. Son normas de tenencia y transporte, no prohibiciones de importación."
+    pt: "As restrições podem vir, em vez disso, de unidades do governo local e de companhias aéreas. Pelo Anti-Rabies Act, ordenanças locais podem declarar cachorros individuais 'perigosos' e impor regras de posse assim que você for residente, e muitas companhias aéreas recusam ou restringem raças de focinho achatado (braquicefálicas) no porão. Essas são regras de posse e de transporte, não proibições de importação."
+  note:
+    en: "Because airline breed policies and local ordinances can be stricter than Philippine import law, confirm your dog's breed is accepted by your carrier before booking, and check the keeping rules of the local government unit where you will live."
+    fr: "Comme les politiques de race des compagnies et les arrêtés locaux peuvent être plus stricts que la loi philippine d'importation, vérifie que la race de ton chien est acceptée par ton transporteur avant de réserver, et vérifie les règles de détention de la collectivité locale où tu résideras."
+    es: "Como las políticas de raza de las aerolíneas y las ordenanzas locales pueden ser más estrictas que la ley de importación filipina, confirma que tu aerolínea acepta la raza de tu perro antes de reservar, y consulta las normas de tenencia de la administración local donde vayas a vivir."
+    pt: "Como as políticas de raça das companhias aéreas e as ordenanças locais podem ser mais rígidas do que a lei de importação das Filipinas, confirme que a raça do seu cachorro é aceita pela sua companhia aérea antes de reservar, e verifique as regras de posse da unidade de governo local onde você vai morar."
+
+checklist:
+  - en: "SPSIC import clearance applied for online with DA-BAI before departure (valid 60 days)"
+    fr: "Autorisation d'importation SPSIC demandée en ligne auprès du DA-BAI avant le départ (valable 60 jours)"
+    es: "Autorización de importación SPSIC solicitada en línea al DA-BAI antes de la salida (válida 60 días)"
+    pt: "Liberação de importação SPSIC solicitada on-line junto ao DA-BAI antes da partida (válida por 60 dias)"
+  - en: "ISO-compatible microchip; number matches every document"
+    fr: "Puce compatible ISO ; numéro correspondant à chaque document"
+    es: "Microchip compatible con ISO; el número coincide con cada documento"
+    pt: "Microchip compatível com ISO; número condizente com todos os documentos"
+  - en: "Valid rabies vaccination (dog ≥84 days at the shot; initial dose ≥14 days before SPSIC application)"
+    fr: "Vaccination antirabique valide (chien ≥84 jours ; primo-dose ≥14 jours avant la demande de SPSIC)"
+    es: "Vacunación antirrábica válida (perro ≥84 días en la vacuna; dosis inicial ≥14 días antes de la solicitud de la SPSIC)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥84 dias na aplicação; primeira dose ≥14 dias antes do pedido do SPSIC)"
+  - en: "Core vaccinations: distemper, hepatitis, parvovirus, parainfluenza and leptospirosis (≥14 days before SPSIC application)"
+    fr: "Vaccins de base : Carré, hépatite, parvovirose, para-influenza et leptospirose (≥14 jours avant la demande de SPSIC)"
+    es: "Vacunas básicas: moquillo, hepatitis, parvovirus, parainfluenza y leptospirosis (≥14 días antes de la solicitud de la SPSIC)"
+    pt: "Vacinas essenciais: cinomose, hepatite, parvovirose, parainfluenza e leptospirose (≥14 dias antes do pedido do SPSIC)"
+  - en: "Internal and external parasite treatment between 91 and 7 days before the SPSIC application"
+    fr: "Traitement antiparasitaire interne et externe entre 91 et 7 jours avant la demande de SPSIC"
+    es: "Tratamiento antiparasitario interno y externo entre 91 y 7 días antes de la solicitud de la SPSIC"
+    pt: "Tratamento antiparasitário interno e externo entre 91 e 7 dias antes do pedido do SPSIC"
+  - en: "Original EP/IVHC issued by the exporting veterinary authority within 10 days of departure"
+    fr: "EP/IVHC original délivré par l'autorité vétérinaire exportatrice dans les 10 jours avant le départ"
+    es: "EP/IVHC original emitido por la autoridad veterinaria exportadora dentro de los 10 días previos a la salida"
+    pt: "EP/IVHC original emitido pela autoridade veterinária exportadora dentro de 10 dias antes da partida"
+  - en: "Dog at least 120 days old at the SPSIC application; not pregnant"
+    fr: "Chien d'au moins 120 jours à la demande de SPSIC ; non gestant"
+    es: "Perro de al menos 120 días en la solicitud de la SPSIC; no gestante"
+    pt: "Cachorro com pelo menos 120 dias no momento do pedido do SPSIC; não prenhe"
+  - en: "Printed SPSIC and original EP/IVHC ready for the BAI officer; budget the arrival fees (Php)"
+    fr: "SPSIC imprimé et EP/IVHC original prêts pour l'agent du BAI ; prévoir les frais d'arrivée (PHP)"
+    es: "SPSIC impresa y EP/IVHC original listos para el oficial del BAI; presupuesta las tasas de llegada (PHP)"
+    pt: "SPSIC impresso e EP/IVHC original prontos para o agente do BAI; reserve as taxas de chegada (Php)"
+  - en: "IATA-compliant crate; confirm your dog's breed is accepted by the airline"
+    fr: "Caisse conforme IATA ; vérifie que la race de ton chien est acceptée par la compagnie"
+    es: "Jaula conforme a IATA; confirma que la aerolínea acepta la raza de tu perro"
+    pt: "Caixa de transporte conforme a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
+
+sources:
+  - label: { en: "Bureau of Animal Industry (DA-BAI) — Pet (Dog/Cat) import: procedures and requirements", fr: "Bureau de l'industrie animale (DA-BAI) — Importation d'animaux (chien/chat) : procédures et exigences", es: "Bureau of Animal Industry (DA-BAI) — Importación de mascotas (perro/gato): procedimientos y requisitos", pt: "Bureau of Animal Industry (DA-BAI) — importação de animais de estimação (cães/gatos): procedimentos e exigências" }
+    url: "https://www.bai.gov.ph/Stakeholders/PetImport"
+  - label: { en: "DA-BAI — National Veterinary Quarantine Services Division (NVQSD) portal", fr: "DA-BAI — Portail de la Division nationale des services de quarantaine vétérinaire (NVQSD)", es: "DA-BAI — Portal de la National Veterinary Quarantine Services Division (NVQSD)", pt: "DA-BAI — portal do National Veterinary Quarantine Services Division (NVQSD)" }
+    url: "https://nvqsd.bai.gov.ph/"
+  - label: { en: "Bureau of Customs — Pet/Animals & Household Plants (SPSIC and IVHC)", fr: "Bureau des douanes — Animaux de compagnie et plantes domestiques (SPSIC et IVHC)", es: "Bureau of Customs — Mascotas/animales y plantas domésticas (SPSIC e IVHC)", pt: "Bureau of Customs — animais de estimação/animais e plantas domésticas (SPSIC e IVHC)" }
+    url: "https://customs.gov.ph/pet-animals-household-plants/"
+  - label: { en: "Philippine National Trade Repository (PNTR) — BAI SPS Import Clearance", fr: "Répertoire national du commerce des Philippines (PNTR) — Autorisation d'importation SPS du BAI", es: "Philippine National Trade Repository (PNTR) — Autorización de importación SPS del BAI", pt: "Philippine National Trade Repository (PNTR) — liberação de importação SPS do BAI" }
+    url: "https://pntr.gov.ph/bai-4/"
+
+seo:
+  title: { en: "Philippines Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Philippines — Guide", es: "Requisitos de entrada de perros en Filipinas — Guía de viaje", pt: "Entrada de cachorro nas Filipinas — guia de viagem" }
+  metaTitle: { en: "Philippines Dog Entry Requirements (2026)", fr: "Voyager aux Philippines avec ton chien : formalités (2026)", es: "Viajar a Filipinas con tu perro: requisitos de entrada (2026)", pt: "Exigências de entrada de cachorro nas Filipinas (2026)" }
+  metaDesc:
+    en: "Official DA-BAI and Bureau of Customs rules for bringing a dog into the Philippines: advance SPSIC import clearance, ISO microchip. Sourced and dated."
+    fr: "Règles officielles DA-BAI et douane pour faire entrer un chien aux Philippines : autorisation d'importation SPSIC préalable, puce ISO. Sourcé et daté."
+    es: "Normas oficiales del DA-BAI y la Oficina de Aduanas para traer un perro a Filipinas: autorización de importación SPSIC previa, microchip ISO. Con fuentes y fecha."
+    pt: "Regras oficiais do DA-BAI e do Bureau of Customs para levar um cachorro às Filipinas: liberação de importação SPSIC prévia, microchip ISO. Com fontes e data."
+  slug: "philippines"
+  shortDesc:
+    en: "What you need to bring a dog into the Philippines: an advance DA-BAI SPSIC import clearance and an international veterinary health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien aux Philippines : une autorisation d'importation SPSIC préalable du DA-BAI et un certificat vétérinaire international."
+    es: "Lo que necesitas para traer un perro a Filipinas: una autorización de importación SPSIC previa del DA-BAI y un certificado sanitario veterinario internacional."
+    pt: "O que você precisa para levar um cachorro às Filipinas: uma liberação de importação SPSIC prévia do DA-BAI e um atestado de saúde veterinário internacional."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

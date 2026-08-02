@@ -1,0 +1,395 @@
+# Country Entry Guide — Panama (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_pa
+iso2: "PA"
+name: { en: "Panama", fr: "Panama", es: "Panamá", pt: "Panamá" }
+region: { en: "Central America", fr: "Amérique centrale", es: "América Central", pt: "América Central" }
+
+
+regime: non_listed
+exit:
+  authority: MIDA / DECA
+  authorityUrl: https://mida.gob.pa/direcciones/deca/exportacion-de-animales-menores/
+  intro:
+    en: "Panama is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by MIDA (Dirección de Cuarentena Agropecuaria, DECA)."
+    fr: "Le Panama est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le MIDA (Dirección de Cuarentena Agropecuaria, DECA)."
+    es: "Panamá no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el MIDA (Dirección de Cuarentena Agropecuaria, DECA)."
+    pt: "O Panamá é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo MIDA (Dirección de Cuarentena Agropecuaria, DECA)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "MIDA, through DECA, issues the export phytozoosanitary licence (requested online via SITERPA) from a private vet's good-health certificate dated within 72h."
+        fr: "Le MIDA, via la DECA, délivre la licence phytozoosanitaire d'export (demandée en ligne via SITERPA) à partir d'un certificat de bonne santé de moins de 72 h."
+        es: "El MIDA, a través de la DECA, emite la licencia fitozoosanitaria de exportación (solicitada en línea vía SITERPA) a partir de un certificado de buena salud de menos de 72 h."
+        pt: "O MIDA, por meio da DECA, emite a licença fitozoossanitária de exportação (solicitada on-line pelo SITERPA) a partir de um atestado de boa saúde de um veterinário particular emitido há no máximo 72 h."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Panama with your dog", fr: "Voyager au Panama avec ton chien", es: "Viajar a Panamá con tu perro", pt: "Viajar ao Panamá com seu cachorro" }
+  intro:
+    en: >-
+      Panama welcomes dogs, but it runs its own national scheme — not the EU pet-passport system. Two
+      authorities share control: the Ministry of Agricultural Development (MIDA), through its Executive
+      Directorate of Agricultural Quarantine, and the Ministry of Health (MINSA), through its Zoonosis
+      Control Department. Every dog needs an official Export Zoosanitary Certificate from the departure
+      country, apostilled or consularized and no more than 30 days old, a veterinary good-health
+      certificate, and up-to-date vaccinations (rabies plus distemper, hepatitis, leptospirosis and
+      parvovirus). You must notify the authorities 3 to 5 working days before arrival, and Panama operates
+      a home-quarantine system that can require keeping your dog at your residence for up to 40 days. What
+      you must prepare still depends on your dog's departure country and history, because the certificate
+      must confirm it is healthy and correctly vaccinated. This guide explains each step before you book.
+    fr: >-
+      Le Panama accueille les chiens, mais applique son propre dispositif national — pas le système du
+      passeport européen. Deux autorités se partagent le contrôle : le ministère du Développement
+      agricole (MIDA), via sa Direction exécutive de la quarantaine agricole, et le ministère de la Santé
+      (MINSA), via son département de contrôle des zoonoses. Tout chien doit disposer d'un certificat
+      zoosanitaire d'exportation officiel du pays de départ, apostillé ou consularisé et daté de 30 jours
+      au maximum, d'un certificat vétérinaire de bonne santé, et de vaccinations à jour (rage plus maladie
+      de Carré, hépatite, leptospirose et parvovirose). Tu dois prévenir les autorités 3 à 5 jours
+      ouvrables avant l'arrivée, et le Panama applique un système de quarantaine à domicile pouvant imposer
+      de garder le chien à ton résidence jusqu'à 40 jours. Ce qu'il faut préparer dépend aussi du pays de
+      départ et de l'historique du chien, car le certificat doit confirmer qu'il est sain et correctement
+      vacciné. Ce guide détaille chaque étape avant de réserver.
+    es: >-
+      Panamá acoge a los perros, pero aplica su propio esquema nacional — no el sistema del pasaporte
+      europeo para mascotas. Dos autoridades comparten el control: el Ministerio de Desarrollo
+      Agropecuario (MIDA), a través de su Dirección Ejecutiva de Cuarentena Agropecuaria, y el Ministerio
+      de Salud (MINSA), a través de su Departamento de Control de Zoonosis. Todo perro necesita un
+      Certificado Zoosanitario de Exportación oficial del país de salida, apostillado o consularizado y con
+      una antigüedad no mayor a 30 días, un certificado veterinario de buena salud y vacunas al día (rabia
+      más moquillo, hepatitis, leptospirosis y parvovirus). Debes notificar a las autoridades de 3 a 5 días
+      hábiles antes de la llegada, y Panamá aplica un sistema de cuarentena domiciliaria que puede exigir
+      mantener a tu perro en tu residencia hasta 40 días. Lo que debes preparar también depende del país de
+      salida y del historial de tu perro, porque el certificado debe confirmar que está sano y
+      correctamente vacunado. Esta guía explica cada paso antes de que reserves.
+
+    pt: "O Panamá recebe cachorros, mas aplica seu próprio esquema nacional — não o sistema do passaporte europeu para animais. Duas autoridades dividem o controle: o Ministério do Desenvolvimento Agropecuário (MIDA), por meio da sua Direção Executiva de Quarentena Agropecuária, e o Ministério da Saúde (MINSA), por meio do seu Departamento de Controle de Zoonoses. Todo cachorro precisa de um Certificado Zoossanitário de Exportação oficial do país de partida, apostilado ou consularizado e emitido há no máximo 30 dias, de um atestado veterinário de boa saúde e de vacinas em dia (raiva, mais cinomose, hepatite, leptospirose e parvovirose). Você precisa avisar as autoridades de 3 a 5 dias úteis antes da chegada, e o Panamá aplica um sistema de quarentena domiciliar que pode exigir manter o cachorro na sua residência por até 40 dias. O que você tem de preparar também depende do país de partida e do histórico do seu cachorro, porque o certificado precisa confirmar que ele está saudável e corretamente vacinado. Este guia explica cada etapa antes de você reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — legalized certificate, prior notice and a home-quarantine system", fr: "Modéré — certificat légalisé, notification préalable et système de quarantaine à domicile", es: "Moderado — certificado legalizado, notificación previa y un sistema de cuarentena domiciliaria", pt: "Moderada — certificado legalizado, aviso prévio e sistema de quarentena domiciliar" }
+
+prepTime:
+  eu:
+    en: "A few days if the rabies and core vaccines are already valid — but allow time to have the Export Zoosanitary Certificate apostilled or consularized (valid 30 days) and to notify MINSA 3–5 working days before arrival."
+    fr: "Quelques jours si la rage et les vaccins de base sont déjà valides — mais prévois du temps pour faire apostiller ou consulariser le certificat zoosanitaire d'exportation (valable 30 jours) et pour prévenir le MINSA 3 à 5 jours ouvrables avant l'arrivée."
+    es: "Unos días si la rabia y las vacunas de base ya son válidas — pero prevé tiempo para apostillar o consularizar el Certificado Zoosanitario de Exportación (válido 30 días) y para notificar al MINSA de 3 a 5 días hábiles antes de la llegada."
+    pt: "Alguns dias se a vacina antirrábica e as vacinas essenciais já estiverem válidas — mas reserve tempo para apostilar ou consularizar o Certificado Zoossanitário de Exportação (válido por 30 dias) e para avisar o MINSA de 3 a 5 dias úteis antes da chegada."
+  listed:
+    en: "~1 month if a first rabies shot is still needed: it must be given from 3 months of age and at least 30 days before travel, so a first-time-vaccinated dog is about 4 months old at travel."
+    fr: "~1 mois si une première vaccination antirabique reste à faire : elle doit être administrée dès 3 mois d'âge et au moins 30 jours avant le départ ; un chien primo-vacciné a donc environ 4 mois au voyage."
+    es: "~1 mes si aún falta la primera vacuna antirrábica: debe aplicarse a partir de los 3 meses de edad y al menos 30 días antes del viaje, por lo que un perro vacunado por primera vez tiene unos 4 meses al viajar."
+    pt: "~1 mês se ainda faltar a primeira dose antirrábica: ela só pode ser aplicada a partir dos 3 meses de idade e no mínimo 30 dias antes da viagem, então um cachorro vacinado pela primeira vez tem cerca de 4 meses na data da viagem."
+  nonListed:
+    en: "Plan for the home-quarantine step: MINSA can require the dog to be kept at your residence for up to 40 days after arrival, with a B/.130 fee paid in cash."
+    fr: "Prévois l'étape de quarantaine à domicile : le MINSA peut imposer de garder le chien à ton résidence jusqu'à 40 jours après l'arrivée, avec des frais de 130 B/. payés en espèces."
+    es: "Prevé la etapa de cuarentena domiciliaria: el MINSA puede exigir mantener al perro en tu residencia hasta 40 días después de la llegada, con una tarifa de B/.130 pagada en efectivo."
+    pt: "Conte com a etapa de quarentena domiciliar: o MINSA pode exigir que o cachorro fique na sua residência por até 40 dias depois da chegada, com uma taxa de B/.130 paga em dinheiro."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not in Panama's published requirements", fr: "Absente des exigences publiées du Panama", es: "No figura en los requisitos publicados de Panamá", pt: "Não consta nas exigências publicadas do Panamá" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Core vaccinations & parasite treatment", fr: "Vaccins de base & traitement antiparasitaire", es: "Vacunas de base y tratamiento antiparasitario", pt: "Vacinas essenciais e tratamento antiparasitário" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorios", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in published requirements", fr: "Absent des exigences publiées", es: "No figura en los requisitos publicados", pt: "Não consta nas exigências publicadas" }
+    cls: ok
+  - requirement: { en: "Export Zoosanitary Certificate (apostilled/consularized)", fr: "Certificat zoosanitaire d'exportation (apostillé/consularisé)", es: "Certificado Zoosanitario de Exportación (apostillado/consularizado)", pt: "Certificado Zoossanitário de Exportação (apostilado/consularizado)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Advance notification (3–5 working days)", fr: "Notification préalable (3 à 5 jours ouvrables)", es: "Notificación previa (3 a 5 días hábiles)", pt: "Notificação prévia (de 3 a 5 dias úteis)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Home quarantine", fr: "Quarantaine à domicile", es: "Cuarentena domiciliaria", pt: "Quarentena domiciliar" }
+    status: { en: "Up to 40 days at your residence (MINSA system)", fr: "Jusqu'à 40 jours à ton résidence (système MINSA)", es: "Hasta 40 días en tu residencia (sistema del MINSA)", pt: "Até 40 dias na sua residência (sistema do MINSA)" }
+    cls: warn
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Panama (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Panama (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Panamá (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — o Panamá (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Panama", fr: "Pays de destination — Panama", es: "País de destino — Panamá", pt: "País de destino — Panamá" }
+      text:
+        en: "MIDA and MINSA run a certificate-based scheme: an apostilled/consularized Export Zoosanitary Certificate, a good-health certificate, valid rabies and core vaccines and parasite treatment are always required, plus advance notice and a home-quarantine step. There is no EU passport."
+        fr: "Le MIDA et le MINSA appliquent un dispositif fondé sur un certificat : certificat zoosanitaire d'exportation apostillé/consularisé, certificat de bonne santé, rage et vaccins de base valides et traitement antiparasitaire toujours exigés, plus notification préalable et étape de quarantaine à domicile. Il n'y a pas de passeport UE."
+        es: "El MIDA y el MINSA aplican un esquema basado en certificados: un Certificado Zoosanitario de Exportación apostillado/consularizado, un certificado de buena salud, vacunas de rabia y de base válidas y tratamiento antiparasitario son siempre obligatorios, además de la notificación previa y una etapa de cuarentena domiciliaria. No hay pasaporte de la UE."
+        pt: "O MIDA e o MINSA aplicam um esquema baseado em certificados: um Certificado Zoossanitário de Exportação apostilado/consularizado, um atestado de boa saúde, vacina antirrábica e vacinas essenciais válidas e tratamento antiparasitário são sempre obrigatórios, além do aviso prévio e da etapa de quarentena domiciliar. Não existe passaporte europeu."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The Export Zoosanitary Certificate must be issued by the official sanitary authority of the departure country and legalized (apostille or Panamanian consulate). The departure country's official veterinary service is therefore directly involved in your paperwork."
+        fr: "Le certificat zoosanitaire d'exportation doit être établi par l'autorité sanitaire officielle du pays de départ et légalisé (apostille ou consulat panaméen). Le service vétérinaire officiel du pays de départ est donc directement impliqué dans tes documents."
+        es: "El Certificado Zoosanitario de Exportación debe ser expedido por la autoridad sanitaria oficial del país de salida y legalizado (apostilla o consulado panameño). El servicio veterinario oficial del país de salida está, por tanto, directamente implicado en tu documentación."
+        pt: "O Certificado Zoossanitário de Exportação precisa ser emitido pela autoridade sanitária oficial do país de partida e legalizado (apostila ou consulado do Panamá). Ou seja, o serviço veterinário oficial do país de partida participa diretamente da sua documentação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's recent residence and rabies history determine whether its vaccination record is complete and valid for the whole trip. It is the dog's real history that counts — not only the last airport."
+        fr: "La résidence récente et l'historique rabique du chien déterminent si son carnet de vaccination est complet et valide pour tout le voyage. C'est l'historique réel du chien qui compte — pas seulement le dernier aéroport."
+        es: "La residencia reciente y el historial de rabia de tu perro determinan si su cartilla de vacunación está completa y es válida para todo el viaje. Lo que cuenta es el historial real del perro — no solo el último aeropuerto."
+        pt: "Onde o seu cachorro morou recentemente e o histórico de raiva dele determinam se a carteira de vacinação está completa e válida durante toda a viagem. O que conta é o histórico real do cachorro — não só o último aeroporto."
+  note:
+    en: "So read the requirements below as the Panamanian framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre panaméen, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco panameño y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral do Panamá, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not in published requirements", fr: "Absente des exigences publiées", es: "No figura en los requisitos publicados", pt: "Não consta nas exigências publicadas" }
+    when: { en: "MIDA and MINSA import requirements for dogs do not list a microchip. A microchip is nonetheless recommended and is required by most airlines and by many origin-country export certificates.", fr: "Les exigences d'importation du MIDA et du MINSA pour les chiens ne mentionnent pas de puce. La puce reste toutefois recommandée et exigée par la plupart des compagnies et par de nombreux certificats d'export du pays d'origine.", es: "Los requisitos de importación del MIDA y del MINSA para perros no mencionan un microchip. Aun así, el microchip es recomendable y lo exigen la mayoría de las aerolíneas y muchos certificados de exportación del país de origen.", pt: "As exigências de importação de cachorros do MIDA e do MINSA não mencionam microchip. Ainda assim, o microchip é recomendado e é exigido pela maioria das companhias aéreas e por muitos certificados de exportação do país de origem." }
+    exceptions: { en: "Whether a microchip is checked in practice is not published — confirm with your vet and airline.", fr: "L'éventuel contrôle de la puce en pratique n'est pas publié — vérifie auprès de ton vétérinaire et de ta compagnie.", es: "No se ha publicado si en la práctica se comprueba el microchip — confírmalo con tu veterinario y tu aerolínea.", pt: "Não há publicação oficial sobre se o microchip é conferido na prática — confirme com seu veterinário e com a companhia aérea." }
+    ref: { en: "MIDA — Introduction of small animals into Panama; MINSA/MIDA requirements 2026", fr: "MIDA — Introduction d'animaux menores au Panama ; exigences MINSA/MIDA 2026", es: "MIDA — Introducción de animales menores a Panamá; requisitos MINSA/MIDA 2026", pt: "MIDA — Introdução de animais menores no Panamá; exigências MINSA/MIDA 2026" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated against rabies; the vaccine must be applied from 3 months of age and at least 30 days before travel for first-time vaccination, and must remain within its validity period for the whole trip.", fr: "Les chiens doivent être vaccinés contre la rage ; le vaccin doit être appliqué dès 3 mois d'âge et au moins 30 jours avant le voyage pour une primo-vaccination, et rester dans sa période de validité pour tout le voyage.", es: "Los perros deben estar vacunados contra la rabia; la vacuna debe aplicarse a partir de los 3 meses de edad y al menos 30 días antes del viaje en el caso de la primera vacunación, y mantenerse dentro de su período de valide durante todo el viaje.", pt: "Os cachorros precisam estar vacinados contra a raiva; a vacina só pode ser aplicada a partir dos 3 meses de idade e, na primeira vacinação, no mínimo 30 dias antes da viagem, e precisa continuar dentro do prazo de validade durante toda a viagem." }
+    exceptions: { en: "For adult dogs the rabies vaccine must simply be current. The vaccination card must show dates, brand, batch and expiry.", fr: "Pour les chiens adultes, le vaccin antirabique doit simplement être en cours de validité. Le carnet de vaccination doit indiquer les dates, la marque, le lot et la péremption.", es: "Para los perros adultos, la vacuna antirrábica simplemente debe estar vigente. La cartilla de vacunación debe indicar las fechas, la marca, el lote y la caducidad.", pt: "Para cachorros adultos, basta que a vacina antirrábica esteja em dia. A carteira de vacinação precisa indicar datas, marca, lote e validade." }
+    ref: { en: "MIDA — Introduction of small animals (Executive Decree 305 of 3 Oct 2001)", fr: "MIDA — Introduction d'animaux menores (Décret exécutif 305 du 3 oct. 2001)", es: "MIDA — Introducción de animales menores (Decreto Ejecutivo 305 del 3 de octubre de 2001)", pt: "MIDA — Introdução de animais menores (Decreto Ejecutivo 305 de 3 de outubro de 2001)" }
+  - item: { en: "Core vaccinations", fr: "Vaccins de base", es: "Vacunas de base", pt: "Vacinas essenciais" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Before travel dogs must be vaccinated against distemper, hepatitis, leptospirosis and parvovirus (in addition to rabies). The vaccination card must record dates, brand, batch and expiry.", fr: "Avant le voyage, les chiens doivent être vaccinés contre la maladie de Carré, l'hépatite, la leptospirose et la parvovirose (en plus de la rage). Le carnet de vaccination doit consigner dates, marque, lot et péremption.", es: "Antes del viaje, los perros deben estar vacunados contra el moquillo, la hepatitis, la leptospirosis y el parvovirus (además de la rabia). La cartilla de vacunación debe registrar las fechas, la marca, el lote y la caducidad.", pt: "Antes da viagem, os cachorros precisam estar vacinados contra cinomose, hepatite, leptospirose e parvovirose (além da raiva). A carteira de vacinação precisa registrar datas, marca, lote e validade." }
+    exceptions: { en: "The list is fixed by MIDA/MINSA for dogs; confirm the schedule and any boosters with your vet.", fr: "La liste est fixée par le MIDA/MINSA pour les chiens ; confirme le protocole et les rappels éventuels avec ton vétérinaire.", es: "La lista la fijan el MIDA/MINSA para los perros; confirma el calendario y los posibles refuerzos con tu veterinario.", pt: "A lista é definida pelo MIDA/MINSA para cachorros; confirme o calendário e eventuais reforços com seu veterinário." }
+    ref: { en: "MIDA — Requirements to import dogs and cats", fr: "MIDA — Exigences pour importer chiens et chats", es: "MIDA — Requisitos para importar perros y gatos", pt: "MIDA — Exigências para a importação de cães e gatos" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Effectively ≥4 months", fr: "En pratique ≥4 mois", es: "En la práctica ≥4 meses", pt: "Na prática, ≥4 meses" }
+    when: { en: "Rabies vaccination cannot be given before 3 months of age and must be at least 30 days old at travel, so a first-time-vaccinated dog is about 4 months old. The good-health certificate references dogs older than 4 months for a valid rabies vaccine.", fr: "La vaccination antirabique ne peut être administrée avant 3 mois et doit dater d'au moins 30 jours au voyage ; un chien primo-vacciné a donc environ 4 mois. Le certificat de bonne santé vise les chiens de plus de 4 mois pour un vaccin antirabique valide.", es: "La vacunación antirrábica no puede aplicarse antes de los 3 meses de edad y debe tener al menos 30 días de antigüedad al viajar, por lo que un perro vacunado por primera vez tiene unos 4 meses. El certificado de buena salud hace referencia a perros mayores de 4 meses para una vacuna antirrábica válida.", pt: "A vacinação antirrábica não pode ser aplicada antes dos 3 meses de idade e precisa ter no mínimo 30 dias na data da viagem, então um cachorro vacinado pela primeira vez tem cerca de 4 meses. O atestado de boa saúde faz referência a cachorros com mais de 4 meses para uma vacina antirrábica válida." }
+    exceptions: { en: "The vaccination card must state the age or date of birth.", fr: "Le carnet de vaccination doit indiquer l'âge ou la date de naissance.", es: "La cartilla de vacunación debe indicar la edad o la fecha de nacimiento.", pt: "A carteira de vacinação precisa informar a idade ou a data de nascimento." }
+    ref: { en: "MINSA — Information to introduce small animals; Decree 305/2001", fr: "MINSA — Information pour introduire des animaux ; décret 305/2001", es: "MINSA — Información para introducir animales menores; Decreto 305/2001", pt: "MINSA — Informações para introduzir animais menores; Decreto 305/2001" }
+  - item: { en: "Anti-parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must receive internal (endoparasite) and external (ectoparasite) treatments before shipment; these must be indicated on the certificate/vaccination record.", fr: "Le chien doit recevoir des traitements internes (endoparasites) et externes (ectoparasites) avant l'embarquement ; ils doivent être indiqués sur le certificat/carnet de vaccination.", es: "El perro debe recibir tratamientos internos (endoparásitos) y externos (ectoparásitos) antes del embarque; deben indicarse en el certificado/cartilla de vacunación.", pt: "O cachorro precisa receber tratamento interno (endoparasitas) e externo (ectoparasitas) antes do embarque; eles devem constar no certificado/na carteira de vacinação." }
+    exceptions: { en: "No specific tapeworm (Echinococcus) window is published — a general internal/external parasite treatment is required.", fr: "Aucun délai spécifique contre l'échinococcose n'est publié — un traitement antiparasitaire interne/externe général est exigé.", es: "No se publica un plazo específico contra la tenia (Echinococcus) — se exige un tratamiento antiparasitario interno/externo general.", pt: "Não há prazo específico publicado para tênia (Echinococcus) — o que se exige é um tratamento antiparasitário interno/externo geral." }
+    ref: { en: "MIDA — Introduction of small animals into Panama", fr: "MIDA — Introduction d'animaux menores au Panama", es: "MIDA — Introducción de animales menores a Panamá", pt: "MIDA — Introdução de animais menores no Panamá" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Panama's published MIDA/MINSA requirements for dogs do not include a rabies antibody test. A valid rabies vaccination and the required certificates are what is checked.", fr: "Les exigences publiées du MIDA/MINSA pour les chiens ne comprennent pas de titrage antirabique. Ce sont une vaccination antirabique valide et les certificats exigés qui sont contrôlés.", es: "Los requisitos publicados del MIDA/MINSA para los perros no incluyen una prueba de titulación de rabia. Lo que se comprueba es una vacunación antirrábica válida y los certificados exigidos.", pt: "As exigências do MIDA/MINSA publicadas pelo Panamá para cachorros não incluem teste sorológico antirrábico. O que se confere é a vacinação antirrábica válida e os certificados obrigatórios." }
+    ref: { en: "MIDA/MINSA — Requirements to introduce small animals (2026)", fr: "MIDA/MINSA — Exigences pour introduire des animaux menores (2026)", es: "MIDA/MINSA — Requisitos para introducir animales menores (2026)", pt: "MIDA/MINSA — Exigências para introduzir animais menores (2026)" }
+  - item: { en: "Export Zoosanitary Certificate", fr: "Certificat zoosanitaire d'exportation", es: "Certificado Zoosanitario de Exportación", pt: "Certificado Zoossanitário de Exportação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Official 'Export Zoosanitary Certificate' issued by the sanitary authority of the departure country, legalized by apostille (Foreign Ministry) or consularized at a Panamanian diplomatic office, issued no more than 30 days before, confirming the dog was clinically examined and is in good health.", fr: "« Certificat zoosanitaire d'exportation » officiel établi par l'autorité sanitaire du pays de départ, légalisé par apostille (Chancellerie) ou consularisé dans une représentation diplomatique panaméenne, émis 30 jours au maximum avant, confirmant que le chien a été examiné cliniquement et est en bonne santé.", es: "«Certificado Zoosanitario de Exportación» oficial expedido por la autoridad sanitaria del país de salida, legalizado mediante apostilla (Cancillería) o consularizado en una representación diplomática panameña, emitido como máximo 30 días antes, que confirme que el perro fue examinado clínicamente y goza de buena salud.", pt: "«Certificado Zoossanitário de Exportação» oficial emitido pela autoridade sanitária do país de partida, legalizado por apostila (Ministério das Relações Exteriores) ou consularizado em uma repartição diplomática do Panamá, emitido há no máximo 30 dias, confirmando que o cachorro passou por exame clínico e está com boa saúde." }
+    exceptions: { en: "A veterinary good-health certificate from a licensed vet (also max 30 days) is required in addition; the animal must show no fresh or healing wounds.", fr: "Un certificat vétérinaire de bonne santé d'un vétérinaire idoine (également 30 jours max.) est exigé en plus ; l'animal ne doit présenter aucune blessure fraîche ou en cicatrisation.", es: "Además se exige un certificado veterinario de buena salud de un veterinario idóneo (también máximo 30 días); el animal no debe presentar heridas frescas ni en cicatrización.", pt: "Além dele, é obrigatório um atestado veterinário de boa saúde emitido por um veterinário habilitado (também com no máximo 30 dias); o animal não pode apresentar feridas recentes nem em cicatrização." }
+    ref: { en: "MIDA — Introduction of small animals; MINSA/MIDA requirements 2026", fr: "MIDA — Introduction d'animaux menores ; exigences MINSA/MIDA 2026", es: "MIDA — Introducción de animales menores; requisitos MINSA/MIDA 2026", pt: "MIDA — Introdução de animais menores; exigências MINSA/MIDA 2026" }
+  - item: { en: "Advance notification / home-quarantine request", fr: "Notification préalable / demande de quarantaine à domicile", es: "Notificación previa / solicitud de cuarentena domiciliaria", pt: "Notificação prévia / pedido de quarentena domiciliar" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Notify the authorities 3 to 5 working days before arrival by emailing the 'Request to Enter Dogs, Cats and Ferrets' / 'Home Quarantine Request', the Export Zoosanitary Certificate and the vaccination card to cam@minsa.gob.pa.", fr: "Prévenir les autorités 3 à 5 jours ouvrables avant l'arrivée en envoyant la « Demande d'entrée de chiens, chats et furets » / « Demande de quarantaine à domicile », le certificat zoosanitaire d'exportation et le carnet de vaccination à cam@minsa.gob.pa.", es: "Notifica a las autoridades de 3 a 5 días hábiles antes de la llegada enviando la «Solicitud de Ingreso de Perros, Gatos y Hurones» / «Solicitud de Cuarentena Domiciliaria», el Certificado Zoosanitario de Exportación y la cartilla de vacunación a cam@minsa.gob.pa.", pt: "Avise as autoridades de 3 a 5 dias úteis antes da chegada enviando por e-mail o formulário «Pedido de Entrada de Cães, Gatos e Furões» / «Pedido de Quarentena Domiciliar», o Certificado Zoossanitário de Exportação e a carteira de vacinação para cam@minsa.gob.pa." }
+    exceptions: { en: "MINSA states a minimum of 3 working days; MIDA states 3 to 5. The form can be downloaded from www.minsa.gob.pa.", fr: "Le MINSA indique un minimum de 3 jours ouvrables ; le MIDA indique 3 à 5. Le formulaire se télécharge sur www.minsa.gob.pa.", es: "El MINSA indica un mínimo de 3 días hábiles; el MIDA indica de 3 a 5. El formulario puede descargarse en www.minsa.gob.pa.", pt: "O MINSA indica um mínimo de 3 dias úteis; o MIDA indica de 3 a 5. O formulário pode ser baixado em www.minsa.gob.pa." }
+    ref: { en: "MINSA — Requirements to introduce small animals; MIDA — Introduction of small animals", fr: "MINSA — Exigences pour introduire des animaux menores ; MIDA — Introduction d'animaux menores", es: "MINSA — Requisitos para introducir animales menores; MIDA — Introducción de animales menores", pt: "MINSA — Exigências para introduzir animais menores; MIDA — Introdução de animais menores" }
+  - item: { en: "Import licence & veterinary inspection (MIDA)", fr: "Licence d'importation & inspection vétérinaire (MIDA)", es: "Licencia de importación e inspección veterinaria (MIDA)", pt: "Licença de importação e inspeção veterinária (MIDA)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "At entry MIDA charges a Phyto-zoosanitary Import Licence of B/.10.00 (one per species) and a veterinary inspection of B/.15.00 per animal, both paid in cash.", fr: "À l'entrée, le MIDA facture une licence phyto-zoosanitaire d'importation de 10,00 B/. (une par espèce) et une inspection vétérinaire de 15,00 B/. par animal, payées en espèces.", es: "En el ingreso, el MIDA cobra una Licencia Fitozoosanitaria de Importación de B/.10.00 (una por especie) y una inspección veterinaria de B/.15.00 por animal, ambas pagadas en efectivo.", pt: "Na entrada, o MIDA cobra uma Licença Fitozoossanitária de Importação de B/.10,00 (uma por espécie) e uma inspeção veterinária de B/.15,00 por animal, ambas pagas em dinheiro." }
+    exceptions: { en: "Fees are set by Law 23 of 15 July 1997; amounts may change — confirm current tariffs.", fr: "Les frais sont fixés par la loi 23 du 15 juillet 1997 ; les montants peuvent changer — vérifie les tarifs en vigueur.", es: "Las tarifas las fija la Ley 23 del 15 de julio de 1997; los montos pueden cambiar — confirma las tarifas vigentes.", pt: "As taxas são fixadas pela Ley 23 de 15 de julho de 1997; os valores podem mudar — confirme as tarifas em vigor." }
+    ref: { en: "MIDA — Introduction of small animals (Law 23 of 1997)", fr: "MIDA — Introduction d'animaux menores (loi 23 de 1997)", es: "MIDA — Introducción de animales menores (Ley 23 de 1997)", pt: "MIDA — Introdução de animais menores (Ley 23 de 1997)" }
+  - item: { en: "MINSA entry fee / home quarantine", fr: "Frais d'entrée MINSA / quarantaine à domicile", es: "Tarifa de ingreso del MINSA / cuarentena domiciliaria", pt: "Taxa de entrada do MINSA / quarentena domiciliar" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "MINSA charges B/.40.00 in cash for entry of the animal and veterinary inspection, OR B/.130.00 in cash where a strict home quarantine is required.", fr: "Le MINSA facture 40,00 B/. en espèces pour l'entrée de l'animal et l'inspection vétérinaire, OU 130,00 B/. en espèces lorsqu'une quarantaine à domicile stricte est requise.", es: "El MINSA cobra B/.40.00 en efectivo por el ingreso del animal y la inspección veterinaria, O B/.130.00 en efectivo cuando se requiere una cuarentena domiciliaria estricta.", pt: "O MINSA cobra B/.40,00 em dinheiro pela entrada do animal e pela inspeção veterinária, OU B/.130,00 em dinheiro quando é exigida uma quarentena domiciliar estrita." }
+    exceptions: { en: "Fees set by Executive Decree 4 of 5 Feb 2026 and Ministerial Resolution 183 of 20 Aug 2001; amounts may change.", fr: "Frais fixés par le décret exécutif 4 du 5 fév. 2026 et la résolution ministérielle 183 du 20 août 2001 ; les montants peuvent changer.", es: "Tarifas fijadas por el Decreto Ejecutivo 4 del 5 de febrero de 2026 y la Resolución Ministerial 183 del 20 de agosto de 2001; los montos pueden cambiar.", pt: "Taxas fixadas pelo Decreto Ejecutivo 4 de 5 de fevereiro de 2026 e pela Resolución Ministerial 183 de 20 de agosto de 2001; os valores podem mudar." }
+    ref: { en: "MINSA/MIDA requirements 2026 (Executive Decree 4/2026; Ministerial Resolution 183/2001)", fr: "Exigences MINSA/MIDA 2026 (décret exécutif 4/2026 ; résolution ministérielle 183/2001)", es: "Requisitos MINSA/MIDA 2026 (Decreto Ejecutivo 4/2026; Resolución Ministerial 183/2001)", pt: "Exigências MINSA/MIDA 2026 (Decreto Ejecutivo 4/2026; Resolución Ministerial 183/2001)" }
+  - item: { en: "Home quarantine", fr: "Quarantaine à domicile", es: "Cuarentena domiciliaria", pt: "Quarentena domiciliar" }
+    required: { en: "Up to 40 days", fr: "Jusqu'à 40 jours", es: "Hasta 40 días", pt: "Até 40 dias" }
+    when: { en: "Under Panama's home-quarantine system, the owner commits to keeping the pet indoors or within the residence for forty (40) days and to avoiding contact with other dogs, cats or exotic species during that period; a Zoonosis Control vet keeps contact according to the animal's epidemiological risk.", fr: "Dans le système de quarantaine à domicile du Panama, le propriétaire s'engage à garder l'animal à l'intérieur ou dans l'enceinte de la résidence pendant quarante (40) jours et à éviter tout contact avec d'autres chiens, chats ou espèces exotiques durant cette période ; un vétérinaire du contrôle des zoonoses assure un suivi selon le risque épidémiologique.", es: "En el sistema de cuarentena domiciliaria de Panamá, el propietario se compromete a mantener a la mascota dentro de la vivienda o del recinto de la residencia durante cuarenta (40) días y a evitar el contacto con otros perros, gatos o especies exóticas durante ese período; un veterinario de Control de Zoonosis mantiene el seguimiento según el riesgo epidemiológico del animal.", pt: "No sistema de quarentena domiciliar do Panamá, o dono se compromete a manter o animal dentro de casa ou nos limites da residência por quarenta (40) dias e a evitar contato com outros cachorros, gatos ou espécies exóticas nesse período; um veterinário do Controle de Zoonoses mantém contato conforme o risco epidemiológico do animal." }
+    exceptions: { en: "The 40-day home quarantine is the MINSA home-quarantine commitment (B/.130 fee). The precise criteria distinguishing simple entry (B/.40) from strict home quarantine are not fully published — confirm with MINSA before travel.", fr: "La quarantaine à domicile de 40 jours correspond à l'engagement de quarantaine du MINSA (frais 130 B/.). Les critères précis distinguant l'entrée simple (40 B/.) de la quarantaine à domicile stricte ne sont pas entièrement publiés — vérifie auprès du MINSA avant le voyage.", es: "La cuarentena domiciliaria de 40 días corresponde al compromiso de cuarentena del MINSA (tarifa de B/.130). Los criterios precisos que distinguen el ingreso simple (B/.40) de la cuarentena domiciliaria estricta no están totalmente publicados — confírmalo con el MINSA antes de viajar.", pt: "A quarentena domiciliar de 40 dias corresponde ao compromisso de quarentena domiciliar do MINSA (taxa de B/.130). Os critérios exatos que separam a entrada simples (B/.40) da quarentena domiciliar estrita não são totalmente publicados — confirme com o MINSA antes de viajar." }
+    ref: { en: "MINSA — Information to introduce small animals (Decree 1132/1970; Ministerial Resolution 183/2001)", fr: "MINSA — Information pour introduire des animaux (décret 1132/1970 ; résolution ministérielle 183/2001)", es: "MINSA — Información para introducir animales menores (Decreto 1132/1970; Resolución Ministerial 183/2001)", pt: "MINSA — Informações para introduzir animais menores (Decreto 1132/1970; Resolución Ministerial 183/2001)" }
+  - item: { en: "Inspection on arrival", fr: "Inspection à l'arrivée", es: "Inspección a la llegada", pt: "Inspeção na chegada" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "On arrival (Tocumen International Airport, seaports or land borders) the owner presents the original documents and a set of copies at the MIDA Agricultural Quarantine office and the MINSA Zoonosis Control office; staff verify documents and physically inspect the animal.", fr: "À l'arrivée (aéroport international de Tocumen, ports ou frontières terrestres), le propriétaire présente les documents originaux et un jeu de copies au bureau de la quarantaine agricole du MIDA et au bureau du contrôle des zoonoses du MINSA ; le personnel vérifie les documents et inspecte physiquement l'animal.", es: "A la llegada (Aeropuerto Internacional de Tocumen, puertos marítimos o fronteras terrestres) el propietario presenta los documentos originales y un juego de copias en la oficina de Cuarentena Agropecuaria del MIDA y en la oficina de Control de Zoonosis del MINSA; el personal verifica los documentos e inspecciona físicamente al animal.", pt: "Na chegada (Aeroporto Internacional de Tocumen, portos marítimos ou fronteiras terrestres), o dono apresenta os documentos originais e um jogo de cópias no posto de Quarentena Agropecuária do MIDA e no posto de Controle de Zoonoses do MINSA; os funcionários conferem os documentos e inspecionam fisicamente o animal." }
+    exceptions: { en: "If the full requirements are not met, the animal is retained and/or returned by the airline used on arrival (Law 23 art. 39; Decree 1132 of 1970 art. 16).", fr: "Si les exigences ne sont pas toutes satisfaites, l'animal est retenu et/ou renvoyé par la compagnie utilisée à l'arrivée (loi 23 art. 39 ; décret 1132 de 1970 art. 16).", es: "Si no se cumplen todos los requisitos, el animal es retenido y/o devuelto por la aerolínea utilizada a la llegada (Ley 23 art. 39; Decreto 1132 de 1970 art. 16).", pt: "Se todas as exigências não forem cumpridas, o animal é retido e/ou devolvido pela companhia aérea usada na chegada (Ley 23, art. 39; Decreto 1132 de 1970, art. 16)." }
+    ref: { en: "MIDA — Introduction of small animals; MINSA — Information to introduce small animals", fr: "MIDA — Introduction d'animaux menores ; MINSA — Information pour introduire des animaux", es: "MIDA — Introducción de animales menores; MINSA — Información para introducir animales menores", pt: "MIDA — Introdução de animais menores; MINSA — Informações para introduzir animais menores" }
+
+origin:
+  eu:
+    title: { en: "Standard — a personal pet arriving with its owner", fr: "Standard — un animal de compagnie arrivant avec son propriétaire", es: "Estándar — una mascota personal que llega con su propietario", pt: "Padrão — animal de estimação chegando com o dono" }
+    body:
+      en: "A dog needs an official Export Zoosanitary Certificate from the departure country's sanitary authority, apostilled or consularized and no more than 30 days old, plus a licensed vet's good-health certificate. It must be vaccinated against rabies, distemper, hepatitis, leptospirosis and parvovirus, treated for internal and external parasites, and free of fresh or healing wounds. You notify the authorities 3–5 working days ahead by email. On arrival at Tocumen, MIDA and MINSA verify the papers and inspect the dog; fees are paid in cash. Panama's home-quarantine system may then apply."
+      fr: "Un chien a besoin d'un certificat zoosanitaire d'exportation officiel de l'autorité sanitaire du pays de départ, apostillé ou consularisé et daté de 30 jours au maximum, plus d'un certificat de bonne santé d'un vétérinaire idoine. Il doit être vacciné contre la rage, la maladie de Carré, l'hépatite, la leptospirose et la parvovirose, traité contre les parasites internes et externes, et sans blessure fraîche ou en cicatrisation. Tu préviens les autorités 3 à 5 jours ouvrables à l'avance par courriel. À l'arrivée à Tocumen, le MIDA et le MINSA vérifient les papiers et inspectent le chien ; les frais se paient en espèces. Le système de quarantaine à domicile du Panama peut ensuite s'appliquer."
+      es: "Un perro necesita un Certificado Zoosanitario de Exportación oficial de la autoridad sanitaria del país de salida, apostillado o consularizado y con una antigüedad no mayor a 30 días, más un certificado de buena salud de un veterinario idóneo. Debe estar vacunado contra la rabia, el moquillo, la hepatitis, la leptospirosis y el parvovirus, tratado contra parásitos internos y externos, y sin heridas frescas ni en cicatrización. Notificas a las autoridades de 3 a 5 días hábiles antes por correo electrónico. A la llegada a Tocumen, el MIDA y el MINSA verifican los papeles e inspeccionan al perro; las tarifas se pagan en efectivo. Después puede aplicarse el sistema de cuarentena domiciliaria de Panamá."
+      pt: "O cachorro precisa de um Certificado Zoossanitário de Exportação oficial da autoridade sanitária do país de partida, apostilado ou consularizado e com no máximo 30 dias, além de um atestado de boa saúde de um veterinário habilitado. Ele precisa estar vacinado contra raiva, cinomose, hepatite, leptospirose e parvovirose, tratado contra parasitas internos e externos, e sem feridas recentes nem em cicatrização. Você avisa as autoridades por e-mail de 3 a 5 dias úteis antes. Na chegada em Tocumen, o MIDA e o MINSA conferem os papéis e inspecionam o cachorro; as taxas são pagas em dinheiro. Depois disso, o sistema de quarentena domiciliar do Panamá pode ser aplicado."
+    cls: ok
+  listed:
+    title: { en: "Puppies and first-time vaccination", fr: "Chiots et primo-vaccination", es: "Cachorros y primera vacunación", pt: "Filhotes e primeira vacinação" }
+    body:
+      en: "A puppy cannot be vaccinated against rabies before 3 months of age, and a first rabies shot must be given at least 30 days before departure, so a first-time-vaccinated dog is about 4 months old at travel. Panama's good-health certificate references a valid rabies vaccine in dogs older than 4 months. The vaccination card must show the age or date of birth. Adult dogs simply need their rabies and core vaccines to remain within their validity period for the whole trip."
+      fr: "Un chiot ne peut être vacciné contre la rage avant 3 mois, et une première vaccination antirabique doit être administrée au moins 30 jours avant le départ ; un chien primo-vacciné a donc environ 4 mois au voyage. Le certificat de bonne santé panaméen vise un vaccin antirabique valide pour les chiens de plus de 4 mois. Le carnet de vaccination doit indiquer l'âge ou la date de naissance. Les chiens adultes doivent simplement conserver la validité de leurs vaccins rage et de base pour tout le voyage."
+      es: "Un cachorro no puede vacunarse contra la rabia antes de los 3 meses de edad, y una primera vacuna antirrábica debe aplicarse al menos 30 días antes de la salida, por lo que un perro vacunado por primera vez tiene unos 4 meses al viajar. El certificado de buena salud de Panamá hace referencia a una vacuna antirrábica válida en perros mayores de 4 meses. La cartilla de vacunación debe indicar la edad o la fecha de nacimiento. Los perros adultos simplemente necesitan que sus vacunas de rabia y de base sigan dentro de su período de valide durante todo el viaje."
+      pt: "Um filhote não pode ser vacinado contra a raiva antes dos 3 meses de idade, e a primeira dose antirrábica precisa ser aplicada no mínimo 30 dias antes da partida, então um cachorro vacinado pela primeira vez tem cerca de 4 meses na data da viagem. O atestado de boa saúde do Panamá faz referência a uma vacina antirrábica válida em cachorros com mais de 4 meses. A carteira de vacinação precisa indicar a idade ou a data de nascimento. Para cachorros adultos, basta que a vacina antirrábica e as vacinas essenciais continuem dentro do prazo de validade durante toda a viagem."
+    cls: warn
+  nonListed:
+    title: { en: "Home quarantine and non-compliant arrivals", fr: "Quarantaine à domicile et arrivées non conformes", es: "Cuarentena domiciliaria y llegadas no conformes", pt: "Quarentena domiciliar e chegadas fora das regras" }
+    body:
+      en: "Panama operates a home-quarantine system through MINSA. When home quarantine applies, the owner signs a commitment to keep the dog at the residence for forty (40) days and to prevent contact with other dogs, cats or exotic species, with a B/.130 fee paid in cash on arrival; a Zoonosis Control vet monitors the animal. If a dog arrives without the full documents, an invalid or expired certificate, or otherwise fails the requirements, it is retained and/or returned to the country of origin by the airline used on arrival — at the owner's expense."
+      fr: "Le Panama applique un système de quarantaine à domicile via le MINSA. Lorsque la quarantaine à domicile s'applique, le propriétaire signe un engagement à garder le chien à la résidence pendant quarante (40) jours et à empêcher tout contact avec d'autres chiens, chats ou espèces exotiques, avec des frais de 130 B/. payés en espèces à l'arrivée ; un vétérinaire du contrôle des zoonoses surveille l'animal. Si un chien arrive sans les documents complets, avec un certificat invalide ou expiré, ou ne satisfait pas aux exigences, il est retenu et/ou renvoyé vers le pays d'origine par la compagnie utilisée à l'arrivée — aux frais du propriétaire."
+      es: "Panamá aplica un sistema de cuarentena domiciliaria a través del MINSA. Cuando aplica la cuarentena domiciliaria, el propietario firma un compromiso de mantener al perro en la residencia durante cuarenta (40) días y de impedir el contacto con otros perros, gatos o especies exóticas, con una tarifa de B/.130 pagada en efectivo a la llegada; un veterinario de Control de Zoonosis supervisa al animal. Si un perro llega sin los documentos completos, con un certificado inválido o vencido, o incumple los requisitos de algún otro modo, es retenido y/o devuelto al país de origen por la aerolínea utilizada a la llegada — a cargo del propietario."
+      pt: "O Panamá aplica um sistema de quarentena domiciliar por meio do MINSA. Quando a quarentena domiciliar se aplica, o dono assina um compromisso de manter o cachorro na residência por quarenta (40) dias e de impedir o contato com outros cachorros, gatos ou espécies exóticas, com uma taxa de B/.130 paga em dinheiro na chegada; um veterinário do Controle de Zoonoses acompanha o animal. Se o cachorro chegar sem a documentação completa, com um certificado inválido ou vencido, ou deixar de cumprir as exigências de outra forma, ele é retido e/ou devolvido ao país de origem pela companhia aérea usada na chegada — às custas do dono."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Panama depends on whether its documents are complete and legalized."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Panama dépend de la complétude et de la légalisation de ses documents."
+    es: "Lo que ocurre cuando tu perro llega a Panamá depende de si sus documentos están completos y legalizados."
+    pt: "O que acontece quando seu cachorro chega ao Panamá depende de a documentação dele estar completa e legalizada."
+  points:
+    - en: "Most pets arrive at Tocumen International Airport (Panama City); requirements also apply at seaports and land borders."
+      fr: "La plupart des animaux arrivent à l'aéroport international de Tocumen (ville de Panama) ; les exigences s'appliquent aussi aux ports et aux frontières terrestres."
+      es: "La mayoría de las mascotas llegan al Aeropuerto Internacional de Tocumen (Ciudad de Panamá); los requisitos también se aplican en los puertos marítimos y las fronteras terrestres."
+      pt: "A maioria dos animais chega pelo Aeroporto Internacional de Tocumen (Cidade do Panamá); as exigências valem também em portos marítimos e fronteiras terrestres."
+    - en: "Present the original documents and a set of copies at both the MIDA Agricultural Quarantine office and the MINSA Zoonosis Control office."
+      fr: "Présente les documents originaux et un jeu de copies au bureau de la quarantaine agricole du MIDA et au bureau du contrôle des zoonoses du MINSA."
+      es: "Presenta los documentos originales y un juego de copias tanto en la oficina de Cuarentena Agropecuaria del MIDA como en la oficina de Control de Zoonosis del MINSA."
+      pt: "Apresente os documentos originais e um jogo de cópias tanto no posto de Quarentena Agropecuária do MIDA quanto no posto de Controle de Zoonoses do MINSA."
+    - en: "Staff carry out a documentary check and a physical examination of the dog; MIDA and MINSA fees are paid in cash."
+      fr: "Le personnel effectue un contrôle documentaire et un examen physique du chien ; les frais du MIDA et du MINSA se paient en espèces."
+      es: "El personal realiza una revisión documental y un examen físico del perro; las tarifas del MIDA y del MINSA se pagan en efectivo."
+      pt: "Os funcionários fazem a conferência documental e um exame físico do cachorro; as taxas do MIDA e do MINSA são pagas em dinheiro."
+    - en: "The Export Zoosanitary Certificate must be apostilled or consularized and no more than 30 days old, or entry can be refused."
+      fr: "Le certificat zoosanitaire d'exportation doit être apostillé ou consularisé et daté de 30 jours au maximum, sous peine de refus d'entrée."
+      es: "El Certificado Zoosanitario de Exportación debe estar apostillado o consularizado y con una antigüedad no mayor a 30 días, o puede denegarse la entrada."
+      pt: "O Certificado Zoossanitário de Exportação precisa estar apostilado ou consularizado e ter no máximo 30 dias, senão a entrada pode ser recusada."
+    - en: "Under the home-quarantine system the dog may have to be kept at your residence for up to 40 days, avoiding contact with other animals."
+      fr: "Dans le cadre du système de quarantaine à domicile, le chien peut devoir être gardé à ton résidence jusqu'à 40 jours, en évitant tout contact avec d'autres animaux."
+      es: "En el marco del sistema de cuarentena domiciliaria, el perro puede tener que mantenerse en tu residencia hasta 40 días, evitando el contacto con otros animales."
+      pt: "No sistema de quarentena domiciliar, o cachorro pode ter de ficar na sua residência por até 40 dias, sem contato com outros animais."
+    - en: "If the requirements are not met, the animal is retained and/or returned to the country of origin by the airline, at the owner's expense."
+      fr: "Si les exigences ne sont pas satisfaites, l'animal est retenu et/ou renvoyé vers le pays d'origine par la compagnie, aux frais du propriétaire."
+      es: "Si no se cumplen los requisitos, el animal es retenido y/o devuelto al país de origen por la aerolínea, a cargo del propietario."
+      pt: "Se as exigências não forem cumpridas, o animal é retido e/ou devolvido ao país de origem pela companhia aérea, às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Panama's published MIDA/MINSA import requirements do not distinguish by breed and do not list any banned breed for import. The keeping of certain dogs is governed by national animal-protection law — Law 70 of 2012 (protection of domestic animals), as modified by Law 133 of 2020 — which addresses responsible ownership rather than importation."
+    fr: "Les exigences d'importation publiées du MIDA/MINSA ne font aucune distinction par race et ne dressent aucune liste de race interdite à l'importation. La détention de certains chiens est régie par la loi nationale de protection animale — la loi 70 de 2012 (protection des animaux domestiques), modifiée par la loi 133 de 2020 — qui porte sur la détention responsable plutôt que sur l'importation."
+    es: "Los requisitos de importación publicados del MIDA/MINSA no distinguen por raza ni incluyen ninguna raza prohibida para la importación. La tenencia de ciertos perros se rige por la ley nacional de protección animal — la Ley 70 de 2012 (protección de los animales domésticos), modificada por la Ley 133 de 2020 —, que aborda la tenencia responsable más que la importación."
+    pt: "As exigências de importação do MIDA/MINSA publicadas pelo Panamá não fazem distinção por raça e não listam nenhuma raça proibida de importação. A posse de determinados cachorros é regida pela lei nacional de proteção animal — a Ley 70 de 2012 (proteção dos animais domésticos), modificada pela Ley 133 de 2020 —, que trata da posse responsável, e não da importação."
+  cat1:
+    en: "No dog breed is listed as prohibited from entering Panama in the MIDA and MINSA import requirements. Any dog meeting the certificate, vaccination, parasite-treatment and quarantine requirements may in principle be imported regardless of breed."
+    fr: "Aucune race de chien n'est mentionnée comme interdite d'entrée au Panama dans les exigences d'importation du MIDA et du MINSA. Tout chien répondant aux exigences de certificat, de vaccination, de traitement antiparasitaire et de quarantaine peut en principe être importé, quelle que soit sa race."
+    es: "Ninguna raza de perro figura como prohibida para entrar en Panamá en los requisitos de importación del MIDA y del MINSA. Todo perro que cumpla los requisitos de certificado, vacunación, tratamiento antiparasitario y cuarentena puede en principio importarse sin importar la raza."
+    pt: "Nenhuma raça de cachorro consta como proibida de entrar no Panamá nas exigências de importação do MIDA e do MINSA. Qualquer cachorro que cumpra as exigências de certificado, vacinação, tratamento antiparasitário e quarentena pode, em princípio, ser importado, seja qual for a raça."
+  cat2:
+    en: "Separately, Panama regulates dogs considered 'potentially dangerous' by racial typology, size or bite strength through its animal-protection legislation (Law 70 of 2012 as modified by Law 133 of 2020), which can impose responsible-ownership conditions on such dogs. The exact enumerated list of breeds and the obligations should be confirmed in the current law and its regulations before travel."
+    fr: "Par ailleurs, le Panama réglemente les chiens considérés « potentiellement dangereux » par typologie raciale, taille ou puissance de la mâchoire, via sa législation de protection animale (loi 70 de 2012 modifiée par la loi 133 de 2020), qui peut imposer des conditions de détention responsable à ces chiens. La liste exacte des races énumérées et les obligations doivent être vérifiées dans la loi en vigueur et ses règlements avant de voyager."
+    es: "Por otra parte, Panamá regula los perros considerados «potencialmente peligrosos» por tipología racial, tamaño o fuerza de mordida a través de su legislación de protección animal (Ley 70 de 2012 modificada por la Ley 133 de 2020), que puede imponer condiciones de tenencia responsable a esos perros. La lista exacta de razas enumeradas y las obligaciones deben confirmarse en la ley vigente y su reglamentación antes de viajar."
+    pt: "Em outra frente, o Panamá regula os cachorros considerados «potencialmente perigosos» por tipologia racial, porte ou força da mordida por meio da sua legislação de proteção animal (Ley 70 de 2012, modificada pela Ley 133 de 2020), que pode impor condições de posse responsável a esses cachorros. A lista exata de raças enumeradas e as obrigações devem ser confirmadas na lei em vigor e no seu regulamento antes da viagem."
+  note:
+    en: "Municipalities, homeowners' associations and airlines may set their own rules for certain breeds. Confirm current national and local rules, and your airline's breed policy, before booking."
+    fr: "Les municipalités, les copropriétés et les compagnies aériennes peuvent fixer leurs propres règles pour certaines races. Vérifie les règles nationales et locales en vigueur, ainsi que la politique de race de ta compagnie, avant de réserver."
+    es: "Los municipios, las juntas de propietarios y las aerolíneas pueden fijar sus propias normas para ciertas razas. Confirma las normas nacionales y locales vigentes, así como la política de razas de tu aerolínea, antes de reservar."
+    pt: "Municípios, condomínios e companhias aéreas podem ter suas próprias regras para determinadas raças. Confirme as regras nacionais e locais em vigor, e a política de raças da sua companhia aérea, antes de reservar."
+
+checklist:
+  - en: "Export Zoosanitary Certificate from the departure country's sanitary authority, apostilled or consularized, issued within 30 days"
+    fr: "Certificat zoosanitaire d'exportation de l'autorité sanitaire du pays de départ, apostillé ou consularisé, émis dans les 30 jours"
+    es: "Certificado Zoosanitario de Exportación de la autoridad sanitaria del país de salida, apostillado o consularizado, emitido dentro de los 30 días"
+    pt: "Certificado Zoossanitário de Exportação da autoridade sanitária do país de partida, apostilado ou consularizado, emitido há no máximo 30 dias"
+  - en: "Veterinary good-health certificate from a licensed vet (also within 30 days), no fresh or healing wounds"
+    fr: "Certificat vétérinaire de bonne santé d'un vétérinaire idoine (également dans les 30 jours), sans blessure fraîche ou en cicatrisation"
+    es: "Certificado veterinario de buena salud de un veterinario idóneo (también dentro de los 30 días), sin heridas frescas ni en cicatrización"
+    pt: "Atestado veterinário de boa saúde de um veterinário habilitado (também com no máximo 30 dias), sem feridas recentes nem em cicatrização"
+  - en: "Rabies vaccination valid (from 3 months of age, at least 30 days before travel for first-time vaccination)"
+    fr: "Vaccination antirabique valide (dès 3 mois, au moins 30 jours avant le voyage pour une primo-vaccination)"
+    es: "Vacunación antirrábica válida (a partir de los 3 meses, al menos 30 días antes del viaje en el caso de la primera vacunación)"
+    pt: "Vacinação antirrábica válida (a partir dos 3 meses de idade, no mínimo 30 dias antes da viagem na primeira vacinação)"
+  - en: "Core vaccines up to date: distemper, hepatitis, leptospirosis, parvovirus — with the vaccination card (dates, brand, batch, expiry)"
+    fr: "Vaccins de base à jour : maladie de Carré, hépatite, leptospirose, parvovirose — avec le carnet de vaccination (dates, marque, lot, péremption)"
+    es: "Vacunas de base al día: moquillo, hepatitis, leptospirosis, parvovirus — con la cartilla de vacunación (fechas, marca, lote, caducidad)"
+    pt: "Vacinas essenciais em dia: cinomose, hepatite, leptospirose, parvovirose — com a carteira de vacinação (datas, marca, lote, validade)"
+  - en: "Internal and external parasite treatment done before shipment and noted on the record"
+    fr: "Traitement antiparasitaire interne et externe effectué avant l'embarquement et consigné"
+    es: "Tratamiento antiparasitario interno y externo realizado antes del embarque y anotado en el registro"
+    pt: "Tratamento antiparasitário interno e externo feito antes do embarque e anotado na carteira"
+  - en: "Advance notification 3–5 working days ahead by email to cam@minsa.gob.pa with the certificate and vaccination card"
+    fr: "Notification préalable 3 à 5 jours ouvrables avant par courriel à cam@minsa.gob.pa avec le certificat et le carnet de vaccination"
+    es: "Notificación previa de 3 a 5 días hábiles antes por correo electrónico a cam@minsa.gob.pa con el certificado y la cartilla de vacunación"
+    pt: "Notificação prévia de 3 a 5 dias úteis por e-mail para cam@minsa.gob.pa com o certificado e a carteira de vacinação"
+  - en: "Home Quarantine Request form completed (downloaded from www.minsa.gob.pa)"
+    fr: "Formulaire de demande de quarantaine à domicile complété (téléchargé sur www.minsa.gob.pa)"
+    es: "Formulario de Solicitud de Cuarentena Domiciliaria cumplimentado (descargado de www.minsa.gob.pa)"
+    pt: "Formulário de Pedido de Quarentena Domiciliar preenchido (baixado em www.minsa.gob.pa)"
+  - en: "Cash for MIDA fees (B/.10 licence + B/.15 inspection) and MINSA fees (B/.40 entry or B/.130 home quarantine)"
+    fr: "Espèces pour les frais MIDA (10 B/. licence + 15 B/. inspection) et MINSA (40 B/. entrée ou 130 B/. quarantaine à domicile)"
+    es: "Efectivo para las tarifas del MIDA (B/.10 licencia + B/.15 inspección) y del MINSA (B/.40 ingreso o B/.130 cuarentena domiciliaria)"
+    pt: "Dinheiro em espécie para as taxas do MIDA (B/.10 de licença + B/.15 de inspeção) e do MINSA (B/.40 de entrada ou B/.130 de quarentena domiciliar)"
+  - en: "Original documents plus a set of copies carried with you"
+    fr: "Documents originaux plus un jeu de copies transportés avec toi"
+    es: "Documentos originales más un juego de copias que lleves contigo"
+    pt: "Documentos originais mais um jogo de cópias levados com você"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation compagnie et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "MIDA — Introduction of small animals into the Republic of Panama", fr: "MIDA — Introduction d'animaux menores en République du Panama", es: "MIDA — Introducción de animales menores a la República de Panamá", pt: "MIDA — Introdução de animais menores na República do Panamá" }
+    url: "https://mida.gob.pa/direcciones/deca/introduccion-de-animales-menores-a-la-republica-de-panama/"
+  - label: { en: "MIDA — Requirements to import dogs and cats", fr: "MIDA — Exigences pour l'importation de chiens et chats", es: "MIDA — Requisitos para la importación de perros y gatos", pt: "MIDA — Exigências para a importação de cães e gatos" }
+    url: "https://mida.gob.pa/requisitos-para-la-importacion-de-perros-y-gatos/"
+  - label: { en: "MIDA / MINSA — Requirements for the introduction of small animals (Tocumen, updated 2026, PDF)", fr: "MIDA / MINSA — Exigences pour l'introduction d'animaux menores (Tocumen, mis à jour 2026, PDF)", es: "MIDA / MINSA — Requisitos para la introducción de animales menores (Tocumen, actualizado 2026, PDF)", pt: "MIDA / MINSA — Exigências para a introdução de animais menores (Tocumen, atualizado em 2026, PDF)" }
+    url: "https://www.minsa.gob.pa/sites/default/files/general/requisitos_mida_minsa_2026_nuevo.pdf"
+  - label: { en: "MINSA — Requirements to introduce small animals / home quarantine request", fr: "MINSA — Exigences pour introduire des animaux menores / demande de quarantaine à domicile", es: "MINSA — Requisitos para introducir animales menores / solicitud de cuarentena domiciliaria", pt: "MINSA — Exigências para introduzir animais menores / pedido de quarentena domiciliar" }
+    url: "https://www.minsa.gob.pa/tramites-y-formularios/requerimientos-para-la-introduccion-de-pequenas-especies-al-pais-y-para-mascotas-que"
+  - label: { en: "MINSA — Information to introduce small animals in the country (home quarantine, 40 days, PDF)", fr: "MINSA — Information pour introduire des animaux dans le pays (quarantaine à domicile, 40 jours, PDF)", es: "MINSA — Información para introducir animales menores en el país (cuarentena domiciliaria, 40 días, PDF)", pt: "MINSA — Informações para introduzir animais menores no país (quarentena domiciliar, 40 dias, PDF)" }
+    url: "https://www.minsa.gob.pa/sites/default/files/general/information_to_introduce_small_animals_in_the_ountry.pdf"
+  - label: { en: "National Assembly — Law 133 of 2020 (modifies Law 70 of 2012 on protection of domestic animals)", fr: "Assemblée nationale — Loi 133 de 2020 (modifie la loi 70 de 2012 sur la protection des animaux domestiques)", es: "Asamblea Nacional — Ley 133 de 2020 (modifica la Ley 70 de 2012 sobre protección de los animales domésticos)", pt: "Asamblea Nacional — Ley 133 de 2020 (modifica a Ley 70 de 2012 sobre proteção dos animais domésticos)" }
+    url: "https://s3-legispan.asamblea.gob.pa/legispan/NORMAS/2020/2020/LEY/Administrador%20Legispan_28985-C_2020_3_20_ASAMBLEA%20NACIONAL_133.pdf"
+
+seo:
+  title: { en: "Panama Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Panama — Guide", es: "Requisitos de entrada de perros en Panamá — Guía de viaje", pt: "Panamá: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Panama With Your Dog: Entry Requirements (2026)", fr: "Voyager au Panama avec ton chien : formalités (2026)", es: "Viajar a Panamá con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Panamá com seu cachorro: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official MIDA and MINSA rules for bringing a dog into Panama — apostilled export zoosanitary certificate, rabies and core vaccines. Sourced and dated."
+    fr: "Règles officielles MIDA et MINSA pour faire entrer un chien au Panama — certificat zoosanitaire d'exportation apostillé, rage et vaccins de base. Sourcé et daté."
+    es: "Normas oficiales del MIDA y el MINSA para traer un perro a Panamá — certificado zoosanitario de exportación apostillado. Con fuentes y fecha."
+    pt: "Regras oficiais do MIDA e MINSA para levar um cachorro ao Panamá: certificado zoossanitário de exportação apostilado, raiva e vacinas essenciais. Com fonte e data."
+  slug: "panama"
+  shortDesc:
+    en: "What you need to bring a dog into Panama, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien au Panama, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Panamá, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro ao Panamá, conforme o país de onde você vem."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,290 @@
+id: airline_jetblue
+mono: B6
+name: JetBlue
+titleH1:
+  en: Flying with a dog on JetBlue
+  fr: Voyager avec un chien sur JetBlue
+  es: Volar con un perro en JetBlue
+  pt: "Viajar com um cachorro pela JetBlue"
+metaDesc:
+  en: "JetBlue pet policy: small cabin pets only (JetPaws), no hold or cargo, fees, service dogs and official sources."
+  fr: "Politique animaux JetBlue : petits animaux en cabine seulement (JetPaws), pas de soute ni fret, tarifs, chiens d'assistance et sources officielles."
+  es: "Política de mascotas de JetBlue: solo mascotas pequeñas en cabina (JetPaws), sin bodega ni carga, tarifas, perros de servicio y fuentes oficiales."
+  pt: "Política de animais da JetBlue: somente animais pequenos na cabine (JetPaws), sem porão nem carga, tarifas, cães de serviço e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: United States · JFK
+      fr: États-Unis · JFK
+      es: Estados Unidos · JFK
+      pt: "Estados Unidos · JFK"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Only small cats & dogs in the cabin (JetPaws, $150 each way) — no large dogs and no hold or cargo option.
+  fr: Seulement petits chats et chiens en cabine (JetPaws, 150 $/trajet) — pas de grands chiens ni d'option soute/fret.
+  es: Solo perros y gatos pequeños en cabina (JetPaws, 150 $/trayecto); sin perros grandes ni opción de bodega o carga.
+  pt: "Somente gatos e cachorros pequenos na cabine (JetPaws, $150 por trajeto) — sem cachorros grandes e sem opção de porão ou carga."
+ladder:
+  - flex: 24
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: under-seat
+      fr: sous le siège
+      es: bajo el asiento
+      pt: "sob o assento"
+  - flex: 76
+    color: "#8a94a3"
+    label:
+      en: Hold / cargo
+      fr: Soute / fret
+      es: Bodega / carga
+      pt: "Porão / carga"
+    sub:
+      en: not carried
+      fr: non transporté
+      es: no se transporta
+      pt: "não transportado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small dogs & cats only in an FAA carrier under the seat (max 43 × 32 × 21 cm); max 2 pets/traveler, 6/flight. Not in Mint.
+      fr: Petits chiens et chats uniquement dans un sac FAA sous le siège (max 43 × 32 × 21 cm) ; max 2 animaux/voyageur, 6/vol. Pas en Mint.
+      es: Solo perros y gatos pequeños en una jaula homologada por la FAA bajo el asiento (máx. 43 × 32 × 21 cm); máx. 2 mascotas/viajero, 6/vuelo. No en Mint.
+      pt: "Somente cachorros e gatos pequenos em uma bolsa de transporte homologada pela FAA sob o assento (máx. 43 × 32 × 21 cm); máx. 2 animais por viajante, 6 por voo. Não disponível na classe Mint."
+    fee:
+      en: $150 / way
+      fr: 150 $ / trajet
+      es: 150 $ / trayecto
+      pt: "US$ 150 / trajeto"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: JetBlue doesn't transport pets in the hold.
+      fr: JetBlue ne transporte pas d'animaux en soute.
+      es: JetBlue no transporta mascotas en bodega.
+      pt: "A JetBlue não transporta animais no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: No live-pet cargo service — cabin only.
+      fr: Aucun service fret animalier — cabine uniquement.
+      es: Sin servicio de carga de mascotas vivas; solo cabina.
+      pt: "Sem serviço de carga de animais vivos — somente cabine."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin (small pet)
+        fr: Cabine (petit animal)
+        es: Cabina (mascota pequeña)
+        pt: "Cabine (animal pequeno)"
+      value:
+        en: $150 each way
+        fr: 150 $ / trajet
+        es: 150 $ por trayecto
+        pt: "US$ 150 por trajeto"
+    - label:
+        en: Hold / cargo
+        fr: Soute / fret
+        es: Bodega / carga
+        pt: "Porão / carga"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD each way. The pet + carrier counts as your carry-on/personal item.
+    fr: USD par trajet. L'animal + le sac compte comme ton bagage à main/article personnel.
+    es: USD por trayecto. La mascota + jaula cuenta como tu equipaje de mano/artículo personal.
+    pt: "USD por trajeto. O animal + a bolsa de transporte conta como sua bagagem de mão/item pessoal."
+restrictions:
+  - icon: 🐾
+    title:
+      en: Cabin only, small pets
+      fr: Cabine seule, petits animaux
+      es: Solo cabina, mascotas pequeñas
+      pt: "Somente cabine, animais pequenos"
+    pills:
+      - cls: no
+        label:
+          en: No large dogs
+          fr: Pas de grands chiens
+          es: Sin perros grandes
+          pt: "Sem cachorros grandes"
+      - cls: no
+        label:
+          en: No hold/cargo
+          fr: Pas de soute/fret
+          es: Sin bodega/carga
+          pt: "Sem porão/carga"
+    note:
+      en: Only small dogs and cats fit under the seat — no large dogs, and JetBlue offers no hold or cargo option.
+      fr: Seuls les petits chiens et chats tiennent sous le siège — pas de grands chiens, et JetBlue ne propose ni soute ni fret.
+      es: Solo los perros y gatos pequeños caben bajo el asiento; sin perros grandes, y JetBlue no ofrece opción de bodega ni carga.
+      pt: "Somente cachorros e gatos pequenos cabem sob o assento — sem cachorros grandes, e a JetBlue não oferece opção de porão ou carga."
+  - icon: 📄
+    title:
+      en: Who & where
+      fr: Qui & où
+      es: Quién y dónde
+      pt: "Quem e onde"
+    pills:
+      - cls: warn
+        label:
+          en: No unaccompanied minors
+          fr: Pas de mineurs seuls
+          es: Sin menores no acompañados
+          pt: "Sem menores desacompanhados"
+    note:
+      en: Unaccompanied minors can't travel with a pet. Pets aren't accepted on interline/codeshare bookings; each country's import rules apply.
+      fr: Les mineurs non accompagnés ne peuvent pas voyager avec un animal. Les animaux ne sont pas acceptés sur les réservations interlignes/codeshare ; les règles d'importation de chaque pays s'appliquent.
+      es: Los menores no acompañados no pueden viajar con una mascota. Las mascotas no se aceptan en reservas interlínea/código compartido; se aplican las normas de importación de cada país.
+      pt: "Menores desacompanhados não podem viajar com um animal. Animais não são aceitos em reservas interline/codeshare; aplicam-se as regras de importação de cada país."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Cabin-only program
+        fr: Programme cabine seule
+        es: Programa solo de cabina
+        pt: "Programa somente cabine"
+  note:
+    en: JetBlue carries pets in the cabin only, so no hold-temperature policy applies.
+    fr: "JetBlue ne transporte les animaux qu'en cabine : aucune règle de température de soute ne s'applique."
+    es: "JetBlue solo transporta mascotas en cabina: no se aplica ninguna norma de temperatura en bodega."
+    pt: "A JetBlue transporta animais somente na cabine, portanto nenhuma política de temperatura no porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs travel free (not subject to pet fees).
+      fr: Les chiens d'assistance voyagent gratuitement (hors frais animaux).
+      es: Los perros de servicio viajan gratis (sin tarifas de mascota).
+      pt: "Os cães de serviço viajam gratuitamente (não estão sujeitos às tarifas para animais)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: US DOT Service Animal form via JetBlue's portal, notify ≤ 48 h ahead (or complete at the airport within 48 h).
+      fr: Formulaire DOT d'animal d'assistance via le portail JetBlue, prévenir ≤ 48 h à l'avance (ou remplir à l'aéroport sous 48 h).
+      es: Formulario DOT de animal de servicio de EE. UU. a través del portal de JetBlue; avisa ≤ 48 h antes (o complétalo en el aeropuerto dentro de las 48 h).
+      pt: "Formulário DOT de Animal de Serviço dos EUA pelo portal da JetBlue, avise com ≤ 48 h de antecedência (ou preencha no aeroporto em até 48 h)."
+goodToKnow:
+  - icon: 🧳
+    label:
+      en: Carry-on counts
+      fr: Compte comme bagage
+      es: Cuenta como equipaje de mano
+      pt: "Conta como bagagem de mão"
+    value:
+      en: The pet + carrier counts as your one carry-on/personal item and must fit under the seat.
+      fr: L'animal + le sac compte comme ton unique bagage à main/article personnel et doit tenir sous le siège.
+      es: La mascota + jaula cuenta como tu único equipaje de mano/artículo personal y debe caber bajo el asiento.
+      pt: "O animal + a bolsa de transporte conta como sua única bagagem de mão/item pessoal e deve caber sob o assento."
+  - icon: 🎫
+    label:
+      en: Pay with points
+      fr: Payer en points
+      es: Pagar con puntos
+      pt: "Pague com pontos"
+    value:
+      en: The pet fee can be paid with TrueBlue points via Manage Trips.
+      fr: Le tarif animal peut être payé avec des points TrueBlue via Manage Trips.
+      es: La tarifa de mascota se puede pagar con puntos TrueBlue a través de Manage Trips.
+      pt: "A tarifa para animais pode ser paga com pontos TrueBlue pelo Manage Trips."
+  - icon: 🚫
+    label:
+      en: Seat limits
+      fr: Sièges limités
+      es: Asientos limitados
+      pt: "Limites de assento"
+    value:
+      en: No emergency-exit, bulkhead or Mint seats; the pet stays zipped in its carrier at all times.
+      fr: Pas de sièges issue de secours, cloison ni Mint ; l'animal reste dans son sac fermé en permanence.
+      es: Sin asientos de salida de emergencia, mamparo ni Mint; la mascota permanece en todo momento dentro de su jaula cerrada.
+      pt: "Sem assentos de saída de emergência, de anteparo ou da classe Mint; o animal permanece o tempo todo com a bolsa de transporte fechada."
+book:
+  host: jetblue.com
+  url: https://www.jetblue.com/
+sources:
+  en: 3 JetBlue sources · last verified 11 July 2026
+  fr: 3 sources JetBlue · dernière vérification 11 juillet 2026
+  es: 3 fuentes de JetBlue · última verificación 11 de julio de 2026
+  pt: "3 fontes da JetBlue · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

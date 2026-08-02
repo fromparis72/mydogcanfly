@@ -1,0 +1,223 @@
+id: airline_icelandair
+mono: FI
+name: Icelandair
+titleH1:
+  en: Flying with a dog on Icelandair
+  fr: Voyager avec un chien sur Icelandair
+  es: Volar con un perro en Icelandair
+  pt: "Viajar com um cachorro pela Icelandair"
+metaDesc:
+  en: "Icelandair pet policy: no pets in the cabin or hold on international flights since 1 Nov 2024 (fleet change);…"
+  fr: "Politique animaux Icelandair : plus d'animaux en cabine ni en soute sur les vols internationaux depuis le 1er nov. Exception intérieure et sources officielles."
+  es: "Política de mascotas de Icelandair: sin mascotas en cabina ni bodega en vuelos internacionales desde el 1 nov. Excepción doméstica y fuentes oficiales."
+  pt: "Política de animais da Icelandair: sem animais na cabine nem no porão em voos internacionais desde 1º nov. 2024 (mudança de frota);…"
+chips:
+  - icon: ✈
+    label:
+      en: Independent
+      fr: Indépendante
+      es: Independiente
+      pt: "Independente"
+  - icon: 📍
+    label:
+      en: Iceland · KEF
+      fr: Islande · KEF
+      es: Islandia · KEF
+      pt: "Islândia · KEF"
+  - icon: ✓
+    label:
+      en: Verified 18 Jul 2026
+      fr: Vérifié le 18 juil. 2026
+      es: Verificado 18 jul 2026
+      pt: "Verificado em 18 jul. 2026"
+    cls: ok
+verdict:
+  cls: "no"
+  label:
+    en: No pets (international)
+    fr: Pas d'animaux (international)
+    es: Sin mascotas (internacional)
+    pt: "Sem animais (internacional)"
+verdictNote:
+  en: On international flights Icelandair carries no pets — not in the cabin, and no longer in the hold since 1 November 2024 (fleet change). Only recognised service dogs travel, free, in the cabin. Pets are still allowed in the hold on domestic routes within Iceland.
+  fr: Sur les vols internationaux, Icelandair ne transporte aucun animal — ni en cabine, ni en soute depuis le 1er novembre 2024 (changement de flotte). Seuls les chiens d'assistance reconnus voyagent, gratuitement, en cabine. Les animaux restent admis en soute sur les vols intérieurs en Islande.
+  es: En vuelos internacionales Icelandair no transporta mascotas — ni en cabina, ni en bodega desde el 1 de noviembre de 2024 (cambio de flota). Solo viajan perros de servicio reconocidos, gratis, en cabina. Las mascotas siguen permitidas en bodega en rutas domésticas dentro de Islandia.
+  pt: "Em voos internacionais, a Icelandair não transporta animais — nem na cabine, nem no porão desde 1º de novembro de 2024 (mudança de frota). Somente cães de serviço reconhecidos viajam, gratuitamente, na cabine. Os animais continuam permitidos no porão nas rotas domésticas dentro da Islândia."
+ladder:
+  - flex: 100
+    color: "#8a1c1c"
+    label:
+      en: No pets
+      fr: Pas d'animaux
+      es: Sin mascotas
+      pt: "Sem animais"
+    sub:
+      en: service dogs only
+      fr: chiens d'assistance uniquement
+      es: solo perros de servicio
+      pt: "somente cães de serviço"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Service dogs only
+      fr: Chiens d'assistance
+      es: Solo perros de servicio
+      pt: "Somente cães de serviço"
+    detail:
+      en: No pets are accepted in the cabin. Recognised service dogs (guide, hearing, diabetic-alert, mobility, autism) are welcome free of charge.
+      fr: Aucun animal n'est accepté en cabine. Les chiens d'assistance reconnus (guide, audition, alerte diabétique, mobilité, autisme) sont admis gratuitement.
+      es: No se aceptan mascotas en cabina. Los perros de servicio reconocidos (guía, audición, alerta de diabetes, movilidad, autismo) se admiten gratis.
+      pt: "Nenhum animal é aceito na cabine. Cães de serviço reconhecidos (guia, audição, alerta de diabetes, mobilidade, autismo) são bem-vindos gratuitamente."
+    fee:
+      en: "—"
+      fr: "—"
+      es: "—"
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: "no"
+    statusLabel:
+      en: Not accepted
+      fr: Non accepté
+      es: No aceptado
+      pt: "Não aceitas"
+    detail:
+      en: Since 1 November 2024, following fleet changes, animals are no longer carried in the hold on international flights. Pets remain allowed in the hold on domestic Iceland routes.
+      fr: Depuis le 1er novembre 2024, à la suite de changements de flotte, les animaux ne sont plus transportés en soute sur les vols internationaux. Les animaux restent admis en soute sur les vols intérieurs islandais.
+      es: Desde el 1 de noviembre de 2024, tras cambios de flota, los animales ya no viajan en bodega en vuelos internacionales. Las mascotas siguen permitidas en bodega en rutas domésticas de Islandia.
+      pt: "Desde 1º de novembro de 2024, após mudanças de frota, os animais deixaram de ser transportados no porão em voos internacionais. Os animais continuam permitidos no porão nas rotas domésticas da Islândia."
+    fee:
+      en: "—"
+      fr: "—"
+      es: "—"
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: "no"
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: Icelandair's passenger service offers no pet transport as cargo on international routes.
+      fr: Le service passagers d'Icelandair ne propose pas de transport d'animaux en fret sur les routes internationales.
+      es: El servicio de pasajeros de Icelandair no ofrece transporte de mascotas como carga en rutas internacionales.
+      pt: "O serviço de passageiros da Icelandair não oferece transporte de animais como carga em rotas internacionais."
+    fee:
+      en: "—"
+      fr: "—"
+      es: "—"
+      pt: "—"
+restrictions:
+  - icon: 🚫
+    title:
+      en: International animal transport withdrawn
+      fr: Transport d'animaux international supprimé
+      es: Transporte internacional de animales retirado
+      pt: "Transporte internacional de animais retirado"
+    pills:
+      - cls: "no"
+        label:
+          en: Cabin & hold
+          fr: Cabine & soute
+          es: Cabina y bodega
+          pt: "Cabine e porão"
+    note:
+      en: On international flights no pet travels in the cabin or hold. If your dog must fly with you, you'll need a different carrier — the finder shows the alternatives on your route.
+      fr: Sur les vols internationaux, aucun animal ne voyage en cabine ni en soute. Si ton chien doit voler avec toi, il faudra une autre compagnie — le moteur affiche les alternatives sur ton trajet.
+      es: En vuelos internacionales ninguna mascota viaja en cabina ni en bodega. Si tu perro debe volar contigo, necesitarás otra aerolínea — el buscador muestra las alternativas de tu ruta.
+      pt: "Em voos internacionais, nenhum animal viaja na cabine nem no porão. Se seu cachorro precisar voar com você, será necessária outra companhia aérea — o buscador mostra as alternativas na sua rota."
+temperature:
+  pills:
+    - cls: neutral
+      label:
+        en: "Not applicable"
+        fr: "Sans objet"
+        es: "No aplicable"
+        pt: "Não aplicável"
+  note:
+    en: With no pet transport on international routes, hold-temperature and seasonal heat-embargo rules don't apply.
+    fr: Sans transport d'animaux sur les routes internationales, les limites de température en soute et l'embargo saisonnier ne s'appliquent pas.
+    es: Al no haber transporte de mascotas en rutas internacionales, no aplican los límites de temperatura en bodega ni el embargo estacional.
+    pt: "Sem transporte de animais nas rotas internacionais, as regras de limite de temperatura no porão e de embargo sazonal por calor não se aplicam."
+assistance:
+  - icon: ✓
+    label:
+      en: Service dogs welcome
+      fr: Chiens d'assistance admis
+      es: Perros de servicio admitidos
+      pt: "Cães de serviço bem-vindos"
+    value:
+      en: Service dogs (guide, hearing, diabetic-alert, mobility, autism), regardless of breed, travel in the cabin free of charge when you fly with Icelandair.
+      fr: Les chiens d'assistance (guide, audition, alerte diabétique, mobilité, autisme), quelle que soit la race, voyagent gratuitement en cabine sur Icelandair.
+      es: Los perros de servicio (guía, audición, alerta de diabetes, movilidad, autismo), sea cual sea la raza, viajan gratis en cabina con Icelandair.
+      pt: "Os cães de serviço (guia, audição, alerta de diabetes, mobilidade, autismo), seja qual for a raça, viajam na cabine gratuitamente com a Icelandair."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Add a service dog to the booking in advance and provide the documentation Icelandair requires for service animals.
+      fr: Ajoute le chien d'assistance à la réservation à l'avance et fournis les documents exigés par Icelandair pour les animaux d'assistance.
+      es: Añade el perro de servicio a la reserva con antelación y aporta la documentación que Icelandair exige para los animales de servicio.
+      pt: "Adicione o cão de serviço à reserva com antecedência e forneça a documentação exigida pela Icelandair para animais de serviço."
+goodToKnow:
+  - icon: 🗓️
+    label:
+      en: Since November 2024
+      fr: Depuis novembre 2024
+      es: Desde noviembre de 2024
+      pt: "Desde novembro de 2024"
+    value:
+      en: The international hold-pet service ended on 1 November 2024 due to fleet changes; it has not been reinstated.
+      fr: Le service animaux en soute international a pris fin le 1er novembre 2024 pour cause de changement de flotte ; il n'a pas été rétabli.
+      es: El servicio de mascotas en bodega internacional terminó el 1 de noviembre de 2024 por cambios de flota; no se ha restablecido.
+      pt: "O serviço de animais no porão internacional terminou em 1º de novembro de 2024 devido a mudanças de frota; ele não foi restabelecido."
+  - icon: 🇮🇸
+    label:
+      en: Domestic exception
+      fr: Exception intérieure
+      es: Excepción doméstica
+      pt: "Exceção doméstica"
+    value:
+      en: On domestic routes within Iceland, pets are still accepted in the hold in an IATA-approved crate.
+      fr: Sur les vols intérieurs en Islande, les animaux sont toujours admis en soute dans une caisse conforme à l'IATA.
+      es: En rutas domésticas dentro de Islandia, las mascotas se siguen admitiendo en bodega en una jaula homologada IATA.
+      pt: "Nas rotas domésticas dentro da Islândia, os animais continuam sendo aceitos no porão em uma caixa de transporte homologada pela IATA."
+  - icon: 🔎
+    label:
+      en: Plan an alternative
+      fr: Prévoir une alternative
+      es: Planifica una alternativa
+      pt: "Planeje uma alternativa"
+    value:
+      en: For an international trip with your dog, compare other carriers on the same route in the flight finder before booking.
+      fr: Pour un voyage international avec ton chien, compare d'autres compagnies sur le même trajet dans le moteur de recherche avant de réserver.
+      es: Para un viaje internacional con tu perro, compara otras aerolíneas de la misma ruta en el buscador de vuelos antes de reservar.
+      pt: "Para uma viagem internacional com seu cachorro, compare outras companhias aéreas na mesma rota no buscador de voos antes de reservar."
+book:
+  host: icelandair.com
+  url: https://www.icelandair.com/support/special-assistance/animal-transportation/
+sources:
+  en: Icelandair official animal-transport page · verified 18 July 2026
+  fr: Page officielle Icelandair transport d'animaux · vérifiée le 18 juillet 2026
+  es: Página oficial de transporte de animales de Icelandair · verificada el 18 de julio de 2026
+  pt: "Página oficial da Icelandair sobre transporte de animais · verificada em 18 de julho de 2026"
+verified_date: 2026-07-18

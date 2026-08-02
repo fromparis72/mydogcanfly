@@ -1,0 +1,322 @@
+id: airline_klm
+mono: KL
+name: KLM Royal Dutch Airlines
+titleH1:
+  en: Flying with a dog on KLM
+  fr: Voyager avec un chien sur KLM
+  es: Viajar con un perro en KLM
+  pt: "Viajar com um cachorro pela KLM"
+metaDesc:
+  en: "KLM pet policy: cabin, hold and cargo rules, fares by zone, breed limits, UK embargo and official sources."
+  fr: "Politique animaux KLM : cabine, soute et fret, tarifs par zone, restrictions de races, embargo Royaume-Uni et sources officielles."
+  es: "Política de mascotas de KLM: normas de cabina, bodega y carga, tarifas por zona, límites por raza, embargo del Reino Unido y fuentes oficiales."
+  pt: "Política de animais da KLM: regras de cabine, porão e carga, tarifas por zona, restrições de raça, embargo do Reino Unido e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Netherlands · AMS
+      fr: Pays-Bas · AMS
+      es: Países Bajos · AMS
+      pt: "Países Baixos · AMS"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin, hold or cargo — but snub-nosed breeds are barred from the hold and no pets to the UK.
+  fr: Chats et chiens en cabine, soute ou fret — mais races au nez écrasé interdites en soute et pas d'animaux vers le Royaume-Uni.
+  es: Gatos y perros en cabina, bodega o carga, pero las razas de hocico chato no pueden viajar en bodega y no se admiten mascotas hacia el Reino Unido.
+  pt: "Gatos e cachorros na cabine, no porão ou na carga — mas as raças de focinho achatado não podem viajar no porão, e não há transporte de animais para o Reino Unido."
+ladder:
+  - flex: 12
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+  - flex: 22
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: 3 h+ transfer
+      fr: transfert 3 h+
+      es: escala de 3 h+
+      pt: "conexão de 3 h+"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: One cat or dog (≤ 8 kg incl. carrier) in a closed bag under the seat (max 46 × 28 × 24 cm); Economy or intra-Europe Business.
+      fr: Un chat ou chien (≤ 8 kg avec le sac) dans un sac fermé sous le siège (max 46 × 28 × 24 cm) ; Économique ou Business intra-Europe.
+      es: Un gato o perro (≤ 8 kg con el bolso) en una bolsa cerrada bajo el asiento (máx. 46 × 28 × 24 cm); Economy o Business dentro de Europa.
+      pt: "Um gato ou cachorro (≤ 8 kg incluindo a bolsa de transporte) em uma bolsa fechada sob o assento (máx. 46 × 28 × 24 cm); Econômica ou Executiva dentro da Europa."
+    fee:
+      en: €70–500
+      fr: 70–500 €
+      es: 70–500 €
+      pt: "70–500 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Larger pets (pet + kennel < 75 kg) in the hold; not on B787-9/-10, A321neo, German Airways or KLC flights over 2 h.
+      fr: Animaux plus grands (animal + caisse < 75 kg) en soute ; pas sur B787-9/-10, A321neo, German Airways ni vols KLC de plus de 2 h.
+      es: Mascotas más grandes (mascota + jaula < 75 kg) en bodega; no en B787-9/-10, A321neo, German Airways ni vuelos KLC de más de 2 h.
+      pt: "Animais maiores (animal + caixa de transporte < 75 kg) no porão; não disponível em B787-9/-10, A321neo, German Airways ou voos da KLC com mais de 2 h."
+    fee:
+      en: €70–500
+      fr: 70–500 €
+      es: 70–500 €
+      pt: "70–500 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo cotización
+      pt: "Sob consulta"
+    detail:
+      en: When the transfer exceeds 3 h or the destination only allows pets as cargo. Via AF-KLM-Martinair Cargo.
+      fr: Quand la correspondance dépasse 3 h ou que la destination n'autorise l'animal qu'en fret. Via AF-KLM-Martinair Cargo.
+      es: Cuando la escala supera las 3 h o el destino solo admite la mascota como carga. A través de AF-KLM-Martinair Cargo.
+      pt: "Quando a conexão ultrapassa 3 h ou o destino só permite o animal como carga. Via AF-KLM-Martinair Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: €70–500
+        fr: 70–500 €
+        es: 70–500 €
+        pt: "70–500 €"
+    - label:
+        en: Hold (< 75 kg)
+        fr: Soute (< 75 kg)
+        es: Bodega (< 75 kg)
+        pt: "Porão (< 75 kg)"
+      value:
+        en: €70–500
+        fr: 70–500 €
+        es: 70–500 €
+        pt: "70–500 €"
+    - label:
+        en: Cargo
+        fr: Fret
+        es: Carga
+        pt: "Carga"
+      value:
+        en: Quote
+        fr: Devis
+        es: Cotización
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: See conditions
+        fr: Voir conditions
+        es: Ver condiciones
+        pt: "Ver condições"
+  note:
+    en: EUR, per one-way flight, depending on destination.
+    fr: EUR, par trajet aller, selon la destination.
+    es: EUR, por trayecto de ida, según el destino.
+    pt: "EUR, por voo somente ida, dependendo do destino."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed cats & dogs can't travel in the hold (breathing risk): bulldogs (all), boxers (all), pugs (all), Boston terrier, chow chow, Shih Tzu, Pekingese, Shar Pei, mastiffs, Brussels Griffon, and Burmese/Exotic/Himalayan/Persian cats. They may fly in the cabin or as cargo."
+      fr: "Chats et chiens au nez écrasé interdits en soute (risque respiratoire) : bouledogues (tous), boxers (tous), carlins (tous), Boston terrier, chow chow, Shih Tzu, pékinois, Shar Pei, mastiffs, Griffon bruxellois, et chats birmans/exotiques/himalayens/persans. Ils peuvent voyager en cabine ou en fret."
+      es: "Los gatos y perros de hocico chato no pueden viajar en bodega (riesgo respiratorio): bulldogs (todos), bóxers (todos), carlinos (todos), Boston terrier, chow chow, Shih Tzu, pekinés, Shar Pei, mastines, Grifón de Bruselas y gatos birmanos/exóticos/himalayos/persas. Pueden viajar en cabina o como carga."
+      pt: "Gatos e cachorros de focinho achatado não podem viajar no porão (risco respiratório): buldogues (todos), boxers (todos), pugs (todos), Boston Terrier, Chow Chow, Shih Tzu, Pequinês, Shar Pei, mastins, Grifon de Bruxelas, e gatos burmeses/exóticos/himalaios/persas. Podem voar na cabine ou como carga."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: No sedation advised
+          fr: Sédation déconseillée
+          es: Sedación desaconsejada
+          pt: "Sedação desaconselhada"
+      - cls: warn
+        label:
+          en: Min. 15 weeks
+          fr: 15 semaines min.
+          es: Mín. 15 semanas
+          pt: "Mín. 15 semanas"
+    note:
+      en: "KLM strongly advises against tranquillising pets (risk of temperature drop and disorientation). Minimum age 15 weeks (dogs to the US: 6 months)."
+      fr: "KLM déconseille fortement de tranquilliser l'animal (risque de baisse de température et de désorientation). Âge minimum 15 semaines (chiens vers les USA : 6 mois)."
+      es: "KLM desaconseja firmemente sedar a la mascota (riesgo de descenso de temperatura y desorientación). Edad mínima 15 semanas (perros hacia EE. UU.: 6 meses)."
+      pt: "A KLM recomenda fortemente não sedar os animais (risco de queda de temperatura e desorientação). Idade mínima de 15 semanas (cachorros com destino aos EUA: 6 meses)."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+    - cls: warn
+      label:
+        en: "Heat embargo: not disclosed"
+        fr: "Embargo chaleur : non communiqué"
+        es: "Embargo por calor: no comunicado"
+        pt: "Embargo por calor: não divulgado"
+  note:
+    en: KLM publishes no hold-temperature limits or seasonal heat embargo on its pet pages. Suitability depends on the aircraft, route and weather.
+    fr: KLM ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux. La compatibilité dépend de l'avion, de la route et de la météo.
+    es: KLM no publica límites de temperatura en bodega ni embargo estacional por calor en sus páginas de mascotas. La idoneidad depende del avión, la ruta y el clima.
+    pt: "A KLM não divulga limites de temperatura no porão nem embargo sazonal por calor em suas páginas sobre animais. A adequação depende da aeronave, da rota e do clima."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs (SVAN) accepted; notify ≥ 48 h ahead, secured in the footwell.
+      fr: Chiens d'assistance (SVAN) admis ; prévenir ≥ 48 h à l'avance, attachés dans l'espace au sol.
+      es: Perros de servicio (SVAN) aceptados; avisa con ≥ 48 h de antelación, sujetos en el espacio para los pies.
+      pt: "Cães de serviço (SVAN) são aceitos; avise com ≥ 48 h de antecedência, presos no espaço para os pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Complete the SVAN form + pet passport/vaccination; US flights: two DOT forms via KLM CARES."
+      fr: "Remplir le formulaire SVAN + passeport/vaccination ; vols USA : deux formulaires DOT via KLM CARES."
+      es: "Completa el formulario SVAN + pasaporte/vacunación de la mascota; vuelos a EE. UU.: dos formularios DOT a través de KLM CARES."
+      pt: "Preencha o formulário SVAN + passaporte do animal/vacinação; voos para os EUA: dois formulários DOT pelo KLM CARES."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets to the UK
+      fr: Pas d'animaux vers le R.-U.
+      es: Sin mascotas hacia el Reino Unido
+      pt: "Sem animais para o Reino Unido"
+    value:
+      en: A UK embargo means pets can't travel TO the UK as passenger baggage (from the UK is fine).
+      fr: Un embargo britannique interdit les animaux VERS le Royaume-Uni en bagage passager (depuis le R.-U. c'est possible).
+      es: Un embargo británico prohíbe llevar mascotas HACIA el Reino Unido como equipaje de pasajero (desde el Reino Unido sí se puede).
+      pt: "Um embargo britânico impede que animais viajem PARA o Reino Unido como bagagem de passageiro (partindo do Reino Unido, não há problema)."
+  - icon: ✈️
+    label:
+      en: Aircraft
+      fr: Avions
+      es: Aviones
+      pt: "Aeronaves"
+    value:
+      en: No hold pets on B787-9/-10, A321neo, German Airways, or KLC flights over 2 h.
+      fr: Pas d'animaux en soute sur B787-9/-10, A321neo, German Airways ni vols KLC de plus de 2 h.
+      es: Sin mascotas en bodega en B787-9/-10, A321neo, German Airways ni vuelos KLC de más de 2 h.
+      pt: "Nenhum animal no porão em voos B787-9/-10, A321neo, German Airways ou voos da KLC com mais de 2 h."
+  - icon: 🔁
+    label:
+      en: Paris connections
+      fr: Correspondances Paris
+      es: Conexiones en París
+      pt: "Conexões em Paris"
+    value:
+      en: At CDG/Orly pets don't auto-connect — collect and re-check them.
+      fr: À CDG/Orly les animaux ne suivent pas automatiquement — les récupérer et réenregistrer.
+      es: "En CDG/Orly las mascotas no conectan automáticamente: hay que recogerlas y volver a facturarlas."
+      pt: "Em CDG/Orly, os animais não seguem automaticamente na conexão — é preciso retirá-los e despachá-los novamente."
+book:
+  host: klm.com
+  url: https://www.klm.com/
+sources:
+  en: 5 KLM & AF-KLM Cargo sources · last verified 11 July 2026
+  fr: 5 sources KLM & AF-KLM Cargo · dernière vérification 11 juillet 2026
+  es: 5 fuentes de KLM y AF-KLM Cargo · última verificación 11 de julio de 2026
+  pt: "5 fontes da KLM e da AF-KLM Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

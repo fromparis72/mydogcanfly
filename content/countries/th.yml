@@ -1,0 +1,415 @@
+# Country Entry Guide — Thailand (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Thailand is NOT in the EU. It runs its own scheme via the Department of Livestock
+# Development (DLD) and the Animal Quarantine Station (AQS) at each airport:
+# an Import Permit must be applied for in advance (Form R1/1, 7-60 days before departure);
+# ISO microchip -> rabies + core vaccinations (distemper, hepatitis, parvovirus, leptospirosis)
+# -> government-endorsed health certificate issued shortly before travel -> on arrival the AQS
+# issues a Notice of Import Approval (Form R-6) and an Import License (Form R-7), then Customs clearance.
+# A rabies antibody test is not routine but may be requested for high-risk-rabies origins.
+# The eu/listed/nonListed slots are repurposed to Thailand's practical paths:
+# eu = compliant dog with valid booster vaccinations (fastest); listed = primary/lapsed vaccination
+# (21-day wait + possible leptospirosis test); nonListed = high-rabies-risk origin or a
+# non-compliant arrival (antibody test may be requested; detention/quarantine possible).
+id: country_th
+iso2: "TH"
+name: { en: "Thailand", fr: "Thaïlande", es: "Tailandia", pt: "Tailândia" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in Thailand: no national document is required for a pet dog — but a declared epidemic zone changes everything."
+    fr: "Vol intérieur en Thaïlande : aucun document national n'est exigé pour un chien de compagnie — mais une zone d'épizootie déclarée change tout."
+    es: "Vuelo nacional en Tailandia: no se exige ningún documento nacional para un perro de compañía — pero una zona epidémica declarada lo cambia todo."
+    pt: "Voo doméstico na Tailândia: nenhum documento nacional é exigido para um cachorro de estimação — mas uma zona de epidemia declarada muda tudo."
+  points:
+    - en: "Dogs are deliberately absent from the list of species needing an inter-provincial movement licence, which covers livestock and poultry."
+      fr: "Les chiens sont délibérément absents de la liste des espèces nécessitant une licence de mouvement interprovincial, qui vise le bétail et la volaille."
+      es: "Los perros están deliberadamente ausentes de la lista de especies que necesitan licencia de movimiento interprovincial, que cubre ganado y aves."
+      pt: "Os cachorros estão deliberadamente ausentes da lista de espécies que precisam de licença de trânsito interprovincial, que cobre o gado e as aves."
+    - en: "But inside a declared epidemic or surveillance zone naming dogs, no one may move an animal in, out, through or within the zone without written permission from the responsible veterinarian, every single time. Rabies zones are declared routinely at sub-district level — check with the livestock office at your origin."
+      fr: "Mais à l'intérieur d'une zone d'épizootie ou de surveillance déclarée visant les chiens, nul ne peut déplacer un animal vers, hors, à travers ou dans la zone sans autorisation écrite du vétérinaire responsable, à chaque fois. Des zones rabiques sont déclarées couramment au niveau des sous-districts — renseigne-toi auprès du bureau de l'élevage de ton point de départ."
+      es: "Pero dentro de una zona epidémica o de vigilancia declarada que nombre a los perros, nadie puede mover un animal hacia, fuera, a través o dentro de la zona sin permiso escrito del veterinario responsable, cada vez. Las zonas de rabia se declaran habitualmente a nivel de subdistrito — consulta la oficina de ganadería de tu origen."
+      pt: "Mas dentro de uma zona de epidemia ou de vigilância declarada que mencione cachorros, ninguém pode movimentar um animal para dentro, para fora, através ou dentro da zona sem autorização por escrito do veterinário responsável, e isso todas as vezes. Zonas de raiva são declaradas rotineiramente em nível de subdistrito — consulte o escritório de pecuária do seu local de origem."
+    - en: "No Thai carrier is confirmed to allow a dog in the cabin: expect hold or cargo, a health certificate within 24 hours on some routes, and long banned-breed lists."
+      fr: "Aucune compagnie thaïlandaise n'est confirmée comme autorisant le chien en cabine : prévois la soute ou le fret, un certificat de santé de moins de 24 heures sur certaines lignes, et de longues listes de races interdites."
+      es: "Ninguna aerolínea tailandesa está confirmada como que permita perros en cabina: cuenta con bodega o carga, certificado de salud de menos de 24 horas en algunas rutas, y largas listas de razas prohibidas."
+      pt: "Nenhuma companhia aérea tailandesa está confirmada como autorizando cachorro na cabine: conte com porão ou carga, um atestado de saúde emitido nas 24 horas anteriores em algumas rotas e longas listas de raças proibidas."
+exit:
+  authority: DLD (Department of Livestock Development)
+  authorityUrl: https://www.dld.go.th
+  intro:
+    en: "Thailand is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a DLD export licence and health certificate."
+    fr: "La Thaïlande est un pays non listé : un titrage antirabique valide est obligatoire pour revenir dans l'UE — plus une licence d'export et un certificat sanitaire du DLD."
+    es: "Tailandia no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más una licencia de exportación y un certificado sanitario del DLD."
+    pt: "A Tailândia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — mais uma licença de exportação e um atestado de saúde do DLD."
+  steps:
+    - timing: longlead
+      text:
+        en: "Make sure the rabies antibody titer is valid: blood sample taken at least 30 days after rabies vaccination, in an EU-approved lab (minimum export age 4 months)."
+        fr: "Assure-toi que le titrage antirabique est valide : prise de sang au moins 30 jours après la vaccination antirabique, dans un labo agréé UE (âge minimum d'export : 4 mois)."
+        es: "Asegúrate de que la titulación antirrábica sea válida: muestra de sangre tomada al menos 30 días tras la vacuna antirrábica, en un laboratorio aprobado por la UE (edad mínima de exportación: 4 meses)."
+        pt: "Garanta que o teste sorológico antirrábico (titulação) esteja válido: coleta de sangue feita pelo menos 30 dias após a vacinação antirrábica, em um laboratório aprovado pela UE (idade mínima para exportação: 4 meses)."
+    - timing: window
+      text:
+        en: "Apply to the DLD for the export licence and EU health certificate, with the pre-export inspection done at the airport 48 hours before departure."
+        fr: "Demande au DLD la licence d'export et le certificat sanitaire UE, avec l'inspection pré-export réalisée à l'aéroport 48 heures avant le départ."
+        es: "Solicita al DLD la licencia de exportación y el certificado sanitario UE, con la inspección previa a la exportación realizada en el aeropuerto 48 horas antes de la salida."
+        pt: "Solicite ao DLD a licença de exportação e o atestado de saúde da UE, com a inspeção pré-exportação feita no aeroporto 48 horas antes da partida."
+  onSiteNote:
+    en: "The titer is the trap — without a valid result your dog cannot re-enter the EU, and it can't be fixed at the last minute in Thailand."
+    fr: "Le titrage est le piège — sans résultat valide, ton chien ne peut pas rentrer dans l'UE, et ça ne se rattrape pas à la dernière minute en Thaïlande."
+    es: "La titulación es la trampa — sin un resultado válido tu perro no puede volver a la UE, y no se puede resolver a última hora en Tailandia."
+    pt: "A titulação é a armadilha — sem um resultado válido o seu cachorro não pode voltar a entrar na UE, e isso não se resolve de última hora na Tailândia."
+
+hero:
+  h1: { en: "Traveling to Thailand with your dog", fr: "Voyager en Thaïlande avec ton chien", es: "Viajar a Tailandia con tu perro", pt: "Viajar para a Tailândia com o seu cachorro" }
+  intro:
+    en: >-
+      Thailand welcomes dogs, but it runs its own import scheme through the Department of Livestock
+      Development (DLD) — not the EU framework. The single most important step is to obtain an Import
+      Permit before you fly: you apply by email to the Animal Quarantine Station (AQS) at the airport
+      of entry between 60 and 7 days before departure, using application Form R1/1. Your dog needs an
+      ISO microchip, a valid rabies vaccination and core vaccinations (distemper, hepatitis, parvovirus
+      and leptospirosis), plus a government-endorsed veterinary health certificate issued shortly before
+      travel. A rabies antibody test is not routinely required from rabies-controlled countries,
+      but the DLD can request it for higher-risk origins. On arrival the AQS issues the Import License
+      (Form R-7). Meet every condition and there is no quarantine.
+    fr: >-
+      La Thaïlande accueille les chiens, mais applique son propre régime d'importation via le Département
+      du développement de l'élevage (DLD) — et non le cadre européen. L'étape la plus importante est
+      d'obtenir un permis d'importation avant de partir : tu en fais la demande par e-mail auprès de
+      la station de quarantaine animale (AQS) de l'aéroport d'entrée, entre 60 et 7 jours avant le
+      départ, à l'aide du formulaire de demande R1/1. Ton chien a besoin d'une puce ISO, d'une
+      vaccination antirabique valide et de vaccins de base (Carré, hépatite, parvovirose et leptospirose),
+      ainsi que d'un certificat sanitaire vétérinaire visé par le gouvernement établi peu avant le voyage.
+      Un titrage des anticorps antirabiques n'est pas exigé en routine depuis les pays à rage contrôlée,
+      mais le DLD peut le demander pour les origines à risque plus élevé. À l'arrivée, l'AQS délivre la
+      licence d'importation (formulaire R-7). Si toutes les conditions sont remplies, il n'y a pas de quarantaine.
+    es: >-
+      Tailandia acoge a los perros, pero aplica su propio régimen de importación a través del Department
+      of Livestock Development (DLD) — y no el marco de la UE. El paso más importante es obtener un
+      permiso de importación antes de volar: lo solicitas por correo electrónico a la estación de
+      cuarentena animal (AQS) del aeropuerto de entrada, entre 60 y 7 días antes de la salida,
+      mediante el formulario de solicitud R1/1. Tu perro necesita un microchip ISO, una vacunación
+      antirrábica válida y las vacunas básicas (moquillo, hepatitis, parvovirus y leptospirosis), además
+      de un certificado sanitario veterinario refrendado por el gobierno expedido poco antes del viaje.
+      No se exige de forma rutinaria una prueba de titulación de rabia desde los países con rabia
+      controlada, pero el DLD puede solicitarla para orígenes de mayor riesgo. A la llegada, la AQS
+      expide la licencia de importación (formulario R-7). Si cumples todas las condiciones, no hay cuarentena.
+
+    pt: "A Tailândia recebe cachorros, mas aplica o seu próprio regime de importação por meio do Department of Livestock Development (DLD) — e não o marco da UE. O passo mais importante é obter uma autorização de importação antes de voar: você faz o pedido por e-mail à Animal Quarantine Station (AQS) do aeroporto de entrada, entre 60 e 7 dias antes da partida, usando o formulário de solicitação R1/1. O seu cachorro precisa de um microchip ISO, de uma vacinação antirrábica válida e das vacinas essenciais (cinomose, hepatite, parvovirose e leptospirose), além de um certificado veterinário de saúde endossado pelo governo e emitido pouco antes da viagem. O teste sorológico antirrábico não é exigido de rotina para países com raiva controlada, mas o DLD pode solicitá-lo para origens de maior risco. Na chegada, a AQS emite a licença de importação (formulário R-7). Se todas as condições forem cumpridas, não há quarentena."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — an advance import permit is mandatory", fr: "Modéré — un permis d'importation préalable est obligatoire", es: "Moderado — es obligatorio un permiso de importación previo", pt: "Moderado — uma autorização de importação prévia é obrigatória" }
+
+prepTime:
+  eu:
+    en: "Compliant dog (valid booster vaccinations): ~2-3 weeks — import permit (apply 60-7 days ahead), then a government health certificate issued shortly before travel; no 21-day wait."
+    fr: "Chien conforme (rappels de vaccins valides) : ~2-3 semaines — permis d'importation (demande 60 à 7 jours avant), puis un certificat sanitaire officiel établi peu avant le voyage ; pas de délai de 21 jours."
+    es: "Perro conforme (refuerzos de vacunas válidos): ~2-3 semanas — permiso de importación (solicita 60-7 días antes), luego un certificado sanitario oficial expedido poco antes del viaje; sin espera de 21 días."
+    pt: "Cachorro em conformidade (reforços de vacina válidos): ~2-3 semanas — autorização de importação (peça de 60 a 7 dias antes), depois um atestado de saúde oficial emitido pouco antes da viagem; sem espera de 21 dias."
+  listed:
+    en: "Primary or lapsed vaccination: ~5-6 weeks — dog must be vaccinated at least 21 days before departure, plus a negative leptospirosis test if no valid leptospirosis vaccine."
+    fr: "Vaccination primaire ou périmée : ~5-6 semaines — le chien doit être vacciné au moins 21 jours avant le départ, plus un test leptospirose négatif si le vaccin leptospirose n'est pas valide."
+    es: "Vacunación primaria o caducada: ~5-6 semanas — el perro debe vacunarse al menos 21 días antes de la salida, más una prueba de leptospirosis negativa si no tiene una vacuna de leptospirosis válida."
+    pt: "Vacinação primária ou vencida: ~5-6 semanas — o cachorro precisa ser vacinado pelo menos 21 dias antes da partida, mais um teste de leptospirose negativo se não houver vacina de leptospirose válida."
+  nonListed:
+    en: "High-rabies-risk origin or a non-compliant arrival: add a rabies antibody test if the DLD requests it (plan months ahead); non-compliant dogs may be detained/quarantined or returned at the owner's expense."
+    fr: "Origine à risque rabique élevé ou arrivée non conforme : ajoute un titrage antirabique si le DLD le demande (prévois plusieurs mois) ; les chiens non conformes peuvent être retenus/mis en quarantaine ou renvoyés aux frais du propriétaire."
+    es: "Origen de alto riesgo de rabia o llegada no conforme: añade una prueba de titulación de rabia si el DLD la solicita (planifica con meses de antelación); los perros no conformes pueden ser retenidos/puestos en cuarentena o devueltos a cargo del propietario."
+    pt: "Origem de alto risco de raiva ou chegada fora de conformidade: acrescente um teste sorológico antirrábico se o DLD exigir (planeje com meses de antecedência); cachorros fora de conformidade podem ser retidos/colocados em quarentena ou devolvidos às custas do dono."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Import permit (DLD, in advance)", fr: "Permis d'importation (DLD, à l'avance)", es: "Permiso de importación (DLD, por adelantado)", pt: "Autorização de importação (DLD, com antecedência)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not routine — may be requested for high-risk origins", fr: "Pas de routine — peut être exigé pour les origines à risque", es: "No rutinaria — puede exigirse para orígenes de riesgo", pt: "Não é rotina — pode ser exigido para origens de risco" }
+    cls: neutral
+  - requirement: { en: "Other vaccinations (distemper, hepatitis, parvovirus, leptospirosis)", fr: "Autres vaccinations (Carré, hépatite, parvovirose, leptospirose)", es: "Otras vacunas (moquillo, hepatitis, parvovirus, leptospirosis)", pt: "Outras vacinas (cinomose, hepatite, parvovirose, leptospirose)" }
+    status: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Government veterinary health certificate", fr: "Certificat sanitaire vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required if compliant (officer may detain)", fr: "Non requise si conforme (l'agent peut retenir)", es: "No obligatoria si se cumple (el agente puede retener)", pt: "Não obrigatória se estiver em conformidade (o agente pode reter)" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and Thailand's Department of Livestock Development (DLD) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et le Département du développement de l'élevage (DLD) de Thaïlande peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y el Department of Livestock Development (DLD) de Tailandia pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Somente um veterinário e o Department of Livestock Development (DLD) da Tailândia podem confirmar o procedimento exato para o seu cachorro."
+  - en: "The import permit must be obtained before departure — some airlines will not board a pet without it."
+    fr: "Le permis d'importation doit être obtenu avant le départ — certaines compagnies n'embarqueront pas un animal sans lui."
+    es: "El permiso de importación debe obtenerse antes de la salida — algunas aerolíneas no embarcarán a una mascota sin él."
+    pt: "A autorização de importação precisa ser obtida antes da partida — algumas companhias aéreas não embarcam um animal sem ela."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Thailand (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — la Thaïlande (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Tailandia (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — a Tailândia (o seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Thailand", fr: "Pays de destination — Thaïlande", es: "País de destino — Tailandia", pt: "País de destino — Tailândia" }
+      text:
+        en: "Thailand runs its own DLD scheme: an advance import permit (Form R1/1), an ISO microchip, a valid rabies vaccination, core vaccinations and a government-endorsed health certificate. It does not use the EU pet-passport system."
+        fr: "La Thaïlande applique son propre régime DLD : permis d'importation préalable (formulaire R1/1), puce ISO, vaccination antirabique valide, vaccins de base et certificat sanitaire visé par le gouvernement. Elle n'utilise pas le passeport européen."
+        es: "Tailandia aplica su propio régimen del DLD: permiso de importación previo (formulario R1/1), microchip ISO, vacunación antirrábica válida, vacunas básicas y certificado sanitario refrendado por el gobierno. No utiliza el sistema de pasaporte europeo para mascotas."
+        pt: "A Tailândia aplica o seu próprio regime do DLD: uma autorização de importação prévia (formulário R1/1), um microchip ISO, uma vacinação antirrábica válida, as vacinas essenciais e um atestado de saúde endossado pelo governo. O país não usa o sistema de passaporte para animais da UE."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country decides whose official veterinary authority endorses your health certificate, and whether the DLD may request a rabies antibody test — routinely waived for rabies-controlled countries such as the USA, Canada and the UK."
+        fr: "Le pays d'export détermine quelle autorité vétérinaire officielle vise ton certificat sanitaire, et si le DLD peut exiger un titrage antirabique — habituellement dispensé pour les pays à rage contrôlée comme les États-Unis, le Canada et le Royaume-Uni."
+        es: "El país de exportación determina qué autoridad veterinaria oficial refrenda tu certificado sanitario, y si el DLD puede solicitar una prueba de titulación de rabia — normalmente dispensada para los países con rabia controlada como EE. UU., Canadá y el Reino Unido."
+        pt: "O país exportador determina qual autoridade veterinária oficial endossa o seu atestado de saúde e se o DLD pode exigir um teste sorológico antirrábico — normalmente dispensado para países com raiva controlada, como EUA, Canadá e Reino Unido."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a high-rabies-risk country can prompt the DLD to require a rabies antibody test, and quarantine officers may detain any animal that raises a disease concern regardless of the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique élevé peut amener le DLD à exiger un titrage antirabique, et les agents de quarantaine peuvent retenir tout animal suscitant une inquiétude sanitaire, quel que soit le dernier aéroport."
+        es: "Una estancia reciente en un país de alto riesgo de rabia puede llevar al DLD a exigir una prueba de titulación de rabia, y los agentes de cuarentena pueden retener a cualquier animal que suscite una preocupación sanitaria, sea cual sea el último aeropuerto."
+        pt: "Uma estadia recente em um país de alto risco de raiva pode levar o DLD a exigir um teste sorológico antirrábico, e os agentes de quarentena podem reter qualquer animal que levante suspeita de doença, independentemente do último aeroporto."
+  note:
+    en: "So read the requirements below as Thailand's framework, then confirm your dog's exact origin, history and timeline with your vet and the DLD before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre thaïlandais, puis confirme l'origine, l'historique et le calendrier exacts de ton chien avec ton vétérinaire et le DLD avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Tailandia y luego confirma el origen, el historial y el calendario exactos de tu perro con tu veterinario y el DLD antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o marco da Tailândia e depois confirme a origem, o histórico e o cronograma exatos do seu cachorro com o seu veterinário e com o DLD antes de reservar."
+
+requirements:
+  - item: { en: "Import permit (DLD)", fr: "Permis d'importation (DLD)", es: "Permiso de importación (DLD)", pt: "Autorização de importação (DLD)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply by email to the AQS at the airport of entry between 60 and 7 days before departure, using Form R1/1 with passport copy, pet photo, flight itinerary, vaccination records (in English) and microchip certificate. Processing ~3-7 business days; permit valid 60 days.", fr: "Demande par e-mail à l'AQS de l'aéroport d'entrée, entre 60 et 7 jours avant le départ, via le formulaire R1/1 avec copie du passeport, photo de l'animal, itinéraire de vol, carnet de vaccination (en anglais) et certificat de puce. Traitement ~3-7 jours ouvrés ; permis valable 60 jours.", es: "Solicítalo por correo electrónico a la AQS del aeropuerto de entrada, entre 60 y 7 días antes de la salida, mediante el formulario R1/1 con copia del pasaporte, foto de la mascota, itinerario de vuelo, registros de vacunación (en inglés) y certificado del microchip. Tramitación ~3-7 días hábiles; permiso válido 60 días.", pt: "Faça o pedido por e-mail à AQS do aeroporto de entrada, entre 60 e 7 dias antes da partida, usando o formulário R1/1 com cópia do passaporte, foto do animal, itinerário do voo, carteira de vacinação (em inglês) e certificado do microchip. Processamento em ~3-7 dias úteis; autorização válida por 60 dias." }
+    exceptions: { en: "The permit is not the import licence: it authorises the shipment. Some airlines require the permit before boarding.", fr: "Le permis n'est pas la licence d'importation : il autorise l'envoi. Certaines compagnies exigent le permis avant l'embarquement.", es: "El permiso no es la licencia de importación: autoriza el envío. Algunas aerolíneas exigen el permiso antes del embarque.", pt: "A autorização não é a licença de importação: ela autoriza o envio. Algumas companhias aéreas exigem a autorização antes do embarque." }
+    ref: { en: "DLD — Importation of animals; Form R1/1", fr: "DLD — Importation des animaux ; formulaire R1/1", es: "DLD — Importación de animales; formulario R1/1", pt: "DLD — Importação de animais; formulário R1/1" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784/11785 microchip (15-digit code); the number must match every vaccination record and the health certificate.", fr: "Puce ISO 11784/11785 (code à 15 chiffres) ; le numéro doit correspondre à chaque enregistrement de vaccination et au certificat sanitaire.", es: "Microchip ISO 11784/11785 (código de 15 dígitos); el número debe coincidir con cada registro de vacunación y con el certificado sanitario.", pt: "Microchip ISO 11784/11785 (código de 15 dígitos); o número precisa coincidir com cada registro de vacinação e com o atestado de saúde." }
+    exceptions: { en: "If the microchip number on the documents does not match the animal, entry can be refused.", fr: "Si le numéro de puce des documents ne correspond pas à l'animal, l'entrée peut être refusée.", es: "Si el número de microchip de los documentos no coincide con el animal, se puede denegar la entrada.", pt: "Se o número do microchip dos documentos não corresponder ao animal, a entrada pode ser recusada." }
+    ref: { en: "DLD — Import requirements (microchip)", fr: "DLD — Exigences d'importation (puce)", es: "DLD — Requisitos de importación (microchip)", pt: "DLD — Exigências de importação (microchip)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks (3 months / 84 days) old at vaccination. For a primary vaccination, wait at least 21 days before departure; a valid booster needs no waiting period if the previous record is attached.", fr: "Chien d'au moins 12 semaines (3 mois / 84 jours) à la vaccination. Pour une primo-vaccination, attends au moins 21 jours avant le départ ; un rappel valide n'impose aucun délai si l'enregistrement précédent est joint.", es: "Perro de al menos 12 semanas (3 meses / 84 días) en el momento de la vacunación. Para una primovacunación, espera al menos 21 días antes de la salida; un refuerzo válido no exige ningún plazo de espera si se adjunta el registro anterior.", pt: "Cachorro com pelo menos 12 semanas (3 meses / 84 dias) na data da vacinação. Para uma vacinação primária, espere pelo menos 21 dias antes da partida; um reforço válido não exige prazo de espera se o registro anterior for anexado." }
+    exceptions: { en: "Vaccination records must be in English and show the veterinarian's name, licence number and signature.", fr: "Le carnet de vaccination doit être en anglais et indiquer le nom, le numéro de licence et la signature du vétérinaire.", es: "Los registros de vacunación deben estar en inglés e indicar el nombre, el número de licencia y la firma del veterinario.", pt: "A carteira de vacinação precisa estar em inglês e indicar o nome, o número de registro profissional e a assinatura do veterinário." }
+    ref: { en: "DLD — Import requirements (rabies)", fr: "DLD — Exigences d'importation (rage)", es: "DLD — Requisitos de importación (rabia)", pt: "DLD — Exigências de importação (raiva)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not routine — conditional", fr: "Pas de routine — conditionnel", es: "No rutinaria — condicional", pt: "Não é rotina — condicional" }
+    when: { en: "Not routinely required from rabies-controlled countries (USA, Canada, UK, EU and others); the DLD reserves the right to request it, especially for dogs from high-rabies-risk origins.", fr: "Non exigé en routine depuis les pays à rage contrôlée (États-Unis, Canada, R.-Uni, UE…) ; le DLD se réserve le droit de l'exiger, surtout pour les chiens d'origines à risque rabique élevé.", es: "No se exige de forma rutinaria desde los países con rabia controlada (EE. UU., Canadá, R. Unido, UE…); el DLD se reserva el derecho de exigirla, sobre todo para perros de orígenes de alto riesgo de rabia.", pt: "Não é exigido de rotina para países com raiva controlada (EUA, Canadá, Reino Unido, UE e outros); o DLD reserva-se o direito de exigi-lo, sobretudo para cachorros vindos de origens de alto risco de raiva." }
+    exceptions: { en: "Confirm with the AQS at your port of entry whether a titre applies to your dog's origin before you book.", fr: "Confirme auprès de l'AQS de ton point d'entrée si un titrage s'applique à l'origine de ton chien avant de réserver.", es: "Confirma con la AQS de tu punto de entrada si se aplica una titulación al origen de tu perro antes de reservar.", pt: "Confirme com a AQS do seu ponto de entrada se a titulação se aplica à origem do seu cachorro antes de reservar." }
+    ref: { en: "DLD — Import requirements (rabies serology)", fr: "DLD — Exigences d'importation (sérologie rabique)", es: "DLD — Requisitos de importación (serología de rabia)", pt: "DLD — Exigências de importação (sorologia antirrábica)" }
+  - item: { en: "Other vaccinations (dogs)", fr: "Autres vaccinations (chiens)", es: "Otras vacunas (perros)", pt: "Outras vacinas (cachorros)" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Dogs must be vaccinated against canine distemper, canine hepatitis, canine parvovirus and leptospirosis, in addition to rabies; records in English.", fr: "Les chiens doivent être vaccinés contre la maladie de Carré, l'hépatite canine, la parvovirose canine et la leptospirose, en plus de la rage ; enregistrements en anglais.", es: "Los perros deben estar vacunados contra el moquillo canino, la hepatitis canina, el parvovirus canino y la leptospirosis, además de la rabia; registros en inglés.", pt: "Os cachorros precisam ser vacinados contra cinomose canina, hepatite canina, parvovirose canina e leptospirose, além da raiva; registros em inglês." }
+    exceptions: { en: "For all primary vaccinations, allow at least 21 days before departure.", fr: "Pour toute primo-vaccination, prévois au moins 21 jours avant le départ.", es: "Para cualquier primovacunación, prevé al menos 21 días antes de la salida.", pt: "Para qualquer vacinação primária, conte pelo menos 21 dias antes da partida." }
+    ref: { en: "DLD — Import requirements (vaccinations)", fr: "DLD — Exigences d'importation (vaccinations)", es: "DLD — Requisitos de importación (vacunas)", pt: "DLD — Exigências de importação (vacinas)" }
+  - item: { en: "Leptospirosis test", fr: "Test leptospirose", es: "Prueba de leptospirosis", pt: "Teste de leptospirose" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "A negative leptospirosis test within 30 days before departure is required if the dog does not have a valid leptospirosis vaccine or does not meet the 21-day rule.", fr: "Un test leptospirose négatif dans les 30 jours avant le départ est requis si le chien n'a pas de vaccin leptospirose valide ou ne respecte pas la règle des 21 jours.", es: "Se exige una prueba de leptospirosis negativa dentro de los 30 días previos a la salida si el perro no tiene una vacuna de leptospirosis válida o no cumple la regla de los 21 días.", pt: "Um teste de leptospirose negativo feito nos 30 dias anteriores à partida é obrigatório se o cachorro não tiver vacina de leptospirose válida ou não cumprir a regra dos 21 dias." }
+    exceptions: { en: "Not required for a dog with a valid leptospirosis vaccination.", fr: "Non requis pour un chien avec une vaccination leptospirose valide.", es: "No se exige para un perro con una vacunación de leptospirosis válida.", pt: "Não obrigatório para um cachorro com vacinação de leptospirose válida." }
+    ref: { en: "DLD — Import requirements (leptospirosis)", fr: "DLD — Exigences d'importation (leptospirose)", es: "DLD — Requisitos de importación (leptospirosis)", pt: "DLD — Exigências de importação (leptospirose)" }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat sanitaire vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Official health certificate issued shortly before travel and endorsed/stamped by the exporting country's government veterinary authority; original only, in English. From the USA it is valid 10 days from USDA endorsement.", fr: "Certificat sanitaire officiel établi peu avant le voyage et visé/tamponné par l'autorité vétérinaire gouvernementale du pays d'export ; original uniquement, en anglais. Depuis les États-Unis, il est valable 10 jours après le visa USDA.", es: "Certificado sanitario oficial expedido poco antes del viaje y refrendado/sellado por la autoridad veterinaria gubernamental del país de exportación; solo original, en inglés. Desde EE. UU. es válido 10 días desde el refrendo del USDA.", pt: "Atestado de saúde oficial emitido pouco antes da viagem e endossado/carimbado pela autoridade veterinária governamental do país exportador; somente o original, em inglês. A partir dos EUA, ele vale 10 dias após o endosso do USDA." }
+    exceptions: { en: "Electronic or copied certificates are not accepted; issue it inside the import permit's 60-day validity.", fr: "Les certificats électroniques ou copiés ne sont pas acceptés ; établissez-le dans la validité de 60 jours du permis d'importation.", es: "No se aceptan certificados electrónicos ni copias; expídelo dentro de la valide de 60 días del permiso de importación.", pt: "Certificados eletrônicos ou copiados não são aceitos; emita-o dentro do prazo de validade de 60 dias da autorização de importação." }
+    ref: { en: "DLD — Official Health Certificate (endorsement)", fr: "DLD — Certificat sanitaire officiel (visa)", es: "DLD — Certificado sanitario oficial (refrendo)", pt: "DLD — Atestado de saúde oficial (endosso)" }
+  - item: { en: "Import licence on arrival (Forms R-6 / R-7)", fr: "Licence d'importation à l'arrivée (formulaires R-6 / R-7)", es: "Licencia de importación a la llegada (formularios R-6 / R-7)", pt: "Licença de importação na chegada (formulários R-6 / R-7)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "At the AQS on arrival the vet checks documents and the microchip, then issues a Notice of Import Approval (Form R-6) and the Import License (Form R-7). Fee 500 baht per animal; the licence is valid until the pet leaves Thailand.", fr: "À l'AQS à l'arrivée, le vétérinaire vérifie les documents et la puce, puis délivre un avis d'approbation (formulaire R-6) et la licence d'importation (formulaire R-7). Frais de 500 bahts par animal ; la licence est valable jusqu'au départ de l'animal de Thaïlande.", es: "En la AQS a la llegada, el veterinario revisa los documentos y el microchip, y luego expide un aviso de aprobación de importación (formulario R-6) y la licencia de importación (formulario R-7). Tasa de 500 bahts por animal; la licencia es válida hasta que la mascota sale de Tailandia.", pt: "Na AQS, na chegada, o veterinário confere os documentos e o microchip e depois emite um aviso de aprovação de importação (formulário R-6) e a licença de importação (formulário R-7). Taxa de 500 bahts por animal; a licença é válida até o animal deixar a Tailândia." }
+    exceptions: { en: "Present the animal and Form R-7 to Customs at the Goods to Declare channel and pay any applicable duties.", fr: "Présente l'animal et le formulaire R-7 à la douane au canal « Goods to Declare » et acquittez les droits éventuels.", es: "Presenta el animal y el formulario R-7 en la aduana por el canal «Goods to Declare» y paga los derechos que correspondan.", pt: "Apresente o animal e o formulário R-7 à alfândega no canal « Goods to Declare » e pague os direitos que se apliquem." }
+    ref: { en: "Thai Customs — Importing pets (Hand Carried), Form R.7", fr: "Douane thaïlandaise — Importation d'animaux (Hand Carried), formulaire R.7", es: "Aduanas de Tailandia — Importación de mascotas (Hand Carried), formulario R.7", pt: "Alfândega da Tailândia — Importação de animais (Hand Carried), formulário R.7" }
+  - item: { en: "Number of pets per traveller", fr: "Nombre d'animaux par voyageur", es: "Número de mascotas por viajero", pt: "Número de animais por viajante" }
+    required: { en: "Per-animal permit", fr: "Permis par animal", es: "Permiso por animal", pt: "Autorização por animal" }
+    when: { en: "Each dog needs its own import permit, its own health certificate and a separate 500-baht import-licence fee.", fr: "Chaque chien nécessite son propre permis d'importation, son propre certificat sanitaire et des frais de licence de 500 bahts distincts.", es: "Cada perro necesita su propio permiso de importación, su propio certificado sanitario y una tasa de licencia de importación de 500 bahts aparte.", pt: "Cada cachorro precisa da sua própria autorização de importação, do seu próprio atestado de saúde e de uma taxa de licença de importação de 500 bahts à parte." }
+    exceptions: { en: "The DLD documents reviewed do not publish a fixed maximum number of pets per traveller — confirm with the AQS at your port of entry.", fr: "Les documents du DLD consultés ne publient pas de nombre maximal fixe d'animaux par voyageur — confirme auprès de l'AQS de ton point d'entrée.", es: "Los documentos del DLD consultados no publican un número máximo fijo de mascotas por viajero — confírmalo con la AQS de tu punto de entrada.", pt: "Os documentos do DLD consultados não publicam um número máximo fixo de animais por viajante — confirme com a AQS do seu ponto de entrada." }
+    ref: { en: "DLD — Import requirements; AQS", fr: "DLD — Exigences d'importation ; AQS", es: "DLD — Requisitos de importación; AQS", pt: "DLD — Exigências de importação; AQS" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥4 months", fr: "En pratique ≥4 mois", es: "En la práctica ≥4 meses", pt: "Na prática, ≥4 meses" }
+    when: { en: "The rabies vaccine is valid only from 12 weeks of age, with a 21-day wait for a primary dose; pets are generally accepted only from about 4 months old.", fr: "Le vaccin antirabique n'est valide qu'à partir de 12 semaines, avec un délai de 21 jours pour une primo-dose ; les animaux ne sont généralement admis qu'à partir d'environ 4 mois.", es: "La vacuna antirrábica solo es válida a partir de las 12 semanas de edad, con una espera de 21 días para una dosis primaria; las mascotas generalmente solo se admiten a partir de unos 4 meses de edad.", pt: "A vacina antirrábica só é válida a partir das 12 semanas de idade, com espera de 21 dias para uma dose primária; os animais em geral só são aceitos a partir de cerca de 4 meses." }
+    exceptions: { en: "A rabies dose given before 12 weeks is not valid.", fr: "Une dose antirabique administrée avant 12 semaines n'est pas valide.", es: "Una dosis antirrábica administrada antes de las 12 semanas no es válida.", pt: "Uma dose antirrábica aplicada antes das 12 semanas não é válida." }
+    ref: { en: "DLD — Import requirements (age)", fr: "DLD — Exigences d'importation (âge)", es: "DLD — Requisitos de importación (edad)", pt: "DLD — Exigências de importação (idade)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required if compliant", fr: "Non requise si conforme", es: "No obligatoria si se cumple", pt: "Não obrigatória se estiver tudo em conformidade" }
+    when: { en: "Compliant dogs are released without quarantine; a quarantine officer may detain any animal (typically at least 30 days) for tests or treatment if a disease risk is suspected.", fr: "Les chiens conformes sont libérés sans quarantaine ; un agent de quarantaine peut retenir tout animal (généralement au moins 30 jours) pour tests ou traitement en cas de risque sanitaire suspecté.", es: "Los perros conformes se liberan sin cuarentena; un agente de cuarentena puede retener a cualquier animal (normalmente al menos 30 días) para pruebas o tratamiento si se sospecha un riesgo sanitario.", pt: "Os cachorros em conformidade são liberados sem quarentena; um agente de quarentena pode reter qualquer animal (normalmente por pelo menos 30 dias) para exames ou tratamento se houver suspeita de risco sanitário." }
+    exceptions: { en: "If requirements are not met or the microchip does not match, the animal may be returned to the exporting country or detained — all costs borne by the importer.", fr: "Si les exigences ne sont pas remplies ou si la puce ne correspond pas, l'animal peut être renvoyé vers le pays d'export ou retenu — tous frais à la charge de l'importateur.", es: "Si no se cumplen los requisitos o el microchip no coincide, el animal puede ser devuelto al país de exportación o retenido — todos los costes a cargo del importador.", pt: "Se as exigências não forem cumpridas ou o microchip não corresponder, o animal pode ser devolvido ao país exportador ou retido — todos os custos por conta do importador." }
+    ref: { en: "DLD — Import requirements (quarantine)", fr: "DLD — Exigences d'importation (quarantaine)", es: "DLD — Requisitos de importación (cuarentena)", pt: "DLD — Exigências de importação (quarentena)" }
+
+origin:
+  eu:
+    title: { en: "Up-to-date dog (valid boosters) — fastest path", fr: "Chien à jour (rappels valides) — parcours le plus rapide", es: "Perro al día (refuerzos válidos) — la vía más rápida", pt: "Cachorro com vacinas em dia (reforços válidos) — caminho mais rápido" }
+    body:
+      en: "A dog whose rabies and core vaccinations are current on valid boosters follows the shortest path: apply for the DLD import permit (Form R1/1) 60 to 7 days before departure, then have an official government veterinarian issue and endorse the health certificate shortly before travel. No 21-day waiting period applies when the previous vaccination records are attached, and no quarantine is imposed if every condition is met."
+      fr: "Un chien dont les vaccins antirabiques et de base sont à jour sur des rappels valides suit le parcours le plus court : demande le permis d'importation DLD (formulaire R1/1) 60 à 7 jours avant le départ, puis fais établir et viser le certificat sanitaire par un vétérinaire officiel peu avant le voyage. Aucun délai de 21 jours ne s'applique lorsque les enregistrements de vaccination précédents sont joints, et aucune quarantaine n'est imposée si toutes les conditions sont remplies."
+      es: "Un perro cuyas vacunas antirrábica y básicas están al día con refuerzos válidos sigue la vía más corta: solicita el permiso de importación del DLD (formulario R1/1) de 60 a 7 días antes de la salida, y luego haz que un veterinario oficial del gobierno expida y refrende el certificado sanitario poco antes del viaje. No se aplica ningún plazo de espera de 21 días cuando se adjuntan los registros de vacunación anteriores, y no se impone cuarentena si se cumplen todas las condiciones."
+      pt: "Um cachorro cujas vacinas antirrábica e essenciais estejam em dia com reforços válidos segue o caminho mais curto: peça a autorização de importação do DLD (formulário R1/1) de 60 a 7 dias antes da partida e depois peça a um veterinário oficial do governo que emita e endosse o atestado de saúde pouco antes da viagem. Nenhum prazo de espera de 21 dias se aplica quando os registros de vacinação anteriores são anexados, e nenhuma quarentena é imposta se todas as condições forem cumpridas."
+    cls: ok
+  listed:
+    title: { en: "Primary or lapsed vaccination — 21-day wait", fr: "Vaccination primaire ou périmée — délai de 21 jours", es: "Vacunación primaria o caducada — espera de 21 días", pt: "Vacinação primária ou vencida — espera de 21 dias" }
+    body:
+      en: "If the rabies or core vaccinations are a first (primary) dose or have lapsed, the dog must be vaccinated at least 21 days before departure. If it has no valid leptospirosis vaccine, add a negative leptospirosis test within 30 days before departure. The import permit and endorsed health certificate are still required, and the dog must be at least 12 weeks old at vaccination."
+      fr: "Si les vaccins antirabiques ou de base sont une première dose (primaire) ou périmés, le chien doit être vacciné au moins 21 jours avant le départ. S'il n'a pas de vaccin leptospirose valide, ajoute un test leptospirose négatif dans les 30 jours avant le départ. Le permis d'importation et le certificat sanitaire visé restent exigés, et le chien doit avoir au moins 12 semaines à la vaccination."
+      es: "Si las vacunas antirrábica o básicas son una primera dosis (primaria) o han caducado, el perro debe vacunarse al menos 21 días antes de la salida. Si no tiene una vacuna de leptospirosis válida, añade una prueba de leptospirosis negativa dentro de los 30 días previos a la salida. El permiso de importación y el certificado sanitario refrendado siguen siendo obligatorios, y el perro debe tener al menos 12 semanas en el momento de la vacunación."
+      pt: "Se a vacinação antirrábica ou as vacinas essenciais forem uma primeira dose (primária) ou estiverem vencidas, o cachorro precisa ser vacinado pelo menos 21 dias antes da partida. Se ele não tiver vacina de leptospirose válida, acrescente um teste de leptospirose negativo feito nos 30 dias anteriores à partida. A autorização de importação e o atestado de saúde endossado continuam obrigatórios, e o cachorro precisa ter pelo menos 12 semanas na data da vacinação."
+    cls: warn
+  nonListed:
+    title: { en: "High-risk origin or non-compliant arrival", fr: "Origine à risque ou arrivée non conforme", es: "Origen de riesgo o llegada no conforme", pt: "Origem de alto risco ou chegada fora de conformidade" }
+    body:
+      en: "For a dog from a high-rabies-risk country, the DLD may additionally require a rabies antibody test — plan several extra months. A dog that arrives without a valid import permit, a matching microchip, or the required vaccinations and certificate can be detained for quarantine, returned to the exporting country, or held for tests and treatment, entirely at the owner's expense."
+      fr: "Pour un chien venant d'un pays à risque rabique élevé, le DLD peut en plus exiger un titrage des anticorps antirabiques — prévois plusieurs mois supplémentaires. Un chien qui arrive sans permis d'importation valide, sans puce correspondante, ou sans les vaccinations et le certificat requis peut être placé en quarantaine, renvoyé vers le pays d'export, ou retenu pour tests et traitement, entièrement aux frais du propriétaire."
+      es: "Para un perro procedente de un país de alto riesgo de rabia, el DLD puede exigir además una prueba de titulación de rabia — prevé varios meses adicionales. Un perro que llega sin un permiso de importación válido, sin un microchip coincidente, o sin las vacunas y el certificado requeridos puede ser retenido para cuarentena, devuelto al país de exportación, o retenido para pruebas y tratamiento, todo a cargo del propietario."
+      pt: "Para um cachorro vindo de um país de alto risco de raiva, o DLD pode exigir ainda um teste sorológico antirrábico — planeje vários meses a mais. Um cachorro que chega sem autorização de importação válida, sem um microchip correspondente ou sem as vacinas e o certificado exigidos pode ser retido para quarentena, devolvido ao país exportador ou mantido para exames e tratamento, tudo às custas do dono."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Thailand depends on whether every condition was completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Thaïlande dépend du fait que toutes les conditions aient été remplies avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Tailandia depende de si se cumplieron todas las condiciones antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega à Tailândia depende de todas as condições terem sido cumpridas antes da partida."
+  points:
+    - en: "Dogs enter through airports with an Animal Quarantine Station (Suvarnabhumi, Don Mueang, Chiang Mai, Phuket, Samui and Krabi/Trang); hand-carried pets clear at the AQS next to baggage carousel #8 at Suvarnabhumi."
+      fr: "Les chiens entrent par les aéroports dotés d'une station de quarantaine animale (Suvarnabhumi, Don Mueang, Chiang Mai, Phuket, Samui et Krabi/Trang) ; les animaux en cabine sont traités à l'AQS près du tapis à bagages n°8 à Suvarnabhumi."
+      es: "Los perros entran por aeropuertos con una estación de cuarentena animal (Suvarnabhumi, Don Mueang, Chiang Mai, Phuket, Samui y Krabi/Trang); las mascotas en cabina se tramitan en la AQS junto a la cinta de equipajes n.º 8 en Suvarnabhumi."
+      pt: "Os cachorros entram por aeroportos que têm uma Animal Quarantine Station (Suvarnabhumi, Don Mueang, Chiang Mai, Phuket, Samui e Krabi/Trang); os animais acompanhados (Hand Carried) são liberados na AQS ao lado da esteira de bagagem nº 8 em Suvarnabhumi."
+    - en: "Present your passport, the original endorsed health certificate, vaccination records and the printed import permit to the AQS veterinary officer, who checks the documents and the microchip."
+      fr: "Présente ton passeport, le certificat sanitaire original visé, le carnet de vaccination et le permis d'importation imprimé au vétérinaire de l'AQS, qui vérifie les documents et la puce."
+      es: "Presenta tu pasaporte, el certificado sanitario original refrendado, los registros de vacunación y el permiso de importación impreso al veterinario de la AQS, que revisa los documentos y el microchip."
+      pt: "Apresente o seu passaporte, o atestado de saúde original endossado, os registros de vacinação e a autorização de importação impressa ao agente veterinário da AQS, que confere os documentos e o microchip."
+    - en: "The AQS then issues a Notice of Import Approval (Form R-6) and the Import License (Form R-7); a fee of 500 baht per animal is charged and a receipt provided."
+      fr: "L'AQS délivre ensuite un avis d'approbation (formulaire R-6) et la licence d'importation (formulaire R-7) ; des frais de 500 bahts par animal sont perçus et un reçu remis."
+      es: "La AQS expide entonces un aviso de aprobación de importación (formulario R-6) y la licencia de importación (formulario R-7); se cobra una tasa de 500 bahts por animal y se entrega un recibo."
+      pt: "A AQS emite então um aviso de aprovação de importação (formulário R-6) e a licença de importação (formulário R-7); é cobrada uma taxa de 500 bahts por animal e entregue um recibo."
+    - en: "Take the animal and Form R-7 to Customs at the Goods to Declare channel, pay any applicable duties or taxes, and keep the official receipt."
+      fr: "Présente l'animal et le formulaire R-7 à la douane au canal « Goods to Declare », acquittez les droits ou taxes éventuels et conserve le reçu officiel."
+      es: "Lleva el animal y el formulario R-7 a la aduana por el canal «Goods to Declare», paga los derechos o impuestos que correspondan y conserva el recibo oficial."
+      pt: "Leve o animal e o formulário R-7 à alfândega no canal « Goods to Declare », pague os direitos ou impostos que se apliquem e guarde o recibo oficial."
+    - en: "For pets shipped as air cargo, the AQS cargo office is open Monday to Friday only — plan your arrival on a working day."
+      fr: "Pour les animaux expédiés en fret, le bureau AQS du terminal cargo n'ouvre que du lundi au vendredi — planifie ton arrivée un jour ouvré."
+      es: "Para las mascotas enviadas como carga aérea, la oficina de la AQS en la terminal de carga solo abre de lunes a viernes — planifica tu llegada en un día hábil."
+      pt: "Para animais enviados como carga aérea, o escritório de carga da AQS abre somente de segunda a sexta-feira — planeje a chegada em um dia útil."
+    - en: "If documents are missing or invalid, or the microchip does not match, the animal may be returned to the exporting country or detained for quarantine, tests and treatment at the owner's expense."
+      fr: "Si des documents manquent ou sont invalides, ou si la puce ne correspond pas, l'animal peut être renvoyé vers le pays d'export ou retenu pour quarantaine, tests et traitement aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, o el microchip no coincide, el animal puede ser devuelto al país de exportación o retenido para cuarentena, pruebas y tratamiento a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, ou se o microchip não corresponder, o animal pode ser devolvido ao país exportador ou retido para quarentena, exames e tratamento às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Thailand's Department of Livestock Development does not ban any dog breed from importation: no breed is prohibited from entering the country, and the import requirements are the same for every breed."
+    fr: "Le Département du développement de l'élevage de Thaïlande n'interdit aucune race de chien à l'importation : aucune race n'est prohibée d'entrée, et les exigences d'importation sont identiques pour toutes les races."
+    es: "El Department of Livestock Development de Tailandia no prohíbe la importación de ninguna raza de perro: ninguna raza tiene prohibida la entrada al país, y los requisitos de importación son los mismos para todas las razas."
+    pt: "O Department of Livestock Development da Tailândia não proíbe a importação de nenhuma raça de cachorro: nenhuma raça está proibida de entrar no país, e as exigências de importação são as mesmas para todas as raças."
+  cat1:
+    en: "There is no national breed-specific import ban. Breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler and similar) are not prohibited from entering Thailand by the DLD."
+    fr: "Il n'existe aucune interdiction d'importation liée à la race au niveau national. Les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler et similaires) ne sont pas interdites d'entrée en Thaïlande par le DLD."
+    es: "No existe ninguna prohibición nacional de importación por raza. Las razas restringidas en algunos otros países (tipos pit bull, Tosa, Rottweiler y similares) no tienen prohibida la entrada en Tailandia por el DLD."
+    pt: "Não existe proibição nacional de importação por raça. As raças restritas em alguns outros países (tipos pit bull, Tosa, Rottweiler e semelhantes) não são proibidas de entrar na Tailândia pelo DLD."
+  cat2:
+    en: "Restrictions come instead from airlines and local rules: many carriers refuse or restrict snub-nosed (brachycephalic) breeds in the hold, and city ordinances (for example Bangkok's BMA) limit how many dogs a household or condominium may keep once resident. These are not import bans."
+    fr: "Les restrictions proviennent plutôt des compagnies aériennes et des règles locales : de nombreux transporteurs refusent ou limitent les races brachycéphales (au nez court) en soute, et des arrêtés municipaux (par exemple la BMA de Bangkok) plafonnent le nombre de chiens qu'un foyer ou un condominium peut détenir une fois résident. Ce ne sont pas des interdictions d'importation."
+    es: "Las restricciones proceden más bien de las aerolíneas y de las normas locales: muchas compañías rechazan o limitan las razas de hocico chato (braquicéfalas) en la bodega, y las ordenanzas municipales (por ejemplo la BMA de Bangkok) limitan cuántos perros puede tener un hogar o un condominio una vez residente. No son prohibiciones de importación."
+    pt: "As restrições vêm, na verdade, das companhias aéreas e das regras locais: muitas transportadoras recusam ou restringem raças de focinho achatado (braquicefálicas) no porão, e normas municipais (por exemplo a BMA, de Bangkok) limitam quantos cachorros uma residência ou um condomínio pode manter depois que você se instala. Isso não são proibições de importação."
+  note:
+    en: "Because airline breed policies are stricter than Thai import law, confirm your dog's breed is accepted by your carrier before booking, and check local keeping rules for where you will live."
+    fr: "Comme les politiques de race des compagnies aériennes sont plus strictes que la loi thaïlandaise d'importation, vérifie que la race de ton chien est acceptée par ton transporteur avant de réserver, et vérifie les règles locales de détention là où tu résideras."
+    es: "Dado que las políticas de raza de las aerolíneas son más estrictas que la ley de importación tailandesa, confirma que tu aerolínea acepta la raza de tu perro antes de reservar, y comprueba las normas locales de tenencia del lugar donde vayas a vivir."
+    pt: "Como as políticas de raça das companhias aéreas são mais rígidas que a lei tailandesa de importação, confirme que a raça do seu cachorro é aceita pela sua companhia aérea antes de reservar e verifique as regras locais de posse do lugar onde você vai morar."
+
+checklist:
+  - en: "Import permit applied for by email to the AQS (Form R1/1), 60-7 days before departure"
+    fr: "Permis d'importation demandé par e-mail à l'AQS (formulaire R1/1), 60 à 7 jours avant le départ"
+    es: "Permiso de importación solicitado por correo electrónico a la AQS (formulario R1/1), 60-7 días antes de la salida"
+    pt: "Autorização de importação solicitada por e-mail à AQS (formulário R1/1), 60 a 7 dias antes da partida"
+  - en: "ISO 11784/11785 microchip; number matches every document"
+    fr: "Puce ISO 11784/11785 ; numéro correspondant à chaque document"
+    es: "Microchip ISO 11784/11785; el número coincide con todos los documentos"
+    pt: "Microchip ISO 11784/11785; número que coincide com todos os documentos"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot; +21 days for a primary dose)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines ; +21 jours pour une primo-dose)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna; +21 días para una dosis primaria)"
+    pt: "Vacinação antirrábica válida (cachorro ≥12 semanas na aplicação; +21 dias para uma dose primária)"
+  - en: "Core vaccinations: distemper, hepatitis, parvovirus and leptospirosis (records in English)"
+    fr: "Vaccins de base : Carré, hépatite, parvovirose et leptospirose (enregistrements en anglais)"
+    es: "Vacunas básicas: moquillo, hepatitis, parvovirus y leptospirosis (registros en inglés)"
+    pt: "Vacinas essenciais: cinomose, hepatite, parvovirose e leptospirose (registros em inglês)"
+  - en: "Negative leptospirosis test within 30 days if no valid leptospirosis vaccine"
+    fr: "Test leptospirose négatif dans les 30 jours si pas de vaccin leptospirose valide"
+    es: "Prueba de leptospirosis negativa dentro de los 30 días si no hay una vacuna de leptospirosis válida"
+    pt: "Teste de leptospirose negativo nos 30 dias anteriores se não houver vacina de leptospirose válida"
+  - en: "Rabies antibody test only if the DLD requests it for your origin"
+    fr: "Titrage antirabique uniquement si le DLD l'exige pour ton origine"
+    es: "Prueba de titulación de rabia solo si el DLD la exige para tu origen"
+    pt: "Teste sorológico antirrábico somente se o DLD exigir para a sua origem"
+  - en: "Original government-endorsed health certificate (issued shortly before travel)"
+    fr: "Certificat sanitaire officiel original visé (établi peu avant le voyage)"
+    es: "Certificado sanitario oficial original refrendado (expedido poco antes del viaje)"
+    pt: "Atestado de saúde oficial original endossado (emitido pouco antes da viagem)"
+  - en: "Printed import permit and passport ready for the AQS; budget 500 baht per animal"
+    fr: "Permis d'importation imprimé et passeport prêts pour l'AQS ; prévoir 500 bahts par animal"
+    es: "Permiso de importación impreso y pasaporte listos para la AQS; presupuesta 500 bahts por animal"
+    pt: "Autorização de importação impressa e passaporte prontos para a AQS; reserve 500 bahts por animal"
+  - en: "IATA-compliant crate; confirm your dog's breed is accepted by the airline"
+    fr: "Caisse conforme IATA ; vérifie que la race de ton chien est acceptée par la compagnie"
+    es: "Jaula conforme con la IATA; confirma que la aerolínea acepta la raza de tu perro"
+    pt: "Caixa de transporte conforme a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
+
+sources:
+  - label: { en: "Department of Livestock Development (DLD) — Importation of animals and animal products", fr: "Département du développement de l'élevage (DLD) — Importation des animaux et produits animaux", es: "Department of Livestock Development (DLD) — Importación de animales y productos animales", pt: "Department of Livestock Development (DLD) — Importação de animais e produtos de origem animal" }
+    url: "http://en.dld.go.th/index.php/en/pet-travel-menu/importation-animal-animal-products"
+  - label: { en: "DLD / Office of Agricultural Affairs — Instructions for importation of dogs, cats and rabbits into Thailand", fr: "DLD / Bureau des affaires agricoles — Instructions pour l'importation de chiens, chats et lapins en Thaïlande", es: "DLD / Office of Agricultural Affairs — Instrucciones para la importación de perros, gatos y conejos a Tailandia", pt: "DLD / Office of Agricultural Affairs — Instruções para a importação de cães, gatos e coelhos para a Tailândia" }
+    url: "https://www.opsmoac.go.th/dc-regulation-files-471891791806"
+  - label: { en: "Royal Thai Government (DLD) — Requirements for importation of dogs/cats/rabbits (Forms R1/1, R-6, R-7)", fr: "Gouvernement royal thaïlandais (DLD) — Exigences d'importation chiens/chats/lapins (formulaires R1/1, R-6, R-7)", es: "Gobierno real de Tailandia (DLD) — Requisitos para la importación de perros/gatos/conejos (formularios R1/1, R-6, R-7)", pt: "Governo Real da Tailândia (DLD) — Exigências para a importação de cães/gatos/coelhos (formulários R1/1, R-6, R-7)" }
+    url: "https://image.mfa.go.th/mfa/0/SRBviAC5gs/Requirements_for_importation_of_Animals.pdf"
+  - label: { en: "Thai Customs — Importing pets accompanied by passengers (Hand Carried), Form R.7", fr: "Douane thaïlandaise — Importation d'animaux accompagnant les passagers (Hand Carried), formulaire R.7", es: "Aduanas de Tailandia — Importación de mascotas acompañadas por pasajeros (Hand Carried), formulario R.7", pt: "Alfândega da Tailândia — Importação de animais acompanhados por passageiros (Hand Carried), formulário R.7" }
+    url: "https://ccc.customs.go.th/cont_strc_faq.php?current_id=14232f324148505f4c&left_menu=interesting_article"
+  - label: { en: "Thai Customs Department — official website", fr: "Département des douanes thaïlandaises — site officiel", es: "Departamento de Aduanas de Tailandia — sitio web oficial", pt: "Departamento de Alfândega da Tailândia — site oficial" }
+    url: "https://www.customs.go.th/"
+
+seo:
+  title: { en: "Thailand Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Thaïlande — Guide", es: "Requisitos de entrada de perros en Tailandia — Guía de viaje", pt: "Entrada de cachorros na Tailândia — Guia de viagem" }
+  metaTitle: { en: "Traveling to Thailand With Your Dog: Entry Requirements (2026)", fr: "Voyager en Thaïlande avec ton chien : formalités (2026)", es: "Viajar a Tailandia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Tailândia com o seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official DLD and Thai Customs rules for bringing a dog into Thailand: advance import permit (Form R1/1), microchip, rabies and core vaccinations. Sourced and dated."
+    fr: "Règles officielles DLD et douane pour faire entrer un chien en Thaïlande : permis d'importation préalable (formulaire R1/1), puce. Sourcé et daté."
+    es: "Normas oficiales del DLD y de las aduanas tailandesas para traer un perro a Tailandia: permiso de importación previo (formulario R1/1). Con fuentes y fecha."
+    pt: "Regras oficiais do DLD e da alfândega para levar um cachorro à Tailândia: autorização de importação prévia (formulário R1/1), microchip, vacinas. Com fontes e data."
+  slug: "thailand"
+  shortDesc:
+    en: "What you need to bring a dog into Thailand: an advance DLD import permit and a government health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien en Thaïlande : un permis d'importation DLD préalable et un certificat sanitaire officiel."
+    es: "Lo que necesitas para traer un perro a Tailandia: un permiso de importación previo del DLD y un certificado sanitario oficial."
+    pt: "O que você precisa para levar um cachorro à Tailândia: uma autorização de importação prévia do DLD e um atestado de saúde oficial."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

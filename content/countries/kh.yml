@@ -1,0 +1,421 @@
+# Country Entry Guide — Cambodia (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+# Cambodia is NOT in the EU. It runs its own national scheme under the Law on Animal Health
+# and Production, administered by the General Directorate of Animal Health and Production
+# (GDAHP) of the Ministry of Agriculture, Forestry and Fisheries (MAFF): a MAFF/GDAHP import
+# permission/licence must be obtained in advance -> an official veterinary/sanitary certificate
+# is issued by the exporting country's competent authority -> the animal is inspected by the
+# GDAHP animal-health checkpoint at the international airport of entry, alongside customs.
+# There are NO animal quarantine stations in Cambodia — only animal checkpoints (WOAH/GDAHP).
+# Cambodia is rabies-endemic (WOAH/WHO) and publishes very little pet-specific, stable guidance:
+# microchip, exact rabies timing, antibody test, parasite treatment and minimum age are NOT
+# published in a verifiable official source and are marked Unknown / Non communiqué below.
+# Legal basis: Law on Animal Health and Production (Royal Decree NS/RK/0116/003);
+# Sub-Decree No.16 (13 March 2003) on Sanitary Inspection of Animals and Animal Products;
+# Prakas/Notification No.178 (18 May 2009); Notification No.3525 on requirements for importing
+# live animals, meat and animal products. The eu/listed/nonListed slots are repurposed to
+# Cambodia's origin-risk tiers: eu = compliant dog from a low-risk origin (standard path);
+# listed = rabies-endemic / higher-risk origin (extra documentation and checks likely);
+# nonListed = origin affected by a listed animal infectious disease (import prohibited).
+id: country_kh
+iso2: "KH"
+name: { en: "Cambodia", fr: "Cambodge", es: "Camboya", pt: "Camboja" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+exit:
+  authority: GDAHP
+  authorityUrl: https://maff.gov.kh
+  intro:
+    en: "Cambodia is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the General Directorate of Animal Health and Production (GDAHP)."
+    fr: "Le Cambodge est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la General Directorate of Animal Health and Production (GDAHP)."
+    es: "Camboya no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la General Directorate of Animal Health and Production (GDAHP)."
+    pt: "O Camboja é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pela General Directorate of Animal Health and Production (GDAHP)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "GDAHP veterinary officers issue and endorse the export health certificate; apply before booking travel."
+        fr: "Les vétérinaires officiels de la GDAHP délivrent et visent le certificat sanitaire d'export ; fais la demande avant de réserver le voyage."
+        es: "Los veterinarios oficiales de la GDAHP emiten y refrendan el certificado sanitario de exportación; solicítalo antes de reservar el viaje."
+        pt: "Os veterinários oficiais da GDAHP emitem e endossam o atestado de saúde de exportação; solicite antes de reservar a viagem."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Cambodia with your dog", fr: "Voyager au Cambodge avec ton chien", es: "Viajar a Camboya con tu perro", pt: "Viajar para o Camboja com seu cachorro" }
+  intro:
+    en: >-
+      Cambodia allows dogs to enter, but it runs its own national scheme under the Law on Animal
+      Health and Production — not the EU framework. Imports are administered by the General
+      Directorate of Animal Health and Production (GDAHP) of the Ministry of Agriculture, Forestry
+      and Fisheries (MAFF). In principle you must obtain an advance import permission/licence from
+      MAFF through the GDAHP, travel with an official veterinary (sanitary) certificate issued by
+      the competent authority of the exporting country, and present your dog to the GDAHP
+      animal-health checkpoint at the international airport of entry, alongside customs. There are
+      no animal quarantine stations in Cambodia — only animal checkpoints. Cambodia is a
+      rabies-endemic country and publishes little detailed, stable pet-specific guidance, so several
+      points (microchip, exact rabies timing, parasite treatment, minimum age) must be confirmed
+      directly with the GDAHP and a veterinarian before you book.
+    fr: >-
+      Le Cambodge autorise l'entrée des chiens, mais applique son propre régime national au titre
+      de la loi sur la santé et la production animales — et non le cadre européen. Les importations
+      sont gérées par la Direction générale de la santé et de la production animales (GDAHP) du
+      Ministère de l'Agriculture, des Forêts et de la Pêche (MAFF). En principe, tu dois obtenir
+      au préalable une autorisation/licence d'importation du MAFF via la GDAHP, voyager avec un
+      certificat vétérinaire (sanitaire) officiel délivré par l'autorité compétente du pays d'export,
+      et présenter ton chien au point de contrôle sanitaire animal de la GDAHP à l'aéroport
+      international d'entrée, en même temps qu'à la douane. Il n'existe pas de stations de quarantaine
+      animale au Cambodge — seulement des points de contrôle animaliers. Le Cambodge est un pays
+      d'endémie rabique et publie peu d'informations détaillées et stables propres aux animaux de
+      compagnie ; plusieurs points (puce, délai exact de vaccination antirabique, traitement
+      antiparasitaire, âge minimum) doivent être confirmés directement auprès de la GDAHP et d'un
+      vétérinaire avant de réserver.
+    es: >-
+      Camboya permite la entrada de perros, pero aplica su propio régimen nacional en virtud de la
+      Ley de Sanidad y Producción Animal — no el marco de la UE. Las importaciones las gestiona la
+      Dirección General de Sanidad y Producción Animal (GDAHP) del Ministerio de Agricultura,
+      Bosques y Pesca (MAFF). En principio, debes obtener con antelación un permiso/licencia de
+      importación del MAFF a través de la GDAHP, viajar con un certificado veterinario (sanitario)
+      oficial expedido por la autoridad competente del país exportador, y presentar a tu perro en el
+      punto de control sanitario animal de la GDAHP en el aeropuerto internacional de entrada, junto
+      con la aduana. No existen estaciones de cuarentena animal en Camboya — solo puntos de control
+      animal. Camboya es un país de endemia rábica y publica pocas orientaciones detalladas y
+      estables específicas para mascotas, por lo que varios puntos (microchip, plazo exacto de la
+      vacunación antirrábica, tratamiento antiparasitario, edad mínima) deben confirmarse
+      directamente con la GDAHP y un veterinario antes de reservar.
+
+    pt: "O Camboja permite a entrada de cachorros, mas aplica seu próprio esquema nacional sob a Law on Animal Health and Production — e não o marco da UE. As importações são administradas pela General Directorate of Animal Health and Production (GDAHP), do Ministry of Agriculture, Forestry and Fisheries (MAFF). Em princípio, você precisa obter uma permissão/licença de importação prévia junto ao MAFF, por meio da GDAHP, viajar com um certificado veterinário (sanitário) oficial emitido pela autoridade competente do país exportador, e apresentar o seu cachorro ao posto de controle sanitário animal da GDAHP no aeroporto internacional de entrada, junto com a alfândega. Não há estações de quarentena animal no Camboja — apenas postos de controle animal. O Camboja é um país endêmico de raiva e publica pouca orientação detalhada e estável específica para animais de estimação, portanto vários pontos (microchip, momento exato da vacinação antirrábica, tratamento antiparasitário, idade mínima) precisam ser confirmados diretamente com a GDAHP e um veterinário antes de você reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — advance MAFF/GDAHP permission and limited published guidance", fr: "Difficile — autorisation préalable MAFF/GDAHP et peu d'informations publiées", es: "Difícil — permiso previo de MAFF/GDAHP y orientación publicada limitada", pt: "Difícil — permissão prévia do MAFF/GDAHP e orientação publicada limitada" }
+
+prepTime:
+  eu:
+    en: "Compliant dog from a low-risk origin: plan several weeks — request MAFF/GDAHP import permission in advance, then obtain an official veterinary (sanitary) certificate from the exporting authority shortly before travel. Exact lead times are not published; confirm with the GDAHP."
+    fr: "Chien conforme depuis une origine à faible risque : prévois plusieurs semaines — demande au préalable l'autorisation d'importation MAFF/GDAHP, puis obtiens un certificat vétérinaire (sanitaire) officiel de l'autorité d'export peu avant le voyage. Les délais exacts ne sont pas publiés ; confirme avec la GDAHP."
+    es: "Perro conforme desde un origen de bajo riesgo: prevé varias semanas — solicita con antelación el permiso de importación MAFF/GDAHP y luego obtén un certificado veterinario (sanitario) oficial de la autoridad exportadora poco antes del viaje. Los plazos exactos no están publicados; confírmalos con la GDAHP."
+    pt: "Cachorro em conformidade vindo de uma origem de baixo risco: planeje várias semanas — solicite a permissão de importação do MAFF/GDAHP com antecedência, depois obtenha um certificado veterinário (sanitário) oficial da autoridade exportadora pouco antes da viagem. Os prazos exatos não são publicados; confirme com a GDAHP."
+  listed:
+    en: "Rabies-endemic or higher-risk origin: allow extra time — additional documentation, sampling or checks may be requested at the airport animal-health checkpoint. Exact requirements are not published; confirm with the GDAHP before booking."
+    fr: "Origine d'endémie rabique ou à risque plus élevé : prévois du temps supplémentaire — documents, prélèvements ou contrôles additionnels possibles au point de contrôle sanitaire de l'aéroport. Les exigences exactes ne sont pas publiées ; confirme avec la GDAHP avant de réserver."
+    es: "Origen de endemia rábica o de mayor riesgo: prevé tiempo adicional — pueden solicitarse documentos, muestras o controles adicionales en el punto de control sanitario del aeropuerto. Los requisitos exactos no están publicados; confírmalos con la GDAHP antes de reservar."
+    pt: "Origem endêmica de raiva ou de risco mais alto: reserve tempo extra — documentação adicional, coleta de amostras ou verificações podem ser solicitadas no posto de controle sanitário animal do aeroporto. As exigências exatas não são publicadas; confirme com a GDAHP antes de reservar."
+  nonListed:
+    en: "Prohibited origin: a dog from a country affected by a listed animal infectious disease cannot be imported at all — no timeline applies."
+    fr: "Origine interdite : un chien venant d'un pays touché par une maladie animale infectieuse répertoriée ne peut pas être importé — aucun délai ne s'applique."
+    es: "Origen prohibido: un perro procedente de un país afectado por una enfermedad animal infecciosa incluida en la lista no puede importarse en absoluto — no se aplica ningún plazo."
+    pt: "Origem proibida: um cachorro vindo de um país afetado por uma doença infecciosa animal listada não pode ser importado de forma alguma — nenhum prazo se aplica."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Import permission/licence (MAFF/GDAHP, in advance)", fr: "Autorisation/licence d'importation (MAFF/GDAHP, à l'avance)", es: "Permiso/licencia de importación (MAFF/GDAHP, con antelación)", pt: "Permissão/licença de importação (MAFF/GDAHP, com antecedência)" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Official veterinary (sanitary) certificate", fr: "Certificat vétérinaire (sanitaire) officiel", es: "Certificado veterinario (sanitario) oficial", pt: "Certificado veterinário (sanitário) oficial" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Microchip (ISO)", fr: "Puce électronique (ISO)", es: "Microchip (ISO)", pt: "Microchip (ISO)" }
+    status: { en: "Not published — recommended", fr: "Non communiqué — recommandée", es: "No comunicado — recomendado", pt: "Não publicado — recomendado" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (via export certificate); timing not published", fr: "Requise (via le certificat d'export) ; délai non communiqué", es: "Obligatoria (mediante el certificado de exportación); plazo no comunicado", pt: "Obrigatória (por meio do certificado de exportação); momento não publicado" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "No official requirement identified", fr: "Aucune exigence officielle identifiée", es: "No se ha identificado ninguna exigencia oficial", pt: "Nenhuma exigência oficial identificada" }
+    cls: ok
+  - requirement: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / vermifuge", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    status: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    cls: neutral
+  - requirement: { en: "Airport animal-health inspection", fr: "Inspection sanitaire animale à l'aéroport", es: "Inspección sanitaria animal en el aeropuerto", pt: "Inspeção sanitária animal no aeroporto" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "No quarantine station; hold possible if disease suspected", fr: "Pas de station de quarantaine ; rétention possible si maladie suspectée", es: "Sin estación de cuarentena; posible retención si se sospecha enfermedad", pt: "Sem estação de quarentena; retenção possível se houver suspeita de doença" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and Cambodia's General Directorate of Animal Health and Production (GDAHP) can confirm the exact procedure for your individual dog."
+    fr: "Seuls un vétérinaire et la Direction générale de la santé et de la production animales (GDAHP) du Cambodge peuvent confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario y la Dirección General de Sanidad y Producción Animal (GDAHP) de Camboya pueden confirmar el procedimiento exacto para tu perro."
+    pt: "Só um veterinário e a General Directorate of Animal Health and Production (GDAHP) do Camboja podem confirmar o procedimento exato para o seu cachorro."
+  - en: "Cambodia publishes little stable, pet-specific guidance: obtain MAFF/GDAHP import permission and confirm current requirements in writing before you book."
+    fr: "Le Cambodge publie peu d'informations stables propres aux animaux de compagnie : obtiens l'autorisation d'importation MAFF/GDAHP et confirme les exigences en vigueur par écrit avant de réserver."
+    es: "Camboya publica poca orientación estable específica para mascotas: obtén el permiso de importación MAFF/GDAHP y confirma por escrito los requisitos vigentes antes de reservar."
+    pt: "O Camboja publica pouca orientação estável e específica para animais de estimação: obtenha a permissão de importação do MAFF/GDAHP e confirme por escrito as exigências atuais antes de reservar."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Cambodia (your destination) is only the first."
+    fr: "Les étapes exactes dépendent de trois éléments — le Cambodge (ta destination) n'est que le premier."
+    es: "Los pasos exactos dependen de tres factores — Camboya (tu destino) es solo el primero."
+    pt: "As etapas exatas dependem de três fatores — o Camboja (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Cambodia", fr: "Pays de destination — Cambodge", es: "País de destino — Camboya", pt: "País de destino — Camboja" }
+      text:
+        en: "Cambodia runs its own scheme under the Law on Animal Health and Production, administered by the GDAHP: advance MAFF/GDAHP import permission, an official veterinary (sanitary) certificate from the exporting authority, and inspection at the airport animal-health checkpoint. It does not use the EU pet-passport system, and it operates no animal quarantine stations."
+        fr: "Le Cambodge applique son propre régime au titre de la loi sur la santé et la production animales, géré par la GDAHP : autorisation d'importation MAFF/GDAHP préalable, certificat vétérinaire (sanitaire) officiel de l'autorité d'export et inspection au point de contrôle sanitaire de l'aéroport. Il n'utilise pas le passeport européen et ne dispose d'aucune station de quarantaine animale."
+        es: "Camboya aplica su propio régimen en virtud de la Ley de Sanidad y Producción Animal, gestionado por la GDAHP: permiso de importación MAFF/GDAHP previo, un certificado veterinario (sanitario) oficial de la autoridad exportadora e inspección en el punto de control sanitario del aeropuerto. No utiliza el sistema de pasaporte europeo para mascotas y no dispone de estaciones de cuarentena animal."
+        pt: "O Camboja aplica seu próprio esquema sob a Law on Animal Health and Production, administrado pela GDAHP: permissão de importação prévia do MAFF/GDAHP, um certificado veterinário (sanitário) oficial da autoridade exportadora, e inspeção no posto de controle sanitário animal do aeroporto. O país não usa o sistema de passaporte para animais de estimação da UE, e não opera estações de quarentena animal."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The exporting country decides whose competent veterinary authority issues and endorses your dog's sanitary certificate. Its disease status also decides whether import is allowed at all: dogs from countries affected by a listed animal infectious disease are prohibited."
+        fr: "Le pays d'export détermine quelle autorité vétérinaire compétente délivre et vise le certificat sanitaire de ton chien. Son statut sanitaire détermine aussi si l'import est autorisé : les chiens venant de pays touchés par une maladie animale infectieuse répertoriée sont interdits."
+        es: "El país exportador determina qué autoridad veterinaria competente expide y refrenda el certificado sanitario de tu perro. Su estatus sanitario también determina si se permite la importación: los perros procedentes de países afectados por una enfermedad animal infecciosa incluida en la lista tienen prohibida la entrada."
+        pt: "O país exportador determina qual autoridade veterinária competente emite e endossa o certificado sanitário do seu cachorro. A situação sanitária desse país também determina se a importação é sequer permitida: cachorros vindos de países afetados por uma doença infecciosa animal listada são proibidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a higher-risk country can affect the documentation and checks required at the airport animal-health checkpoint, even if you fly in from elsewhere. It is your dog's real origin and history that count."
+        fr: "Un séjour récent dans un pays à risque plus élevé peut influer sur les documents et contrôles requis au point de contrôle sanitaire de l'aéroport, même si tu arrives d'ailleurs. C'est l'origine réelle et l'historique du chien qui comptent."
+        es: "Una estancia reciente en un país de mayor riesgo puede afectar a la documentación y los controles exigidos en el punto de control sanitario del aeropuerto, aunque llegues desde otro lugar. Lo que cuenta es el origen y el historial reales de tu perro."
+        pt: "Uma estadia recente em um país de risco mais alto pode afetar a documentação e as verificações exigidas no posto de controle sanitário animal do aeroporto, mesmo que você chegue de avião de outro lugar. O que conta é a origem e o histórico reais do seu cachorro."
+  note:
+    en: "So read the requirements below as Cambodia's framework, then confirm your dog's exact origin, history and timeline with your vet and the GDAHP before you book."
+    fr: "Lis donc les exigences ci-dessous comme le cadre cambodgien, puis confirme l'origine, l'historique et le calendrier exacts de ton chien avec ton vétérinaire et la GDAHP avant de réserver."
+    es: "Así que lee los requisitos siguientes como el marco de Camboya y luego confirma el origen, el historial y el calendario exactos de tu perro con tu veterinario y la GDAHP antes de reservar."
+    pt: "Portanto, leia as exigências abaixo como o marco do Camboja e depois confirme com o seu veterinário e a GDAHP a origem, o histórico e o cronograma exatos do seu cachorro antes de reservar."
+
+requirements:
+  - item: { en: "Import permission / licence (MAFF/GDAHP)", fr: "Autorisation / licence d'importation (MAFF/GDAHP)", es: "Permiso / licencia de importación (MAFF/GDAHP)", pt: "Permissão / licença de importação (MAFF/GDAHP)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Under the Law on Animal Health and Production and Sub-Decree No.16, the import of live animals must be authorised in advance by MAFF through the GDAHP. The application is addressed to MAFF/GDAHP and accompanied by the sanitary certificate from the exporting country and the animal's identification; import licences are issued upon GDAHP approval.", fr: "Au titre de la loi sur la santé et la production animales et du sous-décret n°16, l'import d'animaux vivants doit être autorisé au préalable par le MAFF via la GDAHP. La demande est adressée au MAFF/GDAHP, accompagnée du certificat sanitaire du pays d'export et de l'identification de l'animal ; les licences d'importation sont délivrées après approbation de la GDAHP.", es: "En virtud de la Ley de Sanidad y Producción Animal y del Subdecreto n.º 16, la importación de animales vivos debe autorizarla con antelación el MAFF a través de la GDAHP. La solicitud se dirige al MAFF/GDAHP y se acompaña del certificado sanitario del país exportador y de la identificación del animal; las licencias de importación se expiden tras la aprobación de la GDAHP.", pt: "Pela Law on Animal Health and Production e pelo Sub-Decree No.16, a importação de animais vivos precisa ser autorizada com antecedência pelo MAFF, por meio da GDAHP. O pedido é dirigido ao MAFF/GDAHP e acompanhado do certificado sanitário do país exportador e da identificação do animal; as licenças de importação são emitidas mediante aprovação da GDAHP." }
+    exceptions: { en: "The published licensing regime is framed around registered importers (business licence from the Ministry of Commerce). The exact procedure for a private traveller with an accompanying pet is not clearly published — confirm the applicable process in writing with the GDAHP.", fr: "Le régime de licence publié vise les importateurs enregistrés (licence commerciale du Ministère du Commerce). La procédure exacte pour un voyageur privé accompagné de son animal n'est pas clairement publiée — confirme le processus applicable par écrit avec la GDAHP.", es: "El régimen de licencias publicado está orientado a importadores registrados (licencia comercial del Ministerio de Comercio). El procedimiento exacto para un viajero particular que lleve una mascota no está claramente publicado — confirma por escrito con la GDAHP el proceso aplicable.", pt: "O regime de licenciamento publicado é voltado para importadores registrados (licença comercial do Ministry of Commerce). O procedimento exato para um viajante particular com um animal de estimação acompanhante não está claramente publicado — confirme por escrito o processo aplicável com a GDAHP." }
+    ref: { en: "Law on Animal Health and Production; Sub-Decree No.16 (2003); WTO Import Licensing notification (Cambodia)", fr: "Loi sur la santé et la production animales ; sous-décret n°16 (2003) ; notification OMC sur les licences d'importation (Cambodge)", es: "Ley de Sanidad y Producción Animal; Subdecreto n.º 16 (2003); notificación de la OMC sobre licencias de importación (Camboya)", pt: "Law on Animal Health and Production; Sub-Decree No.16 (2003); notificação de licenciamento de importação da OMC (Camboja)" }
+  - item: { en: "Official veterinary (sanitary) certificate", fr: "Certificat vétérinaire (sanitaire) officiel", es: "Certificado veterinario (sanitario) oficial", pt: "Certificado veterinário (sanitário) oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An official veterinary/sanitary certificate issued by the competent veterinary authority of the exporting country is required for importation and is checked at the animal-health checkpoint. It certifies the dog's health and, in practice, its rabies vaccination. From the United States, the exporter uses a USDA-endorsed pet health certificate.", fr: "Un certificat vétérinaire/sanitaire officiel délivré par l'autorité vétérinaire compétente du pays d'export est requis pour l'importation et vérifié au point de contrôle sanitaire. Il atteste la santé du chien et, en pratique, sa vaccination antirabique. Depuis les États-Unis, l'exportateur utilise un certificat sanitaire visé par l'USDA.", es: "Se exige un certificado veterinario/sanitario oficial expedido por la autoridad veterinaria competente del país exportador para la importación, y se verifica en el punto de control sanitario. Certifica la salud del perro y, en la práctica, su vacunación antirrábica. Desde Estados Unidos, el exportador utiliza un certificado sanitario para mascotas refrendado por el USDA.", pt: "Um certificado veterinário/sanitário oficial emitido pela autoridade veterinária competente do país exportador é obrigatório para a importação e é conferido no posto de controle sanitário animal. Ele atesta a saúde do cachorro e, na prática, sua vacinação antirrábica. A partir dos Estados Unidos, o exportador usa um atestado de saúde de animal de estimação endossado pelo USDA." }
+    exceptions: { en: "Cambodia does not publish a single fixed model certificate for accompanied pets; the exporting country's official form and endorsement govern. Confirm content and validity with your vet and the GDAHP.", fr: "Le Cambodge ne publie pas de modèle de certificat unique et figé pour les animaux accompagnés ; le formulaire officiel et le visa du pays d'export font foi. Confirme le contenu et la validité avec ton vétérinaire et la GDAHP.", es: "Camboya no publica un modelo de certificado único y fijo para mascotas acompañadas; rige el formulario oficial y el visado del país exportador. Confirma el contenido y la valide con tu veterinario y la GDAHP.", pt: "O Camboja não publica um único modelo fixo de certificado para animais de estimação acompanhados; prevalecem o formulário oficial e o endosso do país exportador. Confirme o conteúdo e a validade com o seu veterinário e a GDAHP." }
+    ref: { en: "Law on Animal Health and Production; Prakas/Notification No.178 (2009); USDA APHIS — pet travel to Cambodia", fr: "Loi sur la santé et la production animales ; Prakas/Notification n°178 (2009) ; USDA APHIS — voyage d'animaux vers le Cambodge", es: "Ley de Sanidad y Producción Animal; Prakas/Notificación n.º 178 (2009); USDA APHIS — viaje de mascotas a Camboya", pt: "Law on Animal Health and Production; Prakas/Notification No.178 (2009); USDA APHIS — viagem de animais de estimação para o Camboja" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not published — recommended", fr: "Non communiqué — recommandée", es: "No comunicado — recomendado", pt: "Não publicado — recomendado" }
+    when: { en: "An ISO 11784/11785 (15-digit) microchip that links the dog to its documents is standard international practice and is often required by airlines and by the exporting authority.", fr: "Une puce ISO 11784/11785 (15 chiffres) reliant le chien à ses documents est une pratique internationale standard, souvent exigée par les compagnies aériennes et par l'autorité d'export.", es: "Un microchip ISO 11784/11785 (15 dígitos) que vincule al perro con sus documentos es una práctica internacional estándar, a menudo exigida por las aerolíneas y por la autoridad exportadora.", pt: "Um microchip ISO 11784/11785 (15 dígitos) que vincula o cachorro à sua documentação é prática internacional padrão e costuma ser exigido pelas companhias aéreas e pela autoridade exportadora." }
+    exceptions: { en: "A microchip requirement is not published in a verifiable Cambodian official source. Treat it as recommended and confirm with the GDAHP.", fr: "Une obligation de puce n'est pas publiée dans une source officielle cambodgienne vérifiable. Considère-la comme recommandée et confirme avec la GDAHP.", es: "No se publica ninguna exigencia de microchip en una fuente oficial camboyana verificable. Considéralo recomendado y confírmalo con la GDAHP.", pt: "Uma exigência de microchip não é publicada em uma fonte oficial cambojana verificável. Trate-a como recomendada e confirme com a GDAHP." }
+    ref: { en: "No Cambodian official source; ISO 11784/11785 standard", fr: "Aucune source officielle cambodgienne ; norme ISO 11784/11785", es: "Ninguna fuente oficial camboyana; norma ISO 11784/11785", pt: "Nenhuma fonte oficial cambojana; padrão ISO 11784/11785" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required (via export certificate)", fr: "Requise (via le certificat d'export)", es: "Obligatoria (mediante el certificado de exportación)", pt: "Obrigatória (por meio do certificado de exportação)" }
+    when: { en: "Cambodia is a rabies-endemic country. A valid rabies vaccination is expected as part of the exporting country's veterinary health certificate for a dog. The exact Cambodian timing rule (minimum interval before entry, validity window) is not published.", fr: "Le Cambodge est un pays d'endémie rabique. Une vaccination antirabique valide est attendue dans le cadre du certificat sanitaire du pays d'export pour un chien. La règle cambodgienne exacte de délai (intervalle minimal avant l'entrée, période de validité) n'est pas publiée.", es: "Camboya es un país de endemia rábica. Se espera una vacunación antirrábica válida como parte del certificado sanitario veterinario del perro expedido por el país exportador. La norma exacta de plazos de Camboya (intervalo mínimo antes de la entrada, periodo de valide) no está publicada.", pt: "O Camboja é um país endêmico de raiva. Uma vacinação antirrábica válida é esperada como parte do atestado de saúde veterinário do cachorro emitido pelo país exportador. A regra cambojana exata quanto ao momento (intervalo mínimo antes da entrada, prazo de validade) não é publicada." }
+    exceptions: { en: "Because no fixed Cambodian timing is published, follow the exporting authority's rules and confirm the vaccination interval with your vet and the GDAHP.", fr: "Aucun délai cambodgien fixe n'étant publié, suis les règles de l'autorité d'export et confirme l'intervalle de vaccination avec ton vétérinaire et la GDAHP.", es: "Como no hay ningún plazo fijo publicado por Camboya, sigue las normas de la autoridad exportadora y confirma el intervalo de vacunación con tu veterinario y la GDAHP.", pt: "Como nenhum prazo cambojano fixo é publicado, siga as regras da autoridade exportadora e confirme o intervalo de vacinação com o seu veterinário e a GDAHP." }
+    ref: { en: "WOAH/WHO — Cambodia rabies-endemic; exporting-country veterinary certificate", fr: "WOAH/OMS — Cambodge en endémie rabique ; certificat vétérinaire du pays d'export", es: "WOAH/OMS — Camboya en endemia rábica; certificado veterinario del país exportador", pt: "WOAH/WHO — Camboja endêmico de raiva; certificado veterinário do país exportador" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "No official requirement identified", fr: "Aucune exigence officielle identifiée", es: "No se ha identificado ninguna exigencia oficial", pt: "Nenhuma exigência oficial identificada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "No rabies antibody test is published in Cambodia's import scheme for dogs. As Cambodia is itself rabies-endemic, an entry antibody test is not expected, but confirm with the GDAHP for your dog's origin.", fr: "Aucun titrage antirabique n'est publié dans le régime d'importation cambodgien pour les chiens. Le Cambodge étant lui-même en endémie rabique, un titrage à l'entrée n'est pas attendu, mais confirme auprès de la GDAHP selon l'origine de ton chien.", es: "No se publica ninguna prueba de titulación de rabia en el régimen de importación de Camboya para perros. Como Camboya es en sí misma un país de endemia rábica, no se espera una prueba de titulación a la entrada, pero confírmalo con la GDAHP según el origen de tu perro.", pt: "Nenhum teste sorológico antirrábico é publicado no esquema de importação de cachorros do Camboja. Como o próprio Camboja é endêmico de raiva, um teste sorológico de entrada não é esperado, mas confirme com a GDAHP para a origem do seu cachorro." }
+    ref: { en: "No Cambodian official source identified", fr: "Aucune source officielle cambodgienne identifiée", es: "No se ha identificado ninguna fuente oficial camboyana", pt: "Nenhuma fonte oficial cambojana identificada" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / vermifuge", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "Cambodia does not publish a specific internal/external parasite or tapeworm treatment requirement for imported dogs.", fr: "Le Cambodge ne publie pas d'exigence spécifique de traitement antiparasitaire interne/externe ou vermifuge pour les chiens importés.", es: "Camboya no publica ninguna exigencia específica de tratamiento antiparasitario interno/externo o contra la tenia para los perros importados.", pt: "O Camboja não publica uma exigência específica de tratamento antiparasitário interno/externo ou contra tênia para cachorros importados." }
+    exceptions: { en: "A parasite treatment may still be advisable and may be required by your airline or by the exporting authority — confirm separately.", fr: "Un traitement antiparasitaire peut néanmoins être conseillé et exigé par ta compagnie aérienne ou par l'autorité d'export — vérifie séparément.", es: "Un tratamiento antiparasitario puede seguir siendo aconsejable y puede ser exigido por tu aerolínea o por la autoridad exportadora — verifícalo por separado.", pt: "Um tratamento antiparasitário ainda pode ser recomendável e pode ser exigido pela sua companhia aérea ou pela autoridade exportadora — confirme separadamente." }
+    ref: { en: "No Cambodian official source identified", fr: "Aucune source officielle cambodgienne identifiée", es: "No se ha identificado ninguna fuente oficial camboyana", pt: "Nenhuma fonte oficial cambojana identificada" }
+  - item: { en: "Other vaccinations (dogs)", fr: "Autres vaccinations (chiens)", es: "Otras vacunas (perros)", pt: "Outras vacinas (cachorros)" }
+    required: { en: "Not published — recommended", fr: "Non communiqué — recommandées", es: "No comunicado — recomendadas", pt: "Não publicado — recomendado" }
+    when: { en: "Core canine vaccinations (distemper, hepatitis, parvovirus, leptospirosis) are standard veterinary practice but are not published as a fixed Cambodian import requirement.", fr: "Les vaccins canins de base (Carré, hépatite, parvovirose, leptospirose) relèvent de la pratique vétérinaire standard mais ne sont pas publiés comme exigence d'importation cambodgienne fixe.", es: "Las vacunas caninas básicas (moquillo, hepatitis, parvovirus, leptospirosis) forman parte de la práctica veterinaria estándar, pero no se publican como una exigencia de importación fija de Camboya.", pt: "As vacinas caninas essenciais (cinomose, hepatite, parvovirose, leptospirose) são prática veterinária padrão, mas não são publicadas como uma exigência cambojana fixa de importação." }
+    exceptions: { en: "Keep vaccinations current and documented; the exporting authority's certificate may list them.", fr: "Maintiens les vaccins à jour et documentés ; le certificat de l'autorité d'export peut les mentionner.", es: "Mantén las vacunas al día y documentadas; el certificado de la autoridad exportadora puede incluirlas.", pt: "Mantenha as vacinas em dia e documentadas; o certificado da autoridade exportadora pode listá-las." }
+    ref: { en: "No Cambodian official source identified", fr: "Aucune source officielle cambodgienne identifiée", es: "No se ha identificado ninguna fuente oficial camboyana", pt: "Nenhuma fonte oficial cambojana identificada" }
+  - item: { en: "Airport animal-health inspection", fr: "Inspection sanitaire animale à l'aéroport", es: "Inspección sanitaria animal en el aeropuerto", pt: "Inspeção sanitária animal no aeroporto" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "On arrival, the GDAHP animal-health checkpoint / inspection team verifies documents and the animal at the international airport of entry (Phnom Penh, Siem Reap or Sihanoukville). Cambodia operates animal checkpoints, not quarantine stations.", fr: "À l'arrivée, l'équipe de contrôle/inspection sanitaire animale de la GDAHP vérifie les documents et l'animal à l'aéroport international d'entrée (Phnom Penh, Siem Reap ou Sihanoukville). Le Cambodge dispose de points de contrôle animaliers, pas de stations de quarantaine.", es: "A la llegada, el punto de control sanitario animal / el equipo de inspección de la GDAHP verifica los documentos y el animal en el aeropuerto internacional de entrada (Phnom Penh, Siem Reap o Sihanoukville). Camboya dispone de puntos de control animal, no de estaciones de cuarentena.", pt: "Na chegada, o posto de controle sanitário animal / a equipe de inspeção da GDAHP verifica os documentos e o animal no aeroporto internacional de entrada (Phnom Penh, Siem Reap ou Sihanoukville). O Camboja opera postos de controle animal, não estações de quarentena." }
+    exceptions: { en: "Border inspection results are relayed to GDAHP headquarters. Clear customs at the same time and keep all original documents to hand.", fr: "Les résultats de l'inspection frontalière sont transmis au siège de la GDAHP. Passe la douane en même temps et garde tous les documents originaux à portée de main.", es: "Los resultados de la inspección fronteriza se transmiten a la sede central de la GDAHP. Pasa la aduana al mismo tiempo y ten a mano todos los documentos originales.", pt: "Os resultados da inspeção de fronteira são repassados à sede da GDAHP. Faça o desembaraço alfandegário ao mesmo tempo e mantenha todos os documentos originais à mão." }
+    ref: { en: "GDAHP (WOAH workshop) — airport animal checkpoints; Cambodia Customs (GDCE)", fr: "GDAHP (atelier WOAH) — points de contrôle animaliers d'aéroport ; Douane du Cambodge (GDCE)", es: "GDAHP (taller de la WOAH) — puntos de control animal en aeropuertos; Aduana de Camboya (GDCE)", pt: "GDAHP (workshop da WOAH) — postos de controle animal em aeroportos; Alfândega do Camboja (GDCE)" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "No quarantine station", fr: "Pas de station de quarantaine", es: "Sin estación de cuarentena", pt: "Sem estação de quarentena" }
+    when: { en: "There are no animal quarantine stations in Cambodia. Compliant animals are cleared at the airport checkpoint; if a disease risk is suspected, samples may be taken and the animal held for testing and confirmation.", fr: "Il n'existe pas de stations de quarantaine animale au Cambodge. Les animaux conformes sont dédouanés au point de contrôle de l'aéroport ; en cas de risque sanitaire suspecté, des prélèvements peuvent être effectués et l'animal retenu pour tests et confirmation.", es: "No existen estaciones de cuarentena animal en Camboya. Los animales conformes se despachan en el punto de control del aeropuerto; si se sospecha un riesgo sanitario, pueden tomarse muestras y el animal puede ser retenido para pruebas y confirmación.", pt: "Não há estações de quarentena animal no Camboja. Os animais em conformidade são liberados no posto de controle do aeroporto; se houver suspeita de risco de doença, amostras podem ser coletadas e o animal pode ficar retido para exames e confirmação." }
+    exceptions: { en: "A dog that lacks valid documents or raises a disease concern may be held, refused or returned at the owner's expense.", fr: "Un chien sans documents valides ou suscitant une inquiétude sanitaire peut être retenu, refusé ou renvoyé aux frais du propriétaire.", es: "Un perro sin documentos válidos o que suscite preocupación sanitaria puede ser retenido, rechazado o devuelto a cargo del propietario.", pt: "Um cachorro que não tiver documentos válidos ou que levantar alguma preocupação sanitária pode ficar retido, ser recusado ou devolvido, às custas do dono." }
+    ref: { en: "GDAHP (WOAH workshop) — no quarantine stations, animal checkpoints", fr: "GDAHP (atelier WOAH) — pas de stations de quarantaine, points de contrôle", es: "GDAHP (taller de la WOAH) — sin estaciones de cuarentena, puntos de control animal", pt: "GDAHP (workshop da WOAH) — sem estações de quarentena, postos de controle animal" }
+  - item: { en: "Prohibited origins", fr: "Origines interdites", es: "Orígenes prohibidos", pt: "Origens proibidas" }
+    required: { en: "Blocking", fr: "Bloquant", es: "Bloqueante", pt: "Bloqueio" }
+    when: { en: "The importation of animals that carry, or come from areas affected by, animal infectious disease agents on Cambodia's list is prohibited.", fr: "L'importation d'animaux porteurs d'agents de maladies animales infectieuses figurant sur la liste cambodgienne, ou provenant de zones touchées, est interdite.", es: "Está prohibida la importación de animales portadores de agentes de enfermedades animales infecciosas incluidos en la lista de Camboya, o procedentes de zonas afectadas por ellos.", pt: "A importação de animais que sejam portadores, ou que venham de áreas afetadas por, agentes de doenças infecciosas animais na lista do Camboja é proibida." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "Sub-Decree No.16 (2003); WTO Import Licensing notification (Cambodia)", fr: "Sous-décret n°16 (2003) ; notification OMC sur les licences d'importation (Cambodge)", es: "Subdecreto n.º 16 (2003); notificación de la OMC sobre licencias de importación (Camboya)", pt: "Sub-Decree No.16 (2003); notificação de licenciamento de importação da OMC (Camboja)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "Cambodia does not publish a fixed minimum age for imported dogs. In practice the puppy must be old enough to hold a valid rabies vaccination shown on the export certificate.", fr: "Le Cambodge ne publie pas d'âge minimum fixe pour les chiens importés. En pratique, le chiot doit être en âge d'avoir une vaccination antirabique valide figurant sur le certificat d'export.", es: "Camboya no publica una edad mínima fija para los perros importados. En la práctica, el cachorro debe tener edad suficiente para contar con una vacunación antirrábica válida que figure en el certificado de exportación.", pt: "O Camboja não publica uma idade mínima fixa para cachorros importados. Na prática, o filhote precisa ter idade suficiente para ter uma vacinação antirrábica válida constando no certificado de exportação." }
+    exceptions: { en: "The exporting country and your airline may set their own minimum age.", fr: "Le pays d'export et ta compagnie aérienne peuvent fixer leur propre âge minimum.", es: "El país exportador y tu aerolínea pueden fijar su propia edad mínima.", pt: "O país exportador e a sua companhia aérea podem definir sua própria idade mínima." }
+    ref: { en: "No Cambodian official source identified", fr: "Aucune source officielle cambodgienne identifiée", es: "No se ha identificado ninguna fuente oficial camboyana", pt: "Nenhuma fonte oficial cambojana identificada" }
+  - item: { en: "Number of pets per traveller", fr: "Nombre d'animaux par voyageur", es: "Número de mascotas por viajero", pt: "Número de animais por viajante" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "Cambodia does not publish a fixed maximum number of accompanying pets per traveller. Each animal needs its own identification and certificate.", fr: "Le Cambodge ne publie pas de nombre maximal fixe d'animaux accompagnants par voyageur. Chaque animal a besoin de sa propre identification et de son certificat.", es: "Camboya no publica un número máximo fijo de mascotas acompañantes por viajero. Cada animal necesita su propia identificación y certificado.", pt: "O Camboja não publica um número máximo fixo de animais de estimação acompanhantes por viajante. Cada animal precisa de sua própria identificação e certificado." }
+    exceptions: { en: "Confirm any limit with the GDAHP and your airline.", fr: "Confirme toute limite auprès de la GDAHP et de ta compagnie aérienne.", es: "Confirma cualquier límite con la GDAHP y tu aerolínea.", pt: "Confirme qualquer limite com a GDAHP e a sua companhia aérea." }
+    ref: { en: "No Cambodian official source identified", fr: "Aucune source officielle cambodgienne identifiée", es: "No se ha identificado ninguna fuente oficial camboyana", pt: "Nenhuma fonte oficial cambojana identificada" }
+
+origin:
+  eu:
+    title: { en: "Compliant dog from a low-risk origin — standard path", fr: "Chien conforme depuis une origine à faible risque — parcours standard", es: "Perro conforme desde un origen de bajo riesgo — vía estándar", pt: "Cachorro em conformidade vindo de uma origem de baixo risco — caminho padrão" }
+    body:
+      en: "From a low-risk origin the process follows Cambodia's national framework: request advance import permission from MAFF through the GDAHP, travel with an official veterinary (sanitary) certificate issued by the exporting country's competent authority (showing the dog is healthy and, in practice, rabies-vaccinated), and present the dog to the GDAHP animal-health checkpoint at the airport of entry. There are no quarantine stations; a compliant dog is inspected and cleared alongside customs. Because Cambodia publishes little pet-specific detail, confirm the exact steps and documents with the GDAHP before you book."
+      fr: "Depuis une origine à faible risque, la procédure suit le cadre national cambodgien : demande au préalable l'autorisation d'importation au MAFF via la GDAHP, voyage avec un certificat vétérinaire (sanitaire) officiel délivré par l'autorité compétente du pays d'export (attestant que le chien est sain et, en pratique, vacciné contre la rage), et présente le chien au point de contrôle sanitaire de la GDAHP à l'aéroport d'entrée. Il n'y a pas de stations de quarantaine ; un chien conforme est inspecté et dédouané en même temps qu'à la douane. Le Cambodge publiant peu de détails propres aux animaux, confirme les étapes et documents exacts avec la GDAHP avant de réserver."
+      es: "Desde un origen de bajo riesgo, el proceso sigue el marco nacional de Camboya: solicita con antelación el permiso de importación al MAFF a través de la GDAHP, viaja con un certificado veterinario (sanitario) oficial expedido por la autoridad competente del país exportador (que acredite que el perro está sano y, en la práctica, vacunado contra la rabia), y presenta al perro en el punto de control sanitario animal de la GDAHP en el aeropuerto de entrada. No hay estaciones de cuarentena; un perro conforme es inspeccionado y despachado junto con la aduana. Como Camboya publica pocos detalles específicos para mascotas, confirma los pasos y documentos exactos con la GDAHP antes de reservar."
+      pt: "Vindo de uma origem de baixo risco, o processo segue o marco nacional do Camboja: solicite a permissão de importação prévia junto ao MAFF, por meio da GDAHP, viaje com um certificado veterinário (sanitário) oficial emitido pela autoridade competente do país exportador (mostrando que o cachorro está saudável e, na prática, vacinado contra a raiva), e apresente o cachorro ao posto de controle sanitário animal da GDAHP no aeroporto de entrada. Não há estações de quarentena; um cachorro em conformidade é inspecionado e liberado junto com a alfândega. Como o Camboja publica poucos detalhes específicos para animais de estimação, confirme as etapas e os documentos exatos com a GDAHP antes de reservar."
+    cls: ok
+  listed:
+    title: { en: "Rabies-endemic or higher-risk origin — extra checks likely", fr: "Origine d'endémie rabique ou à risque — contrôles supplémentaires probables", es: "Origen de endemia rábica o de mayor riesgo — controles adicionales probables", pt: "Origem endêmica de raiva ou de risco mais alto — verificações extras prováveis" }
+    body:
+      en: "From a rabies-endemic or otherwise higher-risk origin the same core documents are required, but the GDAHP may ask for additional documentation, sampling or checks at the airport animal-health checkpoint, and a dog raising a disease concern can be held for testing. Exact conditions are not published, so register your intention early and confirm what will be required in writing with the GDAHP."
+      fr: "Depuis une origine d'endémie rabique ou à risque plus élevé, les mêmes documents de base sont exigés, mais la GDAHP peut demander des documents, prélèvements ou contrôles supplémentaires au point de contrôle sanitaire de l'aéroport, et un chien suscitant une inquiétude sanitaire peut être retenu pour tests. Les conditions exactes ne sont pas publiées ; signale ton intention tôt et confirme par écrit avec la GDAHP ce qui sera exigé."
+      es: "Desde un origen de endemia rábica o de mayor riesgo se exigen los mismos documentos básicos, pero la GDAHP puede solicitar documentación, muestras o controles adicionales en el punto de control sanitario del aeropuerto, y un perro que suscite preocupación sanitaria puede ser retenido para pruebas. Las condiciones exactas no están publicadas, así que registra tu intención con antelación y confirma por escrito con la GDAHP lo que se exigirá."
+      pt: "Vindo de uma origem endêmica de raiva ou de outra forma de risco mais alto, os mesmos documentos essenciais são exigidos, mas a GDAHP pode solicitar documentação adicional, coleta de amostras ou verificações no posto de controle sanitário animal do aeroporto, e um cachorro que levante alguma preocupação sanitária pode ficar retido para exames. As condições exatas não são publicadas, então registre sua intenção com antecedência e confirme por escrito com a GDAHP o que será exigido."
+    cls: warn
+  nonListed:
+    title: { en: "Prohibited origin — import refused", fr: "Origine interdite — import refusé", es: "Origen prohibido — importación denegada", pt: "Origem proibida — importação recusada" }
+    body:
+      en: "A dog coming from a country or area affected by an animal infectious disease agent on Cambodia's list is prohibited from import under Sub-Decree No.16 and the Law on Animal Health and Production. In that case the dog cannot enter, whatever the documents. Check your dog's origin against Cambodia's current disease restrictions with the GDAHP before travelling."
+      fr: "Un chien venant d'un pays ou d'une zone touchée par un agent de maladie animale infectieuse figurant sur la liste cambodgienne est interdit d'import au titre du sous-décret n°16 et de la loi sur la santé et la production animales. Dans ce cas, le chien ne peut pas entrer, quels que soient les documents. Vérifie l'origine de ton chien au regard des restrictions sanitaires en vigueur au Cambodge auprès de la GDAHP avant de voyager."
+      es: "Un perro procedente de un país o zona afectada por un agente de enfermedad animal infecciosa incluido en la lista de Camboya tiene prohibida la importación en virtud del Subdecreto n.º 16 y de la Ley de Sanidad y Producción Animal. En ese caso, el perro no puede entrar, sean cuales sean los documentos. Verifica el origen de tu perro frente a las restricciones sanitarias vigentes de Camboya con la GDAHP antes de viajar."
+      pt: "Um cachorro vindo de um país ou área afetada por um agente de doença infecciosa animal na lista do Camboja tem a importação proibida pelo Sub-Decree No.16 e pela Law on Animal Health and Production. Nesse caso, o cachorro não pode entrar, quaisquer que sejam os documentos. Verifique a origem do seu cachorro em relação às restrições sanitárias atuais do Camboja junto à GDAHP antes de viajar."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Cambodia depends on whether the import permission and documents were completed before departure."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Cambodge dépend du fait que l'autorisation d'importation et les documents aient été obtenus avant le départ."
+    es: "Lo que ocurre cuando tu perro llega a Camboya depende de si el permiso de importación y los documentos se completaron antes de la salida."
+    pt: "O que acontece quando o seu cachorro chega ao Camboja depende de a permissão de importação e os documentos terem sido concluídos antes da partida."
+  points:
+    - en: "Dogs enter through an international airport with a GDAHP animal-health checkpoint (Phnom Penh, Siem Reap or Sihanoukville)."
+      fr: "Les chiens entrent par un aéroport international doté d'un point de contrôle sanitaire animal de la GDAHP (Phnom Penh, Siem Reap ou Sihanoukville)."
+      es: "Los perros entran por un aeropuerto internacional con punto de control sanitario animal de la GDAHP (Phnom Penh, Siem Reap o Sihanoukville)."
+      pt: "Os cachorros entram por um aeroporto internacional com posto de controle sanitário animal da GDAHP (Phnom Penh, Siem Reap ou Sihanoukville)."
+    - en: "Present your passport, the original official veterinary (sanitary) certificate, the MAFF/GDAHP import permission and vaccination records to the animal-health inspection team, which checks the documents and the animal."
+      fr: "Présente ton passeport, le certificat vétérinaire (sanitaire) officiel original, l'autorisation d'importation MAFF/GDAHP et le carnet de vaccination à l'équipe d'inspection sanitaire, qui vérifie les documents et l'animal."
+      es: "Presenta tu pasaporte, el certificado veterinario (sanitario) oficial original, el permiso de importación MAFF/GDAHP y el registro de vacunación al equipo de inspección sanitaria animal, que verifica los documentos y el animal."
+      pt: "Apresente seu passaporte, o certificado veterinário (sanitário) oficial original, a permissão de importação do MAFF/GDAHP e os registros de vacinação à equipe de inspeção sanitária animal, que confere os documentos e o animal."
+    - en: "There are no animal quarantine stations: a compliant dog is inspected and released; inspection results are relayed to GDAHP headquarters."
+      fr: "Il n'existe pas de stations de quarantaine animale : un chien conforme est inspecté et libéré ; les résultats de l'inspection sont transmis au siège de la GDAHP."
+      es: "No existen estaciones de cuarentena animal: un perro conforme es inspeccionado y liberado; los resultados de la inspección se transmiten a la sede central de la GDAHP."
+      pt: "Não há estações de quarentena animal: um cachorro em conformidade é inspecionado e liberado; os resultados da inspeção são repassados à sede da GDAHP."
+    - en: "Clear customs (GDCE) at the same time; keep all original documents and any receipts."
+      fr: "Passe la douane (GDCE) en même temps ; conserve tous les documents originaux et les reçus éventuels."
+      es: "Pasa la aduana (GDCE) al mismo tiempo; conserva todos los documentos originales y los recibos que puedas tener."
+      pt: "Faça o desembaraço alfandegário (GDCE) ao mesmo tempo; mantenha todos os documentos originais e eventuais recibos."
+    - en: "If a disease risk is suspected, samples may be taken and the animal held for testing and confirmation."
+      fr: "En cas de risque sanitaire suspecté, des prélèvements peuvent être effectués et l'animal retenu pour tests et confirmation."
+      es: "Si se sospecha un riesgo sanitario, pueden tomarse muestras y el animal puede ser retenido para pruebas y confirmación."
+      pt: "Se houver suspeita de risco de doença, amostras podem ser coletadas e o animal pode ficar retido para exames e confirmação."
+    - en: "If the import permission or documents are missing or invalid, the animal may be refused, held or returned to the exporting country at the owner's expense."
+      fr: "Si l'autorisation d'importation ou les documents manquent ou sont invalides, l'animal peut être refusé, retenu ou renvoyé vers le pays d'export aux frais du propriétaire."
+      es: "Si falta el permiso de importación o los documentos, o no son válidos, el animal puede ser rechazado, retenido o devuelto al país exportador a cargo del propietario."
+      pt: "Se a permissão de importação ou os documentos estiverem ausentes ou inválidos, o animal pode ser recusado, retido ou devolvido ao país exportador, às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No Cambodian breed-specific import ban is published: the identified import restrictions are based on the origin country's animal-disease status, not on the dog's breed. Cambodia's import controls exist to prevent the spread of animal infectious diseases."
+    fr: "Aucune interdiction d'importation cambodgienne liée à la race n'est publiée : les restrictions d'importation identifiées reposent sur le statut sanitaire animal du pays d'origine, pas sur la race du chien. Les contrôles à l'import du Cambodge visent à prévenir la propagation des maladies animales infectieuses."
+    es: "No se publica ninguna prohibición de importación camboyana por raza: las restricciones de importación identificadas se basan en el estatus sanitario animal del país de origen, no en la raza del perro. Los controles de importación de Camboya existen para prevenir la propagación de enfermedades animales infecciosas."
+    pt: "Nenhuma proibição cambojana de importação por raça é publicada: as restrições de importação identificadas se baseiam na situação sanitária animal do país de origem, não na raça do cachorro. Os controles de importação do Camboja existem para evitar a disseminação de doenças infecciosas animais."
+  cat1:
+    en: "There is no national list of banned or 'dangerous' breeds at import that could be verified in an official source. Breeds restricted in some other countries (pit-bull types, Tosa, Rottweiler and similar) are not identified as prohibited from entering Cambodia on the basis of breed."
+    fr: "Il n'existe aucune liste nationale de races interdites ou « dangereuses » à l'importation vérifiable dans une source officielle. Les races restreintes dans certains autres pays (types pit-bull, Tosa, Rottweiler et similaires) ne sont pas identifiées comme interdites d'entrée au Cambodge en raison de la race."
+    es: "No existe ninguna lista nacional de razas prohibidas o «peligrosas» a la importación que se haya podido verificar en una fuente oficial. Las razas restringidas en otros países (tipos pit bull, Tosa, Rottweiler y similares) no se identifican como prohibidas para entrar en Camboya por motivos de raza."
+    pt: "Não há uma lista nacional de raças proibidas ou 'perigosas' na importação que pudesse ser verificada em uma fonte oficial. Raças restritas em alguns outros países (tipos pit-bull, Tosa, Rottweiler e semelhantes) não são identificadas como proibidas de entrar no Camboja com base na raça."
+  cat2:
+    en: "What is restricted is origin, not breed: under Sub-Decree No.16 and the Law on Animal Health and Production, animals carrying or coming from areas affected by listed infectious diseases are prohibited. If any breed rule exists, it is not published in a verifiable official source — confirm with the GDAHP."
+    fr: "Ce qui est restreint, c'est l'origine, pas la race : au titre du sous-décret n°16 et de la loi sur la santé et la production animales, les animaux porteurs de maladies infectieuses répertoriées ou provenant de zones touchées sont interdits. Si une règle de race existe, elle n'est pas publiée dans une source officielle vérifiable — confirme avec la GDAHP."
+    es: "Lo que se restringe es el origen, no la raza: en virtud del Subdecreto n.º 16 y de la Ley de Sanidad y Producción Animal, se prohíben los animales portadores de enfermedades infecciosas incluidas en la lista o procedentes de zonas afectadas por ellas. Si existe alguna norma sobre razas, no está publicada en una fuente oficial verificable — confírmalo con la GDAHP."
+    pt: "O que é restrito é a origem, não a raça: pelo Sub-Decree No.16 e pela Law on Animal Health and Production, animais portadores, ou vindos de áreas afetadas por doenças infecciosas listadas, são proibidos. Se existir alguma regra por raça, ela não é publicada em uma fonte oficial verificável — confirme com a GDAHP."
+  note:
+    en: "Airlines set their own breed and crate policies (many restrict snub-nosed breeds in the hold), and local rules on keeping dogs may apply where the dog will live — confirm both separately."
+    fr: "Les compagnies aériennes fixent leurs propres politiques de race et de caisse (beaucoup limitent les races brachycéphales en soute), et des règles locales de détention peuvent s'appliquer au lieu de vie du chien — vérifie les deux séparément."
+    es: "Las aerolíneas fijan sus propias políticas de raza y de jaula (muchas restringen las razas braquicéfalas en bodega), y pueden aplicarse normas locales de tenencia en el lugar donde vivirá el perro — confirma ambas cosas por separado."
+    pt: "As companhias aéreas definem suas próprias políticas de raça e de caixa de transporte (muitas restringem raças de focinho achatado no porão), e regras locais sobre a posse de cachorros podem se aplicar no local onde o cachorro vai morar — confirme os dois pontos separadamente."
+
+checklist:
+  - en: "MAFF/GDAHP import permission requested in advance (confirm the process in writing)"
+    fr: "Autorisation d'importation MAFF/GDAHP demandée à l'avance (confirme le processus par écrit)"
+    es: "Permiso de importación MAFF/GDAHP solicitado con antelación (confirma el proceso por escrito)"
+    pt: "Permissão de importação do MAFF/GDAHP solicitada com antecedência (confirme o processo por escrito)"
+  - en: "Official veterinary (sanitary) certificate from the exporting country's competent authority"
+    fr: "Certificat vétérinaire (sanitaire) officiel de l'autorité compétente du pays d'export"
+    es: "Certificado veterinario (sanitario) oficial de la autoridad competente del país exportador"
+    pt: "Certificado veterinário (sanitário) oficial da autoridade competente do país exportador"
+  - en: "Valid rabies vaccination on the certificate (Cambodia is rabies-endemic; confirm timing with the GDAHP)"
+    fr: "Vaccination antirabique valide sur le certificat (Cambodge en endémie rabique ; confirme le délai avec la GDAHP)"
+    es: "Vacunación antirrábica válida en el certificado (Camboya está en endemia rábica; confirma el plazo con la GDAHP)"
+    pt: "Vacinação antirrábica válida constando no certificado (o Camboja é endêmico de raiva; confirme o momento com a GDAHP)"
+  - en: "ISO 11784/11785 microchip recommended, with its number matching all documents"
+    fr: "Puce ISO 11784/11785 recommandée, son numéro correspondant à tous les documents"
+    es: "Se recomienda microchip ISO 11784/11785, con su número coincidiendo en todos los documentos"
+    pt: "Microchip ISO 11784/11785 recomendado, com o número correspondendo a todos os documentos"
+  - en: "Vaccination record / pet passport documenting full vaccination history"
+    fr: "Carnet de vaccination / passeport documentant l'historique complet de vaccination"
+    es: "Registro de vacunación / pasaporte de mascota que documente el historial completo de vacunación"
+    pt: "Registro de vacinação / passaporte de animal de estimação documentando o histórico completo de vacinação"
+  - en: "Check your dog's origin against Cambodia's disease restrictions before travelling"
+    fr: "Vérifie l'origine de ton chien au regard des restrictions sanitaires du Cambodge avant de voyager"
+    es: "Verifica el origen de tu perro frente a las restricciones sanitarias de Camboya antes de viajar"
+    pt: "Verifique a origem do seu cachorro em relação às restrições sanitárias do Camboja antes de viajar"
+  - en: "Arrive through an international airport with a GDAHP animal-health checkpoint (Phnom Penh, Siem Reap, Sihanoukville)"
+    fr: "Arrive par un aéroport international doté d'un point de contrôle sanitaire GDAHP (Phnom Penh, Siem Reap, Sihanoukville)"
+    es: "Llega por un aeropuerto internacional con punto de control sanitario animal de la GDAHP (Phnom Penh, Siem Reap, Sihanoukville)"
+    pt: "Chegue por um aeroporto internacional com posto de controle sanitário animal da GDAHP (Phnom Penh, Siem Reap, Sihanoukville)"
+  - en: "Original documents to hand for the animal-health checkpoint and customs (GDCE)"
+    fr: "Documents originaux à portée de main pour le point de contrôle sanitaire et la douane (GDCE)"
+    es: "Documentos originales a mano para el punto de control sanitario y la aduana (GDCE)"
+    pt: "Documentos originais à mão para o posto de controle sanitário animal e a alfândega (GDCE)"
+  - en: "Airline reservation and suitable IATA crate; confirm your dog's breed is accepted by the carrier"
+    fr: "Réservation aérienne et caisse IATA adaptée ; vérifie que la race de ton chien est acceptée par la compagnie"
+    es: "Reserva de la aerolínea y jaula IATA adecuada; confirma que la raza de tu perro es aceptada por la compañía"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada, em conformidade com a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
+
+sources:
+  - label: { en: "General Directorate of Animal Health and Production (GDAHP), MAFF — official site", fr: "Direction générale de la santé et de la production animales (GDAHP), MAFF — site officiel", es: "Dirección General de Sanidad y Producción Animal (GDAHP), MAFF — sitio oficial", pt: "General Directorate of Animal Health and Production (GDAHP), MAFF — site oficial" }
+    url: "https://gdahp.maff.gov.kh/"
+  - label: { en: "Ministry of Agriculture, Forestry and Fisheries (MAFF) — official site", fr: "Ministère de l'Agriculture, des Forêts et de la Pêche (MAFF) — site officiel", es: "Ministerio de Agricultura, Bosques y Pesca (MAFF) — sitio oficial", pt: "Ministry of Agriculture, Forestry and Fisheries (MAFF) — site oficial" }
+    url: "https://www.maff.gov.kh/en"
+  - label: { en: "Law on Animal Health and Production (MAFF, EN) — legal basis", fr: "Loi sur la santé et la production animales (MAFF, EN) — base juridique", es: "Ley de Sanidad y Producción Animal (MAFF, EN) — base jurídica", pt: "Law on Animal Health and Production (MAFF, EN) — base legal" }
+    url: "https://fia.maff.gov.kh/dfptq/wp-content/uploads/2024/05/Law-on-Animal-Health-and-Production-EN.pdf"
+  - label: { en: "WTO Import Licensing — Cambodia: live animals, animal products, meat products", fr: "OMC Licences d'importation — Cambodge : animaux vivants, produits animaux, produits carnés", es: "OMC Licencias de importación — Camboya: animales vivos, productos animales, productos cárnicos", pt: "Licenciamento de importação da OMC — Camboja: animais vivos, produtos de origem animal, produtos cárneos" }
+    url: "https://importlicensing.wto.org/content/live-animals-animal-products-meat-products"
+  - label: { en: "WOAH (GDAHP) — Practices of international trade of animals and animal products (Cambodia)", fr: "WOAH (GDAHP) — Pratiques du commerce international des animaux et produits animaux (Cambodge)", es: "WOAH (GDAHP) — Prácticas del comercio internacional de animales y productos animales (Camboya)", pt: "WOAH (GDAHP) — práticas de comércio internacional de animais e produtos de origem animal (Camboja)" }
+    url: "https://rr-asia.woah.org/app/uploads/2023/12/4-3-cambodia_practices-of-internation-trade.pdf"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to Cambodia (exporting-country certificate)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Cambodge (certificat du pays d'export)", es: "USDA APHIS — Viaje de mascotas desde Estados Unidos a Camboya (certificado del país exportador)", pt: "USDA APHIS — viagem de animais de estimação dos Estados Unidos para o Camboja (certificado do país exportador)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-cambodia"
+  - label: { en: "General Department of Customs and Excise of Cambodia (GDCE) — official site", fr: "Direction générale des douanes et accises du Cambodge (GDCE) — site officiel", es: "Dirección General de Aduanas e Impuestos Especiales de Camboya (GDCE) — sitio oficial", pt: "General Department of Customs and Excise of Cambodia (GDCE) — site oficial" }
+    url: "https://www.customs.gov.kh/en"
+
+seo:
+  title: { en: "Cambodia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Cambodge — Guide", es: "Requisitos de entrada de perros en Camboya — Guía de viaje", pt: "Entrada de cachorro no Camboja — guia de viagem" }
+  metaTitle: { en: "Traveling to Cambodia With Your Dog: Entry Requirements (2026)", fr: "Voyager au Cambodge avec ton chien : formalités (2026)", es: "Viajar a Camboya con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Camboja com seu cachorro: exigências (2026)" }
+  metaDesc:
+    en: "Official Cambodia (GDAHP/MAFF) rules for bringing a dog: advance MAFF/GDAHP import permission, official veterinary certificate and airport check. Sourced and dated."
+    fr: "Cadre officiel du Cambodge (GDAHP/MAFF) pour un chien : autorisation MAFF/GDAHP préalable, certificat vétérinaire et contrôle à l'aéroport. Sourcé et daté."
+    es: "Marco oficial de Camboya (GDAHP/MAFF) para traer un perro: permiso de importación MAFF/GDAHP previo, certificado veterinario oficial e inspección en el aeropuerto."
+    pt: "Regras oficiais do Camboja (GDAHP/MAFF): permissão de importação prévia do MAFF/GDAHP, certificado veterinário oficial e verificação no aeroporto."
+  slug: "cambodia"
+  shortDesc:
+    en: "What you need to bring a dog into Cambodia: advance MAFF/GDAHP import permission and an official veterinary certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien au Cambodge : autorisation d'importation MAFF/GDAHP préalable et certificat vétérinaire officiel."
+    es: "Lo que necesitas para traer un perro a Camboya: permiso de importación MAFF/GDAHP previo y un certificado veterinario oficial."
+    pt: "O que você precisa para levar um cachorro ao Camboja: permissão de importação prévia do MAFF/GDAHP e um certificado veterinário oficial."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

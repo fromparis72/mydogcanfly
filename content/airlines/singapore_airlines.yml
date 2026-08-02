@@ -1,0 +1,296 @@
+id: airline_singapore_airlines
+mono: SQ
+name: Singapore Airlines
+titleH1:
+  en: Flying with a dog on Singapore Airlines
+  fr: Voyager avec un chien sur Singapore Airlines
+  es: Viajar con un perro en Singapore Airlines
+  pt: "Viajar com um cachorro na Singapore Airlines"
+metaDesc:
+  en: "Singapore Airlines pet policy: no cabin pets, checked-hold and cargo rules, fares, breed limits and official sources."
+  fr: "Politique animaux Singapore Airlines : pas de cabine, soute et fret, tarifs, restrictions de races et sources officielles."
+  es: "Política de mascotas de Singapore Airlines: sin mascotas en cabina, normas de bodega facturada y carga, tarifas, límites por raza y fuentes oficiales."
+  pt: "Política de animais da Singapore Airlines: sem animais na cabine, regras de porão facturado e carga, tarifas, limites por raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Singapore · SIN
+      fr: Singapour · SIN
+      es: Singapur · SIN
+      pt: "Singapura · SIN"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin pets (only assistance dogs); cats & dogs travel as checked baggage in the hold.
+  fr: Pas d'animaux en cabine (sauf chiens d'assistance) ; chats et chiens en bagage enregistré en soute.
+  es: No se admiten mascotas en cabina (solo perros de asistencia); los gatos y perros viajan como equipaje facturado en la bodega.
+  pt: "Sem animais na cabine (somente cachorros de assistência); gatos e cachorros viajam como bagagem despachada no porão."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 70
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 22
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 32 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No aceptado
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only trained assistance dogs. Cats & dogs travel in the hold.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance dressés. Chats et chiens voyagent en soute.
+      es: No se admiten mascotas en cabina, solo perros de asistencia adiestrados. Los gatos y perros viajan en la bodega.
+      pt: "Sem animais na cabine — somente cachorros de assistência adestrados. Gatos e cachorros viajam no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs (min. 3 months) as checked baggage in a temperature-controlled hold; combined ≤ 32 kg. Not on Boeing 737 or SQ21/23.
+      fr: Chats et chiens (min. 3 mois) en bagage enregistré dans une soute à température contrôlée ; ≤ 32 kg avec la caisse. Pas sur Boeing 737 ni SQ21/23.
+      es: Gatos y perros (mín. 3 meses) como equipaje facturado en una bodega con temperatura controlada; ≤ 32 kg en total. No en Boeing 737 ni SQ21/23.
+      pt: "Gatos e cachorros (mín. 3 meses) como bagagem despachada em um porão com temperatura controlada; ≤ 32 kg no total. Não em Boeing 737 nem SQ21/23."
+    fee:
+      en: Excess-baggage rate
+      fr: Tarif bagage excédentaire
+      es: Tarifa de exceso de equipaje
+      pt: "Tarifa de excesso de bagagem"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo cotización
+      pt: "Sob consulta"
+    detail:
+      en: Over 32 kg combined, arrange transport via a cargo agent.
+      fr: Au-delà de 32 kg avec la caisse, transport via un agent de fret.
+      es: Por encima de 32 kg en total, organiza el transporte a través de un agente de carga.
+      pt: "Acima de 32 kg no total, organize o transporte via um agente de carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold (≤ 32 kg)
+        fr: Soute (≤ 32 kg)
+        es: Bodega (≤ 32 kg)
+        pt: "Porão (≤ 32 kg)"
+      value:
+        en: Excess-baggage rate
+        fr: Tarif bagage excédentaire
+        es: Tarifa de exceso de equipaje
+        pt: "Tarifa de excesso de bagagem"
+    - label:
+        en: Cargo (> 32 kg)
+        fr: Fret (> 32 kg)
+        es: Carga (> 32 kg)
+        pt: "Carga (> 32 kg)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Cotización
+        pt: "Cotação"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Singapore Airlines charges pets as additional (excess) baggage rather than a flat fee; US flights are billed as two extra pieces.
+    fr: Singapore Airlines facture les animaux comme bagage excédentaire, sans montant fixe ; les vols vers les USA sont comptés comme deux pièces supplémentaires.
+    es: Singapore Airlines cobra las mascotas como equipaje adicional (exceso) en lugar de una tarifa fija; los vuelos a EE. UU. se facturan como dos piezas adicionales.
+    pt: "A Singapore Airlines cobra pelos animais como bagagem adicional (excesso) em vez de uma tarifa fixa; os voos para os EUA são cobrados como duas peças extras."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "All brachycephalic (snub-nosed) dogs & cats are banned as checked baggage, incl. crossbreeds: bulldogs (all), boxer, pug, Pekingese, Shih Tzu, Boston terrier, Chow Chow, mastiffs, and Persian/Himalayan/Exotic/British Shorthair/Scottish Fold cats. Pregnant pets are also refused."
+      fr: "Tous les chiens et chats brachycéphales sont interdits en bagage enregistré, croisés compris : bouledogues (tous), boxer, carlin, pékinois, Shih Tzu, Boston terrier, Chow Chow, mastiffs, et chats persans/himalayens/exotiques/British Shorthair/Scottish Fold. Les animaux gestants sont aussi refusés."
+      es: "Todos los perros y gatos braquicéfalos (de hocico chato) están prohibidos como equipaje facturado, incluidos los cruces: bulldogs (todos), bóxer, carlino, pekinés, Shih Tzu, Boston terrier, Chow Chow, mastines, y gatos persas/himalayos/exóticos/British Shorthair/Scottish Fold. Las mascotas preñadas también se rechazan."
+      pt: "Todos os cachorros e gatos braquicefálicos (de focinho achatado) são proibidos como bagagem despachada, incluindo cruzamentos: buldogues (todos), boxer, pug, pequinês, Shih Tzu, Boston terrier, Chow Chow, mastins, e gatos persa/himalaia/exótico/British Shorthair/Scottish Fold. Animais prenhes também são recusados."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Don't give sedatives or tranquillisers before the flight. Restricted guard breeds (Rottweiler, German Shepherd, Doberman, pit bull) need behaviour documents, muzzle, harness and leash.
+      fr: Ne pas administrer de sédatif avant le vol. Les races de garde restreintes (Rottweiler, berger allemand, Doberman, pit-bull) exigent des documents de comportement, muselière, harnais et laisse.
+      es: No administre sedantes ni tranquilizantes antes del vuelo. Las razas de guarda restringidas (Rottweiler, Pastor Alemán, Doberman, pit bull) necesitan documentos de comportamiento, bozal, arnés y correa.
+      pt: "Não administre sedativos ou tranquilizantes antes do voo. Raças de guarda restritas (Rottweiler, Pastor Alemão, Doberman, pit bull) precisam de documentos de comportamento, focinheira, peitoral e guia."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Temperature-controlled hold
+        fr: Soute à température contrôlée
+        es: Bodega con temperatura controlada
+        pt: "Porão com temperatura controlada"
+    - cls: warn
+      label:
+        en: Not on Boeing 737
+        fr: Pas sur Boeing 737
+        es: No en Boeing 737
+        pt: "Não em Boeing 737"
+  note:
+    en: Checked pets travel in a temperature-controlled bulk hold. They aren't accepted on Boeing 737 flights (no hold temperature control) or on SQ21/SQ23 from New York/Newark. No numeric temperature limit is published.
+    fr: Les animaux en soute voyagent dans une soute vrac à température contrôlée. Ils ne sont pas acceptés sur les Boeing 737 (soute non tempérée) ni sur SQ21/SQ23 depuis New York/Newark. Aucune limite chiffrée de température n'est publiée.
+    es: Las mascotas facturadas viajan en una bodega a granel con temperatura controlada. No se aceptan en vuelos de Boeing 737 (sin control de temperatura en bodega) ni en SQ21/SQ23 desde Nueva York/Newark. No se publica ningún límite numérico de temperatura.
+    pt: "Os animais despachados viajam em um porão a granel com temperatura controlada. Não são aceitos em voos de Boeing 737 (sem controle de temperatura no porão) nem no SQ21/SQ23 saindo de Nova York/Newark. Nenhum limite numérico de temperatura é publicado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Trained assistance dogs (min. 4 months) travel free in the cabin; not emotional-support dogs.
+      fr: Chiens d'assistance dressés (min. 4 mois) gratuits en cabine ; hors chiens de soutien émotionnel.
+      es: Los perros de asistencia adiestrados (mín. 4 meses) viajan gratis en cabina; no los perros de apoyo emocional.
+      pt: "Cachorros de assistência adestrados (mín. 4 meses) viajam grátis na cabine; não os cachorros de suporte emocional."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Notify Singapore Airlines ≥ 48 h ahead. US: DOT forms; India: AQCS NOC + DGFT licence."
+      fr: "Prévenir Singapore Airlines ≥ 48 h à l'avance. USA : formulaires DOT ; Inde : NOC AQCS + licence DGFT."
+      es: "Avisa a Singapore Airlines con ≥ 48 h de antelación. EE. UU.: formularios DOT; India: NOC de AQCS + licencia DGFT."
+      pt: "Avise a Singapore Airlines com ≥ 48 h de antecedência. EUA: formulários DOT; Índia: NOC da AQCS + licença DGFT."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Aircraft & routes
+      fr: Avions & routes
+      es: Aviones y rutas
+      pt: "Aeronave e rotas"
+    value:
+      en: Not on Boeing 737 or SQ21/23 from New York; many destinations barred (Australia, NZ, into Dubai, Hong Kong, London Heathrow…).
+      fr: Pas sur Boeing 737 ni SQ21/23 depuis New York ; nombreuses destinations exclues (Australie, N.-Z., arrivées à Dubaï, Hong Kong, Londres Heathrow…).
+      es: No en Boeing 737 ni SQ21/23 desde Nueva York; muchos destinos excluidos (Australia, N. Z., llegadas a Dubái, Hong Kong, Londres Heathrow…).
+      pt: "Não em Boeing 737 nem SQ21/23 saindo de Nova York; muitos destinos proibidos (Austrália, Nova Zelândia, chegadas a Dubai, Hong Kong, Londres Heathrow…)."
+  - icon: 🧳
+    label:
+      en: Shared crate
+      fr: Caisse partagée
+      es: Jaula compartida
+      pt: "Caixa de transporte compartilhada"
+    value:
+      en: Two puppies/kittens 3–6 months from one litter, under 14 kg each, may share a crate.
+      fr: Deux chiots/chatons de 3–6 mois d'une même portée, < 14 kg chacun, peuvent partager une caisse.
+      es: Dos cachorros/gatitos de 3–6 meses de la misma camada, de menos de 14 kg cada uno, pueden compartir jaula.
+      pt: "Dois filhotes de cachorro/gato de 3–6 meses da mesma ninhada, com menos de 14 kg cada, podem compartilhar uma caixa de transporte."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Contact SIA ≥ 2 weeks ahead with breed, age, weight and crate size; check in at the passenger counter.
+      fr: Contacter SIA ≥ 2 semaines à l'avance avec race, âge, poids et dimensions de caisse ; enregistrement au comptoir passagers.
+      es: Contacta con SIA con ≥ 2 semanas de antelación indicando raza, edad, peso y tamaño de la jaula; factura en el mostrador de pasajeros.
+      pt: "Entre em contato com a SIA com ≥ 2 semanas de antecedência informando raça, idade, peso e tamanho da caixa de transporte; faça o check-in no balcão de passageiros."
+book:
+  host: singaporeair.com
+  url: https://www.singaporeair.com/
+sources:
+  en: 3 Singapore Airlines sources · last verified 11 July 2026
+  fr: 3 sources Singapore Airlines · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Singapore Airlines · última verificación 11 de julio de 2026
+  pt: "3 fontes da Singapore Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

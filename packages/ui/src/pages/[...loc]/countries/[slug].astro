@@ -1,0 +1,19 @@
+---
+import { LOCALES } from "../../../lib/routes";
+import EntityDetail from "../../../components/EntityDetail.astro";
+import CountryGuidePage from "../../../components/CountryGuidePage.astro";
+import { countryData } from "../../../data/countries";
+import { loadKB, slugFor } from "@mydogcanfly/knowledge";
+import { shardPaths } from "../../../lib/buildShard";
+
+export function getStaticPaths() {
+  const kb = loadKB();
+  const out: { params: { loc?: string; slug: string }; props: { id: string; locale: string } }[] = [];
+  for (const loc of LOCALES)
+    for (const c of kb.countries.values())
+      out.push({ params: { loc: loc === "en" ? undefined : loc, slug: slugFor(c.id) }, props: { id: c.id, locale: loc } });
+  return shardPaths("countries", out);
+}
+const { id, locale } = Astro.props as { id: string; locale: string };
+---
+{countryData[id] ? <CountryGuidePage id={id} locale={locale} /> : <EntityDetail id={id} locale={locale} />}

@@ -1,0 +1,342 @@
+# Country Entry Guide — Norway (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_no
+iso2: "NO"
+name: { en: "Norway", fr: "Norvège", es: "Noruega", pt: "Noruega" }
+region: { en: "Europe (EEA, non-EU)", fr: "Europe (EEE, hors UE)", es: "Europa (EEE, fuera de la UE)", pt: "Europa (EEE, fora da UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Norway with your dog", fr: "Voyager en Norvège avec ton chien", es: "Viajar a Noruega con tu perro", pt: "Viajar para a Noruega com seu cachorro" }
+  intro:
+    en: >-
+      Norway welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Norway itself. Norway is not in the EU: it is part of the EEA and
+      applies the EU pet-movement rules, with a few national additions. An ISO microchip and a valid
+      rabies vaccination are always required. A crucial extra step is the compulsory tapeworm
+      (Echinococcus) treatment by a vet before arrival — Norway is one of the few countries that still
+      demands it. A dog from an EEA or listed country needs no rabies blood test; a dog from a
+      non-listed country must also pass a rabies antibody test with a three-month wait. On arrival you
+      must declare your dog to Norwegian customs. This guide explains each case before you book.
+    fr: >-
+      La Norvège accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de la Norvège. La Norvège n'est pas dans l'UE : elle fait partie de
+      l'EEE et applique les règles européennes de mouvement des animaux, avec quelques ajouts nationaux.
+      Une puce ISO et une vaccination antirabique valide sont toujours exigées. Une étape supplémentaire
+      essentielle est le traitement obligatoire contre l'échinococcose (ténia) par un vétérinaire avant
+      l'arrivée — la Norvège est l'un des rares pays à l'exiger encore. Un chien venant d'un pays de
+      l'EEE ou d'un pays listé n'a pas besoin de prise de sang antirabique ; un chien d'un pays non
+      listé doit aussi passer un titrage antirabique avec un délai de trois mois. À l'arrivée, tu
+      devez déclarer ton chien à la douane norvégienne. Ce guide détaille chaque cas avant de réserver.
+    es: >-
+      Noruega acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Noruega. Noruega no está en la UE: forma parte del EEE y aplica las
+      normas europeas de movimiento de animales de compañía, con algunos añadidos nacionales. Siempre se
+      exigen un microchip ISO y una vacunación antirrábica válida. Un paso adicional crucial es el
+      tratamiento obligatorio contra la tenia (Echinococcus) administrado por un veterinario antes de la
+      llegada — Noruega es uno de los pocos países que aún lo exige. Un perro procedente de un país del
+      EEE o de un país listado no necesita ninguna prueba de sangre para la rabia; un perro de un país
+      no listado debe además superar una prueba de titulación de rabia con una espera de tres meses. A la
+      llegada debes declarar tu perro a las aduanas noruegas. Esta guía explica cada caso antes de que
+      reserves.
+
+    pt: "A Noruega recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só da Noruega em si. A Noruega não está na UE: ela faz parte do EEE e aplica as regras europeias de circulação de animais de estimação, com alguns acréscimos nacionais. Microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Uma etapa a mais, fundamental, é o tratamento obrigatório contra a tênia (Echinococcus) aplicado por um veterinário antes da chegada — a Noruega é um dos poucos países que ainda o exigem. Um cachorro vindo do EEE ou de um país listado não precisa de exame de sangue para raiva; um cachorro vindo de um país não listado precisa também passar no teste sorológico antirrábico, com três meses de espera. Na chegada, você tem que declarar seu cachorro à alfândega norueguesa. Este guia explica cada caso antes de você comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate to difficult (tapeworm treatment always required)", fr: "Modéré à difficile (traitement antiténia toujours requis)", es: "De moderada a difícil (tratamiento contra la tenia siempre obligatorio)", pt: "De moderada a difícil (tratamento contra a tênia sempre obrigatório)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed — plus a vet tapeworm treatment 24–120 hours before arrival."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire — plus un traitement antiténia chez le vétérinaire 24 à 120 heures avant l'arrivée."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica — más un tratamiento contra la tenia por un veterinario 24–120 horas antes de la llegada."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira dose da vacina antirrábica — mais um tratamento contra a tênia aplicado por um veterinário de 24 a 120 horas antes da chegada."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, an EU health certificate, and the tapeworm treatment 24–120 hours before entry."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, un certificat sanitaire UE, et le traitement antiténia 24 à 120 heures avant l'entrée."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, un certificado sanitario de la UE y el tratamiento contra la tenia 24–120 horas antes de la entrada."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, um certificado sanitário europeu e o tratamento contra a tênia de 24 a 120 horas antes da entrada."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination and ≥3 months before entry, plus the tapeworm treatment 24–120 hours before arrival."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin et ≥3 mois avant l'entrée, plus le traitement antiténia 24 à 120 heures avant l'arrivée."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna y ≥3 meses antes de la entrada, más el tratamiento contra la tenia 24–120 horas antes de la llegada."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação e ≥3 meses antes da entrada, mais o tratamento contra a tênia de 24 a 120 horas antes da chegada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EEA origins", fr: "Conditionnel — origines hors EEE", es: "Condicional — orígenes fuera del EEE", pt: "Condicional — origens fora do EEE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Required — by a vet 24–120h before arrival", fr: "Requis — par un vétérinaire 24 à 120 h avant l'arrivée", es: "Obligatorio — por un veterinario 24–120 h antes de la llegada", pt: "Obrigatório — por um veterinário de 24 a 120 h antes da chegada" }
+    cls: warn
+  - requirement: { en: "Customs declaration on arrival", fr: "Déclaration en douane à l'arrivée", es: "Declaración en aduanas a la llegada", pt: "Declaração aduaneira na chegada" }
+    status: { en: "Required — red channel", fr: "Requise — canal rouge", es: "Obligatoria — canal rojo", pt: "Obrigatória — canal vermelho" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Norway (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Norvège (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Noruega (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Noruega (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Norway", fr: "Pays de destination — Norvège", es: "País de destino — Noruega", pt: "País de destino — Noruega" }
+      text:
+        en: "Norway applies the EU pet-movement framework as an EEA state: an ISO microchip and a valid rabies vaccination are always required, and — unlike most of Europe — a vet-administered tapeworm treatment is compulsory before entry."
+        fr: "La Norvège applique le cadre européen en tant qu'État de l'EEE : puce ISO et vaccination antirabique valide toujours exigées et — contrairement à la plupart de l'Europe — un traitement antiténia par un vétérinaire est obligatoire avant l'entrée."
+        es: "Noruega aplica el marco europeo de movimiento de animales como Estado del EEE: siempre se exigen un microchip ISO y una vacunación antirrábica válida y — a diferencia de la mayor parte de Europa — es obligatorio un tratamiento contra la tenia administrado por un veterinario antes de la entrada."
+        pt: "A Noruega aplica o quadro europeu de circulação de animais de estimação como Estado do EEE: microchip ISO e vacinação antirrábica válida são sempre obrigatórios e — ao contrário da maior parte da Europa — o tratamento contra a tênia aplicado por um veterinário é obrigatório antes da entrada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EEA country, a listed non-EEA country or a non-listed country decides whether an antibody test and a health certificate are required — and whether the tapeworm treatment is exempted (only from Finland, Malta, Ireland or Northern Ireland)."
+        fr: "Que ton chien parte d'un pays de l'EEE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés — et si le traitement antiténia est dispensé (uniquement depuis la Finlande, Malte, l'Irlande ou l'Irlande du Nord)."
+        es: "Que tu perro salga de un país del EEE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario — y si el tratamiento contra la tenia queda exento (solo desde Finlandia, Malta, Irlanda o Irlanda del Norte)."
+        pt: "Partir de um país do EEE, de um país listado fora do EEE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos — e se o tratamento contra a tênia fica dispensado (apenas na saída da Finlândia, de Malta, da Irlanda ou da Irlanda do Norte)."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Norway's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre norvégien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Noruega y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Então leia as exigências abaixo como o quadro norueguês e depois confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784 (HDX or FDX-B) chip, implanted before the rabies vaccination.", fr: "Puce ISO 11784 (HDX ou FDX-B), posée avant la vaccination antirabique.", es: "Microchip ISO 11784 (HDX o FDX-B), implantado antes de la vacunación antirrábica.", pt: "Microchip ISO 11784 (HDX ou FDX-B), implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011; otherwise the owner must supply a compatible reader.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011 ; sinon le propriétaire doit fournir un lecteur compatible.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011; de lo contrario, el propietario debe aportar un lector compatible.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011; caso contrário, o dono precisa fornecer um leitor compatível." }
+    ref: { en: "EU Reg. 576/2013; mattilsynet.no", fr: "Règl. UE 576/2013 ; mattilsynet.no", es: "Regl. UE 576/2013; mattilsynet.no", pt: "Regulamento UE 576/2013; mattilsynet.no" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; no rabies vaccination is required for animals travelling only between Norway and Sweden.", fr: "La puce doit déjà être posée ; aucune vaccination antirabique n'est exigée pour les animaux voyageant uniquement entre la Norvège et la Suède.", es: "El microchip debe estar ya implantado; no se exige vacunación antirrábica para los animales que viajan únicamente entre Noruega y Suecia.", pt: "O microchip já precisa estar implantado; não se exige vacinação antirrábica para animais que viajam apenas entre a Noruega e a Suécia." }
+    ref: { en: "EU Reg. 576/2013, Annex III; mattilsynet.no", fr: "Règl. UE 576/2013, annexe III ; mattilsynet.no", es: "Regl. UE 576/2013, anexo III; mattilsynet.no", pt: "Regulamento UE 576/2013, anexo III; mattilsynet.no" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, approved laboratory.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, laboratoire agréé.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado.", pt: "Apenas origens não listadas: sangue coletado ≥30 dias após a vacinação, ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório aprovado." }
+    exceptions: { en: "Not required from the EEA or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'EEE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde el EEE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não obrigatório vindo do EEE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 576/2013, Annex IV; mattilsynet.no", fr: "Règl. UE 576/2013, annexe IV ; mattilsynet.no", es: "Regl. UE 576/2013, anexo IV; mattilsynet.no", pt: "Regulamento UE 576/2013, anexo IV; mattilsynet.no" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose (ténia)", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "For all dogs incl. puppies: praziquantel (or epsiprantel) given by a vet 24–120 hours before entering Norway, documented in the passport/certificate.", fr: "Pour tous les chiens y compris chiots : praziquantel (ou epsiprantel) administré par un vétérinaire 24 à 120 heures avant l'entrée en Norvège, consigné dans le passeport/certificat.", es: "Para todos los perros, incluidos cachorros: praziquantel (o epsiprantel) administrado por un veterinario 24–120 horas antes de entrar en Noruega, documentado en el pasaporte/certificado.", pt: "Para todos os cachorros, inclusive filhotes: praziquantel (ou epsiprantel) aplicado por um veterinário de 24 a 120 horas antes da entrada na Noruega, registrado no passaporte/certificado." }
+    exceptions: { en: "Not required for dogs travelling directly from Finland, Malta, Ireland or Northern Ireland. A 28-day rolling regime is possible for dogs crossing the border regularly.", fr: "Non requis pour les chiens venant directement de Finlande, Malte, Irlande ou Irlande du Nord. Un régime glissant tous les 28 jours est possible pour les chiens franchissant régulièrement la frontière.", es: "No obligatorio para los perros que viajan directamente desde Finlandia, Malta, Irlanda o Irlanda del Norte. Es posible un régimen rotatorio cada 28 días para los perros que cruzan la frontera con regularidad.", pt: "Não obrigatório para cachorros que viajam diretamente da Finlândia, de Malta, da Irlanda ou da Irlanda do Norte. É possível um regime contínuo a cada 28 dias para cachorros que cruzam a fronteira com regularidade." }
+    ref: { en: "mattilsynet.no — mandatory Echinococcus treatment", fr: "mattilsynet.no — traitement échinococcose obligatoire", es: "mattilsynet.no — tratamiento obligatorio contra Echinococcus", pt: "mattilsynet.no — tratamento obrigatório contra Echinococcus" }
+  - item: { en: "Pet passport", fr: "Passeport pour animaux", es: "Pasaporte para mascotas", pt: "Passaporte para animais" }
+    required: { en: "EEA origins", fr: "Origines EEE", es: "Orígenes del EEE", pt: "Origens do EEE" }
+    when: { en: "EU/EEA model passport recording the microchip, rabies vaccination and tapeworm treatment.", fr: "Passeport modèle UE/EEE consignant la puce, la vaccination antirabique et le traitement antiténia.", es: "Pasaporte modelo UE/EEE que registra el microchip, la vacunación antirrábica y el tratamiento contra la tenia.", pt: "Passaporte modelo UE/EEE que registra o microchip, a vacinação antirrábica e o tratamento contra a tênia." }
+    exceptions: { en: "Replaced by an EU animal health certificate for most non-EEA origins (a passport is accepted for a few listed territories and for returning EEA pets).", fr: "Remplacé par un certificat sanitaire UE pour la plupart des origines hors EEE (le passeport est accepté pour quelques territoires listés et les animaux EEE de retour).", es: "Se sustituye por un certificado sanitario animal de la UE para la mayoría de los orígenes fuera del EEE (el pasaporte se acepta para algunos territorios listados y para las mascotas del EEE que regresan).", pt: "Substituído por um certificado sanitário europeu na maioria das origens fora do EEE (o passaporte é aceito para alguns territórios listados e para animais do EEE que estão voltando)." }
+    ref: { en: "EU Reg. 577/2013; mattilsynet.no", fr: "Règl. UE 577/2013 ; mattilsynet.no", es: "Regl. UE 577/2013; mattilsynet.no", pt: "Regulamento UE 577/2013; mattilsynet.no" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EEA origins", fr: "Origines hors EEE", es: "Orígenes fuera del EEE", pt: "Origens fora do EEE" }
+    when: { en: "Model in Annex IV to Reg. 577/2013, issued/endorsed by an official vet before departure.", fr: "Modèle de l'annexe IV du règl. 577/2013, établi/visé par un vétérinaire officiel avant le départ.", es: "Modelo del anexo IV del Regl. 577/2013, expedido/refrendado por un veterinario oficial antes de la salida.", pt: "Modelo do anexo IV do Regulamento 577/2013, emitido/endossado por um veterinário oficial antes da partida." }
+    exceptions: { en: "Not needed for EEA origins (passport instead).", fr: "Inutile pour les origines EEE (passeport à la place).", es: "No necesario para orígenes del EEE (en su lugar, el pasaporte).", pt: "Não é necessário para origens do EEE (em vez dele, vale o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV; mattilsynet.no", fr: "Règl. UE 577/2013, annexe IV ; mattilsynet.no", es: "Regl. UE 577/2013, anexo IV; mattilsynet.no", pt: "Regulamento UE 577/2013, anexo IV; mattilsynet.no" }
+  - item: { en: "Travellers' point of entry", fr: "Point d'entrée voyageurs", es: "Punto de entrada de viajeros", pt: "Ponto de entrada de viajantes" }
+    required: { en: "Non-EEA arrivals", fr: "Arrivées hors EEE", es: "Llegadas de fuera del EEE", pt: "Chegadas de fora do EEE" }
+    when: { en: "Most non-EEA arrivals must enter only via Oslo Airport (Gardermoen) or Storskog, and contact the Norwegian Food Safety Authority (notify ≥48 h ahead).", fr: "La plupart des arrivées hors EEE doivent entrer uniquement par l'aéroport d'Oslo (Gardermoen) ou Storskog, et contacter l'Autorité norvégienne de sécurité alimentaire (préavis ≥48 h).", es: "La mayoría de las llegadas de fuera del EEE deben entrar únicamente por el aeropuerto de Oslo (Gardermoen) o Storskog, y contactar con la Autoridad Noruega de Seguridad Alimentaria (avisar con ≥48 h de antelación).", pt: "A maioria das chegadas de fora do EEE só pode entrar pelo aeroporto de Oslo (Gardermoen) ou por Storskog e precisa entrar em contato com a Mattilsynet, a autoridade norueguesa de segurança alimentar (aviso com ≥48 h de antecedência)." }
+    exceptions: { en: "Animals from Andorra, Switzerland, Faroe Islands, Gibraltar, Greenland, Iceland, Liechtenstein, Monaco, San Marino and Vatican City may use any crossing.", fr: "Les animaux d'Andorre, Suisse, îles Féroé, Gibraltar, Groenland, Islande, Liechtenstein, Monaco, Saint-Marin et Vatican peuvent utiliser tout point de passage.", es: "Los animales de Andorra, Suiza, Islas Feroe, Gibraltar, Groenlandia, Islandia, Liechtenstein, Mónaco, San Marino y la Ciudad del Vaticano pueden usar cualquier punto de paso.", pt: "Animais vindos de Andorra, Suíça, Ilhas Faroé, Gibraltar, Groenlândia, Islândia, Liechtenstein, Mônaco, San Marino e Vaticano podem usar qualquer ponto de passagem." }
+    ref: { en: "mattilsynet.no — third countries", fr: "mattilsynet.no — pays tiers", es: "mattilsynet.no — países terceros", pt: "mattilsynet.no — países terceiros" }
+  - item: { en: "Customs declaration", fr: "Déclaration en douane", es: "Declaración en aduanas", pt: "Declaração aduaneira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Declare your dog to Norwegian Customs via the red channel on arrival.", fr: "Déclare ton chien à la douane norvégienne par le canal rouge à l'arrivée.", es: "Declara tu perro a las aduanas noruegas por el canal rojo a la llegada.", pt: "Declare seu cachorro à alfândega norueguesa pelo canal vermelho na chegada." }
+    exceptions: { en: "Dogs coming directly from Sweden with papers in order may use the green channel (red channel still advised when arriving by air).", fr: "Les chiens venant directement de Suède avec des papiers en règle peuvent utiliser le canal vert (canal rouge conseillé en cas d'arrivée par avion).", es: "Los perros que llegan directamente de Suecia con los papeles en regla pueden usar el canal verde (se sigue aconsejando el canal rojo cuando se llega por avión).", pt: "Cachorros que chegam diretamente da Suécia com a documentação em ordem podem usar o canal verde (o canal vermelho continua recomendado na chegada de avião)." }
+    ref: { en: "toll.no — travelling with pets", fr: "toll.no — voyager avec un animal", es: "toll.no — viajar con mascotas", pt: "toll.no — viajar com animais de estimação" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country. Tapeworm treatment applies to puppies too.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé. Le traitement antiténia s'applique aussi aux chiots.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado. El tratamiento contra la tenia también se aplica a los cachorros.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado. O tratamento contra a tênia vale também para os filhotes." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter from outside the EEA.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer depuis hors EEE.", es: "Los cachorros de menos de 12 semanas no pueden vacunarse, por lo que no pueden entrar desde fuera del EEE.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não podem entrar vindos de fora do EEE." }
+    ref: { en: "EU Reg. 576/2013; mattilsynet.no", fr: "Règl. UE 576/2013 ; mattilsynet.no", es: "Regl. UE 576/2013; mattilsynet.no", pt: "Regulamento UE 576/2013; mattilsynet.no" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — the dog may be returned, placed in paid quarantine or, for a banned breed, ordered out of the country or killed.", fr: "Uniquement en cas de non-conformité — le chien peut être refoulé, placé en quarantaine payante ou, pour une race interdite, expulsé ou euthanasié.", es: "Solo en caso de incumplimiento — el perro puede ser devuelto, puesto en cuarentena de pago o, si es una raza prohibida, expulsado del país o sacrificado.", pt: "Só em caso de descumprimento das regras — o cachorro pode ser devolvido, colocado em quarentena paga ou, se for de raça proibida, expulso do país ou sacrificado." }
+    ref: { en: "mattilsynet.no; toll.no", fr: "mattilsynet.no ; toll.no", es: "mattilsynet.no; toll.no", pt: "mattilsynet.no; toll.no" }
+
+origin:
+  eu:
+    title: { en: "Simplified — pet passport (EEA)", fr: "Simplifié — passeport (EEE)", es: "Simplificado — pasaporte (EEE)", pt: "Simplificado — passaporte para animais (EEE)" }
+    body:
+      en: "A dog coming from another EEA country needs an EU/EEA pet passport showing a valid ISO microchip and an in-date rabies vaccination — plus the compulsory tapeworm treatment by a vet 24–120 hours before arrival (exempt only from Finland, Malta, Ireland or Northern Ireland). No antibody test and no health certificate."
+      fr: "Un chien venant d'un autre pays de l'EEE a besoin d'un passeport UE/EEE mentionnant une puce ISO valide et une vaccination antirabique à jour — plus le traitement antiténia obligatoire par un vétérinaire 24 à 120 heures avant l'arrivée (dispensé uniquement depuis la Finlande, Malte, l'Irlande ou l'Irlande du Nord). Pas de titrage ni de certificat sanitaire."
+      es: "Un perro que llega de otro país del EEE necesita un pasaporte UE/EEE que acredite un microchip ISO válido y una vacunación antirrábica en vigor — más el tratamiento obligatorio contra la tenia por un veterinario 24–120 horas antes de la llegada (exento solo desde Finlandia, Malta, Irlanda o Irlanda del Norte). Sin prueba de titulación y sin certificado sanitario."
+      pt: "Um cachorro vindo de outro país do EEE precisa de um passaporte UE/EEE para animais que comprove um microchip ISO válido e uma vacinação antirrábica em dia — mais o tratamento obrigatório contra a tênia aplicado por um veterinário de 24 a 120 horas antes da chegada (dispensado apenas na saída da Finlândia, de Malta, da Irlanda ou da Irlanda do Norte). Sem teste sorológico e sem certificado sanitário."
+    cls: ok
+  listed:
+    title: { en: "Health certificate + tapeworm, no blood test", fr: "Certificat sanitaire + antiténia, sans prise de sang", es: "Certificado sanitario + tenia, sin análisis de sangre", pt: "Certificado sanitário + tênia, sem exame de sangue" }
+    body:
+      en: "From a listed non-EEA country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination, an EU animal health certificate endorsed by an official vet, and the tapeworm treatment 24–120 hours before entry. No antibody test is required; most non-EEA arrivals must enter via Oslo Airport or Storskog and declare to customs."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide, d'un certificat sanitaire UE visé par un vétérinaire officiel, et du traitement antiténia 24 à 120 heures avant l'entrée. Pas de titrage ; la plupart des arrivées hors EEE doivent entrer par l'aéroport d'Oslo ou Storskog et se déclarer à la douane."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida, un certificado sanitario animal de la UE refrendado por un veterinario oficial y el tratamiento contra la tenia 24–120 horas antes de la entrada. No se exige prueba de titulación; la mayoría de las llegadas de fuera del EEE deben entrar por el aeropuerto de Oslo o Storskog y declararse en aduanas."
+      pt: "Vindo de um país listado fora do EEE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida, certificado sanitário europeu endossado por um veterinário oficial e o tratamento contra a tênia de 24 a 120 horas antes da entrada. Não é exigido teste sorológico; a maioria das chegadas de fora do EEE precisa entrar pelo aeroporto de Oslo ou por Storskog e se declarar à alfândega."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait + tapeworm", fr: "Titrage + 3 mois d'attente + antiténia", es: "Prueba de titulación + espera de 3 meses + tenia", pt: "Teste sorológico + 3 meses de espera + tênia" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an approved laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate and the tapeworm treatment 24–120 hours before arrival are also required, with entry via Oslo Airport or Storskog."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire UE visé et le traitement antiténia 24 à 120 heures avant l'arrivée sont aussi requis, avec entrée par l'aéroport d'Oslo ou Storskog."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado, y luego una espera obligatoria de 3 meses antes de la entrada. También se exigen un certificado sanitario animal de la UE refrendado y el tratamiento contra la tenia 24–120 horas antes de la llegada, con entrada por el aeropuerto de Oslo o Storskog."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias depois da vacinação, resultado ≥0,5 UI/ml em laboratório aprovado, e depois 3 meses obrigatórios de espera antes da entrada. Também são exigidos um certificado sanitário europeu endossado e o tratamento contra a tênia de 24 a 120 horas antes da chegada, com entrada pelo aeroporto de Oslo ou por Storskog."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Norway depends on where you flew from — but in almost all cases you must declare the dog to customs."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Norvège dépend de ton lieu de départ — mais dans presque tous les cas tu dois déclarer le chien à la douane."
+    es: "Lo que ocurre cuando tu perro llega a Noruega depende del lugar desde el que hayas volado — pero en casi todos los casos debes declarar el perro en aduanas."
+    pt: "O que acontece quando seu cachorro chega à Noruega depende do país de onde você voou — mas em quase todos os casos você precisa declarar o cachorro à alfândega."
+  points:
+    - en: "You must go through the red channel and declare your dog to Norwegian Customs on arrival; keep the passport or health certificate with you."
+      fr: "Tu dois passer par le canal rouge et déclarer ton chien à la douane norvégienne à l'arrivée ; garde le passeport ou le certificat sanitaire sur toi."
+      es: "Debes pasar por el canal rojo y declarar tu perro a las aduanas noruegas a la llegada; lleva contigo el pasaporte o el certificado sanitario."
+      pt: "Você precisa passar pelo canal vermelho e declarar seu cachorro à alfândega norueguesa na chegada; leve com você o passaporte ou o certificado sanitário."
+    - en: "From most non-EEA countries you may enter only via Oslo Airport (Gardermoen) or Storskog, and must contact the Norwegian Food Safety Authority — notify at least 48 hours ahead."
+      fr: "Depuis la plupart des pays hors EEE, tu ne pouvez entrer que par l'aéroport d'Oslo (Gardermoen) ou Storskog, et devez contacter l'Autorité norvégienne de sécurité alimentaire — préavis d'au moins 48 heures."
+      es: "Desde la mayoría de los países fuera del EEE solo puedes entrar por el aeropuerto de Oslo (Gardermoen) o Storskog, y debes contactar con la Autoridad Noruega de Seguridad Alimentaria — avisa con al menos 48 horas de antelación."
+      pt: "Vindo da maioria dos países fora do EEE, você só pode entrar pelo aeroporto de Oslo (Gardermoen) ou por Storskog e precisa entrar em contato com a Mattilsynet, a autoridade norueguesa de segurança alimentar — com aviso de pelo menos 48 horas de antecedência."
+    - en: "Dogs coming directly from Sweden with papers in order may use the green channel; the red channel is still advised when arriving by air."
+      fr: "Les chiens venant directement de Suède avec des papiers en règle peuvent utiliser le canal vert ; le canal rouge reste conseillé en cas d'arrivée par avion."
+      es: "Los perros que llegan directamente de Suecia con los papeles en regla pueden usar el canal verde; se sigue aconsejando el canal rojo cuando se llega por avión."
+      pt: "Cachorros que chegam diretamente da Suécia com a documentação em ordem podem usar o canal verde; o canal vermelho continua recomendado na chegada de avião."
+    - en: "The tapeworm treatment must already be documented in the passport/certificate by the vet who gave it — you cannot administer it yourself."
+      fr: "Le traitement antiténia doit déjà être consigné dans le passeport/certificat par le vétérinaire qui l'a administré — tu ne pouvez pas le faire toi-même."
+      es: "El tratamiento contra la tenia debe estar ya documentado en el pasaporte/certificado por el veterinario que lo administró — no puedes administrarlo tú mismo."
+      pt: "O tratamento contra a tênia já precisa estar registrado no passaporte/certificado pelo veterinário que o aplicou — você não pode aplicá-lo por conta própria."
+    - en: "If documents are missing or invalid, the dog may be returned at your expense or placed in paid quarantine; a banned breed may be ordered out of the country or killed."
+      fr: "Si les documents manquent ou sont invalides, le chien peut être refoulé à tes frais ou placé en quarantaine payante ; une race interdite peut être expulsée ou euthanasiée."
+      es: "Si faltan documentos o no son válidos, el perro puede ser devuelto a tu costa o puesto en cuarentena de pago; una raza prohibida puede ser expulsada del país o sacrificada."
+      pt: "Se faltarem documentos ou eles não forem válidos, o cachorro pode ser devolvido às suas custas ou colocado em quarentena paga; um cachorro de raça proibida pode ser expulso do país ou sacrificado."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Norway bans six dog breeds considered dangerous, plus wolf-dog hybrids. The ban also covers any crossbreed containing one or more of these breeds in any proportion, and it is illegal to own, breed or import them. The Dog Act is administered by the police and the National Police Directorate."
+    fr: "La Norvège interdit six races de chiens considérées dangereuses, ainsi que les hybrides chien-loup. L'interdiction couvre aussi tout croisement contenant une ou plusieurs de ces races en toute proportion, et il est illégal de les détenir, élever ou importer. La loi sur les chiens est gérée par la police et la Direction nationale de la police."
+    es: "Noruega prohíbe seis razas de perros consideradas peligrosas, además de los híbridos de perro y lobo. La prohibición cubre también cualquier cruce que contenga una o varias de estas razas en cualquier proporción, y es ilegal tenerlos, criarlos o importarlos. La Ley de Perros es gestionada por la policía y la Dirección Nacional de Policía."
+    pt: "A Noruega proíbe seis raças de cachorro consideradas perigosas, além dos híbridos de cachorro com lobo. A proibição cobre também qualquer cruzamento que contenha uma ou mais dessas raças em qualquer proporção, e é ilegal ter, criar ou importar esses animais. A hundeloven (lei norueguesa sobre cachorros) é aplicada pela polícia e pela Politidirektoratet (Direção Nacional de Polícia)."
+  cat1:
+    en: "Banned breeds: Pit Bull Terrier, American Staffordshire Terrier (AmStaff), Fila Brasileiro, Tosa Inu (Tosa-Ken / Japanese Mastiff), Dogo Argentino, and Czechoslovakian Wolfdog — plus wolf-dog hybrids. Importing them (or their semen or embryos) is prohibited without special police permission."
+    fr: "Races interdites : Pit Bull Terrier, American Staffordshire Terrier (AmStaff), Fila Brasileiro, Tosa Inu (Tosa-Ken / Mastiff japonais), Dogo Argentino et chien-loup tchécoslovaque — plus les hybrides chien-loup. Leur importation (ou celle de leur semence ou embryons) est interdite sans autorisation spéciale de la police."
+    es: "Razas prohibidas: Pit Bull Terrier, American Staffordshire Terrier (AmStaff), Fila Brasileiro, Tosa Inu (Tosa-Ken / Mastín japonés), Dogo Argentino y Perro Lobo Checoslovaco — más los híbridos de perro y lobo. Su importación (o la de su semen o embriones) está prohibida sin autorización especial de la policía."
+    pt: "Raças proibidas: Pit Bull Terrier, American Staffordshire Terrier (AmStaff), Fila Brasileiro, Tosa Inu (Tosa-Ken / Mastim Japonês), Dogo Argentino e Czechoslovakian Wolfdog (lobo-da-checoslováquia) — além dos híbridos de cachorro com lobo. É proibido importá-los (assim como seu sêmen ou embriões) sem autorização especial da polícia."
+  cat2:
+    en: "Regardless of breed, it is also illegal to own, breed or import dogs trained to attack or defend, or any dog that is particularly aggressive or has other highly undesirable qualities making it a potential danger. There is no second, permitted category as in some EU countries."
+    fr: "Quelle que soit la race, il est aussi illégal de détenir, élever ou importer des chiens dressés à l'attaque ou à la défense, ou tout chien particulièrement agressif ou présentant d'autres qualités très indésirables le rendant potentiellement dangereux. Il n'existe pas de seconde catégorie autorisée comme dans certains pays de l'UE."
+    es: "Independientemente de la raza, también es ilegal tener, criar o importar perros adiestrados para atacar o defender, o cualquier perro particularmente agresivo o con otras cualidades muy indeseables que lo hagan potencialmente peligroso. No existe una segunda categoría permitida como en algunos países de la UE."
+    pt: "Independentemente da raça, também é ilegal ter, criar ou importar cachorros treinados para atacar ou defender, ou qualquer cachorro particularmente agressivo ou com outras características muito indesejáveis que o tornem um perigo em potencial. Não existe uma segunda categoria permitida, como em alguns países da UE."
+  note:
+    en: "If a dog is suspected of being a banned breed, police and customs can require the owner to document its breed; if in doubt, the police can have the dog killed or ordered out of the country. Questions go to the police or the National Police Directorate (politiet.no)."
+    fr: "Si un chien est soupçonné d'appartenir à une race interdite, la police et la douane peuvent exiger du propriétaire qu'il en documente la race ; en cas de doute, la police peut faire euthanasier le chien ou ordonner son expulsion. Les questions s'adressent à la police ou à la Direction nationale de la police (politiet.no)."
+    es: "Si se sospecha que un perro pertenece a una raza prohibida, la policía y las aduanas pueden exigir al propietario que documente su raza; en caso de duda, la policía puede hacer sacrificar al perro u ordenar su expulsión del país. Las preguntas se dirigen a la policía o a la Dirección Nacional de Policía (politiet.no)."
+    pt: "Se houver suspeita de que um cachorro seja de raça proibida, a polícia e a alfândega podem exigir do dono a comprovação da raça; em caso de dúvida, a polícia pode mandar sacrificar o cachorro ou determinar a saída dele do país. As dúvidas devem ser encaminhadas à polícia ou à Politidirektoratet (politiet.no)."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "Tapeworm treatment by a vet 24–120 h before arrival (unless direct from FI/MT/IE/N. Ireland), documented in the passport/certificate"
+    fr: "Traitement antiténia par un vétérinaire 24 à 120 h avant l'arrivée (sauf en provenance directe de FI/MT/IE/Irlande du Nord), consigné dans le passeport/certificat"
+    es: "Tratamiento contra la tenia por un veterinario 24–120 h antes de la llegada (salvo procedencia directa de FI/MT/IE/Irlanda del Norte), documentado en el pasaporte/certificado"
+    pt: "Tratamento contra a tênia aplicado por um veterinário de 24 a 120 h antes da chegada (salvo saída direta de FI/MT/IE/Irlanda do Norte), registrado no passaporte/certificado"
+  - en: "EU/EEA pet passport (EEA origin) or endorsed EU health certificate (non-EEA origin)"
+    fr: "Passeport UE/EEE (origine EEE) ou certificat sanitaire UE visé (hors EEE)"
+    es: "Pasaporte UE/EEE (origen EEE) o certificado sanitario UE refrendado (origen fuera del EEE)"
+    pt: "Passaporte UE/EEE para animais (origem no EEE) ou certificado sanitário europeu endossado (origem fora do EEE)"
+  - en: "Plan entry via Oslo Airport or Storskog and notify the Food Safety Authority (non-EEA, ≥48 h)"
+    fr: "Prévoir l'entrée par l'aéroport d'Oslo ou Storskog et prévenir l'Autorité de sécurité alimentaire (hors EEE, ≥48 h)"
+    es: "Prevé la entrada por el aeropuerto de Oslo o Storskog y avisa a la Autoridad de Seguridad Alimentaria (fuera del EEE, ≥48 h)"
+    pt: "Planeje a entrada pelo aeroporto de Oslo ou por Storskog e avise a Mattilsynet (fora do EEE, ≥48 h)"
+  - en: "Declare your dog to Norwegian Customs (red channel) on arrival"
+    fr: "Déclarer ton chien à la douane norvégienne (canal rouge) à l'arrivée"
+    es: "Declara tu perro a las aduanas noruegas (canal rojo) a la llegada"
+    pt: "Declare seu cachorro à alfândega norueguesa (canal vermelho) na chegada"
+  - en: "Confirm your dog is not a banned breed (or a cross of one)"
+    fr: "Vérifier que ton chien n'est pas une race interdite (ni un croisement)"
+    es: "Confirma que tu perro no es una raza prohibida (ni un cruce de una)"
+    pt: "Confirme que seu cachorro não é de uma raça proibida (nem cruzamento de uma delas)"
+
+sources:
+  - label: { en: "Mattilsynet — Travelling with dogs, cats and ferrets from EU-countries to Norway", fr: "Mattilsynet — Voyager avec chiens, chats et furets depuis les pays de l'UE vers la Norvège", es: "Mattilsynet — Viajar con perros, gatos y hurones desde países de la UE a Noruega", pt: "Mattilsynet — Viajar com cães, gatos e furões de países da UE para a Noruega" }
+    url: "https://www.mattilsynet.no/en/animals/travelling-with-dogs-cats-and-ferrets-from-eu-countries-to-norway"
+  - label: { en: "Mattilsynet — Travelling with dogs, cats and ferrets from third countries to Norway", fr: "Mattilsynet — Voyager avec chiens, chats et furets depuis les pays tiers vers la Norvège", es: "Mattilsynet — Viajar con perros, gatos y hurones desde países terceros a Noruega", pt: "Mattilsynet — Viajar com cães, gatos e furões de países terceiros para a Noruega" }
+    url: "https://www.mattilsynet.no/en/animals/travelling-with-dogs-cats-and-ferrets-from-third-countries-and-territories-to-norway"
+  - label: { en: "Mattilsynet — Mandatory treatment for echinococcosis for dogs imported to Norway", fr: "Mattilsynet — Traitement obligatoire contre l'échinococcose pour les chiens importés en Norvège", es: "Mattilsynet — Tratamiento obligatorio contra la equinococosis para los perros importados a Noruega", pt: "Mattilsynet — Tratamento obrigatório contra a equinococose para cachorros importados para a Noruega" }
+    url: "https://www.mattilsynet.no/en/animals/mandatory-treatment-for-echinococcosis-for-dogs-imported-to-norway"
+  - label: { en: "Mattilsynet — Guide: Travelling with pets to Norway", fr: "Mattilsynet — Guide : voyager avec un animal vers la Norvège", es: "Mattilsynet — Guía: viajar con mascotas a Noruega", pt: "Mattilsynet — Guia: viajar com animais de estimação para a Noruega" }
+    url: "https://www.mattilsynet.no/en/animals/guide-travelling-with-pets-to-norway"
+  - label: { en: "Mattilsynet — Banned dogs (breeds) in Norway", fr: "Mattilsynet — Chiens (races) interdits en Norvège", es: "Mattilsynet — Perros (razas) prohibidos en Noruega", pt: "Mattilsynet — Cachorros (raças) proibidos na Noruega" }
+    url: "https://www.mattilsynet.no/en/animals/banned-dogs"
+  - label: { en: "Norwegian Customs (Tolletaten) — Travelling with pets to and from Norway", fr: "Douane norvégienne (Tolletaten) — Voyager avec un animal vers et depuis la Norvège", es: "Aduanas noruegas (Tolletaten) — Viajar con mascotas hacia y desde Noruega", pt: "Alfândega norueguesa (Tolletaten) — Viajar com animais de estimação de e para a Noruega" }
+    url: "https://www.toll.no/en/goods/animals/travelling-with-pets-to-and-from-norway"
+
+seo:
+  title: { en: "Norway Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Norvège — Guide", es: "Requisitos de entrada de perros en Noruega — Guía de viaje", pt: "Noruega: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Norway With Your Dog: Entry Requirements (2026)", fr: "Voyager en Norvège avec ton chien : formalités (2026)", es: "Viajar a Noruega con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Noruega: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies, antibody-test and mandatory tapeworm rules for bringing a dog into Norway — by EEA, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage, titrage et traitement antiténia obligatoire pour faire entrer un chien en Norvège — selon origine EEE. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia, titulación y tratamiento contra la tenia 24–120 h antes de llegar para traer un perro a Noruega. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva, teste sorológico e tratamento obrigatório contra a tênia para levar um cachorro para a Noruega — por origem. Com fonte e data."
+  slug: "norway"
+  shortDesc:
+    en: "What you need to bring a dog into Norway, including the compulsory tapeworm treatment, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Norvège, dont le traitement antiténia obligatoire, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Noruega, incluido el tratamiento obligatorio contra la tenia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para a Noruega, incluindo o tratamento obrigatório contra a tênia, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

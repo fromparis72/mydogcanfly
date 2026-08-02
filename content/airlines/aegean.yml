@@ -1,0 +1,316 @@
+id: airline_aegean
+mono: A3
+name: Aegean Airlines
+titleH1:
+  en: Flying with a dog on Aegean Airlines
+  fr: Voyager avec un chien sur Aegean Airlines
+  es: Volar con un perro en Aegean Airlines
+  pt: "Viajar com um cachorro na Aegean Airlines"
+metaDesc:
+  en: "Aegean Airlines pet policy: cabin, hold and cargo, fares by zone, breed limits and official sources."
+  fr: "Politique animaux Aegean Airlines : cabine, soute et fret, tarifs par zone, restrictions de races et sources officielles."
+  es: "Política de mascotas de Aegean Airlines: cabina, bodega y carga, tarifas por zona, límites de razas y fuentes oficiales."
+  pt: "Política de animais da Aegean Airlines: cabine, porão e carga, tarifas por zona, limites de raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Greece · ATH
+      fr: Grèce · ATH
+      es: Grecia · ATH
+      pt: "Grécia · ATH"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: Small pets in the cabin and larger dogs in the hold on most routes, with clear published fees.
+  fr: Petits animaux en cabine et grands chiens en soute sur la plupart des routes, avec des tarifs clairs publiés.
+  es: Mascotas pequeñas en cabina y perros más grandes en bodega en la mayoría de las rutas, con tarifas publicadas claras.
+  pt: "Animais pequenos na cabine e cachorros maiores no porão na maioria das rotas, com tarifas claras publicadas."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 8–25 kg +
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: "> 105 cm / UK"
+      fr: "> 105 cm / R.-U."
+      es: "> 105 cm / R.U."
+      pt: "> 105 cm / R.U."
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One cat or dog ≤ 8 kg incl. carrier in an approved carrier under the seat; window seat, not first row/exit. Not when travelling with an infant.
+      fr: Un chat ou chien ≤ 8 kg avec le sac dans un sac approuvé sous le siège ; place hublot, hors premier rang/issue. Pas avec un bébé.
+      es: Un gato o perro ≤ 8 kg incluida la jaula, en una jaula aprobada bajo el asiento; asiento de ventanilla, no en la primera fila ni en salidas. No si viajas con un bebé.
+      pt: "Um gato ou cachorro ≤ 8 kg com a bolsa incluída, em uma bolsa de transporte aprovada, sob o assento; assento de janela, fora da primeira fila e das saídas de emergência. Não é permitido viajando com um bebê."
+    fee:
+      en: €35–65
+      fr: 35–65 €
+      es: 35–65 €
+      pt: "35–65 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs only (medium 8–25 kg / large > 25 kg) in the hold of A320/A321/ATR; not for connections over 3 h. Snub-nosed breeds barred.
+      fr: Chats et chiens uniquement (moyen 8–25 kg / grand > 25 kg) en soute des A320/A321/ATR ; pas pour les correspondances de plus de 3 h. Races au nez écrasé exclues.
+      es: Solo gatos y perros (mediano 8–25 kg / grande > 25 kg) en la bodega de A320/A321/ATR; no para conexiones de más de 3 h. Razas de hocico chato excluidas.
+      pt: "Somente gatos e cachorros (médio 8–25 kg / grande > 25 kg) no porão dos A320/A321/ATR; não disponível para conexões acima de 3 h. Raças de focinho achatado proibidas."
+    fee:
+      en: €50–190
+      fr: 50–190 €
+      es: 50–190 €
+      pt: "50–190 €"
+  - icon: ✈️
+    name:
+      en: Aegean Cargo
+      fr: Aegean Cargo
+      es: Aegean Cargo
+      pt: "Aegean Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Unaccompanied pets, crates over 105 × 75 × 79 cm, or cats/dogs to the UK.
+      fr: Animaux non accompagnés, caisses de plus de 105 × 75 × 79 cm, ou chats/chiens vers le R.-U.
+      es: Mascotas no acompañadas, jaulas de más de 105 × 75 × 79 cm, o gatos/perros al Reino Unido.
+      pt: "Animais desacompanhados, caixas de transporte acima de 105 × 75 × 79 cm, ou gatos/cachorros para o Reino Unido."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: €35 domestic / €65 intl
+        fr: 35 € national / 65 € intl
+        es: 35 € nacional / 65 € intl
+        pt: "35 € nacional / 65 € intl."
+    - label:
+        en: Hold — medium (8–25 kg)
+        fr: Soute — moyen (8–25 kg)
+        es: Bodega — mediano (8–25 kg)
+        pt: "Porão — médio (8–25 kg)"
+      value:
+        en: €50–120
+        fr: 50–120 €
+        es: 50–120 €
+        pt: "50–120 €"
+    - label:
+        en: Hold — large (> 25 kg)
+        fr: Soute — grand (> 25 kg)
+        es: Bodega — grande (> 25 kg)
+        pt: "Porão — grande (> 25 kg)"
+      value:
+        en: €90–190
+        fr: 90–190 €
+        es: 90–190 €
+        pt: "90–190 €"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per container, direct or connecting (connecting slightly higher).
+    fr: EUR par contenant, direct ou en correspondance (correspondance légèrement plus chère).
+    es: EUR por contenedor, directo o con escala (con escala ligeramente más caro).
+    pt: "EUR por contêiner, direto ou em conexão (conexão ligeiramente mais cara)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold/cargo forbidden
+          fr: Soute/fret interdits
+          es: Bodega/carga prohibidos
+          pt: "Porão/carga proibidos"
+    note:
+      en: "Snub-nosed dogs & cats aren't accepted in the hold or cargo (heat/breathing risk): bulldogs (all), boxers (all), pugs (all), mastiffs (all), Boston terrier, Shih Tzu, Pekingese, chow chow, Cane Corso, Dogue de Bordeaux, Shar Pei, and Persian/British Shorthair cats."
+      fr: "Chiens et chats au nez écrasé refusés en soute et en fret (risque chaleur/respiration) : bouledogues (tous), boxers (tous), carlins (tous), mastiffs (tous), Boston terrier, Shih Tzu, pékinois, chow chow, Cane Corso, Dogue de Bordeaux, Shar Pei, et chats persans/British Shorthair."
+      es: "Los perros y gatos de hocico chato no se aceptan en la bodega ni en la carga (riesgo de calor/respiración): bulldogs (todos), boxers (todos), carlinos (todos), mastines (todos), Boston terrier, Shih Tzu, pekinés, chow chow, Cane Corso, Dogo de Burdeos, Shar Pei y gatos persas/British Shorthair."
+      pt: "Cachorros e gatos de focinho achatado não são aceitos no porão nem na carga (risco de calor/respiração): bulldogues (todos), boxers (todos), pugs (todos), mastiffs (todos), Boston terrier, Shih Tzu, pequinês, chow chow, Cane Corso, Dogue de Bordeaux, Shar Pei, e gatos persas/British Shorthair."
+  - icon: 🚫
+    title:
+      en: Other breeds
+      fr: Autres races
+      es: Otras razas
+      pt: "Outras raças"
+    pills:
+      - cls: no
+        label:
+          en: Not in cabin/hold
+          fr: Ni cabine ni soute
+          es: Ni en cabina ni en bodega
+          pt: "Nem na cabine nem no porão"
+      - cls: no
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: "'Other' breeds (Rottweiler, Doberman, Dogo Argentino, Tosa, Fila, pit bull, American Staffordshire, Presa Canario, Caucasian Ovcharka) aren't accepted in cabin or hold — contact the Cargo Dept. Pets must not be sedated."
+      fr: Les « autres » races (Rottweiler, Doberman, Dogo Argentino, Tosa, Fila, pit-bull, American Staffordshire, Presa Canario, berger du Caucase) ne sont pas admises en cabine ni en soute — contacter le service Cargo. Les animaux ne doivent pas être sédatés.
+      es: "Las «otras» razas (Rottweiler, Doberman, Dogo Argentino, Tosa, Fila, pit bull, American Staffordshire, Presa Canario, Ovcharka del Cáucaso) no se aceptan en cabina ni en bodega — contacta con el departamento de carga. Las mascotas no deben ser sedadas."
+      pt: "As raças \"outras\" (Rottweiler, Doberman, Dogo Argentino, Tosa, Fila, pit bull, American Staffordshire, Presa Canario, Ovtcharka do Cáucaso) não são aceitas na cabine nem no porão — entre em contato com o departamento de carga. Os animais não podem ser sedados."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Aegean publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Aegean ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Aegean no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Aegean não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service and rescue dogs travel free in the cabin; notify Aegean before booking.
+      fr: Les chiens d'assistance et de sauvetage dressés voyagent gratuitement en cabine ; prévenir Aegean avant de réserver.
+      es: Los perros de asistencia y de rescate adiestrados viajan gratis en cabina; avisa a Aegean antes de reservar.
+      pt: "Cães de assistência e de resgate treinados viajam grátis na cabine; avise a Aegean antes de reservar."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Certification from an ADI/IGDF/EGDF member or national guide-dog school. Min 12 weeks, rabies ≥ 21 days.
+      fr: Certification d'un membre ADI/IGDF/EGDF ou d'une école nationale de chiens guides. Min 12 semaines, rage ≥ 21 jours.
+      es: Certificación de un miembro ADI/IGDF/EGDF o de una escuela nacional de perros guía. Mín 12 semanas, rabia ≥ 21 días.
+      pt: "Certificação de um membro ADI/IGDF/EGDF ou de uma escola nacional de cães-guia. Mín. 12 semanas, vacina antirrábica ≥ 21 dias."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Destination limits
+      fr: Limites de destination
+      es: Límites de destino
+      pt: "Limites de destino"
+    value:
+      en: "Dubai & Abu Dhabi: cats/dogs only as cargo; to the UK only via London Heathrow as cargo; from the UK cabin/hold allowed except Gatwick (cargo only)."
+      fr: "Dubaï & Abou Dabi : chats/chiens uniquement en fret ; vers le R.-U. uniquement via Londres Heathrow en fret ; depuis le R.-U. cabine/soute possibles sauf Gatwick (fret uniquement)."
+      es: "Dubái y Abu Dabi: gatos/perros solo como carga; al Reino Unido solo vía Londres Heathrow como carga; desde el Reino Unido se permite cabina/bodega excepto Gatwick (solo carga)."
+      pt: "Dubai e Abu Dhabi: gatos/cachorros somente como carga; para o Reino Unido somente via Londres Heathrow como carga; a partir do Reino Unido, cabine/porão permitidos exceto em Gatwick (somente carga)."
+  - icon: 🎫
+    label:
+      en: Priority basis
+      fr: Sur priorité
+      es: Con prioridad
+      pt: "Por prioridade"
+    value:
+      en: Limited pets per flight; a Live Animal Acceptance Checklist is signed at check-in.
+      fr: Nombre d'animaux limité par vol ; une checklist d'acceptation d'animal vivant est signée à l'enregistrement.
+      es: Número limitado de mascotas por vuelo; se firma una lista de aceptación de animal vivo en la facturación.
+      pt: "Número limitado de animais por voo; uma lista de verificação de aceitação de animal vivo é assinada no check-in."
+  - icon: 📄
+    label:
+      en: Age & vaccine
+      fr: Âge & vaccin
+      es: Edad y vacuna
+      pt: "Idade e vacina"
+    value:
+      en: Pets must be 12 weeks+ with a rabies vaccine given ≥ 21 days after microchipping.
+      fr: Les animaux doivent avoir 12 semaines+ avec un vaccin antirabique administré ≥ 21 jours après la puce.
+      es: Las mascotas deben tener 12 semanas o más con una vacuna antirrábica administrada ≥ 21 días después del microchip.
+      pt: "Os animais devem ter 12 semanas ou mais, com vacina antirrábica aplicada ≥ 21 dias após o microchip."
+book:
+  host: aegeanair.com
+  url: https://en.aegeanair.com/
+sources:
+  en: 4 Aegean sources · last verified 11 July 2026
+  fr: 4 sources Aegean · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Aegean · última verificación 11 de julio de 2026
+  pt: "4 fontes da Aegean · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

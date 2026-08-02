@@ -1,0 +1,11 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "paths": {
+      "@mydogcanfly/engine": ["../engine/src/index.ts"],
+      "@mydogcanfly/knowledge": ["../knowledge/src/index.ts"]
+    }
+  }
+}

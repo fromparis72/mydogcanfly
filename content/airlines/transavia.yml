@@ -1,0 +1,266 @@
+id: airline_transavia
+mono: HV
+name: Transavia
+titleH1:
+  en: Flying with a dog on Transavia
+  fr: Voyager avec un chien sur Transavia
+  es: Volar con un perro en Transavia
+  pt: "Viajar com um cachorro na Transavia"
+metaDesc:
+  en: "Transavia pet policy: cabin and heated hold, fares by route, snub-nosed hold ban and official sources."
+  fr: "Politique animaux Transavia : cabine et soute chauffée, tarifs par route, interdiction soute brachy et sources officielles."
+  es: "Política de mascotas de Transavia: cabina y bodega calefactada, tarifas por ruta, veto braquicéfalo en bodega y fuentes oficiales."
+  pt: "Política de animais da Transavia: cabine e porão aquecido, tarifas por rota, proibição de raças de focinho achatado no porão e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Netherlands / France · AMS / ORY
+      fr: Pays-Bas / France · AMS / ORY
+      es: Países Bajos / Francia · AMS / ORY
+      pt: "Países Baixos / França · AMS / ORY"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in a heated hold — snub-nosed breeds cabin-only, fees vary by route.
+  fr: Petits animaux en cabine, plus grands en soute chauffée — races au nez écrasé en cabine seulement, tarifs selon la route.
+  es: Mascotas pequeñas en cabina, las más grandes en bodega calefactada; las razas de hocico chato solo en cabina y las tarifas varían según la ruta.
+  pt: "Animais pequenos na cabine, os maiores em um porão aquecido — raças de focinho achatado somente na cabine, tarifas variam por rota."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 84
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats (min 15 weeks) ≤ 8 kg incl. carrier in a soft, closable carrier under the seat (max 40 × 30 × 24 cm).
+      fr: Chiens et chats (min 15 semaines) ≤ 8 kg avec le sac dans un sac souple fermable sous le siège (max 40 × 30 × 24 cm).
+      es: Perros y gatos (mín. 15 semanas) de ≤ 8 kg con la jaula en una jaula blanda y cerrable bajo el asiento (máx. 40 × 30 × 24 cm).
+      pt: "Cachorros e gatos (mín. 15 semanas) ≤ 8 kg com a bolsa em uma bolsa de transporte macia e fechável sob o assento (máx. 40 × 30 × 24 cm)."
+    fee:
+      en: €50–180
+      fr: 50–180 €
+      es: 50–180 €
+      pt: "€50–180"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Max 2 pets in a heated, climate- & pressure-controlled hold (pet + kennel ≤ 75 kg), IATA crate. Snub-nosed breeds barred.
+      fr: Max 2 animaux dans une soute chauffée, climatisée et pressurisée (animal + caisse ≤ 75 kg), caisse IATA. Races au nez écrasé exclues.
+      es: Máx. 2 mascotas en una bodega calefactada, climatizada y presurizada (mascota + jaula ≤ 75 kg), jaula IATA. Razas de hocico chato excluidas.
+      pt: "Máx. 2 animais em um porão aquecido, com clima e pressão controlados (animal + caixa de transporte ≤ 75 kg), caixa de transporte IATA. Raças de focinho achatado são proibidas."
+    fee:
+      en: €77–100+
+      fr: 77–100 €+
+      es: 77–100 €+
+      pt: "€77–100+"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: €50–180
+        fr: 50–180 €
+        es: 50–180 €
+        pt: "€50–180"
+    - label:
+        en: Hold (≤ 75 kg)
+        fr: Soute (≤ 75 kg)
+        es: Bodega (≤ 75 kg)
+        pt: "Porão (≤ 75 kg)"
+      value:
+        en: €77–100+
+        fr: 77–100 €+
+        es: 77–100 €+
+        pt: "€77–100+"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: See conditions
+        fr: Voir conditions
+        es: Ver condiciones
+        pt: "Ver condições"
+  note:
+    en: EUR per one-way flight; cabin €50 (NL/HV) or €60–180 (France/TO), hold €77 (HV) or from €100 (TO). Non-refundable.
+    fr: EUR par trajet aller ; cabine 50 € (NL/HV) ou 60–180 € (France/TO), soute 77 € (HV) ou dès 100 € (TO). Non remboursable.
+    es: EUR por trayecto de ida; cabina 50 € (NL/HV) o 60–180 € (Francia/TO), bodega 77 € (HV) o desde 100 € (TO). No reembolsable.
+    pt: "EUR por voo somente ida; cabine €50 (NL/HV) ou €60–180 (França/TO), porão €77 (HV) ou a partir de €100 (TO). Não reembolsável."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats are barred from the hold (breathing risk) — cabin only (≤ 8 kg): bulldogs (all), boxers (all), pugs (all), Boston terrier, Brussels Griffon, Bull Mastiff, Cane Corso, chow chow, Great Danes, Lhasa Apso, mastiffs, Pekingese, Shar Pei, Shih Tzu, spaniels (Tibetan/Japanese/English/King Charles), Staffordshire Bull Terrier, and Burmese/Exotic/Himalayan/Persian cats."
+      fr: "Chiens et chats au nez écrasé interdits en soute (risque respiratoire) — cabine uniquement (≤ 8 kg) : bouledogues (tous), boxers (tous), carlins (tous), Boston terrier, Griffon bruxellois, Bull Mastiff, Cane Corso, chow chow, dogues allemands, Lhasa Apso, mastiffs, pékinois, Shar Pei, Shih Tzu, épagneuls (tibétain/japonais/anglais/King Charles), Staffordshire Bull Terrier, et chats birmans/exotiques/himalayens/persans."
+      es: "Los perros y gatos de hocico chato tienen prohibida la bodega (riesgo respiratorio); solo cabina (≤ 8 kg): bulldogs (todos), bóxeres (todos), carlinos (todos), Boston terrier, grifón de Bruselas, Bullmastiff, Cane Corso, chow chow, dogos alemanes, Lhasa Apso, mastines, pekinés, Shar Pei, Shih Tzu, spaniels (tibetano/japonés/inglés/King Charles), Staffordshire Bull Terrier, y gatos birmano/exótico/himalayo/persa."
+      pt: "Cachorros e gatos de focinho achatado são proibidos no porão (risco respiratório) — somente na cabine (≤ 8 kg): buldogues (todos), boxers (todos), pugs (todos), Boston terrier, grifão de Bruxelas, Bull Mastiff, Cane Corso, chow chow, dogues alemães, Lhasa Apso, mastins, pequinês, Shar Pei, Shih Tzu, spaniels (tibetano/japonês/inglês/King Charles), Staffordshire Bull Terrier, e gatos birmanês/exótico/himalaia/persa."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: No ESA / rodents
+          fr: Pas d'ESA / rongeurs
+          es: Sin ESA / roedores
+          pt: "Sem ESA / roedores"
+    note:
+      en: Emotional-support animals and small rodents (hamsters, rabbits, guinea pigs) aren't accepted. No toys in the kennel; pets must be clean and non-aggressive.
+      fr: Les animaux de soutien émotionnel et les petits rongeurs (hamsters, lapins, cochons d'Inde) ne sont pas acceptés. Pas de jouets dans la caisse ; les animaux doivent être propres et non agressifs.
+      es: No se aceptan animales de apoyo emocional ni pequeños roedores (hámsteres, conejos, cobayas). Sin juguetes en la jaula; las mascotas deben estar limpias y no ser agresivas.
+      pt: "Animais de suporte emocional e pequenos roedores (hamsters, coelhos, porquinhos-da-índia) não são aceitos. Sem brinquedos na caixa de transporte; os animais devem estar limpos e não ser agressivos."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Heated, climate- & pressure-controlled hold
+        fr: Soute chauffée, climatisée & pressurisée
+        es: Bodega calefactada, climatizada y presurizada
+        pt: "Porão aquecido, com clima e pressão controlados"
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: The hold is a heated, climate- and pressure-controlled environment; snub-nosed breeds are excluded because heat and stress cause breathing difficulty. No numeric temperature limit is published.
+    fr: La soute est un environnement chauffé, climatisé et pressurisé ; les races au nez écrasé sont exclues car la chaleur et le stress provoquent des difficultés respiratoires. Aucune limite chiffrée de température n'est publiée.
+    es: La bodega es un entorno calefactado, climatizado y presurizado; las razas de hocico chato quedan excluidas porque el calor y el estrés provocan dificultad respiratoria. No se publica ningún límite numérico de temperatura.
+    pt: "O porão é um ambiente aquecido, com clima e pressão controlados; as raças de focinho achatado são excluídas porque o calor e o estresse causam dificuldade respiratória. Nenhum limite numérico de temperatura é publicado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Certified assistance dogs (ADI/ADEu/IGDF or AAI register) travel in the cabin on the floor at your feet, on a lead.
+      fr: Chiens d'assistance certifiés (ADI/ADEu/IGDF ou registre AAI) voyagent en cabine au sol à tes pieds, en laisse.
+      es: Los perros de asistencia certificados (ADI/ADEu/IGDF o registro AAI) viajan en cabina en el suelo a tus pies, con correa.
+      pt: "Cachorros de assistência certificados (registro ADI/ADEu/IGDF ou AAI) viajam na cabine, no chão, a seus pés, na guia."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Valid pet passport + vaccinations; proof of certification. Emotional-support/therapy dogs follow normal paid pet rules.
+      fr: Passeport animalier valide + vaccinations ; preuve de certification. Chiens de soutien émotionnel/thérapie soumis aux règles animaux payantes.
+      es: Pasaporte de mascota válido + vacunas; prueba de la certificación. Los perros de apoyo emocional/terapia siguen las normas de mascotas de pago habituales.
+      pt: "Passaporte de animal válido + vacinas; comprovante da certificação. Cachorros de suporte emocional/terapia seguem as regras normais e pagas para animais."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No ESA or rodents
+      fr: Pas d'ESA ni rongeurs
+      es: Sin ESA ni roedores
+      pt: "Sem ESA nem roedores"
+    value:
+      en: Emotional-support animals and small rodents aren't accepted on board.
+      fr: Les animaux de soutien émotionnel et les petits rongeurs ne sont pas admis à bord.
+      es: No se admiten a bordo animales de apoyo emocional ni pequeños roedores.
+      pt: "Animais de suporte emocional e pequenos roedores não são aceitos a bordo."
+  - icon: 💶
+    label:
+      en: Non-refundable
+      fr: Non remboursable
+      es: No reembolsable
+      pt: "Não reembolsável"
+    value:
+      en: Pet fees are non-refundable; cancel via the Service Centre.
+      fr: Les frais animaux sont non remboursables ; annulation via le Service Centre.
+      es: Las tarifas de mascotas no son reembolsables; cancele a través del Service Centre.
+      pt: "As tarifas de animais não são reembolsáveis; cancele através do Service Centre."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Add the pet at booking or in My Transavia up to 2 h before departure; space is limited.
+      fr: Ajouter l'animal à la réservation ou dans My Transavia jusqu'à 2 h avant le départ ; places limitées.
+      es: Añade la mascota al reservar o en My Transavia hasta 2 h antes de la salida; las plazas son limitadas.
+      pt: "Adicione o animal na reserva ou no My Transavia até 2 h antes da partida; as vagas são limitadas."
+book:
+  host: transavia.com
+  url: https://www.transavia.com/
+sources:
+  en: 7 Transavia sources · last verified 11 July 2026
+  fr: 7 sources Transavia · dernière vérification 11 juillet 2026
+  es: 7 fuentes de Transavia · última verificación 11 de julio de 2026
+  pt: "7 fontes da Transavia · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

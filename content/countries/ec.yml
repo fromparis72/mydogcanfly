@@ -1,0 +1,381 @@
+# Country Entry Guide — Ecuador (bilingual EN/FR).
+# Ecuador is NOT in the EU. This encodes Ecuador's own AGROCALIDAD scheme (Agencia de Regulación
+# y Control Fito y Zoosanitario): an Export Zoosanitary Certificate from the origin country, several
+# vaccinations, parasite treatment, and — for cargo only — an Import Zoosanitary Permit before SENAE clears the pet.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_ec
+iso2: "EC"
+name: { en: "Ecuador", fr: "Équateur", es: "Ecuador", pt: "Equador" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: AGROCALIDAD
+  authorityUrl: https://www.agrocalidad.gob.ec/salida-de-animales-de-compania-perros-y-gatos/
+  intro:
+    en: "Ecuador is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by AGROCALIDAD."
+    fr: "L'Équateur est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par l'AGROCALIDAD."
+    es: "Ecuador no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por AGROCALIDAD."
+    pt: "O Equador é um país não listado, então um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação referendado pela AGROCALIDAD."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A registered vet submits the request at least 72h before travel; an AGROCALIDAD official signs and stamps the export certificate (valid 10 days) and endorses the EU model."
+        fr: "Un vétérinaire enregistré dépose la demande au moins 72 h avant le voyage ; un agent d'AGROCALIDAD signe et tamponne le certificat d'export (valable 10 jours) et vise le modèle UE."
+        es: "Un veterinario registrado presenta la solicitud al menos 72 h antes del viaje; un funcionario de AGROCALIDAD firma y sella el certificado de exportación (válido 10 días) y refrenda el modelo UE."
+        pt: "Um veterinário registrado apresenta o pedido pelo menos 72 h antes da viagem; um funcionário da AGROCALIDAD assina e carimba o certificado de exportação (válido por 10 dias) e referenda o modelo da UE."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Ecuador with your dog", fr: "Voyager en Équateur avec ton chien", es: "Viajar a Ecuador con tu perro", pt: "Viajar para o Equador com o seu cachorro" }
+  intro:
+    en: >-
+      Ecuador welcomes dogs, and it runs one uniform national scheme managed by AGROCALIDAD (Agencia
+      de Regulación y Control Fito y Zoosanitario), the official animal-health authority. There is no
+      EU pet passport here: the key document is an Export Zoosanitary Certificate (Certificado
+      Zoosanitario de Exportación) issued or endorsed by the official veterinary service of your
+      country of origin, in Spanish or English, dated no more than 10 calendar days before entry. It
+      must confirm a clinical examination, several current vaccinations (including rabies) and internal
+      and external parasite treatment. Ecuador asks for no rabies antibody test and imposes no routine
+      quarantine for a healthy, compliant pet. If your dog flies in the cabin or as accompanied baggage,
+      that certificate alone clears it; only pets arriving as cargo need an Import Zoosanitary Permit
+      requested in advance. This guide explains exactly what to prepare, and when, before you book.
+    fr: >-
+      L'Équateur accueille les chiens et applique un régime national uniforme géré par AGROCALIDAD
+      (Agencia de Regulación y Control Fito y Zoosanitario), l'autorité sanitaire animale officielle.
+      Pas de passeport européen ici : le document clé est un Certificat Zoosanitaire d'Exportation
+      (Certificado Zoosanitario de Exportación) émis ou avalisé par le service vétérinaire officiel de
+      ton pays d'origine, en espagnol ou en anglais, daté de 10 jours calendaires au maximum avant
+      l'entrée. Il doit attester un examen clinique, plusieurs vaccinations en cours (dont la rage) et
+      un traitement antiparasitaire interne et externe. L'Équateur n'exige aucun titrage antirabique
+      et n'impose aucune quarantaine de routine pour un animal sain et conforme. Si ton chien voyage
+      en cabine ou en bagage accompagné, ce certificat suffit ; seuls les animaux arrivant en fret ont
+      besoin d'un Permis Zoosanitaire d'Importation demandé à l'avance. Ce guide détaille quoi préparer,
+      et quand, avant de réserver.
+    es: >-
+      Ecuador acoge a los perros y aplica un régimen nacional uniforme gestionado por AGROCALIDAD
+      (Agencia de Regulación y Control Fito y Zoosanitario), la autoridad sanitaria animal oficial.
+      Aquí no hay pasaporte europeo para mascotas: el documento clave es un Certificado Zoosanitario de
+      Exportación expedido o refrendado por el servicio veterinario oficial de tu país de origen, en
+      español o inglés, con fecha no superior a 10 días calendario antes de la entrada. Debe confirmar un
+      examen clínico, varias vacunaciones vigentes (incluida la rabia) y un tratamiento contra parásitos
+      internos y externos. Ecuador no exige prueba de titulación de rabia ni impone cuarentena rutinaria
+      a una mascota sana y que cumple los requisitos. Si tu perro viaja en cabina o como equipaje
+      acompañado, ese certificado por sí solo lo despacha; solo las mascotas que llegan como carga
+      necesitan un Permiso Zoosanitario de Importación solicitado con antelación. Esta guía explica
+      exactamente qué preparar, y cuándo, antes de reservar.
+
+    pt: "O Equador recebe bem os cachorros e aplica um regime nacional único, gerido pela AGROCALIDAD (Agencia de Regulación y Control Fito y Zoosanitario), a autoridade oficial de saúde animal. Aqui não existe passaporte europeu para animais de estimação: o documento central é um Certificado Zoossanitário de Exportação (Certificado Zoosanitario de Exportación) emitido ou referendado pelo serviço veterinário oficial do seu país de origem, em espanhol ou inglês, com data de no máximo 10 dias corridos antes da entrada. Ele deve confirmar um exame clínico, várias vacinações em dia (inclusive a antirrábica) e um tratamento contra parasitas internos e externos. O Equador não exige teste sorológico antirrábico nem impõe quarentena de rotina a um animal saudável e em conformidade. Se o seu cachorro viajar na cabine ou como bagagem acompanhada, esse certificado sozinho já o libera; só os animais que chegam como carga precisam de uma Autorização Zoossanitária de Importação solicitada com antecedência. Este guia explica exatamente o que preparar, e quando, antes de você reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — one uniform scheme, but several vaccinations and a short waiting period", fr: "Modéré — un régime uniforme, mais plusieurs vaccins et un court délai d'attente", es: "Moderado — un régimen uniforme, pero varias vacunaciones y un breve periodo de espera", pt: "Moderado — um regime único, mas várias vacinações e um curto prazo de espera" }
+
+prepTime:
+  eu:
+    en: "Standard case (cabin or accompanied baggage): a few days to assemble the Export Zoosanitary Certificate once vaccinations are valid — the certificate is issued within 10 calendar days before entry."
+    fr: "Cas standard (cabine ou bagage accompagné) : quelques jours pour réunir le Certificat Zoosanitaire d'Exportation une fois les vaccinations valides — le certificat est émis dans les 10 jours calendaires avant l'entrée."
+    es: "Caso estándar (cabina o equipaje acompañado): unos días para reunir el Certificado Zoosanitario de Exportación una vez que las vacunaciones son válidas — el certificado se expide dentro de los 10 días calendario previos a la entrada."
+    pt: "Caso padrão (cabine ou bagagem acompanhada): alguns dias para reunir o Certificado Zoossanitário de Exportação assim que as vacinações estiverem válidas — o certificado é emitido dentro dos 10 dias corridos anteriores à entrada."
+  listed:
+    en: "If the first rabies shot is still needed: plan at least ~2 weeks, as a primary rabies vaccination requires at least 14 days to pass before arrival. Minimum entry age is over 4 months."
+    fr: "Si la première vaccination antirabique reste à faire : prévois au moins ~2 semaines, une primo-vaccination antirabique nécessitant qu'au moins 14 jours s'écoulent avant l'arrivée. L'âge minimum d'entrée est de plus de 4 mois."
+    es: "Si aún falta la primera vacuna antirrábica: planifica al menos ~2 semanas, ya que una primovacunación antirrábica requiere que transcurran al menos 14 días antes de la llegada. La edad mínima de entrada es de más de 4 meses."
+    pt: "Se a primeira dose antirrábica ainda estiver pendente: planeje pelo menos ~2 semanas, já que uma primovacinação antirrábica exige que passem pelo menos 14 dias antes da chegada. A idade mínima de entrada é de mais de 4 meses."
+  nonListed:
+    en: "Pets arriving as cargo: allow more time — an Import Zoosanitary Permit must be requested by email at least 72 hours before arrival, and SENAE clears the animal afterwards."
+    fr: "Animaux arrivant en fret : prévois plus de temps — un Permis Zoosanitaire d'Importation doit être demandé par courriel au moins 72 heures avant l'arrivée, et le SENAE dédouane ensuite l'animal."
+    es: "Mascotas que llegan como carga: prevé más tiempo — hay que solicitar un Permiso Zoosanitario de Importación por correo electrónico al menos 72 horas antes de la llegada, y el SENAE despacha al animal después."
+    pt: "Animais que chegam como carga: reserve mais tempo — a Autorização Zoossanitária de Importação precisa ser solicitada por e-mail pelo menos 72 horas antes da chegada, e o SENAE libera o animal depois."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Identification (name, tattoo or microchip)", fr: "Identification (nom, tatouage ou puce)", es: "Identificación (nombre, tatuaje o microchip)", pt: "Identificação (nome, tatuagem ou microchip)" }
+    status: { en: "Required (ISO microchip recommended)", fr: "Requise (puce ISO recommandée)", es: "Obligatoria (microchip ISO recomendado)", pt: "Obrigatória (microchip ISO recomendado)" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required to enter", fr: "Non requis pour entrer", es: "No obligatoria para entrar", pt: "Não obrigatório para entrar" }
+    cls: ok
+  - requirement: { en: "Other canine vaccinations", fr: "Autres vaccinations canines", es: "Otras vacunaciones caninas", pt: "Outras vacinações caninas" }
+    status: { en: "Required (distemper, hepatitis, leptospirosis, parvovirus)", fr: "Requises (Carré, hépatite, leptospirose, parvovirose)", es: "Obligatorias (moquillo, hepatitis, leptospirosis, parvovirus)", pt: "Obrigatórias (cinomose, hepatite, leptospirose, parvovirose)" }
+    cls: warn
+  - requirement: { en: "Export Zoosanitary Certificate", fr: "Certificat Zoosanitaire d'Exportation", es: "Certificado Zoosanitario de Exportación", pt: "Certificado Zoossanitário de Exportação" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Parasite treatment (internal & external)", fr: "Traitement antiparasitaire (interne & externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for a healthy, compliant pet", fr: "Non requise pour un animal sain et conforme", es: "No obligatoria para una mascota sana y que cumple los requisitos", pt: "Não obrigatória para um animal saudável e em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Ecuador (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Équateur (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Ecuador (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Equador (o seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Ecuador", fr: "Pays de destination — Équateur", es: "País de destino — Ecuador", pt: "País de destino — Equador" }
+      text:
+        en: "Ecuador applies its own AGROCALIDAD scheme: an Export Zoosanitary Certificate from the origin country covering a clinical exam, current vaccinations (including rabies) and internal & external parasite treatment. No rabies antibody test and no routine quarantine are demanded, and identification may be by name, tattoo or microchip."
+        fr: "L'Équateur applique son propre régime AGROCALIDAD : un Certificat Zoosanitaire d'Exportation du pays d'origine couvrant un examen clinique, des vaccinations en cours (dont la rage) et un traitement antiparasitaire interne & externe. Ni titrage antirabique ni quarantaine de routine ne sont exigés, et l'identification peut se faire par nom, tatouage ou puce."
+        es: "Ecuador aplica su propio régimen AGROCALIDAD: un Certificado Zoosanitario de Exportación del país de origen que cubre un examen clínico, vacunaciones vigentes (incluida la rabia) y un tratamiento contra parásitos internos y externos. No se exige prueba de titulación de rabia ni cuarentena rutinaria, y la identificación puede ser por nombre, tatuaje o microchip."
+        pt: "O Equador aplica o seu próprio regime da AGROCALIDAD: um Certificado Zoossanitário de Exportação do país de origem cobrindo um exame clínico, vacinações em dia (inclusive a antirrábica) e tratamento contra parasitas internos e externos. Não se exige teste sorológico antirrábico nem quarentena de rotina, e a identificação pode ser por nome, tatuagem ou microchip."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The Export Zoosanitary Certificate must be issued or endorsed by the official veterinary service of the country you travel from, in Spanish or English, with an issue date no more than 10 calendar days before entry. Its timing drives your whole preparation."
+        fr: "Le Certificat Zoosanitaire d'Exportation doit être émis ou avalisé par le service vétérinaire officiel du pays de départ, en espagnol ou en anglais, avec une date d'émission de 10 jours calendaires au maximum avant l'entrée. Ses délais rythment toute ton préparation."
+        es: "El Certificado Zoosanitario de Exportación debe ser expedido o refrendado por el servicio veterinario oficial del país desde el que viajas, en español o inglés, con una fecha de expedición no superior a 10 días calendario antes de la entrada. Sus plazos marcan toda tu preparación."
+        pt: "O Certificado Zoossanitário de Exportação precisa ser emitido ou referendado pelo serviço veterinário oficial do país de onde você viaja, em espanhol ou inglês, com data de emissão de no máximo 10 dias corridos antes da entrada. O prazo dele comanda toda a sua preparação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "If one of the required vaccines is not approved for use in the origin country, this must be stated on the certificate and the owner must administer it during the stay in Ecuador. Prior residence also matters for the return trip, where some countries require a rabies antibody test before departure."
+        fr: "Si l'un des vaccins requis n'est pas approuvé dans le pays d'origine, cela doit figurer sur le certificat et le propriétaire doit l'administrer durant le séjour en Équateur. Le séjour antérieur compte aussi pour le retour, certains pays exigeant un titrage antirabique avant le départ."
+        es: "Si una de las vacunas requeridas no está aprobada para su uso en el país de origen, esto debe constar en el certificado y el propietario debe administrarla durante la estancia en Ecuador. La residencia previa también importa para el viaje de regreso, donde algunos países exigen una prueba de titulación de rabia antes de la salida."
+        pt: "Se uma das vacinas exigidas não for aprovada para uso no país de origem, isso precisa constar no certificado e o dono deve aplicá-la durante a estadia no Equador. A residência anterior também pesa na viagem de volta, em que alguns países exigem um teste sorológico antirrábico antes da partida."
+  note:
+    en: "So read the requirements below as Ecuador's framework, then confirm your dog's exact origin, age and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre équatorien, puis confirme l'origine, l'âge et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Ecuador y luego confirma el origen, la edad y el historial exactos de tu perro con tu veterinario."
+    pt: "Portanto, leia as exigências abaixo como o quadro geral do Equador e depois confirme com o seu veterinário a origem, a idade e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Identification (name, tattoo or ISO microchip)", fr: "Identification (nom, tatouage ou puce ISO)", es: "Identificación (nombre, tatuaje o microchip ISO)", pt: "Identificação (nome, tatuagem ou microchip ISO)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Conventional companion animals must be identified by name, tattoo or a microchip. An ISO microchip is strongly recommended for reliable identification and for the return trip.", fr: "Les animaux de compagnie conventionnels doivent être identifiés par nom, tatouage ou puce. Une puce ISO est fortement recommandée pour une identification fiable et pour le retour.", es: "Los animales de compañía convencionales deben identificarse por nombre, tatuaje o microchip. Se recomienda encarecidamente un microchip ISO para una identificación fiable y para el viaje de regreso.", pt: "Os animais de companhia convencionais precisam ser identificados por nome, tatuagem ou microchip. Um microchip ISO é fortemente recomendado para uma identificação confiável e para a viagem de volta." }
+    exceptions: { en: "The origin country may require a microchip for the dog's return, so verify this before you arrive in Ecuador.", fr: "Le pays d'origine peut exiger une puce pour le retour du chien ; vérifie-le avant ton arrivée en Équateur.", es: "El país de origen puede exigir un microchip para el regreso del perro, así que verifícalo antes de llegar a Ecuador.", pt: "O país de origem pode exigir microchip para o retorno do cachorro, então verifique isso antes de chegar ao Equador." }
+    ref: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The rabies vaccination must be current on arrival. If it is the animal's first rabies vaccination for entry, at least 14 days must have passed since the day it was administered.", fr: "La vaccination antirabique doit être en cours de validité à l'arrivée. S'il s'agit de la première vaccination antirabique pour l'entrée, au moins 14 jours doivent s'être écoulés depuis le jour de son application.", es: "La vacunación antirrábica debe estar vigente a la llegada. Si es la primera vacunación antirrábica del animal para la entrada, deben haber transcurrido al menos 14 días desde el día de su aplicación.", pt: "A vacinação antirrábica precisa estar em dia na chegada. Se for a primeira vacinação antirrábica do animal para a entrada, pelo menos 14 dias devem ter passado desde o dia da aplicação." }
+    exceptions: { en: "If rabies vaccination is not approved for use in the origin country, this must be stated on the certificate and administered during the stay in Ecuador.", fr: "Si la vaccination antirabique n'est pas approuvée dans le pays d'origine, cela doit figurer sur le certificat et être administré durant le séjour en Équateur.", es: "Si la vacunación antirrábica no está aprobada para su uso en el país de origen, esto debe constar en el certificado y administrarse durante la estancia en Ecuador.", pt: "Se a vacinação antirrábica não for aprovada para uso no país de origem, isso precisa constar no certificado e ela deve ser aplicada durante a estadia no Equador." }
+    ref: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required to enter", fr: "Non requis pour entrer", es: "No obligatoria para entrar", pt: "Não obrigatório para entrar" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Ecuador does not require a rabies antibody test to enter. AGROCALIDAD notes it only for pets returning to a country that demands a virus-neutralisation antibody level (minimum 0.5 IU/ml), done in a laboratory authorised by the origin country's official service — that is, before leaving Ecuador, not to enter it.", fr: "L'Équateur n'exige aucun titrage antirabique pour entrer. AGROCALIDAD le mentionne uniquement pour les animaux repartant vers un pays qui exige un titrage d'anticorps par séroneutralisation (minimum 0,5 UI/ml), réalisé dans un laboratoire autorisé par le service officiel du pays d'origine — c'est-à-dire avant de quitter l'Équateur, pas pour y entrer.", es: "Ecuador no exige una prueba de titulación de rabia para entrar. AGROCALIDAD la menciona únicamente para las mascotas que regresan a un país que exige un nivel de anticuerpos por seroneutralización (mínimo 0,5 UI/ml), realizado en un laboratorio autorizado por el servicio oficial del país de origen — es decir, antes de salir de Ecuador, no para entrar.", pt: "O Equador não exige teste sorológico antirrábico para entrar. A AGROCALIDAD só o menciona para animais que voltam a um país que exige um nível de anticorpos por soroneutralização (mínimo de 0,5 UI/ml), feito em um laboratório autorizado pelo serviço oficial do país de origem — ou seja, antes de sair do Equador, e não para entrar nele." }
+    ref: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
+  - item: { en: "Other canine vaccinations", fr: "Autres vaccinations canines", es: "Otras vacunaciones caninas", pt: "Outras vacinações caninas" }
+    required: { en: "Required", fr: "Requises", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "For dogs, the following vaccinations must be current on arrival: distemper (Carré), hepatitis, leptospirosis and parvovirus.", fr: "Pour les chiens, les vaccinations suivantes doivent être en cours de validité à l'arrivée : maladie de Carré, hépatite, leptospirose et parvovirose.", es: "Para los perros, las siguientes vacunaciones deben estar vigentes a la llegada: moquillo, hepatitis, leptospirosis y parvovirus.", pt: "Para cachorros, as seguintes vacinações precisam estar em dia na chegada: cinomose (doença de Carré), hepatite, leptospirose e parvovirose." }
+    exceptions: { en: "If one of these vaccines is not approved for use in the origin country, this must be stated on the Export Zoosanitary Certificate and the owner must administer it during the stay in Ecuador.", fr: "Si l'un de ces vaccins n'est pas approuvé dans le pays d'origine, cela doit figurer sur le Certificat Zoosanitaire d'Exportation et le propriétaire doit l'administrer durant le séjour en Équateur.", es: "Si una de estas vacunas no está aprobada para su uso en el país de origen, esto debe constar en el Certificado Zoosanitario de Exportación y el propietario debe administrarla durante la estancia en Ecuador.", pt: "Se uma dessas vacinas não for aprovada para uso no país de origem, isso precisa constar no Certificado Zoossanitário de Exportação e o dono deve aplicá-la durante a estadia no Equador." }
+    ref: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía" }
+  - item: { en: "Clinical examination", fr: "Examen clinique", es: "Examen clínico", pt: "Exame clínico" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A veterinarian recognised by the origin country's official veterinary service must examine the dog within the 10 days before travel, finding it free of clinical signs of infectious and parasitic diseases and of healing wounds; the record states species, breed, sex, age and coat colour.", fr: "Un vétérinaire reconnu par le service vétérinaire officiel du pays d'origine doit examiner le chien dans les 10 jours avant le voyage, le trouvant exempt de signes cliniques de maladies infectocontagieuses et parasitaires et de plaies en cicatrisation ; le document indique l'espèce, la race, le sexe, l'âge et la couleur du pelage.", es: "Un veterinario reconocido por el servicio veterinario oficial del país de origen debe examinar al perro dentro de los 10 días previos al viaje, hallándolo libre de signos clínicos de enfermedades infectocontagiosas y parasitarias y de heridas en cicatrización; el documento indica la especie, la raza, el sexo, la edad y el color del pelaje.", pt: "Um veterinário reconhecido pelo serviço veterinário oficial do país de origem precisa examinar o cachorro nos 10 dias anteriores à viagem e constatar que ele está livre de sinais clínicos de doenças infecciosas e parasitárias e de feridas em cicatrização; o registro indica espécie, raça, sexo, idade e cor da pelagem." }
+    exceptions: { en: "Its content is embedded in the Export Zoosanitary Certificate.", fr: "Son contenu est intégré au Certificat Zoosanitaire d'Exportation.", es: "Su contenido está integrado en el Certificado Zoosanitario de Exportación.", pt: "O conteúdo dele faz parte do Certificado Zoossanitário de Exportação." }
+    ref: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía" }
+  - item: { en: "Parasite treatment (internal & external)", fr: "Traitement antiparasitaire (interne & externe)", es: "Tratamiento antiparasitario (interno y externo)", pt: "Tratamento antiparasitário (interno e externo)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The dog must have received internal and external antiparasitic treatment within the 21 days before shipment, with products authorised in the origin country; the certificate states the product name, active ingredient and date of application.", fr: "Le chien doit avoir reçu un traitement antiparasitaire interne et externe dans les 21 jours avant l'embarquement, avec des produits autorisés dans le pays d'origine ; le certificat indique le nom du produit, le principe actif et la date d'application.", es: "El perro debe haber recibido un tratamiento antiparasitario interno y externo dentro de los 21 días previos al embarque, con productos autorizados en el país de origen; el certificado indica el nombre del producto, el principio activo y la fecha de aplicación.", pt: "O cachorro precisa ter recebido tratamento antiparasitário interno e externo nos 21 dias anteriores ao embarque, com produtos autorizados no país de origem; o certificado indica o nome do produto, o princípio ativo e a data de aplicação." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía" }
+  - item: { en: "Export Zoosanitary Certificate", fr: "Certificat Zoosanitaire d'Exportation", es: "Certificado Zoosanitario de Exportación", pt: "Certificado Zoossanitário de Exportação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued or endorsed by the official veterinary service of the country of origin, in Spanish or English, with an issue date no more than 10 calendar days before the animal enters Ecuador. It attests all the sanitary requirements above.", fr: "Émis ou avalisé par le service vétérinaire officiel du pays d'origine, en espagnol ou en anglais, avec une date d'émission de 10 jours calendaires au maximum avant l'entrée de l'animal en Équateur. Il atteste toutes les exigences sanitaires ci-dessus.", es: "Expedido o refrendado por el servicio veterinario oficial del país de origen, en español o inglés, con una fecha de expedición no superior a 10 días calendario antes de la entrada del animal en Ecuador. Acredita todos los requisitos sanitarios anteriores.", pt: "Emitido ou referendado pelo serviço veterinário oficial do país de origem, em espanhol ou inglês, com data de emissão de no máximo 10 dias corridos antes da entrada do animal no Equador. Ele atesta todas as exigências sanitárias acima." }
+    exceptions: { en: "For a dog that left Ecuador temporarily, the same AGROCALIDAD-issued Export Zoosanitary Certificate may be reused to return, provided no more than 30 calendar days have passed since its issue.", fr: "Pour un chien ayant quitté temporairement l'Équateur, le même Certificat Zoosanitaire d'Exportation émis par AGROCALIDAD peut être réutilisé pour le retour, à condition que 30 jours calendaires au maximum se soient écoulés depuis son émission.", es: "Para un perro que salió temporalmente de Ecuador, el mismo Certificado Zoosanitario de Exportación expedido por AGROCALIDAD puede reutilizarse para el regreso, siempre que no hayan transcurrido más de 30 días calendario desde su expedición.", pt: "Para um cachorro que saiu do Equador temporariamente, o mesmo Certificado Zoossanitário de Exportação emitido pela AGROCALIDAD pode ser reutilizado na volta, desde que não tenham passado mais de 30 dias corridos desde a emissão." }
+    ref: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
+  - item: { en: "Import Zoosanitary Permit (cargo only)", fr: "Permis Zoosanitaire d'Importation (fret uniquement)", es: "Permiso Zoosanitario de Importación (solo carga)", pt: "Autorização Zoossanitária de Importação (somente carga)" }
+    required: { en: "Required only for pets arriving as cargo", fr: "Requis uniquement pour les animaux arrivant en fret", es: "Obligatorio solo para las mascotas que llegan como carga", pt: "Obrigatória apenas para animais que chegam como carga" }
+    when: { en: "If the pet arrives in the cargo hold, the owner emails the arrival airport's AGROCALIDAD office at least 72 hours before arrival with the air waybill, owner's passport, phone and email, the Export Zoosanitary Certificate and the vaccination record. AGROCALIDAD then issues a payment order (System GUIA) for the Import Zoosanitary Permit, after which SENAE clears the animal.", fr: "Si l'animal arrive en soute cargo, le propriétaire écrit au bureau AGROCALIDAD de l'aéroport d'arrivée au moins 72 heures avant l'arrivée, avec la lettre de transport aérien, le passeport du propriétaire, son téléphone et courriel, le Certificat Zoosanitaire d'Exportation et le carnet de vaccination. AGROCALIDAD émet alors un ordre de paiement (Système GUIA) pour le Permis Zoosanitaire d'Importation, après quoi le SENAE dédouane l'animal.", es: "Si la mascota llega en la bodega de carga, el propietario escribe a la oficina de AGROCALIDAD del aeropuerto de llegada al menos 72 horas antes de la llegada con la guía aérea, el pasaporte del propietario, su teléfono y correo electrónico, el Certificado Zoosanitario de Exportación y el carné de vacunación. AGROCALIDAD emite entonces una orden de pago (sistema GUIA) para el Permiso Zoosanitario de Importación, tras lo cual el SENAE despacha al animal.", pt: "Se o animal chegar no porão de carga, o dono escreve por e-mail ao escritório da AGROCALIDAD do aeroporto de chegada pelo menos 72 horas antes da chegada, com o conhecimento aéreo de carga, o passaporte do dono, telefone e e-mail, o Certificado Zoossanitário de Exportação e a carteira de vacinação. A AGROCALIDAD emite então uma ordem de pagamento (sistema GUIA) para a Autorização Zoossanitária de Importação, depois do que o SENAE libera o animal." }
+    exceptions: { en: "A pet flying in the cabin, delivered as accompanied baggage, or crossing a land border does NOT need this permit — only the Export Zoosanitary Certificate. No cash payments are accepted for the permit.", fr: "Un animal en cabine, remis en bagage accompagné, ou franchissant un poste-frontière terrestre n'a PAS besoin de ce permis — seulement du Certificat Zoosanitaire d'Exportation. Aucun paiement en espèces n'est accepté pour le permis.", es: "Una mascota que viaja en cabina, entregada como equipaje acompañado, o que cruza una frontera terrestre NO necesita este permiso — solo el Certificado Zoosanitario de Exportación. No se aceptan pagos en efectivo para el permiso.", pt: "Um animal que voa na cabine, é entregue como bagagem acompanhada ou cruza uma fronteira terrestre NÃO precisa dessa autorização — apenas do Certificado Zoossanitário de Exportação. Não se aceita pagamento em dinheiro para a autorização." }
+    ref: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
+  - item: { en: "Border check (AGROCALIDAD inspection)", fr: "Contrôle frontalier (inspection AGROCALIDAD)", es: "Control fronterizo (inspección de AGROCALIDAD)", pt: "Controle na fronteira (inspeção da AGROCALIDAD)" }
+    required: { en: "Required on arrival", fr: "Requis à l'arrivée", es: "Obligatorio a la llegada", pt: "Obrigatória na chegada" }
+    when: { en: "At the airport or land border, AGROCALIDAD staff verify the Export Zoosanitary Certificate, the vaccination record and the dog. For a cabin or accompanied-baggage pet, presenting the certificate is enough to clear it; cargo pets are cleared by SENAE after the Import Zoosanitary Permit is issued.", fr: "À l'aéroport ou au poste-frontière, le personnel d'AGROCALIDAD vérifie le Certificat Zoosanitaire d'Exportation, le carnet de vaccination et le chien. Pour un animal en cabine ou en bagage accompagné, la présentation du certificat suffit à le dédouaner ; les animaux en fret sont dédouanés par le SENAE après émission du Permis Zoosanitaire d'Importation.", es: "En el aeropuerto o la frontera terrestre, el personal de AGROCALIDAD verifica el Certificado Zoosanitario de Exportación, el carné de vacunación y el perro. Para una mascota en cabina o equipaje acompañado, presentar el certificado basta para despacharla; las mascotas en carga las despacha el SENAE tras la expedición del Permiso Zoosanitario de Importación.", pt: "No aeroporto ou na fronteira terrestre, os agentes da AGROCALIDAD conferem o Certificado Zoossanitário de Exportação, a carteira de vacinação e o cachorro. Para um animal na cabine ou em bagagem acompanhada, apresentar o certificado já basta para liberá-lo; os animais em carga são liberados pelo SENAE depois da emissão da Autorização Zoossanitária de Importação." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
+  - item: { en: "Minimum age", fr: "Âge minimum", es: "Edad mínima", pt: "Idade mínima" }
+    required: { en: "Over 4 months", fr: "Plus de 4 mois", es: "Más de 4 meses", pt: "Mais de 4 meses" }
+    when: { en: "Conventional companion animals must be older than 4 months to enter Ecuador. This aligns with the requirement that a first rabies vaccination be at least 14 days old on arrival.", fr: "Les animaux de compagnie conventionnels doivent avoir plus de 4 mois pour entrer en Équateur. Cela correspond à l'exigence qu'une première vaccination antirabique ait au moins 14 jours à l'arrivée.", es: "Los animales de compañía convencionales deben tener más de 4 meses para entrar en Ecuador. Esto concuerda con el requisito de que una primera vacunación antirrábica tenga al menos 14 días a la llegada.", pt: "Os animais de companhia convencionais precisam ter mais de 4 meses para entrar no Equador. Isso se alinha com a exigência de que uma primeira vacinação antirrábica tenha pelo menos 14 dias na chegada." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "AGROCALIDAD's published requirements establish no routine quarantine for a healthy, compliant pet.", fr: "Les exigences publiées d'AGROCALIDAD n'établissent aucune quarantaine de routine pour un animal sain et conforme.", es: "Los requisitos publicados de AGROCALIDAD no establecen ninguna cuarentena rutinaria para una mascota sana y que cumple los requisitos.", pt: "As exigências publicadas pela AGROCALIDAD não preveem quarentena de rotina para um animal saudável e em conformidade." }
+    exceptions: { en: "The Galápagos Islands have a separate, stricter biosecurity regime — see the restricted-dogs section.", fr: "Les îles Galápagos disposent d'un régime de biosécurité distinct et plus strict — voir la section races restreintes.", es: "Las Islas Galápagos tienen un régimen de bioseguridad aparte y más estricto — consulta la sección de perros restringidos.", pt: "As Ilhas Galápagos têm um regime de biossegurança separado e mais rígido — veja a seção sobre cachorros com restrições." }
+    ref: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
+
+origin:
+  eu:
+    title: { en: "Standard scheme — Export Zoosanitary Certificate", fr: "Régime standard — Certificat Zoosanitaire d'Exportation", es: "Régimen estándar — Certificado Zoosanitario de Exportación", pt: "Regime padrão — Certificado Zoossanitário de Exportação" }
+    body:
+      en: "For almost every origin the path is the same. Your dog needs an Export Zoosanitary Certificate issued or endorsed by the official veterinary service of the country you travel from, in Spanish or English, dated within 10 calendar days before entry. It must confirm the dog is over 4 months old and identified (name, tattoo or microchip), a clinical exam within 10 days, current vaccinations against rabies, distemper, hepatitis, leptospirosis and parvovirus, and internal & external parasite treatment within 21 days before shipment. A pet flying in the cabin or as accompanied baggage clears on this certificate alone."
+      fr: "Pour presque toutes les origines, le parcours est identique. Ton chien a besoin d'un Certificat Zoosanitaire d'Exportation émis ou avalisé par le service vétérinaire officiel du pays de départ, en espagnol ou en anglais, daté dans les 10 jours calendaires avant l'entrée. Il doit attester que le chien a plus de 4 mois et est identifié (nom, tatouage ou puce), un examen clinique dans les 10 jours, des vaccinations en cours contre la rage, la maladie de Carré, l'hépatite, la leptospirose et la parvovirose, et un traitement antiparasitaire interne & externe dans les 21 jours avant l'embarquement. Un animal en cabine ou en bagage accompagné est dédouané sur ce seul certificat."
+      es: "Para casi todos los orígenes el camino es el mismo. Tu perro necesita un Certificado Zoosanitario de Exportación expedido o refrendado por el servicio veterinario oficial del país desde el que viajas, en español o inglés, con fecha dentro de los 10 días calendario previos a la entrada. Debe confirmar que el perro tiene más de 4 meses y está identificado (nombre, tatuaje o microchip), un examen clínico dentro de los 10 días, vacunaciones vigentes contra la rabia, el moquillo, la hepatitis, la leptospirosis y el parvovirus, y un tratamiento contra parásitos internos y externos dentro de los 21 días previos al embarque. Una mascota que viaja en cabina o como equipaje acompañado se despacha solo con este certificado."
+      pt: "Para quase todas as origens o caminho é o mesmo. O seu cachorro precisa de um Certificado Zoossanitário de Exportação emitido ou referendado pelo serviço veterinário oficial do país de onde você viaja, em espanhol ou inglês, datado dentro dos 10 dias corridos anteriores à entrada. Ele deve confirmar que o cachorro tem mais de 4 meses e está identificado (nome, tatuagem ou microchip), um exame clínico nos 10 dias anteriores, vacinações em dia contra raiva, cinomose, hepatite, leptospirose e parvovirose, e tratamento contra parasitas internos e externos nos 21 dias anteriores ao embarque. Um animal que voa na cabine ou como bagagem acompanhada é liberado apenas com esse certificado."
+    cls: ok
+  listed:
+    title: { en: "Pets arriving as cargo", fr: "Animaux arrivant en fret", es: "Mascotas que llegan como carga", pt: "Animais que chegam como carga" }
+    body:
+      en: "If your dog travels in the cargo hold (not with you in the cabin or as accompanied baggage), an Import Zoosanitary Permit is required before SENAE can clear it. At least 72 hours before arrival, email the arrival airport's AGROCALIDAD office (Quito or Guayaquil) with the air waybill, your passport, phone and email, the Export Zoosanitary Certificate and the vaccination record. AGROCALIDAD issues a payment order in the GUIA system for the permit; no cash is accepted. All the standard sanitary requirements still apply."
+      fr: "Si ton chien voyage en soute cargo (pas avec toi en cabine ni en bagage accompagné), un Permis Zoosanitaire d'Importation est requis avant que le SENAE puisse le dédouaner. Au moins 72 heures avant l'arrivée, écrivez au bureau AGROCALIDAD de l'aéroport d'arrivée (Quito ou Guayaquil) avec la lettre de transport aérien, ton passeport, ton téléphone et courriel, le Certificat Zoosanitaire d'Exportation et le carnet de vaccination. AGROCALIDAD émet un ordre de paiement dans le système GUIA pour le permis ; aucune espèce n'est acceptée. Toutes les exigences sanitaires standard s'appliquent toujours."
+      es: "Si tu perro viaja en la bodega de carga (no contigo en cabina ni como equipaje acompañado), se requiere un Permiso Zoosanitario de Importación antes de que el SENAE pueda despacharlo. Al menos 72 horas antes de la llegada, escribe a la oficina de AGROCALIDAD del aeropuerto de llegada (Quito o Guayaquil) con la guía aérea, tu pasaporte, tu teléfono y correo electrónico, el Certificado Zoosanitario de Exportación y el carné de vacunación. AGROCALIDAD emite una orden de pago en el sistema GUIA para el permiso; no se acepta efectivo. Todos los requisitos sanitarios estándar siguen aplicándose."
+      pt: "Se o seu cachorro viajar no porão de carga (e não com você na cabine ou como bagagem acompanhada), é preciso uma Autorização Zoossanitária de Importação antes que o SENAE possa liberá-lo. Pelo menos 72 horas antes da chegada, escreva por e-mail ao escritório da AGROCALIDAD do aeroporto de chegada (Quito ou Guayaquil) com o conhecimento aéreo de carga, o seu passaporte, telefone e e-mail, o Certificado Zoossanitário de Exportação e a carteira de vacinação. A AGROCALIDAD emite uma ordem de pagamento no sistema GUIA para a autorização; não se aceita dinheiro em espécie. Todas as exigências sanitárias padrão continuam valendo."
+    cls: warn
+  nonListed:
+    title: { en: "Missing vaccines & special destinations", fr: "Vaccins manquants & destinations particulières", es: "Vacunas faltantes y destinos especiales", pt: "Vacinas faltantes e destinos especiais" }
+    body:
+      en: "If one of the required vaccines is not approved for use in the origin country, the Export Zoosanitary Certificate must state this and the owner must administer it during the stay in Ecuador. For a first rabies vaccination, at least 14 days must pass before arrival. Separately, the Galápagos Islands apply a much stricter biosecurity regime run by the ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos); anyone planning to take a dog there must consult the ABG in addition to AGROCALIDAD."
+      fr: "Si l'un des vaccins requis n'est pas approuvé dans le pays d'origine, le Certificat Zoosanitaire d'Exportation doit le mentionner et le propriétaire doit l'administrer durant le séjour en Équateur. Pour une première vaccination antirabique, au moins 14 jours doivent s'écouler avant l'arrivée. Par ailleurs, les îles Galápagos appliquent un régime de biosécurité bien plus strict géré par l'ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos) ; quiconque projette d'y emmener un chien doit consulter l'ABG en plus d'AGROCALIDAD."
+      es: "Si una de las vacunas requeridas no está aprobada para su uso en el país de origen, el Certificado Zoosanitario de Exportación debe indicarlo y el propietario debe administrarla durante la estancia en Ecuador. Para una primera vacunación antirrábica, deben transcurrir al menos 14 días antes de la llegada. Por otra parte, las Islas Galápagos aplican un régimen de bioseguridad mucho más estricto gestionado por la ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos); quien planee llevar un perro allí debe consultar a la ABG además de a AGROCALIDAD."
+      pt: "Se uma das vacinas exigidas não for aprovada para uso no país de origem, o Certificado Zoossanitário de Exportação precisa indicar isso e o dono deve aplicá-la durante a estadia no Equador. Para uma primeira vacinação antirrábica, pelo menos 14 dias devem passar antes da chegada. À parte disso, as Ilhas Galápagos aplicam um regime de biossegurança bem mais rígido, conduzido pela ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos); quem pretende levar um cachorro para lá precisa consultar a ABG além da AGROCALIDAD."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Ecuador depends on how it travels."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Équateur dépend de son mode de voyage."
+    es: "Lo que ocurre cuando tu perro llega a Ecuador depende de cómo viaje."
+    pt: "O que acontece quando o seu cachorro chega ao Equador depende de como ele viaja."
+  points:
+    - en: "In the cabin, as accompanied baggage, or across a land border: no Import Zoosanitary Permit is needed. Present the Export Zoosanitary Certificate (and vaccination record) to AGROCALIDAD staff, who verify the documents and the dog before it is cleared."
+      fr: "En cabine, en bagage accompagné, ou par un poste-frontière terrestre : aucun Permis Zoosanitaire d'Importation n'est nécessaire. Présente le Certificat Zoosanitaire d'Exportation (et le carnet de vaccination) au personnel d'AGROCALIDAD, qui vérifie les documents et le chien avant son dédouanement."
+      es: "En cabina, como equipaje acompañado o cruzando una frontera terrestre: no se necesita Permiso Zoosanitario de Importación. Presenta el Certificado Zoosanitario de Exportación (y el carné de vacunación) al personal de AGROCALIDAD, que verifica los documentos y el perro antes de despacharlo."
+      pt: "Na cabine, como bagagem acompanhada ou por uma fronteira terrestre: não é preciso Autorização Zoossanitária de Importação. Apresente o Certificado Zoossanitário de Exportação (e a carteira de vacinação) aos agentes da AGROCALIDAD, que conferem os documentos e o cachorro antes da liberação."
+    - en: "As cargo: request the Import Zoosanitary Permit by email at least 72 hours before arrival at the Quito (aeropuerto.quito@agrocalidad.gob.ec) or Guayaquil (aeropuerto.guayaquil@agrocalidad.gob.ec) office; SENAE then completes clearance. Fees follow the current tariff and are paid through the authorised banks — never in cash."
+      fr: "En fret : demande le Permis Zoosanitaire d'Importation par courriel au moins 72 heures avant l'arrivée au bureau de Quito (aeropuerto.quito@agrocalidad.gob.ec) ou de Guayaquil (aeropuerto.guayaquil@agrocalidad.gob.ec) ; le SENAE finalise ensuite le dédouanement. Les frais suivent le tarif en vigueur et se paient via les banques autorisées — jamais en espèces."
+      es: "Como carga: solicita el Permiso Zoosanitario de Importación por correo electrónico al menos 72 horas antes de la llegada a la oficina de Quito (aeropuerto.quito@agrocalidad.gob.ec) o Guayaquil (aeropuerto.guayaquil@agrocalidad.gob.ec); el SENAE completa después el despacho. Las tasas siguen el arancel vigente y se pagan a través de los bancos autorizados — nunca en efectivo."
+      pt: "Como carga: solicite a Autorização Zoossanitária de Importação por e-mail pelo menos 72 horas antes da chegada ao escritório de Quito (aeropuerto.quito@agrocalidad.gob.ec) ou de Guayaquil (aeropuerto.guayaquil@agrocalidad.gob.ec); o SENAE conclui então a liberação. As taxas seguem a tarifa vigente e são pagas pelos bancos autorizados — nunca em dinheiro."
+    - en: "The Export Zoosanitary Certificate must have been issued within the 10 calendar days before entry, so time your departure accordingly."
+      fr: "Le Certificat Zoosanitaire d'Exportation doit avoir été émis dans les 10 jours calendaires avant l'entrée, calez donc ton départ en conséquence."
+      es: "El Certificado Zoosanitario de Exportación debe haberse expedido dentro de los 10 días calendario previos a la entrada, así que ajusta tu salida en consecuencia."
+      pt: "O Certificado Zoossanitário de Exportação precisa ter sido emitido dentro dos 10 dias corridos anteriores à entrada, então organize a data da sua partida em função disso."
+    - en: "For a dog returning to Ecuador after a temporary trip abroad, the same AGROCALIDAD-issued certificate can be reused if no more than 30 calendar days have passed since issue."
+      fr: "Pour un chien revenant en Équateur après un séjour temporaire à l'étranger, le même certificat émis par AGROCALIDAD peut être réutilisé si 30 jours calendaires au maximum se sont écoulés depuis l'émission."
+      es: "Para un perro que regresa a Ecuador tras un viaje temporal al extranjero, el mismo certificado expedido por AGROCALIDAD puede reutilizarse si no han transcurrido más de 30 días calendario desde su expedición."
+      pt: "Para um cachorro que volta ao Equador depois de uma viagem temporária ao exterior, o mesmo certificado emitido pela AGROCALIDAD pode ser reutilizado se não tiverem passado mais de 30 dias corridos desde a emissão."
+    - en: "If documents are missing or invalid, the dog cannot be cleared until the requirements are met; check every detail before you fly."
+      fr: "Si des documents manquent ou sont invalides, le chien ne peut pas être dédouané tant que les exigences ne sont pas remplies ; vérifie chaque détail avant de voler."
+      es: "Si faltan documentos o no son válidos, el perro no puede ser despachado hasta que se cumplan los requisitos; comprueba cada detalle antes de volar."
+      pt: "Se faltarem documentos ou eles não forem válidos, o cachorro não pode ser liberado até que as exigências sejam cumpridas; confira cada detalhe antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "AGROCALIDAD's zoosanitary import requirements do not refuse any dog at the border on the basis of its breed. However, Ecuador has a national responsible-ownership regulation for certain breeds, and the Galápagos Islands apply a separate, much stricter biosecurity regime."
+    fr: "Les exigences zoosanitaires d'importation d'AGROCALIDAD ne refusent aucun chien à la frontière en raison de sa race. Toutefois, l'Équateur dispose d'une réglementation nationale de tenance responsable pour certaines races, et les îles Galápagos appliquent un régime de biosécurité distinct et bien plus strict."
+    es: "Los requisitos zoosanitarios de importación de AGROCALIDAD no rechazan a ningún perro en la frontera por su raza. Sin embargo, Ecuador cuenta con una normativa nacional de tenencia responsable para ciertas razas, y las Islas Galápagos aplican un régimen de bioseguridad aparte y mucho más estricto."
+    pt: "As exigências zoossanitárias de importação da AGROCALIDAD não recusam nenhum cachorro na fronteira por causa da raça. No entanto, o Equador tem um regulamento nacional de posse responsável para certas raças, e as Ilhas Galápagos aplicam um regime de biossegurança separado e bem mais rígido."
+  cat1:
+    en: "Responsible-ownership regulation: Ecuador's Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009) lists breeds considered not recommended as pets — notably Pit Bull and Rottweiler and their crosses — and restricts their breeding and sale to AGROCALIDAD-authorised kennels. This governs ownership and breeding inside the country, not a breed-based refusal at the border."
+    fr: "Réglementation de tenance responsable : le Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009) liste des races considérées comme non recommandées comme animaux de compagnie — notamment le Pit Bull et le Rottweiler et leurs croisements — et réserve leur reproduction et leur vente aux élevages autorisés par AGROCALIDAD. Cela régit la détention et l'élevage dans le pays, non un refus à la frontière fondé sur la race."
+    es: "Normativa de tenencia responsable: el Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009) enumera razas consideradas no recomendadas como mascotas — en particular el Pit Bull y el Rottweiler y sus cruces — y restringe su reproducción y venta a criaderos autorizados por AGROCALIDAD. Esto regula la tenencia y la cría dentro del país, no un rechazo por raza en la frontera."
+    pt: "Regulamento de posse responsável: o Reglamento de Tenencia y Manejo Responsable de Perros do Equador (Acuerdo Ministerial 116, Registro Oficial 532, 2009) lista raças consideradas não recomendadas como animais de estimação — notadamente Pit Bull e Rottweiler e seus cruzamentos — e restringe a criação e a venda delas a canis autorizados pela AGROCALIDAD. Isso rege a posse e a criação dentro do país, e não uma recusa na fronteira por causa da raça."
+  cat2:
+    en: "Galápagos biosecurity: taking a dog to the Galápagos Islands is governed separately by the ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos), which controls and restricts the introduction of species to protect the archipelago. Its rules are far stricter than mainland entry and must be checked directly with the ABG before any travel to the islands with a pet."
+    fr: "Biosécurité des Galápagos : emmener un chien aux îles Galápagos est régi séparément par l'ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos), qui contrôle et restreint l'introduction d'espèces pour protéger l'archipel. Ses règles sont bien plus strictes que l'entrée sur le continent et doivent être vérifiées directement auprès de l'ABG avant tout voyage aux îles avec un animal."
+    es: "Bioseguridad de Galápagos: llevar un perro a las Islas Galápagos se rige por separado por la ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos), que controla y restringe la introducción de especies para proteger el archipiélago. Sus normas son mucho más estrictas que la entrada al continente y deben consultarse directamente con la ABG antes de cualquier viaje a las islas con una mascota."
+    pt: "Biossegurança em Galápagos: levar um cachorro às Ilhas Galápagos é regido separadamente pela ABG (Agencia de Regulación y Control de la Bioseguridad y Cuarentena para Galápagos), que controla e restringe a introdução de espécies para proteger o arquipélago. As regras dela são bem mais rígidas do que as de entrada no continente e precisam ser verificadas diretamente com a ABG antes de qualquer viagem às ilhas com um animal."
+  note:
+    en: "For mainland entry, focus on the AGROCALIDAD sanitary rules; if you own a listed breed, check the national ownership regulation, and if you plan to reach Galápagos, consult the ABG in advance."
+    fr: "Pour l'entrée sur le continent, concentre-toi sur les règles sanitaires d'AGROCALIDAD ; si tu possédez une race listée, vérifie la réglementation nationale de détention, et si tu prévois de rejoindre les Galápagos, consulte l'ABG à l'avance."
+    es: "Para la entrada al continente, céntrate en las normas sanitarias de AGROCALIDAD; si tienes una raza listada, comprueba la normativa nacional de tenencia, y si planeas llegar a Galápagos, consulta a la ABG con antelación."
+    pt: "Para a entrada no continente, concentre-se nas regras sanitárias da AGROCALIDAD; se você tem uma raça listada, verifique o regulamento nacional de posse, e se pretende chegar a Galápagos, consulte a ABG com antecedência."
+
+checklist:
+  - en: "Export Zoosanitary Certificate from the origin country (Spanish or English), issued within 10 calendar days before entry"
+    fr: "Certificat Zoosanitaire d'Exportation du pays d'origine (espagnol ou anglais), émis dans les 10 jours calendaires avant l'entrée"
+    es: "Certificado Zoosanitario de Exportación del país de origen (español o inglés), expedido dentro de los 10 días calendario previos a la entrada"
+    pt: "Certificado Zoossanitário de Exportação do país de origem (em espanhol ou inglês), emitido dentro dos 10 dias corridos anteriores à entrada"
+  - en: "Dog over 4 months old and identified by name, tattoo or (recommended) an ISO microchip"
+    fr: "Chien de plus de 4 mois, identifié par nom, tatouage ou (recommandé) une puce ISO"
+    es: "Perro de más de 4 meses e identificado por nombre, tatuaje o (recomendado) un microchip ISO"
+    pt: "Cachorro com mais de 4 meses e identificado por nome, tatuagem ou (recomendado) um microchip ISO"
+  - en: "Valid rabies vaccination (if it is the first, at least 14 days before arrival)"
+    fr: "Vaccination antirabique valide (si c'est la première, au moins 14 jours avant l'arrivée)"
+    es: "Vacunación antirrábica válida (si es la primera, al menos 14 días antes de la llegada)"
+    pt: "Vacinação antirrábica válida (se for a primeira, pelo menos 14 dias antes da chegada)"
+  - en: "Other canine vaccinations current: distemper, hepatitis, leptospirosis, parvovirus"
+    fr: "Autres vaccinations canines en cours : maladie de Carré, hépatite, leptospirose, parvovirose"
+    es: "Otras vacunaciones caninas vigentes: moquillo, hepatitis, leptospirosis, parvovirus"
+    pt: "Outras vacinações caninas em dia: cinomose, hepatite, leptospirose, parvovirose"
+  - en: "Clinical examination within 10 days before travel; internal & external parasite treatment within 21 days before shipment"
+    fr: "Examen clinique dans les 10 jours avant le voyage ; traitement antiparasitaire interne & externe dans les 21 jours avant l'embarquement"
+    es: "Examen clínico dentro de los 10 días previos al viaje; tratamiento contra parásitos internos y externos dentro de los 21 días previos al embarque"
+    pt: "Exame clínico nos 10 dias anteriores à viagem; tratamento contra parasitas internos e externos nos 21 dias anteriores ao embarque"
+  - en: "Original vaccination record (booklet or passport) showing product, date and validity"
+    fr: "Carnet de vaccination original (livret ou passeport) indiquant produit, date et validité"
+    es: "Carné de vacunación original (cartilla o pasaporte) que muestre el producto, la fecha y la vigencia"
+    pt: "Carteira de vacinação original (caderneta ou passaporte) indicando produto, data e validade"
+  - en: "For cargo arrivals: email the arrival airport's AGROCALIDAD office at least 72 hours ahead to obtain the Import Zoosanitary Permit (paid via authorised banks, no cash)"
+    fr: "Pour les arrivées en fret : écrivez au bureau AGROCALIDAD de l'aéroport d'arrivée au moins 72 heures à l'avance pour obtenir le Permis Zoosanitaire d'Importation (payé via les banques autorisées, pas d'espèces)"
+    es: "Para las llegadas como carga: escribe a la oficina de AGROCALIDAD del aeropuerto de llegada al menos 72 horas antes para obtener el Permiso Zoosanitario de Importación (pagado a través de bancos autorizados, sin efectivo)"
+    pt: "Para chegadas como carga: escreva por e-mail ao escritório da AGROCALIDAD do aeroporto de chegada pelo menos 72 horas antes para obter a Autorização Zoossanitária de Importação (paga pelos bancos autorizados, sem dinheiro em espécie)"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
+
+sources:
+  - label: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
+    url: "https://www.agrocalidad.gob.ec/ingreso-al-ecuador-de-animales-de-compania-perros-y-gatos/"
+  - label: { en: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía (PDF)", fr: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía (PDF)", es: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía (PDF)", pt: "AGROCALIDAD — Requisitos zoosanitarios para la importación de animales de compañía (PDF)" }
+    url: "https://www.agrocalidad.gob.ec/wp-content/uploads/2026/03/REquisitos-Zoosanitarios.pdf"
+  - label: { en: "AGROCALIDAD — Salida del Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Salida del Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Salida del Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Salida del Ecuador de animales de compañía (perros y gatos)" }
+    url: "https://www.agrocalidad.gob.ec/salida-de-animales-de-compania-perros-y-gatos/"
+  - label: { en: "Ministerio de Relaciones Exteriores (gob.ec) — Requisitos de ingreso de mascotas de compañía a Ecuador", fr: "Ministère des Relations extérieures (gob.ec) — Requisitos de ingreso de mascotas de compañía a Ecuador", es: "Ministerio de Relaciones Exteriores (gob.ec) — Requisitos de ingreso de mascotas de compañía a Ecuador", pt: "Ministerio de Relaciones Exteriores (gob.ec) — Requisitos de ingreso de mascotas de compañía a Ecuador" }
+    url: "https://www.cancilleria.gob.ec/espana/2021/09/20/requisitos-de-ingreso-de-mascotas-de-compania-perros-y-gatos-a-ecuador/"
+  - label: { en: "Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009)", fr: "Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009)", es: "Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009)", pt: "Reglamento de Tenencia y Manejo Responsable de Perros (Acuerdo Ministerial 116, Registro Oficial 532, 2009)" }
+    url: "https://bioseguridadgalapagos.gob.ec/wp-content/uploads/downloads/transparencia/juridico/2016/04/a2/reglamento_de_tenencia_de_mascotas.pdf"
+  - label: { en: "ABG — Normas de bioseguridad para ingresar a Galápagos", fr: "ABG — Normas de bioseguridad para ingresar a Galápagos", es: "ABG — Normas de bioseguridad para ingresar a Galápagos", pt: "ABG — Normas de bioseguridad para ingresar a Galápagos" }
+    url: "https://abgalapagos.gob.ec/normas-de-bioseguridad-para-ingresar-a-galapagos-biosecurity-standards-to-enter-the-galapagos-islands/"
+
+seo:
+  title: { en: "Ecuador Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Équateur — Guide", es: "Requisitos de entrada de perros en Ecuador — Guía de viaje", pt: "Requisitos de entrada de cachorros no Equador — Guia" }
+  metaTitle: { en: "Traveling to Ecuador With Your Dog: Entry Requirements (2026)", fr: "Voyager en Équateur avec ton chien : formalités (2026)", es: "Viajar a Ecuador con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Equador com o seu cachorro: requisitos (2026)" }
+  metaDesc:
+    en: "Official AGROCALIDAD rules for bringing a dog into Ecuador: Export Zoosanitary Certificate, rabies and other vaccinations, parasite treatment. Sourced and dated."
+    fr: "Règles officielles AGROCALIDAD pour faire entrer un chien en Équateur : Certificat Zoosanitaire d'Exportation, vaccinations antirabique et autres. Sourcé et daté."
+    es: "Normas oficiales de AGROCALIDAD para traer un perro a Ecuador: Certificado Zoosanitario de Exportación, rabia y otras vacunaciones. Con fuentes y fecha."
+    pt: "Regras oficiais da AGROCALIDAD para levar um cachorro ao Equador: Certificado Zoossanitário de Exportação, vacina antirrábica e outras. Com fontes e data."
+  slug: "ecuador"
+  shortDesc:
+    en: "What you need to bring a dog into Ecuador under AGROCALIDAD's rules, from most countries of origin."
+    fr: "Ce qu'il faut pour faire entrer un chien en Équateur selon les règles d'AGROCALIDAD, depuis la plupart des pays d'origine."
+    es: "Lo que necesitas para traer un perro a Ecuador según las normas de AGROCALIDAD, desde la mayoría de los países de origen."
+    pt: "O que você precisa para levar um cachorro ao Equador segundo as regras da AGROCALIDAD, a partir da maioria dos países de origem."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

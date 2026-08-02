@@ -1,0 +1,318 @@
+id: airline_qatar_airways
+mono: QR
+name: Qatar Airways
+titleH1:
+  en: Flying with a dog on Qatar Airways
+  fr: Voyager avec un chien sur Qatar Airways
+  es: Viajar con un perro en Qatar Airways
+  pt: "Viajar com um cachorro na Qatar Airways"
+metaDesc:
+  en: "Qatar Airways pet policy: no cabin pets, hold and QR Cargo rules, fares, restrictions and official sources."
+  fr: "Politique animaux Qatar Airways : pas d'animaux en cabine, soute et QR Cargo, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de Qatar Airways: sin mascotas en cabina, normas de bodega y QR Cargo, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da Qatar Airways: sem animais em cabine, regras de porão e QR Cargo, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: oneworld
+      fr: oneworld
+      es: oneworld
+      pt: "oneworld"
+  - icon: 📍
+    label:
+      en: Qatar · DOH
+      fr: Qatar · DOH
+      es: Catar · DOH
+      pt: "Catar · DOH"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cats or dogs in the cabin — they travel in the hold or via QR Cargo Live.
+  fr: Ni chats ni chiens en cabine — ils voyagent en soute ou via QR Cargo Live.
+  es: No se admiten gatos ni perros en cabina; viajan en bodega o a través de QR Cargo Live.
+  pt: "Nenhum gato ou cachorro na cabine — eles viajam no porão ou via QR Cargo Live."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 60
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+  - flex: 32
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 75 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No aceptado
+      pt: "Não permitido"
+    detail:
+      en: Cats & dogs can't fly in the cabin — only falcons (Economy) and service dogs are allowed.
+      fr: Chats et chiens interdits en cabine — seuls les faucons (Économique) et les chiens d'assistance sont admis.
+      es: Los gatos y perros no pueden viajar en cabina; solo se admiten halcones (Economy) y perros de servicio.
+      pt: "Gatos e cachorros não podem voar na cabine — somente falcões (Economy) e cães de serviço são permitidos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats as checked baggage in a dedicated hold section, up to 75 kg including the carrier.
+      fr: Chiens et chats en bagage enregistré dans une section dédiée de la soute, jusqu'à 75 kg avec la caisse.
+      es: Perros y gatos como equipaje facturado en una sección dedicada de la bodega, hasta 75 kg con la jaula.
+      pt: "Cachorros e gatos como bagagem despachada em uma seção dedicada do porão, até 75 kg incluindo a caixa de transporte."
+    fee:
+      en: $200–450
+      fr: 200–450 $
+      es: 200–450 $
+      pt: "US$ 200–450"
+  - icon: ✈️
+    name:
+      en: QR Cargo Live
+      fr: QR Cargo Live
+      es: QR Cargo Live
+      pt: "QR Cargo Live"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo cotización
+      pt: "Sob consulta"
+    detail:
+      en: Required over 75 kg, for restricted breeds, other-airline connections, and Australia/New Zealand.
+      fr: Obligatoire au-delà de 75 kg, pour les races restreintes, les correspondances avec une autre compagnie et l'Australie/Nouvelle-Zélande.
+      es: Obligatorio por encima de 75 kg, para razas restringidas, conexiones con otra aerolínea y Australia/Nueva Zelanda.
+      pt: "Obrigatório acima de 75 kg, para raças restritas, conexões com outra companhia aérea e Austrália/Nova Zelândia."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Medium ≤ 32 kg — to/from Qatar
+        fr: Moyen ≤ 32 kg — de/vers le Qatar
+        es: Mediano ≤ 32 kg — desde/hacia Catar
+        pt: "Médio ≤ 32 kg — de/para o Catar"
+      value:
+        en: $200
+        fr: 200 $
+        es: 200 $
+        pt: "US$ 200"
+    - label:
+        en: Medium ≤ 32 kg — other routes
+        fr: Moyen ≤ 32 kg — autres routes
+        es: Mediano ≤ 32 kg — otras rutas
+        pt: "Médio ≤ 32 kg — outras rotas"
+      value:
+        en: $350
+        fr: 350 $
+        es: 350 $
+        pt: "US$ 350"
+    - label:
+        en: Large 32–75 kg — to/from Qatar
+        fr: Grand 32–75 kg — de/vers le Qatar
+        es: Grande 32–75 kg — desde/hacia Catar
+        pt: "Grande 32–75 kg — de/para o Catar"
+      value:
+        en: $300
+        fr: 300 $
+        es: 300 $
+        pt: "US$ 300"
+    - label:
+        en: Large 32–75 kg — other routes
+        fr: Grand 32–75 kg — autres routes
+        es: Grande 32–75 kg — otras rutas
+        pt: "Grande 32–75 kg — outras rotas"
+      value:
+        en: $450
+        fr: 450 $
+        es: 450 $
+        pt: "US$ 450"
+  note:
+    en: USD, per animal including carrier. Over 75 kg or 300 cm travels via QR Cargo Live (quote).
+    fr: USD, par animal avec la caisse. Au-delà de 75 kg ou 300 cm, transport via QR Cargo Live (devis).
+    es: USD, por animal con la jaula. Por encima de 75 kg o 300 cm, viaja a través de QR Cargo Live (cotización).
+    pt: "USD, por animal incluindo a caixa de transporte. Acima de 75 kg ou 300 cm, o transporte é via QR Cargo Live (cotação)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+      - cls: warn
+        label:
+          en: Cargo only
+          fr: Fret uniquement
+          es: Solo carga
+          pt: "Somente carga"
+    note:
+      en: "Snub-nosed dogs & cats aren't accepted as checked baggage (heat-stroke risk above 21 °C): bulldogs (all), pugs, boxers, Boston terrier, Shih Tzu, Pekingese, Persian/Exotic cats and more — several may only travel as cargo."
+      fr: "Chiens et chats au nez écrasé refusés en soute (risque de coup de chaleur au-dessus de 21 °C) : bouledogues (tous), carlins, boxers, Boston terrier, Shih Tzu, pékinois, chats persans/exotiques, etc. — certains ne voyagent qu'en fret."
+      es: "Los perros y gatos de hocico chato no se aceptan como equipaje facturado (riesgo de golpe de calor por encima de 21 °C): bulldogs (todos), carlinos, bóxers, Boston terrier, Shih Tzu, pekinés, gatos persas/exóticos y más; varios solo pueden viajar como carga."
+      pt: "Cachorros e gatos de focinho achatado não são aceitos como bagagem despachada (risco de insolação acima de 21 °C): bulldogs (todos), pugs, boxers, Boston terrier, Shih Tzu, Pequinês, gatos persas/exóticos e outros — vários só podem viajar como carga."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: no
+        label:
+          en: "'Dangerous' breeds: cargo only"
+          fr: "Races « dangereuses » : fret"
+          es: "Razas «peligrosas»: solo carga"
+          pt: "Raças \"perigosas\": somente carga"
+      - cls: warn
+        label:
+          en: Min. 12 weeks
+          fr: 12 semaines min.
+          es: Mín. 12 semanas
+          pt: "Mín. 12 semanas"
+    note:
+      en: "'Dangerous' breeds (pit bull, American Staffordshire, Cane Corso, Dogo Argentino, Presa Canario…) only via cargo. No animals under 12 weeks; pregnancy over 6 weeks needs a vet certificate."
+      fr: Races « dangereuses » (pit-bull, American Staffordshire, Cane Corso, Dogo Argentino, Presa Canario…) en fret uniquement. Pas d'animaux de moins de 12 semaines ; gestation de plus de 6 semaines sur certificat vétérinaire.
+      es: "Las razas «peligrosas» (pit bull, American Staffordshire, Cane Corso, Dogo Argentino, Presa Canario…) solo a través de carga. No se admiten animales de menos de 12 semanas; la gestación de más de 6 semanas requiere certificado veterinario."
+      pt: "Raças \"perigosas\" (pit bull, American Staffordshire, Cane Corso, Dogo Argentino, Presa Canario…) somente via carga. Nenhum animal com menos de 12 semanas; prenhez acima de 6 semanas exige certificado veterinário."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Snub-nosed limit: above 21 °C"
+        fr: "Nez écrasé : au-dessus de 21 °C"
+        es: "Límite hocico chato: por encima de 21 °C"
+        pt: "Limite para focinho achatado: acima de 21 °C"
+    - cls: warn
+      label:
+        en: "Hold temperature: not disclosed"
+        fr: "Température soute : non communiqué"
+        es: "Temperatura de bodega: no comunicada"
+        pt: "Temperatura do porão: não divulgada"
+  note:
+    en: Restricted (snub-nosed) breeds aren't accepted because they're prone to heat stroke when stressed or above 21 °C. Checked pets travel in a dedicated hold section, but Qatar Airways publishes no specific hold-temperature figures.
+    fr: Les races au nez écrasé sont refusées car sujettes au coup de chaleur en cas de stress ou au-dessus de 21 °C. Les animaux en soute voyagent dans une section dédiée, mais Qatar Airways ne publie pas de température de soute précise.
+    es: Las razas de hocico chato no se aceptan porque son propensas al golpe de calor cuando están estresadas o por encima de 21 °C. Las mascotas facturadas viajan en una sección dedicada de la bodega, pero Qatar Airways no publica cifras específicas de temperatura de bodega.
+    pt: "Raças restritas (focinho achatado) não são aceitas porque são propensas a insolação quando estressadas ou acima de 21 °C. Os animais despachados viajam em uma seção dedicada do porão, mas a Qatar Airways não publica valores específicos de temperatura do porão."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs (max 2) accepted in the cabin on regulated routes; emotional-support dogs are not.
+      fr: Chiens d'assistance (max. 2) admis en cabine sur les lignes réglementées ; chiens de soutien émotionnel refusés.
+      es: Los perros de servicio (máx. 2) se aceptan en cabina en las rutas reguladas; los perros de apoyo emocional no.
+      pt: "Cães de serviço (máx. 2) são aceitos na cabine nas rotas regulamentadas; cães de suporte emocional não."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Submit the pet request form / contact ≥ 48 h before departure; check in at least 2 h ahead.
+      fr: Remplir le formulaire de demande / contacter ≥ 48 h avant le départ ; enregistrement au moins 2 h à l'avance.
+      es: Envía el formulario de solicitud de mascota / contacta con ≥ 48 h de antelación; factura al menos 2 h antes.
+      pt: "Envie o formulário de solicitação de animal / entre em contato com ≥ 48 h de antecedência à partida; faça o check-in com pelo menos 2 h de antecedência."
+goodToKnow:
+  - icon: 🔁
+    label:
+      en: Connections
+      fr: Correspondances
+      es: Conexiones
+      pt: "Conexões"
+    value:
+      en: Pets can't connect from another airline's flight, but can connect onward if you arrange it.
+      fr: Les animaux ne peuvent pas arriver en correspondance d'une autre compagnie, mais peuvent repartir en correspondance si tu l'organise.
+      es: Las mascotas no pueden llegar en conexión desde el vuelo de otra aerolínea, pero sí pueden seguir en conexión si tú lo organizas.
+      pt: "Os animais não podem chegar em conexão de um voo de outra companhia aérea, mas podem seguir em conexão se você organizar isso."
+  - icon: ✈️
+    label:
+      en: Australia / NZ
+      fr: Australie / N.-Z.
+      es: Australia / N. Z.
+      pt: "Austrália / N. Z."
+    value:
+      en: Must travel as cargo; Australia only via Melbourne (MEL).
+      fr: Transport en fret obligatoire ; Australie uniquement via Melbourne (MEL).
+      es: Deben viajar como carga; Australia solo vía Melbourne (MEL).
+      pt: "Devem viajar como carga; Austrália somente via Melbourne (MEL)."
+  - icon: ↩️
+    label:
+      en: Changes
+      fr: Modifications
+      es: Cambios
+      pt: "Alterações"
+    value:
+      en: Pet-booking changes and cancellations are free of charge.
+      fr: Les modifications et annulations de la réservation animal sont gratuites.
+      es: Los cambios y cancelaciones de la reserva de la mascota son gratuitos.
+      pt: "Alterações e cancelamentos da reserva do animal são gratuitos."
+book:
+  host: qatarairways.com
+  url: https://www.qatarairways.com/
+sources:
+  en: 4 Qatar Airways & QR Cargo sources · last verified 11 July 2026
+  fr: 4 sources Qatar Airways & QR Cargo · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Qatar Airways y QR Cargo · última verificación 11 de julio de 2026
+  pt: "4 fontes da Qatar Airways e QR Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

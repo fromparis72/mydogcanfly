@@ -1,0 +1,381 @@
+# Country Entry Guide — Jordan (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_jo
+iso2: "JO"
+name: { en: "Jordan", fr: "Jordanie", es: "Jordania", pt: "Jordânia" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+exit:
+  authority: Ministry of Agriculture
+  authorityUrl: https://www.moa.gov.jo
+  intro:
+    en: "Jordan is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a health certificate endorsed by a government veterinarian of the Ministry of Agriculture."
+    fr: "La Jordanie est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire visé par un vétérinaire officiel du ministère de l'Agriculture."
+    es: "Jordania no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario refrendado por un veterinario oficial del Ministerio de Agricultura."
+    pt: "A Jordânia não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde endossado por um veterinário do governo do Ministério da Agricultura."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The Ministry of Agriculture oversees export permits and veterinary requirements; your dog's health certificate must be endorsed by a government veterinarian before the flight."
+        fr: "Le ministère de l'Agriculture supervise les permis d'export et les exigences vétérinaires ; le certificat sanitaire de ton chien doit être visé par un vétérinaire officiel avant le vol."
+        es: "El Ministerio de Agricultura supervisa los permisos de exportación y los requisitos veterinarios; el certificado sanitario de tu perro debe ser refrendado por un veterinario oficial antes del vuelo."
+        pt: "O Ministério da Agricultura supervisiona as autorizações de exportação e as exigências veterinárias; o atestado de saúde do seu cachorro deve ser endossado por um veterinário do governo antes do voo."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Jordan with your dog", fr: "Voyager en Jordanie avec ton chien", es: "Viajar a Jordania con tu perro", pt: "Viajar para a Jordânia com seu cachorro" }
+  intro:
+    en: >-
+      Jordan (the Hashemite Kingdom of Jordan) is a non-EU country, so the EU pet-passport framework
+      does not apply here. Entry is governed by Jordan's own authorities: the Ministry of Agriculture,
+      which is the competent veterinary authority for importing live animals, together with Jordan
+      Customs at the border. The Ministry of Agriculture issues the import permit for a live animal, and
+      that permit is where the exact conditions for your dog are set out. Jordan does not publish a
+      single, detailed public checklist for personal pet-dog imports, and the country is classified as
+      high-risk for dog rabies. Because several key details are not officially published, this guide
+      states clearly what is confirmed by official sources and what you must confirm directly with the
+      Ministry of Agriculture before you book. Always request your import permit early and travel with
+      an official government-endorsed veterinary health certificate.
+    fr: >-
+      La Jordanie (Royaume hachémite de Jordanie) est un pays hors UE : le cadre du passeport européen
+      pour animaux ne s'applique donc pas. L'entrée relève des autorités jordaniennes : le ministère de
+      l'Agriculture, autorité vétérinaire compétente pour l'importation d'animaux vivants, ainsi que la
+      Douane jordanienne à la frontière. Le ministère de l'Agriculture délivre le permis d'importation
+      d'un animal vivant, et c'est ce permis qui fixe les conditions exactes pour ton chien. La
+      Jordanie ne publie pas de liste publique détaillée unique pour l'importation personnelle de
+      chiens, et le pays est classé à haut risque pour la rage canine. Plusieurs points clés n'étant pas
+      officiellement publiés, ce guide distingue clairement ce qui est confirmé par des sources
+      officielles de ce que tu dois confirmer directement auprès du ministère de l'Agriculture avant
+      de réserver. Demande toujours ton permis d'importation tôt et voyage avec un certificat
+      vétérinaire officiel visé par l'autorité gouvernementale.
+    es: >-
+      Jordania (el Reino Hachemita de Jordania) es un país fuera de la UE, así que el marco del
+      pasaporte europeo para mascotas no se aplica aquí. La entrada está regulada por las propias
+      autoridades jordanas: el ministerio de Agricultura, que es la autoridad veterinaria competente
+      para la importación de animales vivos, junto con la Aduana de Jordania en la frontera. El
+      ministerio de Agricultura expide el permiso de importación de un animal vivo, y es ese permiso el
+      que establece las condiciones exactas para tu perro. Jordania no publica una lista pública
+      detallada única para las importaciones personales de perros como mascotas, y el país está
+      clasificado como de alto riesgo para la rabia canina. Como varios detalles clave no están
+      publicados oficialmente, esta guía indica con claridad qué está confirmado por fuentes oficiales y
+      qué debes confirmar directamente con el ministerio de Agricultura antes de reservar. Solicita
+      siempre tu permiso de importación con antelación y viaja con un certificado veterinario oficial
+      refrendado por la autoridad gubernamental.
+
+    pt: "A Jordânia (o Reino Hachemita da Jordânia) é um país fora da UE, portanto o regime europeu de passaporte para animais de estimação não se aplica aqui. A entrada é regida pelas próprias autoridades jordanianas: o Ministério da Agricultura, autoridade veterinária competente para a importação de animais vivos, junto com a Alfândega da Jordânia na fronteira. O Ministério da Agricultura emite a autorização de importação de um animal vivo, e é nessa autorização que as condições exatas para o seu cachorro são definidas. A Jordânia não publica uma única lista de verificação pública detalhada para a importação pessoal de cachorros de estimação, e o país é classificado como de alto risco para a raiva canina. Como vários detalhes-chave não são publicados oficialmente, este guia indica claramente o que é confirmado por fontes oficiais e o que você precisa confirmar diretamente com o Ministério da Agricultura antes de reservar. Solicite sempre a autorização de importação com antecedência e viaje com um atestado de saúde veterinário oficial endossado pelo governo."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — import permit required, several details not officially published", fr: "Difficile — permis d'importation requis, plusieurs détails non publiés officiellement", es: "Difícil — se requiere permiso de importación, varios detalles no publicados oficialmente", pt: "Difícil — autorização de importação obrigatória, vários detalhes não publicados oficialmente" }
+
+prepTime:
+  eu:
+    en: "From Europe / the EU: no EU-passport shortcut. Plan ahead for the Ministry of Agriculture import permit and an official government-endorsed veterinary health certificate. Exact lead time is set by the permit and is not publicly published — confirm with the Ministry of Agriculture."
+    fr: "Depuis l'Europe / l'UE : aucun raccourci « passeport UE ». Prévois le permis d'importation du ministère de l'Agriculture et un certificat vétérinaire officiel visé par l'autorité gouvernementale. Le délai exact est fixé par le permis et n'est pas publié — à confirmer auprès du ministère de l'Agriculture."
+    es: "Desde Europa / la UE: sin atajo de pasaporte europeo. Prevé con antelación el permiso de importación del ministerio de Agricultura y un certificado veterinario oficial refrendado por la autoridad gubernamental. El plazo exacto lo fija el permiso y no está publicado — confírmalo con el ministerio de Agricultura."
+    pt: "Da Europa / da UE: não há atalho de passaporte europeu. Planeje com antecedência a autorização de importação do Ministério da Agricultura e um atestado de saúde veterinário oficial endossado pelo governo. O prazo exato é definido pela autorização e não é publicado publicamente — confirme com o Ministério da Agricultura."
+  listed:
+    en: "From another rabies-controlled country: same core steps — import permit and endorsed veterinary health certificate. Specific timelines are not officially published; obtain the permit before travelling."
+    fr: "Depuis un autre pays à rage maîtrisée : mêmes étapes de base — permis d'importation et certificat vétérinaire visé. Les délais précis ne sont pas publiés officiellement ; obtiens le permis avant de voyager."
+    es: "Desde otro país con la rabia controlada: los mismos pasos básicos — permiso de importación y certificado veterinario refrendado. Los plazos concretos no están publicados oficialmente; obtén el permiso antes de viajar."
+    pt: "De outro país com raiva controlada: as mesmas etapas básicas — autorização de importação e atestado de saúde veterinário endossado. Os prazos específicos não são publicados oficialmente; obtenha a autorização antes de viajar."
+  nonListed:
+    en: "From a high-rabies-risk country: expect closer scrutiny. Jordan is itself classified as high-risk for dog rabies. The import permit conditions and any extra measures are decided case-by-case by the Ministry of Agriculture."
+    fr: "Depuis un pays à haut risque rabique : attends-toi à un contrôle renforcé. La Jordanie est elle-même classée à haut risque pour la rage canine. Les conditions du permis et d'éventuelles mesures supplémentaires sont décidées au cas par cas par le ministère de l'Agriculture."
+    es: "Desde un país de alto riesgo de rabia: espera un control más estricto. La propia Jordania está clasificada como de alto riesgo para la rabia canina. Las condiciones del permiso y cualquier medida adicional las decide caso por caso el ministerio de Agricultura."
+    pt: "De um país de alto risco de raiva: espere um controle mais rigoroso. A própria Jordânia é classificada como de alto risco para a raiva canina. As condições da autorização de importação e quaisquer medidas adicionais são decididas caso a caso pelo Ministério da Agricultura."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes, via import permit", fr: "Oui, via permis d'importation", es: "Sí, mediante permiso de importación", pt: "Sim, mediante autorização de importação" }
+    cls: ok
+  - requirement: { en: "Import permit (Ministry of Agriculture)", fr: "Permis d'importation (ministère de l'Agriculture)", es: "Permiso de importación (ministerio de Agricultura)", pt: "Autorização de importação (Ministério da Agricultura)" }
+    status: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio con antelación", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not officially published — confirm", fr: "Non communiqué — à confirmer", es: "No comunicado — a confirmar", pt: "Não publicado oficialmente — a confirmar" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (government-endorsed)", fr: "Requis (visé par l'autorité)", es: "Obligatorio (refrendado por la autoridad)", pt: "Obrigatório (endossado pelo governo)" }
+    cls: warn
+  - requirement: { en: "Arrival veterinary check", fr: "Contrôle vétérinaire à l'arrivée", es: "Control veterinario a la llegada", pt: "Controle veterinário na chegada" }
+    status: { en: "Required at border", fr: "Requis à la frontière", es: "Obligatorio en la frontera", pt: "Obrigatório na fronteira" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    cls: neutral
+  - requirement: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    status: { en: "No official breed law published", fr: "Aucune loi de race publiée", es: "Ninguna ley de razas publicada", pt: "Nenhuma lei de raças publicada oficialmente" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Several Jordanian pet-import details are not officially published; the definitive conditions are set on the import permit issued by the Ministry of Agriculture."
+    fr: "Plusieurs détails d'importation d'animaux en Jordanie ne sont pas publiés officiellement ; les conditions définitives figurent sur le permis d'importation délivré par le ministère de l'Agriculture."
+    es: "Varios detalles sobre la importación de mascotas en Jordania no están publicados oficialmente; las condiciones definitivas figuran en el permiso de importación expedido por el ministerio de Agricultura."
+    pt: "Vários detalhes da importação de animais de estimação na Jordânia não são publicados oficialmente; as condições definitivas são estabelecidas na autorização de importação emitida pelo Ministério da Agricultura."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Jordan (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Jordanie (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Jordania (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Jordânia (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Jordan", fr: "Pays de destination — Jordanie", es: "País de destino — Jordania", pt: "País de destino — Jordânia" }
+      text:
+        en: "Jordan runs its own scheme through the Ministry of Agriculture (the competent veterinary authority) and Jordan Customs. An import permit and an official government-endorsed veterinary health certificate are the backbone of any live-animal import. Jordan is not an EU country, so the EU pet passport is not a Jordanian document."
+        fr: "La Jordanie applique son propre dispositif via le ministère de l'Agriculture (autorité vétérinaire compétente) et la Douane jordanienne. Un permis d'importation et un certificat vétérinaire officiel visé par l'autorité gouvernementale sont la base de toute importation d'animal vivant. La Jordanie n'étant pas un pays de l'UE, le passeport européen n'y est pas un document valable."
+        es: "Jordania aplica su propio sistema a través del ministerio de Agricultura (la autoridad veterinaria competente) y la Aduana de Jordania. Un permiso de importación y un certificado veterinario oficial refrendado por la autoridad gubernamental son la base de toda importación de animales vivos. Jordania no es un país de la UE, por lo que el pasaporte europeo para mascotas no es un documento válido allí."
+        pt: "A Jordânia aplica um sistema próprio por meio do Ministério da Agricultura (a autoridade veterinária competente) e da Alfândega da Jordânia. Uma autorização de importação e um atestado de saúde veterinário oficial endossado pelo governo são a base de qualquer importação de animal vivo. A Jordânia não é um país da UE, portanto o passaporte europeu para animais de estimação não é um documento jordaniano."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The disease status of your departure country shapes what the official vet must certify and what the import permit will require. The rabies situation of the origin is central, since Jordan itself is a rabies-endemic country."
+        fr: "La situation sanitaire du pays de départ détermine ce que le vétérinaire officiel doit certifier et ce que le permis d'importation exigera. Le statut rabique de l'origine est central, la Jordanie étant elle-même un pays d'endémie rabique."
+        es: "La situación sanitaria de tu país de salida determina lo que el veterinario oficial debe certificar y lo que exigirá el permiso de importación. La situación de la rabia en el origen es fundamental, ya que la propia Jordania es un país con rabia endémica."
+        pt: "A situação sanitária do seu país de partida determina o que o veterinário oficial deve atestar e o que a autorização de importação exigirá. A situação da raiva na origem é central, já que a própria Jordânia é um país endêmico para raiva."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a high-rabies-risk area can trigger extra scrutiny at the border. It is your dog's real origin and travel history that count — not only the last airport. Keep a complete record of where your dog has lived."
+        fr: "Un séjour récent dans une zone à haut risque rabique peut entraîner un contrôle renforcé à la frontière. C'est l'origine réelle et l'historique de voyage du chien qui comptent — pas seulement le dernier aéroport. Conserve un historique complet des lieux de vie de ton chien."
+        es: "Una estancia reciente en una zona de alto riesgo de rabia puede provocar un control adicional en la frontera. Lo que cuenta es el origen y el historial de viajes reales de tu perro — no solo el último aeropuerto. Conserva un registro completo de los lugares donde ha vivido tu perro."
+        pt: "Uma estadia recente em uma área de alto risco de raiva pode acionar um controle adicional na fronteira. O que conta é a origem real e o histórico de viagens do seu cachorro — não apenas o último aeroporto. Mantenha um registro completo de onde o seu cachorro viveu."
+  note:
+    en: "So read the requirements below as Jordan's framework, then confirm your dog's exact origin, history and the current permit conditions with the Ministry of Agriculture before you make any plans."
+    fr: "Lis donc les exigences ci-dessous comme le cadre jordanien, puis confirme l'origine, l'historique de ton chien et les conditions actuelles du permis auprès du ministère de l'Agriculture avant tout projet."
+    es: "Así que lee los requisitos siguientes como el marco de Jordania y luego confirma el origen exacto, el historial de tu perro y las condiciones actuales del permiso con el ministerio de Agricultura antes de hacer cualquier plan."
+    pt: "Portanto, leia as exigências abaixo como o regime da Jordânia e depois confirme a origem exata, o histórico e as condições atuais da autorização do seu cachorro com o Ministério da Agricultura antes de fazer qualquer plano."
+
+requirements:
+  - item: { en: "Import permit (Ministry of Agriculture)", fr: "Permis d'importation (ministère de l'Agriculture)", es: "Permiso de importación (ministerio de Agricultura)", pt: "Autorização de importação (Ministério da Agricultura)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A live animal is imported under a permit issued by Jordan's Ministry of Agriculture; the permit sets the specific conditions. Apply in advance, before the dog travels.", fr: "Un animal vivant est importé sous couvert d'un permis délivré par le ministère de l'Agriculture de Jordanie ; le permis fixe les conditions spécifiques. Fais la demande à l'avance, avant le voyage du chien.", es: "Un animal vivo se importa bajo un permiso expedido por el ministerio de Agricultura de Jordania; el permiso fija las condiciones específicas. Solicítalo con antelación, antes de que el perro viaje.", pt: "Um animal vivo é importado sob uma autorização emitida pelo Ministério da Agricultura da Jordânia; a autorização estabelece as condições específicas. Solicite com antecedência, antes de o cachorro viajar." }
+    exceptions: { en: "Processing time and validity are not publicly published — confirm with the Ministry of Agriculture. Personal imports for personal use fall outside the commercial importer-card regime.", fr: "Le délai de traitement et la validité ne sont pas publiés — à confirmer auprès du ministère de l'Agriculture. Les importations personnelles pour usage personnel échappent au régime commercial de la carte d'importateur.", es: "El plazo de tramitación y la valide no están publicados — confírmalo con el ministerio de Agricultura. Las importaciones personales para uso propio quedan fuera del régimen comercial de la tarjeta de importador.", pt: "O prazo de processamento e a validade não são publicados publicamente — confirme com o Ministério da Agricultura. As importações pessoais para uso próprio ficam fora do regime de cartão de importador comercial." }
+    ref: { en: "Jordan Ministry of Agriculture; USDA APHIS — Export Live Animals to Jordan", fr: "Ministère de l'Agriculture de Jordanie ; USDA APHIS — Export Live Animals to Jordan", es: "Ministerio de Agricultura de Jordania; USDA APHIS — Export Live Animals to Jordan", pt: "Ministério da Agricultura da Jordânia; USDA APHIS — Exportação de Animais Vivos para a Jordânia" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "An ISO 11784/11785 microchip is the international identification standard and is strongly advised so records match, but Jordan does not publish an official public rule making it mandatory.", fr: "Une puce ISO 11784/11785 est la norme d'identification internationale et fortement conseillée pour que les documents concordent, mais la Jordanie ne publie pas de règle officielle la rendant obligatoire.", es: "Un microchip ISO 11784/11785 es la norma internacional de identificación y se recomienda encarecidamente para que los registros coincidan, pero Jordania no publica ninguna norma oficial que lo haga obligatorio.", pt: "Um microchip ISO 11784/11785 é o padrão internacional de identificação e é fortemente recomendado para que os registros coincidam, mas a Jordânia não publica uma norma pública oficial que o torne obrigatório." }
+    exceptions: { en: "Confirm the identification requirement on your import permit with the Ministry of Agriculture.", fr: "Vérifie l'exigence d'identification figurant sur ton permis d'importation auprès du ministère de l'Agriculture.", es: "Confirma el requisito de identificación de tu permiso de importación con el ministerio de Agricultura.", pt: "Confirme a exigência de identificação na sua autorização de importação com o Ministério da Agricultura." }
+    ref: { en: "Ministry of Agriculture (import permit); no public specification found", fr: "Ministère de l'Agriculture (permis d'importation) ; aucune spécification publique trouvée", es: "Ministerio de Agricultura (permiso de importación); no se ha encontrado ninguna especificación pública", pt: "Ministério da Agricultura (autorização de importação); nenhuma especificação pública encontrada" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Jordan is a rabies-endemic country; a valid rabies vaccination for the dog is a standard condition of the import permit and the international veterinary health certificate. The exact minimum interval before travel is not publicly published.", fr: "La Jordanie est un pays d'endémie rabique ; une vaccination antirabique valide du chien est une condition standard du permis d'importation et du certificat vétérinaire international. Le délai minimum exact avant le voyage n'est pas publié.", es: "Jordania es un país con rabia endémica; una vacunación antirrábica válida del perro es una condición estándar del permiso de importación y del certificado veterinario internacional. El intervalo mínimo exacto antes del viaje no está publicado.", pt: "A Jordânia é um país endêmico para raiva; uma vacinação antirrábica válida para o cachorro é uma condição padrão da autorização de importação e do atestado de saúde veterinário internacional. O intervalo mínimo exato antes da viagem não é publicado publicamente." }
+    exceptions: { en: "Confirm the required timing (post-vaccination waiting period and validity) with the Ministry of Agriculture before booking.", fr: "Confirme le délai requis (attente après vaccination et validité) auprès du ministère de l'Agriculture avant de réserver.", es: "Confirma el plazo requerido (periodo de espera tras la vacunación y valide) con el ministerio de Agricultura antes de reservar.", pt: "Confirme o prazo exigido (período de espera após a vacinação e validade) com o Ministério da Agricultura antes de reservar." }
+    ref: { en: "Ministry of Agriculture (import permit); CDC — Jordan classified high-risk for dog rabies", fr: "Ministère de l'Agriculture (permis d'importation) ; CDC — Jordanie classée à haut risque pour la rage canine", es: "Ministerio de Agricultura (permiso de importación); CDC — Jordania clasificada de alto riesgo para la rabia canina", pt: "Ministério da Agricultura (autorização de importação); CDC — Jordânia classificada como de alto risco para raiva canina" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "Whether Jordan requires a rabies antibody test for incoming dogs is not published in an official Jordanian source. Do not assume it is or is not required.", fr: "La Jordanie n'indique pas dans une source officielle si un titrage antirabique est exigé pour les chiens entrants. Ne présume ni de son exigence ni de sa dispense.", es: "Si Jordania exige una prueba de titulación de rabia para los perros que entran no consta en ninguna fuente oficial jordana. No des por hecho que se exige ni que se dispensa.", pt: "Se a Jordânia exige teste sorológico antirrábico para cachorros que chegam não é publicado em nenhuma fonte oficial jordaniana. Não presuma que ele é ou não exigido." }
+    exceptions: { en: "Confirm directly with the Ministry of Agriculture whether an antibody test is a condition of your import permit.", fr: "Confirme directement auprès du ministère de l'Agriculture si un titrage est une condition de ton permis d'importation.", es: "Confirma directamente con el ministerio de Agricultura si una prueba de titulación es una condición de tu permiso de importación.", pt: "Confirme diretamente com o Ministério da Agricultura se o teste sorológico é uma condição da sua autorização de importação." }
+    ref: { en: "No official Jordanian specification found — verify with the Ministry of Agriculture", fr: "Aucune spécification officielle jordanienne trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se ha encontrado ninguna especificación oficial jordana — verificar con el ministerio de Agricultura", pt: "Nenhuma especificação oficial jordaniana encontrada — verifique com o Ministério da Agricultura" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "Internal and external parasite treatment shortly before travel is common international practice and often recorded on the health certificate, but no official Jordanian public rule or timing was found.", fr: "Un traitement antiparasitaire interne et externe peu avant le voyage est une pratique internationale courante souvent consignée sur le certificat, mais aucune règle ni délai officiel jordanien public n'a été trouvé.", es: "Un tratamiento antiparasitario interno y externo poco antes del viaje es una práctica internacional habitual que suele consignarse en el certificado, pero no se ha encontrado ninguna norma ni plazo oficial jordano publicado.", pt: "O tratamento antiparasitário interno e externo pouco antes da viagem é uma prática internacional comum e costuma ser registrado no atestado de saúde, mas nenhuma norma pública oficial jordaniana ou prazo foi encontrado." }
+    exceptions: { en: "Confirm any required treatment and window with the Ministry of Agriculture / your official vet.", fr: "Confirme tout traitement requis et son délai auprès du ministère de l'Agriculture / de ton vétérinaire officiel.", es: "Confirma cualquier tratamiento requerido y su plazo con el ministerio de Agricultura / tu veterinario oficial.", pt: "Confirme qualquer tratamento exigido e seu prazo com o Ministério da Agricultura / seu veterinário oficial." }
+    ref: { en: "No official Jordanian specification found — verify with the Ministry of Agriculture", fr: "Aucune spécification officielle jordanienne trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se ha encontrado ninguna especificación oficial jordana — verificar con el ministerio de Agricultura", pt: "Nenhuma especificação oficial jordaniana encontrada — verifique com o Ministério da Agricultura" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An international/export veterinary health certificate completed by a licensed vet and endorsed by the origin country's official (government) veterinary authority accompanies the dog. Jordan has no published bilateral model certificate for dogs, so the exact form is set via the import permit.", fr: "Un certificat vétérinaire international/export établi par un vétérinaire agréé et visé par l'autorité vétérinaire officielle (gouvernementale) du pays d'origine accompagne le chien. La Jordanie n'a pas de modèle bilatéral publié pour les chiens ; la forme exacte est donc fixée via le permis d'importation.", es: "Un certificado veterinario internacional/de exportación cumplimentado por un veterinario colegiado y refrendado por la autoridad veterinaria oficial (gubernamental) del país de origen debe acompañar al perro. Jordania no tiene publicado ningún modelo bilateral de certificado para perros, por lo que el formato exacto se fija a través del permiso de importación.", pt: "Um atestado de saúde veterinário internacional/de exportação, preenchido por um veterinário licenciado e endossado pela autoridade veterinária oficial (do governo) do país de origem, acompanha o cachorro. A Jordânia não publica um modelo bilateral de atestado para cachorros, portanto o formulário exato é definido pela autorização de importação." }
+    exceptions: { en: "Carry original documents; a health certificate has short validity and must still be valid on arrival.", fr: "Munis-toi des originaux ; un certificat sanitaire a une validité courte et doit être encore valable à l'arrivée.", es: "Lleva los documentos originales; un certificado sanitario tiene una valide corta y debe seguir siendo válido a la llegada.", pt: "Leve os documentos originais; o atestado de saúde tem validade curta e precisa continuar válido na chegada." }
+    ref: { en: "USDA APHIS — Export Live Animals to Jordan; Ministry of Agriculture", fr: "USDA APHIS — Export Live Animals to Jordan ; ministère de l'Agriculture", es: "USDA APHIS — Export Live Animals to Jordan; ministerio de Agricultura", pt: "USDA APHIS — Exportação de Animais Vivos para a Jordânia; Ministério da Agricultura" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "A minimum travelling age for puppies is not published in an official Jordanian source. In practice a puppy needs its own valid rabies vaccination, which implies a minimum age.", fr: "Aucun âge minimum de voyage pour les chiots n'est publié dans une source officielle jordanienne. En pratique, un chiot a besoin de sa propre vaccination antirabique valide, ce qui implique un âge minimum.", es: "No hay publicada en ninguna fuente oficial jordana una edad mínima de viaje para cachorros. En la práctica, un cachorro necesita su propia vacunación antirrábica válida, lo que implica una edad mínima.", pt: "Uma idade mínima de viagem para filhotes não é publicada em nenhuma fonte oficial jordaniana. Na prática, um filhote precisa da própria vacinação antirrábica válida, o que implica uma idade mínima." }
+    exceptions: { en: "Confirm the minimum age for your dog's origin with the Ministry of Agriculture.", fr: "Confirme l'âge minimum pour l'origine de ton chien auprès du ministère de l'Agriculture.", es: "Confirma la edad mínima para el origen de tu perro con el ministerio de Agricultura.", pt: "Confirme a idade mínima para a origem do seu cachorro com o Ministério da Agricultura." }
+    ref: { en: "No official Jordanian specification found — verify with the Ministry of Agriculture", fr: "Aucune spécification officielle jordanienne trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se ha encontrado ninguna especificación oficial jordana — verificar con el ministerio de Agricultura", pt: "Nenhuma especificação oficial jordaniana encontrada — verifique com o Ministério da Agricultura" }
+  - item: { en: "Arrival veterinary check / border inspection", fr: "Contrôle vétérinaire à l'arrivée / inspection frontalière", es: "Control veterinario a la llegada / inspección fronteriza", pt: "Controle veterinário na chegada / inspeção de fronteira" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Live animals are examined at the port of entry by Jordan Customs and the Ministry of Agriculture's veterinary services against the import permit and health certificate.", fr: "Les animaux vivants sont examinés au point d'entrée par la Douane jordanienne et les services vétérinaires du ministère de l'Agriculture, au regard du permis et du certificat sanitaire.", es: "Los animales vivos se examinan en el punto de entrada por la Aduana de Jordania y los servicios veterinarios del ministerio de Agricultura, cotejándolos con el permiso de importación y el certificado sanitario.", pt: "Os animais vivos são examinados no ponto de entrada pela Alfândega da Jordânia e pelos serviços veterinários do Ministério da Agricultura, com base na autorização de importação e no atestado de saúde." }
+    exceptions: { en: "Incomplete or invalid documents may lead to hold, refusal or return at the owner's expense.", fr: "Des documents incomplets ou invalides peuvent entraîner une rétention, un refus ou un renvoi aux frais du propriétaire.", es: "Los documentos incompletos o no válidos pueden llevar a la retención, el rechazo o la devolución a cargo del propietario.", pt: "Documentos incompletos ou inválidos podem levar à retenção, recusa ou devolução às custas do dono." }
+    ref: { en: "Jordan Customs; Ministry of Agriculture veterinary services", fr: "Douane jordanienne ; services vétérinaires du ministère de l'Agriculture", es: "Aduana de Jordania; servicios veterinarios del ministerio de Agricultura", pt: "Alfândega da Jordânia; serviços veterinários do Ministério da Agricultura" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "No official Jordanian rule on routine quarantine for compliant pet dogs was found. Non-compliant or unhealthy animals may be held for examination.", fr: "Aucune règle officielle jordanienne sur une quarantaine systématique des chiens conformes n'a été trouvée. Les animaux non conformes ou malades peuvent être retenus pour examen.", es: "No se ha encontrado ninguna norma oficial jordana sobre una cuarentena sistemática para perros conformes. Los animales no conformes o enfermos pueden retenerse para su examen.", pt: "Nenhuma norma oficial jordaniana sobre quarentena de rotina para cachorros de estimação em conformidade foi encontrada. Animais em não conformidade ou doentes podem ser retidos para exame." }
+    exceptions: { en: "Confirm whether any quarantine applies to your dog's origin with the Ministry of Agriculture.", fr: "Confirme si une quarantaine s'applique à l'origine de ton chien auprès du ministère de l'Agriculture.", es: "Confirma si se aplica alguna cuarentena al origen de tu perro con el ministerio de Agricultura.", pt: "Confirme com o Ministério da Agricultura se alguma quarentena se aplica à origem do seu cachorro." }
+    ref: { en: "No official Jordanian specification found — verify with the Ministry of Agriculture", fr: "Aucune spécification officielle jordanienne trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se ha encontrado ninguna especificación oficial jordana — verificar con el ministerio de Agricultura", pt: "Nenhuma especificação oficial jordaniana encontrada — verifique com o Ministério da Agricultura" }
+  - item: { en: "Restricted / banned breeds", fr: "Races interdites / restreintes", es: "Razas restringidas / prohibidas", pt: "Raças restritas / proibidas" }
+    required: { en: "Not officially published", fr: "Non communiqué officiellement", es: "No comunicado oficialmente", pt: "Não publicado oficialmente" }
+    when: { en: "No official Jordanian breed-import law or dangerous-dog list could be verified from a government source.", fr: "Aucune loi jordanienne d'importation par race ni liste de chiens dangereux n'a pu être vérifiée à partir d'une source gouvernementale.", es: "No se ha podido verificar ninguna ley jordana de importación por raza ni lista de perros peligrosos a partir de una fuente gubernamental.", pt: "Nenhuma lei jordaniana oficial sobre importação de raças ou lista de cães perigosos pôde ser confirmada em fonte governamental." }
+    exceptions: { en: "Confirm any breed restriction with the Ministry of Agriculture before travelling, as national rules can change.", fr: "Confirme toute restriction de race auprès du ministère de l'Agriculture avant de voyager, les règles nationales pouvant évoluer.", es: "Confirma cualquier restricción de raza con el ministerio de Agricultura antes de viajar, ya que las normas nacionales pueden cambiar.", pt: "Confirme qualquer restrição de raça com o Ministério da Agricultura antes de viajar, pois as normas nacionais podem mudar." }
+    ref: { en: "No official Jordanian breed law found — verify with the Ministry of Agriculture", fr: "Aucune loi de race jordanienne officielle trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se ha encontrado ninguna ley jordana oficial sobre razas — verificar con el ministerio de Agricultura", pt: "Nenhuma lei jordaniana oficial sobre raças encontrada — verifique com o Ministério da Agricultura" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Jordan: the EU passport is not a Jordanian document. A dog from Europe needs the Ministry of Agriculture import permit, a valid rabies vaccination and an official international veterinary health certificate endorsed by the government vet before departure. Because Jordan does not publish a detailed public checklist, request the exact permit conditions from the Ministry of Agriculture before booking."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Jordanie : le passeport UE n'est pas un document jordanien. Un chien venant d'Europe a besoin du permis d'importation du ministère de l'Agriculture, d'une vaccination antirabique valide et d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental avant le départ. La Jordanie ne publiant pas de liste publique détaillée, demande les conditions exactes du permis au ministère de l'Agriculture avant de réserver."
+      es: "No existe ningún atajo de pasaporte europeo para entrar en Jordania: el pasaporte de la UE no es un documento jordano. Un perro procedente de Europa necesita el permiso de importación del ministerio de Agricultura, una vacunación antirrábica válida y un certificado veterinario internacional oficial refrendado por el veterinario gubernamental antes de la salida. Como Jordania no publica una lista pública detallada, solicita las condiciones exactas del permiso al ministerio de Agricultura antes de reservar."
+      pt: "Não há atalho de passaporte europeu para entrar na Jordânia: o passaporte da UE não é um documento jordaniano. Um cachorro vindo da Europa precisa da autorização de importação do Ministério da Agricultura, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial, endossado pelo veterinário do governo, antes da partida. Como a Jordânia não publica uma lista de verificação pública detalhada, solicite as condições exatas da autorização ao Ministério da Agricultura antes de reservar."
+    cls: warn
+  listed:
+    title: { en: "From another rabies-controlled country", fr: "Depuis un autre pays à rage maîtrisée", es: "Desde otro país con la rabia controlada", pt: "De outro país com raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the same core scheme applies: import permit, valid rabies vaccination and an endorsed veterinary health certificate. Specific conditions such as any antibody test, parasite treatment window or minimum age are not officially published and are set on the permit. Confirm them with the Ministry of Agriculture."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), le même schéma de base s'applique : permis d'importation, vaccination antirabique valide et certificat vétérinaire visé. Les conditions précises (titrage éventuel, délai de traitement antiparasitaire, âge minimum) ne sont pas publiées officiellement et sont fixées sur le permis. Confirme-les auprès du ministère de l'Agriculture."
+      es: "Desde países con la situación de la rabia controlada (Estados Unidos, Canadá, estados del Golfo, la mayor parte de Europa y otros), se aplica el mismo esquema básico: permiso de importación, vacunación antirrábica válida y certificado veterinario refrendado. Las condiciones concretas, como una posible prueba de titulación, el plazo del tratamiento antiparasitario o la edad mínima, no están publicadas oficialmente y se fijan en el permiso. Confírmalas con el ministerio de Agricultura."
+      pt: "Vindo de países com situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se o mesmo esquema básico: autorização de importação, vacinação antirrábica válida e atestado de saúde veterinário endossado. Condições específicas, como um eventual teste sorológico, o prazo do tratamento antiparasitário ou a idade mínima, não são publicadas oficialmente e são definidas na autorização. Confirme-as com o Ministério da Agricultura."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país de alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "From a high-rabies-risk origin, expect closer scrutiny and possibly additional measures decided case-by-case. Jordan itself is classified as high-risk for dog rabies, so origin disease status matters. The import permit and the official health certificate must reflect the dog's rabies vaccination and history. Dogs from areas under rabies restriction may face extra checks or refusal — verify with the Ministry of Agriculture well ahead of travel."
+      fr: "Depuis une origine à haut risque rabique, attends-toi à un contrôle renforcé et possiblement à des mesures supplémentaires décidées au cas par cas. La Jordanie elle-même est classée à haut risque pour la rage canine ; le statut sanitaire de l'origine compte donc. Le permis d'importation et le certificat officiel doivent refléter la vaccination antirabique et l'historique du chien. Un chien venant d'une zone sous restriction rabique peut subir des contrôles supplémentaires ou un refus — vérifie auprès du ministère de l'Agriculture bien avant le voyage."
+      es: "Desde un origen de alto riesgo de rabia, espera un control más estricto y posiblemente medidas adicionales decididas caso por caso. La propia Jordania está clasificada como de alto riesgo para la rabia canina, así que el estatus sanitario del origen importa. El permiso de importación y el certificado oficial deben reflejar la vacunación antirrábica y el historial del perro. Los perros procedentes de zonas bajo restricción por rabia pueden enfrentarse a controles adicionales o al rechazo — verifícalo con el ministerio de Agricultura con suficiente antelación al viaje."
+      pt: "Vindo de uma origem de alto risco de raiva, espere um controle mais rigoroso e possivelmente medidas adicionais decididas caso a caso. A própria Jordânia é classificada como de alto risco para raiva canina, portanto a situação sanitária da origem importa. A autorização de importação e o atestado de saúde oficial devem refletir a vacinação antirrábica e o histórico do cachorro. Cachorros vindos de áreas sob restrição por raiva podem enfrentar controles adicionais ou recusa — verifique com o Ministério da Agricultura com bastante antecedência."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Jordan, Jordan Customs and the Ministry of Agriculture's veterinary services handle the check at the port of entry."
+    fr: "À l'arrivée de ton chien en Jordanie, la Douane jordanienne et les services vétérinaires du ministère de l'Agriculture effectuent le contrôle au point d'entrée."
+    es: "Cuando tu perro llega a Jordania, la Aduana de Jordania y los servicios veterinarios del ministerio de Agricultura se encargan del control en el punto de entrada."
+    pt: "Quando o seu cachorro chega à Jordânia, a Alfândega da Jordânia e os serviços veterinários do Ministério da Agricultura cuidam do controle no ponto de entrada."
+  points:
+    - en: "Your Ministry of Agriculture import permit must be obtained before travel and be valid on the day of entry."
+      fr: "Ton permis d'importation du ministère de l'Agriculture doit être obtenu avant le voyage et être valide le jour de l'entrée."
+      es: "Tu permiso de importación del ministerio de Agricultura debe obtenerse antes del viaje y ser válido el día de la entrada."
+      pt: "A sua autorização de importação do Ministério da Agricultura deve ser obtida antes da viagem e estar válida no dia da entrada."
+    - en: "The dog is examined against the import permit, identification and the endorsed veterinary health certificate."
+      fr: "Le chien est examiné au regard du permis d'importation, de l'identification et du certificat vétérinaire visé."
+      es: "El perro se examina cotejándolo con el permiso de importación, la identificación y el certificado veterinario refrendado."
+      pt: "O cachorro é examinado em relação à autorização de importação, à identificação e ao atestado de saúde veterinário endossado."
+    - en: "Carry original documents — the government-endorsed health certificate and vaccination records — not copies."
+      fr: "Munis-toi des documents originaux — le certificat sanitaire visé par l'autorité et le carnet de vaccination — pas de copies."
+      es: "Lleva los documentos originales — el certificado sanitario refrendado por la autoridad y el registro de vacunación — no copias."
+      pt: "Leve os documentos originais — o atestado de saúde endossado pelo governo e os registros de vacinação — não cópias."
+    - en: "If documents are missing or invalid, the animal may be held, refused entry or returned at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, l'animal peut être retenu, refusé ou renvoyé aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, el animal puede ser retenido, rechazado o devuelto a cargo del propietario."
+      pt: "Se faltarem documentos ou eles forem inválidos, o animal pode ser retido, ter a entrada recusada ou ser devolvido às custas do dono."
+    - en: "Where possible, arrive on a weekday during office hours so the on-duty state vet can clear the animal promptly."
+      fr: "Si possible, arrive en semaine et pendant les heures de bureau pour que le vétérinaire d'État de service puisse dédouaner l'animal rapidement."
+      es: "Si es posible, llega en día laborable y en horario de oficina para que el veterinario estatal de guardia pueda despachar al animal rápidamente."
+      pt: "Sempre que possível, chegue em um dia útil durante o horário de expediente para que o veterinário estatal de plantão possa liberar o animal rapidamente."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No official Jordanian law restricting or banning specific dog breeds for import could be verified from a government source. This does not guarantee there is none — it means no published, verifiable list was found."
+    fr: "Aucune loi jordanienne officielle restreignant ou interdisant des races de chiens précises à l'importation n'a pu être vérifiée à partir d'une source gouvernementale. Cela ne garantit pas qu'il n'en existe aucune — cela signifie qu'aucune liste publiée et vérifiable n'a été trouvée."
+    es: "No se ha podido verificar ninguna ley jordana oficial que restrinja o prohíba razas de perros concretas para la importación a partir de una fuente gubernamental. Esto no garantiza que no exista ninguna — significa que no se ha encontrado ninguna lista publicada y verificable."
+    pt: "Nenhuma lei jordaniana oficial que restrinja ou proíba raças específicas de cachorros para importação pôde ser confirmada em fonte governamental. Isso não garante que não exista nenhuma — significa apenas que nenhuma lista publicada e verificável foi encontrada."
+  cat1:
+    en: "Banned breeds: Not officially published. Do not assume your breed is either allowed or prohibited — the import permit issued by the Ministry of Agriculture is the authoritative document for your dog."
+    fr: "Races interdites : non communiqué officiellement. Ne présume pas que ta race est autorisée ou interdite — le permis d'importation délivré par le ministère de l'Agriculture fait foi pour ton chien."
+    es: "Razas prohibidas: no comunicado oficialmente. No des por hecho que la raza de tu perro está permitida o prohibida — el permiso de importación expedido por el ministerio de Agricultura es el documento que hace fe para tu perro."
+    pt: "Raças proibidas: não publicado oficialmente. Não presuma que a raça do seu cachorro é permitida ou proibida — a autorização de importação emitida pelo Ministério da Agricultura é o documento oficial para o seu cachorro."
+  cat2:
+    en: "Restricted / licence-required breeds: Not officially published. If your dog is a type sometimes treated as dangerous elsewhere in the region, confirm its status directly with the Ministry of Agriculture before booking."
+    fr: "Races restreintes / soumises à licence : non communiqué officiellement. Si ton chien est d'un type parfois considéré comme dangereux ailleurs dans la région, confirme son statut directement auprès du ministère de l'Agriculture avant de réserver."
+    es: "Razas restringidas / sujetas a licencia: no comunicado oficialmente. Si tu perro es de un tipo que a veces se considera peligroso en otros lugares de la región, confirma su estatus directamente con el ministerio de Agricultura antes de reservar."
+    pt: "Raças restritas / com exigência de licença: não publicado oficialmente. Se o seu cachorro for de um tipo às vezes tratado como perigoso em outros lugares da região, confirme a situação diretamente com o Ministério da Agricultura antes de reservar."
+  note:
+    en: "Because breed rules in the region can change and are not clearly published for Jordan, verify your dog's breed status with the Ministry of Agriculture or a Jordanian consulate before you travel."
+    fr: "Les règles de race dans la région pouvant évoluer et n'étant pas clairement publiées pour la Jordanie, vérifie le statut de la race de ton chien auprès du ministère de l'Agriculture ou d'un consulat jordanien avant de voyager."
+    es: "Como las normas sobre razas en la región pueden cambiar y no están claramente publicadas para Jordania, verifica el estatus de la raza de tu perro con el ministerio de Agricultura o un consulado jordano antes de viajar."
+    pt: "Como as normas sobre raças na região podem mudar e não são claramente publicadas para a Jordânia, verifique a situação da raça do seu cachorro com o Ministério da Agricultura ou um consulado jordaniano antes de viajar."
+
+checklist:
+  - en: "Ministry of Agriculture import permit obtained before travel"
+    fr: "Permis d'importation du ministère de l'Agriculture obtenu avant le voyage"
+    es: "Permiso de importación del ministerio de Agricultura obtenido antes del viaje"
+    pt: "Autorização de importação do Ministério da Agricultura obtida antes da viagem"
+  - en: "Confirm the exact permit conditions (rabies timing, antibody test, parasites, age) with the Ministry of Agriculture"
+    fr: "Confirme les conditions exactes du permis (délai rage, titrage, parasites, âge) auprès du ministère de l'Agriculture"
+    es: "Confirma las condiciones exactas del permiso (plazo de rabia, prueba de titulación, parásitos, edad) con el ministerio de Agricultura"
+    pt: "Confirme as condições exatas da autorização (prazo da vacina antirrábica, teste sorológico, parasitas, idade) com o Ministério da Agricultura"
+  - en: "ISO 11784/11785 microchip implanted before the rabies vaccination (advised)"
+    fr: "Puce ISO 11784/11785 posée avant la vaccination antirabique (conseillé)"
+    es: "Microchip ISO 11784/11785 implantado antes de la vacunación antirrábica (recomendado)"
+    pt: "Microchip ISO 11784/11785 implantado antes da vacinação antirrábica (recomendado)"
+  - en: "Valid rabies vaccination for your dog"
+    fr: "Vaccination antirabique valide pour ton chien"
+    es: "Vacunación antirrábica válida para tu perro"
+    pt: "Vacinação antirrábica válida para o seu cachorro"
+  - en: "Official international veterinary health certificate, endorsed by the government vet"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental"
+    es: "Certificado veterinario internacional oficial, refrendado por el veterinario gubernamental"
+    pt: "Certificado veterinário internacional oficial, endossado pelo veterinário governamental"
+  - en: "Original vaccination booklet and identification record (not copies)"
+    fr: "Carnet de vaccination et justificatif d'identification originaux (pas de copies)"
+    es: "Cartilla de vacunación y justificante de identificación originales (no copias)"
+    pt: "Carteira de vacinação original e registro de identificação (não cópias)"
+  - en: "Confirm your dog's breed is not restricted with the Ministry of Agriculture"
+    fr: "Vérifie que la race de ton chien n'est pas restreinte auprès du ministère de l'Agriculture"
+    es: "Confirma con el ministerio de Agricultura que la raza de tu perro no está restringida"
+    pt: "Confirme com o Ministério da Agricultura que a raça do seu cachorro não é restrita"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
+
+sources:
+  - label: { en: "Jordan Ministry of Agriculture — official website (competent veterinary authority)", fr: "Ministère de l'Agriculture de Jordanie — site officiel (autorité vétérinaire compétente)", es: "Ministerio de Agricultura de Jordania — sitio oficial (autoridad veterinaria competente)", pt: "Ministério da Agricultura da Jordânia — site oficial (autoridade veterinária competente)" }
+    url: "https://www.moa.gov.jo/Default/en"
+  - label: { en: "Jordan Ministry of Agriculture — Contact", fr: "Ministère de l'Agriculture de Jordanie — Contact", es: "Ministerio de Agricultura de Jordania — Contacto", pt: "Ministério da Agricultura da Jordânia — Contato" }
+    url: "https://moa.gov.jo/en/Pages/Contact_Us"
+  - label: { en: "USDA APHIS — Export Live Animals to Jordan (no agreed dog/cat certificate; permit via the ministry)", fr: "USDA APHIS — Export Live Animals to Jordan (aucun certificat chien/chat convenu ; permis via le ministère)", es: "USDA APHIS — Export Live Animals to Jordan (sin certificado convenido para perros/gatos; permiso a través del ministerio)", pt: "USDA APHIS — Exportação de Animais Vivos para a Jordânia (nenhum atestado acordado para cachorros/gatos; autorização pelo ministério)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-jordan"
+  - label: { en: "Jordan Customs — Importation Instructions / restrictions (Ministry of Agriculture licenses live animals)", fr: "Douane jordanienne — Instructions d'importation / restrictions (le ministère de l'Agriculture licencie les animaux vivants)", es: "Aduana de Jordania — Instrucciones de importación / restricciones (el ministerio de Agricultura autoriza los animales vivos)", pt: "Alfândega da Jordânia — Instruções de Importação / restrições (o Ministério da Agricultura licencia animais vivos)" }
+    url: "https://traderepository.customs.gov.jo/english/page5.html"
+  - label: { en: "Jordan Trade Portal — Customs procedure (live animals)", fr: "Portail du commerce de Jordanie — Procédure douanière (animaux vivants)", es: "Portal de Comercio de Jordania — Procedimiento aduanero (animales vivos)", pt: "Portal de Comércio da Jordânia — Procedimento Alfandegário (animais vivos)" }
+    url: "https://tradeportal.customs.gov.jo/procedure/951?l=en"
+  - label: { en: "CDC — High-Risk Countries for Dog Rabies (Jordan listed high-risk)", fr: "CDC — Pays à haut risque pour la rage canine (Jordanie classée à haut risque)", es: "CDC — Países de alto riesgo para la rabia canina (Jordania clasificada de alto riesgo)", pt: "CDC — Países de Alto Risco para Raiva Canina (Jordânia listada como alto risco)" }
+    url: "https://www.cdc.gov/importation/dogs/high-risk-countries.html"
+
+seo:
+  title: { en: "Jordan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Jordanie — Guide", es: "Requisitos de entrada de perros en Jordania — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Jordânia — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Jordan With Your Dog: Entry Requirements (2026)", fr: "Voyager en Jordanie avec ton chien : formalités (2026)", es: "Viajar a Jordania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Jordânia: exigências de entrada 2026" }
+  metaDesc:
+    en: "Bringing a dog into Jordan: Ministry of Agriculture import permit, rabies vaccination and endorsed veterinary health certificate. Sourced and dated."
+    fr: "Faire entrer un chien en Jordanie : permis d'importation du ministère de l'Agriculture, vaccination antirabique et certificat vétérinaire visé. Sourcé et daté."
+    es: "Traer un perro a Jordania: permiso de importación del ministerio de Agricultura, vacunación antirrábica y certificado veterinario refrendado. Con fuentes y fecha."
+    pt: "Levar um cachorro para a Jordânia: autorização de importação do Ministério da Agricultura, vacinação antirrábica e atestado de saúde veterinário endossado."
+  slug: "jordan"
+  shortDesc:
+    en: "What you need to bring a dog into Jordan: Ministry of Agriculture import permit, rabies vaccination and an endorsed veterinary health certificate — with several details to confirm officially."
+    fr: "Ce qu'il faut pour faire entrer un chien en Jordanie : permis d'importation du ministère de l'Agriculture, vaccination antirabique et certificat vétérinaire visé — avec plusieurs détails à confirmer officiellement."
+    es: "Lo que necesitas para traer un perro a Jordania: permiso de importación del ministerio de Agricultura, vacunación antirrábica y un certificado sanitario veterinario refrendado — con varios detalles por confirmar oficialmente."
+    pt: "O que você precisa para levar um cachorro para a Jordânia: autorização de importação do Ministério da Agricultura, vacinação antirrábica e um atestado de saúde veterinário endossado — com vários detalhes a confirmar oficialmente."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

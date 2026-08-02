@@ -1,0 +1,108 @@
+---
+import { LOCALES } from "../../../lib/routes";
+import Base from "../../../layouts/Base.astro";
+import BreedTravelPage from "../../../components/BreedTravelPage.astro";
+import { computeBreedTravel } from "../../../lib/breedTravel";
+import { loadKB, slugFor, inlineT, inlineF, localized } from "@mydogcanfly/knowledge";
+import { shardPaths } from "../../../lib/buildShard";
+import { existsSync } from "node:fs";
+
+export function getStaticPaths() {
+  const kb: any = loadKB();
+  const items = [...kb.breeds.values()]
+    .map((b: any) => ({ id: b.id, slug: slugFor(b.id), name: b.name, ni: b.name_i18n || {} }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const out: any[] = [];
+  for (const loc of LOCALES)
+    for (const it of items) {
+      // compare = up to 3 alphabetical neighbours (illustrated breed cards)
+      const others = items.filter((x) => x.id !== it.id);
+      const idx = others.findIndex((x) => x.name.localeCompare(it.name) > 0);
+      const around = idx >= 0 ? others.slice(Math.max(0, idx - 1), idx + 2) : others.slice(-3);
+      out.push({
+        params: { loc: loc === "en" ? undefined : loc, slug: it.slug },
+        props: { id: it.id, locale: loc, compare: around.slice(0, 3).map((x) => ({ slug: x.slug, name: x.ni[loc] || x.name })) },
+      });
+    }
+  return shardPaths("breeds", out);
+}
+
+const { id, locale, compare } = Astro.props as { id: string; locale: string; compare: { slug: string; name: string }[] };
+const profile = computeBreedTravel(id)!;
+const image = existsSync(`public/breeds/${profile.slug}.webp`) ? `/breeds/${profile.slug}.webp` : null;
+const fr = locale === "fr";
+const es = locale === "es";
+const T = inlineT(locale);
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+const bName = fr ? profile.nameFr : es ? profile.nameEs : locale === "pt" ? profile.namePt : profile.name;
+// Search Console (juillet 2026) : les requêtes « can <breed> live in hot weather », « what
+// temperature is too hot for a <breed> », « <breed> temperature » génèrent des impressions
+// sans aucun clic — la page traite bien la tolérance à la chaleur, mais le titre n'en disait
+// rien. On fait donc apparaître la chaleur dans le titre, et « hot weather / temperature »
+// dans la description, qui a la place de porter la formulation complète.
+// Budget 65 caractères : on retire les éléments de queue si un nom de race est trop long.
+// « a » ou « an » selon l'initiale — un site de référence ne peut pas écrire « a English Cocker ».
+const art = (n: string) => (/^[aeiou]/i.test(n) ? "an" : "a");
+const mkTitle = (n: string, parts: string[]) =>
+  F("Can {1} {0} fly? {2}", "{0} en avion : {2}", "{0} en avión: {2}", n, art(n), parts.join(", "));
+// L'emplacement à bord n'est pas le même pour toutes les races : 122 des 172 fiches
+// affichent « Cabine : impossible » — un berger allemand de 34 kg ne montera jamais en
+// cabine. Le titre annonçait pourtant « cabin » sur les 172, ce qui promet à 71 % des
+// visiteurs une option qui n'existe pas pour leur chien. On dit donc l'emplacement RÉEL,
+// lu sur le même calcul que celui affiché dans la page.
+const cabinOK = profile.cabin.level.tone === "ok" || profile.cabin.level.tone === "warn";
+const holdOK = profile.hold.level.tone === "ok";
+const place = cabinOK
+  ? T("cabin", "cabine", "cabina")
+  : holdOK
+    ? T("hold", "soute", "bodega")
+    : T("restricted hold", "soute restreinte", "bodega restringida");
+const titleParts = fr ? [T("heat", "chaleur", "calor"), place, T("crate", "caisse", "jaula")]
+  : es ? [T("heat", "chaleur", "calor"), place + T(" & crate", " et caisse", " y jaula")]
+  : [F("Heat, {0} & crate", "Chaleur, {0} et caisse", "Calor, {0} y jaula", place)];
+let title = mkTitle(bName, titleParts);
+if (title.length > 65 && titleParts.length > 1) title = mkTitle(bName, titleParts.slice(0, -1));
+if (title.length > 65) title = F("Can {1} {0} fly? Heat & {2}", "{0} en avion : chaleur et {2}", "{0} en avión: calor y {2}", bName, art(bName), place);
+// Dernier recours : deux races à nom composé débordaient encore (« Dogue de Majorque
+// (Ca de Bou) en avion : chaleur et soute restreinte », 68 caractères). On lâche
+// l'emplacement plutôt que le mot « chaleur », qui est ce que les gens tapent.
+if (title.length > 65) title = F("Can {1} {0} fly? Heat", "{0} en avion : chaleur", "{0} en avión: calor", bName, art(bName));
+
+const cabinQ = cabinOK
+  ? T("and can it travel in the cabin", "et peut-il voyager en cabine", "y puede viajar en cabina")
+  : T("and where does it travel on board", "et où voyage-t-il à bord", "y dónde viaja a bordo");
+const descLong = F(
+  "Can {1} {0} fly, {2}? Hot-weather temperature limits, hold, IATA crate size and the airlines that accept it.",
+  "Le {0} supporte-t-il la chaleur en avion, {2} ? Seuils de température, soute, caisse IATA et compagnies qui l'acceptent.",
+  "¿El {0} tolera el calor en avión {2}? Umbrales de temperatura, bodega, jaula IATA y aerolíneas que lo aceptan.",
+  bName, art(bName), cabinQ);
+const descShort = F(
+  "Can {1} {0} fly in hot weather? Temperature limits, cabin, hold and IATA crate size.",
+  "Le {0} supporte-t-il la chaleur en avion ? Seuils de température, cabine, soute et caisse IATA.",
+  "¿El {0} tolera el calor en avión? Umbrales de temperatura, cabina, bodega y jaula IATA.",
+  bName, art(bName));
+const desc = descLong.length <= 165 ? descLong : descShort;
+// FAQPage from the breed's derived Q&A (rich results + AI answer grounding).
+const faqLd = profile.faq && profile.faq.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: profile.faq.map((f) => ({
+    "@type": "Question",
+    name: localized(locale, f.q),
+    acceptedAnswer: { "@type": "Answer", text: localized(locale, f.a) },
+  })),
+} : null;
+const jsonLd = faqLd ? [faqLd] : [];
+---
+<Base
+  locale={locale}
+  title={title}
+  description={desc}
+  ogType="article"
+  image={image ?? undefined}
+  imageWidth={image ? 800 : undefined}
+  imageHeight={image ? 800 : undefined}
+  jsonLd={jsonLd}
+>
+  <BreedTravelPage profile={profile} locale={locale} compare={compare} image={image} />
+</Base>

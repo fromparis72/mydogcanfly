@@ -1,0 +1,379 @@
+# Country Entry Guide — Sierra Leone (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_sl
+iso2: "SL"
+name: { en: "Sierra Leone", fr: "Sierra Leone", es: "Sierra Leona", pt: "Serra Leoa" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+exit:
+  authority: Livestock & Veterinary Services (MAFS)
+  authorityUrl: https://maf.gov.sl/
+  intro:
+    en: "Sierra Leone is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Livestock and Veterinary Services Division (MAFS)."
+    fr: "La Sierra Leone est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Livestock and Veterinary Services Division (MAFS)."
+    es: "Sierra Leona no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Livestock and Veterinary Services Division (MAFS)."
+    pt: "Serra Leoa não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pela Livestock and Veterinary Services Division (MAFS)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
+    - timing: window
+      text:
+        en: "The Ministry's Livestock and Veterinary Services Division is the national competent authority for animal export and veterinary certification."
+        fr: "La Livestock and Veterinary Services Division du ministère est l'autorité nationale compétente pour l'export animal et la certification vétérinaire."
+        es: "La Livestock and Veterinary Services Division del ministerio es la autoridad nacional competente para la exportación animal y la certificación veterinaria."
+        pt: "A Livestock and Veterinary Services Division do ministério é a autoridade nacional competente para exportação de animais e certificação veterinária."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico (titulação) da UE válido antes de sair, ele continua válido por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Sierra Leone with your dog", fr: "Voyager en Sierra Leone avec ton chien", es: "Viajar a Sierra Leona con tu perro", pt: "Viajar para a Serra Leoa com seu cachorro" }
+  intro:
+    en: >-
+      Sierra Leone admits pet dogs, but entry is controlled by its own veterinary authority — the
+      Livestock and Veterinary Services Division of the Ministry of Agriculture, Forestry and Food
+      Security — not by the EU framework. Sierra Leone publishes very little about pet imports, so the
+      single reliable rule is this: no dog should be shipped without an import permit obtained in
+      advance from the Ministry, and that permit is what sets out the exact conditions for your animal.
+      The United States veterinary authority (USDA APHIS) lists no agreed health certificate for dogs
+      to Sierra Leone and states that, for species it does not cover, the importer must apply to the
+      Ministry for a permit that "will most likely outline the specific requirements." A valid rabies
+      vaccination and an official veterinary health certificate endorsed by the exporting country's
+      government vet are standard for a rabies-endemic West African destination. Because so little is
+      published, confirm every detail with the Ministry and your vet before you book.
+    fr: >-
+      La Sierra Leone admet les chiens de compagnie, mais l'entrée est contrôlée par sa propre autorité
+      vétérinaire — la Livestock and Veterinary Services Division du ministère de l'Agriculture, des
+      Forêts et de la Sécurité alimentaire — et non par le cadre européen. La Sierra Leone publie très
+      peu d'informations sur l'importation d'animaux ; la seule règle fiable est donc la suivante :
+      aucun chien ne doit être expédié sans un permis d'importation obtenu à l'avance auprès du
+      ministère, et c'est ce permis qui fixe les conditions exactes applicables à ton animal.
+      L'autorité vétérinaire américaine (USDA APHIS) ne publie aucun certificat sanitaire convenu pour
+      les chiens vers la Sierra Leone et indique que, pour les espèces qu'elle ne couvre pas,
+      l'importateur doit demander au ministère un permis qui « précisera très probablement les
+      exigences spécifiques ». Une vaccination antirabique valide et un certificat vétérinaire officiel
+      visé par le vétérinaire gouvernemental du pays d'export sont la norme pour une destination
+      d'endémie rabique en Afrique de l'Ouest. Comme très peu est publié, confirme chaque détail
+      auprès du ministère et de ton vétérinaire avant de réserver.
+    es: >-
+      Sierra Leona admite perros de compañía, pero la entrada la controla su propia autoridad
+      veterinaria — la Livestock and Veterinary Services Division del Ministerio de Agricultura,
+      Bosques y Seguridad Alimentaria — y no el marco de la UE. Sierra Leona publica muy poca
+      información sobre la importación de mascotas, por lo que la única regla fiable es esta: ningún
+      perro debe enviarse sin un permiso de importación obtenido con antelación en el Ministerio, y ese
+      permiso es lo que fija las condiciones exactas para tu animal. La autoridad veterinaria de
+      Estados Unidos (USDA APHIS) no publica ningún certificado sanitario acordado para perros hacia
+      Sierra Leona e indica que, para las especies que no cubre, el importador debe solicitar al
+      Ministerio un permiso que «probablemente detallará los requisitos específicos». Una vacunación
+      antirrábica válida y un certificado sanitario veterinario oficial refrendado por el veterinario
+      gubernamental del país exportador son lo habitual para un destino de África Occidental donde la
+      rabia es endémica. Como se publica tan poco, confirma cada detalle con el Ministerio y con tu
+      veterinario antes de reservar.
+
+    pt: "A Serra Leoa aceita cachorros de estimação, mas a entrada é controlada pela sua própria autoridade veterinária — a Livestock and Veterinary Services Division do Ministry of Agriculture, Forestry and Food Security — e não pelo marco da UE. A Serra Leoa publica muito pouca informação sobre a importação de animais de estimação, então a única regra confiável é esta: nenhum cachorro deve ser enviado sem uma autorização de importação obtida com antecedência junto ao ministério, e é essa autorização que estabelece as condições exatas para o seu animal. A autoridade veterinária dos Estados Unidos (USDA APHIS) não lista nenhum certificado de saúde acordado para cachorros com destino à Serra Leoa e afirma que, para as espécies que não cobre, o importador precisa solicitar ao ministério uma autorização que \"provavelmente detalhará as exigências específicas\". Uma vacinação antirrábica válida e um atestado de saúde veterinário oficial endossado pelo veterinário do governo do país exportador são o padrão para um destino da África Ocidental com raiva endêmica. Como muito pouco é publicado, confirme cada detalhe com o ministério e com o seu veterinário antes de reservar."
+difficulty:
+  level: difficult
+  label: { en: "Difficult — advance import permit; little published, confirm each step", fr: "Difficile — permis d'importation préalable ; peu de publications, chaque étape à confirmer", es: "Difícil — permiso de importación previo; poca información publicada, confirma cada paso", pt: "Difícil — autorização de importação prévia; pouca informação publicada, confirme cada etapa" }
+
+prepTime:
+  eu:
+    en: "From Europe: no official timeline is published. The pacing step is obtaining the Ministry import permit in advance, so plan well ahead and add a margin — allow a generous several weeks, plus a rabies vaccination and an endorsed veterinary health certificate."
+    fr: "Depuis l'Europe : aucun délai officiel n'est publié. L'étape déterminante est l'obtention préalable du permis d'importation du ministère ; anticipe donc largement et garde une marge — prévois plusieurs semaines confortables, plus une vaccination antirabique et un certificat vétérinaire visé."
+    es: "Desde Europa: no se publica ningún plazo oficial. El paso que marca el ritmo es obtener con antelación el permiso de importación del Ministerio, así que planifícalo con mucha antelación y añade un margen — cuenta con varias semanas holgadas, más una vacunación antirrábica y un certificado sanitario veterinario refrendado."
+    pt: "Da Europa: nenhum prazo oficial é publicado. A etapa que determina o ritmo é obter a autorização de importação do ministério com antecedência, então planeje com bastante antecedência e adicione uma margem — reserve várias semanas confortáveis, além de uma vacinação antirrábica e um atestado de saúde veterinário endossado."
+  listed:
+    en: "From a rabies-controlled country (US, Canada, Gulf states…): same approach — the advance import permit drives the timeline, but Sierra Leone does not publish processing times, so confirm directly with the Ministry."
+    fr: "Depuis un pays à rage maîtrisée (USA, Canada, pays du Golfe…) : même logique — le permis d'importation préalable rythme le calendrier, mais la Sierra Leone ne publie pas de délais, à confirmer directement avec le ministère."
+    es: "Desde un país con la rabia controlada (EE. UU., Canadá, países del Golfo…): mismo enfoque — el permiso de importación previo marca el calendario, pero Sierra Leona no publica plazos de tramitación, así que confírmalo directamente con el Ministerio."
+    pt: "De um país com raiva controlada (EUA, Canadá, países do Golfo…): mesma abordagem — a autorização de importação prévia determina o calendário, mas a Serra Leoa não publica prazos de tramitação, então confirme diretamente com o ministério."
+  nonListed:
+    en: "From a high-rabies-risk country: similar base steps, but expect closer scrutiny on arrival; a dog coming from a rabies-affected area may face extra checks or refusal. Exact conditions: Unknown — set by the permit."
+    fr: "Depuis un pays à haut risque rabique : mêmes étapes de base, mais contrôle renforcé à l'arrivée ; un chien venant d'une zone touchée par la rage peut subir des contrôles supplémentaires ou un refus. Conditions exactes : non communiquées — fixées par le permis."
+    es: "Desde un país de alto riesgo de rabia: los mismos pasos básicos, pero espera un control más riguroso a la llegada; un perro que llega de una zona afectada por la rabia puede enfrentarse a controles adicionales o al rechazo. Condiciones exactas: no comunicadas — las fija el permiso."
+    pt: "De um país de alto risco de raiva: etapas básicas semelhantes, mas espere uma verificação mais rigorosa na chegada; um cachorro vindo de uma área afetada pela raiva pode enfrentar verificações extras ou recusa. Condições exatas: não comunicado — definidas pela autorização."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Unknown (recommended)", fr: "Non communiqué (recommandée)", es: "No comunicado (recomendado)", pt: "Não comunicado (recomendado)" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (timing unpublished)", fr: "Requise (délai non publié)", es: "Obligatoria (plazos no publicados)", pt: "Obrigatória (prazo não publicado)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (endorsed)", fr: "Requis (visé)", es: "Obligatorio (refrendado)", pt: "Obrigatório (endossado)" }
+    cls: warn
+  - requirement: { en: "Arrival / pre-shipment inspection", fr: "Inspection à l'arrivée / pré-expédition", es: "Inspección a la llegada / previa al envío", pt: "Inspeção na chegada / pré-embarque" }
+    status: { en: "Required (live animals)", fr: "Requise (animaux vivants)", es: "Obligatoria (animales vivos)", pt: "Obrigatória (animais vivos)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Sierra Leone publishes almost nothing about pet-dog imports. Only a veterinarian can confirm the procedure for your dog, and the Livestock and Veterinary Services Division (Ministry of Agriculture, Forestry and Food Security) sets the exact conditions on your import permit."
+    fr: "La Sierra Leone ne publie presque rien sur l'importation de chiens de compagnie. Seul un vétérinaire peut confirmer la procédure pour ton chien, et la Livestock and Veterinary Services Division (ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire) fixe les conditions exactes sur ton permis d'importation."
+    es: "Sierra Leona no publica casi nada sobre la importación de perros de compañía. Solo un veterinario puede confirmar el procedimiento para tu perro, y la Livestock and Veterinary Services Division (Ministerio de Agricultura, Bosques y Seguridad Alimentaria) fija las condiciones exactas en tu permiso de importación."
+    pt: "A Serra Leoa publica quase nenhuma informação sobre a importação de cachorros de estimação. Somente um médico-veterinário pode confirmar o procedimento para o seu cachorro, e a Livestock and Veterinary Services Division (Ministry of Agriculture, Forestry and Food Security) define as condições exatas na sua autorização de importação."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Sierra Leone (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Sierra Leone (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Sierra Leona (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — a Serra Leoa (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Sierra Leone", fr: "Pays de destination — Sierra Leone", es: "País de destino — Sierra Leona", pt: "País de destino — Serra Leoa" }
+      text:
+        en: "Sierra Leone requires an advance import permit from the Ministry's Livestock and Veterinary Services Division, and that permit defines the precise conditions. A rabies vaccination and an official veterinary health certificate endorsed by the government vet are standard; most other specifics (microchip, antibody test, treatments, quarantine, minimum age) are not officially published and must be confirmed with the Ministry."
+        fr: "La Sierra Leone exige un permis d'importation préalable de la Livestock and Veterinary Services Division du ministère, et ce permis définit les conditions précises. Une vaccination antirabique et un certificat vétérinaire officiel visé par le vétérinaire gouvernemental sont la norme ; la plupart des autres détails (puce, titrage, traitements, quarantaine, âge minimum) ne sont pas publiés officiellement et doivent être confirmés auprès du ministère."
+        es: "Sierra Leona exige un permiso de importación previo de la Livestock and Veterinary Services Division del Ministerio, y ese permiso define las condiciones precisas. Una vacunación antirrábica y un certificado sanitario veterinario oficial refrendado por el veterinario gubernamental son lo habitual; la mayoría de los demás detalles (microchip, prueba de titulación, tratamientos, cuarentena, edad mínima) no se publican oficialmente y deben confirmarse con el Ministerio."
+        pt: "A Serra Leoa exige uma autorização de importação prévia da Livestock and Veterinary Services Division do ministério, e essa autorização define as condições precisas. Uma vacinação antirrábica e um atestado de saúde veterinário oficial endossado pelo veterinário do governo são o padrão; a maioria dos outros detalhes (microchip, teste sorológico, tratamentos, quarentena, idade mínima) não é publicada oficialmente e precisa ser confirmada com o ministério."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The rabies situation of your departure country shapes what the official vet must certify and how closely the dog is checked. A certificate confirming the dog is healthy, comes from an area not under a rabies restriction and has not been exposed to rabies is standard practice for this region."
+        fr: "La situation rabique du pays de départ détermine ce que le vétérinaire officiel doit certifier et l'intensité du contrôle. Un certificat attestant que le chien est sain, provient d'une zone non soumise à restriction rabique et n'a pas été exposé à la rage est une pratique courante pour cette région."
+        es: "La situación de la rabia en tu país de salida determina lo que el veterinario oficial debe certificar y con qué rigor se revisa al perro. Un certificado que confirme que el perro está sano, procede de una zona no sujeta a restricción por rabia y no ha estado expuesto a la rabia es la práctica habitual para esta región."
+        pt: "A situação da raiva no seu país de partida determina o que o veterinário oficial precisa certificar e o nível de rigor da verificação do cachorro. Um certificado confirmando que o cachorro está saudável, vem de uma área sem restrição relacionada à raiva e não foi exposto à raiva é a prática padrão para essa região."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-affected or high-risk area can trigger extra scrutiny on arrival. It is your dog's real origin and history that count — not only the last airport it flew from."
+        fr: "Un séjour récent dans une zone touchée par la rage ou à haut risque peut entraîner un contrôle renforcé à l'arrivée. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement le dernier aéroport de départ."
+        es: "Una estancia reciente en una zona afectada por la rabia o de alto riesgo puede provocar un control adicional a la llegada. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto del que salió."
+        pt: "Uma estadia recente em uma área afetada pela raiva ou de alto risco pode gerar uma verificação extra na chegada. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto de onde ele partiu."
+  note:
+    en: "So read the requirements below as Sierra Leone's framework, then confirm your dog's exact origin and history with your vet — the Ministry import permit lists the precise conditions."
+    fr: "Lis donc les exigences ci-dessous comme le cadre sierra-léonais, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis d'importation du ministère liste les conditions précises."
+    es: "Así que lee los requisitos siguientes como el marco de Sierra Leona y luego confirma el origen y el historial exactos de tu perro con tu veterinario — el permiso de importación del Ministerio detalla las condiciones precisas."
+    pt: "Portanto, leia as exigências abaixo como o marco da Serra Leoa e, depois, confirme a origem e o histórico exatos do seu cachorro com o seu veterinário — a autorização de importação do ministério lista as condições precisas."
+
+requirements:
+  - item: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply in advance to the Livestock and Veterinary Services Division (Ministry of Agriculture, Forestry and Food Security) before the dog is shipped. USDA APHIS confirms that dogs are not a species with a published certificate for Sierra Leone and directs importers to apply to the Ministry for an import permit, which will outline the specific requirements for the animal.", fr: "À demander à l'avance à la Livestock and Veterinary Services Division (ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire) avant l'expédition du chien. L'USDA APHIS confirme que les chiens ne font pas partie des espèces disposant d'un certificat publié pour la Sierra Leone et oriente les importateurs vers une demande de permis auprès du ministère, permis qui précisera les exigences spécifiques applicables à l'animal.", es: "Solicítalo con antelación a la Livestock and Veterinary Services Division (Ministerio de Agricultura, Bosques y Seguridad Alimentaria) antes de enviar al perro. La USDA APHIS confirma que los perros no son una especie con certificado publicado para Sierra Leona y remite a los importadores a solicitar al Ministerio un permiso de importación, que detallará los requisitos específicos para el animal.", pt: "Solicite com antecedência à Livestock and Veterinary Services Division (Ministry of Agriculture, Forestry and Food Security) antes de o cachorro ser enviado. O USDA APHIS confirma que os cachorros não são uma espécie com certificado publicado para a Serra Leoa e orienta os importadores a solicitar ao ministério uma autorização de importação, que detalhará as exigências específicas para o animal." }
+    exceptions: { en: "No exceptions — a dog without a valid import permit may be refused or held. Exact application process, fees and processing time: Unknown (not officially published).", fr: "Aucune exception — un chien sans permis d'importation valide peut être refusé ou retenu. Procédure de demande, frais et délai de traitement exacts : non communiqués (non publiés officiellement).", es: "Sin excepciones — un perro sin un permiso de importación válido puede ser rechazado o retenido. Proceso de solicitud, tasas y plazo de tramitación exactos: no comunicados (no publicados oficialmente).", pt: "Sem exceções — um cachorro sem uma autorização de importação válida pode ser recusado ou retido. Processo de solicitação, taxas e prazo de tramitação exatos: não comunicado (não publicado oficialmente)." }
+    ref: { en: "USDA APHIS — Export Live Animals to Sierra Leone (unlisted species → Ministry import permit); Ministry of Agriculture, Forestry and Food Security", fr: "USDA APHIS — Export d'animaux vivants vers la Sierra Leone (espèce non listée → permis du ministère) ; ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire", es: "USDA APHIS — Export Live Animals to Sierra Leone (especie no listada → permiso de importación del Ministerio); Ministerio de Agricultura, Bosques y Seguridad Alimentaria", pt: "USDA APHIS — Export Live Animals to Sierra Leone (unlisted species → Ministry import permit); Ministry of Agriculture, Forestry and Food Security" }
+  - item: { en: "Official veterinary health certificate", fr: "Certificat vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Certificado veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "An international veterinary health certificate completed by a licensed vet and endorsed by the official (government) veterinary authority of the exporting country is standard for entry to a rabies-endemic country. It should certify the dog is healthy, free of infectious/contagious disease including rabies, and record the rabies vaccination.", fr: "Un certificat vétérinaire international établi par un vétérinaire agréé et visé par l'autorité vétérinaire officielle (gouvernementale) du pays d'export est la norme pour entrer dans un pays d'endémie rabique. Il doit attester que le chien est sain, indemne de maladie infectieuse/contagieuse dont la rage, et consigner la vaccination antirabique.", es: "Un certificado sanitario veterinario internacional cumplimentado por un veterinario colegiado y refrendado por la autoridad veterinaria oficial (gubernamental) del país exportador es lo habitual para entrar en un país donde la rabia es endémica. Debe certificar que el perro está sano, libre de enfermedad infecciosa/contagiosa incluida la rabia, y registrar la vacunación antirrábica.", pt: "Um atestado de saúde veterinário internacional preenchido por um veterinário licenciado e endossado pela autoridade veterinária oficial (governamental) do país exportador é o padrão para entrada em um país com raiva endêmica. Ele deve certificar que o cachorro está saudável, livre de doenças infecciosas/contagiosas, incluindo a raiva, e registrar a vacinação antirrábica." }
+    exceptions: { en: "No standard Sierra Leone dog certificate model is published (USDA APHIS lists none). The exact form, wording and validity period are Unknown and are fixed by the Ministry import permit; use the certificate model the permit specifies.", fr: "Aucun modèle de certificat pour chien propre à la Sierra Leone n'est publié (l'USDA APHIS n'en liste aucun). Le formulaire, la formulation et la durée de validité exacts sont non communiqués et fixés par le permis d'importation du ministère ; utilise le modèle de certificat indiqué par le permis.", es: "No se publica ningún modelo de certificado para perros propio de Sierra Leona (la USDA APHIS no lista ninguno). El formulario, la redacción y el periodo de valide exactos son no comunicados y los fija el permiso de importación del Ministerio; usa el modelo de certificado que indique el permiso.", pt: "Nenhum modelo padrão de certificado para cachorros da Serra Leoa é publicado (o USDA APHIS não lista nenhum). O formulário, a redação e o prazo de validade exatos são não comunicados e definidos pela autorização de importação do ministério; use o modelo de certificado especificado pela autorização." }
+    ref: { en: "USDA APHIS — Export Live Animals to Sierra Leone (no dog certificate listed; permit-defined)", fr: "USDA APHIS — Export d'animaux vivants vers la Sierra Leone (aucun certificat chien listé ; défini par le permis)", es: "USDA APHIS — Export Live Animals to Sierra Leone (ningún certificado para perros listado; definido por el permiso)", pt: "USDA APHIS — Export Live Animals to Sierra Leone (no dog certificate listed; permit-defined)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Sierra Leone lies in a rabies-endemic region, so a valid rabies vaccination recorded by the vet and still valid on arrival is expected. The exact minimum interval between vaccination and travel, and the accepted validity, are set by the Ministry permit.", fr: "La Sierra Leone se situe dans une région d'endémie rabique ; une vaccination antirabique valide, consignée par le vétérinaire et encore valable à l'arrivée, est donc attendue. Le délai minimum exact entre la vaccination et le voyage, ainsi que la validité admise, sont fixés par le permis du ministère.", es: "Sierra Leona se encuentra en una región donde la rabia es endémica, por lo que se espera una vacunación antirrábica válida, registrada por el veterinario y aún vigente a la llegada. El intervalo mínimo exacto entre la vacunación y el viaje, así como la valide admitida, los fija el permiso del Ministerio.", pt: "A Serra Leoa está em uma região com raiva endêmica, então se espera uma vacinação antirrábica válida, registrada pelo veterinário e ainda válida na chegada. O intervalo mínimo exato entre a vacinação e a viagem, bem como a validade aceita, são definidos pela autorização do ministério." }
+    exceptions: { en: "The precise timing rules (waiting period after vaccination, maximum age of the vaccination) are not published in an official Sierra Leone source: Unknown. Confirm with your vet and the Ministry.", fr: "Les règles de délai précises (délai d'attente après la vaccination, ancienneté maximale de la vaccination) ne sont pas publiées dans une source officielle sierra-léonaise : non communiquées. À confirmer avec ton vétérinaire et le ministère.", es: "Las reglas de plazos precisas (periodo de espera tras la vacunación, antigüedad máxima de la vacunación) no se publican en ninguna fuente oficial de Sierra Leona: no comunicadas. Confírmalo con tu veterinario y el Ministerio.", pt: "As regras precisas de prazo (período de espera após a vacinação, idade máxima da vacinação) não são publicadas em nenhuma fonte oficial da Serra Leoa: não comunicado. Confirme com o seu veterinário e com o ministério." }
+    ref: { en: "Ministry import permit conditions (rabies-endemic destination); no published national timing rule", fr: "Conditions du permis d'importation du ministère (destination d'endémie rabique) ; aucune règle de délai nationale publiée", es: "Condiciones del permiso de importación del Ministerio (destino donde la rabia es endémica); ninguna regla de plazos nacional publicada", pt: "Ministry import permit conditions (rabies-endemic destination); no published national timing rule" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "An internationally readable ISO 11784/11785 microchip, implanted before the rabies vaccination so records match, is strongly advisable for identification. Whether Sierra Leone makes a microchip mandatory is not stated in any official source.", fr: "Une puce ISO 11784/11785 lisible à l'international, posée avant la vaccination antirabique pour que les documents concordent, est fortement conseillée pour l'identification. Le caractère obligatoire d'une puce en Sierra Leone n'est précisé dans aucune source officielle.", es: "Un microchip ISO 11784/11785 legible internacionalmente, implantado antes de la vacunación antirrábica para que los registros coincidan, es muy recomendable para la identificación. Ninguna fuente oficial indica si Sierra Leona hace obligatorio el microchip.", pt: "Um microchip ISO 11784/11785 legível internacionalmente, implantado antes da vacinação antirrábica para que os registros coincidam, é fortemente recomendado para identificação. Nenhuma fonte oficial informa se a Serra Leoa torna o microchip obrigatório." }
+    exceptions: { en: "No official Sierra Leone source specifies a microchip requirement or standard: Unknown. A microchip is best practice regardless; confirm with the Ministry.", fr: "Aucune source officielle sierra-léonaise ne précise d'exigence ou de norme de puce : non communiqué. Une puce reste une bonne pratique ; à confirmer avec le ministère.", es: "Ninguna fuente oficial de Sierra Leona especifica un requisito o norma de microchip: no comunicado. Un microchip es una buena práctica en todo caso; confírmalo con el Ministerio.", pt: "Nenhuma fonte oficial da Serra Leoa especifica uma exigência ou norma de microchip: não comunicado. Um microchip é uma boa prática de qualquer forma; confirme com o ministério." }
+    ref: { en: "Not published in official Sierra Leone requirements", fr: "Non publié dans les exigences officielles de la Sierra Leone", es: "No publicado en los requisitos oficiales de Sierra Leona", pt: "Não publicado nas exigências oficiais da Serra Leoa" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "No official Sierra Leone source states whether a rabies antibody test (blood titration) is required, and there is no published certificate to indicate it. Any such requirement would be set by the Ministry import permit.", fr: "Aucune source officielle sierra-léonaise n'indique si un titrage des anticorps antirabiques (titrage sanguin) est requis, et aucun certificat publié ne le mentionne. Une telle exigence serait fixée par le permis d'importation du ministère.", es: "Ninguna fuente oficial de Sierra Leona indica si se exige una prueba de titulación de rabia (titulación en sangre), y no hay certificado publicado que lo señale. Cualquier requisito de este tipo lo fijaría el permiso de importación del Ministerio.", pt: "Nenhuma fonte oficial da Serra Leoa informa se um teste sorológico antirrábico (titulação sanguínea) é exigido, e não há certificado publicado que o indique. Qualquer exigência desse tipo seria definida pela autorização de importação do ministério." }
+    exceptions: { en: "Not published: Unknown. Ask the Ministry when applying for the permit, especially for a dog coming from a high-rabies-risk country.", fr: "Non publié : non communiqué. Interrogez le ministère lors de la demande de permis, en particulier pour un chien venant d'un pays à haut risque rabique.", es: "No publicado: no comunicado. Pregunta al Ministerio al solicitar el permiso, sobre todo para un perro que llega de un país de alto riesgo de rabia.", pt: "Não publicado: não comunicado. Pergunte ao ministério ao solicitar a autorização, especialmente para um cachorro vindo de um país de alto risco de raiva." }
+    ref: { en: "Not published in official Sierra Leone requirements", fr: "Non publié dans les exigences officielles de la Sierra Leone", es: "No publicado en los requisitos oficiales de Sierra Leona", pt: "Não publicado nas exigências oficiais da Serra Leoa" }
+  - item: { en: "Other core vaccinations", fr: "Autres vaccinations de base", es: "Otras vacunas básicas", pt: "Outras vacinações essenciais" }
+    required: { en: "Recommended", fr: "Recommandées", es: "Recomendadas", pt: "Recomendado" }
+    when: { en: "Core canine vaccinations (distemper, hepatitis, parvovirus, leptospirosis, parainfluenza) are good practice before travel to the region and may be requested with the permit application, but are not confirmed as mandatory in an official Sierra Leone source.", fr: "Les vaccinations canines de base (Carré, hépatite, parvovirose, leptospirose, parainfluenza) sont une bonne pratique avant un voyage dans la région et peuvent être demandées avec la demande de permis, mais ne sont pas confirmées comme obligatoires dans une source officielle sierra-léonaise.", es: "Las vacunas caninas básicas (moquillo, hepatitis, parvovirus, leptospirosis, parainfluenza) son una buena práctica antes de viajar a la región y pueden solicitarse con la solicitud del permiso, pero ninguna fuente oficial de Sierra Leona confirma que sean obligatorias.", pt: "As vacinações essenciais caninas (cinomose, hepatite, parvovirose, leptospirose, parainfluenza) são uma boa prática antes de viajar para a região e podem ser solicitadas junto com o pedido de autorização, mas nenhuma fonte oficial da Serra Leoa confirma que sejam obrigatórias." }
+    exceptions: { en: "Whether these are mandatory is not officially published: Unknown. Keep the vaccination record up to date and confirm with the Ministry.", fr: "Leur caractère obligatoire n'est pas publié officiellement : non communiqué. Tiens le carnet de vaccination à jour et confirme avec le ministère.", es: "Su carácter obligatorio no se publica oficialmente: no comunicado. Mantén al día la cartilla de vacunación y confírmalo con el Ministerio.", pt: "Se elas são obrigatórias não é publicado oficialmente: não comunicado. Mantenha a carteira de vacinação em dia e confirme com o ministério." }
+    ref: { en: "Not published in official Sierra Leone requirements", fr: "Non publié dans les exigences officielles de la Sierra Leone", es: "No publicado en los requisitos oficiales de Sierra Leona", pt: "Não publicado nas exigências oficiais da Serra Leoa" }
+  - item: { en: "Parasite treatment", fr: "Traitement antiparasitaire", es: "Tratamiento antiparasitario", pt: "Tratamento antiparasitário" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "Internal/external parasite treatment (tapeworm, ticks) is sensible before travel but is not stated as mandatory in any official Sierra Leone source.", fr: "Un traitement antiparasitaire interne/externe (ténia, tiques) est judicieux avant le voyage mais n'est indiqué comme obligatoire dans aucune source officielle sierra-léonaise.", es: "Un tratamiento antiparasitario interno/externo (tenia, garrapatas) es sensato antes del viaje, pero ninguna fuente oficial de Sierra Leona lo indica como obligatorio.", pt: "Um tratamento antiparasitário interno/externo (tênia, carrapatos) é sensato antes da viagem, mas nenhuma fonte oficial da Serra Leoa o indica como obrigatório." }
+    exceptions: { en: "Not published: Unknown for individual permit conditions. Good practice regardless.", fr: "Non publié : non communiqué pour les conditions individuelles du permis. Bonne pratique en tout état de cause.", es: "No publicado: no comunicado para las condiciones individuales del permiso. Buena práctica en todo caso.", pt: "Não publicado: não comunicado para as condições individuais da autorização. Boa prática de qualquer forma." }
+    ref: { en: "Not published in official Sierra Leone requirements", fr: "Non publié dans les exigences officielles de la Sierra Leone", es: "No publicado en los requisitos oficiales de Sierra Leona", pt: "Não publicado nas exigências oficiais da Serra Leoa" }
+  - item: { en: "Advance notification / pre-shipment inspection", fr: "Notification préalable / inspection pré-expédition", es: "Notificación previa / inspección previa al envío", pt: "Notificação prévia / inspeção pré-embarque" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Live animals are among the goods that require pre-shipment inspection and certification and a permit from the sector authority (Ministry of Agriculture) before importation, administered through the National Revenue Authority (NRA) Customs and Excise Department. Obtain the import permit in advance and be ready to declare the dog on arrival.", fr: "Les animaux vivants figurent parmi les marchandises soumises à inspection et certification avant expédition et à un permis de l'autorité sectorielle (ministère de l'Agriculture) avant l'importation, procédure gérée par le département des douanes et accises de la National Revenue Authority (NRA). Obtiens le permis d'importation à l'avance et sois prêt à déclarer le chien à l'arrivée.", es: "Los animales vivos figuran entre las mercancías que requieren inspección y certificación previas al envío y un permiso de la autoridad sectorial (Ministerio de Agricultura) antes de la importación, tramitado a través del National Revenue Authority (NRA) Customs and Excise Department. Obtén el permiso de importación con antelación y prepárate para declarar al perro a la llegada.", pt: "Animais vivos estão entre as mercadorias que exigem inspeção e certificação pré-embarque e uma autorização da autoridade setorial (Ministry of Agriculture) antes da importação, administrada pelo National Revenue Authority (NRA) Customs and Excise Department. Obtenha a autorização de importação com antecedência e esteja pronto para declarar o cachorro na chegada." }
+    exceptions: { en: "Exact declaration steps and documents at the border are Unknown (not published in detail). Plan ahead and carry the original permit and certificate.", fr: "Les démarches de déclaration et documents exacts à la frontière sont non communiqués (non publiés en détail). Anticipe et munis-toi du permis et du certificat originaux.", es: "Los trámites de declaración y los documentos exactos en la frontera son no comunicados (no publicados en detalle). Planifica con antelación y lleva el permiso y el certificado originales.", pt: "As etapas exatas de declaração e os documentos exigidos na fronteira são não comunicados (não publicados em detalhe). Planeje com antecedência e leve a autorização e o certificado originais." }
+    ref: { en: "National Revenue Authority (NRA) — Customs and Excise (live animals: pre-shipment inspection, sector permit)", fr: "National Revenue Authority (NRA) — Douanes et accises (animaux vivants : inspection pré-expédition, permis sectoriel)", es: "National Revenue Authority (NRA) — Customs and Excise (animales vivos: inspección previa al envío, permiso sectorial)", pt: "National Revenue Authority (NRA) — Customs and Excise (live animals: pre-shipment inspection, sector permit)" }
+  - item: { en: "Arrival veterinary inspection", fr: "Inspection vétérinaire à l'arrivée", es: "Inspección veterinaria a la llegada", pt: "Inspeção veterinária na chegada" }
+    required: { en: "Likely (Unknown detail)", fr: "Probable (détail non communiqué)", es: "Probable (detalle no comunicado)", pt: "Provável (detalhe não comunicado)" }
+    when: { en: "As for other African destinations, the Livestock and Veterinary Services Division is expected to verify the import permit and health certificate and inspect the dog on arrival (Freetown / Lungi International Airport). The exact procedure is not published.", fr: "Comme pour d'autres destinations africaines, la Livestock and Veterinary Services Division devrait vérifier le permis d'importation et le certificat sanitaire et inspecter le chien à l'arrivée (Freetown / aéroport international de Lungi). La procédure exacte n'est pas publiée.", es: "Como en otros destinos africanos, se espera que la Livestock and Veterinary Services Division verifique el permiso de importación y el certificado sanitario e inspeccione al perro a la llegada (Freetown / Aeropuerto Internacional de Lungi). El procedimiento exacto no se publica.", pt: "Como em outros destinos africanos, espera-se que a Livestock and Veterinary Services Division verifique a autorização de importação e o atestado de saúde e inspecione o cachorro na chegada (Freetown / Aeroporto Internacional de Lungi). O procedimento exato não é publicado." }
+    exceptions: { en: "If documents are missing or a contagious disease is suspected, the authorities may hold, examine or refuse the animal. Exact powers and process: Unknown.", fr: "Si des documents manquent ou en cas de suspicion de maladie contagieuse, les autorités peuvent retenir, examiner ou refuser l'animal. Pouvoirs et procédure exacts : non communiqués.", es: "Si faltan documentos o se sospecha una enfermedad contagiosa, las autoridades pueden retener, examinar o rechazar al animal. Competencias y procedimiento exactos: no comunicados.", pt: "Se faltarem documentos ou houver suspeita de doença contagiosa, as autoridades podem reter, examinar ou recusar o animal. Poderes e procedimento exatos: não comunicado." }
+    ref: { en: "Livestock and Veterinary Services Division (arrival control); process not published in detail", fr: "Livestock and Veterinary Services Division (contrôle à l'arrivée) ; procédure non publiée en détail", es: "Livestock and Veterinary Services Division (control a la llegada); procedimiento no publicado en detalle", pt: "Livestock and Veterinary Services Division (arrival control); process not published in detail" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "No official Sierra Leone source states whether routine quarantine applies to pet dogs. Any quarantine would be decided by the veterinary authority based on the permit and the dog's health.", fr: "Aucune source officielle sierra-léonaise n'indique si une quarantaine systématique s'applique aux chiens de compagnie. Une éventuelle quarantaine serait décidée par l'autorité vétérinaire selon le permis et l'état sanitaire du chien.", es: "Ninguna fuente oficial de Sierra Leona indica si se aplica una cuarentena rutinaria a los perros de compañía. Cualquier cuarentena la decidiría la autoridad veterinaria según el permiso y el estado de salud del perro.", pt: "Nenhuma fonte oficial da Serra Leoa informa se a quarentena de rotina se aplica a cachorros de estimação. Qualquer quarentena seria decidida pela autoridade veterinária com base na autorização e na saúde do cachorro." }
+    exceptions: { en: "Not published: Unknown. Quarantine or refusal may still apply where documents are missing or a contagious disease is suspected.", fr: "Non publié : non communiqué. Une quarantaine ou un refus reste possible si des documents manquent ou en cas de suspicion de maladie contagieuse.", es: "No publicado: no comunicado. Aún puede aplicarse cuarentena o rechazo si faltan documentos o se sospecha una enfermedad contagiosa.", pt: "Não publicado: não comunicado. Ainda assim, quarentena ou recusa podem se aplicar quando faltam documentos ou há suspeita de doença contagiosa." }
+    ref: { en: "Not published in official Sierra Leone requirements", fr: "Non publié dans les exigences officielles de la Sierra Leone", es: "No publicado en los requisitos oficiales de Sierra Leona", pt: "Não publicado nas exigências oficiais da Serra Leoa" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Unknown", fr: "Non communiqué", es: "No comunicado", pt: "Não comunicado" }
+    when: { en: "A dog needs a valid rabies vaccination to enter, which in practice sets a minimum age, but no explicit minimum travelling age is published in an official Sierra Leone source.", fr: "Un chien a besoin d'une vaccination antirabique valide pour entrer, ce qui fixe en pratique un âge minimum, mais aucun âge minimum de voyage explicite n'est publié dans une source officielle sierra-léonaise.", es: "Un perro necesita una vacunación antirrábica válida para entrar, lo que en la práctica fija una edad mínima, pero ninguna fuente oficial de Sierra Leona publica una edad mínima de viaje explícita.", pt: "Um cachorro precisa de uma vacinação antirrábica válida para entrar, o que na prática define uma idade mínima, mas nenhuma fonte oficial da Serra Leoa publica uma idade mínima de viagem explícita." }
+    exceptions: { en: "Exact minimum age is not officially published: Unknown. Confirm with your vet and the Ministry before booking.", fr: "L'âge minimum exact n'est pas publié officiellement : non communiqué. À confirmer avec ton vétérinaire et le ministère avant de réserver.", es: "La edad mínima exacta no se publica oficialmente: no comunicada. Confírmala con tu veterinario y el Ministerio antes de reservar.", pt: "A idade mínima exata não é publicada oficialmente: não comunicado. Confirme com o seu veterinário e com o ministério antes de reservar." }
+    ref: { en: "No explicit minimum age in the published Sierra Leone requirements", fr: "Aucun âge minimum explicite dans les exigences publiées de la Sierra Leone", es: "Ninguna edad mínima explícita en los requisitos publicados de Sierra Leona", pt: "No explicit minimum age in the published Sierra Leone requirements" }
+
+origin:
+  eu:
+    title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
+    body:
+      en: "There is no EU pet-passport shortcut into Sierra Leone: the EU passport is not a Sierra Leonean document. A dog from Europe still needs an advance import permit from the Ministry's Livestock and Veterinary Services Division, a valid rabies vaccination and an official international veterinary health certificate endorsed by the government vet before departure. Because Sierra Leone publishes so little, treat the permit as the master document and confirm the exact conditions with the Ministry."
+      fr: "Aucun raccourci « passeport européen » pour entrer en Sierra Leone : le passeport UE n'est pas un document sierra-léonais. Un chien venant d'Europe a tout de même besoin d'un permis d'importation préalable de la Livestock and Veterinary Services Division du ministère, d'une vaccination antirabique valide et d'un certificat vétérinaire international officiel visé par le vétérinaire gouvernemental avant le départ. La Sierra Leone publiant très peu, considère le permis comme le document maître et confirme les conditions exactes avec le ministère."
+      es: "No hay atajo del pasaporte europeo para mascotas para entrar en Sierra Leona: el pasaporte de la UE no es un documento sierraleonés. Un perro que llega de Europa necesita igualmente un permiso de importación previo de la Livestock and Veterinary Services Division del Ministerio, una vacunación antirrábica válida y un certificado sanitario veterinario internacional oficial refrendado por el veterinario gubernamental antes de la salida. Como Sierra Leona publica tan poco, considera el permiso como el documento principal y confirma las condiciones exactas con el Ministerio."
+      pt: "Não existe um atalho de passaporte europeu para entrar na Serra Leoa: o passaporte da UE não é um documento serra-leonês. Um cachorro vindo da Europa ainda precisa de uma autorização de importação prévia da Livestock and Veterinary Services Division do ministério, de uma vacinação antirrábica válida e de um atestado de saúde veterinário internacional oficial endossado pelo veterinário do governo antes da partida. Como a Serra Leoa publica muito pouco, trate a autorização como o documento principal e confirme as condições exatas com o ministério."
+    cls: warn
+  listed:
+    title: { en: "From a rabies-controlled country", fr: "Depuis un pays à rage maîtrisée", es: "Desde un país con la rabia controlada", pt: "De um país com raiva controlada" }
+    body:
+      en: "From countries with a controlled rabies situation (United States, Canada, Gulf states, most of Europe and others), the same core scheme applies: advance Ministry import permit, valid rabies vaccination and an endorsed international veterinary health certificate. USDA APHIS lists no dog certificate for Sierra Leone, so the permit issued by the Ministry defines the paperwork — apply early and follow it exactly."
+      fr: "Depuis les pays à situation rabique maîtrisée (États-Unis, Canada, pays du Golfe, la plupart de l'Europe, etc.), le même schéma de base s'applique : permis d'importation préalable du ministère, vaccination antirabique valide et certificat vétérinaire international visé. L'USDA APHIS ne liste aucun certificat pour chien vers la Sierra Leone ; c'est donc le permis délivré par le ministère qui définit les documents — demande-le tôt et suis-le à la lettre."
+      es: "Desde países con una situación de rabia controlada (Estados Unidos, Canadá, países del Golfo, la mayor parte de Europa y otros), se aplica el mismo esquema básico: permiso de importación previo del Ministerio, vacunación antirrábica válida y un certificado sanitario veterinario internacional refrendado. La USDA APHIS no lista ningún certificado para perros hacia Sierra Leona, así que el permiso emitido por el Ministerio define la documentación — solicítalo pronto y síguelo al pie de la letra."
+      pt: "De países com uma situação de raiva controlada (Estados Unidos, Canadá, países do Golfo, a maior parte da Europa e outros), aplica-se o mesmo esquema básico: autorização de importação prévia do ministério, vacinação antirrábica válida e um atestado de saúde veterinário internacional endossado. O USDA APHIS não lista nenhum certificado para cachorros com destino à Serra Leoa, então a autorização emitida pelo ministério define a documentação — solicite com antecedência e siga-a à risca."
+    cls: warn
+  nonListed:
+    title: { en: "From a high-rabies-risk country", fr: "Depuis un pays à haut risque rabique", es: "Desde un país de alto riesgo de rabia", pt: "De um país de alto risco de raiva" }
+    body:
+      en: "Whether Sierra Leone adds a mandatory rabies antibody test or extra conditions for high-risk origins is not published: Unknown. Expect closer scrutiny on arrival and a certificate confirming the dog is healthy, comes from an area not under a rabies restriction and has not been exposed to rabies. A dog from a rabies-affected zone may face extra checks or refusal — ask the Ministry when you apply for the permit."
+      fr: "Le fait que la Sierra Leone ajoute un titrage antirabique obligatoire ou des conditions supplémentaires pour les origines à haut risque n'est pas publié : non communiqué. Attends-toi à un contrôle renforcé à l'arrivée et à un certificat attestant que le chien est sain, provient d'une zone non soumise à restriction rabique et n'a pas été exposé à la rage. Un chien venant d'une zone touchée par la rage peut subir des contrôles supplémentaires ou un refus — interrogez le ministère lors de la demande de permis."
+      es: "Si Sierra Leona añade una prueba de titulación de rabia obligatoria o condiciones adicionales para orígenes de alto riesgo no se publica: no comunicado. Espera un control más riguroso a la llegada y un certificado que confirme que el perro está sano, procede de una zona no sujeta a restricción por rabia y no ha estado expuesto a la rabia. Un perro procedente de una zona afectada por la rabia puede enfrentarse a controles adicionales o al rechazo — pregunta al Ministerio al solicitar el permiso."
+      pt: "Se a Serra Leoa acrescenta um teste sorológico antirrábico obrigatório ou condições extras para origens de alto risco não é publicado: não comunicado. Espere uma verificação mais rigorosa na chegada e um certificado confirmando que o cachorro está saudável, vem de uma área sem restrição relacionada à raiva e não foi exposto à raiva. Um cachorro vindo de uma zona afetada pela raiva pode enfrentar verificações extras ou recusa — pergunte ao ministério ao solicitar a autorização."
+    cls: warn
+
+arrival:
+  intro:
+    en: "When your dog reaches Sierra Leone, veterinary officers of the Livestock and Veterinary Services Division and NRA Customs handle the check at the point of entry (Freetown / Lungi International Airport). The published detail is limited, so carry complete original documents."
+    fr: "À l'arrivée de ton chien en Sierra Leone, les agents vétérinaires de la Livestock and Veterinary Services Division et les douanes de la NRA effectuent le contrôle au point d'entrée (Freetown / aéroport international de Lungi). Les détails publiés sont limités ; munis-toi donc de documents originaux complets."
+    es: "Cuando tu perro llega a Sierra Leona, los agentes veterinarios de la Livestock and Veterinary Services Division y las aduanas de la NRA se encargan del control en el punto de entrada (Freetown / Aeropuerto Internacional de Lungi). La información publicada es limitada, así que lleva los documentos originales completos."
+    pt: "Quando o seu cachorro chegar à Serra Leoa, agentes veterinários da Livestock and Veterinary Services Division e a alfândega do NRA cuidam da verificação no ponto de entrada (Freetown / Aeroporto Internacional de Lungi). O detalhamento publicado é limitado, então leve os documentos originais completos."
+  points:
+    - en: "Present the full document set on arrival — the Ministry import permit, the endorsed international veterinary health certificate and the rabies vaccination record."
+      fr: "Présente l'ensemble des documents à l'arrivée — le permis d'importation du ministère, le certificat vétérinaire international visé et le justificatif de vaccination antirabique."
+      es: "Presenta el conjunto completo de documentos a la llegada — el permiso de importación del Ministerio, el certificado sanitario veterinario internacional refrendado y el registro de la vacunación antirrábica."
+      pt: "Apresente o conjunto completo de documentos na chegada — a autorização de importação do ministério, o atestado de saúde veterinário internacional endossado e o registro de vacinação antirrábica."
+    - en: "Live animals are subject to inspection and certification; the veterinary authority verifies the documents against the animal and checks its health before clearance."
+      fr: "Les animaux vivants sont soumis à inspection et certification ; l'autorité vétérinaire vérifie la concordance des documents avec l'animal et contrôle son état sanitaire avant la mainlevée."
+      es: "Los animales vivos están sujetos a inspección y certificación; la autoridad veterinaria comprueba la concordancia de los documentos con el animal y verifica su estado de salud antes del despacho."
+      pt: "Animais vivos estão sujeitos a inspeção e certificação; a autoridade veterinária confere os documentos com o animal e verifica sua saúde antes da liberação."
+    - en: "Carry original documents, not copies, and keep a set with you throughout the journey."
+      fr: "Munis-toi des documents originaux, pas de copies, et garde-en un jeu sur toi durant tout le trajet."
+      es: "Lleva los documentos originales, no copias, y mantén un juego contigo durante todo el trayecto."
+      pt: "Leve documentos originais, não cópias, e mantenha um conjunto com você durante toda a viagem."
+    - en: "If documents are missing or invalid, or a contagious disease is suspected, the authorities may hold, examine, quarantine or refuse the dog. The exact process and any quarantine duration are Unknown (not published)."
+      fr: "Si les documents manquent ou sont invalides, ou en cas de suspicion de maladie contagieuse, les autorités peuvent retenir, examiner, mettre en quarantaine ou refuser le chien. La procédure exacte et une éventuelle durée de quarantaine sont non communiquées (non publiées)."
+      es: "Si faltan documentos o no son válidos, o se sospecha una enfermedad contagiosa, las autoridades pueden retener, examinar, poner en cuarentena o rechazar al perro. El procedimiento exacto y la duración de una posible cuarentena son no comunicados (no publicados)."
+      pt: "Se faltarem documentos ou eles forem inválidos, ou houver suspeita de doença contagiosa, as autoridades podem reter, examinar, colocar em quarentena ou recusar o cachorro. O procedimento exato e a duração de uma eventual quarentena são não comunicados (não publicados)."
+    - en: "Note that veterinary services in Sierra Leone can be limited; plan clearance and any onward care in advance."
+      fr: "Note que les services vétérinaires en Sierra Leone peuvent être limités ; anticipe la mainlevée et tout suivi ultérieur."
+      es: "Ten en cuenta que los servicios veterinarios en Sierra Leona pueden ser limitados; planifica el despacho y cualquier atención posterior con antelación."
+      pt: "Vale notar que os serviços veterinários na Serra Leoa podem ser limitados; planeje a liberação e qualquer cuidado posterior com antecedência."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "No national breed-specific import ban for dogs is published by the Ministry of Agriculture, Forestry and Food Security or the National Revenue Authority. Entry is controlled by the veterinary import permit and health requirements, not by breed — but note that published information is very limited."
+    fr: "Aucune interdiction nationale d'importation par race de chien n'est publiée par le ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire ni par la National Revenue Authority. L'entrée est encadrée par le permis d'importation vétérinaire et les exigences sanitaires, non par la race — mais note que l'information publiée est très limitée."
+    es: "El Ministerio de Agricultura, Bosques y Seguridad Alimentaria ni la National Revenue Authority publican ninguna prohibición nacional de importación por raza de perro. La entrada se controla mediante el permiso de importación veterinario y los requisitos sanitarios, no por la raza — pero ten en cuenta que la información publicada es muy limitada."
+    pt: "Nenhuma proibição nacional de importação por raça de cachorro é publicada pelo Ministry of Agriculture, Forestry and Food Security nem pela National Revenue Authority. A entrada é controlada pela autorização veterinária de importação e pelas exigências sanitárias, não pela raça — mas vale notar que a informação publicada é muito limitada."
+  cat1:
+    en: "We found no official Sierra Leone legislation banning specific dog breeds from import. Sierra Leone's customs prohibited/restricted regime (Customs Act No 9 of 2011) targets categories such as arms, drugs and hazardous goods, and lists live animals as requiring inspection and a sector permit — not particular dog breeds."
+    fr: "Nous n'avons trouvé aucune législation sierra-léonaise officielle interdisant l'importation de races de chiens précises. Le régime des marchandises prohibées/restreintes (Customs Act n° 9 de 2011) vise des catégories comme les armes, les drogues et les produits dangereux, et classe les animaux vivants comme soumis à inspection et à un permis sectoriel — non des races de chiens particulières."
+    es: "No encontramos ninguna legislación oficial de Sierra Leona que prohíba la importación de razas de perro concretas. El régimen de mercancías prohibidas/restringidas de las aduanas (Customs Act No 9 of 2011) se dirige a categorías como armas, drogas y mercancías peligrosas, y clasifica a los animales vivos como sujetos a inspección y a un permiso sectorial — no razas de perro concretas."
+    pt: "Não encontramos nenhuma legislação oficial da Serra Leoa que proíba a importação de raças de cachorro específicas. O regime alfandegário de mercadorias proibidas/restritas da Serra Leoa (Customs Act No 9 of 2011) tem como alvo categorias como armas, drogas e mercadorias perigosas, e classifica os animais vivos como sujeitos a inspeção e a uma autorização setorial — não raças de cachorro específicas."
+  cat2:
+    en: "Any local, district or ownership rules affecting particular dogs: Unknown (not published in the sources reviewed). Wildlife and endangered species are separately regulated, but that is not a breed-specific dog rule."
+    fr: "Règles locales, de district ou de détention visant des chiens particuliers : non communiquées (non publiées dans les sources consultées). La faune sauvage et les espèces menacées font l'objet d'une réglementation distincte, mais ce n'est pas une règle par race."
+    es: "Cualquier norma local, de distrito o de tenencia que afecte a perros concretos: no comunicada (no publicada en las fuentes consultadas). La fauna silvestre y las especies amenazadas se regulan por separado, pero eso no es una norma por raza de perro."
+    pt: "Quaisquer regras locais, distritais ou de posse que afetem cachorros específicos: não comunicadas (não publicadas nas fontes consultadas). A fauna selvagem e as espécies ameaçadas são reguladas separadamente, mas isso não é uma regra por raça de cachorro."
+  note:
+    en: "Because published rules are scarce and may change, confirm the current position on any specific breed directly with the Livestock and Veterinary Services Division before you travel."
+    fr: "L'information publiée étant rare et susceptible d'évoluer, vérifie la situation à jour pour une race précise directement auprès de la Livestock and Veterinary Services Division avant de voyager."
+    es: "Como las normas publicadas son escasas y pueden cambiar, confirma la situación actual de cualquier raza concreta directamente con la Livestock and Veterinary Services Division antes de viajar."
+    pt: "Como as regras publicadas são escassas e podem mudar, confirme a situação atual de qualquer raça específica diretamente com a Livestock and Veterinary Services Division antes de viajar."
+
+checklist:
+  - en: "Apply for the Ministry import permit well before travel (Livestock and Veterinary Services Division, Ministry of Agriculture, Forestry and Food Security)"
+    fr: "Demande le permis d'importation du ministère bien avant le voyage (Livestock and Veterinary Services Division, ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire)"
+    es: "Solicita el permiso de importación del Ministerio con mucha antelación al viaje (Livestock and Veterinary Services Division, Ministerio de Agricultura, Bosques y Seguridad Alimentaria)"
+    pt: "Solicite a autorização de importação do ministério bem antes da viagem (Livestock and Veterinary Services Division, Ministry of Agriculture, Forestry and Food Security)"
+  - en: "Follow the exact conditions the permit lists — it is the master document for Sierra Leone"
+    fr: "Suis les conditions exactes listées par le permis — c'est le document maître pour la Sierra Leone"
+    es: "Sigue las condiciones exactas que detalla el permiso — es el documento principal para Sierra Leona"
+    pt: "Siga as condições exatas listadas na autorização — ela é o documento principal para a Serra Leoa"
+  - en: "Valid rabies vaccination recorded by your vet (confirm the timing with the Ministry)"
+    fr: "Vaccination antirabique valide consignée par ton vétérinaire (confirme le délai avec le ministère)"
+    es: "Vacunación antirrábica válida registrada por tu veterinario (confirma los plazos con el Ministerio)"
+    pt: "Vacinação antirrábica válida registrada pelo seu veterinário (confirme os prazos com o ministério)"
+  - en: "ISO microchip (recommended) implanted before the rabies vaccination"
+    fr: "Puce ISO (recommandée) posée avant la vaccination antirabique"
+    es: "Microchip ISO (recomendado) implantado antes de la vacunación antirrábica"
+    pt: "Microchip ISO (recomendado) implantado antes da vacinação antirrábica"
+  - en: "Official international veterinary health certificate, endorsed by the government vet"
+    fr: "Certificat vétérinaire international officiel, visé par le vétérinaire gouvernemental"
+    es: "Certificado sanitario veterinario internacional oficial, refrendado por el veterinario gubernamental"
+    pt: "Certificado veterinário internacional oficial, endossado pelo veterinário governamental"
+  - en: "Original permit and certificate to present at the point of entry (not copies)"
+    fr: "Permis et certificat originaux à présenter au point d'entrée (pas de copies)"
+    es: "Permiso y certificado originales para presentar en el punto de entrada (no copias)"
+    pt: "Autorização e certificado originais para apresentar no ponto de entrada (não cópias)"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+  - en: "Confirm microchip, antibody test, minimum age and quarantine directly with the Ministry — these are not published"
+    fr: "Confirme puce, titrage, âge minimum et quarantaine directement avec le ministère — ces points ne sont pas publiés"
+    es: "Confirma microchip, prueba de titulación, edad mínima y cuarentena directamente con el Ministerio — estos puntos no se publican"
+    pt: "Confirme microchip, teste sorológico, idade mínima e quarentena diretamente com o ministério — esses pontos não são publicados"
+
+sources:
+  - label: { en: "USDA APHIS — Export Live Animals to Sierra Leone (unlisted species → apply to the Ministry for an import permit)", fr: "USDA APHIS — Export d'animaux vivants vers la Sierra Leone (espèce non listée → demander un permis d'importation au ministère)", es: "USDA APHIS — Export Live Animals to Sierra Leone (especie no listada → solicitar un permiso de importación al Ministerio)", pt: "USDA APHIS — Exportação de animais vivos para a Serra Leoa (espécie não listada → solicitar autorização de importação ao ministério)" }
+    url: "https://www.aphis.usda.gov/live-animal-export/export-live-animals-sierra-leone"
+  - label: { en: "Ministry of Agriculture, Forestry and Food Security (Sierra Leone) — official site", fr: "Ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire (Sierra Leone) — site officiel", es: "Ministerio de Agricultura, Bosques y Seguridad Alimentaria (Sierra Leona) — sitio oficial", pt: "Ministry of Agriculture, Forestry and Food Security (Serra Leoa) — site oficial" }
+    url: "https://maf.gov.sl/"
+  - label: { en: "Ministry of Agriculture, Forestry and Food Security — About Us (mandate, Livestock Development)", fr: "Ministère de l'Agriculture, des Forêts et de la Sécurité alimentaire — À propos (mandat, développement de l'élevage)", es: "Ministerio de Agricultura, Bosques y Seguridad Alimentaria — About Us (mandato, desarrollo ganadero)", pt: "Ministry of Agriculture, Forestry and Food Security — About Us (mandato, desenvolvimento pecuário)" }
+    url: "https://maf.gov.sl/about-us/"
+  - label: { en: "National Revenue Authority (Sierra Leone) — Customs and Excise (live animals, permits, inspection)", fr: "National Revenue Authority (Sierra Leone) — Douanes et accises (animaux vivants, permis, inspection)", es: "National Revenue Authority (Sierra Leona) — Customs and Excise (animales vivos, permisos, inspección)", pt: "National Revenue Authority (Serra Leoa) — Customs and Excise (animais vivos, autorizações, inspeção)" }
+    url: "https://nra.gov.sl/"
+
+seo:
+  title: { en: "Sierra Leone Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Sierra Leone — Guide", es: "Requisitos de entrada de perros en Sierra Leona — Guía de viaje", pt: "Exigências de entrada de cachorros na Serra Leoa — Guia de viagem" }
+  metaTitle: { en: "Sierra Leone Dog Entry Requirements (2026)", fr: "Voyager en Sierra Leone avec ton chien : formalités (2026)", es: "Viajar a Sierra Leona con tu perro: requisitos de entrada (2026)", pt: "Exigências de entrada de cachorros na Serra Leoa (2026)" }
+  metaDesc:
+    en: "Official rules for a dog entering Sierra Leone: advance Ministry import permit, rabies vaccination and an endorsed veterinary certificate. Sourced and dated."
+    fr: "Règles officielles pour faire entrer un chien en Sierra Leone : permis d'importation du ministère, vaccination antirabique et certificat visé. Sourcé et daté."
+    es: "Normas oficiales para traer un perro a Sierra Leona: permiso de importación del Ministerio, vacunación antirrábica y certificado sanitario. Con fuentes y fecha."
+    pt: "Regras oficiais para um cachorro entrar na Serra Leoa: autorização de importação prévia do ministério, vacinação antirrábica e certificado veterinário endossado."
+  slug: "sierra-leone"
+  shortDesc:
+    en: "What you need to bring a dog into Sierra Leone: an advance Ministry import permit, rabies vaccination and an endorsed veterinary health certificate — most other details are set by the permit."
+    fr: "Ce qu'il faut pour faire entrer un chien en Sierra Leone : permis d'importation préalable du ministère, vaccination antirabique et certificat sanitaire visé — la plupart des autres détails sont fixés par le permis."
+    es: "Lo que necesitas para traer un perro a Sierra Leona: un permiso de importación previo del Ministerio, vacunación antirrábica y un certificado sanitario veterinario refrendado — la mayoría de los demás detalles los fija el permiso."
+    pt: "O que você precisa para levar um cachorro à Serra Leoa: uma autorização de importação prévia do ministério, vacinação antirrábica e um atestado de saúde veterinário endossado — a maioria dos outros detalhes é definida pela autorização."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

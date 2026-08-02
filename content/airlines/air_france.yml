@@ -1,0 +1,359 @@
+id: airline_air_france
+mono: AF
+name: Air France
+titleH1:
+  en: Flying with a dog on Air France
+  fr: Voyager avec un chien sur Air France
+  es: Volar con un perro en Air France
+  pt: "Viajar com um cachorro na Air France"
+metaDesc:
+  en: "Air France pet policy: cabin, hold and cargo rules, fares, restrictions and official sources."
+  fr: "Politique animaux Air France : cabine, soute et fret, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de Air France: reglas de cabina, bodega y carga, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da Air France: regras de cabine, porão e carga, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: France · CDG · ORY
+      fr: France · CDG · ORY
+      es: Francia · CDG · ORY
+      pt: "França · CDG · ORY"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Accessible
+    fr: Accessible
+    es: Accesible
+    pt: "Acessível"
+verdictNote:
+  en: One of the easiest legacy airlines to fly with a dog.
+  fr: Une des compagnies classiques les plus simples pour voyager avec un chien.
+  es: Una de las aerolíneas tradicionales más fáciles para viajar con un perro.
+  pt: "Uma das companhias tradicionais mais fáceis para viajar com um cachorro."
+ladder:
+  - flex: 9
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 74
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 8 – 75 kg
+  - flex: 17
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 75 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dog or cat under 8 kg, soft ventilated bag under the seat (46 × 28 × 24 cm).
+      fr: Chien ou chat < 8 kg, sac souple ventilé sous le siège (46 × 28 × 24 cm).
+      es: Perro o gato de menos de 8 kg, bolsa blanda ventilada bajo el asiento (46 × 28 × 24 cm).
+      pt: "Cachorro ou gato com menos de 8 kg, em bolsa flexível e ventilada sob o assento (46 × 28 × 24 cm)."
+    fee:
+      en: 70 – 200 €
+      fr: 70 – 200 €
+      es: 70 – 200 €
+      pt: "70 – 200 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: From 8 kg up to 75 kg (kennel included). Add ≥ 24 h before departure.
+      fr: De 8 kg à 75 kg (caisse incluse). À ajouter ≥ 24 h avant le départ.
+      es: Desde 8 kg y hasta 75 kg (jaula incluida). Añádelo ≥ 24 h antes de la salida.
+      pt: "De 8 kg até 75 kg (caixa de transporte incluída). Adicionar com ≥ 24 h de antecedência da partida."
+    fee:
+      en: 100 – 400 €
+      fr: 100 – 400 €
+      es: 100 – 400 €
+      pt: "100 – 400 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo petición
+      pt: "Sob consulta"
+    detail:
+      en: Over 75 kg or when the route requires it. Via an authorised handler.
+      fr: Au-delà de 75 kg ou si la route l'exige. Via transporteur agréé.
+      es: Por encima de 75 kg o cuando la ruta lo exige. A través de un agente autorizado.
+      pt: "Acima de 75 kg ou quando a rota exigir. Via um agente autorizado."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareGrid:
+  headCabin:
+    en: Cabin
+    fr: Cabine
+    es: Cabina
+    pt: "Cabine"
+  headHold:
+    en: Hold
+    fr: Soute
+    es: Bodega
+    pt: "Porão"
+  rows:
+    - zone:
+        en: Metropolitan France
+        fr: France métropolitaine
+        es: Francia metropolitana
+        pt: "França metropolitana"
+      cabin: €70
+      hold: €100
+    - zone:
+        en: Europe / North Africa
+        fr: Europe / Afrique du Nord
+        es: Europa / Norte de África
+        pt: "Europa / Norte da África"
+      cabin: €125
+      hold: €200
+    - zone:
+        en: Within the Caribbean
+        fr: Caraïbes
+        es: Dentro del Caribe
+        pt: "Dentro do Caribe"
+      cabin: €125
+      hold: €200
+    - zone:
+        en: Metropole ↔ Antilles · Guyana · Réunion
+        fr: Métropole ↔ Antilles · Guyane · Réunion
+        es: Metrópoli ↔ Antillas · Guayana · Reunión
+        pt: "Metrópole ↔ Antilhas · Guiana · Reunião"
+      cabin: €125
+      hold: €200
+    - zone:
+        en: All other routes (e.g. Paris–Mexico)
+        fr: Toutes autres routes (ex. Paris–Mexico)
+        es: Todas las demás rutas (p. ej. París–México)
+        pt: "Todas as outras rotas (por exemplo, Paris–México)"
+      cabin: €200
+      hold: €400
+  note:
+    en: Per one-way journey and per carrier/kennel. Reconfirm at booking.
+    fr: Par trajet aller et par sac/caisse. À reconfirmer lors de la réservation.
+    es: Por trayecto de ida y por jaula. Reconfírmalo al reservar.
+    pt: "Por trecho de ida e por bolsa/caixa de transporte. Reconfirme no momento da reserva."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Bulldogs, pugs, boxers… banned from the hold (breathing risk).
+      fr: Bouledogues, carlins, boxers… interdits en soute (risque respiratoire).
+      es: Bulldogs, carlinos, boxers… vetados de la bodega (riesgo respiratorio).
+      pt: "Bulldogues, pugs, boxers… proibidos no porão (risco respiratório)."
+  - icon: 🚫
+    title:
+      en: French category 1 & 2 dogs
+      fr: Chiens catégories 1 & 2
+      es: Perros de categorías 1 y 2 en Francia
+      pt: "Cachorros de categoria francesa 1 e 2"
+    pills:
+      - cls: no
+        label:
+          en: Banned on Air France
+          fr: Interdits sur Air France
+          es: Prohibidos en Air France
+          pt: "Proibidos na Air France"
+    note:
+      en: A vet certificate of non-belonging is required in case of resemblance.
+      fr: Certificat vétérinaire de non-appartenance exigé en cas de ressemblance.
+      es: Se exige un certificado veterinario de no pertenencia en caso de parecido.
+      pt: "Um atestado veterinário de não pertencimento é exigido em caso de semelhança."
+crate:
+  - en: Fibreglass or hard-plastic shell, bolted together
+    fr: Coque en fibre de verre ou plastique dur, boulonnée
+    es: Carcasa de fibra de vidrio o plástico duro, atornillada
+    pt: "Casco de fibra de vidro ou plástico rígido, aparafusado"
+  - en: Wheels removed or taped over
+    fr: Roulettes retirées ou scotchées
+    es: Ruedas retiradas o cubiertas con cinta
+    pt: "Rodinhas removidas ou vedadas com fita"
+  - en: Central locking, top + bottom; hinges ≥ 1.6 cm
+    fr: Verrouillage central haut + bas ; charnières ≥ 1,6 cm
+    es: Cierre central arriba y abajo; bisagras ≥ 1,6 cm
+    pt: "Trava central, na parte superior e inferior; dobradiças ≥ 1,6 cm"
+  - en: Empty bowl fixed to the door, fillable from outside
+    fr: Gamelle vide fixée à la porte, accessible de l'extérieur
+    es: Comedero vacío fijado a la puerta, rellenable desde fuera
+    pt: "Comedouro vazio fixado na porta, que pode ser abastecido por fora"
+  - en: Dog can stand, turn and lie down (≥ 5 cm above the head)
+    fr: L'animal se tient debout, se retourne, s'allonge (≥ 5 cm au-dessus de la tête)
+    es: El perro puede ponerse de pie, girar y tumbarse (≥ 5 cm por encima de la cabeza)
+    pt: "O cachorro consegue ficar em pé, virar e deitar (≥ 5 cm acima da cabeça)"
+  - en: Absorbent bedding — straw forbidden
+    fr: Litière absorbante — paille interdite
+    es: Lecho absorbente — paja prohibida
+    pt: "Forração absorvente — palha proibida"
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Pressurisation: not disclosed"
+        fr: "Pressurisation : non communiqué"
+        es: "Presurización: no comunicado"
+        pt: "Pressurização: não divulgada"
+    - cls: warn
+      label:
+        en: "Temperature range: not disclosed"
+        fr: "Plage de température : non communiqué"
+        es: "Rango de temperatura: no comunicado"
+        pt: "Faixa de temperatura: não divulgada"
+    - cls: warn
+      label:
+        en: "Heat embargo: not disclosed"
+        fr: "Embargo chaleur : non communiqué"
+        es: "Embargo por calor: no comunicado"
+        pt: "Embargo por calor: não divulgado"
+  note:
+    en: Air France does not publish a fleet-wide temperature guarantee. Suitability depends on the aircraft, route and weather, confirmed flight by flight — don't assume a hold is suitable just because the aircraft is pressurised.
+    fr: Air France ne publie pas de garantie de température applicable à toute sa flotte. La compatibilité dépend de l'avion, de la route et de la météo, confirmée vol par vol — ne présume pas qu'une soute convient simplement parce que l'appareil est pressurisé.
+    es: Air France no publica ninguna garantía de temperatura para toda su flota. La idoneidad depende de la aeronave, la ruta y el clima, y se confirma vuelo a vuelo — no des por hecho que una bodega es adecuada solo porque la aeronave esté presurizada.
+    pt: "A Air France não publica uma garantia de temperatura válida para toda a frota. A adequação depende da aeronave, da rota e do clima, e é confirmada voo a voo — não presuma que um porão é adequado apenas porque a aeronave é pressurizada."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Free for trained, certified guide and assistance dogs.
+      fr: Gratuit pour les chiens guides et d'assistance dressés et certifiés.
+      es: Gratis para perros guía y de asistencia adiestrados y certificados.
+      pt: "Grátis para cães-guia e de assistência treinados e certificados."
+  - icon: ✓
+    label:
+      en: Large dog
+      fr: Grand chien
+      es: Perro grande
+      pt: "Cachorro grande"
+    value:
+      en: Free hold transport if you provide a suitable kennel (flat-faced excluded).
+      fr: Transport en soute gratuit si tu fournis une caisse adaptée (brachy exclus).
+      es: Transporte en bodega gratis si aportas una jaula adecuada (braquicéfalos excluidos).
+      pt: "Transporte grátis no porão se você fornecer uma caixa adequada (raças de focinho achatado excluídas)."
+  - icon: ⏱️
+    label:
+      en: Lead time
+      fr: Préavis
+      es: Antelación
+      pt: "Antecedência"
+    value:
+      en: ≥ 48 h (96 h to the UAE). DOT + CDC forms for the United States.
+      fr: ≥ 48 h (96 h vers les Émirats). Formulaires DOT + CDC pour les États-Unis.
+      es: ≥ 48 h (96 h hacia los EAU). Formularios DOT + CDC para Estados Unidos.
+      pt: "≥ 48 h (96 h para os Emirados Árabes Unidos). Formulários do DOT + CDC para os Estados Unidos."
+goodToKnow:
+  - icon: 🔁
+    label:
+      en: Connections
+      fr: Correspondances
+      es: Conexiones
+      pt: "Conexões"
+    value:
+      en: At CDG and ORY you may need to collect and re-check the animal.
+      fr: À CDG et ORY, il faut parfois récupérer puis réenregistrer l'animal.
+      es: En CDG y ORY, a veces tendrás que recoger y volver a facturar el animal.
+      pt: "Em CDG e ORY, pode ser necessário recolher e despachar o animal novamente."
+  - icon: 🛋️
+    label:
+      en: Lounges
+      fr: Salons
+      es: Salas VIP
+      pt: "Salas VIP"
+    value:
+      en: Pets welcome in a carrier; assistance dogs on a leash.
+      fr: Animaux admis en sac ; chiens d'assistance tenus en laisse.
+      es: Se admiten mascotas en la jaula; los perros de asistencia con correa.
+      pt: "Animais bem-vindos em uma bolsa de transporte; cães de assistência com coleira."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reservar
+      pt: "Reserva"
+    value:
+      en: Prior approval required · hold ≥ 24 h · United States 48 h.
+      fr: Accord préalable requis · soute ≥ 24 h · États-Unis 48 h.
+      es: Se requiere aprobación previa · bodega ≥ 24 h · Estados Unidos 48 h.
+      pt: "Aprovação prévia exigida · porão ≥ 24 h · Estados Unidos 48 h."
+book:
+  host: airfrance.com
+  url: https://www.airfrance.com/
+sources:
+  en: 4 Air France sources · confidence 5/5 · last verified 11 July 2026
+  fr: 4 sources Air France · confiance 5/5 · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Air France · confianza 5/5 · última verificación 11 de julio de 2026
+  pt: "4 fontes da Air France · confiança 5/5 · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

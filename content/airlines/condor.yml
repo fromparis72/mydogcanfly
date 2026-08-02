@@ -1,0 +1,280 @@
+id: airline_condor
+mono: DE
+name: Condor
+titleH1:
+  en: Flying with a dog on Condor
+  fr: Voyager avec un chien sur Condor
+  es: Viajar con perro en Condor
+  pt: "Voar com um cachorro na Condor"
+metaDesc:
+  en: "Condor pet policy: cabin and hold on nonstop flights, fares by zone, snub-nosed ban, banned destinations and official sources."
+  fr: "Politique animaux Condor : cabine et soute sur vols directs, tarifs par zone, interdiction brachy, destinations interdites et sources officielles."
+  es: "Política de mascotas de Condor: cabina y bodega en vuelos directos, tarifas por zona, veto a razas de hocico chato, destinos prohibidos y fuentes oficiales."
+  pt: "Política de animais da Condor: cabine e porão em voos diretos, tarifas por zona, veto a raças de focinho achatado, destinos proibidos e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Germany · FRA
+      fr: Allemagne · FRA
+      es: Alemania · FRA
+      pt: "Alemanha · FRA"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small cats & dogs in the cabin or hold — but snub-nosed breeds barred and many destinations fully banned.
+  fr: Petits chats et chiens en cabine ou en soute — mais races au nez écrasé interdites et de nombreuses destinations totalement bannies.
+  es: Gatos y perros pequeños en cabina o bodega, pero las razas de hocico chato están vetadas y muchos destinos totalmente prohibidos.
+  pt: "Gatos e cachorros pequenos na cabine ou no porão — mas raças de focinho achatado vetadas e muitos destinos totalmente proibidos."
+ladder:
+  - flex: 20
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: nonstop only
+      fr: direct seul
+      es: solo directo
+      pt: "somente voo direto"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs ≤ 8 kg incl. carrier in a ventilated IATA carrier under the seat (max 55 × 40 × 23 cm). Not in A330neo Business or exit rows.
+      fr: Chats et chiens ≤ 8 kg avec le sac dans un sac IATA ventilé sous le siège (max 55 × 40 × 23 cm). Pas en Business A330neo ni rangs d'issue.
+      es: Gatos y perros ≤ 8 kg incl. jaula, en una jaula IATA ventilada bajo el asiento (máx. 55 × 40 × 23 cm). No en Business del A330neo ni en filas de salida.
+      pt: "Gatos e cachorros ≤ 8 kg incl. bolsa de transporte, em uma bolsa de transporte IATA ventilada sob o assento (máx. 55 × 40 × 23 cm). Não na Business do A330neo nem em fileiras de saída."
+    fee:
+      en: €59.99–99.99
+      fr: 59,99–99,99 €
+      es: 59,99–99,99 €
+      pt: "59,99–99,99 €"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs in a ventilated IATA crate, on Condor nonstop flights only; the breed must be declared.
+      fr: Chats et chiens en caisse IATA ventilée, uniquement sur les vols directs Condor ; la race doit être déclarée.
+      es: Gatos y perros en una jaula IATA ventilada, solo en vuelos directos de Condor; hay que declarar la raza.
+      pt: "Gatos e cachorros em uma caixa de transporte IATA ventilada, somente em voos diretos da Condor; a raça precisa ser declarada."
+    fee:
+      en: €79.99–254.99
+      fr: 79,99–254,99 €
+      es: 79,99–254,99 €
+      pt: "79,99–254,99 €"
+fareList:
+  rows:
+    - label:
+        en: Cabin (by zone)
+        fr: Cabine (par zone)
+        es: Cabina (por zona)
+        pt: "Cabine (por zona)"
+      value:
+        en: €59.99–99.99
+        fr: 59,99–99,99 €
+        es: 59,99–99,99 €
+        pt: "59,99–99,99 €"
+    - label:
+        en: Hold — small crate
+        fr: Soute — petite caisse
+        es: Bodega — jaula pequeña
+        pt: "Porão — caixa pequena"
+      value:
+        en: €79.99–154.99
+        fr: 79,99–154,99 €
+        es: 79,99–154,99 €
+        pt: "79,99–154,99 €"
+    - label:
+        en: Hold — large crate
+        fr: Soute — grande caisse
+        es: Bodega — jaula grande
+        pt: "Porão — caixa grande"
+      value:
+        en: €154.99–254.99
+        fr: 154,99–254,99 €
+        es: 154,99–254,99 €
+        pt: "154,99–254,99 €"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per one-way flight, by zone. + €120–160 if not pre-registered.
+    fr: EUR par trajet aller, par zone. + 120–160 € si non pré-enregistré.
+    es: EUR por vuelo de ida, por zona. + 120–160 € si no se registra por adelantado.
+    pt: "EUR por voo de ida, por zona. + 120–160 € se não houver pré-cadastro."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: "Snub-nosed dogs & cats (and mixes) aren't accepted at all (temperature/stress risk): boxer, bulldogs (except American), pug, Shih Tzu, Boston terrier, chow chow, Shar Pei, Pekingese, and Persian/Burmese/Himalayan/Exotic/Scottish Fold/British Shorthair cats."
+      fr: "Chiens et chats au nez écrasé (et croisés) ne sont pas acceptés du tout (risque température/stress) : boxer, bouledogues (sauf américain), carlin, Shih Tzu, Boston terrier, chow chow, Shar Pei, pékinois, et chats persans/birmans/himalayens/exotiques/Scottish Fold/British Shorthair."
+      es: "Los perros y gatos de hocico chato (y sus cruces) no se aceptan en absoluto (riesgo de temperatura/estrés): bóxer, bulldogs (salvo el americano), carlino, Shih Tzu, Boston terrier, chow chow, Shar Pei, pequinés, y gatos persas/birmanos/himalayos/exóticos/Scottish Fold/British Shorthair."
+      pt: "Cachorros e gatos de focinho achatado (e mestiços) não são aceitos de forma alguma (risco de temperatura/estresse): boxer, buldogues (exceto o americano), pug, Shih Tzu, Boston Terrier, Chow Chow, Shar Pei, Pequinês, e gatos Persa/Burmês/Himalaia/Exótico/Scottish Fold/British Shorthair."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+      - cls: warn
+        label:
+          en: Sedation limited
+          fr: Sédation limitée
+          es: Sedación limitada
+          pt: "Sedação limitada"
+    note:
+      en: Dangerous breeds (pit bull types, American/Staffordshire terriers, American Bulldog, Dogo Argentino, Fila, Kangal, Caucasian Ovcharka, mastiffs, Rottweiler) aren't accepted. Sedated pets only if still responsive; no in-heat, pregnant or recent-birth animals.
+      fr: Les races dangereuses (types pit-bull, American/Staffordshire terriers, American Bulldog, Dogo Argentino, Fila, Kangal, berger du Caucase, mastiffs, Rottweiler) ne sont pas acceptées. Animaux sédatés seulement s'ils réagissent encore ; pas d'animaux en chaleur, gestants ou ayant mis bas récemment.
+      es: Las razas peligrosas (tipos pit bull, American/Staffordshire terriers, American Bulldog, Dogo Argentino, Fila, Kangal, pastor del Cáucaso, mastines, Rottweiler) no se aceptan. Las mascotas sedadas solo si siguen reaccionando; no se admiten animales en celo, gestantes o que hayan parido hace poco.
+      pt: "Raças perigosas (tipos pit bull, American/Staffordshire terriers, Buldogue Americano, Dogo Argentino, Fila, Kangal, Pastor do Cáucaso, mastins, Rottweiler) não são aceitas. Animais sedados somente se ainda estiverem reativos; não são aceitos animais no cio, gestantes ou que tenham parido recentemente."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Hold ~10 °C (short) / 18–23 °C (long)
+        fr: Soute ~10 °C (court) / 18–23 °C (long)
+        es: Bodega ~10 °C (corto) / 18–23 °C (largo)
+        pt: "Porão ~10 °C (curto) / 18–23 °C (longo)"
+    - cls: no
+      label:
+        en: No hold to Las Vegas (May–Sep) / Phoenix
+        fr: Pas de soute Las Vegas (mai–sept.) / Phoenix
+        es: Sin bodega a Las Vegas (may–sep) / Phoenix
+        pt: "Sem porão para Las Vegas (mai.–set.) / Phoenix"
+  note:
+    en: The cargo hold is about 10 °C on short/medium-haul and 18–23 °C on long-haul, ventilated on all routes. Hold transport is barred to/from Las Vegas (May–Sep) and Phoenix (cabin still allowed); snub-nosed breeds are excluded.
+    fr: La soute est à environ 10 °C sur court/moyen-courrier et 18–23 °C sur long-courrier, ventilée sur toutes les routes. La soute est interdite vers/depuis Las Vegas (mai–sept.) et Phoenix (cabine toujours possible) ; les races au nez écrasé sont exclues.
+    es: La bodega de carga está a unos 10 °C en corto/medio alcance y a 18–23 °C en largo alcance, ventilada en todas las rutas. El transporte en bodega está vetado hacia/desde Las Vegas (may–sep) y Phoenix (la cabina sigue permitida); las razas de hocico chato quedan excluidas.
+    pt: "O porão de carga fica em cerca de 10 °C em voos de curta/média distância e 18–23 °C em voos de longa distância, ventilado em todas as rotas. O transporte no porão é vetado de/para Las Vegas (mai.–set.) e Phoenix (a cabine continua permitida); raças de focinho achatado ficam excluídas."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained assistance dogs (ADI/IGDF) travel free in the cabin; pre-book ≥ 48 h ahead.
+      fr: Les chiens d'assistance dressés (ADI/IGDF) voyagent gratuitement en cabine ; pré-réserver ≥ 48 h à l'avance.
+      es: Los perros de asistencia adiestrados (ADI/IGDF) viajan gratis en cabina; reserva con antelación ≥ 48 h antes.
+      pt: "Cães de assistência treinados (ADI/IGDF) viajam gratuitamente na cabine; reserve com antecedência ≥ 48 h antes."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "US flights: DOT form (+ relief over 8 h). Untrained dogs are booked as regular pets."
+      fr: "Vols USA : formulaire DOT (+ soulagement au-delà de 8 h). Les chiens non dressés sont réservés comme animaux ordinaires."
+      es: "Vuelos a EE. UU.: formulario del DOT (+ de alivio si supera 8 h). Los perros sin adiestrar se reservan como mascotas normales."
+      pt: "Voos para os EUA: formulário do DOT (+ alívio acima de 8 h). Cachorros sem treinamento são reservados como animais comuns."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Nonstop only
+      fr: Direct seul
+      es: Solo directos
+      pt: "Somente voos diretos"
+    value:
+      en: Pets are accepted only on Condor nonstop flights; one pet per passenger.
+      fr: Les animaux ne sont acceptés que sur les vols directs Condor ; un animal par passager.
+      es: Las mascotas solo se aceptan en vuelos directos de Condor; una mascota por pasajero.
+      pt: "Os animais são aceitos somente em voos diretos da Condor; um animal por passageiro."
+  - icon: 🚫
+    label:
+      en: Fully banned destinations
+      fr: Destinations totalement interdites
+      es: Destinos totalmente prohibidos
+      pt: "Destinos totalmente proibidos"
+    value:
+      en: Pets are banned (cabin & hold) to/from Antigua, Barbados (cruise flights), China, Dubai, Great Britain, Jamaica, Mauritius, Panama, Sharjah and South Africa.
+      fr: Les animaux sont interdits (cabine & soute) de/vers Antigua, la Barbade (vols croisière), la Chine, Dubaï, la Grande-Bretagne, la Jamaïque, Maurice, Panama, Charjah et l'Afrique du Sud.
+      es: Las mascotas están prohibidas (cabina y bodega) hacia/desde Antigua, Barbados (vuelos de crucero), China, Dubái, Gran Bretaña, Jamaica, Mauricio, Panamá, Sharjah y Sudáfrica.
+      pt: "Os animais são proibidos (cabine e porão) de/para Antígua, Barbados (voos de cruzeiro), China, Dubai, Grã-Bretanha, Jamaica, Maurício, Panamá, Sharjah e África do Sul."
+  - icon: 📄
+    label:
+      en: Checklist & age
+      fr: Checklist & âge
+      es: Lista de control y edad
+      pt: "Checklist e idade"
+    value:
+      en: Bring a completed Live Animal Acceptance Checklist to check-in; EU minimum age 4 months.
+      fr: Apporter une Live Animal Acceptance Checklist remplie à l'enregistrement ; âge minimum UE 4 mois.
+      es: Lleva una Live Animal Acceptance Checklist cumplimentada a la facturación; edad mínima en la UE de 4 meses.
+      pt: "Leve o Live Animal Acceptance Checklist preenchido ao check-in; idade mínima na UE de 4 meses."
+book:
+  host: condor.com
+  url: https://www.condor.com/
+sources:
+  en: 6 Condor sources · last verified 11 July 2026
+  fr: 6 sources Condor · dernière vérification 11 juillet 2026
+  es: 6 fuentes de Condor · última verificación 11 julio 2026
+  pt: "6 fontes da Condor · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,51 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+import LegalShell from "../../components/LegalShell.astro";
+import { LEGAL, fullAddress } from "../../lib/legal";
+export function getStaticPaths() {
+  return [{ params: { loc: undefined }, props: { locale: "en" } }, { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } }];
+}
+const { locale } = Astro.props as { locale: string };
+const base = locale === "en" ? "" : `/${locale}`;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const title = T("Legal notice", "Mentions légales", "Aviso legal");
+---
+<Base locale={locale} title={`${title} — MyDogCanFly`} description={T("Publisher, director of publication, hosting and contact details for MyDogCanFly.", "Éditeur, directeur de la publication, hébergement et contact de MyDogCanFly.", "Editor, director de publicación, alojamiento y datos de contacto de MyDogCanFly.")}>
+  <LegalShell locale={locale} title={title}>
+    <h2>{T("Publisher", "Éditeur", "Editor")}</h2>
+    <p>{T("This website (", "Ce site (", "Este sitio web (")}<b>{LEGAL.domain}</b>{T(") is published by:", ") est édité par :", ") está editado por:")}</p>
+    <address>
+      <b>{LEGAL.publisher}</b><br />
+      {T("A Delaware limited liability company (USA)", "Société à responsabilité limitée du Delaware (USA)", "Sociedad de responsabilidad limitada de Delaware (EE. UU.)")}<br />
+      {fullAddress}<br />
+      {T("Email", "Courriel", "Correo electrónico")}: <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>
+    </address>
+
+    <h2>{T("Director of publication", "Directeur de la publication", "Director de publicación")}</h2>
+    <p>{LEGAL.director}{T(", founder and director of publication. ", ", fondateur et directeur de la publication. ", ", fundador y director de publicación. ")}
+      <a href={LEGAL.linkedin} rel="nofollow noopener" target="_blank">LinkedIn ↗</a>. {T("Editorial standards and methodology are described on our", "Les standards éditoriaux et la méthodologie sont décrits sur notre", "Nuestros estándares editoriales y metodología se describen en nuestra")} <a href={`${base}/about/`}>{T("About page", "page À propos", "página Acerca de")}</a>.</p>
+
+    <h2>{T("Hosting", "Hébergement", "Alojamiento")}</h2>
+    <p>{T("The site is hosted and served by", "Le site est hébergé et servi par", "El sitio está alojado y servido por")} <b>{LEGAL.host}</b> ({LEGAL.hostService}), {LEGAL.hostAddress}. <a href="https://www.cloudflare.com" rel="nofollow noopener" target="_blank">cloudflare.com ↗</a></p>
+
+    <h2>{T("Intellectual property", "Propriété intellectuelle", "Propiedad intelectual")}</h2>
+    <p>{T(
+      "The MyDogCanFly name, logo, editorial content, data compilations and tools are the property of the publisher, unless otherwise stated. Brief quotations for editorial, research or press use are permitted provided the source (mydogcanfly.com) is clearly attributed with a link to the original page. Any substantial reproduction requires prior written authorisation.",
+      "Le nom MyDogCanFly, le logo, le contenu éditorial, les compilations de données et les outils sont la propriété de l'éditeur, sauf mention contraire. De brèves citations à des fins éditoriales, de recherche ou de presse sont autorisées à condition que la source (mydogcanfly.com) soit clairement attribuée avec un lien vers la page d'origine. Toute reproduction substantielle nécessite une autorisation écrite préalable.",
+      "El nombre MyDogCanFly, el logotipo, el contenido editorial, las compilaciones de datos y las herramientas son propiedad del editor, salvo que se indique lo contrario. Se permiten citas breves con fines editoriales, de investigación o de prensa siempre que la fuente (mydogcanfly.com) se atribuya claramente con un enlace a la página original. Cualquier reproducción sustancial requiere autorización escrita previa.",
+    )}</p>
+
+    <h2>{T("Nature of the service", "Nature du service", "Naturaleza del servicio")}</h2>
+    <p>{T(
+      "MyDogCanFly is an informational and editorial service. It compiles official rules on flying with a dog and does not constitute veterinary, legal or professional advice. Requirements change: always confirm the latest information with the relevant airline, the destination country's authorities (embassy/consulate and veterinary authority) and your veterinarian before booking or travelling.",
+      "MyDogCanFly est un service d'information et éditorial. Il compile des règles officielles sur le voyage aérien avec un chien et ne constitue pas un avis vétérinaire, juridique ou professionnel. Les exigences évoluent : validez toujours les dernières informations auprès de la compagnie concernée, des autorités du pays de destination (ambassade/consulat et autorité vétérinaire) et de votre vétérinaire avant de réserver ou de voyager.",
+      "MyDogCanFly es un servicio informativo y editorial. Recopila las reglas oficiales sobre viajar en avión con un perro y no constituye asesoramiento veterinario, jurídico ni profesional. Los requisitos cambian: confirma siempre la información más reciente con la aerolínea correspondiente, las autoridades del país de destino (embajada/consulado y autoridad veterinaria) y tu veterinario antes de reservar o viajar.",
+    )}</p>
+
+    <h2>{T("Report an error", "Signaler une erreur", "Informar de un error")}</h2>
+    <p>{T("Spotted an inaccuracy? Please", "Vous avez repéré une inexactitude ? Merci de nous", "¿Has visto una inexactitud? Por favor,")} <a href={`${base}/report-error/`}>{T("tell us", "la signaler", "avísanos")}</a> — {T("we verify and correct quickly.", "nous vérifions et corrigeons rapidement.", "lo verificamos y corregimos rápidamente.")}</p>
+  </LegalShell>
+</Base>

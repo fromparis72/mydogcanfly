@@ -1,0 +1,19 @@
+---
+import EntityIndex from "../../../components/EntityIndex.astro";
+import { loadKB, t, inlineT } from "@mydogcanfly/knowledge";
+import { indexItems } from "../../../lib/pagedata";
+import { localizeHref } from "../../../lib/routes";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const items = indexItems(loadKB(), "airport", locale);
+const seoTitle = T("Airport dog relief areas, airport by airport", "Coins pipi pour chiens : aéroport par aéroport", "Zonas de alivio para perros, aeropuerto por aeropuerto");
+---
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.airport")} title={t(locale, "index.airports.title")} blurb={t(locale, "index.airports.blurb")} items={items} locale={locale} />

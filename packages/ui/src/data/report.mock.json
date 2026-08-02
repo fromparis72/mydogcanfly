@@ -1,0 +1,40 @@
+{
+  "verdict": "incompatible",
+  "compatible": [],
+  "conditions": [
+    {
+      "text": "Japan (MAFF) requires a microchip, two rabies vaccinations, a rabies antibody titer test and 40-day advance notification; total preparation commonly reaches 180+ days. Required: microchip, rabies_vaccine, rabies_titer_test, advance_notification.",
+      "criticality": "critical",
+      "rule_id": "rule_jp_import_rabies",
+      "source_url": "https://www.maff.go.jp/aqs/english/animal/dog/import-other.html"
+    }
+  ],
+  "warnings": [
+    {
+      "text": "Air France does not carry dogs in the hold or cargo when forecast temperatures exceed 30 °C, for welfare reasons.",
+      "criticality": "high",
+      "rule_id": "rule_af_summer_embargo",
+      "source_url": "https://www.airfrance.com/information/optionsvols/animaux-en-avion"
+    }
+  ],
+  "risks": [
+    {
+      "text": "Air France allows dogs in the cabin only up to 8 kg including the carrier.",
+      "criticality": "high",
+      "rule_id": "rule_af_cabin_weight",
+      "source_url": "https://www.airfrance.com/information/optionsvols/animaux-en-avion"
+    }
+  ],
+  "alternatives": [
+    {
+      "text": "No placement works as requested. Try a lower cabin-weight airline, shift the date out of the heat window, or split the journey — the engine will list feasible options.",
+      "criticality": "low"
+    }
+  ],
+  "confidence": 5,
+  "sources": [
+    { "url": "https://www.maff.go.jp/aqs/english/animal/dog/import-other.html" },
+    { "url": "https://www.airfrance.com/information/optionsvols/animaux-en-avion" }
+  ],
+  "generated_at": "2026-07-08T00:00:00.000Z"
+}

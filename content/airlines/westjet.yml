@@ -1,0 +1,298 @@
+id: airline_westjet
+mono: WS
+name: WestJet
+titleH1:
+  en: Flying with a dog on WestJet
+  fr: Voyager avec un chien sur WestJet
+  es: Volar con un perro en WestJet
+  pt: "Viajar com um cachorro na WestJet"
+metaDesc:
+  en: "WestJet pet policy: cabin, hold and WestJet Cargo, CAD fares, snub-nosed cargo rule, excluded destinations and official sources."
+  fr: "Politique animaux WestJet : cabine, soute et WestJet Cargo, tarifs CAD, règle brachy en fret, destinations exclues et sources officielles."
+  es: "Política de mascotas de WestJet: cabina, bodega y WestJet Cargo, tarifas en CAD, regla de carga para hocico chato, destinos excluidos y fuentes oficiales."
+  pt: "Política de animais da WestJet: cabine, porão e WestJet Cargo, tarifas em CAD, regra de carga para focinho achatado, destinos excluídos e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Canada · YYC
+      fr: Canada · YYC
+      es: Canadá · YYC
+      pt: "Canadá · YYC"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin, larger in the hold — but snub-nosed breeds cargo-only and many destinations excluded.
+  fr: Petits animaux en cabine, plus grands en soute — mais races au nez écrasé en fret uniquement et de nombreuses destinations exclues.
+  es: Mascotas pequeñas en cabina, las más grandes en bodega, pero las razas de hocico chato solo en carga y muchos destinos excluidos.
+  pt: "Animais pequenos na cabine, os maiores no porão — mas raças de focinho achatado somente na carga, e muitos destinos excluídos."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: under-seat
+      fr: sous le siège
+      es: bajo el asiento
+      pt: "sob o assento"
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: brachy / LHR
+      fr: brachy / LHR
+      es: braquicéfalos / LHR
+      pt: "focinho achatado / LHR"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Birds, cats & dogs; one per kennel that fits under the seat (max 41 × 25 × 21 cm) and counts as your carry-on. Not in 787 Business.
+      fr: Oiseaux, chats et chiens ; un par caisse tenant sous le siège (max 41 × 25 × 21 cm) et comptant comme ton bagage à main. Pas en Business 787.
+      es: Aves, gatos y perros; uno por jaula que quepa bajo el asiento (máx. 41 × 25 × 21 cm) y que cuenta como tu equipaje de mano. No en Business del 787.
+      pt: "Aves, gatos e cachorros; um por caixa de transporte que caiba sob o assento (máx. 41 × 25 × 21 cm) e que conta como sua bagagem de mão. Não disponível na Business do 787."
+    fee:
+      en: $50–118 CAD
+      fr: 50–118 $ CAD
+      es: 50–118 $ CAD
+      pt: "50–118 $ CAD"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats, dogs, rabbits, guinea pigs, chinchillas & birds as checked baggage (pet + kennel ≤ 45 kg). Holiday & heat-destination limits apply.
+      fr: Chats, chiens, lapins, cochons d'Inde, chinchillas et oiseaux en bagage enregistré (animal + caisse ≤ 45 kg). Limites saisonnières et destinations chaudes.
+      es: Gatos, perros, conejos, cobayas, chinchillas y aves como equipaje facturado (mascota + jaula ≤ 45 kg). Se aplican límites en temporada de fiestas y destinos cálidos.
+      pt: "Gatos, cachorros, coelhos, porquinhos-da-índia, chinchilas e aves como bagagem despachada (animal + caixa de transporte ≤ 45 kg). Aplicam-se limites de temporada de festas e de destinos com calor."
+    fee:
+      en: $50–118 CAD
+      fr: 50–118 $ CAD
+      es: 50–118 $ CAD
+      pt: "50–118 $ CAD"
+  - icon: ✈️
+    name:
+      en: WestJet Cargo
+      fr: WestJet Cargo
+      es: WestJet Cargo
+      pt: "WestJet Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Solo pets, brachycephalic breeds, strong/aggressive breeds (CR82 crate), and all pets to London Heathrow.
+      fr: Animaux non accompagnés, races brachycéphales, races puissantes/agressives (caisse CR82), et tous les animaux vers Londres Heathrow.
+      es: Mascotas sin acompañante, razas braquicéfalas, razas fuertes/agresivas (jaula CR82) y todas las mascotas a Londres Heathrow.
+      pt: "Animais desacompanhados, raças braquicefálicas, raças fortes/agressivas (caixa CR82), e todos os animais para Londres Heathrow."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin / hold — within Canada/US
+        fr: Cabine / soute — Canada/USA
+        es: Cabina / bodega — dentro de Canadá/EE. UU.
+        pt: "Cabine / porão — dentro do Canadá/EUA"
+      value:
+        en: $50–59 CAD
+        fr: 50–59 $ CAD
+        es: 50–59 $ CAD
+        pt: "50–59 $ CAD"
+    - label:
+        en: Cabin / hold — outside Canada/US
+        fr: Cabine / soute — hors Canada/USA
+        es: Cabina / bodega — fuera de Canadá/EE. UU.
+        pt: "Cabine / porão — fora do Canadá/EUA"
+      value:
+        en: $100–118 CAD
+        fr: 100–118 $ CAD
+        es: 100–118 $ CAD
+        pt: "100–118 $ CAD"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: CAD per direction; the kennel counts as your personal item.
+    fr: CAD par trajet ; la caisse compte comme ton article personnel.
+    es: CAD por trayecto; la jaula cuenta como tu artículo personal.
+    pt: "CAD por trajeto; a caixa de transporte conta como seu item pessoal."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Hold forbidden — cargo only
+          fr: Soute interdite — fret seul
+          es: Bodega prohibida — solo carga
+          pt: "Porão proibido — somente carga"
+    note:
+      en: For bookings after 4 Jul 2023, snub-nosed cats & dogs (and mixes) can't travel as checked baggage (heat-stroke/breathing risk) — book via WestJet Cargo.
+      fr: Pour les réservations après le 4 juil. 2023, les chats et chiens au nez écrasé (et croisés) ne peuvent pas voyager en bagage enregistré (risque coup de chaleur/respiration) — réserver via WestJet Cargo.
+      es: Para las reservas posteriores al 4 de julio de 2023, los gatos y perros de hocico chato (y sus cruces) no pueden viajar como equipaje facturado (riesgo de golpe de calor/respiratorio); resérvalos a través de WestJet Cargo.
+      pt: "Para reservas feitas após 4 de jul. de 2023, gatos e cachorros de focinho achatado (e seus cruzamentos) não podem viajar como bagagem despachada (risco de insolação/respiratório) — reserve pela WestJet Cargo."
+  - icon: 🚫
+    title:
+      en: Strong / aggressive breeds
+      fr: Races puissantes / agressives
+      es: Razas fuertes / agresivas
+      pt: "Raças fortes / agressivas"
+    pills:
+      - cls: no
+        label:
+          en: Cargo (CR82 crate)
+          fr: Fret (caisse CR82)
+          es: Carga (jaula CR82)
+          pt: "Carga (caixa CR82)"
+      - cls: warn
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Strong/aggressive breeds (bulldogs (all), Dogue de Bordeaux, American Bulldog, Bandog, Dogo Argentino, wolf-dog hybrids) aren't accepted as checked animals — CR82 crate via cargo. No sedation without a vet.
+      fr: Les races puissantes/agressives (bouledogues (tous), Dogue de Bordeaux, American Bulldog, Bandog, Dogo Argentino, croisés chien-loup) ne sont pas acceptées en bagage enregistré — caisse CR82 via le fret. Pas de sédation sans avis vétérinaire.
+      es: Las razas fuertes/agresivas (bulldogs (todos), Dogo de Burdeos, American Bulldog, Bandog, Dogo Argentino, híbridos de perro y lobo) no se aceptan como animales facturados; jaula CR82 vía carga. Sin sedación sin un veterinario.
+      pt: "Raças fortes/agressivas (bulldogs (todos), Dogue de Bordeaux, American Bulldog, Bandog, Dogo Argentino, híbridos de cão-lobo) não são aceitas como animais despachados — caixa CR82 via carga. Sem sedação sem avaliação veterinária."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: WestJet publishes no numeric hold-temperature limit, but applies holiday-period and heat-destination limits.
+    fr: WestJet ne publie pas de limite chiffrée de température en soute, mais applique des limites saisonnières et de destinations chaudes.
+    es: WestJet no publica ningún límite numérico de temperatura en bodega, pero aplica límites en la temporada de fiestas y en destinos cálidos.
+    pt: "A WestJet não publica um limite numérico de temperatura de porão, mas aplica limites de temporada de festas e de destinos com calor."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Individually trained service dogs fly free (1 per guest, 2 if the itinerary includes the US); emotional-support animals aren't accepted.
+      fr: Les chiens d'assistance dressés individuellement voyagent gratuitement (1 par client, 2 si l'itinéraire inclut les USA) ; animaux de soutien émotionnel non acceptés.
+      es: Los perros de servicio adiestrados individualmente viajan gratis (1 por pasajero, 2 si el itinerario incluye EE. UU.); no se aceptan animales de apoyo emocional.
+      pt: "Cães de serviço treinados individualmente voam gratuitamente (1 por passageiro, 2 se o itinerário incluir os EUA); animais de apoio emocional não são aceitos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Request via the Special Care Desk ≥ 48 h; email the Service Dog Registration Form + training proof ≥ 7 days ahead.
+      fr: Demander via le Special Care Desk ≥ 48 h ; envoyer le formulaire d'enregistrement de chien d'assistance + preuve de dressage ≥ 7 jours à l'avance.
+      es: Solicítalo a través del Special Care Desk ≥ 48 h; envía por correo el formulario de registro de perro de servicio + la prueba de adiestramiento ≥ 7 días antes.
+      pt: "Solicite pelo Special Care Desk com ≥ 48 h de antecedência; envie por e-mail o formulário de registro de cão de serviço + comprovante de treinamento com ≥ 7 dias de antecedência."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Excluded destinations
+      fr: Destinations exclues
+      es: Destinos excluidos
+      pt: "Destinos excluídos"
+    value:
+      en: Dogs & cats aren't accepted (cabin or checked) to/from/through Barbados, Hawaii, Iceland, Ireland, Jamaica, Glasgow or London.
+      fr: Les chiens et chats ne sont pas acceptés (cabine ou soute) de/vers/via la Barbade, Hawaï, l'Islande, l'Irlande, la Jamaïque, Glasgow ou Londres.
+      es: Los perros y gatos no se aceptan (cabina ni facturados) desde/hacia/a través de Barbados, Hawái, Islandia, Irlanda, Jamaica, Glasgow o Londres.
+      pt: "Cachorros e gatos não são aceitos (cabine ou despachados) de/para/via Barbados, Havaí, Islândia, Irlanda, Jamaica, Glasgow ou Londres."
+  - icon: 🧳
+    label:
+      en: Kennel = carry-on
+      fr: Caisse = bagage à main
+      es: Jaula = equipaje de mano
+      pt: "Caixa de transporte = bagagem de mão"
+    value:
+      en: The pet kennel counts toward your carry-on as a personal item; fee per direction.
+      fr: La caisse compte dans ton bagage à main comme article personnel ; tarif par trajet.
+      es: La jaula de la mascota cuenta como tu equipaje de mano en forma de artículo personal; tarifa por trayecto.
+      pt: "A caixa de transporte do animal conta na sua bagagem de mão como item pessoal; tarifa por trajeto."
+  - icon: ✈️
+    label:
+      en: 787 Business
+      fr: Business 787
+      es: Business del 787
+      pt: "Business do 787"
+    value:
+      en: Pets aren't accepted in the Business cabin on the 787 Dreamliner.
+      fr: Les animaux ne sont pas acceptés en Business sur le 787 Dreamliner.
+      es: Las mascotas no se aceptan en la cabina Business del 787 Dreamliner.
+      pt: "Animais não são aceitos na cabine Business do 787 Dreamliner."
+book:
+  host: westjet.com
+  url: https://www.westjet.com/
+sources:
+  en: 4 WestJet sources · last verified 11 July 2026
+  fr: 4 sources WestJet · dernière vérification 11 juillet 2026
+  es: 4 fuentes de WestJet · última verificación 11 de julio de 2026
+  pt: "4 fontes da WestJet · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

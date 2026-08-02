@@ -1,0 +1,132 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+import { LEGAL, fullAddress, OFFICIAL_PROFILES, postalAddressLd } from "../../lib/legal";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const T = inlineT(locale);
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+
+const title = T("About MyDogCanFly — who's behind the data", "À propos de MyDogCanFly — qui est derrière les données", "Acerca de MyDogCanFly — quién está detrás de los datos");
+const desc = T(
+  "Who publishes MyDogCanFly, how the airline, country and breed data is sourced and verified, and our editorial standards.",
+  "Qui publie MyDogCanFly, comment les données compagnies, pays et races sont sourcées et vérifiées, et nos standards éditoriaux.",
+  "Quién publica MyDogCanFly, cómo se obtienen y verifican los datos de aerolíneas, países y razas, y nuestros estándares editoriales.",
+);
+
+const personLd = JSON.stringify({
+  "@context": "https://schema.org", "@type": "Person",
+  name: LEGAL.director,
+  jobTitle: T("Founder & Director of Publication", "Fondateur & Directeur de la publication", "Fundador y director de publicación"),
+  worksFor: { "@type": "Organization", name: LEGAL.site, url: LEGAL.url },
+  sameAs: [LEGAL.linkedin],
+  alumniOf: ["EFREI Paris", "École nationale supérieure de la photographie d'Arles (ENSP Arles)"],
+});
+const orgLd = JSON.stringify({
+  "@context": "https://schema.org", "@type": "Organization",
+  name: LEGAL.site, url: LEGAL.url,
+  founder: { "@type": "Person", name: LEGAL.director, sameAs: [LEGAL.linkedin] },
+  /* Même déclaration d'identité que dans Base.astro : les deux blocs décrivent la même
+   * organisation, ils ne peuvent pas dire deux choses différentes. */
+  sameAs: OFFICIAL_PROFILES,
+  address: postalAddressLd,
+  publisher: { "@type": "Organization", name: LEGAL.publisher, address: postalAddressLd },
+  email: LEGAL.contactEmail,
+});
+---
+<Base locale={locale} title={title} description={desc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container abt">
+      <p class="mdcf-eyebrow">{T("About · Editorial team", "À propos · Équipe éditoriale", "Acerca de · Equipo editorial")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="abt-lede">{T(
+        "MyDogCanFly is a data-driven, bilingual platform that helps people fly safely and legally with their dog. We do not sell tickets or give veterinary opinions — we compile, structure and verify the official rules so you can decide with confidence.",
+        "MyDogCanFly est une plateforme bilingue, orientée données, qui aide à voyager en avion avec son chien en toute sécurité et légalité. Nous ne vendons pas de billets et ne donnons pas d'avis vétérinaire — nous compilons, structurons et vérifions les règles officielles pour que vous décidiez en confiance.",
+        "MyDogCanFly es una plataforma trilingüe, orientada a datos, que ayuda a viajar en avión con tu perro con total seguridad y legalidad. No vendemos billetes ni damos opiniones veterinarias — recopilamos, estructuramos y verificamos las reglas oficiales para que decidas con confianza.",
+      )}</p>
+
+      <h2 class="abt-h">{T("How we source and verify data", "Comment nous sourçons et vérifions les données", "Cómo obtenemos y verificamos los datos")}</h2>
+      <p>{T(
+        "Every airline policy, country entry rule and breed travel profile is built from primary, official sources — airline pet-travel pages, national veterinary authorities, USDA APHIS export pages, the World Organisation for Animal Health (WOAH) and EU regulations. Two rules govern the whole site: nothing is fabricated, and where an official source does not publish a fact we mark it \"Unknown\" rather than guessing. Each record carries its source, a verification date and a confidence level.",
+        "Chaque politique de compagnie, règle d'entrée par pays et profil de voyage par race est construit à partir de sources primaires et officielles — pages « animaux » des compagnies, autorités vétérinaires nationales, pages export de l'USDA APHIS, l'Organisation mondiale de la santé animale (WOAH) et les règlements de l'UE. Deux règles régissent tout le site : rien n'est inventé, et lorsqu'une source officielle ne publie pas une information, nous indiquons « Inconnu » plutôt que de deviner. Chaque fiche porte sa source, une date de vérification et un niveau de confiance.",
+        "Cada política de aerolínea, regla de entrada por país y perfil de viaje por raza se construye a partir de fuentes primarias y oficiales — páginas de viaje con mascotas de las aerolíneas, autoridades veterinarias nacionales, páginas de exportación del USDA APHIS, la Organización Mundial de Sanidad Animal (WOAH) y los reglamentos de la UE. Dos reglas rigen todo el sitio: nada se inventa y, cuando una fuente oficial no publica un dato, lo marcamos como «Desconocido» en lugar de adivinar. Cada ficha lleva su fuente, una fecha de verificación y un nivel de confianza.",
+      )}</p>
+      <p>{T(
+        "Our tools (flight finder, heat-risk, crate size, travel timeline, airport relief) derive their verdicts from this data with a transparent rules engine — the reasoning is always shown, never a black box.",
+        "Nos outils (recherche de vol, risque chaleur, taille de cage, rétro-planning, coins pipi en aéroport) déduisent leurs verdicts de ces données via un moteur de règles transparent — le raisonnement est toujours affiché, jamais une boîte noire.",
+        "Nuestras herramientas (buscador de vuelos, riesgo de calor, tamaño de la jaula, cronograma de viaje, zonas de alivio en aeropuertos) derivan sus veredictos de estos datos mediante un motor de reglas transparente — el razonamiento siempre se muestra, nunca es una caja negra.",
+      )}</p>
+
+      <h2 class="abt-h">{T("Editorial responsibility", "Responsabilité éditoriale", "Responsabilidad editorial")}</h2>
+      <div class="abt-author">
+        <div class="abt-author__body">
+          <p class="abt-author__role">{T("Founder & Director of Publication", "Fondateur & Directeur de la publication", "Fundador y director de publicación")}</p>
+          <p class="abt-author__name">{LEGAL.director}</p>
+          <p>{T(
+            "MyDogCanFly is founded and edited by Phil Albert-Benoist, who is also its director of publication. His background bridges digital engineering (EFREI Paris) and visual culture (ENSP Arles): the technical foundations of a rigorous, structured, standards-compliant web platform, paired with a demanding editorial eye. Day-to-day this means platform architecture, Schema.org structured data, SEO and GEO (optimisation for search and for generative engines), bilingual editorial governance and privacy compliance.",
+            "MyDogCanFly est fondé et édité par Phil Albert-Benoist, également directeur de la publication. Son parcours relie l'ingénierie numérique (EFREI Paris) et la culture visuelle (ENSP Arles) : les fondations techniques d'une plateforme web rigoureuse, structurée et conforme aux standards, avec une exigence éditoriale forte. Au quotidien : architecture de plateforme, données structurées Schema.org, SEO et GEO (optimisation pour la recherche et les moteurs génératifs), gouvernance éditoriale bilingue et conformité vie privée.",
+            "MyDogCanFly está fundado y editado por Phil Albert-Benoist, que también es su director de publicación. Su trayectoria une la ingeniería digital (EFREI Paris) y la cultura visual (ENSP Arles): las bases técnicas de una plataforma web rigurosa, estructurada y conforme a los estándares, junto con una mirada editorial exigente. En el día a día, esto significa arquitectura de plataforma, datos estructurados Schema.org, SEO y GEO (optimización para la búsqueda y para los motores generativos), gobernanza editorial multilingüe y cumplimiento en materia de privacidad.",
+          )}</p>
+          <p>{T(
+            "The editorial line, sourcing standards, verification methodology and accuracy of published information are under his direct supervision.",
+            "La ligne éditoriale, les standards de sourçage, la méthodologie de vérification et l'exactitude des informations publiées relèvent de sa supervision directe.",
+            "La línea editorial, los estándares de obtención de fuentes, la metodología de verificación y la exactitud de la información publicada están bajo su supervisión directa.",
+          )}</p>
+          <p><a class="abt-link" href={LEGAL.linkedin} rel="nofollow noopener" target="_blank">{T("LinkedIn profile ↗", "Profil LinkedIn ↗", "Perfil de LinkedIn ↗")}</a></p>
+        </div>
+        <dl class="abt-glance">
+          <div><dt>{T("Role", "Rôle", "Función")}</dt><dd>{T("Founder, Director of Publication", "Fondateur, Directeur de la publication", "Fundador, director de publicación")}</dd></div>
+          <div><dt>{T("Publisher", "Éditeur", "Editor")}</dt><dd>{LEGAL.publisher} ({LEGAL.state}, USA)</dd></div>
+          <div><dt>{T("Scope", "Périmètre", "Alcance")}</dt><dd>{T("International — airlines, countries, breeds", "International — compagnies, pays, races", "Internacional — aerolíneas, países, razas")}</dd></div>
+          <div><dt>{T("Languages", "Langues", "Idiomas")}</dt><dd>{T("English, French, Spanish, Portuguese", "Anglais, français, espagnol, portugais", "Inglés, francés, español, portugués")}</dd></div>
+        </dl>
+      </div>
+
+      <h2 class="abt-h">{T("Independence", "Indépendance", "Independencia")}</h2>
+      <p>{T(
+        "Airline, country and breed rankings are computed from the data — they are never sold or influenced by payment. Where the site earns from affiliate links (for example travel-crate or partner recommendations), those links are clearly disclosed and do not change the underlying verdicts.",
+        "Les classements des compagnies, pays et races sont calculés à partir des données — ils ne sont jamais vendus ni influencés par un paiement. Lorsque le site perçoit une rémunération via des liens d'affiliation (par exemple des recommandations de cages ou de partenaires), ces liens sont clairement signalés et ne modifient pas les verdicts.",
+        "Las clasificaciones de aerolíneas, países y razas se calculan a partir de los datos — nunca se venden ni se ven influidas por un pago. Cuando el sitio obtiene ingresos por enlaces de afiliación (por ejemplo, recomendaciones de transportines o de socios), esos enlaces se indican claramente y no modifican los veredictos subyacentes.",
+      )}</p>
+
+      <h2 class="abt-h">{T("Publisher & contact", "Éditeur & contact", "Editor y contacto")}</h2>
+      <p>{T("MyDogCanFly is published by", "MyDogCanFly est édité par", "MyDogCanFly está editado por")} <b>{LEGAL.publisher}</b>, {T("a Delaware limited liability company (USA)", "une société à responsabilité limitée du Delaware (USA)", "una sociedad de responsabilidad limitada de Delaware (EE. UU.)")}, {fullAddress}. {T("General contact", "Contact général", "Contacto general")}: <a class="abt-link" href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a> · {T("Press", "Presse", "Prensa")}: <a class="abt-link" href={`mailto:${LEGAL.pressEmail}`}>{LEGAL.pressEmail}</a>.</p>
+      <p class="abt-legalrow">
+        <a href={`${base}/legal-notice/`}>{T("Legal notice", "Mentions légales", "Aviso legal")}</a> ·
+        <a href={`${base}/privacy/`}>{T("Privacy", "Confidentialité", "Privacidad")}</a> ·
+        <a href={`${base}/cookies/`}>{T("Cookies", "Cookies", "Cookies")}</a> ·
+        <a href={`${base}/terms/`}>{T("Terms", "Conditions", "Términos")}</a>
+      </p>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={personLd} is:inline />
+  <script type="application/ld+json" set:html={orgLd} is:inline />
+</Base>
+<style>
+  .abt { max-width: 780px; }
+  .abt-lede { font-size: 17px; line-height: 1.6; color: var(--mdcf-ink); margin: 0 0 8px; }
+  .abt-h { font-size: 19px; margin: 28px 0 10px; color: var(--mdcf-ink); }
+  .abt p { color: var(--mdcf-ink-soft, #33436a); line-height: 1.7; margin: 0 0 12px; }
+  .abt-link { color: var(--mdcf-accent-ink, #b4530a); }
+  .abt-author { display: grid; grid-template-columns: 1fr 240px; gap: 26px; align-items: start; border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 20px 22px; background: var(--mdcf-surface); margin: 6px 0 4px; }
+  .abt-author__role { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--mdcf-muted); font-weight: 700; margin: 0; }
+  .abt-author__name { font-size: 20px; font-weight: 800; color: var(--mdcf-ink); margin: 2px 0 12px; }
+  .abt-author p { margin: 0 0 10px; }
+  .abt-glance { margin: 0; padding: 16px; background: var(--mdcf-subtle); border-radius: 12px; display: grid; gap: 12px; }
+  .abt-glance div { display: grid; gap: 2px; }
+  .abt-glance dt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--mdcf-muted); font-weight: 700; }
+  .abt-glance dd { margin: 0; font-size: 14px; color: var(--mdcf-ink); font-weight: 600; }
+  .abt-legalrow { font-size: 13px; margin-top: 16px; }
+  .abt-legalrow a { color: var(--mdcf-accent-ink, #b4530a); }
+  @media (max-width: 620px) { .abt-author { grid-template-columns: 1fr; } }
+</style>

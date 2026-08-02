@@ -1,0 +1,55 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+import Base from "../../layouts/Base.astro";
+import LegalShell from "../../components/LegalShell.astro";
+import { LEGAL } from "../../lib/legal";
+export function getStaticPaths() {
+  return [{ params: { loc: undefined }, props: { locale: "en" } }, { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } }];
+}
+const { locale } = Astro.props as { locale: string };
+const base = locale === "en" ? "" : `/${locale}`;
+const fr = locale === "fr";
+const T = inlineT(locale);
+const title = T("Cookie Policy", "Politique relative aux cookies", "Política de cookies");
+---
+<Base locale={locale} title={`${title} — MyDogCanFly`} description={T("What cookies and browser storage MyDogCanFly uses, and how to control them.", "Quels cookies et stockage navigateur utilise MyDogCanFly, et comment les contrôler.", "Qué cookies y almacenamiento del navegador utiliza MyDogCanFly, y cómo controlarlos.")}>
+  <LegalShell locale={locale} title={title}>
+    <p>{T(
+      "This page explains the cookies and similar browser storage used on MyDogCanFly. We keep this to a strict minimum: we do not use advertising cookies or cross-site tracking.",
+      "Cette page explique les cookies et technologies de stockage similaires utilisés sur MyDogCanFly. Nous les limitons au strict minimum : aucun cookie publicitaire ni traçage inter-sites.",
+      "Esta página explica las cookies y el almacenamiento del navegador similar que se utilizan en MyDogCanFly. Los limitamos al mínimo estricto: no usamos cookies publicitarias ni seguimiento entre sitios.",
+    )}</p>
+
+    <h2>{T("Strictly necessary cookies", "Cookies strictement nécessaires", "Cookies estrictamente necesarias")}</h2>
+    <p>{T(
+      "Our host, Cloudflare, may set strictly necessary cookies to deliver the site securely and tell humans apart from bots (for example __cf_bm and cf_clearance). These are essential to operate and protect the site and do not require consent. They do not track you across other websites.",
+      "Notre hébergeur, Cloudflare, peut déposer des cookies strictement nécessaires pour livrer le site en sécurité et distinguer les humains des robots (par exemple __cf_bm et cf_clearance). Ils sont essentiels au fonctionnement et à la protection du site et ne nécessitent pas de consentement. Ils ne vous suivent pas sur d'autres sites.",
+      "Nuestro alojamiento, Cloudflare, puede colocar cookies estrictamente necesarias para entregar el sitio de forma segura y distinguir a los humanos de los bots (por ejemplo __cf_bm y cf_clearance). Son esenciales para operar y proteger el sitio y no requieren consentimiento. No te siguen en otros sitios web.",
+    )}</p>
+
+    <h2>{T("Functional browser storage", "Stockage fonctionnel du navigateur", "Almacenamiento funcional del navegador")}</h2>
+    <p>{T(
+      "Our tools use your browser's sessionStorage (not a cookie) to remember the breed and airline you selected, so your choices carry from one tool to the next during your visit. This information stays on your device, is cleared when you close the tab, and is never sent to our servers.",
+      "Nos outils utilisent le sessionStorage de votre navigateur (pas un cookie) pour mémoriser la race et la compagnie choisies, afin de reporter vos choix d'un outil à l'autre pendant votre visite. Ces informations restent sur votre appareil, sont effacées à la fermeture de l'onglet et ne sont jamais envoyées à nos serveurs.",
+      "Nuestras herramientas utilizan el sessionStorage de tu navegador (no una cookie) para recordar la raza y la aerolínea que has seleccionado, de modo que tus elecciones se trasladen de una herramienta a otra durante tu visita. Esta información permanece en tu dispositivo, se borra al cerrar la pestaña y nunca se envía a nuestros servidores.",
+    )}</p>
+
+    <h2>{T("What we do not use", "Ce que nous n'utilisons pas", "Lo que no utilizamos")}</h2>
+    <p>{T(
+      "We currently use no analytics, advertising or social-media tracking cookies. If we ever add privacy-respecting analytics, they will be opt-in through a consent banner (default: denied) and this page will be updated first.",
+      "Nous n'utilisons actuellement aucun cookie de mesure d'audience, de publicité ni de réseaux sociaux. Si nous ajoutons un jour une mesure d'audience respectueuse de la vie privée, elle sera soumise à consentement via une bannière (par défaut : refusé) et cette page sera mise à jour au préalable.",
+      "Actualmente no utilizamos cookies de medición de audiencia, de publicidad ni de redes sociales. Si algún día añadimos una medición de audiencia respetuosa con la privacidad, será opcional mediante un banner de consentimiento (por defecto: denegado) y esta página se actualizará previamente.",
+    )}</p>
+
+    <h2>{T("Managing cookies", "Gérer les cookies", "Gestionar las cookies")}</h2>
+    <p>{T(
+      "You can block or delete cookies in your browser settings at any time. Blocking strictly necessary cookies may affect security features, but the informational content of the site will still work.",
+      "Vous pouvez bloquer ou supprimer les cookies dans les réglages de votre navigateur à tout moment. Bloquer les cookies strictement nécessaires peut affecter certaines fonctions de sécurité, mais le contenu informatif du site restera accessible.",
+      "Puedes bloquear o eliminar las cookies en la configuración de tu navegador en cualquier momento. Bloquear las cookies estrictamente necesarias puede afectar a algunas funciones de seguridad, pero el contenido informativo del sitio seguirá funcionando.",
+    )}</p>
+
+    <h2>{T("Questions", "Questions", "Preguntas")}</h2>
+    <p>{T("For any question about this policy, contact", "Pour toute question sur cette politique, écrivez à", "Para cualquier pregunta sobre esta política, escribe a")} <a href={`mailto:${LEGAL.contactEmail}`}>{LEGAL.contactEmail}</a>. {T("See also our", "Voir aussi notre", "Consulta también nuestra")} <a href={`${base}/privacy/`}>{T("Privacy Policy", "Politique de confidentialité", "Política de privacidad")}</a>.</p>
+  </LegalShell>
+</Base>

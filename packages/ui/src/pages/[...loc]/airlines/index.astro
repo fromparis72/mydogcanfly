@@ -1,0 +1,18 @@
+---
+import EntityIndex from "../../../components/EntityIndex.astro";
+import { loadKB, t, inlineT } from "@mydogcanfly/knowledge";
+import { indexItems } from "../../../lib/pagedata";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const items = indexItems(loadKB(), "airline", locale);
+const seoTitle = T("Airline pet policies: dogs in cabin & hold", "Politiques animaux des compagnies : chien en cabine ou soute", "Políticas de mascotas por aerolínea: perro en cabina o bodega");
+---
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.airline")} title={t(locale, "index.airlines.title")} blurb={t(locale, "index.airlines.blurb")} items={items} locale={locale} />

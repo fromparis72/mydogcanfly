@@ -1,0 +1,475 @@
+---
+/* Country Entry Guide — generic graphical renderer, fed by src/data/countries.ts
+   (source of truth: content/countries/<slug>.yml). Bilingual EN/FR. Same visual
+   language as the airline fiches: cards, coloured pills, tables, flags, small charts. */
+import Base from "../layouts/Base.astro";
+import CountryOnward from "./CountryOnward.astro";
+import Breadcrumb from "./Breadcrumb.astro";
+import { hrefFor, localizeHref } from "../lib/routes";
+import { countryData } from "../data/countries";
+import PageActions from "./PageActions.astro";
+import { loadKB, inlineT, inlineF, localizer, dateFormatter } from "@mydogcanfly/knowledge";
+import { airportsInCountry, dogAirlinesForCountry } from "../lib/cluster";
+import FaqBlock from "./FaqBlock.astro";
+import { countryFaq, faqJsonLd } from "../lib/faq";
+
+interface Props { id: string; locale?: string }
+const { id, locale = "en" } = Astro.props;
+const fr = locale === "fr";
+const g = countryData[id];
+const kb = loadKB();
+
+const t = localizer(locale);
+const T = inlineT(locale);
+const fmtDate = dateFormatter(locale); // date visible à la langue de la page ; le JSON-LD garde l'ISO
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+const flag = (iso: string) =>
+  iso.toUpperCase().replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)));
+const stars = (n: number) => "★".repeat(n) + "☆".repeat(Math.max(0, 5 - n));
+
+const diffCls = g.difficulty.level === "easy" ? "ok" : g.difficulty.level === "moderate" ? "warn" : "no";
+const diffOrder = ["easy", "moderate", "difficult"] as const;
+// Réponse en 30 secondes : l'ordre de grandeur du délai, à côté du verdict. Le détail chiffré
+// par origine n'est pas déductible d'un champ structuré — il vit désormais dans le bloc `origin`,
+// collé au scénario qu'il décrit, au lieu d'occuper une carte à lui seul.
+const leadTime = g.difficulty.level === "easy"
+  ? T("A few weeks to prepare", "Quelques semaines de préparation", "Unas semanas de preparación")
+  : g.difficulty.level === "moderate"
+    ? T("Several weeks to a few months", "De plusieurs semaines à quelques mois", "De varias semanas a unos meses")
+    : T("Several months to prepare", "Plusieurs mois de préparation", "Varios meses de preparación");
+// La colonne « Quand » quitte le tableau de référence (qui dit CE QUI est exigé) pour former
+// la séquence datée (qui dit QUAND s'en occuper) : l'information n'est plus écrite deux fois.
+const steps = g.requirements
+  .map((r) => ({ item: r.item, when: r.when }))
+  .filter((x) => { const w = t(x.when as any).trim(); return w.length > 1 && w !== "—" && w !== "-"; });
+
+// Compagnies qui desservent ce pays ET acceptent le chien. Remplace l'ancien bloc
+// « Compagnies nationales », qui ne listait que les compagnies immatriculées ici : sur
+// 140 fiches il ne produisait que 0,6 lien par page alors que la fiche compagnie, elle,
+// renvoie vers 14,7 pays. Les compagnies nationales restent en tête de liste, signalées.
+const dogAirlines = dogAirlinesForCountry(kb, id, locale, 6);
+const channelPill = (c: "cabin" | "hold" | "cargo", maxKg?: number) =>
+  c === "cabin"
+    ? { cls: "ok", label: (T("Cabin", "Cabine", "Cabina") + (maxKg ? F(" ≤{0} kg", " ≤ {0} kg", " ≤{0} kg", maxKg) : "")) }
+    : c === "hold"
+      ? { cls: "warn", label: T("Hold", "Soute", "Bodega") }
+      : { cls: "warn", label: T("Cargo only", "Cargo uniquement", "Solo carga") };
+
+// Airports in this country — link to their pet-relief result pages (geo cluster).
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+const allCountryAirports = airportsInCountry(kb, id, locale);
+const countryAirports = allCountryAirports.slice(0, 12);
+
+// Le gabarit impose trois colonnes « UE / pays listé / pays non listé ». Il ne décrit que le
+// régime européen : 46 fiches sur 140 rangent sous « Depuis l'UE » un contenu qui parle des
+// groupes australiens, de l'UEEA ou du Kenya, et d'autres mettent en troisième colonne
+// « Séjours de plus de 30 jours » — ce qui n'est pas une origine du tout.
+// On teste donc chaque colonne sur son propre texte anglais (toujours présent) et on n'affiche
+// l'étiquette générique que si elle est vraie. Sinon le titre de la colonne, explicite, suffit.
+// Une fiche peut de toute façon imposer son propre libellé via `origin.<col>.tag`.
+const fits = (b: any, rx: RegExp) =>
+  rx.test(`${b?.title?.en ?? ""} ${(b?.body?.en ?? "").slice(0, 300)}`);
+const originBlocks = [
+  { k: "eu", b: g.origin.eu, cls: g.origin.eu.cls ?? "ok", prep: g.prepTime.eu,
+    tag: T("From the EU", "Depuis l'UE", "Desde la UE"),
+    fit: fits(g.origin.eu, /\bEU\b|European Union|\bEEA\b|Schengen|Europe/i) },
+  { k: "listed", b: g.origin.listed, cls: g.origin.listed.cls ?? "warn", prep: g.prepTime.listed,
+    tag: T("From a listed country", "Depuis un pays listé", "Desde un país listado"),
+    fit: fits(g.origin.listed, /\blisted\b|third countr|\bpart [12]\b|\bannex\b/i) },
+  { k: "nonlisted", b: g.origin.nonListed, cls: g.origin.nonListed.cls ?? "no", prep: g.prepTime.nonListed,
+    tag: T("From a non-listed country", "Depuis un pays non listé", "Desde un país no listado"),
+    fit: fits(g.origin.nonListed, /non-?listed|not listed|unlisted|not on the (approved )?list/i) },
+].map((o) => ({ ...o, label: o.b.tag ? t(o.b.tag) : o.fit ? o.tag : "" }));
+// Quand aucune colonne ne parle d'origine, le titre du bloc ne doit pas le prétendre non plus.
+const originIsOrigin = originBlocks.some((o) => o.label);
+
+// WebPage schema: freshness + authorship signals (E-E-A-T / GEO), about this country.
+const webpageLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: t(g.seo.metaTitle),
+  description: t(g.seo.metaDesc),
+  inLanguage: locale,
+  isPartOf: { "@id": "https://mydogcanfly.com/#website" },
+  about: { "@type": "Country", name: t(g.name) },
+  ...(g.verified_date ? { lastReviewed: g.verified_date } : {}),
+  ...(g.reviewer ? { reviewedBy: { "@type": "Person", name: g.reviewer } } : {}),
+};
+// FAQ dérivée de la fiche pays ; FAQPage seulement si des questions ont pu être construites.
+const faqItems = countryFaq(g, locale);
+const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
+---
+<Base title={t(g.seo.metaTitle)} description={t(g.seo.metaDesc)} locale={locale} ogType="article" jsonLd={jsonLd}>
+  <div class="mdcf-container cg">
+    <Breadcrumb locale={locale} items={[
+      { label: T("Home", "Accueil", "Inicio"), href: "/" },
+      { label: T("Countries", "Pays", "Países"), href: "/countries/" },
+      { label: t(g.name) },
+    ]} />
+
+    <!-- HERO -->
+    <div class="card hero">
+      <div class="flag">{flag(g.iso2)}</div>
+      <div class="hero-id">
+        <p class="eyebrow">{T("Country entry guide", "Fiche d'entrée pays", "Guía de entrada del país")} · {t(g.region)}</p>
+        <h1>{t(g.hero.h1)}</h1>
+        <div class="verdict">
+          <span class={`pill ${diffCls} big`}>{T("Difficulty", "Difficulté", "Dificultad")}: {t(g.difficulty.label)}</span>
+          <span class="lead">⏱ {leadTime}</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="intro">{t(g.hero.intro)}</p>
+
+    <!-- VERDICT EN 30 SECONDES -->
+    <div class="grid-top grid-top--solo">
+      <div class="card">
+        <h2>📋 {T("At a glance", "En un coup d'œil", "De un vistazo")}</h2>
+        <table class="tbl glance">
+          <tbody>
+            {g.summary.map((r) => (
+              <tr>
+                <td class="lbl">{t(r.requirement)}</td>
+                <td class="r"><span class={`pill ${r.cls}`}>{t(r.status)}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- IMPORTANT NOTICE -->
+    <div class="card notice">
+      <h2>⚠️ {T("Important", "Important", "Importante")}</h2>
+      <ul>{g.notice.map((n) => (<li>{t(n)}</li>))}</ul>
+      <p class="noticeclose">{t(g.noticeClose)}</p>
+    </div>
+
+    <!-- ONWARD NAVIGATION (context-aware, replaces the plain finder CTA) -->
+    <CountryOnward locale={locale} countryName={t(g.name)} countryIso={g.iso2.toLowerCase()} />
+
+    <!-- BEFORE TRAVELLING — 3 FACTORS -->
+    <div class="card factors factors--slim">
+      <h2>🧭 {t(g.factors.title)}</h2>
+      <ol class="factorlist">
+        {g.factors.items.map((f, i) => (
+          <li>
+            <span class="fnum">{i + 1}</span>
+            <div class="fhead"><b>{t(f.label)}</b><span class="fstars">{stars(f.stars)}</span></div>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- ENTRY REQUIREMENTS TABLE -->
+    <div class="card">
+      <h2>✅ {T("Entry requirements", "Exigences d'entrée", "Requisitos de entrada")}</h2>
+      <div class="scrollx">
+        <table class="tbl req">
+          <thead>
+            <tr>
+              <th>{T("Requirement", "Exigence", "Requisito")}</th>
+              <th>{T("Required?", "Requis ?", "¿Obligatorio?")}</th>
+              <th>{T("Exceptions", "Exceptions", "Excepciones")}</th>
+              <th>{T("Official reference", "Référence officielle", "Referencia oficial")}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {g.requirements.map((r) => (
+              <tr>
+                <td class="lbl">{t(r.item)}</td>
+                <td>{t(r.required)}</td>
+                <td>{t(r.exceptions)}</td>
+                <td class="ref">{t(r.ref)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDRE ET CALENDRIER DES DÉMARCHES -->
+    <div class="card">
+      <h2>🗓 {T("In what order, and when", "Dans quel ordre, et quand", "En qué orden, y cuándo")}</h2>
+      <p class="muted small">{T("Some steps only count once the previous one is done — check each deadline against the official reference above.", "Certaines étapes ne comptent que si la précédente est faite — vérifie chaque délai avec la référence officielle ci-dessus.", "Algunos pasos solo cuentan si el anterior está hecho — comprueba cada plazo con la referencia oficial de arriba.")}</p>
+      <ol class="seq">{steps.map((x) => (
+        <li><b>{t(x.item)}</b><span>{t(x.when)}</span></li>
+      ))}</ol>
+    </div>
+
+    <!-- RULES BY ORIGIN -->
+    <div class="card">
+      <h2>🌍 {originIsOrigin
+        ? T("Rules according to your dog's origin", "Règles selon l'origine de ton chien", "Reglas según el origen de tu perro")
+        : T("The different cases", "Les cas de figure", "Los distintos casos")}</h2>
+      <div class="grid3">
+        {originBlocks.map((o) => (
+          <div class={`mini o-${o.cls}`}>
+            <div class="minitag"><span class={`dot ${o.cls}`}></span>{o.label}</div>
+            <h3>{t(o.b.title)}</h3>
+            <p>{t(o.b.body)}</p>
+            <p class="oprep">⏱ {t(o.prep)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- ARRIVAL -->
+    <div class="card">
+      <h2>🛬 {T("Arrival", "À l'arrivée", "Llegada")}</h2>
+      <p class="muted">{t(g.arrival.intro)}</p>
+      <ul class="checks">{g.arrival.points.map((p) => (<li>{t(p)}</li>))}</ul>
+    </div>
+
+    <!-- LEAVING / RETURN — round-trip layer (only when sourced exit formalities exist) -->
+    {g.exit && (
+      <div class="card exit">
+        <h2>🛫 {T("Leaving the country (return trip)", "Sortie du territoire (au retour)", "Salida del país (viaje de vuelta)")}</h2>
+        <p class="muted">{t(g.exit.intro)}</p>
+        <ul class="exitsteps">
+          {g.exit.steps.map((s) => (
+            <li>
+              {s.timing === "longlead"
+                ? <span class="exitchip crit">⚠️ {T("Start before you leave", "À lancer avant de partir", "Empieza antes de salir")}</span>
+                : s.timing === "window"
+                  ? <span class="exitchip win">{T("On site, before the flight", "Sur place, avant le vol", "En destino, antes del vuelo")}</span>
+                  : null}
+              <span>{t(s.text)}</span>
+            </li>
+          ))}
+        </ul>
+        {g.exit.onSiteNote && (<div class="exittrap">⚠️ {t(g.exit.onSiteNote)}</div>)}
+        <a class="exitauth" href={g.exit.authorityUrl} target="_blank" rel="noopener nofollow">🔗 {T("Authority", "Autorité", "Autoridad")}: {g.exit.authority}</a>
+      </div>
+    )}
+
+    <!-- TRAVELLER EXPERIENCE — rendue seulement si un retour documenté existe. Le champ
+         n'était renseigné dans aucune des 140 fiches : la carte affichait « aucun retour
+         disponible » sur 420 pages. Elle réapparaîtra d'elle-même dès qu'une fiche en aura. -->
+    {g.travellerExperience && (
+      <div class="card">
+        <h2>🧳 {T("Real traveller experience", "Retours de voyageurs", "Experiencia real de viajeros")}</h2>
+        <p>{t(g.travellerExperience)}</p>
+      </div>
+    )}
+
+    <!-- RESTRICTED DOGS -->
+    <div class="card danger">
+      <h2>🚫 {T("Restricted dogs", "Chiens réglementés", "Perros restringidos")}</h2>
+      <p class="muted">{t(g.restrictedDogs.intro)}</p>
+      <div class="grid2">
+        <div class="mini o-no"><div class="minitag"><span class="dot no"></span>{T("Category 1", "Catégorie 1", "Categoría 1")}</div><p>{t(g.restrictedDogs.cat1)}</p></div>
+        <div class="mini o-warn"><div class="minitag"><span class="dot warn"></span>{T("Category 2", "Catégorie 2", "Categoría 2")}</div><p>{t(g.restrictedDogs.cat2)}</p></div>
+      </div>
+      <p class="muted small">{t(g.restrictedDogs.note)}</p>
+    </div>
+
+    <!-- AIRLINES SERVING THIS COUNTRY -->
+    {dogAirlines.list.length > 0 && (
+      <div class="card">
+        <h2>✈️ {F("Airlines flying to {0} with a dog", "Compagnies qui desservent {0} avec un chien", "Aerolíneas que vuelan a {0} con un perro", t(g.name))}</h2>
+        <p class="muted">{T("Carriers we document that serve this country and accept dogs. The verdict is the airline's general policy — it does not prejudge your breed, your crate or your exact route.", "Compagnies que nous documentons, desservant ce pays et acceptant les chiens. Le verdict est la politique générale de la compagnie : il ne préjuge ni de ta race, ni de ta caisse, ni de ton itinéraire précis.", "Aerolíneas que documentamos, que operan en este país y aceptan perros. El veredicto es la política general de la aerolínea: no prejuzga tu raza, tu jaula ni tu itinerario exacto.")}</p>
+        <div class="calines">
+          {dogAirlines.list.map((a) => {
+            const p = channelPill(a.channel as "cabin" | "hold" | "cargo", a.maxKg);
+            return (
+              <a class="caline" href={hrefFor(a.id, locale)} data-carry="breed">
+                <span class="caname">{a.name}{a.national && (<span class="canat" title={T("Registered in this country", "Immatriculée dans ce pays", "Registrada en este país")}>{flag(g.iso2)}</span>)}</span>
+                <span class="cameta">
+                  {a.airports > 0 && (<span class="caap">{`${a.airports} ` + (a.airports > 1 ? T("airports", "aéroports", "aeropuertos") : T("airport", "aéroport", "aeropuerto"))}</span>)}
+                  <span class={`pill ${p.cls}`}>{p.label}</span>
+                </span>
+              </a>
+            );
+          })}
+        </div>
+        <p class="muted small">
+          {dogAirlines.hidden > 0 && F("+{0} more documented airlines accept dogs to this country. ", "+{0} autres compagnies documentées acceptent le chien vers ce pays. ", "+{0} aerolíneas documentadas más aceptan perros hacia este país. ", dogAirlines.hidden)}
+          {/* Réserve nécessaire : ne jamais laisser croire que les compagnies absentes de la
+              liste refusent le chien — certaines ne publient tout simplement rien. */}
+          {dogAirlines.undocumented > 0 && (dogAirlines.undocumented > 1
+            ? F("{0} carriers serving this country are not listed here: refusal or undocumented pet policy. ", "{0} compagnies desservant ce pays ne figurent pas ici : refus ou politique animale non publiée. ", "{0} aerolíneas que operan en este país no aparecen aquí: rechazo o política no publicada. ", dogAirlines.undocumented)
+            : F("{0} carrier serving this country is not listed here: refusal or undocumented pet policy. ", "{0} compagnie desservant ce pays ne figure pas ici : refus ou politique animale non publiée. ", "{0} aerolínea que opera en este país no aparece aquí: rechazo o política no publicada. ", dogAirlines.undocumented))}
+          <a href={localizeHref("/airlines/", locale)}>{T("See all airlines", "Voir toutes les compagnies", "Ver todas las aerolíneas")} →</a>
+        </p>
+      </div>
+    )}
+
+    <!-- AIRPORTS IN THIS COUNTRY (pet-relief result pages) -->
+    {countryAirports.length > 0 && (
+      <div class="card">
+        <h2>🛂 {F("Airports in {0}", "Aéroports — {0}", "Aeropuertos en {0}", t(g.name))}</h2>
+        <p class="muted">{T("Check where your dog can relieve itself at each airport — and whether it's before or after security.", "Vérifie où ton chien peut se soulager dans chaque aéroport — et si c'est avant ou après les contrôles.", "Comprueba dónde puede hacer sus necesidades tu perro en cada aeropuerto — y si es antes o después de los controles de seguridad.")}</p>
+        <div class="aptchips">
+          {countryAirports.map((ap) => (<a class="aptchip" href={`${base}/airports/${ap.slug}/`}>{ap.city} <span class="aptiata">{ap.iata}</span></a>))}
+        </div>
+        {allCountryAirports.length > countryAirports.length && (
+          <p class="muted small">{F("+{0} more airports documented.", "+{0} autres aéroports documentés.", "+{0} aeropuertos más documentados.", allCountryAirports.length - countryAirports.length)}</p>
+        )}
+      </div>
+    )}
+
+    <!-- FAQ (générée depuis les données de la fiche) -->
+    <div class="card">
+      <FaqBlock
+        items={faqItems}
+        title={F("{0} with a dog: common questions",
+                 "{0} avec un chien : questions fréquentes",
+                 "{0} con un perro: preguntas frecuentes", t(g.name))}
+        note={F("Answers drawn from the official sources listed below, last verified {0}. Rules change — confirm with the authorities of {1} and your vet before booking.",
+                "Réponses tirées des sources officielles listées ci-dessous, dernière vérification le {0}. Les règles évoluent — confirme auprès des autorités de {1} et de ton vétérinaire avant de réserver.",
+                "Respuestas basadas en las fuentes oficiales indicadas abajo, última verificación el {0}. Las normas cambian — confírmalo con las autoridades de {1} y tu veterinario antes de reservar.", fmtDate(g.verified_date), t(g.name))}
+      />
+    </div>
+
+    <!-- SOURCES -->
+    <div class="card src">
+      <h2>📚 {T("Official sources", "Sources officielles", "Fuentes oficiales")}</h2>
+      <ul class="sources">
+        {g.sources.map((s) => (<li><a href={s.url} target="_blank" rel="noopener nofollow">{t(s.label)}</a></li>))}
+      </ul>
+    </div>
+
+    <!-- VERIFICATION -->
+    <div class="verif">
+      <span>🗓️ {T("Last verified", "Dernière vérification", "Última verificación")}: <b>{fmtDate(g.verified_date)}</b></span>
+      <span>👤 {T("Reviewer", "Relecteur", "Revisor")}: {g.reviewer}</span>
+      <span>{T("Confidence", "Confiance", "Confianza")}: {stars(g.confidence)}</span>
+    </div>
+
+    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)} />
+  </div>
+</Base>
+
+<style>
+  .cg { padding: 26px 0 64px; }
+  .cg .card { background: var(--mdcf-surface, #fff); border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 16px; padding: 20px 22px; margin: 0 0 16px; }
+  .cg h1 { font-size: 27px; font-weight: 800; letter-spacing: -.02em; margin: 4px 0 0; }
+  .cg h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; margin: 0 0 14px; }
+  .cg h3 { font-size: 15px; font-weight: 800; margin: 8px 0 6px; }
+  .cg .muted { color: var(--mdcf-muted, #5b6b7f); font-size: 14px; }
+  .cg .small { font-size: 12.5px; }
+  .cg .intro { margin: 4px 2px 18px; color: var(--mdcf-ink, #1a2433); font-size: 15.5px; line-height: 1.55; }
+
+  .cg .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 700; padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
+  .cg .pill.big { font-size: 14px; padding: 6px 14px; }
+  .cg .ok { background: #dcfce7; color: #166534; } .cg .no { background: #fee2e2; color: #b3261e; }
+  .cg .warn { background: #fff3e2; color: #9a5a12; } .cg .neutral { background: #f5f7fa; color: #5b6b7f; }
+
+  .cg .hero { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .cg .flag { flex: 0 0 auto; width: 76px; height: 76px; border-radius: 16px; background: var(--mdcf-subtle, #f5f7fa); border: 1px solid var(--mdcf-line, #e6ebf1); display: flex; align-items: center; justify-content: center; font-size: 44px; line-height: 1; }
+  .cg .hero-id { flex: 1 1 240px; min-width: 0; }
+  .cg .eyebrow { text-transform: uppercase; letter-spacing: .06em; font-size: 12px; font-weight: 700; color: var(--mdcf-muted, #5b6b7f); margin: 0; }
+  .cg .verdict { margin-top: 10px; max-width: 100%; display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+  .cg .lead { font-size: 14px; font-weight: 700; color: var(--mdcf-muted, #5b6b7f); }
+  .cg .verdict .pill { white-space: normal; text-align: left; line-height: 1.35; }
+
+  .cg .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cg .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  /* Le verdict occupe désormais toute la largeur : la carte « temps de préparation » a été
+     dissoute dans le bloc « origine », où chaque délai est collé au scénario qu'il décrit. */
+  .cg .grid-top { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 16px; align-items: stretch; }
+  .cg .grid-top--solo { grid-template-columns: 1fr; }
+  @media (max-width: 720px) { .cg .grid2, .cg .grid3, .cg .grid-top { grid-template-columns: 1fr; } }
+
+  .cg table.tbl { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .cg table.tbl th, .cg table.tbl td { padding: 9px 10px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); text-align: left; vertical-align: top; }
+  .cg table.tbl th { font-size: 12px; font-weight: 700; color: var(--mdcf-muted, #5b6b7f); text-transform: uppercase; letter-spacing: .04em; }
+  .cg table.tbl td.lbl { font-weight: 700; white-space: nowrap; }
+  .cg table.tbl td.r { text-align: right; }
+  .cg table.req td { font-size: 13.5px; }
+  .cg table.req td.ref { color: var(--mdcf-muted, #5b6b7f); font-size: 12.5px; }
+  /* "At a glance": let long status pills wrap instead of overflowing the narrower card. */
+  .cg table.glance td.lbl { white-space: normal; padding-right: 12px; }
+  .cg table.glance td.r { white-space: normal; }
+  .cg table.glance td.r .pill { white-space: normal; text-align: right; }
+  .cg .scrollx { overflow-x: auto; }
+
+
+  .cg .notice { background: #fff8ec; border-color: #f0d9b8; }
+  .cg .notice ul { margin: 0 0 10px; padding-left: 20px; }
+  .cg .notice li { margin: 4px 0; font-size: 14px; }
+  .cg .noticeclose { font-weight: 700; margin: 6px 0 0; }
+
+  .cg .factorlist { list-style: none; margin: 8px 0 12px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .cg .factorlist li { display: flex; gap: 12px; align-items: flex-start; }
+  .cg .fnum { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 999px; background: #001e50; color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .cg .fhead { display: flex; gap: 10px; align-items: baseline; }
+  .cg .fstars { color: #f59e0b; font-size: 13px; letter-spacing: 1px; }
+  .cg .factorlist p { margin: 3px 0 0; font-size: 14px; color: var(--mdcf-ink, #1a2433); }
+  .cg .factors--slim .factorlist { margin: 4px 0 0; gap: 9px; }
+  .cg .factors--slim .factorlist li { align-items: center; }
+  .cg .factors--slim .fhead { font-size: 14.5px; }
+
+  .cg .mini { background: var(--mdcf-subtle, #f5f7fa); border-radius: 12px; padding: 14px 15px; border: 1px solid transparent; }
+  .cg .mini p { margin: 4px 0 0; font-size: 13.5px; }
+  .cg .o-ok { background: #f0fdf4; border-color: #bbf7d0; } .cg .o-warn { background: #fffbeb; border-color: #fde68a; } .cg .o-no { background: #fef2f2; border-color: #fecaca; }
+  .cg .minitag { display: flex; align-items: center; gap: 7px; font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: .03em; color: var(--mdcf-muted, #5b6b7f); }
+  .cg .dot { width: 9px; height: 9px; border-radius: 999px; display: inline-block; }
+  .cg .minitag:not(:has(+ h3)) { margin-bottom: 0; }
+  .cg .oprep { margin: 10px 0 0; padding-top: 9px; border-top: 1px dashed var(--mdcf-line, #e6ebf1); font-size: 13.5px; font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
+  .cg .dot.ok { background: #22c55e; } .cg .dot.warn { background: #f59e0b; } .cg .dot.no { background: #ef4444; }
+
+  .cg .checks, .cg .checklist, .cg .sources { list-style: none; margin: 8px 0 0; padding: 0; }
+  .cg .checks li { padding: 6px 0 6px 22px; position: relative; font-size: 14px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); }
+  .cg .checks li:before { content: "→"; position: absolute; left: 0; color: #166534; font-weight: 800; }
+  /* Séquence : ce qu'il faut faire, dans l'ordre, avec le délai propre à chaque étape. */
+  .cg .seq { list-style: none; counter-reset: seq; margin: 12px 0 0; padding: 0; }
+  .cg .seq li { counter-increment: seq; position: relative; padding: 0 0 16px 40px; }
+  .cg .seq li:before { content: counter(seq); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 999px;
+    background: #001e50; color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .cg .seq li:after { content: ""; position: absolute; left: 13px; top: 30px; bottom: 2px; width: 1px; background: var(--mdcf-line, #e6ebf1); }
+  .cg .seq li:last-child { padding-bottom: 0; }
+  .cg .seq li:last-child:after { display: none; }
+  .cg .seq b { display: block; font-size: 14.5px; line-height: 1.6; }
+  .cg .seq span { display: block; margin-top: 2px; font-size: 14px; line-height: 1.55; color: var(--mdcf-muted, #5b6b7f); }
+  .cg .cratecta { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 10px 16px; border: 1px solid rgba(242,112,15,.4); border-radius: 999px; background: var(--mdcf-accent-soft, #fdf1e7); color: var(--mdcf-accent-ink, #b4530a); font-weight: 700; font-size: 14px; text-decoration: none; }
+  .cg .cratecta:hover { border-color: var(--mdcf-accent-ink, #b4530a); }
+
+  .cg .danger { border-color: #f3c9c4; }
+  .cg .exit { border-color: #cfe0f5; background: #f7faff; }
+  .cg .exitsteps { list-style: none; margin: 10px 0 0; padding: 0; }
+  .cg .exitsteps li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); font-size: 14.5px; line-height: 1.5; }
+  .cg .exitchip { display: inline-block; font-size: 11.5px; font-weight: 800; padding: 2px 9px; border-radius: 6px; white-space: nowrap; }
+  .cg .exitchip.crit { background: #dc2626; color: #fff; }
+  .cg .exitchip.win { background: #fef3c7; color: #92400e; }
+  .cg .exittrap { margin-top: 12px; background: #fff8ec; border: 1px solid #f0d9b8; border-radius: 10px; padding: 10px 13px; font-size: 13.5px; line-height: 1.5; color: #7c4a12; }
+  .cg .exitauth { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 700; color: #1d4ed8; text-decoration: none; }
+  .cg .exitauth:hover { text-decoration: underline; }
+  .cg .alink { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; font-weight: 700; font-size: 14px; color: var(--mdcf-accent-ink, #b4530a); background: #fff; border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 999px; padding: 8px 14px; }
+  .cg .alink:hover { border-color: var(--mdcf-accent-ink, #b4530a); }
+  /* Compagnies desservant le pays : une ligne par compagnie plutôt qu'une pastille, parce
+     qu'il y a trois informations à lire (nom, présence, canal) et qu'elles doivent s'aligner
+     d'une ligne à l'autre pour être comparables d'un coup d'œil. */
+  .cg .calines { display: grid; gap: 8px; margin-top: 12px; }
+  .cg .caline { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-decoration: none; background: #fff; border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 12px; padding: 10px 14px; }
+  .cg .caline:hover { border-color: var(--mdcf-accent-ink, #b4530a); }
+  .cg .caname { font-weight: 700; font-size: 14.5px; color: var(--mdcf-ink, #1a2433); display: inline-flex; align-items: center; gap: 7px; }
+  .cg .canat { font-size: 13px; }
+  .cg .cameta { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .cg .caap { font-size: 12.5px; color: var(--mdcf-muted, #5b6b7f); white-space: nowrap; }
+  .cg .aptchips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 12px; }
+  .cg .aptchip { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; font-weight: 700; font-size: 14px; color: var(--mdcf-ink, #1a2433); background: var(--mdcf-subtle, #f5f7fa); border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 999px; padding: 7px 13px; }
+  .cg .aptchip:hover { border-color: var(--mdcf-muted, #5b6b7f); }
+  .cg .aptiata { font-size: 12px; font-weight: 800; color: var(--mdcf-muted, #5b6b7f); letter-spacing: .03em; }
+
+  .cg .src { background: var(--mdcf-subtle, #f5f7fa); border: 0; }
+  .cg .sources li { padding: 6px 0; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); font-size: 14px; }
+  .cg .sources a { color: #1d4ed8; text-decoration: none; word-break: break-word; }
+  .cg .sources a:hover { text-decoration: underline; }
+
+  .cg .verif { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 6px 4px; color: var(--mdcf-muted, #5b6b7f); font-size: 13px; }
+  .cg .verif b { color: var(--mdcf-ink, #1a2433); }
+
+  @media (max-width: 640px) {
+    .cg h1 { font-size: 23px; }
+    .cg .flag { width: 60px; height: 60px; font-size: 34px; }
+    .cg .card { padding: 16px 16px; }
+    .cg .intro { margin: 6px 6px 16px; }
+    .cg .hero { gap: 14px; }
+    .cg .verdict .pill.big { font-size: 13px; padding: 6px 12px; }
+  }
+</style>

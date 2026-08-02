@@ -1,0 +1,238 @@
+---
+/* Airport pet-relief page — the result page of the Pet Relief Finder tool.
+   Purpose-built (no longer a generic airport info page): it answers ONE question — where can my
+   dog relieve itself at this airport, and is it before or after security? Data comes from the
+   existing pet_relief field (bilingual locations, availability, post_security, note, source).
+   Honest fallbacks: US airports carry the federal 14 CFR §382.51 rule; others show generic guidance
+   with an invitation to report. Nothing fabricated. */
+import { loadKB, cityName, inlineT, inlineF, dateFormatter } from "@mydogcanfly/knowledge";
+import Breadcrumb from "./Breadcrumb.astro";
+import { siblingAirports, dogAirlinesForAirport } from "../lib/cluster";
+interface Props { id: string; locale: string }
+const { id, locale } = Astro.props as Props;
+const fr = locale === "fr";
+const es = locale === "es";
+const T = inlineT(locale);
+const fmtDate = dateFormatter(locale); // date visible à la langue de la page ; le JSON-LD garde l'ISO
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+const kb: any = loadKB();
+const a: any = kb.airports.get(id);
+const country: any = a ? kb.countries.get(a.country_id) : undefined;
+const pick = (lt: any): string => (lt?.[locale] ?? lt?.en ?? "");
+const iso2Flag = (iso2?: string) => (iso2 && iso2.length === 2 ? String.fromCodePoint(...[...iso2.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : "");
+
+// Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
+// renvoyait les pages portugaises vers les URL anglaises.
+const base = locale === "en" ? "" : `/${locale}`;
+const city = a ? cityName(a, locale) : "";
+const airportName = pick(a?.name) || city;
+const countryName = country ? pick(country.name) : "";
+const isUS = a?.country_id === "country_us";
+const siblings = a ? siblingAirports(kb, id, locale, 6) : [];
+// Compagnies acceptant le chien qui opèrent ici — ferme la case aéroport → compagnie.
+const airlines = a ? dogAirlinesForAirport(kb, id, locale, 8) : { list: [], total: 0, hidden: 0 };
+const countryHref = country ? `${base}/countries/${country.iso2.toLowerCase()}/` : null;
+
+const pr = a?.pet_relief;
+const available: "yes" | "no" | null = pr?.available === "yes" ? "yes" : pr?.available === "no" ? "no" : null;
+const postSecurity: boolean = pr?.post_security === true;
+const locations: string[] = (pr?.locations ?? []).map((l: any) => pick(l)).filter(Boolean);
+const note: string = pick(pr?.note);
+// « Disponible » peut vouloir dire deux choses très différentes : une zone réellement
+// relevée à cet aéroport, ou une zone déduite d'un texte de loi qui l'impose. 31 aéroports
+// sur 62 sont dans le second cas (30 par la règle fédérale américaine) et n'ont aucun
+// emplacement. Les annoncer comme « une ou plusieurs zones dédiées » promet une précision
+// qu'on n'a pas : le lecteur cherche ensuite un emplacement qui n'est écrit nulle part.
+const inferredOnly = pr?.basis === "regulation" && locations.length === 0;
+// Hors États-Unis, une zone peut exister sans être ouverte au chien de compagnie : Sydney
+// interdit les animaux en terminal, Tel-Aviv réserve la sienne aux chiens-guides. Annoncer
+// « zone disponible » sans le dire tromperait exactement notre lecteur.
+const assistanceOnly = pr?.assistance_only === true;
+const src = pr?.source ? { url: pr.source.url, host: (() => { try { return new URL(pr.source.url).host; } catch { return pr.source.url; } })(), date: pr.source.verified_date, confidence: pr.source.confidence } : undefined;
+
+// verdict
+type Tone = "ok" | "warn" | "no";
+let vTone: Tone, vLabel: string, vDesc: string;
+if (available === "yes" && inferredOnly) {
+  // Le fait est solide (la loi l'impose), l'emplacement ne l'est pas : on le dit.
+  vTone = "warn";
+  vLabel = T("Required by law — exact spot not published", "Imposée par la loi — emplacement non publié", "Exigida por ley — ubicación no publicada");
+  vDesc = F(
+    "A relief area is legally required at {0}, but its exact location isn't published in our sources. Follow the airport signage or ask the accessibility desk on arrival.",
+    "Une zone de soulagement est imposée par la réglementation à {0}, mais son emplacement exact n'est pas publié dans nos sources. Suis la signalétique ou demande au comptoir accessibilité en arrivant.",
+    "Una zona de alivio es obligatoria por ley en {0}, pero su ubicación exacta no está publicada en nuestras fuentes. Sigue la señalización o pregunta en el mostrador de accesibilidad al llegar.",
+    city,
+  );
+} else if (available === "yes" && assistanceOnly) {
+  vTone = "warn";
+  vLabel = T("Assistance dogs only", "Réservée aux chiens d'assistance", "Solo perros de asistencia");
+  vDesc = F(
+    "{0} has a relief area, but it is reserved for assistance dogs — a pet dog travelling with you cannot use it.",
+    "{0} dispose d'une zone de soulagement, mais elle est réservée aux chiens d'assistance — un chien de compagnie qui voyage avec toi n'y a pas accès.",
+    "{0} tiene una zona de alivio, pero está reservada a perros de asistencia — un perro de compañía que viaja contigo no puede usarla.",
+    city,
+  );
+} else if (available === "yes") {
+  vTone = "ok";
+  vLabel = T("Pet relief area available", "Zone de soulagement disponible", "Zona de alivio disponible");
+  vDesc = F("{0} airport has one or more dedicated dog relief areas.", "L'aéroport de {0} dispose d'une ou plusieurs zones dédiées pour chiens.", "El aeropuerto de {0} cuenta con una o varias zonas de alivio dedicadas para perros.", city);
+} else if (available === "no") {
+  vTone = "no";
+  vLabel = T("No dedicated relief area", "Pas de zone dédiée", "Sin zona de alivio dedicada");
+  vDesc = T("No dedicated pet relief area is reported at this airport — plan a walk before or after your flight, outside the terminal.", "Aucune zone de soulagement dédiée n'est signalée dans cet aéroport — prévois une sortie avant ou après le vol, à l'extérieur du terminal.", "No se ha reportado ninguna zona de alivio dedicada en este aeropuerto — planifica un paseo antes o después del vuelo, fuera de la terminal.");
+} else if (isUS) {
+  vTone = "warn";
+  vLabel = T("Required by US federal rule", "Imposée par la règle fédérale US", "Exigida por la norma federal de EE. UU.");
+  vDesc = T("Not individually documented here, but under US federal rule (14 CFR §382.51) each terminal must provide a service-animal / pet relief area after security. Follow the airport signage or ask the accessibility desk.", "Pas documentée individuellement ici, mais la règle fédérale américaine (14 CFR §382.51) impose une zone de soulagement pour animaux dans chaque terminal, après les contrôles. Suis la signalétique ou demande au comptoir accessibilité.", "No está documentada individualmente aquí, pero la norma federal de EE. UU. (14 CFR §382.51) exige que cada terminal disponga de una zona de alivio para animales de servicio o mascotas después del control de seguridad. Sigue la señalización del aeropuerto o pregunta en el mostrador de accesibilidad.");
+} else {
+  vTone = "warn";
+  vLabel = T("Not documented yet", "Non documenté pour l'instant", "Aún sin documentar");
+  vDesc = T("We don't yet have confirmed relief-area details for this airport. Follow the airport signage or ask the accessibility / information desk — and please report what you find so we can improve this page.", "Nous n'avons pas encore de détails confirmés sur les zones de soulagement de cet aéroport. Suis la signalétique ou demande au comptoir accessibilité / information — et signale-nous ce que tu trouve pour améliorer cette page.", "Todavía no tenemos detalles confirmados sobre las zonas de alivio de este aeropuerto. Sigue la señalización del aeropuerto o pregunta en el mostrador de accesibilidad o información — y por favor cuéntanos lo que encuentres para mejorar esta página.");
+}
+const showSecurityBadges = available === "yes" || (isUS && available === null);
+const airsideKnown = available === "yes" ? postSecurity : isUS; // US rule guarantees airside
+
+const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} ({1})", "Zonas de alivio para mascotas en {0} ({1})", airportName, a?.iata ?? "");
+---
+<div class="mdcf-container apr">
+  <Breadcrumb locale={locale} items={[
+    { label: T("Home", "Accueil", "Inicio"), href: "/" },
+    { label: T("Airport pet relief", "Coins pipi en aéroport", "Zonas de alivio en aeropuertos"), href: "/tools/pet-relief/" },
+    { label: `${city} (${a?.iata})` },
+  ]} />
+  <section class={`apr-hero tone-${vTone}`}>
+    <p class="mdcf-eyebrow">{T("Airport pet relief", "Coins pipi en aéroport", "Zonas de alivio en aeropuertos")}</p>
+    <h1 class="apr-h1">{title}</h1>
+    <p class="apr-sub">{iso2Flag(country?.iso2)} {city}{countryName ? ` · ${countryName}` : ""} · {a?.iata}</p>
+    <div class="apr-verdict">
+      <span class={`apr-pill tone-${vTone}`}>{vLabel}</span>
+    </div>
+    <p class="apr-vdesc">{vDesc}</p>
+  </section>
+
+  {showSecurityBadges && (
+    <section class="apr-card">
+      <h2 class="apr-h2">{T("Before or after security?", "Avant ou après la sûreté ?", "¿Antes o después del control de seguridad?")}</h2>
+      <div class="apr-sec">
+        <div class={`apr-secbox ${!airsideKnown ? "is-on" : ""}`}>
+          <span class="apr-secic">🏙️</span>
+          <span class="apr-seclbl">{T("Landside (before security)", "Côté ville (avant sûreté)", "Lado tierra (antes del control)")}</span>
+          <span class="apr-secval">{available === "yes" && !postSecurity ? T("Yes", "Oui", "Sí") : T("Possible", "Possible", "Posible")}</span>
+        </div>
+        <div class={`apr-secbox ${airsideKnown ? "is-on" : ""}`}>
+          <span class="apr-secic">✈️</span>
+          <span class="apr-seclbl">{T("Airside (after security)", "Côté piste (après sûreté)", "Lado aire (después del control)")}</span>
+          <span class="apr-secval">{airsideKnown ? T("Yes", "Oui", "Sí") : T("Unknown", "Inconnu", "Desconocido")}</span>
+        </div>
+      </div>
+      <p class="apr-secnote">{T("For a layover, you need an airside (post-security) area — you usually cannot re-clear security.", "En correspondance, il te faut une zone côté piste (après sûreté) — on ne peut généralement pas repasser les contrôles.", "En una escala necesitas una zona del lado aire (después del control) — normalmente no puedes volver a pasar el control de seguridad.")}</p>
+    </section>
+  )}
+
+  {locations.length > 0 && (
+    <section class="apr-card">
+      <h2 class="apr-h2">{T("Where exactly", "Où précisément", "Dónde exactamente")}</h2>
+      <ul class="apr-locs">
+        {locations.map((l) => <li class="apr-loc"><span class="apr-locic" aria-hidden="true">📍</span> {l}</li>)}
+      </ul>
+    </section>
+  )}
+
+  {note && (
+    <section class="apr-card apr-note"><span class="apr-noteic" aria-hidden="true">ℹ️</span><p>{note}</p></section>
+  )}
+
+  {(countryHref || siblings.length > 0 || airlines.list.length > 0) && (
+    <section class="apr-card apr-geo">
+      {airlines.list.length > 0 && (
+        <div class="apr-geosib">
+          <span class="apr-geolbl">{F("Airlines accepting dogs at {0}", "Compagnies acceptant le chien à {0}", "Aerolíneas que aceptan perros en {0}", a?.iata ?? "")}:</span>
+          <div class="apr-geochips">
+            {airlines.list.map((al) => (
+              <a class="apr-chip" href={`${base}/airlines/${al.slug}/`} data-carry="breed">
+                {al.hub && <span class="apr-hub" title={T("Hub", "Hub", "Hub")}>🏠</span>}{al.name}
+                <span class="apr-chan">{al.channel === "cabin" ? (T("cabin", "cabine", "cabina") + (al.maxKg ? F(" ≤{0} kg", " ≤ {0} kg", " ≤{0} kg", al.maxKg) : "")) : al.channel === "hold" ? T("hold", "soute", "bodega") : T("cargo", "cargo", "carga")}</span>
+              </a>
+            ))}
+          </div>
+          {/* Le classement suit la présence de la compagnie à cet aéroport, hubs d'abord. Le
+              nombre de routes n'est pas affiché : l'échantillonnage n'est pas symétrique d'un
+              aéroport à l'autre, le chiffre donnerait une précision qu'il n'a pas. */}
+          <p class="apr-geonote">{F("{0} airlines we document accept dogs and serve this airport. The verdict is each airline's general policy — it does not prejudge your breed or your route.", "{0} compagnies que nous documentons acceptent le chien et desservent cet aéroport. Le verdict est la politique générale de chacune : il ne préjuge ni de ta race, ni de ton itinéraire.", "{0} aerolíneas que documentamos aceptan perros y operan en este aeropuerto. El veredicto es la política general de cada una: no prejuzga tu raza ni tu itinerario.", airlines.total)}</p>
+        </div>
+      )}
+      {countryHref && (
+        <p class="apr-geoline">🌍 {T("Traveling to", "Destination", "Destino")} {countryName || city} — <a href={countryHref}>{F("see the dog entry rules for {0}", "voir les formalités d'entrée pour {0}", "consulta las normas de entrada para perros de {0}", countryName)}</a>.</p>
+      )}
+      {siblings.length > 0 && (
+        <div class="apr-geosib">
+          <span class="apr-geolbl">{T("Other airports in", "Autres aéroports", "Otros aeropuertos en")} {countryName ? (locale === "fr" ? "en " + countryName : countryName) : ""}:</span>
+          <div class="apr-geochips">
+            {siblings.map((s) => <a class="apr-chip" href={`${base}/airports/${s.slug}/`}>{s.city} ({s.iata})</a>)}
+          </div>
+        </div>
+      )}
+    </section>
+  )}
+
+  <section class="apr-onward">
+    <a class="apr-onav" href={`${base}/tools/pet-relief/`}>🚻 {T("Check another airport", "Vérifier un autre aéroport", "Comprobar otro aeropuerto")}</a>
+    <a class="apr-onav" href={`${base}/#flight-finder`} data-carry="breed air">✈ {T("Find a dog-friendly flight", "Trouver un vol adapté au chien", "Encuentra un vuelo apto para perros")}</a>
+    <a class="apr-onav" href={`${base}/tools/crate/`} data-carry="breed air">📦 {T("Which crate size?", "Quelle taille de cage ?", "¿Qué tamaño de jaula?")}</a>
+  </section>
+
+  {src && (
+    <p class="apr-src">{T("Source", "Source", "Fuente")}: <a href={src.url} rel="nofollow">{src.host}</a> · {T("verified", "vérifié", "verificado")} {fmtDate(src.date)} · {T("confidence", "confiance", "confianza")} {src.confidence}/5.</p>
+  )}
+  <p class="apr-report">{T("Spotted a change or a missing spot?", "Un changement ou un coin manquant ?", "¿Has visto un cambio o un lugar que falta?")} <a href={`${base}/report-error/`}>{T("Tell us", "Signale-le-nous", "Cuéntanoslo")}</a>.</p>
+</div>
+
+<style>
+  .apr { max-width: 820px; padding-bottom: 40px; }
+  .apr-hero { border: 1px solid var(--mdcf-line); border-radius: 18px; padding: 26px 28px; margin: 8px 0 16px; background: linear-gradient(180deg, var(--mdcf-subtle), var(--mdcf-surface)); }
+  .apr-hero.tone-ok { background: linear-gradient(180deg, #eefaf1, var(--mdcf-surface)); }
+  .apr-hero.tone-no { background: linear-gradient(180deg, #fdecec, var(--mdcf-surface)); }
+  .apr-hero.tone-warn { background: linear-gradient(180deg, #fdf6e7, var(--mdcf-surface)); }
+  .apr-h1 { font-size: clamp(24px, 3.4vw, 32px); margin: 4px 0 6px; color: var(--mdcf-ink); letter-spacing: -.02em; }
+  .apr-sub { color: var(--mdcf-muted); font-weight: 600; margin: 0 0 14px; }
+  .apr-verdict { margin-bottom: 12px; }
+  .apr-pill { display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 800; }
+  .tone-ok { --c: #1a7f43; --bg: #e7f7ec; } .tone-warn { --c: #9a6400; --bg: #fdf3df; } .tone-no { --c: #b23016; --bg: #fbdcd7; }
+  .apr-pill.tone-ok, .apr-pill.tone-warn, .apr-pill.tone-no { color: var(--c); background: var(--bg); }
+  .apr-vdesc { color: var(--mdcf-ink); font-size: 15px; line-height: 1.6; margin: 0; }
+
+  .apr-card { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 18px 20px; margin: 0 0 14px; background: var(--mdcf-surface); }
+  .apr-h2 { font-size: 17px; margin: 0 0 14px; color: var(--mdcf-ink); }
+  .apr-sec { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .apr-secbox { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 14px; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+  .apr-secbox.is-on { border-color: #1a7f43; background: #f0faf3; }
+  .apr-secic { font-size: 22px; }
+  .apr-seclbl { font-size: 12.5px; color: var(--mdcf-muted); font-weight: 600; }
+  .apr-secval { font-weight: 800; color: var(--mdcf-ink); }
+  .apr-secnote { color: var(--mdcf-muted); font-size: 12.5px; line-height: 1.5; margin: 12px 0 0; }
+  .apr-locs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .apr-loc { display: flex; gap: 9px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; background: var(--mdcf-subtle); font-size: 14.5px; color: var(--mdcf-ink); line-height: 1.5; }
+  .apr-locic { flex: 0 0 auto; }
+  .apr-note { display: flex; gap: 12px; align-items: flex-start; background: var(--mdcf-subtle); }
+  .apr-note p { margin: 0; color: var(--mdcf-ink); font-size: 14px; line-height: 1.55; }
+  .apr-noteic { flex: 0 0 auto; }
+  .apr-onward { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
+  .apr-onav { flex: 1 1 200px; text-align: center; padding: 12px; border-radius: 12px; border: 1px solid var(--mdcf-line); background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; }
+  .apr-onav:hover { background: var(--mdcf-line); }
+  .apr-src, .apr-report { color: var(--mdcf-muted); font-size: 12.5px; line-height: 1.5; margin: 0 0 6px; }
+  .apr-src a, .apr-report a { color: var(--mdcf-accent-ink, #b4530a); }
+  .apr-geo { background: var(--mdcf-subtle); }
+  .apr-geoline { margin: 0; color: var(--mdcf-ink); font-size: 14.5px; line-height: 1.6; }
+  .apr-geoline a { color: var(--mdcf-accent-ink, #b4530a); font-weight: 600; }
+  .apr-geosib { margin-top: 12px; }
+  .apr-geolbl { display: block; font-size: 12.5px; color: var(--mdcf-muted); font-weight: 600; margin-bottom: 8px; }
+  .apr-geochips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .apr-chip { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--mdcf-line); background: var(--mdcf-surface); text-decoration: none; color: var(--mdcf-ink); font-size: 13px; font-weight: 600; }
+  .apr-chip:hover { border-color: var(--mdcf-muted); }
+  /* Le canal (cabine / soute / cargo) est la deuxième information de la pastille : lisible,
+     mais visiblement subordonnée au nom de la compagnie. */
+  .apr-chan { margin-left: 7px; font-weight: 600; font-size: 11.5px; color: var(--mdcf-muted); text-transform: lowercase; }
+  .apr-hub { margin-right: 5px; font-size: 11.5px; }
+  .apr-geonote { margin: 10px 0 0; font-size: 12.5px; color: var(--mdcf-muted); line-height: 1.5; }
+  @media (max-width: 560px) { .apr-sec { grid-template-columns: 1fr; } }
+</style>

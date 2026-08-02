@@ -1,0 +1,398 @@
+# Country Entry Guide — United Kingdom / Great Britain (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_gb
+iso2: "GB"
+name: { en: "United Kingdom", fr: "Royaume-Uni", es: "Reino Unido", pt: "Reino Unido" }
+region: { en: "Europe (non-EU)", fr: "Europe (hors UE)", es: "Europa (fuera de la UE)", pt: "Europa (fora da UE)" }
+
+
+regime: island_controlled
+exit:
+  authority: GOV.UK / APHA
+  authorityUrl: https://www.gov.uk/taking-your-pet-abroad/getting-an-animal-health-certificate
+  intro:
+    en: "Leaving the UK for the EU, your dog needs an Animal Health Certificate (AHC) from an APHA-authorised Official Veterinarian — the GB pet passport is no longer valid for the EU."
+    fr: "Pour sortir du Royaume-Uni vers l'UE, ton chien a besoin d'un Animal Health Certificate (AHC) établi par un vétérinaire officiel agréé APHA — le passeport britannique n'est plus valable pour l'UE."
+    es: "Para salir del Reino Unido hacia la UE, tu perro necesita un Animal Health Certificate (AHC) de un veterinario oficial autorizado por APHA — el pasaporte británico ya no es válido para la UE."
+    pt: "Para sair do Reino Unido rumo à UE, seu cachorro precisa de um Animal Health Certificate (AHC) emitido por um veterinário oficial autorizado pela APHA — o passaporte britânico para animais não vale mais para a UE."
+  steps:
+    - timing: window
+      text:
+        en: "See an APHA Official Veterinarian to get the AHC — valid for 10 days of travel."
+        fr: "Consulte un vétérinaire officiel agréé APHA pour obtenir l'AHC — valable 10 jours pour voyager."
+        es: "Acude a un veterinario oficial autorizado por APHA para obtener el AHC — válido 10 días para viajar."
+        pt: "Procure um veterinário oficial autorizado pela APHA para obter o AHC — válido por 10 dias para viajar."
+    - timing: before
+      text:
+        en: "Travel via an approved route/operator, microchip and rabies vaccination up to date."
+        fr: "Voyage par une voie/opérateur agréé, puce et vaccin antirabique à jour."
+        es: "Viaja por una vía/operador autorizado, con microchip y vacuna antirrábica al día."
+        pt: "Viaje por uma rota aprovada / transportadora autorizada, com microchip e vacinação antirrábica em dia."
+  onSiteNote:
+    en: "Book the vet during your stay — a new AHC is needed for each trip."
+    fr: "Prends rendez-vous chez le vétérinaire pendant ton séjour — un nouvel AHC est requis à chaque voyage."
+    es: "Reserva el veterinario durante tu estancia — se necesita un AHC nuevo para cada viaje."
+    pt: "Marque o veterinário durante sua estadia — é preciso um novo AHC a cada viagem."
+
+hero:
+  h1: { en: "Traveling to Great Britain with your dog", fr: "Voyager en Grande-Bretagne avec ton chien", es: "Viajar a Gran Bretaña con tu perro", pt: "Viajar para a Grã-Bretanha com seu cachorro" }
+  intro:
+    en: >-
+      Great Britain (England, Wales and Scotland) welcomes dogs, but it is no longer in the EU and runs
+      its own scheme — "Bring your pet dog, cat or ferret to Great Britain" — not the EU pet passport
+      system. An ISO microchip and a valid rabies vaccination are always required, and — unlike most EU
+      countries — a vet-administered tapeworm treatment is compulsory for every dog before arrival. You
+      must also travel on an approved route. What else you need depends on where you are coming from: a
+      dog from the EU or a listed country needs a travel document but no blood test, while a dog from an
+      unlisted country also needs a rabies blood test and a three-month wait. This guide explains each
+      case so you know exactly what to prepare before you book. Northern Ireland is not covered by this
+      scheme: it stays inside the EU pet travel area and applies its own rules, so check it separately.
+      Since 4 June 2025 a Great Britain resident needs a free Northern Ireland Pet Travel Document to
+      bring a dog there, and anyone flying from Great Britain must tell DAERA at least 10 working days
+      before departure — see the Northern Ireland sources at the bottom of this page.
+    fr: >-
+      La Grande-Bretagne (Angleterre, Pays de Galles et Écosse) accueille les chiens, mais elle n'est
+      plus dans l'UE et applique son propre régime — « Bring your pet dog, cat or ferret to Great
+      Britain » — et non le passeport européen. Une puce ISO et une vaccination antirabique valide sont
+      toujours exigées et — contrairement à la plupart des pays de l'UE — un traitement contre le ténia
+      administré par un vétérinaire est obligatoire pour chaque chien avant l'arrivée. Tu dois aussi
+      voyager par un itinéraire approuvé. Le reste dépend de ton provenance : un chien venant de l'UE
+      ou d'un pays listé a besoin d'un document de voyage mais pas de prise de sang, tandis qu'un chien
+      venant d'un pays non listé doit aussi passer une prise de sang antirabique et attendre trois mois.
+      Ce guide détaille chaque cas pour savoir exactement quoi préparer avant de réserver. L'Irlande du
+      Nord n'est pas couverte par ce régime : elle reste dans l'espace européen de circulation des
+      animaux de compagnie et applique ses propres règles, à consulter séparément. Depuis le 4 juin
+      2025, un résident de Grande-Bretagne doit obtenir un Northern Ireland Pet Travel Document gratuit
+      pour y emmener son chien, et tout vol au départ de la Grande-Bretagne impose de prévenir le DAERA
+      au moins 10 jours ouvrés avant le départ — voir les sources Irlande du Nord en bas de page.
+    es: >-
+      Gran Bretaña (Inglaterra, Gales y Escocia) acoge a los perros, pero ya no forma parte de la UE y
+      aplica su propio régimen — "Bring your pet dog, cat or ferret to Great Britain" — y no el sistema
+      de pasaporte europeo para mascotas. Siempre se exigen un microchip ISO y una vacunación
+      antirrábica válida y — a diferencia de la mayoría de los países de la UE — un tratamiento contra la
+      tenia administrado por un veterinario es obligatorio para cada perro antes de la llegada. También
+      debes viajar por una ruta aprobada. Lo demás depende del país del que vengas: un perro de la UE o
+      de un país listado necesita un documento de viaje, pero no un análisis de sangre, mientras que un
+      perro de un país no listado necesita además una prueba de titulación de rabia y una espera de tres
+      meses. Esta guía explica cada caso para que sepas exactamente qué preparar antes de reservar.
+      Irlanda del Norte no está cubierta por este régimen: sigue dentro del espacio europeo de
+      circulación de mascotas y aplica sus propias normas, así que consúltala por separado. Desde el 4
+      de junio de 2025, un residente de Gran Bretaña necesita un Northern Ireland Pet Travel Document
+      gratuito para llevar allí a su perro, y todo vuelo desde Gran Bretaña obliga a avisar al DAERA con
+      al menos 10 días hábiles de antelación — consulta las fuentes sobre Irlanda del Norte al final.
+
+    pt: "A Grã-Bretanha (Inglaterra, País de Gales e Escócia) recebe bem os cachorros, mas não faz mais parte da UE e aplica o próprio regime — “Bring your pet dog, cat or ferret to Great Britain” —, e não o sistema europeu de passaporte para animais. Microchip ISO e vacinação antirrábica válida são sempre obrigatórios e — ao contrário da maioria dos países da UE — o tratamento contra a tênia (Echinococcus) aplicado por um veterinário é obrigatório para todo cachorro antes da chegada. Você também precisa viajar por uma rota aprovada. O resto depende de onde você vem: um cachorro que parte da UE ou de um país listado precisa de um documento de viagem, mas não de teste sorológico, enquanto um cachorro vindo de um país não listado precisa também do teste sorológico antirrábico e de três meses de espera. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem. A Irlanda do Norte não é coberta por esse regime: ela continua dentro do espaço europeu de circulação de animais de estimação e aplica as próprias regras, então consulte-a à parte. Desde 4 de junho de 2025, quem mora na Grã-Bretanha precisa de um Northern Ireland Pet Travel Document gratuito para levar um cachorro até lá, e quem voa a partir da Grã-Bretanha precisa avisar o DAERA com pelo menos 10 dias úteis de antecedência — veja as fontes sobre a Irlanda do Norte no fim desta página."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — tapeworm treatment always required", fr: "Modéré — traitement contre le ténia toujours requis", es: "Moderado — tratamiento contra la tenia siempre obligatorio", pt: "Moderado — tratamento contra a tênia sempre obrigatório" }
+
+prepTime:
+  eu:
+    en: "From the EU: a few days if microchip and rabies are up to date; add the tapeworm treatment 24–120 hours before arrival. Allow ~3 weeks if the first rabies shot is still needed (21-day wait)."
+    fr: "Depuis l'UE : quelques jours si puce et rage sont à jour ; ajoute le traitement contre le ténia 24 à 120 heures avant l'arrivée. Compte ~3 semaines si la première vaccination reste à faire (délai de 21 jours)."
+    es: "Desde la UE: unos días si el microchip y la rabia están al día; añade el tratamiento contra la tenia 24–120 horas antes de la llegada. Cuenta ~3 semanas si aún falta la primera vacuna antirrábica (espera de 21 días)."
+    pt: "Da UE: alguns dias se o microchip e a vacina antirrábica estiverem em dia; acrescente o tratamento contra a tênia de 24 a 120 horas antes da chegada. Conte cerca de 3 semanas se ainda faltar a primeira dose antirrábica (espera de 21 dias)."
+  listed:
+    en: "From a listed country: ~3–4 weeks — microchip, rabies with a 21-day wait, a Great Britain pet health certificate, and the tapeworm treatment 24–120 hours before arrival. No blood test."
+    fr: "Depuis un pays listé : ~3–4 semaines — puce, rage avec délai de 21 jours, certificat sanitaire britannique et traitement contre le ténia 24 à 120 heures avant l'arrivée. Pas de prise de sang."
+    es: "Desde un país listado: ~3–4 semanas — microchip, rabia con una espera de 21 días, un certificado sanitario para mascotas de Gran Bretaña y el tratamiento contra la tenia 24–120 horas antes de la llegada. Sin análisis de sangre."
+    pt: "De um país listado: cerca de 3 a 4 semanas — microchip, vacina antirrábica com espera de 21 dias, o Great Britain pet health certificate e o tratamento contra a tênia de 24 a 120 horas antes da chegada. Sem teste sorológico."
+  nonListed:
+    en: "From an unlisted country: ~4 months+ — add a rabies blood test taken at least 30 days after vaccination, then a compulsory 3-month wait before travel, plus the tapeworm treatment before arrival."
+    fr: "Depuis un pays non listé : ~4 mois et plus — ajoute une prise de sang antirabique au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois avant le départ, plus le traitement contre le ténia avant l'arrivée."
+    es: "Desde un país no listado: ~4 meses o más — añade una prueba de titulación de rabia tomada al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses antes de viajar, más el tratamiento contra la tenia antes de la llegada."
+    pt: "De um país não listado: cerca de 4 meses ou mais — acrescente um teste sorológico antirrábico coletado no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera antes da viagem, além do tratamento contra a tênia antes da chegada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (except banned types)", fr: "Oui (sauf types interdits)", es: "Sí (salvo tipos prohibidos)", pt: "Sim (exceto os tipos proibidos)" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies blood test", fr: "Prise de sang antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico" }
+    status: { en: "Conditional — unlisted origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Travel document (passport / AHC / GB certificate)", fr: "Document de voyage (passeport / AHC / certificat GB)", es: "Documento de viaje (pasaporte / AHC / certificado GB)", pt: "Documento de viagem (passaporte / AHC / certificado GB)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre le ténia", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Required for dogs (24–120 h before arrival)", fr: "Requis pour les chiens (24 à 120 h avant l'arrivée)", es: "Obligatorio para perros (24–120 h antes de la llegada)", pt: "Obrigatório para cachorros (de 24 a 120 h antes da chegada)" }
+    cls: warn
+  - requirement: { en: "Approved travel route", fr: "Itinéraire approuvé", es: "Ruta de viaje aprobada", pt: "Rota de viagem aprovada" }
+    status: { en: "Required (except from Ireland/within UK)", fr: "Requis (sauf depuis l'Irlande/au sein du R.-U.)", es: "Obligatoria (salvo desde Irlanda/dentro del R. U.)", pt: "Obrigatória (exceto vindo da Irlanda / dentro do Reino Unido)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Only if the rules are not followed", fr: "Seulement en cas de non-respect des règles", es: "Solo si no se cumplen las normas", pt: "Somente se as regras não forem cumpridas" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Great Britain (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Grande-Bretagne (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Gran Bretaña (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Grã-Bretanha (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Great Britain", fr: "Pays de destination — Grande-Bretagne", es: "País de destino — Gran Bretaña", pt: "País de destino — Grã-Bretanha" }
+      text:
+        en: "Great Britain applies its own scheme: an ISO microchip and a valid rabies vaccination are always required, a compulsory tapeworm treatment applies to every dog, and you must use an approved travel route."
+        fr: "La Grande-Bretagne applique son propre régime : puce ISO et vaccination antirabique valide toujours exigées, traitement contre le ténia obligatoire pour chaque chien, et itinéraire de voyage approuvé obligatoire."
+        es: "Gran Bretaña aplica su propio régimen: siempre se exigen un microchip ISO y una vacunación antirrábica válida, un tratamiento contra la tenia obligatorio para cada perro, y debes usar una ruta de viaje aprobada."
+        pt: "A Grã-Bretanha aplica o próprio regime: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, o tratamento contra a tênia (Echinococcus) é obrigatório para todo cachorro e você precisa usar uma rota de viagem aprovada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from the EU, a listed country or an unlisted country decides which travel document you need and whether a rabies blood test plus a three-month wait are required."
+        fr: "Que ton chien parte de l'UE, d'un pays listé ou d'un pays non listé détermine le document de voyage nécessaire et l'obligation ou non d'une prise de sang antirabique suivie d'un délai de trois mois."
+        es: "Que tu perro salga de la UE, de un país listado o de un país no listado determina qué documento de viaje necesitas y si se exigen una prueba de titulación de rabia y una espera de tres meses."
+        pt: "Partir da UE, de um país listado ou de um país não listado é o que define qual documento de viagem você precisa e se o teste sorológico antirrábico e a espera de três meses são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in an unlisted, rabies-risk country can trigger the blood test even if you fly in from a listed country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays non listé à risque rabique peut imposer la prise de sang même si tu arrives d'un pays listé. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país no listado con riesgo de rabia puede obligar a la prueba de titulación aunque llegues desde un país listado. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país não listado, de risco de raiva, pode acionar a exigência do teste sorológico mesmo que você chegue de um país listado. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Great Britain's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre britannique, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Gran Bretaña y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral da Grã-Bretanha e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before, or at the same time as, the rabies vaccination; must meet ISO 11784/11785.", fr: "Doit être posée avant, ou en même temps que, la vaccination antirabique ; doit être conforme à l'ISO 11784/11785.", es: "Debe implantarse antes de la vacunación antirrábica, o al mismo tiempo; debe cumplir la norma ISO 11784/11785.", pt: "Precisa ser implantado antes da vacinação antirrábica, ou no mesmo momento; deve atender à norma ISO 11784/11785." }
+    exceptions: { en: "A clearly legible tattoo is accepted only if done on or before 3 July 2011 and before vaccination.", fr: "Un tatouage clairement lisible n'est accepté que s'il est antérieur ou égal au 3 juillet 2011 et fait avant la vaccination.", es: "Un tatuaje claramente legible solo se acepta si se hizo el 3 de julio de 2011 o antes, y antes de la vacunación.", pt: "Uma tatuagem claramente legível só é aceita se tiver sido feita em 3 de julho de 2011 ou antes, e antes da vacinação." }
+    ref: { en: "GOV.UK — Bring your pet to Great Britain (Microchip)", fr: "GOV.UK — Bring your pet to Great Britain (Microchip)", es: "GOV.UK — Bring your pet to Great Britain (Microchip)", pt: "GOV.UK — Levar seu animal de estimação para a Grã-Bretanha (microchip)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Microchip first; wait at least 21 full days after the first vaccination (or the last of the primary course) before travelling.", fr: "Puce d'abord ; attends au moins 21 jours pleins après la première vaccination (ou la dernière de la primo-vaccination) avant de voyager.", es: "Primero el microchip; espera al menos 21 días completos después de la primera vacunación (o la última de la primovacunación) antes de viajar.", pt: "Primeiro o microchip; espere no mínimo 21 dias completos depois da primeira vacinação (ou da última dose da primovacinação) antes de viajar." }
+    exceptions: { en: "If the microchip was implanted after the vaccination, the dog must be vaccinated again.", fr: "Si la puce a été posée après le vaccin, le chien doit être revacciné.", es: "Si el microchip se implantó después de la vacuna, hay que volver a vacunar al perro.", pt: "Se o microchip foi implantado depois da vacinação, o cachorro precisa ser vacinado de novo." }
+    ref: { en: "GOV.UK — Rabies vaccination and boosters", fr: "GOV.UK — Rabies vaccination and boosters", es: "GOV.UK — Rabies vaccination and boosters", pt: "GOV.UK — Vacinação antirrábica e reforços" }
+  - item: { en: "Rabies blood test", fr: "Prise de sang antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Unlisted origins only: blood taken ≥30 days after vaccination, result ≥0.5 IU/ml at an EU-approved lab, then a 3-month wait from the sampling date before travel.", fr: "Pays non listés : sang prélevé ≥30 jours après le vaccin, résultat ≥0,5 UI/ml dans un labo agréé UE, puis délai de 3 mois à compter du prélèvement avant le voyage.", es: "Solo orígenes no listados: sangre extraída ≥30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera de 3 meses desde la fecha de la extracción antes de viajar.", pt: "Apenas para origens não listadas: sangue coletado 30 dias ou mais depois da vacinação, resultado igual ou superior a 0,5 UI/ml em laboratório aprovado pela UE, seguido de 3 meses de espera a contar da data da coleta antes da viagem." }
+    exceptions: { en: "Not required from the EU or from listed countries; the 3-month wait is waived if the pet was vaccinated and blood tested in the EU before travelling to an unlisted country.", fr: "Non requis depuis l'UE ou les pays listés ; le délai de 3 mois est levé si l'animal a été vacciné et testé dans l'UE avant de se rendre dans un pays non listé.", es: "No se exige desde la UE ni desde países listados; la espera de 3 meses se suprime si la mascota fue vacunada y analizada en la UE antes de viajar a un país no listado.", pt: "Não é exigido para quem vem da UE ou de países listados; os 3 meses de espera são dispensados se o animal foi vacinado e testado na UE antes de viajar para um país não listado." }
+    ref: { en: "GOV.UK — Blood tests for rabies", fr: "GOV.UK — Blood tests for rabies", es: "GOV.UK — Blood tests for rabies", pt: "GOV.UK — Testes sorológicos antirrábicos" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "Accepted document", fr: "Document accepté", es: "Documento aceptado", pt: "Documento aceito" }
+    when: { en: "A pet passport issued in an EU country (or certain other countries) is accepted for entry from the EU; it records the microchip, rabies vaccination and tapeworm treatment.", fr: "Un passeport délivré dans un pays de l'UE (ou certains autres pays) est accepté à l'entrée depuis l'UE ; il consigne la puce, la vaccination antirabique et le traitement contre le ténia.", es: "Un pasaporte para mascotas expedido en un país de la UE (o en algunos otros países) se acepta para entrar desde la UE; registra el microchip, la vacunación antirrábica y el tratamiento contra la tenia.", pt: "Um passaporte para animais emitido em um país da UE (ou em alguns outros países) é aceito na entrada vindo da UE; ele registra o microchip, a vacinação antirrábica e o tratamento contra a tênia." }
+    exceptions: { en: "GB-issued pet passports are only valid if issued before 1 January 2021.", fr: "Les passeports délivrés en GB ne sont valides que s'ils ont été émis avant le 1er janvier 2021.", es: "Los pasaportes para mascotas expedidos en GB solo son válidos si se emitieron antes del 1 de enero de 2021.", pt: "Os passaportes emitidos na Grã-Bretanha só valem se tiverem sido emitidos antes de 1º de janeiro de 2021." }
+    ref: { en: "GOV.UK — Which pet travel document you need", fr: "GOV.UK — Which pet travel document you need", es: "GOV.UK — Which pet travel document you need", pt: "GOV.UK — Qual documento de viagem você precisa" }
+  - item: { en: "Animal health certificate (AHC)", fr: "Certificat sanitaire animal (AHC)", es: "Certificado sanitario animal (AHC)", pt: "Animal health certificate (AHC) — certificado sanitário" }
+    required: { en: "Accepted document", fr: "Document accepté", es: "Documento aceptado", pt: "Documento aceito" }
+    when: { en: "A GB-issued AHC used within 6 months is accepted for entry from the EU and some listed countries.", fr: "Un AHC délivré en GB et utilisé dans les 6 mois est accepté à l'entrée depuis l'UE et certains pays listés.", es: "Un AHC expedido en GB y usado dentro de los 6 meses se acepta para entrar desde la UE y algunos países listados.", pt: "Um AHC emitido na Grã-Bretanha e usado dentro de 6 meses é aceito na entrada vindo da UE e de alguns países listados." }
+    exceptions: { en: "Replaced by a Great Britain pet health certificate for most non-EU / listed origins.", fr: "Remplacé par un certificat sanitaire britannique pour la plupart des origines hors UE / listées.", es: "Se sustituye por un certificado sanitario para mascotas de Gran Bretaña para la mayoría de los orígenes fuera de la UE / listados.", pt: "Substituído pelo Great Britain pet health certificate (certificado sanitário britânico) na maioria das origens fora da UE / listadas." }
+    ref: { en: "GOV.UK — Animal health certificate (AHC)", fr: "GOV.UK — Animal health certificate (AHC)", es: "GOV.UK — Animal health certificate (AHC)", pt: "GOV.UK — Animal health certificate (AHC)" }
+  - item: { en: "Great Britain pet health certificate", fr: "Certificat sanitaire britannique (GB)", es: "Certificado sanitario para mascotas de Gran Bretaña", pt: "Great Britain pet health certificate (certificado sanitário britânico)" }
+    required: { en: "Required for most non-EU origins", fr: "Requis pour la plupart des origines hors UE", es: "Obligatorio para la mayoría de los orígenes fuera de la UE", pt: "Obrigatório para a maioria das origens fora da UE" }
+    when: { en: "Needed to enter from listed and unlisted countries; issued/completed by an official vet before travel.", fr: "Nécessaire pour entrer depuis les pays listés et non listés ; établi/complété par un vétérinaire officiel avant le voyage.", es: "Necesario para entrar desde países listados y no listados; expedido/cumplimentado por un veterinario oficial antes del viaje.", pt: "Necessário para entrar vindo de países listados e não listados; emitido e preenchido por um veterinário oficial antes da viagem." }
+    exceptions: { en: "Not needed from Northern Ireland, the Channel Islands or the Isle of Man.", fr: "Inutile depuis l'Irlande du Nord, les îles Anglo-Normandes ou l'île de Man.", es: "No necesario desde Irlanda del Norte, las Islas del Canal ni la Isla de Man.", pt: "Não é necessário vindo da Irlanda do Norte, das Ilhas do Canal ou da Ilha de Man." }
+    ref: { en: "GOV.UK — Great Britain pet health certificate", fr: "GOV.UK — Great Britain pet health certificate", es: "GOV.UK — Great Britain pet health certificate", pt: "GOV.UK — Great Britain pet health certificate" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement contre le ténia (Echinococcus)", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Required for dogs", fr: "Requis pour les chiens", es: "Obligatorio para perros", pt: "Obrigatórias para cachorros" }
+    when: { en: "Given by a vet no less than 24 hours and no more than 120 hours (5 days) before arrival; must contain praziquantel or an equivalent and be recorded (date, time, product) in the travel document.", fr: "Administré par un vétérinaire au moins 24 heures et au plus 120 heures (5 jours) avant l'arrivée ; doit contenir du praziquantel ou un équivalent et être consigné (date, heure, produit) dans le document de voyage.", es: "Administrado por un veterinario no menos de 24 horas y no más de 120 horas (5 días) antes de la llegada; debe contener praziquantel o un equivalente y quedar registrado (fecha, hora, producto) en el documento de viaje.", pt: "Aplicado por um veterinário no mínimo 24 horas e no máximo 120 horas (5 dias) antes da chegada; precisa conter praziquantel ou equivalente e ser registrado (data, hora, produto) no documento de viagem." }
+    exceptions: { en: "Not required when coming directly from Finland, Ireland, Northern Ireland, Malta or Norway.", fr: "Non requis en provenance directe de la Finlande, l'Irlande, l'Irlande du Nord, Malte ou la Norvège.", es: "No obligatorio cuando se llega directamente de Finlandia, Irlanda, Irlanda del Norte, Malta o Noruega.", pt: "Não é exigido para quem vem diretamente da Finlândia, da Irlanda, da Irlanda do Norte, de Malta ou da Noruega." }
+    ref: { en: "GOV.UK — Tapeworm treatment for dogs", fr: "GOV.UK — Tapeworm treatment for dogs", es: "GOV.UK — Tapeworm treatment for dogs", pt: "GOV.UK — Tratamento contra a tênia para cachorros" }
+  - item: { en: "Approved travel route", fr: "Itinéraire de voyage approuvé", es: "Ruta de viaje aprobada", pt: "Rota de viagem aprovada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "You must enter on an approved air, sea or rail route and operator; by plane, pets travel as cargo unless on a charter flight or an assistance dog.", fr: "Tu dois entrer par un itinéraire et un opérateur air/mer/rail approuvés ; en avion, les animaux voyagent en fret sauf vol charter ou chien d'assistance.", es: "Debes entrar por una ruta y un operador aéreos, marítimos o ferroviarios aprobados; en avión, las mascotas viajan como carga, salvo en vuelo chárter o perro de asistencia.", pt: "Você precisa entrar por uma rota aprovada e uma transportadora autorizada, por via aérea, marítima ou ferroviária; de avião, os animais de estimação viajam como carga — não podem ir na cabine —, salvo em voo fretado ou se for cão de assistência." }
+    exceptions: { en: "Not required for travel within the UK or from Ireland.", fr: "Non requis pour un trajet au sein du R.-U. ou depuis l'Irlande.", es: "No obligatoria para un trayecto dentro del R. U. o desde Irlanda.", pt: "Não é exigida em viagens dentro do Reino Unido ou vindas da Irlanda." }
+    ref: { en: "GOV.UK — Travel routes for pets", fr: "GOV.UK — Travel routes for pets", es: "GOV.UK — Travel routes for pets", pt: "GOV.UK — Rotas de viagem para animais de estimação" }
+  - item: { en: "Owner declaration (non-commercial)", fr: "Déclaration du propriétaire (non commercial)", es: "Declaración del propietario (no comercial)", pt: "Declaração do proprietário (não comercial)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Complete a pet travel declaration confirming you will not sell or transfer ownership of the pet.", fr: "Remplis une déclaration de voyage confirmant que tu ne vendrez ni ne céderez la propriété de l'animal.", es: "Cumplimenta una declaración de viaje de la mascota confirmando que no venderás ni cederás la propiedad del animal.", pt: "Preencha uma declaração de viagem confirmando que você não vai vender nem transferir a propriedade do animal." }
+    exceptions: { en: "Commercial movements or rehoming follow the stricter Balai rules instead.", fr: "Les mouvements commerciaux ou les cessions relèvent des règles Balai, plus strictes.", es: "Los movimientos comerciales o las cesiones se rigen en cambio por las normas Balai, más estrictas.", pt: "Movimentações comerciais ou doações para um novo lar seguem, em vez disso, as regras Balai, mais rígidas." }
+    ref: { en: "GOV.UK — Pet travel declaration", fr: "GOV.UK — Pet travel declaration", es: "GOV.UK — Pet travel declaration", pt: "GOV.UK — Declaração de viagem do animal de estimação" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "Rabies vaccine cannot be given before 12 weeks, then a 21-day wait applies (about 4 months from an unlisted country after the blood test and wait).", fr: "Le vaccin antirabique ne peut être fait avant 12 semaines, puis un délai de 21 jours s'applique (environ 4 mois depuis un pays non listé après la prise de sang et le délai).", es: "La vacuna antirrábica no puede administrarse antes de las 12 semanas, y luego se aplica una espera de 21 días (unos 4 meses desde un país no listado tras la prueba de titulación y la espera).", pt: "A vacina antirrábica não pode ser aplicada antes das 12 semanas e, depois, vale a espera de 21 dias (cerca de 4 meses vindo de um país não listado, somando o teste sorológico e a espera)." }
+    exceptions: { en: "Unvaccinated young puppies cannot meet the rabies rule and so cannot enter under this scheme.", fr: "Un jeune chiot non vacciné ne peut satisfaire la règle antirabique et ne peut donc entrer via ce régime.", es: "Un cachorro joven sin vacunar no puede cumplir la norma antirrábica y, por tanto, no puede entrar por este régimen.", pt: "Filhotes novos e não vacinados não conseguem cumprir a regra da raiva e, portanto, não podem entrar por esse regime." }
+    ref: { en: "GOV.UK — Rabies vaccination and boosters", fr: "GOV.UK — Rabies vaccination and boosters", es: "GOV.UK — Rabies vaccination and boosters", pt: "GOV.UK — Vacinação antirrábica e reforços" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not routine", fr: "Non systématique", es: "No sistemática", pt: "Não sistemática" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "A pet may be put into quarantine for up to 4 months, or refused entry (if travelling by sea), if the rules are not followed.", fr: "Un animal peut être placé en quarantaine jusqu'à 4 mois, ou refusé à l'entrée (voyage par mer), si les règles ne sont pas respectées.", es: "Una mascota puede ser puesta en cuarentena hasta 4 meses, o se le puede denegar la entrada (si viaja por mar), si no se cumplen las normas.", pt: "O animal pode ficar em quarentena por até 4 meses, ou ter a entrada recusada (em viagem por mar), se as regras não forem cumpridas." }
+    ref: { en: "GOV.UK — Bring your pet to Great Britain (What you need to do)", fr: "GOV.UK — Bring your pet to Great Britain (What you need to do)", es: "GOV.UK — Bring your pet to Great Britain (What you need to do)", pt: "GOV.UK — Levar seu animal de estimação para a Grã-Bretanha (o que fazer)" }
+
+origin:
+  eu:
+    title: { en: "From the EU — travel document, no blood test", fr: "Depuis l'UE — document de voyage, sans prise de sang", es: "Desde la UE — documento de viaje, sin análisis de sangre", pt: "Da UE — documento de viagem, sem teste sorológico" }
+    body:
+      en: "From an EU country, your dog needs a microchip, a valid rabies vaccination (21-day wait) and one accepted document: an EU pet passport, a GB animal health certificate used within 6 months, or a Great Britain pet health certificate. A tapeworm treatment 24–120 hours before arrival is compulsory, and you must use an approved route. No blood test is required."
+      fr: "Depuis un pays de l'UE, ton chien a besoin d'une puce, d'une vaccination antirabique valide (délai de 21 jours) et d'un document accepté : passeport européen, AHC britannique utilisé dans les 6 mois, ou certificat sanitaire britannique. Un traitement contre le ténia 24 à 120 heures avant l'arrivée est obligatoire, et tu dois emprunter un itinéraire approuvé. Aucune prise de sang n'est exigée."
+      es: "Desde un país de la UE, tu perro necesita un microchip, una vacunación antirrábica válida (espera de 21 días) y un documento aceptado: un pasaporte europeo para mascotas, un AHC de GB usado dentro de los 6 meses, o un certificado sanitario para mascotas de Gran Bretaña. Un tratamiento contra la tenia 24–120 horas antes de la llegada es obligatorio, y debes usar una ruta aprobada. No se exige ningún análisis de sangre."
+      pt: "Vindo de um país da UE, seu cachorro precisa de microchip, vacinação antirrábica válida (espera de 21 dias) e um documento aceito: passaporte europeu para animais, um animal health certificate britânico usado dentro de 6 meses ou o Great Britain pet health certificate. O tratamento contra a tênia de 24 a 120 horas antes da chegada é obrigatório, e você precisa usar uma rota aprovada. Nenhum teste sorológico é exigido."
+    cls: ok
+  listed:
+    title: { en: "From a listed country — GB certificate, no blood test", fr: "Depuis un pays listé — certificat GB, sans prise de sang", es: "Desde un país listado — certificado GB, sin análisis de sangre", pt: "De um país listado — certificado GB, sem teste sorológico" }
+    body:
+      en: "From a listed country (such as the United States, Canada, Australia, Japan or Switzerland), your dog needs a microchip, a valid rabies vaccination and a Great Britain pet health certificate completed by an official vet. The compulsory tapeworm treatment and an approved route still apply. No rabies blood test is required."
+      fr: "Depuis un pays listé (États-Unis, Canada, Australie, Japon, Suisse…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire britannique complété par un vétérinaire officiel. Le traitement contre le ténia obligatoire et un itinéraire approuvé restent exigés. Aucune prise de sang antirabique n'est requise."
+      es: "Desde un país listado (como Estados Unidos, Canadá, Australia, Japón o Suiza), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario para mascotas de Gran Bretaña cumplimentado por un veterinario oficial. El tratamiento obligatorio contra la tenia y una ruta aprobada siguen siendo exigidos. No se exige ninguna prueba de titulación de rabia."
+      pt: "Vindo de um país listado (como Estados Unidos, Canadá, Austrália, Japão ou Suíça), seu cachorro precisa de microchip, vacinação antirrábica válida e do Great Britain pet health certificate preenchido por um veterinário oficial. O tratamento obrigatório contra a tênia e a rota aprovada continuam valendo. Nenhum teste sorológico antirrábico é exigido."
+    cls: warn
+  nonListed:
+    title: { en: "From an unlisted country — blood test + 3-month wait", fr: "Depuis un pays non listé — prise de sang + 3 mois d'attente", es: "Desde un país no listado — prueba de titulación + espera de 3 meses", pt: "De um país não listado — teste sorológico + 3 meses de espera" }
+    body:
+      en: "From an unlisted country, add a rabies blood test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-approved laboratory, then a compulsory 3-month wait from the sampling date before travel. A Great Britain pet health certificate, the tapeworm treatment and an approved route are also required."
+      fr: "Depuis un pays non listé, ajoute une prise de sang antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis délai obligatoire de 3 mois à compter du prélèvement avant le voyage. Un certificat sanitaire britannique, le traitement contre le ténia et un itinéraire approuvé sont également requis."
+      es: "Desde un país no listado, añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses desde la fecha de la extracción antes de viajar. También se exigen un certificado sanitario para mascotas de Gran Bretaña, el tratamiento contra la tenia y una ruta aprobada."
+      pt: "Vindo de um país não listado, acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias depois da vacinação, resultado igual ou superior a 0,5 UI/ml em laboratório aprovado pela UE, seguido de 3 meses obrigatórios de espera a contar da data da coleta antes da viagem. Também são exigidos o Great Britain pet health certificate, o tratamento contra a tênia e uma rota aprovada."
+    cls: no
+
+arrival:
+  intro:
+    en: "When your dog reaches Great Britain, its microchip and documents are checked; pets may also be checked before boarding by sea or Eurotunnel."
+    fr: "À l'arrivée en Grande-Bretagne, la puce et les documents de ton chien sont contrôlés ; les animaux peuvent aussi être contrôlés avant l'embarquement par mer ou Eurotunnel."
+    es: "Cuando tu perro llega a Gran Bretaña, se comprueban su microchip y sus documentos; las mascotas también pueden ser controladas antes de embarcar por mar o por Eurotunnel."
+    pt: "Quando seu cachorro chega à Grã-Bretanha, o microchip e os documentos são conferidos; os animais também podem ser conferidos antes do embarque por mar ou pelo Eurotunnel."
+  points:
+    - en: "Checks confirm the microchip, rabies vaccination, travel document and the recorded tapeworm treatment (date and time)."
+      fr: "Les contrôles vérifient la puce, la vaccination antirabique, le document de voyage et le traitement contre le ténia consigné (date et heure)."
+      es: "Los controles verifican el microchip, la vacunación antirrábica, el documento de viaje y el tratamiento contra la tenia registrado (fecha y hora)."
+      pt: "A conferência verifica o microchip, a vacinação antirrábica, o documento de viagem e o registro do tratamento contra a tênia (data e hora)."
+    - en: "You must arrive on an approved route and operator, except when travelling within the UK or from Ireland."
+      fr: "Tu dois arriver par un itinéraire et un opérateur approuvés, sauf pour un trajet au sein du R.-U. ou depuis l'Irlande."
+      es: "Debes llegar por una ruta y un operador aprobados, salvo en un trayecto dentro del R. U. o desde Irlanda."
+      pt: "Você precisa chegar por uma rota aprovada e uma transportadora autorizada, exceto em viagens dentro do Reino Unido ou vindas da Irlanda."
+    - en: "Entering from outside the EU, your pet must clear customs before you collect it — an agent, travel company or airline can usually do this for you."
+      fr: "En provenance hors UE, ton animal doit passer la douane avant que tu puissiez le récupérer — un agent, une compagnie de voyage ou la compagnie aérienne peut le faire pour toi."
+      es: "Al llegar desde fuera de la UE, tu mascota debe pasar la aduana antes de que puedas recogerla — un agente, una empresa de viajes o la aerolínea suele poder hacerlo por ti."
+      pt: "Vindo de fora da UE, seu animal precisa passar pela alfândega antes de você retirá-lo — em geral um despachante, uma agência de viagens ou a companhia aérea pode cuidar disso para você."
+    - en: "If documents are missing or the dog was not properly prepared, it may be put into quarantine for up to 4 months or refused entry (by sea) — at the owner's expense."
+      fr: "Si les documents manquent ou si le chien n'a pas été correctement préparé, il peut être placé en quarantaine jusqu'à 4 mois ou refusé à l'entrée (par mer) — aux frais du propriétaire."
+      es: "Si faltan documentos o el perro no ha sido preparado correctamente, puede ser puesto en cuarentena hasta 4 meses o se le puede denegar la entrada (por mar) — a cargo del propietario."
+      pt: "Se faltarem documentos ou se o cachorro não tiver sido preparado corretamente, ele pode ficar em quarentena por até 4 meses ou ter a entrada recusada (por mar) — às custas do proprietário."
+    - en: "If the microchip cannot be read on arrival, the pet can be refused entry or quarantined, and the whole preparation may have to be repeated."
+      fr: "Si la puce ne peut être lue à l'arrivée, l'animal peut être refusé ou mis en quarantaine, et toute la préparation peut devoir être refaite."
+      es: "Si el microchip no puede leerse a la llegada, se puede denegar la entrada a la mascota o ponerla en cuarentena, y quizá haya que repetir toda la preparación."
+      pt: "Se o microchip não puder ser lido na chegada, o animal pode ter a entrada recusada ou ficar em quarentena, e talvez seja preciso refazer toda a preparação."
+    - en: "Banned types of dog are refused entry unless they already hold a valid Certificate of Exemption."
+      fr: "Les types de chiens interdits sont refusés à l'entrée, sauf s'ils détiennent déjà un certificat d'exemption valide."
+      es: "A los tipos de perro prohibidos se les deniega la entrada, salvo que ya dispongan de un certificado de exención válido."
+      pt: "Os tipos de cachorro proibidos têm a entrada recusada, a não ser que já tenham um Certificate of Exemption (certificado de isenção) válido."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Great Britain does not use a permissive category system. Under the Dangerous Dogs Act 1991, certain types of dog are simply banned, and importing a banned type into Great Britain is illegal. Whether a dog is a banned type depends on what it looks like, not its breed name or pedigree."
+    fr: "La Grande-Bretagne n'utilise pas de système de catégories permissives. En vertu du Dangerous Dogs Act 1991, certains types de chiens sont purement interdits, et importer un type interdit en Grande-Bretagne est illégal. Le caractère interdit dépend de l'apparence du chien, pas de son nom de race ni de son pedigree."
+    es: "Gran Bretaña no utiliza un sistema de categorías permisivas. En virtud del Dangerous Dogs Act 1991, ciertos tipos de perro están simplemente prohibidos, e importar un tipo prohibido a Gran Bretaña es ilegal. Que un perro sea de un tipo prohibido depende de su apariencia, no del nombre de su raza ni de su pedigrí."
+    pt: "A Grã-Bretanha não usa um sistema de categorias permissivas. Pelo Dangerous Dogs Act 1991 (lei sobre cachorros perigosos), certos tipos de cachorro são simplesmente proibidos, e importar um tipo proibido para a Grã-Bretanha é ilegal. Ser ou não um tipo proibido depende da aparência do cachorro, e não do nome da raça nem do pedigree."
+  cat1:
+    en: "Banned types (prohibited): Pit Bull Terrier, Japanese Tosa, Dogo Argentino, Fila Brasileiro and the XL Bully (added in 2023–2024). You cannot bring these into Great Britain unless the dog already holds a valid Certificate of Exemption. Owning a banned type unlawfully can mean an unlimited fine, up to 6 months in prison and destruction of the dog."
+    fr: "Types interdits (prohibés) : Pit Bull Terrier, Tosa japonais, Dogo Argentino, Fila Brasileiro et l'XL Bully (ajouté en 2023–2024). Tu ne pouvez pas les faire entrer en Grande-Bretagne sauf si le chien détient déjà un certificat d'exemption valide. Détenir illégalement un type interdit peut entraîner une amende illimitée, jusqu'à 6 mois de prison et l'euthanasie du chien."
+    es: "Tipos prohibidos: Pit Bull Terrier, Tosa japonés, Dogo Argentino, Fila Brasileiro y el XL Bully (añadido en 2023–2024). No puedes traerlos a Gran Bretaña salvo que el perro ya disponga de un certificado de exención válido. Tener ilegalmente un tipo prohibido puede acarrear una multa ilimitada, hasta 6 meses de prisión y el sacrificio del perro."
+    pt: "Tipos proibidos: Pit Bull Terrier, Tosa Japonês, Dogo Argentino, Fila Brasileiro e o XL Bully (incluído em 2023–2024). Você não pode levá-los para a Grã-Bretanha, a não ser que o cachorro já tenha um Certificate of Exemption válido. Ter ilegalmente um tipo proibido pode custar multa sem limite de valor, até 6 meses de prisão e a eutanásia do cachorro."
+  cat2:
+    en: "There is no permissive second category: Great Britain uses a banned-type model, not the two-tier approach seen in some EU countries. The only route to keep a banned-type dog is an individual Certificate of Exemption, granted for the life of the dog (typically via a court's Contingent Destruction Order) with strict conditions — neutering, microchipping, muzzle and lead in public, and secure containment."
+    fr: "Il n'existe pas de seconde catégorie permissive : la Grande-Bretagne applique un modèle de types interdits, et non l'approche à deux niveaux de certains pays de l'UE. La seule voie pour garder un chien de type interdit est un certificat d'exemption individuel, valable à vie (généralement via une ordonnance de destruction conditionnelle du tribunal) avec des conditions strictes : stérilisation, puçage, muselière et laisse en public, et détention sécurisée."
+    es: "No existe una segunda categoría permisiva: Gran Bretaña aplica un modelo de tipos prohibidos, y no el enfoque de dos niveles que se ve en algunos países de la UE. La única vía para tener un perro de un tipo prohibido es un certificado de exención individual, concedido de por vida (normalmente mediante una orden judicial de destrucción condicional) con condiciones estrictas: esterilización, microchip, bozal y correa en público, y contención segura."
+    pt: "Não existe uma segunda categoria permissiva: a Grã-Bretanha usa um modelo de tipos proibidos, e não a abordagem em dois níveis de alguns países da UE. A única forma de ficar com um cachorro de tipo proibido é um Certificate of Exemption individual, concedido para toda a vida do cachorro (em geral por meio de uma Contingent Destruction Order do tribunal), com condições rígidas: castração, microchip, focinheira e guia em público e contenção segura."
+  note:
+    en: "A dog that resembles a banned type may be treated as banned; it is the owner's responsibility to prove a dog is not a banned type. Exemption certificates are managed by the Index of Exempted Dogs (Defra); do not travel with a banned-type dog without confirming its legal status first."
+    fr: "Un chien qui ressemble à un type interdit peut être traité comme tel ; il revient au propriétaire de prouver qu'un chien n'est pas d'un type interdit. Les certificats d'exemption sont gérés par l'Index of Exempted Dogs (Defra) ; ne voyage pas avec un chien de type interdit sans avoir d'abord confirmé son statut légal."
+    es: "Un perro que se parezca a un tipo prohibido puede ser tratado como tal; corresponde al propietario demostrar que un perro no es de un tipo prohibido. Los certificados de exención los gestiona el Index of Exempted Dogs (Defra); no viajes con un perro de un tipo prohibido sin confirmar antes su situación legal."
+    pt: "Um cachorro que se pareça com um tipo proibido pode ser tratado como proibido; cabe ao proprietário provar que o cachorro não é de um tipo proibido. Os certificados de isenção são administrados pelo Index of Exempted Dogs (Defra); não viaje com um cachorro de tipo proibido sem antes confirmar a situação legal dele."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before or with the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant ou avec la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica o junto con ella"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica ou junto com ela"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days before travel)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours avant le voyage)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días antes del viaje)"
+    pt: "Vacinação antirrábica válida (cachorro com 12 semanas ou mais na aplicação, +21 dias antes da viagem)"
+  - en: "Rabies blood test + 3-month wait — unlisted countries only"
+    fr: "Prise de sang antirabique + 3 mois d'attente — pays non listés uniquement"
+    es: "Prueba de titulación de rabia + espera de 3 meses — solo países no listados"
+    pt: "Teste sorológico antirrábico + 3 meses de espera — apenas países não listados"
+  - en: "Travel document: EU pet passport, GB animal health certificate, or Great Britain pet health certificate"
+    fr: "Document de voyage : passeport européen, AHC britannique ou certificat sanitaire britannique"
+    es: "Documento de viaje: pasaporte europeo para mascotas, certificado sanitario animal de GB o certificado sanitario para mascotas de Gran Bretaña"
+    pt: "Documento de viagem: passaporte europeu para animais, animal health certificate britânico ou Great Britain pet health certificate"
+  - en: "Vet tapeworm treatment recorded 24–120 hours before arrival"
+    fr: "Traitement contre le ténia par le vétérinaire, consigné 24 à 120 heures avant l'arrivée"
+    es: "Tratamiento contra la tenia por el veterinario, registrado 24–120 horas antes de la llegada"
+    pt: "Tratamento contra a tênia aplicado pelo veterinário e registrado de 24 a 120 horas antes da chegada"
+  - en: "Book an approved air, sea or rail route and operator"
+    fr: "Réserve un itinéraire et un opérateur air/mer/rail approuvés"
+    es: "Reserva una ruta y un operador aéreos, marítimos o ferroviarios aprobados"
+    pt: "Reserve uma rota aprovada e uma transportadora autorizada, por via aérea, marítima ou ferroviária"
+  - en: "Completed pet travel declaration (non-commercial movement)"
+    fr: "Déclaration de voyage remplie (mouvement non commercial)"
+    es: "Declaración de viaje de la mascota cumplimentada (movimiento no comercial)"
+    pt: "Declaração de viagem do animal preenchida (movimentação não comercial)"
+  - en: "Confirm your dog is not a banned type (Pit Bull Terrier, Japanese Tosa, Dogo Argentino, Fila Brasileiro, XL Bully)"
+    fr: "Vérifie que ton chien n'est pas d'un type interdit (Pit Bull Terrier, Tosa japonais, Dogo Argentino, Fila Brasileiro, XL Bully)"
+    es: "Confirma que tu perro no es de un tipo prohibido (Pit Bull Terrier, Tosa japonés, Dogo Argentino, Fila Brasileiro, XL Bully)"
+    pt: "Confirme que seu cachorro não é de um tipo proibido (Pit Bull Terrier, Tosa Japonês, Dogo Argentino, Fila Brasileiro, XL Bully)"
+
+sources:
+  - label: { en: "GOV.UK — Bringing your pet dog, cat or ferret to Great Britain (what you need to do)", fr: "GOV.UK — Faire entrer ton chien, chat ou furet en Grande-Bretagne (ce qu'il faut faire)", es: "GOV.UK — Traer tu perro, gato o hurón a Gran Bretaña (lo que debes hacer)", pt: "GOV.UK — Levar seu cachorro, gato ou furão para a Grã-Bretanha (o que fazer)" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain"
+  - label: { en: "DAERA — Great Britain to Northern Ireland pet travel guidance (rules from 4 June 2025)", fr: "DAERA — Voyage d'un animal de Grande-Bretagne vers l'Irlande du Nord (règles depuis le 4 juin 2025)", es: "DAERA — Viaje de mascotas de Gran Bretaña a Irlanda del Norte (normas desde el 4 de junio de 2025)", pt: "DAERA — Orientações para viagens com animais da Grã-Bretanha para a Irlanda do Norte (regras a partir de 4 de junho de 2025)" }
+    url: "https://www.daera-ni.gov.uk/articles/great-britain-northern-ireland-pet-travel-guidance"
+  - label: { en: "GOV.UK — Apply for a Northern Ireland pet travel document (free, valid for life)", fr: "GOV.UK — Demander un Northern Ireland Pet Travel Document (gratuit, valable à vie)", es: "GOV.UK — Solicitar un Northern Ireland Pet Travel Document (gratuito, válido de por vida)", pt: "GOV.UK — Solicitar um Northern Ireland Pet Travel Document (gratuito, válido para toda a vida)" }
+    url: "https://www.gov.uk/apply-for-northern-ireland-pet-travel-document"
+  - label: { en: "GOV.UK — Travel routes for pets", fr: "GOV.UK — Itinéraires de voyage pour animaux", es: "GOV.UK — Rutas de viaje para mascotas", pt: "GOV.UK — Rotas de viagem para animais de estimação" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain/travel-routes-pets"
+  - label: { en: "GOV.UK — Microchip", fr: "GOV.UK — Puce électronique", es: "GOV.UK — Microchip", pt: "GOV.UK — Microchip" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain/microchip"
+  - label: { en: "GOV.UK — Blood tests for rabies", fr: "GOV.UK — Prises de sang antirabiques", es: "GOV.UK — Pruebas de titulación de rabia", pt: "GOV.UK — Testes sorológicos antirrábicos" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain/rabies-blood-tests"
+  - label: { en: "GOV.UK — Tapeworm treatment for dogs", fr: "GOV.UK — Traitement contre le ténia pour chiens", es: "GOV.UK — Tratamiento contra la tenia para perros", pt: "GOV.UK — Tratamento contra a tênia para cachorros" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain/tapeworm-treatment-dogs"
+  - label: { en: "GOV.UK — Which pet travel document you need (listed / unlisted countries)", fr: "GOV.UK — Quel document de voyage (pays listés / non listés)", es: "GOV.UK — Qué documento de viaje para mascotas necesitas (países listados / no listados)", pt: "GOV.UK — Qual documento de viagem você precisa (países listados / não listados)" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain/which-pet-travel-document"
+  - label: { en: "GOV.UK — Arriving in Great Britain", fr: "GOV.UK — Arrivée en Grande-Bretagne", es: "GOV.UK — Llegada a Gran Bretaña", pt: "GOV.UK — Chegada à Grã-Bretanha" }
+    url: "https://www.gov.uk/bring-pet-to-great-britain/coming-back-to-great-britain"
+  - label: { en: "GOV.UK — Controlling your dog in public: Banned dogs", fr: "GOV.UK — Contrôler son chien en public : chiens interdits", es: "GOV.UK — Controlar a tu perro en público: perros prohibidos", pt: "GOV.UK — Controlar seu cachorro em público: cachorros proibidos" }
+    url: "https://www.gov.uk/control-dog-public/banned-dogs"
+
+seo:
+  title: { en: "Great Britain Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Grande-Bretagne — Guide", es: "Requisitos de entrada de perros en Gran Bretaña — Guía de viaje", pt: "Grã-Bretanha: exigências de entrada para cachorros" }
+  metaTitle: { en: "United Kingdom Dog Entry Requirements (2026)", fr: "Voyager en Grande-Bretagne avec ton chien : formalités (2026)", es: "Viajar a Gran Bretaña con tu perro: requisitos de entrada (2026)", pt: "Reino Unido: entrada de cachorros, exigências (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies, tapeworm and blood-test rules for bringing a dog into Great Britain — the GB pet scheme, by EU. Sourced and dated."
+    fr: "Règles officielles puce, rage, ténia et prise de sang pour faire entrer un chien en Grande-Bretagne — le régime GB, selon origine UE. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia, tenia y prueba de titulación para traer un perro a Gran Bretaña — el régimen de mascotas de GB. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva, tênia e teste sorológico para levar um cachorro à Grã-Bretanha — o regime GB, por origem na UE. Com fonte e data."
+  slug: "united-kingdom"
+  shortDesc:
+    en: "What you need to bring a dog into Great Britain, including the compulsory tapeworm treatment, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Grande-Bretagne, dont le traitement obligatoire contre le ténia, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Gran Bretaña, incluido el tratamiento obligatorio contra la tenia, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro à Grã-Bretanha, incluindo o tratamento obrigatório contra a tênia, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

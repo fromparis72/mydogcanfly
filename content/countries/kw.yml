@@ -1,0 +1,344 @@
+# Country Entry Guide — Kuwait (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_kw
+iso2: "KW"
+name: { en: "Kuwait", fr: "Koweït", es: "Kuwait", pt: "Kuwait" }
+region: { en: "Middle East", fr: "Moyen-Orient", es: "Oriente Medio", pt: "Oriente Médio" }
+
+
+regime: non_listed
+
+hero:
+  h1: { en: "Traveling to Kuwait with your dog", fr: "Voyager au Koweït avec ton chien", es: "Viajar a Kuwait con tu perro", pt: "Viajar para o Kuwait com seu cachorro" }
+  intro:
+    en: >-
+      Kuwait does not use the EU pet-travel framework — it applies its own scheme run by the Public
+      Authority of Agriculture Affairs and Fish Resources (PAAF). Before your dog travels you must
+      obtain a pet import certificate from PAAF, submit a written request with the pet's and the
+      sponsor's details, and carry a valid veterinary health certificate signed by a licensed
+      veterinarian. Your dog must be vaccinated against rabies between 30 days and one year before
+      arrival, and the health certificate must be dated within 30 days before entry. The exact path
+      depends on the country your dog is travelling from and its animal-health history. PAAF does not
+      publish every detail online — some points (a rabies antibody test, a restricted-breed list, a
+      minimum age, quarantine) are decided case by case — so this guide states clearly what is
+      officially documented and what you must confirm directly with PAAF before you book.
+    fr: >-
+      Le Koweït n'applique pas le cadre européen — il a son propre dispositif géré par l'Autorité
+      publique des affaires agricoles et des ressources halieutiques (PAAF). Avant le voyage, tu
+      devez obtenir un certificat d'importation d'animal auprès de la PAAF, déposer une demande écrite
+      avec les informations de l'animal et du sponsor, et présenter un certificat vétérinaire valide
+      signé par un vétérinaire habilité. Ton chien doit être vacciné contre la rage entre 30 jours et
+      un an avant l'arrivée, et le certificat sanitaire doit être daté dans les 30 jours précédant
+      l'entrée. Le parcours exact dépend du pays de départ et de l'historique sanitaire de l'animal. La
+      PAAF ne publie pas tous les détails en ligne — certains points (titrage antirabique, liste de
+      races restreintes, âge minimum, quarantaine) sont examinés au cas par cas — ce guide distingue
+      donc ce qui est officiellement documenté de ce que tu dois confirmer directement avec la PAAF.
+    es: >-
+      Kuwait no aplica el marco europeo de viaje con mascotas — tiene su propio sistema gestionado por
+      la Autoridad Pública de Asuntos Agrícolas y Recursos Pesqueros (PAAF). Antes de que tu perro
+      viaje debes obtener un certificado de importación de mascota de la PAAF, presentar una solicitud
+      escrita con los datos de la mascota y del patrocinador, y llevar un certificado sanitario
+      veterinario válido firmado por un veterinario autorizado. Tu perro debe estar vacunado contra la
+      rabia entre 30 días y un año antes de la llegada, y el certificado sanitario debe estar fechado
+      dentro de los 30 días anteriores a la entrada. El camino exacto depende del país desde el que
+      viaja tu perro y de su historial sanitario animal. La PAAF no publica todos los detalles en línea
+      — algunos puntos (una prueba de titulación de rabia, una lista de razas restringidas, una edad
+      mínima, la cuarentena) se deciden caso por caso — así que esta guía indica con claridad lo que
+      está oficialmente documentado y lo que debes confirmar directamente con la PAAF antes de reservar.
+
+    pt: "O Kuwait não utiliza o regime europeu de viagens com animais de estimação — aplica o próprio sistema, administrado pela Public Authority of Agriculture Affairs and Fish Resources (PAAF). Antes de o seu cachorro viajar, você precisa obter um certificado de importação de animal de estimação junto à PAAF, apresentar uma solicitação por escrito com os dados do animal e do patrocinador, e levar um atestado de saúde veterinário válido, assinado por um veterinário licenciado. Seu cachorro deve ser vacinado contra a raiva entre 30 dias e um ano antes da chegada, e o atestado de saúde deve ter data dentro de 30 dias antes da entrada. O caminho exato depende do país de onde o seu cachorro está viajando e do seu histórico sanitário animal. A PAAF não publica todos os detalhes on-line — alguns pontos (teste sorológico antirrábico, lista de raças restritas, idade mínima, quarentena) são decididos caso a caso — portanto este guia indica claramente o que está oficialmente documentado e o que você precisa confirmar diretamente com a PAAF antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — advance PAAF import certificate required", fr: "Modéré — certificat d'importation PAAF préalable requis", es: "Moderada — se requiere un certificado de importación PAAF previo", pt: "Moderado — certificado de importação da PAAF obrigatório com antecedência" }
+
+prepTime:
+  eu:
+    en: "For a country with an agreed Kuwait health certificate (e.g. the United States): plan several weeks — microchip/identification, a rabies vaccination valid 30 days to 1 year before arrival, the PAAF import certificate and a health certificate dated within 30 days of entry."
+    fr: "Pour un pays disposant d'un certificat sanitaire koweïtien convenu (ex. États-Unis) : compte plusieurs semaines — identification, vaccination antirabique valide de 30 jours à 1 an avant l'arrivée, certificat d'importation PAAF et certificat sanitaire daté dans les 30 jours de l'entrée."
+    es: "Para un país con un certificado sanitario koweití acordado (p. ej., Estados Unidos): prevé varias semanas — microchip/identificación, una vacunación antirrábica válida entre 30 días y 1 año antes de la llegada, el certificado de importación PAAF y un certificado sanitario fechado dentro de los 30 días de la entrada."
+    pt: "Para um país com um atestado de saúde acordado com o Kuwait (por exemplo, os Estados Unidos): planeje várias semanas — microchip/identificação, uma vacinação antirrábica válida de 30 dias a 1 ano antes da chegada, o certificado de importação da PAAF e um atestado de saúde datado dentro de 30 dias da entrada."
+  listed:
+    en: "From other countries, the applicable model certificate and any additional test (such as a rabies antibody test) depend on your dog's origin and PAAF — confirm the exact requirements before making plans."
+    fr: "Depuis d'autres pays, le modèle de certificat applicable et tout test supplémentaire (tel qu'un titrage antirabique) dépendent de l'origine du chien et de la PAAF — confirme les exigences exactes avant tout projet."
+    es: "Desde otros países, el modelo de certificado aplicable y cualquier prueba adicional (como una prueba de titulación de rabia) dependen del origen de tu perro y de la PAAF — confirma los requisitos exactos antes de hacer planes."
+    pt: "De outros países, o modelo de atestado aplicável e qualquer teste adicional (como o teste sorológico antirrábico) dependem da origem do seu cachorro e da PAAF — confirme as exigências exatas antes de fazer planos."
+  nonListed:
+    en: "From a country subject to animal-health restrictions, or without the required paperwork, import may be delayed or refused — timing is case-by-case and cannot be assumed."
+    fr: "Depuis un pays soumis à des restrictions sanitaires, ou sans les documents requis, l'importation peut être retardée ou refusée — les délais sont examinés au cas par cas et ne peuvent être présumés."
+    es: "Desde un país sujeto a restricciones sanitarias animales, o sin la documentación requerida, la importación puede retrasarse o denegarse — los plazos se determinan caso por caso y no pueden darse por sentados."
+    pt: "De um país sujeito a restrições sanitárias animais, ou sem a documentação exigida, a importação pode ser atrasada ou recusada — o prazo é definido caso a caso e não pode ser presumido."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with a PAAF import certificate", fr: "Oui — avec un certificat d'importation PAAF", es: "Sí — con un certificado de importación PAAF", pt: "Sim — com certificado de importação da PAAF" }
+    cls: ok
+  - requirement: { en: "Import certificate (PAAF)", fr: "Certificat d'importation (PAAF)", es: "Certificado de importación (PAAF)", pt: "Certificado de importação (PAAF)" }
+    status: { en: "Required in advance", fr: "Requis à l'avance", es: "Obligatorio con antelación", pt: "Obrigatória com antecedência" }
+    cls: warn
+  - requirement: { en: "Microchip / identification", fr: "Puce / identification", es: "Microchip / identificación", pt: "Microchip / identificação" }
+    status: { en: "Verified on the health certificate", fr: "Vérifiée sur le certificat sanitaire", es: "Verificado en el certificado sanitario", pt: "Verificada no atestado de saúde" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (30 days–1 year before arrival)", fr: "Requise (30 jours–1 an avant l'arrivée)", es: "Obligatoria (30 días–1 año antes de la llegada)", pt: "Obrigatória (30 dias a 1 ano antes da chegada)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not published by PAAF — may depend on origin", fr: "Non publié par la PAAF — peut dépendre de l'origine", es: "No publicada por la PAAF — puede depender del origen", pt: "Não publicado pela PAAF — pode depender da origem" }
+    cls: neutral
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (dated within 30 days)", fr: "Requis (daté dans les 30 jours)", es: "Obligatorio (fechado dentro de 30 días)", pt: "Obrigatório (datado dentro de 30 dias)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published by PAAF", fr: "Non publiée par la PAAF", es: "No publicada por la PAAF", pt: "Não publicado pela PAAF" }
+    cls: neutral
+  - requirement: { en: "Restricted / banned breeds", fr: "Races restreintes / interdites", es: "Razas restringidas / prohibidas", pt: "Raças restritas / proibidas" }
+    status: { en: "Not published in an official source", fr: "Non publiées dans une source officielle", es: "No publicadas en una fuente oficial", pt: "Não publicado em fonte oficial" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Kuwait (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Koweït (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Kuwait (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três fatores — o Kuwait (seu destino) é apenas o primeiro."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Kuwait", fr: "Pays de destination — Koweït", es: "País de destino — Kuwait", pt: "País de destino — Kuwait" }
+      text:
+        en: "Kuwait runs its own PAAF scheme: an advance PAAF import certificate, a written request naming the pet and its sponsor, identification recorded on the paperwork, a valid rabies vaccination and a licensed veterinarian's health certificate are always required. Kuwait does not operate the EU passport system."
+        fr: "Le Koweït applique son propre dispositif PAAF : certificat d'importation PAAF préalable, demande écrite nommant l'animal et son sponsor, identification consignée sur les documents, vaccination antirabique valide et certificat sanitaire d'un vétérinaire habilité sont toujours exigés. Le Koweït n'applique pas le système du passeport de l'UE."
+        es: "Kuwait aplica su propio sistema PAAF: siempre se exigen un certificado de importación PAAF previo, una solicitud escrita que nombre a la mascota y a su patrocinador, la identificación registrada en la documentación, una vacunación antirrábica válida y un certificado sanitario de un veterinario autorizado. Kuwait no aplica el sistema de pasaporte de la UE."
+        pt: "O Kuwait aplica o próprio sistema da PAAF: um certificado de importação da PAAF obtido com antecedência, uma solicitação por escrito indicando o animal e o patrocinador, identificação registrada na documentação, uma vacinação antirrábica válida e um atestado de saúde de um veterinário licenciado são sempre exigidos. O Kuwait não opera o sistema de passaporte europeu."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The country your dog leaves determines which model health certificate applies (for example, the United States uses a specific Kuwait dog/cat certificate) and whether any extra test is asked for. From some origins PAAF may require more before it issues the import certificate."
+        fr: "Le pays de départ détermine le modèle de certificat sanitaire applicable (par exemple, les États-Unis utilisent un certificat koweïtien spécifique chiens/chats) et si un test supplémentaire est demandé. Depuis certaines origines, la PAAF peut exiger davantage avant de délivrer le certificat d'importation."
+        es: "El país desde el que sale tu perro determina qué modelo de certificado sanitario se aplica (por ejemplo, Estados Unidos utiliza un certificado koweití específico para perros/gatos) y si se solicita alguna prueba adicional. Desde algunos orígenes, la PAAF puede exigir más antes de emitir el certificado de importación."
+        pt: "O país de onde o seu cachorro parte determina qual modelo de atestado de saúde se aplica (por exemplo, os Estados Unidos usam um atestado específico para cachorros/gatos do Kuwait) e se algum teste extra é solicitado. De algumas origens, a PAAF pode exigir mais antes de emitir o certificado de importação."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a country with a less favourable animal-health status can change what PAAF asks for, or block import, even if you fly in from an eligible country. Your dog's real origin and history count — not only the last airport."
+        fr: "Un séjour récent dans un pays au statut sanitaire moins favorable peut modifier les exigences de la PAAF, voire bloquer l'importation, même si tu arrives d'un pays éligible. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement le dernier aéroport."
+        es: "Una estancia reciente en un país con un estatus sanitario animal menos favorable puede cambiar lo que exige la PAAF, o incluso bloquear la importación, aunque llegues desde un país elegible. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país com situação sanitária animal menos favorável pode mudar o que a PAAF exige, ou bloquear a importação, mesmo que você chegue voando de um país elegível. A origem real e o histórico do seu cachorro contam — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Kuwait's documented framework, then confirm your dog's exact origin, history and any additional PAAF condition directly with PAAF before applying for the import certificate."
+    fr: "Lis donc les exigences ci-dessous comme le cadre documenté du Koweït, puis confirme l'origine, l'historique et toute condition PAAF supplémentaire directement auprès de la PAAF avant de demander le certificat d'importation."
+    es: "Así que lee los requisitos siguientes como el marco documentado de Kuwait y luego confirma el origen, el historial exactos de tu perro y cualquier condición adicional de la PAAF directamente con la PAAF antes de solicitar el certificado de importación."
+    pt: "Portanto, leia as exigências abaixo como o regime documentado do Kuwait e depois confirme a origem exata, o histórico e qualquer condição adicional da PAAF diretamente com a PAAF antes de solicitar o certificado de importação."
+
+requirements:
+  - item: { en: "PAAF pet import certificate", fr: "Certificat d'importation d'animal PAAF", es: "Certificado de importación de mascota PAAF", pt: "Certificado de importação de animal de estimação da PAAF" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued in advance by the Public Authority of Agriculture Affairs and Fish Resources (PAAF) before the dog travels. The certificate's period of validity is not published online — confirm it with PAAF when you apply.", fr: "Délivré à l'avance par l'Autorité publique des affaires agricoles et des ressources halieutiques (PAAF) avant le voyage du chien. La durée de validité du certificat n'est pas publiée en ligne — confirme-la auprès de la PAAF lors de la demande.", es: "Emitido con antelación por la Autoridad Pública de Asuntos Agrícolas y Recursos Pesqueros (PAAF) antes de que el perro viaje. El período de valide del certificado no está publicado en línea — confírmalo con la PAAF al solicitarlo.", pt: "Emitido com antecedência pela Public Authority of Agriculture Affairs and Fish Resources (PAAF) antes de o cachorro viajar. O período de validade do certificado não é publicado on-line — confirme com a PAAF ao solicitar." }
+    exceptions: { en: "No dog may be imported without a valid PAAF import certificate.", fr: "Aucun chien ne peut être importé sans certificat d'importation PAAF valide.", es: "Ningún perro puede importarse sin un certificado de importación PAAF válido.", pt: "Nenhum cachorro pode ser importado sem um certificado de importação da PAAF válido." }
+    ref: { en: "Kuwait MOFA — Requirements for Importing Pets to Kuwait; PAAF", fr: "MOFA Koweït — Conditions d'importation d'animaux au Koweït ; PAAF", es: "MOFA de Kuwait — Requisitos para importar mascotas a Kuwait; PAAF", pt: "MOFA do Kuwait — Exigências para Importar Animais de Estimação para o Kuwait; PAAF" }
+  - item: { en: "Written request (pet + sponsor)", fr: "Demande écrite (animal + sponsor)", es: "Solicitud escrita (mascota + patrocinador)", pt: "Solicitação por escrito (animal + patrocinador)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "A written request including the pet's information and the sponsor's information is submitted to PAAF as part of the import file.", fr: "Une demande écrite comprenant les informations de l'animal et celles du sponsor est déposée auprès de la PAAF dans le dossier d'importation.", es: "Se presenta a la PAAF una solicitud escrita que incluye la información de la mascota y la del patrocinador como parte del expediente de importación.", pt: "Uma solicitação por escrito, incluindo as informações do animal e do patrocinador, é apresentada à PAAF como parte do processo de importação." }
+    exceptions: { en: "None documented.", fr: "Aucune documentée.", es: "Ninguna documentada.", pt: "Nenhuma documentada." }
+    ref: { en: "Kuwait MOFA — Requirements for Importing Pets to Kuwait", fr: "MOFA Koweït — Conditions d'importation d'animaux au Koweït", es: "MOFA de Kuwait — Requisitos para importar mascotas a Kuwait", pt: "MOFA do Kuwait — Exigências para Importar Animais de Estimação para o Kuwait" }
+  - item: { en: "Microchip / identification", fr: "Puce / identification", es: "Microchip / identificación", pt: "Microchip / identificação" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The official Kuwait dog/cat health certificate records a microchip number (or the animal's name) and the veterinarian certifies that any microchip listed has been verified. The identification must match the certificate.", fr: "Le certificat sanitaire officiel koweïtien chiens/chats consigne un numéro de puce (ou le nom de l'animal) et le vétérinaire certifie que toute puce indiquée a été vérifiée. L'identification doit correspondre au certificat.", es: "El certificado sanitario oficial koweití para perros/gatos registra un número de microchip (o el nombre del animal) y el veterinario certifica que cualquier microchip indicado ha sido verificado. La identificación debe coincidir con el certificado.", pt: "O atestado de saúde oficial do Kuwait para cachorros/gatos registra o número do microchip (ou o nome do animal), e o veterinário certifica que qualquer microchip informado foi verificado. A identificação deve coincidir com o atestado." }
+    exceptions: { en: "A specific ISO microchip standard is not named in the published certificate; an ISO 11784/11785 chip is the international norm and is strongly recommended.", fr: "Aucune norme ISO de puce précise n'est nommée dans le certificat publié ; une puce ISO 11784/11785 est la norme internationale et est fortement recommandée.", es: "El certificado publicado no menciona una norma ISO de microchip específica; un microchip ISO 11784/11785 es la norma internacional y se recomienda encarecidamente.", pt: "Um padrão específico de microchip ISO não é indicado no atestado publicado; um chip ISO 11784/11785 é a norma internacional e é fortemente recomendado." }
+    ref: { en: "Kuwait Veterinary Health Certificate (dogs/cats), box 21 & certification 1", fr: "Certificat vétérinaire koweïtien (chiens/chats), case 21 et certification 1", es: "Certificado sanitario veterinario de Kuwait (perros/gatos), casilla 21 y certificación 1", pt: "Atestado de Saúde Veterinário do Kuwait (cachorros/gatos), campo 21 e certificação 1" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The dog must be vaccinated against rabies at least 30 days before, and no more than 1 year before, arrival in Kuwait. The vaccination is recorded on the health certificate with its period of validity.", fr: "Le chien doit être vacciné contre la rage au moins 30 jours avant, et au plus 1 an avant, l'arrivée au Koweït. La vaccination est consignée sur le certificat sanitaire avec sa période de validité.", es: "El perro debe estar vacunado contra la rabia al menos 30 días antes, y no más de 1 año antes, de la llegada a Kuwait. La vacunación se registra en el certificado sanitario junto con su período de valide.", pt: "O cachorro deve ser vacinado contra a raiva pelo menos 30 dias antes, e no máximo 1 ano antes, da chegada ao Kuwait. A vacinação é registrada no atestado de saúde com o seu período de validade." }
+    exceptions: { en: "Unvaccinated dogs are not admitted.", fr: "Les chiens non vaccinés ne sont pas admis.", es: "No se admiten perros no vacunados.", pt: "Cachorros não vacinados não são admitidos." }
+    ref: { en: "Kuwait Veterinary Health Certificate (dogs/cats), certification 4; USDA APHIS — Kuwait", fr: "Certificat vétérinaire koweïtien (chiens/chats), certification 4 ; USDA APHIS — Koweït", es: "Certificado sanitario veterinario de Kuwait (perros/gatos), certificación 4; USDA APHIS — Kuwait", pt: "Atestado de Saúde Veterinário do Kuwait (cachorros/gatos), certificação 4; USDA APHIS — Kuwait" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published", fr: "Non publié", es: "No publicado", pt: "Não publicado" }
+    when: { en: "The official Kuwait dog/cat health certificate does not require a rabies antibody test. PAAF may ask for one depending on the country of origin, but this is not published online — confirm with PAAF for your origin.", fr: "Le certificat sanitaire officiel koweïtien chiens/chats n'exige pas de titrage antirabique. La PAAF peut en demander un selon le pays d'origine, mais cela n'est pas publié en ligne — à confirmer avec la PAAF selon ton origine.", es: "El certificado sanitario oficial koweití para perros/gatos no exige una prueba de titulación de rabia. La PAAF puede solicitar una según el país de origen, pero esto no está publicado en línea — confírmalo con la PAAF según tu origen.", pt: "O atestado de saúde oficial do Kuwait para cachorros/gatos não exige teste sorológico antirrábico. A PAAF pode solicitar um, dependendo do país de origem, mas isso não é publicado on-line — confirme com a PAAF para a sua origem." }
+    exceptions: { en: "The exporting country's own rules may still impose a test — verify before travel.", fr: "Les règles du pays exportateur peuvent toutefois imposer un test — à vérifier avant le voyage.", es: "Las propias normas del país exportador aún pueden imponer una prueba — verifícalo antes de viajar.", pt: "As próprias normas do país exportador ainda podem impor um teste — verifique antes de viajar." }
+    ref: { en: "Kuwait Veterinary Health Certificate (dogs/cats)", fr: "Certificat vétérinaire koweïtien (chiens/chats)", es: "Certificado sanitario veterinario de Kuwait (perros/gatos)", pt: "Atestado de Saúde Veterinário do Kuwait (cachorros/gatos)" }
+  - item: { en: "Other vaccinations / parasite treatment", fr: "Autres vaccinations / traitement antiparasitaire", es: "Otras vacunas / tratamiento antiparasitario", pt: "Outras vacinas / tratamento antiparasitário" }
+    required: { en: "Not published", fr: "Non publié", es: "No publicado", pt: "Não publicado" }
+    when: { en: "The published dog/cat health certificate does not list additional vaccinations or a parasite treatment. Ask PAAF and your veterinarian whether any are expected for your dog's origin.", fr: "Le certificat sanitaire chiens/chats publié ne liste ni vaccinations supplémentaires ni traitement antiparasitaire. Demande à la PAAF et à ton vétérinaire si l'un d'eux est attendu selon l'origine du chien.", es: "El certificado sanitario para perros/gatos publicado no enumera vacunas adicionales ni tratamiento antiparasitario. Pregunta a la PAAF y a tu veterinario si se espera alguno según el origen de tu perro.", pt: "O atestado de saúde publicado para cachorros/gatos não lista vacinas adicionais nem tratamento antiparasitário. Pergunte à PAAF e ao seu veterinário se algum é esperado para a origem do seu cachorro." }
+    exceptions: { en: "The veterinarian must certify the animal appears free of infectious or contagious disease.", fr: "Le vétérinaire doit certifier que l'animal paraît exempt de maladie infectieuse ou contagieuse.", es: "El veterinario debe certificar que el animal parece libre de enfermedades infecciosas o contagiosas.", pt: "O veterinário deve atestar que o animal aparenta estar livre de doença infecciosa ou contagiosa." }
+    ref: { en: "Kuwait Veterinary Health Certificate (dogs/cats), certification 2", fr: "Certificat vétérinaire koweïtien (chiens/chats), certification 2", es: "Certificado sanitario veterinario de Kuwait (perros/gatos), certificación 2", pt: "Atestado de Saúde Veterinário do Kuwait (cachorros/gatos), certificação 2" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A valid health certificate issued and signed by a licensed veterinarian; it must be dated within 30 days before arrival and is valid for 30 days after issuance. It records the identification and the rabies vaccination.", fr: "Un certificat sanitaire valide délivré et signé par un vétérinaire habilité ; il doit être daté dans les 30 jours précédant l'arrivée et est valable 30 jours après sa délivrance. Il consigne l'identification et la vaccination antirabique.", es: "Un certificado sanitario válido emitido y firmado por un veterinario autorizado; debe estar fechado dentro de los 30 días anteriores a la llegada y es válido durante 30 días desde su emisión. Registra la identificación y la vacunación antirrábica.", pt: "Um atestado de saúde válido, emitido e assinado por um veterinário licenciado; deve ter data dentro de 30 dias antes da chegada e é válido por 30 dias após a emissão. Ele registra a identificação e a vacinação antirrábica." }
+    exceptions: { en: "For pet dogs and cats travelling from the United States, USDA (APHIS) endorsement is not required.", fr: "Pour les chiens et chats de compagnie voyageant depuis les États-Unis, l'endossement par l'USDA (APHIS) n'est pas requis.", es: "Para perros y gatos de compañía que viajan desde Estados Unidos, no se requiere el refrendo del USDA (APHIS).", pt: "Para cachorros e gatos de estimação vindos dos Estados Unidos, o endosso do USDA (APHIS) não é exigido." }
+    ref: { en: "Kuwait Veterinary Health Certificate (dogs/cats); USDA APHIS — Kuwait; Kuwait MOFA", fr: "Certificat vétérinaire koweïtien (chiens/chats) ; USDA APHIS — Koweït ; MOFA Koweït", es: "Certificado sanitario veterinario de Kuwait (perros/gatos); USDA APHIS — Kuwait; MOFA de Kuwait", pt: "Atestado de Saúde Veterinário do Kuwait (cachorros/gatos); USDA APHIS — Kuwait; MOFA do Kuwait" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published", fr: "Non publié", es: "No publicado", pt: "Não publicado" }
+    when: { en: "PAAF does not publish a minimum import age. In practice a dog must be old enough for a rabies vaccination completed at least 30 days before arrival. Confirm any age condition with PAAF.", fr: "La PAAF ne publie pas d'âge minimum d'importation. En pratique, le chien doit être assez âgé pour une vaccination antirabique achevée au moins 30 jours avant l'arrivée. Confirme toute condition d'âge avec la PAAF.", es: "La PAAF no publica una edad mínima de importación. En la práctica, el perro debe tener edad suficiente para una vacunación antirrábica completada al menos 30 días antes de la llegada. Confirma cualquier condición de edad con la PAAF.", pt: "A PAAF não publica uma idade mínima de importação. Na prática, o cachorro deve ter idade suficiente para uma vacinação antirrábica concluída pelo menos 30 dias antes da chegada. Confirme qualquer condição de idade com a PAAF." }
+    exceptions: { en: "None documented.", fr: "Aucune documentée.", es: "Ninguna documentada.", pt: "Nenhuma documentada." }
+    ref: { en: "Kuwait Veterinary Health Certificate (dogs/cats)", fr: "Certificat vétérinaire koweïtien (chiens/chats)", es: "Certificado sanitario veterinario de Kuwait (perros/gatos)", pt: "Atestado de Saúde Veterinário do Kuwait (cachorros/gatos)" }
+  - item: { en: "Border check / veterinary inspection", fr: "Contrôle frontalier / inspection vétérinaire", es: "Control fronterizo / inspección veterinaria", pt: "Controle de fronteira / inspeção veterinária" }
+    required: { en: "Not published in detail", fr: "Non publié en détail", es: "No publicado en detalle", pt: "Não publicado em detalhe" }
+    when: { en: "The import certificate and health certificate are presented on arrival. PAAF does not publish the detail of the airport veterinary inspection procedure online.", fr: "Le certificat d'importation et le certificat sanitaire sont présentés à l'arrivée. La PAAF ne publie pas en ligne le détail de la procédure d'inspection vétérinaire à l'aéroport.", es: "El certificado de importación y el certificado sanitario se presentan a la llegada. La PAAF no publica en línea el detalle del procedimiento de inspección veterinaria en el aeropuerto.", pt: "O certificado de importação e o atestado de saúde são apresentados na chegada. A PAAF não publica on-line o detalhe do procedimento de inspeção veterinária no aeroporto." }
+    exceptions: { en: "Missing or invalid documents can lead to the animal being held or refused entry.", fr: "Des documents manquants ou invalides peuvent entraîner la rétention ou le refus d'entrée de l'animal.", es: "Los documentos faltantes o no válidos pueden provocar que el animal sea retenido o se le deniegue la entrada.", pt: "Documentos ausentes ou inválidos podem levar à retenção do animal ou à recusa de entrada." }
+    ref: { en: "Kuwait MOFA; PAAF", fr: "MOFA Koweït ; PAAF", es: "MOFA de Kuwait; PAAF", pt: "MOFA do Kuwait; PAAF" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published", fr: "Non publiée", es: "No publicada", pt: "Não publicado" }
+    when: { en: "PAAF does not publish a routine quarantine requirement for compliant pet dogs online. A non-compliant or high-risk animal may be held pending a decision by the veterinary authority.", fr: "La PAAF ne publie pas en ligne d'exigence de quarantaine de routine pour les chiens de compagnie conformes. Un animal non conforme ou à risque peut être retenu dans l'attente d'une décision de l'autorité vétérinaire.", es: "La PAAF no publica en línea un requisito de cuarentena rutinaria para perros de compañía que cumplan las normas. Un animal que no cumpla o que sea de alto riesgo puede ser retenido a la espera de una decisión de la autoridad veterinaria.", pt: "A PAAF não publica on-line uma exigência de quarentena de rotina para cachorros de estimação em conformidade. Um animal em não conformidade ou de alto risco pode ser retido até uma decisão da autoridade veterinária." }
+    exceptions: { en: "Confirm the current position with PAAF before travel.", fr: "Confirme la position en vigueur auprès de la PAAF avant le voyage.", es: "Confirma la situación actual con la PAAF antes de viajar.", pt: "Confirme a posição atual com a PAAF antes de viajar." }
+    ref: { en: "PAAF; Kuwait MOFA", fr: "PAAF ; MOFA Koweït", es: "PAAF; MOFA de Kuwait", pt: "PAAF; MOFA do Kuwait" }
+
+origin:
+  eu:
+    title: { en: "Country with an agreed Kuwait certificate", fr: "Pays avec un certificat koweïtien convenu", es: "País con un certificado koweití acordado", pt: "País com atestado acordado com o Kuwait" }
+    body:
+      en: "Some countries have an agreed model Kuwait dog/cat health certificate. The United States, for example, uses a specific certificate: the dog needs identification recorded on the certificate, a rabies vaccination given between 30 days and 1 year before arrival, and a licensed veterinarian's certificate dated within 30 days of entry (USDA endorsement is not required for pet dogs and cats). You still need the advance PAAF import certificate and the written request. Kuwait does not run the EU pet-passport scheme, so an EU passport alone is not sufficient."
+      fr: "Certains pays disposent d'un modèle de certificat sanitaire koweïtien convenu pour chiens/chats. Les États-Unis, par exemple, utilisent un certificat spécifique : le chien doit avoir une identification consignée sur le certificat, une vaccination antirabique administrée entre 30 jours et 1 an avant l'arrivée, et un certificat d'un vétérinaire habilité daté dans les 30 jours de l'entrée (l'endossement USDA n'est pas requis pour les chiens et chats de compagnie). Le certificat d'importation PAAF préalable et la demande écrite restent nécessaires. Le Koweït n'applique pas le passeport de l'UE ; un passeport européen seul ne suffit donc pas."
+      es: "Algunos países disponen de un modelo de certificado sanitario koweití acordado para perros/gatos. Estados Unidos, por ejemplo, utiliza un certificado específico: el perro necesita identificación registrada en el certificado, una vacunación antirrábica administrada entre 30 días y 1 año antes de la llegada, y un certificado de un veterinario autorizado fechado dentro de los 30 días de la entrada (no se requiere el refrendo del USDA para perros y gatos de compañía). Aún necesitas el certificado de importación PAAF previo y la solicitud escrita. Kuwait no aplica el sistema de pasaporte europeo para mascotas, por lo que un pasaporte de la UE por sí solo no es suficiente."
+      pt: "Alguns países têm um modelo de atestado de saúde acordado com o Kuwait para cachorros/gatos. Os Estados Unidos, por exemplo, usam um atestado específico: o cachorro precisa de identificação registrada no atestado, de uma vacinação antirrábica aplicada entre 30 dias e 1 ano antes da chegada, e de um atestado de um veterinário licenciado datado dentro de 30 dias da entrada (o endosso do USDA não é exigido para cachorros e gatos de estimação). Você ainda precisa do certificado de importação da PAAF obtido com antecedência e da solicitação por escrito. O Kuwait não opera o regime de passaporte europeu, portanto um passaporte da UE sozinho não é suficiente."
+    cls: ok
+  listed:
+    title: { en: "Other countries — confirm the applicable certificate", fr: "Autres pays — confirmer le certificat applicable", es: "Otros países — confirma el certificado aplicable", pt: "Outros países — confirme o atestado aplicável" }
+    body:
+      en: "From countries without a widely published Kuwait model certificate, the applicable health-certificate wording and any additional test are set by the exporting country's veterinary authority together with PAAF. Some origins may require more before PAAF issues the import certificate. Because these details are not published online, confirm the exact document set with PAAF, and have the certificate issued and (where the exporting country requires it) endorsed by its government veterinary authority."
+      fr: "Depuis les pays sans modèle de certificat koweïtien largement publié, la formulation du certificat sanitaire applicable et tout test supplémentaire sont fixés par l'autorité vétérinaire du pays exportateur avec la PAAF. Certaines origines peuvent exiger davantage avant que la PAAF ne délivre le certificat d'importation. Ces détails n'étant pas publiés en ligne, confirme le dossier exact avec la PAAF, et fais délivrer le certificat et (si le pays exportateur l'exige) endosser par son autorité vétérinaire gouvernementale."
+      es: "Desde países sin un modelo de certificado koweití ampliamente publicado, el texto del certificado sanitario aplicable y cualquier prueba adicional los establece la autoridad veterinaria del país exportador junto con la PAAF. Algunos orígenes pueden exigir más antes de que la PAAF emita el certificado de importación. Como estos detalles no están publicados en línea, confirma el conjunto exacto de documentos con la PAAF y haz que el certificado sea emitido y (cuando el país exportador lo exija) refrendado por su autoridad veterinaria gubernamental."
+      pt: "De países sem um modelo de atestado do Kuwait amplamente publicado, o texto aplicável do atestado de saúde e qualquer teste adicional são definidos pela autoridade veterinária do país exportador em conjunto com a PAAF. Algumas origens podem exigir mais antes de a PAAF emitir o certificado de importação. Como esses detalhes não são publicados on-line, confirme o conjunto exato de documentos com a PAAF, e providencie que o atestado seja emitido e (quando o país exportador exigir) endossado pela sua autoridade veterinária governamental."
+    cls: warn
+  nonListed:
+    title: { en: "Countries under animal-health restrictions", fr: "Pays sous restrictions sanitaires", es: "Países bajo restricciones sanitarias animales", pt: "Países sob restrições sanitárias animais" }
+    body:
+      en: "If your dog travels from, or has recently stayed in, a country subject to animal-health restrictions, or if the import file is incomplete, PAAF may delay or refuse the import certificate. Kuwait applies veterinary import controls in line with regional practice, and the position changes with the global animal-health situation. Confirm your dog's eligibility with PAAF before making any plans."
+      fr: "Si ton chien voyage depuis, ou a récemment séjourné dans, un pays soumis à des restrictions sanitaires, ou si le dossier d'importation est incomplet, la PAAF peut retarder ou refuser le certificat d'importation. Le Koweït applique des contrôles vétérinaires à l'importation conformes à la pratique régionale, et la position évolue selon la situation sanitaire mondiale. Confirme l'éligibilité de ton chien auprès de la PAAF avant tout projet."
+      es: "Si tu perro viaja desde, o ha estado recientemente en, un país sujeto a restricciones sanitarias animales, o si el expediente de importación está incompleto, la PAAF puede retrasar o denegar el certificado de importación. Kuwait aplica controles veterinarios de importación acordes con la práctica regional, y la situación cambia según el estado sanitario animal mundial. Confirma la elegibilidad de tu perro con la PAAF antes de hacer planes."
+      pt: "Se o seu cachorro viaja de, ou esteve recentemente em, um país sujeito a restrições sanitárias animais, ou se o processo de importação estiver incompleto, a PAAF pode atrasar ou recusar o certificado de importação. O Kuwait aplica controles veterinários de importação em linha com a prática regional, e a posição muda de acordo com a situação sanitária animal global. Confirme a elegibilidade do seu cachorro com a PAAF antes de fazer qualquer plano."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Kuwait depends on your PAAF import certificate and the documents you carry."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Koweït dépend de ton certificat d'importation PAAF et des documents que tu présente."
+    es: "Lo que ocurre cuando tu perro llega a Kuwait depende de tu certificado de importación PAAF y de los documentos que lleves."
+    pt: "O que acontece quando o seu cachorro chega ao Kuwait depende do seu certificado de importação da PAAF e dos documentos que você leva."
+  points:
+    - en: "The PAAF pet import certificate must be obtained before travel and be valid on the day of entry."
+      fr: "Le certificat d'importation d'animal PAAF doit être obtenu avant le voyage et être valide le jour de l'entrée."
+      es: "El certificado de importación de mascota PAAF debe obtenerse antes de viajar y ser válido el día de la entrada."
+      pt: "O certificado de importação de animal de estimação da PAAF deve ser obtido antes da viagem e estar válido no dia da entrada."
+    - en: "Carry the original health certificate signed by a licensed veterinarian, dated within 30 days before arrival, with the identification and rabies vaccination recorded."
+      fr: "Munis-toi du certificat sanitaire original signé par un vétérinaire habilité, daté dans les 30 jours précédant l'arrivée, avec l'identification et la vaccination antirabique consignées."
+      es: "Lleva el certificado sanitario original firmado por un veterinario autorizado, fechado dentro de los 30 días anteriores a la llegada, con la identificación y la vacunación antirrábica registradas."
+      pt: "Leve o atestado de saúde original, assinado por um veterinário licenciado, datado dentro de 30 dias antes da chegada, com a identificação e a vacinação antirrábica registradas."
+    - en: "The written request naming the pet and its sponsor forms part of the import file submitted to PAAF."
+      fr: "La demande écrite nommant l'animal et son sponsor fait partie du dossier d'importation déposé auprès de la PAAF."
+      es: "La solicitud escrita que nombra a la mascota y a su patrocinador forma parte del expediente de importación presentado a la PAAF."
+      pt: "A solicitação por escrito indicando o animal e o patrocinador faz parte do processo de importação apresentado à PAAF."
+    - en: "PAAF does not publish the detail of the airport veterinary inspection; expect your documents to be checked against the animal on arrival."
+      fr: "La PAAF ne publie pas le détail de l'inspection vétérinaire à l'aéroport ; attends-toi à un contrôle de tes documents au regard de l'animal à l'arrivée."
+      es: "La PAAF no publica el detalle de la inspección veterinaria en el aeropuerto; espera que tus documentos se comprueben con el animal a la llegada."
+      pt: "A PAAF não publica o detalhe da inspeção veterinária no aeroporto; espere que os seus documentos sejam conferidos em relação ao animal na chegada."
+    - en: "If documents are missing or invalid, the animal may be held or refused entry — confirm every point with PAAF before you travel."
+      fr: "Si des documents manquent ou sont invalides, l'animal peut être retenu ou refusé — confirme chaque point avec la PAAF avant de voyager."
+      es: "Si faltan documentos o no son válidos, el animal puede ser retenido o se le puede denegar la entrada — confirma cada punto con la PAAF antes de viajar."
+      pt: "Se faltarem documentos ou eles forem inválidos, o animal pode ser retido ou ter a entrada recusada — confirme cada ponto com a PAAF antes de viajar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "We could not confirm an official, PAAF-published list of banned or restricted dog breeds for import into Kuwait from the authority's own pages. Restricted-breed lists circulate on commercial pet-relocation sites, but MyDogCanFly does not treat those as official sources. Because breed rules can lead to refusal at the border, this point must be verified directly with PAAF."
+    fr: "Nous n'avons pas pu confirmer, à partir des pages de l'autorité elle-même, une liste officielle publiée par la PAAF des races de chiens interdites ou restreintes à l'importation au Koweït. Des listes de races restreintes circulent sur des sites commerciaux de relocalisation d'animaux, mais MyDogCanFly ne les considère pas comme des sources officielles. Les règles de race pouvant entraîner un refus à la frontière, ce point doit être vérifié directement auprès de la PAAF."
+    es: "No pudimos confirmar, a partir de las páginas de la propia autoridad, una lista oficial publicada por la PAAF de razas de perros prohibidas o restringidas para la importación a Kuwait. Circulan listas de razas restringidas en sitios comerciales de reubicación de mascotas, pero MyDogCanFly no las considera fuentes oficiales. Como las normas de raza pueden provocar la denegación en la frontera, este punto debe verificarse directamente con la PAAF."
+    pt: "Não conseguimos confirmar, nas próprias páginas da autoridade, uma lista oficial publicada pela PAAF de raças de cachorros proibidas ou restritas para importação no Kuwait. Listas de raças restritas circulam em sites comerciais de mudança de animais de estimação, mas o MyDogCanFly não trata isso como fonte oficial. Como as normas de raça podem levar à recusa na fronteira, esse ponto deve ser verificado diretamente com a PAAF."
+  cat1:
+    en: "Breeds restricted or banned from import: Not published in an official source available to us. Do not assume your dog's breed is admissible — confirm with PAAF before booking."
+    fr: "Races restreintes ou interdites à l'importation : non publiées dans une source officielle à notre disposition. Ne présume pas que la race de ton chien est admissible — confirme avec la PAAF avant de réserver."
+    es: "Razas restringidas o prohibidas para la importación: no publicadas en una fuente oficial a nuestra disposición. No des por sentado que la raza de tu perro es admisible — confirma con la PAAF antes de reservar."
+    pt: "Raças restritas ou proibidas para importação: não publicado em fonte oficial disponível para nós. Não presuma que a raça do seu cachorro é admissível — confirme com a PAAF antes de reservar."
+  cat2:
+    en: "Conditions of entry for specific breeds (documents, muzzling, keeping rules): Not published in an official source available to us."
+    fr: "Conditions d'entrée pour des races précises (documents, muselière, règles de détention) : non publiées dans une source officielle à notre disposition."
+    es: "Condiciones de entrada para razas específicas (documentos, bozal, normas de tenencia): no publicadas en una fuente oficial a nuestra disposición."
+    pt: "Condições de entrada para raças específicas (documentos, uso de focinheira, regras de posse): não publicado em fonte oficial disponível para nós."
+  note:
+    en: "Kuwait's veterinary authorities can update breed and import rules without notice. Contact PAAF directly to confirm your dog's breed is admissible before applying for the import certificate or booking travel."
+    fr: "Les autorités vétérinaires koweïtiennes peuvent modifier les règles de race et d'importation sans préavis. Contacte directement la PAAF pour confirmer l'admissibilité de la race de ton chien avant de demander le certificat d'importation ou de réserver."
+    es: "Las autoridades veterinarias de Kuwait pueden actualizar las normas de raza e importación sin previo aviso. Contacta directamente con la PAAF para confirmar que la raza de tu perro es admisible antes de solicitar el certificado de importación o reservar el viaje."
+    pt: "As autoridades veterinárias do Kuwait podem atualizar as normas de raça e importação sem aviso prévio. Entre em contato diretamente com a PAAF para confirmar que a raça do seu cachorro é admissível antes de solicitar o certificado de importação ou reservar a viagem."
+
+checklist:
+  - en: "PAAF pet import certificate obtained before travel (confirm validity period with PAAF)"
+    fr: "Certificat d'importation d'animal PAAF obtenu avant le voyage (confirme la durée de validité avec la PAAF)"
+    es: "Certificado de importación de mascota PAAF obtenido antes de viajar (confirma el período de valide con la PAAF)"
+    pt: "Certificado de importação de animal de estimação da PAAF obtido antes da viagem (confirme o período de validade com a PAAF)"
+  - en: "Written request submitted to PAAF with the pet's and the sponsor's information"
+    fr: "Demande écrite déposée auprès de la PAAF avec les informations de l'animal et du sponsor"
+    es: "Solicitud escrita presentada a la PAAF con la información de la mascota y del patrocinador"
+    pt: "Solicitação por escrito apresentada à PAAF com as informações do animal e do patrocinador"
+  - en: "Identification recorded on the certificate — ISO 11784/11785 microchip strongly recommended"
+    fr: "Identification consignée sur le certificat — puce ISO 11784/11785 fortement recommandée"
+    es: "Identificación registrada en el certificado — se recomienda encarecidamente un microchip ISO 11784/11785"
+    pt: "Identificação registrada no atestado — microchip ISO 11784/11785 fortemente recomendado"
+  - en: "Rabies vaccination valid: at least 30 days and no more than 1 year before arrival"
+    fr: "Vaccination antirabique valide : au moins 30 jours et au plus 1 an avant l'arrivée"
+    es: "Vacunación antirrábica válida: al menos 30 días y no más de 1 año antes de la llegada"
+    pt: "Vacinação antirrábica válida: pelo menos 30 dias e no máximo 1 ano antes da chegada"
+  - en: "Veterinary health certificate signed by a licensed vet, dated within 30 days of arrival"
+    fr: "Certificat vétérinaire signé par un vétérinaire habilité, daté dans les 30 jours de l'arrivée"
+    es: "Certificado sanitario veterinario firmado por un veterinario autorizado, fechado dentro de los 30 días de la llegada"
+    pt: "Atestado de saúde veterinário assinado por um veterinário licenciado, datado dentro de 30 dias da chegada"
+  - en: "Confirm with PAAF whether a rabies antibody test or any extra test applies to your origin"
+    fr: "Confirme avec la PAAF si un titrage antirabique ou tout test supplémentaire s'applique à ton origine"
+    es: "Confirma con la PAAF si se aplica una prueba de titulación de rabia o cualquier prueba adicional según tu origen"
+    pt: "Confirme com a PAAF se um teste sorológico antirrábico ou qualquer teste extra se aplica à sua origem"
+  - en: "Confirm with PAAF that your dog's breed is admissible for import"
+    fr: "Confirme avec la PAAF que la race de ton chien est admissible à l'importation"
+    es: "Confirma con la PAAF que la raza de tu perro es admisible para la importación"
+    pt: "Confirme com a PAAF que a raça do seu cachorro é admissível para importação"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada"
+    pt: "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
+
+sources:
+  - label: { en: "Kuwait MOFA (Embassy) — Requirements for Importing Pets to Kuwait", fr: "MOFA Koweït (Ambassade) — Conditions d'importation d'animaux au Koweït", es: "MOFA de Kuwait (Embajada) — Requisitos para importar mascotas a Kuwait", pt: "MOFA do Kuwait (Embaixada) — Exigências para Importar Animais de Estimação para o Kuwait" }
+    url: "https://washington.mofa.gov.kw/en/requirements-for-importing-pets-to-kuwait/"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to Kuwait", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Koweït", es: "USDA APHIS — Viaje de mascotas desde Estados Unidos a Kuwait", pt: "USDA APHIS — Viagem de Animais de Estimação dos Estados Unidos para o Kuwait" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-kuwait"
+  - label: { en: "Kuwait Veterinary Health Certificate for dogs and cats (official model)", fr: "Certificat vétérinaire koweïtien pour chiens et chats (modèle officiel)", es: "Certificado sanitario veterinario de Kuwait para perros y gatos (modelo oficial)", pt: "Atestado de Saúde Veterinário do Kuwait para Cachorros e Gatos (modelo oficial)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/kuwait-dog-cat_0.pdf"
+  - label: { en: "Public Authority of Agriculture Affairs and Fish Resources (PAAF)", fr: "Autorité publique des affaires agricoles et des ressources halieutiques (PAAF)", es: "Autoridad Pública de Asuntos Agrícolas y Recursos Pesqueros (PAAF)", pt: "Public Authority of Agriculture Affairs and Fish Resources (PAAF)" }
+    url: "https://www.paaf.gov.kw/home/departments.html"
+  - label: { en: "Kuwait Government Online (e.gov.kw)", fr: "Portail du gouvernement du Koweït (e.gov.kw)", es: "Portal del Gobierno de Kuwait (e.gov.kw)", pt: "Kuwait Government Online (e.gov.kw)" }
+    url: "https://www.e.gov.kw/sites/kgoenglish/Pages/HomePage.aspx"
+
+seo:
+  title: { en: "Kuwait Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Koweït — Guide", es: "Requisitos de entrada de perros en Kuwait — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Kuwait — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Kuwait With Your Dog: Entry Requirements (2026)", fr: "Voyager au Koweït avec ton chien : formalités (2026)", es: "Viajar a Kuwait con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Kuwait: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official PAAF import certificate, identification, rabies vaccination and health-certificate rules for bringing a dog into Kuwait. Sourced and dated."
+    fr: "Règles officielles PAAF : certificat d'importation, identification, vaccination antirabique et certificat sanitaire pour un chien au Koweït. Sourcé et daté."
+    es: "Normas oficiales de la PAAF sobre certificado de importación, identificación, vacunación antirrábica y certificado sanitario para traer un perro a Kuwait."
+    pt: "Certificado de importação oficial da PAAF, identificação, vacinação antirrábica e normas do atestado de saúde para levar um cachorro para o Kuwait."
+  slug: "kuwait"
+  shortDesc:
+    en: "What you need to bring a dog into Kuwait — PAAF import certificate, identification, rabies vaccination and a vet health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien au Koweït — certificat d'importation PAAF, identification, vaccination antirabique et certificat vétérinaire."
+    es: "Lo que necesitas para traer un perro a Kuwait — certificado de importación PAAF, identificación, vacunación antirrábica y un certificado sanitario veterinario."
+    pt: "O que você precisa para levar um cachorro para o Kuwait — certificado de importação da PAAF, identificação, vacinação antirrábica e atestado de saúde veterinário."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

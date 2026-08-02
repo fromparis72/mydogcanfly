@@ -1,0 +1,18 @@
+---
+import EntityIndex from "../../../components/EntityIndex.astro";
+import { loadKB, t, inlineT } from "@mydogcanfly/knowledge";
+import { indexItems } from "../../../lib/pagedata";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const T = inlineT(locale);
+const items = indexItems(loadKB(), "breed", locale);
+const seoTitle = T("Can my dog fly? Travel guide breed by breed", "Mon chien peut-il prendre l'avion ? Race par race", "¿Puede volar mi perro? Guía raza por raza");
+---
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.breed")} title={t(locale, "index.breeds.title")} blurb={t(locale, "index.breeds.blurb")} items={items} locale={locale} />

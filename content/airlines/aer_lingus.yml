@@ -1,0 +1,294 @@
+id: airline_aer_lingus
+mono: EI
+name: Aer Lingus
+titleH1:
+  en: Flying with a dog on Aer Lingus
+  fr: Voyager avec un chien sur Aer Lingus
+  es: Volar con un perro en Aer Lingus
+  pt: "Viajar com um cachorro na Aer Lingus"
+metaDesc:
+  en: "Aer Lingus pet policy: cargo-only via IAG Cargo, cabin assistance dogs, restrictions and official sources."
+  fr: "Politique animaux Aer Lingus : fret uniquement via IAG Cargo, chiens d'assistance en cabine, restrictions et sources officielles."
+  es: "Política de mascotas de Aer Lingus: solo carga vía IAG Cargo, perros de asistencia en cabina, restricciones y fuentes oficiales."
+  pt: "Política de animais da Aer Lingus: somente carga via IAG Cargo, cães de assistência na cabine, restrições e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Ireland · DUB
+      fr: Irlande · DUB
+      es: Irlanda · DUB
+      pt: "Irlanda · DUB"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No cabin or checked pets; pets travel only via IAG Cargo through a pet agent (Ireland is rabies-free).
+  fr: Pas d'animaux en cabine ni en bagage enregistré ; les animaux ne voyagent que via IAG Cargo par un agent (l'Irlande est indemne de rage).
+  es: No se admiten mascotas en cabina ni facturadas; las mascotas solo viajan vía IAG Cargo mediante un agente (Irlanda está libre de rabia).
+  pt: "Sem animais na cabine nem em bagagem despachada; os animais só viajam via IAG Cargo, por meio de um agente de animais (a Irlanda é livre de raiva)."
+ladder:
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 10
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: IAG Cargo
+      fr: IAG Cargo
+      es: IAG Cargo
+      pt: "IAG Cargo"
+    sub:
+      en: all pets
+      fr: tous animaux
+      es: todas las mascotas
+      pt: "todos os animais"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pets in the cabin — only trained service dogs. Emotional-support animals refused.
+      fr: Pas d'animaux en cabine — seulement les chiens d'assistance dressés. Animaux de soutien émotionnel refusés.
+      es: No se admiten mascotas en cabina — solo perros de asistencia adiestrados. Los animales de apoyo emocional son rechazados.
+      pt: "Nenhum animal na cabine — somente cães de serviço treinados. Animais de apoio emocional são recusados."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets aren't accepted as checked baggage — a pet brought to check-in won't be accepted.
+      fr: Les animaux ne sont pas acceptés en bagage enregistré — un animal présenté à l'enregistrement sera refusé.
+      es: Las mascotas no se aceptan como equipaje facturado — una mascota presentada en la facturación será rechazada.
+      pt: "Animais não são aceitos como bagagem despachada — um animal levado ao check-in não será aceito."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: IAG Cargo
+      fr: IAG Cargo
+      es: IAG Cargo
+      pt: "IAG Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: Vía agente
+      pt: "Via agente"
+    detail:
+      en: Cats & dogs travel via IAG Cargo (pet agent) in a temperature-controlled hold. Not on Aer Lingus Regional (Emerald).
+      fr: Chats et chiens voyagent via IAG Cargo (agent) dans une soute à température contrôlée. Pas sur Aer Lingus Regional (Emerald).
+      es: Los gatos y perros viajan vía IAG Cargo (agente) en una bodega con temperatura controlada. No en Aer Lingus Regional (Emerald).
+      pt: "Gatos e cachorros viajam via IAG Cargo (agente de animais) em um porão com temperatura controlada. Não disponível na Aer Lingus Regional (Emerald)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin / hold
+        fr: Cabine / soute
+        es: Cabina / bodega
+        pt: "Cabine / porão"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: IAG Cargo (via pet agent)
+        fr: IAG Cargo (via agent)
+        es: IAG Cargo (vía agente)
+        pt: "IAG Cargo (via agente de animais)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog (cabin)
+        fr: Chien d'assistance (cabine)
+        es: Perro de servicio (cabina)
+        pt: "Cão de serviço (cabine)"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Aer Lingus publishes no passenger pet fare — pet transport is quoted by IAG Cargo via a pet agent.
+    fr: Aer Lingus ne publie pas de tarif animal passager — le transport est chiffré par IAG Cargo via un agent.
+    es: Aer Lingus no publica ninguna tarifa de mascota para pasajeros — el transporte lo presupuesta IAG Cargo mediante un agente.
+    pt: "A Aer Lingus não publica tarifa de animais para passageiros — o transporte de animais é orçado pela IAG Cargo por meio de um agente de animais."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: May be refused
+          fr: Peuvent être refusées
+          es: Pueden ser rechazadas
+          pt: "Pode ser recusado"
+    note:
+      en: Snub-nosed breeds may not be accepted; where accepted, the container must be at least 10% larger than the minimum. The pet agent advises case by case.
+      fr: Les races au nez écrasé peuvent être refusées ; lorsqu'elles sont acceptées, la caisse doit être au moins 10 % plus grande que le minimum. L'agent conseille au cas par cas.
+      es: Las razas de hocico chato pueden no ser aceptadas; cuando se aceptan, la jaula debe ser al menos un 10 % más grande que el mínimo. El agente asesora caso por caso.
+      pt: "As raças de focinho achatado podem não ser aceitas; quando aceitas, a caixa de transporte deve ser ao menos 10% maior que o mínimo. O agente de animais orienta caso a caso."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: Breed & docs rules
+          fr: Règles race & documents
+          es: Reglas de raza y documentos
+          pt: "Regras de raça e documentos"
+    note:
+      en: Some dangerous breeds may be refused. Pets must meet destination pet-travel rules; keep all paperwork for checks. Cats & dogs only, min 15 weeks.
+      fr: Certaines races dangereuses peuvent être refusées. Les animaux doivent respecter les règles du pays de destination ; conserve tous les documents pour les contrôles. Chats et chiens uniquement, min 15 semaines.
+      es: Algunas razas peligrosas pueden ser rechazadas. Las mascotas deben cumplir las reglas de viaje del destino; conserva toda la documentación para los controles. Solo gatos y perros, mín 15 semanas.
+      pt: "Algumas raças consideradas perigosas podem ser recusadas. Os animais devem atender às regras de viagem do destino; guarde toda a documentação para eventuais conferências. Somente gatos e cachorros, mín. 15 semanas."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Temperature-controlled hold
+        fr: Soute à température contrôlée
+        es: Bodega con temperatura controlada
+        pt: "Porão com temperatura controlada"
+    - cls: warn
+      label:
+        en: "Hold temperature: not disclosed"
+        fr: "Température soute : non communiqué"
+        es: "Temperatura de bodega: no comunicado"
+        pt: "Temperatura do porão: não divulgada"
+  note:
+    en: IAG Cargo carries pets in a temperature-controlled, unlit hold (pets settle better in the dark), but publishes no numeric limits.
+    fr: IAG Cargo transporte les animaux dans une soute à température contrôlée et non éclairée (les animaux se posent mieux dans l'obscurité), mais ne publie pas de limites chiffrées.
+    es: IAG Cargo transporta las mascotas en una bodega con temperatura controlada y sin luz (las mascotas se calman mejor en la oscuridad), pero no publica límites numéricos.
+    pt: "A IAG Cargo transporta animais em um porão com temperatura controlada e sem luz (os animais se acalmam melhor no escuro), mas não publica limites numéricos."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained/accredited service dogs travel free in the cabin (1 within Europe, up to 2 to/from North America).
+      fr: Les chiens d'assistance dressés/accrédités voyagent gratuitement en cabine (1 en Europe, jusqu'à 2 de/vers l'Amérique du Nord).
+      es: Los perros de asistencia adiestrados/acreditados viajan gratis en cabina (1 dentro de Europa, hasta 2 hacia/desde Norteamérica).
+      pt: "Cães de serviço treinados/credenciados viajam grátis na cabine (1 dentro da Europa, até 2 de/para a América do Norte)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Europe: Assistance Dog ID Card + IGDF/ADI training, request ≥ 48 h ahead. US: DOT form (+ relief over 8 h). Some breeds must be muzzled and leashed."
+      fr: "Europe : carte d'identité de chien d'assistance + dressage IGDF/ADI, demander ≥ 48 h à l'avance. USA : formulaire DOT (+ soulagement au-delà de 8 h). Certaines races doivent être muselées et en laisse."
+      es: "Europa: tarjeta de identidad de perro de asistencia + adiestramiento IGDF/ADI, solicitar con ≥ 48 h de antelación. EE. UU.: formulario DOT (+ desahogo si supera las 8 h). Algunas razas deben llevar bozal y correa."
+      pt: "Europa: cartão de identificação de cão de assistência + treinamento IGDF/ADI, solicitação com ≥ 48 h de antecedência. EUA: formulário do DOT (+ alívio acima de 8 h). Algumas raças devem usar focinheira e coleira."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Never at check-in
+      fr: Jamais à l'enregistrement
+      es: Nunca en la facturación
+      pt: "Nunca no check-in"
+    value:
+      en: Pets are never accepted at the Aer Lingus check-in desk — they must be pre-booked via an IAG Cargo pet agent.
+      fr: Les animaux ne sont jamais acceptés au comptoir d'enregistrement Aer Lingus — ils doivent être pré-réservés via un agent IAG Cargo.
+      es: Las mascotas nunca se aceptan en el mostrador de facturación de Aer Lingus — deben reservarse por adelantado mediante un agente de IAG Cargo.
+      pt: "Animais nunca são aceitos no balcão de check-in da Aer Lingus — devem ser reservados antecipadamente por meio de um agente de animais da IAG Cargo."
+  - icon: ✈️
+    label:
+      en: No pets on Regional
+      fr: Pas d'animaux sur Regional
+      es: Sin mascotas en Regional
+      pt: "Sem animais na Regional"
+    value:
+      en: No pets on Aer Lingus Regional flights operated by Emerald Airlines.
+      fr: Aucun animal sur les vols Aer Lingus Regional opérés par Emerald Airlines.
+      es: No se admiten mascotas en los vuelos de Aer Lingus Regional operados por Emerald Airlines.
+      pt: "Sem animais nos voos da Aer Lingus Regional operados pela Emerald Airlines."
+  - icon: 🐾
+    label:
+      en: Cats & dogs only
+      fr: Chats & chiens seuls
+      es: Solo gatos y perros
+      pt: "Somente gatos e cachorros"
+    value:
+      en: Only cats and dogs, minimum 15 weeks old.
+      fr: Uniquement chats et chiens, âge minimum 15 semaines.
+      es: Solo gatos y perros, con un mínimo de 15 semanas de edad.
+      pt: "Somente gatos e cachorros, com no mínimo 15 semanas de idade."
+book:
+  host: aerlingus.com
+  url: https://www.aerlingus.com/
+sources:
+  en: 5 Aer Lingus & IAG Cargo sources · last verified 11 July 2026
+  fr: 5 sources Aer Lingus & IAG Cargo · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Aer Lingus e IAG Cargo · última verificación 11 de julio de 2026
+  pt: "5 fontes da Aer Lingus e da IAG Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

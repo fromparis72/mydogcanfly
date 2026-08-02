@@ -1,0 +1,306 @@
+id: airline_aeromexico
+mono: AM
+name: Aeromexico
+titleH1:
+  en: Flying with a dog on Aeromexico
+  fr: Voyager avec un chien sur Aeromexico
+  es: Volar con un perro en Aeromexico
+  pt: "Viajar com um cachorro na Aeromexico"
+metaDesc:
+  en: "Aeromexico pet policy: cabin, hold and cargo rules, USD fares, breed & temperature limits and official sources."
+  fr: "Politique animaux Aeromexico : cabine, soute et fret, tarifs en USD, restrictions de races et température, sources officielles."
+  es: "Política de mascotas de Aeromexico: reglas de cabina, bodega y carga, tarifas en USD, límites de razas y temperatura, y fuentes oficiales."
+  pt: "Política de animais da Aeromexico: regras de cabine, porão e carga, tarifas em USD, limites de raça e de temperatura e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: SkyTeam
+      fr: SkyTeam
+      es: SkyTeam
+      pt: "SkyTeam"
+  - icon: 📍
+    label:
+      en: Mexico · MEX
+      fr: Mexique · MEX
+      es: México · MEX
+      pt: "México · MEX"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cabin and hold both allowed on many routes with clear USD fees — but breed and temperature limits apply.
+  fr: Cabine et soute autorisées sur de nombreuses routes avec des tarifs clairs en USD — mais restrictions de races et de température.
+  es: Cabina y bodega permitidas en muchas rutas con tarifas claras en USD — pero aplican límites de razas y temperatura.
+  pt: "Cabine e porão permitidos em muitas rotas, com tarifas claras em USD — mas se aplicam limites de raça e de temperatura."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 9 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 45 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats only, ≤ 9 kg incl. carrier under the seat; one per passenger; window/non-bulkhead. Snub-nosed breeds allowed here.
+      fr: Chiens et chats uniquement, ≤ 9 kg avec le sac sous le siège ; un par passager ; place hublot/hors cloison. Races au nez écrasé admises ici.
+      es: Solo perros y gatos, ≤ 9 kg incluida la jaula bajo el asiento; uno por pasajero; ventanilla/fuera de mamparo. Aquí se admiten las razas de hocico chato.
+      pt: "Somente cachorros e gatos, ≤ 9 kg com a bolsa incluída, sob o assento; um por passageiro; janela/fora das fileiras de anteparo. Raças de focinho achatado permitidas aqui."
+    fee:
+      en: $182–189
+      fr: 182–189 $
+      es: 182–189 $
+      pt: "182–189 $"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "Checked pet (AVIH): cats, dogs & birds up to 45 kg incl. kennel, on your flight. Not on some Embraer 190."
+      fr: "Animal enregistré (AVIH) : chats, chiens et oiseaux jusqu'à 45 kg avec la caisse, sur ton vol. Pas sur certains Embraer 190."
+      es: "Mascota facturada (AVIH): gatos, perros y aves de hasta 45 kg incluida la jaula, en tu vuelo. No en algunos Embraer 190."
+      pt: "Animal despachado (AVIH): gatos, cachorros e aves até 45 kg com a caixa incluída, no seu voo. Não disponível em alguns Embraer 190."
+    fee:
+      en: $283–290
+      fr: 283–290 $
+      es: 283–290 $
+      pt: "283–290 $"
+  - icon: ✈️
+    name:
+      en: Aeromexico Cargo
+      fr: Aeromexico Cargo
+      es: Aeromexico Cargo
+      pt: "Aeromexico Cargo"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo petición
+      pt: "Sob consulta"
+    detail:
+      en: Over cabin/hold limits or exotic species, via Aeromexico Cargo (Live Animals).
+      fr: Au-delà des limites cabine/soute ou espèces exotiques, via Aeromexico Cargo (animaux vivants).
+      es: Por encima de los límites de cabina/bodega o especies exóticas, vía Aeromexico Cargo (animales vivos).
+      pt: "Acima dos limites de cabine/porão ou espécies exóticas, via Aeromexico Cargo (Animais Vivos)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 9 kg)
+        fr: Cabine (≤ 9 kg)
+        es: Cabina (≤ 9 kg)
+        pt: "Cabine (≤ 9 kg)"
+      value:
+        en: $182–189 / segment
+        fr: 182–189 $ / tronçon
+        es: 182–189 $ / segmento
+        pt: "182–189 $ / trecho"
+    - label:
+        en: Hold (≤ 45 kg)
+        fr: Soute (≤ 45 kg)
+        es: Bodega (≤ 45 kg)
+        pt: "Porão (≤ 45 kg)"
+      value:
+        en: $283–290 / segment
+        fr: 283–290 $ / tronçon
+        es: 283–290 $ / segmento
+        pt: "283–290 $ / trecho"
+    - label:
+        en: Aeromexico Cargo
+        fr: Aeromexico Cargo
+        es: Aeromexico Cargo
+        pt: "Aeromexico Cargo"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD, per international segment. Domestic fares are set in MXN.
+    fr: USD, par tronçon international. Les tarifs nationaux sont fixés en MXN.
+    es: USD, por segmento internacional. Las tarifas nacionales se fijan en MXN.
+    pt: "USD, por trecho internacional. As tarifas domésticas são fixadas em MXN."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only
+          fr: Cabine uniquement
+          es: Solo cabina
+          pt: "Somente cabine"
+      - cls: no
+        label:
+          en: Hold & cargo forbidden
+          fr: Soute & fret interdits
+          es: Bodega y carga prohibidas
+          pt: "Porão e carga proibidos"
+    note:
+      en: "Snub-nosed dogs & cats may travel ONLY in the cabin (≤ 9 kg) — barred from the hold and from Aeromexico Cargo: boxers, bulldogs (all), Boston terrier, pug, Pekingese, Shih Tzu, chow chow, Cane Corso, Dogue de Bordeaux, mastiffs, Presa Canario, Shar Pei, and Persian/Himalayan/Exotic/Burmese cats."
+      fr: "Chiens et chats au nez écrasé ne voyagent QU'EN cabine (≤ 9 kg) — interdits en soute et chez Aeromexico Cargo : boxers, bouledogues (tous), Boston terrier, carlin, pékinois, Shih Tzu, chow chow, Cane Corso, Dogue de Bordeaux, mastiffs, Presa Canario, Shar Pei, et chats persans/himalayens/exotiques/birmans."
+      es: "Los perros y gatos de hocico chato solo pueden viajar EN cabina (≤ 9 kg) — están vetados en la bodega y en Aeromexico Cargo: boxers, bulldogs (todos), Boston terrier, carlino, pekinés, Shih Tzu, chow chow, Cane Corso, Dogo de Burdeos, mastines, Presa Canario, Shar Pei y gatos persas/himalayos/exóticos/birmanos."
+      pt: "Cachorros e gatos de focinho achatado só podem viajar na cabine (≤ 9 kg) — proibidos no porão e na Aeromexico Cargo: boxers, bulldogues (todos), Boston terrier, pug, pequinês, Shih Tzu, chow chow, Cane Corso, Dogue de Bordeaux, mastiffs, Presa Canario, Shar Pei, e gatos persas/himalaios/exóticos/burmeses."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras reglas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: One pet per passenger
+          fr: Un animal par passager
+          es: Una mascota por pasajero
+          pt: "Um animal por passageiro"
+    note:
+      en: One pet per passenger; no food or fluids onboard; the pet stays in the carrier throughout. Pets under veterinary treatment aren't accepted in the cabin.
+      fr: Un animal par passager ; ni nourriture ni boisson à bord ; l'animal reste dans le sac tout le vol. Les animaux sous traitement vétérinaire ne sont pas admis en cabine.
+      es: Una mascota por pasajero; sin comida ni líquidos a bordo; la mascota permanece en la jaula durante todo el vuelo. Las mascotas bajo tratamiento veterinario no se aceptan en cabina.
+      pt: "Um animal por passageiro; sem alimentos ou líquidos a bordo; o animal permanece na bolsa de transporte durante todo o voo. Animais sob tratamento veterinário não são aceitos na cabine."
+temperature:
+  pills:
+    - cls: no
+      label:
+        en: Hold refused above 35 °C / below 7 °C
+        fr: Soute refusée au-dessus de 35 °C / sous 7 °C
+        es: Bodega rechazada por encima de 35 °C / por debajo de 7 °C
+        pt: "Porão recusado acima de 35 °C / abaixo de 7 °C"
+  note:
+    en: Checked pets aren't accepted if the temperature at origin, transit or destination is above 35 °C or below 7 °C.
+    fr: Les animaux en soute ne sont pas acceptés si la température à l'origine, en transit ou à destination dépasse 35 °C ou descend sous 7 °C.
+    es: Las mascotas facturadas no se aceptan si la temperatura en el origen, el tránsito o el destino supera los 35 °C o baja de los 7 °C.
+    pt: "Animais despachados não são aceitos se a temperatura na origem, no trânsito ou no destino estiver acima de 35 °C ou abaixo de 7 °C."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs travel free in the cabin with no flight-hour limit, harnessed and tagged.
+      fr: Les chiens d'assistance voyagent gratuitement en cabine sans limite de durée de vol, en harnais et identifiés.
+      es: Los perros de servicio viajan gratis en cabina sin límite de horas de vuelo, con arnés e identificados.
+      pt: "Cães de serviço viajam grátis na cabine sem limite de horas de voo, com peitoral e identificação."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Present at the counter 2 h before departure; a signed liability letter (except US flights). US: CDC Dog Import Form + training docs."
+      fr: "Se présenter au comptoir 2 h avant le départ ; lettre de responsabilité signée (sauf vols USA). USA : formulaire CDC Dog Import + documents de dressage."
+      es: "Preséntate en el mostrador 2 h antes de la salida; una carta de responsabilidad firmada (salvo vuelos a EE. UU.). EE. UU.: formulario CDC Dog Import + documentos de adiestramiento."
+      pt: "Apresentar-se no balcão 2 h antes da partida; uma carta de responsabilidade assinada (exceto em voos para os EUA). EUA: CDC Dog Import Form + documentos de treinamento."
+goodToKnow:
+  - icon: 🐶
+    label:
+      en: Brachy cabin-only
+      fr: Brachy cabine seule
+      es: Braquicéfalos solo en cabina
+      pt: "Braquicefálicos somente na cabine"
+    value:
+      en: Snub-nosed dogs & cats can fly only in the cabin, never in the hold or cargo.
+      fr: Chiens et chats au nez écrasé ne volent qu'en cabine, jamais en soute ni en fret.
+      es: Los perros y gatos de hocico chato solo pueden volar en cabina, nunca en bodega ni en carga.
+      pt: "Cachorros e gatos de focinho achatado só podem voar na cabine, nunca no porão nem na carga."
+  - icon: 🌡️
+    label:
+      en: Temperature
+      fr: Température
+      es: Temperatura
+      pt: "Temperatura"
+    value:
+      en: Checked pets are refused when airport temperature exceeds 35 °C or falls below 7 °C.
+      fr: Les animaux en soute sont refusés quand la température de l'aéroport dépasse 35 °C ou descend sous 7 °C.
+      es: Las mascotas facturadas se rechazan cuando la temperatura del aeropuerto supera los 35 °C o baja de los 7 °C.
+      pt: "Animais despachados são recusados quando a temperatura no aeroporto ultrapassa 35 °C ou fica abaixo de 7 °C."
+  - icon: 📄
+    label:
+      en: US entry
+      fr: Entrée aux USA
+      es: Entrada a EE. UU.
+      pt: "Entrada nos EUA"
+    value:
+      en: Dogs to the US must be 6 months+ with an approved CDC Dog Import Form.
+      fr: Les chiens vers les USA doivent avoir 6 mois+ avec un formulaire CDC Dog Import approuvé.
+      es: Los perros hacia EE. UU. deben tener 6 meses o más con un formulario CDC Dog Import aprobado.
+      pt: "Cachorros com destino aos EUA devem ter 6 meses ou mais, com um CDC Dog Import Form aprovado."
+book:
+  host: aeromexico.com
+  url: https://www.aeromexico.com/
+sources:
+  en: 4 Aeromexico sources · last verified 11 July 2026
+  fr: 4 sources Aeromexico · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Aeromexico · última verificación 11 de julio de 2026
+  pt: "4 fontes da Aeromexico · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,300 @@
+id: airline_emirates
+mono: EK
+name: Emirates
+titleH1:
+  en: Flying with a dog on Emirates
+  fr: Voyager avec un chien sur Emirates
+  es: Volar con un perro en Emirates
+  pt: "Voar com um cachorro na Emirates"
+metaDesc:
+  en: "Emirates pet policy: no cabin pets, hold and SkyCargo rules, fares, restrictions and official sources."
+  fr: "Politique animaux Emirates : pas d'animaux en cabine, soute et SkyCargo, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de Emirates: sin mascotas en cabina, normas de bodega y SkyCargo, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da Emirates: sem animais em cabine, regras de porão e SkyCargo, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: United Arab Emirates · DXB
+      fr: Émirats arabes unis · DXB
+      es: Emiratos Árabes Unidos · DXB
+      pt: "Emirados Árabes Unidos · DXB"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Hard
+    fr: Difficile
+    es: Difícil
+    pt: "Difícil"
+verdictNote:
+  en: No pets in the cabin — dogs travel in the hold or via SkyCargo under strict conditions.
+  fr: Pas d'animaux en cabine — les chiens voyagent en soute ou via SkyCargo, sous conditions strictes.
+  es: Sin mascotas en cabina; los perros viajan en bodega o por SkyCargo bajo condiciones estrictas.
+  pt: "Sem animais na cabine — os cachorros viajam no porão ou pela SkyCargo, sob condições rígidas."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 52
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 32 kg
+  - flex: 40
+    color: "#9a6410"
+    label:
+      en: SkyCargo
+      fr: SkyCargo
+      es: SkyCargo
+      pt: "SkyCargo"
+    sub: 17 h +
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No cats or dogs in the cabin — only falcons on select Dubai–Pakistan routes, plus service animals.
+      fr: Ni chats ni chiens en cabine — seulement les faucons sur certaines lignes Dubaï–Pakistan, plus les animaux d'assistance.
+      es: Sin perros ni gatos en cabina; solo halcones en algunas rutas Dubái–Pakistán, más los animales de servicio.
+      pt: "Sem gatos nem cachorros na cabine — somente falcões em rotas selecionadas Dubai–Paquistão, além de animais de serviço."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs as checked baggage from Dubai, journeys under 17 h. Priced on animal + cage weight and size.
+      fr: Chats et chiens en bagage enregistré au départ de Dubaï, trajets < 17 h. Tarif selon poids/dimensions animal + caisse.
+      es: Perros y gatos como equipaje facturado desde Dubái, trayectos de menos de 17 h. Se tarifa según el peso y tamaño del animal + jaula.
+      pt: "Gatos e cachorros como bagagem despachada saindo de Dubai, viagens de menos de 17 h. Tarifado pelo peso e tamanho do animal + caixa."
+    fee:
+      en: $500–800
+      fr: 500–800 $
+      es: 500–800 $
+      pt: "US$ 500–800"
+  - icon: ✈️
+    name:
+      en: SkyCargo
+      fr: SkyCargo
+      es: SkyCargo
+      pt: "SkyCargo"
+    cls: warn
+    statusLabel:
+      en: On request
+      fr: Sur devis
+      es: Bajo petición
+      pt: "Sob consulta"
+    detail:
+      en: Required for journeys over 17 h, long connections, oversize cages or Dubai-bound trips. Via Emirates SkyCargo.
+      fr: Obligatoire au-delà de 17 h, longues correspondances, caisses hors gabarit ou arrivée à Dubaï. Via Emirates SkyCargo.
+      es: Obligatorio para trayectos de más de 17 h, conexiones largas, jaulas de gran tamaño o viajes con destino a Dubái. Por Emirates SkyCargo.
+      pt: "Exigido para viagens acima de 17 h, conexões longas, caixas fora do padrão ou viagens com destino a Dubai. Via Emirates SkyCargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Hold ≤ 23 kg & ≤ 150 cm
+        fr: Soute ≤ 23 kg & ≤ 150 cm
+        es: Bodega ≤ 23 kg y ≤ 150 cm
+        pt: "Porão ≤ 23 kg e ≤ 150 cm"
+      value:
+        en: $500
+        fr: 500 $
+        es: 500 $
+        pt: "US$ 500"
+    - label:
+        en: Hold 24–32 kg (150–300 cm)
+        fr: Soute 24–32 kg (150–300 cm)
+        es: Bodega 24–32 kg (150–300 cm)
+        pt: "Porão 24–32 kg (150–300 cm)"
+      value:
+        en: $650
+        fr: 650 $
+        es: 650 $
+        pt: "US$ 650"
+    - label:
+        en: Hold > 32 kg (150–300 cm)
+        fr: Soute > 32 kg (150–300 cm)
+        es: Bodega > 32 kg (150–300 cm)
+        pt: "Porão > 32 kg (150–300 cm)"
+      value:
+        en: $800
+        fr: 800 $
+        es: 800 $
+        pt: "US$ 800"
+    - label:
+        en: SkyCargo (oversize / long)
+        fr: SkyCargo (hors gabarit / long)
+        es: SkyCargo (gran tamaño / largo)
+        pt: "SkyCargo (fora do padrão / longo)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+  note:
+    en: USD, per animal, from Dubai — charged on combined animal + cage weight and size.
+    fr: USD, par animal, au départ de Dubaï — selon le poids et les dimensions animal + caisse.
+    es: USD, por animal, desde Dubái; se cobra según el peso y tamaño combinados del animal + jaula.
+    pt: "USD, por animal, saindo de Dubai — cobrado pelo peso e tamanho combinados do animal + caixa."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Cabin closed
+      fr: Cabine interdite
+      es: Cabina no admitida
+      pt: "Cabine fechada"
+    pills:
+      - cls: no
+        label:
+          en: No cabin pets
+          fr: Pas d'animaux en cabine
+          es: Sin mascotas en cabina
+          pt: "Sem animais em cabine"
+    note:
+      en: Only falcons (Dubai–Pakistan) and service animals fly in the cabin; all cats & dogs travel in the hold or cargo.
+      fr: Seuls les faucons (Dubaï–Pakistan) et les animaux d'assistance voyagent en cabine ; tous les chats et chiens vont en soute ou en fret.
+      es: Solo los halcones (Dubái–Pakistán) y los animales de servicio viajan en cabina; todos los perros y gatos van en bodega o carga.
+      pt: "Somente falcões (Dubai–Paquistão) e animais de serviço voam na cabine; todos os gatos e cachorros viajam no porão ou como carga."
+  - icon: 📄
+    title:
+      en: Age & permits
+      fr: Âge & permis
+      es: Edad y permisos
+      pt: "Idade e autorizações"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 4 months
+          fr: 4 mois minimum
+          es: Mín. 4 meses
+          pt: "Mín. 4 meses"
+    note:
+      en: Animals must be over 4 months. A valid import permit and health certificate are required; allow about a week for paperwork.
+      fr: Animaux de plus de 4 mois. Permis d'importation et certificat sanitaire valides requis ; prévoir environ une semaine pour les démarches.
+      es: Los animales deben tener más de 4 meses. Se exigen un permiso de importación y un certificado sanitario válidos; calcula alrededor de una semana para el papeleo.
+      pt: "Os animais precisam ter mais de 4 meses. É exigida uma autorização de importação válida e um atestado de saúde; conte cerca de uma semana para a burocracia."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Heated, ventilated hold
+        fr: Soute chauffée et ventilée
+        es: Bodega climatizada y ventilada
+        pt: "Porão climatizado e ventilado"
+    - cls: warn
+      label:
+        en: "Birds: no Dubai transit May–Sep"
+        fr: "Oiseaux : pas de transit Dubaï mai–sept."
+        es: "Aves: sin tránsito por Dubái may–sep"
+        pt: "Aves: sem trânsito em Dubai mai–set"
+  note:
+    en: Pets travel in a heated, ventilated hold area and wait in an air-conditioned room during Dubai transit. Because of UAE heat, birds (except some falcons) aren't accepted through Dubai from 1 May to 30 September. Emirates publishes no numeric hold-temperature limit for cats and dogs.
+    fr: Les animaux voyagent dans une zone de soute chauffée et ventilée et patientent en salle climatisée lors du transit à Dubaï. En raison de la chaleur aux Émirats, les oiseaux (sauf certains faucons) ne sont pas acceptés en transit à Dubaï du 1er mai au 30 septembre. Emirates ne publie pas de limite chiffrée de température en soute pour les chats et chiens.
+    es: Las mascotas viajan en una zona de bodega climatizada y ventilada y esperan en una sala con aire acondicionado durante el tránsito por Dubái. Por el calor de los EAU, las aves (salvo algunos halcones) no se aceptan en tránsito por Dubái del 1 de mayo al 30 de septiembre. Emirates no publica un límite numérico de temperatura en bodega para perros y gatos.
+    pt: "Os animais viajam em uma área de porão aquecida e ventilada e aguardam em uma sala com ar-condicionado durante o trânsito em Dubai. Por causa do calor nos EAU, as aves (exceto alguns falcões) não são aceitas em trânsito por Dubai de 1º de maio a 30 de setembro. A Emirates não divulga um limite numérico de temperatura no porão para gatos e cachorros."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service animals may travel in the cabin subject to conditions.
+      fr: Les animaux d'assistance peuvent voyager en cabine, sous conditions.
+      es: Los animales de servicio pueden viajar en cabina, sujeto a condiciones.
+      pt: "Animais de serviço podem viajar na cabine, sujeitos a condições."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "US routes: DOT service-animal + relief forms and CDC compliance. To Dubai: MOCCAE-validated documents, ≥ 4 working days ahead."
+      fr: "Vers les USA : formulaires DOT + attestation et conformité CDC. Vers Dubaï : documents validés par le MOCCAE, ≥ 4 jours ouvrés à l'avance."
+      es: "Rutas a EE. UU.: formularios DOT de animal de servicio + de alivio y cumplimiento del CDC. A Dubái: documentos validados por el MOCCAE, ≥ 4 días hábiles antes."
+      pt: "Rotas para os EUA: formulários do DOT de animal de serviço + de alívio e conformidade com o CDC. Para Dubai: documentos validados pelo MOCCAE, ≥ 4 dias úteis antes."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Long trips
+      fr: Longs trajets
+      es: Trayectos largos
+      pt: "Viagens longas"
+    value:
+      en: Journeys over 17 h or with long connections must go via Emirates SkyCargo.
+      fr: Les trajets de plus de 17 h ou à longue correspondance passent par Emirates SkyCargo.
+      es: Los trayectos de más de 17 h o con conexiones largas deben ir por Emirates SkyCargo.
+      pt: "Viagens acima de 17 h ou com conexões longas precisam ir pela Emirates SkyCargo."
+  - icon: 📄
+    label:
+      en: Permits
+      fr: Permis
+      es: Permisos
+      pt: "Autorizações"
+    value:
+      en: Valid import permit and health certificate required; allow ~1 week for paperwork.
+      fr: Permis d'importation et certificat sanitaire valides requis ; prévoir ~1 semaine de démarches.
+      es: Se exigen un permiso de importación y un certificado sanitario válidos; calcula ~1 semana de papeleo.
+      pt: "É exigida uma autorização de importação válida e um atestado de saúde; conte ~1 semana para a burocracia."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Submit the online Pets Travel form well ahead; cargo is booked via SkyCargo.
+      fr: Remplir le formulaire Pets Travel en ligne bien à l'avance ; le fret se réserve via SkyCargo.
+      es: Envía el formulario en línea Pets Travel con bastante antelación; la carga se reserva por SkyCargo.
+      pt: "Envie o formulário on-line Pets Travel com bastante antecedência; a carga é reservada pela SkyCargo."
+book:
+  host: emirates.com
+  url: https://www.emirates.com/
+sources:
+  en: 5 Emirates & SkyCargo sources · last verified 11 July 2026
+  fr: 5 sources Emirates & SkyCargo · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Emirates y SkyCargo · última verificación 11 de julio de 2026
+  pt: "5 fontes da Emirates e da SkyCargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

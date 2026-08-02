@@ -1,0 +1,343 @@
+# Country Entry Guide — Netherlands (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_nl
+iso2: "NL"
+name: { en: "Netherlands", fr: "Pays-Bas", es: "Países Bajos", pt: "Países Baixos" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to the Netherlands with your dog", fr: "Voyager aux Pays-Bas avec ton chien", es: "Viajar a los Países Bajos con tu perro", pt: "Viajar para os Países Baixos com seu cachorro" }
+  intro:
+    en: >-
+      The Netherlands welcomes dogs, but what you need to prepare depends mainly on the country your dog
+      is travelling from — not only on the Netherlands itself. As an EU member, the Netherlands applies
+      the EU pet-movement rules: an ISO microchip and a valid rabies vaccination are always required. A
+      dog coming from another EU country simply needs an EU pet passport. A dog from a listed non-EU
+      country (such as the United States, Canada or the United Kingdom) needs an EU animal health
+      certificate but no blood test. A dog from a non-listed country faces the longest path, including a
+      rabies antibody test and a three-month wait. This guide explains each case so you know
+      exactly what to prepare before you book your flight.
+    fr: >-
+      Les Pays-Bas accueillent les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement des Pays-Bas. En tant qu'État membre de l'UE, les Pays-Bas appliquent
+      les règles européennes de mouvement des animaux : une puce ISO et une vaccination antirabique
+      valide sont toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un
+      passeport européen. Un chien en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…)
+      a besoin d'un certificat sanitaire européen mais pas de prise de sang. Un chien venant d'un pays non
+      listé suit le parcours le plus long, avec un titrage antirabique et un délai de trois mois. Ce guide
+      détaille chaque cas pour savoir exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Los Países Bajos acogen a los perros, pero lo que debes preparar depende sobre todo del país desde
+      el que viaja tu perro — no solo de los Países Bajos. Como Estado miembro de la UE, los Países Bajos
+      aplican las normas europeas de movimiento de animales de compañía: siempre se exigen un microchip
+      ISO y una vacunación antirrábica válida. Un perro que llega de otro país de la UE solo necesita un
+      pasaporte europeo para mascotas. Un perro procedente de un país tercero listado (como Estados
+      Unidos, Canadá o el Reino Unido) necesita un certificado sanitario europeo, pero no una prueba de
+      sangre. Un perro de un país no listado se enfrenta al camino más largo, que incluye una prueba de
+      titulación de anticuerpos contra la rabia y una espera de tres meses. Esta guía explica cada caso
+      para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "Os Países Baixos recebem bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só dos Países Baixos em si. Como membro da União Europeia, os Países Baixos aplicam as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico e três meses de espera. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate valid 10 days."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario válido 10 días."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for the Netherlands", fr: "Non requis pour les Pays-Bas", es: "No obligatorio para los Países Bajos", pt: "Não obrigatório nos Países Baixos" }
+    cls: ok
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — the Netherlands (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — les Pays-Bas (ta destination) ne sont que le premier."
+    es: "Los documentos exactos dependen de tres factores — los Países Bajos (tu destino) son solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — os Países Baixos (seu destino) são apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Netherlands", fr: "Pays de destination — Pays-Bas", es: "País de destino — Países Bajos", pt: "País de destino — Países Baixos" }
+      text:
+        en: "The Netherlands applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed to enter the Netherlands."
+        fr: "Les Pays-Bas appliquent le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis pour entrer aux Pays-Bas."
+        es: "Los Países Bajos aplican el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia para entrar en los Países Bajos."
+        pt: "Os Países Baixos aplicam o quadro europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é exigido para entrar nos Países Baixos."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as the Netherlands' framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre néerlandais, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de los Países Bajos y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro neerlandês, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination.", fr: "Doit être posée avant la vaccination antirabique.", es: "Debe implantarse antes de la vacunación antirrábica.", pt: "Deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; NVWA", fr: "Règl. UE 576/2013 ; NVWA", es: "Regl. UE 576/2013; NVWA", pt: "Regulamento UE 576/2013; NVWA" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "The microchip must already be in place; otherwise re-vaccination is needed.", fr: "La puce doit déjà être posée ; sinon il faut revacciner.", es: "El microchip debe estar ya implantado; de lo contrario, hay que revacunar.", pt: "O microchip já deve estar implantado; caso contrário, é preciso revacinar." }
+    ref: { en: "EU Reg. 576/2013, Annex III", fr: "Règl. UE 576/2013, annexe III", es: "Regl. UE 576/2013, anexo III", pt: "Regulamento UE 576/2013, anexo III" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-designated lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório designado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; NVWA", fr: "Règl. UE 2020/692 ; NVWA", es: "Regl. UE 2020/692; NVWA", pt: "Regulamento UE 2020/692; NVWA" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e, depois, por até 4 meses para circular pela UE." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV", fr: "Règl. UE 577/2013, annexe IV", es: "Regl. UE 577/2013, anexo IV", pt: "Regulamento UE 577/2013, anexo IV" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only Finland, Ireland, Malta, N. Ireland and Norway require it — not the Netherlands.", fr: "Seuls la Finlande, l'Irlande, Malte, l'Irlande du Nord et la Norvège l'exigent — pas les Pays-Bas.", es: "Solo lo exigen Finlandia, Irlanda, Malta, Irlanda del Norte y Noruega — no los Países Bajos.", pt: "Só Finlândia, Irlanda, Malta, Irlanda do Norte e Noruega exigem — os Países Baixos não." }
+    ref: { en: "European Commission — pet travel", fr: "Commission européenne — voyage animaux", es: "Comisión Europea — viaje de animales", pt: "Comissão Europeia — viagens com animais de estimação" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required (non-commercial)", fr: "Non requis (non commercial)", es: "No obligatorio (no comercial)", pt: "Não obrigatório (não comercial)" }
+    when: { en: "For a non-commercial move with your own dog, no import permit or prior customs appointment is needed.", fr: "Pour un déplacement non commercial avec ton propre chien, aucun permis d'import ni rendez-vous douanier préalable.", es: "Para un desplazamiento no comercial con tu propio perro, no se necesita permiso de importación ni cita previa en aduanas.", pt: "Para um deslocamento não comercial com seu próprio cachorro, não é preciso autorização de importação nem agendamento prévio na alfândega." }
+    exceptions: { en: "Commercial imports (sale, transfer of ownership, more than 5 animals) require a TRACES certificate and extra formalities.", fr: "Les imports commerciaux (vente, transfert de propriété, plus de 5 animaux) exigent un certificat TRACES et des formalités supplémentaires.", es: "Las importaciones comerciales (venta, transferencia de propiedad, más de 5 animales) exigen un certificado TRACES y trámites adicionales.", pt: "Importações comerciais (venda, transferência de propriedade, mais de 5 animais) exigem um certificado TRACES e formalidades adicionais." }
+    ref: { en: "NVWA — importing dogs and cats", fr: "NVWA — importation de chiens et chats", es: "NVWA — importación de perros y gatos", pt: "NVWA — importação de cães e gatos" }
+  - item: { en: "Border check (documents & identity)", fr: "Contrôle frontalier (documents & identité)", es: "Control fronterizo (documentos e identidad)", pt: "Controle de fronteira (documentos e identidade)" }
+    required: { en: "Non-EU arrivals", fr: "Arrivées hors UE", es: "Llegadas de fuera de la UE", pt: "Chegadas de fora da UE" }
+    when: { en: "Non-EU arrivals pass through a designated border control post; in the Netherlands this is Amsterdam Schiphol Airport.", fr: "Les arrivées hors UE passent par un poste de contrôle frontalier désigné ; aux Pays-Bas, l'aéroport d'Amsterdam-Schiphol.", es: "Las llegadas de fuera de la UE pasan por un puesto de control fronterizo designado; en los Países Bajos es el aeropuerto de Ámsterdam-Schiphol.", pt: "As chegadas de fora da UE passam por um posto de controle de fronteira designado; nos Países Baixos, é o aeroporto de Amsterdã-Schiphol." }
+    exceptions: { en: "No systematic check for intra-EU (Schengen) arrivals.", fr: "Pas de contrôle systématique pour les arrivées intra-UE (Schengen).", es: "Sin control sistemático para las llegadas intracomunitarias (Schengen).", pt: "Sem controle sistemático para as chegadas de dentro da UE (Schengen)." }
+    ref: { en: "EU Reg. 576/2013; NVWA", fr: "Règl. UE 576/2013 ; NVWA", es: "Regl. UE 576/2013; NVWA", pt: "Regulamento UE 576/2013; NVWA" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter from outside the EU.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer depuis hors UE.", es: "Los cachorros de menos de 12 semanas no pueden vacunarse, por lo que no pueden entrar desde fuera de la UE.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não podem entrar vindos de fora da UE." }
+    ref: { en: "EU Reg. 576/2013; NVWA", fr: "Règl. UE 576/2013 ; NVWA", es: "Regl. UE 576/2013; NVWA", pt: "Regulamento UE 576/2013; NVWA" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — authorities may then order re-export, quarantine or, in the worst case, euthanasia.", fr: "Uniquement en cas de non-conformité — les autorités peuvent ordonner réexpédition, quarantaine ou, au pire, euthanasie.", es: "Solo en caso de incumplimiento — las autoridades pueden ordenar la reexpedición, la cuarentena o, en el peor de los casos, la eutanasia.", pt: "Apenas em caso de descumprimento das regras — as autoridades podem então determinar a reexportação, a quarentena ou, na pior das hipóteses, a eutanásia." }
+    ref: { en: "EU Reg. 576/2013; NVWA", fr: "Règl. UE 576/2013 ; NVWA", es: "Regl. UE 576/2013; NVWA", pt: "Regulamento UE 576/2013; NVWA" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and normally no border check."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et normalement pas de contrôle frontalier."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y normalmente sin control fronterizo."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e, normalmente, sem controle de fronteira."
+    cls: ok
+  listed:
+    title: { en: "Health certificate, no blood test", fr: "Certificat sanitaire, sans prise de sang", es: "Certificado sanitario, sin análisis de sangre", pt: "Certificado sanitário, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by an official vet before departure. No antibody test is required; you enter the EU through a designated border control post (Schiphol)."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par un vétérinaire officiel avant le départ. Pas de titrage ; tu entre dans l'UE par un poste de contrôle frontalier désigné (Schiphol)."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por un veterinario oficial antes de la salida. No se exige prueba de titulación; entras en la UE por un puesto de control fronterizo designado (Schiphol)."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e um certificado sanitário europeu endossado por um veterinário oficial antes da partida. Não é exigido teste sorológico; você entra na UE por um posto de controle de fronteira designado (Schiphol)."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-designated laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate is also required."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé est également requis."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exige un certificado sanitario animal de la UE refrendado."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório designado pela UE, e depois 3 meses obrigatórios de espera antes da entrada. Também é exigido um certificado sanitário europeu endossado."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches the Netherlands depends on where you flew from."
+    fr: "Ce qui se passe à l'arrivée de ton chien aux Pays-Bas dépend de ton lieu de départ."
+    es: "Lo que ocurre cuando tu perro llega a los Países Bajos depende del lugar desde el que hayas volado."
+    pt: "O que acontece quando seu cachorro chega aos Países Baixos depende de onde você embarcou."
+  points:
+    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+      fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
+      es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
+      pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
+    - en: "From outside the EU: you must enter via a designated border control post — Amsterdam Schiphol Airport — for documentary and identity checks."
+      fr: "Depuis hors UE : tu dois entrer par un poste de contrôle frontalier désigné — l'aéroport d'Amsterdam-Schiphol — pour les contrôles documentaires et d'identité."
+      es: "Desde fuera de la UE: debes entrar por un puesto de control fronterizo designado — el aeropuerto de Ámsterdam-Schiphol — para los controles documentales y de identidad."
+      pt: "De fora da UE: você precisa entrar por um posto de controle de fronteira designado — o aeroporto de Amsterdã-Schiphol — para os controles documental e de identidade."
+    - en: "For a non-commercial trip with your own dog, no import permit is issued and no prior appointment is needed."
+      fr: "Pour un voyage non commercial avec ton propre chien, aucun permis d'import n'est délivré et aucun rendez-vous préalable n'est nécessaire."
+      es: "Para un viaje no comercial con tu propio perro, no se expide ningún permiso de importación ni se necesita cita previa."
+      pt: "Para uma viagem não comercial com seu próprio cachorro, nenhuma autorização de importação é emitida e não é preciso agendamento prévio."
+    - en: "Carry the original documents (not copies); the NVWA accepts documents in Dutch or English."
+      fr: "Munis-toi des documents originaux (pas de copies) ; la NVWA accepte les documents en néerlandais ou en anglais."
+      es: "Lleva los documentos originales (no copias); la NVWA acepta documentos en neerlandés o en inglés."
+      pt: "Leve os documentos originais (não cópias); a NVWA aceita documentos em neerlandês ou em inglês."
+    - en: "If documents are missing or invalid, authorities may order re-export, quarantine or, in the worst case, euthanasia — at the owner's expense."
+      fr: "Si les documents manquent ou sont invalides, les autorités peuvent ordonner réexpédition, quarantaine ou, au pire, euthanasie — aux frais du propriétaire."
+      es: "Si faltan documentos o no son válidos, las autoridades pueden ordenar la reexpedición, la cuarentena o, en el peor de los casos, la eutanasia — a cargo del propietario."
+      pt: "Se faltarem documentos ou eles não forem válidos, as autoridades podem determinar a reexportação, a quarentena ou, na pior das hipóteses, a eutanásia — às custas do dono."
+    - en: "Dogs imported into the Netherlands must be registered in the national dog database within a set period after arrival."
+      fr: "Les chiens importés aux Pays-Bas doivent être enregistrés dans la base nationale des chiens dans un délai fixé après l'arrivée."
+      es: "Los perros importados a los Países Bajos deben inscribirse en la base de datos nacional de perros dentro de un plazo determinado tras la llegada."
+      pt: "Cachorros importados para os Países Baixos precisam ser registrados na base de dados nacional de cachorros dentro de um prazo determinado após a chegada."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The Netherlands has no national breed ban. The old breed-specific regulation (Regeling agressieve dieren, RAD) was repealed with effect from 1 January 2009, because it did not reduce bite incidents. No dog breed is currently prohibited from entering or being kept in the Netherlands."
+    fr: "Les Pays-Bas n'ont pas d'interdiction nationale de race. L'ancienne réglementation par race (Regeling agressieve dieren, RAD) a été abrogée à compter du 1er janvier 2009, car elle n'avait pas réduit les morsures. Aucune race de chien n'est actuellement interdite d'entrée ou de détention aux Pays-Bas."
+    es: "Los Países Bajos no tienen ninguna prohibición nacional de razas. La antigua normativa por razas (Regeling agressieve dieren, RAD) fue derogada con efecto desde el 1 de enero de 2009, porque no redujo los incidentes de mordeduras. Actualmente ninguna raza de perro está prohibida para entrar o tenerse en los Países Bajos."
+    pt: "Os Países Baixos não têm proibição nacional de raças. A antiga regulamentação por raça (Regeling agressieve dieren, RAD) foi revogada com efeito a partir de 1º de janeiro de 2009, porque não reduziu os incidentes de mordida. Atualmente nenhuma raça de cachorro está proibida de entrar ou de ser mantida nos Países Baixos."
+  cat1:
+    en: "Current legal status: since the RAD repeal there is no breed-specific import restriction. Types once targeted (pit bull, American Staffordshire, Rottweiler and similar) may be brought in like any other dog, provided the EU microchip, rabies and certificate rules are met. Aggressive behaviour is handled case by case, not by breed."
+    fr: "Statut juridique actuel : depuis l'abrogation du RAD, aucune restriction d'importation par race. Les types autrefois visés (pit-bull, American Staffordshire, Rottweiler et similaires) peuvent être introduits comme tout autre chien, sous réserve des règles UE (puce, rage, certificat). Le comportement agressif est traité au cas par cas, pas par race."
+    es: "Situación jurídica actual: desde la derogación del RAD no hay ninguna restricción de importación por raza. Los tipos antaño señalados (pit bull, American Staffordshire, Rottweiler y similares) pueden introducirse como cualquier otro perro, siempre que se cumplan las normas de la UE sobre microchip, rabia y certificado. El comportamiento agresivo se trata caso por caso, no por raza."
+    pt: "Situação jurídica atual: desde a revogação do RAD não há restrição de importação por raça. Os tipos antes visados (pit bull, American Staffordshire, Rottweiler e similares) podem ser trazidos como qualquer outro cachorro, desde que sejam cumpridas as regras da UE sobre microchip, raiva e certificado. O comportamento agressivo é tratado caso a caso, não por raça."
+  cat2:
+    en: "Proposed (not in force): the government's 2023 anti-bite plan discusses stricter rules for 'high-risk' dogs — for example allowing certain powerful types only with a pedigree — plus a national bite-reporting point and a mandatory owner course. An earlier advisory 'high-risk dogs' list is no longer valid. None of this is enacted law yet; check the latest position before travelling."
+    fr: "Proposé (non en vigueur) : le plan gouvernemental 2023 contre les morsures évoque des règles plus strictes pour les chiens « à haut risque » — par exemple n'autoriser certains types puissants qu'avec un pedigree — ainsi qu'un point national de signalement des morsures et un cours obligatoire pour propriétaires. Une ancienne liste indicative de « chiens à haut risque » n'est plus valable. Rien de cela n'est encore une loi ; vérifie la situation la plus récente avant de voyager."
+    es: "Propuesto (no en vigor): el plan gubernamental de 2023 contra las mordeduras plantea normas más estrictas para los perros «de alto riesgo» — por ejemplo, permitir ciertos tipos poderosos solo con pedigrí — además de un punto nacional de notificación de mordeduras y un curso obligatorio para propietarios. Una anterior lista orientativa de «perros de alto riesgo» ya no es válida. Nada de esto es todavía ley en vigor; comprueba la situación más reciente antes de viajar."
+    pt: "Proposto (não está em vigor): o plano do governo de 2023 contra as mordidas discute regras mais rígidas para cachorros “de alto risco” — por exemplo, permitir certos tipos possantes apenas com pedigree — além de um ponto nacional de notificação de mordidas e um curso obrigatório para donos. Uma antiga lista consultiva de “cachorros de alto risco” não é mais válida. Nada disso é lei em vigor ainda; verifique a situação mais recente antes de viajar."
+  note:
+    en: "Local authorities can still impose muzzle or leash orders on an individual dog after a bite incident. For the current national position, consult Rijksoverheid and the NVWA. Documents may be in Dutch or English."
+    fr: "Les autorités locales peuvent encore imposer muselière ou laisse à un chien après une morsure. Pour la position nationale actuelle, consulte Rijksoverheid et la NVWA. Les documents peuvent être en néerlandais ou en anglais."
+    es: "Las autoridades locales aún pueden imponer el uso de bozal o correa a un perro concreto tras un incidente de mordedura. Para conocer la posición nacional actual, consulta Rijksoverheid y la NVWA. Los documentos pueden estar en neerlandés o en inglés."
+    pt: "As autoridades locais ainda podem impor focinheira ou guia a um cachorro específico depois de um incidente de mordida. Para conhecer a posição nacional atual, consulte a Rijksoverheid e a NVWA. Os documentos podem estar em neerlandês ou em inglês."
+
+checklist:
+  - en: "Microchip (ISO) implanted before the rabies vaccination"
+    fr: "Puce (ISO) posée avant la vaccination antirabique"
+    es: "Microchip (ISO) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Original documents in Dutch or English"
+    fr: "Documents originaux en néerlandais ou en anglais"
+    es: "Documentos originales en neerlandés o en inglés"
+    pt: "Documentos originais em neerlandês ou em inglês"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "Non-EU arrivals: plan entry via Amsterdam Schiphol border control post"
+    fr: "Arrivées hors UE : prévoir l'entrée par le poste de contrôle d'Amsterdam-Schiphol"
+    es: "Llegadas de fuera de la UE: prevé la entrada por el puesto de control fronterizo de Ámsterdam-Schiphol"
+    pt: "Chegadas de fora da UE: planeje a entrada pelo posto de controle de fronteira de Amsterdã-Schiphol"
+
+sources:
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Travelling with a pet within the EU", fr: "Commission européenne — Voyager avec un animal dans l'UE", es: "Comisión Europea — Viajar con una mascota dentro de la UE", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - label: { en: "European Commission — Listing of non-EU countries (antibody-test exemption)", fr: "Commission européenne — Liste des pays tiers (dispense de titrage)", es: "Comisión Europea — Lista de países no pertenecientes a la UE (exención de la prueba de titulación)", pt: "Comissão Europeia — Lista dos países terceiros (isenção de teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en"
+  - label: { en: "NVWA — Travelling with my pet (dogs and cats)", fr: "NVWA — Voyager avec mon animal (chiens et chats)", es: "NVWA — Viajar con mi mascota (perros y gatos)", pt: "NVWA — Viajar com meu animal de estimação (cães e gatos)" }
+    url: "https://www.nvwa.nl/onderwerpen/huisdieren-en-reizen"
+  - label: { en: "NVWA — Bringing my dog or cat from a country outside the EU", fr: "NVWA — Faire entrer mon chien ou chat depuis un pays hors UE", es: "NVWA — Traer mi perro o gato desde un país fuera de la UE", pt: "NVWA — Trazer meu cachorro ou gato de um país fora da UE" }
+    url: "https://www.nvwa.nl/onderwerpen/dier/op-reis-met-mijn-huisdier/dier-mee-uit-land-buiten-eu/hond-of-kat"
+  - label: { en: "Rijksoverheid — Preventing dog bites and dangerous dog behaviour", fr: "Rijksoverheid — Prévenir les morsures et le comportement dangereux des chiens", es: "Rijksoverheid — Prevención de mordeduras y comportamiento peligroso de los perros", pt: "Rijksoverheid — Prevenir mordidas e o comportamento perigoso de cachorros" }
+    url: "https://www.rijksoverheid.nl/onderwerpen/dierenwelzijn/hondenbeten-en-gevaarlijk-gedrag-honden-voorkomen"
+  - label: { en: "Dutch Customs (Douane) — Pets", fr: "Douane néerlandaise — Animaux de compagnie", es: "Aduanas neerlandesas (Douane) — Mascotas", pt: "Alfândega neerlandesa (Douane) — Animais de estimação" }
+    url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/wat_mag_niet_zomaar_in_uitvoeren/huisdier/huisdieren"
+
+seo:
+  title: { en: "Netherlands Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Pays-Bas — Guide", es: "Requisitos de entrada de perros en los Países Bajos — Guía de viaje", pt: "Países Baixos: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Netherlands Dog Entry Requirements (2026)", fr: "Voyager aux Pays-Bas avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Países Bajos (2026)", pt: "Cachorro nos Países Baixos: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into the Netherlands — by EU, listed and non-listed origin. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien aux Pays-Bas — selon origine UE, pays listé ou non listé. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y prueba de titulación para traer un perro a los Países Bajos — según origen UE, listado o no listado. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro aos Países Baixos — por origem na UE, listada e não listada. Com fonte e data."
+  slug: "netherlands"
+  shortDesc:
+    en: "What you need to bring a dog into the Netherlands, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien aux Pays-Bas, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a los Países Bajos, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro aos Países Baixos, dependendo do país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

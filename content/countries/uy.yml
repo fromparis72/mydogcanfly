@@ -1,0 +1,388 @@
+# Country Entry Guide — Uruguay (bilingual EN/FR).
+# Uruguay is NOT in the EU. This encodes Uruguay's own MGAP / DGSG scheme (Mercosur Res. GMC 17/15):
+# an International Veterinary Certificate (CVI) or endorsed official passport, presented at the border,
+# with mandatory microchip (Res. 273/2018), rabies vaccination, Praziquantel deworming and — for some
+# origins — a negative Leishmaniosis test. Uruguay is rabies-free.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_uy
+iso2: "UY"
+name: { en: "Uruguay", fr: "Uruguay", es: "Uruguay", pt: "Uruguai" }
+region: { en: "South America", fr: "Amérique du Sud", es: "América del Sur", pt: "América do Sul" }
+
+
+regime: non_listed
+exit:
+  authority: MGAP / DGSG
+  authorityUrl: https://www.gub.uy/tramites/solicitud-egreso-mascotas-uruguay
+  intro:
+    en: "Uruguay is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by MGAP (Dirección General de Servicios Ganaderos)."
+    fr: "L'Uruguay est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le MGAP (Dirección General de Servicios Ganaderos)."
+    es: "Uruguay no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el MGAP (Dirección General de Servicios Ganaderos)."
+    pt: "O Uruguai é um país não listado, então o teste sorológico antirrábico válido é obrigatório para voltar à União Europeia — além de um atestado de saúde de exportação endossado pelo MGAP (Dirección General de Servicios Ganaderos)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "The international veterinary certificate (CVI) is issued by MGAP at an Animal Health office, from a health certificate by an MGAP-accredited vet dated within 10 days."
+        fr: "Le certificat vétérinaire international (CVI) est délivré par le MGAP dans un bureau de santé animale, à partir d'un certificat d'un vétérinaire agréé MGAP de moins de 10 jours."
+        es: "El certificado veterinario internacional (CVI) lo emite el MGAP en una oficina de sanidad animal, a partir de un certificado de un veterinario acreditado por el MGAP de menos de 10 días."
+        pt: "O certificado veterinário internacional (CVI) é emitido pelo MGAP em um escritório de Saúde Animal, a partir de um atestado de saúde feito por veterinário credenciado pelo MGAP nos 10 dias anteriores."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Uruguay with your dog", fr: "Voyager en Uruguay avec ton chien", es: "Viajar a Uruguay con tu perro", pt: "Viajar ao Uruguai com seu cachorro" }
+  intro:
+    en: >-
+      Uruguay welcomes dogs, and it runs one uniform national scheme managed by the MGAP (Ministerio de
+      Ganadería, Agricultura y Pesca) through its animal-health authority, the DGSG. There is no EU pet
+      passport here: the key document is an International Veterinary Certificate (CVI) issued, signed and
+      stamped by the official veterinary authority of your country of origin under Mercosur Resolution GMC
+      17/15 — or a current official passport endorsed by that same authority. Your dog must carry an ISO
+      microchip, a valid rabies vaccination, a clinical examination, and internal and external parasite
+      treatment (the internal product must contain praziquantel). Dogs from countries not declared free of
+      Leishmaniosis must also show a recent negative test. Uruguay is officially rabies-free, asks for no
+      rabies antibody test and no routine quarantine, and simply inspects your dog at the border. This
+      guide explains exactly what to prepare, and when, before you book your flight.
+    fr: >-
+      L'Uruguay accueille les chiens et applique un régime national uniforme géré par le MGAP (Ministerio
+      de Ganadería, Agricultura y Pesca) via son autorité sanitaire animale, la DGSG. Pas de passeport
+      européen ici : le document clé est un Certificat Vétérinaire International (CVI) émis, signé et scellé
+      par l'autorité vétérinaire officielle de ton pays d'origine selon la Résolution Mercosur GMC 17/15 —
+      ou un passeport officiel en cours de validité refrendé par cette même autorité. Ton chien doit
+      porter une puce ISO, une vaccination antirabique valide, un examen clinique, et un traitement
+      antiparasitaire interne et externe (le produit interne doit contenir du praziquantel). Les chiens
+      venant de pays non déclarés indemnes de Leishmaniose doivent aussi présenter un test négatif récent.
+      L'Uruguay est officiellement indemne de rage, n'exige aucun titrage antirabique ni quarantaine de
+      routine, et inspecte simplement ton chien à la frontière. Ce guide détaille exactement quoi
+      préparer, et quand, avant de réserver ton vol.
+    es: >-
+      Uruguay acoge a los perros y aplica un único esquema nacional uniforme gestionado por el MGAP
+      (Ministerio de Ganadería, Agricultura y Pesca) a través de su autoridad de sanidad animal, la DGSG.
+      Aquí no hay pasaporte europeo para mascotas: el documento clave es un Certificado Veterinario
+      Internacional (CVI) emitido, firmado y sellado por la autoridad veterinaria oficial de tu país de
+      origen conforme a la Resolución Mercosur GMC 17/15 — o un pasaporte oficial vigente refrendado por
+      esa misma autoridad. Tu perro debe llevar un microchip ISO, una vacunación antirrábica válida, un
+      examen clínico y un tratamiento antiparasitario interno y externo (el producto interno debe contener
+      praziquantel). Los perros procedentes de países no declarados libres de Leishmaniosis también deben
+      presentar una prueba negativa reciente. Uruguay está oficialmente libre de rabia, no pide ninguna
+      prueba de titulación de rabia ni cuarentena de rutina, y simplemente inspecciona a tu perro en la
+      frontera. Esta guía explica exactamente qué preparar, y cuándo, antes de reservar tu vuelo.
+
+    pt: "O Uruguai recebe bem os cachorros e aplica um único procedimento nacional, gerido pelo MGAP (Ministerio de Ganadería, Agricultura y Pesca) por meio de sua autoridade de saúde animal, a DGSG. Aqui não existe passaporte europeu para animais: o documento central é um Certificado Veterinário Internacional (CVI) emitido, assinado e carimbado pela autoridade veterinária oficial do seu país de origem, conforme a Resolución GMC 17/15 do Mercosul — ou um passaporte oficial dentro da validade endossado por essa mesma autoridade. Seu cachorro precisa ter microchip ISO, vacinação antirrábica válida, exame clínico e tratamento contra parasitas internos e externos (o produto interno deve conter praziquantel). Cachorros vindos de países que não se declaram livres de Leishmaniose também precisam apresentar um teste negativo recente. O Uruguai é oficialmente livre de raiva, não pede teste sorológico antirrábico nem quarentena de rotina, e simplesmente inspeciona seu cachorro na fronteira. Este guia explica exatamente o que preparar, e quando, antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — one uniform scheme, but microchip, praziquantel and a Leishmaniosis test for some origins", fr: "Modéré — un régime uniforme, mais puce, praziquantel et test de Leishmaniose pour certaines origines", es: "Moderado — un esquema uniforme, pero microchip, praziquantel y una prueba de Leishmaniosis para algunos orígenes", pt: "Moderado — um único procedimento, mas com microchip, praziquantel e teste de Leishmaniose para algumas origens" }
+
+prepTime:
+  eu:
+    en: "Standard case: a few days to assemble the CVI once vaccination and microchip are in place — the clinical exam is done within 10 days before the CVI, and deworming within 15 days before it."
+    fr: "Cas standard : quelques jours pour réunir le CVI une fois la vaccination et la puce en place — l'examen clinique est fait dans les 10 jours avant le CVI, et la vermifugation dans les 15 jours avant."
+    es: "Caso estándar: unos días para reunir el CVI una vez que la vacunación y el microchip están en regla — el examen clínico se hace dentro de los 10 días previos al CVI, y la desparasitación dentro de los 15 días previos."
+    pt: "Caso padrão: alguns dias para montar o CVI quando a vacinação e o microchip já estão em ordem — o exame clínico é feito nos 10 dias anteriores ao CVI, e a vermifugação nos 15 dias anteriores a ele."
+  listed:
+    en: "If the first rabies shot is still needed: plan ~3 weeks, as a primary vaccination must be given at least 21 days before entry. A dog from an OMSA-recognised rabies-free country/zone may enter without it if the CVI states this."
+    fr: "Si la première vaccination reste à faire : prévois ~3 semaines, une primo-vaccination devant être faite au moins 21 jours avant l'entrée. Un chien d'un pays/zone reconnu indemne de rage par l'OMSA peut entrer sans elle si le CVI le mentionne."
+    es: "Si aún falta poner la primera vacuna antirrábica: prevé ~3 semanas, ya que la primovacunación debe aplicarse al menos 21 días antes de la entrada. Un perro procedente de un país/zona reconocido como libre de rabia por la OMSA puede entrar sin ella si el CVI así lo indica."
+    pt: "Se ainda faltar a primeira dose antirrábica: conte cerca de 3 semanas, já que a primovacinação precisa ser aplicada no mínimo 21 dias antes da entrada. Um cachorro vindo de país ou zona reconhecido como livre de raiva pela OMSA pode entrar sem ela se o CVI atestar isso."
+  nonListed:
+    en: "From a country not declared free of Leishmaniosis: allow up to 60 days, as a negative Leishmaniosis test must be dated within the 60 days before entry. Puppies under 3 months need extra certification."
+    fr: "Depuis un pays non déclaré indemne de Leishmaniose : prévois jusqu'à 60 jours, un test négatif de Leishmaniose devant dater des 60 jours avant l'entrée. Les chiots de moins de 3 mois nécessitent une certification supplémentaire."
+    es: "Desde un país no declarado libre de Leishmaniosis: prevé hasta 60 días, ya que la prueba negativa de Leishmaniosis debe estar fechada dentro de los 60 días previos a la entrada. Los cachorros de menos de 3 meses necesitan una certificación adicional."
+    pt: "Vindo de um país que não se declara livre de Leishmaniose: reserve até 60 dias, já que o teste negativo de Leishmaniose precisa ter data dentro dos 60 dias anteriores à entrada. Filhotes com menos de 3 meses precisam de certificação extra."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (exemption from a rabies-free country/zone)", fr: "Requise (dispense depuis un pays/zone indemne de rage)", es: "Obligatoria (exención desde un país/zona libre de rabia)", pt: "Obrigatória (dispensa para país ou zona livre de raiva)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    cls: ok
+  - requirement: { en: "Leishmaniosis test (dogs)", fr: "Test de Leishmaniose (chiens)", es: "Prueba de Leishmaniosis (perros)", pt: "Teste de Leishmaniose (cachorros)" }
+    status: { en: "Required from countries not declared free of Leishmaniosis", fr: "Requis depuis les pays non déclarés indemnes de Leishmaniose", es: "Obligatoria desde países no declarados libres de Leishmaniosis", pt: "Obrigatório para países que não se declaram livres de Leishmaniose" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate (CVI or endorsed passport)", fr: "Certificat vétérinaire (CVI ou passeport refrendé)", es: "Certificado veterinario (CVI o pasaporte refrendado)", pt: "Certificado veterinário (CVI ou passaporte endossado)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Parasite treatment (internal with praziquantel & external)", fr: "Traitement antiparasitaire (interne avec praziquantel & externe)", es: "Tratamiento antiparasitario (interno con praziquantel y externo)", pt: "Tratamento antiparasitário (interno com praziquantel e externo)" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not required for a compliant, healthy pet", fr: "Non requise pour un animal conforme et en bonne santé", es: "No obligatoria para una mascota que cumpla los requisitos y esté sana", pt: "Não exigida para um animal saudável e em conformidade" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Uruguay (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Uruguay (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Uruguay (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — o Uruguai (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Uruguay", fr: "Pays de destination — Uruguay", es: "País de destino — Uruguay", pt: "País de destino — Uruguai" }
+      text:
+        en: "Uruguay applies its own MGAP/DGSG scheme under Mercosur Res. GMC 17/15: an International Veterinary Certificate covering a clinical exam, an ISO microchip, a valid rabies vaccination and internal & external parasite treatment. A rabies antibody test is not demanded, and there is no routine quarantine — but for dogs a praziquantel dewormer and, from some origins, a Leishmaniosis test are required."
+        fr: "L'Uruguay applique son propre régime MGAP/DGSG selon la Rés. Mercosur GMC 17/15 : un Certificat Vétérinaire International couvrant un examen clinique, une puce ISO, une vaccination antirabique valide et un traitement antiparasitaire interne & externe. Aucun titrage antirabique n'est exigé, ni quarantaine de routine — mais pour les chiens un vermifuge au praziquantel et, depuis certaines origines, un test de Leishmaniose sont requis."
+        es: "Uruguay aplica su propio esquema MGAP/DGSG conforme a la Res. Mercosur GMC 17/15: un Certificado Veterinario Internacional que abarca un examen clínico, un microchip ISO, una vacunación antirrábica válida y un tratamiento antiparasitario interno y externo. No se exige una prueba de titulación de rabia ni cuarentena de rutina — pero para los perros se exigen un desparasitante con praziquantel y, desde algunos orígenes, una prueba de Leishmaniosis."
+        pt: "O Uruguai aplica seu próprio esquema do MGAP/DGSG conforme a Res. GMC 17/15 do Mercosul: um Certificado Veterinário Internacional que cobre o exame clínico, o microchip ISO, a vacinação antirrábica válida e o tratamento contra parasitas internos e externos. Não se exige teste sorológico antirrábico e não há quarentena de rotina — mas, para cachorros, são obrigatórios um vermífugo com praziquantel e, para algumas origens, um teste de Leishmaniose."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The CVI must be issued, signed and stamped by the official veterinary authority of the country you travel from (or an official passport endorsed by that authority before shipment). Its timing drives your whole preparation: the clinical exam within 10 days before issue, deworming within 15 days before issue."
+        fr: "Le CVI doit être émis, signé et scellé par l'autorité vétérinaire officielle du pays de départ (ou un passeport officiel refrendé par cette autorité avant l'embarquement). Ses délais rythment toute ton préparation : examen clinique dans les 10 jours avant l'émission, vermifugation dans les 15 jours avant."
+        es: "El CVI debe ser emitido, firmado y sellado por la autoridad veterinaria oficial del país desde el que viajas (o un pasaporte oficial refrendado por esa autoridad antes del embarque). Sus plazos marcan toda tu preparación: el examen clínico dentro de los 10 días previos a la emisión, la desparasitación dentro de los 15 días previos."
+        pt: "O CVI precisa ser emitido, assinado e carimbado pela autoridade veterinária oficial do país de onde você parte (ou um passaporte oficial endossado por essa autoridade antes do embarque). O prazo dele comanda toda a sua preparação: o exame clínico nos 10 dias anteriores à emissão, a vermifugação nos 15 dias anteriores à emissão."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A dog from a country/zone recognised as rabies-free by the WOAH (OMSA) may enter without rabies vaccination if the CVI certifies it. But a dog from a country not declared free of Leishmaniosis needs a negative Leishmaniosis test within 60 days, and a dog previously diagnosed with Leishmaniosis is refused entry outright."
+        fr: "Un chien d'un pays/zone reconnu indemne de rage par l'OMSA (WOAH) peut entrer sans vaccination antirabique si le CVI l'atteste. Mais un chien d'un pays non déclaré indemne de Leishmaniose nécessite un test négatif de Leishmaniose dans les 60 jours, et un chien déjà diagnostiqué avec la Leishmaniose est refusé à l'entrée."
+        es: "Un perro procedente de un país/zona reconocido como libre de rabia por la OMSA (WOAH) puede entrar sin vacunación antirrábica si el CVI lo certifica. Pero un perro procedente de un país no declarado libre de Leishmaniosis necesita una prueba negativa de Leishmaniosis dentro de los 60 días, y un perro diagnosticado anteriormente con Leishmaniosis es rechazado a la entrada sin excepción."
+        pt: "Um cachorro vindo de país ou zona reconhecido como livre de raiva pela WOAH (OMSA) pode entrar sem vacinação antirrábica se o CVI atestar isso. Mas um cachorro vindo de país que não se declara livre de Leishmaniose precisa de um teste negativo de Leishmaniose feito nos 60 dias anteriores, e um cachorro já diagnosticado com Leishmaniose tem a entrada recusada de imediato."
+  note:
+    en: "So read the requirements below as Uruguay's framework, then confirm your dog's exact origin, breed and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre uruguayen, puis confirme l'origine, la race et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Uruguay y luego confirma el origen, la raza y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral do Uruguai, e confirme com seu veterinário a origem, a raça e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Since 1 October 2018, dogs (resident and non-resident) must enter and leave Uruguay with individual electronic identification (microchip), associated with the International Veterinary Certificate.", fr: "Depuis le 1er octobre 2018, les chiens (résidents et non-résidents) doivent entrer et sortir d'Uruguay avec une identification électronique individuelle (puce), associée au Certificat Vétérinaire International.", es: "Desde el 1 de octubre de 2018, los perros (residentes y no residentes) deben entrar y salir de Uruguay con una identificación electrónica individual (microchip), asociada al Certificado Veterinario Internacional.", pt: "Desde 1º de outubro de 2018, os cachorros (residentes e não residentes) devem entrar e sair do Uruguai com identificação eletrônica individual (microchip), associada ao Certificado Veterinário Internacional." }
+    exceptions: { en: "The microchip requirement is set for dogs by DGSG Resolution 273/2018. (Cats are not subject to this microchip rule.)", fr: "L'obligation de puce est fixée pour les chiens par la Résolution DGSG 273/2018. (Les chats ne sont pas soumis à cette règle de puce.)", es: "La obligación del microchip está fijada para los perros por la Resolución DGSG 273/2018. (Los gatos no están sujetos a esta norma de microchip.)", pt: "A exigência de microchip é estabelecida para cachorros pela Resolución 273/2018 da DGSG. (Gatos não estão sujeitos a essa regra de microchip.)" }
+    ref: { en: "DGSG — Resolución Nº 273 de 27/08/2018", fr: "DGSG — Resolución Nº 273 du 27/08/2018", es: "DGSG — Resolución Nº 273 de 27/08/2018", pt: "DGSG — Resolución Nº 273 de 27/08/2018" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "With a vaccine authorised in the country of origin and immunity still valid per the manufacturer; the CVI must state the vaccination date, type, series and brand. A first (primary) vaccination must be given at least 21 days before entry.", fr: "Avec un vaccin autorisé dans le pays d'origine et une immunité toujours valide selon le fabricant ; le CVI doit indiquer la date de vaccination, le type, la série et la marque. Une première vaccination (primo) doit être faite au moins 21 jours avant l'entrée.", es: "Con una vacuna autorizada en el país de origen y una inmunidad todavía vigente según el fabricante; el CVI debe indicar la fecha de vacunación, el tipo, la serie y la marca. Una primera vacunación (primovacunación) debe aplicarse al menos 21 días antes de la entrada.", pt: "Com vacina autorizada no país de origem e imunidade ainda válida segundo o fabricante; o CVI deve indicar a data da vacinação, o tipo, a série e a marca. A primeira dose (primovacinação) precisa ser aplicada no mínimo 21 dias antes da entrada." }
+    exceptions: { en: "A dog from a country or zone meeting the WOAH (OMSA) Terrestrial Code conditions to be declared rabies-free may enter without rabies vaccination, provided this condition is certified on the CVI or passport.", fr: "Un chien d'un pays ou d'une zone remplissant les conditions du Code terrestre de l'OMSA (WOAH) pour être déclaré indemne de rage peut entrer sans vaccination antirabique, à condition que cette condition soit certifiée sur le CVI ou le passeport.", es: "Un perro procedente de un país o zona que cumpla las condiciones del Código Terrestre de la OMSA (WOAH) para ser declarado libre de rabia puede entrar sin vacunación antirrábica, siempre que esta condición se certifique en el CVI o el pasaporte.", pt: "Um cachorro vindo de país ou zona que atenda às condições do Código Terrestre da WOAH (OMSA) para ser declarado livre de raiva pode entrar sem vacinação antirrábica, desde que essa condição seja atestada no CVI ou no passaporte." }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos; Res. Mercosur GMC 17/15", fr: "MGAP/DGSG — Ingreso de caninos y felinos ; Rés. Mercosur GMC 17/15", es: "MGAP/DGSG — Ingreso de caninos y felinos; Res. Mercosur GMC 17/15", pt: "MGAP/DGSG — Ingreso de caninos y felinos; Res. Mercosur GMC 17/15" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Uruguay's published entry requirements for dogs do not include a rabies antibody test for any origin.", fr: "Les exigences d'entrée publiées par l'Uruguay pour les chiens ne prévoient aucun titrage antirabique, quelle que soit l'origine.", es: "Los requisitos de entrada publicados por Uruguay para perros no incluyen ninguna prueba de titulación de rabia, sea cual sea el origen.", pt: "As exigências de entrada publicadas pelo Uruguai para cachorros não incluem teste sorológico antirrábico para nenhuma origem." }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
+  - item: { en: "Clinical examination", fr: "Examen clinique", es: "Examen clínico", pt: "Exame clínico" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Carried out within the 10 days before the CVI is issued, by a registered veterinarian in the exporting country, certifying the dog is clinically healthy, free of parasitosis and fit to travel to Uruguay.", fr: "Réalisé dans les 10 jours avant l'émission du CVI, par un vétérinaire matriculé dans le pays exportateur, attestant que le chien est cliniquement sain, exempt de parasitose et apte au voyage vers l'Uruguay.", es: "Realizado dentro de los 10 días previos a la emisión del CVI, por un veterinario matriculado en el país exportador, que certifique que el perro está clínicamente sano, libre de parasitosis y apto para viajar a Uruguay.", pt: "Realizado nos 10 dias anteriores à emissão do CVI, por médico-veterinário registrado no país exportador, atestando que o cachorro está clinicamente saudável, livre de parasitoses e apto a viajar para o Uruguai." }
+    exceptions: { en: "Its content is embedded in the International Veterinary Certificate (CVI).", fr: "Son contenu est intégré au Certificat Vétérinaire International (CVI).", es: "Su contenido está integrado en el Certificado Veterinario Internacional (CVI).", pt: "Seu conteúdo é incorporado ao Certificado Veterinário Internacional (CVI)." }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
+  - item: { en: "Parasite treatment (internal with praziquantel & external)", fr: "Traitement antiparasitaire (interne avec praziquantel & externe)", es: "Tratamiento antiparasitario (interno con praziquantel y externo)", pt: "Tratamento antiparasitário (interno com praziquantel e externo)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Internal and external deworming, stating date and product, done within the 15 days before the CVI is issued (or before the passport is endorsed), with products approved by the origin's veterinary authority. For dogs, the internal antiparasitic must contain praziquantel as active ingredient (against Echinococcus / hydatid tapeworm).", fr: "Vermifugation interne et externe, indiquant date et produit, faite dans les 15 jours avant l'émission du CVI (ou l'intervention du passeport), avec des produits approuvés par l'autorité vétérinaire d'origine. Pour les chiens, l'antiparasitaire interne doit contenir du praziquantel comme principe actif (contre le ténia Echinococcus / kyste hydatique).", es: "Desparasitación interna y externa, indicando fecha y producto, realizada dentro de los 15 días previos a la emisión del CVI (o antes del refrendo del pasaporte), con productos aprobados por la autoridad veterinaria de origen. Para los perros, el antiparasitario interno debe contener praziquantel como principio activo (contra la tenia Echinococcus / quiste hidatídico).", pt: "Vermifugação interna e externa, com data e produto declarados, feita nos 15 dias anteriores à emissão do CVI (ou ao endosso do passaporte), com produtos aprovados pela autoridade veterinária da origem. Para cachorros, o antiparasitário interno deve conter praziquantel como princípio ativo (contra Echinococcus / tênia hidática)." }
+    exceptions: { en: "—", fr: "—", es: "—", pt: "—" }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
+  - item: { en: "Leishmaniosis test (dogs)", fr: "Test de Leishmaniose (chiens)", es: "Prueba de Leishmaniosis (perros)", pt: "Teste de Leishmaniose (cachorros)" }
+    required: { en: "Required from countries not declared free of Leishmaniosis", fr: "Requis depuis les pays non déclarés indemnes de Leishmaniose", es: "Obligatoria desde países no declarados libres de Leishmaniosis", pt: "Obrigatório para países que não se declaram livres de Leishmaniose" }
+    when: { en: "For countries that do not declare themselves free of Leishmaniosis to the WOAH (OMSA), a negative immune-response test (IFAT, ELISA or direct agglutination) or agent detection (molecular methods) is required, dated no more than 60 days before the dog's entry, performed per the WOAH Terrestrial Manual.", fr: "Pour les pays qui ne se déclarent pas indemnes de Leishmaniose auprès de l'OMSA (WOAH), un test négatif de la réponse immunitaire (IFAT, ELISA ou agglutination directe) ou une détection de l'agent (méthodes moléculaires) est exigé, daté de 60 jours au maximum avant l'entrée du chien, réalisé selon le Manuel terrestre de l'OMSA.", es: "Para los países que no se declaran libres de Leishmaniosis ante la OMSA (WOAH), se exige una prueba negativa de respuesta inmunitaria (IFAT, ELISA o aglutinación directa) o detección del agente (métodos moleculares), fechada como máximo 60 días antes de la entrada del perro, realizada conforme al Manual Terrestre de la OMSA.", pt: "Para países que não se declaram livres de Leishmaniose junto à WOAH (OMSA), exige-se um teste negativo de resposta imune (IFAT, ELISA ou aglutinação direta) ou de detecção do agente (métodos moleculares), com data de no máximo 60 dias antes da entrada do cachorro, realizado conforme o Manual Terrestre da WOAH." }
+    exceptions: { en: "Uruguay will not authorise the entry of dogs previously diagnosed with Leishmaniosis. Cats are not subject to this requirement.", fr: "L'Uruguay n'autorisera pas l'entrée de chiens préalablement diagnostiqués avec la Leishmaniose. Les chats ne sont pas soumis à cette exigence.", es: "Uruguay no autorizará la entrada de perros diagnosticados anteriormente con Leishmaniosis. Los gatos no están sujetos a este requisito.", pt: "O Uruguai não autoriza a entrada de cachorros já diagnosticados com Leishmaniose. Gatos não estão sujeitos a essa exigência." }
+    ref: { en: "DGSG — Resolución Nº 326 de 31/10/2016; Res. Nº 374 de 29/11/2016", fr: "DGSG — Resolución Nº 326 du 31/10/2016 ; Rés. Nº 374 du 29/11/2016", es: "DGSG — Resolución Nº 326 de 31/10/2016; Res. Nº 374 de 29/11/2016", pt: "DGSG — Resolución Nº 326 de 31/10/2016; Res. Nº 374 de 29/11/2016" }
+  - item: { en: "International Veterinary Certificate (CVI) or endorsed passport", fr: "Certificat Vétérinaire International (CVI) ou passeport refrendé", es: "Certificado Veterinario Internacional (CVI) o pasaporte refrendado", pt: "Certificado Veterinário Internacional (CVI) ou passaporte endossado" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "The CVI is issued, signed and stamped by the official veterinary authority of the country of origin under Mercosur Res. GMC 17/15, and presented at the border post on entry.", fr: "Le CVI est émis, signé et scellé par l'autorité vétérinaire officielle du pays d'origine selon la Rés. Mercosur GMC 17/15, et présenté au poste-frontière à l'entrée.", es: "El CVI es emitido, firmado y sellado por la autoridad veterinaria oficial del país de origen conforme a la Res. Mercosur GMC 17/15, y se presenta en el puesto fronterizo a la entrada.", pt: "O CVI é emitido, assinado e carimbado pela autoridade veterinária oficial do país de origem conforme a Res. GMC 17/15 do Mercosur, e apresentado no posto de fronteira na entrada." }
+    exceptions: { en: "A current official passport is accepted instead if it carries all the required sanitary information (microchip, valid rabies vaccination, internal & external parasite treatment, health exam and, for dogs, a negative Leishmaniosis test) and is endorsed with the signature and stamp of an official veterinarian before shipment. Passports without official validation are not accepted.", fr: "Un passeport officiel en cours de validité est accepté à la place s'il porte toutes les informations sanitaires requises (puce, vaccination antirabique valide, traitement antiparasitaire interne & externe, examen de santé et, pour les chiens, un test négatif de Leishmaniose) et est refrendé avec la signature et le sceau d'un vétérinaire officiel avant l'embarquement. Les passeports sans validation officielle ne sont pas acceptés.", es: "En su lugar se acepta un pasaporte oficial vigente si contiene toda la información sanitaria requerida (microchip, vacunación antirrábica válida, tratamiento antiparasitario interno y externo, examen de salud y, para los perros, una prueba negativa de Leishmaniosis) y está refrendado con la firma y el sello de un veterinario oficial antes del embarque. No se aceptan pasaportes sin validación oficial.", pt: "Um passaporte oficial dentro da validade é aceito no lugar dele se trouxer todas as informações sanitárias exigidas (microchip, vacinação antirrábica válida, tratamento contra parasitas internos e externos, exame de saúde e, para cachorros, teste negativo de Leishmaniose) e for endossado com a assinatura e o carimbo de um veterinário oficial antes do embarque. Passaportes sem validação oficial não são aceitos." }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
+  - item: { en: "Advance notification / import authorization", fr: "Notification préalable / autorisation d'importation", es: "Notificación previa / autorización de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required when you travel with your pet", fr: "Non requise lorsque tu voyages avec ton animal", es: "No obligatoria cuando viajas con tu mascota", pt: "Não exigida quando você viaja com seu animal" }
+    when: { en: "If you enter Uruguay together with your dog, no MGAP import authorization is needed — you simply present the documents and the animal at the MGAP office at the border post on arrival.", fr: "Si tu entre en Uruguay avec ton chien, aucune autorisation d'importation du MGAP n'est nécessaire — tu présente simplement les documents et l'animal au bureau du MGAP au poste-frontière à l'arrivée.", es: "Si entras en Uruguay junto con tu perro, no se necesita ninguna autorización de importación del MGAP — simplemente presentas los documentos y el animal en la oficina del MGAP del puesto fronterizo a la llegada.", pt: "Se você entra no Uruguai junto com seu cachorro, nenhuma autorização de importação do MGAP é necessária — basta apresentar os documentos e o animal no escritório do MGAP no posto de fronteira, na chegada." }
+    exceptions: { en: "If the dog arrives as cargo via Carrasco Airport, the arrival must be notified at least 72 working hours in advance by email to aeropuertoic@mgap.gub.uy, sending the scanned sanitary documentation before shipment.", fr: "Si le chien arrive en fret via l'aéroport de Carrasco, l'arrivée doit être notifiée au moins 72 heures ouvrables à l'avance par courriel à aeropuertoic@mgap.gub.uy, en envoyant la documentation sanitaire scannée avant l'embarquement.", es: "Si el perro llega como carga a través del Aeropuerto de Carrasco, la llegada debe notificarse con al menos 72 horas hábiles de antelación por correo electrónico a aeropuertoic@mgap.gub.uy, enviando la documentación sanitaria escaneada antes del embarque.", pt: "Se o cachorro chega como carga pelo Aeroporto de Carrasco, a chegada precisa ser avisada com pelo menos 72 horas úteis de antecedência por e-mail para aeropuertoic@mgap.gub.uy, enviando a documentação sanitária digitalizada antes do embarque." }
+    ref: { en: "MGAP — Solicitud de ingreso con mascotas al Uruguay", fr: "MGAP — Solicitud de ingreso con mascotas al Uruguay", es: "MGAP — Solicitud de ingreso con mascotas al Uruguay", pt: "MGAP — Solicitud de ingreso con mascotas al Uruguay" }
+  - item: { en: "Border check (MGAP inspection)", fr: "Contrôle frontalier (inspection MGAP)", es: "Control fronterizo (inspección MGAP)", pt: "Fiscalização na fronteira (inspeção do MGAP)" }
+    required: { en: "Required on arrival", fr: "Requis à l'arrivée", es: "Obligatorio a la llegada", pt: "Obrigatória na chegada" }
+    when: { en: "At the MGAP office set up at the border post, staff carry out a documentary check (CVI or endorsed passport) and verify the animal on entry to the country.", fr: "Au bureau du MGAP installé au poste-frontière, le personnel effectue un contrôle documentaire (CVI ou passeport refrendé) et vérifie l'animal à l'entrée du pays.", es: "En la oficina del MGAP instalada en el puesto fronterizo, el personal realiza un control documental (CVI o pasaporte refrendado) y verifica el animal a la entrada al país.", pt: "No escritório do MGAP instalado no posto de fronteira, os funcionários fazem a conferência documental (CVI ou passaporte endossado) e verificam o animal na entrada no país." }
+    exceptions: { en: "For dogs and cats accompanying a traveller the entry procedure has no cost. If the stay is under 30 days, you may return with the same entry certificate provided its validity is stated on it.", fr: "Pour les chiens et chats accompagnant un voyageur, la procédure d'entrée n'a pas de coût. Si le séjour est inférieur à 30 jours, tu peux repartir avec le même certificat d'entrée à condition que sa validité y soit indiquée.", es: "Para los perros y gatos que acompañan a un viajero, el procedimiento de entrada no tiene coste. Si la estancia es inferior a 30 días, puedes regresar con el mismo certificado de entrada siempre que su valide conste en él.", pt: "Para cachorros e gatos que acompanham um viajante, o procedimento de entrada é gratuito. Se a estadia for de menos de 30 dias, você pode voltar com o mesmo certificado de entrada, desde que a validade dele esteja indicada no documento." }
+    ref: { en: "MGAP — Solicitud de ingreso con mascotas al Uruguay", fr: "MGAP — Solicitud de ingreso con mascotas al Uruguay", es: "MGAP — Solicitud de ingreso con mascotas al Uruguay", pt: "MGAP — Solicitud de ingreso con mascotas al Uruguay" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Special certification under 3 months", fr: "Certification spéciale sous 3 mois", es: "Certificación especial para menores de 3 meses", pt: "Certificação especial abaixo de 3 meses" }
+    when: { en: "If the dog is under 3 months old, the veterinary authority must certify the animal's age and that it has not been on any premises where a case of urban rabies occurred in the 90 days before shipment.", fr: "Si le chien a moins de 3 mois, l'autorité vétérinaire doit certifier l'âge de l'animal et qu'il n'a séjourné dans aucun lieu où un cas de rage urbaine est survenu dans les 90 jours avant l'embarquement.", es: "Si el perro tiene menos de 3 meses, la autoridad veterinaria debe certificar la edad del animal y que no ha estado en ningún lugar donde se haya producido un caso de rabia urbana en los 90 días previos al embarque.", pt: "Se o cachorro tiver menos de 3 meses, a autoridade veterinária precisa atestar a idade do animal e que ele não esteve em nenhum local onde tenha ocorrido caso de raiva urbana nos 90 dias anteriores ao embarque." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas." }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "Uruguay's published entry procedure sets no routine quarantine for a compliant, healthy pet; the dog is released after a satisfactory border inspection.", fr: "La procédure d'entrée publiée par l'Uruguay ne prévoit aucune quarantaine de routine pour un animal conforme et en bonne santé ; le chien est libéré après une inspection frontalière satisfaisante.", es: "El procedimiento de entrada publicado por Uruguay no establece ninguna cuarentena de rutina para una mascota que cumpla los requisitos y esté sana; el perro se libera tras una inspección fronteriza satisfactoria.", pt: "O procedimento de entrada publicado pelo Uruguai não prevê quarentena de rotina para um animal saudável e em conformidade; o cachorro é liberado depois de uma inspeção de fronteira satisfatória." }
+    exceptions: { en: "A dog that does not meet the requirements — or is diagnosed with Leishmaniosis — will not be authorised to enter.", fr: "Un chien qui ne remplit pas les exigences — ou diagnostiqué avec la Leishmaniose — ne sera pas autorisé à entrer.", es: "Un perro que no cumpla los requisitos — o que sea diagnosticado con Leishmaniosis — no será autorizado a entrar.", pt: "Um cachorro que não cumpra as exigências — ou que seja diagnosticado com Leishmaniose — não será autorizado a entrar." }
+    ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
+
+origin:
+  eu:
+    title: { en: "Standard scheme — CVI or endorsed passport", fr: "Régime standard — CVI ou passeport refrendé", es: "Esquema estándar — CVI o pasaporte refrendado", pt: "Esquema padrão — CVI ou passaporte endossado" }
+    body:
+      en: "For almost every origin the path is the same. Your dog needs an International Veterinary Certificate (CVI) issued, signed and stamped by the official veterinary authority of the country you travel from, under Mercosur Res. GMC 17/15. It must show a clinical exam (within 10 days), an ISO microchip, a valid rabies vaccination, and internal & external parasite treatment within 15 days — the internal product containing praziquantel. A current official passport carrying the same information and endorsed by an official veterinarian before shipment is accepted instead. You present the documents and the dog at the MGAP office at the border; travelling together with your pet needs no import authorization."
+      fr: "Pour presque toutes les origines, le parcours est identique. Ton chien a besoin d'un Certificat Vétérinaire International (CVI) émis, signé et scellé par l'autorité vétérinaire officielle du pays de départ, selon la Rés. Mercosur GMC 17/15. Il doit attester un examen clinique (dans les 10 jours), une puce ISO, une vaccination antirabique valide, et un traitement antiparasitaire interne & externe dans les 15 jours — le produit interne contenant du praziquantel. Un passeport officiel en cours de validité portant les mêmes informations et refrendé par un vétérinaire officiel avant l'embarquement est accepté à la place. Tu présente les documents et le chien au bureau du MGAP à la frontière ; voyager avec ton animal ne nécessite aucune autorisation d'importation."
+      es: "Para casi todos los orígenes el camino es el mismo. Tu perro necesita un Certificado Veterinario Internacional (CVI) emitido, firmado y sellado por la autoridad veterinaria oficial del país desde el que viajas, conforme a la Res. Mercosur GMC 17/15. Debe acreditar un examen clínico (dentro de los 10 días), un microchip ISO, una vacunación antirrábica válida y un tratamiento antiparasitario interno y externo dentro de los 15 días — con el producto interno conteniendo praziquantel. En su lugar se acepta un pasaporte oficial vigente que contenga la misma información y refrendado por un veterinario oficial antes del embarque. Presentas los documentos y el perro en la oficina del MGAP en la frontera; viajar junto con tu mascota no requiere ninguna autorización de importación."
+      pt: "Para quase toda origem o caminho é o mesmo. Seu cachorro precisa de um Certificado Veterinário Internacional (CVI) emitido, assinado e carimbado pela autoridade veterinária oficial do país de onde você parte, conforme a Res. GMC 17/15 do Mercosul. Ele deve trazer um exame clínico (nos 10 dias anteriores), o microchip ISO, a vacinação antirrábica válida e o tratamento contra parasitas internos e externos nos 15 dias anteriores — com praziquantel no produto interno. Um passaporte oficial dentro da validade que traga as mesmas informações e seja endossado por um veterinário oficial antes do embarque é aceito no lugar dele. Você apresenta os documentos e o cachorro no escritório do MGAP na fronteira; viajar junto com seu animal não exige autorização de importação."
+    cls: ok
+  listed:
+    title: { en: "From a rabies-free country or zone", fr: "Depuis un pays ou une zone indemne de rage", es: "Desde un país o zona libre de rabia", pt: "De um país ou zona livre de raiva" }
+    body:
+      en: "If your dog comes from a country or zone that meets the WOAH (OMSA) Terrestrial Code conditions to be declared free of rabies, it may enter without the rabies vaccination, provided the official veterinary authority certifies this condition on the CVI or passport. All other requirements — clinical exam, microchip, praziquantel deworming and (where applicable) the Leishmaniosis test — still apply, and there is no antibody test in any case."
+      fr: "Si ton chien vient d'un pays ou d'une zone remplissant les conditions du Code terrestre de l'OMSA (WOAH) pour être déclaré indemne de rage, il peut entrer sans la vaccination antirabique, à condition que l'autorité vétérinaire officielle certifie cette condition sur le CVI ou le passeport. Toutes les autres exigences — examen clinique, puce, vermifuge au praziquantel et (le cas échéant) le test de Leishmaniose — s'appliquent toujours, et il n'y a de toute façon aucun titrage."
+      es: "Si tu perro procede de un país o zona que cumple las condiciones del Código Terrestre de la OMSA (WOAH) para ser declarado libre de rabia, puede entrar sin la vacunación antirrábica, siempre que la autoridad veterinaria oficial certifique esta condición en el CVI o el pasaporte. Todos los demás requisitos — examen clínico, microchip, desparasitación con praziquantel y (cuando corresponda) la prueba de Leishmaniosis — siguen aplicándose, y en ningún caso hay prueba de titulación."
+      pt: "Se o seu cachorro vier de um país ou zona que atenda às condições do Código Terrestre da WOAH (OMSA) para ser declarado livre de raiva, ele pode entrar sem a vacinação antirrábica, desde que a autoridade veterinária oficial ateste essa condição no CVI ou no passaporte. Todas as demais exigências — exame clínico, microchip, vermifugação com praziquantel e, quando for o caso, o teste de Leishmaniose — continuam valendo, e em nenhum caso há teste sorológico."
+    cls: ok
+  nonListed:
+    title: { en: "Leishmaniosis origins, puppies & non-compliant arrivals", fr: "Origines à Leishmaniose, chiots & arrivées non conformes", es: "Orígenes con Leishmaniosis, cachorros y llegadas no conformes", pt: "Origens com Leishmaniose, filhotes e chegadas não conformes" }
+    body:
+      en: "A dog from a country not declared free of Leishmaniosis to the WOAH needs a negative Leishmaniosis test dated within the 60 days before entry, and a dog previously diagnosed with Leishmaniosis is not authorised to enter at all. A puppy under 3 months needs the CVI to certify its age and that no urban-rabies case occurred where it lived in the previous 90 days. A dog that fails to meet the sanitary requirements at the border will be refused entry."
+      fr: "Un chien d'un pays non déclaré indemne de Leishmaniose auprès de l'OMSA nécessite un test négatif de Leishmaniose daté des 60 jours avant l'entrée, et un chien déjà diagnostiqué avec la Leishmaniose n'est pas autorisé à entrer du tout. Un chiot de moins de 3 mois nécessite un CVI certifiant son âge et l'absence de cas de rage urbaine là où il a vécu les 90 jours précédents. Un chien qui ne remplit pas les exigences sanitaires à la frontière sera refusé à l'entrée."
+      es: "Un perro procedente de un país no declarado libre de Leishmaniosis ante la OMSA necesita una prueba negativa de Leishmaniosis fechada dentro de los 60 días previos a la entrada, y un perro diagnosticado anteriormente con Leishmaniosis no está autorizado a entrar en absoluto. Un cachorro de menos de 3 meses necesita que el CVI certifique su edad y que no se produjo ningún caso de rabia urbana donde vivió en los 90 días anteriores. Un perro que no cumpla los requisitos sanitarios en la frontera será rechazado a la entrada."
+      pt: "Um cachorro vindo de um país que não se declara livre de Leishmaniose junto à WOAH precisa de um teste negativo de Leishmaniose com data dentro dos 60 dias anteriores à entrada, e um cachorro já diagnosticado com Leishmaniose não é autorizado a entrar de jeito nenhum. Um filhote com menos de 3 meses precisa que o CVI ateste a sua idade e que não houve caso de raiva urbana onde ele viveu nos 90 dias anteriores. Um cachorro que não cumprir as exigências sanitárias na fronteira terá a entrada recusada."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Uruguay centres on the MGAP office at your border post."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Uruguay s'articule autour du bureau du MGAP à ton poste-frontière."
+    es: "Lo que ocurre cuando tu perro llega a Uruguay gira en torno a la oficina del MGAP en tu puesto fronterizo."
+    pt: "O que acontece quando seu cachorro chega ao Uruguai gira em torno do escritório do MGAP no seu posto de fronteira."
+  points:
+    - en: "When you travel together with your dog, go to the MGAP office at the border post (airport, port or land crossing) with the animal and all documents; no prior MGAP import authorization is required."
+      fr: "Lorsque tu voyages avec ton chien, présente-toi au bureau du MGAP au poste-frontière (aéroport, port ou passage terrestre) avec l'animal et tous les documents ; aucune autorisation d'importation préalable du MGAP n'est requise."
+      es: "Cuando viajas junto con tu perro, dirígete a la oficina del MGAP del puesto fronterizo (aeropuerto, puerto o paso terrestre) con el animal y todos los documentos; no se requiere ninguna autorización de importación previa del MGAP."
+      pt: "Quando você viaja junto com seu cachorro, vá ao escritório do MGAP no posto de fronteira (aeroporto, porto ou passagem terrestre) com o animal e todos os documentos; nenhuma autorização prévia de importação do MGAP é exigida."
+    - en: "MGAP staff carry out a documentary check (CVI or endorsed official passport) and verify the animal. For accompanied dogs and cats the procedure is free of charge."
+      fr: "Le personnel du MGAP effectue un contrôle documentaire (CVI ou passeport officiel refrendé) et vérifie l'animal. Pour les chiens et chats accompagnés, la procédure est gratuite."
+      es: "El personal del MGAP realiza un control documental (CVI o pasaporte oficial refrendado) y verifica el animal. Para los perros y gatos acompañados, el procedimiento es gratuito."
+      pt: "Os funcionários do MGAP fazem a conferência documental (CVI ou passaporte oficial endossado) e verificam o animal. Para cachorros e gatos acompanhados, o procedimento é gratuito."
+    - en: "If your dog arrives as cargo via Carrasco Airport, the arrival must be notified at least 72 working hours ahead by email to aeropuertoic@mgap.gub.uy, with the scanned sanitary documents sent before shipment."
+      fr: "Si ton chien arrive en fret via l'aéroport de Carrasco, l'arrivée doit être notifiée au moins 72 heures ouvrables à l'avance par courriel à aeropuertoic@mgap.gub.uy, avec les documents sanitaires scannés envoyés avant l'embarquement."
+      es: "Si tu perro llega como carga a través del Aeropuerto de Carrasco, la llegada debe notificarse con al menos 72 horas hábiles de antelación por correo electrónico a aeropuertoic@mgap.gub.uy, con los documentos sanitarios escaneados enviados antes del embarque."
+      pt: "Se o seu cachorro chegar como carga pelo Aeroporto de Carrasco, a chegada precisa ser avisada com pelo menos 72 horas úteis de antecedência por e-mail para aeropuertoic@mgap.gub.uy, com os documentos sanitários digitalizados enviados antes do embarque."
+    - en: "The clinical exam must be within 10 days before the CVI is issued, and deworming within 15 days before it — so time your veterinary appointments and departure carefully."
+      fr: "L'examen clinique doit avoir lieu dans les 10 jours avant l'émission du CVI, et la vermifugation dans les 15 jours avant — calez donc tes rendez-vous vétérinaires et ton départ avec soin."
+      es: "El examen clínico debe hacerse dentro de los 10 días previos a la emisión del CVI, y la desparasitación dentro de los 15 días previos — así que planifica con cuidado tus citas veterinarias y tu salida."
+      pt: "O exame clínico precisa ser feito nos 10 dias anteriores à emissão do CVI, e a vermifugação nos 15 dias anteriores a ele — então planeje bem as consultas veterinárias e a data da partida."
+    - en: "If the stay is under 30 days, you may return with the same entry certificate, provided its validity is stated on it; otherwise you must redo the certification as for exit from Uruguay."
+      fr: "Si le séjour est inférieur à 30 jours, tu peux repartir avec le même certificat d'entrée, à condition que sa validité y soit indiquée ; sinon, tu dois refaire la certification comme pour la sortie d'Uruguay."
+      es: "Si la estancia es inferior a 30 días, puedes regresar con el mismo certificado de entrada, siempre que su valide conste en él; de lo contrario, debes rehacer la certificación como para la salida de Uruguay."
+      pt: "Se a estadia for de menos de 30 dias, você pode voltar com o mesmo certificado de entrada, desde que a validade dele esteja indicada no documento; caso contrário, é preciso refazer a certificação como para uma saída do Uruguai."
+    - en: "If documents are missing or invalid, or the dog is diagnosed with Leishmaniosis, MGAP will refuse entry; verify every requirement before you travel."
+      fr: "Si des documents manquent ou sont invalides, ou si le chien est diagnostiqué avec la Leishmaniose, le MGAP refusera l'entrée ; vérifie chaque exigence avant de voyager."
+      es: "Si faltan documentos o no son válidos, o si el perro es diagnosticado con Leishmaniosis, el MGAP denegará la entrada; verifica cada requisito antes de viajar."
+      pt: "Se faltarem documentos ou eles estiverem inválidos, ou se o cachorro for diagnosticado com Leishmaniose, o MGAP recusará a entrada; confira cada exigência antes de viajar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Uruguay has no national breed-specific import ban. National law regulates 'potentially dangerous dogs' (perros potencialmente peligrosos) for responsible ownership, not for entry at the border. A parliamentary bill proposing to prohibit the breeding and import of certain breeds has been discussed but is not law."
+    fr: "L'Uruguay n'a aucune interdiction nationale d'importation liée à la race. La loi nationale réglemente les « chiens potentiellement dangereux » (perros potencialmente peligrosos) pour la détention responsable, pas pour l'entrée à la frontière. Un projet de loi parlementaire proposant d'interdire l'élevage et l'importation de certaines races a été débattu mais n'est pas en vigueur."
+    es: "Uruguay no tiene ninguna prohibición nacional de importación por raza. La ley nacional regula los «perros potencialmente peligrosos» para la tenencia responsable, no para la entrada en la frontera. Se ha debatido un proyecto de ley parlamentario que propone prohibir la cría y la importación de determinadas razas, pero no es ley."
+    pt: "O Uruguai não tem proibição nacional de importação por raça. A lei nacional regula os «cachorros potencialmente perigosos» (perros potencialmente peligrosos) para fins de posse responsável, não de entrada na fronteira. Um projeto de lei parlamentar que propõe proibir a criação e a importação de certas raças chegou a ser discutido, mas não é lei."
+  cat1:
+    en: "No banned category at entry: no dog breed is refused entry to Uruguay on the basis of its breed, provided the MGAP/DGSG sanitary requirements (CVI or endorsed passport, microchip, rabies vaccination, praziquantel deworming, Leishmaniosis test where applicable) are met."
+    fr: "Aucune catégorie interdite à l'entrée : aucune race de chien n'est refusée à l'entrée en Uruguay en raison de sa race, sous réserve du respect des exigences sanitaires du MGAP/DGSG (CVI ou passeport refrendé, puce, vaccination antirabique, vermifuge au praziquantel, test de Leishmaniose le cas échéant)."
+    es: "Ninguna categoría prohibida a la entrada: ninguna raza de perro es rechazada a la entrada de Uruguay por su raza, siempre que se cumplan los requisitos sanitarios del MGAP/DGSG (CVI o pasaporte refrendado, microchip, vacunación antirrábica, desparasitación con praziquantel, prueba de Leishmaniosis cuando corresponda)."
+    pt: "Nenhuma categoria proibida na entrada: nenhuma raça de cachorro tem a entrada no Uruguai recusada por causa da raça, desde que sejam cumpridas as exigências sanitárias do MGAP/DGSG (CVI ou passaporte endossado, microchip, vacinação antirrábica, vermifugação com praziquantel e teste de Leishmaniose quando aplicável)."
+  cat2:
+    en: "Ownership regulation: a joint resolution (Res. 2/019, under Ley 18.471 on animal welfare and Decree 204/017) defines a 'potentially dangerous dog' not only by breed but by a typology — marked aggression, large size (over 25 kg), strong build, powerful jaws, a history of attacks, or training for attack/defence. These criteria govern ownership, breeding and presence in public spaces, not border import."
+    fr: "Réglementation de la détention : une résolution conjointe (Rés. 2/019, sous la Ley 18.471 sur le bien-être animal et le Décret 204/017) définit un « chien potentiellement dangereux » non seulement par la race mais par une typologie — agressivité marquée, grande taille (plus de 25 kg), forte musculature, mâchoires puissantes, antécédents d'agression, ou dressage à l'attaque/défense. Ces critères régissent la détention, l'élevage et la présence dans l'espace public, pas l'importation frontalière."
+    es: "Regulación de la tenencia: una resolución conjunta (Res. 2/019, en el marco de la Ley 18.471 sobre bienestar animal y el Decreto 204/017) define un «perro potencialmente peligroso» no solo por la raza sino por una tipología — agresividad marcada, gran tamaño (más de 25 kg), fuerte musculatura, mandíbulas potentes, antecedentes de ataques, o adiestramiento para el ataque/defensa. Estos criterios rigen la tenencia, la cría y la presencia en el espacio público, no la importación en la frontera."
+    pt: "Regulação da posse: uma resolução conjunta (Res. 2/019, com base na Ley 18.471 de bem-estar animal e no Decreto 204/017) define o «cachorro potencialmente perigoso» não só pela raça, mas por uma tipologia — agressividade marcada, porte grande (mais de 25 kg), constituição forte, mandíbulas potentes, histórico de ataques ou adestramento para ataque e defesa. Esses critérios regem a posse, a criação e a presença em espaços públicos, não a importação na fronteira."
+  note:
+    en: "Because there is no national breed import ban, focus on the MGAP/DGSG sanitary rules for entry. If you will live in Uruguay, check the responsible-ownership rules for potentially dangerous dogs that may apply to you as a resident."
+    fr: "Comme il n'y a pas d'interdiction nationale d'importation de race, concentre-toi sur les règles sanitaires du MGAP/DGSG pour l'entrée. Si tu t'installes en Uruguay, vérifie les règles de détention responsable des chiens potentiellement dangereux qui peuvent s'appliquer à toi en tant que résident."
+    es: "Como no hay ninguna prohibición nacional de importación por raza, céntrate en las normas sanitarias del MGAP/DGSG para la entrada. Si vas a vivir en Uruguay, consulta las normas de tenencia responsable de perros potencialmente peligrosos que puedan aplicarse a ti como residente."
+    pt: "Como não há proibição nacional de importação por raça, concentre-se nas regras sanitárias do MGAP/DGSG para a entrada. Se você for morar no Uruguai, verifique as regras de posse responsável para cachorros potencialmente perigosos que podem se aplicar a você como residente."
+
+checklist:
+  - en: "ISO microchip fitted and associated with the certificate (required for dogs since 1 October 2018)"
+    fr: "Puce ISO posée et associée au certificat (obligatoire pour les chiens depuis le 1er octobre 2018)"
+    es: "Microchip ISO implantado y asociado al certificado (obligatorio para los perros desde el 1 de octubre de 2018)"
+    pt: "Microchip ISO implantado e associado ao certificado (obrigatório para cachorros desde 1º de outubro de 2018)"
+  - en: "International Veterinary Certificate (CVI) under Mercosur Res. GMC 17/15, signed and stamped by the origin's official veterinary authority — or a current official passport endorsed by an official vet"
+    fr: "Certificat Vétérinaire International (CVI) selon la Rés. Mercosur GMC 17/15, signé et scellé par l'autorité vétérinaire officielle d'origine — ou un passeport officiel en cours de validité refrendé par un vétérinaire officiel"
+    es: "Certificado Veterinario Internacional (CVI) conforme a la Res. Mercosur GMC 17/15, firmado y sellado por la autoridad veterinaria oficial de origen — o un pasaporte oficial vigente refrendado por un veterinario oficial"
+    pt: "Certificado Veterinário Internacional (CVI) conforme a Res. GMC 17/15 do Mercosul, assinado e carimbado pela autoridade veterinária oficial da origem — ou passaporte oficial dentro da validade endossado por um veterinário oficial"
+  - en: "Clinical examination within 10 days before the CVI (clinically healthy, parasite-free, fit to travel)"
+    fr: "Examen clinique dans les 10 jours avant le CVI (cliniquement sain, exempt de parasites, apte au voyage)"
+    es: "Examen clínico dentro de los 10 días previos al CVI (clínicamente sano, libre de parásitos, apto para viajar)"
+    pt: "Exame clínico nos 10 dias anteriores ao CVI (clinicamente saudável, livre de parasitas, apto a viajar)"
+  - en: "Valid rabies vaccination (primary shot at least 21 days before entry), with date, type, series and brand recorded"
+    fr: "Vaccination antirabique valide (primo-vaccination au moins 21 jours avant l'entrée), avec date, type, série et marque enregistrés"
+    es: "Vacunación antirrábica válida (primovacunación al menos 21 días antes de la entrada), con fecha, tipo, serie y marca registrados"
+    pt: "Vacinação antirrábica válida (primeira dose no mínimo 21 dias antes da entrada), com data, tipo, série e marca registrados"
+  - en: "Internal deworming containing praziquantel plus external treatment, within 15 days before the CVI (date and product recorded)"
+    fr: "Vermifuge interne contenant du praziquantel plus traitement externe, dans les 15 jours avant le CVI (date et produit enregistrés)"
+    es: "Desparasitación interna con praziquantel más tratamiento externo, dentro de los 15 días previos al CVI (fecha y producto registrados)"
+    pt: "Vermifugação interna com praziquantel mais tratamento externo, nos 15 dias anteriores ao CVI (data e produto registrados)"
+  - en: "For a dog from a country not declared free of Leishmaniosis: negative Leishmaniosis test within 60 days before entry"
+    fr: "Pour un chien d'un pays non déclaré indemne de Leishmaniose : test négatif de Leishmaniose dans les 60 jours avant l'entrée"
+    es: "Para un perro de un país no declarado libre de Leishmaniosis: prueba negativa de Leishmaniosis dentro de los 60 días previos a la entrada"
+    pt: "Para cachorro vindo de país que não se declara livre de Leishmaniose: teste negativo de Leishmaniose nos 60 dias anteriores à entrada"
+  - en: "For a puppy under 3 months: certification of age and no urban-rabies case where it lived in the last 90 days"
+    fr: "Pour un chiot de moins de 3 mois : certification de l'âge et absence de cas de rage urbaine là où il a vécu ces 90 derniers jours"
+    es: "Para un cachorro de menos de 3 meses: certificación de la edad y ausencia de casos de rabia urbana donde vivió en los últimos 90 días"
+    pt: "Para filhote com menos de 3 meses: atestado de idade e ausência de caso de raiva urbana onde ele viveu nos últimos 90 dias"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold; for cargo via Carrasco, notify MGAP 72 working hours ahead"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute ; pour le fret via Carrasco, préviens le MGAP 72 heures ouvrables à l'avance"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega; para carga vía Carrasco, avisa al MGAP con 72 horas hábiles de antelación"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro e caixa de transporte adequada à IATA se a viagem for no porão; para carga via Carrasco, avise o MGAP com 72 horas úteis de antecedência"
+
+sources:
+  - label: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay (entry requirements)", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay (formalités d'entrée)", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay (requisitos de entrada)", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay (exigências de entrada)" }
+    url: "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/comunicacion/publicaciones/informacion-para-personas-viajan-mascotas/informacion-para-personas-0"
+  - label: { en: "MGAP — Solicitud de ingreso con mascotas al Uruguay (procedure, cargo notice, cost)", fr: "MGAP — Solicitud de ingreso con mascotas al Uruguay (procédure, préavis fret, coût)", es: "MGAP — Solicitud de ingreso con mascotas al Uruguay (procedimiento, aviso de carga, coste)", pt: "MGAP — Solicitud de ingreso con mascotas al Uruguay (procedimento, aviso de carga, custo)" }
+    url: "https://www.gub.uy/tramites/solicitud-ingreso-mascotas-uruguay"
+  - label: { en: "MGAP — Travel with pets: canines or felines entry to Uruguay (English page + model CVI)", fr: "MGAP — Travel with pets: canines or felines entry to Uruguay (page en anglais + modèle de CVI)", es: "MGAP — Travel with pets: canines or felines entry to Uruguay (página en inglés + modelo de CVI)", pt: "MGAP — Travel with pets: canines or felines entry to Uruguay (página em inglês + modelo de CVI)" }
+    url: "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/comunicacion/publicaciones/informacion-para-personas-viajan-mascotas/informacion-para-personas-3"
+  - label: { en: "DGSG — Resolución Nº 273 de 27/08/2018 (mandatory microchip for dogs)", fr: "DGSG — Resolución Nº 273 du 27/08/2018 (puce obligatoire pour les chiens)", es: "DGSG — Resolución Nº 273 de 27/08/2018 (microchip obligatorio para perros)", pt: "DGSG — Resolución Nº 273 de 27/08/2018 (microchip obrigatório para cachorros)" }
+    url: "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-273018-dgsg-27082018"
+  - label: { en: "DGSG — Resolución Nº 326 de 31/10/2016 (Leishmaniosis requirements for dogs)", fr: "DGSG — Resolución Nº 326 du 31/10/2016 (exigences Leishmaniose pour les chiens)", es: "DGSG — Resolución Nº 326 de 31/10/2016 (requisitos de Leishmaniosis para perros)", pt: "DGSG — Resolución Nº 326 de 31/10/2016 (exigências de Leishmaniose para cachorros)" }
+    url: "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-326016-dgsg-31102016"
+  - label: { en: "Mercosur — Resolución GMC 17/15 (sanitary requirements for pet dogs & cats)", fr: "Mercosur — Resolución GMC 17/15 (exigences sanitaires pour chiens & chats de compagnie)", es: "Mercosur — Resolución GMC 17/15 (requisitos sanitarios para perros y gatos de compañía)", pt: "Mercosur — Resolución GMC 17/15 (exigências sanitárias para cães e gatos de companhia)" }
+    url: "https://normas.mercosur.int/public/normativas/3111"
+  - label: { en: "MGAP — Resolución Nº 2/019: definition of 'potentially dangerous dog' (ownership, Ley 18.471)", fr: "MGAP — Resolución Nº 2/019 : définition du « chien potentiellement dangereux » (détention, Ley 18.471)", es: "MGAP — Resolución Nº 2/019: definición de «perro potencialmente peligroso» (tenencia, Ley 18.471)", pt: "MGAP — Resolución Nº 2/019: definição de «cachorro potencialmente perigoso» (posse, Ley 18.471)" }
+    url: "https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-n-2019-definicion-perro-potencialmente-peligroso"
+
+seo:
+  title: { en: "Uruguay Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Uruguay — Guide", es: "Requisitos de entrada de perros en Uruguay — Guía de viaje", pt: "Uruguai: exigências de entrada para cachorros — guia de viagem" }
+  metaTitle: { en: "Traveling to Uruguay With Your Dog: Entry Requirements (2026)", fr: "Voyager en Uruguay avec ton chien : formalités (2026)", es: "Viajar a Uruguay con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Uruguai: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official MGAP/DGSG rules for bringing a dog into Uruguay: International Veterinary Certificate or endorsed passport, ISO microchip. Sourced and dated."
+    fr: "Règles officielles MGAP/DGSG pour faire entrer un chien en Uruguay : Certificat Vétérinaire International ou passeport refrendé, puce ISO. Sourcé et daté."
+    es: "Normas oficiales del MGAP/DGSG para traer un perro a Uruguay: Certificado Veterinario Internacional o pasaporte refrendado, microchip ISO. Con fuentes y fecha."
+    pt: "Regras oficiais do MGAP/DGSG para levar um cachorro ao Uruguai: Certificado Veterinário Internacional ou passaporte endossado, microchip ISO. Com fonte e data."
+  slug: "uruguay"
+  shortDesc:
+    en: "What you need to bring a dog into Uruguay under MGAP/DGSG rules: CVI or endorsed passport, microchip, rabies, praziquantel and a Leishmaniosis test for some origins."
+    fr: "Ce qu'il faut pour faire entrer un chien en Uruguay selon les règles MGAP/DGSG : CVI ou passeport refrendé, puce, rage, praziquantel et un test de Leishmaniose pour certaines origines."
+    es: "Lo que necesitas para traer un perro a Uruguay según las normas del MGAP/DGSG: CVI o pasaporte refrendado, microchip, rabia, praziquantel y una prueba de Leishmaniosis para algunos orígenes."
+    pt: "O que é preciso para levar um cachorro ao Uruguai segundo as regras do MGAP/DGSG: CVI ou passaporte endossado, microchip, raiva, praziquantel e teste de Leishmaniose para algumas origens."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

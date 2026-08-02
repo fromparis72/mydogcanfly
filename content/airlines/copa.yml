@@ -1,0 +1,304 @@
+id: airline_copa
+mono: CM
+name: Copa Airlines
+titleH1:
+  en: Flying with a dog on Copa Airlines
+  fr: Voyager avec un chien sur Copa Airlines
+  es: Viajar con perro en Copa Airlines
+  pt: "Voar com um cachorro na Copa Airlines"
+metaDesc:
+  en: "Copa Airlines pet policy: cabin-only pets, Copa Pets cargo for larger dogs, fares, restrictions and official sources."
+  fr: "Politique animaux Copa Airlines : animaux en cabine, fret Copa Pets pour grands chiens, tarifs, restrictions et sources officielles."
+  es: "Política de mascotas de Copa Airlines: mascotas solo en cabina, carga Copa Pets para perros más grandes, tarifas, restricciones y fuentes oficiales."
+  pt: "Política de animais da Copa Airlines: animais somente na cabine, carga Copa Pets para cachorros maiores, tarifas, restrições e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Panama · PTY
+      fr: Panama · PTY
+      es: Panamá · PTY
+      pt: "Panamá · PTY"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small dogs & cats in the cabin only ($125 intl) — larger pets go via the separate Copa Pets cargo service.
+  fr: Petits chiens et chats en cabine seulement (125 $ intl) — les grands animaux passent par le service fret Copa Pets.
+  es: Perros y gatos pequeños solo en cabina (125 $ internacional); las mascotas más grandes van por el servicio de carga aparte Copa Pets.
+  pt: "Cachorros e gatos pequenos somente na cabine ($125 internacional) — os animais maiores vão pelo serviço de carga separado Copa Pets."
+ladder:
+  - flex: 24
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 16
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 60
+    color: "#1f5fa8"
+    label:
+      en: Copa Pets
+      fr: Copa Pets
+      es: Copa Pets
+      pt: "Copa Pets"
+    sub:
+      en: cargo
+      fr: fret
+      es: carga
+      pt: "carga"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Small dogs & cats ≤ 10 kg incl. carrier in a soft carrier under the seat (max 45.7 × 28 × 28 cm); not in Business. Max 3 per flight.
+      fr: Petits chiens et chats ≤ 10 kg avec le sac dans un sac souple sous le siège (max 45,7 × 28 × 28 cm) ; pas en Business. Max 3 par vol.
+      es: Perros y gatos pequeños ≤ 10 kg incl. jaula, en una jaula blanda bajo el asiento (máx. 45,7 × 28 × 28 cm); no en Business. Máx. 3 por vuelo.
+      pt: "Cachorros e gatos pequenos ≤ 10 kg incl. bolsa de transporte, em uma bolsa de transporte macia sob o assento (máx. 45,7 × 28 × 28 cm); não na Business. Máx. 3 por voo."
+    fee:
+      en: $125 intl / $25 dom.
+      fr: 125 $ intl / 25 $ nat.
+      es: 125 $ internacional / 25 $ nacional
+      pt: "125 $ internacional / 25 $ doméstico"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No ofrecido
+      pt: "Não oferecido"
+    detail:
+      en: Copa doesn't carry pets as accompanied checked baggage.
+      fr: Copa ne transporte pas les animaux en bagage enregistré accompagné.
+      es: Copa no transporta mascotas como equipaje facturado acompañado.
+      pt: "A Copa não transporta animais como bagagem despachada acompanhada."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Copa Pets cargo
+      fr: Fret Copa Pets
+      es: Carga Copa Pets
+      pt: "Carga Copa Pets"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Mediante carga
+      pt: "Via carga"
+    detail:
+      en: Pets that can't fly in the cabin go via the Copa Pets service (Copa Cargo).
+      fr: Les animaux qui ne peuvent voyager en cabine passent par le service Copa Pets (Copa Cargo).
+      es: Las mascotas que no pueden volar en cabina van por el servicio Copa Pets (Copa Cargo).
+      pt: "Os animais que não podem voar na cabine vão pelo serviço Copa Pets (Copa Cargo)."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — international
+        fr: Cabine — international
+        es: Cabina — internacional
+        pt: "Cabine — internacional"
+      value:
+        en: $125 / segment
+        fr: 125 $ / tronçon
+        es: 125 $ / tramo
+        pt: "125 $ / trecho"
+    - label:
+        en: Cabin — domestic
+        fr: Cabine — national
+        es: Cabina — nacional
+        pt: "Cabine — doméstico"
+      value:
+        en: $25 / segment
+        fr: 25 $ / tronçon
+        es: 25 $ / tramo
+        pt: "25 $ / trecho"
+    - label:
+        en: Copa Pets cargo
+        fr: Fret Copa Pets
+        es: Carga Copa Pets
+        pt: "Carga Copa Pets"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD, one-way per segment, non-refundable. Rabbits aren't carried.
+    fr: USD, aller simple par tronçon, non remboursable. Les lapins ne sont pas transportés.
+    es: USD, por trayecto de ida y por tramo, no reembolsable. No se transportan conejos.
+    pt: "USD, por trajeto de ida e por trecho, não reembolsável. Coelhos não são transportados."
+restrictions:
+  - icon: 📄
+    title:
+      en: Age & who can travel
+      fr: Âge & qui peut voyager
+      es: Edad y quién puede viajar
+      pt: "Idade e quem pode viajar"
+    pills:
+      - cls: warn
+        label:
+          en: Min. 16 weeks
+          fr: 16 semaines min.
+          es: Mín. 16 semanas
+          pt: "Mín. 16 semanas"
+    note:
+      en: Pets under 16 weeks aren't accepted (24 weeks to the US per CDC). Children under 11 and unaccompanied minors can't travel with a pet. Rabbits aren't carried.
+      fr: Les animaux de moins de 16 semaines ne sont pas acceptés (24 semaines vers les USA selon la CDC). Les enfants de moins de 11 ans et les mineurs non accompagnés ne peuvent pas voyager avec un animal. Les lapins ne sont pas transportés.
+      es: No se aceptan mascotas de menos de 16 semanas (24 semanas hacia EE. UU. según los CDC). Los niños menores de 11 años y los menores no acompañados no pueden viajar con una mascota. No se transportan conejos.
+      pt: "Animais com menos de 16 semanas não são aceitos (24 semanas para os EUA, segundo o CDC). Crianças com menos de 11 anos e menores desacompanhados não podem viajar com um animal. Coelhos não são transportados."
+  - icon: 🔁
+    title:
+      en: Connections
+      fr: Correspondances
+      es: Conexiones
+      pt: "Conexões"
+    pills:
+      - cls: no
+        label:
+          en: Copa-operated only
+          fr: Opéré par Copa seul
+          es: Solo operado por Copa
+          pt: "Somente operados pela Copa"
+    note:
+      en: Pets aren't allowed on connecting flights with airlines other than Copa.
+      fr: Les animaux ne sont pas admis sur les correspondances opérées par d'autres compagnies que Copa.
+      es: Las mascotas no se admiten en vuelos con conexión de aerolíneas distintas de Copa.
+      pt: "Os animais não são permitidos em voos com conexão operados por companhias aéreas diferentes da Copa."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Copa publishes no hold-temperature limits — pets travel in the cabin or via the Copa Pets cargo service.
+    fr: Copa ne publie pas de limites de température en soute — les animaux voyagent en cabine ou via le service fret Copa Pets.
+    es: "Copa no publica límites de temperatura de la bodega: las mascotas viajan en cabina o mediante el servicio de carga Copa Pets."
+    pt: "A Copa não divulga limites de temperatura do porão — os animais viajam na cabine ou pelo serviço de carga Copa Pets."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs accepted on all routes (Main Cabin or Business); emotional-support dogs only to/from Brazil, Colombia and Mexico, Main Cabin.
+      fr: Chiens d'assistance admis sur toutes les routes (Main Cabin ou Business) ; chiens de soutien émotionnel seulement de/vers le Brésil, la Colombie et le Mexique, en Main Cabin.
+      es: Los perros de asistencia se admiten en todas las rutas (Main Cabin o Business); los perros de apoyo emocional solo hacia/desde Brasil, Colombia y México, en Main Cabin.
+      pt: "Cães de assistência são aceitos em todas as rotas (Main Cabin ou Business); cães de apoio emocional somente de/para o Brasil, a Colômbia e o México, na Main Cabin."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Reserve ≥ 48 h ahead and sign the service/ESA form. Max 10 kg or buy an extra seat for foot space.
+      fr: Réserver ≥ 48 h à l'avance et signer le formulaire assistance/ESA. Max 10 kg ou acheter un siège supplémentaire pour l'espace au sol.
+      es: Reserva ≥ 48 h antes y firma el formulario de asistencia/ESA. Máx. 10 kg o compra un asiento extra para el espacio de los pies.
+      pt: "Reserve ≥ 48 h antes e assine o formulário de cão de assistência/ESA. Máx. 10 kg ou compre um assento extra para espaço aos pés."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: US CDC restriction
+      fr: Restriction CDC USA
+      es: Restricción de los CDC de EE. UU.
+      pt: "Restrição do CDC dos EUA"
+    value:
+      en: Dogs (incl. service/ESA) are temporarily not permitted to/from Boston (BOS), Baltimore (BWI) and Raleigh (RDU).
+      fr: Les chiens (y compris assistance/ESA) ne sont temporairement pas admis de/vers Boston (BOS), Baltimore (BWI) et Raleigh (RDU).
+      es: Los perros (incl. de asistencia/ESA) no se admiten temporalmente hacia/desde Boston (BOS), Baltimore (BWI) y Raleigh (RDU).
+      pt: "Cachorros (incluindo de assistência/ESA) estão temporariamente não permitidos de/para Boston (BOS), Baltimore (BWI) e Raleigh (RDU)."
+  - icon: 📅
+    label:
+      en: Days of operation
+      fr: Jours d'exploitation
+      es: Días de operación
+      pt: "Dias de operação"
+    value:
+      en: Cabin pets travel every day except to/from Armenia (AXM), Fort Lauderdale (FLL) and Tampa (TPA), which are Mon–Fri only.
+      fr: Les animaux en cabine voyagent tous les jours sauf de/vers Armenia (AXM), Fort Lauderdale (FLL) et Tampa (TPA), du lun. au ven. seulement.
+      es: Las mascotas en cabina viajan todos los días salvo hacia/desde Armenia (AXM), Fort Lauderdale (FLL) y Tampa (TPA), solo de lun a vie.
+      pt: "Os animais em cabine viajam todos os dias, exceto de/para Armenia (AXM), Fort Lauderdale (FLL) e Tampa (TPA), que são somente de seg. a sex."
+  - icon: 🚫
+    label:
+      en: Business Class
+      fr: Classe Affaires
+      es: Clase Business
+      pt: "Classe Business"
+    value:
+      en: Pets aren't allowed in Business Class; max 3 per flight in Main Cabin.
+      fr: Les animaux ne sont pas admis en Classe Affaires ; max 3 par vol en Main Cabin.
+      es: Las mascotas no se admiten en Clase Business; máx. 3 por vuelo en Main Cabin.
+      pt: "Os animais não são permitidos na Classe Business; máx. 3 por voo na Main Cabin."
+book:
+  host: copaair.com
+  url: https://www.copaair.com/
+sources:
+  en: 5 Copa Airlines sources · last verified 11 July 2026
+  fr: 5 sources Copa Airlines · dernière vérification 11 juillet 2026
+  es: 5 fuentes de Copa Airlines · última verificación 11 julio 2026
+  pt: "5 fontes da Copa Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

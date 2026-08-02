@@ -1,0 +1,284 @@
+id: airline_air_tahiti_nui
+mono: TN
+name: Air Tahiti Nui
+titleH1:
+  en: Flying with a dog on Air Tahiti Nui
+  fr: Voyager avec un chien sur Air Tahiti Nui
+  es: Volar con un perro en Air Tahiti Nui
+  pt: "Viajar com um cachorro pela Air Tahiti Nui"
+metaDesc:
+  en: "Air Tahiti Nui pet policy: cabin on select routes, cargo hold, French category dog ban and official sources."
+  fr: "Politique animaux Air Tahiti Nui : cabine sur certaines routes, soute via cargo, interdiction des chiens catégorisés et sources officielles."
+  es: "Política de mascotas de Air Tahiti Nui: cabina en rutas seleccionadas, bodega vía carga, prohibición de perros categorizados en Francia y fuentes oficiales."
+  pt: "Política de animais da Air Tahiti Nui: cabine em rotas selecionadas, porão via carga, proibição de cachorros categorizados na França e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: French Polynesia · PPT
+      fr: Polynésie française · PPT
+      es: Polinesia Francesa · PPT
+      pt: "Polinésia Francesa · PPT"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small cats & dogs in the cabin on select routes; larger pets go via cargo, with breed and health limits.
+  fr: Petits chats et chiens en cabine sur certaines routes ; les plus grands via cargo, avec restrictions de races et de santé.
+  es: Gatos y perros pequeños en cabina en rutas seleccionadas; las mascotas más grandes viajan como carga, con límites de raza y de salud.
+  pt: "Gatos e cachorros pequenos na cabine em rotas selecionadas; os animais maiores viajam via carga, com limites de raça e de saúde."
+ladder:
+  - flex: 20
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: hold via cargo
+      fr: soute via cargo
+      es: bodega vía carga
+      pt: "porão via carga"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Vaccinated cats & dogs ≤ 8 kg incl. carrier under the seat (max 40 × 35 × 20 cm), on 4 routes (LA–Paris, Paris–LA, Papeete–LA, Papeete–Paris). Quota applies.
+      fr: Chats et chiens vaccinés ≤ 8 kg avec le sac sous le siège (max 40 × 35 × 20 cm), sur 4 routes (LA–Paris, Paris–LA, Papeete–LA, Papeete–Paris). Quota applicable.
+      es: Gatos y perros vacunados ≤ 8 kg incluida la jaula bajo el asiento (máx 40 × 35 × 20 cm), en 4 rutas (LA–París, París–LA, Papeete–LA, Papeete–París). Se aplica cupo.
+      pt: "Gatos e cachorros vacinados ≤ 8 kg incl. bolsa de transporte embaixo do assento (máx. 40 × 35 × 20 cm), em 4 rotas (LA–Paris, Paris–LA, Papeete–LA, Papeete–Paris). Aplica-se cota."
+    fee:
+      en: €150 / $150
+      fr: 150 € / 150 $
+      es: 150 € / 150 $
+      pt: "€150 / $150"
+  - icon: ✈️
+    name:
+      en: Air Tahiti Nui Cargo
+      fr: Air Tahiti Nui Cargo
+      es: Air Tahiti Nui Cargo
+      pt: "Air Tahiti Nui Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Pets that can't fly in the cabin travel in the pressurised hold via Cargo (min 6 months, microchipped, IATA cage), between PPT/CDG/AKL/LAX/NRT.
+      fr: Les animaux qui ne peuvent pas voyager en cabine voyagent dans la soute pressurisée via Cargo (min 6 mois, pucés, cage IATA), entre PPT/CDG/AKL/LAX/NRT.
+      es: Las mascotas que no pueden volar en cabina viajan en la bodega presurizada vía Cargo (mín 6 meses, con microchip, jaula conforme a la IATA), entre PPT/CDG/AKL/LAX/NRT.
+      pt: "Os animais que não podem voar na cabine viajam no porão pressurizado via Cargo (mín. 6 meses, com microchip, caixa de transporte IATA), entre PPT/CDG/AKL/LAX/NRT."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — LA → Paris
+        fr: Cabine — LA → Paris
+        es: Cabina — LA → París
+        pt: "Cabine — LA → Paris"
+      value:
+        en: $150
+        fr: 150 $
+        es: 150 $
+        pt: "$150"
+    - label:
+        en: Cabin — Paris → LA
+        fr: Cabine — Paris → LA
+        es: Cabina — París → LA
+        pt: "Cabine — Paris → LA"
+      value:
+        en: €150
+        fr: 150 €
+        es: 150 €
+        pt: "150 €"
+    - label:
+        en: Cabin — Papeete → LA / Paris
+        fr: Cabine — Papeete → LA / Paris
+        es: Cabina — Papeete → LA / París
+        pt: "Cabine — Papeete → LA / Paris"
+      value:
+        en: XPF 14,000 / 24,000
+        fr: 14 000 / 24 000 XPF
+        es: 14 000 / 24 000 XPF
+        pt: "XPF 14.000 / 24.000"
+    - label:
+        en: Cargo (hold)
+        fr: Fret (soute)
+        es: Carga (bodega)
+        pt: "Carga (porão)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Service animal
+        fr: Animal d'assistance
+        es: Animal de asistencia
+        pt: "Animal de serviço"
+      value:
+        en: See conditions
+        fr: Voir conditions
+        es: Ver condiciones
+        pt: "Ver condições"
+  note:
+    en: EUR/USD/XPF per trip by route. Larger pets are quoted by the cargo rate tool.
+    fr: EUR/USD/XPF par trajet selon la route. Les animaux plus grands sont chiffrés par l'outil de tarif cargo.
+    es: EUR/USD/XPF por trayecto según la ruta. Las mascotas más grandes se presupuestan con la herramienta de tarifas de carga.
+    pt: "EUR/USD/XPF por trajeto conforme a rota. Os animais maiores são orçados pela ferramenta de tarifas de carga."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Snub-nosed dogs & cats aren't allowed for transport in the hold.
+      fr: Les chiens et chats au nez écrasé ne sont pas admis au transport en soute.
+      es: Los perros y gatos de hocico chato no se admiten para el transporte en bodega.
+      pt: "Cachorros e gatos de focinho achatado não são admitidos para transporte no porão."
+  - icon: 🚫
+    title:
+      en: French categories 1 & 2
+      fr: Catégories françaises 1 & 2
+      es: Categorías francesas 1 y 2
+      pt: "Categorias francesas 1 e 2"
+    pills:
+      - cls: no
+        label:
+          en: Category 1 & 2 banned
+          fr: Catégories 1 & 2 interdites
+          es: Categorías 1 y 2 prohibidas
+          pt: "Categorias 1 e 2 proibidas"
+      - cls: warn
+        label:
+          en: Muzzle required
+          fr: Muselière requise
+          es: Bozal obligatorio
+          pt: "Focinheira obrigatória"
+    note:
+      en: "French category 1 (attack) and 2 (guard) dogs and crosses are banned on all flights: pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, mastiffs (Bordeaux/Neapolitan/Bull/Cane Corso/German), Tosa, bulldogs. Females in heat or advanced pregnancy are refused in the hold; leash + muzzle mandatory."
+      fr: "Les chiens de catégorie 1 (attaque) et 2 (garde) et leurs croisés sont interdits sur tous les vols : pit-bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, mastiffs (Bordeaux/Napolitain/Bull/Cane Corso/allemand), Tosa, bouledogues. Les femelles en chaleur ou en gestation avancée sont refusées en soute ; laisse + muselière obligatoires."
+      es: "Los perros de categoría 1 (ataque) y 2 (guarda) en Francia y sus cruces están prohibidos en todos los vuelos: pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, mastines (de Burdeos/napolitano/Bull/Cane Corso/alemán), Tosa, bulldogs. Las hembras en celo o en gestación avanzada son rechazadas en bodega; correa + bozal obligatorios."
+      pt: "Cachorros das categorias francesas 1 (ataque) e 2 (guarda), e seus cruzamentos, são proibidos em todos os voos: pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, mastins (de Bordeaux/napolitano/Bull/Cane Corso/alemão), Tosa, buldogues. Fêmeas no cio ou em gestação avançada são recusadas no porão; guia + focinheira obrigatórias."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Air Tahiti Nui publishes no hold-temperature limits; pets travel in the pressurised hold.
+    fr: Air Tahiti Nui ne publie pas de limites de température en soute ; les animaux voyagent dans la soute pressurisée.
+    es: Air Tahiti Nui no publica límites de temperatura en bodega; las mascotas viajan en la bodega presurizada.
+    pt: "A Air Tahiti Nui não divulga limites de temperatura no porão; os animais viajam no porão pressurizado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Trained service animals (max 2 dogs or 1 cat) travel in the cabin, at your feet, leashed and muzzled; emotional-support animals excluded.
+      fr: Les animaux d'assistance dressés (max 2 chiens ou 1 chat) voyagent en cabine, à tes pieds, en laisse et muselés ; animaux de soutien émotionnel exclus.
+      es: Los animales de asistencia adiestrados (máx 2 perros o 1 gato) viajan en cabina, a tus pies, con correa y bozal; los animales de apoyo emocional quedan excluidos.
+      pt: "Animais de serviço treinados (máx. 2 cachorros ou 1 gato) viajam na cabine, aos seus pés, com guia e focinheira; animais de apoio emocional ficam excluídos."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Valid vet certificate/passport. US routes: DOT service-animal + relief forms at check-in."
+      fr: "Certificat vétérinaire/passeport valide. Vols USA : formulaires DOT d'animal d'assistance + soulagement à l'enregistrement."
+      es: "Certificado veterinario/pasaporte válido. Rutas a EE. UU.: formularios DOT de animal de servicio + de desahogo en la facturación."
+      pt: "Atestado veterinário/passaporte válido. Rotas para os EUA: formulários do DOT de animal de serviço + de necessidades fisiológicas no check-in."
+goodToKnow:
+  - icon: ✈️
+    label:
+      en: Cabin on 4 routes
+      fr: Cabine sur 4 routes
+      es: Cabina en 4 rutas
+      pt: "Cabine em 4 rotas"
+    value:
+      en: Cabin pets only on LA–Paris, Paris–LA, Papeete–LA and Papeete–Paris; a per-flight quota applies.
+      fr: Animaux en cabine uniquement sur LA–Paris, Paris–LA, Papeete–LA et Papeete–Paris ; un quota par vol s'applique.
+      es: Mascotas en cabina solo en LA–París, París–LA, Papeete–LA y Papeete–París; se aplica un cupo por vuelo.
+      pt: "Animais na cabine somente em LA–Paris, Paris–LA, Papeete–LA e Papeete–Paris; aplica-se uma cota por voo."
+  - icon: 📄
+    label:
+      en: Health certificate 48 h
+      fr: Certificat santé 48 h
+      es: Certificado sanitario 48 h
+      pt: "Atestado de saúde 48 h"
+    value:
+      en: Send a vet health certificate (weight/size/breed) to reservations ≥ 48 h ahead; a signed waiver is presented at check-in.
+      fr: Envoyer un certificat vétérinaire (poids/taille/race) aux réservations ≥ 48 h à l'avance ; une décharge signée est présentée à l'enregistrement.
+      es: Envía un certificado veterinario de salud (peso/tamaño/raza) a reservas con ≥ 48 h de antelación; en la facturación se presenta una exención firmada.
+      pt: "Envie um atestado de saúde veterinário (peso/tamanho/raça) às reservas com ≥ 48 h de antecedência; um termo assinado é apresentado no check-in."
+  - icon: 🌍
+    label:
+      en: Import permit
+      fr: Permis d'importation
+      es: Permiso de importación
+      pt: "Autorização de importação"
+    value:
+      en: A destination import permit is the traveller's responsibility; non-compliance can lead to refusal and repatriation at your cost.
+      fr: Un permis d'importation du pays de destination est à la charge du voyageur ; le non-respect peut entraîner un refus et un rapatriement à tes frais.
+      es: El permiso de importación del destino es responsabilidad del viajero; el incumplimiento puede dar lugar a rechazo y repatriación a tu cargo.
+      pt: "A autorização de importação do destino é responsabilidade do viajante; o não cumprimento pode levar à recusa e à repatriação por sua conta."
+book:
+  host: airtahitinui.com
+  url: https://www.airtahitinui.com/
+sources:
+  en: 4 Air Tahiti Nui sources · last verified 11 July 2026
+  fr: 4 sources Air Tahiti Nui · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Air Tahiti Nui · última verificación 11 de julio de 2026
+  pt: "4 fontes da Air Tahiti Nui · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

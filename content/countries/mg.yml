@@ -1,0 +1,363 @@
+# Country Entry Guide — Madagascar (source of truth, bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_mg
+iso2: "MG"
+name: { en: "Madagascar", fr: "Madagascar", es: "Madagascar", pt: "Madagascar" }
+region: { en: "Africa (Indian Ocean)", fr: "Afrique (océan Indien)", es: "África (océano Índico)", pt: "África (oceano Índico)" }
+
+
+regime: non_listed
+exit:
+  authority: DSV
+  authorityUrl: https://www.minae.gov.mg/direction-des-services-veterinaires-dsv/
+  intro:
+    en: "Madagascar is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Direction des Services Vétérinaires (DSV)."
+    fr: "Madagascar est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par la Direction des Services Vétérinaires (DSV)."
+    es: "Madagascar no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por la Direction des Services Vétérinaires (DSV)."
+    pt: "Madagascar é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction des Services Vétérinaires (DSV)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "An official DSV veterinarian issues the health certificate at origin, approved by the DSV officer at the airport border post before export."
+        fr: "Un vétérinaire officiel de la DSV délivre le certificat sanitaire à l'origine, approuvé par l'agent DSV au poste frontière de l'aéroport avant l'export."
+        es: "Un veterinario oficial de la DSV emite el certificado sanitario en origen, aprobado por el agente de la DSV en el puesto fronterizo del aeropuerto antes de exportar."
+        pt: "Um veterinário oficial da DSV emite o atestado de saúde na origem, aprovado pelo agente da DSV no posto de fronteira do aeroporto antes da exportação."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to Madagascar with your dog", fr: "Voyager à Madagascar avec ton chien", es: "Viajar a Madagascar con tu perro", pt: "Viajar para Madagascar com seu cachorro" }
+  intro:
+    en: >-
+      Madagascar allows pet dogs, but entry is controlled by its own veterinary authority — the
+      Direction des Services Vétérinaires (DSV) of the Ministère de l'Agriculture et de l'Élevage —
+      and by the Malagasy Customs (Direction générale des douanes). Unlike rabies-free Mauritius,
+      Madagascar is a large Indian-Ocean island where rabies is present, so a rabies vaccination is
+      central to the file. The official customs classification for dogs and cats (heading 0106.19 40)
+      states plainly that importing a dog requires a prior import authorization, and that customs
+      clearance depends on presenting an anti-rabies vaccination certificate issued by the Veterinary
+      Service. Several practical details — the exact vaccination timing, whether a rabies antibody
+      test is required, minimum age, and any quarantine — are not clearly published in official
+      Malagasy sources, so this guide marks them as unknown rather than guess. Confirm every point
+      with the DSV and your veterinarian before you book.
+    fr: >-
+      Madagascar admet les chiens de compagnie, mais l'entrée est contrôlée par sa propre autorité
+      vétérinaire — la Direction des Services Vétérinaires (DSV) du Ministère de l'Agriculture et de
+      l'Élevage — et par la Douane malagasy (Direction générale des douanes). Contrairement à Maurice,
+      indemne de rage, Madagascar est une grande île de l'océan Indien où la rage est présente : la
+      vaccination antirabique est donc au cœur du dossier. La classification douanière officielle des
+      chiens et chats (position 0106.19 40) indique clairement que l'importation d'un chien est soumise
+      à une autorisation d'importation préalable et que le dédouanement est subordonné à la présentation
+      d'un certificat de vaccination antirabique délivré par le Service vétérinaire. Plusieurs détails
+      pratiques — le calendrier exact de vaccination, l'exigence éventuelle d'un titrage antirabique,
+      l'âge minimum et une quarantaine — ne sont pas clairement publiés par les sources officielles
+      malgaches : ce guide les indique donc comme non communiqués plutôt que de deviner. Confirme
+      chaque point avec la DSV et ton vétérinaire avant de réserver.
+    es: >-
+      Madagascar admite perros de compañía, pero la entrada está controlada por su propia autoridad
+      veterinaria — la Direction des Services Vétérinaires (DSV) del Ministère de l'Agriculture et de
+      l'Élevage — y por la Aduana malgache (Direction générale des douanes). A diferencia de Mauricio,
+      libre de rabia, Madagascar es una gran isla del océano Índico donde la rabia está presente, por lo
+      que la vacunación antirrábica es fundamental en el expediente. La clasificación aduanera oficial de
+      perros y gatos (partida 0106.19 40) indica claramente que importar un perro requiere una
+      autorización de importación previa, y que el despacho de aduanas depende de presentar un
+      certificado de vacunación antirrábica expedido por el Servicio Veterinario. Varios detalles
+      prácticos — el calendario exacto de vacunación, si se exige una prueba de titulación de rabia, la
+      edad mínima y una posible cuarentena — no están claramente publicados en las fuentes oficiales
+      malgaches, por lo que esta guía los marca como no comunicados en lugar de suponerlos. Confirma
+      cada punto con la DSV y tu veterinario antes de reservar.
+
+    pt: "Madagascar permite cachorros de estimação, mas a entrada é controlada por sua própria autoridade veterinária — a Direction des Services Vétérinaires (DSV) do Ministère de l'Agriculture et de l'Élevage — e pela alfândega malgaxe (Direction générale des douanes). Diferentemente da Ilha Maurício, livre de raiva, Madagascar é uma grande ilha do oceano Índico onde a raiva está presente, portanto a vacinação antirrábica é central no processo. A classificação alfandegária oficial para cachorros e gatos (código 0106.19 40) declara claramente que a importação de um cachorro exige uma autorização de importação prévia, e que o desembaraço aduaneiro depende da apresentação de um certificado de vacinação antirrábica emitido pelo Serviço Veterinário. Vários detalhes práticos — o prazo exato da vacinação, se um teste sorológico antirrábico é exigido, a idade mínima e qualquer quarentena — não são claramente publicados em fontes oficiais malgaxes, portanto este guia os marca como não comunicado em vez de presumir. Confirme cada ponto com a DSV e com seu veterinário antes de reservar."
+difficulty:
+  level: moderate
+  label: { en: "Moderate — import authorization and rabies vaccination; several details unpublished", fr: "Modérée — autorisation d'importation et vaccination antirabique ; plusieurs détails non publiés", es: "Moderada — autorización de importación y vacunación antirrábica; varios detalles no publicados", pt: "Moderada — autorização de importação e vacinação antirrábica; vários detalhes não publicados" }
+
+prepTime:
+  eu:
+    en: "From Europe / the EU: allow time to obtain the DSV import authorization and a valid rabies vaccination certificate, plus a health certificate from your vet. Exact lead times are not published — start well ahead."
+    fr: "Depuis l'Europe / l'UE : prévois le temps d'obtenir l'autorisation d'importation de la DSV et un certificat de vaccination antirabique valide, plus un certificat sanitaire de ton vétérinaire. Les délais exacts ne sont pas publiés — anticipe largement."
+    es: "Desde Europa / la UE: prevé tiempo para obtener la autorización de importación de la DSV y un certificado de vacunación antirrábica válido, además de un certificado sanitario de tu veterinario. Los plazos exactos no están publicados — empieza con mucha antelación."
+    pt: "Da Europa / da UE: reserve tempo para obter a autorização de importação da DSV e um certificado de vacinação antirrábica válido, além de um atestado de saúde do seu veterinário. Os prazos exatos não são publicados — comece com bastante antecedência."
+  listed:
+    en: "From another third country: the same national scheme applies — import authorization and anti-rabies vaccination certificate. Madagascar does not operate an EU-style list of approved countries."
+    fr: "Depuis un autre pays tiers : le même régime national s'applique — autorisation d'importation et certificat de vaccination antirabique. Madagascar n'applique pas de liste de pays approuvés à l'européenne."
+    es: "Desde otro país tercero: se aplica el mismo régimen nacional — autorización de importación y certificado de vacunación antirrábica. Madagascar no aplica una lista de países aprobados al estilo de la UE."
+    pt: "De outro país terceiro: aplica-se o mesmo esquema nacional — autorização de importação e certificado de vacinação antirrábica. Madagascar não opera uma lista de países aprovados no estilo da UE."
+  nonListed:
+    en: "From all origins: because published details are limited, contact the DSV early to confirm your exact file; additional tests, conditions or a refusal cannot be ruled out and are set case by case."
+    fr: "Depuis toute origine : les détails publiés étant limités, contacte tôt la DSV pour confirmer ton dossier exact ; des tests ou conditions supplémentaires, voire un refus, ne peuvent être exclus et sont fixés au cas par cas."
+    es: "Desde cualquier origen: como los detalles publicados son limitados, contacta pronto con la DSV para confirmar tu expediente exacto; no se pueden descartar pruebas o condiciones adicionales, o incluso un rechazo, y se fijan caso por caso."
+    pt: "De todas as origens: como os detalhes publicados são limitados, entre em contato com a DSV com antecedência para confirmar seu processo exato; testes adicionais, condições ou uma recusa não podem ser descartados e são definidos caso a caso."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes — with import authorization", fr: "Oui — avec autorisation d'importation", es: "Sí — con autorización de importación", pt: "Sim — com autorização de importação" }
+    cls: neutral
+  - requirement: { en: "Import authorization", fr: "Autorisation d'importation", es: "Autorización de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requise (à l'avance)", es: "Obligatoria (por adelantado)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not specified in official sources", fr: "Non précisée par les sources officielles", es: "No especificado en las fuentes oficiales", pt: "Não especificado em fontes oficiais" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (certificate for customs clearance)", fr: "Requise (certificat pour le dédouanement)", es: "Obligatoria (certificado para el despacho de aduanas)", pt: "Obrigatória (certificado para o desembaraço aduaneiro)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not published — confirm with the DSV", fr: "Non communiqué — à confirmer avec la DSV", es: "No comunicada — confirma con la DSV", pt: "Não publicado — confirme com a DSV" }
+    cls: neutral
+  - requirement: { en: "Veterinary / health certificate", fr: "Certificat vétérinaire / sanitaire", es: "Certificado veterinario / sanitario", pt: "Certificado veterinário / de saúde" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Not published", fr: "Non communiquée", es: "No comunicada", pt: "Não publicado" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian and the Direction des Services Vétérinaires (DSV) can confirm the exact procedure and the conditions of your import authorization for your individual dog."
+    fr: "Seuls un vétérinaire et la Direction des Services Vétérinaires (DSV) peuvent confirmer la procédure exacte et les conditions de ton autorisation d'importation pour ton chien."
+    es: "Solo un veterinario y la Direction des Services Vétérinaires (DSV) pueden confirmar el procedimiento exacto y las condiciones de tu autorización de importación para tu perro."
+    pt: "Só um veterinário e a Direction des Services Vétérinaires (DSV) podem confirmar o procedimento exato e as condições da sua autorização de importação para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact steps depend on three things — Madagascar (your destination) sets a national scheme, but your dog's origin and history shape the detail. Several details are not officially published, so confirm them with the DSV."
+    fr: "Les étapes exactes dépendent de trois éléments — Madagascar (ta destination) impose un régime national, mais l'origine et l'historique de ton chien en déterminent le détail. Plusieurs détails ne sont pas publiés officiellement : confirme-les avec la DSV."
+    es: "Los pasos exactos dependen de tres factores — Madagascar (tu destino) impone un régimen nacional, pero el origen y el historial de tu perro determinan los detalles. Varios detalles no se publican oficialmente, así que confírmalos con la DSV."
+    pt: "As etapas exatas dependem de três fatores — Madagascar (seu destino) estabelece um esquema nacional, mas a origem e o histórico do seu cachorro definem os detalhes. Vários detalhes não são publicados oficialmente, portanto confirme-os com a DSV."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Madagascar", fr: "Pays de destination — Madagascar", es: "País de destino — Madagascar", pt: "País de destino — Madagascar" }
+      text:
+        en: "Madagascar controls entry through the DSV and the Malagasy Customs. Importing a dog requires a prior import authorization, and customs clearance is conditioned on an anti-rabies vaccination certificate issued by the Veterinary Service (customs heading 0106.19 40). A health certificate is also expected."
+        fr: "Madagascar contrôle l'entrée via la DSV et la Douane malagasy. L'importation d'un chien exige une autorisation d'importation préalable, et le dédouanement est subordonné à un certificat de vaccination antirabique délivré par le Service vétérinaire (position douanière 0106.19 40). Un certificat sanitaire est également attendu."
+        es: "Madagascar controla la entrada a través de la DSV y la Aduana malgache. Importar un perro requiere una autorización de importación previa, y el despacho de aduanas está condicionado a un certificado de vacunación antirrábica expedido por el Servicio Veterinario (partida aduanera 0106.19 40). También se espera un certificado sanitario."
+        pt: "Madagascar controla a entrada por meio da DSV e da alfândega malgaxe. A importação de um cachorro exige uma autorização de importação prévia, e o desembaraço aduaneiro é condicionado à apresentação de um certificado de vacinação antirrábica emitido pelo Serviço Veterinário (código alfandegário 0106.19 40). Também é esperado um atestado de saúde."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "There is no EU-style list of approved countries: the same national import authorization applies whatever your origin. The DSV, as Madagascar's competent authority and WOAH delegate, assesses each file, so the departure country and its rabies situation can influence the conditions imposed."
+        fr: "Il n'existe pas de liste de pays approuvés à l'européenne : la même autorisation d'importation nationale s'applique quelle que soit l'origine. La DSV, autorité compétente de Madagascar et déléguée OMSA, évalue chaque dossier ; le pays de départ et sa situation rabique peuvent donc influencer les conditions imposées."
+        es: "No existe una lista de países aprobados al estilo de la UE: la misma autorización de importación nacional se aplica sea cual sea tu origen. La DSV, autoridad competente de Madagascar y delegada de la OMSA, evalúa cada expediente, por lo que el país de salida y su situación de rabia pueden influir en las condiciones impuestas."
+        pt: "Não existe uma lista de países aprovados no estilo da UE: a mesma autorização nacional de importação se aplica seja qual for a sua origem. A DSV, como autoridade competente de Madagascar e delegada da WOAH, avalia cada processo, portanto o país de partida e sua situação de raiva podem influenciar as condições impostas."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Because published requirements do not spell out vaccination timing, an antibody test or age limits, your dog's recent residence and rabies history are best confirmed directly with the DSV when you request the import authorization."
+        fr: "Comme les exigences publiées ne précisent ni le calendrier de vaccination, ni un titrage, ni des limites d'âge, la résidence récente et l'historique rabique de ton chien sont à confirmer directement auprès de la DSV lors de la demande d'autorisation d'importation."
+        es: "Como los requisitos publicados no detallan el calendario de vacunación, una prueba de titulación ni límites de edad, lo mejor es confirmar la residencia reciente y el historial de rabia de tu perro directamente con la DSV cuando solicites la autorización de importación."
+        pt: "Como as exigências publicadas não detalham o prazo da vacinação, um teste sorológico ou limites de idade, o melhor é confirmar diretamente com a DSV a residência recente e o histórico de raiva do seu cachorro ao solicitar a autorização de importação."
+  note:
+    en: "So read the requirements below as Madagascar's published framework, then confirm the unpublished details and your dog's exact conditions with the DSV and your vet before you travel."
+    fr: "Lis donc les exigences ci-dessous comme le cadre publié de Madagascar, puis confirme les détails non publiés et les conditions exactes de ton chien avec la DSV et ton vétérinaire avant de voyager."
+    es: "Así que lee los requisitos siguientes como el marco publicado de Madagascar y luego confirma los detalles no publicados y las condiciones exactas de tu perro con la DSV y tu veterinario antes de viajar."
+    pt: "Portanto, leia as exigências abaixo como o quadro publicado de Madagascar, e depois confirme os detalhes não publicados e as condições exatas do seu cachorro com a DSV e seu veterinário antes de viajar."
+
+requirements:
+  - item: { en: "Import authorization", fr: "Autorisation d'importation", es: "Autorización de importación", pt: "Autorização de importação" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Importing a dog (customs heading 0106.19 40) is subject to a prior import authorization. In practice this is a sanitary import authorization delivered by the Direction des Services Vétérinaires; request it in advance from the DSV before the dog is shipped.", fr: "L'importation d'un chien (position douanière 0106.19 40) est soumise à une autorisation d'importation préalable. En pratique il s'agit d'une autorisation sanitaire d'importation délivrée par la Direction des Services Vétérinaires ; à demander à l'avance auprès de la DSV avant l'expédition du chien.", es: "Importar un perro (partida aduanera 0106.19 40) está sujeto a una autorización de importación previa. En la práctica se trata de una autorización sanitaria de importación expedida por la Direction des Services Vétérinaires; solicítala con antelación a la DSV antes de enviar al perro.", pt: "A importação de um cachorro (código alfandegário 0106.19 40) está sujeita a uma autorização de importação prévia. Na prática, trata-se de uma autorização sanitária de importação emitida pela Direction des Services Vétérinaires; solicite-a com antecedência à DSV antes do embarque do cachorro." }
+    exceptions: { en: "The exact lead time, forms and fees are not clearly published online — confirm them with the DSV.", fr: "Le délai exact, les formulaires et les frais ne sont pas clairement publiés en ligne — à confirmer avec la DSV.", es: "El plazo exacto, los formularios y las tasas no están claramente publicados en línea — confírmalos con la DSV.", pt: "O prazo exato, os formulários e as taxas não são claramente publicados on-line — confirme-os com a DSV." }
+    ref: { en: "Douanes malagasy — Tarif, heading 0106.19 40 (Chiens, chats, domestiques); DSV (MINAE)", fr: "Douane malagasy — Tarif, position 0106.19 40 (Chiens, chats, domestiques) ; DSV (MINAE)", es: "Douanes malagasy — Tarif, partida 0106.19 40 (Chiens, chats, domestiques); DSV (MINAE)", pt: "Douanes malagasy — Tarif, código 0106.19 40 (Chiens, chats, domestiques); DSV (MINAE)" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Not specified", fr: "Non précisée", es: "No especificado", pt: "Não especificada" }
+    when: { en: "Official Malagasy import conditions we could verify do not explicitly require an ISO 11784/11785 microchip; the customs note refers to a vaccination certificate and, at the veterinary service, to the animal's identity/health booklet. An ISO microchip is nonetheless standard international practice.", fr: "Les conditions d'importation malgaches officielles que nous avons pu vérifier n'exigent pas explicitement une puce ISO 11784/11785 ; la note douanière évoque un certificat de vaccination et, au service vétérinaire, le carnet d'identité/de santé de l'animal. Une puce ISO reste la pratique internationale standard.", es: "Las condiciones de importación malgaches oficiales que pudimos verificar no exigen explícitamente un microchip ISO 11784/11785; la nota aduanera menciona un certificado de vacunación y, en el servicio veterinario, la cartilla de identidad/salud del animal. Aun así, un microchip ISO es la práctica internacional estándar.", pt: "As condições de importação malgaxes oficiais que conseguimos verificar não exigem explicitamente um microchip ISO 11784/11785; a nota alfandegária se refere a um certificado de vacinação e, no serviço veterinário, à caderneta de identidade/saúde do animal. Ainda assim, um microchip ISO é uma prática internacional padrão." }
+    exceptions: { en: "Confirm identification requirements with the DSV; a microchip is strongly recommended to link your dog to its documents.", fr: "Confirme les exigences d'identification avec la DSV ; une puce est fortement recommandée pour relier ton chien à ses documents.", es: "Confirma los requisitos de identificación con la DSV; se recomienda encarecidamente un microchip para vincular a tu perro con sus documentos.", pt: "Confirme as exigências de identificação com a DSV; um microchip é fortemente recomendado para vincular seu cachorro aos seus documentos." }
+    ref: { en: "Douanes malagasy — heading 0106.19 40 (microchip not stated); DSV (MINAE)", fr: "Douane malagasy — position 0106.19 40 (puce non mentionnée) ; DSV (MINAE)", es: "Douanes malagasy — partida 0106.19 40 (microchip no mencionado); DSV (MINAE)", pt: "Douanes malagasy — código 0106.19 40 (microchip não mencionado); DSV (MINAE)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Customs clearance of a dog is conditioned on presenting an anti-rabies vaccination certificate issued by the Veterinary Service. Madagascar is a rabies-affected country, so the rabies vaccination is central to the file.", fr: "Le dédouanement d'un chien est subordonné à la présentation d'un certificat de vaccination antirabique délivré par le Service vétérinaire. Madagascar est un pays touché par la rage : la vaccination antirabique est au cœur du dossier.", es: "El despacho de aduanas de un perro está condicionado a presentar un certificado de vacunación antirrábica expedido por el Servicio Veterinario. Madagascar es un país afectado por la rabia, por lo que la vacunación antirrábica es fundamental en el expediente.", pt: "O desembaraço aduaneiro de um cachorro é condicionado à apresentação de um certificado de vacinação antirrábica emitido pelo Serviço Veterinário. Madagascar é um país afetado pela raiva, portanto a vacinação antirrábica é central no processo." }
+    exceptions: { en: "The exact validity window and minimum interval before travel are not published in the sources we verified — confirm the timing with the DSV.", fr: "La fenêtre de validité exacte et le délai minimum avant le voyage ne sont pas publiés dans les sources vérifiées — confirme le calendrier avec la DSV.", es: "La ventana de valide exacta y el intervalo mínimo antes del viaje no están publicados en las fuentes que verificamos — confirma el calendario con la DSV.", pt: "A janela exata de validade e o intervalo mínimo antes da viagem não são publicados nas fontes que verificamos — confirme os prazos com a DSV." }
+    ref: { en: "Douanes malagasy — heading 0106.19 40 (anti-rabies vaccination certificate for clearance)", fr: "Douane malagasy — position 0106.19 40 (certificat de vaccination antirabique pour le dédouanement)", es: "Douanes malagasy — partida 0106.19 40 (certificado de vacunación antirrábica para el despacho)", pt: "Douanes malagasy — código 0106.19 40 (certificado de vacinação antirrábica para o desembaraço)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "The official Malagasy customs and veterinary conditions we could verify do not state a rabies antibody test as a published entry requirement. Because Madagascar is rabies-affected and details are limited, confirm directly with the DSV whether an antibody test is imposed on your file.", fr: "Les conditions douanières et vétérinaires malgaches officielles que nous avons pu vérifier n'indiquent pas de titrage antirabique comme exigence d'entrée publiée. Madagascar étant touché par la rage et les détails limités, confirme directement avec la DSV si un titrage est imposé sur ton dossier.", es: "Las condiciones aduaneras y veterinarias malgaches oficiales que pudimos verificar no indican una prueba de titulación de rabia como requisito de entrada publicado. Como Madagascar está afectado por la rabia y los detalles son limitados, confirma directamente con la DSV si se impone una prueba de titulación en tu expediente.", pt: "As condições alfandegárias e veterinárias malgaxes oficiais que conseguimos verificar não indicam um teste sorológico antirrábico como exigência de entrada publicada. Como Madagascar é afetado pela raiva e os detalhes são limitados, confirme diretamente com a DSV se um teste sorológico é imposto no seu processo." }
+    exceptions: { en: "Do not assume it is waived — get written confirmation from the DSV.", fr: "Ne présume pas qu'il est levé — obtiens une confirmation écrite de la DSV.", es: "No des por hecho que se exime — obtén confirmación por escrito de la DSV.", pt: "Não presuma que está dispensado — obtenha confirmação por escrito da DSV." }
+    ref: { en: "Official sources verified do not list a rabies antibody test (DSV / Douanes malagasy)", fr: "Les sources officielles vérifiées ne mentionnent pas de titrage antirabique (DSV / Douane malagasy)", es: "Las fuentes oficiales verificadas no mencionan una prueba de titulación de rabia (DSV / Douanes malagasy)", pt: "As fontes oficiais verificadas não listam um teste sorológico antirrábico (DSV / Douanes malagasy)" }
+  - item: { en: "Veterinary / health certificate", fr: "Certificat vétérinaire / sanitaire", es: "Certificado veterinario / sanitario", pt: "Certificado veterinário / de saúde" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "A veterinary health certificate from the country of origin is expected alongside the vaccination certificate. As Madagascar is francophone, a certificate in French is accepted. The exact model, signatory and timing are not published in the sources we verified.", fr: "Un certificat sanitaire vétérinaire du pays d'origine est attendu aux côtés du certificat de vaccination. Madagascar étant francophone, un certificat en français est accepté. Le modèle exact, le signataire et le délai ne sont pas publiés dans les sources vérifiées.", es: "Se espera un certificado sanitario veterinario del país de origen junto con el certificado de vacunación. Como Madagascar es francófono, se acepta un certificado en francés. El modelo exacto, el firmante y el calendario no están publicados en las fuentes que verificamos.", pt: "É esperado um atestado de saúde veterinário do país de origem, junto com o certificado de vacinação. Como Madagascar é francófono, um certificado em francês é aceito. O modelo exato, o signatário e o prazo não são publicados nas fontes que verificamos." }
+    exceptions: { en: "Ask the DSV for the accepted certificate model and whether an official endorsement is needed.", fr: "Demande à la DSV le modèle de certificat accepté et si un visa officiel est nécessaire.", es: "Pregunta a la DSV por el modelo de certificado aceptado y si se necesita un refrendo oficial.", pt: "Pergunte à DSV qual é o modelo de certificado aceito e se é necessário um endosso oficial." }
+    ref: { en: "DSV (MINAE) — import health documentation; Douanes malagasy — heading 0106.19 40", fr: "DSV (MINAE) — documentation sanitaire d'importation ; Douane malagasy — position 0106.19 40", es: "DSV (MINAE) — documentación sanitaria de importación; Douanes malagasy — partida 0106.19 40", pt: "DSV (MINAE) — documentação sanitária de importação; Douanes malagasy — código 0106.19 40" }
+  - item: { en: "Parasite / tapeworm treatment", fr: "Traitement antiparasitaire / échinococcose", es: "Tratamiento antiparasitario / contra la tenia", pt: "Tratamento antiparasitário / contra tênias" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "No official Malagasy source we verified sets an internal (tapeworm/Echinococcus) or external parasite treatment as an entry condition for dogs.", fr: "Aucune source officielle malgache vérifiée n'impose de traitement antiparasitaire interne (échinococcose/ténia) ou externe comme condition d'entrée pour les chiens.", es: "Ninguna fuente oficial malgache que verificamos establece un tratamiento antiparasitario interno (tenia/Echinococcus) o externo como condición de entrada para los perros.", pt: "Nenhuma fonte oficial malgaxe que verificamos estabelece um tratamento antiparasitário interno (tênia/Echinococcus) ou externo como condição de entrada para cachorros." }
+    exceptions: { en: "Confirm with the DSV, as case-by-case conditions may be added.", fr: "À confirmer avec la DSV, des conditions au cas par cas pouvant être ajoutées.", es: "Confirma con la DSV, ya que pueden añadirse condiciones caso por caso.", pt: "Confirme com a DSV, pois condições podem ser acrescentadas caso a caso." }
+    ref: { en: "Not stated in verified official sources (DSV / Douanes malagasy)", fr: "Non mentionné dans les sources officielles vérifiées (DSV / Douane malagasy)", es: "No indicado en las fuentes oficiales verificadas (DSV / Douanes malagasy)", pt: "Não indicado nas fontes oficiais verificadas (DSV / Douanes malagasy)" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No comunicado", pt: "Não publicado" }
+    when: { en: "No explicit minimum age is published in the official sources we verified. In practice a valid rabies vaccination certificate is only possible once the dog is old enough to be vaccinated, which pushes the earliest travel age to several months.", fr: "Aucun âge minimum explicite n'est publié dans les sources officielles vérifiées. En pratique, un certificat de vaccination antirabique valide n'est possible qu'une fois le chien en âge d'être vacciné, ce qui repousse la date de voyage la plus précoce à plusieurs mois.", es: "No se publica una edad mínima explícita en las fuentes oficiales que verificamos. En la práctica, un certificado de vacunación antirrábica válido solo es posible una vez que el perro tiene edad suficiente para ser vacunado, lo que retrasa la edad más temprana de viaje a varios meses.", pt: "Nenhuma idade mínima explícita é publicada nas fontes oficiais que verificamos. Na prática, um certificado de vacinação antirrábica válido só é possível quando o cachorro tem idade suficiente para ser vacinado, o que empurra a idade mínima de viagem para vários meses." }
+    exceptions: { en: "Confirm any age condition for young or unvaccinated animals with the DSV.", fr: "Vérifie toute condition d'âge pour les animaux jeunes ou non vaccinés avec la DSV.", es: "Confirma con la DSV cualquier condición de edad para animales jóvenes o no vacunados.", pt: "Confirme qualquer condição de idade para animais jovens ou não vacinados com a DSV." }
+    ref: { en: "Not stated in verified official sources (DSV / Douanes malagasy)", fr: "Non mentionné dans les sources officielles vérifiées (DSV / Douane malagasy)", es: "No indicado en las fuentes oficiales verificadas (DSV / Douanes malagasy)", pt: "Não indicado nas fontes oficiais verificadas (DSV / Douanes malagasy)" }
+  - item: { en: "Airport veterinary inspection", fr: "Inspection vétérinaire à l'aéroport", es: "Inspección veterinaria en el aeropuerto", pt: "Inspeção veterinária no aeroporto" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Import controls are carried out jointly by the DSV's veterinary officers and the Malagasy Customs at the point of entry. Present the import authorization, the anti-rabies vaccination certificate and the health certificate to clear the dog through customs.", fr: "Les contrôles à l'importation sont assurés conjointement par les vétérinaires officiels de la DSV et la Douane malagasy au point d'entrée. Présente l'autorisation d'importation, le certificat de vaccination antirabique et le certificat sanitaire pour dédouaner le chien.", es: "Los controles de importación los realizan conjuntamente los veterinarios oficiales de la DSV y la Aduana malgache en el punto de entrada. Presenta la autorización de importación, el certificado de vacunación antirrábica y el certificado sanitario para despachar al perro en aduanas.", pt: "Os controles de importação são realizados em conjunto pelos agentes veterinários da DSV e pela alfândega malgaxe no ponto de entrada. Apresente a autorização de importação, o certificado de vacinação antirrábica e o atestado de saúde para desembaraçar o cachorro na alfândega." }
+    exceptions: { en: "Without the import authorization and the anti-rabies vaccination certificate, customs clearance cannot proceed.", fr: "Sans l'autorisation d'importation et le certificat de vaccination antirabique, le dédouanement ne peut aboutir.", es: "Sin la autorización de importación y el certificado de vacunación antirrábica, el despacho de aduanas no puede realizarse.", pt: "Sem a autorização de importação e o certificado de vacinação antirrábica, o desembaraço aduaneiro não pode prosseguir." }
+    ref: { en: "Douanes malagasy — heading 0106.19 40; DSV/Douane import controls", fr: "Douane malagasy — position 0106.19 40 ; contrôles à l'importation DSV/Douane", es: "Douanes malagasy — partida 0106.19 40; controles de importación DSV/Aduana", pt: "Douanes malagasy — código 0106.19 40; controles de importação DSV/Douane" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not published", fr: "Non communiquée", es: "No comunicada", pt: "Não publicado" }
+    when: { en: "The official sources we verified do not describe a mandatory quarantine scheme for compliant dogs entering Madagascar.", fr: "Les sources officielles vérifiées ne décrivent pas de régime de quarantaine obligatoire pour les chiens conformes entrant à Madagascar.", es: "Las fuentes oficiales que verificamos no describen un régimen de cuarentena obligatorio para los perros conformes que entran en Madagascar.", pt: "As fontes oficiais que verificamos não descrevem um esquema de quarentena obrigatório para cachorros em conformidade que entram em Madagascar." }
+    exceptions: { en: "Non-compliant or unvaccinated animals may face measures decided by the DSV — confirm before travel.", fr: "Les animaux non conformes ou non vaccinés peuvent faire l'objet de mesures décidées par la DSV — à confirmer avant le voyage.", es: "Los animales no conformes o no vacunados pueden ser objeto de medidas decididas por la DSV — confirma antes de viajar.", pt: "Animais em não conformidade ou não vacinados podem enfrentar medidas decididas pela DSV — confirme antes de viajar." }
+    ref: { en: "Not stated in verified official sources (DSV / Douanes malagasy)", fr: "Non mentionné dans les sources officielles vérifiées (DSV / Douane malagasy)", es: "No indicado en las fuentes oficiales verificadas (DSV / Douanes malagasy)", pt: "Não indicado nas fontes oficiais verificadas (DSV / Douanes malagasy)" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No official import ban found", fr: "Aucune interdiction d'importation officielle trouvée", es: "No se encontró prohibición de importación oficial", pt: "Nenhuma proibição oficial de importação encontrada" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "We found no breed-specific import ban in the official Malagasy sources verified; entry is controlled by import authorization and health requirements, not by breed.", fr: "Nous n'avons trouvé aucune interdiction d'importation par race dans les sources officielles malgaches vérifiées ; l'entrée est encadrée par l'autorisation d'importation et les exigences sanitaires, non par la race.", es: "No encontramos ninguna prohibición de importación por raza en las fuentes oficiales malgaches verificadas; la entrada se controla mediante la autorización de importación y los requisitos sanitarios, no por la raza.", pt: "Não encontramos nenhuma proibição de importação por raça nas fontes oficiais malgaxes verificadas; a entrada é controlada pela autorização de importação e pelas exigências sanitárias, não pela raça." }
+    ref: { en: "No breed-specific legislation cited in verified official sources", fr: "Aucune législation par race citée dans les sources officielles vérifiées", es: "No se cita legislación específica por raza en las fuentes oficiales verificadas", pt: "Nenhuma legislação específica por raça citada nas fontes oficiais verificadas" }
+
+origin:
+  eu:
+    title: { en: "From the EU / Europe", fr: "Depuis l'Europe / l'UE", es: "Desde la UE / Europa", pt: "Da UE / Europa" }
+    body:
+      en: "There is no EU pet-passport shortcut into Madagascar: the EU passport is not a Malagasy document. A dog from Europe needs the DSV import authorization, a valid anti-rabies vaccination certificate and a veterinary health certificate (French is accepted). Because vaccination timing, any antibody test and age limits are not published, confirm your exact file with the DSV before you travel."
+      fr: "Aucun raccourci « passeport européen » pour entrer à Madagascar : le passeport UE n'est pas un document malgache. Un chien venant d'Europe a besoin de l'autorisation d'importation de la DSV, d'un certificat de vaccination antirabique valide et d'un certificat sanitaire vétérinaire (le français est accepté). Comme le calendrier de vaccination, un éventuel titrage et les limites d'âge ne sont pas publiés, confirme ton dossier exact avec la DSV avant de voyager."
+      es: "No hay atajo de pasaporte europeo para mascotas para entrar en Madagascar: el pasaporte de la UE no es un documento malgache. Un perro procedente de Europa necesita la autorización de importación de la DSV, un certificado de vacunación antirrábica válido y un certificado sanitario veterinario (se acepta el francés). Como el calendario de vacunación, una posible prueba de titulación y los límites de edad no están publicados, confirma tu expediente exacto con la DSV antes de viajar."
+      pt: "Não existe atalho de passaporte europeu para entrar em Madagascar: o passaporte da UE não é um documento malgaxe. Um cachorro vindo da Europa precisa da autorização de importação da DSV, de um certificado de vacinação antirrábica válido e de um atestado de saúde veterinário (o francês é aceito). Como o prazo da vacinação, qualquer teste sorológico e os limites de idade não são publicados, confirme seu processo exato com a DSV antes de viajar."
+    cls: warn
+  listed:
+    title: { en: "From another third country", fr: "Depuis un autre pays tiers", es: "Desde otro país tercero", pt: "De outro país terceiro" }
+    body:
+      en: "Madagascar does not run an EU-style list of approved or listed countries. The same national scheme applies from any origin: an import authorization from the DSV and an anti-rabies vaccination certificate issued by the Veterinary Service for customs clearance, plus a health certificate. The DSV assesses each file individually."
+      fr: "Madagascar n'applique pas de liste de pays approuvés ou listés à l'européenne. Le même régime national s'applique depuis toute origine : une autorisation d'importation de la DSV et un certificat de vaccination antirabique délivré par le Service vétérinaire pour le dédouanement, plus un certificat sanitaire. La DSV évalue chaque dossier individuellement."
+      es: "Madagascar no aplica una lista de países aprobados o listados al estilo de la UE. El mismo régimen nacional se aplica desde cualquier origen: una autorización de importación de la DSV y un certificado de vacunación antirrábica expedido por el Servicio Veterinario para el despacho de aduanas, más un certificado sanitario. La DSV evalúa cada expediente individualmente."
+      pt: "Madagascar não opera uma lista de países aprovados ou listados no estilo da UE. O mesmo esquema nacional se aplica a partir de qualquer origem: uma autorização de importação da DSV e um certificado de vacinação antirrábica emitido pelo Serviço Veterinário para o desembaraço aduaneiro, além de um atestado de saúde. A DSV avalia cada processo individualmente."
+    cls: warn
+  nonListed:
+    title: { en: "Details set case by case", fr: "Détails fixés au cas par cas", es: "Detalles fijados caso por caso", pt: "Detalhes definidos caso a caso" }
+    body:
+      en: "Because Madagascar's published requirements are limited and the country is rabies-affected, the DSV may set additional conditions (for example on vaccination timing or testing) depending on the dog's origin and history, and could refuse a file that presents a sanitary risk. Contact the DSV early and get written confirmation before making any arrangements."
+      fr: "Les exigences publiées de Madagascar étant limitées et le pays étant touché par la rage, la DSV peut fixer des conditions supplémentaires (par exemple sur le calendrier de vaccination ou un test) selon l'origine et l'historique du chien, et pourrait refuser un dossier présentant un risque sanitaire. Contacte tôt la DSV et obtiens une confirmation écrite avant toute organisation."
+      es: "Como los requisitos publicados de Madagascar son limitados y el país está afectado por la rabia, la DSV puede fijar condiciones adicionales (por ejemplo sobre el calendario de vacunación o una prueba) según el origen y el historial del perro, y podría rechazar un expediente que presente un riesgo sanitario. Contacta pronto con la DSV y obtén confirmación por escrito antes de organizar nada."
+      pt: "Como as exigências publicadas de Madagascar são limitadas e o país é afetado pela raiva, a DSV pode definir condições adicionais (por exemplo, sobre o prazo da vacinação ou testes) conforme a origem e o histórico do cachorro, e pode recusar um processo que apresente risco sanitário. Entre em contato com a DSV com antecedência e obtenha confirmação por escrito antes de fazer qualquer arranjo."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens on arrival depends on the documents you carry; controls are shared by the DSV and the Malagasy Customs at the point of entry (Antananarivo–Ivato is the main international airport)."
+    fr: "Ce qui se passe à l'arrivée dépend des documents que tu porte ; les contrôles sont partagés entre la DSV et la Douane malagasy au point d'entrée (Antananarivo–Ivato est le principal aéroport international)."
+    es: "Lo que ocurre a la llegada depende de los documentos que lleves; los controles se reparten entre la DSV y la Aduana malgache en el punto de entrada (Antananarivo–Ivato es el principal aeropuerto internacional)."
+    pt: "O que acontece na chegada depende dos documentos que você porta; os controles são compartilhados pela DSV e pela alfândega malgaxe no ponto de entrada (Antananarivo–Ivato é o principal aeroporto internacional)."
+  points:
+    - en: "Obtain the import authorization from the DSV before the dog is shipped — no dog should be sent without it."
+      fr: "Obtiens l'autorisation d'importation de la DSV avant l'expédition du chien — aucun chien ne doit être envoyé sans elle."
+      es: "Obtén la autorización de importación de la DSV antes de enviar al perro — ningún perro debe enviarse sin ella."
+      pt: "Obtenha a autorização de importação da DSV antes do embarque do cachorro — nenhum cachorro deve ser enviado sem ela."
+    - en: "Present the anti-rabies vaccination certificate issued by the Veterinary Service at customs clearance; clearance is conditioned on this certificate."
+      fr: "Présente au dédouanement le certificat de vaccination antirabique délivré par le Service vétérinaire ; le dédouanement est subordonné à ce certificat."
+      es: "Presenta el certificado de vacunación antirrábica expedido por el Servicio Veterinario en el despacho de aduanas; el despacho está condicionado a este certificado."
+      pt: "Apresente o certificado de vacinação antirrábica emitido pelo Serviço Veterinário no desembaraço aduaneiro; o desembaraço é condicionado a esse certificado."
+    - en: "Carry the original import authorization and health certificate; the DSV's veterinary officers and Customs check the documents at the point of entry."
+      fr: "Munis-toi de l'autorisation d'importation et du certificat sanitaire originaux ; les vétérinaires officiels de la DSV et la Douane vérifient les documents au point d'entrée."
+      es: "Lleva la autorización de importación y el certificado sanitario originales; los veterinarios oficiales de la DSV y la Aduana revisan los documentos en el punto de entrada."
+      pt: "Leve a autorização de importação e o atestado de saúde originais; os agentes veterinários da DSV e a alfândega verificam os documentos no ponto de entrada."
+    - en: "If documents are missing or invalid, the animal may not be cleared; any further measures are decided by the DSV, so travel with a complete file."
+      fr: "Si des documents manquent ou sont invalides, l'animal peut ne pas être dédouané ; toute mesure complémentaire est décidée par la DSV : voyage donc avec un dossier complet."
+      es: "Si faltan documentos o no son válidos, el animal puede no ser despachado; cualquier medida adicional la decide la DSV, así que viaja con un expediente completo."
+      pt: "Se os documentos estiverem ausentes ou inválidos, o animal pode não ser liberado; quaisquer medidas adicionais são decididas pela DSV, portanto viaje com um processo completo."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "The official Malagasy sources we verified control entry through the import authorization and health requirements, not through breed. We found no national breed-specific import ban."
+    fr: "Les sources officielles malgaches que nous avons vérifiées encadrent l'entrée par l'autorisation d'importation et les exigences sanitaires, non par la race. Nous n'avons trouvé aucune interdiction d'importation nationale par race."
+    es: "Las fuentes oficiales malgaches que verificamos controlan la entrada mediante la autorización de importación y los requisitos sanitarios, no por la raza. No encontramos ninguna prohibición de importación nacional por raza."
+    pt: "As fontes oficiais malgaxes que verificamos controlam a entrada por meio da autorização de importação e das exigências sanitárias, não pela raça. Não encontramos nenhuma proibição nacional de importação por raça."
+  cat1:
+    en: "No prohibited-breed list: the verified import conditions do not name banned breeds. A compliant dog of any breed can be imported once the import authorization, rabies vaccination certificate and health certificate are in order."
+    fr: "Pas de liste de races interdites : les conditions d'importation vérifiées ne nomment aucune race prohibée. Un chien conforme, quelle que soit sa race, peut être importé dès lors que l'autorisation d'importation, le certificat de vaccination antirabique et le certificat sanitaire sont en règle."
+    es: "Sin lista de razas prohibidas: las condiciones de importación verificadas no nombran ninguna raza prohibida. Un perro conforme de cualquier raza puede importarse una vez que la autorización de importación, el certificado de vacunación antirrábica y el certificado sanitario están en regla."
+    pt: "Nenhuma lista de raças proibidas: as condições de importação verificadas não citam raças banidas. Um cachorro de qualquer raça, em conformidade, pode ser importado desde que a autorização de importação, o certificado de vacinação antirrábica e o atestado de saúde estejam em ordem."
+  cat2:
+    en: "We found no official Malagasy breed-specific import restriction to report. Because national rules are not fully published online, treat this as unconfirmed and verify with the DSV."
+    fr: "Nous n'avons trouvé aucune restriction d'importation officielle par race à signaler à Madagascar. Les règles nationales n'étant pas entièrement publiées en ligne, considère ce point comme non confirmé et vérifie auprès de la DSV."
+    es: "No encontramos ninguna restricción de importación oficial malgache por raza que informar. Como las normas nacionales no están totalmente publicadas en línea, considéralo no confirmado y verifícalo con la DSV."
+    pt: "Não encontramos nenhuma restrição oficial malgaxe de importação por raça a relatar. Como as regras nacionais não são totalmente publicadas on-line, trate isso como não confirmado e verifique com a DSV."
+  note:
+    en: "Because national rules can change and are not fully published, verify the current breed and import conditions directly with the Direction des Services Vétérinaires before you travel."
+    fr: "Les règles nationales pouvant évoluer et n'étant pas entièrement publiées, vérifie les conditions de race et d'importation à jour directement auprès de la Direction des Services Vétérinaires avant de voyager."
+    es: "Como las normas nacionales pueden cambiar y no están totalmente publicadas, verifica las condiciones de raza e importación vigentes directamente con la Direction des Services Vétérinaires antes de viajar."
+    pt: "Como as regras nacionais podem mudar e não são totalmente publicadas, verifique as condições atuais de raça e importação diretamente com a Direction des Services Vétérinaires antes de viajar."
+
+checklist:
+  - en: "Contact the DSV early to request the import authorization and confirm the full, current conditions"
+    fr: "Contacte tôt la DSV pour demander l'autorisation d'importation et confirmer l'ensemble des conditions à jour"
+    es: "Contacta pronto con la DSV para solicitar la autorización de importación y confirmar todas las condiciones vigentes"
+    pt: "Entre em contato com a DSV com antecedência para solicitar a autorização de importação e confirmar as condições completas e atuais"
+  - en: "Valid anti-rabies vaccination, with the certificate issued/recognised by the Veterinary Service for clearance"
+    fr: "Vaccination antirabique valide, avec le certificat délivré/reconnu par le Service vétérinaire pour le dédouanement"
+    es: "Vacunación antirrábica válida, con el certificado expedido/reconocido por el Servicio Veterinario para el despacho"
+    pt: "Vacinação antirrábica válida, com o certificado emitido/reconhecido pelo Serviço Veterinário para o desembaraço"
+  - en: "Ask the DSV whether a rabies antibody test, parasite treatment or minimum age applies to your file (not published)"
+    fr: "Demande à la DSV si un titrage antirabique, un traitement antiparasitaire ou un âge minimum s'applique à ton dossier (non publié)"
+    es: "Pregunta a la DSV si a tu expediente le aplica una prueba de titulación de rabia, un tratamiento antiparasitario o una edad mínima (no publicado)"
+    pt: "Pergunte à DSV se um teste sorológico antirrábico, tratamento antiparasitário ou idade mínima se aplica ao seu processo (não publicado)"
+  - en: "Veterinary health certificate from the country of origin (French accepted); confirm the accepted model with the DSV"
+    fr: "Certificat sanitaire vétérinaire du pays d'origine (français accepté) ; confirme le modèle accepté avec la DSV"
+    es: "Certificado sanitario veterinario del país de origen (se acepta francés); confirma el modelo aceptado con la DSV"
+    pt: "Atestado de saúde veterinário do país de origem (francês aceito); confirme o modelo aceito com a DSV"
+  - en: "ISO microchip recommended for identification, even though not explicitly required in the sources verified"
+    fr: "Puce ISO recommandée pour l'identification, même si non explicitement exigée dans les sources vérifiées"
+    es: "Microchip ISO recomendado para la identificación, aunque no se exija explícitamente en las fuentes verificadas"
+    pt: "Microchip ISO recomendado para identificação, mesmo que não seja explicitamente exigido nas fontes verificadas"
+  - en: "Carry all original documents; present them to the DSV veterinary officers and Customs at the point of entry"
+    fr: "Munis-toi de tous les documents originaux ; présente-les aux vétérinaires officiels de la DSV et à la Douane au point d'entrée"
+    es: "Lleva todos los documentos originales; preséntalos a los veterinarios oficiales de la DSV y a la Aduana en el punto de entrada"
+    pt: "Leve todos os documentos originais; apresente-os aos agentes veterinários da DSV e à alfândega no ponto de entrada"
+  - en: "Airline reservation and a suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
+
+sources:
+  - label: { en: "Douanes malagasy — Tariff: Dogs, cats, domestic (heading 0106.19 40)", fr: "Douane malagasy — Tarif : Chiens, chats, domestiques (position 0106.19 40)", es: "Douanes malagasy — Arancel: perros, gatos, domésticos (partida 0106.19 40)", pt: "Douanes malagasy — Tarifa: cachorros, gatos, domésticos (código 0106.19 40)" }
+    url: "https://www.douanes.gov.mg/tarif/animaux-vivants-et-produits-du-regne-animal/animaux-vivants/autres-animaux-vivants/mammiferes/autres/chiens-chats-domestiques/"
+  - label: { en: "Douanes malagasy — Prohibitions and restrictions", fr: "Douane malagasy — Prohibitions et interdictions", es: "Douanes malagasy — Prohibiciones y restricciones", pt: "Douanes malagasy — Proibições e restrições" }
+    url: "https://www.douanes.gov.mg/prohibitions-et-interdictions/"
+  - label: { en: "Douanes malagasy — Travellers' customs guide", fr: "Douane malagasy — Guide de passage en douane (voyageurs)", es: "Douanes malagasy — Guía de aduanas para viajeros", pt: "Douanes malagasy — Guia alfandegário para viajantes" }
+    url: "https://www.douanes.gov.mg/particulier/guide-de-passage-en-douane/"
+  - label: { en: "Ministère de l'Agriculture et de l'Élevage — Directions and Services (DSV, competent veterinary authority)", fr: "Ministère de l'Agriculture et de l'Élevage — Directions et Services (DSV, autorité vétérinaire compétente)", es: "Ministère de l'Agriculture et de l'Élevage — Direcciones y servicios (DSV, autoridad veterinaria competente)", pt: "Ministère de l'Agriculture et de l'Élevage — Directions and Services (DSV, autoridade veterinária competente)" }
+    url: "https://www.minae.gov.mg/directions-et-services/"
+  - label: { en: "USDA APHIS — Pet Travel: Unknown Requirements (Madagascar has no APHIS export page)", fr: "USDA APHIS — Pet Travel: Unknown Requirements (Madagascar sans page d'exportation APHIS)", es: "USDA APHIS — Pet Travel: Unknown Requirements (Madagascar no tiene página de exportación de APHIS)", pt: "USDA APHIS — Pet Travel: Unknown Requirements (Madagascar não tem página de exportação da APHIS)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/unknown-requirements"
+
+seo:
+  title: { en: "Madagascar Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Madagascar — Guide", es: "Requisitos de entrada de perros en Madagascar — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Madagascar — Guia de Viagem" }
+  metaTitle: { en: "Traveling to Madagascar With Your Dog: Entry Requirements (2026)", fr: "Voyager à Madagascar avec ton chien : formalités (2026)", es: "Viajar a Madagascar con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Madagascar: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official Madagascar rules for bringing a dog: prior DSV import authorization and an anti-rabies vaccination certificate for customs clearance. Sourced and dated."
+    fr: "Règles officielles de Madagascar pour faire entrer un chien : autorisation d'importation préalable de la DSV et certificat antirabique. Sourcé et daté."
+    es: "Normas oficiales de Madagascar para traer un perro: autorización de importación previa de la DSV y certificado de vacunación antirrábica. Con fuentes y fecha."
+    pt: "Regras oficiais de Madagascar para levar um cachorro: autorização de importação prévia da DSV e um certificado de vacinação antirrábica para o desembaraço aduaneiro."
+  slug: "madagascar"
+  shortDesc:
+    en: "What you need to bring a dog into Madagascar: a prior DSV import authorization and an anti-rabies vaccination certificate for customs clearance."
+    fr: "Ce qu'il faut pour faire entrer un chien à Madagascar : une autorisation d'importation préalable de la DSV et un certificat de vaccination antirabique pour le dédouanement."
+    es: "Lo que necesitas para traer un perro a Madagascar: una autorización de importación previa de la DSV y un certificado de vacunación antirrábica para el despacho de aduanas."
+    pt: "O que você precisa para levar um cachorro a Madagascar: uma autorização de importação prévia da DSV e um certificado de vacinação antirrábica para o desembaraço aduaneiro."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 2

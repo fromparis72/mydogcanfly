@@ -1,0 +1,11 @@
+---
+import { loadKB } from "@mydogcanfly/knowledge";
+import EntityPage from "./EntityPage.astro";
+import { entityProps } from "../lib/pagedata";
+
+interface Props { id: string; locale: string }
+const { id, locale } = Astro.props;
+const kb = loadKB();
+const props = entityProps(kb, id, locale);
+---
+<EntityPage {...props} locale={locale} />

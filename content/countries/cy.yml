@@ -1,0 +1,354 @@
+# Country Entry Guide — Cyprus (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_cy
+iso2: "CY"
+name: { en: "Cyprus", fr: "Chypre", es: "Chipre", pt: "Chipre" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Cyprus with your dog", fr: "Voyager à Chypre avec ton chien", es: "Viajar a Chipre con tu perro", pt: "Viajar para Chipre com seu cachorro" }
+  intro:
+    en: >-
+      Cyprus welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Cyprus itself. As an EU member, Cyprus applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from
+      another EU country simply needs an EU pet passport. A dog from a listed non-EU country (such as
+      the United States, Canada or the United Kingdom) needs an EU animal health certificate but no
+      blood test. A dog from a non-listed country faces the longest path, including a rabies antibody
+      test and a three-month wait. No tapeworm treatment is required to enter Cyprus. As an island,
+      Cyprus admits pets only through designated points of entry, and four dog breeds are banned from
+      the country. This guide explains each case so you know exactly what to prepare before you book.
+    fr: >-
+      Chypre accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de Chypre. En tant qu'État membre de l'UE, Chypre applique les
+      règles européennes de mouvement des animaux : une puce ISO et une vaccination antirabique valide
+      sont toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un passeport
+      européen. Un chien en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…) a besoin
+      d'un certificat sanitaire européen mais pas de prise de sang. Un chien venant d'un pays non listé
+      suit le parcours le plus long, avec un titrage antirabique et un délai de trois mois. Aucun
+      traitement contre l'échinococcose n'est requis pour entrer à Chypre. En tant qu'île, Chypre
+      n'admet les animaux que par des points d'entrée désignés, et quatre races de chiens sont
+      interdites sur le territoire. Ce guide détaille chaque cas pour savoir quoi préparer avant de réserver.
+    es: >-
+      Chipre acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Chipre. Como Estado miembro de la UE, Chipre aplica las normas
+      europeas de movimiento de animales de compañía: siempre se exigen un microchip ISO y una
+      vacunación antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte
+      europeo para mascotas. Un perro procedente de un país tercero listado (como Estados Unidos, Canadá
+      o el Reino Unido) necesita un certificado sanitario animal de la UE, pero no una prueba de sangre.
+      Un perro de un país no listado se enfrenta al camino más largo, que incluye una prueba de
+      titulación de rabia y una espera de tres meses. No se exige tratamiento contra la tenia para entrar
+      en Chipre. Al ser una isla, Chipre admite mascotas únicamente a través de puntos de entrada
+      designados, y cuatro razas de perros están prohibidas en el país. Esta guía explica cada caso para
+      que sepas exactamente qué preparar antes de reservar.
+
+    pt: "Chipre recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só de Chipre em si. Como membro da União Europeia, Chipre aplica as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais. Um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue. Um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico e três meses de espera. Nenhum tratamento contra a tênia é exigido para entrar em Chipre. Como é uma ilha, Chipre só admite animais de estimação por pontos de entrada designados, e quatro raças de cachorros são proibidas no país. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date, up to ~3 weeks if the first rabies shot is still needed."
+    fr: "Quelques jours si le passeport est à jour, jusqu'à ~3 semaines si la première vaccination reste à faire."
+    es: "Unos días si el pasaporte está al día, hasta ~3 semanas si aún falta la primera vacuna antirrábica."
+    pt: "Alguns dias se o passaporte estiver em dia, até cerca de 3 semanas se ainda faltar a primeira vacina antirrábica."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, plus a health certificate valid 10 days."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, plus un certificat sanitaire valable 10 jours."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, más un certificado sanitario válido 10 días."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, mais um certificado sanitário válido por 10 dias."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (except banned breeds)", fr: "Oui (sauf races interdites)", es: "Sí (salvo razas prohibidas)", pt: "Sim (exceto raças proibidas)" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Not required for Cyprus", fr: "Non requis pour Chypre", es: "No obligatorio para Chipre", pt: "Não obrigatório em Chipre" }
+    cls: ok
+  - requirement: { en: "Prohibited breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    status: { en: "4 breeds banned from entry", fr: "4 races interdites d'entrée", es: "4 razas con entrada prohibida", pt: "4 raças proibidas de entrar" }
+    cls: no
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Cyprus (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — Chypre (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Chipre (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — Chipre (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Cyprus", fr: "Pays de destination — Chypre", es: "País de destino — Chipre", pt: "País de destino — Chipre" }
+      text:
+        en: "Cyprus applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required, and no tapeworm treatment is needed. As an island it admits pets only at designated points, and it bans four dog breeds outright."
+        fr: "Chypre applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées, et aucun traitement contre l'échinococcose n'est requis. En tant qu'île, elle n'admet les animaux qu'à des points désignés et interdit purement et simplement quatre races de chiens."
+        es: "Chipre aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida, y no se necesita tratamiento contra la tenia. Al ser una isla, admite mascotas únicamente en puntos designados y prohíbe por completo cuatro razas de perros."
+        pt: "Chipre aplica o quadro europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios, e nenhum tratamento contra a tênia é necessário. Como é uma ilha, só admite animais de estimação em pontos designados, e proíbe totalmente quatro raças de cachorros."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Cyprus's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre chypriote, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Chipre y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro cipriota, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784/11785 transponder (HDX or FDX-B); must be implanted before the rabies vaccination.", fr: "Transpondeur ISO 11784/11785 (HDX ou FDX-B) ; posé avant la vaccination antirabique.", es: "Transpondedor ISO 11784/11785 (HDX o FDX-B); debe implantarse antes de la vacunación antirrábica.", pt: "Transponder ISO 11784/11785 (HDX ou FDX-B); deve ser implantado antes da vacinação antirrábica." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; Cyprus Veterinary Services", fr: "Règl. UE 576/2013 ; Services vétérinaires de Chypre", es: "Regl. UE 576/2013; Servicios Veterinarios de Chipre", pt: "Regulamento UE 576/2013; Cyprus Veterinary Services" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot; valid from 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines ; valide 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna; válida a partir de los 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina; válida a partir de 21 dias após a primovacinação." }
+    exceptions: { en: "Entry unvaccinated against rabies is prohibited regardless of the country of origin; the microchip must already be in place.", fr: "L'entrée sans vaccination antirabique est interdite quel que soit le pays d'origine ; la puce doit déjà être posée.", es: "La entrada sin vacunación antirrábica está prohibida independientemente del país de origen; el microchip debe estar ya implantado.", pt: "A entrada de um cachorro não vacinado contra a raiva é proibida, seja qual for o país de origem; o microchip já deve estar implantado." }
+    ref: { en: "EU Reg. 576/2013, Annex III; Cyprus Veterinary Services", fr: "Règl. UE 576/2013, annexe III ; Services vétérinaires de Chypre", es: "Regl. UE 576/2013, anexo III; Servicios Veterinarios de Chipre", pt: "Regulamento UE 576/2013, anexo III; Cyprus Veterinary Services" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-approved lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas origens não listadas: sangue ≥30 dias após a vacinação, ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, laboratório aprovado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692; Cyprus Veterinary Services", fr: "Règl. UE 2020/692 ; Services vétérinaires de Chypre", es: "Regl. UE 2020/692; Servicios Veterinarios de Chipre", pt: "Regulamento UE 2020/692; Cyprus Veterinary Services" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip and rabies vaccination.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce et la vaccination.", es: "Expedido por un veterinario de la UE; registra el microchip y la vacunación antirrábica.", pt: "Emitido por um veterinário da UE; registra o microchip e a vacinação antirrábica." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e, depois, por até 4 meses para circular pela UE." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV; Cyprus Veterinary Services", fr: "Règl. UE 577/2013, annexe IV ; Services vétérinaires de Chypre", es: "Regl. UE 577/2013, anexo IV; Servicios Veterinarios de Chipre", pt: "Regulamento UE 577/2013, anexo IV; Cyprus Veterinary Services" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only Finland, Ireland, Malta, N. Ireland and Norway require it — not Cyprus.", fr: "Seuls la Finlande, l'Irlande, Malte, l'Irlande du Nord et la Norvège l'exigent — pas Chypre.", es: "Solo lo exigen Finlandia, Irlanda, Malta, Irlanda del Norte y Noruega — no Chipre.", pt: "Só a Finlândia, a Irlanda, Malta, a Irlanda do Norte e a Noruega exigem — Chipre não." }
+    ref: { en: "European Commission — pet travel", fr: "Commission européenne — voyage animaux", es: "Comisión Europea — viaje de animales", pt: "Comissão Europeia — viagens com animais de estimação" }
+  - item: { en: "Advance notification of arrival", fr: "Notification préalable d'arrivée", es: "Notificación previa de llegada", pt: "Aviso prévio de chegada" }
+    required: { en: "Third-country arrivals", fr: "Arrivées de pays tiers", es: "Llegadas de países terceros", pt: "Chegadas de países terceiros" }
+    when: { en: "For a dog arriving from a non-EU country: notify the District Veterinary Office of the point of entry at least 48 hours before arrival (date, time, flight number or ship name).", fr: "Pour un chien arrivant d'un pays hors UE : prévenir le bureau vétérinaire de district du point d'entrée au moins 48 heures avant l'arrivée (date, heure, numéro de vol ou nom du navire).", es: "Para un perro que llega de un país no perteneciente a la UE: notifica a la Oficina Veterinaria de Distrito del punto de entrada al menos 48 horas antes de la llegada (fecha, hora, número de vuelo o nombre del barco).", pt: "Para um cachorro que chega de um país fora da UE: avise o District Veterinary Office (escritório veterinário distrital) do ponto de entrada com no mínimo 48 horas de antecedência, informando data, horário e número do voo ou nome do navio." }
+    exceptions: { en: "No import permit is issued; no prior notification is required for intra-EU arrivals.", fr: "Aucun permis d'import n'est délivré ; aucune notification préalable n'est exigée pour les arrivées intra-UE.", es: "No se expide permiso de importación; no se exige notificación previa para las llegadas intracomunitarias.", pt: "Não é emitida nenhuma licença de importação; não é exigida notificação prévia para as chegadas de dentro da UE." }
+    ref: { en: "Cyprus Veterinary Services — non-commercial movement", fr: "Services vétérinaires de Chypre — mouvement non commercial", es: "Servicios Veterinarios de Chipre — movimiento no comercial", pt: "Cyprus Veterinary Services — circulação não comercial" }
+  - item: { en: "Point of entry / border check", fr: "Point d'entrée / contrôle frontalier", es: "Punto de entrada / control fronterizo", pt: "Ponto de entrada / controle de fronteira" }
+    required: { en: "All arrivals", fr: "Toutes les arrivées", es: "Todas las llegadas", pt: "Todas as chegadas" }
+    when: { en: "Pets may enter only at designated points (Larnaka and Pafos airports, Lemesos/Larnaka ports, marinas); documents and identity are inspected by the Veterinary Officer or Customs.", fr: "Les animaux ne peuvent entrer qu'aux points désignés (aéroports de Larnaca et Paphos, ports de Limassol/Larnaca, marinas) ; documents et identité contrôlés par le vétérinaire officiel ou la douane.", es: "Las mascotas solo pueden entrar en puntos designados (aeropuertos de Lárnaca y Pafos, puertos de Limasol/Lárnaca, marinas); los documentos y la identidad los inspecciona el veterinario oficial o Aduanas.", pt: "Os animais de estimação só podem entrar por pontos designados (aeroportos de Lárnaca e Pafos, portos de Lemesos/Lárnaca, marinas); os documentos e a identidade são conferidos pelo Veterinary Officer (veterinário oficial) ou pela alfândega." }
+    exceptions: { en: "Entry from any non-designated point is prohibited.", fr: "L'entrée par tout point non désigné est interdite.", es: "La entrada por cualquier punto no designado está prohibida.", pt: "A entrada por qualquer ponto não designado é proibida." }
+    ref: { en: "Cyprus Veterinary Services; Cyprus Customs & Excise", fr: "Services vétérinaires de Chypre ; Douane chypriote", es: "Servicios Veterinarios de Chipre; Aduanas e Impuestos Especiales de Chipre", pt: "Cyprus Veterinary Services; Cyprus Customs & Excise" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "At least 105 days old", fr: "Au moins 105 jours", es: "Al menos 105 días de edad", pt: "Pelo menos 105 dias de idade" }
+    when: { en: "12-week rabies shot + 21-day wait; any pet entering Cyprus must be at least 105 days old.", fr: "Vaccin à 12 semaines + 21 jours ; tout animal entrant à Chypre doit avoir au moins 105 jours.", es: "Vacuna a las 12 semanas + espera de 21 días; toda mascota que entre en Chipre debe tener al menos 105 días.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera; todo animal que entra em Chipre precisa ter pelo menos 105 dias de idade." }
+    exceptions: { en: "The entry of pets under 105 days old is prohibited regardless of the country of origin.", fr: "L'entrée d'un animal de moins de 105 jours est interdite quel que soit le pays d'origine.", es: "La entrada de mascotas menores de 105 días está prohibida independientemente del país de origen.", pt: "A entrada de animais com menos de 105 dias é proibida, seja qual for o país de origem." }
+    ref: { en: "EU Reg. 576/2013; Cyprus Veterinary Services", fr: "Règl. UE 576/2013 ; Services vétérinaires de Chypre", es: "Regl. UE 576/2013; Servicios Veterinarios de Chipre", pt: "Regulamento UE 576/2013; Cyprus Veterinary Services" }
+  - item: { en: "Prohibited breeds", fr: "Races interdites", es: "Razas prohibidas", pt: "Raças proibidas" }
+    required: { en: "Banned from entry", fr: "Interdites d'entrée", es: "Con entrada prohibida", pt: "Proibidas de entrar" }
+    when: { en: "Pit Bull Terrier, Japanese Tosa, Dogo Argentino and Fila Brasileiro (and their crosses) may not enter Cyprus, regardless of the country of origin.", fr: "Le Pit Bull Terrier, le Tosa japonais, le Dogo Argentino et le Fila Brasileiro (et leurs croisements) ne peuvent entrer à Chypre, quel que soit le pays d'origine.", es: "El Pit Bull Terrier, el Tosa japonés, el Dogo Argentino y el Fila Brasileiro (y sus cruces) no pueden entrar en Chipre, independientemente del país de origen.", pt: "Pit Bull Terrier, Tosa Japonês, Dogo Argentino e Fila Brasileiro (e seus cruzamentos) não podem entrar em Chipre, seja qual for o país de origem." }
+    exceptions: { en: "No exemption exists; these breeds are refused entry.", fr: "Aucune dérogation ; ces races sont refusées à l'entrée.", es: "No existe ninguna excepción; a estas razas se les deniega la entrada.", pt: "Não existe nenhuma isenção; essas raças têm a entrada recusada." }
+    ref: { en: "Cyprus Veterinary Services — prohibited breeds", fr: "Services vétérinaires de Chypre — races interdites", es: "Servicios Veterinarios de Chipre — razas prohibidas", pt: "Cyprus Veterinary Services — raças proibidas" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Compliant animals enter without quarantine; only if rules are breached may the authorities order re-export, quarantine or other measures.", fr: "Les animaux conformes entrent sans quarantaine ; uniquement en cas de non-conformité, les autorités peuvent ordonner réexpédition, quarantaine ou d'autres mesures.", es: "Los animales que cumplen los requisitos entran sin cuarentena; solo en caso de incumplimiento pueden las autoridades ordenar la reexpedición, la cuarentena u otras medidas.", pt: "Os animais em conformidade entram sem quarentena; só em caso de descumprimento das regras as autoridades podem determinar a reexportação, a quarentena ou outras medidas." }
+    ref: { en: "Cyprus Veterinary Services", fr: "Services vétérinaires de Chypre", es: "Servicios Veterinarios de Chipre", pt: "Cyprus Veterinary Services" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test, no health certificate and no advance notification. It must still enter at a designated point and must not be a banned breed."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage, pas de certificat sanitaire et pas de notification préalable. Il doit tout de même entrer par un point désigné et ne pas être d'une race interdite."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación, sin certificado sanitario y sin notificación previa. Aun así debe entrar por un punto designado y no ser de una raza prohibida."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico, sem certificado sanitário e sem aviso prévio. Mesmo assim, ele precisa entrar por um ponto designado e não pode ser de uma raça proibida."
+    cls: ok
+  listed:
+    title: { en: "Health certificate + 48h notice", fr: "Certificat sanitaire + préavis 48 h", es: "Certificado sanitario + preaviso de 48 h", pt: "Certificado sanitário + aviso de 48 horas" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination and an EU animal health certificate endorsed by an official vet before departure. No antibody test is required, but you must notify the District Veterinary Office at least 48 hours before arrival and present the dog at a designated point of entry."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide et d'un certificat sanitaire européen visé par un vétérinaire officiel avant le départ. Pas de titrage, mais tu dois prévenir le bureau vétérinaire de district au moins 48 heures avant l'arrivée et présenter le chien à un point d'entrée désigné."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida y un certificado sanitario animal de la UE refrendado por un veterinario oficial antes de la salida. No se exige prueba de titulación, pero debes notificar a la Oficina Veterinaria de Distrito al menos 48 horas antes de la llegada y presentar al perro en un punto de entrada designado."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida e certificado sanitário europeu endossado por um veterinário oficial antes da partida. Não é exigido teste sorológico, mas você precisa avisar o District Veterinary Office com no mínimo 48 horas de antecedência e apresentar o cachorro em um ponto de entrada designado."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait", fr: "Titrage + 3 mois d'attente", es: "Prueba de titulación + espera de 3 meses", pt: "Teste sorológico + 3 meses de espera" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-approved laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate and the 48-hour advance notification are also required."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé et la notification préalable de 48 heures sont également requis."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exigen un certificado sanitario animal de la UE refrendado y la notificación previa de 48 horas."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório aprovado pela UE, e depois 3 meses obrigatórios de espera antes da entrada. Também são exigidos um certificado sanitário europeu endossado e o aviso prévio de 48 horas."
+    cls: no
+
+arrival:
+  intro:
+    en: "Cyprus is an island: every pet must enter at a designated point, and what happens on arrival depends on where you flew from."
+    fr: "Chypre est une île : tout animal doit entrer par un point désigné, et ce qui se passe à l'arrivée dépend de ton lieu de départ."
+    es: "Chipre es una isla: toda mascota debe entrar por un punto designado, y lo que ocurre a la llegada depende del lugar desde el que hayas volado."
+    pt: "Chipre é uma ilha: todo animal de estimação precisa entrar por um ponto designado, e o que acontece na chegada depende de onde você embarcou."
+  points:
+    - en: "Pets may enter only through designated points of entry — Larnaka (LCA) and Pafos (PFO) international airports, the Lemesos (Limassol) and Larnaka ports, and approved marinas. Entry from any other point is prohibited."
+      fr: "Les animaux ne peuvent entrer que par des points d'entrée désignés — aéroports internationaux de Larnaca (LCA) et Paphos (PFO), ports de Limassol et de Larnaca, et marinas agréées. L'entrée par tout autre point est interdite."
+      es: "Las mascotas solo pueden entrar por puntos de entrada designados — aeropuertos internacionales de Lárnaca (LCA) y Pafos (PFO), puertos de Limasol y Lárnaca, y marinas autorizadas. La entrada por cualquier otro punto está prohibida."
+      pt: "Os animais de estimação só podem entrar por pontos de entrada designados — os aeroportos internacionais de Lárnaca (LCA) e Pafos (PFO), os portos de Lemesos (Limassol) e Lárnaca e as marinas aprovadas. A entrada por qualquer outro ponto é proibida."
+    - en: "From another EU country: no systematic border check and no prior notification — keep the EU pet passport with you."
+      fr: "Depuis un autre pays de l'UE : pas de contrôle systématique ni de notification préalable — garde le passeport européen sur toi."
+      es: "Desde otro país de la UE: sin control fronterizo sistemático ni notificación previa — lleva contigo el pasaporte europeo."
+      pt: "De outro país da UE: sem controle de fronteira sistemático e sem aviso prévio — leve o passaporte europeu com você."
+    - en: "From outside the EU: notify the District Veterinary Office of the point of entry at least 48 hours before arrival with the date, time and flight number or ship name."
+      fr: "Depuis hors UE : préviens le bureau vétérinaire de district du point d'entrée au moins 48 heures avant l'arrivée avec la date, l'heure et le numéro de vol ou le nom du navire."
+      es: "Desde fuera de la UE: notifica a la Oficina Veterinaria de Distrito del punto de entrada al menos 48 horas antes de la llegada con la fecha, la hora y el número de vuelo o el nombre del barco."
+      pt: "De fora da UE: avise o District Veterinary Office do ponto de entrada com no mínimo 48 horas de antecedência, informando a data, o horário e o número do voo ou o nome do navio."
+    - en: "On arrival, the dog and its documents are inspected by the Veterinary Officer or by the duty Customs Officer acting for the Veterinary Services; compliant animals enter without quarantine."
+      fr: "À l'arrivée, le chien et ses documents sont contrôlés par le vétérinaire officiel ou par le douanier de service agissant pour les Services vétérinaires ; les animaux conformes entrent sans quarantaine."
+      es: "A la llegada, el perro y sus documentos los inspecciona el veterinario oficial o el funcionario de aduanas de guardia que actúa en nombre de los Servicios Veterinarios; los animales que cumplen los requisitos entran sin cuarentena."
+      pt: "Na chegada, o cachorro e os documentos são conferidos pelo Veterinary Officer (veterinário oficial) ou pelo agente da alfândega de plantão que atua em nome dos Veterinary Services; os animais em conformidade entram sem quarentena."
+    - en: "Carry original documents (not copies); if documents are missing or invalid, the authorities may order re-export, quarantine or other measures — at the owner's expense."
+      fr: "Munis-toi des documents originaux (pas de copies) ; si les documents manquent ou sont invalides, les autorités peuvent ordonner réexpédition, quarantaine ou d'autres mesures — aux frais du propriétaire."
+      es: "Lleva los documentos originales (no copias); si faltan documentos o no son válidos, las autoridades pueden ordenar la reexpedición, la cuarentena u otras medidas — a cargo del propietario."
+      pt: "Leve os documentos originais (não cópias); se faltarem documentos ou eles não forem válidos, as autoridades podem determinar a reexportação, a quarentena ou outras medidas — às custas do dono."
+    - en: "Banned breeds (Pit Bull Terrier, Japanese Tosa, Dogo Argentino, Fila Brasileiro and their crosses) are refused entry, whatever their country of origin."
+      fr: "Les races interdites (Pit Bull Terrier, Tosa japonais, Dogo Argentino, Fila Brasileiro et leurs croisements) sont refusées à l'entrée, quel que soit leur pays d'origine."
+      es: "A las razas prohibidas (Pit Bull Terrier, Tosa japonés, Dogo Argentino, Fila Brasileiro y sus cruces) se les deniega la entrada, sea cual sea su país de origen."
+      pt: "As raças proibidas (Pit Bull Terrier, Tosa Japonês, Dogo Argentino, Fila Brasileiro e seus cruzamentos) têm a entrada recusada, seja qual for o país de origem."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Cyprus prohibits four dog breeds from entering or being kept in the country, regardless of the country of origin. The ban is enforced by the Veterinary Services at every point of entry and there is no import permit or exemption route."
+    fr: "Chypre interdit l'entrée et la détention de quatre races de chiens, quel que soit le pays d'origine. L'interdiction est appliquée par les Services vétérinaires à chaque point d'entrée et il n'existe aucun permis d'importation ni dérogation."
+    es: "Chipre prohíbe la entrada y la tenencia de cuatro razas de perros en el país, independientemente del país de origen. La prohibición la aplican los Servicios Veterinarios en cada punto de entrada y no existe permiso de importación ni vía de excepción."
+    pt: "Chipre proíbe que quatro raças de cachorros entrem ou sejam mantidas no país, seja qual for o país de origem. A proibição é aplicada pelos Veterinary Services em todos os pontos de entrada e não existe autorização de importação nem via de isenção."
+  cat1:
+    en: "Banned breeds: Pit Bull Terrier (American Pit Bull), Japanese Tosa (Tosa Inu), Dogo Argentino (Argentinian Mastiff) and Fila Brasileiro (Brazilian Mastiff). The ban also covers dogs from a cross of these breeds, and dogs from the cross of any breed with a banned breed where a registered veterinarian certifies that the dangerous-breed characteristics predominate. These dogs may not enter Cyprus, including in transit."
+    fr: "Races interdites : Pit Bull Terrier (American Pit Bull), Tosa japonais (Tosa Inu), Dogo Argentino (dogue argentin) et Fila Brasileiro (mâtin brésilien). L'interdiction vise aussi les chiens issus d'un croisement de ces races, et les chiens issus du croisement de toute race avec une race interdite lorsqu'un vétérinaire agréé certifie que les caractéristiques de la race dangereuse prédominent. Ces chiens ne peuvent entrer à Chypre, y compris en transit."
+    es: "Razas prohibidas: Pit Bull Terrier (American Pit Bull), Tosa japonés (Tosa Inu), Dogo Argentino (mastín argentino) y Fila Brasileiro (mastín brasileño). La prohibición abarca también a los perros procedentes de un cruce de estas razas y a los perros procedentes del cruce de cualquier raza con una raza prohibida cuando un veterinario colegiado certifica que predominan las características de la raza peligrosa. Estos perros no pueden entrar en Chipre, ni siquiera en tránsito."
+    pt: "Raças proibidas: Pit Bull Terrier (American Pit Bull), Tosa Japonês (Tosa Inu), Dogo Argentino (mastim argentino) e Fila Brasileiro (mastim brasileiro). A proibição abrange também os cachorros nascidos do cruzamento dessas raças e os cachorros nascidos do cruzamento de qualquer raça com uma raça proibida quando um médico-veterinário registrado atesta que predominam as características da raça perigosa. Esses cachorros não podem entrar em Chipre, nem mesmo em trânsito."
+  cat2:
+    en: "Cyprus operates a single outright ban rather than a permit-based second category: there is no lawful way to import one of the four breeds. All other dogs must be microchipped and are subject to Cyprus's general dog-ownership rules (registration and responsible-ownership obligations under national dog legislation). Confirm your dog's breed with your vet before booking, as a cross whose banned-breed traits predominate can also be refused."
+    fr: "Chypre applique une interdiction absolue unique plutôt qu'une seconde catégorie soumise à permis : il n'existe aucun moyen légal d'importer l'une des quatre races. Tous les autres chiens doivent être pucés et sont soumis aux règles générales de détention de Chypre (enregistrement et obligations de détention responsable prévues par la législation canine nationale). Confirme la race de ton chien avec ton vétérinaire avant de réserver, car un croisement dont les traits d'une race interdite prédominent peut aussi être refusé."
+    es: "Chipre aplica una única prohibición absoluta en lugar de una segunda categoría basada en permisos: no existe una forma legal de importar una de las cuatro razas. Todos los demás perros deben llevar microchip y están sujetos a las normas generales de tenencia de perros de Chipre (obligaciones de registro y de tenencia responsable en virtud de la legislación canina nacional). Confirma la raza de tu perro con tu veterinario antes de reservar, ya que también puede rechazarse un cruce en el que predominen los rasgos de una raza prohibida."
+    pt: "Chipre aplica uma proibição pura e simples, sem uma segunda categoria sujeita a autorização: não existe forma legal de importar uma das quatro raças. Todos os outros cachorros precisam ter microchip e ficam sujeitos às regras gerais de posse de cachorros de Chipre (registro e obrigações de posse responsável previstas na legislação nacional sobre cães). Confirme a raça do seu cachorro com o veterinário antes de comprar a passagem, porque um cruzamento em que predominem os traços de uma raça proibida também pode ser recusado."
+  note:
+    en: "A dog that merely resembles a banned breed is judged on its dominant characteristics by a registered veterinarian. If there is any doubt about your dog's breed or lineage, contact the Cyprus Veterinary Services before travelling."
+    fr: "Un chien qui ressemble simplement à une race interdite est jugé sur ses caractéristiques dominantes par un vétérinaire agréé. En cas de doute sur la race ou la lignée de ton chien, contacte les Services vétérinaires de Chypre avant de voyager."
+    es: "Un perro que simplemente se parece a una raza prohibida es juzgado por sus características dominantes por un veterinario colegiado. Si hay alguna duda sobre la raza o el linaje de tu perro, contacta con los Servicios Veterinarios de Chipre antes de viajar."
+    pt: "Um cachorro que apenas se pareça com uma raça proibida é avaliado por um médico-veterinário registrado a partir de suas características dominantes. Se houver qualquer dúvida sobre a raça ou a linhagem do seu cachorro, procure os Cyprus Veterinary Services antes de viajar."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Dog at least 105 days old and not a banned breed"
+    fr: "Chien d'au moins 105 jours et non d'une race interdite"
+    es: "Perro de al menos 105 días y que no sea de una raza prohibida"
+    pt: "Cachorro com pelo menos 105 dias e que não seja de raça proibida"
+  - en: "For non-EU arrivals: notify the District Veterinary Office at least 48 hours before arrival"
+    fr: "Arrivées hors UE : prévenir le bureau vétérinaire de district au moins 48 heures avant l'arrivée"
+    es: "Para llegadas de fuera de la UE: notifica a la Oficina Veterinaria de Distrito al menos 48 horas antes de la llegada"
+    pt: "Chegadas de fora da UE: avisar o District Veterinary Office com no mínimo 48 horas de antecedência"
+  - en: "Arrive at a designated point of entry (Larnaka/Pafos airport, Lemesos/Larnaka port)"
+    fr: "Arriver à un point d'entrée désigné (aéroport de Larnaca/Paphos, port de Limassol/Larnaca)"
+    es: "Llega a un punto de entrada designado (aeropuerto de Lárnaca/Pafos, puerto de Limasol/Lárnaca)"
+    pt: "Chegar por um ponto de entrada designado (aeroporto de Lárnaca/Pafos, porto de Lemesos/Lárnaca)"
+  - en: "Original documents plus a suitable IATA crate if travelling in the hold"
+    fr: "Documents originaux et caisse IATA adaptée si voyage en soute"
+    es: "Documentos originales más una jaula IATA adecuada si viaja en bodega"
+    pt: "Documentos originais e caixa de transporte adequada à IATA se a viagem for no porão"
+
+sources:
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "European Commission — Travelling with a pet within the EU", fr: "Commission européenne — Voyager avec un animal dans l'UE", es: "Comisión Europea — Viajar con una mascota dentro de la UE", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - label: { en: "European Commission — Listing of non-EU countries (antibody-test exemption)", fr: "Commission européenne — Liste des pays tiers (dispense de titrage)", es: "Comisión Europea — Lista de países no pertenecientes a la UE (exención de la prueba de titulación)", pt: "Comissão Europeia — Lista dos países terceiros (isenção de teste sorológico)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/listing-territories-and-non-eu-countries_en"
+  - label: { en: "Cyprus Veterinary Services — Non-commercial movement of pet animals", fr: "Services vétérinaires de Chypre — Mouvement non commercial des animaux de compagnie", es: "Servicios Veterinarios de Chipre — Movimiento no comercial de animales de compañía", pt: "Cyprus Veterinary Services — Circulação não comercial de animais de estimação" }
+    url: "https://www.moa.gov.cy/moa/vs/vs.nsf/vs07_en/vs07_en?OpenDocument"
+  - label: { en: "Cyprus Veterinary Services — Contact / District Veterinary Offices", fr: "Services vétérinaires de Chypre — Contact / Bureaux vétérinaires de district", es: "Servicios Veterinarios de Chipre — Contacto / Oficinas Veterinarias de Distrito", pt: "Cyprus Veterinary Services — Contato / District Veterinary Offices" }
+    url: "https://www.moa.gov.cy/moa/vs/vs.nsf/index_en/index_en?OpenDocument"
+  - label: { en: "Cyprus Customs & Excise — Information for Passengers and Public", fr: "Douane chypriote — Informations pour les passagers et le public", es: "Aduanas e Impuestos Especiales de Chipre — Información para pasajeros y público", pt: "Cyprus Customs & Excise — Informações para passageiros e público" }
+    url: "https://www.mof.gov.cy/mof/Customs/customs.nsf/ced03_en/ced03_en"
+
+seo:
+  title: { en: "Cyprus Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Chypre — Guide", es: "Requisitos de entrada de perros en Chipre — Guía de viaje", pt: "Chipre: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Cyprus With Your Dog: Entry Requirements (2026)", fr: "Voyager à Chypre avec ton chien : formalités (2026)", es: "Viajar a Chipre con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Chipre: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies and antibody-test rules for bringing a dog into Cyprus — by EU, listed and non-listed origin. Four breeds banned. Sourced and dated."
+    fr: "Règles officielles puce, rage et titrage pour faire entrer un chien à Chypre — selon origine UE, pays listé ou non listé. Quatre races interdites. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia y titulación para traer un perro a Chipre, según origen UE, listado o no listado. Cuatro razas prohibidas. Con fuentes y fecha."
+    pt: "Regras oficiais de microchip, raiva e teste sorológico para levar um cachorro para Chipre — por origem UE, listada ou não listada. Quatro raças proibidas."
+  slug: "cyprus"
+  shortDesc:
+    en: "What you need to bring a dog into Cyprus, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien à Chypre, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Chipre, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para Chipre, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

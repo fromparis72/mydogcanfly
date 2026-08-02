@@ -1,0 +1,322 @@
+id: airline_lufthansa
+mono: LH
+name: Lufthansa
+titleH1:
+  en: Flying with a dog on Lufthansa
+  fr: Voyager avec un chien sur Lufthansa
+  es: Viajar con un perro en Lufthansa
+  pt: "Viajar com um cachorro na Lufthansa"
+metaDesc:
+  en: "Lufthansa pet policy: cabin, air-conditioned hold and Lufthansa Cargo rules, fares, breed limits and official sources."
+  fr: "Politique animaux Lufthansa : cabine, soute climatisée et Lufthansa Cargo, tarifs, restrictions de races et sources officielles."
+  es: "Política de mascotas de Lufthansa: cabina, bodega climatizada y normas de Lufthansa Cargo, tarifas, límites por raza y fuentes oficiales."
+  pt: "Política de animais da Lufthansa: cabine, porão climatizado e regras da Lufthansa Cargo, tarifas, limites por raça e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Germany · FRA / MUC
+      fr: Allemagne · FRA / MUC
+      es: Alemania · FRA / MUC
+      pt: "Alemanha · FRA / MUC"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Cats & dogs in the cabin (≤ 8 kg) or the air-conditioned hold — snub-nosed breeds barred from the hold.
+  fr: Chats et chiens en cabine (≤ 8 kg) ou en soute climatisée — races au nez écrasé interdites en soute.
+  es: Gatos y perros en cabina (≤ 8 kg) o en la bodega climatizada; las razas de hocico chato no pueden viajar en bodega.
+  pt: "Gatos e cachorros na cabine (≤ 8 kg) ou no porão climatizado — raças de focinho achatado proibidas no porão."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: "> 8 kg"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: freight fwd.
+      fr: via agent
+      es: vía transitario
+      pt: "via transportadora"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Small dogs & cats up to 8 kg incl. carrier in a soft bag under the seat (max 55 × 40 × 23 cm); up to 2 per passenger.
+      fr: Petits chiens et chats jusqu'à 8 kg avec le sac, sac souple sous le siège (max 55 × 40 × 23 cm) ; jusqu'à 2 par passager.
+      es: Perros y gatos pequeños de hasta 8 kg con el bolso, en una bolsa blanda bajo el asiento (máx. 55 × 40 × 23 cm); hasta 2 por pasajero.
+      pt: "Cachorros e gatos pequenos até 8 kg com a bolsa, em uma bolsa flexível sob o assento (máx. 55 × 40 × 23 cm); até 2 por passageiro."
+    fee:
+      en: Route-based
+      fr: Selon la route
+      es: Según la ruta
+      pt: "Conforme a rota"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Dogs & cats over 8 kg as excess baggage in the air-conditioned hold, in an IATA crate. No hold pets on connections via Munich — use Frankfurt.
+      fr: Chiens et chats de plus de 8 kg en bagage excédentaire dans la soute climatisée, en caisse IATA. Pas de soute en correspondance via Munich — passer par Francfort.
+      es: Perros y gatos de más de 8 kg como exceso de equipaje en la bodega climatizada, en una jaula IATA. Sin mascotas en bodega en conexiones vía Múnich; usa Fráncfort.
+      pt: "Cachorros e gatos acima de 8 kg como bagagem excedente no porão climatizado, em uma caixa de transporte IATA. Nenhum animal de porão em conexões via Munique — use Frankfurt."
+    fee:
+      en: Route-based
+      fr: Selon la route
+      es: Según la ruta
+      pt: "Conforme a rota"
+  - icon: ✈️
+    name:
+      en: Lufthansa Cargo
+      fr: Lufthansa Cargo
+      es: Lufthansa Cargo
+      pt: "Lufthansa Cargo"
+    cls: warn
+    statusLabel:
+      en: Via agent
+      fr: Via agent
+      es: A través de agente
+      pt: "Via agente"
+    detail:
+      en: For unaccompanied animals or when country rules require air freight; booked through an animal freight forwarder.
+      fr: Pour les animaux non accompagnés ou lorsque le pays impose le fret aérien ; réservé via un transitaire animalier.
+      es: Para animales no acompañados o cuando las normas del país exigen carga aérea; se reserva a través de un transitario de animales.
+      pt: "Para animais desacompanhados ou quando as regras do país exigem carga aérea; reservado através de uma transportadora de animais."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Cotización
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: Route-based fee
+        fr: Tarif selon la route
+        es: Tarifa según la ruta
+        pt: "Tarifa conforme a rota"
+    - label:
+        en: Hold (> 8 kg)
+        fr: Soute (> 8 kg)
+        es: Bodega (> 8 kg)
+        pt: "Porão (> 8 kg)"
+      value:
+        en: Route-based fee
+        fr: Tarif selon la route
+        es: Tarifa según la ruta
+        pt: "Tarifa conforme a rota"
+    - label:
+        en: Transfer surcharge (BRU/GVA/FRA/VIE/ZRH)
+        fr: Surcharge transfert (BRU/GVA/FRA/VIE/ZRH)
+        es: Recargo por transbordo (BRU/GVA/FRA/VIE/ZRH)
+        pt: "Sobretaxa de conexão (BRU/GVA/FRA/VIE/ZRH)"
+      value:
+        en: €150 / $170
+        fr: 150 € / 170 $
+        es: 150 € / 170 $
+        pt: "€150 / US$ 170"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Lufthansa charges a route- and size-based pet fee (paid at check-in) rather than a flat amount; a transfer surcharge applies via certain hubs.
+    fr: Lufthansa applique un tarif animal selon la route et la taille (payé à l'enregistrement), sans montant fixe ; une surcharge de transfert s'applique via certains hubs.
+    es: Lufthansa cobra una tarifa de mascota según la ruta y el tamaño (pagada en el mostrador), en lugar de un importe fijo; se aplica un recargo por transbordo en ciertos hubs.
+    pt: "A Lufthansa cobra uma tarifa de animal conforme a rota e o tamanho (paga no check-in), em vez de um valor fixo; uma sobretaxa de conexão se aplica em determinados hubs."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Snub-nosed dogs & cats are barred from the hold since Jan 2020 (breathing risk): bulldogs (except American), pugs, boxers, Boston terrier, chow chow, Shih Tzu, Pekingese, Shar Pei, Lhasa Apso, and Persian/Himalayan/Exotic/British Shorthair/Scottish Fold cats. They may fly in the cabin or as Lufthansa Cargo air freight."
+      fr: "Chiens et chats au nez écrasé interdits en soute depuis janv. 2020 (risque respiratoire) : bouledogues (sauf américain), carlins, boxers, Boston terrier, chow chow, Shih Tzu, pékinois, Shar Pei, Lhasa Apso, et chats persans/himalayens/exotiques/British Shorthair/Scottish Fold. Ils peuvent voyager en cabine ou en fret Lufthansa Cargo."
+      es: "Los perros y gatos de hocico chato tienen prohibida la bodega desde enero de 2020 (riesgo respiratorio): bulldogs (salvo el americano), carlinos, bóxers, Boston terrier, chow chow, Shih Tzu, pekinés, Shar Pei, Lhasa Apso, y gatos persas/himalayos/exóticos/British Shorthair/Scottish Fold. Pueden viajar en cabina o como carga aérea de Lufthansa Cargo."
+      pt: "Cachorros e gatos de focinho achatado são proibidos no porão desde jan. de 2020 (risco respiratório): bulldogs (exceto o americano), pugs, boxers, Boston terrier, chow chow, Shih Tzu, Pequinês, Shar Pei, Lhasa Apso, e gatos persas/himalaios/exóticos/British Shorthair/Scottish Fold. Podem viajar na cabine ou como carga aérea da Lufthansa Cargo."
+  - icon: 🚫
+    title:
+      en: Dangerous breeds
+      fr: Races dangereuses
+      es: Razas peligrosas
+      pt: "Raças perigosas"
+    pills:
+      - cls: no
+        label:
+          en: Special crate / cargo
+          fr: Caisse spéciale / fret
+          es: Jaula especial / carga
+          pt: "Caixa especial / carga"
+      - cls: warn
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: Fighting/dangerous breeds (pit bull, American Staffordshire, Staffordshire bull terrier, bull terrier, American Bully, Dogo Argentino, Kangal, Caucasian Ovcharka, Rottweiler) only in the hold in reinforced crates; several are import-banned into Germany. Pregnant animals refused; sedation is discouraged.
+      fr: Races de combat/dangereuses (pit-bull, American Staffordshire, Staffordshire bull terrier, bull terrier, American Bully, Dogo Argentino, Kangal, berger du Caucase, Rottweiler) uniquement en soute dans des caisses renforcées ; plusieurs sont interdites d'importation en Allemagne. Animaux gestants refusés ; sédation déconseillée.
+      es: Las razas de combate/peligrosas (pit bull, American Staffordshire, Staffordshire bull terrier, bull terrier, American Bully, Dogo Argentino, Kangal, Ovcharka del Cáucaso, Rottweiler) solo en bodega en jaulas reforzadas; varias tienen prohibida la importación a Alemania. Se rechazan los animales preñados; se desaconseja la sedación.
+      pt: "Raças de combate/perigosas (pit bull, American Staffordshire, Staffordshire bull terrier, bull terrier, American Bully, Dogo Argentino, Kangal, Ovcharka do Cáucaso, Rottweiler) somente no porão em caixas reforçadas; várias têm a importação proibida para a Alemanha. Animais prenhes são recusados; a sedação é desaconselhada."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Air-conditioned hold
+        fr: Soute climatisée
+        es: Bodega climatizada
+        pt: "Porão climatizado"
+    - cls: warn
+      label:
+        en: May refuse in extreme weather
+        fr: Refus possible par météo extrême
+        es: Puede rechazar con clima extremo
+        pt: "Pode recusar em clima extremo"
+  note:
+    en: Hold animals travel in the air-conditioned cargo hold. Lufthansa publishes no numeric temperature limit but reserves the right to refuse hold carriage in extreme weather at the destination, sometimes at short notice.
+    fr: Les animaux en soute voyagent dans la soute climatisée. Lufthansa ne publie pas de limite chiffrée mais se réserve le droit de refuser la soute par météo extrême à destination, parfois au dernier moment.
+    es: Los animales de bodega viajan en la bodega de carga climatizada. Lufthansa no publica un límite numérico de temperatura, pero se reserva el derecho de rechazar el transporte en bodega con clima extremo en el destino, a veces con poca antelación.
+    pt: "Os animais no porão viajam no porão de carga climatizado. A Lufthansa não publica um limite numérico de temperatura, mas se reserva o direito de recusar o transporte no porão em clima extremo no destino, às vezes com pouca antecedência."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs travel free in the cabin on any route (max 2), leashed in the footwell.
+      fr: Chiens d'assistance gratuits en cabine sur toute ligne (max 2), tenus en laisse dans l'espace au sol.
+      es: Los perros de asistencia viajan gratis en cabina en cualquier ruta (máx. 2), con correa en el espacio para los pies.
+      pt: "Cães de assistência viajam gratuitamente na cabine em qualquer rota (máx. 2), presos com coleira no espaço para os pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Register ≥ 48 h ahead; training certificate (ADI/ADEu/IGDF) + cabin-animal form. Direct US flights: DOT forms. Emotional-support animals not accepted."
+      fr: "Inscrire ≥ 48 h à l'avance ; certificat de dressage (ADI/ADEu/IGDF) + formulaire animal en cabine. Vols directs USA : formulaires DOT. Chiens de soutien émotionnel non acceptés."
+      es: "Regístrelo con ≥ 48 h de antelación; certificado de adiestramiento (ADI/ADEu/IGDF) + formulario de animal en cabina. Vuelos directos a EE. UU.: formularios DOT. No se aceptan animales de apoyo emocional."
+      pt: "Registre com ≥ 48 h de antecedência; certificado de treinamento (ADI/ADEu/IGDF) + formulário de animal em cabine. Voos diretos para os EUA: formulários DOT. Animais de suporte emocional não são aceitos."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Two animals
+      fr: Deux animaux
+      es: Dos animales
+      pt: "Dois animais"
+    value:
+      en: Up to 2 animals per passenger (2 cabin, 1 + 1, or 2 hold).
+      fr: Jusqu'à 2 animaux par passager (2 cabine, 1 + 1, ou 2 soute).
+      es: Hasta 2 animales por pasajero (2 en cabina, 1 + 1, o 2 en bodega).
+      pt: "Até 2 animais por passageiro (2 na cabine, 1 + 1, ou 2 no porão)."
+  - icon: 🔁
+    label:
+      en: Munich transfers
+      fr: Transferts Munich
+      es: Transbordos en Múnich
+      pt: "Conexões em Munique"
+    value:
+      en: No hold animals on connections via Munich — use Frankfurt for hold transfers.
+      fr: Pas d'animaux en soute en correspondance via Munich — passer par Francfort.
+      es: Sin animales en bodega en conexiones vía Múnich; usa Fráncfort para los transbordos en bodega.
+      pt: "Nenhum animal de porão em conexões via Munique — use Frankfurt para conexões com animais no porão."
+  - icon: 📄
+    label:
+      en: Minimum age
+      fr: Âge minimum
+      es: Edad mínima
+      pt: "Idade mínima"
+    value:
+      en: 12 weeks (15 weeks to/from/via Germany; 6 months for dogs to the US).
+      fr: 12 semaines (15 semaines de/vers/via l'Allemagne ; 6 mois pour les chiens vers les USA).
+      es: 12 semanas (15 semanas desde/hacia/vía Alemania; 6 meses para los perros hacia EE. UU.).
+      pt: "12 semanas (15 semanas de/para/via Alemanha; 6 meses para cachorros para os EUA)."
+book:
+  host: lufthansa.com
+  url: https://www.lufthansa.com/
+sources:
+  en: 6 Lufthansa & Lufthansa Cargo sources · last verified 11 July 2026
+  fr: 6 sources Lufthansa & Lufthansa Cargo · dernière vérification 11 juillet 2026
+  es: 6 fuentes de Lufthansa y Lufthansa Cargo · última verificación 11 de julio de 2026
+  pt: "6 fontes da Lufthansa e Lufthansa Cargo · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

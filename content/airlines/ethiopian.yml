@@ -1,0 +1,300 @@
+id: airline_ethiopian
+mono: ET
+name: Ethiopian Airlines
+titleH1:
+  en: Flying with a dog on Ethiopian Airlines
+  fr: Voyager avec un chien sur Ethiopian Airlines
+  es: Volar con un perro en Ethiopian Airlines
+  pt: "Voar com um cachorro na Ethiopian Airlines"
+metaDesc:
+  en: "Ethiopian Airlines pet policy: cabin, hold and Ethiopian Cargo, fares by zone, snub-nosed ban and official sources."
+  fr: "Politique animaux Ethiopian Airlines : cabine, soute et Ethiopian Cargo, tarifs par zone, interdiction brachy et sources officielles."
+  es: "Política de mascotas de Ethiopian Airlines: cabina, bodega y Ethiopian Cargo, tarifas por zona, veto braquicéfalo y fuentes oficiales."
+  pt: "Política de animais da Ethiopian Airlines: cabine, porão e Ethiopian Cargo, tarifas por zona, proibição de raças de focinho achatado e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: Ethiopia · ADD
+      fr: Éthiopie · ADD
+      es: Etiopía · ADD
+      pt: "Etiópia · ADD"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado 11 jul 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small cats & dogs in the cabin, larger in the hold — but snub-nosed breeds are banned and advance booking is required.
+  fr: Petits chats et chiens en cabine, plus grands en soute — mais races au nez écrasé interdites et réservation préalable requise.
+  es: Perros y gatos pequeños en cabina, los más grandes en bodega, pero las razas de hocico chato están vetadas y hace falta reservar con antelación.
+  pt: "Gatos e cachorros pequenos na cabine, os maiores no porão — mas raças de focinho achatado são proibidas e é exigida reserva antecipada."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 45 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs only ≤ 8 kg incl. container (max 55 × 40 × 20 cm); limited seats per cabin, incl. Q400 aircraft.
+      fr: Chats et chiens uniquement ≤ 8 kg avec le sac (max 55 × 40 × 20 cm) ; places limitées par cabine, y compris avions Q400.
+      es: Solo perros y gatos ≤ 8 kg con la jaula (máx. 55 × 40 × 20 cm); plazas limitadas por cabina, incluidos los aviones Q400.
+      pt: "Somente gatos e cachorros ≤ 8 kg com a caixa (máx. 55 × 40 × 20 cm); lugares limitados por cabine, inclusive em aeronaves Q400."
+    fee:
+      en: $100–300
+      fr: 100–300 $
+      es: 100–300 $
+      pt: "US$ 100–300"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: When the cage exceeds cabin size or pet + cage is over 8 kg, up to 45 kg.
+      fr: Quand la caisse dépasse la taille cabine ou que l'animal + caisse fait plus de 8 kg, jusqu'à 45 kg.
+      es: Cuando la jaula supera el tamaño de cabina o la mascota + jaula pasa de 8 kg, hasta 45 kg.
+      pt: "Quando a caixa ultrapassa o tamanho de cabine ou o animal + caixa passa de 8 kg, até 45 kg."
+    fee:
+      en: $370–500
+      fr: 370–500 $
+      es: 370–500 $
+      pt: "US$ 370–500"
+  - icon: ✈️
+    name:
+      en: Ethiopian Cargo
+      fr: Ethiopian Cargo
+      es: Ethiopian Cargo
+      pt: "Ethiopian Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Pets (incl. cage) over 45 kg travel as cargo via Ethiopian Cargo's Live Animals service.
+      fr: Les animaux (avec la caisse) de plus de 45 kg voyagent en fret via le service animaux vivants d'Ethiopian Cargo.
+      es: Las mascotas (con la jaula) de más de 45 kg viajan como carga por el servicio de animales vivos de Ethiopian Cargo.
+      pt: "Animais (com a caixa) acima de 45 kg viajam como carga pelo serviço de animais vivos da Ethiopian Cargo."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin — ET international
+        fr: Cabine — international ET
+        es: Cabina — internacional ET
+        pt: "Cabine — internacional ET"
+      value:
+        en: $150 (€120/£110)
+        fr: 150 $ (120 €/110 £)
+        es: 150 $ (120 €/110 £)
+        pt: "US$ 150 (€ 120/£ 110)"
+    - label:
+        en: Cabin — Addis → US
+        fr: Cabine — Addis → USA
+        es: Cabina — Adís → EE. UU.
+        pt: "Cabine — Adis → EUA"
+      value:
+        en: $300
+        fr: 300 $
+        es: 300 $
+        pt: "US$ 300"
+    - label:
+        en: Hold (8–45 kg)
+        fr: Soute (8–45 kg)
+        es: Bodega (8–45 kg)
+        pt: "Porão (8–45 kg)"
+      value:
+        en: $370–500
+        fr: 370–500 $
+        es: 370–500 $
+        pt: "US$ 370–500"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: USD one-way (effective 20 Jun 2025). Charged on top of your baggage allowance.
+    fr: USD aller simple (en vigueur le 20 juin 2025). Facturé en plus de ta franchise bagages.
+    es: USD por trayecto (en vigor el 20 de junio de 2025). Se cobra aparte de tu franquicia de equipaje.
+    pt: "USD por trajeto (em vigor desde 20 de junho de 2025). Cobrado além da sua franquia de bagagem."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+    note:
+      en: Snub-nosed (brachycephalic) dog & cat breeds aren't accepted, due to breathing risk from stress and temperature changes during transport.
+      fr: Les races de chiens et chats au nez écrasé (brachycéphales) ne sont pas acceptées, en raison du risque respiratoire lié au stress et aux variations de température.
+      es: Las razas de perros y gatos de hocico chato (braquicéfalas) no se aceptan, por el riesgo respiratorio derivado del estrés y los cambios de temperatura durante el transporte.
+      pt: "Raças de cachorros e gatos de focinho achatado (braquicefálicas) não são aceitas, pelo risco respiratório do estresse e das mudanças de temperatura durante o transporte."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: "ESA: documentation"
+          fr: "ESA : justificatif"
+          es: "ESA: justificante"
+          pt: "ESA: documentação"
+    note:
+      en: Emotional-support and psychiatric animals need valid documentation (less than one year old) from a licensed mental-health professional. The owner accepts all risk of injury, illness or death.
+      fr: Les animaux de soutien émotionnel et psychiatrique nécessitent un justificatif valide (moins d'un an) d'un professionnel de santé mentale agréé. Le propriétaire assume tout risque de blessure, maladie ou décès.
+      es: Los animales de apoyo emocional y psiquiátrico necesitan un justificante válido (de menos de un año) de un profesional de salud mental colegiado. El dueño asume todo riesgo de lesión, enfermedad o muerte.
+      pt: "Animais de suporte emocional e psiquiátrico precisam de documentação válida (com menos de um ano) de um profissional de saúde mental licenciado. O dono assume todo o risco de lesão, doença ou morte."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no divulgados"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Ethiopian Airlines publishes no hold-temperature limits or seasonal embargo on its pet page.
+    fr: Ethiopian Airlines ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux.
+    es: Ethiopian Airlines no publica límites de temperatura en bodega ni embargo estacional en su página de mascotas.
+    pt: "A Ethiopian Airlines não divulga limites de temperatura no porão nem embargo sazonal em sua página de animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Seeing-eye and hearing dogs, harnessed and muzzled, travel free in the cabin on all aircraft.
+      fr: Les chiens guides et d'écoute, en harnais et muselés, voyagent gratuitement en cabine sur tous les avions.
+      es: Los perros guía y de escucha, con arnés y bozal, viajan gratis en cabina en todos los aviones.
+      pt: "Cães-guia e cães de audição, com peitoral e focinheira, viajam de graça na cabine em todas as aeronaves."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Make advance arrangements; rules vary by country. US: new CDC entry requirements (from Aug 2024)."
+      fr: "Prendre des dispositions à l'avance ; les règles varient selon le pays. USA : nouvelles exigences d'entrée CDC (depuis août 2024)."
+      es: "Organiza los trámites con antelación; las normas varían según el país. EE. UU.: nuevos requisitos de entrada del CDC (desde agosto de 2024)."
+      pt: "Providencie tudo com antecedência; as regras variam por país. EUA: novas exigências de entrada do CDC (desde ago. de 2024)."
+goodToKnow:
+  - icon: 💶
+    label:
+      en: Fee on top
+      fr: Tarif en supplément
+      es: Tarifa aparte
+      pt: "Tarifa à parte"
+    value:
+      en: The pet/AVIH fee is charged in addition to your free baggage allowance.
+      fr: Le tarif animal/AVIH est facturé en plus de ta franchise bagages.
+      es: La tarifa de mascota/AVIH se cobra además de tu franquicia de equipaje.
+      pt: "A tarifa de animal/AVIH é cobrada além da sua franquia de bagagem gratuita."
+  - icon: 🔁
+    label:
+      en: Codeshares
+      fr: Codeshare
+      es: Código compartido
+      pt: "Codeshare"
+    value:
+      en: On codeshare flights, the operating carrier's rules apply.
+      fr: Sur les vols codeshare, les règles de la compagnie opérante s'appliquent.
+      es: En los vuelos de código compartido se aplican las normas de la aerolínea operadora.
+      pt: "Em voos codeshare, valem as regras da companhia que opera o voo."
+  - icon: ⏱️
+    label:
+      en: Booking
+      fr: Réserver
+      es: Reserva
+      pt: "Reserva"
+    value:
+      en: Arrange all pet transport in advance, specifying the pet type and container size.
+      fr: Organiser tout transport d'animal à l'avance, en précisant le type d'animal et la taille du contenant.
+      es: Organiza todo el transporte de la mascota con antelación, indicando el tipo de animal y el tamaño de la jaula.
+      pt: "Providencie todo o transporte do animal com antecedência, especificando o tipo de animal e o tamanho da caixa."
+book:
+  host: ethiopianairlines.com
+  url: https://www.ethiopianairlines.com/
+sources:
+  en: 2 Ethiopian Airlines sources · last verified 11 July 2026
+  fr: 2 sources Ethiopian Airlines · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Ethiopian Airlines · última verificación 11 de julio de 2026
+  pt: "2 fontes da Ethiopian Airlines · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

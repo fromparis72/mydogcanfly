@@ -1,0 +1,385 @@
+# Country Entry Guide — South Africa (trilingual EN/FR/ES).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_za
+iso2: "ZA"
+name: { en: "South Africa", fr: "Afrique du Sud", es: "Sudáfrica", pt: "África do Sul" }
+region: { en: "Africa", fr: "Afrique", es: "África", pt: "África" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in South Africa: no permit or health certificate is required by the State, but rabies vaccination is compulsory for every dog."
+    fr: "Vol intérieur en Afrique du Sud : aucun permis ni certificat sanitaire n'est exigé par l'État, mais la vaccination antirabique est obligatoire pour tout chien."
+    es: "Vuelo nacional en Sudáfrica: el Estado no exige permiso ni certificado sanitario, pero la vacuna antirrábica es obligatoria para todo perro."
+    pt: "Voo doméstico na África do Sul: o Estado não exige autorização nem atestado de saúde, mas a vacinação antirrábica é obrigatória para todo cachorro."
+  points:
+    - en: "Rabies vaccination is compulsory for all dogs and cats: at 3 months, a second dose within 12 months, then every 3 years. This is a standing duty on the owner, not a travel rule."
+      fr: "La vaccination antirabique est obligatoire pour tous les chiens et chats : à 3 mois, une seconde dose dans les 12 mois, puis tous les 3 ans. C'est une obligation permanente du détenteur, pas une règle de voyage."
+      es: "La vacuna antirrábica es obligatoria para todos los perros y gatos: a los 3 meses, una segunda dosis en 12 meses, y luego cada 3 años. Es un deber permanente del propietario, no una regla de viaje."
+      pt: "A vacinação antirrábica é obrigatória para todos os cachorros e gatos: aos 3 meses, uma segunda dose em até 12 meses e depois a cada 3 anos. É um dever permanente de quem tem o animal, não uma regra de viagem."
+    - en: "No microchip and no movement permit are required for an ordinary healthy dog. In practice airlines turn the vaccination duty into a document you must produce at check-in."
+      fr: "Ni puce ni permis de mouvement ne sont exigés pour un chien sain ordinaire. En pratique, les compagnies transforment cette obligation vaccinale en document à présenter à l'enregistrement."
+      es: "No se exige microchip ni permiso de movimiento para un perro sano corriente. En la práctica, las aerolíneas convierten ese deber de vacunación en un documento que hay que presentar en el mostrador."
+      pt: "Não são exigidos microchip nem autorização de trânsito para um cachorro saudável comum. Na prática, as companhias aéreas transformam esse dever de vacinação em um documento que você precisa apresentar no check-in."
+    - en: "Around an active rabies outbreak a local restriction can be imposed at short notice — check with the state veterinarian if in doubt."
+      fr: "Autour d'un foyer de rage actif, une restriction locale peut être imposée à bref délai — renseigne-toi auprès du vétérinaire d'État en cas de doute."
+      es: "Alrededor de un brote activo de rabia puede imponerse una restricción local con poca antelación — consulta al veterinario estatal en caso de duda."
+      pt: "No entorno de um foco ativo de raiva, uma restrição local pode ser imposta de uma hora para outra — em caso de dúvida, consulte o veterinário do Estado."
+exit:
+  authority: DALRRD
+  authorityUrl: https://www.dalrrd.gov.za
+  intro:
+    en: "South Africa is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export permit and a State Veterinarian's endorsement."
+    fr: "L'Afrique du Sud est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un permis d'export et l'endossement d'un vétérinaire d'État."
+    es: "Sudáfrica no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un permiso de exportación y el refrendo de un veterinario estatal."
+    pt: "A África do Sul é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de uma autorização de exportação e do endosso de um veterinário do Estado."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "Apply to DALRRD for the export permit; a State Veterinarian endorses the health certificate confirming the dog is fit to travel and meets the EU conditions."
+        fr: "Demande à la DALRRD le permis d'export ; un vétérinaire d'État endosse le certificat sanitaire attestant que le chien est apte au voyage et conforme aux conditions UE."
+        es: "Solicita a DALRRD el permiso de exportación; un veterinario estatal refrenda el certificado sanitario confirmando que el perro está apto para viajar y cumple las condiciones de la UE."
+        pt: "Peça ao DALRRD a autorização de exportação; um veterinário do Estado endossa o atestado de saúde confirmando que o cachorro está apto a viajar e atende às condições da UE."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to South Africa with your dog", fr: "Voyager en Afrique du Sud avec ton chien", es: "Viajar a Sudáfrica con tu perro", pt: "Viajar para a África do Sul com seu cachorro" }
+  intro:
+    en: >-
+      South Africa welcomes dogs, but entry is controlled: no dog may arrive without a veterinary
+      import permit issued in advance by the Department of Agriculture, Land Reform and Rural
+      Development (DALRRD). Every dog needs an ISO microchip and a valid rabies vaccination, and
+      dogs must be tested and certified free of several diseases (such as Brucella canis,
+      Trypanosoma evansi, Babesia gibsoni, Dirofilaria immitis and Leishmania) shortly before
+      travel. A state-endorsed veterinary health certificate from the exporting country is required.
+      What you must prepare — including a rabies antibody test or a period of quarantine — depends
+      heavily on the rabies status of the country your dog is travelling from. This guide explains
+      each step so you know exactly what to prepare before you book your flight.
+    fr: >-
+      L'Afrique du Sud accueille les chiens, mais l'entrée est contrôlée : aucun chien ne peut
+      arriver sans un permis d'importation vétérinaire délivré à l'avance par le Department of
+      Agriculture, Land Reform and Rural Development (DALRRD). Chaque chien doit porter une puce ISO
+      et une vaccination antirabique valide, et les chiens doivent être testés et certifiés indemnes
+      de plusieurs maladies (comme Brucella canis, Trypanosoma evansi, Babesia gibsoni, Dirofilaria
+      immitis et Leishmania) peu avant le voyage. Un certificat sanitaire vétérinaire visé par
+      l'autorité du pays d'export est exigé. Ce qu'il faut préparer — dont un test des anticorps
+      antirabiques ou une période de quarantaine — dépend fortement du statut rabique du pays d'où
+      voyage ton chien. Ce guide détaille chaque étape pour savoir quoi préparer avant de réserver.
+    es: >-
+      Sudáfrica acoge a los perros, pero la entrada está controlada: ningún perro puede llegar sin un
+      permiso de importación veterinario expedido con antelación por el Department of Agriculture, Land
+      Reform and Rural Development (DALRRD). Cada perro necesita un microchip ISO y una vacunación
+      antirrábica válida, y los perros deben someterse a pruebas y estar certificados como libres de
+      varias enfermedades (como Brucella canis, Trypanosoma evansi, Babesia gibsoni, Dirofilaria
+      immitis y Leishmania) poco antes del viaje. Se exige un certificado sanitario veterinario
+      refrendado por el Estado del país exportador. Lo que debes preparar — incluida una prueba de
+      titulación de rabia o un periodo de cuarentena — depende en gran medida del estatus de rabia del
+      país desde el que viaja tu perro. Esta guía explica cada paso para que sepas exactamente qué
+      preparar antes de reservar tu vuelo.
+
+    pt: "A África do Sul recebe bem os cachorros, mas a entrada é controlada: nenhum cachorro pode chegar sem uma autorização de importação veterinária emitida com antecedência pelo Department of Agriculture, Land Reform and Rural Development (DALRRD). Todo cachorro precisa de um microchip ISO e de uma vacinação antirrábica válida, e os cachorros precisam ser testados e certificados como livres de várias doenças (como Brucella canis, Trypanosoma evansi, Babesia gibsoni, Dirofilaria immitis e Leishmania) pouco antes da viagem. Também é exigido um atestado de saúde veterinário do país exportador com aval do Estado. O que você precisa preparar — incluindo um teste sorológico antirrábico (titulação) ou um período de quarentena — depende muito do estatuto de raiva do país de onde o seu cachorro viaja. Este guia explica cada etapa para você saber exatamente o que preparar antes de reservar o voo."
+difficulty:
+  level: difficult
+  label: { en: "Moderate to difficult (permit + disease tests)", fr: "Modéré à difficile (permis + tests de maladies)", es: "De moderado a difícil (permiso + pruebas de enfermedades)", pt: "De moderado a difícil (autorização + testes de doenças)" }
+
+prepTime:
+  eu:
+    en: "Rabies-free origins: allow ~4–6 weeks for the import permit, disease tests (within 30 days) and endorsed certificate."
+    fr: "Origines indemnes de rage : prévoir ~4 à 6 semaines pour le permis, les tests de maladies (sous 30 jours) et le certificat visé."
+    es: "Orígenes libres de rabia: prevé ~4 a 6 semanas para el permiso de importación, las pruebas de enfermedades (dentro de los 30 días) y el certificado refrendado."
+    pt: "Origens livres de raiva: conte com ~4 a 6 semanas para a autorização de importação, os testes de doenças (dentro de 30 dias) e o certificado endossado."
+  listed:
+    en: "Rabies-controlled origins (EU, US, UK, Canada…): ~4–8 weeks, driven by the import permit and the disease tests."
+    fr: "Origines à rage contrôlée (UE, USA, RU, Canada…) : ~4 à 8 semaines, selon le permis et les tests de maladies."
+    es: "Orígenes con rabia controlada (UE, EE. UU., RU, Canadá…): ~4 a 8 semanas, según el permiso de importación y las pruebas de enfermedades."
+    pt: "Origens com raiva controlada (UE, EUA, Reino Unido, Canadá…): ~4 a 8 semanas, conforme a autorização de importação e os testes de doenças."
+  nonListed:
+    en: "High-risk rabies origins: ~2–4 months — add a rabies antibody test and a possible quarantine period on arrival."
+    fr: "Origines à haut risque de rage : ~2 à 4 mois — ajoute un test des anticorps antirabiques et une éventuelle quarantaine à l'arrivée."
+    es: "Orígenes de alto riesgo de rabia: ~2 a 4 meses — añade una prueba de titulación de rabia y un posible periodo de cuarentena a la llegada."
+    pt: "Origens de alto risco de raiva: ~2 a 4 meses — acrescente um teste sorológico antirrábico (titulação) e um possível período de quarentena na chegada."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes (with import permit)", fr: "Oui (avec permis d'import)", es: "Sí (con permiso de importación)", pt: "Sim (com autorização de importação)" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Import permit", fr: "Permis d'importation", es: "Permiso de importación", pt: "Autorização de importação" }
+    status: { en: "Required (in advance)", fr: "Requis (à l'avance)", es: "Obligatorio (con antelación)", pt: "Obrigatória (com antecedência)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Test des anticorps antirabiques", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — high-risk origins", fr: "Conditionnel — origines à risque", es: "Condicional — orígenes de alto riesgo", pt: "Condicional — origens de alto risco" }
+    cls: neutral
+  - requirement: { en: "Disease tests (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)", fr: "Tests de maladies (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)", es: "Pruebas de enfermedades (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)", pt: "Testes de doenças (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania)" }
+    status: { en: "Required for dogs", fr: "Requis pour les chiens", es: "Obligatorias para perros", pt: "Obrigatórias para cachorros" }
+    cls: warn
+  - requirement: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    status: { en: "Required (state-endorsed)", fr: "Requis (visé par l'État)", es: "Obligatorio (refrendado por el Estado)", pt: "Obrigatório (com aval do Estado)" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Conditional — high-risk origins", fr: "Conditionnel — origines à risque", es: "Condicional — orígenes de alto riesgo", pt: "Condicional — origens de alto risco" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog, and DALRRD spells out the exact tests on your import permit and health certificate."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien, et le DALRRD précise les tests exacts sur ton permis et ton certificat sanitaire."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro, y el DALRRD detalla las pruebas exactas en tu permiso de importación y tu certificado sanitario."
+    pt: "Só um veterinário pode confirmar o procedimento exato para o seu cachorro, e o DALRRD detalha os testes exatos na sua autorização de importação e no seu atestado de saúde."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — South Africa (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — l'Afrique du Sud (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Sudáfrica (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a África do Sul (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — South Africa", fr: "Pays de destination — Afrique du Sud", es: "País de destino — Sudáfrica", pt: "País de destino — África do Sul" }
+      text:
+        en: "South Africa always requires an advance veterinary import permit from DALRRD, an ISO microchip, a valid rabies vaccination, a set of disease tests for dogs and a state-endorsed health certificate."
+        fr: "L'Afrique du Sud exige toujours un permis d'importation vétérinaire préalable du DALRRD, une puce ISO, une vaccination antirabique valide, une série de tests de maladies pour les chiens et un certificat sanitaire visé par l'État."
+        es: "Sudáfrica exige siempre un permiso de importación veterinario previo del DALRRD, un microchip ISO, una vacunación antirrábica válida, una serie de pruebas de enfermedades para perros y un certificado sanitario refrendado por el Estado."
+        pt: "A África do Sul sempre exige uma autorização de importação veterinária prévia do DALRRD, um microchip ISO, uma vacinação antirrábica válida, uma série de testes de doenças para cachorros e um atestado de saúde com aval do Estado."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The rabies status of the departure country decides whether a rabies antibody test and a period of quarantine are added. High-risk rabies origins face the strictest path."
+        fr: "Le statut rabique du pays de départ détermine si un test des anticorps antirabiques et une quarantaine s'ajoutent. Les origines à haut risque suivent le parcours le plus strict."
+        es: "El estatus de rabia del país de salida determina si se añaden una prueba de titulación de rabia y un periodo de cuarentena. Los orígenes de alto riesgo de rabia siguen el camino más estricto."
+        pt: "O estatuto de raiva do país de partida determina se um teste sorológico antirrábico (titulação) e um período de quarentena serão acrescentados. As origens de alto risco de raiva seguem o caminho mais rígido."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can change the tests and treatments required, even if you fly in from a lower-risk country. It is your dog's real origin and history that count."
+        fr: "Un séjour récent dans un pays à risque rabique peut modifier les tests et traitements exigés, même si tu arrives d'un pays à moindre risque. C'est l'origine réelle et l'historique du chien qui comptent."
+        es: "Una estancia reciente en un país con riesgo de rabia puede cambiar las pruebas y los tratamientos exigidos, aunque llegues desde un país de menor riesgo. Lo que cuenta es el origen y el historial reales de tu perro."
+        pt: "Uma estadia recente em um país com risco de raiva pode mudar os testes e os tratamentos exigidos, mesmo que você chegue de um país de menor risco. O que conta é a origem real e o histórico do seu cachorro."
+  note:
+    en: "So read the requirements below as South Africa's framework, then confirm your dog's exact origin and history with your vet — the import permit and health certificate list the precise tests."
+    fr: "Lis donc les exigences ci-dessous comme le cadre sud-africain, puis confirme l'origine et l'historique exacts avec ton vétérinaire — le permis et le certificat listent les tests précis."
+    es: "Así que lee los requisitos siguientes como el marco de Sudáfrica y luego confirma el origen y el historial exactos de tu perro con tu veterinario — el permiso de importación y el certificado sanitario detallan las pruebas precisas."
+    pt: "Leia então as exigências abaixo como o quadro geral da África do Sul e confirme com seu veterinário a origem e o histórico exatos do seu cachorro — a autorização de importação e o atestado de saúde listam os testes precisos."
+
+requirements:
+  - item: { en: "Veterinary import permit", fr: "Permis d'importation vétérinaire", es: "Permiso de importación veterinario", pt: "Autorização de importação veterinária" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Apply to the Director: Animal Health (DALRRD) before the dog is shipped; permit is valid for a limited time. Processing takes about 3–5 working days.", fr: "À demander au Director: Animal Health (DALRRD) avant l'expédition du chien ; permis valable une durée limitée. Traitement en 3 à 5 jours ouvrés.", es: "Solicítalo al Director: Animal Health (DALRRD) antes de expedir al perro; el permiso es válido durante un tiempo limitado. La tramitación lleva unos 3 a 5 días hábiles.", pt: "Peça ao Director: Animal Health (DALRRD) antes do embarque do cachorro; a autorização é válida por tempo limitado. A análise leva cerca de 3 a 5 dias úteis." }
+    exceptions: { en: "No exceptions — dogs without an approved permit are refused entry.", fr: "Aucune exception — un chien sans permis approuvé est refusé à l'entrée.", es: "Sin excepciones — los perros sin un permiso aprobado son rechazados en la entrada.", pt: "Sem exceções — cachorros sem autorização aprovada têm a entrada recusada." }
+    ref: { en: "DALRRD — Import of animals and animal products; gov.za", fr: "DALRRD — Importation d'animaux et de produits animaux ; gov.za", es: "DALRRD — Importación de animales y productos animales; gov.za", pt: "DALRRD — Importação de animais e produtos de origem animal; gov.za" }
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "ISO 11784/11785 15-digit microchip, implanted before the rabies vaccination; the microchip number must appear on all lab reports.", fr: "Puce ISO 11784/11785 à 15 chiffres, posée avant la vaccination antirabique ; le numéro doit figurer sur tous les rapports de laboratoire.", es: "Microchip ISO 11784/11785 de 15 dígitos, implantado antes de la vacunación antirrábica; el número del microchip debe figurar en todos los informes de laboratorio.", pt: "Microchip ISO 11784/11785 de 15 dígitos, implantado antes da vacinação antirrábica; o número do microchip precisa constar em todos os laudos de laboratório." }
+    exceptions: { en: "None — identification is required for the vaccination and tests to be valid.", fr: "Aucune — l'identification est requise pour que le vaccin et les tests soient valides.", es: "Ninguna — la identificación es obligatoria para que la vacuna y las pruebas sean válidas.", pt: "Nenhuma — a identificação é obrigatória para que a vacina e os testes sejam válidos." }
+    ref: { en: "DALRRD import conditions for dogs and cats", fr: "Conditions d'importation DALRRD pour chiens et chats", es: "Condiciones de importación del DALRRD para perros y gatos", pt: "Condições de importação do DALRRD para cães e gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Primary vaccination not less than 30 days and not more than 12 months before import; boosters within 12 months. Given after microchipping.", fr: "Primo-vaccination au moins 30 jours et au plus 12 mois avant l'import ; rappels dans les 12 mois. Après la pose de la puce.", es: "Primovacunación no menos de 30 días y no más de 12 meses antes de la importación; refuerzos dentro de los 12 meses. Administrada después de la colocación del microchip.", pt: "Vacinação primária no mínimo 30 dias e no máximo 12 meses antes da importação; reforços dentro de 12 meses. Aplicada depois da colocação do microchip." }
+    exceptions: { en: "A copy of the rabies vaccination certificate must accompany the health certificate.", fr: "Une copie du certificat de vaccination antirabique doit accompagner le certificat sanitaire.", es: "Una copia del certificado de vacunación antirrábica debe acompañar al certificado sanitario.", pt: "Uma cópia do certificado de vacinação antirrábica precisa acompanhar o atestado de saúde." }
+    ref: { en: "DALRRD import conditions for dogs and cats", fr: "Conditions d'importation DALRRD pour chiens et chats", es: "Condiciones de importación del DALRRD para perros y gatos", pt: "Condições de importação do DALRRD para cães e gatos" }
+  - item: { en: "Rabies antibody test", fr: "Test des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Required for dogs from high-risk rabies countries: a positive result (≥0.5 IU/ml) from a WOAH/OIE-approved laboratory. Specified on the import permit.", fr: "Requis pour les chiens venant de pays à haut risque de rage : résultat positif (≥0,5 UI/ml) d'un laboratoire agréé WOAH/OIE. Précisé sur le permis.", es: "Obligatoria para perros procedentes de países de alto riesgo de rabia: un resultado positivo (≥0,5 UI/ml) de un laboratorio autorizado por la WOAH/OIE. Se especifica en el permiso de importación.", pt: "Obrigatório para cachorros vindos de países de alto risco de raiva: resultado positivo (≥0,5 UI/ml) de um laboratório aprovado pela WOAH/OIE. Especificado na autorização de importação." }
+    exceptions: { en: "Not required from rabies-free or rabies-controlled countries (e.g. EU, US, UK, Canada, Australia).", fr: "Non requis depuis les pays indemnes ou à rage contrôlée (ex. UE, USA, RU, Canada, Australie).", es: "No se exige desde países libres de rabia o con rabia controlada (p. ej. UE, EE. UU., RU, Canadá, Australia).", pt: "Não obrigatório vindo de países livres de raiva ou com raiva controlada (p. ex. UE, EUA, Reino Unido, Canadá, Austrália)." }
+    ref: { en: "DALRRD import conditions (per country of origin)", fr: "Conditions d'importation DALRRD (selon le pays d'origine)", es: "Condiciones de importación del DALRRD (según el país de origen)", pt: "Condições de importação do DALRRD (conforme o país de origem)" }
+  - item: { en: "Disease tests (dogs)", fr: "Tests de maladies (chiens)", es: "Pruebas de enfermedades (perros)", pt: "Testes de doenças (cachorros)" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorias", pt: "Obrigatório" }
+    when: { en: "Dogs tested and certified free of Brucella canis, Trypanosoma evansi (surra), Babesia gibsoni, Dirofilaria immitis and Leishmania, within 30 days of export. Surra testing at a recognised OIE reference lab.", fr: "Chiens testés et certifiés indemnes de Brucella canis, Trypanosoma evansi (surra), Babesia gibsoni, Dirofilaria immitis et Leishmania, dans les 30 jours avant l'export. Test surra dans un labo de référence OIE reconnu.", es: "Perros sometidos a pruebas y certificados como libres de Brucella canis, Trypanosoma evansi (surra), Babesia gibsoni, Dirofilaria immitis y Leishmania, dentro de los 30 días previos a la exportación. La prueba de surra en un laboratorio de referencia reconocido por la OIE.", pt: "Cachorros testados e certificados como livres de Brucella canis, Trypanosoma evansi (surra), Babesia gibsoni, Dirofilaria immitis e Leishmania, dentro dos 30 dias anteriores à exportação. O teste de surra deve ser feito em um laboratório de referência reconhecido pela OIE." }
+    exceptions: { en: "Exact tests and any treatments are listed on the health certificate issued with the permit; they can vary by origin.", fr: "Les tests exacts et d'éventuels traitements sont listés sur le certificat délivré avec le permis ; ils peuvent varier selon l'origine.", es: "Las pruebas exactas y cualquier tratamiento figuran en el certificado sanitario expedido con el permiso; pueden variar según el origen.", pt: "Os testes exatos e eventuais tratamentos constam no atestado de saúde emitido junto com a autorização; podem variar conforme a origem." }
+    ref: { en: "DALRRD veterinary health certificate for dogs", fr: "Certificat sanitaire vétérinaire DALRRD pour chiens", es: "Certificado sanitario veterinario del DALRRD para perros", pt: "Atestado de saúde veterinário do DALRRD para cachorros" }
+  - item: { en: "Veterinary health certificate", fr: "Certificat sanitaire vétérinaire", es: "Certificado sanitario veterinario", pt: "Atestado de saúde veterinário" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Completed in English by a vet authorised by the exporting country's veterinary authority, within 10 days of departure; signed, stamped and endorsed.", fr: "Rempli en anglais par un vétérinaire habilité par l'autorité du pays d'export, dans les 10 jours avant le départ ; signé, tamponné et visé.", es: "Cumplimentado en inglés por un veterinario autorizado por la autoridad veterinaria del país exportador, dentro de los 10 días previos a la salida; firmado, sellado y refrendado.", pt: "Preenchido em inglês por um veterinário habilitado pela autoridade veterinária do país exportador, dentro dos 10 dias anteriores à partida; assinado, carimbado e endossado." }
+    exceptions: { en: "Template is issued together with the import permit; use only that version.", fr: "Le modèle est délivré avec le permis d'importation ; n'utilise que cette version.", es: "El modelo se expide junto con el permiso de importación; usa únicamente esa versión.", pt: "O modelo é emitido junto com a autorização de importação; use apenas essa versão." }
+    ref: { en: "DALRRD — Import of animals and animal products; gov.za", fr: "DALRRD — Importation d'animaux et de produits animaux ; gov.za", es: "DALRRD — Importación de animales y productos animales; gov.za", pt: "DALRRD — Importação de animais e produtos de origem animal; gov.za" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Dogs from high-risk origins may undergo isolation/quarantine on arrival at an approved facility; the state veterinarian at the port of entry arranges accommodation.", fr: "Les chiens d'origines à risque peuvent subir un isolement/quarantaine à l'arrivée dans un établissement agréé ; le vétérinaire d'État au point d'entrée organise l'hébergement.", es: "Los perros de orígenes de alto riesgo pueden someterse a aislamiento/cuarentena a la llegada en un establecimiento autorizado; el veterinario del Estado en el punto de entrada organiza el alojamiento.", pt: "Cachorros de origens de alto risco podem passar por isolamento/quarentena na chegada, em um estabelecimento autorizado; o veterinário do Estado no ponto de entrada organiza a acomodação." }
+    exceptions: { en: "Not applied to most rabies-free/controlled origins. Confirm on your permit; an indemnity declaration is required where quarantine applies.", fr: "Non appliquée à la plupart des origines indemnes/contrôlées. À confirmer sur le permis ; une déclaration d'indemnité est requise en cas de quarantaine.", es: "No se aplica a la mayoría de los orígenes libres de rabia/controlados. Confírmalo en tu permiso; se exige una declaración de indemnidad cuando procede la cuarentena.", pt: "Não se aplica à maioria das origens livres de raiva ou com raiva controlada. Confirme na sua autorização; quando há quarentena, é exigida uma declaração de indenidade." }
+    ref: { en: "DALRRD — Import of animals (quarantine at port of entry)", fr: "DALRRD — Importation d'animaux (quarantaine au point d'entrée)", es: "DALRRD — Importación de animales (cuarentena en el punto de entrada)", pt: "DALRRD — Importação de animais (quarentena no ponto de entrada)" }
+  - item: { en: "Advance notification", fr: "Notification préalable", es: "Notificación previa", pt: "Aviso prévio" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The import permit is itself the advance authorisation; present the original permit, original health certificate and rabies certificate to the veterinary import control officer at the port of entry.", fr: "Le permis d'importation constitue l'autorisation préalable ; présente l'original du permis, du certificat sanitaire et du certificat de rage à l'agent de contrôle vétérinaire au point d'entrée.", es: "El permiso de importación constituye la autorización previa; presenta el permiso original, el certificado sanitario original y el certificado de rabia al agente de control veterinario de importación en el punto de entrada.", pt: "A própria autorização de importação é a autorização prévia; apresente o original da autorização, o original do atestado de saúde e o certificado antirrábico ao agente de controle veterinário de importação no ponto de entrada." }
+    exceptions: { en: "Where quarantine applies, notify the state veterinarian at the port of entry in advance.", fr: "En cas de quarantaine, préviens à l'avance le vétérinaire d'État au point d'entrée.", es: "Cuando procede la cuarentena, avisa con antelación al veterinario del Estado en el punto de entrada.", pt: "Quando houver quarentena, avise com antecedência o veterinário do Estado no ponto de entrada." }
+    ref: { en: "DALRRD — Import of animals and animal products; gov.za", fr: "DALRRD — Importation d'animaux et de produits animaux ; gov.za", es: "DALRRD — Importación de animales y productos animales; gov.za", pt: "DALRRD — Importação de animais e produtos de origem animal; gov.za" }
+  - item: { en: "Restricted breeds", fr: "Races restreintes", es: "Razas restringidas", pt: "Raças restritas" }
+    required: { en: "No national import ban", fr: "Pas d'interdiction nationale", es: "Sin prohibición nacional de importación", pt: "Sem proibição nacional de importação" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "South Africa has no national breed-specific import ban; some municipalities apply local ownership rules. Verify local by-laws.", fr: "L'Afrique du Sud n'a pas d'interdiction d'importation par race au niveau national ; certaines municipalités appliquent des règles locales. Vérifie les règlements locaux.", es: "Sudáfrica no tiene ninguna prohibición de importación por raza a nivel nacional; algunos municipios aplican normas locales de tenencia. Verifica los reglamentos locales.", pt: "A África do Sul não tem proibição nacional de importação por raça; alguns municípios aplicam regras locais de posse. Verifique os regulamentos municipais." }
+    ref: { en: "No national breed-specific legislation (DALRRD)", fr: "Aucune législation nationale par race (DALRRD)", es: "Sin legislación nacional por raza (DALRRD)", pt: "Nenhuma legislação nacional por raça (DALRRD)" }
+
+origin:
+  eu:
+    title: { en: "Rabies-free origins", fr: "Origines indemnes de rage", es: "Orígenes libres de rabia", pt: "Origens livres de raiva" }
+    body:
+      en: "From a rabies-free country, your dog still needs the DALRRD import permit, an ISO microchip, a valid rabies vaccination, the dog disease tests within 30 days and a state-endorsed health certificate. No rabies antibody test and normally no quarantine."
+      fr: "Depuis un pays indemne de rage, ton chien a tout de même besoin du permis DALRRD, d'une puce ISO, d'une vaccination antirabique valide, des tests de maladies dans les 30 jours et d'un certificat sanitaire visé. Pas de test des anticorps antirabiques et normalement pas de quarantaine."
+      es: "Desde un país libre de rabia, tu perro necesita igualmente el permiso de importación del DALRRD, un microchip ISO, una vacunación antirrábica válida, las pruebas de enfermedades para perros dentro de los 30 días y un certificado sanitario refrendado por el Estado. Sin prueba de titulación de rabia y normalmente sin cuarentena."
+      pt: "Vindo de um país livre de raiva, o seu cachorro ainda assim precisa da autorização de importação do DALRRD, de um microchip ISO, de uma vacinação antirrábica válida, dos testes de doenças para cachorros dentro de 30 dias e de um atestado de saúde com aval do Estado. Sem teste sorológico antirrábico (titulação) e, normalmente, sem quarentena."
+    cls: warn
+  listed:
+    title: { en: "Rabies-controlled origins (EU, US, UK, Canada…)", fr: "Origines à rage contrôlée (UE, USA, RU, Canada…)", es: "Orígenes con rabia controlada (UE, EE. UU., RU, Canadá…)", pt: "Origens com raiva controlada (UE, EUA, Reino Unido, Canadá…)" }
+    body:
+      en: "From a rabies-controlled country, the same core requirements apply: import permit, microchip, rabies vaccination, dog disease tests and an endorsed health certificate. A rabies antibody test is not required; present all originals to the veterinary control officer on arrival."
+      fr: "Depuis un pays à rage contrôlée, les mêmes exigences de base s'appliquent : permis, puce, vaccination antirabique, tests de maladies et certificat sanitaire visé. Un test des anticorps antirabiques n'est pas requis ; présente tous les originaux à l'agent de contrôle vétérinaire à l'arrivée."
+      es: "Desde un país con rabia controlada se aplican los mismos requisitos básicos: permiso de importación, microchip, vacunación antirrábica, pruebas de enfermedades para perros y un certificado sanitario refrendado. No se exige prueba de titulación de rabia; presenta todos los originales al agente de control veterinario a la llegada."
+      pt: "Vindo de um país com raiva controlada, valem as mesmas exigências básicas: autorização de importação, microchip, vacinação antirrábica, testes de doenças para cachorros e um atestado de saúde endossado. Não é exigido teste sorológico antirrábico (titulação); apresente todos os originais ao agente de controle veterinário na chegada."
+    cls: warn
+  nonListed:
+    title: { en: "High-risk rabies origins", fr: "Origines à haut risque de rage", es: "Orígenes de alto riesgo de rabia", pt: "Origens de alto risco de raiva" }
+    body:
+      en: "From a high-risk rabies country, add a rabies antibody test (positive result ≥0.5 IU/ml from a WOAH/OIE-approved laboratory) and expect a possible period of isolation or quarantine on arrival. All the core requirements above still apply, and the exact tests are set on your import permit."
+      fr: "Depuis un pays à haut risque de rage, ajoute un test des anticorps antirabiques (résultat positif ≥0,5 UI/ml d'un laboratoire agréé WOAH/OIE) et prévois un possible isolement ou quarantaine à l'arrivée. Toutes les exigences de base ci-dessus restent applicables, et les tests exacts figurent sur ton permis."
+      es: "Desde un país de alto riesgo de rabia, añade una prueba de titulación de rabia (resultado positivo ≥0,5 UI/ml de un laboratorio autorizado por la WOAH/OIE) y prevé un posible periodo de aislamiento o cuarentena a la llegada. Siguen aplicándose todos los requisitos básicos anteriores, y las pruebas exactas se fijan en tu permiso de importación."
+      pt: "Vindo de um país de alto risco de raiva, acrescente um teste sorológico antirrábico (titulação) com resultado positivo ≥0,5 UI/ml de um laboratório aprovado pela WOAH/OIE e conte com um possível período de isolamento ou quarentena na chegada. Todas as exigências básicas acima continuam valendo, e os testes exatos são definidos na sua autorização de importação."
+    cls: no
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches South Africa depends on your permit and the country you flew from."
+    fr: "Ce qui se passe à l'arrivée en Afrique du Sud dépend de ton permis et de ton pays de départ."
+    es: "Lo que ocurre cuando tu perro llega a Sudáfrica depende de tu permiso y del país desde el que hayas volado."
+    pt: "O que acontece quando o seu cachorro chega à África do Sul depende da sua autorização e do país de onde você voou."
+  points:
+    - en: "Present the original import permit, original endorsed health certificate and rabies vaccination certificate to the veterinary import control officer at the port of entry (e.g. Johannesburg, Cape Town, Durban)."
+      fr: "Présente l'original du permis, l'original du certificat sanitaire visé et le certificat de vaccination antirabique à l'agent de contrôle vétérinaire au point d'entrée (Johannesburg, Le Cap, Durban…)."
+      es: "Presenta el permiso de importación original, el certificado sanitario refrendado original y el certificado de vacunación antirrábica al agente de control veterinario de importación en el punto de entrada (p. ej. Johannesburgo, Ciudad del Cabo, Durban)."
+      pt: "Apresente o original da autorização de importação, o original do atestado de saúde endossado e o certificado de vacinação antirrábica ao agente de controle veterinário de importação no ponto de entrada (p. ex. Joanesburgo, Cidade do Cabo, Durban)."
+    - en: "Documents must be in English, complete and legible; the health certificate must have been issued within 10 days of departure."
+      fr: "Les documents doivent être en anglais, complets et lisibles ; le certificat sanitaire doit avoir été établi dans les 10 jours avant le départ."
+      es: "Los documentos deben estar en inglés, completos y legibles; el certificado sanitario debe haberse emitido dentro de los 10 días previos a la salida."
+      pt: "Os documentos precisam estar em inglês, completos e legíveis; o atestado de saúde precisa ter sido emitido dentro dos 10 dias anteriores à partida."
+    - en: "Dogs from high-risk origins may be moved to an approved isolation/quarantine facility arranged with the state veterinarian; an indemnity declaration is required in that case."
+      fr: "Les chiens d'origines à risque peuvent être placés en établissement d'isolement/quarantaine agréé avec le vétérinaire d'État ; une déclaration d'indemnité est alors requise."
+      es: "Los perros de orígenes de alto riesgo pueden trasladarse a un establecimiento de aislamiento/cuarentena autorizado, coordinado con el veterinario del Estado; en ese caso se exige una declaración de indemnidad."
+      pt: "Cachorros de origens de alto risco podem ser levados a um estabelecimento autorizado de isolamento/quarentena, combinado com o veterinário do Estado; nesse caso, é exigida uma declaração de indenidade."
+    - en: "If the disease tests do not comply with the health certificate, the dog may be returned to the country of export or, in the worst case, euthanised."
+      fr: "Si les tests de maladies ne sont pas conformes au certificat sanitaire, le chien peut être renvoyé au pays d'export ou, au pire, euthanasié."
+      es: "Si las pruebas de enfermedades no concuerdan con el certificado sanitario, el perro puede ser devuelto al país de exportación o, en el peor de los casos, sacrificado."
+      pt: "Se os testes de doenças não estiverem de acordo com o atestado de saúde, o cachorro pode ser devolvido ao país de exportação ou, na pior das hipóteses, sacrificado."
+    - en: "Carry original documents (not copies) and keep a set with you throughout the journey."
+      fr: "Munis-toi des documents originaux (pas de copies) et garde-en un jeu sur toi durant tout le trajet."
+      es: "Lleva los documentos originales (no copias) y guarda un juego contigo durante todo el trayecto."
+      pt: "Leve os documentos originais (não cópias) e mantenha um jogo com você durante todo o trajeto."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "South Africa has no national breed-specific legislation banning the import of particular dog breeds. Entry is controlled by the veterinary import permit and health requirements, not by breed."
+    fr: "L'Afrique du Sud n'a pas de législation nationale par race interdisant l'importation de races de chiens particulières. L'entrée est encadrée par le permis d'importation vétérinaire et les exigences sanitaires, non par la race."
+    es: "Sudáfrica no tiene una legislación nacional por raza que prohíba la importación de razas de perros concretas. La entrada se controla mediante el permiso de importación veterinario y los requisitos sanitarios, no por la raza."
+    pt: "A África do Sul não tem legislação nacional por raça que proíba a importação de raças específicas de cachorro. A entrada é controlada pela autorização de importação veterinária e pelas exigências sanitárias, não pela raça."
+  cat1:
+    en: "There is no national list of prohibited breeds and no national import ban on breeds such as pit bull types. A national debate and petitions on pit bulls have taken place, but no national ban has been enacted."
+    fr: "Il n'existe pas de liste nationale de races interdites ni d'interdiction nationale d'importation visant des races comme les types pit-bull. Un débat national et des pétitions sur les pit-bulls ont eu lieu, mais aucune interdiction nationale n'a été adoptée."
+    es: "No existe una lista nacional de razas prohibidas ni una prohibición nacional de importación de razas como los tipos pit bull. Ha habido un debate nacional y peticiones sobre los pit bull, pero no se ha promulgado ninguna prohibición nacional."
+    pt: "Não existe lista nacional de raças proibidas nem proibição nacional de importação de raças como os tipos pit bull. Houve debate nacional e petições sobre os pit bulls, mas nenhuma proibição nacional foi aprovada."
+  cat2:
+    en: "Some municipalities apply local by-laws (permits, leashing or muzzling in public) to certain dogs. These are local ownership rules, not import bans — check the rules of your destination municipality."
+    fr: "Certaines municipalités appliquent des règlements locaux (permis, laisse ou muselière en public) à certains chiens. Ce sont des règles locales de détention, pas des interdictions d'importation — vérifie les règles de ton municipalité de destination."
+    es: "Algunos municipios aplican reglamentos locales (permisos, correa o bozal en público) a ciertos perros. Son normas locales de tenencia, no prohibiciones de importación — consulta las normas de tu municipio de destino."
+    pt: "Alguns municípios aplicam regulamentos locais (licenças, uso de guia ou de focinheira em público) a determinados cachorros. São regras locais de posse, não proibições de importação — consulte as regras do município de destino."
+  note:
+    en: "Because local rules vary, confirm any municipal requirement for your specific breed at your destination before you travel."
+    fr: "Les règles locales variant, confirme toute exigence municipale pour ta race précise à destination avant de voyager."
+    es: "Como las normas locales varían, confirma cualquier requisito municipal para tu raza concreta en tu destino antes de viajar."
+    pt: "Como as regras locais variam, confirme antes de viajar qualquer exigência municipal para a sua raça específica no destino."
+
+checklist:
+  - en: "Apply for the DALRRD veterinary import permit well before travel"
+    fr: "Demande le permis d'importation vétérinaire DALRRD bien avant le voyage"
+    es: "Solicita el permiso de importación veterinario del DALRRD bastante antes del viaje"
+    pt: "Peça a autorização de importação veterinária do DALRRD bem antes da viagem"
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (primary 30 days to 12 months before import)"
+    fr: "Vaccination antirabique valide (primo de 30 jours à 12 mois avant l'import)"
+    es: "Vacunación antirrábica válida (primovacunación de 30 días a 12 meses antes de la importación)"
+    pt: "Vacinação antirrábica válida (dose primária de 30 dias a 12 meses antes da importação)"
+  - en: "Rabies antibody test if coming from a high-risk rabies country"
+    fr: "Test des anticorps antirabiques si origine à haut risque de rage"
+    es: "Prueba de titulación de rabia si procedes de un país de alto riesgo de rabia"
+    pt: "Teste sorológico antirrábico (titulação) se você vier de um país de alto risco de raiva"
+  - en: "Dog disease tests (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) within 30 days"
+    fr: "Tests de maladies (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) dans les 30 jours"
+    es: "Pruebas de enfermedades para perros (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) dentro de los 30 días"
+    pt: "Testes de doenças do cachorro (Brucella, Trypanosoma, Babesia, Dirofilaria, Leishmania) dentro de 30 dias"
+  - en: "Veterinary health certificate completed in English within 10 days of departure and endorsed"
+    fr: "Certificat sanitaire rempli en anglais dans les 10 jours avant le départ et visé"
+    es: "Certificado sanitario veterinario cumplimentado en inglés dentro de los 10 días previos a la salida y refrendado"
+    pt: "Atestado de saúde veterinário preenchido em inglês dentro dos 10 dias anteriores à partida e endossado"
+  - en: "Original permit and certificates to present at the port of entry"
+    fr: "Permis et certificats originaux à présenter au point d'entrée"
+    es: "Permiso y certificados originales para presentar en el punto de entrada"
+    pt: "Autorização e certificados originais para apresentar no ponto de entrada"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+  - en: "Check any municipal by-law for your breed at your destination"
+    fr: "Vérifie tout règlement municipal pour ta race à destination"
+    es: "Consulta cualquier reglamento municipal para tu raza en tu destino"
+    pt: "Consulte qualquer regulamento municipal para a sua raça no destino"
+
+sources:
+  - label: { en: "DALRRD / South African Government — Import animals and animal products", fr: "DALRRD / Gouvernement sud-africain — Importation d'animaux et de produits animaux", es: "DALRRD / Gobierno de Sudáfrica — Importación de animales y productos animales", pt: "DALRRD / Governo da África do Sul — Importação de animais e produtos de origem animal" }
+    url: "https://www.gov.za/services/import/import-animals-and-animal-products"
+  - label: { en: "DALRRD — Information document for import of dogs and cats to RSA", fr: "DALRRD — Document d'information pour l'importation de chiens et chats en RSA", es: "DALRRD — Documento informativo para la importación de perros y gatos a la RSA", pt: "DALRRD — Documento informativo para a importação de cães e gatos para a RSA" }
+    url: "https://www.dalrrd.gov.za/images/Branches/AgricProducHealthFoodSafety/animal-health/importexport/import/import-procedures/information-document-for-import-of-dogs-and-cats-to-rsa-06-2022.pdf"
+  - label: { en: "DALRRD — Directorate: Animal Health, import/export forms", fr: "DALRRD — Directorate: Animal Health, formulaires import/export", es: "DALRRD — Directorate: Animal Health, formularios de importación/exportación", pt: "DALRRD — Directorate: Animal Health, formulários de importação/exportação" }
+    url: "https://www.nda.gov.za/index.php/core-business/agricultural-production/animal-production/animal-health"
+  - label: { en: "DALRRD — Tariffs for veterinary import permits (2024/25)", fr: "DALRRD — Tarifs des permis d'importation vétérinaire (2024/25)", es: "DALRRD — Tarifas de los permisos de importación veterinarios (2024/25)", pt: "DALRRD — Tarifas das autorizações de importação veterinárias (2024/25)" }
+    url: "https://www.gov.za/sites/default/files/speech_docs/tarrifs-for-veterinary-imports-permits-2024_.pdf"
+  - label: { en: "USDA APHIS — Pet Travel from the United States to South Africa (dog requirements)", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers l'Afrique du Sud (exigences chiens)", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a Sudáfrica (requisitos para perros)", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para a África do Sul (exigências para cachorros)" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-south-africa"
+
+seo:
+  title: { en: "South Africa Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Afrique du Sud — Guide", es: "Requisitos de entrada de perros en Sudáfrica — Guía de viaje", pt: "África do Sul: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "South Africa Dog Entry Requirements (2026)", fr: "Voyager en Afrique du Sud avec ton chien : formalités (2026)", es: "Viajar a Sudáfrica con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro à África do Sul: exigências de entrada 2026" }
+  metaDesc:
+    en: "Official DALRRD rules for bringing a dog into South Africa: import permit, microchip, rabies, disease tests and antibody test by origin. Sourced and dated."
+    fr: "Règles officielles DALRRD pour faire entrer un chien en Afrique du Sud : permis, puce, rage, tests de maladies et test des anticorps selon l'origine. Sourcé et daté."
+    es: "Normas oficiales del DALRRD para traer un perro a Sudáfrica: permiso, microchip, rabia, pruebas de enfermedades y anticuerpos según el origen. Con fuentes y fecha."
+    pt: "Regras oficiais do DALRRD para levar um cachorro à África do Sul: autorização, microchip, raiva, testes de doenças e sorologia por origem. Com fontes e data."
+  slug: "south-africa"
+  shortDesc:
+    en: "What you need to bring a dog into South Africa: an advance import permit, disease tests and an endorsed health certificate."
+    fr: "Ce qu'il faut pour faire entrer un chien en Afrique du Sud : permis préalable, tests de maladies et certificat sanitaire visé."
+    es: "Lo que necesitas para traer un perro a Sudáfrica: un permiso de importación previo, pruebas de enfermedades y un certificado sanitario refrendado."
+    pt: "O que é preciso para levar um cachorro à África do Sul: autorização de importação prévia, testes de doenças e atestado de saúde endossado."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

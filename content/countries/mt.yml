@@ -1,0 +1,348 @@
+# Country Entry Guide — Malta (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_mt
+iso2: "MT"
+name: { en: "Malta", fr: "Malte", es: "Malta", pt: "Malta" }
+region: { en: "Europe (EU)", fr: "Europe (UE)", es: "Europa (UE)", pt: "Europa (UE)" }
+
+
+regime: eu
+
+hero:
+  h1: { en: "Traveling to Malta with your dog", fr: "Voyager à Malte avec ton chien", es: "Viajar a Malta con tu perro", pt: "Viajar para Malta com seu cachorro" }
+  intro:
+    en: >-
+      Malta welcomes dogs, but what you need to prepare depends mainly on the country your dog is
+      travelling from — not only on Malta itself. As an EU member, Malta applies the EU pet-movement
+      rules: an ISO microchip and a valid rabies vaccination are always required. A dog coming from
+      another EU country simply needs an EU pet passport; a dog from a listed non-EU country (such as
+      the United States, Canada or the United Kingdom) needs an EU animal health certificate but no
+      blood test; a dog from a non-listed country faces the longest path, including a rabies antibody
+      test and a three-month wait. Because Malta is an island, two extra steps apply to almost every
+      dog: a tapeworm treatment given by a vet shortly before arrival, and an advance arrival
+      notification to the veterinary authorities. This guide explains each case so you know exactly
+      what to prepare before you book your flight.
+    fr: >-
+      Malte accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton chien
+      voyage — pas seulement de Malte. En tant qu'État membre de l'UE, Malte applique les règles
+      européennes de mouvement des animaux : une puce ISO et une vaccination antirabique valide sont
+      toujours exigées. Un chien venant d'un autre pays de l'UE a simplement besoin d'un passeport
+      européen ; un chien en provenance d'un pays tiers listé (États-Unis, Canada, Royaume-Uni…) a
+      besoin d'un certificat sanitaire européen mais pas de prise de sang ; un chien venant d'un pays
+      non listé suit le parcours le plus long, avec un titrage antirabique et un délai de trois mois.
+      Comme Malte est une île, deux étapes supplémentaires concernent presque tous les chiens : un
+      traitement contre le ténia administré par un vétérinaire peu avant l'arrivée, et une notification
+      d'arrivée préalable aux autorités vétérinaires. Ce guide détaille chaque cas pour savoir
+      exactement quoi préparer avant de réserver ton vol.
+    es: >-
+      Malta acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
+      viaja tu perro — no solo de Malta. Como Estado miembro de la UE, Malta aplica las normas europeas
+      de movimiento de animales de compañía: siempre se exigen un microchip ISO y una vacunación
+      antirrábica válida. Un perro que llega de otro país de la UE solo necesita un pasaporte europeo
+      para mascotas; un perro procedente de un país tercero listado (como Estados Unidos, Canadá o el
+      Reino Unido) necesita un certificado sanitario animal de la UE, pero no una prueba de sangre; un
+      perro de un país no listado se enfrenta al camino más largo, que incluye una prueba de titulación
+      de rabia y una espera de tres meses. Como Malta es una isla, dos pasos adicionales se aplican a
+      casi todos los perros: un tratamiento contra la tenia administrado por un veterinario poco antes
+      de la llegada, y una notificación de llegada previa a las autoridades veterinarias. Esta guía
+      explica cada caso para que sepas exactamente qué preparar antes de reservar tu vuelo.
+
+    pt: "Malta recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde seu cachorro parte — e não só de Malta em si. Como membro da União Europeia, Malta aplica as regras europeias de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Um cachorro vindo de outro país da UE precisa apenas do passaporte europeu para animais; um cachorro vindo de um país listado fora da UE (como Estados Unidos, Canadá ou Reino Unido) precisa de um certificado sanitário europeu, mas não de exame de sangue; um cachorro vindo de um país não listado enfrenta o caminho mais longo, com teste sorológico antirrábico e três meses de espera. Como Malta é uma ilha, duas etapas a mais valem para quase todo cachorro: um tratamento contra a tênia aplicado por um veterinário pouco antes da chegada e uma notificação prévia de chegada às autoridades veterinárias. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to difficult (depends on origin)", fr: "Facile à difficile (selon l'origine)", es: "De fácil a difícil (según el origen)", pt: "De fácil a difícil (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "A few days if the passport is up to date — plus a vet-recorded tapeworm treatment 24–120 hours before arrival and an advance arrival notification."
+    fr: "Quelques jours si le passeport est à jour — plus un traitement contre le ténia consigné par le vétérinaire 24 à 120 heures avant l'arrivée et une notification d'arrivée préalable."
+    es: "Unos días si el pasaporte está al día — más un tratamiento contra la tenia registrado por el veterinario 24–120 horas antes de la llegada y una notificación de llegada previa."
+    pt: "Alguns dias se o passaporte estiver em dia — mais um tratamento contra a tênia registrado pelo veterinário de 24 a 120 horas antes da chegada e uma notificação prévia de chegada."
+  listed:
+    en: "~3–4 weeks: 21-day wait after the rabies shot, a health certificate valid 10 days, plus the tapeworm treatment and advance notice."
+    fr: "~3–4 semaines : délai de 21 jours après le vaccin, certificat sanitaire valable 10 jours, plus le traitement contre le ténia et une notification préalable."
+    es: "~3–4 semanas: espera de 21 días tras la vacuna antirrábica, un certificado sanitario válido 10 días, más el tratamiento contra la tenia y una notificación previa."
+    pt: "Cerca de 3 a 4 semanas: 21 dias de espera depois da vacina antirrábica, certificado sanitário válido por 10 dias, mais o tratamento contra a tênia e a notificação prévia."
+  nonListed:
+    en: "~4–7 months: antibody test at least 30 days after vaccination, then a compulsory 3-month wait, plus the tapeworm treatment and advance notice."
+    fr: "~4–7 mois : titrage au moins 30 jours après le vaccin, puis un délai obligatoire de 3 mois, plus le traitement contre le ténia et une notification préalable."
+    es: "~4–7 meses: prueba de titulación al menos 30 días después de la vacuna, y luego una espera obligatoria de 3 meses, más el tratamiento contra la tenia y una notificación previa."
+    pt: "Cerca de 4 a 7 meses: teste sorológico no mínimo 30 dias depois da vacinação, seguido de 3 meses obrigatórios de espera, mais o tratamento contra a tênia e a notificação prévia."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Conditional — non-listed origins only", fr: "Conditionnel — pays non listés uniquement", es: "Condicional — solo orígenes no listados", pt: "Condicional — apenas para origens não listadas" }
+    cls: neutral
+  - requirement: { en: "Veterinary certificate", fr: "Certificat vétérinaire", es: "Certificado veterinario", pt: "Certificado veterinário" }
+    status: { en: "Conditional — non-EU origins", fr: "Conditionnel — origines hors UE", es: "Condicional — orígenes fuera de la UE", pt: "Condicional — origens fora da UE" }
+    cls: neutral
+  - requirement: { en: "Tapeworm treatment", fr: "Traitement contre l'échinococcose", es: "Tratamiento contra la tenia", pt: "Tratamento contra a tênia" }
+    status: { en: "Required (dogs) — vet-administered before arrival", fr: "Requis (chiens) — administré par un vétérinaire avant l'arrivée", es: "Obligatorio (perros) — administrado por un veterinario antes de la llegada", pt: "Obrigatório (cachorros) — aplicado por um veterinário antes da chegada" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Normally not required", fr: "Normalement non requise", es: "Normalmente no obligatoria", pt: "Normalmente não obrigatória" }
+    cls: ok
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — Malta (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — Malte (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Malta (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — Malta (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — Malta", fr: "Pays de destination — Malte", es: "País de destino — Malta", pt: "País de destino — Malta" }
+      text:
+        en: "Malta applies the EU pet-movement framework: an ISO microchip and a valid rabies vaccination are always required. Malta is also one of the few countries that require a tapeworm treatment before arrival and an advance arrival notification."
+        fr: "Malte applique le cadre européen : puce ISO et vaccination antirabique valide toujours exigées. Malte fait aussi partie des rares pays qui exigent un traitement contre le ténia avant l'arrivée et une notification d'arrivée préalable."
+        es: "Malta aplica el marco europeo de movimiento de animales: siempre se exigen un microchip ISO y una vacunación antirrábica válida. Malta es también uno de los pocos países que exigen un tratamiento contra la tenia antes de la llegada y una notificación de llegada previa."
+        pt: "Malta aplica o quadro europeu de circulação de animais de estimação: microchip ISO e vacinação antirrábica válida são sempre obrigatórios. Malta também é um dos poucos países que exigem tratamento contra a tênia antes da chegada e notificação prévia de chegada."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog leaves from an EU country, a listed non-EU country or a non-listed country decides whether an antibody test and a health certificate are required."
+        fr: "Que ton chien parte d'un pays de l'UE, d'un pays tiers listé ou d'un pays non listé détermine si un titrage et un certificat sanitaire sont exigés."
+        es: "Que tu perro salga de un país de la UE, de un país tercero listado o de un país no listado determina si se exigen una prueba de titulación y un certificado sanitario."
+        pt: "Partir de um país da UE, de um país listado fora da UE ou de um país não listado é o que define se o teste sorológico e o certificado sanitário são exigidos."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Malta judges entry on where the dog is actually travelling from, not where it was born or usually lives. A recent stay in a rabies-risk country can trigger an antibody test even if you fly in from an exempt country."
+        fr: "Malte juge l'entrée selon le pays d'où le chien voyage réellement, pas son pays de naissance ou de résidence habituelle. Un séjour récent dans un pays à risque rabique peut imposer un titrage même si tu arrives d'un pays exempté."
+        es: "Malta juzga la entrada según el país desde el que el perro viaja realmente, no según dónde nació o reside habitualmente. Una estancia reciente en un país con riesgo de rabia puede obligar a una prueba de titulación aunque llegues desde un país exento."
+        pt: "Malta avalia a entrada pelo país de onde o cachorro realmente viaja, e não por onde ele nasceu ou mora normalmente. Uma estadia recente em um país de risco de raiva pode acionar a exigência do teste sorológico mesmo que você chegue de um país isento."
+  note:
+    en: "So read the requirements below as Malta's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre maltais, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de Malta y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro maltês, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Must be implanted before the rabies vaccination; readable to ISO standard 11784/11785 (bring a scanner if not).", fr: "Doit être posée avant la vaccination antirabique ; lisible selon la norme ISO 11784/11785 (apporte un lecteur sinon).", es: "Debe implantarse antes de la vacunación antirrábica; legible según la norma ISO 11784/11785 (lleva un lector si no lo es).", pt: "Deve ser implantado antes da vacinação antirrábica; legível conforme a norma ISO 11784/11785 (leve um leitor se não for)." }
+    exceptions: { en: "A legible tattoo is accepted only if done before 3 July 2011.", fr: "Un tatouage lisible n'est accepté que s'il est antérieur au 3 juillet 2011.", es: "Un tatuaje legible solo se acepta si se hizo antes del 3 de julio de 2011.", pt: "Uma tatuagem legível só é aceita se tiver sido feita antes de 3 de julho de 2011." }
+    ref: { en: "EU Reg. 576/2013; Veterinary Regulation Directorate (MT)", fr: "Règl. UE 576/2013 ; Direction de la réglementation vétérinaire (MT)", es: "Regl. UE 576/2013; Veterinary Regulation Directorate (MT)", pt: "Regulamento UE 576/2013; Veterinary Regulation Directorate (MT)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "Dog at least 12 weeks old at the shot, given after the microchip; valid from at least 21 days after the primary vaccination.", fr: "Chien d'au moins 12 semaines au vaccin, administré après la puce ; valide au moins 21 jours après la primo-vaccination.", es: "Perro de al menos 12 semanas en el momento de la vacuna, administrada después del microchip; válida a partir de al menos 21 días de la primovacunación.", pt: "Cachorro com pelo menos 12 semanas na data da vacina, aplicada depois do microchip; válida a partir de no mínimo 21 dias após a primovacinação." }
+    exceptions: { en: "In-date boosters stay valid with no waiting period if there was no break in cover.", fr: "Un rappel à jour reste valide sans délai s'il n'y a pas eu de rupture de couverture.", es: "Los refuerzos en vigor siguen siendo válidos sin período de espera si no hubo interrupción de la cobertura.", pt: "Reforços em dia continuam válidos sem prazo de espera, se não houve interrupção da cobertura." }
+    ref: { en: "EU Reg. 576/2013, Annex III", fr: "Règl. UE 576/2013, annexe III", es: "Regl. UE 576/2013, anexo III", pt: "Regulamento UE 576/2013, anexo III" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-listed origins only: blood ≥30 days after vaccination, ≥3 months before entry, result ≥0.5 IU/ml, EU-designated lab.", fr: "Pays non listés : sang ≥30 jours après le vaccin, ≥3 mois avant l'entrée, résultat ≥0,5 UI/ml, labo agréé UE.", es: "Solo orígenes no listados: sangre ≥30 días tras la vacuna, ≥3 meses antes de la entrada, resultado ≥0,5 UI/ml, laboratorio autorizado por la UE.", pt: "Apenas para origens não listadas: sangue coletado ≥30 dias após a vacinação e ≥3 meses antes da entrada, resultado ≥0,5 UI/ml, em laboratório designado pela UE." }
+    exceptions: { en: "Not required from the EU or from listed countries (US, Canada, UK, Switzerland, Japan, Australia…).", fr: "Non requis depuis l'UE ou les pays listés (USA, Canada, RU, Suisse, Japon, Australie…).", es: "No se exige desde la UE ni desde países listados (EE. UU., Canadá, RU, Suiza, Japón, Australia…).", pt: "Não exigido para quem vem da UE ou de países listados (EUA, Canadá, Reino Unido, Suíça, Japão, Austrália…)." }
+    ref: { en: "EU Reg. 2020/692", fr: "Règl. UE 2020/692", es: "Regl. UE 2020/692", pt: "Regulamento UE 2020/692" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Issued by an EU vet; records the microchip, rabies vaccination and the tapeworm treatment.", fr: "Délivré par un vétérinaire de l'UE ; consigne la puce, la vaccination et le traitement contre le ténia.", es: "Expedido por un veterinario de la UE; registra el microchip, la vacunación antirrábica y el tratamiento contra la tenia.", pt: "Emitido por um veterinário da UE; registra o microchip, a vacinação antirrábica e o tratamento contra a tênia." }
+    exceptions: { en: "Replaced by an animal health certificate for non-EU origins.", fr: "Remplacé par un certificat sanitaire pour les origines hors UE.", es: "Se sustituye por un certificado sanitario animal para orígenes fuera de la UE.", pt: "Substituído por um certificado sanitário quando a origem é de fora da UE." }
+    ref: { en: "EU Reg. 577/2013", fr: "Règl. UE 577/2013", es: "Regl. UE 577/2013", pt: "Regulamento UE 577/2013" }
+  - item: { en: "EU animal health certificate", fr: "Certificat sanitaire UE", es: "Certificado sanitario animal de la UE", pt: "Certificado sanitário europeu" }
+    required: { en: "Non-EU origins", fr: "Origines hors UE", es: "Orígenes fuera de la UE", pt: "Origens fora da UE" }
+    when: { en: "Issued/endorsed by an official vet before departure; valid 10 days to entry, then up to 4 months for onward EU travel.", fr: "Établi/visé par un vétérinaire officiel avant départ ; valable 10 jours jusqu'à l'entrée, puis jusqu'à 4 mois pour circuler dans l'UE.", es: "Expedido/refrendado por un veterinario oficial antes de la salida; válido 10 días hasta la entrada y luego hasta 4 meses para circular por la UE.", pt: "Emitido/endossado por um veterinário oficial antes da partida; válido por 10 dias até a entrada e, depois, por até 4 meses para circular pela UE." }
+    exceptions: { en: "Not needed for EU origins (passport instead).", fr: "Inutile pour les origines UE (passeport à la place).", es: "No necesario para orígenes de la UE (en su lugar, el pasaporte).", pt: "Não é necessário para origens na UE (usa-se o passaporte)." }
+    ref: { en: "EU Reg. 577/2013, Annex IV", fr: "Règl. UE 577/2013, annexe IV", es: "Regl. UE 577/2013, anexo IV", pt: "Regulamento UE 577/2013, anexo IV" }
+  - item: { en: "Tapeworm (Echinococcus) treatment", fr: "Traitement échinococcose (ténia)", es: "Tratamiento contra la tenia (Echinococcus)", pt: "Tratamento contra a tênia (Echinococcus)" }
+    required: { en: "Required (dogs)", fr: "Requis (chiens)", es: "Obligatorio (perros)", pt: "Obrigatório (cachorros)" }
+    when: { en: "A vet must treat the dog with a praziquantel product no less than 24 hours and no more than 120 hours (1–5 days) before arrival in Malta, recorded in the passport or health certificate.", fr: "Un vétérinaire doit traiter le chien avec un produit à base de praziquantel entre 24 et 120 heures (1 à 5 jours) avant l'arrivée à Malte, avec consignation dans le passeport ou le certificat sanitaire.", es: "Un veterinario debe tratar al perro con un producto a base de praziquantel no menos de 24 horas y no más de 120 horas (1–5 días) antes de la llegada a Malta, y registrarlo en el pasaporte o el certificado sanitario.", pt: "Um veterinário precisa tratar o cachorro com um produto à base de praziquantel no mínimo 24 horas e no máximo 120 horas (de 1 a 5 dias) antes da chegada a Malta, com registro no passaporte ou no certificado sanitário." }
+    exceptions: { en: "Not required only when the dog travels directly from Finland, Ireland, Norway or Northern Ireland. Does not apply to cats or ferrets.", fr: "Non requis uniquement si le chien voyage directement depuis la Finlande, l'Irlande, la Norvège ou l'Irlande du Nord. Ne concerne pas les chats ni les furets.", es: "No obligatorio solo cuando el perro viaja directamente desde Finlandia, Irlanda, Noruega o Irlanda del Norte. No se aplica a gatos ni hurones.", pt: "Só deixa de ser obrigatório quando o cachorro viaja diretamente da Finlândia, da Irlanda, da Noruega ou da Irlanda do Norte. Não se aplica a gatos nem a furões." }
+    ref: { en: "EU Reg. 1152/2011; Veterinary Regulation Directorate (MT)", fr: "Règl. UE 1152/2011 ; Direction de la réglementation vétérinaire (MT)", es: "Regl. UE 1152/2011; Veterinary Regulation Directorate (MT)", pt: "Regulamento UE 1152/2011; Veterinary Regulation Directorate (MT)" }
+  - item: { en: "Advance arrival notification", fr: "Notification d'arrivée préalable", es: "Notificación de llegada previa", pt: "Notificação prévia de chegada" }
+    required: { en: "Required (all arrivals)", fr: "Requise (toutes arrivées)", es: "Obligatoria (todas las llegadas)", pt: "Obrigatória (todas as chegadas)" }
+    when: { en: "Submit the online Pets Arrival Notification to the Veterinary Regulation Directorate before travel, giving the port/airport of arrival, flight or vessel, and travel details; print and carry a copy.", fr: "Soumets la notification d'arrivée des animaux en ligne à la Direction de la réglementation vétérinaire avant le voyage, en indiquant le port/aéroport d'arrivée, le vol ou le navire et les détails du voyage ; imprime et garde une copie.", es: "Presenta en línea la Pets Arrival Notification a la Veterinary Regulation Directorate antes de viajar, indicando el puerto/aeropuerto de llegada, el vuelo o el buque y los detalles del viaje; imprime y lleva una copia.", pt: "Envie a Pets Arrival Notification online ao Veterinary Regulation Directorate antes de viajar, informando o porto/aeroporto de chegada, o voo ou a embarcação e os detalhes da viagem; imprima e leve uma cópia." }
+    exceptions: { en: "If the notification is not filed, entry to Malta may be denied. Used for both non-commercial and commercial movement.", fr: "En l'absence de notification, l'entrée à Malte peut être refusée. Utilisée pour les mouvements non commerciaux et commerciaux.", es: "Si no se presenta la notificación, se puede denegar la entrada a Malta. Se usa tanto para movimientos no comerciales como comerciales.", pt: "Se a notificação não for enviada, a entrada em Malta pode ser recusada. Vale tanto para a circulação não comercial quanto para a comercial." }
+    ref: { en: "Veterinary Regulation Directorate — Pets Arrival Notification (servizz.gov.mt)", fr: "Direction de la réglementation vétérinaire — Notification d'arrivée des animaux (servizz.gov.mt)", es: "Veterinary Regulation Directorate — Pets Arrival Notification (servizz.gov.mt)", pt: "Veterinary Regulation Directorate — Pets Arrival Notification (servizz.gov.mt)" }
+  - item: { en: "Border check & points of entry", fr: "Contrôle frontalier & points d'entrée", es: "Control fronterizo y puntos de entrada", pt: "Controle de fronteira e pontos de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Pets may only enter through a designated travellers' point of entry — Malta International Airport (Luqa) and Malta's designated sea passenger terminal — where an official vet checks documents and identity.", fr: "Les animaux ne peuvent entrer que par un point d'entrée voyageurs désigné — l'aéroport international de Malte (Luqa) et le terminal passagers maritime désigné de Malte — où un vétérinaire officiel contrôle documents et identité.", es: "Las mascotas solo pueden entrar por un punto de entrada de viajeros designado — el Aeropuerto Internacional de Malta (Luqa) y la terminal marítima de pasajeros designada de Malta — donde un veterinario oficial revisa los documentos y la identidad.", pt: "Os animais de estimação só podem entrar por um ponto de entrada designado para viajantes — o Malta International Airport (Luqa) e o terminal marítimo de passageiros designado de Malta —, onde um veterinário oficial confere os documentos e a identidade." }
+    exceptions: { en: "Entry from any other point is not permitted; present your dog and documents to the veterinary authorities on arrival.", fr: "L'entrée par tout autre point n'est pas autorisée ; présente ton chien et ses documents aux autorités vétérinaires à l'arrivée.", es: "No se permite la entrada por ningún otro punto; presenta tu perro y los documentos a las autoridades veterinarias a la llegada.", pt: "A entrada por qualquer outro ponto não é permitida; apresente seu cachorro e os documentos às autoridades veterinárias na chegada." }
+    ref: { en: "Malta Customs — Importing Live Animals; Veterinary Regulation Directorate", fr: "Douane de Malte — Importation d'animaux vivants ; Direction de la réglementation vétérinaire", es: "Malta Customs — Importing Live Animals; Veterinary Regulation Directorate", pt: "Malta Customs — Importação de animais vivos; Veterinary Regulation Directorate" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Effectively ≥15 weeks", fr: "En pratique ≥15 semaines", es: "En la práctica ≥15 semanas", pt: "Na prática, ≥15 semanas" }
+    when: { en: "12-week rabies shot + 21-day wait (listed); about 7 months from a non-listed country.", fr: "Vaccin à 12 semaines + 21 jours (pays listé) ; environ 7 mois depuis un pays non listé.", es: "Vacuna a las 12 semanas + espera de 21 días (país listado); unos 7 meses desde un país no listado.", pt: "Vacina antirrábica às 12 semanas + 21 dias de espera (país listado); cerca de 7 meses vindo de um país não listado." }
+    exceptions: { en: "Puppies under 12 weeks cannot be vaccinated, so cannot enter from outside the EU.", fr: "Un chiot de moins de 12 semaines ne peut être vacciné, donc ne peut entrer depuis hors UE.", es: "Los cachorros de menos de 12 semanas no pueden vacunarse, así que no pueden entrar desde fuera de la UE.", pt: "Filhotes com menos de 12 semanas não podem ser vacinados e, portanto, não podem entrar vindos de fora da UE." }
+    ref: { en: "EU Reg. 576/2013", fr: "Règl. UE 576/2013", es: "Regl. UE 576/2013", pt: "Regulamento UE 576/2013" }
+  - item: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    required: { en: "Not required", fr: "Non requise", es: "No obligatoria", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Only if rules are breached — a non-compliant dog (for example missing the tapeworm treatment) may be refused entry or placed in quarantine under official control at the owner's expense.", fr: "Uniquement en cas de non-conformité — un chien non conforme (par exemple sans traitement contre le ténia) peut être refusé ou placé en quarantaine sous contrôle officiel aux frais du propriétaire.", es: "Solo en caso de incumplimiento — un perro que no cumpla (por ejemplo, sin el tratamiento contra la tenia) puede ser rechazado a la entrada o puesto en cuarentena bajo control oficial a cargo del propietario.", pt: "Somente em caso de descumprimento das regras — um cachorro fora das exigências (por exemplo, sem o tratamento contra a tênia) pode ter a entrada recusada ou ser colocado em quarentena sob controle oficial, às custas do dono." }
+    ref: { en: "Veterinary Regulation Directorate (MT)", fr: "Direction de la réglementation vétérinaire (MT)", es: "Veterinary Regulation Directorate (MT)", pt: "Veterinary Regulation Directorate (MT)" }
+
+origin:
+  eu:
+    title: { en: "Simplified — EU pet passport (+ tapeworm & notice)", fr: "Simplifié — passeport européen (+ ténia & notification)", es: "Simplificado — pasaporte europeo (+ tenia y notificación)", pt: "Simplificado — passaporte europeu para animais (+ tênia e notificação)" }
+    body:
+      en: "A dog coming from another EU country needs an EU pet passport showing a valid ISO microchip and an in-date rabies vaccination. No antibody test and no health certificate — but a vet must still give the tapeworm treatment 24–120 hours before arrival and record it in the passport, and you must file the advance arrival notification. Documents and identity are checked on arrival at the airport or sea terminal."
+      fr: "Un chien venant d'un autre pays de l'UE a besoin d'un passeport européen mentionnant une puce ISO valide et une vaccination antirabique à jour. Pas de titrage ni de certificat sanitaire — mais un vétérinaire doit administrer le traitement contre le ténia 24 à 120 heures avant l'arrivée et le consigner dans le passeport, et tu dois déposer la notification d'arrivée préalable. Documents et identité sont contrôlés à l'arrivée à l'aéroport ou au terminal maritime."
+      es: "Un perro que llega de otro país de la UE necesita un pasaporte europeo que acredite un microchip ISO válido y una vacunación antirrábica en vigor. Sin prueba de titulación ni certificado sanitario — pero un veterinario debe administrar igualmente el tratamiento contra la tenia 24–120 horas antes de la llegada y registrarlo en el pasaporte, y debes presentar la notificación de llegada previa. Los documentos y la identidad se revisan a la llegada en el aeropuerto o la terminal marítima."
+      pt: "Um cachorro vindo de outro país da UE precisa de um passaporte europeu que comprove um microchip ISO válido e uma vacinação antirrábica em dia. Sem teste sorológico e sem certificado sanitário — mas um veterinário ainda precisa aplicar o tratamento contra a tênia de 24 a 120 horas antes da chegada e registrá-lo no passaporte, e você precisa enviar a notificação prévia de chegada. Os documentos e a identidade são conferidos na chegada, no aeroporto ou no terminal marítimo."
+    cls: ok
+  listed:
+    title: { en: "Health certificate + tapeworm, no blood test", fr: "Certificat sanitaire + ténia, sans prise de sang", es: "Certificado sanitario + tenia, sin análisis de sangre", pt: "Certificado sanitário + tênia, sem exame de sangue" }
+    body:
+      en: "From a listed non-EU country (United States, Canada, United Kingdom, Switzerland, Japan, Australia and others), your dog needs a microchip, a valid rabies vaccination, an EU animal health certificate endorsed by an official vet, the tapeworm treatment before arrival, and the advance arrival notification. No antibody test is required. Enter only through a designated travellers' point of entry."
+      fr: "Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…), ton chien a besoin d'une puce, d'une vaccination antirabique valide, d'un certificat sanitaire européen visé par un vétérinaire officiel, du traitement contre le ténia avant l'arrivée, et de la notification d'arrivée préalable. Pas de titrage. Entre uniquement par un point d'entrée voyageurs désigné."
+      es: "Desde un país tercero listado (Estados Unidos, Canadá, Reino Unido, Suiza, Japón, Australia y otros), tu perro necesita un microchip, una vacunación antirrábica válida, un certificado sanitario animal de la UE refrendado por un veterinario oficial, el tratamiento contra la tenia antes de la llegada y la notificación de llegada previa. No se exige prueba de titulación. Entra solo por un punto de entrada de viajeros designado."
+      pt: "Vindo de um país listado fora da UE (Estados Unidos, Canadá, Reino Unido, Suíça, Japão, Austrália e outros), seu cachorro precisa de microchip, vacinação antirrábica válida, certificado sanitário europeu endossado por um veterinário oficial, o tratamento contra a tênia antes da chegada e a notificação prévia de chegada. Não é exigido teste sorológico. Entre somente por um ponto de entrada designado para viajantes."
+    cls: warn
+  nonListed:
+    title: { en: "Antibody test + 3-month wait + tapeworm", fr: "Titrage + 3 mois d'attente + ténia", es: "Prueba de titulación + espera de 3 meses + tenia", pt: "Teste sorológico + 3 meses de espera + tênia" }
+    body:
+      en: "From a non-listed (at-risk) country, add a rabies antibody test: blood drawn at least 30 days after vaccination, result ≥0.5 IU/ml at an EU-designated laboratory, then a compulsory 3-month wait before entry. An endorsed EU animal health certificate, the tapeworm treatment and the advance arrival notification are also required."
+      fr: "Depuis un pays non listé (à risque), ajoute un titrage antirabique : sang prélevé au moins 30 jours après le vaccin, résultat ≥0,5 UI/ml dans un laboratoire agréé UE, puis un délai obligatoire de 3 mois avant l'entrée. Un certificat sanitaire européen visé, le traitement contre le ténia et la notification d'arrivée préalable sont également requis."
+      es: "Desde un país no listado (con riesgo), añade una prueba de titulación de rabia: sangre extraída al menos 30 días después de la vacuna, resultado ≥0,5 UI/ml en un laboratorio autorizado por la UE, y luego una espera obligatoria de 3 meses antes de la entrada. También se exigen un certificado sanitario animal de la UE refrendado, el tratamiento contra la tenia y la notificación de llegada previa."
+      pt: "Vindo de um país não listado (de risco), acrescente o teste sorológico antirrábico: sangue coletado no mínimo 30 dias após a vacinação, resultado ≥0,5 UI/ml em laboratório designado pela UE, e depois 3 meses obrigatórios de espera antes da entrada. Também são exigidos um certificado sanitário europeu endossado, o tratamento contra a tênia e a notificação prévia de chegada."
+    cls: no
+
+arrival:
+  intro:
+    en: "Malta is an island: every dog enters through a designated point of entry, and what happens next depends on where you flew or sailed from."
+    fr: "Malte est une île : chaque chien entre par un point d'entrée désigné, et la suite dépend de ton lieu de départ."
+    es: "Malta es una isla: cada perro entra por un punto de entrada designado, y lo que ocurre después depende del lugar desde el que hayas volado o navegado."
+    pt: "Malta é uma ilha: todo cachorro entra por um ponto de entrada designado, e o que acontece depois depende de onde você embarcou, de avião ou de navio."
+  points:
+    - en: "Enter only via a designated travellers' point of entry — Malta International Airport (Luqa) or Malta's designated sea passenger terminal — never any other point."
+      fr: "Entre uniquement par un point d'entrée voyageurs désigné — l'aéroport international de Malte (Luqa) ou le terminal passagers maritime désigné de Malte — jamais par un autre point."
+      es: "Entra solo por un punto de entrada de viajeros designado — el Aeropuerto Internacional de Malta (Luqa) o la terminal marítima de pasajeros designada de Malta — nunca por otro punto."
+      pt: "Entre somente por um ponto de entrada designado para viajantes — o Malta International Airport (Luqa) ou o terminal marítimo de passageiros designado de Malta —, nunca por outro ponto."
+    - en: "File the online Pets Arrival Notification with the Veterinary Regulation Directorate before you travel; print and carry a copy, as entry can be denied without it."
+      fr: "Dépose la notification d'arrivée des animaux en ligne auprès de la Direction de la réglementation vétérinaire avant de voyager ; imprime et garde une copie, car l'entrée peut être refusée sans elle."
+      es: "Presenta en línea la Pets Arrival Notification a la Veterinary Regulation Directorate antes de viajar; imprime y lleva una copia, ya que la entrada puede denegarse sin ella."
+      pt: "Envie a Pets Arrival Notification online ao Veterinary Regulation Directorate antes de viajar; imprima e leve uma cópia, porque sem ela a entrada pode ser recusada."
+    - en: "On arrival, present your dog and its original documents to the veterinary authorities for a documentary and identity check."
+      fr: "À l'arrivée, présente ton chien et ses documents originaux aux autorités vétérinaires pour un contrôle documentaire et d'identité."
+      es: "A la llegada, presenta tu perro y sus documentos originales a las autoridades veterinarias para un control documental y de identidad."
+      pt: "Na chegada, apresente seu cachorro e os documentos originais às autoridades veterinárias para a conferência documental e de identidade."
+    - en: "The tapeworm treatment must be recorded in the passport or health certificate; if it is missing, the dog may be detained until treated or refused entry."
+      fr: "Le traitement contre le ténia doit être consigné dans le passeport ou le certificat sanitaire ; s'il manque, le chien peut être retenu jusqu'au traitement ou refusé à l'entrée."
+      es: "El tratamiento contra la tenia debe estar registrado en el pasaporte o el certificado sanitario; si falta, el perro puede ser retenido hasta que se le trate o rechazado a la entrada."
+      pt: "O tratamento contra a tênia precisa estar registrado no passaporte ou no certificado sanitário; se faltar, o cachorro pode ficar retido até ser tratado ou ter a entrada recusada."
+    - en: "Carry original documents, not copies. If documents are missing or invalid, the dog may be sent back to the country of departure or placed in quarantine at the owner's expense."
+      fr: "Munis-toi des documents originaux, pas de copies. Si les documents manquent ou sont invalides, le chien peut être renvoyé vers le pays de départ ou placé en quarantaine aux frais du propriétaire."
+      es: "Lleva documentos originales, no copias. Si faltan documentos o no son válidos, el perro puede ser devuelto al país de salida o puesto en cuarentena a cargo del propietario."
+      pt: "Leve os documentos originais, não cópias. Se faltarem documentos ou eles não forem válidos, o cachorro pode ser devolvido ao país de partida ou colocado em quarentena, às custas do dono."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "Malta does not ban any breed from entry and imposes no breed-based import restriction on travellers. Its only breed-specific law, the Prohibition of Breeding and Keeping of Non-Pedigree Bully Type Dog Regulations 2024 (LN 183/2024), targets the domestic breeding and sale of non-pedigree bully-type dogs — it is not an entry ban and was not introduced over aggression."
+    fr: "Malte n'interdit aucune race à l'entrée et n'impose aucune restriction d'importation fondée sur la race aux voyageurs. Sa seule loi propre à une race, le Prohibition of Breeding and Keeping of Non-Pedigree Bully Type Dog Regulations 2024 (LN 183/2024), vise l'élevage et la vente sur place de chiens de type bully sans pedigree — ce n'est pas une interdiction d'entrée et elle n'a pas été introduite pour cause d'agressivité."
+    es: "Malta no prohíbe la entrada de ninguna raza ni impone a los viajeros ninguna restricción de importación basada en la raza. Su única ley específica por raza, el Prohibition of Breeding and Keeping of Non-Pedigree Bully Type Dog Regulations 2024 (LN 183/2024), se dirige a la cría y venta en el país de perros de tipo bully sin pedigrí — no es una prohibición de entrada y no se introdujo por motivos de agresividad."
+    pt: "Malta não proíbe a entrada de nenhuma raça e não impõe aos viajantes restrição de importação baseada na raça. Sua única lei específica por raça, as Prohibition of Breeding and Keeping of Non-Pedigree Bully Type Dog Regulations 2024 (LN 183/2024) (regulamento maltês sobre criação e posse de cachorros do tipo bully sem pedigree), trata da criação e da venda no país de cachorros do tipo bully sem pedigree — não é uma proibição de entrada e não foi criada por causa de agressividade."
+  cat1:
+    en: "There is no category of dog that is prohibited from entering Malta on the basis of its breed. A dog of any breed may enter if it meets the standard EU pet-travel requirements (microchip, rabies vaccination, passport or health certificate, tapeworm treatment) and the arrival notification."
+    fr: "Aucune catégorie de chien n'est interdite d'entrée à Malte en raison de sa race. Un chien de n'importe quelle race peut entrer s'il remplit les conditions standard de voyage UE (puce, vaccination antirabique, passeport ou certificat sanitaire, traitement contre le ténia) et la notification d'arrivée."
+    es: "No existe ninguna categoría de perro que tenga prohibida la entrada a Malta por su raza. Un perro de cualquier raza puede entrar si cumple los requisitos estándar de viaje de la UE (microchip, vacunación antirrábica, pasaporte o certificado sanitario, tratamiento contra la tenia) y la notificación de llegada."
+    pt: "Não existe categoria de cachorro proibida de entrar em Malta por causa da raça. Um cachorro de qualquer raça pode entrar se cumprir as exigências padrão de viagem de animais na UE (microchip, vacinação antirrábica, passaporte ou certificado sanitário, tratamento contra a tênia) e a notificação de chegada."
+  cat2:
+    en: "Under LN 183/2024, existing bully-type dogs (pedigree or mixed) are unaffected provided they were microchipped and electronically registered before 13 December 2024. Since that date it is illegal to breed non-pedigree bully-type dogs in Malta; pedigree bully breeds may still be bred through a registered kennel club. These are domestic ownership/breeding rules, not import controls."
+    fr: "Selon le LN 183/2024, les chiens de type bully existants (avec ou sans pedigree) ne sont pas affectés s'ils ont été pucés et enregistrés électroniquement avant le 13 décembre 2024. Depuis cette date, il est illégal d'élever des chiens de type bully sans pedigree à Malte ; les bully avec pedigree peuvent encore être élevés via un kennel club reconnu. Il s'agit de règles internes de détention/élevage, pas de contrôles à l'importation."
+    es: "Según el LN 183/2024, los perros de tipo bully existentes (con o sin pedigrí) no se ven afectados siempre que estuvieran microchipados y registrados electrónicamente antes del 13 de diciembre de 2024. Desde esa fecha es ilegal criar perros de tipo bully sin pedigrí en Malta; las razas bully con pedigrí aún pueden criarse a través de un club canino registrado. Son normas internas de tenencia/cría, no controles de importación."
+    pt: "Segundo a LN 183/2024, os cachorros do tipo bully já existentes (com pedigree ou mestiços) não são afetados, desde que tenham sido microchipados e registrados eletronicamente antes de 13 de dezembro de 2024. Desde essa data, é ilegal criar cachorros do tipo bully sem pedigree em Malta; as raças bully com pedigree ainda podem ser criadas por meio de um kennel club registrado. São regras internas de posse e criação, não controles de importação."
+  note:
+    en: "If you are moving to Malta with a bully-type dog, plan to microchip and register it and keep proof of pedigree where relevant. For breed questions, contact the Veterinary Regulation Directorate or the Commissioner for Animal Welfare."
+    fr: "Si tu t'installes à Malte avec un chien de type bully, prévois de le pucer et de l'enregistrer et conserve une preuve de pedigree le cas échéant. Pour les questions de race, contacte la Direction de la réglementation vétérinaire ou le Commissaire au bien-être animal."
+    es: "Si te mudas a Malta con un perro de tipo bully, prevé microchiparlo y registrarlo y conserva una prueba de pedigrí cuando corresponda. Para preguntas sobre razas, contacta con la Veterinary Regulation Directorate o el Commissioner for Animal Welfare."
+    pt: "Se você está se mudando para Malta com um cachorro do tipo bully, providencie o microchip e o registro e guarde o comprovante de pedigree quando for o caso. Para dúvidas sobre raça, procure o Veterinary Regulation Directorate ou o Commissioner for Animal Welfare."
+
+checklist:
+  - en: "Microchip (ISO 11784/11785) implanted before the rabies vaccination"
+    fr: "Puce (ISO 11784/11785) posée avant la vaccination antirabique"
+    es: "Microchip (ISO 11784/11785) implantado antes de la vacunación antirrábica"
+    pt: "Microchip (ISO 11784/11785) implantado antes da vacinação antirrábica"
+  - en: "Valid rabies vaccination (dog ≥12 weeks at the shot, +21 days)"
+    fr: "Vaccination antirabique valide (chien ≥12 semaines, +21 jours)"
+    es: "Vacunación antirrábica válida (perro ≥12 semanas en la vacuna, +21 días)"
+    pt: "Vacinação antirrábica válida (cachorro com ≥12 semanas na data da vacina, +21 dias)"
+  - en: "Rabies antibody test — non-listed countries only"
+    fr: "Titrage antirabique — pays non listés uniquement"
+    es: "Prueba de titulación de rabia — solo países no listados"
+    pt: "Teste sorológico antirrábico — apenas para países não listados"
+  - en: "EU pet passport (EU origin) or endorsed EU health certificate (non-EU origin)"
+    fr: "Passeport européen (origine UE) ou certificat sanitaire UE visé (hors UE)"
+    es: "Pasaporte europeo (origen UE) o certificado sanitario UE refrendado (origen fuera de la UE)"
+    pt: "Passaporte europeu (origem na UE) ou certificado sanitário europeu endossado (origem fora da UE)"
+  - en: "Tapeworm (praziquantel) treatment by a vet 24–120 hours before arrival, recorded"
+    fr: "Traitement contre le ténia (praziquantel) par un vétérinaire 24 à 120 heures avant l'arrivée, consigné"
+    es: "Tratamiento contra la tenia (praziquantel) por un veterinario 24–120 horas antes de la llegada, registrado"
+    pt: "Tratamento contra a tênia (praziquantel) aplicado por um veterinário de 24 a 120 horas antes da chegada, com registro"
+  - en: "Online Pets Arrival Notification filed before travel; printed copy carried"
+    fr: "Notification d'arrivée des animaux déposée en ligne avant le voyage ; copie imprimée sur soi"
+    es: "Pets Arrival Notification presentada en línea antes del viaje; copia impresa contigo"
+    pt: "Pets Arrival Notification online enviada antes da viagem; cópia impressa em mãos"
+  - en: "Enter via Malta International Airport (Luqa) or a designated sea passenger terminal"
+    fr: "Entrée par l'aéroport international de Malte (Luqa) ou un terminal passagers maritime désigné"
+    es: "Entra por el Aeropuerto Internacional de Malta (Luqa) o una terminal marítima de pasajeros designada"
+    pt: "Entrada pelo Malta International Airport (Luqa) ou por um terminal marítimo de passageiros designado"
+  - en: "Original documents (not copies); airline reservation and suitable IATA crate if in the hold"
+    fr: "Documents originaux (pas de copies) ; réservation aérienne et caisse IATA adaptée si voyage en soute"
+    es: "Documentos originales (no copias); reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte IATA adequada se for no porão"
+
+sources:
+  - label: { en: "Malta Customs — Importing Live Animals / Pets into Malta", fr: "Douane de Malte — Importation d'animaux vivants / d'animaux de compagnie à Malte", es: "Malta Customs — Importación de animales vivos / mascotas a Malta", pt: "Malta Customs — Importação de animais vivos / animais de estimação para Malta" }
+    url: "https://customs.gov.mt/individuals/importing-live-animals"
+  - label: { en: "Servizz.gov.mt — Pets Arrival Notification (Veterinary Regulation Directorate)", fr: "Servizz.gov.mt — Notification d'arrivée des animaux (Direction de la réglementation vétérinaire)", es: "Servizz.gov.mt — Pets Arrival Notification (Veterinary Regulation Directorate)", pt: "Servizz.gov.mt — Pets Arrival Notification (Veterinary Regulation Directorate)" }
+    url: "https://www.servizz.gov.mt/en/services/web-02315"
+  - label: { en: "Malta Pet Arrivals — online arrival notification portal", fr: "Malta Pet Arrivals — portail de notification d'arrivée en ligne", es: "Malta Pet Arrivals — portal de notificación de llegada en línea", pt: "Malta Pet Arrivals — portal online de notificação de chegada" }
+    url: "https://nldmalta.gov.mt/MaltaPetArrivals/Notification"
+  - label: { en: "Ministry for Agriculture (Malta) — Veterinary Regulation Directorate, Travel with your pet", fr: "Ministère de l'Agriculture (Malte) — Direction de la réglementation vétérinaire, Voyager avec ton animal", es: "Ministry for Agriculture (Malta) — Veterinary Regulation Directorate, viajar con tu mascota", pt: "Ministry for Agriculture (Malta) — Veterinary Regulation Directorate, viagens com seu animal de estimação" }
+    url: "https://agrifish.gov.mt/en/vrd/Pages/travelPet.aspx"
+  - label: { en: "European Commission — Travelling with a pet within the EU (tapeworm rule)", fr: "Commission européenne — Voyager avec un animal dans l'UE (règle du ténia)", es: "Comisión Europea — Viajar con una mascota dentro de la UE (regla de la tenia)", pt: "Comissão Europeia — Viajar com um animal de estimação dentro da UE (regra da tênia)" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - label: { en: "European Commission — Bringing a pet into the EU from a non-EU country", fr: "Commission européenne — Faire entrer un animal dans l'UE depuis un pays tiers", es: "Comisión Europea — Traer una mascota a la UE desde un país no perteneciente a la UE", pt: "Comissão Europeia — Levar um animal de estimação para a UE vindo de fora da UE" }
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/bringing-pet-eu-non-eu-country_en"
+  - label: { en: "Legislation Malta — LN 183/2024 Prohibition of Breeding and Keeping of Non-Pedigree Bully Type Dog Regulations", fr: "Legislation Malta — LN 183/2024 sur l'interdiction d'élever et de détenir des chiens de type bully sans pedigree", es: "Legislation Malta — LN 183/2024, Reglamento de prohibición de cría y tenencia de perros de tipo bully sin pedigrí", pt: "Legislation Malta — LN 183/2024, Prohibition of Breeding and Keeping of Non-Pedigree Bully Type Dog Regulations" }
+    url: "https://legislation.mt/eli/ln/2024/183/eng"
+  - label: { en: "Commissioner for Animal Welfare (Malta) — Bully Breeds FAQ", fr: "Commissaire au bien-être animal (Malte) — FAQ sur les races bully", es: "Commissioner for Animal Welfare (Malta) — preguntas frecuentes sobre razas bully", pt: "Commissioner for Animal Welfare (Malta) — perguntas frequentes sobre raças bully" }
+    url: "https://commissioneranimalwelfare.gov.mt/bully-breeds-faq/"
+
+seo:
+  title: { en: "Malta Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Malte — Guide", es: "Requisitos de entrada de perros en Malta — Guía de viaje", pt: "Malta: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to Malta With Your Dog: Entry Requirements (2026)", fr: "Voyager à Malte avec ton chien : formalités (2026)", es: "Viajar a Malta con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Malta: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official microchip, rabies, antibody-test, mandatory tapeworm and arrival-notification rules for bringing a dog into Malta — by EU. Sourced and dated."
+    fr: "Règles officielles puce, rage, titrage, traitement antiténia 24 à 120 h avant l'arrivée et notification d'arrivée pour un chien entrant à Malte. Sourcé et daté."
+    es: "Normas oficiales de microchip, rabia, titulación, tratamiento contra la tenia 24–120 h antes de llegar y notificación de llegada para traer un perro a Malta."
+    pt: "Malta: regras oficiais de microchip, raiva, teste sorológico, tratamento obrigatório contra a tênia e notificação de chegada para o seu cachorro. Com fonte e data."
+  slug: "malta"
+  shortDesc:
+    en: "What you need to bring a dog into Malta, including the mandatory tapeworm treatment and arrival notification, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien à Malte, y compris le traitement obligatoire contre le ténia et la notification d'arrivée, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Malta, incluido el tratamiento obligatorio contra la tenia y la notificación de llegada, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para Malta, incluindo o tratamento obrigatório contra a tênia e a notificação de chegada, dependendo de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

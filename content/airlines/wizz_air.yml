@@ -1,0 +1,278 @@
+id: airline_wizz_air
+mono: W6
+name: Wizz Air
+titleH1:
+  en: Flying with a dog on Wizz Air
+  fr: Voyager avec un chien sur Wizz Air
+  es: Volar con un perro en Wizz Air
+  pt: "Viajar com um cachorro na Wizz Air"
+metaDesc:
+  en: "Wizz Air pet policy: no pets carried, only certified assistance dogs on qualifying EU routes, and official sources."
+  fr: "Politique animaux Wizz Air : aucun animal transporté, seulement les chiens d'assistance certifiés sur certaines routes UE, et sources officielles."
+  es: "Política de mascotas de Wizz Air: no se transportan mascotas, solo perros de asistencia certificados en rutas de la UE que reúnan los requisitos."
+  pt: "Política de animais da Wizz Air: nenhum animal transportado, somente cães de assistência certificados em rotas elegíveis da UE, e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Hungary · BUD
+      fr: Hongrie · BUD
+      es: Hungría · BUD
+      pt: "Hungria · BUD"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: No pets
+    fr: Aucun animal
+    es: Sin mascotas
+    pt: "Sem animais"
+verdictNote:
+  en: Wizz Air carries no pets at all — only certified assistance dogs on qualifying EU routes.
+  fr: Wizz Air ne transporte aucun animal — seulement les chiens d'assistance certifiés sur certaines routes UE.
+  es: Wizz Air no transporta ninguna mascota; solo perros de asistencia certificados en rutas de la UE que reúnan los requisitos.
+  pt: "A Wizz Air não transporta animal nenhum — somente cães de assistência certificados em rotas elegíveis da UE."
+ladder:
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: assistance only
+      fr: assistance seul
+      es: solo asistencia
+      pt: "somente assistência"
+  - flex: 33
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 34
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: —
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    detail:
+      en: No pets on board — only certified guide/assistance dogs. Emotional-support animals aren't accepted.
+      fr: Aucun animal à bord — seulement les chiens guides/d'assistance certifiés. Animaux de soutien émotionnel non acceptés.
+      es: Sin mascotas a bordo; solo perros guía/de asistencia certificados. No se aceptan animales de apoyo emocional.
+      pt: "Nenhum animal a bordo — somente cães-guia/de assistência certificados. Animais de apoio emocional não são aceitos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: No service for carrying pets in the hold.
+      fr: Aucun service de transport d'animaux en soute.
+      es: No hay servicio para transportar mascotas en la bodega.
+      pt: "Nenhum serviço para transportar animais no porão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: no
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No disponible
+      pt: "Não oferecido"
+    detail:
+      en: No pet cargo service.
+      fr: Aucun service fret animalier.
+      es: Sin servicio de carga de mascotas.
+      pt: "Sem serviço de carga para animais."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Pets (cabin / hold / cargo)
+        fr: Animaux (cabine / soute / fret)
+        es: Mascotas (cabina / bodega / carga)
+        pt: "Animais (cabine / porão / carga)"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transporta
+        pt: "Não transportado"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Wizz Air carries no pets; only certified assistance dogs travel free for disabled passengers.
+    fr: Wizz Air ne transporte aucun animal ; seuls les chiens d'assistance certifiés voyagent gratuitement pour les passagers handicapés.
+    es: Wizz Air no transporta mascotas; solo los perros de asistencia certificados viajan gratis para los pasajeros con discapacidad.
+    pt: "A Wizz Air não transporta animais; somente cães de assistência certificados viajam gratuitamente para passageiros com deficiência."
+restrictions:
+  - icon: 🚫
+    title:
+      en: No pets
+      fr: Aucun animal
+      es: Sin mascotas
+      pt: "Sem animais"
+    pills:
+      - cls: no
+        label:
+          en: Pets forbidden
+          fr: Animaux interdits
+          es: Mascotas prohibidas
+          pt: "Animais proibidos"
+    note:
+      en: Only certified guide/assistance dogs are accepted — no pets, therapy dogs or emotional-support animals. One dog per flight, not occupying a seat.
+      fr: Seuls les chiens guides/d'assistance certifiés sont acceptés — pas d'animaux, de chiens de thérapie ni de soutien émotionnel. Un chien par vol, sans siège.
+      es: Solo se aceptan perros guía/de asistencia certificados; nada de mascotas, perros de terapia ni animales de apoyo emocional. Un perro por vuelo, sin ocupar asiento.
+      pt: "Somente cães-guia/de assistência certificados são aceitos — nenhum animal, cão de terapia ou animal de apoio emocional. Um cachorro por voo, sem ocupar assento."
+  - icon: 🌍
+    title:
+      en: Route limits (assistance dogs)
+      fr: Routes limitées (chiens d'assistance)
+      es: Límites de ruta (perros de asistencia)
+      pt: "Limites de rota (cães de assistência)"
+    pills:
+      - cls: no
+        label:
+          en: EU routes only
+          fr: Routes UE seulement
+          es: Solo rutas de la UE
+          pt: "Somente rotas da UE"
+    note:
+      en: Assistance dogs are carried only on flights within the EU and from EU countries to non-EU destinations.
+      fr: Les chiens d'assistance ne sont transportés que sur les vols au sein de l'UE et depuis les pays de l'UE vers des destinations hors UE.
+      es: Los perros de asistencia solo se transportan en vuelos dentro de la UE y desde países de la UE hacia destinos fuera de la UE.
+      pt: "Cães de assistência são transportados somente em voos dentro da UE e de países da UE para destinos fora da UE."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: No pets carried
+        fr: Aucun animal transporté
+        es: No se transportan mascotas
+        pt: "Nenhum animal transportado"
+  note:
+    en: Wizz Air carries no pets, so no hold-temperature policy applies.
+    fr: "Wizz Air ne transporte aucun animal : aucune règle de température de soute ne s'applique."
+    es: Wizz Air no transporta mascotas, por lo que no se aplica ninguna norma de temperatura de bodega.
+    pt: "A Wizz Air não transporta animais, portanto nenhuma norma de temperatura de porão se aplica."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: A certified assistance dog travels free for disabled passengers (one per flight, no seat).
+      fr: Un chien d'assistance certifié voyage gratuitement pour les passagers handicapés (un par vol, sans siège).
+      es: Un perro de asistencia certificado viaja gratis para los pasajeros con discapacidad (uno por vuelo, sin asiento).
+      pt: "Um cão de assistência certificado viaja gratuitamente para passageiros com deficiência (um por voo, sem assento)."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Declare at booking + contact Special Assistance (specialassistance@wizzair.com); send the certificate + required documents ≥ 48 h before departure.
+      fr: Déclarer à la réservation + contacter l'Assistance spéciale (specialassistance@wizzair.com) ; envoyer le certificat + documents requis ≥ 48 h avant le départ.
+      es: Decláralo al reservar + contacta con Asistencia Especial (specialassistance@wizzair.com); envía el certificado + la documentación requerida ≥ 48 h antes de la salida.
+      pt: "Declare na reserva + entre em contato com a Assistência Especial (specialassistance@wizzair.com); envie o certificado + os documentos exigidos com ≥ 48 h de antecedência da partida."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: No pets whatsoever
+      fr: Aucun animal
+      es: Ninguna mascota en absoluto
+      pt: "Nenhum animal, de forma alguma"
+    value:
+      en: Only certified guide/assistance dogs — no pets, therapy or emotional-support animals.
+      fr: Seulement les chiens guides/d'assistance certifiés — pas d'animaux, de thérapie ni de soutien émotionnel.
+      es: Solo perros guía/de asistencia certificados; nada de mascotas ni animales de terapia o de apoyo emocional.
+      pt: "Somente cães-guia/de assistência certificados — nenhum animal, de terapia ou de apoio emocional."
+  - icon: 🌍
+    label:
+      en: EU routes only
+      fr: Routes UE seulement
+      es: Solo rutas de la UE
+      pt: "Somente rotas da UE"
+    value:
+      en: Assistance dogs only within the EU and from EU to non-EU destinations; one per flight, no seat.
+      fr: Chiens d'assistance uniquement au sein de l'UE et de l'UE vers des destinations hors UE ; un par vol, sans siège.
+      es: Perros de asistencia solo dentro de la UE y desde la UE hacia destinos fuera de la UE; uno por vuelo, sin asiento.
+      pt: "Cães de assistência somente dentro da UE e da UE para destinos fora da UE; um por voo, sem assento."
+  - icon: ⏱️
+    label:
+      en: 48 h documents
+      fr: Documents 48 h
+      es: Documentos 48 h
+      pt: "Documentos 48 h"
+    value:
+      en: Assistance-dog documents must be submitted ≥ 48 h before departure.
+      fr: Les documents du chien d'assistance doivent être envoyés ≥ 48 h avant le départ.
+      es: La documentación del perro de asistencia debe enviarse ≥ 48 h antes de la salida.
+      pt: "Os documentos do cão de assistência devem ser enviados com ≥ 48 h de antecedência da partida."
+book:
+  host: wizzair.com
+  url: https://www.wizzair.com/
+sources:
+  en: 2 Wizz Air sources · last verified 11 July 2026
+  fr: 2 sources Wizz Air · dernière vérification 11 juillet 2026
+  es: 2 fuentes de Wizz Air · última verificación 11 de julio de 2026
+  pt: "2 fontes da Wizz Air · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

@@ -1,0 +1,144 @@
+---
+import Base from "../../../layouts/Base.astro";
+import PetReliefFinder from "../../../components/PetReliefFinder.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import RelatedTools from "../../../components/RelatedTools.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+export function getStaticPaths() {
+  return [
+    { params: { loc: undefined }, props: { locale: "en" } },
+    { params: { loc: "fr" }, props: { locale: "fr" } }, { params: { loc: "es" }, props: { locale: "es" } },
+    { params: { loc: "pt" }, props: { locale: "pt" } },
+  ];
+}
+const { locale } = Astro.props as { locale: string };
+const fr = locale === "fr";
+const L = inlineT(locale);
+// On-page H1 stays human & short; the <title>/meta are tuned for search intent separately.
+const title = L("Airport pet relief finder", "Coins pipi pour chiens en aéroport", "Zonas de alivio para perros en el aeropuerto");
+const seoTitle = L(
+  "Airport pet relief areas: dog bathroom by airport",
+  "Coin pipi pour chien en aéroport — Toilettes pour chiens",
+  "Zonas de alivio para perros en aeropuertos: baño por aeropuerto"
+);
+const blurb = L(
+  "Where can your dog relieve itself at the airport? Pick an airport and see its relief areas — before or after security — with the exact spots and source.",
+  "Où votre chien peut-il se soulager à l'aéroport ? Choisissez un aéroport et voyez ses zones de soulagement — avant ou après la sûreté — avec les emplacements et la source.",
+  "¿Dónde puede aliviarse tu perro en el aeropuerto? Elige un aeropuerto y consulta sus zonas de alivio —antes o después del control de seguridad— con los lugares exactos y la fuente."
+);
+const metaDesc = L(
+  "Where is the dog bathroom at the airport? Find the pet relief area of any airport, before or after security, with its official source.",
+  "Où faire pipi à son chien à l'aéroport ? Trouve le coin pipi de chaque aéroport, avant ou après la sûreté, avec sa source officielle.",
+  "¿Dónde está el baño para perros del aeropuerto? Encuentra la zona de alivio de cada aeropuerto, antes o después del control, con su fuente."
+);
+
+const FAQ_FR = [
+  { q: "Y a-t-il des coins pipi pour chiens dans les aéroports ?", a: "Oui, de plus en plus d'aéroports proposent des zones de soulagement pour animaux (intérieures ou extérieures). Notre outil vous indique, aéroport par aéroport, si une zone existe, où elle se trouve et si elle est accessible avant ou après les contrôles de sûreté." },
+  { q: "La zone de soulagement est-elle avant ou après la sûreté ?", a: "C'est la question clé en correspondance : après les contrôles (côté piste), vous ne pouvez généralement pas ressortir. Notre outil distingue les zones « côté ville » (avant sûreté) et « côté piste » (après sûreté) pour chaque aéroport quand l'information est connue." },
+  { q: "Les aéroports américains ont-ils obligatoirement une zone pour animaux ?", a: "Oui. La règle fédérale américaine (14 CFR §382.51) impose une zone de soulagement pour animaux d'assistance / de compagnie dans chaque terminal, située après les contrôles de sûreté. L'emplacement exact varie : suivez la signalétique ou demandez au comptoir accessibilité." },
+  { q: "Mon aéroport n'est pas documenté, que faire ?", a: "Suivez la signalétique « pet relief » / « service animal relief area » ou demandez au comptoir information / accessibilité. Et signalez-nous ce que vous trouvez : nous complétons la page." },
+];
+const FAQ_EN = [
+  { q: "Do airports have dog relief areas?", a: "Yes — more and more airports provide pet relief areas (indoor or outdoor). Our tool tells you, airport by airport, whether an area exists, where it is, and whether it's reachable before or after security." },
+  { q: "Is the relief area before or after security?", a: "That's the key question on a layover: after security (airside) you usually can't leave and re-clear. Our tool distinguishes landside (before security) and airside (after security) areas for each airport where the information is known." },
+  { q: "Do US airports always have a pet relief area?", a: "Yes. US federal rule (14 CFR §382.51) requires a service-animal / pet relief area in each terminal, located after security. The exact spot varies: follow the signage or ask the accessibility desk." },
+  { q: "My airport isn't documented — what should I do?", a: "Follow the 'pet relief' / 'service animal relief area' signage, or ask the information / accessibility desk. And tell us what you find so we can complete the page." },
+];
+const FAQ_ES = [
+  { q: "¿Hay zonas de alivio para perros en los aeropuertos?", a: "Sí, cada vez más aeropuertos ofrecen zonas de alivio para mascotas (interiores o exteriores). Nuestra herramienta te indica, aeropuerto por aeropuerto, si existe una zona, dónde se encuentra y si es accesible antes o después del control de seguridad." },
+  { q: "¿La zona de alivio está antes o después del control de seguridad?", a: "Es la pregunta clave en una conexión: después del control (lado aire) normalmente no puedes salir y volver a pasar. Nuestra herramienta distingue las zonas del lado tierra (antes del control) y del lado aire (después del control) de cada aeropuerto cuando se conoce la información." },
+  { q: "¿Los aeropuertos de EE. UU. tienen siempre una zona de alivio para mascotas?", a: "Sí. La norma federal estadounidense (14 CFR §382.51) exige una zona de alivio para animales de asistencia / mascotas en cada terminal, situada después del control de seguridad. El lugar exacto varía: sigue la señalización o pregunta en el mostrador de accesibilidad." },
+  { q: "Mi aeropuerto no está documentado, ¿qué hago?", a: "Sigue la señalización «pet relief» / «service animal relief area» o pregunta en el mostrador de información / accesibilidad. Y cuéntanos lo que encuentres para que podamos completar la página." },
+];
+const FAQ_PT = [
+  { q: "Os aeroportos têm áreas para o cachorro fazer as necessidades?", a: "Sim — cada vez mais aeroportos oferecem áreas de alívio para animais (cobertas ou ao ar livre). Nossa ferramenta informa, aeroporto por aeroporto, se existe uma área, onde ela fica e se dá para chegar até ela antes ou depois da inspeção de segurança." },
+  { q: "A área fica antes ou depois da inspeção de segurança?", a: "Essa é a pergunta decisiva em uma conexão: depois da segurança (área restrita) normalmente não dá para sair e passar por tudo de novo. Nossa ferramenta separa as áreas antes da segurança (saguão) e depois da segurança (área restrita) em cada aeroporto em que a informação é conhecida." },
+  { q: "Os aeroportos dos Estados Unidos sempre têm uma área de alívio?", a: "Sim. A norma federal americana (14 CFR §382.51) exige uma área de alívio para cães de assistência e animais de estimação em cada terminal, depois da inspeção de segurança. O ponto exato varia: siga a sinalização ou pergunte no balcão de acessibilidade." },
+  { q: "Meu aeroporto não está documentado — o que fazer?", a: "Siga a sinalização « pet relief » / « service animal relief area », ou pergunte no balcão de informações ou de acessibilidade. E conte para a gente o que encontrar, para completarmos a página." },
+];
+/* La langue est une clé, plus une branche : le ternaire à deux branches renvoyait /pt/
+   vers la FAQ anglaise, même une fois la traduction écrite. */
+const FAQS: Record<string, typeof FAQ_EN> = { fr: FAQ_FR, es: FAQ_ES, pt: FAQ_PT, en: FAQ_EN };
+const faq = FAQS[locale] ?? FAQ_EN;
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org", "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+});
+---
+<Base locale={locale} title={seoTitle} description={metaDesc}>
+  <section class="mdcf-section">
+    <div class="mdcf-container">
+      <Breadcrumb locale={locale} items={[
+        { label: L("Home", "Accueil", "Inicio"), href: "/" },
+        { label: t(locale, "nav.tools"), href: "/tools/" },
+        { label: L("Pet relief", "Coins pipi", "Zonas de alivio") },
+      ]} />
+      <p class="mdcf-eyebrow">{t(locale, "nav.tools")}</p>
+      <h1 class="mdcf-h2">{title}</h1>
+      <p class="prf-blurb">{blurb}</p>
+      {/* La liste statique est le pendant crawlable de ce sélecteur (dont les options,
+          construites en JS, sont invisibles des moteurs) : chacun renvoie vers l'autre. */}
+      <p class="prf-listlink"><a href={(locale === "en" ? "" : `/${locale}`) + "/airports/pet-relief/"}>📋 {L("Browse the full list of airports with relief areas", "Voir la liste complète des aéroports équipés", "Ver la lista completa de aeropuertos equipados")} →</a></p>
+      <PetReliefFinder locale={locale} />
+
+      <section class="prf-seo">
+        {locale === "fr" ? (
+          <>
+            <h2>Coin pipi pour chien à l'aéroport : mode d'emploi</h2>
+            <p>Vous vous demandez <strong>où faire pipi à votre chien à l'aéroport</strong> ? Un <strong>coin pipi chien en aéroport</strong> — aussi appelé <strong>zone de soulagement pour animaux</strong> ou « toilettes pour chien » — est un espace dédié où votre chien peut faire ses besoins sans quitter le terminal. Cet outil vous indique la zone de soulagement de chaque aéroport, avec son emplacement exact et notre source.</p>
+            <p>La question clé : la zone est-elle <strong>avant ou après la sûreté</strong> ? Un coin côté ville (avant les contrôles) est pratique à l'arrivée ou pendant une longue attente ; une zone côté piste (après les contrôles) est essentielle en correspondance, quand vous ne pouvez pas ressortir. Pour chaque aéroport, nous précisons si le coin pipi est avant ou après la sûreté — plus utile qu'une simple recherche « toilettes chien aéroport ».</p>
+          </>
+        ) : locale === "es" ? (
+          <>
+            <h2>Zonas de alivio para mascotas en aeropuertos: cómo funciona</h2>
+            <p>¿Te preguntas <strong>dónde puede hacer pis tu perro en el aeropuerto</strong>? Una <strong>zona de alivio para mascotas en el aeropuerto</strong> —a veces llamada <strong>zona de alivio para perros</strong>, baño para perros o zona de alivio para animales de asistencia— es un espacio dedicado donde tu perro puede aliviarse sin salir de la terminal. Este buscador de <strong>zonas de alivio por aeropuerto</strong> muestra la <strong>zona de alivio para perros de cada aeropuerto</strong>, con su ubicación exacta y nuestra fuente.</p>
+            <p>La pregunta clave es si la <strong>zona de alivio está antes o después del control de seguridad</strong>. Una zona del lado tierra (antes del control) es fácil de alcanzar a la llegada o durante una larga espera de facturación; una zona del lado aire (después del control) es la más importante en una conexión, cuando no puedes salir y volver a pasar. Para cada aeropuerto indicamos si el baño para perros está en el lado tierra o en el lado aire, más preciso que una búsqueda genérica de «zona de alivio para perros aeropuerto».</p>
+          </>
+        ) : locale === "pt" ? (
+          <>
+            <h2>Áreas de alívio para animais nos aeroportos: como funciona</h2>
+            <p>Está se perguntando <strong>onde seu cachorro pode fazer xixi no aeroporto</strong>? Uma <strong>área de alívio para animais no aeroporto</strong> — às vezes chamada de <strong>banheiro para cachorro</strong> ou área de alívio para animais de assistência — é um espaço reservado onde seu cachorro pode se aliviar sem sair do terminal. Este buscador de <strong>áreas de alívio por aeroporto</strong> mostra a <strong>área de alívio de cada aeroporto</strong>, com a localização exata e a nossa fonte.</p>
+            <p>A pergunta decisiva é se a <strong>área de alívio fica antes ou depois da inspeção de segurança</strong>. Uma área no saguão (antes da segurança) é fácil de alcançar na chegada ou durante uma espera longa no check-in; uma área na parte restrita (depois da segurança) é a que importa em uma conexão, quando você não pode sair e passar por tudo de novo. Para cada aeroporto indicamos se o banheiro para cachorro fica no saguão ou na área restrita — mais preciso do que uma busca genérica por « área de alívio para cachorro aeroporto ».</p>
+          </>
+        ) : (
+          <>
+            <h2>Airport pet relief areas: how it works</h2>
+            <p>Wondering <strong>where your dog can pee at the airport</strong>? An <strong>airport pet relief area</strong> — sometimes called an <strong>airport dog potty</strong>, a dog bathroom or a service animal relief area — is a dedicated spot where your dog can relieve itself without leaving the terminal. This <strong>pet relief area by airport</strong> finder shows the <strong>dog relief area for each airport</strong>, with its exact location and our source.</p>
+            <p>The key question is whether the <strong>pet relief area is before or after security</strong>. A landside area (before security) is easy to reach on arrival or during a long check-in wait; an airside area (after security) matters most on a connection, when you can't leave and re-clear. For every airport we show whether the dog bathroom is landside or airside — more precise than a generic “dog relief area airport” search.</p>
+          </>
+        )}
+      </section>
+
+      <section class="prffaq">
+        <h2>{L("Frequently asked questions", "Questions fréquentes", "Preguntas frecuentes")}</h2>
+        {faq.map((f) => (
+          <details class="prffaq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+      <RelatedTools locale={locale} current="pet-relief" />
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={faqLd} is:inline />
+</Base>
+<style>
+  .prf-blurb { color: var(--mdcf-muted); margin: 0 0 18px; max-width: 720px; }
+  .prf-seo { margin-top: 34px; max-width: 760px; }
+  .prf-seo h2 { font-size: 20px; margin: 0 0 12px; }
+  .prf-seo p { color: var(--mdcf-muted); line-height: 1.6; font-size: 14.5px; margin: 0 0 12px; }
+  .prf-seo strong { color: var(--mdcf-ink); font-weight: 600; }
+  .prffaq { margin-top: 32px; max-width: 820px; }
+  .prffaq > h2 { font-size: 20px; margin: 0 0 14px; }
+  .prffaq__item { border: 1px solid var(--mdcf-line); border-radius: 12px; padding: 4px 16px; margin-bottom: 10px; background: var(--mdcf-surface); }
+  .prffaq__item summary { cursor: pointer; font-weight: 700; padding: 12px 0; list-style: none; }
+  .prffaq__item summary::-webkit-details-marker { display: none; }
+  .prffaq__item summary::after { content: "＋"; float: right; color: var(--mdcf-accent-ink, #b4530a); font-weight: 800; }
+  .prffaq__item[open] summary::after { content: "－"; }
+  .prffaq__item p { margin: 0 0 14px; color: var(--mdcf-muted); line-height: 1.55; font-size: 14.5px; }
+  .prf-listlink { margin: -6px 0 14px; font-size: 14px; }
+  .prf-listlink a { color: var(--mdcf-ink); font-weight: 600; }
+</style>

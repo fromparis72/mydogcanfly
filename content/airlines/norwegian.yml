@@ -1,0 +1,258 @@
+id: airline_norwegian
+mono: DY
+name: Norwegian
+titleH1:
+  en: Flying with a dog on Norwegian
+  fr: Voyager avec un chien sur Norwegian
+  es: Viajar con un perro en Norwegian
+  pt: "Viajar com um cachorro na Norwegian"
+metaDesc:
+  en: "Norwegian pet policy: cabin and hold on Schengen/EU and Svalbard routes, fares, snub-nosed release form and official sources."
+  fr: "Politique animaux Norwegian : cabine et soute sur les routes Schengen/UE et Svalbard, tarifs, décharge brachy et sources officielles."
+  es: "Política de mascotas de Norwegian: cabina y bodega en rutas Schengen/UE y Svalbard, tarifas, formulario de exención para razas de hocico chato y fuentes oficiales."
+  pt: "Política de animais da Norwegian: cabine e porão nas rotas Schengen/UE e Svalbard, tarifas, termo de responsabilidade para focinho achatado e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Norway · OSL
+      fr: Norvège · OSL
+      es: Noruega · OSL
+      pt: "Noruega · OSL"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Small pets in the cabin or hold on Schengen/EU and Svalbard routes only — the UK isn't allowed.
+  fr: Petits animaux en cabine ou en soute uniquement sur les routes Schengen/UE et Svalbard — le R.-U. n'est pas autorisé.
+  es: Mascotas pequeñas en cabina o bodega solo en rutas Schengen/UE y Svalbard; el Reino Unido no está permitido.
+  pt: "Animais pequenos na cabine ou no porão somente nas rotas Schengen/UE e Svalbard — o Reino Unido não é permitido."
+ladder:
+  - flex: 18
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 82
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: ≤ 14 kg each
+      fr: ≤ 14 kg chacun
+      es: ≤ 14 kg cada uno
+      pt: "≤ 14 kg cada"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Small cats & dogs ≤ 8 kg (carrier + pet) in a soft carrier under the seat (max 43 × 31 × 20 cm), on Schengen/EU routes (not Iceland) and Svalbard (dogs). Max 2/flight.
+      fr: Petits chats et chiens ≤ 8 kg (sac + animal) dans un sac souple sous le siège (max 43 × 31 × 20 cm), sur les routes Schengen/UE (pas l'Islande) et Svalbard (chiens). Max 2/vol.
+      es: Gatos y perros pequeños ≤ 8 kg (jaula + mascota) en una jaula blanda bajo el asiento (máx. 43 × 31 × 20 cm), en rutas Schengen/UE (no Islandia) y Svalbard (perros). Máx. 2/vuelo.
+      pt: "Gatos e cachorros pequenos ≤ 8 kg (bolsa + animal) em uma bolsa de transporte flexível sob o assento (máx. 43 × 31 × 20 cm), nas rotas Schengen/UE (não Islândia) e Svalbard (cachorros). Máx. 2/voo."
+    fee:
+      en: €55–85
+      fr: 55–85 €
+      es: 55–85 €
+      pt: "€55–85"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Aceptado
+      pt: "Permitido"
+    detail:
+      en: Cats & dogs in an IATA crate in a temperature-adjusted hold on Schengen/EU (not Ireland/Iceland) and Svalbard (dogs). Two similar pets (≤ 14 kg each) may share.
+      fr: Chats et chiens en caisse IATA dans une soute à température ajustée sur Schengen/UE (pas l'Irlande/l'Islande) et Svalbard (chiens). Deux animaux similaires (≤ 14 kg chacun) peuvent partager.
+      es: Gatos y perros en una jaula IATA en una bodega con temperatura regulada en Schengen/UE (no Irlanda/Islandia) y Svalbard (perros). Dos mascotas similares (≤ 14 kg cada una) pueden compartir.
+      pt: "Gatos e cachorros em uma caixa de transporte IATA em um porão com temperatura regulada nas rotas Schengen/UE (não Irlanda/Islândia) e Svalbard (cachorros). Dois animais semelhantes (≤ 14 kg cada) podem compartilhar."
+    fee:
+      en: €150–200
+      fr: 150–200 €
+      es: 150–200 €
+      pt: "€150–200"
+fareList:
+  rows:
+    - label:
+        en: Cabin (≤ 8 kg)
+        fr: Cabine (≤ 8 kg)
+        es: Cabina (≤ 8 kg)
+        pt: "Cabine (≤ 8 kg)"
+      value:
+        en: €55–85
+        fr: 55–85 €
+        es: 55–85 €
+        pt: "€55–85"
+    - label:
+        en: Hold (per animal)
+        fr: Soute (par animal)
+        es: Bodega (por animal)
+        pt: "Porão (por animal)"
+      value:
+        en: €150–200
+        fr: 150–200 €
+        es: 150–200 €
+        pt: "€150–200"
+    - label:
+        en: Service dog
+        fr: Chien d'assistance
+        es: Perro de servicio
+        pt: "Cão de serviço"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: EUR per animal each way (a few euros more at the airport).
+    fr: EUR par animal et par trajet (quelques euros de plus à l'aéroport).
+    es: EUR por animal y por trayecto (unos euros más en el aeropuerto).
+    pt: "EUR por animal e por trecho (alguns euros a mais no aeroporto)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas braquicéfalas
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Release form required
+          fr: Décharge requise
+          es: Formulario de exención obligatorio
+          pt: "Termo de responsabilidade exigido"
+    note:
+      en: Snub-nosed dogs & cats face breathing/overheating risk — owners sign a release form at check-in acknowledging the risks.
+      fr: Les chiens et chats au nez écrasé présentent un risque respiratoire/de surchauffe — le propriétaire signe une décharge à l'enregistrement reconnaissant les risques.
+      es: Los perros y gatos de hocico chato tienen riesgo respiratorio/de sobrecalentamiento; el dueño firma un formulario de exención en el mostrador que reconoce los riesgos.
+      pt: "Cachorros e gatos de focinho achatado enfrentam risco respiratório/de superaquecimento — o dono assina um termo de responsabilidade no check-in reconhecendo os riscos."
+  - icon: 🚫
+    title:
+      en: Other rules
+      fr: Autres règles
+      es: Otras normas
+      pt: "Outras regras"
+    pills:
+      - cls: warn
+        label:
+          en: No sedation advised
+          fr: Sédation déconseillée
+          es: Sedación desaconsejada
+          pt: "Sedação desaconselhada"
+    note:
+      en: Sedatives aren't recommended; a vet fit-to-fly check is advised. Dogs to/from Svalbard need a Norwegian Food Safety Authority permit.
+      fr: Les sédatifs ne sont pas recommandés ; une visite vétérinaire d'aptitude au vol est conseillée. Les chiens de/vers le Svalbard nécessitent un permis de l'Autorité norvégienne de sécurité alimentaire.
+      es: No se recomiendan los sedantes; se aconseja un chequeo veterinario de aptitud para volar. Los perros desde/hacia Svalbard necesitan un permiso de la Autoridad Noruega de Seguridad Alimentaria.
+      pt: "Não se recomendam sedativos; aconselha-se um check-up veterinário de aptidão para voar. Cachorros de/para Svalbard precisam de uma autorização da Autoridade Norueguesa de Segurança Alimentar."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: Hold temperature fluctuates (as low as 0 °C)
+        fr: Température soute variable (jusqu'à 0 °C)
+        es: La temperatura de la bodega fluctúa (hasta 0 °C)
+        pt: "Temperatura do porão oscila (podendo chegar a 0 °C)"
+  note:
+    en: Norwegian warns hold temperatures fluctuate with external conditions and flight stages; cabin air is circulated into the hold, but it can drop to around 0 °C or rise on the tarmac. No fixed limit is published.
+    fr: Norwegian avertit que les températures de la soute varient selon les conditions extérieures et les phases de vol ; l'air de la cabine est envoyé dans la soute, mais elle peut descendre à environ 0 °C ou monter au sol. Aucune limite fixe n'est publiée.
+    es: Norwegian advierte que las temperaturas de la bodega fluctúan según las condiciones externas y las fases del vuelo; el aire de la cabina se hace circular a la bodega, pero puede bajar hasta unos 0 °C o subir en la pista. No se publica ningún límite fijo.
+    pt: "A Norwegian avisa que as temperaturas do porão oscilam conforme as condições externas e as fases do voo; o ar da cabine é circulado para o porão, mas ele pode cair a cerca de 0 °C ou subir no pátio. Nenhum limite fixo é publicado."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En la cabina
+      pt: "Na cabine"
+    value:
+      en: Service dogs (and dogs in training) travel free in the cabin on most flights, on the floor at your feet.
+      fr: Les chiens d'assistance (et chiens en formation) voyagent gratuitement en cabine sur la plupart des vols, au sol à tes pieds.
+      es: Los perros de servicio (y los perros en formación) viajan gratis en cabina en la mayoría de los vuelos, en el suelo a tus pies.
+      pt: "Cães de serviço (e cachorros em treinamento) viajam gratuitamente na cabine na maioria dos voos, no chão aos seus pés."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: "Book ≥ 48 h ahead; the UK needs an ARC pre-approval letter; not accepted on connections via the UK. US: ESA/PSD only on direct US flights with documents."
+      fr: "Réserver ≥ 48 h à l'avance ; le R.-U. nécessite une lettre de pré-approbation ARC ; non accepté en correspondance via le R.-U. USA : ESA/PSD uniquement sur les vols directs USA avec documents."
+      es: "Reserva con ≥ 48 h de antelación; el Reino Unido exige una carta de aprobación previa ARC; no se acepta en conexiones vía el Reino Unido. EE. UU.: ESA/PSD solo en vuelos directos a EE. UU. con documentos."
+      pt: "Reserve com ≥ 48 h de antecedência; o Reino Unido exige uma carta de pré-aprovação ARC; não é aceito em conexões via o Reino Unido. EUA: ESA/PSD somente em voos diretos para os EUA com documentos."
+goodToKnow:
+  - icon: 🌍
+    label:
+      en: Routes only
+      fr: Routes limitées
+      es: Solo ciertas rutas
+      pt: "Rotas limitadas"
+    value:
+      en: Pets travel only on Schengen/EU routes (not Iceland) and to/from Svalbard; the UK isn't allowed.
+      fr: Les animaux voyagent uniquement sur les routes Schengen/UE (pas l'Islande) et de/vers le Svalbard ; le R.-U. n'est pas autorisé.
+      es: Las mascotas viajan solo en rutas Schengen/UE (no Islandia) y desde/hacia Svalbard; el Reino Unido no está permitido.
+      pt: "Os animais viajam somente nas rotas Schengen/UE (não Islândia) e de/para Svalbard; o Reino Unido não é permitido."
+  - icon: ⏱️
+    label:
+      en: Limited space
+      fr: Places limitées
+      es: Plazas limitadas
+      pt: "Vagas limitadas"
+    value:
+      en: Max 2 pets in the cabin per flight — book early; check in ≥ 1 h ahead.
+      fr: Max 2 animaux en cabine par vol — réserver tôt ; enregistrement ≥ 1 h à l'avance.
+      es: Máx. 2 mascotas en cabina por vuelo; reserva pronto; factura con ≥ 1 h de antelación.
+      pt: "Máx. 2 animais na cabine por voo — reserve com antecedência; faça o check-in com ≥ 1 h de antecedência."
+  - icon: 📄
+    label:
+      en: Svalbard permit
+      fr: Permis Svalbard
+      es: Permiso de Svalbard
+      pt: "Autorização de Svalbard"
+    value:
+      en: Dogs to/from Svalbard need a Norwegian Food Safety Authority permit; vaccination docs in English for international flights.
+      fr: Les chiens de/vers le Svalbard nécessitent un permis de l'Autorité norvégienne de sécurité alimentaire ; documents de vaccination en anglais pour les vols internationaux.
+      es: Los perros desde/hacia Svalbard necesitan un permiso de la Autoridad Noruega de Seguridad Alimentaria; documentos de vacunación en inglés para los vuelos internacionales.
+      pt: "Cachorros de/para Svalbard precisam de uma autorização da Autoridade Norueguesa de Segurança Alimentar; documentos de vacinação em inglês para voos internacionais."
+book:
+  host: norwegian.com
+  url: https://www.norwegian.com/
+sources:
+  en: 3 Norwegian sources · last verified 11 July 2026
+  fr: 3 sources Norwegian · dernière vérification 11 juillet 2026
+  es: 3 fuentes de Norwegian · última verificación 11 de julio de 2026
+  pt: "3 fontes da Norwegian · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

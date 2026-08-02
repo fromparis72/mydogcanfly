@@ -1,0 +1,370 @@
+# Country Entry Guide — El Salvador (bilingual EN/FR).
+# El Salvador is NOT in the EU. This encodes El Salvador's own MAG / Dirección General de Ganadería scheme.
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_sv
+iso2: "SV"
+name: { en: "El Salvador", fr: "Salvador", es: "El Salvador", pt: "El Salvador" }
+region: { en: "Central America", fr: "Amérique centrale", es: "América Central", pt: "América Central" }
+
+
+regime: non_listed
+exit:
+  authority: MAG
+  authorityUrl: https://www.mag.gob.sv/certificados-zoosanitarios-de-exportacion-de-mascotas/
+  intro:
+    en: "El Salvador is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus an export health certificate endorsed by the Ministerio de Agricultura y Ganadería (MAG)."
+    fr: "Le Salvador est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat sanitaire d'export visé par le Ministerio de Agricultura y Ganadería (MAG)."
+    es: "El Salvador no está listado: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado sanitario de exportación refrendado por el Ministerio de Agricultura y Ganadería (MAG)."
+    pt: "El Salvador é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo Ministerio de Agricultura y Ganadería (MAG)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "MAG (Quarantine Division) issues the export zoosanitary certificate from a vet's health certificate dated within 15 days, 3–5 working days before travel, then apostilled for the EU."
+        fr: "Le MAG (division de quarantaine) délivre le certificat zoosanitaire d'export à partir d'un certificat de moins de 15 jours, 3–5 jours ouvrés avant le voyage, puis apostillé pour l'UE."
+        es: "El MAG (División de Cuarentena) emite el certificado zoosanitario de exportación a partir de un certificado de menos de 15 días, 3–5 días hábiles antes del viaje, luego apostillado para la UE."
+        pt: "O MAG (Divisão de Quarentena) emite o certificado zoossanitário de exportação a partir de um atestado de saúde veterinário com no máximo 15 dias, de 3 a 5 dias úteis antes da viagem, e ele é depois apostilado para a UE."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to El Salvador with your dog", fr: "Voyager au Salvador avec ton chien", es: "Viajar a El Salvador con tu perro", pt: "Viajar para El Salvador com seu cachorro" }
+  intro:
+    en: >-
+      El Salvador welcomes dogs, and its rules are handled by its own animal-health authority — the
+      Directorate General of Livestock (Dirección General de Ganadería), through its Quarantine Division,
+      within the Ministry of Agriculture and Livestock (MAG, Ministerio de Agricultura y Ganadería), not
+      the EU pet-passport system. A dog travelling with its owner needs an import authorization issued by
+      MAG, together with the vaccination card and the official zoosanitary certificate from the country of
+      origin. Unlike some neighbours, El Salvador does require this import authorization for a personal pet
+      dog — but it is inexpensive and can be obtained in advance or on arrival at the international airport,
+      a land border or a port. What you must prepare still depends on your dog's country of departure and
+      recent history, because the zoosanitary certificate and vaccination card are issued by the veterinary
+      authority of that country. This guide explains what to prepare before you book your flight.
+    fr: >-
+      Le Salvador accueille les chiens, et ses règles relèvent de sa propre autorité sanitaire animale —
+      la Direction générale de l'Élevage (Dirección General de Ganadería), via sa Division de la quarantaine,
+      au sein du Ministère de l'Agriculture et de l'Élevage (MAG, Ministerio de Agricultura y Ganadería), et
+      non du système du passeport européen. Un chien voyageant avec son propriétaire a besoin d'une
+      autorisation d'importation délivrée par le MAG, accompagnée de la cartilla de vaccination et du
+      certificat zoosanitaire officiel du pays d'origine. À la différence de certains voisins, le Salvador
+      exige bien cette autorisation d'importation pour un chien de compagnie — mais elle est peu coûteuse et
+      peut être obtenue à l'avance ou à l'arrivée, à l'aéroport international, à une frontière terrestre ou à
+      un port. Ce qu'il faut préparer dépend tout de même du pays de départ et de l'historique récent du
+      chien, car le certificat zoosanitaire et la cartilla sont délivrés par l'autorité vétérinaire de ce
+      pays. Ce guide détaille quoi préparer avant de réserver ton vol.
+    es: >-
+      El Salvador acoge a los perros, y sus normas las gestiona su propia autoridad de sanidad animal — la
+      Dirección General de Ganadería, a través de su División de Cuarentena, dentro del Ministerio de
+      Agricultura y Ganadería (MAG), no el sistema del pasaporte europeo para mascotas. Un perro que viaja
+      con su propietario necesita una autorización de importación expedida por el MAG, junto con la cartilla
+      de vacunación y el certificado zoosanitario oficial del país de origen. A diferencia de algunos países
+      vecinos, El Salvador sí exige esta autorización de importación para un perro de compañía — pero es
+      económica y puede obtenerse por adelantado o a la llegada en el aeropuerto internacional, en una
+      frontera terrestre o en un puerto. Lo que debes preparar depende igualmente del país de salida de tu
+      perro y de su historial reciente, ya que el certificado zoosanitario y la cartilla de vacunación los
+      expide la autoridad veterinaria de ese país. Esta guía explica qué preparar antes de reservar tu vuelo.
+
+    pt: "El Salvador recebe cachorros, e as regras do país são conduzidas pela sua própria autoridade de saúde animal — a Direção-Geral de Pecuária (Dirección General de Ganadería), por meio da sua Divisão de Quarentena, dentro do Ministério da Agricultura e Pecuária (MAG, Ministerio de Agricultura y Ganadería) —, e não pelo sistema do passaporte europeu para animais. Um cachorro que viaja com seu dono precisa de uma autorização de importação emitida pelo MAG, junto com a carteira de vacinação e o certificado zoossanitário oficial do país de origem. Diferentemente de alguns vizinhos, El Salvador realmente exige essa autorização de importação para um cachorro de estimação pessoal — mas ela é barata e pode ser obtida com antecedência ou na chegada ao aeroporto internacional, a uma fronteira terrestre ou a um porto. O que você tem de preparar também depende do país de partida e do histórico recente do seu cachorro, porque o certificado zoossanitário e a carteira de vacinação são emitidos pela autoridade veterinária desse país. Este guia explica o que preparar antes de você reservar o voo."
+difficulty:
+  level: easy
+  label: { en: "Easy — one MAG import authorization plus a zoosanitary certificate and vaccination card", fr: "Facile — une autorisation d'importation du MAG, un certificat zoosanitaire et une cartilla de vaccination", es: "Fácil — una autorización de importación del MAG más un certificado zoosanitario y la cartilla de vacunación", pt: "Fácil — uma autorização de importação do MAG, mais um certificado zoossanitário e a carteira de vacinação" }
+
+prepTime:
+  eu:
+    en: "A few days if the rabies vaccine is already valid — you mainly need the official zoosanitary certificate and vaccination card from the country of departure, plus the MAG import authorization ($9.04)."
+    fr: "Quelques jours si le vaccin antirabique est déjà valide — il faut surtout le certificat zoosanitaire officiel et la cartilla de vaccination du pays de départ, ainsi que l'autorisation d'importation du MAG (9,04 $)."
+    es: "Unos días si la vacuna antirrábica ya está en vigor — necesitas sobre todo el certificado zoosanitario oficial y la cartilla de vacunación del país de salida, más la autorización de importación del MAG (9,04 $)."
+    pt: "Alguns dias se a vacina antirrábica já estiver válida — você precisa basicamente do certificado zoossanitário oficial e da carteira de vacinação do país de partida, mais a autorização de importação do MAG (US$ 9,04)."
+  listed:
+    en: "From the United States: allow time for a licensed veterinarian to complete the bilateral El Salvador health certificate (rabies vaccine within 365 days, endo/ectoparasite treatment). USDA endorsement, notary and consular stamp are NOT required."
+    fr: "Depuis les États-Unis : prévois le temps qu'un vétérinaire licencié complète le certificat sanitaire bilatéral Salvador (vaccin antirabique dans les 365 jours, traitement endo/ectoparasitaire). Le visa de l'USDA, le notaire et le cachet consulaire ne sont PAS exigés."
+    es: "Desde Estados Unidos: prevé el tiempo para que un veterinario licenciado complete el certificado sanitario bilateral de El Salvador (vacuna antirrábica dentro de los 365 días, tratamiento endo/ectoparasitario). NO se exigen el refrendo del USDA, la notaría ni el sello consular."
+    pt: "Vindo dos Estados Unidos: reserve tempo para que um veterinário licenciado preencha o atestado de saúde bilateral de El Salvador (vacina antirrábica aplicada nos últimos 365 dias, tratamento contra endo e ectoparasitas). Não são exigidos endosso do USDA, reconhecimento em cartório nem carimbo consular."
+  nonListed:
+    en: "~1 month if a rabies shot is still needed: the animal must be vaccinated (over 2 months of age) with a rabies vaccine applied no more than 365 days before travel, recorded on the vaccination card."
+    fr: "~1 mois si une vaccination antirabique reste à faire : l'animal doit être vacciné (à partir de 2 mois) avec un vaccin antirabique appliqué au plus 365 jours avant le voyage, consigné sur la cartilla."
+    es: "~1 mes si aún falta poner una vacuna antirrábica: el animal debe estar vacunado (a partir de 2 meses de edad) con una vacuna antirrábica aplicada como máximo 365 días antes del viaje, registrada en la cartilla de vacunación."
+    pt: "~1 mês se ainda faltar a dose antirrábica: o animal precisa ser vacinado (com mais de 2 meses de idade) com uma vacina antirrábica aplicada no máximo 365 dias antes da viagem, registrada na carteira de vacinação."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Not in MAG's published requirements", fr: "Absente des exigences publiées par le MAG", es: "No figura en los requisitos publicados por el MAG", pt: "Não consta nas exigências publicadas pelo MAG" }
+    cls: neutral
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required (over 2 months; within 365 days)", fr: "Requise (à partir de 2 mois ; dans les 365 jours)", es: "Obligatoria (a partir de 2 meses; dentro de los 365 días)", pt: "Obrigatória (acima de 2 meses; nos últimos 365 dias)" }
+    cls: warn
+  - requirement: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    status: { en: "Required (per bilateral US certificate)", fr: "Requis (selon le certificat bilatéral américain)", es: "Obligatorio (según el certificado bilateral de EE. UU.)", pt: "Obrigatório (conforme o certificado bilateral dos EUA)" }
+    cls: warn
+  - requirement: { en: "Rabies antibody test", fr: "Titrage antirabique", es: "Prueba de titulación de rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    status: { en: "Not in MAG's published requirements", fr: "Absent des exigences publiées par le MAG", es: "No figura en los requisitos publicados por el MAG", pt: "Não consta nas exigências publicadas pelo MAG" }
+    cls: ok
+  - requirement: { en: "Official zoosanitary certificate", fr: "Certificat zoosanitaire officiel", es: "Certificado zoosanitario oficial", pt: "Certificado zoossanitário oficial" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Import authorization (MAG)", fr: "Autorisation d'importation (MAG)", es: "Autorización de importación (MAG)", pt: "Autorização de importação (MAG)" }
+    status: { en: "Required — $9.04, valid 30 days", fr: "Requise — 9,04 $, valable 30 jours", es: "Obligatoria — 9,04 $, válida 30 días", pt: "Obrigatória — US$ 9,04, válida por 30 dias" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "No routine confinement — but the quarantine permit at entry is mandatory", fr: "Pas de confinement de routine — mais le permis de quarantaine à l'entrée est obligatoire", es: "Sin confinamiento rutinario — pero el permiso de cuarentena a la entrada es obligatorio", pt: "Sem confinamento de rotina — mas a permissão de quarentena na entrada é obrigatória" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — El Salvador (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — le Salvador (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — El Salvador (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — El Salvador (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — El Salvador", fr: "Pays de destination — Salvador", es: "País de destino — El Salvador", pt: "País de destino — El Salvador" }
+      text:
+        en: "MAG (Dirección General de Ganadería, Quarantine Division) runs an authorization-based scheme: an import authorization, the official zoosanitary certificate and the vaccination card are always required for a dog, cat or rabbit."
+        fr: "Le MAG (Dirección General de Ganadería, Division de la quarantaine) applique un dispositif fondé sur une autorisation : une autorisation d'importation, le certificat zoosanitaire officiel et la cartilla de vaccination sont toujours exigés pour un chien, un chat ou un lapin."
+        es: "El MAG (Dirección General de Ganadería, División de Cuarentena) aplica un esquema basado en una autorización: siempre se exigen una autorización de importación, el certificado zoosanitario oficial y la cartilla de vacunación para un perro, un gato o un conejo."
+        pt: "O MAG (Dirección General de Ganadería, Divisão de Quarentena) aplica um esquema baseado em autorização: a autorização de importação, o certificado zoossanitário oficial e a carteira de vacinação são sempre obrigatórios para cachorro, gato ou coelho."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "The zoosanitary certificate and vaccination card must be issued by the veterinary authority of the country of origin, so that country's veterinary services and health status matter directly. Arrivals from the United States use a specific bilateral health certificate completed by a licensed veterinarian."
+        fr: "Le certificat zoosanitaire et la cartilla de vaccination doivent être délivrés par l'autorité vétérinaire du pays d'origine ; les services vétérinaires et le statut sanitaire de ce pays comptent donc directement. Les arrivées des États-Unis utilisent un certificat sanitaire bilatéral spécifique complété par un vétérinaire licencié."
+        es: "El certificado zoosanitario y la cartilla de vacunación deben ser expedidos por la autoridad veterinaria del país de origen, de modo que los servicios veterinarios y el estatus sanitario de ese país influyen directamente. Las llegadas desde Estados Unidos utilizan un certificado sanitario bilateral específico completado por un veterinario licenciado."
+        pt: "O certificado zoossanitário e a carteira de vacinação precisam ser emitidos pela autoridade veterinária do país de origem; por isso o serviço veterinário e a situação sanitária desse país contam diretamente. Quem chega dos Estados Unidos usa um atestado de saúde bilateral específico, preenchido por um veterinário licenciado."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "Your dog's recent residence and vaccination history determine whether its record is complete and valid — the rabies vaccine must be current (within 365 days). It is the dog's real history that counts, not only the last airport."
+        fr: "La résidence récente et l'historique de vaccination du chien déterminent si son carnet est complet et valide — le vaccin antirabique doit être en cours de validité (dans les 365 jours). C'est l'historique réel du chien qui compte, pas seulement le dernier aéroport."
+        es: "La residencia reciente y el historial de vacunación de tu perro determinan si su registro está completo y en vigor — la vacuna antirrábica debe estar vigente (dentro de los 365 días). Lo que cuenta es el historial real del perro, no solo el último aeropuerto."
+        pt: "Onde o seu cachorro morou recentemente e o histórico de vacinação dele determinam se a carteira está completa e válida — a vacina antirrábica precisa estar em dia (aplicada nos últimos 365 dias). O que conta é o histórico real do cachorro, não só o último aeroporto."
+  note:
+    en: "So read the requirements below as El Salvador's framework, then confirm your dog's exact origin and history with your vet."
+    fr: "Lis donc les exigences ci-dessous comme le cadre salvadorien, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire."
+    es: "Así que lee los requisitos siguientes como el marco de El Salvador y luego confirma el origen y el historial exactos de tu perro con tu veterinario."
+    pt: "Leia então as exigências abaixo como o quadro geral de El Salvador, e confirme com seu veterinário a origem e o histórico exatos do seu cachorro."
+
+requirements:
+  - item: { en: "Identification (microchip)", fr: "Identification (puce électronique)", es: "Identificación (microchip)", pt: "Identificação (microchip)" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "MAG's published requirements for importing pets (dogs, cats, rabbits) do not mention a microchip; identification is carried through the zoosanitary certificate and vaccination card.", fr: "Les exigences publiées du MAG pour l'importation d'animaux de compagnie (chiens, chats, lapins) ne mentionnent pas de puce ; l'identification passe par le certificat zoosanitaire et la cartilla de vaccination.", es: "Los requisitos publicados por el MAG para importar mascotas (perros, gatos, conejos) no mencionan un microchip; la identificación se recoge a través del certificado zoosanitario y la cartilla de vacunación.", pt: "As exigências publicadas pelo MAG para a importação de animais de estimação (cães, gatos, coelhos) não mencionam microchip; a identificação é feita por meio do certificado zoossanitário e da carteira de vacinação." }
+    exceptions: { en: "A microchip is not required by MAG but is strongly advised for identification, for the return trip and because most airlines require it.", fr: "La puce n'est pas exigée par le MAG mais fortement conseillée pour l'identification, le retour et parce que la plupart des compagnies l'exigent.", es: "El MAG no exige el microchip, pero se recomienda encarecidamente para la identificación, para el viaje de regreso y porque la mayoría de las aerolíneas lo exigen.", pt: "O microchip não é exigido pelo MAG, mas é fortemente recomendado para a identificação, para a viagem de volta e porque a maioria das companhias aéreas o exige." }
+    ref: { en: "MAG — Import authorizations for pets (Dirección General de Ganadería)", fr: "MAG — Autorisations d'importation de mascotas (Dirección General de Ganadería)", es: "MAG — Autorizaciones de importación de mascotas (Dirección General de Ganadería)", pt: "MAG — Autorizações de importação de animais de estimação (Dirección General de Ganadería)" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "The animal must be vaccinated against rabies and this must appear on the vaccination card. On the bilateral US–El Salvador certificate, animals over 2 months old must be vaccinated, with the vaccine applied no more than 365 days before embarkation, and the rabies vaccination certificate must accompany the health documents.", fr: "L'animal doit être vacciné contre la rage et cela doit figurer sur la cartilla de vaccination. Sur le certificat bilatéral États-Unis–Salvador, les animaux de plus de 2 mois doivent être vaccinés, avec un vaccin appliqué au plus 365 jours avant l'embarquement, et le certificat de vaccination antirabique doit accompagner les documents sanitaires.", es: "El animal debe estar vacunado contra la rabia y esto debe constar en la cartilla de vacunación. En el certificado bilateral EE. UU.–El Salvador, los animales de más de 2 meses deben estar vacunados, con la vacuna aplicada como máximo 365 días antes del embarque, y el certificado de vacunación antirrábica debe acompañar a los documentos sanitarios.", pt: "O animal precisa estar vacinado contra a raiva, e isso precisa constar na carteira de vacinação. No certificado bilateral EUA–El Salvador, animais com mais de 2 meses de idade precisam estar vacinados, com a vacina aplicada no máximo 365 dias antes do embarque, e o certificado de vacinação antirrábica precisa acompanhar os documentos sanitários." }
+    exceptions: { en: "The date of immunization and the trade name of the product used must be indicated. No minimum waiting period after vaccination is published by MAG.", fr: "La date d'immunisation et le nom commercial du produit utilisé doivent être indiqués. Aucun délai d'attente minimum après vaccination n'est publié par le MAG.", es: "Deben indicarse la fecha de inmunización y el nombre comercial del producto utilizado. El MAG no publica ningún periodo de espera mínimo tras la vacunación.", pt: "A data da imunização e o nome comercial do produto utilizado precisam ser indicados. O MAG não publica nenhum prazo mínimo de espera após a vacinação." }
+    ref: { en: "MAG — Pet import authorizations; USDA APHIS — El Salvador dog/cat health certificate", fr: "MAG — Autorisations d'importation de mascotas ; USDA APHIS — Certificat de santé chien/chat Salvador", es: "MAG — Autorizaciones de importación de mascotas; USDA APHIS — Certificado sanitario perro/gato El Salvador", pt: "MAG — Autorizações de importação de animais de estimação; USDA APHIS — atestado de saúde para cães/gatos de El Salvador" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "MAG's published requirements for dogs do not include a rabies antibody test. Whether one is requested for specific high-risk origins is not published — confirm with MAG before travel.", fr: "Les exigences publiées du MAG pour les chiens ne comprennent pas de titrage antirabique. L'éventuelle exigence pour certaines origines à haut risque n'est pas publiée — vérifie auprès du MAG avant le voyage.", es: "Los requisitos publicados por el MAG para perros no incluyen una prueba de titulación de rabia. Si se solicita para determinados orígenes de alto riesgo no está publicado — confírmalo con el MAG antes de viajar.", pt: "As exigências publicadas pelo MAG para cachorros não incluem teste sorológico antirrábico. Não há publicação sobre a exigência dele para origens específicas de alto risco — confirme com o MAG antes da viagem." }
+    ref: { en: "MAG — Import authorizations for pets (Dirección General de Ganadería)", fr: "MAG — Autorisations d'importation de mascotas (Dirección General de Ganadería)", es: "MAG — Autorizaciones de importación de mascotas (Dirección General de Ganadería)", pt: "MAG — Autorizações de importação de animais de estimação (Dirección General de Ganadería)" }
+  - item: { en: "Official zoosanitary certificate", fr: "Certificat zoosanitaire officiel", es: "Certificado zoosanitario oficial", pt: "Certificado zoossanitário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Present the official zoosanitary certificate (original or a copy) issued by the country of origin, together with the vaccination card. From the US, use the bilateral certificate declaring the animal was examined within 30 days and found healthy and free of clinical signs of infectious and parasitic disease, vaccinated against rabies, and treated for endo/ectoparasites; it must be made out at least in duplicate.", fr: "Présente le certificat zoosanitaire officiel (original ou copie) délivré par le pays d'origine, accompagné de la cartilla de vaccination. Depuis les États-Unis, utilise le certificat bilatéral déclarant que l'animal a été examiné dans les 30 jours et trouvé en bonne santé et exempt de signes cliniques de maladie infectieuse et parasitaire, vacciné contre la rage et traité contre les endo/ectoparasites ; il doit être établi au moins en double exemplaire.", es: "Presenta el certificado zoosanitario oficial (original o copia) expedido por el país de origen, junto con la cartilla de vacunación. Desde EE. UU., usa el certificado bilateral que declara que el animal fue examinado dentro de los 30 días y se encontró sano y libre de signos clínicos de enfermedad infecciosa y parasitaria, vacunado contra la rabia y tratado contra endo/ectoparásitos; debe emitirse al menos por duplicado.", pt: "Apresente o certificado zoossanitário oficial (original ou cópia) emitido pelo país de origem, junto com a carteira de vacinação. Vindo dos EUA, use o certificado bilateral que declara que o animal foi examinado nos 30 dias anteriores e considerado saudável e livre de sinais clínicos de doenças infecciosas e parasitárias, vacinado contra a raiva e tratado contra endo e ectoparasitas; ele precisa ser emitido pelo menos em duas vias." }
+    exceptions: { en: "USDA endorsement is NOT required; the certificate does not need notarisation or an El Salvador consular stamp.", fr: "Le visa de l'USDA n'est PAS exigé ; le certificat n'a pas besoin d'être notarié ni de porter le cachet consulaire du Salvador.", es: "NO se exige el refrendo del USDA; el certificado no necesita notarización ni sello consular de El Salvador.", pt: "O endosso do USDA NÃO é exigido; o certificado não precisa de reconhecimento em cartório nem de carimbo consular de El Salvador." }
+    ref: { en: "MAG — Pet import authorizations; USDA APHIS — El Salvador dog/cat health certificate", fr: "MAG — Autorisations d'importation de mascotas ; USDA APHIS — Certificat de santé chien/chat Salvador", es: "MAG — Autorizaciones de importación de mascotas; USDA APHIS — Certificado sanitario perro/gato El Salvador", pt: "MAG — Autorizações de importação de animais de estimação; USDA APHIS — atestado de saúde para cães/gatos de El Salvador" }
+  - item: { en: "Internal & external parasite treatment", fr: "Traitement antiparasitaire interne & externe", es: "Tratamiento antiparasitario interno y externo", pt: "Tratamento antiparasitário interno e externo" }
+    required: { en: "Required (per bilateral US certificate)", fr: "Requis (selon le certificat bilatéral américain)", es: "Obligatorio (según el certificado bilateral de EE. UU.)", pt: "Obrigatório (conforme o certificado bilateral dos EUA)" }
+    when: { en: "The bilateral US–El Salvador health certificate requires the animal to be treated for endoparasites and ectoparasites with products approved by the country of origin. This is declared on the certificate.", fr: "Le certificat sanitaire bilatéral États-Unis–Salvador exige que l'animal soit traité contre les endoparasites et les ectoparasites avec des produits approuvés par le pays d'origine. Cela est déclaré sur le certificat.", es: "El certificado sanitario bilateral EE. UU.–El Salvador exige que el animal sea tratado contra endoparásitos y ectoparásitos con productos aprobados por el país de origen. Esto se declara en el certificado.", pt: "O atestado de saúde bilateral EUA–El Salvador exige que o animal seja tratado contra endoparasitas e ectoparasitas com produtos aprovados pelo país de origem. Isso é declarado no certificado." }
+    exceptions: { en: "No specific tapeworm/Echinococcus timing window is published — a general internal/external parasite treatment is required. For origins other than the US, confirm the exact wording of the zoosanitary certificate with your vet.", fr: "Aucun délai spécifique (échinococcose/ténia) n'est publié — un traitement antiparasitaire interne/externe général est exigé. Pour les origines autres que les États-Unis, vérifie la formulation exacte du certificat zoosanitaire avec ton vétérinaire.", es: "No se publica ningún plazo específico contra la tenia/Echinococcus — se exige un tratamiento antiparasitario interno/externo general. Para orígenes distintos de EE. UU., confirma con tu veterinario la redacción exacta del certificado zoosanitario.", pt: "Não há prazo específico publicado para tênia/Echinococcus — o que se exige é um tratamento antiparasitário interno/externo geral. Para origens que não sejam os EUA, confirme com seu veterinário o texto exato do certificado zoossanitário." }
+    ref: { en: "USDA APHIS — El Salvador dog/cat health certificate; MAG pet import authorizations", fr: "USDA APHIS — Certificat de santé chien/chat Salvador ; MAG autorisations d'importation de mascotas", es: "USDA APHIS — Certificado sanitario perro/gato El Salvador; MAG autorizaciones de importación de mascotas", pt: "USDA APHIS — atestado de saúde para cães/gatos de El Salvador; autorizações de importação de animais de estimação do MAG" }
+  - item: { en: "Import authorization (MAG)", fr: "Autorisation d'importation (MAG)", es: "Autorización de importación (MAG)", pt: "Autorização de importação (MAG)" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "MAG issues an import authorization to bring a dog, cat or rabbit into the country. Submit the import application form with the vaccination card and the official zoosanitary certificate, and pay the fee. The authorization costs $9.04, is valid for 30 days and may be used only once (it is not valid for the return trip).", fr: "Le MAG délivre une autorisation d'importation pour faire entrer un chien, un chat ou un lapin. Dépose le formulaire de demande d'importation avec la cartilla de vaccination et le certificat zoosanitaire officiel, puis paie les frais. L'autorisation coûte 9,04 $, est valable 30 jours et ne peut être utilisée qu'une seule fois (elle n'est pas valable pour le retour).", es: "El MAG expide una autorización de importación para hacer entrar un perro, un gato o un conejo en el país. Presenta el formulario de solicitud de importación con la cartilla de vacunación y el certificado zoosanitario oficial, y paga la tasa. La autorización cuesta 9,04 $, es válida 30 días y solo puede usarse una vez (no es válida para el viaje de regreso).", pt: "O MAG emite uma autorização de importação para levar um cachorro, gato ou coelho ao país. Entregue o formulário de solicitação de importação com a carteira de vacinação e o certificado zoossanitário oficial, e pague a taxa. A autorização custa US$ 9,04, vale 30 dias e só pode ser usada uma vez (não vale para a viagem de volta)." }
+    exceptions: { en: "The authorization can be obtained in advance at the MAG window in Santa Tecla (or by email) or at the moment of arrival at the international airport, land borders and ports. It may be arranged by any person, not only the pet's owner.", fr: "L'autorisation peut être obtenue à l'avance au guichet du MAG à Santa Tecla (ou par courriel) ou au moment de l'arrivée à l'aéroport international, aux frontières terrestres et aux ports. Elle peut être effectuée par toute personne, pas uniquement le propriétaire de l'animal.", es: "La autorización puede obtenerse por adelantado en la ventanilla del MAG en Santa Tecla (o por correo electrónico) o en el momento de la llegada en el aeropuerto internacional, las fronteras terrestres y los puertos. Puede tramitarla cualquier persona, no solo el propietario del animal.", pt: "A autorização pode ser obtida com antecedência no guichê do MAG em Santa Tecla (ou por e-mail) ou no momento da chegada ao aeroporto internacional, às fronteiras terrestres e aos portos. Ela pode ser providenciada por qualquer pessoa, não apenas pelo dono do animal." }
+    ref: { en: "MAG — Import authorizations for pets; USDA APHIS — El Salvador (import permit)", fr: "MAG — Autorisations d'importation de mascotas ; USDA APHIS — Salvador (permis d'importation)", es: "MAG — Autorizaciones de importación de mascotas; USDA APHIS — El Salvador (permiso de importación)", pt: "MAG — Autorizações de importação de animais de estimação; USDA APHIS — El Salvador (autorização de importação)" }
+  - item: { en: "Quarantine permit at port of entry", fr: "Permis de quarantaine au point d'entrée", es: "Permiso de cuarentena en el punto de entrada", pt: "Permissão de quarentena no ponto de entrada" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Per USDA APHIS, personal pet dogs and cats must obtain a quarantine permit at the port of entry upon arrival in El Salvador. This is handled at the MAG quarantine point together with the document check, not a period of confinement.", fr: "Selon l'USDA APHIS, les chiens et chats de compagnie doivent obtenir un permis de quarantaine au point d'entrée à l'arrivée au Salvador. Cela est traité au poste de quarantaine du MAG en même temps que le contrôle documentaire, et non par une période de confinement.", es: "Según el USDA APHIS, los perros y gatos de compañía deben obtener un permiso de cuarentena en el punto de entrada a la llegada a El Salvador. Esto se tramita en el puesto de cuarentena del MAG junto con el control documental, y no es un periodo de confinamiento.", pt: "Segundo o USDA APHIS, cães e gatos de estimação pessoais precisam obter uma permissão de quarentena no ponto de entrada ao chegar a El Salvador. Isso é resolvido no posto de quarentena do MAG junto com a conferência dos documentos; não se trata de um período de confinamento." }
+    exceptions: { en: "Commercial lots of animals must instead be accompanied by an import permit issued by MAG's General Directorate of Plant and Animal Health.", fr: "Les lots commerciaux d'animaux doivent en revanche être accompagnés d'un permis d'importation délivré par la Direction générale de santé végétale et animale du MAG.", es: "Los lotes comerciales de animales, en cambio, deben ir acompañados de un permiso de importación expedido por la Dirección General de Sanidad Vegetal y Animal del MAG.", pt: "Já os lotes comerciais de animais precisam ser acompanhados de uma autorização de importação emitida pela Direção-Geral de Sanidade Vegetal e Animal do MAG." }
+    ref: { en: "USDA APHIS — El Salvador; MAG pet import authorizations", fr: "USDA APHIS — Salvador ; MAG autorisations d'importation de mascotas", es: "USDA APHIS — El Salvador; MAG autorizaciones de importación de mascotas", pt: "USDA APHIS — El Salvador; autorizações de importação de animais de estimação do MAG" }
+  - item: { en: "Minimum age / puppies", fr: "Âge minimum / chiots", es: "Edad mínima / cachorros", pt: "Idade mínima / filhotes" }
+    required: { en: "Not published", fr: "Non communiqué", es: "No publicado", pt: "Não publicado" }
+    when: { en: "MAG does not publish a minimum entry age. The bilateral US certificate requires rabies vaccination only for animals over 2 months old, which sets a practical lower bound for vaccinated puppies.", fr: "Le MAG ne publie pas d'âge minimum d'entrée. Le certificat bilatéral américain n'exige la vaccination antirabique que pour les animaux de plus de 2 mois, ce qui fixe une limite basse pratique pour les chiots vaccinés.", es: "El MAG no publica una edad mínima de entrada. El certificado bilateral de EE. UU. solo exige la vacunación antirrábica para animales de más de 2 meses, lo que fija un límite inferior práctico para los cachorros vacunados.", pt: "O MAG não publica idade mínima de entrada. O certificado bilateral dos EUA exige vacinação antirrábica apenas para animais com mais de 2 meses de idade, o que estabelece na prática um piso para filhotes vacinados." }
+    exceptions: { en: "Airline age rules and your home country's return rules may be stricter — confirm both.", fr: "Les règles d'âge des compagnies et les règles de retour de ton pays peuvent être plus strictes — vérifie les deux.", es: "Las normas de edad de las aerolíneas y las normas de regreso de tu país pueden ser más estrictas — confirma ambas.", pt: "As regras de idade da companhia aérea e as regras de retorno do seu país podem ser mais rígidas — confirme as duas." }
+    ref: { en: "USDA APHIS — El Salvador dog/cat health certificate; MAG pet import authorizations", fr: "USDA APHIS — Certificat de santé chien/chat Salvador ; MAG autorisations d'importation de mascotas", es: "USDA APHIS — Certificado sanitario perro/gato El Salvador; MAG autorizaciones de importación de mascotas", pt: "USDA APHIS — atestado de saúde para cães/gatos de El Salvador; autorizações de importação de animais de estimação do MAG" }
+  - item: { en: "Quarantine (confinement)", fr: "Quarantaine (confinement)", es: "Cuarentena (confinamiento)", pt: "Quarentena (confinamento)" }
+    required: { en: "Not published", fr: "Non communiquée", es: "No publicada", pt: "Não publicado" }
+    when: { en: "No routine period of confinement is set out in the published requirements; entry is handled through document review and the quarantine permit at the point of entry.", fr: "Aucune période de confinement de routine n'est prévue dans les exigences publiées ; l'entrée se fait par contrôle documentaire et permis de quarantaine au point d'entrée.", es: "En los requisitos publicados no se establece ningún periodo de confinamiento de rutina; la entrada se tramita mediante el control documental y el permiso de cuarentena en el punto de entrada.", pt: "As exigências publicadas não preveem nenhum período de confinamento de rotina; a entrada é resolvida pela análise dos documentos e pela permissão de quarentena no ponto de entrada." }
+    exceptions: { en: "Handling of a non-compliant or sick animal on arrival is not detailed in the published requirements — confirm with MAG.", fr: "Le traitement d'un animal non conforme ou malade à l'arrivée n'est pas détaillé dans les exigences publiées — vérifie auprès du MAG.", es: "El tratamiento de un animal no conforme o enfermo a la llegada no se detalla en los requisitos publicados — confírmalo con el MAG.", pt: "As exigências publicadas não detalham o que acontece com um animal doente ou fora das exigências na chegada — confirme com o MAG." }
+    ref: { en: "MAG — Import authorizations for pets; USDA APHIS — El Salvador", fr: "MAG — Autorisations d'importation de mascotas ; USDA APHIS — Salvador", es: "MAG — Autorizaciones de importación de mascotas; USDA APHIS — El Salvador", pt: "MAG — Autorizações de importação de animais de estimação; USDA APHIS — El Salvador" }
+
+origin:
+  eu:
+    title: { en: "Standard — a personal pet from any country", fr: "Standard — un animal de compagnie depuis n'importe quel pays", es: "Estándar — una mascota de compañía desde cualquier país", pt: "Padrão — um animal de estimação pessoal de qualquer país" }
+    body:
+      en: "A dog arriving with its owner needs a MAG import authorization plus the official zoosanitary certificate (original or copy) and the vaccination card from the country of origin. You submit the import application form with these documents and pay the $9.04 fee; the authorization is valid 30 days and single-use. It can be arranged in advance at the MAG window in Santa Tecla or by email, or completed on arrival at the airport, a land border or a port. Personal pets also take a quarantine permit at the point of entry. There is no routine confinement for a compliant pet."
+      fr: "Un chien arrivant avec son propriétaire a besoin d'une autorisation d'importation du MAG, du certificat zoosanitaire officiel (original ou copie) et de la cartilla de vaccination du pays d'origine. Tu dépose le formulaire de demande d'importation avec ces documents et réglez les frais de 9,04 $ ; l'autorisation est valable 30 jours et à usage unique. Elle peut être organisée à l'avance au guichet du MAG à Santa Tecla ou par courriel, ou effectuée à l'arrivée à l'aéroport, à une frontière terrestre ou à un port. Les animaux de compagnie prennent aussi un permis de quarantaine au point d'entrée. Aucun confinement de routine pour un animal conforme."
+      es: "Un perro que llega con su propietario necesita una autorización de importación del MAG más el certificado zoosanitario oficial (original o copia) y la cartilla de vacunación del país de origen. Presentas el formulario de solicitud de importación con estos documentos y pagas la tasa de 9,04 $; la autorización es válida 30 días y de un solo uso. Puede tramitarse por adelantado en la ventanilla del MAG en Santa Tecla o por correo electrónico, o completarse a la llegada en el aeropuerto, en una frontera terrestre o en un puerto. Las mascotas de compañía también tramitan un permiso de cuarentena en el punto de entrada. No hay confinamiento de rutina para una mascota que cumpla los requisitos."
+      pt: "Um cachorro que chega com o dono precisa de uma autorização de importação do MAG, mais o certificado zoossanitário oficial (original ou cópia) e a carteira de vacinação do país de origem. Você entrega o formulário de solicitação de importação com esses documentos e paga a taxa de US$ 9,04; a autorização vale 30 dias e é de uso único. Ela pode ser providenciada com antecedência no guichê do MAG em Santa Tecla ou por e-mail, ou resolvida na chegada ao aeroporto, a uma fronteira terrestre ou a um porto. Os animais de estimação pessoais também retiram uma permissão de quarentena no ponto de entrada. Não há confinamento de rotina para um animal em conformidade."
+    cls: ok
+  listed:
+    title: { en: "Arriving from the United States — bilateral certificate", fr: "Arrivée depuis les États-Unis — certificat bilatéral", es: "Llegada desde Estados Unidos — certificado bilateral", pt: "Chegando dos Estados Unidos — certificado bilateral" }
+    body:
+      en: "From the United States a licensed veterinarian completes the agreed 'Veterinary Health Certificate for Export of Dogs and Cats from the United States to El Salvador'. It certifies the animal was examined within 30 days and is healthy and free of clinical signs of infectious and parasitic disease; vaccinated against rabies no more than 365 days before embarkation (animals over 2 months old must be vaccinated), with the rabies vaccination certificate attached; and treated for endo- and ectoparasites. USDA endorsement is NOT required, and no notary or El Salvador consular stamp is needed. The certificate should be issued at least in duplicate."
+      fr: "Depuis les États-Unis, un vétérinaire licencié complète le « Certificat sanitaire vétérinaire pour l'exportation de chiens et chats des États-Unis vers le Salvador » convenu. Il certifie que l'animal a été examiné dans les 30 jours et est en bonne santé et exempt de signes cliniques de maladie infectieuse et parasitaire ; vacciné contre la rage au plus 365 jours avant l'embarquement (les animaux de plus de 2 mois doivent être vaccinés), avec le certificat de vaccination antirabique joint ; et traité contre les endo- et ectoparasites. Le visa de l'USDA n'est PAS exigé, et aucun notaire ni cachet consulaire salvadorien n'est nécessaire. Le certificat doit être établi au moins en double exemplaire."
+      es: "Desde Estados Unidos, un veterinario licenciado completa el «Certificado sanitario veterinario para la exportación de perros y gatos de Estados Unidos a El Salvador» acordado. Certifica que el animal fue examinado dentro de los 30 días y está sano y libre de signos clínicos de enfermedad infecciosa y parasitaria; vacunado contra la rabia como máximo 365 días antes del embarque (los animales de más de 2 meses deben estar vacunados), con el certificado de vacunación antirrábica adjunto; y tratado contra endo- y ectoparásitos. NO se exige el refrendo del USDA, y no se necesita notaría ni sello consular de El Salvador. El certificado debe emitirse al menos por duplicado."
+      pt: "Vindo dos Estados Unidos, um veterinário licenciado preenche o «Veterinary Health Certificate for Export of Dogs and Cats from the United States to El Salvador» acordado entre os dois países. Ele certifica que o animal foi examinado nos 30 dias anteriores e está saudável e livre de sinais clínicos de doenças infecciosas e parasitárias; vacinado contra a raiva no máximo 365 dias antes do embarque (animais com mais de 2 meses de idade precisam estar vacinados), com o certificado de vacinação antirrábica anexado; e tratado contra endo e ectoparasitas. O endosso do USDA NÃO é exigido, e não é preciso reconhecimento em cartório nem carimbo consular de El Salvador. O certificado deve ser emitido pelo menos em duas vias."
+    cls: ok
+  nonListed:
+    title: { en: "Vaccination timing & practical reminders", fr: "Délais de vaccination & rappels pratiques", es: "Plazos de vacunación y recordatorios prácticos", pt: "Prazos da vacinação e lembretes práticos" }
+    body:
+      en: "Because the rabies vaccine must be current (within 365 days) and, on the US certificate, is required for animals over 2 months old, plan the vaccination well ahead. MAG does not publish a microchip rule, a rabies antibody-test rule or a minimum entry age for dogs — but confirm your dog's situation with your vet and, if in doubt, directly with MAG's Quarantine Division. Remember the import authorization is single-use and not valid for the return trip: for the way back you will need the export zoosanitary certificate for pets."
+      fr: "Comme le vaccin antirabique doit être en cours de validité (dans les 365 jours) et, sur le certificat américain, est exigé pour les animaux de plus de 2 mois, prévois la vaccination bien à l'avance. Le MAG ne publie ni règle de puce, ni règle de titrage antirabique, ni âge minimum d'entrée pour les chiens — mais confirme la situation de ton chien avec ton vétérinaire et, en cas de doute, directement auprès de la Division de la quarantaine du MAG. Rappelle-toi que l'autorisation d'importation est à usage unique et non valable pour le retour : au retour, il tu faudra le certificat zoosanitaire d'exportation de mascotas."
+      es: "Como la vacuna antirrábica debe estar vigente (dentro de los 365 días) y, en el certificado de EE. UU., se exige para animales de más de 2 meses, planifica la vacunación con mucha antelación. El MAG no publica ninguna norma de microchip, ni de prueba de titulación de rabia, ni una edad mínima de entrada para perros — pero confirma la situación de tu perro con tu veterinario y, en caso de duda, directamente con la División de Cuarentena del MAG. Recuerda que la autorización de importación es de un solo uso y no es válida para el viaje de regreso: para la vuelta necesitarás el certificado zoosanitario de exportación de mascotas."
+      pt: "Como a vacina antirrábica precisa estar em dia (aplicada nos últimos 365 dias) e, no certificado dos EUA, é exigida para animais com mais de 2 meses de idade, planeje a vacinação com bastante antecedência. O MAG não publica regra de microchip, regra de teste sorológico antirrábico nem idade mínima de entrada para cachorros — mas confirme a situação do seu cachorro com seu veterinário e, na dúvida, diretamente com a Divisão de Quarentena do MAG. Lembre-se de que a autorização de importação é de uso único e não vale para a viagem de volta: para voltar, você vai precisar do certificado zoossanitário de exportação para animais de estimação."
+    cls: neutral
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches El Salvador centres on the MAG quarantine document check and the quarantine permit at the point of entry."
+    fr: "Ce qui se passe à l'arrivée de ton chien au Salvador tourne autour du contrôle documentaire de quarantaine du MAG et du permis de quarantaine au point d'entrée."
+    es: "Lo que ocurre cuando tu perro llega a El Salvador gira en torno al control documental de cuarentena del MAG y al permiso de cuarentena en el punto de entrada."
+    pt: "O que acontece quando seu cachorro chega a El Salvador gira em torno da conferência de documentos feita pela quarentena do MAG e da permissão de quarentena no ponto de entrada."
+  points:
+    - en: "Documents are checked by MAG (Dirección General de Ganadería, Quarantine Division) at the international airport, a land border or a port."
+      fr: "Les documents sont contrôlés par le MAG (Dirección General de Ganadería, Division de la quarantaine) à l'aéroport international, à une frontière terrestre ou à un port."
+      es: "Los documentos los revisa el MAG (Dirección General de Ganadería, División de Cuarentena) en el aeropuerto internacional, en una frontera terrestre o en un puerto."
+      pt: "Os documentos são conferidos pelo MAG (Dirección General de Ganadería, Divisão de Quarentena) no aeroporto internacional, em uma fronteira terrestre ou em um porto."
+    - en: "The MAG import authorization can be obtained in advance or completed on arrival at the point of entry ($9.04, valid 30 days, single-use)."
+      fr: "L'autorisation d'importation du MAG peut être obtenue à l'avance ou effectuée à l'arrivée au point d'entrée (9,04 $, valable 30 jours, à usage unique)."
+      es: "La autorización de importación del MAG puede obtenerse por adelantado o completarse a la llegada en el punto de entrada (9,04 $, válida 30 días, de un solo uso)."
+      pt: "A autorização de importação do MAG pode ser obtida com antecedência ou resolvida na chegada ao ponto de entrada (US$ 9,04, válida por 30 dias, de uso único)."
+    - en: "Carry the official zoosanitary certificate (original or copy) plus the vaccination card; arrivals from the US carry the bilateral health certificate, issued at least in duplicate."
+      fr: "Munis-toi du certificat zoosanitaire officiel (original ou copie) et de la cartilla de vaccination ; les arrivées des États-Unis portent le certificat sanitaire bilatéral, établi au moins en double exemplaire."
+      es: "Lleva el certificado zoosanitario oficial (original o copia) más la cartilla de vacunación; las llegadas desde EE. UU. llevan el certificado sanitario bilateral, emitido al menos por duplicado."
+      pt: "Leve o certificado zoossanitário oficial (original ou cópia) e a carteira de vacinação; quem chega dos EUA leva o atestado de saúde bilateral, emitido pelo menos em duas vias."
+    - en: "Personal pet dogs and cats must obtain a quarantine permit at the port of entry upon arrival (per USDA APHIS)."
+      fr: "Les chiens et chats de compagnie doivent obtenir un permis de quarantaine au point d'entrée à l'arrivée (selon l'USDA APHIS)."
+      es: "Los perros y gatos de compañía deben obtener un permiso de cuarentena en el punto de entrada a la llegada (según el USDA APHIS)."
+      pt: "Cães e gatos de estimação pessoais precisam obter uma permissão de quarentena no ponto de entrada ao chegar (segundo o USDA APHIS)."
+    - en: "Missing or invalid documents can delay clearance — confirm the current requirements with MAG's Quarantine Division before you fly."
+      fr: "Des documents manquants ou invalides peuvent retarder le dédouanement — confirme les exigences en vigueur auprès de la Division de la quarantaine du MAG avant de voler."
+      es: "Los documentos que falten o no sean válidos pueden retrasar el despacho — confirma los requisitos vigentes con la División de Cuarentena del MAG antes de volar."
+      pt: "Documentos faltando ou inválidos podem atrasar a liberação — confirme as exigências em vigor com a Divisão de Quarentena do MAG antes de voar."
+    - en: "Airlines have their own crate, breed and booking rules — confirm them separately before you fly."
+      fr: "Les compagnies ont leurs propres règles de caisse, de race et de réservation — vérifie-les séparément avant de voler."
+      es: "Las aerolíneas tienen sus propias normas de jaula, raza y reserva — confírmalas por separado antes de volar."
+      pt: "As companhias aéreas têm as próprias regras de caixa de transporte, raça e reserva — confirme-as separadamente antes de voar."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "MAG publishes no breed-specific import ban for dogs entering El Salvador: entry formalities are health-based, not breed-based. Keeping dogs is instead governed by the Special Law for the Protection and Welfare of Animals (Ley Especial de Protección y Bienestar Animal, Legislative Decree No. 276, in force since 2022), which takes a behaviour-based approach rather than banning named breeds."
+    fr: "Le MAG ne publie aucune interdiction d'importation visant une race pour les chiens entrant au Salvador : les formalités d'entrée sont sanitaires, non fondées sur la race. La détention des chiens relève en revanche de la Loi spéciale de protection et de bien-être animal (Ley Especial de Protección y Bienestar Animal, Décret législatif n° 276, en vigueur depuis 2022), qui adopte une approche comportementale plutôt que d'interdire des races nommées."
+    es: "El MAG no publica ninguna prohibición de importación por raza para los perros que entran en El Salvador: las formalidades de entrada se basan en la sanidad, no en la raza. La tenencia de perros se rige en cambio por la Ley Especial de Protección y Bienestar Animal (Decreto Legislativo n.º 276, en vigor desde 2022), que adopta un enfoque basado en el comportamiento en lugar de prohibir razas concretas."
+    pt: "O MAG não publica nenhuma proibição de importação por raça para os cachorros que entram em El Salvador: as formalidades de entrada são sanitárias, e não baseadas na raça. A posse de cachorros, por sua vez, é regida pela Lei Especial de Proteção e Bem-Estar Animal (Ley Especial de Protección y Bienestar Animal, Decreto Legislativo nº 276, em vigor desde 2022), que adota uma abordagem baseada no comportamento em vez de proibir raças nominalmente."
+  cat1:
+    en: "No dog breed is refused entry to El Salvador under MAG's published import rules. Any dog meeting the import-authorization, zoosanitary-certificate and vaccination requirements may be imported regardless of breed."
+    fr: "Aucune race de chien n'est refusée à l'entrée du Salvador selon les règles d'importation publiées du MAG. Tout chien répondant aux exigences d'autorisation d'importation, de certificat zoosanitaire et de vaccination peut être importé, quelle que soit sa race."
+    es: "Ninguna raza de perro es rechazada a la entrada de El Salvador según las normas de importación publicadas por el MAG. Cualquier perro que cumpla los requisitos de autorización de importación, certificado zoosanitario y vacunación puede importarse con independencia de su raza."
+    pt: "Nenhuma raça de cachorro tem a entrada recusada em El Salvador pelas regras de importação publicadas pelo MAG. Qualquer cachorro que cumpra as exigências de autorização de importação, certificado zoossanitário e vacinação pode ser importado, seja qual for a raça."
+  cat2:
+    en: "Under the Special Law for the Protection and Welfare of Animals, breeding, hybridising or training companion animals to increase their dangerousness is prohibited, and dogs showing aggressive behaviour must be walked with a muzzle, leash or harness. The law also empowers the Animal Welfare Institute (Instituto de Bienestar Animal) to set policies that may include controls on the importation, reproduction or trade of breeds harmful to human life and other species — but no list of banned breeds is published. These rules concern keeping and conduct, not entry at the border."
+    fr: "En vertu de la Loi spéciale de protection et de bien-être animal, l'élevage, l'hybridation ou le dressage d'animaux de compagnie pour accroître leur dangerosité sont interdits, et les chiens au comportement agressif doivent être promenés avec muselière, laisse ou harnais. La loi habilite aussi l'Institut de bien-être animal (Instituto de Bienestar Animal) à définir des politiques pouvant inclure des contrôles sur l'importation, la reproduction ou le commerce de races nuisibles à la vie humaine et aux autres espèces — mais aucune liste de races interdites n'est publiée. Ces règles concernent la détention et le comportement, pas l'entrée à la frontière."
+    es: "Conforme a la Ley Especial de Protección y Bienestar Animal, se prohíbe criar, hibridar o adiestrar animales de compañía para aumentar su peligrosidad, y los perros que muestren un comportamiento agresivo deben pasearse con bozal, correa o arnés. La ley también faculta al Instituto de Bienestar Animal para fijar políticas que pueden incluir controles sobre la importación, la reproducción o el comercio de razas dañinas para la vida humana y otras especies — pero no se publica ninguna lista de razas prohibidas. Estas normas se refieren a la tenencia y la conducta, no a la entrada en la frontera."
+    pt: "Pela Lei Especial de Proteção e Bem-Estar Animal, é proibido criar, hibridizar ou treinar animais de companhia para aumentar a periculosidade deles, e os cachorros que apresentam comportamento agressivo precisam ser conduzidos com focinheira, guia ou peitoral. A lei também dá ao Instituto de Bem-Estar Animal (Instituto de Bienestar Animal) o poder de definir políticas que podem incluir controles sobre a importação, a reprodução ou o comércio de raças nocivas à vida humana e a outras espécies — mas nenhuma lista de raças proibidas é publicada. Essas regras dizem respeito à posse e à conduta, não à entrada na fronteira."
+  note:
+    en: "So no breed is refused entry for its breed alone, but if you will live in El Salvador you must comply with the Special Law for the Protection and Welfare of Animals. Confirm current national rules, and your airline's breed policy, before booking."
+    fr: "Ainsi, aucune race n'est refusée à l'entrée du seul fait de sa race, mais si tu résideras au Salvador, tu dois respecter la Loi spéciale de protection et de bien-être animal. Vérifie les règles nationales en vigueur, ainsi que la politique de race de ta compagnie, avant de réserver."
+    es: "Así pues, ninguna raza es rechazada a la entrada solo por su raza, pero si vas a residir en El Salvador debes cumplir la Ley Especial de Protección y Bienestar Animal. Confirma las normas nacionales vigentes, así como la política de razas de tu aerolínea, antes de reservar."
+    pt: "Ou seja, nenhuma raça tem a entrada recusada apenas por ser essa raça, mas, se você for morar em El Salvador, precisa cumprir a Lei Especial de Proteção e Bem-Estar Animal. Confirme as regras nacionais em vigor e a política de raças da sua companhia aérea antes de reservar."
+
+checklist:
+  - en: "MAG import authorization for pets ($9.04, valid 30 days, single-use) — obtained in advance or at the point of entry"
+    fr: "Autorisation d'importation de mascotas du MAG (9,04 $, valable 30 jours, à usage unique) — obtenue à l'avance ou au point d'entrée"
+    es: "Autorización de importación de mascotas del MAG (9,04 $, válida 30 días, de un solo uso) — obtenida por adelantado o en el punto de entrada"
+    pt: "Autorização de importação do MAG para animais de estimação (US$ 9,04, válida por 30 dias, de uso único) — obtida com antecedência ou no ponto de entrada"
+  - en: "Official zoosanitary certificate from the country of origin (original or copy)"
+    fr: "Certificat zoosanitaire officiel du pays d'origine (original ou copie)"
+    es: "Certificado zoosanitario oficial del país de origen (original o copia)"
+    pt: "Certificado zoossanitário oficial do país de origem (original ou cópia)"
+  - en: "Vaccination card from the country of origin, with a valid rabies vaccine (within 365 days; animals over 2 months vaccinated)"
+    fr: "Cartilla de vaccination du pays d'origine, avec un vaccin antirabique valide (dans les 365 jours ; animaux de plus de 2 mois vaccinés)"
+    es: "Cartilla de vacunación del país de origen, con una vacuna antirrábica válida (dentro de los 365 días; animales de más de 2 meses vacunados)"
+    pt: "Carteira de vacinação do país de origem, com vacina antirrábica válida (aplicada nos últimos 365 dias; animais com mais de 2 meses vacinados)"
+  - en: "From the US: the bilateral El Salvador dog/cat health certificate, issued at least in duplicate (no USDA endorsement, notary or consular stamp)"
+    fr: "Depuis les États-Unis : le certificat sanitaire bilatéral chien/chat Salvador, établi au moins en double (sans visa USDA, notaire ni cachet consulaire)"
+    es: "Desde EE. UU.: el certificado sanitario bilateral perro/gato de El Salvador, emitido al menos por duplicado (sin refrendo del USDA, notaría ni sello consular)"
+    pt: "Vindo dos EUA: o atestado de saúde bilateral de El Salvador para cães/gatos, emitido pelo menos em duas vias (sem endosso do USDA, sem cartório e sem carimbo consular)"
+  - en: "Internal and external parasite treatment with products approved by the country of origin"
+    fr: "Traitement antiparasitaire interne et externe avec des produits approuvés par le pays d'origine"
+    es: "Tratamiento antiparasitario interno y externo con productos aprobados por el país de origen"
+    pt: "Tratamento antiparasitário interno e externo com produtos aprovados pelo país de origem"
+  - en: "Microchip fitted (not required by MAG, but advised for ID, return trip and airlines)"
+    fr: "Puce posée (non exigée par le MAG, mais conseillée pour l'ID, le retour et les compagnies)"
+    es: "Microchip implantado (no exigido por el MAG, pero recomendado para la identificación, el regreso y las aerolíneas)"
+    pt: "Microchip implantado (não exigido pelo MAG, mas recomendado para a identificação, a viagem de volta e as companhias aéreas)"
+  - en: "For the return trip: MAG export zoosanitary certificate for pets (the import authorization is not valid for the way back)"
+    fr: "Pour le retour : certificat zoosanitaire d'exportation de mascotas du MAG (l'autorisation d'importation n'est pas valable au retour)"
+    es: "Para el viaje de regreso: certificado zoosanitario de exportación de mascotas del MAG (la autorización de importación no es válida para la vuelta)"
+    pt: "Para a viagem de volta: certificado zoossanitário de exportação do MAG para animais de estimação (a autorização de importação não vale para a volta)"
+  - en: "Airline reservation and suitable IATA crate if travelling in the hold"
+    fr: "Réservation compagnie et caisse IATA adaptée si voyage en soute"
+    es: "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
+
+sources:
+  - label: { en: "MAG — Import authorizations for pets (dogs, cats, rabbits)", fr: "MAG — Autorisations d'importation de mascotas (chiens, chats, lapins)", es: "MAG — Autorizaciones de importación de mascotas (perros, gatos, conejos)", pt: "MAG — Autorizações de importação de animais de estimação (cães, gatos, coelhos)" }
+    url: "https://www.mag.gob.sv/autorizaciones-de-importacion-de-mascotas/"
+  - label: { en: "MAG — Export zoosanitary certificate for pets (return trip)", fr: "MAG — Certificat zoosanitaire d'exportation de mascotas (retour)", es: "MAG — Certificado zoosanitario de exportación de mascotas (viaje de regreso)", pt: "MAG — Certificado zoossanitário de exportação para animais de estimação (viagem de volta)" }
+    url: "https://www.mag.gob.sv/certificados-zoosanitarios-de-exportacion-de-mascotas/"
+  - label: { en: "USDA APHIS — Pet Travel From the United States to El Salvador", fr: "USDA APHIS — Voyage d'animaux des États-Unis vers le Salvador", es: "USDA APHIS — Viaje de mascotas de Estados Unidos a El Salvador", pt: "USDA APHIS — Viagem de animais de estimação dos Estados Unidos para El Salvador" }
+    url: "https://www.aphis.usda.gov/pet-travel/us-to-another-country-export/pet-travel-us-el-salvador"
+  - label: { en: "USDA APHIS — El Salvador dog/cat veterinary health certificate (PDF)", fr: "USDA APHIS — Certificat sanitaire vétérinaire chien/chat Salvador (PDF)", es: "USDA APHIS — Certificado sanitario veterinario perro/gato El Salvador (PDF)", pt: "USDA APHIS — Atestado de saúde veterinário para cães/gatos de El Salvador (PDF)" }
+    url: "https://www.aphis.usda.gov/sites/default/files/el_salvador-dog-cat.pdf"
+  - label: { en: "Legislative Assembly of El Salvador — Special Law for the Protection and Welfare of Animals (Decree No. 276)", fr: "Assemblée législative du Salvador — Loi spéciale de protection et de bien-être animal (Décret n° 276)", es: "Asamblea Legislativa de El Salvador — Ley Especial de Protección y Bienestar Animal (Decreto n.º 276)", pt: "Assembleia Legislativa de El Salvador — Ley Especial de Protección y Bienestar Animal (Decreto nº 276)" }
+    url: "https://www.asamblea.gob.sv/sites/default/files/documents/decretos/D65B740C-F54E-470E-B75A-C2D009C66135.pdf"
+
+seo:
+  title: { en: "El Salvador Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Salvador — Guide", es: "Requisitos de entrada de perros en El Salvador — Guía de viaje", pt: "El Salvador: exigências de entrada para cachorros" }
+  metaTitle: { en: "Traveling to El Salvador With Your Dog: Entry Requirements (2026)", fr: "Voyager au Salvador avec ton chien : formalités (2026)", es: "Viajar a El Salvador con tu perro: requisitos de entrada (2026)", pt: "Cachorro em El Salvador: exigências de entrada (2026)" }
+  metaDesc:
+    en: "Official MAG rules for bringing a dog into El Salvador — import authorization ($9.04), official zoosanitary certificate and rabies vaccination. Sourced and dated."
+    fr: "Règles officielles du MAG pour faire entrer un chien au Salvador — autorisation d'importation (9,04 $), certificat zoosanitaire officiel et rage. Sourcé et daté."
+    es: "Normas oficiales del MAG para traer un perro a El Salvador — autorización de importación (9,04 $), certificado zoosanitario oficial y rabia. Con fuentes y fecha."
+    pt: "Regras oficiais do MAG para levar um cachorro a El Salvador: autorização de importação (US$ 9,04), certificado zoossanitário e vacina antirrábica. Com fonte e data."
+  slug: "el-salvador"
+  shortDesc:
+    en: "What you need to bring a dog into El Salvador, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien au Salvador, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a El Salvador, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para El Salvador, conforme o país de onde você vem."
+
+verified_date: "2026-07-15"
+reviewer: "MyDogCanFly Data Team"
+confidence: 3

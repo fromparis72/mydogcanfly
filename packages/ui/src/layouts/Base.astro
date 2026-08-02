@@ -1,0 +1,189 @@
+---
+import "../styles/tokens.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { localizedPath, LOCALES, isPreviewLocale } from "../lib/routes";
+import { IS_PRODUCTION } from "../lib/env";
+import { LEGAL, OFFICIAL_PROFILES, postalAddressLd } from "../lib/legal";
+
+interface Props {
+  /** Chemin dont le sélecteur de langue tire ses liens — voir Header.astro. */
+  switcherPath?: string;
+  title?: string;
+  description?: string;
+  locale?: string;
+  image?: string;              // per-page OG image (relative path); falls back to brand default
+  imageWidth?: number;
+  imageHeight?: number;
+  ogType?: string;            // "website" (default) | "article"
+  jsonLd?: Record<string, any>[]; // extra structured data (FAQPage, Breadcrumb already inline elsewhere)
+  noindex?: boolean;          // force noindex even in production (hidden/lab pages)
+  /** Alternates explicites, pour les pages dont le slug change avec la langue (guides). */
+  altLangs?: { locale: string; href: string }[];
+}
+const {
+  title = "MyDogCanFly — the world’s reference for flying with your dog",
+  description = "Can my dog fly? Get an instant, sourced answer for any airline, country and breed.",
+  locale = "en",
+  image,
+  imageWidth = 1200,
+  imageHeight = 630,
+  ogType = "website",
+  jsonLd = [],
+  noindex = false,
+  switcherPath,
+  altLangs,
+} = Astro.props;
+
+const site = Astro.site ?? new URL("https://mydogcanfly.com");
+const path = Astro.url.pathname;
+const canonical = new URL(path, site).href;              // self-referencing canonical per locale
+const OG_LOCALE: Record<string, string> = { en: "en_US", fr: "fr_FR", es: "es_ES", pt: "pt_BR" };
+// L'attribut `lang` doit décrire la variante réellement écrite : les chaînes portugaises
+// sont en portugais du Brésil (« cachorro », « porão », « caixa de transporte »), pas en
+// portugais européen. Les synthèses vocales et les traducteurs s'appuient dessus.
+const HTML_LANG: Record<string, string> = { pt: "pt-BR" };
+const htmlLang = HTML_LANG[locale] ?? locale;
+// hreflang alternates for every locale + x-default (English).
+// Les langues en préparation sont exclues des alternates : pointer un hreflang vers une page
+// noindex revient à recommander à Google une page qu'on lui interdit par ailleurs.
+/* Par défaut, les alternates se déduisent du chemin : toutes les pages du site ont la même
+ * adresse d'une langue à l'autre, au préfixe près. Les guides du Travel Hub sont la première
+ * exception — leur slug est traduit (`camping-avec-chien` / `camping-with-a-dog`) et ils
+ * n'existent qu'en deux langues. Ces pages passent donc leur propre liste, constatée sur le
+ * disque plutôt que calculée. Le repli reste la déduction, pour les 2 600 autres pages. */
+const alternates = altLangs
+  ? altLangs.map((a) => ({ lang: a.locale, href: new URL(a.href, site).href }))
+  : LOCALES.filter((l) => !isPreviewLocale(l))
+      .map((l) => ({ lang: l, href: new URL(localizedPath(path, l), site).href }));
+/* `x-default` désigne l'anglais. Quand la liste est fournie, on prend l'anglais qui s'y
+ * trouve — et s'il n'y est pas, on n'annonce pas de x-default plutôt que d'en inventer un. */
+const xDefaultHref = altLangs
+  ? (altLangs.find((a) => a.locale === "en")?.href
+      ? new URL(altLangs.find((a) => a.locale === "en")!.href, site).href
+      : null)
+  : new URL(localizedPath(path, "en"), site).href;
+const ogImage = new URL(image ?? "/brand/og-default.png", site).href;
+const ogLocale = OG_LOCALE[locale] ?? "en_US";
+// Même règle que les hreflang : une langue en préparation ne s'annonce pas comme une
+// traduction disponible. On filtre aussi les entrées absentes de la table, sinon une
+// langue ajoutée sans son code Open Graph produirait une balise vide sur tout le site.
+const ogLocaleAlt = LOCALES.filter((l) => l !== locale && !isPreviewLocale(l))
+  .map((l) => OG_LOCALE[l])
+  .filter(Boolean);
+
+// Site-wide entity grounding (helps search + AI answer engines identify the publisher).
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${LEGAL.url}/#org`,
+  name: LEGAL.site,
+  url: LEGAL.url,
+  logo: `${LEGAL.url}/brand/wordmark.png`,
+  image: `${LEGAL.url}/brand/og-default.png`,
+  description: "Data-driven reference for flying with a dog: sourced rules for every airline, country and breed.",
+  founder: { "@type": "Person", name: LEGAL.director, sameAs: [LEGAL.linkedin] },
+  /* Les cinq comptes officiels, pas seulement le LinkedIn du fondateur — voir le commentaire
+   * de OFFICIAL_PROFILES dans lib/legal.ts. C'est ce qui rattache un domaine récent à des
+   * profils établis, pour les moteurs comme pour les moteurs de réponse. */
+  sameAs: OFFICIAL_PROFILES,
+  /* L'adresse de l'éditeur, identique à celle des mentions légales. Une entité nommée,
+   * immatriculée et localisable est la déclaration d'identité la plus forte qu'un site
+   * puisse porter — et elle était absente de toutes les pages sauf les mentions légales. */
+  address: postalAddressLd,
+  parentOrganization: { "@type": "Organization", name: LEGAL.publisher, address: postalAddressLd },
+  contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: LEGAL.contactEmail },
+};
+const siteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${LEGAL.url}/#website`,
+  name: LEGAL.site,
+  url: LEGAL.url,
+  // Déclaré au singulier près : le site publie quatre langues indexables depuis le 01/08/2026.
+  // La liste se déduit de PREVIEW_LOCALES — on n'annonce jamais une langue mise en noindex.
+  inLanguage: LOCALES.filter((l) => !isPreviewLocale(l)),
+  publisher: { "@id": `${LEGAL.url}/#org` },
+};
+const headLd = [orgLd, siteLd, ...jsonLd];
+---
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {(!IS_PRODUCTION || noindex || isPreviewLocale(locale)) && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
+    <meta name="theme-color" content="#011d48" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+    <link rel="canonical" href={canonical} />
+    {/* Pas d'alternates sur les pages noindex (404, Bible, lab) : leurs variantes de langue
+        n'existent pas toujours, et un hreflang vers une page inexistante est un lien mort. */}
+    {!noindex && alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    {!noindex && xDefaultHref && <link rel="alternate" hreflang="x-default" href={xDefaultHref} />}
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="MyDogCanFly" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content={String(imageWidth)} />
+    <meta property="og:image:height" content={String(imageHeight)} />
+    <meta property="og:locale" content={ogLocale} />
+    {ogLocaleAlt.map((l) => <meta property="og:locale:alternate" content={l} />)}
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {headLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} is:inline />)}
+  </head>
+  <body>
+    <Header locale={locale} switcherPath={switcherPath} />
+    <main><slot /></main>
+    <Footer locale={locale} />
+    <script is:inline>
+      /* Sticky shared context: the dog's breed and the selected airline follow the visitor for the whole
+         session (sessionStorage), so tools pre-fill whatever the path — even if a link forgot to carry them.
+         URLs stay clean; window.mdcfCtx is the read/write helper; marked funnel links still get ?breed/?air
+         appended on load (shareable deep-links). */
+      (function () {
+        try {
+          var q = new URLSearchParams(location.search);
+          var ub = q.get("breed"), ua = q.get("air") || q.get("via");
+          if (ub) sessionStorage.setItem("mdcf_breed", ub);
+          if (ua) sessionStorage.setItem("mdcf_air", ua);
+          var breed = ub || sessionStorage.getItem("mdcf_breed") || "";
+          var air = ua || sessionStorage.getItem("mdcf_air") || "";
+          window.mdcfCtx = {
+            breed: breed, air: air,
+            setBreed: function (v) { try { if (v) { sessionStorage.setItem("mdcf_breed", v); this.breed = v; } } catch (e) {} },
+            setAir: function (v) { try { if (v) { sessionStorage.setItem("mdcf_air", v); this.air = v; } } catch (e) {} },
+          };
+          if (!breed && !air) return;
+          window.addEventListener("load", function () {
+            document.querySelectorAll("a[data-carry]").forEach(function (a) {
+              var href = a.getAttribute("href"); if (!href) return;
+              try {
+                var u = new URL(href, location.origin);
+                if (u.origin !== location.origin) return;
+                var c = a.getAttribute("data-carry") || "";
+                if (/breed/.test(c) && breed && !u.searchParams.has("breed")) u.searchParams.set("breed", breed);
+                if (/air/.test(c) && air && !u.searchParams.has("air") && !u.searchParams.has("via")) u.searchParams.set("air", air);
+                a.setAttribute("href", u.pathname + u.search + u.hash);
+              } catch (e) {}
+            });
+          });
+        } catch (e) {}
+      })();
+    </script>
+  </body>
+</html>

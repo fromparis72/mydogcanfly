@@ -1,0 +1,270 @@
+id: airline_virgin_australia
+mono: VA
+name: Virgin Australia
+titleH1:
+  en: Flying with a dog on Virgin Australia
+  fr: Voyager avec un chien sur Virgin Australia
+  es: Volar con un perro en Virgin Australia
+  pt: "Viajar com um cachorro na Virgin Australia"
+metaDesc:
+  en: "Virgin Australia pet policy: cabin trial on select routes, Virgin Australia Cargo, breed limits and official sources."
+  fr: "Politique animaux Virgin Australia : cabine en test sur certaines routes, Virgin Australia Cargo, restrictions de races et sources officielles."
+  es: "Política de mascotas de Virgin Australia: prueba en cabina en rutas seleccionadas, Virgin Australia Cargo, restricciones de razas y fuentes oficiales."
+  pt: "Política de animais da Virgin Australia: teste de cabine em rotas selecionadas, Virgin Australia Cargo, limites por raça e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Australia · BNE
+      fr: Australie · BNE
+      es: Australia · BNE
+      pt: "Austrália · BNE"
+  - icon: ✓
+    label:
+      en: Verified 11 Jul 2026
+      fr: Vérifié le 11 juil. 2026
+      es: Verificado el 11 jul. 2026
+      pt: "Verificado em 11 jul. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Moderate
+    fr: Modéré
+    es: Moderado
+    pt: "Moderada"
+verdictNote:
+  en: Pets now fly in the cabin on select domestic routes (trial), plus nationwide cargo — both booked by phone.
+  fr: Les animaux volent désormais en cabine sur certaines routes domestiques (test), plus le cargo national — les deux se réservent par téléphone.
+  es: Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba), además de la carga en todo el país; ambas se reservan por teléfono.
+  pt: "Os animais agora voam na cabine em rotas domésticas selecionadas (teste), além da carga em todo o país — ambos reservados por telefone."
+ladder:
+  - flex: 20
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: ≤ 8 kg (trial)
+      fr: ≤ 8 kg (test)
+      es: ≤ 8 kg (prueba)
+      pt: "≤ 8 kg (teste)"
+  - flex: 80
+    color: "#1f5fa8"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: ≤ 65 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Trial
+      fr: En test
+      es: En prueba
+      pt: "Teste"
+    detail:
+      en: Small dogs & cats ≤ 8 kg (pet + carrier) in a soft carrier under the seat (max 44 × 26 × 28 cm); one per guest. Trial on Melbourne, Gold Coast, Sunshine Coast & Adelaide routes.
+      fr: Petits chiens et chats ≤ 8 kg (animal + sac) dans un sac souple sous le siège (max 44 × 26 × 28 cm) ; un par client. Test sur les routes Melbourne, Gold Coast, Sunshine Coast & Adélaïde.
+      es: Perros y gatos pequeños ≤ 8 kg (mascota + jaula) en una jaula blanda bajo el asiento (máx. 44 × 26 × 28 cm); uno por pasajero. Prueba en las rutas de Melbourne, Gold Coast, Sunshine Coast y Adelaida.
+      pt: "Cachorros e gatos pequenos ≤ 8 kg (animal + bolsa) em uma bolsa flexível sob o assento (máx. 44 × 26 × 28 cm); um por passageiro. Teste nas rotas de Melbourne, Gold Coast, Sunshine Coast e Adelaide."
+    fee:
+      en: A$149
+      fr: 149 A$
+      es: 149 A$
+      pt: "149 A$"
+  - icon: ✈️
+    name:
+      en: Virgin Australia Cargo
+      fr: Virgin Australia Cargo
+      es: Virgin Australia Cargo
+      pt: "Virgin Australia Cargo"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Pets not eligible for the cabin travel in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, through a transport partner. Not on A320/Saab 340.
+      fr: Les animaux non éligibles à la cabine voyagent en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, par un partenaire de transport. Pas sur A320/Saab 340.
+      es: Las mascotas que no reúnen los requisitos para la cabina viajan en la bodega de carga (mascota + jaula ≤ 65 kg) a través de Virgin Australia Cargo, mediante un socio de transporte. No en A320/Saab 340.
+      pt: "Os animais que não são elegíveis para a cabine viajam no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, por meio de um parceiro de transporte. Não disponível em A320/Saab 340."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin (trial, ≤ 8 kg)
+        fr: Cabine (test, ≤ 8 kg)
+        es: Cabina (prueba, ≤ 8 kg)
+        pt: "Cabine (teste, ≤ 8 kg)"
+      value:
+        en: A$149
+        fr: 149 A$
+        es: 149 A$
+        pt: "149 A$"
+    - label:
+        en: Cargo (hold, ≤ 65 kg)
+        fr: Fret (soute, ≤ 65 kg)
+        es: Carga (bodega, ≤ 65 kg)
+        pt: "Carga (porão, ≤ 65 kg)"
+      value:
+        en: Quote
+        fr: Devis
+        es: Presupuesto
+        pt: "Cotação"
+    - label:
+        en: Assistance animal
+        fr: Animal d'assistance
+        es: Animal de asistencia
+        pt: "Animal de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: A$ introductory cabin fare (trial routes). Cargo is quoted via a transport partner.
+    fr: Tarif cabine de lancement en A$ (routes en test). Le fret est chiffré via un partenaire de transport.
+    es: Tarifa de cabina de lanzamiento en A$ (rutas de prueba). La carga se presupuesta a través de un socio de transporte.
+    pt: "Tarifa de cabine introdutória em A$ (rotas em teste). A carga é cotada por um parceiro de transporte."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Fit-to-fly form
+          fr: Formulaire d'aptitude
+          es: Formulario de aptitud para volar
+          pt: "Formulário de aptidão para voar"
+    note:
+      en: Snub-nosed breeds are accepted but need a vet check + a Brachycephalic Fit-To-Fly form (cabin); in cargo, via a brachy-approved shipper, not on 09:00–18:00 departures or same-day connections.
+      fr: Les races au nez écrasé sont acceptées mais nécessitent une visite vétérinaire + un formulaire d'aptitude brachycéphale (cabine) ; en fret, via un expéditeur agréé brachy, pas sur les départs 09h–18h ni les correspondances le jour même.
+      es: Las razas de hocico chato se aceptan, pero necesitan una revisión veterinaria + un formulario de aptitud para volar braquicéfalo (cabina); en carga, a través de un expedidor autorizado para braquicéfalos, no en salidas de 09:00 a 18:00 ni en conexiones el mismo día.
+      pt: "Raças de focinho achatado são aceitas, mas precisam de uma avaliação veterinária + um formulário de aptidão para voar para braquicefálicos (cabine); na carga, por um transportador aprovado para braquicefálicos, não em partidas das 09:00 às 18:00 nem em conexões no mesmo dia."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: no
+        label:
+          en: Not accepted
+          fr: Non acceptées
+          es: No aceptadas
+          pt: "Não aceitas"
+      - cls: warn
+        label:
+          en: No sedation
+          fr: Pas de sédation
+          es: Sin sedación
+          pt: "Sem sedação"
+    note:
+      en: "Prohibited: Czechoslovakian/Kunming/Saarloos wolfdogs, Dogo Argentino, Fila, Tosa, Lupo Italiano, Presa Canario, pit bulls; cats: Savannah, Safari, Chausie, Bengal. Sedation isn't recommended."
+      fr: "Interdits : chiens-loups tchécoslovaque/de Kunming/de Saarloos, Dogo Argentino, Fila, Tosa, Lupo Italiano, Presa Canario, pit-bulls ; chats : Savannah, Safari, Chausie, Bengal. La sédation n'est pas recommandée."
+      es: "Prohibidos: perros lobo checoslovaco/de Kunming/de Saarloos, Dogo Argentino, Fila, Tosa, Lupo Italiano, Presa Canario, pit bulls; gatos: Savannah, Safari, Chausie, Bengala. No se recomienda la sedación."
+      pt: "Proibidos: cães-lobo tchecoslovaco/de Kunming/de Saarloos, Dogo Argentino, Fila, Tosa, Lupo Italiano, Presa Canario, pit bulls; gatos: Savannah, Safari, Chausie, Bengal. A sedação não é recomendada."
+temperature:
+  pills:
+    - cls: ok
+      label:
+        en: Hold ~cabin temp., dimmed lighting
+        fr: Soute ~temp. cabine, lumière tamisée
+        es: Bodega ~temp. de cabina, luz tenue
+        pt: "Porão ~temp. da cabine, luz reduzida"
+    - cls: no
+      label:
+        en: "Brachy cargo: not 09:00–18:00"
+        fr: "Fret brachy : pas 09h–18h"
+        es: "Carga braquicéfalos: no de 09:00 a 18:00"
+        pt: "Carga para braquicefálicos: não das 09:00 às 18:00"
+  note:
+    en: Virgin Australia aims to keep the cargo hold temperature consistent with the cabin (dimmed lighting). No general numeric limit, but brachycephalic breeds can't fly cargo on 09:00–18:00 departures or same-day connections.
+    fr: Virgin Australia vise à garder la température de la soute cohérente avec la cabine (lumière tamisée). Pas de limite chiffrée générale, mais les races au nez écrasé ne peuvent pas voyager en fret sur les départs 09h–18h ni les correspondances le jour même.
+    es: Virgin Australia procura mantener la temperatura de la bodega de carga acorde con la de la cabina (luz tenue). No hay un límite numérico general, pero las razas braquicéfalas no pueden viajar en carga en salidas de 09:00 a 18:00 ni en conexiones el mismo día.
+    pt: "A Virgin Australia procura manter a temperatura do porão de carga compatível com a da cabine (luz reduzida). Não há limite numérico geral, mas as raças braquicefálicas não podem viajar de carga em partidas das 09:00 às 18:00 nem em conexões no mesmo dia."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance animals (guide/hearing/trained) fly free in the cabin; harnessed with an identifying coat.
+      fr: Les animaux d'assistance (guide/écoute/dressés) voyagent gratuitement en cabine ; en harnais avec une cape d'identification.
+      es: Los animales de asistencia (guía/de señal/adiestrados) viajan gratis en cabina; con arnés y una capa identificativa.
+      pt: "Animais de assistência (guia/de sinalização/treinados) voam gratuitamente na cabine; com peitoral e uma capa de identificação."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: Book via the Specific Assistance Team; ≥ 72 h ahead if the animal hasn't flown Virgin before; check in ≥ 60 min ahead.
+      fr: Réserver via l'équipe Assistance spécifique ; ≥ 72 h à l'avance si l'animal n'a jamais volé sur Virgin ; enregistrement ≥ 60 min avant.
+      es: Reserva a través del equipo de Asistencia Específica; ≥ 72 h antes si el animal no ha volado antes con Virgin; factura ≥ 60 min antes.
+      pt: "Reserve pela Equipe de Assistência Específica; ≥ 72 h de antecedência se o animal nunca voou pela Virgin antes; faça o check-in com ≥ 60 min de antecedência."
+goodToKnow:
+  - icon: 🐾
+    label:
+      en: Cabin is a trial
+      fr: Cabine en test
+      es: La cabina es una prueba
+      pt: "A cabine é um teste"
+    value:
+      en: Pets in Cabin is a trial on select routes (Melbourne, Gold Coast, Sunshine Coast, Adelaide) — not yet network-wide.
+      fr: Le programme cabine est un test sur certaines routes (Melbourne, Gold Coast, Sunshine Coast, Adélaïde) — pas encore sur tout le réseau.
+      es: Mascotas en cabina es una prueba en rutas seleccionadas (Melbourne, Gold Coast, Sunshine Coast, Adelaida); aún no en toda la red.
+      pt: "Animais na Cabine é um teste em rotas selecionadas (Melbourne, Gold Coast, Sunshine Coast, Adelaide) — ainda não em toda a malha aérea."
+  - icon: 📞
+    label:
+      en: Phone booking
+      fr: Réservation par téléphone
+      es: Reserva por teléfono
+      pt: "Reserva por telefone"
+    value:
+      en: Cabin pets are booked by phone (13 67 89) ≥ 72 h ahead; cargo via a transport partner or the Cargo team.
+      fr: Les animaux en cabine se réservent par téléphone (13 67 89) ≥ 72 h à l'avance ; le fret via un partenaire ou l'équipe Cargo.
+      es: Las mascotas en cabina se reservan por teléfono (13 67 89) ≥ 72 h antes; la carga a través de un socio de transporte o el equipo de carga.
+      pt: "Os animais de cabine são reservados por telefone (13 67 89) com ≥ 72 h de antecedência; a carga, por um parceiro de transporte ou pela equipe de Carga."
+  - icon: 🚫
+    label:
+      en: Who can't
+      fr: Qui ne peut pas
+      es: Quién no puede
+      pt: "Quem não pode"
+    value:
+      en: You can't take a cabin pet if travelling alone with an infant, as an unaccompanied minor, or alone with an assistance animal.
+      fr: Tu ne pouvez pas emmener un animal en cabine si tu voyages seul avec un bébé, comme mineur non accompagné, ou seul avec un animal d'assistance.
+      es: No puedes llevar una mascota en cabina si viajas solo con un bebé, como menor no acompañado, o solo con un animal de asistencia.
+      pt: "Você não pode levar um animal na cabine se estiver viajando sozinho com um bebê, como menor desacompanhado, ou sozinho com um animal de assistência."
+book:
+  host: virginaustralia.com
+  url: https://www.virginaustralia.com/
+sources:
+  en: 4 Virgin Australia sources · last verified 11 July 2026
+  fr: 4 sources Virgin Australia · dernière vérification 11 juillet 2026
+  es: 4 fuentes de Virgin Australia · última verificación 11 de julio de 2026
+  pt: "4 fontes da Virgin Australia · última verificação em 11 de julho de 2026"
+verified_date: 2026-07-11

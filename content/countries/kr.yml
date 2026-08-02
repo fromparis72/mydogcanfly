@@ -1,0 +1,377 @@
+# Country Entry Guide — South Korea (bilingual EN/FR).
+# Edit here, then run: node packages/knowledge/scripts/ingest-countries.mjs
+id: country_kr
+iso2: "KR"
+name: { en: "South Korea", fr: "Corée du Sud", es: "Corea del Sur", pt: "Coreia do Sul" }
+region: { en: "Asia", fr: "Asie", es: "Asia", pt: "Ásia" }
+
+
+regime: non_listed
+domestic:
+  intro:
+    en: "Domestic flight in South Korea: no quarantine certificate for internal travel — those are issued for departures abroad only."
+    fr: "Vol intérieur en Corée du Sud : aucun certificat de quarantaine pour un trajet interne — ils ne sont délivrés que pour les départs à l'étranger."
+    es: "Vuelo nacional en Corea del Sur: ningún certificado de cuarentena para un trayecto interno — solo se emiten para salidas al extranjero."
+    pt: "Voo doméstico na Coreia do Sul: nenhum certificado de quarentena para um trajeto interno — eles só são emitidos para saídas ao exterior."
+  points:
+    - en: "Dogs aged 2 months and over must be registered with an RFID microchip — an ownership duty under the Animal Protection Act, not a travel condition."
+      fr: "Les chiens de 2 mois et plus doivent être enregistrés avec une puce RFID — une obligation de détention au titre de la loi sur la protection animale, pas une condition de voyage."
+      es: "Los perros de 2 meses o más deben estar registrados con microchip RFID — un deber de tenencia bajo la ley de protección animal, no una condición de viaje."
+      pt: "Cachorros com 2 meses ou mais precisam ser registrados com um microchip RFID — é um dever de quem tem o animal, previsto na Animal Protection Act (Lei de Proteção Animal), e não uma condição de viagem."
+    - en: "Jeju does run a distinct inbound quarantine regime, but its published scope covers cloven-hoofed livestock and poultry — dogs are not listed."
+      fr: "Jeju applique bien un régime de quarantaine distinct à l'entrée, mais son champ publié vise le bétail à onglons et la volaille — les chiens n'y figurent pas."
+      es: "Jeju sí aplica un régimen de cuarentena distinto a la entrada, pero su ámbito publicado abarca ganado de pezuña hendida y aves — los perros no figuran."
+      pt: "Jeju aplica, sim, um regime de quarentena próprio na entrada, mas o escopo publicado abrange gado de casco fendido e aves — cachorros não estão na lista."
+    - en: "Whatever the airline asks for (health certificate, vaccination record, breed or crate rules) is its own commercial policy, not a legal requirement — check with your carrier."
+      fr: "Ce que la compagnie demande (certificat de santé, carnet de vaccination, règles de race ou de caisse) relève de sa politique commerciale, pas d'une obligation légale — vérifie auprès d'elle."
+      es: "Lo que pida la aerolínea (certificado de salud, cartilla de vacunación, reglas de raza o jaula) es su política comercial, no una obligación legal — consúltalo con ella."
+      pt: "Tudo o que a companhia aérea pedir (atestado de saúde, carteira de vacinação, regras de raça ou de caixa de transporte) é política comercial dela, não exigência legal — confirme com a sua companhia."
+exit:
+  authority: APQA
+  authorityUrl: https://www.qia.go.kr/english/html/Animal_livestock/02AnimalLivestock_007-8.jsp
+  intro:
+    en: "South Korea is non-listed, so a valid rabies antibody titer is mandatory to return to the EU — plus a government export certificate from the Animal and Plant Quarantine Agency (APQA)."
+    fr: "La Corée du Sud est un pays non listé : un titrage antirabique valide est obligatoire pour rentrer dans l'UE — plus un certificat d'export officiel de l'Agence de quarantaine animale et végétale (APQA)."
+    es: "Corea del Sur no está listada: una titulación antirrábica válida es obligatoria para volver a la UE — más un certificado de exportación oficial de la Agencia de Cuarentena Animal y Vegetal (APQA)."
+    pt: "A Coreia do Sul é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado oficial de exportação da Animal and Plant Quarantine Agency (APQA)."
+  steps:
+    - timing: longlead
+      text:
+        en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
+        fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
+        es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
+        pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
+    - timing: window
+      text:
+        en: "A vet completes the EU-model animal health certificate; APQA inspects the dog at export and provides the official government endorsement before departure."
+        fr: "Un vétérinaire remplit le certificat au modèle UE ; l'APQA inspecte le chien à l'export et fournit l'endossement officiel avant le départ."
+        es: "Un veterinario rellena el certificado en modelo UE; la APQA inspecciona al perro en la exportación y proporciona el refrendo oficial antes de salir."
+        pt: "Um veterinário preenche o certificado de saúde animal no modelo da UE; a APQA inspeciona o cachorro na exportação e concede o endosso oficial do governo antes da partida."
+  onSiteNote:
+    en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
+    fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
+    es: "Si tu perro ya tenía una titulación antirrábica UE válida antes de salir, sigue siendo válida de por vida mientras la vacuna antirrábica esté al día — compruébalo antes de viajar."
+    pt: "Se o seu cachorro já tinha um teste sorológico antirrábico válido para a União Europeia antes de sair, ele vale por toda a vida enquanto a vacinação antirrábica for mantida em dia — confira isso antes de viajar."
+
+hero:
+  h1: { en: "Traveling to South Korea with your dog", fr: "Voyager en Corée du Sud avec ton chien", es: "Viajar a Corea del Sur con tu perro", pt: "Viajar para a Coreia do Sul com seu cachorro" }
+  intro:
+    en: >-
+      South Korea welcomes dogs, but what you must prepare depends mainly on the country your dog is
+      travelling from — not only on Korea itself. Korea runs its own scheme through the Animal and Plant
+      Quarantine Agency (APQA): an ISO microchip is always required. If your dog comes from a country APQA
+      designates as rabies-free, you mainly need a microchip and a government veterinary health certificate.
+      If your dog comes from a country that is NOT designated rabies-free, you must add a rabies vaccination
+      and a rabies antibody test showing at least 0.5 IU/ml. A dog that meets every condition clears
+      the quarantine inspection and is normally released on the day of arrival; otherwise it can be detained.
+      This guide explains each case so you know exactly what to prepare before you book your flight.
+    fr: >-
+      La Corée du Sud accueille les chiens, mais ce qu'il faut préparer dépend surtout du pays d'où ton
+      chien voyage — pas seulement de la Corée. La Corée applique son propre dispositif via l'Agence de
+      quarantaine animale et végétale (APQA) : une puce ISO est toujours exigée. Si ton chien vient d'un
+      pays désigné indemne de rage par l'APQA, il faut surtout une puce et un certificat sanitaire
+      vétérinaire officiel. Si ton chien vient d'un pays NON désigné indemne de rage, il faut ajouter une
+      vaccination antirabique et un titrage des anticorps antirabiques d'au moins 0,5 UI/ml. Un chien qui
+      remplit toutes les conditions passe l'inspection de quarantaine et est normalement libéré le jour de
+      l'arrivée ; sinon il peut être placé en détention. Ce guide détaille chaque cas avant de réserver
+      ton vol.
+    es: >-
+      Corea del Sur acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el
+      que viaja tu perro — no solo de Corea. Corea aplica su propio dispositivo a través de la Agencia de
+      Cuarentena Animal y Vegetal (APQA): siempre se exige un microchip ISO. Si tu perro procede de un
+      país que la APQA designa como indemne de rabia, principalmente necesitas un microchip y un
+      certificado sanitario veterinario oficial. Si tu perro procede de un país que NO está designado
+      indemne de rabia, debes añadir una vacunación antirrábica y una prueba de titulación de anticuerpos
+      contra la rabia que muestre al menos 0,5 UI/ml. Un perro que cumple todas las condiciones supera la
+      inspección de cuarentena y normalmente se libera el mismo día de la llegada; en caso contrario,
+      puede quedar retenido. Esta guía explica cada caso para que sepas exactamente qué preparar antes de
+      reservar tu vuelo.
+
+    pt: "A Coreia do Sul recebe bem os cachorros, mas o que você precisa preparar depende principalmente do país de onde o seu cachorro viaja — e não só da Coreia em si. A Coreia aplica o seu próprio esquema por meio da Animal and Plant Quarantine Agency (APQA): um microchip ISO é sempre obrigatório. Se o seu cachorro vem de um país que a APQA designa como livre de raiva, você precisa basicamente de um microchip e de um atestado de saúde veterinário oficial. Se o seu cachorro vem de um país que NÃO é designado livre de raiva, é preciso acrescentar uma vacinação antirrábica e um teste sorológico antirrábico com resultado de pelo menos 0,5 UI/ml. Um cachorro que cumpre todas as condições passa pela inspeção de quarentena e normalmente é liberado no mesmo dia da chegada; caso contrário, pode ficar retido. Este guia explica cada caso para você saber exatamente o que preparar antes de comprar a passagem."
+difficulty:
+  level: moderate
+  label: { en: "Easy to moderate (depends on origin)", fr: "Facile à modéré (selon l'origine)", es: "De fácil a moderado (según el origen)", pt: "De fácil a moderado (depende da origem)" }
+
+prepTime:
+  eu:
+    en: "EU departures: an EU pet passport may replace the government health certificate; the rabies-status rule still decides whether an antibody test is needed."
+    fr: "Départs UE : un passeport européen peut remplacer le certificat sanitaire officiel ; la règle du statut rabique décide quand même si un titrage est requis."
+    es: "Salidas desde la UE: un pasaporte europeo para mascotas puede sustituir al certificado sanitario oficial; la norma del estatus rábico sigue determinando si se necesita una prueba de titulación."
+    pt: "Saídas da UE: um passaporte europeu para animais de estimação pode substituir o atestado de saúde oficial; a regra do status em relação à raiva continua definindo se o teste sorológico é necessário."
+  listed:
+    en: "Rabies-free origin: a few days — microchip plus a government health certificate; the dog is normally released on the day of arrival."
+    fr: "Origine indemne de rage : quelques jours — puce et certificat sanitaire officiel ; le chien est normalement libéré le jour de l'arrivée."
+    es: "Origen indemne de rabia: unos días — microchip más un certificado sanitario oficial; el perro normalmente se libera el mismo día de la llegada."
+    pt: "Origem livre de raiva: alguns dias — microchip mais um atestado de saúde oficial; o cachorro normalmente é liberado no mesmo dia da chegada."
+  nonListed:
+    en: "Not rabies-free origin: several weeks — rabies vaccination, then an antibody test ≥0.5 IU/ml (valid 24 months). Korea sets no fixed post-test wait, but lab turnaround takes time."
+    fr: "Origine non indemne de rage : plusieurs semaines — vaccination antirabique, puis titrage ≥0,5 UI/ml (valable 24 mois). La Corée n'impose pas de délai fixe après le test, mais le laboratoire prend du temps."
+    es: "Origen no indemne de rabia: varias semanas — vacunación antirrábica y luego una prueba de titulación ≥0,5 UI/ml (válida 24 meses). Corea no fija una espera posterior a la prueba, pero el laboratorio necesita tiempo."
+    pt: "Origem não livre de raiva: várias semanas — vacinação antirrábica e depois um teste sorológico ≥0,5 UI/ml (válido por 24 meses). A Coreia não fixa prazo de espera após o teste, mas o laboratório leva tempo."
+
+summary:
+  - requirement: { en: "Dogs allowed", fr: "Chiens admis", es: "Perros admitidos", pt: "Cachorros permitidos" }
+    status: { en: "Yes", fr: "Oui", es: "Sí", pt: "Sim" }
+    cls: ok
+  - requirement: { en: "Microchip", fr: "Puce électronique", es: "Microchip", pt: "Microchip" }
+    status: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    status: { en: "Required from non-rabies-free origins", fr: "Requise depuis les pays non indemnes de rage", es: "Obligatoria desde orígenes no indemnes de rabia", pt: "Obrigatória vindo de origens não livres de raiva" }
+    cls: neutral
+  - requirement: { en: "Rabies antibody test (≥0.5 IU/ml)", fr: "Titrage antirabique (≥0,5 UI/ml)", es: "Prueba de titulación de rabia (≥0,5 UI/ml)", pt: "Teste sorológico antirrábico (≥0,5 UI/ml)" }
+    status: { en: "Conditional — non-rabies-free origins only", fr: "Conditionnel — pays non indemnes de rage uniquement", es: "Condicional — solo orígenes no indemnes de rabia", pt: "Condicional — apenas origens não livres de raiva" }
+    cls: neutral
+  - requirement: { en: "Government veterinary certificate", fr: "Certificat vétérinaire officiel", es: "Certificado veterinario oficial", pt: "Certificado veterinário oficial" }
+    status: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    cls: warn
+  - requirement: { en: "Quarantine", fr: "Quarantaine", es: "Cuarentena", pt: "Quarentena" }
+    status: { en: "Inspection mandatory — same-day release if compliant, detention if not", fr: "Inspection obligatoire — libération le jour même si conforme, détention sinon", es: "Inspección obligatoria — liberación el mismo día si se cumple, detención si no", pt: "Inspeção obrigatória — liberação no mesmo dia se estiver em conformidade, retenção se não estiver" }
+    cls: neutral
+
+notice:
+  - en: "MyDogCanFly provides general information — not veterinary or legal advice."
+    fr: "MyDogCanFly fournit une information générale — pas un avis vétérinaire ou juridique."
+    es: "MyDogCanFly ofrece información general — no asesoramiento veterinario ni jurídico."
+    pt: "O MyDogCanFly oferece informação geral — não é orientação veterinária nem jurídica."
+  - en: "Only a veterinarian can confirm the exact procedure for your individual dog."
+    fr: "Seul un vétérinaire peut confirmer la procédure exacte pour ton chien."
+    es: "Solo un veterinario puede confirmar el procedimiento exacto para tu perro."
+    pt: "Só um médico-veterinário pode confirmar o procedimento exato para o seu cachorro."
+  - en: "Requirements depend on: the country of origin, previous travel history, identification, vaccinations, the itinerary and the travel date."
+    fr: "Les exigences dépendent : du pays d'origine, de l'historique de voyage, de l'identification, des vaccinations, de l'itinéraire et de la date du voyage."
+    es: "Los requisitos dependen de: el país de origen, el historial de viajes previo, la identificación, las vacunas, el itinerario y la fecha del viaje."
+    pt: "As exigências dependem do país de origem, do histórico de viagens, da identificação, das vacinas, do itinerário e da data da viagem."
+noticeClose:
+  en: "Always consult your veterinarian before booking your trip."
+  fr: "Consulte toujours ton vétérinaire avant de réserver ton voyage."
+  es: "Consulta siempre a tu veterinario antes de reservar tu viaje."
+  pt: "Consulte sempre seu veterinário antes de fechar a viagem."
+
+factors:
+  title: { en: "How your dog's entry requirements are decided", fr: "Comment sont déterminées les formalités d'entrée de ton chien", es: "Cómo se determinan los requisitos de entrada de tu perro", pt: "Como são definidas as exigências de entrada do seu cachorro" }
+  intro:
+    en: "The exact documents depend on three things — South Korea (your destination) is only the first."
+    fr: "Les documents exacts dépendent de trois éléments — la Corée du Sud (ta destination) n'est que le premier."
+    es: "Los documentos exactos dependen de tres factores — Corea del Sur (tu destino) es solo el primero."
+    pt: "Os documentos exatos dependem de três coisas — a Coreia do Sul (seu destino) é apenas a primeira."
+  items:
+    - stars: 5
+      label: { en: "Country of destination — South Korea", fr: "Pays de destination — Corée du Sud", es: "País de destino — Corea del Sur", pt: "País de destino — Coreia do Sul" }
+      text:
+        en: "Korea applies its own APQA scheme: an ISO microchip is always required, and whether a rabies vaccination and antibody test are needed depends on the rabies status of the origin."
+        fr: "La Corée applique son propre dispositif APQA : une puce ISO est toujours exigée, et la nécessité d'une vaccination antirabique et d'un titrage dépend du statut rabique de l'origine."
+        es: "Corea aplica su propio dispositivo de la APQA: siempre se exige un microchip ISO, y la necesidad de una vacunación antirrábica y una prueba de titulación depende del estatus rábico del origen."
+        pt: "A Coreia aplica o seu próprio esquema da APQA: um microchip ISO é sempre obrigatório, e a necessidade de vacinação antirrábica e de teste sorológico depende do status do país de origem em relação à raiva."
+    - stars: 5
+      label: { en: "Country of departure", fr: "Pays de départ", es: "País de salida", pt: "País de partida" }
+      text:
+        en: "Whether your dog departs from a country APQA designates as rabies-free decides whether a rabies vaccination and a ≥0.5 IU/ml antibody test are required before travel."
+        fr: "Que ton chien parte d'un pays désigné indemne de rage par l'APQA détermine si une vaccination antirabique et un titrage ≥0,5 UI/ml sont exigés avant le voyage."
+        es: "Que tu perro salga de un país designado indemne de rabia por la APQA determina si se exigen una vacunación antirrábica y una prueba de titulación ≥0,5 UI/ml antes del viaje."
+        pt: "O fato de o seu cachorro partir ou não de um país que a APQA designa como livre de raiva é o que define se uma vacinação antirrábica e um teste sorológico ≥0,5 UI/ml são obrigatórios antes da viagem."
+    - stars: 4
+      label: { en: "Countries your dog recently stayed in", fr: "Pays où ton chien a récemment séjourné", es: "Países donde tu perro ha estado recientemente", pt: "Países onde seu cachorro esteve recentemente" }
+      text:
+        en: "A recent stay in a rabies-risk country can trigger the vaccination and antibody test even if you fly in from a rabies-free country. It is your dog's real origin and history that count — not only the last airport."
+        fr: "Un séjour récent dans un pays à risque rabique peut imposer la vaccination et le titrage même si tu arrives d'un pays indemne. C'est l'origine réelle et l'historique du chien qui comptent — pas seulement l'aéroport de destination finale."
+        es: "Una estancia reciente en un país con riesgo de rabia puede obligar a la vacunación y a la prueba de titulación aunque llegues desde un país indemne. Lo que cuenta es el origen y el historial reales de tu perro — no solo el último aeropuerto."
+        pt: "Uma estadia recente em um país de risco para raiva pode acionar a exigência da vacinação e do teste sorológico, mesmo que você chegue voando de um país livre de raiva. O que conta é a origem e o histórico reais do seu cachorro — não apenas o último aeroporto."
+  note:
+    en: "So read the requirements below as Korea's framework, then confirm your dog's exact origin and history with your vet and the APQA rabies-free list."
+    fr: "Lis donc les exigences ci-dessous comme le cadre coréen, puis confirme l'origine et l'historique exacts de ton chien avec ton vétérinaire et la liste APQA des pays indemnes."
+    es: "Así que lee los requisitos siguientes como el marco de Corea y luego confirma el origen y el historial exactos de tu perro con tu veterinario y la lista de países indemnes de la APQA."
+    pt: "Leia então as exigências abaixo como o quadro geral da Coreia, e confirme a origem e o histórico exatos do seu cachorro com o seu veterinário e na lista de países livres de raiva da APQA."
+
+requirements:
+  - item: { en: "ISO microchip", fr: "Puce ISO", es: "Microchip ISO", pt: "Microchip ISO" }
+    required: { en: "Required", fr: "Requise", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "For dogs 90 days or older; ISO 11784/11785; implant before the rabies vaccination and blood sampling. The number must be recorded on the health certificate.", fr: "Pour les chiens de 90 jours ou plus ; ISO 11784/11785 ; posée avant la vaccination et la prise de sang. Le numéro doit figurer sur le certificat sanitaire.", es: "Para perros de 90 días o más; ISO 11784/11785; implántalo antes de la vacunación antirrábica y de la toma de sangre. El número debe constar en el certificado sanitario.", pt: "Para cachorros com 90 dias ou mais; ISO 11784/11785; implantado antes da vacinação antirrábica e da coleta de sangue. O número deve constar no atestado de saúde." }
+    exceptions: { en: "If the chip is not ISO 11784/11785, the owner must bring a compatible reader.", fr: "Si la puce n'est pas ISO 11784/11785, le propriétaire doit fournir un lecteur compatible.", es: "Si el chip no es ISO 11784/11785, el propietario debe aportar un lector compatible.", pt: "Se o chip não for ISO 11784/11785, o dono precisa levar um leitor compatível." }
+    ref: { en: "APQA — Import requirements for dogs and cats", fr: "APQA — Conditions d'importation des chiens et chats", es: "APQA — Requisitos de importación para perros y gatos", pt: "APQA — Requisitos de importação para cães e gatos" }
+  - item: { en: "Rabies vaccination", fr: "Vaccination antirabique", es: "Vacunación antirrábica", pt: "Vacinação antirrábica" }
+    required: { en: "Non-rabies-free origins", fr: "Origines non indemnes de rage", es: "Orígenes no indemnes de rabia", pt: "Origens não livres de raiva" }
+    when: { en: "Required for dogs from countries not designated rabies-free; it is the basis for the antibody test.", fr: "Requise pour les chiens venant de pays non désignés indemnes de rage ; base du titrage.", es: "Obligatoria para los perros procedentes de países no designados indemnes de rabia; es la base de la prueba de titulación.", pt: "Obrigatória para cachorros vindos de países não designados livres de raiva; é a base do teste sorológico." }
+    exceptions: { en: "Not required from a designated rabies-free country, nor for dogs 90 days old or younger.", fr: "Non requise depuis un pays désigné indemne de rage, ni pour les chiens de 90 jours ou moins.", es: "No se exige desde un país designado indemne de rabia, ni para perros de 90 días o menos.", pt: "Não é exigida vindo de um país designado livre de raiva, nem para cachorros com 90 dias ou menos." }
+    ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
+  - item: { en: "Rabies antibody test", fr: "Titrage des anticorps antirabiques", es: "Prueba de titulación de anticuerpos contra la rabia", pt: "Teste sorológico antirrábico (titulação)" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "Non-rabies-free origins, dogs ≥90 days: result ≥0.5 IU/ml, at an internationally approved laboratory or the exporting country's competent authority, valid within 24 months of blood collection.", fr: "Origines non indemnes, chiens ≥90 jours : résultat ≥0,5 UI/ml, dans un laboratoire agréé international ou l'autorité compétente du pays exportateur, valable 24 mois à compter de la prise de sang.", es: "Orígenes no indemnes de rabia, perros ≥90 días: resultado ≥0,5 UI/ml, en un laboratorio aprobado internacionalmente o por la autoridad competente del país exportador, válida dentro de los 24 meses posteriores a la extracción de sangre.", pt: "Origens não livres de raiva, cachorros com ≥90 dias: resultado ≥0,5 UI/ml, em um laboratório aprovado internacionalmente ou pela autoridade competente do país exportador, válido dentro de 24 meses a contar da coleta de sangue." }
+    exceptions: { en: "Not required from designated rabies-free countries, nor for dogs 90 days old or younger (microchip still required).", fr: "Non requis depuis les pays désignés indemnes de rage, ni pour les chiens de 90 jours ou moins (puce quand même exigée).", es: "No se exige desde países designados indemnes de rabia, ni para perros de 90 días o menos (el microchip sigue siendo obligatorio).", pt: "Não é exigido vindo de países designados livres de raiva, nem para cachorros com 90 dias ou menos (o microchip continua obrigatório)." }
+    ref: { en: "APQA — Import requirements / FAQ", fr: "APQA — Conditions d'importation / FAQ", es: "APQA — Requisitos de importación / preguntas frecuentes", pt: "APQA — Requisitos de importação / FAQ" }
+  - item: { en: "Government veterinary health certificate", fr: "Certificat sanitaire vétérinaire officiel", es: "Certificado sanitario veterinario oficial", pt: "Atestado de saúde veterinário oficial" }
+    required: { en: "Required", fr: "Requis", es: "Obligatorio", pt: "Obrigatório" }
+    when: { en: "Issued by the government agency of the exporting country; must state the microchip number, the antibody test result and the animal's age, plus a health/no-disease statement.", fr: "Délivré par l'organisme gouvernemental du pays exportateur ; doit indiquer le numéro de puce, le résultat du titrage et l'âge de l'animal, avec une attestation de bonne santé.", es: "Expedido por el organismo gubernamental del país exportador; debe indicar el número de microchip, el resultado de la prueba de titulación y la edad del animal, además de una declaración de buena salud/ausencia de enfermedad.", pt: "Emitido pelo órgão do governo do país exportador; deve indicar o número do microchip, o resultado do teste sorológico e a idade do animal, além de uma declaração de boa saúde/ausência de doença." }
+    exceptions: { en: "For EU member states, an EU pet passport may replace the health certificate.", fr: "Pour les États membres de l'UE, un passeport européen peut remplacer le certificat sanitaire.", es: "Para los Estados miembros de la UE, un pasaporte europeo para mascotas puede sustituir al certificado sanitario.", pt: "Para os Estados membros da UE, um passaporte europeu para animais de estimação pode substituir o atestado de saúde." }
+    ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
+  - item: { en: "EU pet passport", fr: "Passeport européen", es: "Pasaporte europeo para mascotas", pt: "Passaporte europeu para animais" }
+    required: { en: "EU origins", fr: "Origines UE", es: "Orígenes de la UE", pt: "Origens na UE" }
+    when: { en: "Accepted in place of the government health certificate when the exporting country is an EU member state.", fr: "Accepté à la place du certificat sanitaire officiel lorsque le pays exportateur est un État membre de l'UE.", es: "Se acepta en lugar del certificado sanitario oficial cuando el país exportador es un Estado miembro de la UE.", pt: "Aceito no lugar do atestado de saúde oficial quando o país exportador é um Estado membro da UE." }
+    exceptions: { en: "Non-EU origins must use the government health certificate.", fr: "Les origines hors UE doivent utiliser le certificat sanitaire officiel.", es: "Los orígenes fuera de la UE deben utilizar el certificado sanitario oficial.", pt: "As origens fora da UE precisam usar o atestado de saúde oficial." }
+    ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
+  - item: { en: "Nipah/Hendra virus certification", fr: "Certification virus Nipah/Hendra", es: "Certificación del virus Nipah/Hendra", pt: "Certificação de vírus Nipah/Hendra" }
+    required: { en: "Specific origins only", fr: "Origines spécifiques uniquement", es: "Solo orígenes específicos", pt: "Apenas origens específicas" }
+    when: { en: "Dogs from Malaysia need certification that the region was free of the virus, or a blood test within 14 days and 60 days in a virus-free area before export.", fr: "Les chiens en provenance de Malaisie doivent fournir une certification d'absence du virus, ou un test sanguin dans les 14 jours et 60 jours en zone indemne avant l'export.", es: "Los perros procedentes de Malasia necesitan una certificación de que la región estaba libre del virus, o un análisis de sangre en los 14 días previos y 60 días en una zona libre del virus antes de la exportación.", pt: "Cachorros vindos da Malásia precisam de uma certificação de que a região estava livre do vírus, ou de um exame de sangue nos 14 dias anteriores e de 60 dias em uma área livre do vírus antes da exportação." }
+    exceptions: { en: "Without certification, isolation for 21 days at the quarantine office; not relevant for most origins.", fr: "Sans certification, isolement de 21 jours au poste de quarantaine ; non pertinent pour la plupart des origines.", es: "Sin certificación, aislamiento de 21 días en la oficina de cuarentena; no aplicable a la mayoría de los orígenes.", pt: "Sem certificação, isolamento por 21 dias no posto de quarentena; não se aplica à maioria das origens." }
+    ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
+  - item: { en: "Advance notification / import permit", fr: "Notification préalable / permis d'import", es: "Notificación previa / permiso de importación", pt: "Notificação prévia / autorização de importação" }
+    required: { en: "Not required", fr: "Non requis", es: "No obligatorio", pt: "Não obrigatório" }
+    when: { en: "—", fr: "—", es: "—", pt: "—" }
+    exceptions: { en: "Korea issues no import permit and requires no prior customs appointment for a pet dog.", fr: "La Corée ne délivre aucun permis d'import et n'exige aucun rendez-vous douanier préalable pour un chien de compagnie.", es: "Corea no expide permiso de importación ni exige cita previa en aduanas para un perro de compañía.", pt: "A Coreia não emite autorização de importação nem exige agendamento prévio na alfândega para um cachorro de estimação." }
+    ref: { en: "APQA — Import requirements for dogs and cats", fr: "APQA — Conditions d'importation des chiens et chats", es: "APQA — Requisitos de importación para perros y gatos", pt: "APQA — Requisitos de importação para cães e gatos" }
+  - item: { en: "Quarantine border inspection", fr: "Inspection de quarantaine à la frontière", es: "Inspección de cuarentena en la frontera", pt: "Inspeção de quarentena na fronteira" }
+    required: { en: "Required", fr: "Requise", es: "Obligatoria", pt: "Obrigatório" }
+    when: { en: "At the port of entry an APQA quarantine officer verifies the documents and performs a clinical inspection. If compliant, the dog is released on the day of arrival.", fr: "Au point d'entrée, un agent de quarantaine APQA vérifie les documents et réalise une inspection clinique. Si conforme, le chien est libéré le jour de l'arrivée.", es: "En el punto de entrada, un funcionario de cuarentena de la APQA verifica los documentos y realiza una inspección clínica. Si el perro cumple los requisitos, se libera el mismo día de la llegada.", pt: "No ponto de entrada, um agente de quarentena da APQA confere os documentos e faz uma inspeção clínica. Se estiver tudo em conformidade, o cachorro é liberado no mesmo dia da chegada." }
+    exceptions: { en: "No exemption — every imported dog is inspected.", fr: "Aucune exemption — tout chien importé est inspecté.", es: "Sin excepciones — se inspecciona a todos los perros importados.", pt: "Sem exceção — todo cachorro importado é inspecionado." }
+    ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
+  - item: { en: "Puppies / minimum age", fr: "Chiots / âge minimum", es: "Cachorros / edad mínima", pt: "Filhotes / idade mínima" }
+    required: { en: "Titre exempt if ≤90 days", fr: "Titrage dispensé si ≤90 jours", es: "Exento de titulación si ≤90 días", pt: "Isento de titulação se ≤90 dias" }
+    when: { en: "Dogs 90 days old or younger are exempt from the rabies antibody test but must have a microchip; the certificate must state the age.", fr: "Les chiens de 90 jours ou moins sont dispensés du titrage mais doivent porter une puce ; le certificat doit indiquer l'âge.", es: "Los perros de 90 días o menos están exentos de la prueba de titulación de rabia, pero deben tener microchip; el certificado debe indicar la edad.", pt: "Cachorros com 90 dias ou menos são isentos do teste sorológico antirrábico, mas precisam ter microchip; o certificado deve indicar a idade." }
+    exceptions: { en: "Age must be verifiable on the exporting country's health certificate.", fr: "L'âge doit être vérifiable sur le certificat sanitaire du pays exportateur.", es: "La edad debe poder verificarse en el certificado sanitario del país exportador.", pt: "A idade deve poder ser verificada no atestado de saúde do país exportador." }
+    ref: { en: "APQA — Import requirements for dogs and cats", fr: "APQA — Conditions d'importation des chiens et chats", es: "APQA — Requisitos de importación para perros y gatos", pt: "APQA — Requisitos de importação para cães e gatos" }
+  - item: { en: "Extended detention", fr: "Détention prolongée", es: "Detención prolongada", pt: "Retenção prolongada" }
+    required: { en: "Conditional", fr: "Conditionnel", es: "Condicional", pt: "Condicional" }
+    when: { en: "If the microchip is missing or does not match, or the titre is absent or below 0.5 IU/ml, the dog is detained until the microchip and a titre ≥0.5 IU/ml are confirmed — at the owner's expense.", fr: "Si la puce est absente ou non conforme, ou si le titrage manque ou est inférieur à 0,5 UI/ml, le chien est retenu jusqu'à confirmation de la puce et d'un titrage ≥0,5 UI/ml — aux frais du propriétaire.", es: "Si falta el microchip o no coincide, o si la prueba de titulación está ausente o es inferior a 0,5 UI/ml, el perro queda detenido hasta que se confirmen el microchip y una titulación ≥0,5 UI/ml — a cargo del propietario.", pt: "Se o microchip estiver ausente ou não corresponder, ou se a titulação faltar ou for inferior a 0,5 UI/ml, o cachorro fica retido até que o microchip e uma titulação ≥0,5 UI/ml sejam confirmados — às custas do dono." }
+    exceptions: { en: "Avoided entirely when all conditions are met before travel.", fr: "Évitée totalement lorsque toutes les conditions sont remplies avant le voyage.", es: "Se evita por completo cuando se cumplen todas las condiciones antes del viaje.", pt: "Evitada por completo quando todas as condições são cumpridas antes da viagem." }
+    ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
+
+origin:
+  eu:
+    title: { en: "EU departures — passport may replace the certificate", fr: "Départs UE — le passeport peut remplacer le certificat", es: "Salidas desde la UE — el pasaporte puede sustituir al certificado", pt: "Saídas da UE — o passaporte pode substituir o certificado" }
+    body:
+      en: "When your dog leaves from an EU member state, an EU pet passport is accepted in place of the government health certificate. The rabies-status rule still applies: most of the EU is treated as rabies-free, so usually only a microchip and the passport are needed, but confirm your country's status on the APQA list."
+      fr: "Lorsque ton chien part d'un État membre de l'UE, un passeport européen est accepté à la place du certificat sanitaire officiel. La règle du statut rabique s'applique quand même : la majeure partie de l'UE est traitée comme indemne, donc en général seuls une puce et le passeport sont requis, mais vérifie le statut de ton pays sur la liste APQA."
+      es: "Cuando tu perro sale de un Estado miembro de la UE, se acepta un pasaporte europeo para mascotas en lugar del certificado sanitario oficial. La norma del estatus rábico sigue aplicándose: la mayor parte de la UE se considera indemne de rabia, así que normalmente solo se necesitan un microchip y el pasaporte, pero confirma el estatus de tu país en la lista de la APQA."
+      pt: "Quando o seu cachorro parte de um Estado membro da UE, um passaporte europeu para animais de estimação é aceito no lugar do atestado de saúde oficial. A regra do status em relação à raiva continua valendo: a maior parte da UE é tratada como livre de raiva, então em geral bastam o microchip e o passaporte, mas confirme o status do seu país na lista da APQA."
+    cls: ok
+  listed:
+    title: { en: "Rabies-free origin — no titre", fr: "Origine indemne de rage — sans titrage", es: "Origen indemne de rabia — sin titulación", pt: "Origem livre de raiva — sem titulação" }
+    body:
+      en: "From a country APQA designates as rabies-free, your dog needs a microchip and a government veterinary health certificate stating the microchip number and age. No rabies antibody test is required, and a compliant dog is normally released on the day of arrival."
+      fr: "Depuis un pays désigné indemne de rage par l'APQA, ton chien a besoin d'une puce et d'un certificat sanitaire officiel indiquant le numéro de puce et l'âge. Aucun titrage antirabique n'est requis, et un chien conforme est normalement libéré le jour de l'arrivée."
+      es: "Desde un país designado indemne de rabia por la APQA, tu perro necesita un microchip y un certificado sanitario veterinario oficial que indique el número de microchip y la edad. No se exige ninguna prueba de titulación de rabia, y un perro que cumpla los requisitos normalmente se libera el mismo día de la llegada."
+      pt: "Vindo de um país que a APQA designa como livre de raiva, o seu cachorro precisa de um microchip e de um atestado de saúde veterinário oficial indicando o número do microchip e a idade. Nenhum teste sorológico antirrábico é exigido, e um cachorro em conformidade normalmente é liberado no mesmo dia da chegada."
+    cls: ok
+  nonListed:
+    title: { en: "Not rabies-free — vaccination + titre", fr: "Non indemne de rage — vaccination + titrage", es: "No indemne de rabia — vacunación + titulación", pt: "Não livre de raiva — vacinação + titulação" }
+    body:
+      en: "From a country not designated rabies-free, add a rabies vaccination and a rabies antibody test showing ≥0.5 IU/ml, done at an internationally approved laboratory or the exporting country's competent authority and valid within 24 months of the blood draw. The government health certificate must record the microchip number and the antibody-test result. A dog without a valid antibody test can be detained."
+      fr: "Depuis un pays non désigné indemne de rage, ajoute une vaccination antirabique et un titrage ≥0,5 UI/ml, réalisé dans un laboratoire agréé international ou par l'autorité compétente du pays exportateur et valable 24 mois à compter de la prise de sang. Le certificat sanitaire officiel doit mentionner le numéro de puce et le résultat du titrage. Un chien sans titrage valide peut être retenu."
+      es: "Desde un país no designado indemne de rabia, añade una vacunación antirrábica y una prueba de titulación de rabia que muestre ≥0,5 UI/ml, realizada en un laboratorio aprobado internacionalmente o por la autoridad competente del país exportador y válida dentro de los 24 meses posteriores a la extracción de sangre. El certificado sanitario oficial debe registrar el número de microchip y el resultado de la prueba de titulación. Un perro sin una prueba de titulación válida puede quedar retenido."
+      pt: "Vindo de um país não designado livre de raiva, acrescente uma vacinação antirrábica e um teste sorológico antirrábico com resultado ≥0,5 UI/ml, feito em um laboratório aprovado internacionalmente ou pela autoridade competente do país exportador e válido dentro de 24 meses a contar da coleta de sangue. O atestado de saúde oficial precisa registrar o número do microchip e o resultado do teste sorológico. Um cachorro sem um teste sorológico válido pode ficar retido."
+    cls: warn
+
+arrival:
+  intro:
+    en: "What happens when your dog reaches Korea depends on whether every condition is met."
+    fr: "Ce qui se passe à l'arrivée de ton chien en Corée dépend du respect de toutes les conditions."
+    es: "Lo que ocurre cuando tu perro llega a Corea depende de si se cumplen todas las condiciones."
+    pt: "O que acontece quando o seu cachorro chega à Coreia depende do cumprimento de todas as condições."
+  points:
+    - en: "At the port of entry (e.g. Incheon International Airport) an APQA animal quarantine officer checks the documents and inspects your dog."
+      fr: "Au point d'entrée (ex. aéroport international d'Incheon), un agent de quarantaine animale APQA contrôle les documents et inspecte ton chien."
+      es: "En el punto de entrada (p. ej., el aeropuerto internacional de Incheon), un funcionario de cuarentena animal de la APQA revisa los documentos e inspecciona a tu perro."
+      pt: "No ponto de entrada (por exemplo, o Aeroporto Internacional de Incheon), um agente de quarentena animal da APQA confere os documentos e inspeciona o seu cachorro."
+    - en: "If the microchip matches the certificate, any required antibody test is ≥0.5 IU/ml and the clinical inspection is normal, the dog is released on the day of arrival."
+      fr: "Si la puce correspond au certificat, que tout titrage requis est ≥0,5 UI/ml et que l'inspection clinique est normale, le chien est libéré le jour de l'arrivée."
+      es: "Si el microchip coincide con el certificado, cualquier prueba de titulación requerida es ≥0,5 UI/ml y la inspección clínica es normal, el perro se libera el mismo día de la llegada."
+      pt: "Se o microchip corresponder ao certificado, se todo teste sorológico exigido for ≥0,5 UI/ml e se a inspeção clínica estiver normal, o cachorro é liberado no mesmo dia da chegada."
+    - en: "If the microchip is missing or mismatched, or a required antibody test is absent or below 0.5 IU/ml, the dog is detained until it can be identified and its antibody test confirmed — at the owner's expense."
+      fr: "Si la puce manque ou ne correspond pas, ou si un titrage requis est absent ou inférieur à 0,5 UI/ml, le chien est retenu jusqu'à identification et confirmation du titrage — aux frais du propriétaire."
+      es: "Si falta el microchip o no coincide, o si una prueba de titulación requerida está ausente o es inferior a 0,5 UI/ml, el perro queda detenido hasta que se pueda identificar y confirmar su prueba de titulación — a cargo del propietario."
+      pt: "Se o microchip estiver ausente ou não corresponder, ou se um teste sorológico exigido faltar ou for inferior a 0,5 UI/ml, o cachorro fica retido até que possa ser identificado e o seu teste sorológico seja confirmado — às custas do dono."
+    - en: "Korea-side fees apply where the agency acts: about 110,000 KRW per animal for a rabies antibody titration and 10,000 KRW to issue a health certificate."
+      fr: "Des frais côté coréen s'appliquent lorsque l'agence intervient : environ 110 000 KRW par animal pour un titrage antirabique et 10 000 KRW pour l'émission d'un certificat sanitaire."
+      es: "Se aplican tarifas del lado coreano cuando interviene la agencia: unos 110 000 KRW por animal por una titulación de anticuerpos contra la rabia y 10 000 KRW por la emisión de un certificado sanitario."
+      pt: "Do lado coreano há taxas quando a agência atua: cerca de 110.000 KRW por animal para uma titulação de anticorpos antirrábicos e 10.000 KRW para a emissão de um atestado de saúde."
+    - en: "Carry the original government certificate (or EU pet passport for EU origins), not copies."
+      fr: "Munis-toi du certificat officiel original (ou du passeport européen pour les origines UE), pas de copies."
+      es: "Lleva el certificado oficial original (o el pasaporte europeo para mascotas en el caso de orígenes de la UE), no copias."
+      pt: "Leve o certificado oficial original (ou o passaporte europeu para animais de estimação, no caso de origens na UE), não cópias."
+
+travellerExperience: null
+
+restrictedDogs:
+  intro:
+    en: "South Korea does not ban the import of any dog breed, but it designates certain fighting/guard breeds as 'fierce dogs' (맹견) under the Animal Protection Act, with strict ownership conditions after arrival. Only official designation applies."
+    fr: "La Corée du Sud n'interdit l'importation d'aucune race, mais elle désigne certaines races de combat/garde comme « chiens féroces » (맹견) au titre de la loi sur la protection animale, avec des conditions strictes de détention après l'arrivée. Seule la désignation officielle s'applique."
+    es: "Corea del Sur no prohíbe la importación de ninguna raza de perro, pero designa a determinadas razas de combate/guarda como «perros feroces» (맹견) en virtud de la Ley de Protección Animal, con condiciones estrictas de tenencia tras la llegada. Solo se aplica la designación oficial."
+    pt: "A Coreia do Sul não proíbe a importação de nenhuma raça de cachorro, mas designa certas raças de combate/guarda como “cachorros ferozes” (맹견) no âmbito da Animal Protection Act (Lei de Proteção Animal), com condições rígidas de posse depois da chegada. Só vale a designação oficial."
+  cat1:
+    en: "The designated fierce breeds are the Tosa (Japanese Mastiff), American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Bull Terrier and Rottweiler, together with their crossbreeds. There is no outright import ban on these breeds."
+    fr: "Les races féroces désignées sont le Tosa (dogue japonais), l'American Pit Bull Terrier, l'American Staffordshire Terrier, le Staffordshire Bull Terrier et le Rottweiler, ainsi que leurs croisements. Il n'existe aucune interdiction pure et simple d'importer ces races."
+    es: "Las razas feroces designadas son el Tosa (mastín japonés), el American Pit Bull Terrier, el American Staffordshire Terrier, el Staffordshire Bull Terrier y el Rottweiler, junto con sus cruces. No existe una prohibición total de importación para estas razas."
+    pt: "As raças ferozes designadas são o Tosa (mastim japonês), o American Pit Bull Terrier, o American Staffordshire Terrier, o Staffordshire Bull Terrier e o Rottweiler, além dos seus cruzamentos. Não existe proibição total de importação dessas raças."
+  cat2:
+    en: "Owning a fierce dog in Korea requires a permit from the city or provincial government, plus liability insurance and neutering, under the revised Animal Protection Act (in force since 27 April 2024). In public these dogs must wear a leash and muzzle and are barred from children's facilities."
+    fr: "Détenir un chien féroce en Corée exige un permis de la ville ou de la province, ainsi qu'une assurance responsabilité civile et la stérilisation, selon la loi révisée sur la protection animale (en vigueur depuis le 27 avril 2024). En public, ces chiens doivent porter laisse et muselière et sont interdits dans les établissements pour enfants."
+    es: "Tener un perro feroz en Corea requiere un permiso del gobierno municipal o provincial, además de un seguro de responsabilidad civil y la esterilización, en virtud de la Ley de Protección Animal revisada (en vigor desde el 27 de abril de 2024). En público, estos perros deben llevar correa y bozal y tienen prohibida la entrada en instalaciones infantiles."
+    pt: "Ter um cachorro feroz na Coreia exige uma autorização do governo municipal ou provincial, além de seguro de responsabilidade civil e castração, segundo a Animal Protection Act revisada (em vigor desde 27 de abril de 2024). Em locais públicos, esses cachorros precisam usar guia e focinheira e não podem entrar em instalações infantis."
+  note:
+    en: "Breeds sometimes listed elsewhere (e.g. Dogo Argentino) are not on Korea's official fierce-dog list. The list can change — verify the current designation and permit rules with MAFRA before you travel."
+    fr: "Des races parfois listées ailleurs (ex. Dogo Argentino) ne figurent pas sur la liste officielle coréenne des chiens féroces. La liste peut évoluer — vérifie la désignation et les règles de permis en vigueur auprès du MAFRA avant de voyager."
+    es: "Las razas que a veces figuran en otras listas (p. ej., el Dogo Argentino) no están en la lista oficial coreana de perros feroces. La lista puede cambiar — verifica la designación y las normas de permiso vigentes con el MAFRA antes de viajar."
+    pt: "Raças que às vezes aparecem em listas de outros países (p. ex. o Dogo Argentino) não estão na lista oficial coreana de cachorros ferozes. A lista pode mudar — verifique a designação e as regras de autorização em vigor junto ao MAFRA antes de viajar."
+
+checklist:
+  - en: "ISO 11784/11785 microchip implanted before vaccination and blood sampling"
+    fr: "Puce ISO 11784/11785 posée avant la vaccination et la prise de sang"
+    es: "Microchip ISO 11784/11785 implantado antes de la vacunación y la toma de sangre"
+    pt: "Microchip ISO 11784/11785 implantado antes da vacinação e da coleta de sangue"
+  - en: "Rabies vaccination — required from non-rabies-free countries"
+    fr: "Vaccination antirabique — requise depuis les pays non indemnes de rage"
+    es: "Vacunación antirrábica — obligatoria desde países no indemnes de rabia"
+    pt: "Vacinação antirrábica — obrigatória vindo de países não livres de raiva"
+  - en: "Rabies antibody test ≥0.5 IU/ml (approved lab, valid within 24 months) — non-rabies-free origins"
+    fr: "Titrage antirabique ≥0,5 UI/ml (labo agréé, valable 24 mois) — origines non indemnes"
+    es: "Prueba de titulación de rabia ≥0,5 UI/ml (laboratorio aprobado, válida dentro de 24 meses) — orígenes no indemnes de rabia"
+    pt: "Teste sorológico antirrábico ≥0,5 UI/ml (laboratório aprovado, válido dentro de 24 meses) — origens não livres de raiva"
+  - en: "Government veterinary health certificate stating microchip, antibody-test result and age (or EU pet passport for EU origins)"
+    fr: "Certificat sanitaire officiel indiquant puce, résultat du titrage et âge (ou passeport européen pour les origines UE)"
+    es: "Certificado sanitario veterinario oficial que indique el microchip, el resultado de la prueba de titulación y la edad (o pasaporte europeo para mascotas en el caso de orígenes de la UE)"
+    pt: "Atestado de saúde veterinário oficial indicando o microchip, o resultado do teste sorológico e a idade (ou passaporte europeu para animais de estimação, no caso de origens na UE)"
+  - en: "Check your origin against APQA's rabies-free country list close to travel"
+    fr: "Vérifie ton origine sur la liste APQA des pays indemnes de rage peu avant le départ"
+    es: "Verifica tu origen frente a la lista de países indemnes de rabia de la APQA cerca de la fecha del viaje"
+    pt: "Confira a sua origem na lista de países livres de raiva da APQA pouco antes da viagem"
+  - en: "Airline reservation confirming your dog's travel option"
+    fr: "Réservation confirmant l'option de transport de ton chien"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro"
+    pt: "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
+  - en: "Suitable IATA crate if travelling in the hold"
+    fr: "Caisse IATA adaptée si voyage en soute"
+    es: "Jaula IATA adecuada si viaja en bodega"
+    pt: "Caixa de transporte adequada à IATA se a viagem for no porão"
+  - en: "If your dog is a designated fierce breed, plan the Korean ownership permit and insurance"
+    fr: "Si ton chien est une race féroce désignée, prévois le permis de détention coréen et l'assurance"
+    es: "Si tu perro es una raza feroz designada, prevé el permiso de tenencia coreano y el seguro"
+    pt: "Se o seu cachorro for de uma raça feroz designada, providencie a autorização de posse coreana e o seguro"
+
+sources:
+  - label: { en: "APQA — Import requirements for dogs and cats", fr: "APQA — Conditions d'importation des chiens et chats", es: "APQA — Requisitos de importación para perros y gatos", pt: "APQA — Requisitos de importação para cães e gatos" }
+    url: "https://www.qia.go.kr/english/html/Animal_livestock/02AnimalLivestock_007-8.jsp"
+  - label: { en: "APQA — Bring a dog or a cat to Korea (FAQ)", fr: "APQA — Amener un chien ou un chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou um gato para a Coreia (FAQ)" }
+    url: "https://www.qia.go.kr/english/html/Animal_livestock/02AnimalLivestock_007-8_FAQ.jsp"
+  - label: { en: "APQA (QIA) — Animal and Plant Quarantine Agency (English)", fr: "APQA (QIA) — Agence de quarantaine animale et végétale (anglais)", es: "APQA (QIA) — Agencia de Cuarentena Animal y Vegetal (inglés)", pt: "APQA (QIA) — Animal and Plant Quarantine Agency (em inglês)" }
+    url: "https://www.qia.go.kr/english/"
+  - label: { en: "MAFRA — Ministry of Agriculture, Food and Rural Affairs (Animal Protection Act / fierce-dog rules)", fr: "MAFRA — Ministère de l'Agriculture, de l'Alimentation et des Affaires rurales (loi de protection animale / chiens féroces)", es: "MAFRA — Ministerio de Agricultura, Alimentación y Asuntos Rurales (Ley de Protección Animal / normas sobre perros feroces)", pt: "MAFRA — Ministério da Agricultura, Alimentação e Assuntos Rurais (Animal Protection Act / regras sobre cachorros ferozes)" }
+    url: "https://www.mafra.go.kr/english/"
+
+seo:
+  title: { en: "South Korea Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Corée du Sud — Guide", es: "Requisitos de entrada de perros en Corea del Sur — Guía de viaje", pt: "Coreia do Sul: exigências de entrada para cachorros — guia" }
+  metaTitle: { en: "Traveling to South Korea With Your Dog: Entry Requirements (2026)", fr: "Voyager en Corée du Sud avec ton chien : formalités (2026)", es: "Viajar a Corea del Sur con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Coreia do Sul com seu cachorro: exigências 2026" }
+  metaDesc:
+    en: "Official APQA microchip, rabies and antibody rules for bringing a dog into South Korea — by rabies-free and non-rabies-free origin. Sourced and dated."
+    fr: "Règles officielles APQA puce, rage et titrage pour faire entrer un chien en Corée du Sud — selon origine indemne ou non de rage. Sourcé et daté."
+    es: "Normas oficiales de la APQA sobre microchip, rabia y titulación para traer un perro a Corea del Sur — según origen indemne o no de rabia. Con fuentes y fecha."
+    pt: "Regras oficiais da APQA — microchip, raiva e teste sorológico para levar um cachorro para a Coreia do Sul, por origem livre ou não de raiva. Com fontes e data."
+  slug: "south-korea"
+  shortDesc:
+    en: "What you need to bring a dog into South Korea, depending on where you are coming from."
+    fr: "Ce qu'il faut pour faire entrer un chien en Corée du Sud, selon ton pays de départ."
+    es: "Lo que necesitas para traer un perro a Corea del Sur, según el país del que vengas."
+    pt: "O que você precisa para levar um cachorro para a Coreia do Sul, conforme o país de onde você vem."
+
+verified_date: "2026-07-11"
+reviewer: "MyDogCanFly Data Team"
+confidence: 4

@@ -1,0 +1,743 @@
+---
+import FlightFinder from "./FlightFinder.astro";
+import { t, loadKB, inlineT, inlineF } from "@mydogcanfly/knowledge";
+import { localizeHref, hrefFor } from "../lib/routes";
+import { menuTop, familyTotal } from "../lib/pagedata";
+import Icon from "./Icon.astro";
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const T = inlineT(locale);
+// Trilingual picker: English default, French, Spanish.
+const L = inlineT(locale);
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+// Decorative boarding pass shown under the stats band — fictional dog-themed airline.
+const bp = {
+  airline: "PAWJET AIRWAYS",
+  tag: L("Boarding pass", "Carte d'embarquement", "Tarjeta de embarque"),
+  fromCode: "CDG", fromCity: "Paris",
+  toCode: "JFK", toCity: "New York",
+  rows: [
+    { k: L("Passenger", "Passager", "Pasajero"), v: "BAILEY", hi: true },
+    { k: L("Breed", "Race", "Raza"), v: "Golden Retriever" },
+    { k: L("Flight", "Vol", "Vuelo"), v: "PW 2026" },
+    { k: "Date", v: L("22 AUG 2026", "22 AOÛT 2026", "22 AGO 2026") },
+    { k: L("Gate", "Porte", "Puerta"), v: "B7" },
+    { k: L("Class", "Classe", "Clase"), v: L("HOLD", "SOUTE", "BODEGA") },
+  ],
+};
+// Split the hero title after the question mark so the two sentences sit on separate lines.
+const hTitle = t(locale, "home.hero.title");
+const qi = hTitle.indexOf("?");
+const heroA = qi >= 0 ? hTitle.slice(0, qi + 1) : hTitle;
+const heroB = qi >= 0 ? hTitle.slice(qi + 1).trim() : "";
+
+// Bailey launch-film block — bridges the "tool" half of the page and the "brand" half.
+// YouTube is never loaded until the visitor clicks (see the inline script + lightbox below).
+// One launch film per locale (FR / ES / EN).
+// Identifiants YouTube, pas du texte : ils ne passent pas par la table de traduction.
+// Le film n'existe qu'en trois langues ; toute autre langue reçoit la version anglaise.
+const BAILEY_VIDEO: Record<string, string> = { fr: "eldt1BPV_4Q", es: "wOvbxhPQvq4" };
+const baileyVideo = BAILEY_VIDEO[locale] ?? "j2vI3Zan1FY";
+const bailey = {
+  eyebrow: L("Meet Bailey", "Découvrez Bailey", "Conoce a Bailey"),
+  text: L(
+    "Bailey is the face of MyDogCanFly. Watch the launch film that started the brand.",
+    "Bailey est le visage de MyDogCanFly. Découvrez le film de lancement à l'origine de la marque.",
+    "Bailey es la cara de MyDogCanFly. Mira el vídeo de lanzamiento que dio origen a la marca.",
+  ),
+  cta: L("Watch the launch film", "Voir le film de lancement", "Ver el vídeo de lanzamiento"),
+  aria: L("Play the MyDogCanFly launch film", "Lire le film de lancement de MyDogCanFly", "Reproducir el vídeo de lanzamiento de MyDogCanFly"),
+};
+
+// Stats banner — computed from the real DB, boosted up to +20% then rounded to a clean figure (per product decision).
+// Recomputes on every build, so it grows on its own as the database expands.
+const kb = loadKB();
+const boost = (n: number) => {
+  const m = n * 1.2;
+  const step = m >= 200 ? 50 : m >= 100 ? 20 : 10;
+  return Math.max(step, Math.floor(m / step) * step);
+};
+const stats = [
+  { n: `${boost(kb.airlines.size)}+`, key: "home.stats.airlines" },
+  { n: `${boost(kb.countries.size)}+`, key: "home.stats.destinations" },
+  { n: `${boost(kb.breeds.size)}+`, key: "home.stats.breeds" },
+  { n: `${boost(kb.airports.size)}+`, key: "home.stats.airports" },
+  { n: t(locale, "home.stats.thousands"), key: "home.stats.routes" },
+];
+// Top airlines by the Decision Engine score — the same value shown on each airline page.
+const topRated = [...kb.airlines.values()]
+  .filter((a) => (a as { rating?: { score: number } }).rating)
+  .sort((a, b) => (b as { rating: { score: number } }).rating.score - (a as { rating: { score: number } }).rating.score || a.name.localeCompare(b.name))
+  .slice(0, 6)
+  .map((a) => ({ name: a.name, score: (a as { rating: { score: number } }).rating.score, href: hrefFor(a.id, locale) }));
+// « Par où commencent nos lecteurs » — le seul bloc statique qui envoie l'accueil vers les
+// fiches. Mesuré avant intervention : hors navigation, l'accueil ne proposait que 6 fiches
+// compagnies et un outil ; tout le reste passait par le Finder (JavaScript) ou par le menu.
+// Pour un moteur, la meilleure page du site était donc un cul-de-sac. Les entrées viennent
+// de la demande réellement mesurée (popular.generated.json), pas d'un choix éditorial, et
+// les aéroports y figurent alors qu'ils n'ont aucun panneau dans le menu.
+const startHere = [
+  { kind: "country", href: "/countries/", cap: 8, label: L("Destinations", "Destinations", "Destinos"), emoji: "🌍" },
+  { kind: "airline", href: "/airlines/", cap: 6, label: L("Airlines", "Compagnies", "Aerolíneas"), emoji: "✈️" },
+  { kind: "breed", href: "/breeds/", cap: 6, label: L("Breeds", "Races", "Razas"), emoji: "🐶" },
+  { kind: "airport", href: "/airports/", cap: 6, label: L("Airports", "Aéroports", "Aeropuertos"), emoji: "🛂" },
+].map((g) => ({ ...g, items: menuTop(kb, g.kind, locale, g.cap), total: familyTotal(kb, g.kind) }))
+  .filter((g) => g.items.length > 0);
+
+const trust = [
+  { key: "home.trust.p1", icon: "source" },
+  { key: "home.trust.p2", icon: "vet" },
+  { key: "home.trust.p3", icon: "refresh" },
+  { key: "home.trust.p4", icon: "engine" },
+  { key: "home.trust.p5", icon: "ai" },
+  { key: "home.trust.p6", icon: "review" },
+];
+// "Before you book" — a journey, not a catalogue. Emoji per the product direction. Only real, working links.
+const plan = [
+  { key: "home.plan.airlines", href: "/airlines/", emoji: "✈️" },
+  { key: "home.plan.country", href: "/countries/", emoji: "🌍" },
+  { key: "home.plan.breed", href: "/breeds/", emoji: "🐶" },
+  { key: "home.plan.crate", href: "/tools/", emoji: "📦" },
+  { key: "home.plan.passport", href: "/countries/", emoji: "📄" },
+  { key: "home.plan.summer", href: "/tools/", emoji: "🌡️" },
+];
+
+// FAQ just before the footer — classic SEO + GEO (AI answers) + conversion (each answer ends with a relevant link).
+// Rendered as an accordion, with FAQPage structured data for search engines and AI overviews. Bilingual.
+const faqHref = (h: string) => (h.startsWith("#") ? h : localizeHref(h, locale));
+type FaqItem = { q: string; a: string[]; bullets?: string[]; after?: string[]; cta: { text: string; href: string } };
+const FAQ_FR: FaqItem[] = [
+  { q: "Pourquoi est-il si compliqué de voyager en avion avec son chien ?", a: [
+    "Voyager en avion avec un chien est beaucoup plus complexe qu'il n'y paraît. Contrairement aux passagers, les animaux ne sont pas soumis à des règles universelles. Chaque compagnie aérienne applique ses propres conditions de transport : certaines acceptent les chiens en cabine, d'autres uniquement en soute, tandis que quelques-unes refusent totalement certaines races ou certains itinéraires.",
+    "À cela s'ajoutent les exigences du pays de destination. Selon ton voyage, tu devras parfois présenter un passeport européen pour animaux, un certificat sanitaire, une vaccination antirabique à jour, un traitement antiparasitaire ou encore respecter une période d'attente avant l'entrée sur le territoire.",
+    "La taille et la race de ton chien jouent également un rôle important. Un Chihuahua pourra parfois voyager en cabine, alors qu'un Golden Retriever devra généralement voyager en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les Bouledogues français ou les Carlins, font également l'objet de restrictions spécifiques.",
+    "Enfin, les conditions climatiques peuvent influencer ton voyage. Plusieurs compagnies limitent ou suspendent le transport des animaux pendant les fortes chaleurs afin de préserver leur sécurité.",
+    "MyDogCanFly compare automatiquement tous ces paramètres pour t'aider à choisir la compagnie aérienne la plus adaptée à ton chien et à ta destination.",
+  ], cta: { text: "Comparer les compagnies pour ton chien", href: "#flight-finder" } },
+  { q: "Quelle compagnie aérienne choisir pour voyager avec son chien ?", a: [
+    "Toutes les compagnies aériennes n'appliquent pas les mêmes règles concernant les animaux. Les différences peuvent concerner le poids autorisé en cabine, les dimensions des cages, le transport en soute, les races acceptées, les périodes de restriction liées aux températures ou encore les documents exigés.",
+    "Choisir une compagnie uniquement en fonction du prix du billet peut donc conduire à un refus d'embarquement ou à des frais supplémentaires.",
+    "MyDogCanFly compare les politiques de transport de dizaines de compagnies aériennes afin de t'aider à identifier celles qui sont les plus adaptées à ton chien, à ton itinéraire et à ton mode de transport (cabine ou soute).",
+  ], cta: { text: "Comparer les compagnies aériennes", href: "/airlines/" } },
+  { q: "Mon chien peut-il voyager en cabine ?", a: [
+    "Le transport d'un chien en cabine dépend principalement de son poids, de la taille de son sac de transport et des règles propres à chaque compagnie aérienne.",
+    "La plupart des compagnies imposent une limite comprise entre 8 et 10 kg, sac inclus. Les dimensions du sac doivent également respecter les contraintes de l'avion afin qu'il puisse être placé sous le siège devant toi.",
+    "Les grands chiens voyagent généralement en soute, dans une caisse homologuée IATA.",
+    "Avant toute réservation, il est indispensable de vérifier les conditions spécifiques de la compagnie aérienne choisie.",
+  ], cta: { text: "Vérifier si ton chien peut voyager en cabine", href: "#flight-finder" } },
+  { q: "Quand un chien doit-il voyager en soute ?", a: [
+    "Lorsqu'il dépasse les limites autorisées en cabine, un chien doit généralement voyager dans la soute pressurisée et climatisée de l'avion.",
+    "Cette soute est spécialement aménagée pour le transport des animaux vivants, mais toutes les compagnies n'appliquent pas les mêmes règles concernant les dimensions des caisses, les races autorisées ou les restrictions saisonnières.",
+    "Choisir une caisse adaptée et préparer progressivement son chien au voyage constituent deux étapes essentielles.",
+  ], cta: { text: "Voir les politiques de transport en soute", href: "#flight-finder" } },
+  { q: "Quelle cage choisir pour voyager en avion avec son chien ?", a: [
+    "La quasi-totalité des compagnies exige une caisse conforme aux normes IATA pour le transport en soute.",
+    "Ton chien doit pouvoir se tenir debout, se retourner et s'allonger naturellement.",
+    "Une caisse trop petite peut entraîner un refus d'embarquement, tandis qu'une caisse trop grande peut compliquer son transport.",
+    "Le calculateur MyDogCanFly permet d'identifier rapidement la taille de caisse la plus adaptée selon la race et les dimensions de ton chien.",
+  ], cta: { text: "Calculer la taille de caisse IATA", href: "/tools/" } },
+  { q: "Quelles formalités faut-il respecter ?", a: [
+    "Les formalités varient selon le pays de destination. Selon les cas, tu devras notamment disposer :",
+  ], bullets: [
+    "d'un passeport pour animaux ;",
+    "d'une identification par puce électronique ;",
+    "d'une vaccination antirabique valide ;",
+    "d'un certificat sanitaire officiel ;",
+    "voire d'analyses complémentaires ou de traitements antiparasitaires.",
+  ], after: [
+    "Certaines destinations imposent également une quarantaine.",
+    "Les formalités évoluent régulièrement. Il est donc essentiel de consulter des informations mises à jour avant ton départ.",
+  ], cta: { text: "Consulter les formalités par destination", href: "/countries/" } },
+  { q: "Toutes les races de chiens peuvent-elles voyager ?", a: [
+    "Non. Certaines races font l'objet de restrictions particulières.",
+    "Les chiens brachycéphales (Bouledogue français, Carlin, Boxer…) sont parfois refusés en soute en raison des risques respiratoires.",
+    "D'autres compagnies appliquent également des limitations concernant certaines races de grande taille ou considérées comme puissantes.",
+    "Chaque compagnie possède sa propre politique.",
+  ], cta: { text: "Voir les restrictions par race", href: "/breeds/" } },
+  { q: "Comment MyDogCanFly t'aide-t-il ?", a: [
+    "MyDogCanFly ne se contente pas de présenter les règles des compagnies aériennes. Notre moteur compare simultanément :",
+  ], bullets: [
+    "les politiques des compagnies aériennes ;",
+    "les formalités du pays de destination ;",
+    "les caractéristiques de la race de ton chien ;",
+    "les contraintes liées à la cabine ou à la soute ;",
+    "les recommandations de sécurité ;",
+    "les conditions de voyage propres à ton itinéraire.",
+  ], after: [
+    "En quelques secondes, tu obtiens une recommandation personnalisée accompagnée des sources officielles utilisées pour établir la réponse.",
+  ], cta: { text: "Lancer une recherche", href: "#flight-finder" } },
+];
+const FAQ_EN: FaqItem[] = [
+  { q: "Why is flying with a dog so complicated?", a: [
+    "Flying with a dog is far more complex than it looks. Unlike passengers, pets aren't governed by universal rules. Each airline sets its own carriage conditions: some accept dogs in the cabin, others only in the hold, and a few refuse certain breeds or routes altogether.",
+    "On top of that come the destination country's requirements. Depending on your trip, you may need a pet passport, a health certificate, an up-to-date rabies vaccination, an antiparasitic treatment, or to observe a waiting period before entry.",
+    "Your dog's size and breed matter too. A Chihuahua can sometimes travel in the cabin, while a Golden Retriever usually has to travel in the hold in an IATA-compliant crate. Some flat-faced (brachycephalic) breeds, such as French Bulldogs or Pugs, also face specific restrictions.",
+    "Finally, weather can affect your trip. Several airlines limit or suspend animal transport during hot weather to protect their safety.",
+    "MyDogCanFly automatically compares all of these factors to help you choose the airline best suited to your dog and your destination.",
+  ], cta: { text: "Compare airlines for your dog", href: "#flight-finder" } },
+  { q: "Which airline should I choose to travel with my dog?", a: [
+    "Airlines don't all apply the same rules for pets. Differences can involve the weight allowed in the cabin, crate dimensions, hold transport, accepted breeds, temperature-related restriction periods, or the required documents.",
+    "Choosing an airline on ticket price alone can therefore lead to a boarding refusal or extra fees.",
+    "MyDogCanFly compares the pet policies of dozens of airlines to help you identify those best suited to your dog, your route and your travel mode (cabin or hold).",
+  ], cta: { text: "Compare airlines", href: "/airlines/" } },
+  { q: "Can my dog travel in the cabin?", a: [
+    "Whether a dog can travel in the cabin mainly depends on its weight, the size of its carrier, and each airline's own rules.",
+    "Most airlines set a limit of between 8 and 10 kg, carrier included. The carrier's dimensions must also fit the aircraft so it can go under the seat in front of you.",
+    "Larger dogs usually travel in the hold, in an IATA-approved crate.",
+    "Before booking, it's essential to check the specific conditions of the airline you choose.",
+  ], cta: { text: "Check if your dog can fly in the cabin", href: "#flight-finder" } },
+  { q: "When does a dog have to travel in the hold?", a: [
+    "When it exceeds the limits allowed in the cabin, a dog usually has to travel in the aircraft's pressurised, temperature-controlled hold.",
+    "This hold is specially fitted for live-animal transport, but airlines don't all apply the same rules on crate dimensions, permitted breeds or seasonal restrictions.",
+    "Choosing a suitable crate and gradually preparing your dog for the trip are two essential steps.",
+  ], cta: { text: "See hold transport policies", href: "#flight-finder" } },
+  { q: "Which crate should I choose to fly with my dog?", a: [
+    "Almost all airlines require an IATA-compliant crate for hold transport.",
+    "Your dog must be able to stand, turn around and lie down naturally.",
+    "A crate that's too small can lead to a boarding refusal, while one that's too big can make transport harder.",
+    "The MyDogCanFly calculator quickly identifies the most suitable crate size based on your dog's breed and measurements.",
+  ], cta: { text: "Calculate your IATA crate size", href: "/tools/" } },
+  { q: "What paperwork is required?", a: [
+    "Requirements vary by destination country. Depending on the case, you may in particular need:",
+  ], bullets: [
+    "a pet passport;",
+    "microchip identification;",
+    "a valid rabies vaccination;",
+    "an official health certificate;",
+    "and possibly additional tests or antiparasitic treatments.",
+  ], after: [
+    "Some destinations also require quarantine.",
+    "Requirements change regularly, so it's essential to check up-to-date information before you leave.",
+  ], cta: { text: "Check requirements by destination", href: "/countries/" } },
+  { q: "Can every dog breed travel?", a: [
+    "No. Some breeds face specific restrictions.",
+    "Brachycephalic (flat-faced) dogs (French Bulldog, Pug, Boxer…) are sometimes refused in the hold because of breathing risks.",
+    "Other airlines also apply limitations on certain large breeds or breeds considered powerful.",
+    "Each airline has its own policy.",
+  ], cta: { text: "See restrictions by breed", href: "/breeds/" } },
+  { q: "How does MyDogCanFly help?", a: [
+    "MyDogCanFly doesn't just list airline rules. Our engine compares, all at once:",
+  ], bullets: [
+    "airline policies;",
+    "the destination country's requirements;",
+    "your dog's breed characteristics;",
+    "cabin- or hold-related constraints;",
+    "safety recommendations;",
+    "the travel conditions specific to your route.",
+  ], after: [
+    "In seconds, you get a personalised recommendation along with the official sources used to produce it.",
+  ], cta: { text: "Run a search", href: "#flight-finder" } },
+];
+const FAQ_ES: FaqItem[] = [
+  { q: "¿Por qué es tan complicado viajar en avión con un perro?", a: [
+    "Viajar en avión con un perro es mucho más complejo de lo que parece. A diferencia de los pasajeros, las mascotas no se rigen por normas universales. Cada aerolínea fija sus propias condiciones de transporte: algunas aceptan perros en cabina, otras solo en bodega, y unas pocas rechazan por completo ciertas razas o rutas.",
+    "A esto se suman los requisitos del país de destino. Según tu viaje, puedes necesitar un pasaporte para mascotas, un certificado de salud, una vacunación antirrábica al día, un tratamiento antiparasitario o respetar un periodo de espera antes de la entrada.",
+    "El tamaño y la raza de tu perro también importan. Un Chihuahua a veces puede viajar en cabina, mientras que un Golden Retriever suele tener que viajar en bodega en una jaula conforme a la IATA. Algunas razas braquicéfalas (de hocico chato), como el Bulldog Francés o el Carlino, también se enfrentan a restricciones específicas.",
+    "Por último, el clima puede afectar a tu viaje. Varias aerolíneas limitan o suspenden el transporte de animales cuando hace calor para proteger su seguridad.",
+    "MyDogCanFly compara automáticamente todos estos factores para ayudarte a elegir la aerolínea que mejor se adapta a tu perro y a tu destino.",
+  ], cta: { text: "Comparar aerolíneas para tu perro", href: "#flight-finder" } },
+  { q: "¿Qué aerolínea debo elegir para viajar con mi perro?", a: [
+    "Las aerolíneas no aplican las mismas normas para las mascotas. Las diferencias pueden afectar al peso permitido en cabina, a las dimensiones de la jaula, al transporte en bodega, a las razas aceptadas, a los periodos de restricción por temperatura o a los documentos exigidos.",
+    "Elegir una aerolínea solo por el precio del billete puede, por tanto, acarrear un rechazo al embarque o cargos adicionales.",
+    "MyDogCanFly compara las políticas de mascotas de decenas de aerolíneas para ayudarte a identificar las que mejor se adaptan a tu perro, tu ruta y tu modo de viaje (cabina o bodega).",
+  ], cta: { text: "Comparar aerolíneas", href: "/airlines/" } },
+  { q: "¿Puede mi perro viajar en cabina?", a: [
+    "Que un perro pueda viajar en cabina depende sobre todo de su peso, del tamaño de su jaula y de las normas propias de cada aerolínea.",
+    "La mayoría de las aerolíneas fija un límite de entre 8 y 10 kg, jaula incluida. Las dimensiones de la jaula también deben ajustarse al avión para que quepa bajo el asiento de delante.",
+    "Los perros más grandes suelen viajar en bodega, en una jaula homologada por la IATA.",
+    "Antes de reservar, es esencial comprobar las condiciones específicas de la aerolínea que elijas.",
+  ], cta: { text: "Comprobar si tu perro puede volar en cabina", href: "#flight-finder" } },
+  { q: "¿Cuándo tiene que viajar un perro en bodega?", a: [
+    "Cuando supera los límites permitidos en cabina, un perro suele tener que viajar en la bodega presurizada y climatizada del avión.",
+    "Esta bodega está especialmente acondicionada para el transporte de animales vivos, pero las aerolíneas no aplican todas las mismas normas sobre dimensiones de la jaula, razas permitidas o restricciones estacionales.",
+    "Elegir una jaula adecuada y preparar gradualmente a tu perro para el viaje son dos pasos esenciales.",
+  ], cta: { text: "Ver políticas de transporte en bodega", href: "#flight-finder" } },
+  { q: "¿Qué jaula debo elegir para volar con mi perro?", a: [
+    "Casi todas las aerolíneas exigen una jaula conforme a la IATA para el transporte en bodega.",
+    "Tu perro debe poder ponerse de pie, darse la vuelta y tumbarse con naturalidad.",
+    "Una jaula demasiado pequeño puede provocar un rechazo al embarque, mientras que uno demasiado grande puede dificultar el transporte.",
+    "La calculadora de MyDogCanFly identifica rápidamente el tamaño de jaula más adecuado según la raza y las medidas de tu perro.",
+  ], cta: { text: "Calcular el tamaño de tu jaula IATA", href: "/tools/" } },
+  { q: "¿Qué documentación se necesita?", a: [
+    "Los requisitos varían según el país de destino. Según el caso, podrías necesitar en particular:",
+  ], bullets: [
+    "un pasaporte para mascotas;",
+    "identificación por microchip;",
+    "una vacunación antirrábica válida;",
+    "un certificado de salud oficial;",
+    "y posiblemente pruebas o tratamientos antiparasitarios adicionales.",
+  ], after: [
+    "Algunos destinos también exigen cuarentena.",
+    "Los requisitos cambian con regularidad, por lo que es esencial consultar información actualizada antes de partir.",
+  ], cta: { text: "Comprobar requisitos por destino", href: "/countries/" } },
+  { q: "¿Puede viajar cualquier raza de perro?", a: [
+    "No. Algunas razas se enfrentan a restricciones específicas.",
+    "Los perros braquicéfalos (de hocico chato) (Bulldog Francés, Carlino, Bóxer…) a veces son rechazados en bodega por riesgos respiratorios.",
+    "Otras aerolíneas también aplican limitaciones a ciertas razas grandes o consideradas potentes.",
+    "Cada aerolínea tiene su propia política.",
+  ], cta: { text: "Ver restricciones por raza", href: "/breeds/" } },
+  { q: "¿Cómo ayuda MyDogCanFly?", a: [
+    "MyDogCanFly no se limita a enumerar las normas de las aerolíneas. Nuestro motor compara, de una sola vez:",
+  ], bullets: [
+    "las políticas de las aerolíneas;",
+    "los requisitos del país de destino;",
+    "las características de la raza de tu perro;",
+    "las limitaciones de cabina o de bodega;",
+    "las recomendaciones de seguridad;",
+    "las condiciones de viaje propias de tu ruta.",
+  ], after: [
+    "En segundos obtienes una recomendación personalizada junto con las fuentes oficiales utilizadas para elaborarla.",
+  ], cta: { text: "Hacer una búsqueda", href: "#flight-finder" } },
+];
+/* Portugais du Brésil : « você », et le glossaire déjà figé sur le reste du site —
+   cachorro, companhia aérea, cabine, porão, carga, caixa de transporte, focinho achatado. */
+const FAQ_PT: FaqItem[] = [
+  { q: "Por que viajar de avião com cachorro é tão complicado?", a: [
+    "Viajar de avião com um cachorro é bem mais complexo do que parece. Diferentemente dos passageiros, os animais não seguem regras universais. Cada companhia aérea define as próprias condições de transporte: algumas aceitam cachorros na cabine, outras só no porão, e algumas recusam determinadas raças ou rotas por completo.",
+    "A isso se somam as exigências do país de destino. Dependendo da viagem, você pode precisar de um passaporte para animais, um atestado de saúde, vacinação antirrábica em dia, tratamento antiparasitário ou ainda cumprir um período de espera antes da entrada.",
+    "O porte e a raça do seu cachorro também pesam. Um Chihuahua às vezes pode viajar na cabine, enquanto um Golden Retriever costuma ir no porão, em uma caixa de transporte que atenda às normas IATA. Algumas raças de focinho achatado (braquicefálicas), como o Buldogue Francês ou o Pug, enfrentam restrições específicas.",
+    "Por fim, o clima pode afetar a viagem. Várias companhias limitam ou suspendem o transporte de animais durante o calor forte, para preservar a segurança deles.",
+    "O MyDogCanFly compara automaticamente todos esses fatores para ajudar você a escolher a companhia aérea mais adequada ao seu cachorro e ao seu destino.",
+  ], cta: { text: "Comparar companhias para o seu cachorro", href: "#flight-finder" } },
+  { q: "Qual companhia aérea escolher para viajar com meu cachorro?", a: [
+    "As companhias não aplicam as mesmas regras para animais. As diferenças podem estar no peso permitido na cabine, nas dimensões da caixa de transporte, no transporte no porão, nas raças aceitas, nos períodos de restrição por temperatura ou nos documentos exigidos.",
+    "Escolher a companhia apenas pelo preço da passagem pode, portanto, levar a uma recusa no embarque ou a custos extras.",
+    "O MyDogCanFly compara as políticas para animais de dezenas de companhias aéreas para ajudar você a identificar as mais adequadas ao seu cachorro, à sua rota e à forma de viagem (cabine ou porão).",
+  ], cta: { text: "Comparar companhias aéreas", href: "/airlines/" } },
+  { q: "Meu cachorro pode viajar na cabine?", a: [
+    "Se um cachorro pode ou não viajar na cabine depende sobretudo do peso dele, do tamanho da bolsa de transporte e das regras de cada companhia aérea.",
+    "A maioria das companhias estabelece um limite entre 8 e 10 kg, bolsa incluída. As dimensões da bolsa também precisam ser compatíveis com a aeronave, para caber embaixo do assento à sua frente.",
+    "Cachorros maiores costumam viajar no porão, em uma caixa de transporte aprovada pela IATA.",
+    "Antes de reservar, é indispensável conferir as condições específicas da companhia escolhida.",
+  ], cta: { text: "Ver se o seu cachorro pode voar na cabine", href: "#flight-finder" } },
+  { q: "Quando o cachorro precisa viajar no porão?", a: [
+    "Quando ultrapassa os limites permitidos na cabine, o cachorro geralmente precisa viajar no porão pressurizado e com temperatura controlada da aeronave.",
+    "Esse porão é preparado especificamente para o transporte de animais vivos, mas as companhias não aplicam as mesmas regras quanto às dimensões da caixa, às raças permitidas ou às restrições sazonais.",
+    "Escolher uma caixa adequada e preparar o cachorro aos poucos para a viagem são duas etapas essenciais.",
+  ], cta: { text: "Ver as políticas de transporte no porão", href: "#flight-finder" } },
+  { q: "Qual caixa de transporte escolher para voar com meu cachorro?", a: [
+    "Quase todas as companhias exigem uma caixa de transporte que atenda às normas IATA para a viagem no porão.",
+    "Seu cachorro precisa conseguir ficar de pé, girar e deitar-se naturalmente.",
+    "Uma caixa pequena demais pode levar à recusa no embarque; uma grande demais dificulta o transporte.",
+    "A calculadora do MyDogCanFly indica rapidamente o tamanho de caixa mais adequado a partir da raça e das medidas do seu cachorro.",
+  ], cta: { text: "Calcular o tamanho da caixa IATA", href: "/tools/" } },
+  { q: "Quais documentos são exigidos?", a: [
+    "As exigências variam conforme o país de destino. Dependendo do caso, você pode precisar especialmente de:",
+  ], bullets: [
+    "um passaporte para animais;",
+    "identificação por microchip;",
+    "vacinação antirrábica válida;",
+    "um atestado de saúde oficial;",
+    "e, eventualmente, exames complementares ou tratamentos antiparasitários.",
+  ], after: [
+    "Alguns destinos também exigem quarentena.",
+    "As exigências mudam com frequência, por isso é indispensável conferir informações atualizadas antes de partir.",
+  ], cta: { text: "Conferir as exigências por destino", href: "/countries/" } },
+  { q: "Todas as raças de cachorro podem viajar?", a: [
+    "Não. Algumas raças enfrentam restrições específicas.",
+    "Cachorros braquicefálicos, de focinho achatado (Buldogue Francês, Pug, Boxer…), às vezes são recusados no porão por causa do risco respiratório.",
+    "Outras companhias aplicam limitações a certas raças grandes ou consideradas potencialmente perigosas.",
+    "Cada companhia aérea tem a própria política.",
+  ], cta: { text: "Ver as restrições por raça", href: "/breeds/" } },
+  { q: "Como o MyDogCanFly ajuda?", a: [
+    "O MyDogCanFly não se limita a listar as regras das companhias. Nosso motor compara, de uma só vez:",
+  ], bullets: [
+    "as políticas das companhias aéreas;",
+    "as exigências do país de destino;",
+    "as características da raça do seu cachorro;",
+    "as limitações de cabine ou de porão;",
+    "as recomendações de segurança;",
+    "as condições de viagem próprias da sua rota.",
+  ], after: [
+    "Em segundos, você recebe uma recomendação personalizada acompanhada das fontes oficiais usadas para elaborá-la.",
+  ], cta: { text: "Fazer uma busca", href: "#flight-finder" } },
+];
+
+/* La langue est une clé, plus une branche : la FAQ portugaise existait déjà en données
+   que le ternaire à deux branches n'allait pas chercher. */
+const FAQS: Record<string, FaqItem[]> = { fr: FAQ_FR, es: FAQ_ES, pt: FAQ_PT, en: FAQ_EN };
+const faq: FaqItem[] = FAQS[locale] ?? FAQ_EN;
+const faqLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: [...f.a, ...(f.bullets ?? []), ...(f.after ?? [])].join(" ") } })),
+});
+---
+<section class="hero">
+  <div class="hero__sky" aria-hidden="true"></div>
+  <img class="hero__emblem mdcf-rise" src="/brand/emblem.png" alt="" aria-hidden="true" width="440" height="252" decoding="async" />
+  <div class="mdcf-container">
+    <p class="mdcf-eyebrow mdcf-rise">{t(locale, "home.hero.eyebrow")}</p>
+    <h1 class={`hero__title hero__title--${locale} mdcf-rise mdcf-rise-2`}><span class="hero__q">{heroA}</span>{heroB && <br />}{heroB && <span class="hero__accent">{heroB.split("\n").map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</span>}</h1>
+    <p class="hero__sub mdcf-rise mdcf-rise-3">{t(locale, "home.hero.sub").split("\n").map((line, i) => (<Fragment>{i > 0 && <br />}{line}</Fragment>))}</p>
+  </div>
+</section>
+
+<section id="flight-finder" class="mdcf-section finder-wrap">
+  <div class="mdcf-container">
+    <p class="finder-powered">{t(locale, "home.powered")}</p>
+    <FlightFinder locale={locale} />
+  </div>
+</section>
+
+<section class="stats-wrap">
+  <div class="mdcf-container">
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat"><b class="stat-n">{s.n}</b><span class="stat-l">{t(locale, s.key)}</span></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="bpass-wrap">
+  <div class="mdcf-container">
+    <div class="bpass" role="img" aria-label={`${bp.tag} — ${bp.airline} — BAILEY — ${bp.fromCity} ${bp.fromCode} → ${bp.toCity} ${bp.toCode}`}>
+      <div class="bpass__head">
+        <span class="bpass__logo">
+          <svg class="bpass__paw" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true">
+            <ellipse cx="14" cy="25" rx="5" ry="7"/><ellipse cx="25" cy="15" rx="5.5" ry="7.5"/>
+            <ellipse cx="39" cy="15" rx="5.5" ry="7.5"/><ellipse cx="50" cy="25" rx="5" ry="7"/>
+            <ellipse cx="32" cy="44" rx="15" ry="13"/>
+          </svg>
+          {bp.airline}
+        </span>
+        <span class="bpass__tag">{bp.tag}</span>
+      </div>
+      <div class="bpass__body">
+        <div class="bpass__route">
+          <div class="bpass__pt"><b>{bp.fromCode}</b><span>{bp.fromCity}</span></div>
+          <div class="bpass__mid" aria-hidden="true"><span class="bpass__dash"></span><span class="bpass__plane">✈</span><span class="bpass__dash"></span></div>
+          <div class="bpass__pt bpass__pt--r"><b>{bp.toCode}</b><span>{bp.toCity}</span></div>
+        </div>
+        <div class="bpass__grid">
+          {bp.rows.map((r) => (<div class="bpass__f"><span class="bpass__k">{r.k}</span><b class={r.hi ? "bpass__pax" : ""}>{r.v}</b></div>))}
+        </div>
+        <div class="bpass__barcode" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mdcf-section">
+  <div class="mdcf-container">
+    <p class="mdcf-eyebrow">{t(locale, "home.rated.eyebrow")}</p>
+    <h2 class="mdcf-h2">{t(locale, "home.rated.title")}</h2>
+    <p>{t(locale, "home.rated.sub")}</p>
+    <div class="rated">
+      {topRated.map((a, i) => (
+        <a class="mdcf-card rated-card" href={a.href}>
+          <span class="rated-rank">{i + 1}</span>
+          <span class="rated-name">{a.name}</span>
+          <span class="rated-score"><span class="rated-star" aria-hidden="true">★</span><b>{a.score.toFixed(1)}</b></span>
+        </a>
+      ))}
+    </div>
+    <p class="rated-more"><a href={localizeHref("/airlines/", locale)}>{t(locale, "home.rated.all")}</a></p>
+  </div>
+</section>
+
+<section class="mdcf-section bailey-sec">
+  <div class="mdcf-container bailey">
+    <button class="bailey__media bailey-open" type="button" data-video={baileyVideo} aria-label={bailey.aria}>
+      <img src="/campaign/bailey-jet.webp" srcset="/campaign/bailey-jet-900.webp 900w, /campaign/bailey-jet.webp 1600w" sizes="(max-width: 860px) 92vw, 560px" width="1600" height="886" alt="Bailey, Golden Retriever, lunettes aviateur bleues, à bord d'un jet privé" loading="lazy" decoding="async" />
+      <span class="bailey__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+    </button>
+    <div class="bailey__text">
+      <p class="mdcf-eyebrow">{bailey.eyebrow}</p>
+      <h2 class="bailey__title">Can my dog fly?<br /><span class="bailey__accent">For sure.</span></h2>
+      <p class="bailey__body">{bailey.text}</p>
+      <button class="mdcf-btn bailey-open" type="button" data-video={baileyVideo} aria-label={bailey.aria}>
+        <span class="bailey__btnplay" aria-hidden="true">▶</span> {bailey.cta}
+      </button>
+    </div>
+  </div>
+</section>
+
+<div id="bailey-modal" class="bailey-modal" hidden>
+  <div class="bailey-modal__backdrop" data-close></div>
+  <div class="bailey-modal__dialog" role="dialog" aria-modal="true" aria-label="MyDogCanFly">
+    <button class="bailey-modal__close" type="button" data-close aria-label={L("Close", "Fermer", "Cerrar")}>×</button>
+    <div class="bailey-modal__frame" id="bailey-frame"></div>
+    <a class="bailey-modal__fallback" id="bailey-fallback" href="https://www.youtube.com/@mydogcanfly" target="_blank" rel="noopener">
+      {L("Video not loading? Watch it on YouTube ↗", "La vidéo ne s'affiche pas ? Regarde-la sur YouTube ↗", "¿No se carga el vídeo? Míralo en YouTube ↗")}
+    </a>
+  </div>
+</div>
+
+<section class="mdcf-section">
+  <div class="mdcf-container">
+    <p class="mdcf-eyebrow">{t(locale, "home.trust.eyebrow")}</p>
+    <h2 class="mdcf-h2">{t(locale, "home.trust.title")}</h2>
+    <p>{t(locale, "home.trust.body")}</p>
+    <div class="trust-grid">
+      {trust.map((x) => (
+        <div class="trust-item">
+          <span class="trust-ic"><Icon name={x.icon} size={20} /></span>
+          <span class="trust-label">{t(locale, x.key)}</span>
+          <span class="trust-check" aria-hidden="true">✓</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="mdcf-section">
+  <div class="mdcf-container">
+    <p class="mdcf-eyebrow">{t(locale, "home.plan.eyebrow")}</p>
+    <h2 class="mdcf-h2">{t(locale, "home.plan.title")}</h2>
+    <div class="grid">{plan.map((x) => (
+      <a class="mdcf-card mdcf-card--link" href={localizeHref(x.href, locale)}>
+        <span class="plan-emoji" aria-hidden="true">{x.emoji}</span>
+        <span class="plan-label">{t(locale, x.key)}</span>
+      </a>
+    ))}</div>
+  </div>
+</section>
+
+{/* Placé en fin de parcours, juste avant la FAQ, et pas sous le Finder : sous le Finder,
+    26 liens vers des fiches détournaient le visiteur de l'outil, qui est le produit. Ici il
+    a lu l'argumentaire et les étapes de préparation — le bloc devient sa porte de sortie
+    vers les fiches. Le gain SEO de la position haute était marginal (ce qui compte est que
+    ces liens soient dans le corps de page, pas leur rang parmi dix sections) ; la perte de
+    conversion, elle, était réelle. */}
+{startHere.length > 0 && (
+  <section class="mdcf-section starthere">
+    <div class="mdcf-container">
+      <p class="mdcf-eyebrow">{L("Most viewed", "Les plus consultées", "Las más consultadas")}</p>
+      <h2 class="mdcf-h2">{L("Where our readers start", "Par où commencent nos lecteurs", "Por dónde empiezan nuestros lectores")}</h2>
+      <p class="sh-sub">{L("The pages most opened over the last 28 days — entry rules, airline policies, breeds and airports.", "Les pages les plus ouvertes sur les 28 derniers jours — formalités d'entrée, politiques des compagnies, races et aéroports.", "Las páginas más abiertas en los últimos 28 días — requisitos de entrada, políticas de aerolíneas, razas y aeropuertos.")}</p>
+      <div class="sh-grid">
+        {startHere.map((g) => (
+          <div class="sh-col">
+            <h3 class="sh-h3"><span aria-hidden="true">{g.emoji}</span> {g.label}</h3>
+            <ul class="sh-list">
+              {g.items.map((it) => (
+                <li><a href={it.href}>{it.flag && <span class="sh-flag" aria-hidden="true">{it.flag}</span>}{it.label}</a></li>
+              ))}
+            </ul>
+            <a class="sh-all" href={localizeHref(g.href, locale)}>{F("See all {0}", "Voir les {0}", "Ver los {0}", g.total)} →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<section class="mdcf-section faq">
+  <div class="mdcf-container">
+    <p class="mdcf-eyebrow">{t(locale, "home.faq.eyebrow")}</p>
+    <h2 class="mdcf-h2">{t(locale, "home.faq.title")}</h2>
+    <div class="faq-list">
+      {faq.map((f) => (
+        <details class="faq-item">
+          <summary><h3 class="faq-q">{f.q}</h3></summary>
+          <div class="faq-a">
+            {f.a.map((p) => <p>{p}</p>)}
+            {f.bullets && <ul>{f.bullets.map((b) => <li>{b}</li>)}</ul>}
+            {f.after && f.after.map((p) => <p>{p}</p>)}
+            <p class="faq-cta"><a href={faqHref(f.cta.href)}>{f.cta.text} →</a></p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={faqLd} is:inline />
+</section>
+
+<script is:inline>
+  (function () {
+    var modal = document.getElementById("bailey-modal");
+    var frame = document.getElementById("bailey-frame");
+    if (!modal || !frame) return;
+    var scrollY = 0;
+    function open(id) {
+      if (!id) return;
+      scrollY = window.scrollY;
+      // Lazy-load the YouTube player only now, on click.
+      frame.innerHTML =
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + id +
+        '?autoplay=1&rel=0&modestbranding=1" title="MyDogCanFly" frameborder="0" ' +
+        'style="position:absolute;inset:0;width:100%;height:100%;border:0" ' +
+        'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+        'allowfullscreen></iframe>';
+      var fb = document.getElementById("bailey-fallback");
+      if (fb) fb.setAttribute("href", "https://www.youtube.com/watch?v=" + id);
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      var c = modal.querySelector(".bailey-modal__close");
+      if (c) c.focus();
+    }
+    function close() {
+      modal.hidden = true;
+      frame.innerHTML = ""; // unload the player → stops playback, frees resources
+      document.body.style.overflow = "";
+      window.scrollTo(0, scrollY); // return to the exact same spot
+    }
+    document.querySelectorAll(".bailey-open").forEach(function (b) {
+      b.addEventListener("click", function () { open(b.getAttribute("data-video")); });
+    });
+    modal.querySelectorAll("[data-close]").forEach(function (el) {
+      el.addEventListener("click", close);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
+  })();
+</script>
+
+<style>
+  /* Bailey launch-film block — premium, minimal, integrated. */
+  .bailey { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; }
+  .bailey__media { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 18px; overflow: hidden; box-shadow: var(--mdcf-shadow); }
+  .bailey__media img { display: block; width: 100%; height: auto; border-radius: 18px; transition: transform .5s ease; }
+  .bailey__media:hover img { transform: scale(1.02); }
+  .bailey__play { position: absolute; inset: 0; margin: auto; width: 68px; height: 68px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--mdcf-ink); box-shadow: 0 6px 24px rgba(11,21,38,.28); transition: transform .2s ease, background .2s ease; }
+  .bailey__play svg { margin-left: 3px; }
+  .bailey__media:hover .bailey__play { transform: scale(1.08); background: #fff; }
+  .bailey__title { font-size: clamp(28px, 3.4vw, 40px); line-height: 1.08; letter-spacing: -.02em; margin: 6px 0 14px; color: var(--mdcf-ink); }
+  .bailey__accent { color: var(--mdcf-accent-ink); }
+  .bailey__body { color: var(--mdcf-muted); font-size: 16px; line-height: 1.6; margin: 0 0 22px; max-width: 42ch; }
+  .bailey__btnplay { font-size: 12px; }
+  @media (max-width: 860px) {
+    .bailey { grid-template-columns: 1fr; gap: 22px; }
+    .bailey__body { max-width: none; }
+  }
+  /* Lightbox */
+  .bailey-modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .bailey-modal[hidden] { display: none; }
+  .bailey-modal__backdrop { position: absolute; inset: 0; background: rgba(6,12,24,.86); backdrop-filter: blur(4px); }
+  .bailey-modal__dialog { position: relative; width: min(1040px, 96vw); }
+  .bailey-modal__frame { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; box-shadow: var(--mdcf-shadow-lg); background: #000; }
+  .bailey-modal__frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .bailey-modal__fallback {
+    display: block; margin: 12px auto 0; text-align: center;
+    font-size: 13px; color: rgba(255,255,255,.72); text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .bailey-modal__fallback:hover { color: #fff; }
+  .bailey-modal__close { position: absolute; top: -46px; right: 0; width: 38px; height: 38px; border-radius: 50%; border: 0; background: rgba(255,255,255,.14); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; transition: background .2s ease; }
+  .bailey-modal__close:hover { background: rgba(255,255,255,.28); }
+  @media (max-width: 620px) { .bailey-modal__close { top: -44px; } }
+
+  .hero { position: relative; padding: 64px 0 28px; overflow: hidden; min-height: 360px; }
+  @media (max-width: 720px) { .hero { min-height: 0; } }
+  .hero__sky { position: absolute; inset: -20% -10% auto -10%; height: 380px; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 70% at 78% 8%, var(--mdcf-sky-2) 0%, transparent 60%),
+      radial-gradient(50% 60% at 12% 0%, var(--mdcf-sky-1) 0%, transparent 55%); }
+  .hero .mdcf-container { position: relative; z-index: 1; }
+  .hero__emblem { position: absolute; z-index: 0; right: max(12px, calc((100% - var(--mdcf-max)) / 2 + 6px)); top: 26px;
+    width: clamp(280px, 34vw, 460px); height: auto; pointer-events: none; }
+  /* Line breaks are now explicit (via <br>), so lines don't re-wrap — size is only limited by the
+     emblem on the right. Per-locale sizing: FR text is longer (kept moderate), EN is short (larger). */
+  .hero__title { font-size: clamp(24px, 3.1vw, 34px); line-height: 1.14; margin: 0 0 12px; letter-spacing: -.02em; white-space: nowrap; }
+  .hero__title--fr { font-size: clamp(31px, 4.5vw, 49px); letter-spacing: -.05em; }   /* FR: EN size, tighter tracking */
+  .hero__title--en, .hero__title--es { font-size: clamp(31px, 4.5vw, 49px); }   /* ES aligned on the English hero */
+  .hero__q { white-space: nowrap; }
+  .hero__accent { color: var(--mdcf-accent-ink); font-size: 0.85em; line-height: 0.95; display: inline-block; vertical-align: top; margin-top: 0.4em; }
+  @media (max-width: 520px) { .hero__title, .hero__title--fr, .hero__title--en, .hero__title--es { white-space: normal; font-size: clamp(22px, 6vw, 30px); } }
+  .hero__sub { color: var(--mdcf-muted); font-style: normal; font-size: clamp(13px, 1.2vw, 14.5px); line-height: 1.65; margin: 0; max-width: 52ch; opacity: .92; }
+  .finder-wrap { padding-top: 8px; scroll-margin-top: 72px; }
+  .finder-powered { margin: 0 0 12px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--mdcf-muted); }
+  /* « Par où commencent nos lecteurs » — quatre colonnes de liens, HTML statique. */
+  .starthere { padding-top: 10px; }
+  .sh-sub { color: var(--mdcf-muted); max-width: 760px; margin: 0 0 20px; }
+  .sh-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+  .sh-col { border: 1px solid var(--mdcf-line); border-radius: 14px; padding: 16px 18px; background: var(--mdcf-surface); }
+  .sh-h3 { font-size: 14px; margin: 0 0 10px; letter-spacing: .01em; }
+  .sh-list { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 6px; }
+  .sh-list a { display: flex; align-items: center; gap: 7px; text-decoration: none; color: var(--mdcf-ink); font-size: 14px; font-weight: 600; }
+  .sh-list a:hover { text-decoration: underline; }
+  .sh-flag { font-size: 15px; line-height: 1; }
+  .sh-all { font-size: 13px; font-weight: 700; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  .sh-all:hover { text-decoration: underline; }
+  @media (max-width: 900px) { .sh-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 520px) { .sh-grid { grid-template-columns: 1fr; } }
+
+  .stats-wrap { border-top: 1px solid var(--mdcf-line); border-bottom: 1px solid var(--mdcf-line); background: var(--mdcf-subtle); padding: 22px 0; }
+
+  /* ---- Decorative dog boarding pass (tilted, ~1:3, no stub) ---- */
+  /* overflow-x: clip guards against horizontal scroll from the rotation, while overflow-y stays
+     visible so the drop shadow fades into the (white) block below — no hard cut-off seam. */
+  .bpass-wrap { --bp-tilt: 0deg; background: #fff; padding: 56px 0; overflow-x: clip; overflow-y: visible; }
+  .bpass { max-width: 865px; margin: 0 auto; aspect-ratio: 3 / 1; display: flex; flex-direction: column;
+    background: #fff; border-radius: 16px; overflow: hidden; font-family: "Helvetica Neue", Arial, sans-serif;
+    transform: rotate(var(--bp-tilt)); box-shadow: 0 20px 44px rgba(0, 30, 80, .26), 0 2px 8px rgba(0, 30, 80, .12); }
+  .bpass__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: linear-gradient(100deg, #001e50, #0a2f6e); color: #fff; padding: 12px 22px; }
+  .bpass__logo { display: inline-flex; align-items: center; gap: 9px; font-weight: 800; letter-spacing: .04em; font-size: 15px; white-space: nowrap; }
+  .bpass__paw { flex: 0 0 auto; width: 30px; height: 30px; fill: var(--mdcf-accent, #f2700f); filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .28)); }
+  .bpass__tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #ffd9b0; white-space: nowrap; }
+
+  .bpass__body { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 16px 26px; }
+  .bpass__route { display: flex; align-items: center; gap: 16px; }
+  .bpass__pt { display: flex; flex-direction: column; line-height: 1; }
+  .bpass__pt--r { text-align: right; }
+  .bpass__pt b { font-size: 36px; font-weight: 800; color: #001e50; letter-spacing: .02em; }
+  .bpass__pt span { margin-top: 5px; font-size: 12.5px; color: var(--mdcf-muted, #5b6b7f); text-transform: uppercase; letter-spacing: .06em; }
+  .bpass__mid { flex: 1 1 auto; display: flex; align-items: center; gap: 6px; color: #f2700f; }
+  .bpass__dash { flex: 1 1 auto; height: 0; border-top: 2px dashed #cdd8ea; }
+  .bpass__plane { font-size: 20px; transform: translateY(-1px); }
+
+  .bpass__grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px 16px; }
+  .bpass__f { display: flex; flex-direction: column; min-width: 0; }
+  .bpass__k { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--mdcf-muted, #5b6b7f); }
+  .bpass__f b { font-size: 14.5px; font-weight: 800; color: #1a2433; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bpass__f b.bpass__pax { color: var(--mdcf-accent, #f2700f); }
+
+  .bpass__barcode { height: 40px; border-radius: 4px;
+    background: repeating-linear-gradient(90deg, #1a2433 0, #1a2433 2px, transparent 2px, transparent 4px, #1a2433 4px, #1a2433 7px, transparent 7px, transparent 9px, #1a2433 9px, #1a2433 10px, transparent 10px, transparent 13px); }
+
+  @media (max-width: 720px) {
+    .bpass-wrap { padding: 30px 0; }
+    .bpass { aspect-ratio: auto; transform: rotate(0deg); box-shadow: 0 16px 34px rgba(0, 30, 80, .22); }
+    .bpass__pt b { font-size: 30px; }
+    .bpass__grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  @media (max-width: 420px) { .bpass__logo { font-size: 13px; } .bpass__grid { grid-template-columns: 1fr 1fr; } }
+  .stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; text-align: center; }
+  .stat { display: flex; flex-direction: column; gap: 2px; }
+  .stat-n { font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--mdcf-accent-ink, var(--mdcf-ink)); letter-spacing: -.01em; }
+  .stat-l { font-size: 13px; color: var(--mdcf-muted); }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+  .trust-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--mdcf-line); border-radius: 12px; background: var(--mdcf-surface); }
+  .trust-ic { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; color: var(--mdcf-accent); background: var(--mdcf-accent-soft); }
+  .trust-label { flex: 1 1 auto; font-weight: 600; font-size: 14.5px; }
+  .trust-check { color: #059669; font-weight: 800; }
+  .rated { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .rated-card { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--mdcf-ink); }
+  .rated-rank { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 999px; background: var(--mdcf-subtle); color: var(--mdcf-muted); font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
+  .rated-name { flex: 1 1 auto; font-weight: 600; font-size: 14.5px; }
+  .rated-score { display: inline-flex; align-items: center; gap: 4px; }
+  .rated-star { color: #f59e0b; }
+  .rated-score b { font-size: 17px; }
+  .rated-more { margin: 14px 0 0; font-size: 14px; }
+  .plan-emoji { flex: 0 0 auto; font-size: 20px; line-height: 1; }
+  .plan-label { font-weight: 600; font-size: 14.5px; }
+  @media (max-width: 820px) { .stats { grid-template-columns: repeat(3, 1fr); row-gap: 18px; } .trust-grid, .rated { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .stats { grid-template-columns: 1fr 1fr; } .trust-grid, .rated { grid-template-columns: 1fr; } }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .mdcf-card--link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--mdcf-ink); font-weight: 650;
+    transition: border-color .15s, transform .15s, box-shadow .15s; }
+  .mdcf-card--link:hover { border-color: var(--mdcf-accent); transform: translateY(-2px); box-shadow: var(--mdcf-shadow); text-decoration: none; }
+  .tool-ic { flex: 0 0 auto; width: 38px; height: 38px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+    color: var(--mdcf-accent); background: var(--mdcf-accent-soft); }
+  @media (max-width: 960px) { .hero__emblem { opacity: .16; right: -20px; } }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } .hero__emblem { display: none; } }
+  .faq-list { display: grid; gap: 10px; margin-top: 16px; }
+  .faq-item { border: 1px solid var(--mdcf-line); border-radius: 12px; background: var(--mdcf-surface); }
+  .faq-item > summary { cursor: pointer; list-style: none; padding: 15px 18px; font-weight: 650; font-size: 16px; line-height: 1.35;
+    color: var(--mdcf-ink); display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+  .faq-item > summary::-webkit-details-marker { display: none; }
+  .faq-item > summary::after { content: "+"; flex: 0 0 auto; color: var(--mdcf-accent-ink); font-weight: 800; font-size: 20px; line-height: 1; }
+  .faq-q { margin: 0; font-size: inherit; font-weight: inherit; line-height: inherit; color: inherit; flex: 1 1 auto; }
+  .faq-item[open] > summary { color: var(--mdcf-accent-ink); }
+  .faq-item[open] > summary::after { content: "−"; }
+  .faq-a { padding: 0 18px 16px; }
+  .faq-a p { margin: 0 0 10px; color: var(--mdcf-muted); font-size: 15px; line-height: 1.6; }
+  .faq-a ul { margin: 0 0 10px; padding-left: 20px; color: var(--mdcf-muted); font-size: 15px; line-height: 1.6; }
+  .faq-a li { margin: 3px 0; }
+  .faq-cta { margin: 4px 0 0; }
+  .faq-cta a { color: var(--mdcf-accent-ink); font-weight: 650; text-decoration: none; }
+  .faq-cta a:hover { text-decoration: underline; }
+</style>

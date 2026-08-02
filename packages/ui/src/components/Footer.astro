@@ -1,0 +1,97 @@
+---
+import { t, inlineT } from "@mydogcanfly/knowledge";
+import { localizeHref } from "../lib/routes";
+import Logo from "./Logo.astro";
+import { LEGAL } from "../lib/legal";
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const L = inlineT(locale);
+const cols = [
+  { title: L("Product", "Produit", "Producto"), links: [["nav.flight_finder", "/#flight-finder"], ["nav.tools", "/tools/"]] as const },
+  { title: L("Knowledge", "Connaissances", "Conocimiento"), links: [["nav.airlines", "/airlines/"], ["nav.countries", "/countries/"]] as const },
+  { title: L("Company", "Entreprise", "Empresa"), /* Le Travel Hub est sorti du pied de page le 01/08/2026 : il est désormais atteint depuis le
+     bloc des outils liés, présent sur toutes les fiches, ce qui le met sur le chemin du lecteur
+     au lieu de l'enterrer sous « Entreprise » — où il passait pour une page institutionnelle. */
+    links: [["nav.about", "/about/"], ["nav.press", "/presskit/"]] as const },
+];
+const legalLinks: [string, string][] = [
+  ["/about/", L("About", "À propos", "Acerca de")],
+  ["/legal-notice/", L("Legal notice", "Mentions légales", "Aviso legal")],
+  ["/privacy/", L("Privacy", "Confidentialité", "Privacidad")],
+  ["/cookies/", L("Cookies", "Cookies", "Cookies")],
+  ["/terms/", L("Terms", "Conditions", "Términos")],
+];
+// Social channels — only render the ones with a URL set (see src/lib/legal.ts).
+const socials = [
+  { key: "youtube", label: "YouTube", url: LEGAL.youtube },
+  { key: "instagram", label: "Instagram", url: LEGAL.instagram },
+  { key: "tiktok", label: "TikTok", url: LEGAL.tiktok },
+  { key: "x", label: "X", url: LEGAL.x },
+].filter((s) => s.url);
+---
+<footer class="ftr">
+  <div class="mdcf-container ftr__row">
+    <div class="ftr__brand">
+      <div class="ftr__logo"><Logo /></div>
+      <p class="ftr__tag">{t(locale, "brand.tagline")}</p>
+      {socials.length > 0 && (
+        <div class="ftr__social">
+          {socials.map((s) => (
+            <a class="ftr__soc" href={s.url} target="_blank" rel="noopener" aria-label={s.label} title={s.label}>
+              {s.key === "youtube" && (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.75-1.77C18.28 5 12 5 12 5s-6.28 0-7.85.43A2.5 2.5 0 0 0 2.4 7.2 26.3 26.3 0 0 0 2 12a26.3 26.3 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.75 1.77C5.72 19 12 19 12 19s6.28 0 7.85-.43A2.5 2.5 0 0 0 21.6 16.8 26.3 26.3 0 0 0 22 12a26.3 26.3 0 0 0-.4-4.8ZM10 15V9l5.2 3-5.2 3Z"/></svg>
+              )}
+              {s.key === "instagram" && (
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.4" cy="6.6" r="1.05" fill="currentColor" stroke="none"/></svg>
+              )}
+              {s.key === "tiktok" && (
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.1 1.5 3.4 3.5 3.6v2.4c-1.2.1-2.3-.2-3.5-.9v4.9c0 4.3-3.4 6.7-6.8 5.7-2.9-.8-4.2-3.9-3-6.6.9-2 3-3.1 5.2-2.8v2.5c-.4-.1-.8-.1-1.2 0-1.1.2-1.9 1.1-1.8 2.3.1 1.4 1.5 2.3 2.9 1.9 1-.3 1.6-1.2 1.6-2.4V3h2.6Z"/></svg>
+              )}
+              {s.key === "x" && (
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.1 8.1L23.2 22h-6.6l-5.2-6.8L5.5 22H2.3l7.6-8.7L1.1 2h6.8l4.7 6.2L18.9 2Zm-1.2 18h1.8L7.1 3.9H5.2L17.7 20Z"/></svg>
+              )}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+    {cols.map((c) => (
+      <div class="ftr__col">
+        <div class="ftr__title">{c.title}</div>
+        {c.links.map(([key, href]) => <a href={localizeHref(href, locale)}>{t(locale, key)}</a>)}
+      </div>
+    ))}
+  </div>
+  <div class="mdcf-container ftr__note">
+    <a href={localizeHref("/report-error/", locale)}>
+      🐾 {L("Spotted an error on this site? Let us know", "Tu as repéré une erreur sur ce site ? Signale-la-nous", "¿Has visto un error en este sitio? Avísanos")} →
+    </a>
+  </div>
+  <div class="mdcf-container ftr__legal">
+    <span class="ftr__copy">© 2026 B2BVENUES</span>
+    <nav class="ftr__legallinks">
+      {legalLinks.map(([href, label]) => <a href={localizeHref(href, locale)}>{label}</a>)}
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .ftr { background: var(--mdcf-subtle); border-top: 1px solid var(--mdcf-line); padding: 40px 0; }
+  .ftr__row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; }
+  .ftr__logo { font-weight: 800; }
+  .ftr__tag { color: var(--mdcf-muted); font-size: 14px; max-width: 30ch; }
+  .ftr__social { display: flex; gap: 10px; margin-top: 16px; }
+  .ftr__soc { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 999px; border: 1.5px solid var(--mdcf-navy, #011d48); color: var(--mdcf-navy, #011d48); background: var(--mdcf-surface, #fff); transition: background .18s ease, color .18s ease; }
+  .ftr__soc:hover { background: var(--mdcf-navy, #011d48); color: #fff; }
+  .ftr__title { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--mdcf-muted); margin-bottom: 10px; }
+  .ftr__col a { display: block; color: var(--mdcf-ink); text-decoration: none; font-size: 14px; padding: 4px 0; }
+  .ftr__note { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--mdcf-line); }
+  .ftr__note a { color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; font-size: 14px; font-weight: 600; }
+  .ftr__note a:hover { text-decoration: underline; }
+  .ftr__legal { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+  .ftr__copy { color: var(--mdcf-muted); font-size: 12px; }
+  .ftr__legallinks { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .ftr__legallinks a { color: var(--mdcf-muted); font-size: 12px; text-decoration: none; }
+  .ftr__legallinks a:hover { color: var(--mdcf-ink); text-decoration: underline; }
+  @media (max-width: 820px) { .ftr__row { grid-template-columns: 1fr 1fr; } }
+</style>
