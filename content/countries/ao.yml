@@ -17,12 +17,14 @@ exit:
     pt: "Angola é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para regressar à UE — além de um atestado de saúde de exportação endossado pelo Instituto dos Serviços de Veterinária (ISV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipar o teste sorológico antirrábico (titulação): análise de sangue num laboratório aprovado pela UE, pelo menos 30 dias depois da vacinação — um resultado válido é indispensável para reentrar na UE e não se resolve à última hora."
     - timing: window
+      scope: any
       text:
         en: "The ISV (veterinary public-health service) issues the certificate of origin and health and sets the norms for exporting animals."
         fr: "L'ISV (service de santé publique vétérinaire) délivre le certificat d'origine et de santé et fixe les normes d'export des animaux."
@@ -223,6 +225,7 @@ requirements:
     ref: { en: "No published Angolan quarantine rule (ISV)", fr: "Aucune règle de quarantaine angolaise publiée (ISV)", es: "No hay norma angoleña de cuarentena publicada (ISV)", pt: "Nenhuma regra angolana de quarentena publicada (ISV)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -348,7 +351,7 @@ sources:
 
 seo:
   title: { en: "Angola Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Angola — Guide", es: "Requisitos de entrada de perros en Angola — Guía de viaje", pt: "Angola: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Angola With Your Dog: Entry Requirements (2026)", fr: "Voyager en Angola avec ton chien : formalités (2026)", es: "Viajar a Angola con tu perro: requisitos de entrada (2026)", pt: "Viajar para Angola com o cachorro: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Angola: Pet Travel Requirements 2026", fr: "Voyager en Angola avec ton chien : formalités (2026)", es: "Viajar a Angola con tu perro: requisitos de entrada (2026)", pt: "Viajar para Angola com o cachorro: exigências de entrada 2026" }
   metaDesc:
     en: "Official ISV/MINAGRIF framework for bringing a dog into Angola: rabies vaccination, endorsed and legalised veterinary certificate. Sourced and dated."
     fr: "Cadre officiel ISV/MINAGRIF pour faire entrer un chien en Angola : vaccination antirabique, certificat vétérinaire visé et légalisé. Sourcé et daté."

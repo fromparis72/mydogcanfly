@@ -230,7 +230,12 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         <h2>🛫 {T("Leaving the country (return trip)", "Sortie du territoire (au retour)", "Salida del país (viaje de vuelta)")}</h2>
         <p class="muted">{t(g.exit.intro)}</p>
         <ul class="exitsteps">
-          {g.exit.steps.map((s) => (
+          {/* Les étapes `non_eu` sont la généralisation d'une étape européenne, écrite pour la
+              fiche de voyage — qui, elle, connaît la destination et n'affiche que l'une des deux.
+              Ici la destination est inconnue : les montrer toutes les deux ferait lire deux fois
+              la même démarche, une fois avec le certificat UE, une fois sans. Cette page garde
+              donc son texte d'origine, au mot près. */}
+          {g.exit.steps.filter((s) => s.scope !== "non_eu").map((s) => (
             <li>
               {s.timing === "longlead"
                 ? <span class="exitchip crit">⚠️ {T("Start before you leave", "À lancer avant de partir", "Empieza antes de salir")}</span>

@@ -193,6 +193,7 @@ requirements:
     ref: { en: "svps.sk", fr: "svps.sk", es: "svps.sk", pt: "svps.sk" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -225,11 +226,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Eslovaquia depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Eslováquia depende do país de onde você veio."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: enter via a designated travellers' point of entry and contact the competent authority (veterinary/customs) present for the documentary and identity check."
+    - from: non_eu
+      en: "From outside the EU: enter via a designated travellers' point of entry and contact the competent authority (veterinary/customs) present for the documentary and identity check."
       fr: "Depuis hors UE : entre par un point d'entrée voyageurs désigné et contacte l'autorité compétente (vétérinaire/douane) présente pour le contrôle documentaire et d'identité."
       es: "Desde fuera de la UE: entra por un punto de entrada de viajeros designado y contacta con la autoridad competente (veterinaria/aduanas) presente para el control documental y de identidad."
       pt: "De fora da UE: entre por um ponto de entrada de viajantes designado e procure a autoridade competente presente (serviço veterinário ou alfândega) para o controle documental e de identidade."
@@ -326,7 +329,7 @@ sources:
 
 seo:
   title: { en: "Slovakia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Slovaquie — Guide", es: "Requisitos de entrada de perros en Eslovaquia — Guía de viaje", pt: "Eslováquia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Slovakia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Slovaquie avec ton chien : formalités (2026)", es: "Viajar a Eslovaquia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Eslováquia: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Slovakia: Pet Travel Requirements 2026", fr: "Voyager en Slovaquie avec ton chien : formalités (2026)", es: "Viajar a Eslovaquia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Eslováquia: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Slovakia — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Slovaquie — selon origine UE, pays listé ou non listé. Sourcé et daté."

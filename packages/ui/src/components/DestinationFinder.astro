@@ -225,7 +225,7 @@ const L = {
   // une race ici la transmet aux liens porteurs de contexte.
   const ctx = (window as { mdcfCtx?: { breed?: string; setBreed?: (v: string) => void } }).mdcfCtx;
   (function () {
-    const bid = new URLSearchParams(location.search).get("breed") || "";
+    const bid = window.mdcfQuery().get("breed") || "";
     const label = bid ? (L.breedById ?? {})[bid] : "";
     if (label && breedEl) { breedEl.value = label; breedEl.dispatchEvent(new Event("change", { bubbles: true })); }
   })();

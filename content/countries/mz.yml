@@ -17,12 +17,14 @@ exit:
     pt: "Moçambique é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para regressar à UE — além de um atestado de saúde de exportação endossado pela Direcção Nacional de Veterinária (DINAV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipar o teste sorológico antirrábico (titulação): análise de sangue num laboratório aprovado pela UE, pelo menos 30 dias depois da vacinação — um resultado válido é indispensável para reentrar na UE e não se resolve à última hora."
     - timing: window
+      scope: any
       text:
         en: "The veterinary authority (DINAV) must authorise the export and issue the international sanitary certificate before the dog can leave."
         fr: "L'autorité vétérinaire (DINAV) doit autoriser l'export et délivrer le certificat sanitaire international avant que le chien puisse partir."
@@ -227,6 +229,7 @@ requirements:
     ref: { en: "Mozambique import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation du Mozambique (aucune législation par race citée)", es: "Condiciones de importación de Mozambique (no se cita legislación por raza)", pt: "Condições de importação de Moçambique (nenhuma legislação por raça citada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -354,7 +357,7 @@ sources:
 
 seo:
   title: { en: "Mozambique Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Mozambique — Guide", es: "Requisitos de entrada de perros en Mozambique — Guía de viaje", pt: "Moçambique: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Mozambique With Your Dog: Entry Requirements (2026)", fr: "Voyager au Mozambique avec ton chien : formalités (2026)", es: "Viajar a Mozambique con tu perro: requisitos de entrada (2026)", pt: "Viajar para Moçambique com um cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Mozambique: Pet Travel Requirements", fr: "Voyager au Mozambique avec ton chien : formalités (2026)", es: "Viajar a Mozambique con tu perro: requisitos de entrada (2026)", pt: "Viajar para Moçambique com um cachorro: exigências (2026)" }
   metaDesc:
     en: "Official rules for bringing a dog into Mozambique: import licence from DINAV, rabies vaccination, international sanitary certificate. Sourced and dated."
     fr: "Règles officielles pour faire entrer un chien au Mozambique : licence d'importation de la DINAV, vaccination antirabique. Sourcé et daté."

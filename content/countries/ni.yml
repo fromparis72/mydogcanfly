@@ -18,12 +18,14 @@ exit:
     pt: "A Nicarágua é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo Instituto de Protección y Sanidad Agropecuaria (IPSA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "IPSA (Animal Health / Agricultural Quarantine) is the competent authority that issues the export zoosanitary certificate before departure."
         fr: "L'IPSA (santé animale / quarantaine agricole) est l'autorité compétente qui délivre le certificat zoosanitaire d'export avant le départ."
@@ -238,7 +240,9 @@ requirements:
     ref: { en: "USDA APHIS — Pet Travel to Nicaragua; IPSA", fr: "USDA APHIS — Voyage d'animaux vers le Nicaragua ; IPSA", es: "USDA APHIS — Viaje de mascotas a Nicaragua; IPSA", pt: "USDA APHIS — Viagem de animais de estimação para a Nicarágua; IPSA" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a personal pet travelling with its owner", fr: "Standard — un animal de compagnie voyageant avec son propriétaire", es: "Estándar — una mascota personal que viaja con su propietario", pt: "Padrão — um animal de estimação pessoal viajando com o dono" }
     body:
       en: "A dog accompanying its owner needs an official export veterinary certificate from the country of departure confirming a clinical exam and good health, the core canine vaccines (distemper, hepatitis, leptospirosis, parvovirus, rabies) applied between 30 and 365 days before export, and an internal/external parasite treatment within 30 days of shipment. No advance import permit is needed. On arrival the pet is presented to IPSA at the point of entry, where a quarantine permit is issued and the animal and documents are inspected. There is no rabies antibody test and no routine quarantine for a compliant dog."
@@ -247,6 +251,7 @@ origin:
       pt: "Um cachorro que acompanha o dono precisa de um certificado veterinário oficial de exportação do país de partida atestando exame clínico e bom estado de saúde, das vacinas caninas essenciais (cinomose, hepatite, leptospirose, parvovirose, raiva) aplicadas entre 30 e 365 dias antes da exportação e de um tratamento antiparasitário interno/externo nos 30 dias anteriores ao embarque. Não é preciso autorização de importação prévia. Na chegada, o animal é apresentado ao IPSA no ponto de entrada, onde é emitida a autorização de quarentena e o animal e os documentos são inspecionados. Não há teste sorológico antirrábico nem quarentena de rotina para um cachorro em conformidade."
     cls: ok
   listed:
+    from: [us]
     title: { en: "Arriving from the United States", fr: "Arrivée depuis les États-Unis", es: "Llegada desde los Estados Unidos", pt: "Chegando dos Estados Unidos" }
     body:
       en: "From the United States a USDA-accredited veterinarian issues the export health certificate through VEHCS, and APHIS must ink-sign and emboss it. The clinical exam is done within two weeks of departure; dogs over four months old must be vaccinated against rabies (valid for no more than 365 days before embarkation), and the rabies vaccination certificate accompanies the health documents. The certificate needs no Notary Public or Nicaraguan consular stamp. Present one original and one photocopy on arrival, where a quarantine permit is obtained at the port of entry."
@@ -375,7 +380,7 @@ sources:
 
 seo:
   title: { en: "Nicaragua Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Nicaragua — Guide", es: "Requisitos de entrada de perros en Nicaragua — Guía de viaje", pt: "Nicarágua: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Nicaragua With Your Dog: Entry Requirements (2026)", fr: "Voyager au Nicaragua avec ton chien : formalités (2026)", es: "Viajar a Nicaragua con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Nicarágua: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Nicaragua: Pet Travel Requirements 2026", fr: "Voyager au Nicaragua avec ton chien : formalités (2026)", es: "Viajar a Nicaragua con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Nicarágua: exigências de entrada (2026)" }
   metaDesc:
     en: "Official IPSA rules for bringing a dog into Nicaragua — export veterinary certificate, core vaccines and rabies (30–365 days before export). Sourced and dated."
     fr: "Règles officielles de l'IPSA pour faire entrer un chien au Nicaragua : certificat vétérinaire d'exportation, vaccins de base et rage (30–365 jours avant l'export)."

@@ -21,12 +21,14 @@ exit:
     pt: "O Uruguai é um país não listado, então o teste sorológico antirrábico válido é obrigatório para voltar à União Europeia — além de um atestado de saúde de exportação endossado pelo MGAP (Dirección General de Servicios Ganaderos)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The international veterinary certificate (CVI) is issued by MGAP at an Animal Health office, from a health certificate by an MGAP-accredited vet dated within 10 days."
         fr: "Le certificat vétérinaire international (CVI) est délivré par le MGAP dans un bureau de santé animale, à partir d'un certificat d'un vétérinaire agréé MGAP de moins de 10 jours."
@@ -237,7 +239,9 @@ requirements:
     ref: { en: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", fr: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", es: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay", pt: "MGAP/DGSG — Ingreso de caninos y felinos a Uruguay" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard scheme — CVI or endorsed passport", fr: "Régime standard — CVI ou passeport refrendé", es: "Esquema estándar — CVI o pasaporte refrendado", pt: "Esquema padrão — CVI ou passaporte endossado" }
     body:
       en: "For almost every origin the path is the same. Your dog needs an International Veterinary Certificate (CVI) issued, signed and stamped by the official veterinary authority of the country you travel from, under Mercosur Res. GMC 17/15. It must show a clinical exam (within 10 days), an ISO microchip, a valid rabies vaccination, and internal & external parasite treatment within 15 days — the internal product containing praziquantel. A current official passport carrying the same information and endorsed by an official veterinarian before shipment is accepted instead. You present the documents and the dog at the MGAP office at the border; travelling together with your pet needs no import authorization."
@@ -370,7 +374,7 @@ sources:
 
 seo:
   title: { en: "Uruguay Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Uruguay — Guide", es: "Requisitos de entrada de perros en Uruguay — Guía de viaje", pt: "Uruguai: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Uruguay With Your Dog: Entry Requirements (2026)", fr: "Voyager en Uruguay avec ton chien : formalités (2026)", es: "Viajar a Uruguay con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Uruguai: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Uruguay: Pet Travel Requirements 2026", fr: "Voyager en Uruguay avec ton chien : formalités (2026)", es: "Viajar a Uruguay con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Uruguai: exigências de entrada 2026" }
   metaDesc:
     en: "Official MGAP/DGSG rules for bringing a dog into Uruguay: International Veterinary Certificate or endorsed passport, ISO microchip. Sourced and dated."
     fr: "Règles officielles MGAP/DGSG pour faire entrer un chien en Uruguay : Certificat Vétérinaire International ou passeport refrendé, puce ISO. Sourcé et daté."

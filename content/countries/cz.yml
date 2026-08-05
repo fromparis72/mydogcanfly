@@ -192,6 +192,7 @@ requirements:
     ref: { en: "svscr.cz", fr: "svscr.cz", es: "svscr.cz", pt: "svscr.cz" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -224,11 +225,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Chequia depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Tchéquia depende do país de onde você veio."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: pets may be imported only via an approved international airport point of entry; present yourself to Czech customs for documentary and identity checks."
+    - from: non_eu
+      en: "From outside the EU: pets may be imported only via an approved international airport point of entry; present yourself to Czech customs for documentary and identity checks."
       fr: "Depuis hors UE : les animaux ne peuvent entrer que par un aéroport international agréé comme point d'entrée ; présente-toi à la douane tchèque pour les contrôles documentaires et d'identité."
       es: "Desde fuera de la UE: las mascotas solo pueden entrar por un aeropuerto internacional autorizado como punto de entrada; preséntate ante la aduana checa para los controles documentales y de identidad."
       pt: "De fora da UE: os animais de estimação só podem ser importados por um aeroporto internacional aprovado como ponto de entrada; apresente-se à alfândega tcheca para os controles de documentos e de identificação."
@@ -325,7 +328,7 @@ sources:
 
 seo:
   title: { en: "Czechia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Tchéquie — Guide", es: "Requisitos de entrada de perros en Chequia — Guía de viaje", pt: "Tchéquia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Czechia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Tchéquie avec ton chien : formalités (2026)", es: "Viajar a Chequia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Tchéquia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Czechia: Pet Travel Requirements 2026", fr: "Voyager en Tchéquie avec ton chien : formalités (2026)", es: "Viajar a Chequia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Tchéquia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Czechia — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Tchéquie — selon origine UE, pays listé ou non listé. Sourcé et daté."

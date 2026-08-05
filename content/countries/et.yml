@@ -17,12 +17,14 @@ exit:
     pt: "A Etiópia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Diretoria Reguladora de Saúde Animal do Ministério da Agricultura."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The Ministry of Agriculture's Animal Health Regulatory Directorate regulates live-animal export and issues the veterinary certificate before departure."
         fr: "La Direction de la réglementation de la santé animale du ministère de l'Agriculture régule l'export d'animaux vivants et délivre le certificat vétérinaire avant le départ."
@@ -237,6 +239,7 @@ requirements:
     ref: { en: "No official breed-specific legislation located (EAA / customs)", fr: "Aucune législation par race officielle localisée (EAA / douane)", es: "No se localizó legislación oficial por raza (EAA / aduanas)", pt: "Nenhuma legislação específica por raça localizada (EAA / alfândega)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -360,7 +363,7 @@ sources:
 
 seo:
   title: { en: "Ethiopia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Éthiopie — Guide", es: "Requisitos de entrada de perros en Etiopía — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Etiópia — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Ethiopia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Éthiopie avec ton chien : formalités (2026)", es: "Viajar a Etiopía con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Etiópia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Ethiopia: Pet Travel Requirements 2026", fr: "Voyager en Éthiopie avec ton chien : formalités (2026)", es: "Viajar a Etiopía con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Etiópia: exigências de entrada 2026" }
   metaDesc:
     en: "Official rules for bringing a dog into Ethiopia: a mandatory EAA import permit and a government-endorsed veterinary certificate. Sourced and dated."
     fr: "Règles officielles pour faire entrer un chien en Éthiopie : permis d'importation EAA obligatoire et certificat vétérinaire visé par le gouvernement. Sourcé et daté."

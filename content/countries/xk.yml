@@ -23,17 +23,26 @@ exit:
     pt: "O Kosovo é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde emitido por um veterinário oficial da Agência de Alimentos e Veterinária (AUV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "The EU-model animal health certificate is issued and signed by an AUV official veterinarian before departure."
         fr: "Le certificat sanitaire au modèle UE est délivré et signé par un vétérinaire officiel de l'AUV avant le départ."
         es: "El certificado sanitario en modelo UE lo emite y firma un veterinario oficial de la AUV antes de salir."
         pt: "O certificado sanitário no modelo da UE é emitido e assinado por um veterinário oficial da AUV antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "The animal health certificate is issued and signed by an AUV official veterinarian before departure."
+        fr: "Le certificat sanitaire est délivré et signé par un vétérinaire officiel de l'AUV avant le départ."
+        es: "El certificado sanitario lo expide y firma un veterinario oficial de la AUV antes de la salida."
+        pt: "O certificado sanitário é emitido e assinado por um veterinário oficial da AUV antes da partida."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -221,6 +230,7 @@ requirements:
     ref: { en: "AI No. 02/2009 (AUV), Art. 14(3)", fr: "IA n° 02/2009 (AUV), art. 14(3)", es: "IA n.º 02/2009 (AUV), art. 14(3)", pt: "IA nº 02/2009 (AUV), art. 14(3)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU — certificate, no blood test", fr: "Depuis l'UE — certificat, sans prise de sang", es: "Desde la UE — certificado, sin análisis de sangre", pt: "Da UE — certificado, sem exame de sangue" }
     body:
@@ -350,7 +360,7 @@ sources:
 
 seo:
   title: { en: "Kosovo Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Kosovo — Guide", es: "Requisitos de entrada de perros en Kosovo — Guía de viaje", pt: "Exigências de entrada de cachorros no Kosovo — Guia de viagem" }
-  metaTitle: { en: "Traveling to Kosovo With Your Dog: Entry Requirements (2026)", fr: "Voyager au Kosovo avec ton chien : formalités (2026)", es: "Viajar a Kosovo con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Kosovo: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Kosovo: Pet Travel Requirements 2026", fr: "Voyager au Kosovo avec ton chien : formalités (2026)", es: "Viajar a Kosovo con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Kosovo: exigências de entrada 2026" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and tapeworm rules for a dog entering Kosovo (AUV AI 02/2009) — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, titrage et échinococcose pour faire entrer un chien au Kosovo (AUV IA 02/2009) — selon origine UE. Sourcé et daté."

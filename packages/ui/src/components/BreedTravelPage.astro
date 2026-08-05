@@ -14,12 +14,15 @@ const base = locale === "en" ? "" : `/${locale}`;
 const t = localizer(locale);
 const flag = (iso: string) => (iso.length === 2 ? String.fromCodePoint(...[...iso.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : "");
 const star = (n: number) => "★".repeat(Math.round(n)) + "☆".repeat(Math.max(0, 5 - Math.round(n)));
-// La query string DOIT précéder l'ancre : tout ce qui suit "#" est un fragment, donc
-// "/#flight-finder?breed=x" ne transmet rien à location.search et le Finder ne pré-remplit pas.
-const finderHref = `${base}/?breed=${p.id}#flight-finder`;
-const crateHref = `${base}/tools/crate/?breed=${p.id}`;
-const heatHref = `${base}/tools/heat/?breed=${p.id}`;
-const destHref = `${base}/tools/destinations/?breed=${p.id}`;
+/* Paramètres dans le DIÈSE. Le commentaire qui figurait ici disait l'inverse — « la query
+   string DOIT précéder l'ancre, sinon le Finder ne pré-remplit pas » — et c'était vrai tant
+   que la lecture passait par `location.search`. Depuis que `mdcfQuery` lit d'abord le
+   fragment, la contrainte tombe, et avec elle les dizaines de milliers d'URL paramétrées
+   que Google découvrait. */
+const finderHref = `${base}/#flight-finder?breed=${p.id}`;
+const crateHref = `${base}/tools/crate/#breed=${p.id}`;
+const heatHref = `${base}/tools/heat/#breed=${p.id}`;
+const destHref = `${base}/tools/destinations/#breed=${p.id}`;
 /* Le nom de la race suit la langue de la page. Le portugais n'a pas encore ses 172 noms
    traduits : `namePt` retombe alors sur l'anglais, ce qui est le bon repli — un nom de race
    inventé serait pire qu'un nom anglais. */
@@ -254,15 +257,17 @@ const indicators: [string, string, Level][] = [
     Consulter n'est pas déclarer. On se contente donc d'ajouter « ?breed= » aux liens
     d'entonnoir de CETTE page (compagnies, outils), au moment du rendu : le paramètre reste
     absent du HTML servi — donc pas de variantes paramétrées pour le crawler — et la page
-    d'arrivée reçoit le contexte parce qu'on a cliqué, pas parce qu'on a lu.
+    d'arrivée reçoit le contexte parce qu'on a cliqué, pas parce qu'on a lu. Le paramètre part
+    désormais dans le DIÈSE (`mdcfPut`) : le raisonnement ci-dessus valait pour le HTML servi,
+    mais Google exécute le JavaScript et découvrait donc quand même les variantes.
     S'exécute sur DOMContentLoaded, donc avant le script de Base.astro qui écoute `load`. */}
 <script is:inline set:html={`(function(){var b=${JSON.stringify(p.id)};
 document.addEventListener("DOMContentLoaded",function(){
   document.querySelectorAll('a[data-carry~="breed"]').forEach(function(a){
-    try{var u=new URL(a.getAttribute("href"),location.origin);
+    try{var h=a.getAttribute("href");if(!h)return;
+      var u=new URL(h,location.origin);
       if(u.origin!==location.origin||u.searchParams.has("breed"))return;
-      u.searchParams.set("breed",b);
-      a.setAttribute("href",u.pathname+u.search+u.hash);
+      a.setAttribute("href",window.mdcfPut(u.pathname+u.search+u.hash,"breed",b));
     }catch(e){}
   });
 });})();`} />

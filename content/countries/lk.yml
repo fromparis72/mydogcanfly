@@ -30,12 +30,14 @@ exit:
     pt: "O Sri Lanka é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pelo Department of Animal Production and Health (DAPH)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "DAPH veterinary/quarantine officers issue and endorse the international export health certificate before departure."
         fr: "Les agents vétérinaires/de quarantaine du DAPH délivrent et visent le certificat sanitaire d'export international avant le départ."
@@ -262,6 +264,7 @@ requirements:
     ref: { en: "Animal Diseases Act No. 59 of 1992 (s.28); DAPH — Quarantine; Essential Guidelines (s.10)", fr: "Animal Diseases Act n° 59 de 1992 (art. 28) ; DAPH — Quarantaine ; Essential Guidelines (art. 10)", es: "Animal Diseases Act n.º 59 de 1992 (art. 28); DAPH — Cuarentena; Essential Guidelines (art. 10)", pt: "Animal Diseases Act No. 59 of 1992 (s.28); DAPH — Quarantine; Essential Guidelines (s.10)" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Dog from a country recognised free of the tested diseases — fastest path", fr: "Chien venant d'un pays reconnu indemne des maladies testées — parcours le plus rapide", es: "Perro procedente de un país reconocido libre de las enfermedades analizadas — la vía más rápida", pt: "Cachorro vindo de um país reconhecido como livre das doenças testadas — caminho mais rápido" }
     body:
@@ -271,6 +274,7 @@ origin:
       pt: "Se o seu cachorro vier de um país oficialmente reconhecido como livre de leishmaniose e/ou dirofilariose, o exame para essas doenças não é exigido, o que reduz a preparação. Você ainda precisa da autorização de importação do DAPH, de um microchip ISO, da vacinação antirrábica e das vacinas essenciais em dia, de um tratamento antiparasitário para parasitas externos e internos, e de um International Veterinary Health Certificate emitido dentro de dez dias antes da exportação. Nenhum teste sorológico antirrábico se aplica, mas a quarentena domiciliar de 30 dias ainda se aplica."
     cls: warn
   listed:
+    from: any
     title: { en: "Standard case — full blood-test panel", fr: "Cas standard — panel de tests sanguins complet", es: "Caso estándar — panel de análisis de sangre completo", pt: "Caso padrão — painel completo de exames de sangue" }
     body:
       en: "From most countries the dog must test negative for leishmaniasis, heartworm antigen and heartworm microfilaria, done within one month before departure, with the microchip number on each report. Add the import permit (applied for at least two weeks before arrival), up-to-date rabies and core vaccinations, the parasite treatment and the health certificate. On arrival, quarantine officers inspect the dog and a 30-day home quarantine follows."
@@ -399,7 +403,7 @@ sources:
 
 seo:
   title: { en: "Sri Lanka Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Sri Lanka — Guide", es: "Requisitos de entrada de perros en Sri Lanka — Guía de viaje", pt: "Entrada de cachorro no Sri Lanka — guia de viagem" }
-  metaTitle: { en: "Traveling to Sri Lanka With Your Dog: Entry Requirements (2026)", fr: "Voyager au Sri Lanka avec ton chien : formalités (2026)", es: "Viajar a Sri Lanka con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Sri Lanka com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Sri Lanka: Pet Travel Requirements 2026", fr: "Voyager au Sri Lanka avec ton chien : formalités (2026)", es: "Viajar a Sri Lanka con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Sri Lanka com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official DAPH rules for bringing a dog into Sri Lanka: advance import permit, ISO microchip, rabies and core vaccinations. Sourced and dated."
     fr: "Règles officielles DAPH pour faire entrer un chien au Sri Lanka : permis d'importation préalable, puce ISO, vaccins rage et de base. Sourcé et daté."

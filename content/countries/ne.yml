@@ -17,12 +17,14 @@ exit:
     pt: "O Níger é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction Générale des Services Vétérinaires (DGSV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The DGSV veterinary inspection service issues and endorses the export health certificate before departure."
         fr: "Le service d'inspection vétérinaire de la DGSV délivre et vise le certificat sanitaire d'export avant le départ."
@@ -240,6 +242,7 @@ requirements:
     ref: { en: "No breed-specific import legislation found on official Nigerien sources", fr: "Aucune législation d'importation par race trouvée sur les sources officielles nigériennes", es: "Ninguna legislación de importación por raza encontrada en las fuentes oficiales nigerinas", pt: "Nenhuma legislação específica por raça encontrada em fontes oficiais nigerinas" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -367,7 +370,7 @@ sources:
 
 seo:
   title: { en: "Niger Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Niger — Guide", es: "Requisitos de entrada de perros en Níger — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Níger — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Niger With Your Dog: Entry Requirements (2026)", fr: "Voyager au Niger avec ton chien : formalités (2026)", es: "Viajar a Níger con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Níger: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Niger: Pet Travel Requirements 2026", fr: "Voyager au Niger avec ton chien : formalités (2026)", es: "Viajar a Níger con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Níger: exigências de entrada 2026" }
   metaDesc:
     en: "Official framework for bringing a dog into Niger: the DGSV veterinary authority. Niger publishes almost no procedure — sourced and dated."
     fr: "Cadre officiel pour faire entrer un chien au Niger : autorité vétérinaire DGSV. Le Niger ne publie presque aucune procédure — sourcé et daté."

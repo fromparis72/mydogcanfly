@@ -37,11 +37,19 @@ exit:
     pt: "A Argentina é um país listado, então não é preciso teste sorológico antirrábico para voltar — o SENASA emite o certificado veterinário internacional (CVI) do seu cachorro."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "A private vet handles the microchip, rabies vaccination and health certificate; present them at a SENASA office, which issues the CVI, valid 10 days up to the EU border check."
         fr: "Un vétérinaire privé s'occupe de la puce, de la vaccination antirabique et du certificat sanitaire ; présente-les à un bureau SENASA, qui délivre le CVI, valable 10 jours jusqu'au contrôle à la frontière UE."
         es: "Un veterinario privado se ocupa del microchip, la vacuna antirrábica y el certificado sanitario; preséntalos en una oficina del SENASA, que emite el CVI, válido 10 días hasta el control fronterizo de la UE."
         pt: "Um veterinário particular cuida do microchip, da vacinação antirrábica e do atestado de saúde; apresente tudo em um escritório do SENASA, que emite o CVI, válido por 10 dias até o controle de fronteira europeu."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "A private vet handles the microchip, rabies vaccination and health certificate; present them at a SENASA office, which issues the CVI (valid 10 days)."
+        fr: "Un vétérinaire privé s'occupe de la puce, du vaccin antirabique et du certificat sanitaire ; présente-les dans un bureau SENASA, qui délivre le CVI (valable 10 jours)."
+        es: "Un veterinario privado se encarga del microchip, la vacuna antirrábica y el certificado sanitario; preséntalos en una oficina del SENASA, que emite el CVI (válido 10 días)."
+        pt: "Um veterinário particular cuida do microchip, da vacina antirrábica e do atestado sanitário; apresente-os em um escritório do SENASA, que emite o CVI (válido por 10 dias)."
   onSiteNote:
     en: "The rabies vaccination must be at least 21 days old before EU arrival; time the SENASA CVI within its 10-day window."
     fr: "La vaccination antirabique doit dater d'au moins 21 jours avant l'arrivée dans l'UE ; cale le CVI SENASA dans sa fenêtre de 10 jours."
@@ -234,7 +242,9 @@ requirements:
     ref: { en: "SENASA — Ingresos con perros y/o gatos", fr: "SENASA — Ingresos con perros y/o gatos", es: "SENASA — Ingresos con perros y/o gatos", pt: "SENASA — Ingresos con perros y/o gatos" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard scheme — CVI or legalized passport", fr: "Régime standard — CVI ou passeport légalisé", es: "Régimen estándar — CVI o pasaporte legalizado", pt: "Procedimento padrão — CVI ou passaporte legalizado" }
     body:
       en: "For almost every origin the path is the same. Your dog needs an International Veterinary Certificate (CVI) issued, signed and stamped by the official veterinary authority of the country you travel from, with Spanish as one of its languages. It must show a health certificate (within 10 days), a valid rabies vaccination and internal & external antiparasitic treatment (within 15 days). A current official pet passport carrying the same information and endorsed by the origin's authority is accepted instead."
@@ -365,7 +375,7 @@ sources:
 
 seo:
   title: { en: "Argentina Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Argentine — Guide", es: "Requisitos de entrada de perros en Argentina — Guía de viaje", pt: "Argentina: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Argentina With Your Dog: Entry Requirements (2026)", fr: "Voyager en Argentine avec ton chien : formalités (2026)", es: "Viajar a Argentina con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro à Argentina: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Argentina: Pet Travel Requirements 2026", fr: "Voyager en Argentine avec ton chien : formalités (2026)", es: "Viajar a Argentina con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro à Argentina: exigências de entrada 2026" }
   metaDesc:
     en: "Official SENASA rules for bringing a dog into Argentina: International Veterinary Certificate, rabies vaccination, antiparasitic treatment. Sourced and dated."
     fr: "Règles officielles SENASA pour faire entrer un chien en Argentine : Certificat Vétérinaire International, vaccination antirabique. Sourcé et daté."

@@ -204,6 +204,7 @@ requirements:
     ref: { en: "EU Reg. 576/2013; wetgiw.gov.pl", fr: "Règl. UE 576/2013 ; wetgiw.gov.pl", es: "Regl. UE 576/2013; wetgiw.gov.pl", pt: "Regulamento UE 576/2013; wetgiw.gov.pl" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -236,11 +237,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Polonia depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Polônia depende do país de onde você veio."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: arrive via a designated travellers' point of entry, where customs (KAS) or the official veterinary service read the microchip and check the documents against it."
+    - from: non_eu
+      en: "From outside the EU: arrive via a designated travellers' point of entry, where customs (KAS) or the official veterinary service read the microchip and check the documents against it."
       fr: "Depuis hors UE : arrive par un point d'entrée voyageurs désigné, où la douane (KAS) ou le service vétérinaire officiel lit la puce et contrôle les documents par rapport à celle-ci."
       es: "Desde fuera de la UE: llega por un punto de entrada de viajeros designado, donde la aduana (KAS) o el servicio veterinario oficial lee el microchip y coteja los documentos con él."
       pt: "De fora da UE: entre por um ponto de entrada de viajantes designado, onde a alfândega (KAS) ou o serviço veterinário oficial leem o microchip e conferem os documentos com base nele."
@@ -341,7 +344,7 @@ sources:
 
 seo:
   title: { en: "Poland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Pologne — Guide", es: "Requisitos de entrada de perros en Polonia — Guía de viaje", pt: "Polônia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Poland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Pologne avec ton chien : formalités (2026)", es: "Viajar a Polonia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Polônia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Poland: Pet Travel Requirements 2026", fr: "Voyager en Pologne avec ton chien : formalités (2026)", es: "Viajar a Polonia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Polônia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Poland — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Pologne — selon origine UE, pays listé ou non listé. Sourcé et daté."

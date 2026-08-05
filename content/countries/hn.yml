@@ -18,17 +18,26 @@ exit:
     pt: "Honduras é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo SENASA (SAG)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "Register on SENASA's online export platform (SECEH) and submit the export certificate request; SENASA reviews, approves and issues it (dedicated EU pet instructions are published)."
         fr: "Inscris-toi sur la plateforme d'export en ligne du SENASA (SECEH) et dépose la demande de certificat ; le SENASA l'examine, l'approuve et le délivre (instructions UE dédiées publiées)."
         es: "Regístrate en la plataforma de exportación en línea del SENASA (SECEH) y presenta la solicitud del certificado; el SENASA lo revisa, aprueba y emite (hay instrucciones específicas para la UE)."
         pt: "Cadastre-se na plataforma de exportação on-line do SENASA (SECEH) e envie o pedido de certificado de exportação; o SENASA analisa, aprova e emite o documento (há instruções específicas publicadas para animais de estimação com destino à UE)."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Register on SENASA's online export platform (SECEH) and submit the export certificate request; SENASA reviews, approves and issues it."
+        fr: "Inscris-toi sur la plateforme d'export en ligne du SENASA (SECEH) et dépose la demande de certificat d'export ; le SENASA l'examine, l'approuve et le délivre."
+        es: "Regístrate en la plataforma de exportación en línea del SENASA (SECEH) y presenta la solicitud del certificado de exportación; el SENASA la revisa, la aprueba y lo emite."
+        pt: "Cadastre-se na plataforma de exportação on-line do SENASA (SECEH) e envie o pedido do certificado de exportação; o SENASA analisa, aprova e emite."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -228,7 +237,9 @@ requirements:
     ref: { en: "SENASA — Instructions for pet import procedures; Agreement N. 331-2009", fr: "SENASA — Instructions pour l'importation ; Accord N. 331-2009", es: "SENASA — Instrucciones para la importación; Acuerdo N. 331-2009", pt: "SENASA — Instruções para a importação; Acuerdo N. 331-2009" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — one or two personal pets", fr: "Standard — un ou deux animaux de compagnie", es: "Estándar — una o dos mascotas personales", pt: "Padrão — um ou dois animais de estimação pessoais" }
     body:
       en: "A dog arriving with its owner needs an official export veterinary certificate from the country of departure plus an up-to-date vaccination card showing current vaccines. When one or two pets travel at a time, no prior import permit is required. On arrival you report to the quarantine authority at the land, air or sea customs point, the pet is physically inspected, and a Lps. 525.00 fee is charged with a receipt. There is no routine quarantine for a compliant pet."
@@ -237,6 +248,7 @@ origin:
       pt: "Um cachorro que chega com o dono precisa de um certificado veterinário oficial de exportação do país de partida e de uma carteira de vacinação em dia mostrando vacinas vigentes. Quando viajam um ou dois animais por vez, nenhuma autorização de importação prévia é exigida. Na chegada, você se apresenta à autoridade de quarentena no ponto aduaneiro terrestre, aéreo ou marítimo, o animal passa por inspeção física e é cobrada uma taxa de Lps. 525,00 com recibo. Não há quarentena de rotina para um animal em conformidade."
     cls: ok
   listed:
+    from: [us]
     title: { en: "Arriving from the United States", fr: "Arrivée depuis les États-Unis", es: "Llegada desde Estados Unidos", pt: "Chegando dos Estados Unidos" }
     body:
       en: "From the United States a USDA-accredited veterinarian prepares the export health certificate and the vaccination record. Honduras does not require APHIS endorsement of pet health certificates, but you should contact SENASA/INFOAGRO to confirm the current documents and check your airline's own paperwork rules before departure."
@@ -357,7 +369,7 @@ sources:
 
 seo:
   title: { en: "Honduras Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Honduras — Guide", es: "Requisitos de entrada de perros en Honduras — Guía de viaje", pt: "Honduras: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Honduras With Your Dog: Entry Requirements (2026)", fr: "Voyager au Honduras avec ton chien : formalités (2026)", es: "Viajar a Honduras con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Honduras: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Honduras: Pet Travel Requirements 2026", fr: "Voyager au Honduras avec ton chien : formalités (2026)", es: "Viajar a Honduras con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Honduras: exigências de entrada (2026)" }
   metaDesc:
     en: "Official SENASA rules for bringing a dog into Honduras — export veterinary certificate and up-to-date vaccination card. Sourced and dated."
     fr: "Règles officielles SENASA pour faire entrer un chien au Honduras — certificat vétérinaire d'exportation et cartilla de vaccination à jour. Sourcé et daté."

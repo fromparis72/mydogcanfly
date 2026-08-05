@@ -33,12 +33,14 @@ exit:
     pt: "Bangladesh é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pelo Department of Livestock Services (DLS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "A DLS government veterinary officer issues the export health certificate, typically endorsing a licensed vet's health certificate before departure."
         fr: "Un vétérinaire officiel du DLS délivre le certificat sanitaire d'export, en visant généralement le certificat d'un vétérinaire agréé avant le départ."
@@ -258,7 +260,9 @@ requirements:
     ref: { en: "DLS NOC user manual (Pet Information — Date of Birth optional)", fr: "Manuel DLS du NOC (informations sur l'animal — date de naissance facultative)", es: "Manual de usuario del NOC del DLS (información de la mascota — fecha de nacimiento opcional)", pt: "Manual do usuário do NOC do DLS (Informações do Animal — Data de Nascimento opcional)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Accompanied pet dog — standard NOC path", fr: "Chien de compagnie accompagné — parcours NOC standard", es: "Perro de compañía acompañado — vía NOC estándar", pt: "Cachorro de estimação acompanhado — caminho padrão do NOC" }
     body:
       en: "For a dog travelling with you as accompanied baggage or in the cabin, apply online for the DLS No Objection Certificate for a Pet Animal Companion before departure. You need the recorded microchip number, a vaccination certificate and card, an official health certificate from your origin-country vet, and copies of your passport and visa plus a colour photo of the pet. After the NOC is issued, send the pre-arrival notification. No rabies antibody test is required by DLS, but a valid rabies vaccination is expected and your dog is handled through DLS animal quarantine on arrival at Dhaka."
@@ -387,7 +391,7 @@ sources:
 
 seo:
   title: { en: "Bangladesh Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Bangladesh — Guide", es: "Requisitos de entrada de perros en Bangladés — Guía de viaje", pt: "Entrada de cachorro em Bangladesh — guia de viagem" }
-  metaTitle: { en: "Traveling to Bangladesh With Your Dog: Entry Requirements (2026)", fr: "Voyager au Bangladesh avec ton chien : formalités (2026)", es: "Viajar a Bangladés con tu perro: requisitos de entrada (2026)", pt: "Viajar para Bangladesh com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Bangladesh: Pet Travel Requirements", fr: "Voyager au Bangladesh avec ton chien : formalités (2026)", es: "Viajar a Bangladés con tu perro: requisitos de entrada (2026)", pt: "Viajar para Bangladesh com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official DLS rules for bringing a dog into Bangladesh: online No Objection Certificate (NOC), microchip, rabies vaccination, health certificate. Sourced and dated."
     fr: "Règles officielles du DLS pour faire entrer un chien au Bangladesh : No Objection Certificate (NOC) en ligne, puce, vaccination antirabique. Sourcé et daté."

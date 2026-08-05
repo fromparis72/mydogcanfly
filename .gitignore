@@ -13,4 +13,6 @@
 node_modules/
 packages/**/dist/
 .venv-pdf/
-.venv-pdf/
+
+# Cache de compilation d'Astro : régénéré à chaque build, propre à la machine.
+packages/**/.astro/

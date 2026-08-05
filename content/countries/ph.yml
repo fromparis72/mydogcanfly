@@ -50,12 +50,14 @@ exit:
     pt: "As Filipinas são um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de uma autorização de exportação e de um atestado de saúde veterinário internacional (EP/IVHC) do Bureau of Animal Industry (BAI)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The BAI issues the export permit / international veterinary health certificate (EP/IVHC) within 10 days before departure — apply to the BAI as the official veterinary authority."
         fr: "Le BAI délivre le permis d'export / certificat sanitaire vétérinaire international (EP/IVHC) dans les 10 jours avant le départ — adresse-toi au BAI, l'autorité vétérinaire officielle."
@@ -268,7 +270,9 @@ requirements:
     ref: { en: "DA-BAI — Pet import requirements (quarantine); Bureau of Customs", fr: "DA-BAI — Exigences d'importation (quarantaine) ; Bureau des douanes", es: "DA-BAI — Requisitos de importación (cuarentena); Oficina de Aduanas", pt: "DA-BAI — exigências de importação de animais de estimação (quarentena); Bureau of Customs" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Fully compliant dog — standard path, no quarantine", fr: "Chien totalement conforme — parcours standard, sans quarantaine", es: "Perro totalmente conforme — vía estándar, sin cuarentena", pt: "Cachorro totalmente em conformidade — caminho padrão, sem quarentena" }
     body:
       en: "A dog with a valid rabies vaccination, current core vaccinations, an ISO-compatible microchip and a recent parasite treatment follows the standard path: apply online for the DA-BAI SPSIC import clearance, then present it to the exporting country's government veterinary authority to obtain the export permit / international veterinary health certificate (EP/IVHC) within 10 days of departure. On arrival the BAI Veterinary Quarantine Officer inspects the dog and, provided every document is in order, releases it the same day with no quarantine."
@@ -399,7 +403,7 @@ sources:
 
 seo:
   title: { en: "Philippines Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Philippines — Guide", es: "Requisitos de entrada de perros en Filipinas — Guía de viaje", pt: "Entrada de cachorro nas Filipinas — guia de viagem" }
-  metaTitle: { en: "Philippines Dog Entry Requirements (2026)", fr: "Voyager aux Philippines avec ton chien : formalités (2026)", es: "Viajar a Filipinas con tu perro: requisitos de entrada (2026)", pt: "Exigências de entrada de cachorro nas Filipinas (2026)" }
+  metaTitle: { en: "Taking Your Dog to the Philippines: Pet Travel Rules", fr: "Voyager aux Philippines avec ton chien : formalités (2026)", es: "Viajar a Filipinas con tu perro: requisitos de entrada (2026)", pt: "Exigências de entrada de cachorro nas Filipinas (2026)" }
   metaDesc:
     en: "Official DA-BAI and Bureau of Customs rules for bringing a dog into the Philippines: advance SPSIC import clearance, ISO microchip. Sourced and dated."
     fr: "Règles officielles DA-BAI et douane pour faire entrer un chien aux Philippines : autorisation d'importation SPSIC préalable, puce ISO. Sourcé et daté."

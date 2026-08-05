@@ -194,6 +194,7 @@ requirements:
     ref: { en: "pvd.gov.lv; EU Reg. 576/2013", fr: "pvd.gov.lv ; Règl. UE 576/2013", es: "pvd.gov.lv; Regl. UE 576/2013", pt: "pvd.gov.lv; Regulamento UE 576/2013" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -226,11 +227,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Letonia depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Letônia depende do país de onde você veio."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: enter via a travellers' point of entry and present your dog spontaneously to Latvian customs (VID) for documentary and identity checks."
+    - from: non_eu
+      en: "From outside the EU: enter via a travellers' point of entry and present your dog spontaneously to Latvian customs (VID) for documentary and identity checks."
       fr: "Depuis hors UE : entre par un point d'entrée voyageurs et présente ton chien spontanément à la douane lettone (VID) pour les contrôles documentaires et d'identité."
       es: "Desde fuera de la UE: entra por un punto de entrada de viajeros y presenta a tu perro espontáneamente ante la aduana letona (VID) para los controles documentales y de identidad."
       pt: "De fora da UE: entre por um ponto de entrada de viajantes e apresente seu cachorro espontaneamente à alfândega letã (VID) para os controles de documentos e de identificação."
@@ -327,7 +330,7 @@ sources:
 
 seo:
   title: { en: "Latvia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Lettonie — Guide", es: "Requisitos de entrada de perros en Letonia — Guía de viaje", pt: "Letônia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Latvia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Lettonie avec ton chien : formalités (2026)", es: "Viajar a Letonia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Letônia: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Latvia: Pet Travel Requirements 2026", fr: "Voyager en Lettonie avec ton chien : formalités (2026)", es: "Viajar a Letonia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Letônia: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Latvia — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Lettonie — selon origine UE, pays listé ou non listé. Sourcé et daté."

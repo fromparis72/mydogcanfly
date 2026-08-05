@@ -192,6 +192,7 @@ requirements:
     ref: { en: "ALVA (gouvernement.lu)", fr: "ALVA (gouvernement.lu)", es: "ALVA (gouvernement.lu)", pt: "ALVA (gouvernement.lu)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -224,11 +225,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Luxemburgo depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega ao Luxemburgo depende de onde você embarcou."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: enter via a designated travellers' point of entry (mainly Luxembourg Airport) and present yourself spontaneously to customs and veterinary services for documentary and identity checks."
+    - from: non_eu
+      en: "From outside the EU: enter via a designated travellers' point of entry (mainly Luxembourg Airport) and present yourself spontaneously to customs and veterinary services for documentary and identity checks."
       fr: "Depuis hors UE : entre par un point d'entrée voyageurs désigné (principalement l'aéroport de Luxembourg) et présente-toi spontanément à la douane et aux services vétérinaires pour les contrôles documentaires et d'identité."
       es: "Desde fuera de la UE: entra por un punto de entrada de viajeros designado (principalmente el aeropuerto de Luxemburgo) y preséntate espontáneamente ante la aduana y los servicios veterinarios para los controles documentales y de identidad."
       pt: "De fora da UE: entre por um ponto de entrada de viajantes designado (principalmente o Aeroporto de Luxemburgo) e apresente-se espontaneamente à alfândega e aos serviços veterinários para o controle dos documentos e da identidade."
@@ -323,7 +326,7 @@ sources:
 
 seo:
   title: { en: "Luxembourg Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Luxembourg — Guide", es: "Requisitos de entrada de perros en Luxemburgo — Guía de viaje", pt: "Luxemburgo: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Luxembourg With Your Dog: Entry Requirements (2026)", fr: "Voyager au Luxembourg avec ton chien : formalités (2026)", es: "Viajar a Luxemburgo con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Luxemburgo: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Luxembourg: Pet Travel Requirements", fr: "Voyager au Luxembourg avec ton chien : formalités (2026)", es: "Viajar a Luxemburgo con tu perro: requisitos de entrada (2026)", pt: "Cachorro em Luxemburgo: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Luxembourg — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien au Luxembourg — selon origine UE, pays listé ou non listé. Sourcé et daté."

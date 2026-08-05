@@ -17,12 +17,14 @@ exit:
     pt: "Camarões é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction des Services Vétérinaires (MINEPIA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The MINEPIA Direction des Services Vétérinaires manages animal health and issues the export health certificate before departure."
         fr: "La Direction des Services Vétérinaires du MINEPIA gère la santé animale et délivre le certificat sanitaire d'export avant le départ."
@@ -235,6 +237,7 @@ requirements:
     ref: { en: "No official published breed legislation found (MINEPIA)", fr: "Aucune législation par race officielle publiée trouvée (MINEPIA)", es: "No se encontró legislación por raza oficial publicada (MINEPIA)", pt: "Nenhuma legislação oficial sobre raças publicada encontrada (MINEPIA)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -360,7 +363,7 @@ sources:
 
 seo:
   title: { en: "Cameroon Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Cameroun — Guide", es: "Requisitos de entrada de perros en Camerún — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Camarões — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Cameroon With Your Dog: Entry Requirements (2026)", fr: "Voyager au Cameroun avec ton chien : formalités (2026)", es: "Viajar a Camerún con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Camarões: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Cameroon: Pet Travel Requirements 2026", fr: "Voyager au Cameroun avec ton chien : formalités (2026)", es: "Viajar a Camerún con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Camarões: exigências de entrada 2026" }
   metaDesc:
     en: "Official rules for bringing a dog into Cameroon: microchip, rabies vaccination, endorsed veterinary certificate. Sourced, dated and honest about what is unpublished."
     fr: "Règles officielles pour faire entrer un chien au Cameroun : puce, vaccination antirabique. Sourcé, daté et transparent sur ce qui n'est pas publié."

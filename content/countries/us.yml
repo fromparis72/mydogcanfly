@@ -44,17 +44,26 @@ exit:
     pt: "Os EUA são um país listado, então não é preciso teste sorológico antirrábico para voltar — mas seu cachorro precisa de um atestado de saúde da UE emitido por um veterinário credenciado pelo USDA e endossado pelo USDA APHIS."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "Have a USDA-accredited vet complete the EU health certificate, then get it endorsed by USDA APHIS (submitted via VEHCS, then ink-signed and embossed)."
         fr: "Fais remplir le certificat sanitaire UE par un vétérinaire agréé USDA, puis fais-le endosser par l'USDA APHIS (soumis via VEHCS, puis signé à l'encre et embossé)."
         es: "Haz que un veterinario acreditado por el USDA rellene el certificado sanitario UE y luego hazlo refrendar por el USDA APHIS (enviado por VEHCS, firmado en tinta y con sello en relieve)."
         pt: "Peça a um veterinário credenciado pelo USDA que preencha o atestado de saúde da UE e depois obtenha o endosso do USDA APHIS (envio pelo VEHCS, seguido de assinatura em tinta e selo em relevo)."
     - timing: window
+      scope: eu
       text:
         en: "The certificate is valid for a short window (about 10 days before EU entry) — time the vet visit and endorsement close to your flight."
         fr: "Le certificat n'est valable qu'une courte fenêtre (environ 10 jours avant l'entrée dans l'UE) — cale la visite véto et l'endossement juste avant ton vol."
         es: "El certificado solo vale una ventana corta (unos 10 días antes de entrar en la UE) — programa la visita veterinaria y el refrendo cerca de tu vuelo."
         pt: "O certificado vale por uma janela curta (cerca de 10 dias antes da entrada na UE) — programe a consulta veterinária e o endosso para perto do seu voo."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Have a USDA-accredited vet complete the health certificate required by the destination, then get it endorsed by USDA APHIS (submitted via VEHCS, then ink-signed and embossed)."
+        fr: "Fais remplir le certificat sanitaire exigé par la destination par un vétérinaire agréé USDA, puis fais-le endosser par l'USDA APHIS (soumis via VEHCS, puis signé à l'encre et embossé)."
+        es: "Haz que un veterinario acreditado por el USDA complete el certificado sanitario que exige el destino y luego consigue el visado del USDA APHIS (enviado por VEHCS, después firmado en tinta y con sello en relieve)."
+        pt: "Peça a um veterinário credenciado pelo USDA que preencha o certificado sanitário exigido pelo destino e depois obtenha o endosso do USDA APHIS (enviado pelo VEHCS, depois assinado a tinta e com selo em relevo)."
   onSiteNote:
     en: "A new EU certificate model will apply from 1 October 2026; USDA endorsement can take time, so don't leave it to the last day."
     fr: "Un nouveau modèle de certificat UE s'appliquera à partir du 1er octobre 2026 ; l'endossement USDA peut prendre du temps, ne t'y prends pas au dernier jour."
@@ -256,7 +265,9 @@ requirements:
     ref: { en: "USDA APHIS — State and Territory Animal Entry Requirements", fr: "USDA APHIS — exigences d'entrée animale par État", es: "USDA APHIS — requisitos de entrada de animales por estado y territorio", pt: "USDA APHIS — exigências de entrada de animais por estado e território" }
 
 origin:
+  scheme: own
   eu:
+    from_except: [af, dz, ao, am, az, bd, by, bz, bj, bo, bw, br, bn, bf, bi, kh, cm, cf, td, cn, co, km, ci, cu, cd, dj, do, ec, eg, sv, gq, er, sz, et, ga, gm, ge, gh, gt, gn, gw, gy, ht, hn, in, id, ir, iq, il, jo, kz, ke, kw, kg, la, lb, ls, lr, ly, mg, mw, my, ml, mr, md, mn, ma, mz, mm, na, np, ne, ng, kp, om, pk, pe, ph, qa, cg, ru, rw, st, sn, sl, so, za, ss, lk, sd, sr, sy, tj, tz, th, tl, tg, tn, tr, tm, ug, ua, ae, uz, ve, vn, ye, zm, zw]
     title: { en: "Simplest — from a rabies-free or low-risk country", fr: "Le plus simple — depuis un pays indemne ou à faible risque", es: "Lo más sencillo — desde un país libre de rabia o de bajo riesgo", pt: "O mais simples — de um país livre de raiva ou de baixo risco" }
     body:
       en: "If your dog has been only in dog-rabies-free or low-risk countries in the 6 months before entry, the only form needed is the CDC Dog Import Form receipt. The dog must also be at least 6 months old, microchipped and appear healthy. It can arrive at any airport, seaport or land border crossing that matches the form. A country not on CDC's high-risk list counts as low-risk."
@@ -292,11 +303,13 @@ arrival:
       fr: "Chaque chien est contrôlé par les douanes américaines (CBP) ; ayez le reçu du CDC Dog Import Form prêt sur papier ou téléphone."
       es: "Todos los perros son controlados por la Oficina de Aduanas y Protección Fronteriza de EE. UU. (CBP); ten a mano el recibo del formulario de importación de perros del CDC en papel o en el teléfono."
       pt: "Todo cachorro é conferido pelo U.S. Customs and Border Protection (CBP); tenha o comprovante do CDC Dog Import Form à mão, impresso ou no celular."
-    - en: "From a rabies-free or low-risk country, the dog may enter at any airport, seaport or land border matching the form."
+    - from_except: &cdc_haut_risque [af, dz, ao, am, az, bd, by, bz, bj, bo, bw, br, bn, bf, bi, kh, cm, cf, td, cn, co, km, ci, cu, cd, dj, do, ec, eg, sv, gq, er, sz, et, ga, gm, ge, gh, gt, gn, gw, gy, ht, hn, in, id, ir, iq, il, jo, kz, ke, kw, kg, la, lb, ls, lr, ly, mg, mw, my, ml, mr, md, mn, ma, mz, mm, na, np, ne, ng, kp, om, pk, pe, ph, qa, cg, ru, rw, st, sn, sl, so, za, ss, lk, sd, sr, sy, tj, tz, th, tl, tg, tn, tr, tm, ug, ua, ae, uz, ve, vn, ye, zm, zw]
+      en: "From a rabies-free or low-risk country, the dog may enter at any airport, seaport or land border matching the form."
       fr: "Depuis un pays indemne ou à faible risque, le chien peut entrer par tout aéroport, port ou frontière terrestre correspondant au formulaire."
       es: "Desde un país libre de rabia o de bajo riesgo, el perro puede entrar por cualquier aeropuerto, puerto marítimo o frontera terrestre que coincida con el formulario."
       pt: "Vindo de um país livre de raiva ou de baixo risco, o cachorro pode entrar por qualquer aeroporto, porto marítimo ou fronteira terrestre que corresponda ao formulário."
-    - en: "A foreign-vaccinated dog from a high-risk country must arrive by air at the airport of its reserved CDC-registered facility, and cannot take a domestic connection until released."
+    - from: *cdc_haut_risque
+      en: "A foreign-vaccinated dog from a high-risk country must arrive by air at the airport of its reserved CDC-registered facility, and cannot take a domestic connection until released."
       fr: "Un chien vacciné à l'étranger venant d'un pays à haut risque doit arriver par avion à l'aéroport de l'établissement CDC réservé, et ne peut prendre de correspondance intérieure avant sa libération."
       es: "Un perro vacunado en el extranjero procedente de un país de alto riesgo debe llegar por vía aérea al aeropuerto de su establecimiento registrado por el CDC reservado, y no puede tomar una conexión nacional hasta que sea liberado."
       pt: "Um cachorro vacinado no exterior vindo de um país de alto risco precisa chegar de avião ao aeroporto do estabelecimento registrado pelo CDC que ele reservou, e não pode pegar uma conexão doméstica antes de ser liberado."
@@ -395,7 +408,7 @@ sources:
 
 seo:
   title: { en: "United States Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux États-Unis — Guide", es: "Requisitos de entrada de perros en Estados Unidos — Guía de viaje", pt: "Entrada de cachorro nos Estados Unidos — guia de viagem" }
-  metaTitle: { en: "Traveling to the USA With Your Dog: Entry Requirements (2026)", fr: "Voyager aux États-Unis avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Estados Unidos (2026)", pt: "Viajar aos EUA com seu cachorro: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to the USA: Pet Travel Requirements 2026", fr: "Voyager aux États-Unis avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Estados Unidos (2026)", pt: "Viajar aos EUA com seu cachorro: exigências de entrada (2026)" }
   metaDesc:
     en: "Official CDC and USDA rules for bringing a dog into the United States — CDC Dog Import Form, microchip, and high-risk-country rabies rules. Sourced and dated."
     fr: "Règles officielles CDC et USDA pour faire entrer un chien aux États-Unis — CDC Dog Import Form, puce et règles rage pour pays à haut risque. Sourcé et daté."

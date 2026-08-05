@@ -202,6 +202,7 @@ requirements:
     ref: { en: "Danish Act on Dogs; foedevarestyrelsen.dk", fr: "Loi danoise sur les chiens ; foedevarestyrelsen.dk", es: "Ley danesa sobre perros; foedevarestyrelsen.dk", pt: "Lei dinamarquesa sobre cães; foedevarestyrelsen.dk" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -234,11 +235,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Dinamarca depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Dinamarca depende de onde você embarcou."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: enter only through Copenhagen (Kastrup), Billund or Aalborg airport, where customs check identity and documents on behalf of the Veterinary and Food Administration."
+    - from: non_eu
+      en: "From outside the EU: enter only through Copenhagen (Kastrup), Billund or Aalborg airport, where customs check identity and documents on behalf of the Veterinary and Food Administration."
       fr: "Depuis hors UE : entre uniquement par l'aéroport de Copenhague (Kastrup), Billund ou Aalborg, où la douane contrôle identité et documents pour le compte de l'administration vétérinaire et alimentaire."
       es: "Desde fuera de la UE: entra únicamente por el aeropuerto de Copenhague (Kastrup), Billund o Aalborg, donde la aduana comprueba la identidad y los documentos por cuenta de la Administración Veterinaria y Alimentaria."
       pt: "Vindo de fora da UE: entre apenas pelo aeroporto de Copenhague (Kastrup), Billund ou Aalborg, onde a alfândega confere identidade e documentos em nome da Administração Veterinária e Alimentar."
@@ -335,7 +338,7 @@ sources:
 
 seo:
   title: { en: "Denmark Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Danemark — Guide", es: "Requisitos de entrada de perros en Dinamarca — Guía de viaje", pt: "Dinamarca: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Denmark With Your Dog: Entry Requirements (2026)", fr: "Voyager au Danemark avec ton chien : formalités (2026)", es: "Viajar a Dinamarca con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Dinamarca: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Denmark: Pet Travel Requirements 2026", fr: "Voyager au Danemark avec ton chien : formalités (2026)", es: "Viajar a Dinamarca con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Dinamarca: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Denmark, plus the 13 banned breeds — by EU. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien au Danemark, plus les 13 races interdites — selon origine UE. Sourcé et daté."

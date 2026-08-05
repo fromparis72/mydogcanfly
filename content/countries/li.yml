@@ -197,6 +197,7 @@ requirements:
     ref: { en: "ALKVW llv.li", fr: "ALKVW llv.li", es: "ALKVW llv.li", pt: "ALKVW llv.li" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte para mascotas", pt: "Simplificado — passaporte para animais" }
     body:
@@ -229,11 +230,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Liechtenstein depende del lugar desde el que hayas volado. Liechtenstein no tiene aeropuerto internacional, por lo que los perros llegan por vía terrestre — normalmente a través de Suiza o Austria."
     pt: "O que acontece quando seu cachorro chega ao Liechtenstein depende do lugar de onde você voou. O Liechtenstein não tem aeroporto internacional, então os cachorros chegam por via terrestre — normalmente pela Suíça ou pela Áustria."
   points:
-    - en: "From the EU/EEA or Switzerland: no systematic border check — keep the pet passport with you."
+    - from: eu
+      en: "From the EU/EEA or Switzerland: no systematic border check — keep the pet passport with you."
       fr: "Depuis l'UE/EEE ou la Suisse : pas de contrôle systématique — garde le passeport sur toi."
       es: "Desde la UE/EEE o Suiza: sin control fronterizo sistemático — lleva contigo el pasaporte para mascotas."
       pt: "Da UE/EEE ou da Suíça: sem controle sistemático de fronteira — leve o passaporte para animais com você."
-    - en: "From a third country: the dog enters the Swiss–Liechtenstein customs and veterinary territory and must be declared to customs on entry."
+    - from: non_eu
+      en: "From a third country: the dog enters the Swiss–Liechtenstein customs and veterinary territory and must be declared to customs on entry."
       fr: "Depuis un pays tiers : le chien entre dans le territoire douanier et vétérinaire suisse-liechtensteinois et doit être déclaré à la douane à l'entrée."
       es: "Desde un país tercero: el perro entra en el territorio aduanero y veterinario suizo-liechtensteiniano y debe declararse en aduanas a la entrada."
       pt: "De um país terceiro: o cachorro entra no território aduaneiro e veterinário suíço-liechtensteinense e precisa ser declarado à alfândega na entrada."
@@ -328,7 +331,7 @@ sources:
 
 seo:
   title: { en: "Liechtenstein Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Liechtenstein — Guide", es: "Requisitos de entrada de perros en Liechtenstein — Guía de viaje", pt: "Liechtenstein: exigências de entrada para cachorros" }
-  metaTitle: { en: "Liechtenstein Dog Entry Requirements (2026)", fr: "Voyager au Liechtenstein avec ton chien : formalités (2026)", es: "Viajar a Liechtenstein con tu perro: requisitos de entrada (2026)", pt: "Cachorro no Liechtenstein: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Liechtenstein: Pet Travel Requirements", fr: "Voyager au Liechtenstein avec ton chien : formalités (2026)", es: "Viajar a Liechtenstein con tu perro: requisitos de entrada (2026)", pt: "Cachorro no Liechtenstein: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Liechtenstein (ALKVW, Swiss union) — by EU/EEA. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien au Liechtenstein (ALKVW, union suisse) — selon origine UE/EEE. Sourcé et daté."

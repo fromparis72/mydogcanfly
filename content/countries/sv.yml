@@ -18,17 +18,26 @@ exit:
     pt: "El Salvador é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo Ministerio de Agricultura y Ganadería (MAG)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "MAG (Quarantine Division) issues the export zoosanitary certificate from a vet's health certificate dated within 15 days, 3–5 working days before travel, then apostilled for the EU."
         fr: "Le MAG (division de quarantaine) délivre le certificat zoosanitaire d'export à partir d'un certificat de moins de 15 jours, 3–5 jours ouvrés avant le voyage, puis apostillé pour l'UE."
         es: "El MAG (División de Cuarentena) emite el certificado zoosanitario de exportación a partir de un certificado de menos de 15 días, 3–5 días hábiles antes del viaje, luego apostillado para la UE."
         pt: "O MAG (Divisão de Quarentena) emite o certificado zoossanitário de exportação a partir de um atestado de saúde veterinário com no máximo 15 dias, de 3 a 5 dias úteis antes da viagem, e ele é depois apostilado para a UE."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "MAG (Quarantine Division) issues the export zoosanitary certificate from a vet's health certificate dated within 15 days, 3–5 working days before travel."
+        fr: "Le MAG (division Quarantaine) délivre le certificat zoosanitaire d'export à partir d'un certificat vétérinaire de moins de 15 jours, 3 à 5 jours ouvrés avant le voyage."
+        es: "El MAG (División de Cuarentena) expide el certificado zoosanitario de exportación a partir de un certificado veterinario de menos de 15 días, 3–5 días hábiles antes del viaje."
+        pt: "O MAG (Divisão de Quarentena) emite o certificado zoossanitário de exportação a partir de um atestado veterinário com até 15 dias, de 3 a 5 dias úteis antes da viagem."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -223,7 +232,9 @@ requirements:
     ref: { en: "MAG — Import authorizations for pets; USDA APHIS — El Salvador", fr: "MAG — Autorisations d'importation de mascotas ; USDA APHIS — Salvador", es: "MAG — Autorizaciones de importación de mascotas; USDA APHIS — El Salvador", pt: "MAG — Autorizações de importação de animais de estimação; USDA APHIS — El Salvador" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a personal pet from any country", fr: "Standard — un animal de compagnie depuis n'importe quel pays", es: "Estándar — una mascota de compañía desde cualquier país", pt: "Padrão — um animal de estimação pessoal de qualquer país" }
     body:
       en: "A dog arriving with its owner needs a MAG import authorization plus the official zoosanitary certificate (original or copy) and the vaccination card from the country of origin. You submit the import application form with these documents and pay the $9.04 fee; the authorization is valid 30 days and single-use. It can be arranged in advance at the MAG window in Santa Tecla or by email, or completed on arrival at the airport, a land border or a port. Personal pets also take a quarantine permit at the point of entry. There is no routine confinement for a compliant pet."
@@ -232,6 +243,7 @@ origin:
       pt: "Um cachorro que chega com o dono precisa de uma autorização de importação do MAG, mais o certificado zoossanitário oficial (original ou cópia) e a carteira de vacinação do país de origem. Você entrega o formulário de solicitação de importação com esses documentos e paga a taxa de US$ 9,04; a autorização vale 30 dias e é de uso único. Ela pode ser providenciada com antecedência no guichê do MAG em Santa Tecla ou por e-mail, ou resolvida na chegada ao aeroporto, a uma fronteira terrestre ou a um porto. Os animais de estimação pessoais também retiram uma permissão de quarentena no ponto de entrada. Não há confinamento de rotina para um animal em conformidade."
     cls: ok
   listed:
+    from: [us]
     title: { en: "Arriving from the United States — bilateral certificate", fr: "Arrivée depuis les États-Unis — certificat bilatéral", es: "Llegada desde Estados Unidos — certificado bilateral", pt: "Chegando dos Estados Unidos — certificado bilateral" }
     body:
       en: "From the United States a licensed veterinarian completes the agreed 'Veterinary Health Certificate for Export of Dogs and Cats from the United States to El Salvador'. It certifies the animal was examined within 30 days and is healthy and free of clinical signs of infectious and parasitic disease; vaccinated against rabies no more than 365 days before embarkation (animals over 2 months old must be vaccinated), with the rabies vaccination certificate attached; and treated for endo- and ectoparasites. USDA endorsement is NOT required, and no notary or El Salvador consular stamp is needed. The certificate should be issued at least in duplicate."
@@ -352,7 +364,7 @@ sources:
 
 seo:
   title: { en: "El Salvador Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Salvador — Guide", es: "Requisitos de entrada de perros en El Salvador — Guía de viaje", pt: "El Salvador: exigências de entrada para cachorros" }
-  metaTitle: { en: "Traveling to El Salvador With Your Dog: Entry Requirements (2026)", fr: "Voyager au Salvador avec ton chien : formalités (2026)", es: "Viajar a El Salvador con tu perro: requisitos de entrada (2026)", pt: "Cachorro em El Salvador: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to El Salvador: Pet Travel Requirements", fr: "Voyager au Salvador avec ton chien : formalités (2026)", es: "Viajar a El Salvador con tu perro: requisitos de entrada (2026)", pt: "Cachorro em El Salvador: exigências de entrada (2026)" }
   metaDesc:
     en: "Official MAG rules for bringing a dog into El Salvador — import authorization ($9.04), official zoosanitary certificate and rabies vaccination. Sourced and dated."
     fr: "Règles officielles du MAG pour faire entrer un chien au Salvador — autorisation d'importation (9,04 $), certificat zoosanitaire officiel et rage. Sourcé et daté."

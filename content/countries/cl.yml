@@ -19,6 +19,7 @@ exit:
     pt: "O Chile é um país listado, então não é preciso teste sorológico antirrábico para voltar — o SAG emite o certificado zoossanitário de exportação (CZE) do seu cachorro."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Apply on the SAG website with a private vet's health certificate (max 10 days old) plus vaccination records; SAG advises applying about 10 days ahead and processes it in roughly 3 business days."
         fr: "Fais la demande sur le site du SAG avec le certificat sanitaire d'un vétérinaire privé (10 jours max) et les preuves de vaccination ; le SAG conseille de s'y prendre ~10 jours avant, traitement en ~3 jours ouvrés."
@@ -229,6 +230,7 @@ requirements:
     ref: { en: "SAG — Res. 6.508/2021", fr: "SAG — Rés. 6.508/2021", es: "SAG — Res. 6.508/2021", pt: "SAG — Res. 6.508/2021" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union — EU pet passport", fr: "Depuis l'Union européenne — passeport UE", es: "Desde la Unión Europea — pasaporte europeo para mascotas", pt: "Da União Europeia — passaporte europeu para animais de companhia" }
     body:
@@ -356,7 +358,7 @@ sources:
 
 seo:
   title: { en: "Chile Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Chili — Guide", es: "Requisitos de entrada de perros en Chile — Guía de viaje", pt: "Requisitos de entrada de cachorros no Chile — Guia" }
-  metaTitle: { en: "Traveling to Chile With Your Dog: Entry Requirements (2026)", fr: "Voyager au Chili avec ton chien : formalités (2026)", es: "Viajar a Chile con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Chile com seu cachorro: requisitos de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Chile: Pet Travel Requirements 2026", fr: "Voyager au Chili avec ton chien : formalités (2026)", es: "Viajar a Chile con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Chile com seu cachorro: requisitos de entrada (2026)" }
   metaDesc:
     en: "Official SAG rules for bringing a dog into Chile: Import Zoosanitary Certificate, microchip, rabies vaccination, antiparasitic treatment. Sourced and dated."
     fr: "Règles officielles SAG pour faire entrer un chien au Chili : Certificat Zoosanitaire d'Importation, puce, vaccination antirabique. Sourcé et daté."

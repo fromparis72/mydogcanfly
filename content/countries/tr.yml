@@ -36,12 +36,14 @@ exit:
     pt: "A Turquia é um país não listado, então um teste sorológico antirrábico válido é obrigatório para voltar à UE — além de um certificado veterinário de saúde emitido pelo governo."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Since 2024 the export health certificate is issued by the District Agriculture and Forestry Directorate of your place of residence (a government vet, not a private one) — apply in person with the dog and documents."
         fr: "Depuis 2024, le certificat sanitaire d'export est délivré par la Direction de district de l'Agriculture et des Forêts de ton lieu de résidence (un vétérinaire officiel, pas privé) — présente-toi en personne avec le chien et les documents."
@@ -240,7 +242,9 @@ requirements:
     ref: { en: "Ministry of Trade (Customs) — animals brought by passengers", fr: "Ministère du Commerce (Douane) — animaux amenés par les voyageurs", es: "Ministerio de Comercio (Aduana) — animales traídos por los viajeros", pt: "Ministério do Comércio (Alfândega) — animais trazidos pelos viajantes" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Antibody test already documented — no new test", fr: "Titre déjà attesté — pas de nouveau test", es: "Prueba de titulación ya documentada — sin nueva prueba", pt: "Teste sorológico já documentado — sem novo teste" }
     body:
       en: "A dog whose passport already documents an acceptable rabies antibody test (≥0.5 IU/ml) and a regular, unbroken vaccination record is not re-tested. You still need the ISO microchip, an in-date rabies vaccination and an official veterinary health certificate from the country of dispatch, plus the passport. This is the fastest path."
@@ -369,7 +373,7 @@ sources:
 
 seo:
   title: { en: "Turkey Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Turquie — Guide", es: "Requisitos de entrada de perros en Turquía — Guía de viaje", pt: "Turquia: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Turkey With Your Dog: Entry Requirements (2026)", fr: "Voyager en Turquie avec ton chien : formalités (2026)", es: "Viajar a Turquía con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Turquia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Turkey: Pet Travel Requirements 2026", fr: "Voyager en Turquie avec ton chien : formalités (2026)", es: "Viajar a Turquía con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Turquia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Ministry of Agriculture and Customs rules for bringing a dog into Turkey: microchip, rabies vaccination, antibody test. Sourced and dated."
     fr: "Règles officielles du ministère de l'Agriculture et de la douane pour faire entrer un chien en Turquie : puce, vaccination antirabique, titrage. Sourcé et daté."

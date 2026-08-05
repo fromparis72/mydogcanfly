@@ -36,11 +36,19 @@ exit:
     pt: "O Canadá é um país listado, então não é preciso teste sorológico antirrábico para voltar — mas o atestado de saúde da UE assinado pelo seu veterinário precisa ser endossado por um veterinário oficial da CFIA antes de você sair do Canadá."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "A licensed vet completes and signs the EU non-commercial health certificate; book an appointment to have it endorsed by a CFIA Animal Health Office before departure (CFIA cannot endorse once the dog has left)."
         fr: "Un vétérinaire accrédité remplit et signe le certificat sanitaire UE non commercial ; prends rendez-vous pour le faire endosser par un bureau vétérinaire de la CFIA avant le départ (la CFIA ne peut plus l'endosser une fois le chien parti)."
         es: "Un veterinario acreditado rellena y firma el certificado sanitario UE no comercial; pide cita para que lo refrende una oficina veterinaria de la CFIA antes de salir (la CFIA no puede refrendarlo una vez que el perro se ha ido)."
         pt: "Um veterinário credenciado preenche e assina o atestado de saúde não comercial da UE; agende o endosso em um escritório veterinário da CFIA (CFIA Animal Health Office) antes da partida (a CFIA não pode endossar depois que o cachorro já saiu)."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "A licensed vet completes and signs the health certificate required by the destination; book an appointment to have it endorsed by a CFIA Animal Health Office before departure — CFIA cannot endorse it once the dog has left."
+        fr: "Un vétérinaire agréé remplit et signe le certificat sanitaire exigé par la destination ; prends rendez-vous pour le faire viser par un bureau de santé animale de l'ACIA avant le départ — l'ACIA ne peut plus le viser une fois le chien parti."
+        es: "Un veterinario autorizado completa y firma el certificado sanitario que exige el destino; pide cita para que lo valide una oficina de sanidad animal de la CFIA antes de salir — la CFIA no puede validarlo una vez que el perro se ha ido."
+        pt: "Um veterinário licenciado preenche e assina o certificado sanitário exigido pelo destino; agende o endosso em um escritório de saúde animal da CFIA antes da partida — a CFIA não pode endossá-lo depois que o cachorro sai."
   onSiteNote:
     en: "For Finland, Ireland, Malta or Norway, a tapeworm (Echinococcus) treatment must be given and recorded 24–120 hours before EU entry, before the CFIA endorsement."
     fr: "Pour la Finlande, l'Irlande, Malte ou la Norvège, un traitement contre le ténia (échinocoque) doit être administré et enregistré 24 à 120 h avant l'entrée dans l'UE, avant l'endossement CFIA."
@@ -236,6 +244,7 @@ requirements:
     ref: { en: "CFIA — Import Reference Document, s.2 (note) & Part IV", fr: "ACIA — Document de référence sur l'importation, art. 2 (note) et partie IV", es: "CFIA — Documento de referencia sobre la importación, art. 2 (nota) y parte IV", pt: "CFIA — Documento de referência sobre importação, art. 2 (nota) e parte IV" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "From a rabies-free country — simplest path", fr: "Depuis un pays indemne de rage — parcours le plus simple", es: "Desde un país libre de rabia — el camino más simple", pt: "De um país livre de raiva — o caminho mais simples" }
     body:
@@ -245,6 +254,7 @@ origin:
       pt: "Vindo de um país reconhecido pela CFIA como livre de raiva (Austrália, Fiji, Finlândia, Islândia, Irlanda, Japão, Nova Zelândia, Suécia ou Reino Unido), um cachorro de 8 meses ou mais pode entrar com um certificado veterinário atestando que o país esteve livre de raiva nos 6 meses anteriores e que o cachorro morou lá durante esses 6 meses (ou desde o nascimento). Um certificado de vacinação antirrábica válido ou um teste sorológico antirrábico também são aceitos. Sem quarentena."
     cls: ok
   listed:
+    from: any
     title: { en: "From most countries — a valid rabies vaccination certificate", fr: "Depuis la plupart des pays — un certificat de vaccination antirabique valide", es: "Desde la mayoría de los países — un certificado de vacunación antirrábica válido", pt: "Da maioria dos países — um certificado de vacinação antirrábica válido" }
     body:
       en: "From any other (rabies-present) country, including the United States and Mexico, a personal pet dog needs only a valid rabies vaccination certificate in English or French, issued by a licensed vet, that clearly identifies the dog and shows it is currently vaccinated. No antibody test, no waiting period and no quarantine. Simply declare the dog to the CBSA at the border."
@@ -369,7 +379,7 @@ sources:
 
 seo:
   title: { en: "Canada Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Canada — Guide", es: "Requisitos de entrada de perros en Canadá — Guía de viaje", pt: "Canadá: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Canada With Your Dog: Entry Requirements (2026)", fr: "Voyager au Canada avec ton chien : formalités (2026)", es: "Viajar a Canadá con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Canadá com seu cachorro: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Canada: Pet Travel Requirements 2026", fr: "Voyager au Canada avec ton chien : formalités (2026)", es: "Viajar a Canadá con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Canadá com seu cachorro: exigências de entrada 2026" }
   metaDesc:
     en: "Official CFIA rules for bringing a dog into Canada — a valid rabies vaccination certificate for most origins, no antibody test and no quarantine. Sourced and dated."
     fr: "Règles officielles de l'ACIA pour faire entrer un chien au Canada — certificat de vaccination antirabique valide pour la plupart des origines. Sourcé et daté."

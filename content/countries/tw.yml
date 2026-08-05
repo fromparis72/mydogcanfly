@@ -44,6 +44,7 @@ exit:
     pt: "Taiwan é um país listado, portanto nenhum teste sorológico antirrábico é necessário para voltar à UE — a APHIA (antiga BAPHIQ) inspeciona o seu cachorro e emite o certificado de exportação."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Obtain the destination's health-certificate form and file an export-quarantine application at an APHIA branch office; APHIA advises submitting it at least about a week before shipment, then inspects the dog and endorses the certificate."
         fr: "Procure-toi le formulaire de certificat sanitaire de la destination et dépose une demande de quarantaine d'export à un bureau APHIA ; l'APHIA conseille de le faire au moins une semaine avant, puis inspecte le chien et vise le certificat."
@@ -234,7 +235,9 @@ requirements:
     ref: { en: "Ministry of Agriculture — Announcement GL000084", fr: "Ministère de l'Agriculture — Avis GL000084", es: "Ministerio de Agricultura — Anuncio GL000084", pt: "Ministério da Agricultura — Comunicado GL000084" }
 
 origin:
+  scheme: own
   eu:
+    from: [jp, gb, au, nz, sg, se, is, no, ee, cz]
     title: { en: "From a rabies-free country or zone", fr: "Depuis un pays ou une zone indemne de rage", es: "Desde un país o zona libre de rabia", pt: "De um país ou zona livre de raiva" }
     body:
       en: "If your dog comes from a country/zone Taiwan recognises as rabies-free (Japan, United Kingdom, Australia, New Zealand, Singapore, Sweden, Iceland, Norway excluding Svalbard, Estonia, Czech Republic, and Hawaii and Guam), it needs an ISO microchip, an inactivated rabies vaccination and an advance import permit. The dog must also have been kept in that rabies-free country continuously for at least 180 days (or since birth if under 180 days old). No antibody test and no quarantine are required."
@@ -243,6 +246,7 @@ origin:
       pt: "Se o seu cachorro vem de um país/zona que Taiwan reconhece como livre de raiva (Japão, Reino Unido, Austrália, Nova Zelândia, Cingapura, Suécia, Islândia, Noruega excluindo Svalbard, Estônia, República Tcheca, além do Havaí e Guam), ele precisa de um microchip ISO, uma vacinação antirrábica inativada e uma autorização de importação prévia. O cachorro também deve ter permanecido nesse país livre de raiva continuamente por pelo menos 180 dias (ou desde o nascimento, se tiver menos de 180 dias). Nenhum teste sorológico e nenhuma quarentena são exigidos."
     cls: ok
   listed:
+    from_except: [jp, gb, au, nz, sg, se, is, no, ee, cz]
     title: { en: "From a rabies-infected country — standard (7-day quarantine)", fr: "Depuis un pays infecté — voie standard (quarantaine de 7 jours)", es: "Desde un país infectado por la rabia — vía estándar (cuarentena de 7 días)", pt: "De um país infectado por raiva — padrão (quarentena de 7 dias)" }
     body:
       en: "Most of the world is classified as rabies-infected. Your dog needs a microchip, an inactivated rabies vaccination, an advance import permit and a rabies antibody test (≥0.5 IU/ml) at a WOAH reference or APHIA-designated laboratory, with blood drawn at least 90 days before entry. On arrival the dog undergoes a minimum 7-day quarantine at a designated facility, with the space reserved through the permit."
@@ -274,7 +278,11 @@ arrival:
       fr: "À l'arrivée, présente le certificat vétérinaire d'exportation original, une copie du permis et la lettre de transport aérien (fret) ou la déclaration en douane (accompagné) au guichet de quarantaine animale."
       es: "A la llegada, entrega el certificado veterinario de exportación original, una copia del permiso de importación y la carta de porte aéreo (carga) o la declaración de aduanas (acompañado) en el mostrador de cuarentena animal."
       pt: "Na chegada, apresente o certificado veterinário de exportação original, uma cópia da autorização de importação e o conhecimento aéreo (carga) ou a declaração alfandegária (acompanhado) no balcão de quarentena animal."
-    - en: "Dogs from rabies-infected countries are transported to a designated quarantine facility (e.g. near Taoyuan or Kaohsiung) for a minimum 7-day quarantine; the owner pays transport and quarantine costs."
+    # Le complément exact de la liste des pays/zones que Taïwan reconnaît indemnes de rage,
+    # celle-là même qui qualifie le premier cas d'origine de cette fiche. Sans elle, un voyageur
+    # parti de Tokyo lisait une quarantaine de sept jours qui ne le concerne pas.
+    - from_except: [jp, gb, au, nz, sg, se, is, no, ee, cz]
+      en: "Dogs from rabies-infected countries are transported to a designated quarantine facility (e.g. near Taoyuan or Kaohsiung) for a minimum 7-day quarantine; the owner pays transport and quarantine costs."
       fr: "Les chiens venant de pays infectés sont transportés vers un centre de quarantaine désigné (près de Taoyuan ou Kaohsiung) pour une quarantaine minimale de 7 jours ; le propriétaire paie le transport et la quarantaine."
       es: "Los perros procedentes de países infectados por la rabia son transportados a un centro de cuarentena designado (p. ej. cerca de Taoyuan o Kaohsiung) para una cuarentena mínima de 7 días; el propietario paga el transporte y los costes de cuarentena."
       pt: "Cachorros vindos de países infectados por raiva são transportados para uma instalação de quarentena designada (por exemplo, perto de Taoyuan ou Kaohsiung) para uma quarentena mínima de 7 dias; o dono paga os custos de transporte e quarentena."
@@ -365,7 +373,7 @@ sources:
 
 seo:
   title: { en: "Taiwan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Taïwan — Guide", es: "Requisitos de entrada de perros en Taiwán — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Taiwan — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Taiwan With Your Dog: Entry Requirements (2026)", fr: "Voyager à Taïwan avec ton chien : formalités (2026)", es: "Viajar a Taiwán con tu perro: requisitos de entrada (2026)", pt: "Viajar para Taiwan com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Taiwan: Pet Travel Requirements 2026", fr: "Voyager à Taïwan avec ton chien : formalités (2026)", es: "Viajar a Taiwán con tu perro: requisitos de entrada (2026)", pt: "Viajar para Taiwan com Seu Cachorro: Exigências de Entrada (2026)" }
   metaDesc:
     en: "Official APHIA rules for bringing a dog into Taiwan: microchip, rabies vaccine, antibody test, import permit and 7-day minimum quarantine from infected countries."
     fr: "Règles officielles APHIA pour un chien entrant à Taïwan : puce, rage, titrage, permis d'importation et quarantaine de 7 jours minimum depuis un pays infecté."

@@ -15,11 +15,10 @@ const kb = loadKB();
 
 const cbase = localizeHref("/countries/", locale);
 const abase = localizeHref("/airlines/", locale);
-// Query string avant l'ancre : après "#", tout est fragment et n'atteint pas location.search.
-// Depuis une fiche compagnie, on transmet la compagnie pour que le Finder ouvre déjà en contexte.
-const finderHref = localizeHref("/", locale)
-  + (currentAirlineId ? `?air=${currentAirlineId}` : "")
-  + "#flight-finder";
+/* Paramètres dans le dièse, après l'ancre : « /#flight-finder?air=… ». Depuis une fiche
+   compagnie, on transmet la compagnie pour que le Finder ouvre déjà en contexte. */
+const finderHref = localizeHref("/", locale) + "#flight-finder"
+  + (currentAirlineId ? `?air=${currentAirlineId}` : "");
 
 const countryList = [...kb.countries.values()]
   .map((c) => ({ iso: c.iso2.toLowerCase(), name: (c.name as unknown as Record<string, string>)[locale] ?? (c.name as unknown as { en: string }).en }))
@@ -34,10 +33,11 @@ const nsNames: Record<string, string> = Object.fromEntries(
   [...kb.countries.values()].map((c) => [c.iso2.toLowerCase(), (c.name as unknown as Record<string, string>)[locale] ?? (c.name as unknown as { en: string }).en]),
 );
 const nsPrefix = T("Entry requirements — ", "Modalités d'entrée — ", "Requisitos de entrada — ");
-// Carry the current airline into the destination link (?via=), so the country page can keep offering
-// "you were considering <airline>?" instead of losing that choice between step 1 and step 2.
-const via = currentAirlineId ? `?via=${currentAirlineId}` : "";
-// Default suggestion (airline pages): the carrier's home country. Overridden client-side by ?to=<iso>.
+/* Carry the current airline into the destination link (#via=), so the country page can keep offering
+   "you were considering <airline>?" instead of losing that choice between step 1 and step 2.
+   C'est CE lien-là qui pesait le plus lourd : une variante par couple pays × compagnie. */
+const via = currentAirlineId ? `#via=${currentAirlineId}` : "";
+// Default suggestion (airline pages): the carrier's home country. Overridden client-side by #to=<iso>.
 const defHref = defaultIso ? `${cbase}${defaultIso}/${via}` : "";
 const defLabel = defaultIso && defaultName ? nsPrefix + defaultName : "";
 const showPrimary = !!(defaultIso || bookUrl);
@@ -83,7 +83,7 @@ const showPrimary = !!(defaultIso || bookUrl);
   (function () {
     // On an airline fiche, this IS the airline the visitor is considering → update the sticky context.
     if (currentAirlineId && window.mdcfCtx && window.mdcfCtx.setAir) window.mdcfCtx.setAir(currentAirlineId);
-    var to = (new URLSearchParams(location.search).get("to") || "").toLowerCase().replace(/[^a-z]/g, "");
+    var to = (window.mdcfQuery().get("to") || "").toLowerCase().replace(/[^a-z]/g, "");
     var link = document.getElementById("onav-dest");
     var label = document.getElementById("onav-dest-label");
     if (to && nsNames[to] && link && label) {
@@ -92,8 +92,8 @@ const showPrimary = !!(defaultIso || bookUrl);
       link.hidden = false;
     }
     // Keep the dog's breed in the URL when jumping via the selects (they navigate in JS, not <a>).
-    var breed = new URLSearchParams(location.search).get("breed");
-    var withBreed = function (url) { if (!breed) return url; return url + (url.indexOf("?") >= 0 ? "&" : "?") + "breed=" + encodeURIComponent(breed); };
+    var breed = window.mdcfQuery().get("breed");
+    var withBreed = function (url) { return window.mdcfPut(url, "breed", breed); };
     var go = function (sel) { if (sel && sel.value) location.href = withBreed(sel.value); };
     var c = document.getElementById("onav-country");
     var a = document.getElementById("onav-airline");

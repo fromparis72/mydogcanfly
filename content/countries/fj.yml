@@ -197,7 +197,9 @@ requirements:
     ref: { en: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (prohibited animals)", fr: "BAF — Importation de chats, chiens et autres animaux à Fidji (animaux interdits)", es: "BAF — Importación de gatos, perros y otras mascotas a Fiyi (animales prohibidos)", pt: "BAF — Bringing Cats, Dogs and Other Pets to Fiji (prohibited animals)" }
 
 origin:
+  scheme: own
   eu:
+    from: [au, as, cx, ck, fm, pf, to, ki, mh, nr, nc, nz, nu, pw, pg, ws, sb, tv, vu, wf]
     title: { en: "Group A — rabies-free, simplest path", fr: "Groupe A — indemne de rage, parcours le plus simple", es: "Grupo A — libre de rabia, la vía más sencilla", pt: "Grupo A — livre de raiva, o caminho mais simples" }
     body:
       en: "Group A covers rabies-free countries and territories such as Australia, New Zealand and Fiji's Pacific neighbours (American Samoa, Cook Islands, French Polynesia, Kiribati, Nauru, New Caledonia, Niue, Palau, Papua New Guinea, Samoa, Solomon Islands, Tonga, Tuvalu, Vanuatu, Wallis & Futuna and others). Your dog needs a BAF import permit, an ISO microchip and a minimum 7-day quarantine at the PEQ station — but no rabies vaccination or antibody test, because these countries are rabies-free."
@@ -206,6 +208,7 @@ origin:
       pt: "O Grupo A reúne países e territórios livres de raiva, como Austrália, Nova Zelândia e os vizinhos de Fiji no Pacífico (Samoa Americana, Ilhas Cook, Polinésia Francesa, Kiribati, Nauru, Nova Caledônia, Niue, Palau, Papua-Nova Guiné, Samoa, Ilhas Salomão, Tonga, Tuvalu, Vanuatu, Wallis e Futuna, entre outros). Seu cachorro precisa de uma autorização de importação da BAF, um microchip ISO e uma quarentena mínima de 7 dias na estação PEQ — mas sem vacinação antirrábica nem teste sorológico, porque esses países são livres de raiva."
     cls: ok
   listed:
+    from: [ag, aw, ar, at, bs, bh, bb, be, bm, bn, bg, ca, ky, cl, hr, cy, cz, dk, ee, fk, fi, fr, de, gi, gr, gl, gg, hk, hu, is, ie, im, il, it, jm, jp, je, kw, lv, li, lt, lu, mo, mt, mc, me, nl, mp, no, pl, pt, pr, qa, re, kn, lc, vc, rs, sc, sg, sk, si, za, kr, es, se, ch, tw, tt, ae, gb, us, uy, vg, vi]
     title: { en: "Group B — rabies-controlled approved countries", fr: "Groupe B — pays approuvés où la rage est maîtrisée", es: "Grupo B — países aprobados con la rabia controlada", pt: "Grupo B — países aprovados com raiva controlada" }
     body:
       en: "Group B covers approved countries where rabies is present but controlled — including the United States (with Guam and Hawaii), United Kingdom, Canada, EU member states, Japan, Singapore, South Africa and many more. On top of the import permit, microchip and veterinary certificate, your dog must be vaccinated against rabies at least 30 days before export and pass a rabies antibody test (RNATT/FAVN ≥0.5 IU/ml) taken 180–365 days before export, then complete a minimum 30-day quarantine at the PEQ station."
@@ -214,6 +217,7 @@ origin:
       pt: "O Grupo B reúne países aprovados onde a raiva está presente, mas controlada — incluindo Estados Unidos (com Guam e Havaí), Reino Unido, Canadá, países-membros da UE, Japão, Singapura, África do Sul e muitos outros. Além da autorização de importação, do microchip e do certificado veterinário, seu cachorro precisa ser vacinado contra a raiva pelo menos 30 dias antes da exportação e passar em um teste sorológico antirrábico (RNATT/FAVN ≥0,5 UI/ml) colhido entre 180 e 365 dias antes da exportação, além de cumprir uma quarentena mínima de 30 dias na estação PEQ."
     cls: warn
   nonListed:
+    from_except: [au, as, cx, ck, fm, pf, to, ki, mh, nr, nc, nz, nu, pw, pg, ws, sb, tv, vu, wf, ag, aw, ar, at, bs, bh, bb, be, bm, bn, bg, ca, ky, cl, hr, cy, cz, dk, ee, fk, fi, fr, de, gi, gr, gl, gg, hk, hu, is, ie, im, il, it, jm, jp, je, kw, lv, li, lt, lu, mo, mt, mc, me, nl, mp, no, pl, pt, pr, qa, re, kn, lc, vc, rs, sc, sg, sk, si, za, kr, es, se, ch, tw, tt, ae, gb, us, uy, vg, vi]
     title: { en: "Non-approved country — no direct import", fr: "Pays non approuvé — pas d'importation directe", es: "País no aprobado — sin importación directa", pt: "País não aprovado — sem importação direta" }
     body:
       en: "If your country is on neither the Group A nor the Group B list, your dog is not eligible for direct import into Fiji. You must first move it to an approved country or territory, where it completes a six-month residency and the other conditions of that country's veterinary certificate before it can travel to Fiji. Alternatively, an official request can be submitted to BAF to have a country or territory added to a cats-and-dogs veterinary certificate."
@@ -330,7 +334,7 @@ sources:
 
 seo:
   title: { en: "Fiji Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Fidji — Guide", es: "Requisitos de entrada de perros en Fiyi — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Fiji — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Fiji With Your Dog: Entry Requirements (2026)", fr: "Voyager à Fidji avec ton chien : formalités (2026)", es: "Viajar a Fiyi con tu perro: requisitos de entrada (2026)", pt: "Viajando para Fiji com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Fiji: Pet Travel Requirements 2026", fr: "Voyager à Fidji avec ton chien : formalités (2026)", es: "Viajar a Fiyi con tu perro: requisitos de entrada (2026)", pt: "Viajando para Fiji com Seu Cachorro: Exigências de Entrada (2026)" }
   metaDesc:
     en: "Official BAF rules for bringing a dog into Fiji: import permit, approved Group A/B countries, rabies antibody test for Group B. Sourced and dated."
     fr: "Règles officielles de la BAF pour faire entrer un chien à Fidji : permis, pays approuvés groupes A/B, titrage antirabique pour le groupe B. Sourcé et daté."

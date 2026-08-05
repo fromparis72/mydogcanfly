@@ -4,6 +4,7 @@ import Base from "../../../layouts/Base.astro";
 import AirportReliefPage from "../../../components/AirportReliefPage.astro";
 import { loadKB, slugFor, cityName, inlineT, inlineF } from "@mydogcanfly/knowledge";
 import { shardPaths } from "../../../lib/buildShard";
+import { etatRelief, reliefIndexable } from "../../../lib/reliefEtat";
 
 export function getStaticPaths() {
   const kb: any = loadKB();
@@ -31,16 +32,54 @@ const name = pick(a?.name) || city;
 // « airport dog bathroom », « dog toilet » : synonymes très recherchés que « pet relief area »
 // seul ne capte pas (Search Console, juillet 2026). On garde l'expression qui fonctionne déjà
 // et on ajoute le synonyme grand public.
+/* LE TITRE DIT CE QUE LA PAGE SAIT — trois formulations pour trois états.
+ *
+ * L'ancien titre, unique, promettait « dog bathroom & relief » et « the official source » sur
+ * les 118 fiches qui n'ont rien vérifié. C'était le seul endroit où le site promettait ce
+ * qu'il n'avait pas, et ça se corrigeait sans la moindre recherche.
+ *
+ *   · aire documentée  → on annonce l'emplacement, c'est la promesse qu'on tient ;
+ *   · absence constatée → on pose la QUESTION, parce que la page y répond par non. C'est
+ *     exactement la requête du voyageur, et une page qui répond « non » à « y a-t-il… ? »
+ *     est pertinente ;
+ *   · rien de vérifié   → on annonce l'état de la connaissance, sans rien promettre. Ces
+ *     pages sont en `noindex`, mais le titre reste lu par le visiteur venu du Finder. */
+const etat = etatRelief(a);
 const mkTitle = (n: string) =>
-  F("{0} ({1}): dog bathroom & relief", "{0} ({1}) : coins pipi chien", "{0} ({1}): baño para perros", n, a?.iata ?? "");
-let title = mkTitle(name);
+  etat === "aire"
+    ? F("{0} ({1}): dog bathroom & relief", "{0} ({1}) : coins pipi chien", "{0} ({1}): baño para perros", n, a?.iata ?? "")
+    : etat === "absence"
+      ? F("Does {0} ({1}) have a dog relief area?", "Y a-t-il un coin pipi chien à {0} ({1}) ?", "¿Hay zona de alivio para perros en {0} ({1})?", n, a?.iata ?? "")
+      : F("Dog relief at {0} ({1}): what we know", "Coin pipi chien à {0} ({1}) : ce que l'on sait", "Zona de alivio en {0} ({1}): lo que sabemos", n, a?.iata ?? "");
+/* Les deux formulations nouvelles introduisent une PRÉPOSITION — « à {0} », « en {0} » — et le
+ * nom officiel français commence souvent par un nom commun : « aéroport de Manchester ». On
+ * obtenait « à aéroport de Manchester », faute visible sur 59 fiches françaises et espagnoles.
+ * Ces deux formes prennent donc toujours la VILLE, qui se construit sans article et qui est de
+ * toute façon ce que les gens tapent. Le titre « aire documentée », lui, n'a pas de préposition
+ * et garde le nom officiel quand il tient. */
+/* `city` et non `name` : voir ci-dessus. Quelques noms n'ont même pas de « de » —
+ * « aéroport Roland Garros » —, la ville reste la seule forme sûre. */
+let title = etat === "aire" ? mkTitle(name) : mkTitle(city || name);
 if (title.length > 65 && city && city !== name) title = mkTitle(city);
 // Budget : ≤ 165 caractères. L'espagnol débordait avec les noms de ville longs.
-const desc = F(
-  "Where is the dog bathroom at {0} ({1})? Pet relief areas, before or after security, and the official source.",
-  "Où ton chien peut-il faire pipi à {0} ({1}) ? Coins pipi et toilettes, avant ou après la sûreté, et source officielle.",
-  "¿Dónde puede hacer pis tu perro en {0} ({1})? Baños y zonas de alivio, antes o después del control, y fuente oficial.",
-  city, a?.iata ?? "");
+const desc =
+  etat === "aire"
+    ? F(
+        "Where is the dog bathroom at {0} ({1})? Pet relief areas, before or after security, and the official source.",
+        "Où ton chien peut-il faire pipi à {0} ({1}) ? Coins pipi et toilettes, avant ou après la sûreté, et source officielle.",
+        "¿Dónde puede hacer pis tu perro en {0} ({1})? Baños y zonas de alivio, antes o después del control, y fuente oficial.",
+        city, a?.iata ?? "")
+    : etat === "absence"
+      ? F(
+          "No dog relief area is published by {0} ({1}). What we checked, and where to walk your dog instead.",
+          "Aucun coin pipi n'est publié par l'aéroport de {0} ({1}). Ce que nous avons vérifié, et où sortir ton chien à la place.",
+          "El aeropuerto de {0} ({1}) no publica ninguna zona de alivio. Lo que hemos verificado y dónde pasear a tu perro.",
+          city, a?.iata ?? "")
+      : F(
+          "We have not yet verified whether {0} ({1}) has a dog relief area. Airlines accepting dogs, and how to report what you find.",
+          "Nous n'avons pas encore vérifié si {0} ({1}) dispose d'un coin pipi. Compagnies acceptant les chiens, et comment nous signaler ce que tu trouves.",
+          "Aún no hemos verificado si {0} ({1}) tiene zona de alivio. Aerolíneas que aceptan perros y cómo contarnos lo que encuentres.",
+          city, a?.iata ?? "");
 const webpageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -51,6 +90,7 @@ const webpageLd = {
   about: { "@type": "Airport", name, iataCode: a?.iata },
 };
 ---
-<Base locale={locale} title={title} description={desc} ogType="article" jsonLd={[webpageLd]}>
+<Base locale={locale} title={title} description={desc} ogType="article" jsonLd={[webpageLd]}
+      noindex={!reliefIndexable(a)}>
   <AirportReliefPage id={id} locale={locale} />
 </Base>

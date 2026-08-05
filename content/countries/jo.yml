@@ -17,12 +17,14 @@ exit:
     pt: "A Jordânia não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde endossado por um veterinário do governo do Ministério da Agricultura."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The Ministry of Agriculture oversees export permits and veterinary requirements; your dog's health certificate must be endorsed by a government veterinarian before the flight."
         fr: "Le ministère de l'Agriculture supervise les permis d'export et les exigences vétérinaires ; le certificat sanitaire de ton chien doit être visé par un vétérinaire officiel avant le vol."
@@ -236,6 +238,7 @@ requirements:
     ref: { en: "No official Jordanian breed law found — verify with the Ministry of Agriculture", fr: "Aucune loi de race jordanienne officielle trouvée — à vérifier auprès du ministère de l'Agriculture", es: "No se ha encontrado ninguna ley jordana oficial sobre razas — verificar con el ministerio de Agricultura", pt: "Nenhuma lei jordaniana oficial sobre raças encontrada — verifique com o Ministério da Agricultura" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -363,7 +366,7 @@ sources:
 
 seo:
   title: { en: "Jordan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Jordanie — Guide", es: "Requisitos de entrada de perros en Jordania — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Jordânia — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Jordan With Your Dog: Entry Requirements (2026)", fr: "Voyager en Jordanie avec ton chien : formalités (2026)", es: "Viajar a Jordania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Jordânia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Jordan: Pet Travel Requirements 2026", fr: "Voyager en Jordanie avec ton chien : formalités (2026)", es: "Viajar a Jordania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Jordânia: exigências de entrada 2026" }
   metaDesc:
     en: "Bringing a dog into Jordan: Ministry of Agriculture import permit, rabies vaccination and endorsed veterinary health certificate. Sourced and dated."
     fr: "Faire entrer un chien en Jordanie : permis d'importation du ministère de l'Agriculture, vaccination antirabique et certificat vétérinaire visé. Sourcé et daté."

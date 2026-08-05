@@ -36,17 +36,26 @@ exit:
     pt: "A África do Sul é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de uma autorização de exportação e do endosso de um veterinário do Estado."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "Apply to DALRRD for the export permit; a State Veterinarian endorses the health certificate confirming the dog is fit to travel and meets the EU conditions."
         fr: "Demande à la DALRRD le permis d'export ; un vétérinaire d'État endosse le certificat sanitaire attestant que le chien est apte au voyage et conforme aux conditions UE."
         es: "Solicita a DALRRD el permiso de exportación; un veterinario estatal refrenda el certificado sanitario confirmando que el perro está apto para viajar y cumple las condiciones de la UE."
         pt: "Peça ao DALRRD a autorização de exportação; um veterinário do Estado endossa o atestado de saúde confirmando que o cachorro está apto a viajar e atende às condições da UE."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Apply to DALRRD for the export permit; a State Veterinarian endorses the health certificate confirming the dog is fit to travel."
+        fr: "Demande le permis d'export au DALRRD ; un vétérinaire d'État vise le certificat sanitaire attestant que le chien est apte au voyage."
+        es: "Solicita el permiso de exportación al DALRRD; un veterinario estatal valida el certificado sanitario que confirma que el perro está apto para viajar."
+        pt: "Solicite a licença de exportação ao DALRRD; um veterinário estadual endossa o certificado sanitário confirmando que o cachorro está apto a viajar."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -238,6 +247,7 @@ requirements:
     ref: { en: "No national breed-specific legislation (DALRRD)", fr: "Aucune législation nationale par race (DALRRD)", es: "Sin legislación nacional por raza (DALRRD)", pt: "Nenhuma legislação nacional por raça (DALRRD)" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Rabies-free origins", fr: "Origines indemnes de rage", es: "Orígenes libres de rabia", pt: "Origens livres de raiva" }
     body:
@@ -367,7 +377,7 @@ sources:
 
 seo:
   title: { en: "South Africa Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Afrique du Sud — Guide", es: "Requisitos de entrada de perros en Sudáfrica — Guía de viaje", pt: "África do Sul: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "South Africa Dog Entry Requirements (2026)", fr: "Voyager en Afrique du Sud avec ton chien : formalités (2026)", es: "Viajar a Sudáfrica con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro à África do Sul: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to South Africa: Pet Travel Requirements", fr: "Voyager en Afrique du Sud avec ton chien : formalités (2026)", es: "Viajar a Sudáfrica con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro à África do Sul: exigências de entrada 2026" }
   metaDesc:
     en: "Official DALRRD rules for bringing a dog into South Africa: import permit, microchip, rabies, disease tests and antibody test by origin. Sourced and dated."
     fr: "Règles officielles DALRRD pour faire entrer un chien en Afrique du Sud : permis, puce, rage, tests de maladies et test des anticorps selon l'origine. Sourcé et daté."

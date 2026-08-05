@@ -194,6 +194,7 @@ requirements:
     ref: { en: "EU Reg. 576/2013; BFSA (BABH)", fr: "Règl. UE 576/2013 ; BABH (BFSA)", es: "Regl. UE 576/2013; BFSA (BABH)", pt: "Regulamento UE 576/2013; BFSA (BABH)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -226,11 +227,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Bulgaria depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Bulgária depende do país de onde você veio."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: enter via a designated travellers' point of entry and present yourself spontaneously to Bulgarian customs for documentary and identity checks."
+    - from: non_eu
+      en: "From outside the EU: enter via a designated travellers' point of entry and present yourself spontaneously to Bulgarian customs for documentary and identity checks."
       fr: "Depuis hors UE : entre par un point d'entrée voyageurs désigné et présente-toi spontanément à la douane bulgare pour les contrôles documentaires et d'identité."
       es: "Desde fuera de la UE: entra por un punto de entrada de viajeros designado y preséntate espontáneamente ante las aduanas búlgaras para los controles documentales y de identidad."
       pt: "De fora da UE: entre por um ponto de entrada de viajantes designado e apresente-se espontaneamente à alfândega búlgara para as conferências documental e de identidade."
@@ -323,7 +326,7 @@ sources:
 
 seo:
   title: { en: "Bulgaria Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Bulgarie — Guide", es: "Requisitos de entrada de perros en Bulgaria — Guía de viaje", pt: "Entrada de cachorros na Bulgária — Guia de viagem" }
-  metaTitle: { en: "Traveling to Bulgaria With Your Dog: Entry Requirements (2026)", fr: "Voyager en Bulgarie avec ton chien : formalités (2026)", es: "Viajar a Bulgaria con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Bulgária: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Bulgaria: Pet Travel Requirements 2026", fr: "Voyager en Bulgarie avec ton chien : formalités (2026)", es: "Viajar a Bulgaria con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Bulgária: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Bulgaria — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Bulgarie — selon origine UE, pays listé ou non listé. Sourcé et daté."

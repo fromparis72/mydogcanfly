@@ -17,12 +17,14 @@ exit:
     pt: "A Gâmbia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Department of Livestock Services (serviços veterinários)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The Department of Livestock Services (the national competent authority) regulates animal movement and issues the export veterinary documentation."
         fr: "Le Department of Livestock Services (autorité nationale compétente) régule les mouvements d'animaux et délivre la documentation vétérinaire d'export."
@@ -239,6 +241,7 @@ requirements:
     ref: { en: "Trade.gov (US ITA) — Gambia Prohibited and Restricted Imports (no dog breed listed)", fr: "Trade.gov (US ITA) — Importations prohibées et restreintes Gambie (aucune race de chien listée)", es: "Trade.gov (US ITA) — Importaciones prohibidas y restringidas de Gambia (ninguna raza de perro listada)", pt: "Trade.gov (US ITA) — Gambia Prohibited and Restricted Imports (nenhuma raça de cachorro listada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -366,7 +369,7 @@ sources:
 
 seo:
   title: { en: "The Gambia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Gambie — Guide", es: "Requisitos de entrada de perros en Gambia — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Gâmbia — Guia de Viagem" }
-  metaTitle: { en: "Traveling to The Gambia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Gambie avec ton chien : formalités (2026)", es: "Viajar a Gambia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Gâmbia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to the Gambia: Pet Travel Requirements", fr: "Voyager en Gambie avec ton chien : formalités (2026)", es: "Viajar a Gambia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Gâmbia: exigências de entrada 2026" }
   metaDesc:
     en: "Official rules for bringing a dog into The Gambia: an import permit from the Department of Livestock Services. Many details are unpublished — sourced and dated."
     fr: "Règles officielles pour faire entrer un chien en Gambie : permis d'importation du Department of Livestock Services. Beaucoup de détails non publiés — sourcé et daté."

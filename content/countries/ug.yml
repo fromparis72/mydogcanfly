@@ -17,12 +17,14 @@ exit:
     pt: "Uganda não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pelo Commissioner for Animal Health (MAAIF)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The Commissioner for Animal Health (MAAIF) issues the official veterinary health certificate after application and inspection."
         fr: "Le Commissaire à la santé animale (MAAIF) délivre le certificat sanitaire vétérinaire officiel après demande et inspection."
@@ -239,6 +241,7 @@ requirements:
     ref: { en: "MAAIF import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation du MAAIF (aucune législation par race citée)", es: "Condiciones de importación del MAAIF (ninguna legislación por raza citada)", pt: "Condições de importação do MAAIF (nenhuma legislação por raça citada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -366,7 +369,7 @@ sources:
 
 seo:
   title: { en: "Uganda Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Ouganda — Guide", es: "Requisitos de entrada de perros en Uganda — Guía de viaje", pt: "Exigências de entrada de cachorros em Uganda — Guia de viagem" }
-  metaTitle: { en: "Traveling to Uganda With Your Dog: Entry Requirements (2026)", fr: "Voyager en Ouganda avec ton chien : formalités (2026)", es: "Viajar a Uganda con tu perro: requisitos de entrada (2026)", pt: "Viajar para Uganda com seu cachorro: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Uganda: Pet Travel Requirements 2026", fr: "Voyager en Ouganda avec ton chien : formalités (2026)", es: "Viajar a Uganda con tu perro: requisitos de entrada (2026)", pt: "Viajar para Uganda com seu cachorro: exigências de entrada (2026)" }
   metaDesc:
     en: "Official MAAIF rules for bringing a dog into Uganda: import permit from the Commissioner for Animal Health, rabies vaccination. Sourced and dated."
     fr: "Règles officielles du MAAIF pour faire entrer un chien en Ouganda : permis du Commissioner for Animal Health, vaccination antirabique. Sourcé et daté."

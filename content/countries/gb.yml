@@ -17,12 +17,14 @@ exit:
     pt: "Para sair do Reino Unido rumo à UE, seu cachorro precisa de um Animal Health Certificate (AHC) emitido por um veterinário oficial autorizado pela APHA — o passaporte britânico para animais não vale mais para a UE."
   steps:
     - timing: window
+      scope: any
       text:
         en: "See an APHA Official Veterinarian to get the AHC — valid for 10 days of travel."
         fr: "Consulte un vétérinaire officiel agréé APHA pour obtenir l'AHC — valable 10 jours pour voyager."
         es: "Acude a un veterinario oficial autorizado por APHA para obtener el AHC — válido 10 días para viajar."
         pt: "Procure um veterinário oficial autorizado pela APHA para obter o AHC — válido por 10 dias para viajar."
     - timing: before
+      scope: any
       text:
         en: "Travel via an approved route/operator, microchip and rabies vaccination up to date."
         fr: "Voyage par une voie/opérateur agréé, puce et vaccin antirabique à jour."
@@ -241,6 +243,7 @@ requirements:
     ref: { en: "GOV.UK — Bring your pet to Great Britain (What you need to do)", fr: "GOV.UK — Bring your pet to Great Britain (What you need to do)", es: "GOV.UK — Bring your pet to Great Britain (What you need to do)", pt: "GOV.UK — Levar seu animal de estimação para a Grã-Bretanha (o que fazer)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU — travel document, no blood test", fr: "Depuis l'UE — document de voyage, sans prise de sang", es: "Desde la UE — documento de viaje, sin análisis de sangre", pt: "Da UE — documento de viagem, sem teste sorológico" }
     body:
@@ -380,7 +383,7 @@ sources:
 
 seo:
   title: { en: "Great Britain Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Grande-Bretagne — Guide", es: "Requisitos de entrada de perros en Gran Bretaña — Guía de viaje", pt: "Grã-Bretanha: exigências de entrada para cachorros" }
-  metaTitle: { en: "United Kingdom Dog Entry Requirements (2026)", fr: "Voyager en Grande-Bretagne avec ton chien : formalités (2026)", es: "Viajar a Gran Bretaña con tu perro: requisitos de entrada (2026)", pt: "Reino Unido: entrada de cachorros, exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to the UK: Pet Travel Requirements 2026", fr: "Voyager en Grande-Bretagne avec ton chien : formalités (2026)", es: "Viajar a Gran Bretaña con tu perro: requisitos de entrada (2026)", pt: "Reino Unido: entrada de cachorros, exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies, tapeworm and blood-test rules for bringing a dog into Great Britain — the GB pet scheme, by EU. Sourced and dated."
     fr: "Règles officielles puce, rage, ténia et prise de sang pour faire entrer un chien en Grande-Bretagne — le régime GB, selon origine UE. Sourcé et daté."

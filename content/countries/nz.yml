@@ -36,6 +36,7 @@ exit:
     pt: "Sair da Nova Zelândia com seu cachorro exige um certificado de exportação emitido por um MPI Official Veterinarian (veterinário oficial do MPI), mais um Animal Welfare Export Certificate para voos de mais de 6 horas."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Only certain MPI-authorised vets can sign the export certificate; requirements follow the destination's OMAR."
         fr: "Seuls certains vétérinaires agréés MPI peuvent signer le certificat d'export ; les exigences suivent l'OMAR de la destination."
@@ -233,7 +234,9 @@ requirements:
     ref: { en: "Dog Control Act 1996; MPI IHS CATDOG.GEN", fr: "Dog Control Act 1996 ; IHS CATDOG.GEN du MPI", es: "Dog Control Act 1996; IHS CATDOG.GEN del MPI", pt: "Dog Control Act 1996; IHS CATDOG.GEN do MPI" }
 
 origin:
+  scheme: own
   eu:
+    from: [au]
     title: { en: "Category 1 — Australia (simplest)", fr: "Catégorie 1 — Australie (le plus simple)", es: "Categoría 1 — Australia (la más sencilla)", pt: "Categoria 1 — Austrália (a mais simples)" }
     body:
       en: "A dog coming from Australia (including Norfolk Island) needs no import permit and no quarantine. It must still be microchipped, meet the treatment rules and travel with the correct veterinary certificate; you notify an official vet in New Zealand and it is cleared at Auckland or Christchurch airport."
@@ -269,11 +272,13 @@ arrival:
       fr: "Les chiens doivent arriver à l'aéroport international d'Auckland ou de Christchurch, où les agents de biosécurité du MPI vérifient documents et identité."
       es: "Los perros deben llegar al aeropuerto internacional de Auckland o de Christchurch, donde los agentes de bioseguridad del MPI verifican los documentos y la identidad."
       pt: "Os cachorros precisam chegar pelo aeroporto internacional de Auckland ou de Christchurch, onde os agentes de biossegurança do MPI conferem os documentos e a identidade."
-    - en: "From Australia (Category 1): the dog is inspected and cleared at the airport — no quarantine — provided all rules are met."
+    - from: &australie [au]
+      en: "From Australia (Category 1): the dog is inspected and cleared at the airport — no quarantine — provided all rules are met."
       fr: "Depuis l'Australie (catégorie 1) : le chien est inspecté et dédouané à l'aéroport — sans quarantaine — si toutes les règles sont respectées."
       es: "Desde Australia (categoría 1): el perro es inspeccionado y despachado en el aeropuerto — sin cuarentena — siempre que se cumplan todas las normas."
       pt: "Vindo da Austrália (categoria 1): o cachorro é inspecionado e liberado no aeroporto — sem quarentena — desde que todas as regras sejam cumpridas."
-    - en: "From all other approved countries: the dog is transferred to a pre-booked MPI-approved quarantine facility for a minimum of 10 days."
+    - from_except: *australie
+      en: "From all other approved countries: the dog is transferred to a pre-booked MPI-approved quarantine facility for a minimum of 10 days."
       fr: "Depuis tout autre pays approuvé : le chien est transféré vers un centre de quarantaine agréé par le MPI, réservé à l'avance, pour au minimum 10 jours."
       es: "Desde cualquier otro país aprobado: el perro se traslada a un centro de cuarentena aprobado por el MPI reservado con antelación durante un mínimo de 10 días."
       pt: "Vindo de qualquer outro país aprovado: o cachorro é transferido para uma unidade de quarentena aprovada pelo MPI, reservada com antecedência, por no mínimo 10 dias."
@@ -368,7 +373,7 @@ sources:
 
 seo:
   title: { en: "New Zealand Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Nouvelle-Zélande — Guide", es: "Requisitos de entrada de perros en Nueva Zelanda — Guía de viaje", pt: "Entrada de cachorro na Nova Zelândia — guia de viagem" }
-  metaTitle: { en: "Traveling to New Zealand With Your Dog: Entry Requirements (2026)", fr: "Voyager en Nouvelle-Zélande avec ton chien : formalités (2026)", es: "Viajar a Nueva Zelanda con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Nova Zelândia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to New Zealand: Pet Travel Requirements", fr: "Voyager en Nouvelle-Zélande avec ton chien : formalités (2026)", es: "Viajar a Nueva Zelanda con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Nova Zelândia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official MPI rules for bringing a dog into New Zealand: import permit, microchip, rabies antibody test, treatments and minimum 10-day quarantine. Sourced and dated."
     fr: "Règles officielles du MPI pour la Nouvelle-Zélande : permis, puce, titrage antirabique, traitements et quarantaine minimale de 10 jours. Sourcé et daté."

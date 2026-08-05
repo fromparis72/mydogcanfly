@@ -17,12 +17,14 @@ exit:
     pt: "O Líbano não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde assinado e carimbado por um veterinário do governo do Ministério da Agricultura."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Under the Ministry of Agriculture's veterinary quarantine rules, the travel health certificate must be signed and stamped by an official government veterinarian before departure."
         fr: "Selon les règles de quarantaine vétérinaire du ministère de l'Agriculture, le certificat sanitaire de voyage doit être signé et tamponné par un vétérinaire officiel avant le départ."
@@ -243,6 +245,7 @@ requirements:
     ref: { en: "Law No. 47/2017 (Animal Protection and Welfare), Article 7", fr: "Loi n° 47/2017 (protection et bien-être animal), article 7", es: "Ley n.º 47/2017 (Protección y Bienestar Animal), artículo 7", pt: "Lei nº 47/2017 (Proteção e Bem-Estar Animal), artigo 7" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -368,7 +371,7 @@ sources:
 
 seo:
   title: { en: "Lebanon Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Liban — Guide", es: "Requisitos de entrada de perros en el Líbano — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Líbano — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Lebanon With Your Dog: Entry Requirements (2026)", fr: "Voyager au Liban avec ton chien : formalités (2026)", es: "Viajar al Líbano con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Líbano: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Lebanon: Pet Travel Requirements 2026", fr: "Voyager au Liban avec ton chien : formalités (2026)", es: "Viajar al Líbano con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Líbano: exigências de entrada 2026" }
   metaDesc:
     en: "Official framework for bringing a dog into Lebanon: microchip, rabies and canine vaccinations. Several details unpublished — sourced and dated."
     fr: "Cadre officiel pour faire entrer un chien au Liban : puce, vaccins rage et canins, certificat sanitaire vétérinaire. Plusieurs détails non publiés — sourcé et daté."

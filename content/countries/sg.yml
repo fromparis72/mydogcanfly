@@ -20,12 +20,14 @@ exit:
     pt: "Singapura é um país listado, então não é preciso teste sorológico antirrábico para voltar — mas o AVS (NParks) precisa endossar o atestado de saúde da UE e emitir uma licença de exportação."
   steps:
     - timing: longlead
+      scope: any
       text:
         en: "Obtain the AVS export licence via the GoBusiness Licensing Portal (valid 90 days), and request the pre-export inspection at least 5 days before departure."
         fr: "Obtiens la licence d'export AVS via le portail GoBusiness Licensing (valable 90 jours), et demande l'inspection pré-export au moins 5 jours avant le départ."
         es: "Obtén la licencia de exportación de AVS a través del GoBusiness Licensing Portal (válida 90 días) y solicita la inspección previa a la exportación al menos 5 días antes de salir."
         pt: "Obtenha a licença de exportação do AVS pelo GoBusiness Licensing Portal (válida por 90 dias) e solicite a inspeção pré-exportação pelo menos 5 dias antes da partida."
     - timing: window
+      scope: eu
       text:
         en: "A licensed vet completes the EU health certificate; AVS then endorses it (allow about 2 working days — no express service for endorsement)."
         fr: "Un vétérinaire agréé remplit le certificat sanitaire UE ; l'AVS l'endosse ensuite (compte ~2 jours ouvrés — pas de service express pour l'endossement)."
@@ -233,7 +235,9 @@ requirements:
     ref: { en: "AVS — Importing dogs and cats, step 5", fr: "AVS — Importation de chiens et chats, étape 5", es: "AVS — Importación de perros y gatos, paso 5", pt: "AVS — Importação de cães e gatos, etapa 5" }
 
 origin:
+  scheme: own
   eu:
+    from: [au, nz, ie, gb]
     title: { en: "Schedule I — no blood test, no quarantine", fr: "Annexe I — sans prise de sang ni quarantaine", es: "Anexo I — sin prueba de sangre ni cuarentena", pt: "Anexo I — sem exame de sangue, sem quarentena" }
     body:
       en: "From Schedule I countries (Australia, New Zealand, Ireland, United Kingdom), your dog needs an ISO microchip, valid core vaccinations, a dog licence, an AVS import licence and an endorsed health certificate — but no rabies vaccination, no serology test and no quarantine, provided all conditions are fully met."
@@ -370,7 +374,7 @@ sources:
 
 seo:
   title: { en: "Singapore Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Singapour — Guide", es: "Requisitos de entrada de perros en Singapur — Guía de viaje", pt: "Requisitos de entrada de cachorros em Singapura — Guia" }
-  metaTitle: { en: "Traveling to Singapore With Your Dog: Entry Requirements (2026)", fr: "Voyager à Singapour avec ton chien : formalités (2026)", es: "Viajar a Singapur con tu perro: requisitos de entrada (2026)", pt: "Viajar para Singapura com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Singapore: Pet Travel Requirements 2026", fr: "Voyager à Singapour avec ton chien : formalités (2026)", es: "Viajar a Singapur con tu perro: requisitos de entrada (2026)", pt: "Viajar para Singapura com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official AVS/NParks rules for bringing a dog into Singapore — import licence, rabies serology, quarantine and banned breeds. Sourced and dated."
     fr: "Règles officielles AVS/NParks pour faire entrer un chien à Singapour — licence d'importation, titrage rabique, quarantaine et races interdites. Sourcé et daté."

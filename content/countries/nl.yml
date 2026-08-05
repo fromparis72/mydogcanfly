@@ -192,6 +192,7 @@ requirements:
     ref: { en: "EU Reg. 576/2013; NVWA", fr: "Règl. UE 576/2013 ; NVWA", es: "Regl. UE 576/2013; NVWA", pt: "Regulamento UE 576/2013; NVWA" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -224,11 +225,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a los Países Bajos depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega aos Países Baixos depende de onde você embarcou."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: you must enter via a designated border control post — Amsterdam Schiphol Airport — for documentary and identity checks."
+    - from: non_eu
+      en: "From outside the EU: you must enter via a designated border control post — Amsterdam Schiphol Airport — for documentary and identity checks."
       fr: "Depuis hors UE : tu dois entrer par un poste de contrôle frontalier désigné — l'aéroport d'Amsterdam-Schiphol — pour les contrôles documentaires et d'identité."
       es: "Desde fuera de la UE: debes entrar por un puesto de control fronterizo designado — el aeropuerto de Ámsterdam-Schiphol — para los controles documentales y de identidad."
       pt: "De fora da UE: você precisa entrar por um posto de controle de fronteira designado — o aeroporto de Amsterdã-Schiphol — para os controles documental e de identidade."
@@ -325,7 +328,7 @@ sources:
 
 seo:
   title: { en: "Netherlands Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Pays-Bas — Guide", es: "Requisitos de entrada de perros en los Países Bajos — Guía de viaje", pt: "Países Baixos: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Netherlands Dog Entry Requirements (2026)", fr: "Voyager aux Pays-Bas avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Países Bajos (2026)", pt: "Cachorro nos Países Baixos: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to the Netherlands: Pet Travel Rules", fr: "Voyager aux Pays-Bas avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Países Bajos (2026)", pt: "Cachorro nos Países Baixos: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into the Netherlands — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien aux Pays-Bas — selon origine UE, pays listé ou non listé. Sourcé et daté."

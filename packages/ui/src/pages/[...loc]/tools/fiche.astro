@@ -34,11 +34,26 @@ for (const g of Object.values(countryData) as CountryGuide[]) {
     // une URL inexistante depuis la Bible.
     slug: iso,
     regime: g.regime ?? null,
-    arrival: { intro: pick(g.arrival?.intro), points: (g.arrival?.points ?? []).map(pick) },
+    /* La puce voyage avec sa condition d'origine. `pick` seul rendrait une chaîne et perdrait
+     * `from` en route — c'est-à-dire exactement l'information qui manquait au moteur. */
+    arrival: {
+      intro: pick(g.arrival?.intro),
+      points: (g.arrival?.points ?? []).map((p) => ({
+        t: pick(p), from: p.from ?? null, not: p.from_except ?? null,
+      })),
+    },
     origin: {
-      eu: { title: pick(g.origin?.eu?.title), body: pick(g.origin?.eu?.body) },
-      listed: { title: pick(g.origin?.listed?.title), body: pick(g.origin?.listed?.body) },
-      nonListed: { title: pick(g.origin?.nonListed?.title), body: pick(g.origin?.nonListed?.body) },
+      /* `scheme` voyage avec les cases : sans lui, la fiche de voyage ne peut pas savoir si les
+       * trois cases signifient « UE / listé / non listé » ou tout autre chose. C'est précisément
+       * ce qui lui manquait pour ne pas servir la règle nord-américaine à un départ de Paris. */
+      scheme: g.origin?.scheme ?? "own",
+      /* La condition voyage avec le cas. L'oublier ici revient à la perdre entre le serveur et
+       * le navigateur : la fiche mexicaine porte bien `from_except: [us, ca]`, mais le moteur ne
+       * voyait qu'un titre et un corps, et n'avait donc plus rien pour désigner le bon cas. */
+      ...Object.fromEntries(["eu", "listed", "nonListed"].map((k) => [k, {
+        title: pick(g.origin?.[k]?.title), body: pick(g.origin?.[k]?.body),
+        from: g.origin?.[k]?.from ?? null, not: g.origin?.[k]?.from_except ?? null,
+      }])),
     },
     requirements: (g.requirements ?? []).map((r) => ({
       item: pick(r.item), required: pick(r.required), when: pick(r.when), exceptions: pick(r.exceptions),
@@ -49,7 +64,7 @@ for (const g of Object.values(countryData) as CountryGuide[]) {
     exit: g.exit
       ? {
           authority: g.exit.authority, authorityUrl: g.exit.authorityUrl, intro: pick(g.exit.intro),
-          steps: g.exit.steps.map((s) => ({ text: pick(s.text), timing: s.timing })),
+          steps: g.exit.steps.map((s) => ({ text: pick(s.text), timing: s.timing, scope: s.scope })),
           onSiteNote: g.exit.onSiteNote ? pick(g.exit.onSiteNote) : "",
         }
       : null,
@@ -93,17 +108,56 @@ const T = {
   s2: L("Arrival — entering", "Arrivée — entrée en", "Llegada — entrada en"),
   s3: L("Before the return — leaving", "Avant le retour — sortie de", "Antes de la vuelta — salida de"),
   s4: L("Return — entering", "Retour — entrée en", "Vuelta — entrada en"),
-  freeExit: L("No export formality: the dog leaves the EU freely. What matters is entry into the origin country (step 4).", "Aucune formalité d'export : le chien sort librement de la zone UE. Ce qui compte, c'est l'entrée dans le pays d'origine (étape 4).", "Ninguna formalidad de exportación: el perro sale libremente de la UE. Lo que cuenta es la entrada al país de origen (paso 4)."),
+  /* « Le retour » et non « l'entrée ». Ces deux lignes servent aux étapes 1 et 3, c'est-à-dire
+   * aux DÉPARTS ; elles renvoient le lecteur vers l'étape 4 pour lui dire où se trouve la vraie
+   * contrainte. Or « l'entrée dans le pays d'origine » se lit à contretemps — on croit un instant
+   * qu'il s'agit d'être entré chez soi avant de partir. « Le retour » nomme le mouvement tel que
+   * le voyageur le vit, et c'est d'ailleurs le mot qu'emploie déjà le titre de l'étape 4. */
+  freeExit: L("No export formality: the dog leaves the EU freely. What matters is the return to the home country (step 4).", "Aucune formalité d'export : le chien sort librement de la zone UE. Ce qui compte, c'est le retour dans le pays d'origine (étape 4).", "Ninguna formalidad de exportación: el perro sale libremente de la UE. Lo que cuenta es el regreso al país de origen (paso 4)."),
   exitCheck: L("Check the export rules of the origin country with its veterinary authority.", "Vérifie les règles d'export du pays d'origine auprès de son autorité vétérinaire.", "Verifica las reglas de exportación del país de origen con su autoridad veterinaria."),
+  /* L'ouverture de l'étape « sortie » hors Europe. Les intros des fiches sont européennes à 92 % —
+   * elles annoncent le certificat UE — et ne peuvent donc pas servir ici. Cette phrase-ci dit à
+   * leur place la seule chose universellement vraie, et c'est justement la plus utile : le
+   * certificat à obtenir n'est pas défini par le pays qu'on quitte mais par celui où l'on va.
+   * {0} = le pays d'arrivée, {1} = l'autorité d'export du pays de départ. */
+  /* Le nom du pays est isolé en tête, après « Destination », et la phrase le reprend ensuite par
+   * « ce pays ». Sans cela il faudrait écrire « celui qu'exige LE Mexique » et « celui qu'exigent
+   * LES États-Unis » — article et accord, dans quatre langues, sur 140 noms de pays. La même
+   * ornière que le « à aéroport de Manchester » : on la contourne par la syntaxe. */
+  exitGeneric: L(
+    "Destination {0}: the certificate to obtain is the one that country requires — see step 2. On the departure side, {1} issues or endorses it: allow for the lead time and book before your flight.",
+    "Destination {0} : le certificat à faire établir est celui qu'exige ce pays — voir l'étape 2. Côté départ, c'est {1} qui le délivre ou le vise : prévois le délai et prends rendez-vous avant ton vol.",
+    "Destino {0}: el certificado que debes obtener es el que exige ese país — consulta el paso 2. Del lado de la salida, es {1} quien lo emite o lo visa: prevé el plazo y pide cita antes del vuelo."),
   authority: L("Authority", "Autorité", "Autoridad"),
   countrySheet: L("Country sheet", "Fiche pays", "Ficha país"),
+  /* Le libellé du repli. Il couvre deux choses à la fois : les règles qui visent une autre
+   * origine que celle déclarée, et les puces que la place ne permet pas de montrer en clair.
+   * D'où « et précisions » — annoncer « autres cas » seul laisserait croire que le reste a
+   * été jugé hors sujet, alors qu'il a seulement été jugé secondaire. */
+  otherCases: L("Other cases and details", "Autres cas de figure et précisions", "Otros casos y precisiones"),
+  /* L'en-tête des cas non tranchés. Le « ton » compte ici : il ne s'agit pas de s'excuser d'une
+   * lacune mais de dire ce qui est vrai — ce pays a ses propres catégories, les voici. */
+  /* Le statut du pays de départ, dit en clair au-dessus du texte général de la fiche. */
+  origEU: L("an EU / EEA country", "pays de l'UE / EEE", "país de la UE / EEE"),
+  origListed: L("a third country listed by the EU", "pays tiers listé par l'UE", "país tercero listado por la UE"),
+  origNonListed: L("a third country not listed by the EU", "pays tiers non listé par l'UE", "país tercero no listado por la UE"),
   casH: L("Special cases & reserves — check if they apply to you", "Cas particuliers & réserves — vérifie s'ils te concernent", "Casos particulares y reservas — comprueba si te afectan"),
+  /* Les réserves valables partout : elles ne parlent que du chien et du vol. */
   cas: [
-    L("Puppy under 12 weeks or not yet vaccinated: travel to the EU is not possible.", "Chiot de moins de 12 semaines ou non encore vacciné : voyage vers l'UE impossible.", "Cachorro de menos de 12 semanas o sin vacunar: el viaje a la UE no es posible."),
     L("Brachycephalic breed (bulldog, pug…): hold often refused, especially in summer.", "Race brachycéphale (bouledogue, carlin…) : soute souvent refusée, surtout l'été.", "Raza braquicéfala (bulldog, carlino…): bodega a menudo rechazada, sobre todo en verano."),
-    L("Layover through a non-listed third country: a rabies titer may then become mandatory.", "Escale par un pays tiers non listé : un titrage peut alors devenir obligatoire.", "Escala por un país tercero no listado: la titulación puede volverse obligatoria."),
+    L("Puppy under 12 weeks: the rabies vaccine cannot be given before that age, and nearly every country requires it.", "Chiot de moins de 12 semaines : le vaccin antirabique ne peut pas être fait avant cet âge, et presque tous les pays l'exigent.", "Cachorro de menos de 12 semanas: la vacuna antirrábica no puede aplicarse antes de esa edad, y casi todos los países la exigen."),
     L("Recent stay (6 months) in a high-rabies-risk country: stricter entry (permit/titer).", "Séjour récent (6 mois) dans un pays à haut risque rage : entrée durcie (permis/titrage).", "Estancia reciente (6 meses) en país de alto riesgo de rabia: entrada más estricta (permiso/titulación)."),
-    L("More than 5 animals or commercial purpose: switches to the commercial regime, other rules.", "Plus de 5 animaux ou but commercial : bascule en régime commercial, autres règles.", "Más de 5 animales o fin comercial: pasa al régimen comercial, otras reglas."),
+    L("Layover in a third country: the applicable rule can change — check the whole itinerary, not just the two ends.", "Escale dans un pays tiers : la règle applicable peut changer — vérifie l'itinéraire complet, pas seulement les deux bouts.", "Escala en un país tercero: la norma aplicable puede cambiar — revisa todo el itinerario, no solo los dos extremos."),
+    L("Several animals or a commercial purpose: switches to the commercial regime, other rules.", "Plusieurs animaux ou but commercial : bascule en régime commercial, autres règles.", "Varios animales o fin comercial: pasa al régimen comercial, otras reglas."),
+  ],
+  /* Les réserves proprement européennes — le seuil de cinq animaux, la notion de « pays tiers
+   * non listé », l'interdiction d'entrée d'un chiot non vacciné — ne sont ajoutées que si un
+   * bout du voyage touche l'UE. Elles s'affichaient jusqu'ici sur TOUS les trajets, si bien
+   * qu'un États-Unis → Mexique parlait d'Union européenne sans qu'elle ait rien à y voir. */
+  casUE: [
+    L("Puppy under 12 weeks or not yet vaccinated: travel to the EU is not possible.", "Chiot de moins de 12 semaines ou non encore vacciné : voyage vers l'UE impossible.", "Cachorro de menos de 12 semanas o sin vacunar: el viaje a la UE no es posible."),
+    L("Layover through a non-listed third country: a rabies titer may then become mandatory to enter the EU.", "Escale par un pays tiers non listé : un titrage peut alors devenir obligatoire pour entrer dans l'UE.", "Escala por un país tercero no listado: la titulación puede volverse obligatoria para entrar en la UE."),
+    L("More than 5 animals or commercial purpose: the EU switches to the commercial regime, other rules.", "Plus de 5 animaux ou but commercial : l'UE bascule en régime commercial, autres règles.", "Más de 5 animales o fin comercial: la UE pasa al régimen comercial, otras reglas."),
   ],
   flightH: L("The flight & the airline", "Le vol & la compagnie", "El vuelo y la aerolínea"),
   cabin: L("Cabin", "Cabine", "Cabina"), hold: L("Hold", "Soute", "Bodega"), cargo: L("Cargo", "Fret", "Carga"),
@@ -191,7 +245,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
     // Special-cases block: bold the watch-out triggers, underline delays.
     const emC = (raw) => { const s = und(esc(raw)); return CASRE ? s.replace(CASRE, '<b>$1</b>') : s; };
     const flag = (iso) => iso && iso.length === 2 ? String.fromCodePoint(...[...iso.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65)) : "";
-    const P = new URLSearchParams(location.search);
+    const P = window.mdcfQuery();
     const el = document.getElementById("bible");
 
     const from = (P.get("from") || "").toLowerCase();
@@ -227,23 +281,251 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
 
       // Step content, data-driven from the two country guides.
       const originEU = O.regime === "eu", destEU = D.regime === "eu";
-      const step1 = originEU
-        ? `<p>${esc(T.freeExit)}</p>`
-        : (O.exit
-          ? `<p>${emE(O.exit.intro)}</p><ul class="bl">${list(O.exit.steps.map((s) => s.text), emE)}</ul>` + (O.exit.onSiteNote ? `<p class="bnote">${emE(O.exit.onSiteNote)}</p>` : "") + `<a class="blink" href="${esc(O.exit.authorityUrl)}" target="_blank" rel="nofollow noopener">${esc(T.authority)} : ${esc(O.exit.authority)}</a>`
-          : `<p>${esc(T.exitCheck)} ${pill("chk")}</p>`);
-      const entryBlock = (guide, fromRegime) => {
-        const ob = guide.origin[key(fromRegime)] || {};
-        const pts = (guide.arrival?.points || []).slice(0, 4);
-        return (ob.body ? `<p>${emE(ob.body)}</p>` : "") + (pts.length ? `<ul class="bl">${list(pts, emE)}</ul>` : "");
+
+      /* LE BLOC « SORTIE » NE DÉCRIT PAS UNE SORTIE, IL DÉCRIT UNE SORTIE VERS L'EUROPE.
+       *
+       * 95 des 98 blocs `exit` du corpus sont rédigés ainsi — « Les États-Unis sont un pays listé :
+       * pas de titrage pour revenir, mais il faut le certificat sanitaire UE endossé par l'USDA
+       * APHIS ». C'est cohérent : le site est né pour un lecteur européen, et l'étape 1 supposait
+       * partout qu'on rentrait en Europe. La supposition ne se voyait pas tant que les deux bouts
+       * du voyage touchaient l'UE ; elle saute aux yeux sur un États-Unis → Mexique, où le
+       * voyageur lit qu'il lui faut un certificat européen pour aller à Mexico.
+       *
+       * On ne montre donc la procédure que si l'autre bout du voyage est bien européen. Ailleurs,
+       * on dit ce qu'on sait vraiment : l'autorité compétente, avec son lien — c'est vrai quelle
+       * que soit la destination — et l'invitation à vérifier auprès d'elle. Une réponse courte et
+       * juste plutôt qu'une réponse longue et hors sujet.
+       *
+       * Ce n'est pas la réparation définitive : elle consistera à rédiger les blocs « sortie » sans
+       * présupposer la destination, ou à leur donner une portée déclarée. En attendant, la fiche
+       * ne raconte plus l'Europe à qui n'y va pas. */
+      const sortie = (guide, versUE, versNom) => {
+        const e = guide.exit;
+        if (!e) return `<p>${esc(T.exitCheck)} ${pill("chk")}</p>`;
+        const lien = `<a class="blink" href="${esc(e.authorityUrl)}" target="_blank" rel="nofollow noopener">${esc(T.authority)} : ${esc(e.authority)}</a>`;
+        if (versUE) {
+          /* Vers l'Europe : tout, sauf les étapes écrites POUR les autres destinations. */
+          const pour = (e.steps || []).filter((s) => s.scope !== "non_eu").map((s) => s.text);
+          return `<p>${emE(e.intro)}</p><ul class="bl">${list(pour, emE)}</ul>`
+            + (e.onSiteNote ? `<p class="bnote">${emE(e.onSiteNote)}</p>` : "") + lien;
+        }
+        /* Hors Europe : l'intro et la note de fin des fiches sont européennes, on les remplace par
+         * la phrase générique. Restent les étapes qui décrivent la procédure du pays — celles
+         * marquées `any`, et celles écrites exprès pour ce cas (`non_eu`) sur les fiches dont
+         * toutes les étapes d'origine parlaient du certificat européen. */
+        const neutres = (e.steps || []).filter((s) => s.scope !== "eu").map((s) => s.text);
+        return `<p>${esc(T.exitGeneric.replace("{0}", versNom).replace("{1}", e.authority))}</p>`
+          + (neutres.length ? `<ul class="bl">${list(neutres, emE)}</ul>` : "") + lien;
       };
-      const step2 = entryBlock(D, O.regime) + `<a class="blink" href="${esc(countryHref(D.slug))}">${esc(T.countrySheet)} : ${esc(D.name)}</a>`;
-      const step3 = destEU
-        ? `<p>${esc(T.freeExit)}</p>`
-        : (D.exit
-          ? `<p>${emE(D.exit.intro)}</p><ul class="bl">${list(D.exit.steps.map((s) => s.text), emE)}</ul>` + (D.exit.onSiteNote ? `<p class="bnote">${emE(D.exit.onSiteNote)}</p>` : "") + `<a class="blink" href="${esc(D.exit.authorityUrl)}" target="_blank" rel="nofollow noopener">${esc(T.authority)} : ${esc(D.exit.authority)}</a>`
-          : `<p>${esc(T.exitCheck)} ${pill("chk")}</p>`);
-      const step4 = entryBlock(O, D.regime) + `<a class="blink" href="${esc(countryHref(O.slug))}">${esc(T.countrySheet)} : ${esc(O.name)}</a>`;
+      const step1 = originEU ? `<p>${esc(T.freeExit)}</p>` : sortie(O, destEU, D.name);
+      /* « Au départ de l'UE », au sens du mouvement d'animaux de compagnie : les Vingt-Sept, plus
+       * la Norvège, le Liechtenstein et la Suisse — qui portent déjà `regime: eu` dans les fiches.
+       * L'Islande est ajoutée à la main : elle applique le règlement 576/2013 et délivre le
+       * passeport européen, mais son régime est noté `island_strict` parce que ce champ décrit
+       * l'entrée SUR son territoire, pas le statut d'un départ depuis chez elle. Sans cette
+       * exception, un voyageur parti de Reykjavík se verrait replier la règle qui le concerne. */
+      const departUE = (iso) => DATA[iso]?.regime === "eu" || iso === "is";
+
+      /* La ligne qui dit au lecteur que le paragraphe qui suit est bien le sien.
+       *
+       * Elle ne dit PAS « pays tiers listé par l'UE ». Cette expression est du jargon : elle
+       * renvoie à une liste que le lecteur n'a pas sous les yeux, et lui laisse le soin de
+       * vérifier si son pays y figure — le travail qu'on est censé lui épargner. C'était déjà
+       * le tort du paragraphe des fiches, qui énumérait « États-Unis, Canada, Royaume-Uni,
+       * Suisse, Japon, Australie… » sans jamais nommer le Mexique.
+       *
+       * Les fiches, elles, ont déjà la bonne formule : le TITRE de la case dit ce que le cas
+       * implique — « Certificat sanitaire, sans prise de sang », « Titrage + 3 mois d'attente ».
+       * On l'accole au nom du pays de départ, et la ligne se suffit : « Mexique — Certificat
+       * sanitaire, sans prise de sang ». Plus de liste à connaître, plus de catégorie à décoder.
+       *
+       * Ce sont les mots de la fiche, choisis par elle pour cette case : la ligne ne peut donc
+       * pas contredire le paragraphe qu'elle introduit — c'est ce qui la rend sûre dans les 140
+       * fiches sans qu'aucune n'ait à être relue. */
+      /* Nommer le pays du voyageur dans le paragraphe, à la place de l'énumération d'exemples.
+       *
+       * « Depuis un pays tiers listé (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…) »
+       * est juste pour qui revient du Mexique — le Mexique EST un pays tiers listé — mais le
+       * lecteur voit six pays qui ne sont pas le sien et conclut que la phrase ne le concerne
+       * pas. Il lui faudrait la liste complète pour trancher, et cette liste, il ne l'a pas.
+       * Alors on remplace l'illustration par lui : « Depuis un pays tiers listé (Mexique) ».
+       *
+       * PROUVÉ, ET SEULEMENT PROUVÉ. Le remplacement n'a lieu que là où l'appartenance du pays
+       * à la catégorie est établie, jamais déduite :
+       *
+       *   · la case porte un `from` / `from_except` explicite — la donnée le dit ;
+       *   · ou le pays d'arrivée applique lui-même le règlement européen (`regime: eu`), auquel
+       *     cas « pays tiers listé » désigne exactement le champ `regime: listed` qui a servi à
+       *     choisir le paragraphe. L'affirmation et le choix reposent sur la même donnée.
+       *
+       * Ailleurs, non. L'Angola classe ses origines en « rage maîtrisée » et « haut risque » ;
+       * le moteur y fait correspondre le régime européen faute de mieux, et cette correspondance
+       * est une approximation acceptable tant qu'elle reste implicite. Écrire « (Mexique) » la
+       * transformerait en affirmation sur le statut sanitaire du Mexique vu par l'Angola — que
+       * rien dans nos données n'établit. Une énumération vague vaut mieux qu'une affirmation
+       * fausse, et l'exemple reste alors tel que la fiche l'a écrit.
+       *
+       * La transformation se fait à l'affichage, pas dans les fiches : aucune traduction à
+       * refaire, et le paragraphe s'adapte à chaque voyageur au lieu d'être figé pour un seul. */
+      const nommerOrigine = (texte, iso, prouve) => {
+        const nom = DATA[iso]?.name;
+        if (!nom || !texte || !prouve) return texte;
+        return texte.replace(/\(([^()]{6,90})\)/g, (tout, dedans) => {
+          if (dedans.includes(nom)) return tout;                 // le pays y est déjà : on ne touche à rien
+          if (/\d/.test(dedans)) return tout;                    // « (RNATT ≥0,5 UI/ml) » : une valeur, pas des pays
+          if (!/[,…]|\.\.\./.test(dedans)) return tout;           // une seule mention : ce n'est pas une énumération
+          const majuscules = dedans.match(/(?:^|[\s,])[A-ZÀ-Þ]/g) ?? [];
+          if (majuscules.length < 2) return tout;                // « (sortie rouge, ex. à Vienne) » : une précision
+          return `(${nom})`;
+        });
+      };
+
+      /* Les puces d'arrivée, triées selon l'origine réellement déclarée.
+       *
+       * ON NE SUPPRIME RIEN. Les puces qui ne valent pas pour cette origine passent sous un
+       * repli, avec celles que la place ne permet pas d'afficher en clair. Deux raisons de ne
+       * pas masquer : une escale dans un pays tiers peut changer la règle applicable, et une
+       * étiquette peut se tromper. Masquer serait un pari ; replier n'en est pas un. Le texte
+       * reste dans la page, à un clic — la fiche pays, elle, continue de tout afficher puisqu'elle
+       * ignore d'où vient son lecteur.
+       *
+       * Une puce sans `from` vaut pour toutes les origines : le corpus non tagué se comporte
+       * exactement comme avant. */
+      /* Le paragraphe de tête de l'étape : la règle du pays d'arrivée qui vise CETTE origine.
+       *
+       * Encore faut-il que le pays d'arrivée classe le monde comme l'Union européenne. 81 fiches
+       * le font, et pour elles le régime du pays de départ désigne bien la bonne case. Les 59
+       * autres ont leur propre grille — groupes australiens, régions désignées japonaises, UEEA,
+       * Amérique du Nord contre le reste au Mexique — et le régime européen du départ n'y dit
+       * rien du tout. C'est ce qui servait la règle nord-américaine à un voyageur parti de Paris.
+       *
+       * Là, le moteur s'abstient : il présente les cas du pays, repliés, chacun sous son titre.
+       * Le lecteur reconnaît le sien en une ligne, et rien ne lui est affirmé à tort. Ce n'est
+       * pas la réponse idéale — ce sera de qualifier chaque cas, fiche par fiche — mais c'est
+       * une réponse honnête, et une réponse honnête vaut mieux qu'une réponse fausse. */
+      const entryBlock = (guide, fromIso) => {
+        const ue = departUE(fromIso);
+        const pts = guide.arrival?.points || [];
+        /* Trois formes de condition, dans l'ordre où elles se lisent. Une puce sans condition
+         * vaut toujours — c'est le cas de 94 % du corpus, et c'est ce qui rend la migration
+         * incrémentale : ce qui n'est pas encore qualifié continue de s'afficher. */
+        const vaut = (p) => {
+          if (p.not) return !p.not.includes(fromIso);              // from_except : en creux
+          if (Array.isArray(p.from)) return p.from.includes(fromIso); // liste de pays
+          if (p.from === "any") return true;                       // le cas général de la fiche
+          if (p.from) return (p.from === "eu") === ue;             // mot-clé UE / hors-UE
+          return true;
+        };
+
+        /* LE PARAGRAPHE DE TÊTE : la règle du pays d'arrivée qui vise CETTE origine.
+         *
+         * Trois situations, et une seule règle pour les départager — n'affirmer que ce qu'on sait.
+         *
+         * 1. `scheme: eu` — les cases signifient « UE / listé / non listé ». Le régime du pays de
+         *    départ désigne la bonne, on l'affiche. 81 fiches.
+         * 2. `scheme: own` MAIS les cases portent une condition — le Mexique distingue l'Amérique
+         *    du Nord du reste, et le dit désormais dans la donnée. On désigne la bonne case, les
+         *    autres rejoignent le repli. Une case sans condition dans une fiche qui en qualifie
+         *    d'autres n'est plus un cas d'origine mais une remarque (« documents manquants ») :
+         *    elle va au repli aussi.
+         * 3. `scheme: own` et aucune case qualifiée — on ne sait pas. Aucun paragraphe de tête :
+         *    les puces, elles, sont déjà triées et suffisent. Les cas partent au repli, avec le
+         *    reste. Une première version dressait ici un menu « repère ta catégorie » ; c'était
+         *    honnête mais ça retournait le travail au lecteur, et ça doublait des puces qui
+         *    disaient déjà la même chose. Ne rien dire vaut mieux que faire chercher. */
+        const cases = [guide.origin.eu, guide.origin.listed, guide.origin.nonListed]
+          .filter((c) => c && c.title && c.body);
+        let tete = "", casReplies = [];
+        if (guide.origin.scheme === "eu") {
+          const ob = guide.origin[key(DATA[fromIso]?.regime)] || {};
+          /* Le paragraphe des fiches est écrit en général : « Depuis un pays tiers listé
+           * (États-Unis, Canada, Royaume-Uni, Suisse, Japon, Australie…) ». Le contenu est juste,
+           * mais un voyageur revenant du Mexique lit six pays qui ne sont pas le sien et conclut
+           * que la phrase ne le concerne pas. Le moteur, lui, SAIT que le Mexique est un pays
+           * tiers listé — c'est même ce qui lui a fait choisir ce paragraphe. Il le dit donc,
+           * en une ligne, avant le texte général.
+           *
+           * Le nom du pays est placé EN TÊTE, sans préposition : « Mexique — pays tiers listé »
+           * et non « depuis le Mexique ». Les prépositions devant les noms de pays sont un nid
+           * à fautes dans quatre langues — « à aéroport de Manchester » l'a rappelé — et elles
+           * n'apportent rien ici, le drapeau et le titre d'étape ayant déjà posé le décor. */
+          tete = ob.body ? `<p>${emE(nommerOrigine(ob.body, fromIso, guide.regime === "eu"))}</p>` : "";
+        } else {
+          /* Le cas général passe en dernier : une condition précise doit toujours l'emporter
+           * sur lui, quel que soit l'ordre des cases dans la fiche. */
+          const qualifiees = cases.filter((c) => c.from || c.not)
+            .sort((a, b) => (a.from === "any" ? 1 : 0) - (b.from === "any" ? 1 : 0));
+          const juste = qualifiees.find(vaut);
+          if (juste) tete = `<p>${emE(nommerOrigine(juste.body, fromIso, true))}</p>`;
+          casReplies = cases.filter((c) => c !== juste);
+          /* Sans aucune case qualifiée, les cas seuls ne valent pas un repli : ils répètent
+           * les puces. On ne garde le repli des cas que si l'un d'eux a été retenu en tête. */
+          if (!juste) casReplies = [];
+        }
+        /* Cinq puces en clair, et non quatre. Le tri libère précisément une place — sur 280
+         * couples (pays × origine), 179 tiennent désormais entièrement en clair. Le reste passe
+         * dans le repli au lieu d'être coupé sans recours comme il l'était : c'est ainsi que
+         * « Les chiens de catégorie 1 sont refusés à l'entrée » a cessé de disparaître de la
+         * fiche française. Au-delà de cinq, la chronologie cesse d'être une chronologie. */
+        /* La condition écrite en tête de puce, une fois que le tri l'a rendue inutile.
+         *
+         * « Depuis tout autre pays : présente le Certificat de Bonne Santé » — le lecteur vient
+         * de voir le moteur écarter le cas américain pour lui ; lui répéter la condition ne lui
+         * apprend rien et l'oblige à vérifier une seconde fois qu'elle le concerne. Pire, « tout
+         * autre pays » désigne ici la terre entière moins deux, ce qui donne à la puce un air de
+         * cas particulier alors qu'elle est le cas général. On la coupe : « Présente le
+         * Certificat de Bonne Santé… ».
+         *
+         * UNIQUEMENT SUR LES PUCES CONDITIONNÉES, et uniquement dans la liste en clair. Dans le
+         * repli, la condition est au contraire l'information principale — c'est elle qui dit au
+         * lecteur pourquoi cette puce ne le concerne pas — et la fiche pays, qui ignore d'où
+         * vient son lecteur, garde évidemment le texte entier.
+         *
+         * Le découpage se fait au premier deux-points, avec deux garde-fous : le segment doit
+         * être court et sans ponctuation de fin. 91 % des puces conditionnées ont cette forme ;
+         * les autres tissent la condition dans la phrase — « Les chiens venant directement de
+         * Suède avec des papiers en règle peuvent… » — et sont laissées intactes, parce qu'il n'y
+         * a rien à y couper sans casser la syntaxe. */
+        const sansCondition = (p) => {
+          if (!p.from && !p.not) return p.t;
+          const m = p.t.match(/^(.{3,60}?)\s?:\s+(\S)([\s\S]*)$/);
+          if (!m || /[!?]/.test(m[1]) || m[1].split(/\s+/).length > 9) return p.t;
+          return m[2].toLocaleUpperCase() + m[3];
+        };
+        /* LA PUCE QUI VISE CETTE ORIGINE PASSE DEVANT.
+         *
+         * Le plafond de cinq puces coupait sans distinction, dans l'ordre de la fiche. Sur la
+         * Corée, la seule puce choisie POUR le voyageur — celle qui dit qu'un passeport européen
+         * remplace le certificat officiel — arrivait en sixième position, derrière quatre règles
+         * valables pour tout le monde, et se retrouvait donc repliée pour un départ de Paris.
+         * L'inverse exact de ce que cette page doit faire.
+         *
+         * Une puce qui porte une condition a été retenue parce qu'elle correspond à CE départ :
+         * c'est la part personnalisée de la réponse, et elle passe en tête. Les puces sans
+         * condition suivent, dans l'ordre de la fiche. Le tri est stable — deux puces de même
+         * nature gardent leur ordre d'origine, celui qu'une relectrice a choisi. */
+        const applicables = pts.filter(vaut)
+          .map((p, i) => [p, i])
+          .sort(([a, i], [b, j]) => ((b.from || b.not) ? 1 : 0) - ((a.from || a.not) ? 1 : 0) || i - j)
+          .map(([p]) => p);
+        const clair = applicables.slice(0, 5).map(sansCondition);
+        const replie = [...applicables.slice(5), ...pts.filter((p) => !vaut(p))].map((p) => p.t);
+        /* UN SEUL repli par étape, jamais deux. Les cas d'origine écartés et les puces écartées
+         * sont la même chose pour le lecteur — ce qui ne le concerne pas — et deux blocs repliés
+         * l'un sous l'autre dans une même étape se lisent comme un formulaire. Les cas viennent
+         * en tête du repli, avec leur titre en gras : ils cadrent, les puces détaillent. */
+        const corpsReplie = casReplies.map((c) => `<li><b>${esc(c.title)}</b> — ${emE(c.body)}</li>`).join("")
+          + list(replie, emE);
+        return tete
+          + (clair.length ? `<ul class="bl">${list(clair, emE)}</ul>` : "")
+          + (corpsReplie ? `<details class="bmore"><summary>${esc(T.otherCases)}</summary><ul class="bl">${corpsReplie}</ul></details>` : "");
+      };
+      const step2 = entryBlock(D, from) + `<a class="blink" href="${esc(countryHref(D.slug))}">${esc(T.countrySheet)} : ${esc(D.name)}</a>`;
+      /* Étape 3 : on quitte la destination pour rentrer chez soi. Le bloc « sortie » de la
+       * destination ne vaut donc que si le pays d'origine est européen — c'est le voyage qu'il
+       * décrit. Un Mexicain qui rentre du Japon n'a que faire du certificat sanitaire UE. */
+      const step3 = destEU ? `<p>${esc(T.freeExit)}</p>` : sortie(D, originEU, O.name);
+      const step4 = entryBlock(O, to) + `<a class="blink" href="${esc(countryHref(O.slug))}">${esc(T.countrySheet)} : ${esc(O.name)}</a>`;
 
       const stepRow = (n, chip, chipKind, title, body) =>
         `<div class="bstep"><div class="bstep__n bstep__n--${chipKind}">${n}</div><div class="bstep__c">
@@ -298,7 +580,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
         </div>`}
 
         <div class="bcard bcard--warn"><div class="bcard__h">${esc(T.casH)}</div>
-          <ul class="bl">${list(T.cas, emC)}${D.restricted ? `<li>${emC(D.restricted.intro)} ${emC(D.restricted.note)}</li>` : ""}</ul></div>
+          <ul class="bl">${list(T.cas, emC)}${(departUE(from) || departUE(to)) ? list(T.casUE, emC) : ""}${D.restricted ? `<li>${emC(D.restricted.intro)} ${emC(D.restricted.note)}</li>` : ""}</ul></div>
 
         <div class="bcard"><div class="bcard__h bvolh"><span>${esc(T.flightH)} — ${esc(air.name)}${air.direct ? " · " + esc(T.out) : ""}</span>${logoImg("bairlogo--block")}</div>
           ${capBadges}
@@ -380,6 +662,27 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
     .bcard__h { font-size: 15px; font-weight: 800; margin-bottom: 10px; color: var(--mdcf-ink); }
     .bl { margin: 0; padding-left: 20px; line-height: 1.72; font-size: 14.5px; color: var(--mdcf-ink-soft, #33436a); }
     .bl li { margin: 4px 0; }
+    /* Le repli des cas qui ne concernent pas cette origine. Volontairement discret — c'est une
+     * réserve, pas une section : il ne doit pas concurrencer du regard les règles qui, elles,
+     * s'appliquent vraiment. Mais il reste une ligne visible et cliquable, parce qu'une escale
+     * par un pays tiers peut ramener le voyageur dans l'un de ces cas. `<details>` natif : il
+     * s'ouvre sans JavaScript, il est lisible au clavier, et il s'imprime déplié dans Chromium. */
+    .bmore { margin-top: 10px; }
+    .bmore > summary { cursor: pointer; list-style: none; display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 600; color: var(--mdcf-ink-soft, #33436a); opacity: .8; }
+    .bmore > summary::-webkit-details-marker { display: none; }
+    .bmore > summary::before { content: "▸"; font-size: 11px; transition: transform .15s; }
+    .bmore[open] > summary::before { transform: rotate(90deg); }
+    .bmore > summary:hover { opacity: 1; }
+    .bmore .bl { margin-top: 8px; opacity: .92; }
+    .bmore > p { margin: 6px 0 2px; font-size: 14px; line-height: 1.6; color: var(--mdcf-ink-soft, #33436a); }
+    /* Les cas d'un pays qui a sa propre grille. Repliés, mais alignés et lisibles d'un coup
+     * d'œil : le lecteur doit reconnaître le sien au titre, sans avoir à tout ouvrir. */
+    /* La ligne qui nomme le cas retenu — « Mexique — pays tiers listé par l'UE ». Elle doit se
+     * lire comme une étiquette, pas comme une phrase du texte : d'où le corps réduit et la
+     * couleur d'accent, qui la détachent du paragraphe qu'elle introduit. */
+    .bstep__b p.bcase { margin: 0 0 4px; font-size: 13.5px; color: var(--mdcf-ink); }
+    .bstep__b p.bcase b { font-weight: 700; }
     .bchrono { margin-top: 18px; }
     .bstep { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); }
     .bstep:last-child { border-bottom: 0; }

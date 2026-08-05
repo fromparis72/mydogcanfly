@@ -17,12 +17,14 @@ exit:
     pt: "As Bahamas são um país não listado, então uma titulação de anticorpos antirrábicos válida é obrigatória para voltar à UE — além de um atestado de saúde de exportação endossado pela Bahamas Agricultural Health and Food Safety Authority (BAHFSA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "BAHFSA's Veterinary Services Unit is the national competent authority; an international veterinary certificate endorsed by a registered official vet is required to leave."
         fr: "L'unité des services vétérinaires de la BAHFSA est l'autorité nationale compétente ; un certificat vétérinaire international visé par un vétérinaire officiel enregistré est exigé pour partir."
@@ -49,7 +51,7 @@ hero:
       timing. This guide explains each step before you book your flight.
     fr: >-
       Les Bahamas accueillent les chiens, mais contrairement à de nombreuses destinations, elles exigent
-      un permis d'importation obtenu à l'avance pour chaque chien et chat — tu ne pouvez pas simplement
+      un permis d'importation obtenu à l'avance pour chaque chien et chat — tu ne peux pas simplement
       arriver avec ton animal. Les permis sont délivrés par la Bahamas Agricultural Health and Food
       Safety Authority (BAHFSA) via la plateforme douanière Click2Clear, et le permis doit accompagner
       l'animal à l'entrée. Au-delà du permis, ton chien doit avoir plus de six mois, porter une puce
@@ -236,7 +238,9 @@ requirements:
     ref: { en: "BAHFSA — Conditions for importation of Cats and Dogs (Appendix 1)", fr: "BAHFSA — Conditions d'importation des chats et chiens (Annexe 1)", es: "BAHFSA — Condiciones para la importación de gatos y perros (Anexo 1)", pt: "BAHFSA — Conditions for importation of Cats and Dogs (condições de importação de cães e gatos, anexo 1)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — the Bahamian permit scheme", fr: "Standard — le dispositif de permis bahamien", es: "Estándar — el sistema de permisos de Bahamas", pt: "Padrão — o esquema de autorização das Bahamas" }
     body:
       en: "The Bahamas is not part of the EU pet-passport system. Every dog needs a BAHFSA import permit obtained in advance through Click2Clear, an ISO microchip, and an international veterinary certificate (issued within 10 days of import) confirming it is over 6 months old, vaccinated against rabies plus distemper, hepatitis, leptospirosis, parvovirus and adenovirus, and free of internal and external parasites. BAHFSA must be notified 72 hours before arrival, and the animal and papers are inspected at the port of entry."
@@ -373,7 +377,7 @@ sources:
 
 seo:
   title: { en: "Bahamas Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Bahamas — Guide", es: "Requisitos de entrada de perros en Bahamas — Guía de viaje", pt: "Bahamas: exigências de entrada para cachorros" }
-  metaTitle: { en: "Traveling to The Bahamas With Your Dog: Entry Requirements (2026)", fr: "Voyager aux Bahamas avec ton chien : formalités (2026)", es: "Viajar a Bahamas con tu perro: requisitos de entrada (2026)", pt: "Viajar com cachorro para as Bahamas: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to the Bahamas: Pet Travel Requirements", fr: "Voyager aux Bahamas avec ton chien : formalités (2026)", es: "Viajar a Bahamas con tu perro: requisitos de entrada (2026)", pt: "Viajar com cachorro para as Bahamas: exigências de entrada (2026)" }
   metaDesc:
     en: "Official BAHFSA rules for bringing a dog into The Bahamas — mandatory import permit via Click2Clear, ISO microchip, rabies and core vaccines. Sourced and dated."
     fr: "Règles officielles BAHFSA pour faire entrer un chien aux Bahamas — permis d'importation obligatoire via Click2Clear, puce ISO. Sourcé et daté."

@@ -36,12 +36,14 @@ exit:
     pt: "A Argélia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de uma liberação sanitária de exportação dos serviços veterinários (DSV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "Obtain the sanitary export clearance and the official veterinary visa via the DSV platform; the health certificate is issued by a vet and endorsed by the official veterinary services."
         fr: "Obtiens la dérogation sanitaire d'export et le visa vétérinaire officiel via la plateforme DSV ; le certificat sanitaire est établi par un vétérinaire et visé par les services vétérinaires officiels."
@@ -254,6 +256,7 @@ requirements:
     ref: { en: "MADR — Direction des Services Vétérinaires (DSV)", fr: "MADR — Direction des Services Vétérinaires (DSV)", es: "MADR — Direction des Services Vétérinaires (DSV)", pt: "MADR — Direction des Services Vétérinaires (DSV)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -379,7 +382,7 @@ sources:
 
 seo:
   title: { en: "Algeria Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Algérie — Guide", es: "Requisitos de entrada de perros en Argelia — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Argélia — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Algeria With Your Dog: Entry Requirements (2026)", fr: "Voyager en Algérie avec ton chien : formalités (2026)", es: "Viajar a Argelia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Argélia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Algeria: Pet Travel Requirements 2026", fr: "Voyager en Algérie avec ton chien : formalités (2026)", es: "Viajar a Argelia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Argélia: exigências de entrada 2026" }
   metaDesc:
     en: "Official Algerian Customs and DSV rules for bringing a dog into Algeria: rabies vaccination, certificate of good health. Sourced and dated."
     fr: "Règles officielles de la Douane algérienne et de la DSV pour faire entrer un chien en Algérie : vaccination antirabique, certificat de bonne santé. Sourcé et daté."

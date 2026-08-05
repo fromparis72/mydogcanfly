@@ -17,12 +17,14 @@ exit:
     pt: "O Azerbaijão é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Agência de Segurança Alimentar (AFSA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "AFSA is the state authority that issues the international veterinary certificate for animals leaving Azerbaijan, via its export one-stop-shop."
         fr: "L'AFSA est l'autorité d'État qui délivre le certificat vétérinaire international pour les animaux quittant l'Azerbaïdjan, via son guichet unique d'export."
@@ -232,6 +234,7 @@ requirements:
     ref: { en: "AQTA (afsa.gov.az) — no published minimum-age rule located", fr: "AQTA (afsa.gov.az) — aucune règle d'âge minimum publiée localisée", es: "AQTA (afsa.gov.az) — no se localizó ninguna norma de edad mínima publicada", pt: "AQTA (afsa.gov.az) — nenhuma regra de idade mínima publicada foi localizada" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU or a country with a recognised certificate system", fr: "Depuis l'UE ou un pays au système de certification reconnu", es: "Desde la UE o un país con un sistema de certificación reconocido", pt: "Da UE ou de um país com sistema de certificação reconhecido" }
     body:
@@ -365,7 +368,7 @@ sources:
 
 seo:
   title: { en: "Azerbaijan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Azerbaïdjan — Guide", es: "Requisitos de entrada de perros en Azerbaiyán — Guía de viaje", pt: "Exigências de entrada de cachorros no Azerbaijão — Guia de viagem" }
-  metaTitle: { en: "Traveling to Azerbaijan With Your Dog: Entry Requirements (2026)", fr: "Voyager en Azerbaïdjan avec ton chien : formalités (2026)", es: "Viajar a Azerbaiyán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Azerbaijão: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Azerbaijan: Pet Travel Requirements", fr: "Voyager en Azerbaïdjan avec ton chien : formalités (2026)", es: "Viajar a Azerbaiyán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Azerbaijão: exigências de entrada 2026" }
   metaDesc:
     en: "Official AQTA and State Customs framework for bringing a dog into Azerbaijan: international veterinary certificate, veterinary passport. Sourced and dated."
     fr: "Cadre officiel AQTA et douanes pour faire entrer un chien en Azerbaïdjan : certificat vétérinaire international, passeport vétérinaire. Sourcé et daté."

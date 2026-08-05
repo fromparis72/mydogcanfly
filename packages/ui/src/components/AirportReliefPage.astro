@@ -89,6 +89,18 @@ if (available === "yes" && inferredOnly) {
   vLabel = T("Not documented yet", "Non documenté pour l'instant", "Aún sin documentar");
   vDesc = T("We don't yet have confirmed relief-area details for this airport. Follow the airport signage or ask the accessibility / information desk — and please report what you find so we can improve this page.", "Nous n'avons pas encore de détails confirmés sur les zones de soulagement de cet aéroport. Suis la signalétique ou demande au comptoir accessibilité / information — et signale-nous ce que tu trouve pour améliorer cette page.", "Todavía no tenemos detalles confirmados sobre las zonas de alivio de este aeropuerto. Sigue la señalización del aeropuerto o pregunta en el mostrador de accesibilidad o información — y por favor cuéntanos lo que encuentres para mejorar esta página.");
 }
+/* Le lien de signalement. Sujet et corps pré-remplis : le message arrive déjà classé par
+ * aéroport, et le voyageur n'a plus qu'à décrire ce qu'il a vu. Les retours à la ligne sont
+ * encodés par `encodeURIComponent`, sans quoi la moitié des clients de messagerie les perdent. */
+const TELL_EMAIL = "contact@mydogcanfly.com";
+const tellSujet = F("Dog relief — {0} ({1})", "Coin pipi — {0} ({1})", "Zona de alivio — {0} ({1})", city, a?.iata ?? "");
+const tellCorps = T(
+  "Airport: {A}\nTerminal:\nBefore or after security:\nWhere exactly:\nDate you were there:\n\n(If you found no relief area, just say so — that is useful too.)",
+  "Aéroport : {A}\nTerminal :\nAvant ou après la sûreté :\nEmplacement précis :\nDate de ton passage :\n\n(Si tu n'as trouvé aucun coin pipi, dis-le simplement — c'est utile aussi.)",
+  "Aeropuerto: {A}\nTerminal:\nAntes o después del control:\nUbicación exacta:\nFecha de tu paso:\n\n(Si no encontraste ninguna zona de alivio, dilo igualmente — también sirve.)",
+).replace("{A}", `${city} (${a?.iata ?? ""})`);
+const tellHref = `mailto:${TELL_EMAIL}?subject=${encodeURIComponent(tellSujet)}&body=${encodeURIComponent(tellCorps)}`;
+
 const showSecurityBadges = available === "yes" || (isUS && available === null);
 const airsideKnown = available === "yes" ? postSecurity : isUS; // US rule guarantees airside
 
@@ -142,6 +154,30 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
     <section class="apr-card apr-note"><span class="apr-noteic" aria-hidden="true">ℹ️</span><p>{note}</p></section>
   )}
 
+  {/* SIGNALEMENT — placé ici, juste après la réponse, et non en pied de page.
+     Le pied de page portait déjà une ligne « Spotted a change? », mais elle arrivait après les
+     compagnies, les autres aéroports et les outils : personne ne la voyait. Or c'est exactement
+     après avoir lu le verdict qu'un voyageur sait s'il a mieux à dire.
+
+     Deux formulations, parce que la demande n'est pas la même selon ce que la page sait déjà :
+     compléter une fiche documentée, ou renseigner une fiche vide.
+
+     C'est un `mailto:` et non un formulaire — décision de Philippe le 03/08/2026. Le sujet et le
+     corps portent déjà l'aéroport et son code IATA : le voyageur n'a plus qu'à décrire l'endroit,
+     et le message arrive classé. */}
+  <section class="apr-card apr-tell">
+    <span class="apr-tellic" aria-hidden="true">🐾</span>
+    <div>
+      <p class="apr-tellq">{available === "yes"
+        ? T("Has the spot moved, or is one missing?", "L'emplacement a changé, ou il en manque un ?", "¿Ha cambiado el sitio o falta alguno?")
+        : F("Have you been through {0} with your dog?", "Tu es passé par {0} avec ton chien ?", "¿Has pasado por {0} con tu perro?", city)}</p>
+      <p class="apr-tella">{available === "yes"
+        ? T("Tell us which terminal, and whether it is before or after security — we check and update the page.", "Dis-nous quel terminal, et si c'est avant ou après la sûreté — on vérifie et on met la page à jour.", "Dinos en qué terminal y si está antes o después del control — lo verificamos y actualizamos la página.")
+        : T("Where did you take your dog out — and if you found nothing, tell us that too: a confirmed absence is useful information.", "Où as-tu pu sortir ton chien — et si tu n'as rien trouvé, dis-le aussi : une absence confirmée est une information utile.", "¿Dónde pudiste sacar a tu perro? Y si no encontraste nada, cuéntanoslo también: una ausencia confirmada es información útil.")}</p>
+      <a class="apr-tellbtn" href={tellHref}>✉️ {T("Report what you saw", "Signaler ce que tu as vu", "Contar lo que has visto")}</a>
+    </div>
+  </section>
+
   {(countryHref || siblings.length > 0 || airlines.list.length > 0) && (
     <section class="apr-card apr-geo">
       {airlines.list.length > 0 && (
@@ -184,7 +220,6 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
   {src && (
     <p class="apr-src">{T("Source", "Source", "Fuente")}: <a href={src.url} rel="nofollow">{src.host}</a> · {T("verified", "vérifié", "verificado")} {fmtDate(src.date)} · {T("confidence", "confiance", "confianza")} {src.confidence}/5.</p>
   )}
-  <p class="apr-report">{T("Spotted a change or a missing spot?", "Un changement ou un coin manquant ?", "¿Has visto un cambio o un lugar que falta?")} <a href={`${base}/report-error/`}>{T("Tell us", "Signale-le-nous", "Cuéntanoslo")}</a>.</p>
 </div>
 
 <style>
@@ -219,6 +254,15 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
   .apr-onward { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
   .apr-onav { flex: 1 1 200px; text-align: center; padding: 12px; border-radius: 12px; border: 1px solid var(--mdcf-line); background: var(--mdcf-subtle); text-decoration: none; color: var(--mdcf-ink); font-weight: 600; font-size: 14px; }
   .apr-onav:hover { background: var(--mdcf-line); }
+  .apr-tell { display: flex; gap: 14px; align-items: flex-start; }
+  .apr-tellic { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; background: var(--mdcf-accent-soft, #fff1e5);
+    display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .apr-tellq { margin: 0; font-size: 16px; font-weight: 600; color: var(--mdcf-ink); }
+  .apr-tella { margin: 4px 0 0; font-size: 14px; line-height: 1.55; color: var(--mdcf-muted); }
+  .apr-tellbtn { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; min-height: 44px; box-sizing: border-box;
+    padding: 10px 16px; border-radius: var(--mdcf-radius-sm, 10px); background: var(--mdcf-accent); color: #fff;
+    font-size: 14.5px; font-weight: 600; text-decoration: none; }
+  .apr-tellbtn:hover { background: var(--mdcf-accent-hover, #d85f05); color: #fff; text-decoration: none; }
   .apr-src, .apr-report { color: var(--mdcf-muted); font-size: 12.5px; line-height: 1.5; margin: 0 0 6px; }
   .apr-src a, .apr-report a { color: var(--mdcf-accent-ink, #b4530a); }
   .apr-geo { background: var(--mdcf-subtle); }

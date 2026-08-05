@@ -32,17 +32,26 @@ exit:
     pt: "A República Dominicana é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde validado pela DIGEGA."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "A private vet does the pre-export check and completes the EU non-commercial certificate; it is signed by the veterinary college (COLVET) where required, then submitted to DIGEGA for validation and official signature."
         fr: "Un vétérinaire privé réalise le contrôle pré-export et remplit le certificat UE non commercial ; il est signé par l'ordre vétérinaire (COLVET) si nécessaire, puis soumis à la DIGEGA pour validation et signature officielle."
         es: "Un veterinario privado hace el control previo a la exportación y rellena el certificado UE no comercial; lo firma el colegio veterinario (COLVET) cuando corresponde y luego se presenta a la DIGEGA para su validación y firma oficial."
         pt: "Um veterinário particular faz o controle pré-exportação e preenche o certificado não comercial da UE; ele é assinado pelo conselho veterinário (COLVET) quando exigido e depois enviado à DIGEGA para validação e assinatura oficial."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "A private vet does the pre-export check; the certificate is signed by the veterinary college (COLVET) where required, then submitted to DIGEGA for validation and official signature."
+        fr: "Un vétérinaire privé fait le contrôle pré-export ; le certificat est signé par le collège vétérinaire (COLVET) quand c'est exigé, puis soumis à la DIGEGA pour validation et signature officielle."
+        es: "Un veterinario privado hace el control previo a la exportación; el certificado lo firma el colegio veterinario (COLVET) cuando se exige, y luego se presenta a DIGEGA para su validación y firma oficial."
+        pt: "Um veterinário particular faz a checagem pré-exportação; o certificado é assinado pelo conselho veterinário (COLVET) quando exigido e depois enviado à DIGEGA para validação e assinatura oficial."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -237,7 +246,9 @@ requirements:
     ref: { en: "DIGEGA — Frequently asked questions", fr: "DIGEGA — Questions fréquentes", es: "DIGEGA — Preguntas frecuentes", pt: "DIGEGA — Perguntas frequentes" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a pet travelling with its owner", fr: "Standard — un animal voyageant avec son propriétaire", es: "Estándar — una mascota que viaja con su propietario", pt: "Padrão — um animal de companhia viajando com o dono" }
     body:
       en: "A dog accompanying its owner needs a veterinary health certificate from the country of departure, a valid rabies vaccination, core vaccines and internal/external parasite treatment. No prior import permit is required. The dog is examined within 72 hours of departure, and the endorsed certificate is valid 10 days. On arrival DIGEGA checks the animal and papers and, if all is in order, releases it — no routine quarantine."
@@ -364,7 +375,7 @@ sources:
 
 seo:
   title: { en: "Dominican Republic Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en République dominicaine — Guide", es: "Requisitos de entrada de perros en la República Dominicana — Guía de viaje", pt: "República Dominicana: exigências de entrada para cachorros" }
-  metaTitle: { en: "Dominican Republic Dog Entry Requirements (2026)", fr: "Chien : formalités d'entrée République dominicaine (2026)", es: "Perro: requisitos de entrada República Dominicana (2026)", pt: "Viajar com cachorro para a República Dominicana (2026)" }
+  metaTitle: { en: "Taking Your Dog to the Dominican Republic: Pet Travel Rules", fr: "Chien : formalités d'entrée République dominicaine (2026)", es: "Perro: requisitos de entrada República Dominicana (2026)", pt: "Viajar com cachorro para a República Dominicana (2026)" }
   metaDesc:
     en: "Official DIGEGA rules for bringing a dog into the Dominican Republic — health certificate, rabies, core vaccines and parasite treatment. Sourced and dated."
     fr: "Règles officielles DIGEGA pour faire entrer un chien en République dominicaine — certificat sanitaire, rage, vaccins de base et antiparasitaire. Sourcé et daté."

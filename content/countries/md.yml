@@ -17,12 +17,14 @@ exit:
     pt: "A Moldávia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Agência Nacional de Segurança Alimentar (ANSA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "ANSA is the competent authority for animal health and border inspection; its state veterinarian issues and endorses the export veterinary health certificate."
         fr: "L'ANSA est l'autorité compétente pour la santé animale et le contrôle aux frontières ; son vétérinaire d'État délivre et vise le certificat sanitaire vétérinaire d'export."
@@ -220,6 +222,7 @@ requirements:
     ref: { en: "Serviciul Vamal; ANSA guide", fr: "Service des douanes ; guide ANSA", es: "Serviciul Vamal (Aduanas); guía de la ANSA", pt: "Serviciul Vamal (Alfândega); guia da ANSA" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU / low-rabies-risk countries", fr: "Depuis l'UE / pays à faible risque rabique", es: "Desde la UE / países de bajo riesgo de rabia", pt: "Da UE / países de baixo risco de raiva" }
     body:
@@ -351,7 +354,7 @@ sources:
 
 seo:
   title: { en: "Moldova Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Moldavie — Guide", es: "Requisitos de entrada de perros en Moldavia — Guía de viaje", pt: "Exigências de entrada de cachorros na Moldávia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Moldova With Your Dog: Entry Requirements (2026)", fr: "Voyager en Moldavie avec ton chien : formalités (2026)", es: "Viajar a Moldavia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Moldávia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Moldova: Pet Travel Requirements 2026", fr: "Voyager en Moldavie avec ton chien : formalités (2026)", es: "Viajar a Moldavia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Moldávia: exigências de entrada 2026" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and certificate rules for bringing a dog into Moldova (ANSA & Customs). Sourced and dated."
     fr: "Règles officielles puce, rage, titrage et certificat pour faire entrer un chien en Moldavie (ANSA & Douane). Sourcé et daté."

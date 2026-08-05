@@ -199,7 +199,7 @@ const L = {
   // ce qu'il vient déjà de renseigner ailleurs.
   (function(){
     try{
-      const q=new URLSearchParams(location.search);
+      const q=window.mdcfQuery();
       const setAirport=(param,sel)=>{
         const raw=q.get(param); if(!raw) return false;
         const a=findAirport(raw); if(!a) return false;

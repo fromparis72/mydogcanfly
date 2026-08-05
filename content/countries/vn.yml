@@ -45,12 +45,14 @@ exit:
     pt: "O Vietnã não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de quarentena de exportação do Department of Animal Health (DAH)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The DAH, through its regional sub-departments and border quarantine stations, inspects the dog and issues the export health certificate before departure."
         fr: "Le DAH, via ses sous-directions régionales et postes de quarantaine frontaliers, inspecte le chien et délivre le certificat sanitaire d'export avant le départ."
@@ -252,6 +254,7 @@ requirements:
     ref: { en: "Vietnam DAH; Circular 25/2016/TT-BNNPTNT", fr: "DAH Vietnam ; Circulaire 25/2016/TT-BNNPTNT", es: "DAH de Vietnam; Circular 25/2016/TT-BNNPTNT", pt: "DAH do Vietnã; Circular 25/2016/TT-BNNPTNT" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Standard path — compliant import", fr: "Parcours standard — import conforme", es: "Camino estándar — importación conforme", pt: "Caminho padrão — importação em conformidade" }
     body:
@@ -381,7 +384,7 @@ sources:
 
 seo:
   title: { en: "Vietnam Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Vietnam — Guide", es: "Requisitos de entrada de perros en Vietnam — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Vietnã — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Vietnam With Your Dog: Entry Requirements (2026)", fr: "Voyager au Vietnam avec ton chien : formalités (2026)", es: "Viajar a Vietnam con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Vietnã: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Vietnam: Pet Travel Requirements 2026", fr: "Voyager au Vietnam avec ton chien : formalités (2026)", es: "Viajar a Vietnam con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Vietnã: exigências de entrada 2026" }
   metaDesc:
     en: "Official Vietnam (DAH / Cục Thú y) rules for bringing a dog: rabies vaccination, health certificate and advance quarantine registration. Sourced and dated."
     fr: "Règles officielles du Vietnam (DAH / Cục Thú y) pour faire entrer un chien : vaccination antirabique, certificat sanitaire. Sourcé et daté."

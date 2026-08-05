@@ -17,12 +17,14 @@ exit:
     pt: "Serra Leoa não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pela Livestock and Veterinary Services Division (MAFS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The Ministry's Livestock and Veterinary Services Division is the national competent authority for animal export and veterinary certification."
         fr: "La Livestock and Veterinary Services Division du ministère est l'autorité nationale compétente pour l'export animal et la certification vétérinaire."
@@ -238,6 +240,7 @@ requirements:
     ref: { en: "No explicit minimum age in the published Sierra Leone requirements", fr: "Aucun âge minimum explicite dans les exigences publiées de la Sierra Leone", es: "Ninguna edad mínima explícita en los requisitos publicados de Sierra Leona", pt: "No explicit minimum age in the published Sierra Leone requirements" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -361,7 +364,7 @@ sources:
 
 seo:
   title: { en: "Sierra Leone Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Sierra Leone — Guide", es: "Requisitos de entrada de perros en Sierra Leona — Guía de viaje", pt: "Exigências de entrada de cachorros na Serra Leoa — Guia de viagem" }
-  metaTitle: { en: "Sierra Leone Dog Entry Requirements (2026)", fr: "Voyager en Sierra Leone avec ton chien : formalités (2026)", es: "Viajar a Sierra Leona con tu perro: requisitos de entrada (2026)", pt: "Exigências de entrada de cachorros na Serra Leoa (2026)" }
+  metaTitle: { en: "Taking Your Dog to Sierra Leone: Pet Travel Requirements", fr: "Voyager en Sierra Leone avec ton chien : formalités (2026)", es: "Viajar a Sierra Leona con tu perro: requisitos de entrada (2026)", pt: "Exigências de entrada de cachorros na Serra Leoa (2026)" }
   metaDesc:
     en: "Official rules for a dog entering Sierra Leone: advance Ministry import permit, rabies vaccination and an endorsed veterinary certificate. Sourced and dated."
     fr: "Règles officielles pour faire entrer un chien en Sierra Leone : permis d'importation du ministère, vaccination antirabique et certificat visé. Sourcé et daté."

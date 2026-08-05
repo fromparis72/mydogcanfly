@@ -44,12 +44,14 @@ exit:
     pt: "O Brasil é um país não listado, então o teste sorológico antirrábico válido é obrigatório para voltar à União Europeia — além do certificado veterinário internacional (CVI) emitido pelo VIGIAGRO/MAPA."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer well ahead: blood test in an EU-approved lab at least 30 days after vaccination — MAPA notes the full EU process can take 3 to 6 months."
         fr: "Anticipe largement le titrage antirabique : prise de sang dans un labo agréé UE au moins 30 jours après la vaccination — le MAPA indique que le processus UE complet peut prendre 3 à 6 mois."
         es: "Anticipa ampliamente la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE al menos 30 días tras la vacuna — el MAPA indica que el proceso completo de la UE puede tardar de 3 a 6 meses."
         pt: "Antecipe bastante o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — o MAPA observa que todo o processo europeu pode levar de 3 a 6 meses."
     - timing: window
+      scope: any
       text:
         en: "Submit the online request on gov.br with your vet's health certificate and records; a federal agricultural auditor reviews it (up to 48h) and issues the digitally signed CVI, free of charge."
         fr: "Dépose la demande en ligne sur gov.br avec le certificat sanitaire et les documents de ton vétérinaire ; un auditeur fédéral agricole l'examine (jusqu'à 48 h) et délivre le CVI signé numériquement, gratuitement."
@@ -251,7 +253,9 @@ requirements:
     ref: { en: "Portaria MAPA nº 741/2024, Art. 18–19", fr: "Portaria MAPA nº 741/2024, art. 18-19", es: "Portaria MAPA nº 741/2024, art. 18-19", pt: "Portaria MAPA nº 741/2024, art. 18 e 19" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard case — rabies-affected country", fr: "Cas standard — pays touché par la rage", es: "Caso estándar — país afectado por la rabia", pt: "Caso padrão — país com presença de raiva" }
     body:
       en: "From most countries, your dog needs a valid rabies vaccination (from 90 days of age), a broad-spectrum anti-parasite treatment within 15 days and a clinical exam within 10 days, all recorded on an official International Veterinary Certificate (CVI) issued or endorsed by the departure country's veterinary authority. No antibody test and no quarantine."
@@ -378,7 +382,7 @@ sources:
 
 seo:
   title: { en: "Brazil Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Brésil — Guide", es: "Requisitos de entrada de perros en Brasil — Guía de viaje", pt: "Brasil: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Brazil With Your Dog: Entry Requirements (2026)", fr: "Voyager au Brésil avec ton chien : formalités (2026)", es: "Viajar a Brasil con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Brasil: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Brazil: Pet Travel Requirements 2026", fr: "Voyager au Brésil avec ton chien : formalités (2026)", es: "Viajar a Brasil con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Brasil: exigências de entrada 2026" }
   metaDesc:
     en: "Official MAPA/VIGIAGRO rules for bringing a dog into Brazil: International Veterinary Certificate, rabies vaccination. Sourced and dated."
     fr: "Règles officielles MAPA/VIGIAGRO pour faire entrer un chien au Brésil : Certificat Vétérinaire International, vaccination antirabique. Sourcé et daté."

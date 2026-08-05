@@ -18,12 +18,14 @@ exit:
     pt: "O Peru é um país não listado, então um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado sanitário de exportação do SENASA."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Request the SENASA export certificate at least 72 hours before travel, with the destination's requirements, a current health certificate and vaccination record; SENASA inspects the dog before certifying."
         fr: "Demande le certificat d'export SENASA au moins 72 h avant le voyage, avec les exigences de destination, un certificat sanitaire à jour et le carnet de vaccination ; le SENASA examine le chien avant de certifier."
@@ -234,7 +236,9 @@ requirements:
     ref: { en: "gob.pe — Ingreso de mascotas al país (material informativo)", fr: "gob.pe — Ingreso de mascotas al país (material informativo)", es: "gob.pe — Ingreso de mascotas al país (material informativo)", pt: "gob.pe — Ingreso de mascotas al país (material informativo)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard SENASA scheme — export health certificate", fr: "Régime SENASA standard — certificat sanitaire d'exportation", es: "Régimen SENASA estándar — certificado sanitario de exportación", pt: "Esquema padrão do SENASA — atestado de saúde de exportação" }
     body:
       en: "For a dog arriving from the European Union, the EU pet passport is not the operative document for Peru. Your dog needs an original export health certificate issued by the official veterinary authority of the country you travel from, recording current vaccinations (rabies from 3 months, plus canine parvovirus, distemper, hepatitis and leptospirosis) and internal and external deworming within 30 days before travel. SENASA reviews it and inspects the dog on arrival."
@@ -361,7 +365,7 @@ sources:
 
 seo:
   title: { en: "Peru Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Pérou — Guide", es: "Requisitos de entrada de perros en Perú — Guía de viaje", pt: "Requisitos de entrada de cachorros no Peru — Guia" }
-  metaTitle: { en: "Traveling to Peru With Your Dog: Entry Requirements (2026)", fr: "Voyager au Pérou avec ton chien : formalités (2026)", es: "Viajar a Perú con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Peru: requisitos de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Peru: Pet Travel Requirements 2026", fr: "Voyager au Pérou avec ton chien : formalités (2026)", es: "Viajar a Perú con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Peru: requisitos de entrada (2026)" }
   metaDesc:
     en: "Official SENASA rules for bringing a dog into Peru: export health certificate, rabies and core vaccinations, deworming, no antibody test. Sourced and dated."
     fr: "Règles officielles SENASA pour faire entrer un chien au Pérou : certificat sanitaire d'exportation, rage et vaccinations de base, antiparasitaire. Sourcé et daté."

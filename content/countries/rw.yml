@@ -17,12 +17,14 @@ exit:
     pt: "Ruanda é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Rwanda Agriculture and Animal Resources Development Board (RAB)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "RAB is the veterinary competent authority that issues the export permit and the veterinary health certificate for dogs and cats."
         fr: "Le RAB est l'autorité vétérinaire compétente qui délivre le permis d'export et le certificat sanitaire vétérinaire pour les chiens et chats."
@@ -236,6 +238,7 @@ requirements:
     ref: { en: "Rwanda import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation du Rwanda (aucune législation par race citée)", es: "Condiciones de importación de Ruanda (sin legislación por raza citada)", pt: "Rwanda import conditions (nenhuma legislação específica por raça citada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -363,7 +366,7 @@ sources:
 
 seo:
   title: { en: "Rwanda Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Rwanda — Guide", es: "Requisitos de entrada de perros en Ruanda — Guía de viaje", pt: "Exigências de Entrada de Cachorros em Ruanda — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Rwanda With Your Dog: Entry Requirements (2026)", fr: "Voyager au Rwanda avec ton chien : formalités (2026)", es: "Viajar a Ruanda con tu perro: requisitos de entrada (2026)", pt: "Viajar para Ruanda com Seu Cachorro: Exigências de Entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Rwanda: Pet Travel Requirements 2026", fr: "Voyager au Rwanda avec ton chien : formalités (2026)", es: "Viajar a Ruanda con tu perro: requisitos de entrada (2026)", pt: "Viajar para Ruanda com Seu Cachorro: Exigências de Entrada (2026)" }
   metaDesc:
     en: "Official rules for bringing a dog into Rwanda: import permit and RAB non-objection, rabies vaccination (30 days–12 months) and an international vet certificate."
     fr: "Faire entrer un chien au Rwanda : permis d'importation et non-objection du RAB, vaccination antirabique (30 jours–12 mois) et certificat vétérinaire international."

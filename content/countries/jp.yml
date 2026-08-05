@@ -38,12 +38,14 @@ exit:
     pt: "Sair do Japão com seu cachorro exige um certificado de quarentena de exportação do Animal Quarantine Service (AQS) — faça o pedido com pelo menos 10 dias de antecedência."
   steps:
     - timing: before
+      scope: any
       text:
         en: "Apply for export inspection to the AQS at least 10 days before, with the destination's entry documents attached."
         fr: "Demande l'inspection d'export à l'AQS au moins 10 jours avant, avec les documents d'entrée de la destination joints."
         es: "Solicita la inspección de exportación al AQS al menos 10 días antes, adjuntando los documentos de entrada del destino."
         pt: "Peça a inspeção de exportação ao AQS com pelo menos 10 dias de antecedência, anexando os documentos de entrada do destino."
     - timing: window
+      scope: any
       text:
         en: "On departure day, the airport AQS office inspects the dog and issues the English export certificate (about 30–60 minutes)."
         fr: "Le jour du départ, le bureau AQS de l'aéroport inspecte le chien et délivre le certificat d'export en anglais (environ 30 à 60 minutes)."
@@ -248,7 +250,9 @@ requirements:
     ref: { en: "AQS/MAFF — Import (Steps 2–4)", fr: "AQS/MAFF — Importation (étapes 2–4)", es: "AQS/MAFF — Importación (pasos 2–4)", pt: "AQS/MAFF — Importação (etapas 2–4)" }
 
 origin:
+  scheme: own
   eu:
+    from: [is, au, nz, fj]
     title: { en: "Designated (rabies-free) regions — simplified", fr: "Régions désignées (indemnes de rage) — simplifié", es: "Regiones designadas (indemnes de rabia) — simplificado", pt: "Regiões designadas (livres de raiva) — simplificado" }
     body:
       en: "From Iceland, Australia, New Zealand, Fiji, Hawaii or Guam the process is simpler: ISO microchip, proof of continuous residence (since birth, or at least 180 days before export, or since import from Japan), a pre-export clinical inspection, a government certificate (Form AB) and the 40-day advance notification. No rabies vaccination, antibody test or 180-day wait is required, and compliant dogs clear in under 12 hours."
@@ -257,6 +261,7 @@ origin:
       pt: "Vindo da Islândia, da Austrália, da Nova Zelândia, de Fiji, do Havaí ou de Guam, o processo é mais simples: microchip ISO, comprovante de residência contínua (desde o nascimento, ou pelo menos 180 dias antes da exportação, ou desde a importação a partir do Japão), uma inspeção clínica antes da exportação, um certificado oficial (Form AB) e a notificação prévia de 40 dias. Não são exigidos vacinação antirrábica, teste sorológico nem espera de 180 dias, e os cachorros em conformidade são liberados em menos de 12 horas."
     cls: ok
   listed:
+    from_except: [is, au, nz, fj]
     title: { en: "All other regions — full scheme completed", fr: "Toutes les autres régions — régime complet accompli", es: "Todas las demás regiones — régimen completo cumplido", pt: "Todas as demais regiões — regime completo cumprido" }
     body:
       en: "From every other country (including the EU, the US, Canada and the UK), your dog needs an ISO microchip, at least two rabies vaccinations, an antibody test ≥0.5 IU/ml at a designated laboratory, a compulsory 180-day wait after the blood draw, advance notification ≥40 days, a pre-export clinical inspection and a government certificate (Form AC). Done correctly and in advance, quarantine on arrival is under 12 hours — but it takes about seven months to prepare."
@@ -379,7 +384,7 @@ sources:
 
 seo:
   title: { en: "Japan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Japon — Guide", es: "Requisitos de entrada de perros en Japón — Guía de viaje", pt: "Japão: exigências de entrada para cachorros" }
-  metaTitle: { en: "Traveling to Japan With Your Dog: Entry Requirements (2026)", fr: "Voyager au Japon avec ton chien : formalités (2026)", es: "Viajar a Japón con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Japão com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Japan: Pet Travel Requirements 2026", fr: "Voyager au Japon avec ton chien : formalités (2026)", es: "Viajar a Japón con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Japão com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Japan (AQS/MAFF) rules for bringing a dog: microchip, two rabies shots, antibody test, a fixed 180-day wait and 40-day notice. Sourced and dated."
     fr: "Règles officielles du Japon (AQS/MAFF) pour faire entrer un chien : puce, deux vaccins, titrage, délai fixe de 180 jours et préavis de 40 jours. Sourcé et daté."

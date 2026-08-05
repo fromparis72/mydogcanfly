@@ -20,17 +20,26 @@ exit:
     pt: "O Equador é um país não listado, então um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação referendado pela AGROCALIDAD."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "A registered vet submits the request at least 72h before travel; an AGROCALIDAD official signs and stamps the export certificate (valid 10 days) and endorses the EU model."
         fr: "Un vétérinaire enregistré dépose la demande au moins 72 h avant le voyage ; un agent d'AGROCALIDAD signe et tamponne le certificat d'export (valable 10 jours) et vise le modèle UE."
         es: "Un veterinario registrado presenta la solicitud al menos 72 h antes del viaje; un funcionario de AGROCALIDAD firma y sella el certificado de exportación (válido 10 días) y refrenda el modelo UE."
         pt: "Um veterinário registrado apresenta o pedido pelo menos 72 h antes da viagem; um funcionário da AGROCALIDAD assina e carimba o certificado de exportação (válido por 10 dias) e referenda o modelo da UE."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "A registered vet submits the request at least 72 hours before travel; an AGROCALIDAD official signs and stamps the export certificate (valid 10 days)."
+        fr: "Un vétérinaire enregistré dépose la demande au moins 72 heures avant le départ ; un agent d'AGROCALIDAD signe et tamponne le certificat d'export (valable 10 jours)."
+        es: "Un veterinario registrado presenta la solicitud al menos 72 horas antes del viaje; un funcionario de AGROCALIDAD firma y sella el certificado de exportación (válido 10 días)."
+        pt: "Um veterinário registrado envia o pedido pelo menos 72 horas antes da viagem; um agente da AGROCALIDAD assina e carimba o certificado de exportação (válido por 10 dias)."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -236,7 +245,9 @@ requirements:
     ref: { en: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", fr: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", es: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)", pt: "AGROCALIDAD — Ingreso al Ecuador de animales de compañía (perros y gatos)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard scheme — Export Zoosanitary Certificate", fr: "Régime standard — Certificat Zoosanitaire d'Exportation", es: "Régimen estándar — Certificado Zoosanitario de Exportación", pt: "Regime padrão — Certificado Zoossanitário de Exportação" }
     body:
       en: "For almost every origin the path is the same. Your dog needs an Export Zoosanitary Certificate issued or endorsed by the official veterinary service of the country you travel from, in Spanish or English, dated within 10 calendar days before entry. It must confirm the dog is over 4 months old and identified (name, tattoo or microchip), a clinical exam within 10 days, current vaccinations against rabies, distemper, hepatitis, leptospirosis and parvovirus, and internal & external parasite treatment within 21 days before shipment. A pet flying in the cabin or as accompanied baggage clears on this certificate alone."
@@ -363,7 +374,7 @@ sources:
 
 seo:
   title: { en: "Ecuador Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Équateur — Guide", es: "Requisitos de entrada de perros en Ecuador — Guía de viaje", pt: "Requisitos de entrada de cachorros no Equador — Guia" }
-  metaTitle: { en: "Traveling to Ecuador With Your Dog: Entry Requirements (2026)", fr: "Voyager en Équateur avec ton chien : formalités (2026)", es: "Viajar a Ecuador con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Equador com o seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Ecuador: Pet Travel Requirements 2026", fr: "Voyager en Équateur avec ton chien : formalités (2026)", es: "Viajar a Ecuador con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Equador com o seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official AGROCALIDAD rules for bringing a dog into Ecuador: Export Zoosanitary Certificate, rabies and other vaccinations, parasite treatment. Sourced and dated."
     fr: "Règles officielles AGROCALIDAD pour faire entrer un chien en Équateur : Certificat Zoosanitaire d'Exportation, vaccinations antirabique et autres. Sourcé et daté."

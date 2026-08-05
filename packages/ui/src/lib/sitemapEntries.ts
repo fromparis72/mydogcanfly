@@ -10,6 +10,7 @@
  * pas si c'était le portugais qui décrochait.
  */
 import { loadKB, slugFor } from "@mydogcanfly/knowledge";
+import { reliefIndexable } from "./reliefEtat";
 import { countryData } from "../data/countries";
 import { LOCALES, isPreviewLocale } from "./routes";
 
@@ -56,7 +57,12 @@ export function buildEntries(): Entry[] {
     const d = countryData[c.id]?.verified_date;
     push(`/countries/${slugFor(c.id)}/`, "0.7", "monthly", isISO(d) ? d : BUILD_DATE);
   }
+  /* Seules les fiches qui répondent à la question entrent au sitemap : proposer à Google une
+   * URL qu'on lui interdit par ailleurs en `noindex` est contradictoire, et c'est ce qu'il
+   * rapporte ensuite comme « exclue par une balise noindex ». La règle est partagée avec le
+   * gabarit — voir `reliefEtat.ts`, un seul endroit pour éviter qu'ils divergent. */
   for (const a of kb.airports.values()) {
+    if (!reliefIndexable(a)) continue;
     const d = (a as any).pet_relief?.source?.verified_date;
     push(`/airports/${slugFor(a.id)}/`, "0.6", "monthly", isISO(d) ? d : BUILD_DATE);
   }

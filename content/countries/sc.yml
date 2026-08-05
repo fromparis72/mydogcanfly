@@ -17,12 +17,14 @@ exit:
     pt: "As Seicheles não são um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pelos Serviços Veterinários / de Biossegurança Nacional (NBS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "Under the Animal and Plant Biosecurity Act, the veterinary/biosecurity authority controls animal movement and endorses the export veterinary certificate."
         fr: "Selon l'Animal and Plant Biosecurity Act, l'autorité vétérinaire/de biosécurité contrôle les mouvements d'animaux et vise le certificat vétérinaire d'export."
@@ -242,6 +244,7 @@ requirements:
     ref: { en: "Veterinary Services (SAA) — Importation of Cats and Dogs (VS/REG/05/11/01), clauses 6.0 & 12.0", fr: "Veterinary Services (SAA) — Importation of Cats and Dogs (VS/REG/05/11/01), clauses 6.0 et 12.0", es: "Veterinary Services (SAA) — Importation of Cats and Dogs (VS/REG/05/11/01), clauses 6.0 & 12.0", pt: "Veterinary Services (SAA) — Importation of Cats and Dogs (VS/REG/05/11/01), clauses 6.0 & 12.0" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "From a rabies-free country", fr: "Depuis un pays indemne de rage", es: "Desde un país libre de rabia", pt: "De um país livre de raiva" }
     body:
@@ -377,7 +380,7 @@ sources:
 
 seo:
   title: { en: "Seychelles Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Seychelles — Guide", es: "Requisitos de entrada de perros en Seychelles — Guía de viaje", pt: "Exigências de entrada de cachorros nas Seicheles — Guia de viagem" }
-  metaTitle: { en: "Traveling to Seychelles With Your Dog: Entry Requirements (2026)", fr: "Voyager aux Seychelles avec ton chien : formalités (2026)", es: "Viajar a Seychelles con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para as Seicheles: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to the Seychelles: Pet Travel Requirements", fr: "Voyager aux Seychelles avec ton chien : formalités (2026)", es: "Viajar a Seychelles con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para as Seicheles: exigências de entrada 2026" }
   metaDesc:
     en: "Official Seychelles rules for bringing a dog: Veterinary Import Permit, microchip, rabies antibody test for rabies-affected origins. Sourced and dated."
     fr: "Règles officielles des Seychelles : permis d'importation vétérinaire, puce et titrage antirabique depuis les pays touchés par la rage. Sourcé et daté."

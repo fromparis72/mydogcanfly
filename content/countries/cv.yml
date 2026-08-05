@@ -17,12 +17,14 @@ exit:
     pt: "Cabo Verde é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para regressar à UE — além de um atestado de saúde de exportação endossado pela Direção-Geral da Agricultura, Silvicultura e Pecuária (DGASP)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipar o teste sorológico antirrábico (titulação): análise de sangue num laboratório aprovado pela UE, pelo menos 30 dias depois da vacinação — um resultado válido é indispensável para reentrar na UE e não se resolve à última hora."
     - timing: window
+      scope: any
       text:
         en: "DGASP is the competent veterinary authority for the sanitary regime governing animal export."
         fr: "La DGASP est l'autorité vétérinaire compétente pour le régime sanitaire régissant l'export des animaux."
@@ -246,6 +248,7 @@ requirements:
     ref: { en: "No published breed-import instrument found", fr: "Aucun instrument publié d'interdiction par race trouvé", es: "No se encontró ningún instrumento publicado de importación por raza", pt: "Nenhum instrumento publicado sobre importação por raça" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union — international certificate", fr: "Depuis l'Union européenne — certificat international", es: "Desde la Unión Europea — certificado internacional", pt: "A partir da União Europeia — certificado internacional" }
     body:
@@ -373,7 +376,7 @@ sources:
 
 seo:
   title: { en: "Cape Verde Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Cap-Vert — Guide", es: "Requisitos de entrada de perros en Cabo Verde — Guía de viaje", pt: "Entrada de cachorros em Cabo Verde — Guia de viagem" }
-  metaTitle: { en: "Traveling to Cape Verde With Your Dog: Entry Requirements (2026)", fr: "Voyager au Cap-Vert avec ton chien : formalités (2026)", es: "Viajar a Cabo Verde con tu perro: requisitos de entrada (2026)", pt: "Viajar para Cabo Verde com cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Cape Verde: Pet Travel Requirements", fr: "Voyager au Cap-Vert avec ton chien : formalités (2026)", es: "Viajar a Cabo Verde con tu perro: requisitos de entrada (2026)", pt: "Viajar para Cabo Verde com cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official Cape Verde rules for bringing a dog: rabies vaccination 30 days before entry, core vaccinations. Sourced, dated, with Unknown points flagged."
     fr: "Règles officielles du Cap-Vert pour faire entrer un chien : vaccination antirabique 30 jours avant l'entrée. Sourcé, daté, points « Non communiqué » signalés."

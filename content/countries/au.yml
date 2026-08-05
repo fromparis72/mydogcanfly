@@ -58,11 +58,19 @@ exit:
     pt: "Na saída da Austrália com seu cachorro, o atestado de saúde de exportação precisa ser endossado pelo Department of Agriculture (DAFF) por meio de um veterinário credenciado."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "An accredited vet prepares the EU health certificate; DAFF officers endorse it before departure."
         fr: "Un vétérinaire accrédité prépare le certificat sanitaire UE ; les agents du DAFF l'endossent avant le départ."
         es: "Un veterinario acreditado prepara el certificado sanitario de la UE; los agentes del DAFF lo validan antes de la salida."
         pt: "Um veterinário credenciado prepara o atestado de saúde da UE; os agentes do DAFF o endossam antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "An accredited vet prepares the health certificate required by the destination; DAFF officers endorse it before departure."
+        fr: "Un vétérinaire accrédité prépare le certificat sanitaire exigé par la destination ; les agents du DAFF le visent avant le départ."
+        es: "Un veterinario acreditado prepara el certificado sanitario que exige el destino; los agentes del DAFF lo validan antes de la salida."
+        pt: "Um veterinário credenciado prepara o certificado sanitário exigido pelo destino; os agentes do DAFF o endossam antes da partida."
   onSiteNote:
     en: "Start well ahead — endorsement and supporting documents take time."
     fr: "Lance la démarche bien à l'avance — l'endossement et les documents justificatifs prennent du temps."
@@ -253,7 +261,9 @@ requirements:
     ref: { en: "DAFF — Group 3 step-by-step guide for dogs (Step 2)", fr: "DAFF — Guide étape par étape groupe 3 pour chiens (étape 2)", es: "DAFF — Guía paso a paso del grupo 3 para perros (paso 2)", pt: "DAFF — guia passo a passo do grupo 3 para cachorros (etapa 2)" }
 
 origin:
+  scheme: own
   eu:
+    from: [nz, nf, cc]
     title: { en: "Group 1 — rabies-free, simplest path", fr: "Groupe 1 — indemne de rage, parcours le plus simple", es: "Grupo 1 — libre de rabia, el camino más sencillo", pt: "Grupo 1 — livre de raiva, o caminho mais simples" }
     body:
       en: "Group 1 covers New Zealand, Norfolk Island and Cocos (Keeling) Islands — recognised as rabies-free. This is the simplest pathway: no rabies antibody test, and some Group 1 territories may not require an import permit. Follow the country-specific DAFF guide, as conditions and quarantine differ from other groups."
@@ -392,7 +402,7 @@ sources:
 
 seo:
   title: { en: "Australia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Australie — Guide", es: "Requisitos de entrada de perros en Australia — Guía de viaje", pt: "Entrada de cachorro na Austrália — guia de viagem" }
-  metaTitle: { en: "Traveling to Australia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Australie avec ton chien : formalités (2026)", es: "Viajar a Australia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Austrália com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Australia: Pet Travel Requirements 2026", fr: "Voyager en Australie avec ton chien : formalités (2026)", es: "Viajar a Australia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Austrália com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official DAFF rules for bringing a dog into Australia: import permit, approved countries, rabies test with 180-day wait, and Mickleham quarantine. Sourced and dated."
     fr: "Règles officielles DAFF pour faire entrer un chien en Australie : permis, pays approuvés, titrage avec 180 jours d'attente, quarantaine de Mickleham. Sourcé et daté."

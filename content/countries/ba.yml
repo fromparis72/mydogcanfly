@@ -17,11 +17,19 @@ exit:
     pt: "A Bósnia e Herzegovina é um país listado: nenhum teste sorológico antirrábico é necessário para voltar à UE — o certificado sanitário da UE é emitido por um veterinário oficial do Escritório Veterinário da BiH."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "With microchip and valid rabies vaccination (21-day wait), the EU-model animal health certificate is completed and issued by an official government veterinarian before departure."
         fr: "Avec puce et vaccination antirabique valide (délai de 21 jours), le certificat sanitaire au modèle UE est rempli et délivré par un vétérinaire officiel avant le départ."
         es: "Con microchip y vacuna antirrábica válida (espera de 21 días), el certificado sanitario en modelo UE lo rellena y emite un veterinario oficial antes de salir."
         pt: "Com o microchip e a vacinação antirrábica válida (espera de 21 dias), o certificado sanitário no modelo da UE é preenchido e emitido por um veterinário oficial do governo antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "With a microchip and a valid rabies vaccination, the animal health certificate is completed and issued by an official government veterinarian before departure."
+        fr: "Avec une puce et une vaccination antirabique valide, le certificat sanitaire est rempli et délivré par un vétérinaire officiel de l'État avant le départ."
+        es: "Con microchip y vacunación antirrábica válida, el certificado sanitario lo completa y expide un veterinario oficial del Estado antes de la salida."
+        pt: "Com microchip e vacinação antirrábica válida, o certificado sanitário é preenchido e emitido por um veterinário oficial do Estado antes da partida."
   onSiteNote:
     en: "A new EU certificate format applies since 22 April 2026 (Reg. (EU) 2026/131) — make sure your vet uses the current model."
     fr: "Un nouveau format de certificat UE s'applique depuis le 22 avril 2026 (règlement (UE) 2026/131) — assure-toi que ton vétérinaire utilise le modèle en vigueur."
@@ -212,6 +220,7 @@ requirements:
     ref: { en: "Veterinary Office of BiH; Indirect Taxation Authority (customs)", fr: "Bureau vétérinaire de BiH ; Administration des impôts indirects (douane)", es: "Oficina Veterinaria de BiH; Administración de Impuestos Indirectos (aduanas)", pt: "Escritório Veterinário da BiH; Administração de Impostos Indiretos (alfândega)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -248,11 +257,13 @@ arrival:
       fr: "Entre par un point d'entrée voyageurs désigné par la BiH et contacte-y l'autorité compétente pour les contrôles documentaires et d'identité."
       es: "Entra por un punto de entrada de viajeros designado por BiH y contacta allí con la autoridad competente para los controles documentales y de identidad."
       pt: "Entre por um ponto de entrada para viajantes designado pela BiH e contate ali a autoridade competente para os controles documentais e de identidade."
-    - en: "From an EU/EFTA country: carry the EU pet passport recording the microchip and valid rabies vaccination."
+    - from: eu
+      en: "From an EU/EFTA country: carry the EU pet passport recording the microchip and valid rabies vaccination."
       fr: "Depuis un pays UE/AELE : munis-toi du passeport européen consignant la puce et la vaccination antirabique valide."
       es: "Desde un país de la UE/AELC: lleva el pasaporte europeo para mascotas que registra el microchip y la vacunación antirrábica válida."
       pt: "De um país da UE/EFTA: leve o passaporte europeu registrando o microchip e a vacinação antirrábica válida."
-    - en: "From another listed or a non-listed country: carry the original animal health certificate (valid 10 days) and, for non-listed origins, the antibody-test result."
+    - from: non_eu
+      en: "From another listed or a non-listed country: carry the original animal health certificate (valid 10 days) and, for non-listed origins, the antibody-test result."
       fr: "Depuis un autre pays listé ou un pays non listé : munis-toi du certificat sanitaire original (valable 10 jours) et, pour les origines non listées, du résultat du titrage."
       es: "Desde otro país listado o un país no listado: lleva el certificado sanitario animal original (válido 10 días) y, para los orígenes no listados, el resultado de la prueba de titulación."
       pt: "De outro país listado ou de um país não listado: leve o certificado sanitário animal original (válido por 10 dias) e, para origens não listadas, o resultado do teste sorológico."
@@ -339,7 +350,7 @@ sources:
 
 seo:
   title: { en: "Bosnia and Herzegovina Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Bosnie-Herzégovine — Guide", es: "Requisitos de entrada de perros en Bosnia y Herzegovina — Guía de viaje", pt: "Bósnia e Herzegovina: exigências de entrada para cachorros" }
-  metaTitle: { en: "Bosnia and Herzegovina Dog Entry Requirements (2026)", fr: "Voyager en Bosnie-Herzégovine avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Bosnia y Herzegovina (2026)", pt: "Exigências de entrada de cachorros na Bósnia e Herzegovina (2026)" }
+  metaTitle: { en: "Taking Your Dog to Bosnia and Herzegovina: Pet Travel Rules", fr: "Voyager en Bosnie-Herzégovine avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Bosnia y Herzegovina (2026)", pt: "Exigências de entrada de cachorros na Bósnia e Herzegovina (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Bosnia and Herzegovina — by EU/EFTA, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Bosnie-Herzégovine — selon origine UE/AELE, pays listé ou non listé. Sourcé et daté."

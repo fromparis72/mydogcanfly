@@ -29,7 +29,7 @@ hero:
       l'arrivée — la Norvège est l'un des rares pays à l'exiger encore. Un chien venant d'un pays de
       l'EEE ou d'un pays listé n'a pas besoin de prise de sang antirabique ; un chien d'un pays non
       listé doit aussi passer un titrage antirabique avec un délai de trois mois. À l'arrivée, tu
-      devez déclarer ton chien à la douane norvégienne. Ce guide détaille chaque cas avant de réserver.
+      dois déclarer ton chien à la douane norvégienne. Ce guide détaille chaque cas avant de réserver.
     es: >-
       Noruega acoge a los perros, pero lo que debes preparar depende sobre todo del país desde el que
       viaja tu perro — no solo de Noruega. Noruega no está en la UE: forma parte del EEE y aplica las
@@ -197,6 +197,7 @@ requirements:
     ref: { en: "mattilsynet.no; toll.no", fr: "mattilsynet.no ; toll.no", es: "mattilsynet.no; toll.no", pt: "mattilsynet.no; toll.no" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport (EEA)", fr: "Simplifié — passeport (EEE)", es: "Simplificado — pasaporte (EEE)", pt: "Simplificado — passaporte para animais (EEE)" }
     body:
@@ -233,16 +234,18 @@ arrival:
       fr: "Tu dois passer par le canal rouge et déclarer ton chien à la douane norvégienne à l'arrivée ; garde le passeport ou le certificat sanitaire sur toi."
       es: "Debes pasar por el canal rojo y declarar tu perro a las aduanas noruegas a la llegada; lleva contigo el pasaporte o el certificado sanitario."
       pt: "Você precisa passar pelo canal vermelho e declarar seu cachorro à alfândega norueguesa na chegada; leve com você o passaporte ou o certificado sanitário."
-    - en: "From most non-EEA countries you may enter only via Oslo Airport (Gardermoen) or Storskog, and must contact the Norwegian Food Safety Authority — notify at least 48 hours ahead."
-      fr: "Depuis la plupart des pays hors EEE, tu ne pouvez entrer que par l'aéroport d'Oslo (Gardermoen) ou Storskog, et devez contacter l'Autorité norvégienne de sécurité alimentaire — préavis d'au moins 48 heures."
+    - from: non_eu
+      en: "From most non-EEA countries you may enter only via Oslo Airport (Gardermoen) or Storskog, and must contact the Norwegian Food Safety Authority — notify at least 48 hours ahead."
+      fr: "Depuis la plupart des pays hors EEE, tu ne peux entrer que par l'aéroport d'Oslo (Gardermoen) ou Storskog, et tu dois contacter l'Autorité norvégienne de sécurité alimentaire — préavis d'au moins 48 heures."
       es: "Desde la mayoría de los países fuera del EEE solo puedes entrar por el aeropuerto de Oslo (Gardermoen) o Storskog, y debes contactar con la Autoridad Noruega de Seguridad Alimentaria — avisa con al menos 48 horas de antelación."
       pt: "Vindo da maioria dos países fora do EEE, você só pode entrar pelo aeroporto de Oslo (Gardermoen) ou por Storskog e precisa entrar em contato com a Mattilsynet, a autoridade norueguesa de segurança alimentar — com aviso de pelo menos 48 horas de antecedência."
-    - en: "Dogs coming directly from Sweden with papers in order may use the green channel; the red channel is still advised when arriving by air."
+    - from: [se]
+      en: "Dogs coming directly from Sweden with papers in order may use the green channel; the red channel is still advised when arriving by air."
       fr: "Les chiens venant directement de Suède avec des papiers en règle peuvent utiliser le canal vert ; le canal rouge reste conseillé en cas d'arrivée par avion."
       es: "Los perros que llegan directamente de Suecia con los papeles en regla pueden usar el canal verde; se sigue aconsejando el canal rojo cuando se llega por avión."
       pt: "Cachorros que chegam diretamente da Suécia com a documentação em ordem podem usar o canal verde; o canal vermelho continua recomendado na chegada de avião."
     - en: "The tapeworm treatment must already be documented in the passport/certificate by the vet who gave it — you cannot administer it yourself."
-      fr: "Le traitement antiténia doit déjà être consigné dans le passeport/certificat par le vétérinaire qui l'a administré — tu ne pouvez pas le faire toi-même."
+      fr: "Le traitement antiténia doit déjà être consigné dans le passeport/certificat par le vétérinaire qui l'a administré — tu ne peux pas le faire toi-même."
       es: "El tratamiento contra la tenia debe estar ya documentado en el pasaporte/certificado por el veterinario que lo administró — no puedes administrarlo tú mismo."
       pt: "O tratamento contra a tênia já precisa estar registrado no passaporte/certificado pelo veterinário que o aplicou — você não pode aplicá-lo por conta própria."
     - en: "If documents are missing or invalid, the dog may be returned at your expense or placed in paid quarantine; a banned breed may be ordered out of the country or killed."
@@ -324,7 +327,7 @@ sources:
 
 seo:
   title: { en: "Norway Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Norvège — Guide", es: "Requisitos de entrada de perros en Noruega — Guía de viaje", pt: "Noruega: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Norway With Your Dog: Entry Requirements (2026)", fr: "Voyager en Norvège avec ton chien : formalités (2026)", es: "Viajar a Noruega con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Noruega: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Norway: Pet Travel Requirements 2026", fr: "Voyager en Norvège avec ton chien : formalités (2026)", es: "Viajar a Noruega con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Noruega: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and mandatory tapeworm rules for bringing a dog into Norway — by EEA, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, titrage et traitement antiténia obligatoire pour faire entrer un chien en Norvège — selon origine EEE. Sourcé et daté."

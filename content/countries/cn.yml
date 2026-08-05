@@ -37,12 +37,14 @@ exit:
     pt: "A China é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de quarentena de saída emitido pela alfândega (GACC)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "GACC (Customs) at the exit port carries out the quarantine inspection and issues the exit health certificate; the dog must be microchipped and rabies-vaccinated between 30 days and 12 months before travel."
         fr: "La GACC (douanes) au point de sortie réalise l'inspection de quarantaine et délivre le certificat sanitaire de sortie ; le chien doit être pucé et vacciné contre la rage entre 30 jours et 12 mois avant le voyage."
@@ -240,6 +242,7 @@ requirements:
     ref: { en: "GACC Announcement [2019] No. 5", fr: "Annonce GACC [2019] n° 5", es: "Anuncio GACC [2019] n.º 5", pt: "Anúncio GACC [2019] nº 5" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Designated country/region — no isolation", fr: "Pays/région désigné — pas d'isolement", es: "País/región designado — sin aislamiento", pt: "País/região designado — sem isolamento" }
     body:
@@ -361,7 +364,7 @@ sources:
 
 seo:
   title: { en: "China Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Chine — Guide", es: "Requisitos de entrada de perros en China — Guía de viaje", pt: "Entrada de cachorros na China — Guia de viagem" }
-  metaTitle: { en: "Traveling to China With Your Dog: Entry Requirements (2026)", fr: "Voyager en Chine avec ton chien : formalités (2026)", es: "Viajar a China con tu perro: requisitos de entrada (2026)", pt: "Viajar para a China com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to China: Pet Travel Requirements 2026", fr: "Voyager en Chine avec ton chien : formalités (2026)", es: "Viajar a China con tu perro: requisitos de entrada (2026)", pt: "Viajar para a China com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official GACC rules for bringing a dog into mainland China — microchip, rabies, antibody test, quarantine and city breed limits. Sourced and dated."
     fr: "Règles officielles GACC pour faire entrer un chien en Chine continentale — puce, rage, titrage, quarantaine et limites de races par ville. Sourcé et daté."

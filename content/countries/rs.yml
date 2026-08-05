@@ -17,11 +17,19 @@ exit:
     pt: "A Sérvia é um país listado: não é preciso teste sorológico antirrábico para voltar à UE — o certificado sanitário europeu é emitido por um veterinário oficial da Uprava za veterinu (Direção Veterinária)."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "Your dog needs a microchip and valid rabies vaccination (at least 21 days after the primary shot); the EU-model health certificate is completed and endorsed by an official veterinarian of the Veterinary Directorate before departure."
         fr: "Ton chien doit être pucé et vacciné contre la rage (au moins 21 jours après la primo-vaccination) ; le certificat sanitaire au modèle UE est rempli et visé par un vétérinaire officiel de la Direction vétérinaire avant le départ."
         es: "Tu perro necesita microchip y vacuna antirrábica válida (al menos 21 días tras la primovacunación); el certificado sanitario en modelo UE lo rellena y refrenda un veterinario oficial de la Dirección Veterinaria antes de salir."
         pt: "Seu cachorro precisa de microchip e de vacinação antirrábica válida (no mínimo 21 dias após a primovacinação); o certificado sanitário no modelo da UE é preenchido e endossado por um veterinário oficial da Uprava za veterinu antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Your dog needs a microchip and a valid rabies vaccination (at least 21 days after the primary shot); the health certificate is completed and endorsed by an official veterinarian of the Veterinary Directorate before departure."
+        fr: "Ton chien a besoin d'une puce et d'une vaccination antirabique valide (au moins 21 jours après la primo-injection) ; le certificat sanitaire est rempli et visé par un vétérinaire officiel de la Direction vétérinaire avant le départ."
+        es: "Tu perro necesita microchip y vacunación antirrábica válida (al menos 21 días después de la primera dosis); el certificado sanitario lo completa y valida un veterinario oficial de la Dirección Veterinaria antes de la salida."
+        pt: "Seu cachorro precisa de microchip e vacinação antirrábica válida (no mínimo 21 dias após a primeira dose); o certificado sanitário é preenchido e endossado por um veterinário oficial da Direção Veterinária antes da partida."
   onSiteNote:
     en: "The certificate is valid 10 days to reach the EU border check — arrange it close to departure."
     fr: "Le certificat est valable 10 jours pour atteindre le contrôle à la frontière UE — organise-le peu avant le départ."
@@ -214,6 +222,7 @@ requirements:
     ref: { en: "Uprava za veterinu — Movement of pets", fr: "Uprava za veterinu — Mouvement des animaux", es: "Uprava za veterinu — Movimiento de animales de compañía", pt: "Uprava za veterinu — Circulação de animais de estimação" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte", pt: "Simplificado — passaporte para animais" }
     body:
@@ -343,7 +352,7 @@ sources:
 
 seo:
   title: { en: "Serbia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Serbie — Guide", es: "Requisitos de entrada de perros en Serbia — Guía de viaje", pt: "Sérvia: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Serbia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Serbie avec ton chien : formalités (2026)", es: "Viajar a Serbia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Sérvia: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Serbia: Pet Travel Requirements 2026", fr: "Voyager en Serbie avec ton chien : formalités (2026)", es: "Viajar a Serbia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Sérvia: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Serbia — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Serbie — selon origine UE, pays listé ou non listé. Sourcé et daté."

@@ -17,12 +17,14 @@ exit:
     pt: "O Cazaquistão não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pelo Committee for Veterinary Control and Supervision (Ministério da Agricultura)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The Committee's territorial veterinary inspectors issue the veterinary certificate for the exported animal, applied for via the state e-government portal."
         fr: "Les inspecteurs vétérinaires territoriaux du Comité délivrent le certificat vétérinaire pour l'animal exporté, demandé via le portail e-gouvernement de l'État."
@@ -224,7 +226,9 @@ requirements:
     ref: { en: "EAEU veterinary certificate, art.1.4 (CFIA export note)", fr: "Certificat vétérinaire UEEA, art.1.4 (note d'export ACIA)", es: "Certificado veterinario de la UEEA, art. 1.4 (nota de exportación de la CFIA)", pt: "Certificado veterinário da UEE, art. 1.4 (nota de exportação da CFIA)" }
 
 origin:
+  scheme: own
   eu:
+    from: [am, by, kg, ru]
     title: { en: "From another EAEU country", fr: "Depuis un autre pays de l'UEEA", es: "Desde otro país de la UEEA", pt: "De outro país da UEE" }
     body:
       en: "A dog coming from another Eurasian Economic Union country (Russia, Belarus, Armenia, Kyrgyzstan) moves on its veterinary passport showing valid rabies and other required vaccinations. No import permit and no quarantine for up to two pets travelling with the owner for personal needs."
@@ -233,6 +237,7 @@ origin:
       pt: "Um cachorro vindo de outro país da União Econômica Eurasiática (Rússia, Belarus, Armênia, Quirguistão) se desloca com o passaporte veterinário mostrando a vacinação antirrábica e as demais vacinas exigidas em dia. Sem autorização de importação e sem quarentena para até dois animais viajando com o dono para necessidades pessoais."
     cls: ok
   listed:
+    from_except: [am, by, kg, ru]
     title: { en: "From any other country — up to 2 pets", fr: "Depuis tout autre pays — jusqu'à 2 animaux", es: "Desde cualquier otro país — hasta 2 mascotas", pt: "De qualquer outro país — até 2 animais" }
     body:
       en: "From a non-EAEU country, up to two dogs and cats in total for personal use enter without an import permit and without quarantine, accompanied by the owner and an official veterinary certificate from the country of departure's state veterinary service, issued after a clinical exam within 5 days of travel, with valid vaccinations. Present yourself to veterinary control at the checkpoint, where the certificate is re-registered into an EAEU certificate."
@@ -355,7 +360,7 @@ sources:
 
 seo:
   title: { en: "Kazakhstan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Kazakhstan — Guide", es: "Requisitos de entrada de perros en Kazajistán — Guía de viaje", pt: "Cazaquistão: exigências de entrada para cachorros" }
-  metaTitle: { en: "Traveling to Kazakhstan With Your Dog: Entry Requirements (2026)", fr: "Voyager au Kazakhstan avec ton chien : formalités (2026)", es: "Viajar a Kazajistán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Cazaquistão: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Kazakhstan: Pet Travel Requirements", fr: "Voyager au Kazakhstan avec ton chien : formalités (2026)", es: "Viajar a Kazajistán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Cazaquistão: exigências de entrada 2026" }
   metaDesc:
     en: "Official EAEU and Kazakh veterinary rules for bringing a dog into Kazakhstan: rabies and other vaccinations, veterinary certificate. Sourced and dated."
     fr: "Règles officielles UEEA et kazakhes pour faire entrer un chien au Kazakhstan : rage et autres vaccins, certificat vétérinaire, permis d'importation. Sourcé et daté."

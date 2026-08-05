@@ -34,12 +34,14 @@ exit:
     pt: "Sair do México com seu cachorro exige um procedimento de exportação do SENASICA — não apenas o passaporte do seu cachorro."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Request the SENASICA export health certificate in advance (about 3 business days)."
         fr: "Demande le certificat zoosanitaire d'exportation SENASICA en amont (environ 3 jours ouvrés)."
         es: "Solicita el certificado zoosanitario de exportación de SENASICA con antelación (unos 3 días hábiles)."
         pt: "Solicite com antecedência o certificado zoossanitário de exportação do SENASICA (cerca de 3 dias úteis)."
     - timing: window
+      scope: any
       text:
         en: "Have it endorsed at the SENASICA airport office on departure day: physical exam of the dog, second stamp and signature."
         fr: "Fais-le endosser au bureau SENASICA de l'aéroport le jour du vol : examen du chien, 2ᵉ sceau et signature."
@@ -239,15 +241,27 @@ requirements:
     ref: { en: "SENASICA — considerations during inspection", fr: "SENASICA — considérations lors de l'inspection", es: "SENASICA — consideraciones durante la inspección", pt: "SENASICA — considerações durante a inspeção" }
 
 origin:
+  scheme: own
   eu:
+    # Le Mexique ne partage pas le monde comme l'UE : il distingue l'Amérique du Nord du reste.
+    # La même liste que les puces d'arrivée, pour que le paragraphe de tête et les puces ne
+    # puissent pas se contredire — c'était précisément le défaut relevé sur un France → Mexique.
+    from: [us, ca]
     title: { en: "From the US or Canada — inspection only", fr: "Depuis les USA ou le Canada — simple inspection", es: "Desde EE. UU. o Canadá — solo inspección", pt: "Dos EUA ou do Canadá — apenas inspeção" }
     body:
-      en: "If your dog's origin is Mexico, the US or Canada and it arrives from the US or Canada, no Certificate of Good Health and no vaccination card are required. On arrival, SENASICA staff carry out a brief physical inspection to confirm the dog shows no signs of infectious or contagious disease, no fresh or healing wounds, and no ectoparasites."
-      fr: "Si l'origine de ton chien est le Mexique, les USA ou le Canada et qu'il arrive des USA ou du Canada, aucun Certificat de Bonne Santé ni carnet de vaccination n'est requis. À l'arrivée, le personnel du SENASICA effectue une brève inspection physique pour confirmer l'absence de signes de maladie infectieuse ou contagieuse, de plaies fraîches ou en cicatrisation, et d'ectoparasites."
-      es: "Si el origen de tu perro es México, EE. UU. o Canadá y llega desde EE. UU. o Canadá, no se exige ningún Certificado de Buena Salud ni cartilla de vacunación. A la llegada, el personal de SENASICA realiza una breve inspección física para confirmar que el perro no presenta signos de enfermedad infecciosa o contagiosa, ni heridas frescas o en cicatrización, ni ectoparásitos."
-      pt: "Se a origem do seu cachorro é o México, os EUA ou o Canadá e ele chega dos EUA ou do Canadá, não são exigidos Certificado de Boa Saúde nem carteira de vacinação. Na chegada, a equipe do SENASICA faz uma breve inspeção física para confirmar que o cachorro não apresenta sinais de doença infecciosa ou contagiosa, nem feridas recentes ou em cicatrização, nem ectoparasitas."
+      # Une seule condition, celle de la provenance. La rédaction initiale en empilait deux —
+      # « si l'origine est le Mexique, les USA ou le Canada ET qu'il arrive des USA ou du Canada » —
+      # qu'il fallait relire deux fois avant d'atteindre l'information, et dont la première ne
+      # correspond pas à la règle : le SENASICA raisonne sur le pays de PROVENANCE du vol.
+      # Formulation arrêtée avec Philippe le 03/08/2026. Elle colle désormais à la condition
+      # machine posée sur ce cas (`from: [us, ca]`), qui dit exactement la même chose.
+      en: "If your pet arrives from the US or Canada, no Certificate of Good Health and no vaccination card are required. On arrival, SENASICA staff carry out a brief physical inspection to confirm the dog shows no signs of infectious or contagious disease, no fresh or healing wounds, and no ectoparasites."
+      fr: "Si ton animal arrive des USA ou du Canada, aucun Certificat de Bonne Santé ni carnet de vaccination n'est requis. À l'arrivée, le personnel du SENASICA effectue une brève inspection physique pour confirmer l'absence de signes de maladie infectieuse ou contagieuse, de plaies fraîches ou en cicatrisation, et d'ectoparasites."
+      es: "Si tu mascota llega desde EE. UU. o Canadá, no se exige ningún Certificado de Buena Salud ni cartilla de vacunación. A la llegada, el personal de SENASICA realiza una breve inspección física para confirmar que el perro no presenta signos de enfermedad infecciosa o contagiosa, ni heridas frescas o en cicatrización, ni ectoparásitos."
+      pt: "Se o seu pet chega dos EUA ou do Canadá, não são exigidos Certificado de Boa Saúde nem carteira de vacinação. Na chegada, a equipe do SENASICA faz uma breve inspeção física para confirmar que o cachorro não apresenta sinais de doença infecciosa ou contagiosa, nem feridas recentes ou em cicatrização, nem ectoparasitas."
     cls: ok
   listed:
+    from_except: [us, ca]
     title: { en: "From any other country — Certificate of Good Health", fr: "Depuis tout autre pays — Certificat de Bonne Santé", es: "Desde cualquier otro país — Certificado de Buena Salud", pt: "De qualquer outro país — Certificado de Boa Saúde" }
     body:
       en: "Arriving from a country other than the US or Canada, you must present a Certificate of Good Health issued within the last 15 days (original + copy) on official or licensed-vet letterhead. It must give the exporter and importer details, the rabies vaccine date and validity (dogs under 3 months exempt), confirm the dog is clinically healthy, and confirm it was dewormed internally and externally within the previous 6 months and is free of ectoparasites."
@@ -275,11 +289,13 @@ arrival:
       fr: "Rends-toi au bureau d'inspection sanitaire (OISA) du SENASICA de l'aéroport, du port ou de la frontière terrestre d'arrivée pour obtenir le Certificat Zoosanitaire d'Importation gratuit."
       es: "Acude a la Oficina de Inspección de Sanidad Agropecuaria (OISA) de SENASICA en el aeropuerto, puerto o frontera terrestre de entrada para obtener el Certificado Zoosanitario de Importación gratuito."
       pt: "Vá até o Escritório de Inspeção de Sanidade Agropecuária (OISA) do SENASICA no aeroporto, porto ou fronteira terrestre de entrada para obter o Certificado Zoossanitário de Importação gratuito."
-    - en: "From the US or Canada: a brief physical inspection only — no certificate or vaccination card needed."
+    - from: &amerique_du_nord [us, ca]
+      en: "From the US or Canada: a brief physical inspection only — no certificate or vaccination card needed."
       fr: "Depuis les USA ou le Canada : une brève inspection physique uniquement — sans certificat ni carnet de vaccination."
       es: "Desde EE. UU. o Canadá: solo una breve inspección física — sin necesidad de certificado ni cartilla de vacunación."
       pt: "Dos EUA ou do Canadá: apenas uma breve inspeção física — sem necessidade de certificado nem de carteira de vacinação."
-    - en: "From any other country: present the original Certificate of Good Health (plus a copy) for a documentary and physical review."
+    - from_except: *amerique_du_nord
+      en: "From any other country: present the original Certificate of Good Health (plus a copy) for a documentary and physical review."
       fr: "Depuis tout autre pays : présente le Certificat de Bonne Santé original (plus une copie) pour un examen documentaire et physique."
       es: "Desde cualquier otro país: presenta el Certificado de Buena Salud original (más una copia) para una revisión documental y física."
       pt: "De qualquer outro país: apresente o Certificado de Boa Saúde original (mais uma cópia) para uma conferência documental e física."
@@ -370,7 +386,7 @@ sources:
 
 seo:
   title: { en: "Mexico Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Mexique — Guide", es: "Requisitos de entrada de perros en México — Guía de viaje", pt: "Entrada de cachorro no México — guia de viagem" }
-  metaTitle: { en: "Traveling to Mexico With Your Dog: Entry Requirements (2026)", fr: "Voyager au Mexique avec ton chien : formalités (2026)", es: "Viajar a México con tu perro: requisitos de entrada (2026)", pt: "Viajar ao México com seu cachorro: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Mexico: Pet Travel Requirements 2026", fr: "Voyager au Mexique avec ton chien : formalités (2026)", es: "Viajar a México con tu perro: requisitos de entrada (2026)", pt: "Viajar ao México com seu cachorro: exigências de entrada (2026)" }
   metaDesc:
     en: "Official SENASICA rules for bringing a dog into Mexico: no health certificate from the US/Canada, inspection on arrival, no quarantine. Sourced and dated."
     fr: "Règles officielles SENASICA pour faire entrer un chien au Mexique : pas de certificat depuis USA/Canada, inspection à l'arrivée, pas de quarantaine. Sourcé et daté."

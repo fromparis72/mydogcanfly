@@ -17,12 +17,14 @@ exit:
     pt: "O Panamá é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo MIDA (Dirección de Cuarentena Agropecuaria, DECA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "MIDA, through DECA, issues the export phytozoosanitary licence (requested online via SITERPA) from a private vet's good-health certificate dated within 72h."
         fr: "Le MIDA, via la DECA, délivre la licence phytozoosanitaire d'export (demandée en ligne via SITERPA) à partir d'un certificat de bonne santé de moins de 72 h."
@@ -238,7 +240,9 @@ requirements:
     ref: { en: "MIDA — Introduction of small animals; MINSA — Information to introduce small animals", fr: "MIDA — Introduction d'animaux menores ; MINSA — Information pour introduire des animaux", es: "MIDA — Introducción de animales menores; MINSA — Información para introducir animales menores", pt: "MIDA — Introdução de animais menores; MINSA — Informações para introduzir animais menores" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a personal pet arriving with its owner", fr: "Standard — un animal de compagnie arrivant avec son propriétaire", es: "Estándar — una mascota personal que llega con su propietario", pt: "Padrão — animal de estimação chegando com o dono" }
     body:
       en: "A dog needs an official Export Zoosanitary Certificate from the departure country's sanitary authority, apostilled or consularized and no more than 30 days old, plus a licensed vet's good-health certificate. It must be vaccinated against rabies, distemper, hepatitis, leptospirosis and parvovirus, treated for internal and external parasites, and free of fresh or healing wounds. You notify the authorities 3–5 working days ahead by email. On arrival at Tocumen, MIDA and MINSA verify the papers and inspect the dog; fees are paid in cash. Panama's home-quarantine system may then apply."
@@ -377,7 +381,7 @@ sources:
 
 seo:
   title: { en: "Panama Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Panama — Guide", es: "Requisitos de entrada de perros en Panamá — Guía de viaje", pt: "Panamá: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Panama With Your Dog: Entry Requirements (2026)", fr: "Voyager au Panama avec ton chien : formalités (2026)", es: "Viajar a Panamá con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Panamá com seu cachorro: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Panama: Pet Travel Requirements 2026", fr: "Voyager au Panama avec ton chien : formalités (2026)", es: "Viajar a Panamá con tu perro: requisitos de entrada (2026)", pt: "Viajar ao Panamá com seu cachorro: exigências de entrada (2026)" }
   metaDesc:
     en: "Official MIDA and MINSA rules for bringing a dog into Panama — apostilled export zoosanitary certificate, rabies and core vaccines. Sourced and dated."
     fr: "Règles officielles MIDA et MINSA pour faire entrer un chien au Panama — certificat zoosanitaire d'exportation apostillé, rage et vaccins de base. Sourcé et daté."

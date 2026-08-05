@@ -17,12 +17,14 @@ exit:
     pt: "A Costa do Marfim é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde validado pelos Serviços Veterinários (DSV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "Request the health certificate from an authorized vet a few days before departure (in French or with an official translation); it is validated within the DSV/MIRAH framework, which runs border sanitary control."
         fr: "Demande le certificat sanitaire à un vétérinaire autorisé quelques jours avant le départ (en français ou avec traduction officielle) ; il est validé dans le cadre DSV/MIRAH, qui assure le contrôle sanitaire aux frontières."
@@ -235,6 +237,7 @@ requirements:
     ref: { en: "MIRAH–DSV (no published breed-specific import legislation found)", fr: "MIRAH–DSV (aucune législation d'importation par race publiée trouvée)", es: "MIRAH–DSV (no se encontró legislación de importación por raza publicada)", pt: "MIRAH–DSV (nenhuma legislação de importação específica por raça publicada encontrada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -360,7 +363,7 @@ sources:
 
 seo:
   title: { en: "Ivory Coast Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Côte d'Ivoire — Guide", es: "Requisitos de entrada de perros en Costa de Marfil — Guía de viaje", pt: "Costa do Marfim: exigências de entrada para cachorros" }
-  metaTitle: { en: "Traveling to Ivory Coast With Your Dog: Entry Requirements (2026)", fr: "Voyager en Côte d'Ivoire avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Costa de Marfil (2026)", pt: "Cachorro: exigências de entrada Costa do Marfim (2026)" }
+  metaTitle: { en: "Taking Your Dog to Ivory Coast: Pet Travel Requirements", fr: "Voyager en Côte d'Ivoire avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Costa de Marfil (2026)", pt: "Cachorro: exigências de entrada Costa do Marfim (2026)" }
   metaDesc:
     en: "Official DSV/MIRAH rules for bringing a dog into Ivory Coast: prior import authorization, rabies vaccination and veterinary health certificate. Sourced and dated."
     fr: "Règles officielles DSV/MIRAH pour faire entrer un chien en Côte d'Ivoire : autorisation préalable d'importation, vaccination antirabique. Sourcé et daté."

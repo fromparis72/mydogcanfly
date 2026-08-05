@@ -196,6 +196,7 @@ requirements:
     ref: { en: "SI 141/2020, Reg. 12(7)", fr: "SI 141/2020, art. 12(7)", es: "SI 141/2020, art. 12(7)", pt: "SI 141/2020, art. 12(7)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport (+ tapeworm)", fr: "Simplifié — passeport européen (+ ténia)", es: "Simplificado — pasaporte europeo (+ tenia)", pt: "Simplificado — passaporte europeu para animais (+ tênia)" }
     body:
@@ -228,11 +229,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Irlanda depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Irlanda depende de onde você embarcou."
   points:
-    - en: "From another EU country: no booked border check — keep the EU pet passport with you, with the tapeworm treatment recorded, as spot checks may occur."
+    - from: eu
+      en: "From another EU country: no booked border check — keep the EU pet passport with you, with the tapeworm treatment recorded, as spot checks may occur."
       fr: "Depuis un autre pays de l'UE : pas de contrôle réservé — garde le passeport européen sur toi, avec le traitement contre le ténia consigné, car des contrôles inopinés sont possibles."
       es: "Desde otro país de la UE: sin control fronterizo reservado — lleva contigo el pasaporte europeo, con el tratamiento contra la tenia registrado, ya que pueden producirse controles aleatorios."
       pt: "De outro país da UE: sem controle de fronteira agendado — leve com você o passaporte europeu, com o tratamento contra a tênia registrado, porque pode haver fiscalização por amostragem."
-    - en: "From outside the EU: enter only via Cork Airport, Dublin Airport, Shannon Airport, Dublin Port, the Port of Cork (Ringaskiddy) or Rosslare Europort, and undergo the compliance check booked in advance before leaving the arrivals area."
+    - from: non_eu
+      en: "From outside the EU: enter only via Cork Airport, Dublin Airport, Shannon Airport, Dublin Port, the Port of Cork (Ringaskiddy) or Rosslare Europort, and undergo the compliance check booked in advance before leaving the arrivals area."
       fr: "Depuis hors UE : entre uniquement par les aéroports de Cork, Dublin, Shannon, le port de Dublin, le port de Cork (Ringaskiddy) ou Rosslare Europort, et passe le contrôle de conformité réservé à l'avance avant de quitter la zone d'arrivée."
       es: "Desde fuera de la UE: entra únicamente por el aeropuerto de Cork, el aeropuerto de Dublín, el aeropuerto de Shannon, el puerto de Dublín, el puerto de Cork (Ringaskiddy) o Rosslare Europort, y pasa el control de conformidad reservado con antelación antes de salir de la zona de llegadas."
       pt: "De fora da UE: entre somente pelo aeroporto de Cork, pelo aeroporto de Dublin, pelo aeroporto de Shannon, pelo porto de Dublin, pelo porto de Cork (Ringaskiddy) ou por Rosslare Europort, e passe pelo controle de conformidade agendado com antecedência antes de sair da área de desembarque."
@@ -323,7 +326,7 @@ sources:
 
 seo:
   title: { en: "Ireland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Irlande — Guide", es: "Requisitos de entrada de perros en Irlanda — Guía de viaje", pt: "Irlanda: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Ireland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Irlande avec ton chien : formalités (2026)", es: "Viajar a Irlanda con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Irlanda: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Ireland: Pet Travel Requirements 2026", fr: "Voyager en Irlande avec ton chien : formalités (2026)", es: "Viajar a Irlanda con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Irlanda: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and mandatory tapeworm rules for bringing a dog into Ireland — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, titrage et traitement obligatoire contre le ténia pour faire entrer un chien en Irlande — selon origine UE. Sourcé et daté."

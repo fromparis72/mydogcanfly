@@ -197,6 +197,7 @@ requirements:
     ref: { en: "jordbruksverket.se", fr: "jordbruksverket.se", es: "jordbruksverket.se", pt: "jordbruksverket.se" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -233,12 +234,14 @@ arrival:
       fr: "Toute personne faisant entrer un chien en Suède doit le déclarer à la douane suédoise (Tullverket) — cela vaut même après de courtes vacances à l'étranger avec son propre chien."
       es: "Toda persona que introduzca un perro en Suecia debe declararlo ante la Aduana sueca (Tullverket) — esto rige incluso tras unas cortas vacaciones en el extranjero con su propio perro."
       pt: "Toda pessoa que leva um cachorro para a Suécia precisa declará-lo à alfândega sueca (Tullverket) — isso vale inclusive depois de férias curtas no exterior com o próprio cachorro."
-    - en: "From another EU country with an EU pet passport, an EU resident can make this entry registration online before or during the trip."
+    - from: eu
+      en: "From another EU country with an EU pet passport, an EU resident can make this entry registration online before or during the trip."
       fr: "Depuis un autre pays de l'UE avec un passeport européen, un résident de l'UE peut faire cette déclaration d'entrée en ligne avant ou pendant le voyage."
       es: "Desde otro país de la UE con un pasaporte europeo para mascotas, un residente de la UE puede hacer este registro de entrada en línea antes o durante el viaje."
       pt: "Vindo de outro país da UE com passaporte europeu para animais, quem reside na UE pode fazer esse registro de entrada on-line antes ou durante a viagem."
-    - en: "From a non-EU country (or if you live outside the EU), you cannot register online: choose the red lane at the border crossing and contact a customs official."
-      fr: "Depuis un pays hors UE (ou si tu résidez hors UE), l'enregistrement en ligne est impossible : emprunte le couloir rouge au passage frontalier et contacte un agent des douanes."
+    - from: non_eu
+      en: "From a non-EU country (or if you live outside the EU), you cannot register online: choose the red lane at the border crossing and contact a customs official."
+      fr: "Depuis un pays hors UE (ou si tu résides hors UE), l'enregistrement en ligne est impossible : emprunte le couloir rouge au passage frontalier et contacte un agent des douanes."
       es: "Desde un país fuera de la UE (o si resides fuera de la UE), no puedes registrarte en línea: elige el pasillo rojo en el paso fronterizo y contacta con un agente de aduanas."
       pt: "Vindo de um país fora da UE (ou se você mora fora da UE), o registro on-line não é possível: escolha o canal vermelho no ponto de passagem de fronteira e procure um agente da alfândega."
     - en: "You must also follow the Swedish Board of Agriculture's rules and be able to show your declaration number and the animal's documents if asked."
@@ -330,7 +333,7 @@ sources:
 
 seo:
   title: { en: "Sweden Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Suède — Guide", es: "Requisitos de entrada de perros en Suecia — Guía de viaje", pt: "Suécia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Sweden With Your Dog: Entry Requirements (2026)", fr: "Voyager en Suède avec ton chien : formalités (2026)", es: "Viajar a Suecia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Suécia: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Sweden: Pet Travel Requirements 2026", fr: "Voyager en Suède avec ton chien : formalités (2026)", es: "Viajar a Suecia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Suécia: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and customs-notification rules for bringing a dog into Sweden — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, titrage et déclaration douanière pour faire entrer un chien en Suède — selon origine UE, pays listé ou non listé. Sourcé et daté."

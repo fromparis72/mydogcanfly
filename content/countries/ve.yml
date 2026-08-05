@@ -22,17 +22,26 @@ exit:
     pt: "A Venezuela é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação avalizado pelo Instituto Nacional de Salud Agrícola Integral (INSAI)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "INSAI issues the export inspection certificate with the current rabies and deworming records; for the EU it also requires the microchip and an approved-lab antibody titer."
         fr: "L'INSAI délivre le certificat d'inspection d'export avec le carnet antirabique et vermifuge à jour ; pour l'UE, il exige aussi la puce et un titrage en labo agréé."
         es: "El INSAI emite el certificado de inspección de exportación con el registro antirrábico y de desparasitación al día; para la UE también exige el microchip y una titulación en laboratorio aprobado."
         pt: "O INSAI emite o certificado de inspeção para exportação com os registros atualizados de raiva e de vermifugação; para a UE, exige também o microchip e um teste sorológico antirrábico (titulação) feito em laboratório aprovado."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "INSAI issues the export inspection certificate with the current rabies and deworming records."
+        fr: "L'INSAI délivre le certificat d'inspection à l'export avec les registres à jour de vaccination antirabique et de vermifugation."
+        es: "El INSAI expide el certificado de inspección de exportación con los registros vigentes de vacunación antirrábica y desparasitación."
+        pt: "O INSAI emite o certificado de inspeção de exportação com os registros atualizados de vacinação antirrábica e vermifugação."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -255,6 +264,7 @@ requirements:
     ref: { en: "INSAI — Requisitos para el ingreso de mascotas (caninos y felinos) a Venezuela", fr: "INSAI — Requisitos para el ingreso de mascotas (caninos y felinos) a Venezuela", es: "INSAI — Requisitos para el ingreso de mascotas (caninos y felinos) a Venezuela", pt: "INSAI — Requisitos para el ingreso de mascotas (caninos y felinos) a Venezuela" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Standard scheme — a dog entering from a non-EU country", fr: "Régime standard — un chien entrant depuis un pays hors UE", es: "Esquema estándar — un perro que entra desde un país fuera de la UE", pt: "Esquema padrão — um cachorro que entra vindo de um país fora da UE" }
     body:
@@ -388,7 +398,7 @@ sources:
 
 seo:
   title: { en: "Venezuela Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Venezuela — Guide", es: "Requisitos de entrada de perros en Venezuela — Guía de viaje", pt: "Requisitos de entrada de cachorros na Venezuela — Guia" }
-  metaTitle: { en: "Traveling to Venezuela With Your Dog: Entry Requirements (2026)", fr: "Voyager au Venezuela avec ton chien : formalités (2026)", es: "Viajar a Venezuela con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Venezuela com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Venezuela: Pet Travel Requirements 2026", fr: "Voyager au Venezuela avec ton chien : formalités (2026)", es: "Viajar a Venezuela con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Venezuela com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official INSAI rules for bringing a dog into Venezuela: rabies vaccination, international health certificate, séxtuple vaccines, deworming. Sourced and dated."
     fr: "Règles officielles INSAI pour faire entrer un chien au Venezuela : vaccination antirabique, certificat sanitaire international, vaccins séxtuple. Sourcé et daté."

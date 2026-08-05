@@ -18,12 +18,14 @@ exit:
     pt: "Cuba é um país não listado, então uma titulação de anticorpos antirrábicos válida é obrigatória para voltar à UE — além de um atestado de saúde de exportação endossado pelo Instituto de Medicina Veterinaria (IMV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The IMV (Havana quarantine clinic or provincial offices) issues the official export zoosanitary certificate after a clinical inspection."
         fr: "L'IMV (clinique de quarantaine de La Havane ou bureaux provinciaux) délivre le certificat zoosanitaire d'export officiel après inspection clinique."
@@ -225,7 +227,9 @@ requirements:
     ref: { en: "MINAG/CENASA — import and export of pets", fr: "MINAG/CENASA — importation et exportation d'animaux", es: "MINAG/CENASA — importación y exportación de mascotas", pt: "MINAG/CENASA — importação e exportação de animais de companhia" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a pet travelling with its owner", fr: "Standard — un animal voyageant avec son propriétaire", es: "Estándar — una mascota que viaja con su dueño", pt: "Padrão — um animal de companhia viajando com o dono" }
     body:
       en: "A dog accompanying its owner needs a veterinary health certificate from the official veterinary authority of the departure country, showing the animal's identification, general health and rabies-vaccination details (vaccine, date, validity, lot). No EU pet passport is used and no prior import permit is required. On arrival, the Border Veterinary Service inspects the dog and, if all is in order, issues a release certificate authorising entry. A home visit follows within 15 days."
@@ -360,7 +364,7 @@ sources:
 
 seo:
   title: { en: "Cuba Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Cuba — Guide", es: "Requisitos de entrada de perros en Cuba — Guía de viaje", pt: "Entrada de cachorros em Cuba — Guia de viagem" }
-  metaTitle: { en: "Traveling to Cuba With Your Dog: Entry Requirements (2026)", fr: "Voyager à Cuba avec ton chien : formalités (2026)", es: "Viajar a Cuba con tu perro: requisitos de entrada (2026)", pt: "Viajar para Cuba com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Cuba: Pet Travel Requirements 2026", fr: "Voyager à Cuba avec ton chien : formalités (2026)", es: "Viajar a Cuba con tu perro: requisitos de entrada (2026)", pt: "Viajar para Cuba com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official CENASA/MINAG rules for a dog entering Cuba: vet health certificate, rabies vaccination, arrival inspection and a 15-day home visit. Sourced and dated."
     fr: "Règles officielles CENASA/MINAG pour un chien entrant à Cuba : certificat vétérinaire, vaccination antirabique, contrôle à l'arrivée et visite à 15 jours."

@@ -17,12 +17,14 @@ exit:
     pt: "A Armênia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Serviço de Inspeção de Segurança Alimentar (FSIB)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "A state vet issues the domestic certificate (Form 1) before travel, and the FSIB airport service exchanges it for the international veterinary certificate (Form 5a) on departure."
         fr: "Un vétérinaire d'État délivre le certificat national (formulaire 1) avant le voyage, et le service aéroportuaire du FSIB l'échange contre le certificat vétérinaire international (formulaire 5a) au départ."
@@ -224,7 +226,9 @@ requirements:
     ref: { en: "APHIS Pet Travel US–Armenia (EAEU Form, sec.2.2); EAEU Decision No.317, ch.15", fr: "APHIS voyage animaux É.-U.–Arménie (formulaire UEEA, sect.2.2) ; Décision UEEA n°317, ch.15", es: "APHIS Viaje de mascotas EE. UU.–Armenia (formulario UEEA, secc.2.2); Decisión UEEA n.º 317, cap.15", pt: "APHIS Pet Travel EUA–Armênia (Formulário da UEE, seç. 2.2); Decisão nº 317 da UEE, cap. 15" }
 
 origin:
+  scheme: own
   eu:
+    from: [by, kz, kg, ru]
     title: { en: "From another EAEU country", fr: "Depuis un autre pays de l'UEEA", es: "Desde otro país de la UEEA", pt: "De outro país da UEE" }
     body:
       en: "A dog coming from another Eurasian Economic Union country (Russia, Belarus, Kazakhstan, Kyrgyzstan) moves on its veterinary passport showing valid rabies and other required vaccinations, and the EAEU veterinary certificate for interstate movement. No import permit and no quarantine for up to five pets travelling with the owner for personal needs."
@@ -233,6 +237,7 @@ origin:
       pt: "Um cachorro vindo de outro país da União Econômica Eurasiática (Rússia, Belarus, Cazaquistão, Quirguistão) viaja com seu passaporte veterinário mostrando a vacinação antirrábica e as demais vacinas exigidas em dia, e o certificado veterinário da UEE para movimentação entre Estados. Sem autorização de importação e sem quarentena para até cinco animais que viajam com o dono para fins pessoais."
     cls: ok
   listed:
+    from_except: [by, kz, kg, ru]
     title: { en: "From any other country — up to 5 pets", fr: "Depuis tout autre pays — jusqu'à 5 animaux", es: "Desde cualquier otro país — hasta 5 mascotas", pt: "De qualquer outro país — até 5 animais" }
     body:
       en: "From a non-EAEU country, up to five dogs and cats in total for personal use enter without an import permit and without quarantine, accompanied by the owner and an official veterinary health certificate from the country of departure's state veterinary service, issued after a clinical exam within 5 days of travel, with valid vaccinations. Present yourself to the state veterinary service at the airport or border checkpoint, where the certificate is checked."
@@ -355,7 +360,7 @@ sources:
 
 seo:
   title: { en: "Armenia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Arménie — Guide", es: "Requisitos de entrada de perros en Armenia — Guía de viaje", pt: "Exigências de entrada de cachorros na Armênia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Armenia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Arménie avec ton chien : formalités (2026)", es: "Viajar a Armenia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Armênia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Armenia: Pet Travel Requirements 2026", fr: "Voyager en Arménie avec ton chien : formalités (2026)", es: "Viajar a Armenia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Armênia: exigências de entrada 2026" }
   metaDesc:
     en: "Official EAEU and Armenian veterinary rules for bringing a dog into Armenia: rabies and other vaccinations, veterinary health certificate. Sourced and dated."
     fr: "Règles officielles UEEA et arméniennes pour faire entrer un chien en Arménie : rage et autres vaccins, certificat sanitaire vétérinaire. Sourcé et daté."

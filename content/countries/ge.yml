@@ -36,12 +36,14 @@ exit:
     pt: "A Geórgia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Agência Nacional de Alimentos (NFA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The NFA is the competent veterinary authority; export certification runs through its veterinary control and the state e-services permit system."
         fr: "La NFA est l'autorité vétérinaire compétente ; la certification d'export passe par son contrôle vétérinaire et le système de permis e-services de l'État."
@@ -255,6 +257,7 @@ requirements:
     ref: { en: "Government of Georgia Ordinance No. 551; Georgian Revenue Service", fr: "Ordonnance du Gouvernement de Géorgie n° 551 ; Service des recettes de Géorgie", es: "Orden del Gobierno de Georgia n.º 551; Servicio de Ingresos de Georgia", pt: "Decreto do Governo da Geórgia nº 551; Serviço de Receitas da Geórgia" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte para mascotas", pt: "Simplificado — passaporte para animais" }
     body:
@@ -384,7 +387,7 @@ sources:
 
 seo:
   title: { en: "Georgia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Géorgie — Guide", es: "Requisitos de entrada de perros en Georgia — Guía de viaje", pt: "Exigências de entrada de cachorros na Geórgia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Georgia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Géorgie avec ton chien : formalités (2026)", es: "Viajar a Georgia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Geórgia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Georgia: Pet Travel Requirements 2026", fr: "Voyager en Géorgie avec ton chien : formalités (2026)", es: "Viajar a Georgia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Geórgia: exigências de entrada 2026" }
   metaDesc:
     en: "Official microchip, rabies, parasite-treatment and antibody-test rules for bringing a dog into Georgia — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, traitement antiparasitaire et titrage pour faire entrer un chien en Géorgie — selon origine UE. Sourcé et daté."

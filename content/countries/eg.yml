@@ -36,17 +36,26 @@ exit:
     pt: "O Egito é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde endossado pela General Organization for Veterinary Services (GOVS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "GOVS veterinary quarantine endorses the EU entry health certificate at the port before departure — a private-vet certificate alone is not enough."
         fr: "La quarantaine vétérinaire de la GOVS vise le certificat sanitaire d'entrée UE au port avant le départ — un certificat de vétérinaire privé seul ne suffit pas."
         es: "La cuarentena veterinaria de la GOVS refrenda el certificado sanitario de entrada a la UE en el puerto antes de salir — un certificado de veterinario privado por sí solo no basta."
         pt: "A quarentena veterinária da GOVS endossa o atestado de saúde de entrada na UE no porto antes da partida — um certificado de veterinário particular sozinho não basta."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "GOVS veterinary quarantine endorses the health certificate at the port before departure — a private-vet certificate alone is not enough."
+        fr: "La quarantaine vétérinaire du GOVS vise le certificat sanitaire au port avant le départ — un certificat de vétérinaire privé seul ne suffit pas."
+        es: "La cuarentena veterinaria del GOVS valida el certificado sanitario en el puerto antes de la salida — un certificado de veterinario privado por sí solo no basta."
+        pt: "A quarentena veterinária do GOVS endossa o certificado sanitário no porto antes da partida — só o certificado de um veterinário particular não basta."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -244,6 +253,7 @@ requirements:
     ref: { en: "GOVS Veterinary Quarantine (WOAH)", fr: "Quarantaine vétérinaire GOVS (WOAH)", es: "Cuarentena veterinaria de la GOVS (WOAH)", pt: "Quarentena veterinária GOVS (WOAH)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -369,7 +379,7 @@ sources:
 
 seo:
   title: { en: "Egypt Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Égypte — Guide", es: "Requisitos de entrada de perros en Egipto — Guía de viaje", pt: "Entrada de cachorros no Egito — Guia de viagem" }
-  metaTitle: { en: "Traveling to Egypt With Your Dog: Entry Requirements (2026)", fr: "Voyager en Égypte avec ton chien : formalités (2026)", es: "Viajar a Egipto con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Egito com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Egypt: Pet Travel Requirements 2026", fr: "Voyager en Égypte avec ton chien : formalités (2026)", es: "Viajar a Egipto con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Egito com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official GOVS rules for bringing a dog into Egypt: rabies vaccination, health certificate, arrival check — no antibody test, plus banned breeds. Sourced and dated."
     fr: "Règles officielles GOVS pour faire entrer un chien en Égypte : vaccination antirabique, certificat sanitaire, inspection à l'arrivée — sans titrage. Sourcé et daté."

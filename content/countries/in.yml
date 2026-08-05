@@ -32,12 +32,14 @@ exit:
     pt: "A Índia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de exportação da AQCS."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Get a fit-to-fly certificate from a registered vet, then submit the dog and documents to the AQCS quarantine office 7 days before departure (by appointment); the AQCS export certificate is valid 10 days from issue."
         fr: "Obtiens un certificat d'aptitude au vol d'un vétérinaire enregistré, puis présente le chien et les documents au bureau de quarantaine AQCS 7 jours avant le départ (sur rendez-vous) ; le certificat d'export AQCS est valable 10 jours."
@@ -240,7 +242,9 @@ requirements:
     ref: { en: "AQCS — SOP for import of pet dogs (quarantine)", fr: "AQCS — Procédure d'import de chiens (quarantaine)", es: "AQCS — Procedimiento para la importación de perros (cuarentena)", pt: "AQCS — Procedimento para importação de cachorros de estimação (quarentena)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Baggage rule — transfer of residence (up to 2 pets)", fr: "Règle du bagage — transfert de résidence (jusqu'à 2 animaux)", es: "Regla del equipaje — traslado de residencia (hasta 2 mascotas)", pt: "Regra da bagagem — transferência de domicílio (até 2 animais)" }
     body:
       en: "If you are relocating to India after at least two continuous years abroad, you may import up to two pets (dogs/cats) as baggage. You need the advance AQCS NOC, an ISO microchip, a certified rabies vaccination (dog ≥3 months, shot >1 month and <12 months old), an official health certificate, and proof of your two-year stay and transfer of residence. No rabies antibody test is required."
@@ -373,7 +377,7 @@ sources:
 
 seo:
   title: { en: "India Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Inde — Guide", es: "Requisitos de entrada de perros en la India — Guía de viaje", pt: "Entrada de cachorros na Índia — guia de viagem" }
-  metaTitle: { en: "Traveling to India With Your Dog: Entry Requirements (2026)", fr: "Voyager en Inde avec ton chien : formalités (2026)", es: "Viajar a la India con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Índia com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to India: Pet Travel Requirements 2026", fr: "Voyager en Inde avec ton chien : formalités (2026)", es: "Viajar a la India con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Índia com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official AQCS/DAHD rules for bringing a dog into India: advance NOC, up to 2 pets on transfer of residence, microchip. Sourced and dated."
     fr: "Règles officielles AQCS/DAHD pour faire entrer un chien en Inde : NOC anticipé, 2 animaux max en transfert de résidence, puce. Sourcé et daté."

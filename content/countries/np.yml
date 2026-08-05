@@ -31,12 +31,14 @@ exit:
     pt: "O Nepal é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pelo Department of Livestock Services / Animal Quarantine."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "A licensed vet in Kathmandu completes the health certificate, which the DLS Animal Quarantine Office endorses; the international certificate is generally issued within 30 days of travel."
         fr: "Un vétérinaire agréé à Katmandou remplit le certificat sanitaire, que le bureau de quarantaine animale du DLS vise ; le certificat international est généralement délivré dans les 30 jours du voyage."
@@ -260,6 +262,7 @@ requirements:
     ref: { en: "Tribhuvan International Airport Immigration Office (refers pets to the Department of Customs)", fr: "Bureau d'immigration de l'aéroport international de Tribhuvan (renvoie les animaux au Département des douanes)", es: "Oficina de Inmigración del Aeropuerto Internacional de Tribhuvan (remite las mascotas al Departamento de Aduanas)", pt: "Tribhuvan International Airport Immigration Office (encaminha animais de estimação ao Department of Customs)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Dog coming from the EU — national procedure applies", fr: "Chien venant de l'UE — procédure nationale applicable", es: "Perro procedente de la UE — se aplica el procedimiento nacional", pt: "Cachorro vindo da UE — procedimento nacional se aplica" }
     body:
@@ -389,7 +392,7 @@ sources:
 
 seo:
   title: { en: "Nepal Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Népal — Guide", es: "Requisitos de entrada de perros en Nepal — Guía de viaje", pt: "Entrada de cachorro no Nepal — guia de viagem" }
-  metaTitle: { en: "Traveling to Nepal With Your Dog: Entry Requirements (2026)", fr: "Voyager au Népal avec ton chien : formalités (2026)", es: "Viajar a Nepal con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Nepal com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Nepal: Pet Travel Requirements 2026", fr: "Voyager au Népal avec ton chien : formalités (2026)", es: "Viajar a Nepal con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Nepal com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Nepal rules for bringing a dog: rabies vaccination card, veterinary health certificate within 10 days of arrival and quarantine notice. Sourced and dated."
     fr: "Règles officielles pour faire entrer un chien au Népal : carte antirabique, certificat sanitaire dans les 10 jours et préavis de quarantaine. Sourcé et daté."

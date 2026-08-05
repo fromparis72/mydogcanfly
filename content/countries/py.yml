@@ -26,12 +26,14 @@ exit:
     pt: "O Paraguai é um país não listado, então o teste sorológico antirrábico válido é obrigatório para voltar à União Europeia — além de um atestado de saúde de exportação endossado pelo SENACSA."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "SENACSA's certification department authorises the export and issues the international veterinary certificate (CVI) in person after online application."
         fr: "Le département de certification du SENACSA autorise l'export et délivre le certificat vétérinaire international (CVI) en présentiel après demande en ligne."
@@ -234,7 +236,9 @@ requirements:
     ref: { en: "Mercosur Res. GMC 20/2024, Art. 18 & 19", fr: "Mercosur Rés. GMC 20/2024, art. 18 & 19", es: "Mercosur Res. GMC 20/2024, art. 18 y 19", pt: "Res. GMC 20/2024 do Mercosul, Art. 18 e 19" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard scheme — CVI or endorsed passport", fr: "Régime standard — CVI ou passeport refrendé", es: "Régimen estándar — CVI o pasaporte refrendado", pt: "Esquema padrão — CVI ou passaporte endossado" }
     body:
       en: "For almost every origin the path is the same. Your dog needs an International Veterinary Certificate (CVI) issued, signed and stamped by the official veterinary authority of the country you travel from, under Mercosur Res. GMC 20/2024. It must show a clinical exam (within 10 days), a valid rabies vaccination and internal & external antiparasitic treatment (within 15 days). A current official passport carrying the same data and endorsed by the origin's authority is accepted instead. You present the dog and the CVI to the SENACSA inspector at the entry point; travelling with up to five pets needs no import authorization, and the original CVI stays with you."
@@ -363,7 +367,7 @@ sources:
 
 seo:
   title: { en: "Paraguay Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Paraguay — Guide", es: "Requisitos de entrada de perros en Paraguay — Guía de viaje", pt: "Paraguai: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Paraguay With Your Dog: Entry Requirements (2026)", fr: "Voyager au Paraguay avec ton chien : formalités (2026)", es: "Viajar a Paraguay con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Paraguai: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Paraguay: Pet Travel Requirements 2026", fr: "Voyager au Paraguay avec ton chien : formalités (2026)", es: "Viajar a Paraguay con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro ao Paraguai: exigências de entrada 2026" }
   metaDesc:
     en: "Official SENACSA / Mercosur Res. GMC 20/2024 rules for bringing a dog into Paraguay: International Veterinary Certificate or endorsed passport. Sourced and dated."
     fr: "Règles officielles SENACSA / Rés. Mercosur GMC 20/2024 pour faire entrer un chien au Paraguay : Certificat Vétérinaire International ou passeport refrendé."

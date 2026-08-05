@@ -18,12 +18,14 @@ exit:
     pt: "A Bolívia é um país não listado, então um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — mais um atestado de saúde de exportação avalizado pelo SENASAG."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "SENASAG issues the export zoosanitary certificate within 24–48h once the documents (including a vet health certificate dated within the last 10 days) are complete."
         fr: "Le SENASAG délivre le certificat zoosanitaire d'export en 24–48 h une fois le dossier complet (dont un certificat sanitaire de moins de 10 jours)."
@@ -235,6 +237,7 @@ requirements:
     ref: { en: "SENASAG — Requisitos sanitarios para importar animales de compañía", fr: "SENASAG — Requisitos sanitarios para importar animales de compañía", es: "SENASAG — Requisitos sanitarios para importar animales de compañía", pt: "SENASAG — Requisitos sanitarios para importar animales de compañía" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU & other third countries — the standard scheme", fr: "Depuis l'UE & autres pays tiers — le régime standard", es: "Desde la UE y otros países terceros — el régimen estándar", pt: "Da UE e de outros países terceiros — o esquema padrão" }
     body:
@@ -364,7 +367,7 @@ sources:
 
 seo:
   title: { en: "Bolivia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Bolivie — Guide", es: "Requisitos de entrada de perros en Bolivia — Guía de viaje", pt: "Bolívia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Bolivia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Bolivie avec ton chien : formalités (2026)", es: "Viajar a Bolivia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Bolívia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Bolivia: Pet Travel Requirements 2026", fr: "Voyager en Bolivie avec ton chien : formalités (2026)", es: "Viajar a Bolivia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Bolívia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official SENASAG rules for bringing a dog into Bolivia: Zoosanitary Import Permit, zoosanitary certificate, rabies and core vaccinations. Sourced and dated."
     fr: "Règles officielles SENASAG pour faire entrer un chien en Bolivie : Permis Zoosanitaire d'Importation, certificat zoosanitaire. Sourcé et daté."

@@ -17,6 +17,7 @@ exit:
     pt: "O Bahrein é um país listado, portanto não é necessária titulação antirrábica para retornar à UE — mas você precisa obter uma autorização de exportação e um atestado de saúde endossado pela Quarentena Veterinária (Animal Wealth Directorate)."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Contact the Veterinary Quarantine Department before travel to obtain the export permit and the endorsed original health certificate for your dog."
         fr: "Contacte le service de Quarantaine vétérinaire avant le voyage pour obtenir le permis d'export et le certificat sanitaire original visé pour ton chien."
@@ -227,6 +228,7 @@ requirements:
     ref: { en: "Bahrain Customs — Import of live animals (dogs and cats): prohibited dog species (Pitbull, Mastiff, Tosa, Presa)", fr: "Douanes de Bahreïn — Importation d'animaux vivants (chiens et chats) : espèces de chiens interdites (Pitbull, Mastiff, Tosa, Presa)", es: "Aduanas de Baréin — Importación de animales vivos (perros y gatos): especies de perros prohibidas (Pitbull, Mastiff, Tosa, Presa)", pt: "Bahrain Customs — Import of live animals (dogs and cats): prohibited dog species (Pitbull, Mastiff, Tosa, Presa)" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Rabies-controlled origin — antibody test still required", fr: "Origine à rage contrôlée — titrage tout de même requis", es: "Origen con la rabia controlada — la prueba de titulación sigue siendo obligatoria", pt: "Origem com raiva controlada — teste sorológico ainda é obrigatório" }
     body:
@@ -356,7 +358,7 @@ sources:
 
 seo:
   title: { en: "Bahrain Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Bahreïn — Guide", es: "Requisitos de entrada de perros en Baréin — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Bahrein — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Bahrain With Your Dog: Entry Requirements (2026)", fr: "Voyager à Bahreïn avec ton chien : formalités (2026)", es: "Viajar a Baréin con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Bahrein: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Bahrain: Pet Travel Requirements 2026", fr: "Voyager à Bahreïn avec ton chien : formalités (2026)", es: "Viajar a Baréin con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Bahrein: exigências de entrada 2026" }
   metaDesc:
     en: "Official Bahrain rules for bringing a dog: Veterinary Quarantine import permit, health certificate, certificate of origin. Sourced and dated."
     fr: "Règles officielles de Bahreïn pour faire entrer un chien : permis de Quarantaine vétérinaire, certificat sanitaire, certificat d'origine. Sourcé et daté."

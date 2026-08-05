@@ -17,11 +17,19 @@ exit:
     pt: "A Ilha Maurício é um país listado: não é preciso teste sorológico antirrábico (titulação) para voltar — mas a Division of Veterinary Services (DVS) é a autoridade competente que certifica o seu cachorro para a exportação à UE."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "The DVS issues the international veterinary certificate after inspection of the dog and health control; request it before departure so it meets the EU entry conditions."
         fr: "La DVS délivre le certificat vétérinaire international après inspection du chien et contrôle sanitaire ; demande-le avant le départ pour qu'il respecte les conditions d'entrée UE."
         es: "La DVS emite el certificado veterinario internacional tras la inspección del perro y el control sanitario; solicítalo antes de salir para que cumpla las condiciones de entrada en la UE."
         pt: "A DVS emite o certificado veterinário internacional após a inspeção do cachorro e o controle sanitário; peça-o antes da partida para que atenda às condições de entrada na UE."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "The DVS issues the international veterinary certificate after inspecting the dog and checking its health; request it before departure."
+        fr: "Le DVS délivre le certificat vétérinaire international après inspection du chien et contrôle sanitaire ; demande-le avant le départ."
+        es: "El DVS expide el certificado veterinario internacional tras inspeccionar al perro y comprobar su salud; solicítalo antes de la salida."
+        pt: "O DVS emite o certificado veterinário internacional após inspecionar o cachorro e verificar sua saúde; solicite antes da partida."
   onSiteNote:
     en: "The DVS is Mauritius's competent authority for certifying animals bound for the EU — go through it, not just a private vet."
     fr: "La DVS est l'autorité compétente mauricienne pour certifier les animaux à destination de l'UE — passe par elle, pas seulement par un vétérinaire privé."
@@ -229,7 +237,9 @@ requirements:
     ref: { en: "DVS — Guidelines to bring dogs to Mauritius", fr: "DVS — Guidelines to bring dogs to Mauritius", es: "DVS — Guidelines to bring dogs to Mauritius", pt: "DVS — Guidelines to bring dogs to Mauritius" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard route — rabies antibody test", fr: "Parcours standard — titrage antirabique", es: "Ruta estándar — prueba de titulación de rabia", pt: "Percurso padrão — teste sorológico antirrábico" }
     body:
       en: "Most travellers follow this path. Your dog is microchipped, vaccinated against rabies, then blood-tested (RNATT) at least 4 weeks later with a result of ≥0.5 IU/ml, taken 3 to 12 months before shipment. A minimum 3-month waiting period from the sampling date then applies before travel. Add the Ehrlichia canis and Brucella canis tests, core vaccinations, an endorsed International Veterinary Certificate, the import permit and the 5-day quarantine at Reduit."
@@ -366,7 +376,7 @@ sources:
 
 seo:
   title: { en: "Mauritius Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Maurice — Guide", es: "Requisitos de entrada de perros en Mauricio — Guía de viaje", pt: "Exigências de entrada de cachorros na Ilha Maurício — Guia" }
-  metaTitle: { en: "Traveling to Mauritius With Your Dog: Entry Requirements (2026)", fr: "Voyager à Maurice avec ton chien : formalités (2026)", es: "Viajar a Mauricio con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Ilha Maurício com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Mauritius: Pet Travel Requirements 2026", fr: "Voyager à Maurice avec ton chien : formalités (2026)", es: "Viajar a Mauricio con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Ilha Maurício com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Mauritius rules for bringing a dog: import permit, rabies antibody test with a 3-month wait, disease tests and quarantine. Sourced and dated."
     fr: "Règles officielles de Maurice pour faire entrer un chien : permis, titrage antirabique avec 3 mois d'attente, tests de maladies. Sourcé et daté."

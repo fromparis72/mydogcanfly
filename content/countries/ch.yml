@@ -203,6 +203,7 @@ requirements:
     ref: { en: "FSVO blv.admin.ch", fr: "OSAV blv.admin.ch", es: "OSAV blv.admin.ch", pt: "OSAV blv.admin.ch" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte para mascotas", pt: "Simplificado — passaporte para animais" }
     body:
@@ -235,11 +236,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Suiza depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Suíça depende do lugar de onde você voou."
   points:
-    - en: "From the EU: no systematic border check — keep the pet passport (Swiss or EU) with you."
+    - from: eu
+      en: "From the EU: no systematic border check — keep the pet passport (Swiss or EU) with you."
       fr: "Depuis l'UE : pas de contrôle systématique — garde le passeport (suisse ou européen) sur toi."
       es: "Desde la UE: sin control fronterizo sistemático — lleva contigo el pasaporte para mascotas (suizo o europeo)."
       pt: "Da UE: sem controle sistemático de fronteira — leve o passaporte para animais (suíço ou europeu) com você."
-    - en: "From a third country: entry is only via direct air transport through Basel, Geneva or Zurich airports."
+    - from: non_eu
+      en: "From a third country: entry is only via direct air transport through Basel, Geneva or Zurich airports."
       fr: "Depuis un pays tiers : l'entrée se fait uniquement par transport aérien direct via les aéroports de Bâle, Genève ou Zurich."
       es: "Desde un país tercero: la entrada solo se realiza por transporte aéreo directo a través de los aeropuertos de Basilea, Ginebra o Zúrich."
       pt: "De um país terceiro: a entrada só é possível por transporte aéreo direto pelos aeroportos de Basileia, Genebra ou Zurique."
@@ -336,7 +339,7 @@ sources:
 
 seo:
   title: { en: "Switzerland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Suisse — Guide", es: "Requisitos de entrada de perros en Suiza — Guía de viaje", pt: "Suíça: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Switzerland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Suisse avec ton chien : formalités (2026)", es: "Viajar a Suiza con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Suíça com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Switzerland: Pet Travel Requirements", fr: "Voyager en Suisse avec ton chien : formalités (2026)", es: "Viajar a Suiza con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Suíça com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Switzerland (FSVO/customs) — by EU, low-risk and rabies-risk origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Suisse (OSAV/douane) — selon origine UE, faible risque ou risque rabique. Sourcé et daté."

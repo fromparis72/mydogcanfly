@@ -17,12 +17,14 @@ exit:
     pt: "A Rússia é um país não listado: um teste sorológico antirrábico válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Rosselkhoznadzor (FSVPS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The state veterinary service issues domestic certificate Form 1; at the border, Rosselkhoznadzor exchanges it free of charge for the international certificate Form 5a (valid 5 days; rabies vaccination required >21 days and <12 months before travel)."
         fr: "Le service vétérinaire d'État délivre le certificat national (formulaire 1) ; à la frontière, le Rosselkhoznadzor l'échange gratuitement contre le certificat international (formulaire 5a, valable 5 jours ; vaccination antirabique exigée entre 21 jours et 12 mois avant le voyage)."
@@ -217,7 +219,9 @@ requirements:
     ref: { en: "Rosselkhoznadzor (fsvps.gov.ru); Customs Union Decision No.317", fr: "Rosselkhoznadzor (fsvps.gov.ru) ; Décision Union douanière n°317", es: "Rosselkhoznadzor (fsvps.gov.ru); Decisión de la Unión Aduanera n.º 317", pt: "Rosselkhoznadzor (fsvps.gov.ru); Decisão nº 317 da União Aduaneira" }
 
 origin:
+  scheme: own
   eu:
+    from: [am, by, kz, kg]
     title: { en: "From another EAEU country", fr: "Depuis un autre pays de l'UEEA", es: "Desde otro país de la UEEA", pt: "De outro país da UEE" }
     body:
       en: "A dog coming from another Eurasian Economic Union country (Belarus, Kazakhstan, Armenia, Kyrgyzstan) moves on its international veterinary passport alone, showing valid rabies and other required vaccinations. No import permit and no quarantine for up to two pets travelling with the owner."
@@ -226,6 +230,7 @@ origin:
       pt: "Um cachorro vindo de outro país da União Econômica Eurasiática (Belarus, Cazaquistão, Armênia, Quirguistão) viaja apenas com o passaporte veterinário internacional, comprovando a vacinação antirrábica válida e as demais vacinas exigidas. Sem autorização de importação e sem quarentena para até dois animais que viajam com o dono."
     cls: ok
   listed:
+    from_except: [am, by, kz, kg]
     title: { en: "From any other country — up to 2 pets", fr: "Depuis tout autre pays — jusqu'à 2 animaux", es: "Desde cualquier otro país — hasta 2 mascotas", pt: "De qualquer outro país — até 2 animais" }
     body:
       en: "From a non-EAEU country, up to two dogs or cats for personal use enter without an import permit and without quarantine, accompanied by the owner and an international veterinary passport with valid vaccinations and a clinical exam noted within 14 days of departure. Present yourself to veterinary control at the checkpoint."
@@ -346,7 +351,7 @@ sources:
 
 seo:
   title: { en: "Russia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Russie — Guide", es: "Requisitos de entrada de perros en Rusia — Guía de viaje", pt: "Rússia: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Russia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Russie avec ton chien : formalités (2026)", es: "Viajar a Rusia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Rússia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Russia: Pet Travel Requirements 2026", fr: "Voyager en Russie avec ton chien : formalités (2026)", es: "Viajar a Rusia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Rússia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Rosselkhoznadzor and EAEU rules for bringing a dog into Russia: rabies and other vaccinations, international veterinary passport. Sourced and dated."
     fr: "Règles officielles Rosselkhoznadzor et UEEA pour faire entrer un chien en Russie : rage et autres vaccins, passeport vétérinaire international. Sourcé et daté."

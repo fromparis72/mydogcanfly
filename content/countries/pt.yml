@@ -198,6 +198,7 @@ requirements:
     ref: { en: "dgav.pt — Cães e Gatos", fr: "dgav.pt — Cães e Gatos", es: "dgav.pt — Cães e Gatos", pt: "dgav.pt — Cães e Gatos" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -230,11 +231,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Portugal depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega a Portugal depende de onde você partiu."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: notify the Traveller Point of Entry (aviso de chegada) as early as possible — at least 48 hours before arrival — and enter through that designated point for the veterinary check."
+    - from: non_eu
+      en: "From outside the EU: notify the Traveller Point of Entry (aviso de chegada) as early as possible — at least 48 hours before arrival — and enter through that designated point for the veterinary check."
       fr: "Depuis hors UE : préviens le Point d'Entrée des Voyageurs (aviso de chegada) le plus tôt possible — au moins 48 heures avant l'arrivée — et entre par ce point désigné pour le contrôle vétérinaire."
       es: "Desde fuera de la UE: avisa al Punto de Entrada de Viajeros (aviso de chegada) lo antes posible — al menos 48 horas antes de la llegada — y entra por ese punto designado para el control veterinario."
       pt: "De fora da UE: avise o Ponto de Entrada de Viajantes (aviso de chegada) o quanto antes — com pelo menos 48 horas de antecedência — e entre por esse ponto designado para o controlo veterinário."
@@ -335,7 +338,7 @@ sources:
 
 seo:
   title: { en: "Portugal Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Portugal — Guide", es: "Requisitos de entrada de perros en Portugal — Guía de viaje", pt: "Portugal: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Portugal With Your Dog: Entry Requirements (2026)", fr: "Voyager au Portugal avec ton chien : formalités (2026)", es: "Viajar a Portugal con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro a Portugal: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Portugal: Pet Travel Requirements 2026", fr: "Voyager au Portugal avec ton chien : formalités (2026)", es: "Viajar a Portugal con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro a Portugal: exigências de entrada 2026" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Portugal — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien au Portugal — selon origine UE, pays listé ou non listé, plus l'avis d'arrivée. Sourcé et daté."

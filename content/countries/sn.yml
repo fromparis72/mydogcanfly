@@ -17,12 +17,14 @@ exit:
     pt: "O Senegal é um país não listado: por isso, um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de uma autorização de exportação dos Services Vétérinaires (DSV)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Request the export authorization from the Director of Veterinary Services; an international zoosanitary certificate is then issued and certified by an official veterinarian, with veterinary inspection for pets flying out."
         fr: "Demande l'autorisation d'export au Directeur des Services vétérinaires ; un certificat zoosanitaire international est ensuite délivré et certifié par un vétérinaire officiel, avec inspection vétérinaire pour les animaux qui prennent l'avion."
@@ -235,6 +237,7 @@ requirements:
     ref: { en: "No breed-specific import legislation found on official Senegalese sources", fr: "Aucune législation d'importation par race trouvée sur les sources officielles sénégalaises", es: "No se encontró legislación de importación por raza en las fuentes oficiales senegalesas", pt: "Nenhuma legislação de importação específica por raça encontrada em fontes oficiais senegalesas" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -364,7 +367,7 @@ sources:
 
 seo:
   title: { en: "Senegal Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Sénégal — Guide", es: "Requisitos de entrada de perros en Senegal — Guía de viaje", pt: "Entrada de cachorros no Senegal — Guia de viagem" }
-  metaTitle: { en: "Traveling to Senegal With Your Dog: Entry Requirements (2026)", fr: "Voyager au Sénégal avec ton chien : formalités (2026)", es: "Viajar a Senegal con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Senegal com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Senegal: Pet Travel Requirements 2026", fr: "Voyager au Sénégal avec ton chien : formalités (2026)", es: "Viajar a Senegal con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Senegal com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official DSV rules for bringing a dog into Senegal: advance import authorization, identification, rabies vaccination and veterinary certificate. Sourced and dated."
     fr: "Règles officielles DSV pour le Sénégal : autorisation d'importation préalable, identification, vaccination antirabique et certificat vétérinaire. Sourcé et daté."

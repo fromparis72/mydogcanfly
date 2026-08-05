@@ -203,6 +203,7 @@ requirements:
     ref: { en: "EU Reg. 576/2013; zoll.de", fr: "Règl. UE 576/2013 ; zoll.de", es: "Regl. UE 576/2013; zoll.de", pt: "Regulamento UE 576/2013; zoll.de" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -235,11 +236,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Alemania depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Alemanha depende de onde você embarcou."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: arrive via an authorised travellers' point of entry, where customs or the official veterinary service read the microchip and check the documents against it."
+    - from: non_eu
+      en: "From outside the EU: arrive via an authorised travellers' point of entry, where customs or the official veterinary service read the microchip and check the documents against it."
       fr: "Depuis hors UE : arrive par un point d'entrée voyageurs autorisé, où la douane ou le service vétérinaire officiel lit la puce et contrôle les documents par rapport à celle-ci."
       es: "Desde fuera de la UE: llega por un punto de entrada de viajeros autorizado, donde la aduana o el servicio veterinario oficial lee el microchip y coteja los documentos con él."
       pt: "De fora da UE: entre por um ponto de entrada de viajantes autorizado, onde a alfândega ou o serviço veterinário oficial leem o microchip e conferem os documentos com base nele."
@@ -336,7 +339,7 @@ sources:
 
 seo:
   title: { en: "Germany Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Allemagne — Guide", es: "Requisitos de entrada de perros en Alemania — Guía de viaje", pt: "Alemanha: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Germany With Your Dog: Entry Requirements (2026)", fr: "Voyager en Allemagne avec ton chien : formalités (2026)", es: "Viajar a Alemania con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Alemanha com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Germany: Pet Travel Requirements 2026", fr: "Voyager en Allemagne avec ton chien : formalités (2026)", es: "Viajar a Alemania con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Alemanha com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and banned-breed rules for bringing a dog into Germany — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, titrage et races interdites pour faire entrer un chien en Allemagne — selon origine UE, pays listé ou non listé. Sourcé et daté."

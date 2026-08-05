@@ -32,12 +32,14 @@ exit:
     pt: "A Costa Rica é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo SENASA."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "A private vet prepares the export certificate and it must be reviewed and signed by an official SENASA veterinarian; it is valid 21 days."
         fr: "Un vétérinaire privé prépare le certificat d'export, qui doit être vérifié et signé par un vétérinaire officiel du SENASA ; il est valable 21 jours."
@@ -245,7 +247,9 @@ requirements:
     ref: { en: "SENASA / MAG — Sanitary requirements for importing dogs and cats", fr: "SENASA / MAG — Exigences sanitaires pour l'importation de chiens et chats", es: "SENASA / MAG — Requisitos sanitarios para la importación de perros y gatos", pt: "SENASA / MAG — Exigências sanitárias para a importação de cães e gatos" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a pet travelling with its owner", fr: "Standard — un animal voyageant avec son propriétaire", es: "Estándar — una mascota que viaja con su dueño", pt: "Padrão — um animal de companhia viajando com o dono" }
     body:
       en: "A dog accompanying its owner needs a clinical exam by a vet in the country of origin within two weeks of travel, an official international veterinary certificate endorsed by that country's animal-health authority, a microchip declared on the certificate, a valid rabies vaccination (if over three months), the core canine vaccines, and internal/external parasite treatment within 15 days of arrival. No prior import permit is needed. On arrival SENASA checks the animal and papers and releases it if everything is in order — no quarantine and no rabies antibody test."
@@ -376,7 +380,7 @@ sources:
 
 seo:
   title: { en: "Costa Rica Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Costa Rica — Guide", es: "Requisitos de entrada de perros en Costa Rica — Guía de viaje", pt: "Costa Rica: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Costa Rica With Your Dog: Entry Requirements (2026)", fr: "Voyager au Costa Rica avec ton chien : formalités (2026)", es: "Viajar a Costa Rica con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Costa Rica com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Costa Rica: Pet Travel Requirements", fr: "Voyager au Costa Rica avec ton chien : formalités (2026)", es: "Viajar a Costa Rica con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Costa Rica com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official SENASA rules for bringing a dog into Costa Rica — endorsed veterinary certificate, microchip, rabies and core vaccines. Sourced and dated."
     fr: "Règles officielles du SENASA pour faire entrer un chien au Costa Rica — certificat vétérinaire visé, puce, rage et vaccins de base. Sourcé et daté."

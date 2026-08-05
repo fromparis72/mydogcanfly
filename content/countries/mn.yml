@@ -17,12 +17,14 @@ exit:
     pt: "A Mongólia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pela General Authority for Veterinary Services (GAVS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "A licensed vet completes the certificate just before travel and a GAVS government veterinarian issues/endorses the export veterinary certificate."
         fr: "Un vétérinaire agréé remplit le certificat juste avant le voyage et un vétérinaire officiel du GAVS délivre/vise le certificat vétérinaire d'export."
@@ -226,6 +228,7 @@ requirements:
     ref: { en: "GASI border inspection (sbb.inspection.gov.mn); border animal/plant quarantine law", fr: "Inspection frontalière GASI (sbb.inspection.gov.mn) ; loi sur la quarantaine animale/végétale aux frontières", es: "Inspección fronteriza GASI (sbb.inspection.gov.mn); ley sobre cuarentena animal/vegetal en las fronteras", pt: "Inspeção de fronteira da GASI (sbb.inspection.gov.mn); lei de quarentena animal/vegetal de fronteira" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Not an EU or EAEU member", fr: "Ni membre de l'UE ni de l'UEEA", es: "Ni miembro de la UE ni de la UEEA", pt: "Não é membro da UE nem da EAEU" }
     body:
@@ -359,7 +362,7 @@ sources:
 
 seo:
   title: { en: "Mongolia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Mongolie — Guide", es: "Requisitos de entrada de perros en Mongolia — Guía de viaje", pt: "Entrada de cachorro na Mongólia — guia de viagem" }
-  metaTitle: { en: "Traveling to Mongolia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Mongolie avec ton chien : formalités (2026)", es: "Viajar a Mongolia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Mongólia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Mongolia: Pet Travel Requirements 2026", fr: "Voyager en Mongolie avec ton chien : formalités (2026)", es: "Viajar a Mongolia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Mongólia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official GAVS, border-inspection and customs rules for bringing a dog into Mongolia: veterinary health certificate. Several details unpublished — sourced and dated."
     fr: "Règles officielles GAVS, frontière et douane pour faire entrer un chien en Mongolie : certificat vétérinaire. Plusieurs détails non publiés — sourcé et daté."

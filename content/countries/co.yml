@@ -38,12 +38,14 @@ exit:
     pt: "A Colômbia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de inspeção sanitária (CIS) emitido pelo ICA no aeroporto."
   steps:
     - timing: longlead
+      scope: any
       text:
         en: "Plan the rabies titer early: per ICA, the blood sample must be taken at least 1 month after vaccination and 3 months before travel (minimum age about 7 months)."
         fr: "Planifie le titrage tôt : selon l'ICA, la prise de sang doit être faite au moins 1 mois après la vaccination et 3 mois avant le voyage (âge minimum ~7 mois)."
         es: "Planifica pronto la titulación: según el ICA, la muestra de sangre debe tomarse al menos 1 mes tras la vacuna y 3 meses antes del viaje (edad mínima ~7 meses)."
         pt: "Planeje o teste sorológico antirrábico (titulação) com antecedência: segundo o ICA, a coleta de sangue deve ser feita pelo menos 1 mês após a vacinação e 3 meses antes da viagem (idade mínima de cerca de 7 meses)."
     - timing: window
+      scope: any
       text:
         en: "Register and request the ICA inspection up to 3 days before travel; an inspection is done about 24h before departure at the ICA airport office, then the CIS is issued."
         fr: "Inscris-toi et demande l'inspection ICA jusqu'à 3 jours avant le voyage ; une inspection est réalisée ~24 h avant le départ au bureau ICA de l'aéroport, puis le CIS est délivré."
@@ -254,7 +256,9 @@ requirements:
     ref: { en: "ICA — Ingreso de perros y gatos a Colombia", fr: "ICA — Ingreso de perros y gatos a Colombia", es: "ICA — Ingreso de perros y gatos a Colombia", pt: "ICA — Ingreso de perros y gatos a Colombia" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard scheme — health certificate + CIS", fr: "Régime standard — certificat de santé + CIS", es: "Régimen estándar — certificado de salud + CIS", pt: "Esquema padrão — atestado de saúde + CIS" }
     body:
       en: "For almost every origin the path is the same. Before travelling you register as an ICA user online and request the Sanitary Inspection Certificate (CIS) via SISPAP, entering your and your dog's details and paying. Your dog needs an official veterinary health certificate from the origin country (issued within 10 days, with seal and signature), proof of a valid rabies vaccination and the other canine vaccinations, and internal and external parasite treatment within 60 days. On arrival the ICA inspects the documents and the dog and issues the CIS. No microchip, no antibody test and no apostille are required."
@@ -385,7 +389,7 @@ sources:
 
 seo:
   title: { en: "Colombia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Colombie — Guide", es: "Requisitos de entrada de perros en Colombia — Guía de viaje", pt: "Requisitos de entrada de cachorros na Colômbia — Guia" }
-  metaTitle: { en: "Traveling to Colombia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Colombie avec ton chien : formalités (2026)", es: "Viajar a Colombia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Colômbia com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Colombia: Pet Travel Requirements 2026", fr: "Voyager en Colombie avec ton chien : formalités (2026)", es: "Viajar a Colombia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Colômbia com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official ICA rules for bringing a dog into Colombia: health certificate, rabies and other vaccinations, parasite treatment. Sourced and dated."
     fr: "Règles officielles ICA pour faire entrer un chien en Colombie : certificat de santé, vaccinations antirabique et autres, traitement antiparasitaire. Sourcé et daté."

@@ -20,17 +20,26 @@ exit:
     pt: "A Albânia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde endossado por um veterinário oficial da Autoridade Nacional de Alimentos (AKU)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "The EU-model animal health certificate is completed and signed by an AKU official veterinarian shortly before the flight."
         fr: "Le certificat sanitaire au modèle UE est rempli et signé par un vétérinaire officiel de l'AKU peu avant le vol."
         es: "El certificado sanitario en modelo UE lo rellena y firma un veterinario oficial de la AKU poco antes del vuelo."
         pt: "O certificado sanitário no modelo da UE é preenchido e assinado por um veterinário oficial da AKU pouco antes do voo."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "The animal health certificate is completed and signed by an AKU official veterinarian shortly before the flight."
+        fr: "Le certificat sanitaire est rempli et signé par un vétérinaire officiel de l'AKU peu avant le vol."
+        es: "El certificado sanitario lo completa y firma un veterinario oficial de la AKU poco antes del vuelo."
+        pt: "O certificado sanitário é preenchido e assinado por um veterinário oficial da AKU pouco antes do voo."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -219,6 +228,7 @@ requirements:
     ref: { en: "dogana.gov.al; AKVMB", fr: "dogana.gov.al ; AKVMB", es: "dogana.gov.al; AKVMB", pt: "dogana.gov.al; AKVMB" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU — certificate, no blood test", fr: "Depuis l'UE — certificat, sans prise de sang", es: "Desde la UE — certificado, sin análisis de sangre", pt: "Da UE — certificado, sem exame de sangue" }
     body:
@@ -348,7 +358,7 @@ sources:
 
 seo:
   title: { en: "Albania Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Albanie — Guide", es: "Requisitos de entrada de perros en Albania — Guía de viaje", pt: "Exigências de entrada de cachorros na Albânia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Albania With Your Dog: Entry Requirements (2026)", fr: "Voyager en Albanie avec ton chien : formalités (2026)", es: "Viajar a Albania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Albânia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Albania: Pet Travel Requirements 2026", fr: "Voyager en Albanie avec ton chien : formalités (2026)", es: "Viajar a Albania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Albânia: exigências de entrada 2026" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Albania (AKU/customs) — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Albanie (AKU/douane) — selon origine UE, pays listé ou non listé. Sourcé et daté."

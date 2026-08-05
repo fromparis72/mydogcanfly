@@ -36,6 +36,7 @@ exit:
     pt: "Os Emirados são um país listado: não é preciso teste sorológico antirrábico (titulação) para voltar — mas você precisa obter um certificado veterinário de exportação do MOCCAE para o seu cachorro."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Apply through the MOCCAE digital portal for the export/re-export veterinary health certificate; it is issued after examination of the dog and is valid 30 days from issue (processing about 1 working day)."
         fr: "Fais la demande sur le portail numérique MOCCAE pour le certificat vétérinaire d'export/ré-export ; il est délivré après examen du chien et valable 30 jours (traitement en ~1 jour ouvré)."
@@ -240,6 +241,7 @@ requirements:
     ref: { en: "u.ae — Banned and restricted goods; Federal Law No. 22 of 2016", fr: "u.ae — Marchandises interdites et restreintes ; loi fédérale n° 22 de 2016", es: "u.ae — Mercancías prohibidas y restringidas; Ley Federal n.º 22 de 2016", pt: "u.ae — Mercadorias proibidas e restritas; Federal Law No. 22 of 2016 (lei federal nº 22 de 2016)" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Approved low-risk country — no blood test", fr: "Pays approuvé à faible risque — sans prise de sang", es: "País aprobado de bajo riesgo — sin análisis de sangre", pt: "País aprovado de baixo risco — sem exame de sangue" }
     body:
@@ -371,7 +373,7 @@ sources:
 
 seo:
   title: { en: "UAE Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien aux Émirats — Guide", es: "Requisitos de entrada de perros en los Emiratos — Guía de viaje", pt: "Entrada de cachorros nos Emirados — Guia de viagem" }
-  metaTitle: { en: "Traveling to the UAE With Your Dog: Entry Requirements (2026)", fr: "Voyager aux Émirats avec ton chien : formalités (2026)", es: "Viajar a los Emiratos con tu perro: requisitos de entrada (2026)", pt: "Viajar para os Emirados com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to the UAE: Pet Travel Requirements 2026", fr: "Voyager aux Émirats avec ton chien : formalités (2026)", es: "Viajar a los Emiratos con tu perro: requisitos de entrada (2026)", pt: "Viajar para os Emirados com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official MOCCAE import permit, microchip, rabies and antibody-test rules for bringing a dog into the United Arab Emirates, plus banned breeds. Sourced and dated."
     fr: "Règles officielles MOCCAE : permis d'importation, puce, rage et titrage pour faire entrer un chien aux Émirats arabes unis. Sourcé et daté."

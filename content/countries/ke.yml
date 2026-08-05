@@ -36,12 +36,14 @@ exit:
     pt: "O Quênia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Directorate of Veterinary Services (DVS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "A DVS-approved veterinarian examines your dog and issues the health certificate, and the DVS issues the export permit authorising departure."
         fr: "Un vétérinaire agréé par la DVS examine ton chien et délivre le certificat sanitaire, et la DVS délivre le permis d'export autorisant le départ."
@@ -252,6 +254,7 @@ requirements:
     ref: { en: "Kenya import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation du Kenya (aucune législation par race citée)", es: "Condiciones de importación de Kenia (no se cita legislación específica por raza)", pt: "Kenya import conditions (nenhuma legislação específica por raça citada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -379,7 +382,7 @@ sources:
 
 seo:
   title: { en: "Kenya Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Kenya — Guide", es: "Requisitos de entrada de perros en Kenia — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Quênia — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Kenya With Your Dog: Entry Requirements (2026)", fr: "Voyager au Kenya avec ton chien : formalités (2026)", es: "Viajar a Kenia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Quênia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Kenya: Pet Travel Requirements 2026", fr: "Voyager au Kenya avec ton chien : formalités (2026)", es: "Viajar a Kenia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Quênia: exigências de entrada 2026" }
   metaDesc:
     en: "Official DVS rules for bringing a dog into Kenya: import permit, rabies vaccination, vet certificate within 5 days, no antibody test. Sourced and dated."
     fr: "Règles officielles DVS pour faire entrer un chien au Kenya : permis d'importation, vaccination antirabique, certificat vétérinaire sous 5 jours. Sourcé et daté."

@@ -36,17 +36,26 @@ exit:
     pt: "A Coreia do Sul é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado oficial de exportação da Animal and Plant Quarantine Agency (APQA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "A vet completes the EU-model animal health certificate; APQA inspects the dog at export and provides the official government endorsement before departure."
         fr: "Un vétérinaire remplit le certificat au modèle UE ; l'APQA inspecte le chien à l'export et fournit l'endossement officiel avant le départ."
         es: "Un veterinario rellena el certificado en modelo UE; la APQA inspecciona al perro en la exportación y proporciona el refrendo oficial antes de salir."
         pt: "Um veterinário preenche o certificado de saúde animal no modelo da UE; a APQA inspeciona o cachorro na exportação e concede o endosso oficial do governo antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "A vet completes the health certificate required by the destination; APQA inspects the dog at export and provides the official government endorsement before departure."
+        fr: "Un vétérinaire remplit le certificat sanitaire exigé par la destination ; l'APQA inspecte le chien à l'export et appose le visa officiel avant le départ."
+        es: "Un veterinario completa el certificado sanitario que exige el destino; la APQA inspecciona al perro en la exportación y añade el visado oficial antes de la salida."
+        pt: "Um veterinário preenche o certificado sanitário exigido pelo destino; a APQA inspeciona o cachorro na exportação e faz o endosso oficial antes da partida."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -236,6 +245,7 @@ requirements:
     ref: { en: "APQA — Bring a dog or cat to Korea (FAQ)", fr: "APQA — Amener un chien ou chat en Corée (FAQ)", es: "APQA — Traer un perro o un gato a Corea (preguntas frecuentes)", pt: "APQA — Levar um cachorro ou gato para a Coreia (FAQ)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "EU departures — passport may replace the certificate", fr: "Départs UE — le passeport peut remplacer le certificat", es: "Salidas desde la UE — el pasaporte puede sustituir al certificado", pt: "Saídas da UE — o passaporte pode substituir o certificado" }
     body:
@@ -284,10 +294,20 @@ arrival:
       fr: "Des frais côté coréen s'appliquent lorsque l'agence intervient : environ 110 000 KRW par animal pour un titrage antirabique et 10 000 KRW pour l'émission d'un certificat sanitaire."
       es: "Se aplican tarifas del lado coreano cuando interviene la agencia: unos 110 000 KRW por animal por una titulación de anticuerpos contra la rabia y 10 000 KRW por la emisión de un certificado sanitario."
       pt: "Do lado coreano há taxas quando a agência atua: cerca de 110.000 KRW por animal para uma titulação de anticorpos antirrábicos e 10.000 KRW para a emissão de um atestado de saúde."
-    - en: "Carry the original government certificate (or EU pet passport for EU origins), not copies."
-      fr: "Munis-toi du certificat officiel original (ou du passeport européen pour les origines UE), pas de copies."
-      es: "Lleva el certificado oficial original (o el pasaporte europeo para mascotas en el caso de orígenes de la UE), no copias."
-      pt: "Leve o certificado oficial original (ou o passaporte europeu para animais de estimação, no caso de origens na UE), não cópias."
+    # Une seule puce portait deux règles : celle qui vaut pour tout le monde et une incise pour
+    # les seules origines européennes. Une incise ne se filtre pas — un voyageur parti du Japon
+    # lisait « ou du passeport européen » sans que rien ne le concerne. Les deux règles sont donc
+    # séparées : la générale reste sans condition, la variante européenne porte la sienne et se
+    # replie ailleurs. Aucun mot n'est perdu, ils changent seulement de puce.
+    - en: "Carry the original government certificate, not copies."
+      fr: "Munis-toi du certificat officiel original, pas de copies."
+      es: "Lleva el certificado oficial original, no copias."
+      pt: "Leve o certificado oficial original, não cópias."
+    - from: eu
+      en: "From the EU: the EU pet passport is accepted in place of the government certificate."
+      fr: "Depuis l'UE : le passeport européen est accepté à la place du certificat officiel."
+      es: "Desde la UE: el pasaporte europeo se acepta en lugar del certificado oficial."
+      pt: "Da UE: o passaporte europeu é aceito no lugar do certificado oficial."
 
 travellerExperience: null
 
@@ -359,7 +379,7 @@ sources:
 
 seo:
   title: { en: "South Korea Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Corée du Sud — Guide", es: "Requisitos de entrada de perros en Corea del Sur — Guía de viaje", pt: "Coreia do Sul: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to South Korea With Your Dog: Entry Requirements (2026)", fr: "Voyager en Corée du Sud avec ton chien : formalités (2026)", es: "Viajar a Corea del Sur con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Coreia do Sul com seu cachorro: exigências 2026" }
+  metaTitle: { en: "Taking Your Dog to South Korea: Pet Travel Requirements", fr: "Voyager en Corée du Sud avec ton chien : formalités (2026)", es: "Viajar a Corea del Sur con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Coreia do Sul com seu cachorro: exigências 2026" }
   metaDesc:
     en: "Official APQA microchip, rabies and antibody rules for bringing a dog into South Korea — by rabies-free and non-rabies-free origin. Sourced and dated."
     fr: "Règles officielles APQA puce, rage et titrage pour faire entrer un chien en Corée du Sud — selon origine indemne ou non de rage. Sourcé et daté."

@@ -32,12 +32,14 @@ exit:
     pt: "A Tunísia não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação oficial endossado por um veterinário do governo."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "An international health certificate is drawn up by a practising vet and must be endorsed by an official government veterinarian shortly before the flight."
         fr: "Un certificat sanitaire international est établi par un vétérinaire sanitaire et doit être visé par un vétérinaire officiel peu avant le vol."
@@ -245,6 +247,7 @@ requirements:
     ref: { en: "Ministère de l'Agriculture / DGSV — races de chiens interdites à l'importation", fr: "Ministère de l'Agriculture / DGSV — races de chiens interdites à l'importation", es: "Ministère de l'Agriculture / DGSV — races de chiens interdites à l'importation", pt: "Ministère de l'Agriculture / DGSV — races de chiens interdites à l'importation" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -370,7 +373,7 @@ sources:
 
 seo:
   title: { en: "Tunisia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Tunisie — Guide", es: "Requisitos de entrada de perros en Túnez — Guía de viaje", pt: "Exigências de entrada de cachorros na Tunísia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Tunisia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Tunisie avec ton chien : formalités (2026)", es: "Viajar a Túnez con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Tunísia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Tunisia: Pet Travel Requirements 2026", fr: "Voyager en Tunisie avec ton chien : formalités (2026)", es: "Viajar a Túnez con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Tunísia: exigências de entrada 2026" }
   metaDesc:
     en: "Official DGSV and Tunisian Customs rules for bringing a dog into Tunisia: rabies vaccination, veterinary health certificate. Sourced and dated."
     fr: "Règles officielles DGSV et douane tunisienne pour faire entrer un chien en Tunisie : vaccination antirabique, certificat sanitaire. Sourcé et daté."

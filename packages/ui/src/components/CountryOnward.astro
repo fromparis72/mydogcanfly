@@ -14,14 +14,15 @@ const fr = locale === "fr";
 const T = inlineT(locale);
 const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
 
-// Query string avant l'ancre (après "#", tout est fragment et n'atteint pas location.search).
-// ?to=<iso> pré-remplit « Arrivée » dans le Finder : le CTA tient enfin sa promesse.
-const finderHref = localizeHref("/", locale) + `?to=${countryIso}` + "#flight-finder";
-// id -> { name, href (airline fiche, carrying ?to=<thisCountry>), book url, host }
+/* « #to=<iso> » pré-remplit « Arrivée » dans le Finder : le CTA tient sa promesse, et le
+   paramètre reste dans le fragment — donc invisible pour un moteur de recherche. */
+const finderHref = localizeHref("/", locale) + `#flight-finder?to=${countryIso}`;
+/* id -> { name, href (fiche compagnie, portant #to=<ce pays>), book url, host }. Ces liens sont
+   construits côté client depuis ce bloc : c'est d'eux que venait « /airlines/ana/?to=om ». */
 const viaMap: Record<string, { name: string; href: string; book: string; host: string }> = Object.fromEntries(
   Object.entries(airlineData as Record<string, { name: string; book: { url: string; host: string } }>).map(([id, d]) => [
     id,
-    { name: d.name, href: `${hrefFor(id, locale)}?to=${countryIso}`, book: d.book.url, host: d.book.host },
+    { name: d.name, href: `${hrefFor(id, locale)}#to=${countryIso}`, book: d.book.url, host: d.book.host },
   ]),
 );
 
@@ -49,7 +50,7 @@ const finderDefault = F("Find a flight to {0}", "{0} : trouver un vol", "Encontr
 
 <script define:vars={{ viaMap, labels }}>
   (function () {
-    var via = (new URLSearchParams(location.search).get("via") || "").trim();
+    var via = (window.mdcfQuery().get("via") || "").trim();
     var m = via && viaMap[via];
     if (!m) return;
     var book = document.getElementById("conav-book");

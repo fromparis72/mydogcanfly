@@ -17,12 +17,14 @@ exit:
     pt: "O Congo-Brazzaville é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Direction Générale de l'Élevage (DGE)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Providenciar com antecedência o teste sorológico antirrábico (titulação): exame de sangue em laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é indispensável para voltar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The DGE animal-health service is the competent authority endorsing the export health certificate before departure."
         fr: "Le service de santé animale de la DGE est l'autorité compétente qui vise le certificat sanitaire d'export avant le départ."
@@ -233,6 +235,7 @@ requirements:
     ref: { en: "No official published breed legislation found (DGE)", fr: "Aucune législation par race officielle publiée trouvée (DGE)", es: "No se encontró ninguna legislación oficial por raza publicada (DGE)", pt: "Nenhuma legislação oficial sobre raças publicada encontrada (DGE)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -356,7 +359,7 @@ sources:
 
 seo:
   title: { en: "Republic of the Congo Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en République du Congo — Guide", es: "Requisitos de entrada de perros en la República del Congo — Guía de viaje", pt: "República do Congo: exigências de entrada para cachorros" }
-  metaTitle: { en: "Republic of the Congo Dog Entry Requirements (2026)", fr: "Voyager en République du Congo avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada República del Congo (2026)", pt: "Exigências de Entrada de Cachorros na República do Congo (2026)" }
+  metaTitle: { en: "Taking Your Dog to Congo-Brazzaville: Pet Travel Rules", fr: "Voyager en République du Congo avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada República del Congo (2026)", pt: "Exigências de Entrada de Cachorros na República do Congo (2026)" }
   metaDesc:
     en: "Official rules for bringing a dog into the Republic of the Congo (Brazzaville): rabies vaccination. Sourced, dated and honest about what is unpublished."
     fr: "Règles officielles pour faire entrer un chien en République du Congo : vaccination antirabique, certificat vétérinaire visé et contrôle à l'arrivée. Sourcé et daté."

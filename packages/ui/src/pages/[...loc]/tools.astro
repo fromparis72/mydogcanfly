@@ -25,6 +25,18 @@ const tools: Tool[] = [
    * quand l'outil a répondu à sa question. Le même bouton figure dans « Outils liés », en bas
    * des fiches : les deux blocs doivent rester d'accord. */
   { label: T("Travel Hub guides", "Guides Travel Hub", "Guías Travel Hub"), href: `${base}/travel-hub/`, live: true },
+  /* Les deux sélections de matériel, ajoutées le 04/08/2026 après un audit du maillage.
+   *
+   * Elles étaient indexables et déclarées au sitemap, mais AUCUN lien du site n'y menait, sauf
+   * un renvoi discret depuis le calculateur de caisse. Google les découvrait donc par le sitemap
+   * sans jamais les voir recommandées par le site lui-même : des pages orphelines, qui se
+   * classent mal quoi qu'on écrive dedans. Ce sont pourtant les deux pages aux requêtes les plus
+   * commerciales du domaine — « best airline pet carrier », « meilleure caisse de transport ».
+   *
+   * Elles ferment aussi le parcours des autres outils : le calculateur donne une dimension, ces
+   * pages disent quoi acheter à cette dimension. Elles avaient leur place ici depuis le début. */
+  { label: T("Best travel crates", "Meilleures caisses de transport", "Mejores jaulas de transporte"), href: `${base}/tools/best-crates/`, live: true },
+  { label: T("Best cabin carriers", "Meilleurs sacs de transport cabine", "Mejores bolsos de cabina"), href: `${base}/tools/best-carriers/`, live: true },
 ];
 const seoTitle = T("Free tools for flying with your dog", "Outils gratuits pour voyager en avion avec ton chien", "Herramientas gratuitas para volar con tu perro");
 ---

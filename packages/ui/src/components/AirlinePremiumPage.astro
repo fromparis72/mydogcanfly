@@ -29,6 +29,50 @@ const t = localizer(locale);
 const T = inlineT(locale);
 const fmtDate = dateFormatter(locale); // date visible à la langue de la page ; le JSON-LD garde l'ISO
 const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+
+/* LES CHIFFRES QUI DÉCIDENT, EN GRAS DANS LA PHRASE.
+ *
+ * « Chien ou chat < 8 kg, sac souple ventilé sous le siège (46 × 28 × 24 cm) » contient tout ce
+ * qu'un voyageur veut savoir, mais noyé : il faut lire la phrase entière pour trouver la cote du
+ * sac, qui est justement ce qu'il vient chercher avant d'en acheter un. Les trois valeurs passent
+ * donc en gras et en couleur pleine, la phrase reste intacte autour.
+ *
+ * LE TRAITEMENT VAUT POUR LES TROIS CANAUX, pas seulement la cabine. C'était la remarque de
+ * Philippe : les dimensions de la caisse en soute et les limites en fret méritent la même
+ * lisibilité, et privilégier la cabine reviendrait à décider à sa place de ce qui compte.
+ *
+ * ON N'EMPHASE QUE CE QUI EST NON AMBIGU dans les quatre langues : les dimensions, les poids, et
+ * la nature du sac — souple ou rigide, qui fait refuser au comptoir un sac pourtant au bon
+ * gabarit. Le reste de la phrase n'est pas touché : une règle qui grossit s'attrape des mots
+ * qu'elle ne devrait pas, et un gras partout ne met plus rien en valeur.
+ *
+ * ÉCHAPPEMENT D'ABORD, BALISES ENSUITE. Le texte vient des fiches, donc de nous — mais l'injecter
+ * en HTML sans le neutraliser installerait une faille pour la première fiche qui contiendra un
+ * chevron. On échappe, puis on ajoute les `<b>` sur le texte déjà sûr. */
+const ECHAPPE: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
+const SOUPLE = /\b(sacs? souples?|soft (?:sided )?(?:carrier|bag|kennel)|bolsos? blandos?|transport[íi]n(?:es)? blandos?|bolsas? male[áa]vel(?:eis)?|caixas? male[áa]vel(?:eis)?|sacs? rigides?|hard(?:-| )sided|r[íi]gidos?|r[íi]gidas?)\b/gi;
+/* Trois nombres séparés par × : une cote de sac. L'unité est facultative — certaines fiches
+ * l'écrivent une seule fois en fin de parenthèse. */
+const COTES = /\d{1,3}(?:[.,]\d)?\s*[×x]\s*\d{1,3}(?:[.,]\d)?\s*[×x]\s*\d{1,3}(?:[.,]\d)?(?:\s*(?:cm|in\b|"))?/g;
+/* Un poids, comparateur compris : « < 8 kg » se lit d'un bloc, et le couper laisserait un
+ * « chat < » orphelin devant un gras.
+ *
+ * Le comparateur est cherché sous sa forme ÉCHAPPÉE — `&lt;`, `&gt;` — parce que l'échappement
+ * a déjà eu lieu quand cette règle s'applique. Une première version cherchait `<` et ne trouvait
+ * plus rien : elle produisait « chat &lt;<b> 8 kg</b> », comparateur exclu et espace prise dans
+ * le gras. Les deux branches sont séparées pour que la variante sans comparateur ne capture pas
+ * l'espace qui la précède. */
+const POIDS = /(?:&lt;|&gt;|[≤≥])\s*\d{1,3}(?:[.,]\d)?\s*(?:kg|lbs?|lb)\b|\d{1,3}(?:[.,]\d)?\s*(?:kg|lbs?|lb)\b/g;
+
+function chiffresEnGras(texte: string): string {
+  const sur = String(texte ?? "").replace(/[&<>"]/g, (c) => ECHAPPE[c]);
+  /* Les cotes AVANT les poids : « 46 × 28 × 24 cm » ne doit pas être entamé par une règle qui
+   * chercherait un nombre isolé. */
+  return sur
+    .replace(COTES, (m) => `<b>${m}</b>`)
+    .replace(POIDS, (m) => (m.includes("<b>") ? m : `<b>${m}</b>`))
+    .replace(SOUPLE, (m) => `<b>${m}</b>`);
+}
 // Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
 // renvoyait les pages portugaises vers les URL anglaises.
 const base = locale === "en" ? "" : `/${locale}`;
@@ -120,7 +164,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         {d.channels.map((c) => (
           <div class="mini">
             <div class="t">{c.icon} {t(c.name)}<span class={`pill ${c.cls} ml`}>{t(c.statusLabel)}</span></div>
-            <div class="k">{t(c.detail)}</div>
+            <div class="k" set:html={chiffresEnGras(t(c.detail))} />
             <div class="amt">{t(c.fee)}</div>
           </div>
         ))}
@@ -200,7 +244,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         {d.temperature.pills.map((p) => (<span class={`pill ${p.cls}`}>{t(p.label)}</span>))}
       </div>
       <p class="muted">{t(d.temperature.note)}</p>
-      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}?air=${id}`}>📦 {T("Check your crate size for this airline", "Vérifier la taille de cage pour cette compagnie", "Comprueba el tamaño de la jaula para esta aerolínea")} →</a>
+      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("Check your crate size for this airline", "Vérifier la taille de cage pour cette compagnie", "Comprueba el tamaño de la jaula para esta aerolínea")} →</a>
     </div>
 
     <div class="card">
@@ -308,6 +352,10 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .mini .t .ml { margin-left: auto; }
   .afp .mini .t .aci { color: #166534; font-weight: 800; }
   .afp .k { color: var(--mdcf-muted, #5b6b7f); font-size: 13.5px; margin-top: 6px; }
+  /* Les cotes, les poids et la nature du sac, dans une phrase par ailleurs en gris. Le contraste
+     vient de la COULEUR autant que de la graisse : sur du texte secondaire, un gras seul se
+     remarque à peine. */
+  .afp .k b { color: var(--mdcf-ink, #011d48); font-weight: 700; }
   .afp .amt { margin-top: 9px; font-weight: 800; }
   .afp table.fare { width: 100%; border-collapse: collapse; font-size: 14.5px; }
   .afp table.fare th, .afp table.fare td { padding: 9px 10px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); text-align: left; }

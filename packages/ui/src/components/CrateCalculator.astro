@@ -266,7 +266,7 @@ const L = {
   // calculée pour la mauvaise race est un refus à l'embarquement.
   const ctx = (window as { mdcfCtx?: { breed?: string; air?: string; setBreed?: (v: string) => void; setAir?: (v: string) => void } }).mdcfCtx;
   (function () {
-    const q = new URLSearchParams(location.search);
+    const q = window.mdcfQuery();
     const air = q.get("air") || q.get("via") || "";
     if (air && AIR[air]) { const sel = byId("crx-airline") as HTMLSelectElement; if (sel) sel.value = air; }
     const breed = q.get("breed") || "";

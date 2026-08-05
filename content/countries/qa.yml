@@ -17,12 +17,14 @@ exit:
     pt: "O Catar não é um país listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado veterinário de exportação emitido pelo Department of Animal Resources (departamento de recursos animais)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Request the export veterinary health certificate via the Hukoomi e-government service with the travel health certificate, microchip and rabies records; the exit certificate is valid 15 days from issue."
         fr: "Demande le certificat sanitaire vétérinaire d'export via le service e-gouvernement Hukoomi avec le certificat de voyage, la puce et le carnet antirabique ; le certificat de sortie est valable 15 jours."
@@ -230,6 +232,7 @@ requirements:
     ref: { en: "Law No. 10 of 2019 (possession of dangerous animals); MoECC", fr: "Loi n° 10 de 2019 (détention d'animaux dangereux) ; MoECC", es: "Ley n.º 10 de 2019 (tenencia de animales peligrosos); MoECC", pt: "Law No. 10 of 2019 (lei nº 10 de 2019, posse de animais perigosos); MoECC" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Rabies-controlled origin — no blood test", fr: "Origine à rage contrôlée — sans prise de sang", es: "Origen con rabia controlada — sin análisis de sangre", pt: "Origem com raiva controlada — sem exame de sangue" }
     body:
@@ -355,7 +358,7 @@ sources:
 
 seo:
   title: { en: "Qatar Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Qatar — Guide", es: "Requisitos de entrada de perros en Catar — Guía de viaje", pt: "Entrada de cachorros no Catar — Guia de viagem" }
-  metaTitle: { en: "Traveling to Qatar With Your Dog: Entry Requirements (2026)", fr: "Voyager au Qatar avec ton chien : formalités (2026)", es: "Viajar a Catar con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Catar com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Qatar: Pet Travel Requirements 2026", fr: "Voyager au Qatar avec ton chien : formalités (2026)", es: "Viajar a Catar con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Catar com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official import permit, microchip, rabies and antibody-test rules for bringing a dog into Qatar, plus banned breeds. Sourced and dated."
     fr: "Règles officielles : permis d'importation, puce, rage et titrage pour faire entrer un chien au Qatar, plus les races interdites. Sourcé et daté."

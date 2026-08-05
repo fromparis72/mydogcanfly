@@ -34,12 +34,14 @@ exit:
     pt: "O Paquistão não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Animal Quarantine Department (AQD)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The AQD issues/endorses the export health certificate through inspection and quarantine (processed via the Pakistan Single Window), around 7 days before travel."
         fr: "L'AQD délivre/vise le certificat sanitaire d'export via inspection et quarantaine (traité par le Pakistan Single Window), environ 7 jours avant le voyage."
@@ -256,6 +258,7 @@ requirements:
     ref: { en: "Pakistan Animal Quarantine Ordinance, 1979; Rules, 1980", fr: "Pakistan Animal Quarantine Ordinance de 1979 ; règles de 1980", es: "Pakistan Animal Quarantine Ordinance de 1979; Rules de 1980", pt: "Portaria de Quarentena Animal do Paquistão, 1979; regulamento de 1980" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Dog from a country with an official government veterinary service", fr: "Chien venant d'un pays doté d'un service vétérinaire gouvernemental officiel", es: "Perro procedente de un país con un servicio veterinario gubernamental oficial", pt: "Cachorro vindo de um país com serviço veterinário governamental oficial" }
     body:
@@ -265,6 +268,7 @@ origin:
       pt: "Se o seu cachorro viaja de um país cujo serviço veterinário governamental pode emitir o atestado que o Paquistão espera (por exemplo, os Estados Unidos ou a UE), o caminho é relativamente leve: uma vacinação antirrábica em dia, um atestado de saúde veterinário confirmando que o cachorro foi inspecionado e está livre de doença infecciosa e declarando que ele vem de uma área não colocada em quarentena por raiva, e a liberação pelo AQD no ponto de entrada. O atestado é válido por 30 dias após a emissão, e nenhum teste sorológico antirrábico se aplica. Confirme com o AQD se alguma autorização de importação prévia é necessária para a sua rota."
     cls: ok
   listed:
+    from: any
     title: { en: "Standard case — most other countries", fr: "Cas standard — la plupart des autres pays", es: "Caso estándar — la mayoría de los demás países", pt: "Caso padrão — a maioria dos outros países" }
     body:
       en: "From most countries the same essentials apply, using your own country's official government veterinary certificate for Pakistan: a recorded rabies vaccination, a signed statement of inspection and rabies-free origin, and AQD clearance on arrival. Because Pakistan does not publish detailed pet parameters, ask AQD in advance whether a pet-specific import permit, a vaccination interval, a minimum age or any additional test or treatment applies to your particular route, and have your veterinarian certify anything required on the certificate."
@@ -385,7 +389,7 @@ sources:
 
 seo:
   title: { en: "Pakistan Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Pakistan — Guide", es: "Requisitos de entrada de perros en Pakistán — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Paquistão — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Pakistan With Your Dog: Entry Requirements (2026)", fr: "Voyager au Pakistan avec ton chien : formalités (2026)", es: "Viajar a Pakistán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Paquistão: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Pakistan: Pet Travel Requirements 2026", fr: "Voyager au Pakistan avec ton chien : formalités (2026)", es: "Viajar a Pakistán con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Paquistão: exigências de entrada 2026" }
   metaDesc:
     en: "Official rules for bringing a dog into Pakistan: government veterinary health certificate, recorded rabies vaccination, no antibody test. Sourced and dated."
     fr: "Règles officielles pour faire entrer un chien au Pakistan : certificat vétérinaire gouvernemental, vaccination antirabique consignée, pas de titrage. Sourcé et daté."

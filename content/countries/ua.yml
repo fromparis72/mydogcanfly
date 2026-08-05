@@ -17,12 +17,14 @@ exit:
     pt: "A Ucrânia é um país não listado: um teste sorológico antirrábico válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo State Service for Food Safety and Consumer Protection."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The State Service's border-control department issues the international veterinary certificate for pets at border inspection posts and airports before departure."
         fr: "Le département de contrôle aux frontières du Service d'État délivre le certificat vétérinaire international pour les animaux aux postes d'inspection frontaliers et aéroports avant le départ."
@@ -225,6 +227,7 @@ requirements:
     ref: { en: "dpss.gov.ua", fr: "dpss.gov.ua", es: "dpss.gov.ua", pt: "dpss.gov.ua" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the EU / a rabies-controlled country", fr: "Depuis l'UE / un pays à rage contrôlée", es: "Desde la UE / un país con rabia controlada", pt: "Da UE / de um país com raiva controlada" }
     body:
@@ -352,7 +355,7 @@ sources:
 
 seo:
   title: { en: "Ukraine Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Ukraine — Guide", es: "Requisitos de entrada de perros en Ucrania — Guía de viaje", pt: "Ucrânia: exigências de entrada para cachorros — guia" }
-  metaTitle: { en: "Traveling to Ukraine With Your Dog: Entry Requirements (2026)", fr: "Voyager en Ukraine avec ton chien : formalités (2026)", es: "Viajar a Ucrania con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Ucrânia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Ukraine: Pet Travel Requirements 2026", fr: "Voyager en Ukraine avec ton chien : formalités (2026)", es: "Viajar a Ucrania con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Ucrânia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies, antibody-test and certificate rules for bringing a dog into Ukraine (non-EU). Sourced from the State Service and Customs, and dated."
     fr: "Règles officielles puce, rage, titrage et certificat pour faire entrer un chien en Ukraine (hors UE). Sourcé auprès du Service d'État et de la Douane, et daté."

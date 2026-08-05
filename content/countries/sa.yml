@@ -36,12 +36,14 @@ exit:
     pt: "A Arábia Saudita não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação da MEWA."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "Apply through MEWA's online platform Anaam; a certificate from a MEWA-accredited clinic is approved at the MEWA branch after clinical and lab examination, and the export permission is valid 30 days."
         fr: "Fais la demande sur la plateforme en ligne Anaam du MEWA ; un certificat d'une clinique agréée MEWA est validé au bureau MEWA après examen clinique et de laboratoire, et l'autorisation d'export est valable 30 jours."
@@ -245,6 +247,7 @@ requirements:
     ref: { en: "MEWA — Pets importing procedures", fr: "MEWA — Procédures d'importation d'animaux", es: "MEWA — Procedimientos de importación de mascotas", pt: "MEWA — Procedimentos de importação de animais de estimação" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Eligible origin — full document set", fr: "Origine éligible — dossier complet", es: "Origen elegible — expediente completo", pt: "Origem elegível — conjunto completo de documentos" }
     body:
@@ -370,7 +373,7 @@ sources:
 
 seo:
   title: { en: "Saudi Arabia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Arabie saoudite — Guide", es: "Requisitos de entrada de perros en Arabia Saudí — Guía de viaje", pt: "Arábia Saudita: exigências de entrada para cachorros" }
-  metaTitle: { en: "Saudi Arabia Dog Entry Requirements (2026)", fr: "Voyager en Arabie saoudite avec ton chien : formalités (2026)", es: "Viajar a Arabia Saudí con tu perro: requisitos de entrada (2026)", pt: "Exigências de Entrada de Cachorros na Arábia Saudita (2026)" }
+  metaTitle: { en: "Taking Your Dog to Saudi Arabia: Pet Travel Requirements", fr: "Voyager en Arabie saoudite avec ton chien : formalités (2026)", es: "Viajar a Arabia Saudí con tu perro: requisitos de entrada (2026)", pt: "Exigências de Entrada de Cachorros na Arábia Saudita (2026)" }
   metaDesc:
     en: "Official MEWA/Anaam import permit, microchip, rabies and health-certificate rules for bringing a dog into Saudi Arabia, plus banned breeds. Sourced and dated."
     fr: "Règles officielles MEWA/Anaam : permis d'importation, puce, rage et certificat sanitaire pour faire entrer un chien en Arabie saoudite. Sourcé et daté."

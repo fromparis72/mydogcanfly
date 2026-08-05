@@ -17,11 +17,19 @@ exit:
     pt: "A Macedônia do Norte é um país listado: nenhum teste sorológico antirrábico é necessário para voltar à UE — o certificado sanitário da UE é emitido por um veterinário oficial da Agência de Alimentos e Veterinária (FVA)."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "Your dog needs a microchip and valid rabies vaccination; an FVA authorised veterinarian completes and endorses the EU-model health certificate before departure."
         fr: "Ton chien doit être pucé et vacciné contre la rage ; un vétérinaire autorisé de la FVA remplit et vise le certificat au modèle UE avant le départ."
         es: "Tu perro necesita microchip y vacuna antirrábica válida; un veterinario autorizado de la FVA rellena y refrenda el certificado en modelo UE antes de salir."
         pt: "Seu cachorro precisa de microchip e vacinação antirrábica válida; um veterinário autorizado pela FVA preenche e endossa o certificado sanitário no modelo da UE antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Your dog needs a microchip and a valid rabies vaccination; an FVA authorised veterinarian completes and endorses the health certificate before departure."
+        fr: "Ton chien a besoin d'une puce et d'une vaccination antirabique valide ; un vétérinaire habilité par la FVA remplit et vise le certificat sanitaire avant le départ."
+        es: "Tu perro necesita microchip y vacunación antirrábica válida; un veterinario autorizado por la FVA completa y valida el certificado sanitario antes de la salida."
+        pt: "Seu cachorro precisa de microchip e vacinação antirrábica válida; um veterinário autorizado pela FVA preenche e endossa o certificado sanitário antes da partida."
   onSiteNote:
     en: "The certificate is valid 10 days to reach the EU border check — arrange it close to departure."
     fr: "Le certificat est valable 10 jours pour atteindre le contrôle à la frontière UE — organise-le peu avant le départ."
@@ -216,6 +224,7 @@ requirements:
     ref: { en: "Rulebook 153/2015", fr: "Règlement 153/2015", es: "Reglamento 153/2015", pt: "Regulamento 153/2015" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport (Annex II Part A)", fr: "Simplifié — passeport (annexe II partie A)", es: "Simplificado — pasaporte para mascotas (anexo II parte A)", pt: "Simplificado — passaporte para animais (anexo II parte A)" }
     body:
@@ -337,7 +346,7 @@ sources:
 
 seo:
   title: { en: "North Macedonia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Macédoine du Nord — Guide", es: "Requisitos de entrada de perros en Macedonia del Norte — Guía de viaje", pt: "Macedônia do Norte: exigências de entrada para cachorros" }
-  metaTitle: { en: "North Macedonia Dog Entry Requirements (2026)", fr: "Voyager en Macédoine du Nord avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Macedonia del Norte (2026)", pt: "Exigências de entrada de cachorros na Macedônia do Norte (2026)" }
+  metaTitle: { en: "Taking Your Dog to North Macedonia: Pet Travel Rules", fr: "Voyager en Macédoine du Nord avec ton chien : formalités (2026)", es: "Perro: requisitos de entrada Macedonia del Norte (2026)", pt: "Exigências de entrada de cachorros na Macedônia do Norte (2026)" }
   metaDesc:
     en: "Official identification, rabies and antibody-test rules for bringing a dog into North Macedonia — by passport, certificate and non-listed origin. Sourced and dated."
     fr: "Règles officielles d'identification, rage et titrage pour faire entrer un chien en Macédoine du Nord — selon origine à passeport. Sourcé et daté."

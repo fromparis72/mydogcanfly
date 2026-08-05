@@ -18,12 +18,14 @@ exit:
     pt: "A Guatemala é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação visado pelo MAGA/VISAR."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "MAGA/VISAR issues the international export zoosanitary certificate from a private vet's health certificate and rabies record (rabies applied at least 1 month before travel)."
         fr: "Le MAGA/VISAR délivre le certificat zoosanitaire international d'export à partir du certificat sanitaire d'un vétérinaire privé et du carnet antirabique (rage appliquée au moins 1 mois avant)."
@@ -229,7 +231,9 @@ requirements:
     ref: { en: "MAGA/VISAR — Requirements for the entry of pets (dogs and cats)", fr: "MAGA/VISAR — Exigences pour l'entrée des animaux de compagnie (chiens et chats)", es: "MAGA/VISAR — Requisitos para el ingreso de mascotas (perros y gatos)", pt: "MAGA/VISAR — Exigências para a entrada de animais de estimação (cães e gatos)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Standard — a personal pet from any country", fr: "Standard — un animal de compagnie depuis n'importe quel pays", es: "Estándar — una mascota personal desde cualquier país", pt: "Padrão — um animal de estimação pessoal de qualquer país" }
     body:
       en: "A dog arriving from any country must carry an export sanitary certificate from the country of origin, or a health certificate from a licensed veterinarian there. It states the dog's name, age, sex, breed, colour and physical characteristics, records the vaccines applied and the deworming, and declares the animal was examined, is healthy, free of infectious-contagious and parasitic disease and vaccinated against rabies. The vaccination card must be attached, showing vaccines applied 1 month to 1 year before travel. No prior import permit is needed for a personal pet; documents are presented to a SEPA-MAGA inspector at the border with a USD 14 inspection fee."
@@ -238,6 +242,7 @@ origin:
       pt: "Um cachorro que chega de qualquer país precisa levar um certificado sanitário de exportação do país de origem, ou um atestado de saúde de um veterinário habilitado de lá. Ele indica o nome, a idade, o sexo, a raça, a cor e as características físicas do cachorro, registra as vacinas aplicadas e a vermifugação, e declara que o animal foi examinado, está saudável, livre de doenças infectocontagiosas e parasitárias e vacinado contra a raiva. A carteira de vacinação precisa ser anexada, mostrando vacinas aplicadas de 1 mês a 1 ano antes da viagem. Não é preciso autorização de importação prévia para um animal de estimação pessoal; os documentos são apresentados a um inspetor do SEPA-MAGA na fronteira, com uma taxa de inspeção de USD 14."
     cls: ok
   listed:
+    from: [us]
     title: { en: "Arriving from the United States — bilateral protocol", fr: "Arrivée depuis les États-Unis — protocole bilatéral", es: "Llegada desde Estados Unidos — protocolo bilateral", pt: "Chegando dos Estados Unidos — protocolo bilateral" }
     body:
       en: "From the United States a specific protocol applies: comply with the agreed 'Health Certificate for the Export of Dogs and Cats from the United States to Guatemala' (available on the VISAR website), or provide a copy of the vaccination card showing vaccines applied no less than 1 month and no more than 1 year before travel. USDA-accredited veterinarians can complete the certificate and obtain APHIS digital endorsement through VEHCS before departure."
@@ -358,7 +363,7 @@ sources:
 
 seo:
   title: { en: "Guatemala Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Guatemala — Guide", es: "Requisitos de entrada de perros en Guatemala — Guía de viaje", pt: "Guatemala: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Guatemala With Your Dog: Entry Requirements (2026)", fr: "Voyager au Guatemala avec ton chien : formalités (2026)", es: "Viajar a Guatemala con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Guatemala: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Guatemala: Pet Travel Requirements 2026", fr: "Voyager au Guatemala avec ton chien : formalités (2026)", es: "Viajar a Guatemala con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Guatemala: exigências de entrada (2026)" }
   metaDesc:
     en: "Official MAGA/VISAR rules for bringing a dog into Guatemala: health certificate, rabies vaccination, parasite treatment, no import permit. Sourced and dated."
     fr: "Règles officielles MAGA/VISAR pour faire entrer un chien au Guatemala : certificat sanitaire, vaccination antirabique, antiparasitaire, sans permis. Sourcé et daté."

@@ -362,7 +362,9 @@ const labels = {
                   const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
                   if (lastBreedId) p.set("bid", lastBreedId);
                   const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);
-                  const href = (L.ficheBase || "/tools/fiche/") + "?" + p.toString();
+                  /* La fiche imprimable est en noindex et ce lien naît après une recherche,
+                     mais Google exécute le JavaScript : dièse ici aussi, par cohérence. */
+                  const href = (L.ficheBase || "/tools/fiche/") + "#" + p.toString();
                   return `<a class="mdcf-btn acard__fiche" href="${esc(href)}"><span>${esc(L.ficheCta)}</span><span class="acard__fiche-go">→</span></a>`;
                 })()}</div>
               </li>`).join("")}</ul></div>`
@@ -375,7 +377,7 @@ const labels = {
           // (internal tool, breed carried over) rather than any outbound partner link.
           const crate = (r.partners ?? []).find((p) => (p as { vertical?: string }).vertical === "equipment");
           if (!crate) return "";
-          const crateLink = L.crateBase + (lastBreedId ? "?breed=" + lastBreedId : "");
+          const crateLink = L.crateBase + (lastBreedId ? "#breed=" + lastBreedId : "");
           // Outil chaleur : service, pas modalité — il vit donc ici, en bas, et non dans le verdict.
           // On lui passe le trajet et la date déjà saisis pour qu'il s'ouvre en contexte.
           const iataOf = (id: string) => (L.airShort ?? {})[id] ?? "";
@@ -387,7 +389,9 @@ const labels = {
             month ? "month=" + month : "",
             lastBreedId ? "breed=" + lastBreedId : "",
           ].filter(Boolean).join("&");
-          const heatLink = L.heatBase + (hq ? "?" + hq : "");
+          /* Dièse, comme partout ailleurs : ces liens naissent dans le rapport du Finder, donc
+             après un clic, mais ils sont partageables — et une URL partagée finit indexée. */
+          const heatLink = L.heatBase + (hq ? "#" + hq : "");
           const heatLi = `<li><a href="${esc(heatLink)}">${esc(L.heatToolName)}</a> — ${esc(L.heatToolWhy)}</li>`;
           return `<div class="report__sec"><h4>${esc(L.partners)}</h4><ul class="report__partners"><li><a href="${esc(crateLink)}">${esc(crate.name)}</a> — ${esc(crate.reason)}</li>${heatLi}</ul></div>`;
         })()}
@@ -497,7 +501,7 @@ const labels = {
    * paramètre dans l'URL — donc l'intention reste vérifiable dans la barre d'adresse.
    */
   (function () {
-    const bid = new URLSearchParams(location.search).get("breed") || "";
+    const bid = window.mdcfQuery().get("breed") || "";
     const label = bid ? (L.breedById ?? {})[bid] : "";
     if (label && breedEl) { breedEl.value = label; fillWeight(); }
   })();
@@ -508,7 +512,7 @@ const labels = {
   // une recherche, contrairement à la race ou à la compagnie qui suivent le visiteur.
   const prefilledDest = (function () {
     try {
-      const iso = new URLSearchParams(location.search).get("to");
+      const iso = window.mdcfQuery().get("to");
       const destEl = byId("f-dest") as HTMLInputElement | null;
       if (!iso || !destEl) return false;
       const label = ((L as { destByCountry?: Record<string, string> }).destByCountry ?? {})[iso.toLowerCase()];

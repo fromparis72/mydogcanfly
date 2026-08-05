@@ -57,17 +57,26 @@ exit:
     pt: "A Indonésia é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado de quarentena animal da Indonesian Quarantine Authority (Barantin)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: eu
       text:
         en: "Lodge a quarantine request at your local Barantin office; a quarantine veterinarian examines the dog and, if healthy, issues the animal health certificate, with the EU-model certificate officially certified before departure."
         fr: "Dépose une demande de quarantaine à ton bureau Barantin local ; un vétérinaire de quarantaine examine le chien et, s'il est sain, délivre le certificat sanitaire, le certificat au modèle UE étant certifié officiellement avant le départ."
         es: "Presenta una solicitud de cuarentena en tu oficina local de Barantin; un veterinario de cuarentena examina al perro y, si está sano, emite el certificado sanitario, con el certificado en modelo UE certificado oficialmente antes de salir."
         pt: "Registre um pedido de quarentena no escritório local do Barantin; um veterinário de quarentena examina o cachorro e, se estiver saudável, emite o atestado de saúde animal, com o certificado no modelo da UE oficialmente certificado antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Lodge a quarantine request at your local Barantin office; a quarantine veterinarian examines the dog and, if healthy, issues the animal health certificate."
+        fr: "Dépose une demande de quarantaine au bureau Barantin local ; un vétérinaire de quarantaine examine le chien et, s'il est en bonne santé, délivre le certificat sanitaire."
+        es: "Presenta una solicitud de cuarentena en la oficina local de Barantin; un veterinario de cuarentena examina al perro y, si está sano, expide el certificado sanitario."
+        pt: "Protocole um pedido de quarentena no escritório local do Barantin; um veterinário de quarentena examina o cachorro e, se estiver saudável, emite o certificado sanitário."
   onSiteNote:
     en: "If your dog already had a valid EU rabies titer before leaving, it stays valid for life as long as the rabies vaccination is kept up — check this before you travel."
     fr: "Si ton chien avait déjà un titrage antirabique UE valide avant de partir, il reste valable à vie tant que la vaccination antirabique est à jour — vérifie-le avant de voyager."
@@ -269,7 +278,9 @@ requirements:
     ref: { en: "Embassy of Indonesia — Animal Quarantine; Min. of Agriculture Decree 422/1988, Art. 16", fr: "Ambassade d'Indonésie — quarantaine animale ; décret du min. de l'Agriculture 422/1988, art. 16", es: "Embajada de Indonesia — cuarentena animal; Decreto del Min. de Agricultura 422/1988, art. 16", pt: "Embassy of Indonesia — Animal Quarantine; Decreto do Ministério da Agricultura 422/1988, Art. 16" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Where import is possible — a permitted (rabies-endemic) entry area", fr: "Là où l'importation est possible — une zone d'entrée permise (enzootie rabique)", es: "Donde la importación es posible — una zona de entrada permitida (endémica de rabia)", pt: "Onde a importação é possível — uma área de entrada permitida (endêmica de raiva)" }
     body:
       en: "Import is only possible into areas where dogs are allowed — in practice the Indonesian mainland via Jakarta. You must first obtain an import permit from Ditjen PKH (SIMREK PKH portal), then present an ISO microchip, a rabies vaccination performed 30 days to 1 year before shipment, a rabies antibody test of at least 0.5 IU/ml and a government health certificate. The dog must be at least 90 days old and not pregnant or lactating."
@@ -398,7 +409,7 @@ sources:
 
 seo:
   title: { en: "Indonesia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Indonésie — Guide", es: "Requisitos de entrada de perros en Indonesia — Guía de viaje", pt: "Entrada de cachorro na Indonésia — guia de viagem" }
-  metaTitle: { en: "Traveling to Indonesia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Indonésie avec ton chien : formalités (2026)", es: "Viajar a Indonesia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Indonésia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Indonesia: Pet Travel Requirements 2026", fr: "Voyager en Indonésie avec ton chien : formalités (2026)", es: "Viajar a Indonesia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Indonésia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Ditjen PKH and Barantin rules for bringing a dog into Indonesia: import permit, microchip, rabies vaccination, antibody test. Sourced and dated."
     fr: "Règles officielles Ditjen PKH et Barantin pour faire entrer un chien en Indonésie : permis d'importation, puce, vaccination antirabique, titrage. Sourcé et daté."

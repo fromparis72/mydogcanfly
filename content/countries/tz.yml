@@ -17,12 +17,14 @@ exit:
     pt: "A Tanzânia não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pelos Veterinary Services (Ministry of Livestock and Fisheries)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "After a licensed vet's exam and health certificate, the Ministry's Veterinary Services issue the export certificate authorising departure."
         fr: "Après l'examen et le certificat d'un vétérinaire agréé, les Services vétérinaires du ministère délivrent le certificat d'export autorisant le départ."
@@ -228,6 +230,7 @@ requirements:
     ref: { en: "Tanzania import conditions (no breed-specific legislation cited)", fr: "Conditions d'importation de la Tanzanie (aucune législation par race citée)", es: "Condiciones de importación de Tanzania (ninguna legislación por raza citada)", pt: "Condições de importação da Tanzânia (nenhuma legislação por raça citada)" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -355,7 +358,7 @@ sources:
 
 seo:
   title: { en: "Tanzania Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Tanzanie — Guide", es: "Requisitos de entrada de perros en Tanzania — Guía de viaje", pt: "Exigências de entrada de cachorros na Tanzânia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Tanzania With Your Dog: Entry Requirements (2026)", fr: "Voyager en Tanzanie avec ton chien : formalités (2026)", es: "Viajar a Tanzania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Tanzânia: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Tanzania: Pet Travel Requirements 2026", fr: "Voyager en Tanzanie avec ton chien : formalités (2026)", es: "Viajar a Tanzania con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Tanzânia: exigências de entrada 2026" }
   metaDesc:
     en: "Official rules for a dog entering Tanzania: import permit from the Director of Veterinary Services, rabies vaccination and health certificate. Sourced and dated."
     fr: "Règles officielles pour un chien entrant en Tanzanie : permis du Director of Veterinary Services, vaccination antirabique et certificat sanitaire. Sourcé et daté."

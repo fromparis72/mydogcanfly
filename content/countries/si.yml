@@ -193,6 +193,7 @@ requirements:
     ref: { en: "FURS — Import of pet animals", fr: "FURS — Importation d'animaux de compagnie", es: "FURS — Importación de animales de compañía", pt: "FURS — Importação de animais de estimação" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -225,11 +226,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Eslovenia depende del lugar desde el que hayas volado."
     pt: "O que acontece quando seu cachorro chega à Eslovênia depende do país de onde você veio."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: live animals may enter only via a designated point of entry — in Slovenia this is Ljubljana Airport (Brnik) — where UVHVVR officers carry out veterinary checks."
+    - from: non_eu
+      en: "From outside the EU: live animals may enter only via a designated point of entry — in Slovenia this is Ljubljana Airport (Brnik) — where UVHVVR officers carry out veterinary checks."
       fr: "Depuis hors UE : les animaux vivants ne peuvent entrer que par un point d'entrée désigné — en Slovénie l'aéroport de Ljubljana (Brnik) — où les agents de l'UVHVVR réalisent les contrôles vétérinaires."
       es: "Desde fuera de la UE: los animales vivos solo pueden entrar por un punto de entrada designado — en Eslovenia, el aeropuerto de Liubliana (Brnik) — donde los agentes de la UVHVVR realizan los controles veterinarios."
       pt: "De fora da UE: animais vivos só podem entrar por um ponto de entrada designado — na Eslovênia, o Aeroporto de Liubliana (Brnik) —, onde os agentes da UVHVVR fazem os controles veterinários."
@@ -326,7 +329,7 @@ sources:
 
 seo:
   title: { en: "Slovenia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Slovénie — Guide", es: "Requisitos de entrada de perros en Eslovenia — Guía de viaje", pt: "Entrada de cachorros na Eslovênia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Slovenia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Slovénie avec ton chien : formalités (2026)", es: "Viajar a Eslovenia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Eslovênia: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Slovenia: Pet Travel Requirements 2026", fr: "Voyager en Slovénie avec ton chien : formalités (2026)", es: "Viajar a Eslovenia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Eslovênia: exigências de entrada (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Slovenia — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Slovénie — selon origine UE, pays listé ou non listé. Sourcé et daté."

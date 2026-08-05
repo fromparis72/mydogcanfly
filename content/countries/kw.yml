@@ -201,6 +201,7 @@ requirements:
     ref: { en: "PAAF; Kuwait MOFA", fr: "PAAF ; MOFA Koweït", es: "PAAF; MOFA de Kuwait", pt: "PAAF; MOFA do Kuwait" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Country with an agreed Kuwait certificate", fr: "Pays avec un certificat koweïtien convenu", es: "País con un certificado koweití acordado", pt: "País com atestado acordado com o Kuwait" }
     body:
@@ -210,6 +211,7 @@ origin:
       pt: "Alguns países têm um modelo de atestado de saúde acordado com o Kuwait para cachorros/gatos. Os Estados Unidos, por exemplo, usam um atestado específico: o cachorro precisa de identificação registrada no atestado, de uma vacinação antirrábica aplicada entre 30 dias e 1 ano antes da chegada, e de um atestado de um veterinário licenciado datado dentro de 30 dias da entrada (o endosso do USDA não é exigido para cachorros e gatos de estimação). Você ainda precisa do certificado de importação da PAAF obtido com antecedência e da solicitação por escrito. O Kuwait não opera o regime de passaporte europeu, portanto um passaporte da UE sozinho não é suficiente."
     cls: ok
   listed:
+    from: any
     title: { en: "Other countries — confirm the applicable certificate", fr: "Autres pays — confirmer le certificat applicable", es: "Otros países — confirma el certificado aplicable", pt: "Outros países — confirme o atestado aplicável" }
     body:
       en: "From countries without a widely published Kuwait model certificate, the applicable health-certificate wording and any additional test are set by the exporting country's veterinary authority together with PAAF. Some origins may require more before PAAF issues the import certificate. Because these details are not published online, confirm the exact document set with PAAF, and have the certificate issued and (where the exporting country requires it) endorsed by its government veterinary authority."
@@ -326,7 +328,7 @@ sources:
 
 seo:
   title: { en: "Kuwait Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Koweït — Guide", es: "Requisitos de entrada de perros en Kuwait — Guía de viaje", pt: "Exigências de Entrada de Cachorros no Kuwait — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Kuwait With Your Dog: Entry Requirements (2026)", fr: "Voyager au Koweït avec ton chien : formalités (2026)", es: "Viajar a Kuwait con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Kuwait: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Kuwait: Pet Travel Requirements 2026", fr: "Voyager au Koweït avec ton chien : formalités (2026)", es: "Viajar a Kuwait con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para o Kuwait: exigências de entrada 2026" }
   metaDesc:
     en: "Official PAAF import certificate, identification, rabies vaccination and health-certificate rules for bringing a dog into Kuwait. Sourced and dated."
     fr: "Règles officielles PAAF : certificat d'importation, identification, vaccination antirabique et certificat sanitaire pour un chien au Koweït. Sourcé et daté."

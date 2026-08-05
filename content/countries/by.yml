@@ -17,12 +17,14 @@ exit:
     pt: "Belarus é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pelo Departamento de Supervisão Veterinária e Alimentar (Ministério da Agricultura e Alimentação)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The state veterinary service (Department of Veterinary and Food Supervision) issues the export veterinary certificate before departure."
         fr: "Le service vétérinaire d'État (Département de la surveillance vétérinaire et alimentaire) délivre le certificat vétérinaire d'export avant le départ."
@@ -221,7 +223,9 @@ requirements:
     ref: { en: "Decision 317; GTK Customs (customs.gov.by)", fr: "Décision 317 ; Douane GTK (customs.gov.by)", es: "Decisión 317; Aduana GTK (customs.gov.by)", pt: "Decisão 317; Alfândega GTK (customs.gov.by)" }
 
 origin:
+  scheme: own
   eu:
+    from: [am, kz, kg, ru]
     title: { en: "EAEU country — simplified", fr: "Pays de l'UEEA — simplifié", es: "País de la UEEA — simplificado", pt: "País da UEE — simplificado" }
     body:
       en: "A dog coming from another EAEU member state (Russia, Kazakhstan, Armenia, Kyrgyzstan) moves under the Union's common rules. It needs an ISO microchip, a valid rabies vaccination and an international veterinary passport with an up-to-date clinical-examination note. No import permit and no quarantine for up to two pets for personal use."
@@ -230,6 +234,7 @@ origin:
       pt: "Um cachorro vindo de outro Estado membro da UEE (Rússia, Cazaquistão, Armênia, Quirguistão) viaja sob as regras comuns da União. Ele precisa de microchip ISO, vacinação antirrábica válida e passaporte veterinário internacional com anotação de exame clínico em dia. Sem autorização de importação e sem quarentena para até dois animais para uso pessoal."
     cls: ok
   listed:
+    from_except: [am, kz, kg, ru]
     title: { en: "Third country — certificate or passport", fr: "Pays tiers — certificat ou passeport", es: "País tercero — certificado o pasaporte", pt: "País terceiro — certificado ou passaporte" }
     body:
       en: "From any other country your dog needs a microchip, a valid rabies vaccination (at least 20 days before departure unless vaccinated within the last 12 months) and the required core vaccinations. Travel on an international veterinary passport endorsed with a clinical exam within 14 days of departure, or on an EAEU veterinary certificate (Form No. 15) issued by the exporting country's official vet. Enter via the 'red' customs corridor."
@@ -352,7 +357,7 @@ sources:
 
 seo:
   title: { en: "Belarus Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Biélorussie — Guide", es: "Requisitos de entrada de perros en Bielorrusia — Guía de viaje", pt: "Exigências de entrada de cachorros em Belarus — Guia de viagem" }
-  metaTitle: { en: "Traveling to Belarus With Your Dog: Entry Requirements (2026)", fr: "Voyager en Biélorussie avec ton chien : formalités (2026)", es: "Viajar a Bielorrusia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Belarus: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Belarus: Pet Travel Requirements 2026", fr: "Voyager en Biélorussie avec ton chien : formalités (2026)", es: "Viajar a Bielorrusia con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Belarus: exigências de entrada 2026" }
   metaDesc:
     en: "Official EAEU microchip, rabies and veterinary-certificate rules for bringing a dog into Belarus — by EAEU or third-country origin. Sourced and dated."
     fr: "Règles officielles UEEA puce, rage et certificat vétérinaire pour faire entrer un chien en Biélorussie — selon origine UEEA ou pays tiers. Sourcé et daté."

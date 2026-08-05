@@ -17,12 +17,14 @@ exit:
     pt: "O Togo não é um país listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um certificado veterinário de exportação endossado pelos serviços veterinários da Direction de l'Élevage (MAPRASA)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico (titulação): exame de sangue em um laboratório aprovado pela UE, pelo menos 30 dias após a vacinação — um resultado válido é essencial para retornar à UE e não pode ser resolvido de última hora."
     - timing: window
+      scope: any
       text:
         en: "The Direction de l'Élevage's veterinary services endorse the export health certificate before departure."
         fr: "Les services vétérinaires de la Direction de l'Élevage visent le certificat sanitaire d'export avant le départ."
@@ -239,6 +241,7 @@ requirements:
     ref: { en: "No breed-specific import legislation found in official Togo sources", fr: "Aucune législation d'importation par race trouvée dans les sources officielles togolaises", es: "No se ha encontrado ninguna legislación de importación por raza en las fuentes oficiales de Togo", pt: "Nenhuma legislação de importação por raça encontrada em fontes oficiais do Togo" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union", fr: "Depuis l'Union européenne", es: "Desde la Unión Europea", pt: "Da União Europeia" }
     body:
@@ -360,7 +363,7 @@ sources:
 
 seo:
   title: { en: "Togo Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Togo — Guide", es: "Requisitos de entrada de perros en Togo — Guía de viaje", pt: "Exigências de entrada de cachorros no Togo — Guia de viagem" }
-  metaTitle: { en: "Traveling to Togo With Your Dog: Entry Requirements (2026)", fr: "Voyager au Togo avec ton chien : formalités (2026)", es: "Viajar a Togo con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Togo com seu cachorro: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Togo: Pet Travel Requirements 2026", fr: "Voyager au Togo avec ton chien : formalités (2026)", es: "Viajar a Togo con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Togo com seu cachorro: exigências de entrada (2026)" }
   metaDesc:
     en: "Official rules for bringing a dog into Togo: international veterinary health certificate, microchip. Sourced and dated; unpublished points flagged."
     fr: "Règles officielles pour faire entrer un chien au Togo : certificat vétérinaire international, puce. Sourcé et daté ; points non publiés signalés."

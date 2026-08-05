@@ -47,17 +47,26 @@ exit:
     pt: "A Tailândia é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — mais uma licença de exportação e um atestado de saúde do DLD."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Make sure the rabies antibody titer is valid: blood sample taken at least 30 days after rabies vaccination, in an EU-approved lab (minimum export age 4 months)."
         fr: "Assure-toi que le titrage antirabique est valide : prise de sang au moins 30 jours après la vaccination antirabique, dans un labo agréé UE (âge minimum d'export : 4 mois)."
         es: "Asegúrate de que la titulación antirrábica sea válida: muestra de sangre tomada al menos 30 días tras la vacuna antirrábica, en un laboratorio aprobado por la UE (edad mínima de exportación: 4 meses)."
         pt: "Garanta que o teste sorológico antirrábico (titulação) esteja válido: coleta de sangue feita pelo menos 30 dias após a vacinação antirrábica, em um laboratório aprovado pela UE (idade mínima para exportação: 4 meses)."
     - timing: window
+      scope: eu
       text:
         en: "Apply to the DLD for the export licence and EU health certificate, with the pre-export inspection done at the airport 48 hours before departure."
         fr: "Demande au DLD la licence d'export et le certificat sanitaire UE, avec l'inspection pré-export réalisée à l'aéroport 48 heures avant le départ."
         es: "Solicita al DLD la licencia de exportación y el certificado sanitario UE, con la inspección previa a la exportación realizada en el aeropuerto 48 horas antes de la salida."
         pt: "Solicite ao DLD a licença de exportação e o atestado de saúde da UE, com a inspeção pré-exportação feita no aeroporto 48 horas antes da partida."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "Apply to the DLD for the export licence and health certificate, with the pre-export inspection done at the airport 48 hours before departure."
+        fr: "Demande au DLD la licence d'export et le certificat sanitaire, avec l'inspection pré-export faite à l'aéroport 48 heures avant le départ."
+        es: "Solicita al DLD la licencia de exportación y el certificado sanitario, con la inspección previa hecha en el aeropuerto 48 horas antes de la salida."
+        pt: "Solicite ao DLD a licença de exportação e o certificado sanitário, com a inspeção pré-embarque feita no aeroporto 48 horas antes da partida."
   onSiteNote:
     en: "The titer is the trap — without a valid result your dog cannot re-enter the EU, and it can't be fixed at the last minute in Thailand."
     fr: "Le titrage est le piège — sans résultat valide, ton chien ne peut pas rentrer dans l'UE, et ça ne se rattrape pas à la dernière minute en Thaïlande."
@@ -264,7 +273,9 @@ requirements:
     ref: { en: "DLD — Import requirements (quarantine)", fr: "DLD — Exigences d'importation (quarantaine)", es: "DLD — Requisitos de importación (cuarentena)", pt: "DLD — Exigências de importação (quarentena)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Up-to-date dog (valid boosters) — fastest path", fr: "Chien à jour (rappels valides) — parcours le plus rapide", es: "Perro al día (refuerzos válidos) — la vía más rápida", pt: "Cachorro com vacinas em dia (reforços válidos) — caminho mais rápido" }
     body:
       en: "A dog whose rabies and core vaccinations are current on valid boosters follows the shortest path: apply for the DLD import permit (Form R1/1) 60 to 7 days before departure, then have an official government veterinarian issue and endorse the health certificate shortly before travel. No 21-day waiting period applies when the previous vaccination records are attached, and no quarantine is imposed if every condition is met."
@@ -397,7 +408,7 @@ sources:
 
 seo:
   title: { en: "Thailand Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Thaïlande — Guide", es: "Requisitos de entrada de perros en Tailandia — Guía de viaje", pt: "Entrada de cachorros na Tailândia — Guia de viagem" }
-  metaTitle: { en: "Traveling to Thailand With Your Dog: Entry Requirements (2026)", fr: "Voyager en Thaïlande avec ton chien : formalités (2026)", es: "Viajar a Tailandia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Tailândia com o seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Thailand: Pet Travel Requirements 2026", fr: "Voyager en Thaïlande avec ton chien : formalités (2026)", es: "Viajar a Tailandia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Tailândia com o seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official DLD and Thai Customs rules for bringing a dog into Thailand: advance import permit (Form R1/1), microchip, rabies and core vaccinations. Sourced and dated."
     fr: "Règles officielles DLD et douane pour faire entrer un chien en Thaïlande : permis d'importation préalable (formulaire R1/1), puce. Sourcé et daté."

@@ -47,6 +47,7 @@ exit:
     pt: "A Malásia é um país listado, portanto nenhuma titulação antirrábica é necessária para retornar à UE — o Department of Veterinary Services (DVS) emite o atestado de saúde veterinário de exportação."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Apply for the veterinary health certificate and export permit online through the DVS e-Permit / MAQIS system; DVS advises applying at least a week before travel (permit valid 30 days)."
         fr: "Demande le certificat sanitaire vétérinaire et le permis d'export en ligne via le système e-Permit / MAQIS du DVS ; le DVS conseille de s'y prendre au moins une semaine avant (permis valable 30 jours)."
@@ -243,7 +244,9 @@ requirements:
     ref: { en: "animalpassport.dvs.gov.my; DVS scheduled-country regulations", fr: "animalpassport.dvs.gov.my ; règlement DVS pays répertoriés", es: "animalpassport.dvs.gov.my; reglamento del DVS sobre países listados", pt: "animalpassport.dvs.gov.my; regulamentação do DVS para países programados" }
 
 origin:
+  scheme: own
   eu:
+    from: [gb, ie, nz, jp, se, bn, sg, au]
     title: { en: "Scheduled rabies-free countries — no quarantine", fr: "Pays répertoriés indemnes de rage — sans quarantaine", es: "Países listados libres de rabia — sin cuarentena", pt: "Países programados livres de raiva — sem quarentena" }
     body:
       en: "From a scheduled rabies-free country (United Kingdom, Eire, Northern Ireland, New Zealand, Japan, Sweden, Brunei, Singapore and Australia), a healthy dog with a MAQIS import permit, ISO microchip, valid rabies vaccination and a government veterinary health certificate can generally enter without quarantine. Singapore requires an import licence and a six-month residence declaration."
@@ -372,7 +375,7 @@ sources:
 
 seo:
   title: { en: "Malaysia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Malaisie — Guide", es: "Requisitos de entrada de perros en Malasia — Guía de viaje", pt: "Entrada de cachorro na Malásia — guia de viagem" }
-  metaTitle: { en: "Traveling to Malaysia With Your Dog: Entry Requirements (2026)", fr: "Voyager en Malaisie avec ton chien : formalités (2026)", es: "Viajar a Malasia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Malásia com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Malaysia: Pet Travel Requirements 2026", fr: "Voyager en Malaisie avec ton chien : formalités (2026)", es: "Viajar a Malasia con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Malásia com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official MAQIS permit, microchip, rabies and antibody-test rules for bringing a dog into Malaysia, plus quarantine and banned breeds. Sourced and dated."
     fr: "Règles officielles permis MAQIS, puce, rage et titrage pour faire entrer un chien en Malaisie, plus quarantaine et races interdites. Sourcé et daté."

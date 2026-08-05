@@ -34,12 +34,14 @@ exit:
     pt: "O Camboja é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pela General Directorate of Animal Health and Production (GDAHP)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "GDAHP veterinary officers issue and endorse the export health certificate; apply before booking travel."
         fr: "Les vétérinaires officiels de la GDAHP délivrent et visent le certificat sanitaire d'export ; fais la demande avant de réserver le voyage."
@@ -266,6 +268,7 @@ requirements:
     ref: { en: "No Cambodian official source identified", fr: "Aucune source officielle cambodgienne identifiée", es: "No se ha identificado ninguna fuente oficial camboyana", pt: "Nenhuma fonte oficial cambojana identificada" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Compliant dog from a low-risk origin — standard path", fr: "Chien conforme depuis une origine à faible risque — parcours standard", es: "Perro conforme desde un origen de bajo riesgo — vía estándar", pt: "Cachorro em conformidade vindo de uma origem de baixo risco — caminho padrão" }
     body:
@@ -403,7 +406,7 @@ sources:
 
 seo:
   title: { en: "Cambodia Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Cambodge — Guide", es: "Requisitos de entrada de perros en Camboya — Guía de viaje", pt: "Entrada de cachorro no Camboja — guia de viagem" }
-  metaTitle: { en: "Traveling to Cambodia With Your Dog: Entry Requirements (2026)", fr: "Voyager au Cambodge avec ton chien : formalités (2026)", es: "Viajar a Camboya con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Camboja com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Cambodia: Pet Travel Requirements 2026", fr: "Voyager au Cambodge avec ton chien : formalités (2026)", es: "Viajar a Camboya con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Camboja com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Cambodia (GDAHP/MAFF) rules for bringing a dog: advance MAFF/GDAHP import permission, official veterinary certificate and airport check. Sourced and dated."
     fr: "Cadre officiel du Cambodge (GDAHP/MAFF) pour un chien : autorisation MAFF/GDAHP préalable, certificat vétérinaire et contrôle à l'aéroport. Sourcé et daté."

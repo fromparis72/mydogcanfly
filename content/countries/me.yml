@@ -17,11 +17,19 @@ exit:
     pt: "Montenegro é um país listado: nenhum teste sorológico antirrábico é necessário para voltar à UE — os certificados de exportação são emitidos pela Administração de Segurança Alimentar, Assuntos Veterinários e Fitossanitários (UBHVFP)."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "With microchip and valid rabies vaccination, the EU-model health certificate is issued and endorsed by the UBHVFP veterinary inspection under its special rules for export to the EU."
         fr: "Avec puce et vaccination antirabique valide, le certificat au modèle UE est délivré et visé par l'inspection vétérinaire de l'UBHVFP, selon ses règles spéciales d'export vers l'UE."
         es: "Con microchip y vacuna antirrábica válida, el certificado en modelo UE lo emite y refrenda la inspección veterinaria de la UBHVFP según sus reglas especiales de exportación a la UE."
         pt: "Com o microchip e a vacinação antirrábica válida, o certificado sanitário no modelo da UE é emitido e endossado pela inspeção veterinária da UBHVFP, segundo suas regras especiais de exportação para a UE."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "With a microchip and a valid rabies vaccination, the health certificate is issued and endorsed by the UBHVFP veterinary inspection before departure."
+        fr: "Avec une puce et une vaccination antirabique valide, le certificat sanitaire est délivré et visé par l'inspection vétérinaire de l'UBHVFP avant le départ."
+        es: "Con microchip y vacunación antirrábica válida, el certificado sanitario lo expide y valida la inspección veterinaria de la UBHVFP antes de la salida."
+        pt: "Com microchip e vacinação antirrábica válida, o certificado sanitário é emitido e endossado pela inspeção veterinária da UBHVFP antes da partida."
   onSiteNote:
     en: "The certificate is valid 10 days to reach the EU border check — arrange it close to departure."
     fr: "Le certificat est valable 10 jours pour atteindre le contrôle à la frontière UE — organise-le peu avant le départ."
@@ -216,6 +224,7 @@ requirements:
     ref: { en: "Uprava carina — Information for travellers; UBH", fr: "Uprava carina — Informations pour les voyageurs ; UBH", es: "Uprava carina — Información para viajeros; UBH", pt: "Uprava carina — Informações para viajantes; UBH" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — pet passport", fr: "Simplifié — passeport", es: "Simplificado — pasaporte para mascotas", pt: "Simplificado — passaporte para animais" }
     body:
@@ -345,7 +354,7 @@ sources:
 
 seo:
   title: { en: "Montenegro Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Monténégro — Guide", es: "Requisitos de entrada de perros en Montenegro — Guía de viaje", pt: "Exigências de entrada de cachorros em Montenegro — Guia de viagem" }
-  metaTitle: { en: "Traveling to Montenegro With Your Dog: Entry Requirements (2026)", fr: "Voyager au Monténégro avec ton chien : formalités (2026)", es: "Viajar a Montenegro con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Montenegro: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Montenegro: Pet Travel Requirements", fr: "Voyager au Monténégro avec ton chien : formalités (2026)", es: "Viajar a Montenegro con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para Montenegro: exigências de entrada 2026" }
   metaDesc:
     en: "Official microchip, rabies, tapeworm and antibody-test rules for bringing a dog into Montenegro — by EU, listed and non-listed origin. Sourced and dated."
     fr: "Règles officielles puce, rage, échinococcose et titrage pour faire entrer un chien au Monténégro — selon origine UE, pays listé ou non listé. Sourcé et daté."

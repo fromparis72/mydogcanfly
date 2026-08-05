@@ -204,7 +204,9 @@ requirements:
     ref: { en: "MAST — FAQ (age); non-permitted importation", fr: "MAST — FAQ (âge) ; importation non autorisée", es: "MAST — Preguntas frecuentes (edad); importación no permitida", pt: "MAST — FAQ (idade); importação não permitida" }
 
 origin:
+  scheme: own
   eu:
+    from: [au, at, be, bg, hr, cy, cz, dk, ee, fo, fi, fr, de, gr, ie, it, jp, lv, li, lt, lu, mt, nl, no, pt, sg, si, es, se, ch, ae, gb]
     title: { en: "Category 1 — approved rabies-free country", fr: "Catégorie 1 — pays approuvé indemne de rage", es: "Categoría 1 — país aprobado libre de rabia", pt: "Categoria 1 — país aprovado livre de raiva" }
     body:
       en: "From a Category 1 country (e.g. most EU/EEA states, UK, Japan, Australia, Switzerland, UAE, Singapore, Faroe Islands), the dog still needs a MAST import permit, microchip, rabies vaccination, an antibody test at least 30 days later (≥0.5 IU/ml, EU-approved lab), the other vaccines, two parasite treatments and a D1 certificate. There is no waiting period after the antibody result — but the 14-day quarantine on arrival still applies."
@@ -213,6 +215,7 @@ origin:
       pt: "Vindo de um país de categoria 1 (por exemplo, a maioria dos Estados da UE/EEE, Reino Unido, Japão, Austrália, Suíça, Emirados Árabes Unidos, Singapura, Ilhas Faroé), o cachorro ainda assim precisa de autorização de importação da MAST, microchip, vacinação antirrábica, teste sorológico pelo menos 30 dias depois (≥0,5 UI/ml, laboratório aprovado pela UE), as outras vacinas, dois tratamentos antiparasitários e um certificado D1. Não há período de espera depois do resultado do teste sorológico — mas a quarentena de 14 dias na chegada continua valendo."
     cls: warn
   listed:
+    from: [ba, ca, gl, hu, pl, ro, rs, sk, tw, tr, us]
     title: { en: "Category 2 — approved, rabies controlled (+90-day wait)", fr: "Catégorie 2 — approuvé, rage maîtrisée (+90 jours d'attente)", es: "Categoría 2 — aprobado, rabia controlada (+90 días de espera)", pt: "Categoria 2 — aprovado, raiva controlada (+90 dias de espera)" }
     body:
       en: "From a Category 2 country (e.g. USA, Canada, Poland, Hungary, Romania, Serbia, Slovakia, Turkey, Greenland, Taiwan, Bosnia-Herzegovina), all the same steps apply, plus a compulsory 90-day wait counted from the day the antibody blood sample was taken before the dog may enter. The 14-day quarantine still applies. In practice, plan around 4–5 months of preparation."
@@ -221,6 +224,7 @@ origin:
       pt: "Vindo de um país de categoria 2 (por exemplo, EUA, Canadá, Polônia, Hungria, Romênia, Sérvia, Eslováquia, Turquia, Groenlândia, Taiwan, Bósnia-Herzegovina), aplicam-se todas as mesmas etapas, mais uma espera obrigatória de 90 dias contada a partir do dia da coleta da amostra de sangue do teste sorológico antes de o cachorro poder entrar. A quarentena de 14 dias continua valendo. Na prática, planeje cerca de 4–5 meses de preparação."
     cls: no
   nonListed:
+    from_except: [au, at, be, bg, hr, cy, cz, dk, ee, fo, fi, fr, de, gr, ie, it, jp, lv, li, lt, lu, mt, nl, no, pt, sg, si, es, se, ch, ae, gb, ba, ca, gl, hu, pl, ro, rs, sk, tw, tr, us]
     title: { en: "Non-approved country — residents relocating only", fr: "Pays non approuvé — uniquement résidents en installation", es: "País no aprobado — solo residentes que se trasladan", pt: "País não aprovado — apenas residentes que estão se mudando" }
     body:
       en: "Iceland does not accept dogs from non-approved countries as ordinary imports. MAST may authorise entry only if the owner is a resident there, has owned and cared for the dog for at least 6 months and is moving to Iceland; the dog must then meet Category 2 conditions, including a canine influenza vaccination, and complete the 14-day quarantine. Otherwise the dog must first spend 6 months in an approved country."
@@ -341,7 +345,7 @@ sources:
 
 seo:
   title: { en: "Iceland Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Islande — Guide", es: "Requisitos de entrada de perros en Islandia — Guía de viaje", pt: "Islândia: exigências de entrada para cachorros — guia de viagem" }
-  metaTitle: { en: "Traveling to Iceland With Your Dog: Entry Requirements (2026)", fr: "Voyager en Islande avec ton chien : formalités (2026)", es: "Viajar a Islandia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Islândia: exigências de entrada (2026)" }
+  metaTitle: { en: "Taking Your Dog to Iceland: Pet Travel Requirements 2026", fr: "Voyager en Islande avec ton chien : formalités (2026)", es: "Viajar a Islandia con tu perro: requisitos de entrada (2026)", pt: "Cachorro na Islândia: exigências de entrada (2026)" }
   metaDesc:
     en: "Official MAST rules for Iceland: import permit, approved countries, rabies antibody test, vaccinations and a mandatory 14-day quarantine. Sourced and dated."
     fr: "Règles officielles MAST pour un chien entrant en Islande : permis d'importation, pays approuvés, titrage antirabique et quarantaine obligatoire de 14 jours."

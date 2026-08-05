@@ -36,12 +36,14 @@ exit:
     pt: "Mianmar é um país não listado, portanto um teste sorológico antirrábico (titulação) válido é obrigatório para retornar à UE — além de um atestado de saúde de exportação endossado pelo Livestock Breeding and Veterinary Department (LBVD)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The LBVD issues the official veterinary export certificate and export recommendation; apply for the LBVD export licence about 10 days before departure."
         fr: "Le LBVD délivre le certificat vétérinaire d'export officiel et la recommandation d'export ; demande la licence d'export LBVD environ 10 jours avant le départ."
@@ -270,6 +272,7 @@ requirements:
     ref: { en: "No Myanmar official source identified", fr: "Aucune source officielle myanmaraise identifiée", es: "No se identificó ninguna fuente oficial de Myanmar", pt: "Nenhuma fonte oficial de Mianmar identificada" }
 
 origin:
+  scheme: own
   eu:
     title: { en: "Compliant dog from a low-risk origin — standard path", fr: "Chien conforme depuis une origine à faible risque — parcours standard", es: "Perro conforme desde un origen de bajo riesgo — ruta estándar", pt: "Cachorro em conformidade vindo de uma origem de baixo risco — caminho padrão" }
     body:
@@ -401,7 +404,7 @@ sources:
 
 seo:
   title: { en: "Myanmar Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Myanmar — Guide", es: "Requisitos de entrada de perros en Myanmar — Guía de viaje", pt: "Entrada de cachorro em Mianmar — guia de viagem" }
-  metaTitle: { en: "Traveling to Myanmar With Your Dog: Entry Requirements (2026)", fr: "Voyager au Myanmar avec ton chien : formalités (2026)", es: "Viajar a Myanmar con tu perro: requisitos de entrada (2026)", pt: "Viajar para Mianmar com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Myanmar: Pet Travel Requirements 2026", fr: "Voyager au Myanmar avec ton chien : formalités (2026)", es: "Viajar a Myanmar con tu perro: requisitos de entrada (2026)", pt: "Viajar para Mianmar com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official Myanmar (LBVD/MOALI) framework for bringing a dog: advance LBVD certificate of recommendation and import permit. Sourced and dated."
     fr: "Cadre officiel du Myanmar (LBVD/MOALI) pour faire entrer un chien : certificat de recommandation et permis d'importation LBVD préalables. Sourcé et daté."

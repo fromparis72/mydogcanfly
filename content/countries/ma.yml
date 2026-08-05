@@ -32,6 +32,7 @@ exit:
     pt: "Sair do Marrocos com seu cachorro exige um atestado de saúde oficial de exportação (modelo ONSSA) assinado por um veterinário oficial."
   steps:
     - timing: window
+      scope: any
       text:
         en: "Have an official veterinarian issue the ONSSA export health certificate shortly before departure."
         fr: "Fais établir le certificat sanitaire d'export ONSSA par un vétérinaire officiel peu avant le départ."
@@ -239,6 +240,7 @@ requirements:
     ref: { en: "Arrêté conjoint n° 1677.18 (18/07/2018); ONSSA — public notice on dangerous dogs", fr: "Arrêté conjoint n° 1677.18 (18/07/2018) ; ONSSA — avis au public sur les chiens dangereux", es: "Arrêté conjoint n° 1677.18 (18/07/2018); ONSSA — aviso público sobre perros peligrosos", pt: "Arrêté conjoint n° 1677.18 (18/07/2018); ONSSA — aviso ao público sobre cachorros perigosos" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From the European Union — ONSSA EU certificate", fr: "Depuis l'Union européenne — certificat ONSSA UE", es: "Desde la Unión Europea — certificado ONSSA UE", pt: "Da União Europeia — certificado do ONSSA para a UE" }
     body:
@@ -364,7 +366,7 @@ sources:
 
 seo:
   title: { en: "Morocco Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Maroc — Guide", es: "Requisitos de entrada de perros en Marruecos — Guía de viaje", pt: "Entrada de cachorros no Marrocos — guia de viagem" }
-  metaTitle: { en: "Traveling to Morocco With Your Dog: Entry Requirements (2026)", fr: "Voyager au Maroc avec ton chien : formalités (2026)", es: "Viajar a Marruecos con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Marrocos com o cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Morocco: Pet Travel Requirements 2026", fr: "Voyager au Maroc avec ton chien : formalités (2026)", es: "Viajar a Marruecos con tu perro: requisitos de entrada (2026)", pt: "Viajar para o Marrocos com o cachorro: exigências (2026)" }
   metaDesc:
     en: "Official ONSSA rules for bringing a dog into Morocco: identification, rabies vaccination, health certificate and temporary-stay antibody test. Sourced and dated."
     fr: "Règles officielles ONSSA pour faire entrer un chien au Maroc : identification, vaccination antirabique, certificat sanitaire. Sourcé et daté."

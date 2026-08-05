@@ -33,12 +33,14 @@ exit:
     pt: "Israel é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um certificado de exportação aprovado por um veterinário oficial."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "The export health certificate must be signed and approved by a government veterinarian of the MOAG Veterinary Services (a private-vet certificate alone is not valid), issued at the regional veterinary offices."
         fr: "Le certificat sanitaire d'export doit être signé et approuvé par un vétérinaire officiel des Services vétérinaires du MOAG (un certificat de vétérinaire privé seul ne suffit pas), délivré dans les bureaux vétérinaires régionaux."
@@ -257,7 +259,9 @@ requirements:
     ref: { en: "Israel Veterinary Services — import requirements (non-compliance)", fr: "Services vétérinaires d'Israël — exigences d'importation (non-conformité)", es: "Servicios Veterinarios de Israel — requisitos de importación (incumplimiento)", pt: "Veterinary Services de Israel — exigências de importação (descumprimento)" }
 
 origin:
+  scheme: own
   eu:
+    from: any
     title: { en: "Up-to-date dog with a valid antibody result — fastest path", fr: "Chien à jour avec un titrage valide — parcours le plus rapide", es: "Perro al día con un resultado de titulación válido — la vía más rápida", pt: "Cachorro em dia com um resultado sorológico válido — o caminho mais rápido" }
     body:
       en: "A dog that is microchipped, currently vaccinated against rabies and already holds a valid rabies antibody result (>=0.5 IU/ml, blood taken more than 30 days after a primary vaccination) follows the shortest path. It travels as its owner's accompanied baggage (up to two pets, in the owner's care at least 90 days), so no import licence is needed. Have the government-endorsed health certificate issued within 10 days of arrival, send the Notification of Pet Arrival at least two working days before departure, and there is no quarantine if every condition is met."
@@ -390,7 +394,7 @@ sources:
 
 seo:
   title: { en: "Israel Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Israël — Guide", es: "Requisitos de entrada de perros en Israel — Guía de viaje", pt: "Entrada de cachorro em Israel — Guia de viagem" }
-  metaTitle: { en: "Traveling to Israel With Your Dog: Entry Requirements (2026)", fr: "Voyager en Israël avec ton chien : formalités (2026)", es: "Viajar a Israel con tu perro: requisitos de entrada (2026)", pt: "Viajar para Israel com seu cachorro: formalidades (2026)" }
+  metaTitle: { en: "Taking Your Dog to Israel: Pet Travel Requirements 2026", fr: "Voyager en Israël avec ton chien : formalités (2026)", es: "Viajar a Israel con tu perro: requisitos de entrada (2026)", pt: "Viajar para Israel com seu cachorro: formalidades (2026)" }
   metaDesc:
     en: "Official Israeli Veterinary Services rules for bringing a dog into Israel: ISO microchip, rabies vaccination, mandatory rabies antibody test. Sourced and dated."
     fr: "Règles officielles des Services vétérinaires israéliens pour faire entrer un chien en Israël : puce ISO, vaccination antirabique. Sourcé et daté."

@@ -17,12 +17,14 @@ exit:
     pt: "A Nigéria é um país não listado: um teste sorológico antirrábico (titulação) válido é obrigatório para voltar à UE — além de um atestado de saúde de exportação endossado pela Nigeria Agricultural Quarantine Service (NAQS)."
   steps:
     - timing: longlead
+      scope: eu
       text:
         en: "Anticipate the rabies antibody titer: blood test in an EU-approved lab, at least 30 days after vaccination — a valid result is essential to re-enter the EU and cannot be arranged at the last minute."
         fr: "Anticipe le titrage antirabique : prise de sang dans un labo agréé UE, au moins 30 jours après la vaccination — un résultat valide est indispensable pour rentrer dans l'UE et ne se règle pas à la dernière minute."
         es: "Anticipa la titulación antirrábica: análisis de sangre en un laboratorio aprobado por la UE, al menos 30 días tras la vacuna — un resultado válido es imprescindible para volver a la UE y no se puede resolver a última hora."
         pt: "Antecipe o teste sorológico antirrábico: a coleta é feita em laboratório aprovado pela União Europeia, no mínimo 30 dias após a vacinação — um resultado válido é indispensável para voltar a entrar na União Europeia e não se resolve em cima da hora."
     - timing: window
+      scope: any
       text:
         en: "NAQS Animal Quarantine performs the export health inspection and certifies the veterinary health certificate, with the Chief Veterinary Officer issuing the export permit."
         fr: "La quarantaine animale de la NAQS réalise l'inspection sanitaire d'export et certifie le certificat sanitaire vétérinaire, le vétérinaire en chef délivrant le permis d'export."
@@ -228,6 +230,7 @@ requirements:
     ref: { en: "No explicit minimum age in the published Nigerian requirements", fr: "Aucun âge minimum explicite dans les exigences publiées du Nigéria", es: "Sin edad mínima explícita en los requisitos publicados de Nigeria", pt: "Nenhuma idade mínima explícita nas exigências publicadas da Nigéria" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "From Europe / the EU", fr: "Depuis l'Europe / l'UE", es: "Desde Europa / la UE", pt: "Da Europa / da UE" }
     body:
@@ -349,7 +352,7 @@ sources:
 
 seo:
   title: { en: "Nigeria Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien au Nigéria — Guide", es: "Requisitos de entrada de perros en Nigeria — Guía de viaje", pt: "Exigências de Entrada de Cachorros na Nigéria — Guia de Viagem" }
-  metaTitle: { en: "Traveling to Nigeria With Your Dog: Entry Requirements (2026)", fr: "Voyager au Nigéria avec ton chien : formalités (2026)", es: "Viajar a Nigeria con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Nigéria: exigências de entrada 2026" }
+  metaTitle: { en: "Taking Your Dog to Nigeria: Pet Travel Requirements 2026", fr: "Voyager au Nigéria avec ton chien : formalités (2026)", es: "Viajar a Nigeria con tu perro: requisitos de entrada (2026)", pt: "Levar seu cachorro para a Nigéria: exigências de entrada 2026" }
   metaDesc:
     en: "Official NAQS rules for bringing a dog into Nigeria: import permit in advance, microchip, rabies vaccination, endorsed certificate and NAQS check. Sourced and dated."
     fr: "Règles officielles NAQS pour faire entrer un chien au Nigéria : permis d'importation préalable, puce, vaccination antirabique. Sourcé et daté."

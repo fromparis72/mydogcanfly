@@ -14,9 +14,15 @@ export interface Factor { stars: number; label: LT; text: LT }
 export interface ReqRow { item: LT; required: LT; when: LT; exceptions: LT; ref: LT }
 export interface OriginBlock { title: LT; body: LT; cls?: Cls; /** Libellé de colonne propre à la fiche, quand le gabarit UE/listé/non listé ne s'applique pas. */ tag?: LT }
 export interface SourceLink { label: LT; url: string }
+/** Origine à laquelle une puce d'arrivée est conditionnée. Aucune clé = la puce vaut pour toutes.
+ *  `from` : mot-clé UE/hors-UE, ou liste d'ISO2. `from_except` : la même chose en creux. */
+export type FromOrigin = "eu" | "non_eu";
+export type ArrivalPoint = LT & { from?: FromOrigin | string[]; from_except?: string[] };
 /** Round-trip layer: the country's pet-movement regime + the sourced formalities to LEAVE it. */
 export type Regime = "eu" | "listed" | "non_listed" | "island_controlled" | "island_strict";
-export interface ExitStep { text: LT; timing: "before" | "window" | "longlead" }
+/** `scope` : « any » = l'étape décrit la procédure du pays et vaut pour toute destination ;
+ *  « eu » = elle parle du dispositif européen et n'a de sens que sur un trajet vers l'UE. */
+export interface ExitStep { text: LT; timing: "before" | "window" | "longlead"; scope: "eu" | "any" | "non_eu" }
 export interface ExitBlock { authority: string; authorityUrl: string; intro: LT; steps: ExitStep[]; onSiteNote?: LT }
 /** Domestic travel (same country both ends): no border → no import rules. What applies instead, + special territories. */
 export interface DomesticTerritory { name: LT; note: LT; url?: string }
@@ -42,9 +48,11 @@ export interface CountryGuide {
   /** Detailed entry-requirements table. */
   requirements: ReqRow[];
   /** Rules according to the dog's origin — three blocks. */
-  origin: { eu: OriginBlock; listed: OriginBlock; nonListed: OriginBlock };
+  /** `scheme` : « eu » = les trois cases suivent la grille européenne et l'une peut être choisie
+   *  d'après l'origine ; « own » = le pays a sa propre grille, on présente les cas sans trancher. */
+  origin: { scheme: "eu" | "own"; eu: OriginBlock; listed: OriginBlock; nonListed: OriginBlock };
   /** Arrival section. */
-  arrival: { intro: LT; points: LT[] };
+  arrival: { intro: LT; points: ArrivalPoint[] };
   /** Round-trip: country classification + how to LEAVE the country with a dog (optional). */
   regime?: Regime;
   exit?: ExitBlock;

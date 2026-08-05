@@ -8,14 +8,18 @@ const { locale = "en", current = "", toIso, breedId, airlineId } = Astro.props a
 const fr = locale === "fr";
 const L = inlineT(locale);
 const base = locale === "en" ? "" : `/${locale}`;
-// La query string précède toujours l'ancre : après « # », tout est fragment et n'atteint
-// pas location.search, donc le paramètre serait perdu.
-const q = (pairs: [string, string | undefined][]) => {
+/* Les paramètres de pré-saisie vivent dans le DIÈSE et non dans la requête : un fragment n'est
+   pas envoyé au serveur et ne constitue pas une URL distincte pour un moteur de recherche. La
+   forme est « chemin#ancre?cle=valeur » ; `mdcfQuery`, posé dans Base.astro, les relit — et
+   continue de lire l'ancienne forme en « ? » pour les liens déjà indexés. */
+const q = (pairs: [string, string | undefined][], ancre = "") => {
   const s = pairs.filter(([, v]) => v).map(([k, v]) => `${k}=${encodeURIComponent(v as string)}`).join("&");
-  return s ? `?${s}` : "";
+  /* Sans ancre, pas de point d'interrogation : « #breed=x » et non « #?breed=x ». Les deux
+     sont relus pareil, mais la seconde forme est illisible et donne l'impression d'un bogue. */
+  return s ? (ancre ? `#${ancre}?${s}` : `#${s}`) : (ancre ? `#${ancre}` : "");
 };
 const tools = [
-  { key: "finder", icon: "✈", href: `${base}/${q([["to", toIso], ["breed", breedId], ["air", airlineId]])}#flight-finder`, label: L("Find a dog-friendly flight", "Rechercher un vol adapté", "Buscar un vuelo apto para perros") },
+  { key: "finder", icon: "✈", href: `${base}/${q([["to", toIso], ["breed", breedId], ["air", airlineId]], "flight-finder")}`, label: L("Find a dog-friendly flight", "Rechercher un vol adapté", "Buscar un vuelo apto para perros") },
   { key: "destinations", icon: "🌍", href: `${base}/tools/destinations/${q([["breed", breedId]])}`, label: L("Where can I take my dog", "Où partir avec mon chien", "Adónde puedo ir con mi perro") },
   { key: "heat", icon: "🌡", href: `${base}/tools/heat/${q([["breed", breedId]])}`, label: L("Summer heat risk", "Risque chaleur en soute", "Riesgo de calor en verano") },
   { key: "crate", icon: "📦", href: `${base}/tools/crate/${q([["breed", breedId], ["air", airlineId]])}`, label: L("Which crate size", "Quelle taille de cage", "Qué tamaño de jaula") },

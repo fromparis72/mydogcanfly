@@ -17,11 +17,19 @@ exit:
     pt: "Hong Kong é um país listado: não é preciso titulação antirrábica para voltar à UE — o AFCD certifica oficialmente a documentação sanitária em formato UE do seu cachorro."
   steps:
     - timing: window
+      scope: eu
       text:
         en: "The dog must be microchipped, rabies-vaccinated (at least 21 days after the primary shot) and examined by an approved vet; the AFCD then officially endorses the EU-format certificate, valid 10 days in the EU."
         fr: "Le chien doit être pucé, vacciné contre la rage (au moins 21 jours après la primo-vaccination) et examiné par un vétérinaire agréé ; l'AFCD vise ensuite officiellement le certificat au format UE, valable 10 jours dans l'UE."
         es: "El perro debe estar microchipado, vacunado contra la rabia (al menos 21 días tras la primovacunación) y examinado por un veterinario aprobado; luego el AFCD refrenda oficialmente el certificado en formato UE, válido 10 días en la UE."
         pt: "O cachorro precisa ter microchip, estar com a vacinação antirrábica em dia (pelo menos 21 dias depois da dose inicial) e ser examinado por um veterinário credenciado; em seguida o AFCD chancela oficialmente o certificado em formato UE, válido por 10 dias na UE."
+    - timing: window
+      scope: non_eu
+      text:
+        en: "The dog must be microchipped, rabies-vaccinated (at least 21 days after the primary shot) and examined by an approved vet; the AFCD then officially endorses the export certificate."
+        fr: "Le chien doit être pucé, vacciné contre la rage (au moins 21 jours après la primo-injection) et examiné par un vétérinaire agréé ; l'AFCD vise ensuite officiellement le certificat d'export."
+        es: "El perro debe tener microchip, vacuna antirrábica (al menos 21 días después de la primera dosis) y un examen de un veterinario autorizado; luego el AFCD valida oficialmente el certificado de exportación."
+        pt: "O cachorro precisa de microchip, vacinação antirrábica (no mínimo 21 dias após a primeira dose) e exame por um veterinário credenciado; depois o AFCD endossa oficialmente o certificado de exportação."
   onSiteNote:
     en: "For Finland, Ireland, Malta or Norway, dogs must be treated against tapeworm 24–120 hours before EU arrival."
     fr: "Pour la Finlande, l'Irlande, Malte ou la Norvège, les chiens doivent être traités contre le ténia 24 à 120 h avant l'arrivée dans l'UE."
@@ -216,7 +224,9 @@ requirements:
     ref: { en: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, Schedule 1", fr: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, annexe 1", es: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, anexo 1", pt: "Dangerous Dogs Regulation Cap. 167 sub. leg. D, Schedule 1" }
 
 origin:
+  scheme: own
   eu:
+    from: [au, fj, ie, jp, nz, gb, je, at, bh, bm, ca, cy, cz, fi, de, gu, it, lu, mt, no, pg, sc, sb, es, ch, tw, vu, bs, be, bn, ky, dk, fr, gi, is, jm, mv, mu, nc, pt, kr, sg, se, nl, us, vg, vi]
     title: { en: "Group I & II — no quarantine", fr: "Groupes I & II — sans quarantaine", es: "Grupos I y II — sin cuarentena", pt: "Grupos I e II — sem quarentena" }
     body:
       en: "From a Group I rabies-free place (Australia, New Zealand, United Kingdom, Ireland, Japan and others) or a Group II place (most of Europe, the United States, Canada and others), your dog is normally exempted from quarantine once the Special Permit conditions are met. You still need the permit, an animal health certificate on AFCD's form and full compliance with the permit terms. No rabies antibody test is required."
@@ -225,6 +235,7 @@ origin:
       pt: "Se você vem de um lugar do grupo I, livre de raiva (Austrália, Nova Zelândia, Reino Unido, Irlanda, Japão e outros), ou de um lugar do grupo II (a maior parte da Europa, os Estados Unidos, o Canadá e outros), o seu cachorro normalmente fica isento de quarentena, desde que as condições da Permissão Especial sejam cumpridas. Ainda assim, você precisa da permissão, de um atestado de saúde animal no formulário do AFCD e do cumprimento integral das condições da permissão. Não é exigido teste sorológico antirrábico."
     cls: ok
   listed:
+    from: [cn, hu, lt, mo, my, th]
     title: { en: "Group IIIA — antibody test + 30-day quarantine", fr: "Groupe IIIA — test d'anticorps + quarantaine de 30 jours", es: "Grupo IIIA — prueba de titulación + cuarentena de 30 días", pt: "Grupo IIIA — teste sorológico + quarentena de 30 dias" }
     body:
       en: "From a Group IIIA place (Chinese Mainland, Macao, Malaysia, Thailand, Hungary, Lithuania), your dog needs a microchip, rabies vaccination, other core vaccinations and a satisfactory rabies antibody test (RNATT ≥0.5 IU/ml) with blood drawn 90 days to 1 year before export. A quarantine space must be booked and a minimum 30-day quarantine served on arrival."
@@ -233,6 +244,7 @@ origin:
       pt: "Se você vem de um lugar do grupo IIIA (China continental, Macau, Malásia, Tailândia, Hungria, Lituânia), o seu cachorro precisa de microchip, vacinação antirrábica, das demais vacinas essenciais e de um teste sorológico antirrábico satisfatório (RNATT ≥0,5 UI/ml), com coleta de sangue de 90 dias a 1 ano antes da exportação. É preciso reservar uma vaga de quarentena e cumprir, na chegada, uma quarentena mínima de 30 dias."
     cls: warn
   nonListed:
+    from_except: [au, fj, ie, jp, nz, gb, je, at, bh, bm, ca, cy, cz, fi, de, gu, it, lu, mt, no, pg, sc, sb, es, ch, tw, vu, bs, be, bn, ky, dk, fr, gi, is, jm, mv, mu, nc, pt, kr, sg, se, nl, us, vg, vi, cn, hu, lt, mo, my, th]
     title: { en: "Group IIIB — 120-day quarantine", fr: "Groupe IIIB — quarantaine de 120 jours", es: "Grupo IIIB — cuarentena de 120 días", pt: "Grupo IIIB — quarentena de 120 dias" }
     body:
       en: "From any place not in Group I, II or IIIA, your dog needs a microchip, full core vaccinations and an animal health certificate, and must serve a minimum 120-day quarantine in an AFCD Animal Management Centre or a licensed centre at your expense. A quarantine space must be booked well in advance (up to 12 months) as places are limited."
@@ -252,11 +264,13 @@ arrival:
       fr: "Présente le permis spécial original (copie blanche) au bureau de l'AFCD à l'aéroport international de Hong Kong, avec les documents originaux de vaccination et de santé."
       es: "Presenta el permiso especial original (copia blanca) en la oficina del AFCD del Aeropuerto Internacional de Hong Kong, con los documentos originales de vacunación y de salud."
       pt: "Apresente a via original (cópia branca) da Permissão Especial no escritório do AFCD no Aeroporto Internacional de Hong Kong, junto com os documentos originais de vacinação e de saúde."
-    - en: "From Group I or II: your dog is normally released without quarantine once documents are verified."
+    - from: &hk_sans_quarantaine [au, fj, ie, jp, nz, gb, je, at, bh, bm, ca, cy, cz, fi, de, gu, it, lu, mt, no, pg, sc, sb, es, ch, tw, vu, bs, be, bn, ky, dk, fr, gi, is, jm, mv, mu, nc, pt, kr, sg, se, nl, us, vg, vi]
+      en: "From Group I or II: your dog is normally released without quarantine once documents are verified."
       fr: "Depuis le groupe I ou II : ton chien est normalement libéré sans quarantaine une fois les documents vérifiés."
       es: "Desde el grupo I o II: tu perro se libera normalmente sin cuarentena una vez verificados los documentos."
       pt: "Vindo dos grupos I ou II: normalmente o seu cachorro é liberado sem quarentena assim que os documentos são conferidos."
-    - en: "From Group IIIA or IIIB: AFCD staff escort your dog to the quarantine facility, and you arrange (and pay for) the transport and the 30-day or 120-day stay."
+    - from_except: *hk_sans_quarantaine
+      en: "From Group IIIA or IIIB: AFCD staff escort your dog to the quarantine facility, and you arrange (and pay for) the transport and the 30-day or 120-day stay."
       fr: "Depuis le groupe IIIA ou IIIB : le personnel de l'AFCD escorte ton chien jusqu'au centre de quarantaine, et tu organise (et paie) le transport et le séjour de 30 ou 120 jours."
       es: "Desde el grupo IIIA o IIIB: el personal del AFCD acompaña a tu perro hasta el centro de cuarentena, y tú organizas (y pagas) el transporte y la estancia de 30 o 120 días."
       pt: "Vindo dos grupos IIIA ou IIIB: a equipe do AFCD acompanha o seu cachorro até a instalação de quarentena, e você organiza (e paga) o transporte e a estadia de 30 ou 120 dias."
@@ -349,7 +363,7 @@ sources:
 
 seo:
   title: { en: "Hong Kong Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien à Hong Kong — Guide", es: "Requisitos de entrada de perros en Hong Kong — Guía de viaje", pt: "Requisitos de entrada de cachorros em Hong Kong — Guia" }
-  metaTitle: { en: "Traveling to Hong Kong With Your Dog: Entry Requirements (2026)", fr: "Voyager à Hong Kong avec ton chien : formalités (2026)", es: "Viajar a Hong Kong con tu perro: requisitos de entrada (2026)", pt: "Viajar para Hong Kong com seu cachorro: requisitos (2026)" }
+  metaTitle: { en: "Taking Your Dog to Hong Kong: Pet Travel Requirements 2026", fr: "Voyager à Hong Kong avec ton chien : formalités (2026)", es: "Viajar a Hong Kong con tu perro: requisitos de entrada (2026)", pt: "Viajar para Hong Kong com seu cachorro: requisitos (2026)" }
   metaDesc:
     en: "Official AFCD rules for bringing a dog into Hong Kong — Special Permit, country groups I/II/IIIA/IIIB, rabies antibody test and quarantine. Sourced and dated."
     fr: "Règles officielles AFCD pour un chien à Hong Kong — permis spécial, groupes I/II/IIIA/IIIB, test d'anticorps antirabiques et quarantaine. Sourcé et daté."

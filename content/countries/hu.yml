@@ -194,6 +194,7 @@ requirements:
     ref: { en: "Reg. (EC) 998/2003 / EU Reg. 576/2013; Nébih", fr: "Règl. (CE) 998/2003 / Règl. UE 576/2013 ; Nébih", es: "Regl. (CE) 998/2003 / Regl. UE 576/2013; Nébih", pt: "Regulamento (CE) 998/2003 / Regulamento UE 576/2013; Nébih" }
 
 origin:
+  scheme: eu
   eu:
     title: { en: "Simplified — EU pet passport", fr: "Simplifié — passeport européen", es: "Simplificado — pasaporte europeo", pt: "Simplificado — passaporte europeu para animais" }
     body:
@@ -226,11 +227,13 @@ arrival:
     es: "Lo que ocurre cuando tu perro llega a Hungría depende del lugar desde el que hayas volado."
     pt: "O que acontece quando o seu cachorro chega à Hungria depende do lugar de onde você voou."
   points:
-    - en: "From another EU country: no systematic border check — keep the EU pet passport with you."
+    - from: eu
+      en: "From another EU country: no systematic border check — keep the EU pet passport with you."
       fr: "Depuis un autre pays de l'UE : pas de contrôle systématique — garde le passeport européen sur toi."
       es: "Desde otro país de la UE: sin control fronterizo sistemático — lleva contigo el pasaporte europeo."
       pt: "De outro país da UE: sem controle de fronteira sistemático — leve o passaporte europeu com você."
-    - en: "From outside the EU: enter via a designated travellers' point of entry (Budapest Liszt Ferenc Airport has a veterinary border inspection post) and contact the competent authority for documentary and identity checks."
+    - from: non_eu
+      en: "From outside the EU: enter via a designated travellers' point of entry (Budapest Liszt Ferenc Airport has a veterinary border inspection post) and contact the competent authority for documentary and identity checks."
       fr: "Depuis hors UE : entre par un point d'entrée voyageurs désigné (l'aéroport Budapest Liszt Ferenc dispose d'un poste d'inspection vétérinaire) et contacte l'autorité compétente pour les contrôles documentaires et d'identité."
       es: "Desde fuera de la UE: entra por un punto de entrada de viajeros designado (el aeropuerto Budapest Liszt Ferenc cuenta con un puesto de inspección fronteriza veterinaria) y contacta con la autoridad competente para los controles documentales y de identidad."
       pt: "De fora da UE: entre por um ponto de entrada designado para viajantes (o aeroporto Budapest Liszt Ferenc tem um posto de inspeção veterinária de fronteira) e entre em contato com a autoridade competente para as conferências documental e de identidade."
@@ -327,7 +330,7 @@ sources:
 
 seo:
   title: { en: "Hungary Dog Entry Requirements — Travel Guide", fr: "Formalités d'entrée chien en Hongrie — Guide", es: "Requisitos de entrada de perros en Hungría — Guía de viaje", pt: "Entrada de cachorros na Hungria — Guia de viagem" }
-  metaTitle: { en: "Traveling to Hungary With Your Dog: Entry Requirements (2026)", fr: "Voyager en Hongrie avec ton chien : formalités (2026)", es: "Viajar a Hungría con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Hungria com seu cachorro: exigências (2026)" }
+  metaTitle: { en: "Taking Your Dog to Hungary: Pet Travel Requirements 2026", fr: "Voyager en Hongrie avec ton chien : formalités (2026)", es: "Viajar a Hungría con tu perro: requisitos de entrada (2026)", pt: "Viajar para a Hungria com seu cachorro: exigências (2026)" }
   metaDesc:
     en: "Official microchip, rabies and antibody-test rules for bringing a dog into Hungary — by EU, listed and non-listed origin. No breed ban. Sourced and dated."
     fr: "Règles officielles puce, rage et titrage pour faire entrer un chien en Hongrie — selon origine UE, listée ou non. Aucune interdiction de race. Sourcé et daté."
