@@ -1,0 +1,288 @@
+id: airline_asiana
+mono: OZ
+name: Asiana Airlines
+titleH1:
+  en: Flying with a dog on Asiana Airlines
+  fr: Voyager avec un chien sur Asiana Airlines
+  es: Volar con un perro en Asiana Airlines
+  pt: "Viajar com um cachorro na Asiana Airlines"
+metaDesc:
+  en: "Asiana Airlines pet policy: 7 kg in the cabin, 45 kg in the hold, fares by region, the flat-faced rule that applies to the hold only, and official sources."
+  fr: "Politique animaux Asiana Airlines : 7 kg en cabine, 45 kg en soute, tarifs par région, la règle brachycéphale qui ne vise que la soute, et sources officielles."
+  es: "Política de mascotas de Asiana Airlines: 7 kg en cabina, 45 kg en bodega, tarifas por región, la regla de hocico chato que solo afecta a la bodega y fuentes oficiales."
+  pt: "Política de animais da Asiana Airlines: 7 kg na cabine, 45 kg no porão, tarifas por região, a regra de focinho achatado que vale só para o porão e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 📍
+    label:
+      en: South Korea · ICN
+      fr: Corée du Sud · ICN
+      es: Corea del Sur · ICN
+      pt: "Coreia do Sul · ICN"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: Cabin and hold are both open with published sizes and a clear fare grid; the flat-faced ban applies to the hold only.
+  fr: Cabine et soute sont ouvertes, avec des cotes publiées et une grille tarifaire claire ; l'interdiction brachycéphale ne vise que la soute.
+  es: Cabina y bodega están abiertas, con medidas publicadas y una tarifa clara; la prohibición de hocico chato solo afecta a la bodega.
+  pt: "Cabine e porão estão abertos, com medidas publicadas e uma tabela de tarifas clara; a proibição de focinho achatado vale apenas para o porão."
+ladder:
+  - flex: 15
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 7 kg
+  - flex: 70
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 7–45 kg
+  - flex: 15
+    color: "#8a94a3"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: not published
+      fr: non publié
+      es: no publicado
+      pt: "não publicado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: One cat or dog, 7 kg carrier included, max 45 × 32 × 21 cm under the seat. A soft fabric bag may measure 26 cm high provided it compresses to 21 cm; rigid-frame crates stay capped at 21 cm. From 16 weeks, one pet per adult passenger. Book 24 h ahead on domestic flights, 48 h on international ones.
+      fr: Un chat ou un chien, 7 kg sac compris, 45 × 32 × 21 cm maximum sous le siège. Un sac en tissu peut faire 26 cm de haut s'il se comprime à 21 cm ; les cages à armature rigide restent plafonnées à 21 cm. À partir de 16 semaines, un animal par passager adulte. Réservation 24 h avant en domestique, 48 h en international.
+      es: Un gato o un perro, 7 kg con el transportín incluido, máximo 45 × 32 × 21 cm bajo el asiento. Un bolso de tela puede medir 26 cm de alto si se comprime hasta 21 cm; los transportines de armazón rígido siguen limitados a 21 cm. Desde las 16 semanas, un animal por pasajero adulto. Reserva con 24 h de antelación en vuelos nacionales y 48 h en internacionales.
+      pt: "Um gato ou cachorro, 7 kg com a bolsa incluída, no máximo 45 × 32 × 21 cm sob o assento. Uma bolsa de tecido pode ter 26 cm de altura se comprimir até 21 cm; caixas de estrutura rígida continuam limitadas a 21 cm. A partir de 16 semanas, um animal por passageiro adulto. Reserve com 24 h de antecedência em voos domésticos e 48 h nos internacionais."
+    fee:
+      en: KRW 30,000–290,000
+      fr: 30 000–290 000 KRW
+      es: 30 000–290 000 KRW
+      pt: "30.000–290.000 KRW"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Up to 45 kg crate included, three dimensions adding up to 285 cm or less and height 84 cm or less. Two animals in the hold per adult passenger. Not available on the A321 on international routes, nor on Air Busan codeshare flights. Flat-faced breeds are barred from the hold.
+      fr: Jusqu'à 45 kg caisse comprise, somme des trois dimensions ≤ 285 cm et hauteur ≤ 84 cm. Deux animaux en soute par passager adulte. Pas de soute animalière sur A321 en international, ni sur les vols en partage de code Air Busan. Les races brachycéphales sont exclues de la soute.
+      es: Hasta 45 kg con la jaula incluida, suma de las tres dimensiones ≤ 285 cm y altura ≤ 84 cm. Dos animales en bodega por pasajero adulto. No disponible en el A321 en rutas internacionales ni en los vuelos en código compartido con Air Busan. Las razas de hocico chato quedan excluidas de la bodega.
+      pt: "Até 45 kg com a caixa incluída, soma das três dimensões ≤ 285 cm e altura ≤ 84 cm. Dois animais no porão por passageiro adulto. Não disponível no A321 em rotas internacionais nem nos voos em code-share com a Air Busan. Raças de focinho achatado são proibidas no porão."
+    fee:
+      en: KRW 30,000–290,000 (double over 32 kg)
+      fr: 30 000–290 000 KRW (le double au-delà de 32 kg)
+      es: 30 000–290 000 KRW (el doble por encima de 32 kg)
+      pt: "30.000–290.000 KRW (o dobro acima de 32 kg)"
+fareList:
+  rows:
+    - label:
+        en: Domestic (South Korea)
+        fr: Domestique (Corée du Sud)
+        es: Nacional (Corea del Sur)
+        pt: "Doméstico (Coreia do Sul)"
+      value:
+        en: KRW 30,000
+        fr: 30 000 KRW
+        es: 30 000 KRW
+        pt: "30.000 KRW"
+    - label:
+        en: Japan & China
+        fr: Japon & Chine
+        es: Japón y China
+        pt: "Japão e China"
+      value:
+        en: KRW 140,000
+        fr: 140 000 KRW
+        es: 140 000 KRW
+        pt: "140.000 KRW"
+    - label:
+        en: Rest of Asia
+        fr: Reste de l'Asie
+        es: Resto de Asia
+        pt: "Restante da Ásia"
+      value:
+        en: KRW 210,000
+        fr: 210 000 KRW
+        es: 210 000 KRW
+        pt: "210.000 KRW"
+    - label:
+        en: Europe, United States, Oceania
+        fr: Europe, États-Unis, Océanie
+        es: Europa, Estados Unidos, Oceanía
+        pt: "Europa, Estados Unidos, Oceania"
+      value:
+        en: KRW 290,000 (USD 290)
+        fr: 290 000 KRW (290 USD)
+        es: 290 000 KRW (290 USD)
+        pt: "290.000 KRW (290 USD)"
+  note:
+    en: Per flight segment and per animal, carrier included. The fare doubles above 32 kg.
+    fr: Par segment de vol et par animal, contenant compris. Le tarif double au-delà de 32 kg.
+    es: Por segmento de vuelo y por animal, con el transportín incluido. La tarifa se duplica por encima de 32 kg.
+    pt: "Por trecho de voo e por animal, com a caixa incluída. A tarifa dobra acima de 32 kg."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin possible
+          fr: Cabine possible
+          es: Cabina posible
+          pt: "Cabine possível"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: Asiana has barred snub-nosed dogs and cats from the hold since 1 July 2019 and publishes the list of breeds by name. The ban is written for hold carriage only — the cabin rules set no breed condition, so a flat-faced dog that fits 7 kg and 45 × 32 × 21 cm can travel under the seat.
+      fr: "Asiana refuse les chiens et chats au nez écrasé en soute depuis le 1ᵉʳ juillet 2019 et publie la liste nominative des races. L'interdiction est explicitement circonscrite au transport en soute : les règles de cabine ne posent aucune condition de race, donc un brachycéphale qui tient dans 7 kg et 45 × 32 × 21 cm peut voyager sous le siège."
+      es: "Asiana no acepta perros ni gatos de hocico chato en bodega desde el 1 de julio de 2019 y publica la lista de razas por nombre. La prohibición está redactada solo para la bodega: las normas de cabina no imponen ninguna condición de raza, así que un braquicéfalo que quepa en 7 kg y 45 × 32 × 21 cm puede viajar bajo el asiento."
+      pt: "A Asiana proíbe cachorros e gatos de focinho achatado no porão desde 1º de julho de 2019 e publica a lista nominal das raças. A proibição vale explicitamente só para o transporte no porão: as regras da cabine não impõem nenhuma condição de raça, então um braquicefálico que caiba em 7 kg e 45 × 32 × 21 cm pode viajar sob o assento."
+  - icon: 🚫
+    title:
+      en: Dogs listed as dangerous
+      fr: Chiens dits dangereux
+      es: Perros considerados peligrosos
+      pt: "Cachorros classificados como perigosos"
+    pills:
+      - cls: warn
+        label:
+          en: Separate list
+          fr: Liste distincte
+          es: Lista aparte
+          pt: "Lista à parte"
+    note:
+      en: Asiana publishes a separate list of dogs classed as dangerous — Tosa, pit bull, American Staffordshire terrier, Rottweiler, Kangal, Ovcharka, American Bully, Cane Corso and wolfdogs — which also covers crosses of those breeds. Check your dog's status with Asiana before you book.
+      fr: "Asiana publie une liste distincte de chiens dits dangereux — Tosa, pit-bull, American Staffordshire terrier, Rottweiler, Kangal, Ovtcharka, American Bully, Cane Corso et chiens-loups — qui vise aussi leurs croisements. Fais confirmer le statut de ton chien par Asiana avant de réserver."
+      es: Asiana publica una lista aparte de perros considerados peligrosos — Tosa, pit bull, American Staffordshire terrier, Rottweiler, Kangal, Ovcharka, American Bully, Cane Corso y perros lobo — que incluye también sus cruces. Confirma con Asiana la situación de tu perro antes de reservar.
+      pt: "A Asiana publica uma lista à parte de cachorros classificados como perigosos — Tosa, pit bull, American Staffordshire terrier, Rottweiler, Kangal, Ovtcharka, American Bully, Cane Corso e cães-lobo — que abrange também os cruzamentos dessas raças. Confirme a situação do seu cachorro com a Asiana antes de reservar."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Asiana publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Asiana ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Asiana no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Asiana não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ℹ️
+    label:
+      en: Service dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: The Asiana pet page we checked doesn't cover assistance dogs — no conditions, fee or documents are published there. Ask Asiana directly before booking.
+      fr: "La page animaux d'Asiana que nous avons consultée ne traite pas des chiens d'assistance : ni conditions, ni tarif, ni documents n'y sont publiés. Demande directement à Asiana avant de réserver."
+      es: "La página de mascotas de Asiana que consultamos no aborda los perros de asistencia: no publica condiciones, tarifa ni documentos. Pregunta directamente a Asiana antes de reservar."
+      pt: "A página de animais da Asiana que consultamos não trata de cães de assistência: não há condições, tarifa nem documentos publicados ali. Pergunte diretamente à Asiana antes de reservar."
+goodToKnow:
+  - icon: 🛩️
+    label:
+      en: Aircraft & codeshare
+      fr: Appareil & partage de code
+      es: Avión y código compartido
+      pt: "Aeronave e code-share"
+    value:
+      en: The A321 carries no animals in the hold on international routes, and Air Busan codeshare flights offer no pet service at all.
+      fr: L'A321 ne prend aucun animal en soute sur les vols internationaux, et les vols en partage de code Air Busan n'offrent aucun service animalier.
+      es: El A321 no admite animales en bodega en rutas internacionales, y los vuelos en código compartido con Air Busan no ofrecen ningún servicio para mascotas.
+      pt: "O A321 não transporta animais no porão em rotas internacionais, e os voos em code-share com a Air Busan não oferecem nenhum serviço para animais."
+  - icon: 👤
+    label:
+      en: Who can travel with the pet
+      fr: Qui peut accompagner l'animal
+      es: Quién puede acompañar al animal
+      pt: "Quem pode acompanhar o animal"
+    value:
+      en: One animal in the cabin and two in the hold per adult passenger. A child may not travel with an animal in the cabin.
+      fr: Un animal en cabine et deux en soute par passager adulte. Un enfant ne peut pas voyager avec un animal en cabine.
+      es: Un animal en cabina y dos en bodega por pasajero adulto. Un menor no puede viajar con un animal en cabina.
+      pt: "Um animal na cabine e dois no porão por passageiro adulto. Uma criança não pode viajar com um animal na cabine."
+  - icon: 💺
+    label:
+      en: In Business class
+      fr: En Business
+      es: En Business
+      pt: "Na Business"
+    value:
+      en: Except on the A321, the carrier does not go under the seat in Business — the crew stows it elsewhere for take-off and landing.
+      fr: "Sauf sur A321, le sac ne se range pas sous le siège en Business : le PNC le place ailleurs au décollage et à l'atterrissage."
+      es: "Salvo en el A321, en Business el transportín no va bajo el asiento: la tripulación lo guarda en otro sitio para el despegue y el aterrizaje."
+      pt: "Exceto no A321, na Business a bolsa não fica sob o assento: a tripulação a guarda em outro lugar na decolagem e no pouso."
+  - icon: ❓
+    label:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    value:
+      en: Asiana publishes no per-flight cap on the number of animals, no cargo option for pets and no temperature limit.
+      fr: Asiana ne publie ni plafond d'animaux par vol, ni option fret pour les animaux, ni limite de température.
+      es: Asiana no publica un límite de animales por vuelo, ni una opción de carga para mascotas, ni límites de temperatura.
+      pt: "A Asiana não publica limite de animais por voo, nem opção de carga para animais, nem limite de temperatura."
+book:
+  host: flyasiana.com
+  url: https://flyasiana.com/
+sources:
+  en: 1 official Asiana source · last verified 5 August 2026
+  fr: 1 source officielle Asiana · dernière vérification 5 août 2026
+  es: 1 fuente oficial de Asiana · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da Asiana · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

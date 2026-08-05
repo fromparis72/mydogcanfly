@@ -1,0 +1,346 @@
+id: airline_royal_jordanian
+mono: RJ
+name: Royal Jordanian
+titleH1:
+  en: Flying with a dog on Royal Jordanian
+  fr: Voyager avec un chien sur Royal Jordanian
+  es: Volar con un perro en Royal Jordanian
+  pt: "Viajar com um cachorro na Royal Jordanian"
+metaDesc:
+  en: "Royal Jordanian pet policy: 7 kg in the cabin on flights up to 5 h, hold up to 45 kg, zone-by-zone fares in USD, breed list limited to the hold."
+  fr: "Politique animaux Royal Jordanian : 7 kg en cabine sur les vols de 5 h maximum, soute jusqu'à 45 kg, tarifs par zone en dollars, liste de races limitée à la soute."
+  es: "Política de mascotas de Royal Jordanian: 7 kg en cabina en vuelos de hasta 5 h, bodega hasta 45 kg, tarifas por zona en dólares, lista de razas limitada a la bodega."
+  pt: "Política de animais da Royal Jordanian: 7 kg na cabine em voos de até 5 h, porão até 45 kg, tarifas por zona em dólares, lista de raças restrita ao porão."
+chips:
+  - icon: 📍
+    label:
+      en: Jordan
+      fr: Jordanie
+      es: Jordania
+      pt: "Jordânia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 7 kg
+      fr: Cabine ≤ 7 kg
+      es: Cabina ≤ 7 kg
+      pt: "Cabine ≤ 7 kg"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open, but the cabin is Economy-only, capped at flights of 5 h and two animals per aircraft, and can only be booked by phone.
+  fr: Cabine et soute sont ouvertes, mais la cabine est réservée à l'Économique, plafonnée aux vols de 5 h et à deux animaux par avion, et ne se réserve que par téléphone.
+  es: Cabina y bodega están abiertas, pero la cabina es solo en Económica, se limita a vuelos de 5 h y a dos animales por avión, y solo se reserva por teléfono.
+  pt: "Cabine e porão estão abertos, mas a cabine é só na Econômica, limitada a voos de 5 h e a dois animais por avião, e só pode ser reservada por telefone."
+ladder:
+  - flex: 14
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 7 kg
+  - flex: 66
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 45 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Over 45 kg
+      fr: Plus de 45 kg
+      es: Más de 45 kg
+      pt: "Acima de 45 kg"
+    sub:
+      en: manual handling
+      fr: traitement manuel
+      es: manejo manual
+      pt: "tratamento manual"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: warn
+    statusLabel:
+      en: Under conditions
+      fr: Sous conditions
+      es: Con condiciones
+      pt: "Com condições"
+    detail:
+      en: 7 kg (15 lb) crate included, 50 × 40 × 26 cm, Economy class only, flights of 5 h maximum, two animals per flight (one forward, one aft). Book 48 h ahead through a travel agency or the call centre — never online. No first row and no bulkhead seats, since there is no stowage under the seat.
+      fr: 7 kg (15 lb) caisse comprise, 50 × 40 × 26 cm, classe Économique uniquement, vols de 5 h maximum, deux animaux par vol (un à l'avant, un à l'arrière). Réservation 48 h avant, par agence ou centre d'appels — jamais en ligne. Ni première rangée ni sièges cloison, faute de rangement sous le siège.
+      es: 7 kg (15 lb) con la jaula incluida, 50 × 40 × 26 cm, solo en clase Económica, vuelos de 5 h como máximo, dos animales por vuelo (uno delante, otro detrás). Reserva 48 h antes, por agencia o call center; nunca en línea. Ni primera fila ni asientos de mamparo, porque no hay hueco bajo el asiento.
+      pt: "7 kg (15 lb) com a caixa incluída, 50 × 40 × 26 cm, somente na classe Econômica, voos de no máximo 5 h, dois animais por voo (um na frente, outro atrás). Reserve 48 h antes, por agência ou call center — nunca on-line. Nem primeira fila nem assentos de divisória, porque não há espaço sob o assento."
+    fee:
+      en: USD 85–185
+      fr: 85–185 USD
+      es: 85–185 USD
+      pt: "85–185 USD"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs and cats, four crates maximum per aircraft, booked 48 h ahead. Three published sizes — up to 32 kg / 203 cm, 32–45 kg under 203 cm, and 32–45 kg between 203 and 250 cm. Above 45 kg the crate is handled manually, on request.
+      fr: Chiens et chats, quatre caisses maximum par appareil, réservation 48 h avant. Trois gabarits publiés — jusqu'à 32 kg / 203 cm, 32–45 kg sous 203 cm, et 32–45 kg entre 203 et 250 cm. Au-delà de 45 kg, la caisse passe en traitement manuel, sur demande.
+      es: "Perros y gatos, cuatro jaulas como máximo por avión, con reserva 48 h antes. Tres formatos publicados: hasta 32 kg / 203 cm, 32–45 kg por debajo de 203 cm y 32–45 kg entre 203 y 250 cm. Por encima de 45 kg, la jaula pasa a manejo manual, bajo petición."
+      pt: "Cachorros e gatos, no máximo quatro caixas por aeronave, com reserva 48 h antes. Três formatos publicados: até 32 kg / 203 cm, 32–45 kg abaixo de 203 cm e 32–45 kg entre 203 e 250 cm. Acima de 45 kg, a caixa passa a tratamento manual, mediante solicitação."
+    fee:
+      en: USD 175–800
+      fr: 175–800 USD
+      es: 175–800 USD
+      pt: "175–800 USD"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: Royal Jordanian publishes no cargo policy for animals — no conditions, no crate limits, no rates. Ask the cargo department directly for an unaccompanied pet.
+      fr: Royal Jordanian ne publie aucune politique fret pour les animaux — ni conditions, ni limites de caisse, ni tarifs. Pour un animal non accompagné, il faut interroger le service fret.
+      es: "Royal Jordanian no publica ninguna política de carga para animales: ni condiciones, ni límites de jaula, ni tarifas. Para una mascota no acompañada hay que preguntar al departamento de carga."
+      pt: "A Royal Jordanian não publica nenhuma política de carga para animais: nem condições, nem limites de caixa, nem tarifas. Para um animal desacompanhado, é preciso consultar o setor de carga."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Middle East
+        fr: Cabine — Moyen-Orient
+        es: Cabina — Oriente Medio
+        pt: "Cabine — Oriente Médio"
+      value:
+        en: USD 85
+        fr: 85 USD
+        es: 85 USD
+        pt: "85 USD"
+    - label:
+        en: Cabin — Europe 1 (Athens, Istanbul, Larnaca)
+        fr: Cabine — Europe 1 (Athènes, Istanbul, Larnaca)
+        es: Cabina — Europa 1 (Atenas, Estambul, Lárnaca)
+        pt: "Cabine — Europa 1 (Atenas, Istambul, Lárnaca)"
+      value:
+        en: USD 100
+        fr: 100 USD
+        es: 100 USD
+        pt: "100 USD"
+    - label:
+        en: Cabin — Europe 2
+        fr: Cabine — Europe 2
+        es: Cabina — Europa 2
+        pt: "Cabine — Europa 2"
+      value:
+        en: USD 180–185
+        fr: 180–185 USD
+        es: 180–185 USD
+        pt: "180–185 USD"
+    - label:
+        en: Hold — within the Middle East (small crate)
+        fr: Soute — intra-Moyen-Orient (petite caisse)
+        es: Bodega — dentro de Oriente Medio (jaula pequeña)
+        pt: "Porão — dentro do Oriente Médio (caixa pequena)"
+      value:
+        en: USD 175
+        fr: 175 USD
+        es: 175 USD
+        pt: "175 USD"
+    - label:
+        en: Hold — Europe (small crate)
+        fr: Soute — Europe (petite caisse)
+        es: Bodega — Europa (jaula pequeña)
+        pt: "Porão — Europa (caixa pequena)"
+      value:
+        en: USD 300
+        fr: 300 USD
+        es: 300 USD
+        pt: "300 USD"
+    - label:
+        en: Hold — United States (small crate)
+        fr: Soute — États-Unis (petite caisse)
+        es: Bodega — Estados Unidos (jaula pequeña)
+        pt: "Porão — Estados Unidos (caixa pequena)"
+      value:
+        en: USD 400
+        fr: 400 USD
+        es: 400 USD
+        pt: "400 USD"
+    - label:
+        en: Hold — large crate
+        fr: Soute — grande caisse
+        es: Bodega — jaula grande
+        pt: "Porão — caixa grande"
+      value:
+        en: up to USD 800
+        fr: jusqu'à 800 USD
+        es: hasta 800 USD
+        pt: "até 800 USD"
+  note:
+    en: US dollars, published in three zone tables — the most detailed fare grid of the sixteen airlines we surveyed. The hold fare depends on the crate size band.
+    fr: En dollars américains, publiés en trois tableaux de zones — la grille la plus détaillée des seize compagnies étudiées. Le tarif soute dépend du gabarit de la caisse.
+    es: "En dólares estadounidenses, publicados en tres tablas por zona: la tarifa más detallada de las dieciséis aerolíneas estudiadas. El precio de bodega depende del formato de la jaula."
+    pt: "Em dólares americanos, publicados em três tabelas por zona — a tabela mais detalhada das dezesseis companhias estudadas. A tarifa de porão depende do formato da caixa."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Restricted breeds
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin unaffected
+          fr: Cabine non concernée
+          es: Cabina no afectada
+          pt: "Cabine não afetada"
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Royal Jordanian publishes a list of 23 breeds and states explicitly that it applies to the hold only. Nothing in the policy bars a flat-faced dog under 7 kg from the cabin — so a small pug or Shih Tzu is a genuine option here, provided the flight is under 5 h."
+      fr: "Royal Jordanian publie une liste de 23 races et précise explicitement qu'elle ne vaut que pour la soute. Rien n'interdit un chien au nez écrasé de moins de 7 kg en cabine — un carlin ou un shih tzu de petit gabarit est donc une vraie option ici, à condition que le vol dure moins de 5 h."
+      es: "Royal Jordanian publica una lista de 23 razas y precisa de forma explícita que solo se aplica a la bodega. Nada impide que un perro de hocico chato de menos de 7 kg vaya en cabina: un carlino o un Shih Tzu pequeño es aquí una opción real, siempre que el vuelo dure menos de 5 h."
+      pt: "A Royal Jordanian publica uma lista de 23 raças e diz explicitamente que ela vale apenas para o porão. Nada impede que um cachorro de focinho achatado com menos de 7 kg viaje na cabine — um pug ou um Shih Tzu pequeno é, aqui, uma opção real, desde que o voo dure menos de 5 h."
+  - icon: 🐹
+    title:
+      en: Species accepted
+      fr: Espèces acceptées
+      es: Especies aceptadas
+      pt: "Espécies aceitas"
+    pills:
+      - cls: ok
+        label:
+          en: Dogs & cats
+          fr: Chiens & chats
+          es: Perros y gatos
+          pt: "Cachorros e gatos"
+      - cls: "no"
+        label:
+          en: No rodents
+          fr: Pas de rongeurs
+          es: Sin roedores
+          pt: "Sem roedores"
+    note:
+      en: Only dogs and cats are carried. Rodents are barred from every Royal Jordanian flight, in the cabin as in the hold.
+      fr: Seuls les chiens et les chats sont transportés. Les rongeurs sont interdits sur tous les vols Royal Jordanian, en cabine comme en soute.
+      es: Solo se transportan perros y gatos. Los roedores están prohibidos en todos los vuelos de Royal Jordanian, tanto en cabina como en bodega.
+      pt: "Somente cachorros e gatos são transportados. Roedores são proibidos em todos os voos da Royal Jordanian, tanto na cabine quanto no porão."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Royal Jordanian publishes no hold-temperature limits and no seasonal embargo on its pet page.
+    fr: Royal Jordanian ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux.
+    es: Royal Jordanian no publica límites de temperatura en bodega ni embargo estacional en su página de mascotas.
+    pt: "A Royal Jordanian não publica limites de temperatura no porão nem embargo sazonal em sua página sobre animais."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Not published. The pet page sets out no conditions, accepted certifications or fee waiver for assistance dogs — call the airline before booking.
+      fr: Non publié. La page animaux ne fixe ni conditions, ni certifications acceptées, ni gratuité pour les chiens d'assistance — appelle la compagnie avant de réserver.
+      es: No publicado. La página de mascotas no fija condiciones, certificaciones aceptadas ni exención de tarifa para perros de asistencia; llama a la aerolínea antes de reservar.
+      pt: "Não publicado. A página sobre animais não define condições, certificações aceitas nem isenção de tarifa para cães de assistência — ligue para a companhia antes de reservar."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: Two conflicting crate sizes
+      fr: Deux cotes de caisse contradictoires
+      es: Dos medidas de jaula contradictorias
+      pt: "Duas medidas de caixa contraditórias"
+    value:
+      en: "The same page gives the cabin crate twice: the conditions table says 50 (L) × 40 (W) × 26 (H) cm, the seating paragraph says 40 (L) × 50 (W) × 26 (H) cm. Same numbers, length and width swapped. We publish the table value and flag the ambiguity rather than pick a side — ask when you book."
+      fr: "La même page donne deux fois la caisse cabine : le tableau des conditions dit 50 (L) × 40 (l) × 26 (H) cm, le paragraphe sur le placement dit 40 (L) × 50 (l) × 26 (H) cm. Mêmes chiffres, longueur et largeur inversées. On publie la valeur du tableau et on signale l'ambiguïté plutôt que de trancher — pose la question à la réservation."
+      es: "La misma página da dos veces la jaula de cabina: la tabla de condiciones dice 50 (L) × 40 (An) × 26 (Al) cm y el párrafo sobre asientos dice 40 (L) × 50 (An) × 26 (Al) cm. Mismos números, con largo y ancho invertidos. Publicamos el valor de la tabla y señalamos la ambigüedad en lugar de decidir: pregúntalo al reservar."
+      pt: "A mesma página informa duas vezes a caixa de cabine: a tabela de condições diz 50 (C) × 40 (L) × 26 (A) cm e o parágrafo sobre assentos diz 40 (C) × 50 (L) × 26 (A) cm. Mesmos números, comprimento e largura invertidos. Publicamos o valor da tabela e sinalizamos a ambiguidade em vez de decidir — pergunte ao reservar."
+  - icon: 📞
+    label:
+      en: No online booking
+      fr: Pas de réservation en ligne
+      es: Sin reserva en línea
+      pt: "Sem reserva on-line"
+    value:
+      en: A pet cannot be added on the website. Everything goes through a travel agency or the call centre, 48 h before departure at the latest.
+      fr: On ne peut pas ajouter un animal sur le site. Tout passe par une agence de voyages ou le centre d'appels, 48 h avant le départ au plus tard.
+      es: No se puede añadir una mascota en la web. Todo pasa por una agencia de viajes o el call center, 48 h antes de la salida como máximo.
+      pt: "Não dá para incluir um animal pelo site. Tudo passa por uma agência de viagens ou pelo call center, 48 h antes da partida no máximo."
+  - icon: 📅
+    label:
+      en: Outdated notice on the page
+      fr: Mention périmée sur la page
+      es: Aviso caducado en la página
+      pt: "Aviso vencido na página"
+    value:
+      en: The policy page still carries a US CDC notice given as expiring on 31 July 2025. It is out of date — check the current entry rules for your destination, not that paragraph.
+      fr: La page policy porte encore une mention CDC américaine donnée comme expirant le 31 juillet 2025. Elle est périmée — vérifie les règles d'entrée en vigueur pour ta destination, pas ce paragraphe.
+      es: "La página de la política sigue mostrando un aviso de los CDC de EE. UU. con vencimiento el 31 de julio de 2025. Está caducado: consulta las normas de entrada vigentes en tu destino, no ese párrafo."
+      pt: "A página da política ainda traz um aviso do CDC dos EUA com validade até 31 de julho de 2025. Está desatualizado — consulte as regras de entrada vigentes no seu destino, não esse parágrafo."
+  - icon: 🕳️
+    label:
+      en: What is missing
+      fr: Ce qui manque
+      es: Lo que falta
+      pt: "O que falta"
+    value:
+      en: "Not published: minimum age, whether the cabin carrier must be soft or rigid, temperature thresholds, and how many animals one passenger may take in the cabin."
+      fr: "Non publiés : âge minimal, caractère souple ou rigide du sac cabine, seuils de température, et nombre d'animaux qu'un même passager peut emmener en cabine."
+      es: "No publicados: edad mínima, si el bolso de cabina debe ser blando o rígido, umbrales de temperatura y cuántos animales puede llevar un mismo pasajero en cabina."
+      pt: "Não publicados: idade mínima, se a bolsa de cabine deve ser maleável ou rígida, limites de temperatura e quantos animais um mesmo passageiro pode levar na cabine."
+book:
+  host: rj.com
+  url: https://www.rj.com/
+sources:
+  en: 1 official Royal Jordanian source · last verified 5 August 2026
+  fr: 1 source officielle Royal Jordanian · dernière vérification 5 août 2026
+  es: 1 fuente oficial de Royal Jordanian · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da Royal Jordanian · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

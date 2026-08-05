@@ -1,0 +1,325 @@
+id: airline_air_austral
+mono: UU
+name: Air Austral
+titleH1:
+  en: Flying with a dog on Air Austral
+  fr: Voyager avec un chien sur Air Austral
+  es: Volar con un perro en Air Austral
+  pt: "Viajar com um cachorro na Air Austral"
+metaDesc:
+  en: "Air Austral pet policy: under 8 kg in the cabin, up to 75 kg in the hold, five published crate sizes, capacity per aircraft, a flat €125 / €200 fare and official sources."
+  fr: "Politique animaux Air Austral : moins de 8 kg en cabine, jusqu'à 75 kg en soute, cinq gabarits de caisse publiés, capacités par appareil, tarif unique 125 € / 200 € et sources officielles."
+  es: "Política de mascotas de Air Austral: menos de 8 kg en cabina, hasta 75 kg en bodega, cinco tamaños de jaula publicados, capacidad por avión, tarifa única de 125 € / 200 € y fuentes oficiales."
+  pt: "Política de animais da Air Austral: menos de 8 kg na cabine, até 75 kg no porão, cinco tamanhos de caixa publicados, capacidade por aeronave, tarifa única de 125 € / 200 € e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Réunion · RUN
+      fr: La Réunion · RUN
+      es: Reunión · RUN
+      pt: "Reunião · RUN"
+  - icon: 🐶
+    label:
+      en: No flat-faced restriction
+      fr: Aucune restriction brachycéphale
+      es: Sin restricción para braquicéfalos
+      pt: "Sem restrição a braquicefálicos"
+    cls: ok
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: Cabin and hold are both open up to 75 kg with a single flat fare and published crate sizes; the one gap is that no cabin-bag dimension is published.
+  fr: Cabine et soute sont ouvertes jusqu'à 75 kg, avec un tarif unique et des gabarits de caisse publiés ; seul manque à l'appel, aucune cote de sac cabine n'est publiée.
+  es: Cabina y bodega están abiertas hasta 75 kg, con una tarifa única y tamaños de jaula publicados; lo único que falta son las medidas del bolso de cabina.
+  pt: "Cabine e porão estão abertos até 75 kg, com tarifa única e tamanhos de caixa publicados; a única lacuna é que nenhuma medida da bolsa de cabine é publicada."
+ladder:
+  - flex: 12
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: < 8 kg
+  - flex: 68
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 8–75 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub: "> 75 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "Cats and dogs strictly under 8 kg container included, in a soft zip-up bag or a small crate sized like cabin baggage. Air Austral publishes no figures for that bag: it points to \"the traditional cabin-baggage dimensions\" without giving them. Book 72 h ahead. Nine cabin places on the B777, five on the B787."
+      fr: "Chats et chiens de strictement moins de 8 kg contenant compris, dans un sac souple à fermeture éclair ou une cagette au gabarit du bagage cabine. Air Austral ne publie aucun chiffre pour ce sac : elle renvoie aux « dimensions traditionnelles du bagage cabine » sans les donner. Réservation 72 h avant. Neuf places en cabine sur B777, cinq sur B787."
+      es: "Gatos y perros de estrictamente menos de 8 kg con el contenedor incluido, en un bolso blando con cremallera o una jaulita del tamaño del equipaje de mano. Air Austral no publica ninguna medida para ese bolso: remite a «las dimensiones tradicionales del equipaje de mano» sin darlas. Reserva con 72 h de antelación. Nueve plazas en cabina en el B777, cinco en el B787."
+      pt: "Gatos e cachorros com estritamente menos de 8 kg, contêiner incluído, em bolsa maleável com zíper ou caixinha no tamanho da bagagem de mão. A Air Austral não publica nenhuma medida para essa bolsa: ela remete às \"dimensões tradicionais da bagagem de mão\" sem informá-las. Reserve com 72 h de antecedência. Nove lugares na cabine no B777, cinco no B787."
+    fee:
+      en: €125 one-way
+      fr: 125 € le trajet
+      es: 125 € por trayecto
+      pt: "125 € por trecho"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "From 8 kg and up to 75 kg crate included, in one of five published sizes: T-100 (54 × 41 × 39 cm, 7 kg) up to T-700 (121 × 81 × 90 cm, 55 kg). Nine crates on the B777, five on the B787; the A220 only takes T-100 to T-500."
+      fr: "À partir de 8 kg et jusqu'à 75 kg caisse comprise, dans l'un des cinq gabarits publiés : du T-100 (54 × 41 × 39 cm, 7 kg) au T-700 (121 × 81 × 90 cm, 55 kg). Neuf caisses sur B777, cinq sur B787 ; l'A220 n'accepte que du T-100 au T-500."
+      es: "Desde 8 kg y hasta 75 kg con la jaula incluida, en uno de los cinco tamaños publicados: del T-100 (54 × 41 × 39 cm, 7 kg) al T-700 (121 × 81 × 90 cm, 55 kg). Nueve jaulas en el B777, cinco en el B787; el A220 solo admite del T-100 al T-500."
+      pt: "A partir de 8 kg e até 75 kg com a caixa incluída, em um dos cinco tamanhos publicados: do T-100 (54 × 41 × 39 cm, 7 kg) ao T-700 (121 × 81 × 90 cm, 55 kg). Nove caixas no B777, cinco no B787; o A220 só aceita do T-100 ao T-500."
+    fee:
+      en: €200 one-way
+      fr: 200 € le trajet
+      es: 200 € por trayecto
+      pt: "200 € por trecho"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: Cargo is required above 75 kg and for any species other than cats and dogs. The same page also routes category 2 dogs to cargo on Réunion → Paris. No live animal leaves Paris in cargo.
+      fr: Le fret est obligatoire au-delà de 75 kg et pour toute espèce autre que le chat et le chien. La même page renvoie aussi les chiens de 2ᵉ catégorie au fret sur Réunion → Paris. Aucun animal vivant ne part de Paris en fret.
+      es: La carga es obligatoria por encima de 75 kg y para cualquier especie que no sea gato o perro. Esa misma página deriva también a carga los perros de 2ª categoría en Reunión → París. Ningún animal vivo sale de París en carga.
+      pt: "A carga é obrigatória acima de 75 kg e para qualquer espécie que não seja gato ou cachorro. A mesma página também encaminha para carga os cachorros de 2ª categoria em Reunião → Paris. Nenhum animal vivo parte de Paris como carga."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: €125 per one-way
+        fr: 125 € par trajet
+        es: 125 € por trayecto
+        pt: "125 € por trecho"
+    - label:
+        en: Hold
+        fr: Soute
+        es: Bodega
+        pt: "Porão"
+      value:
+        en: €200 per one-way
+        fr: 200 € par trajet
+        es: 200 € por trayecto
+        pt: "200 € por trecho"
+  note:
+    en: A single grid, all destinations — Air Austral charges the same whatever the route.
+    fr: Une grille unique, toutes destinations — Air Austral applique le même montant quel que soit le trajet.
+    es: Una tabla única, todos los destinos — Air Austral cobra lo mismo sea cual sea la ruta.
+    pt: "Uma tabela única, todos os destinos — a Air Austral cobra o mesmo valor em qualquer trecho."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Category 1 and 2 dogs
+      fr: Chiens de 1ʳᵉ et 2ᵉ catégories
+      es: Perros de 1ª y 2ª categoría
+      pt: "Cachorros de 1ª e 2ª categoria"
+    pills:
+      - cls: "no"
+        label:
+          en: Refused for carriage
+          fr: Refusés au transport
+          es: Rechazados para el transporte
+          pt: "Recusados no transporte"
+      - cls: "no"
+        label:
+          en: Prefectural waiver not accepted
+          fr: Dérogation préfectorale non acceptée
+          es: No vale la autorización prefectoral
+          pt: "Autorização prefeitural não aceita"
+    note:
+      en: "Air Austral refuses dogs in the French 1st and 2nd categories outright, even when the owner holds a prefectural authorisation — stricter than French law. One nuance to check with the airline: elsewhere the same page routes category 2 dogs to cargo on Réunion → Paris."
+      fr: "Air Austral refuse purement et simplement les chiens de 1ʳᵉ et 2ᵉ catégories, même avec une dérogation préfectorale — plus strict que la loi française. Une nuance à faire confirmer : ailleurs, la même page renvoie les chiens de 2ᵉ catégorie au fret sur Réunion → Paris."
+      es: "Air Austral rechaza sin más a los perros de 1ª y 2ª categoría francesas, incluso con autorización prefectoral — más estricto que la ley francesa. Un matiz que conviene confirmar: en otro punto, esa misma página deriva a carga los perros de 2ª categoría en Reunión → París."
+      pt: "A Air Austral recusa pura e simplesmente cachorros das 1ª e 2ª categorias francesas, mesmo com autorização prefeitural — mais rígido que a lei francesa. Uma nuance a confirmar: em outro trecho, a mesma página encaminha os cachorros de 2ª categoria para carga em Reunião → Paris."
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin allowed
+          fr: Cabine autorisée
+          es: Cabina permitida
+          pt: "Cabine permitida"
+      - cls: ok
+        label:
+          en: Hold allowed
+          fr: Soute autorisée
+          es: Bodega permitida
+          pt: "Porão permitido"
+    note:
+      en: "Air Austral publishes no brachycephalic restriction at all — neither in the cabin nor in the hold. The Boxer and the Bulldog are even used as worked examples in its hold-crate sizing table. That's unusual: most carriers bar snub-nosed dogs from the hold. Everything else being equal, a heat- and breathing-sensitive dog still deserves careful timing of the flight."
+      fr: "Air Austral ne publie aucune restriction brachycéphale — ni en cabine, ni en soute. Le Boxer et le Bouledogue sont même cités en exemple dans sa grille de caisses de soute. C'est rare : la plupart des compagnies excluent les chiens au nez écrasé de la soute. Cela dit, un chien sensible à la chaleur et à la respiration mérite quand même un vol choisi avec soin."
+      es: "Air Austral no publica ninguna restricción para braquicéfalos — ni en cabina ni en bodega. El Bóxer y el Bulldog aparecen incluso como ejemplos en su tabla de jaulas de bodega. Es poco habitual: la mayoría de aerolíneas excluye de la bodega a los perros de hocico chato. Aun así, con un perro sensible al calor y con dificultad respiratoria conviene elegir bien el horario del vuelo."
+      pt: "A Air Austral não publica nenhuma restrição a braquicefálicos — nem na cabine, nem no porão. O Boxer e o Buldogue aparecem inclusive como exemplos na tabela de caixas de porão. É raro: a maioria das companhias proíbe cachorros de focinho achatado no porão. Ainda assim, um cachorro sensível ao calor e com respiração difícil merece um voo escolhido com cuidado."
+crate:
+  - en: "Five published sizes: T-100 (54 × 41 × 39 cm, 7 kg) through to T-700 (121 × 81 × 90 cm, 55 kg)"
+    fr: "Cinq gabarits publiés : du T-100 (54 × 41 × 39 cm, 7 kg) au T-700 (121 × 81 × 90 cm, 55 kg)"
+    es: "Cinco tamaños publicados: del T-100 (54 × 41 × 39 cm, 7 kg) al T-700 (121 × 81 × 90 cm, 55 kg)"
+    pt: "Cinco tamanhos publicados: do T-100 (54 × 41 × 39 cm, 7 kg) ao T-700 (121 × 81 × 90 cm, 55 kg)"
+  - en: "Approved brands cited: Sky Kennel, Vari Kennel, Gulliver, Gateway"
+    fr: "Marques agréées citées : Sky Kennel, Vari Kennel, Gulliver, Gateway"
+    es: "Marcas homologadas citadas: Sky Kennel, Vari Kennel, Gulliver, Gateway"
+    pt: "Marcas aprovadas citadas: Sky Kennel, Vari Kennel, Gulliver, Gateway"
+  - en: Wicker, cardboard and wire-mesh crates are refused
+    fr: Caisses en osier, en carton ou en grillage refusées
+    es: Se rechazan las jaulas de mimbre, cartón o rejilla metálica
+    pt: "Caixas de vime, papelão ou tela metálica são recusadas"
+  - en: Top-opening crates are refused — the door must be on the side
+    fr: Caisses s'ouvrant par le dessus refusées — la porte doit être sur le côté
+    es: Se rechazan las jaulas que se abren por arriba — la puerta debe estar en un lateral
+    pt: "Caixas que abrem por cima são recusadas — a porta deve ficar na lateral"
+  - en: "Capacity: 9 crates on the B777, 5 on the B787, T-100 to T-500 only on the A220"
+    fr: "Capacité : 9 caisses sur B777, 5 sur B787, du T-100 au T-500 seulement sur A220"
+    es: "Capacidad: 9 jaulas en el B777, 5 en el B787, solo del T-100 al T-500 en el A220"
+    pt: "Capacidade: 9 caixas no B777, 5 no B787, apenas do T-100 ao T-500 no A220"
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Air Austral publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Air Austral ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Air Austral no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Air Austral não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ℹ️
+    label:
+      en: Service dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: The Air Austral pet page we checked says nothing about assistance dogs — no conditions, fee or documents are published there. Ask Air Austral directly before booking.
+      fr: "La page animaux d'Air Austral que nous avons consultée ne dit rien des chiens d'assistance : ni conditions, ni tarif, ni documents n'y sont publiés. Demande directement à Air Austral avant de réserver."
+      es: "La página de mascotas de Air Austral que consultamos no dice nada sobre los perros de asistencia: no publica condiciones, tarifa ni documentos. Pregunta directamente a Air Austral antes de reservar."
+      pt: "A página de animais da Air Austral que consultamos não diz nada sobre cães de assistência: não há condições, tarifa nem documentos publicados ali. Pergunte diretamente à Air Austral antes de reservar."
+goodToKnow:
+  - icon: 📏
+    label:
+      en: No cabin-bag dimensions published
+      fr: Aucune cote de sac cabine publiée
+      es: Sin medidas publicadas del bolso de cabina
+      pt: "Sem medidas publicadas da bolsa de cabine"
+    value:
+      en: "This is the one real gap in the policy: Air Austral gives a weight (under 8 kg) but no centimetres for the cabin bag, only a reference to \"the traditional cabin-baggage dimensions\". Get the exact figures confirmed when you book rather than guessing."
+      fr: "C'est le vrai trou de la politique : Air Austral donne un poids (moins de 8 kg) mais aucun centimètre pour le sac cabine, seulement un renvoi aux « dimensions traditionnelles du bagage cabine ». Fais-toi confirmer les cotes exactes à la réservation plutôt que de deviner."
+      es: "Este es el hueco real de la política: Air Austral da un peso (menos de 8 kg) pero ningún centímetro para el bolso de cabina, solo una remisión a «las dimensiones tradicionales del equipaje de mano». Pide que te confirmen las medidas exactas al reservar en vez de suponerlas."
+      pt: "Essa é a lacuna real da política: a Air Austral dá um peso (menos de 8 kg), mas nenhum centímetro para a bolsa de cabine, apenas uma remissão às \"dimensões tradicionais da bagagem de mão\". Peça a confirmação das medidas exatas na reserva em vez de adivinhar."
+  - icon: 🛩️
+    label:
+      en: Capacity by aircraft
+      fr: Capacités par appareil
+      es: Capacidad por avión
+      pt: "Capacidade por aeronave"
+    value:
+      en: Nine animals in the cabin and nine crates in the hold on the B777, five and five on the B787, and only crate sizes T-100 to T-500 on the A220. Few airlines publish this — it's what decides whether your flight is possible.
+      fr: Neuf animaux en cabine et neuf caisses en soute sur B777, cinq et cinq sur B787, et seulement les gabarits T-100 à T-500 sur A220. Peu de compagnies publient ce détail — c'est pourtant lui qui décide si le vol est faisable.
+      es: Nueve animales en cabina y nueve jaulas en bodega en el B777, cinco y cinco en el B787, y solo los tamaños T-100 a T-500 en el A220. Pocas aerolíneas publican este detalle — y es justo lo que decide si el vuelo es posible.
+      pt: "Nove animais na cabine e nove caixas no porão no B777, cinco e cinco no B787, e apenas os tamanhos T-100 a T-500 no A220. Poucas companhias publicam esse detalhe — e é ele que decide se o voo é viável."
+  - icon: 🔁
+    label:
+      en: Bangkok transit
+      fr: Transit Bangkok
+      es: Tránsito en Bangkok
+      pt: "Trânsito em Bangkok"
+    value:
+      en: With an animal on board, allow at least 4 hours of connection in Bangkok.
+      fr: Avec un animal, prévois au moins 4 h de correspondance à Bangkok.
+      es: Con un animal a bordo, calcula al menos 4 h de conexión en Bangkok.
+      pt: "Com um animal a bordo, reserve pelo menos 4 h de conexão em Bangkok."
+  - icon: 🚫
+    label:
+      en: No live animals in cargo out of Paris
+      fr: Aucun animal vivant en fret au départ de Paris
+      es: Ningún animal vivo en carga desde París
+      pt: "Nenhum animal vivo em carga saindo de Paris"
+    value:
+      en: Air Austral accepts no live animal in cargo on departures from Paris. If your dog needs the cargo route, that leg has to start somewhere else.
+      fr: Air Austral n'accepte aucun animal vivant en fret au départ de Paris. Si ton chien doit passer par le fret, ce tronçon doit partir d'ailleurs.
+      es: Air Austral no acepta ningún animal vivo en carga en las salidas desde París. Si tu perro necesita la vía de carga, ese tramo tiene que salir de otro sitio.
+      pt: "A Air Austral não aceita nenhum animal vivo em carga nas partidas de Paris. Se o seu cachorro precisa ir como carga, esse trecho tem de partir de outro lugar."
+  - icon: ❓
+    label:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    value:
+      en: Beyond the cabin-bag dimensions, Air Austral publishes no minimum age of its own, no temperature limit and no assistance-dog conditions.
+      fr: Outre les cotes du sac cabine, Air Austral ne publie ni âge minimal qui lui soit propre, ni limite de température, ni conditions pour les chiens d'assistance.
+      es: Además de las medidas del bolso de cabina, Air Austral no publica ninguna edad mínima propia, ni límite de temperatura, ni condiciones para perros de asistencia.
+      pt: "Além das medidas da bolsa de cabine, a Air Austral não publica idade mínima própria, nem limite de temperatura, nem condições para cães de assistência."
+book:
+  host: air-austral.com
+  url: https://www.air-austral.com/
+sources:
+  en: 1 official Air Austral source · last verified 5 August 2026
+  fr: 1 source officielle Air Austral · dernière vérification 5 août 2026
+  es: 1 fuente oficial de Air Austral · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da Air Austral · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

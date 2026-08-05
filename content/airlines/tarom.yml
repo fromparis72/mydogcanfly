@@ -1,0 +1,322 @@
+id: airline_tarom
+mono: RO
+name: TAROM
+titleH1:
+  en: Flying with a dog on TAROM
+  fr: Voyager avec un chien sur TAROM
+  es: Volar con un perro en TAROM
+  pt: "Viajar com um cachorro na TAROM"
+metaDesc:
+  en: "TAROM pet policy: 8 kg in the cabin, hold up to 75 kg but closed on the A320, three-zone fares in euros, flat-faced breeds allowed in the cabin only."
+  fr: "Politique animaux TAROM : 8 kg en cabine, soute jusqu'à 75 kg mais fermée sur A320, tarifs en euros par zone, brachycéphales acceptés en cabine uniquement."
+  es: "Política de mascotas de TAROM: 8 kg en cabina, bodega hasta 75 kg pero cerrada en el A320, tarifas en euros por zona, razas de hocico chato solo en cabina."
+  pt: "Política de animais da TAROM: 8 kg na cabine, porão até 75 kg mas fechado no A320, tarifas em euros por zona, raças de focinho achatado somente na cabine."
+chips:
+  - icon: 📍
+    label:
+      en: Romania
+      fr: Roumanie
+      es: Rumanía
+      pt: "Romênia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Clear zone fares and generous weight limits, but the hold is closed on the A320 and two official pages disagree about pets in the cabin on ATR aircraft.
+  fr: Tarifs par zone clairs et limites de poids généreuses, mais la soute est fermée sur A320 et deux pages officielles se contredisent sur les animaux en cabine sur ATR.
+  es: Tarifas por zona claras y límites de peso generosos, pero la bodega está cerrada en el A320 y dos páginas oficiales se contradicen sobre las mascotas en cabina en los ATR.
+  pt: "Tarifas por zona claras e limites de peso generosos, mas o porão está fechado no A320 e duas páginas oficiais se contradizem sobre animais na cabine nos ATR."
+ladder:
+  - flex: 12
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 58
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: 8–75 kg crate incl.
+      fr: 8–75 kg caisse comprise
+      es: 8–75 kg jaula incl.
+      pt: "8–75 kg com a caixa"
+  - flex: 30
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: dogs > 40 kg
+      fr: chiens > 40 kg
+      es: perros > 40 kg
+      pt: "cachorros > 40 kg"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: 8 kg cage included, 42 × 26 × 20 cm. Rigid cage or soft bag — but on ATR aircraft only soft bags are accepted. One cage per passenger; several animals may share it if they know each other and the total stays under 8 kg. Two cages per ATR 72, three per Boeing 737. The animal must fit entirely inside the carrier, tail included.
+      fr: 8 kg cage comprise, 42 × 26 × 20 cm. Cage rigide ou sac souple — mais sur ATR, seuls les sacs souples sont admis. Une seule cage par passager ; plusieurs animaux peuvent la partager s'ils se connaissent et si le total reste sous 8 kg. Deux cages par ATR 72, trois par Boeing 737. L'animal doit tenir entièrement dans le contenant, queue comprise.
+      es: 8 kg con la jaula incluida, 42 × 26 × 20 cm. Jaula rígida o bolso blando, pero en los ATR solo se admiten bolsos blandos. Una sola jaula por pasajero; varios animales pueden compartirla si se conocen y el total no supera los 8 kg. Dos jaulas por ATR 72, tres por Boeing 737. El animal debe caber por completo dentro del contenedor, con la cola incluida.
+      pt: "8 kg com a caixa incluída, 42 × 26 × 20 cm. Caixa rígida ou bolsa maleável — mas nos ATR só são aceitas bolsas maleáveis. Uma única caixa por passageiro; vários animais podem dividi-la se já se conhecem e se o total ficar abaixo de 8 kg. Duas caixas por ATR 72, três por Boeing 737. O animal precisa caber inteiro dentro do contêiner, rabo incluído."
+    fee:
+      en: €40 / €65 / €120 by zone
+      fr: 40 € / 65 € / 120 € selon la zone
+      es: 40 € / 65 € / 120 € según la zona
+      pt: "40 € / 65 € / 120 € conforme a zona"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: warn
+    statusLabel:
+      en: Not on the A320
+      fr: Sauf sur A320
+      es: Salvo en el A320
+      pt: "Exceto no A320"
+    detail:
+      en: Above 8 kg and up to 75 kg cage included, from 12 weeks old. Forbidden on the A320 — a common aircraft on this network. ATR 72 takes one crate of 71 × 50 × 51 cm, the Boeing 737 two crates of 122 × 82 × 84 cm. Book 48 h ahead, or 24 h through the call centre. The animal must not be sedated, and travels without leash or muzzle.
+      fr: Au-delà de 8 kg et jusqu'à 75 kg cage comprise, à partir de 12 semaines. Interdite sur A320 — un appareil pourtant courant sur ce réseau. L'ATR 72 prend une caisse de 71 × 50 × 51 cm, le Boeing 737 deux caisses de 122 × 82 × 84 cm. Réservation 48 h avant, ou 24 h par le centre d'appels. L'animal ne doit pas être tranquillisé, et voyage sans laisse ni muselière.
+      es: Por encima de 8 kg y hasta 75 kg con la jaula incluida, a partir de las 12 semanas. Prohibida en el A320, un avión habitual en esta red. El ATR 72 admite una jaula de 71 × 50 × 51 cm y el Boeing 737 dos jaulas de 122 × 82 × 84 cm. Reserva 48 h antes, o 24 h por el call center. El animal no debe ir sedado y viaja sin correa ni bozal.
+      pt: "Acima de 8 kg e até 75 kg com a caixa incluída, a partir de 12 semanas. Proibido no A320 — aeronave, aliás, comum nessa malha. O ATR 72 aceita uma caixa de 71 × 50 × 51 cm e o Boeing 737, duas caixas de 122 × 82 × 84 cm. Reserve 48 h antes, ou 24 h pelo call center. O animal não pode estar sedado e viaja sem coleira nem focinheira."
+    fee:
+      en: €60 / €110 / €220 by zone
+      fr: 60 € / 110 € / 220 € selon la zone
+      es: 60 € / 110 € / 220 € según la zona
+      pt: "60 € / 110 € / 220 € conforme a zona"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Compulsory in three cases
+      fr: Obligatoire dans trois cas
+      es: Obligatoria en tres casos
+      pt: "Obrigatória em três casos"
+    detail:
+      en: Cargo is the only route for any species other than dogs and cats, for dogs over 40 kg (crate with a solid wood frame), and once the number of crates allowed on the aircraft is used up.
+      fr: Le fret est la seule voie pour toute espèce autre que chien et chat, pour les chiens de plus de 40 kg (caisse à cadre en bois massif), et dès que le nombre de caisses admis dans l'avion est atteint.
+      es: La carga es la única vía para cualquier especie que no sea perro o gato, para los perros de más de 40 kg (jaula con marco de madera maciza) y en cuanto se agota el número de jaulas admitidas en el avión.
+      pt: "A carga é a única via para qualquer espécie que não seja cachorro ou gato, para cachorros acima de 40 kg (caixa com estrutura de madeira maciça) e assim que o número de caixas admitidas na aeronave se esgota."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareGrid:
+  headCabin:
+    en: Cabin
+    fr: Cabine
+    es: Cabina
+    pt: "Cabine"
+  headHold:
+    en: Hold
+    fr: Soute
+    es: Bodega
+    pt: "Porão"
+  rows:
+    - zone:
+        en: Zone 1 — domestic Romania
+        fr: Zone 1 — intérieur roumain
+        es: Zona 1 — doméstico Rumanía
+        pt: "Zona 1 — doméstico Romênia"
+      cabin: €40
+      hold: €60
+    - zone:
+        en: Zone 2 — Europe & Middle East
+        fr: Zone 2 — Europe et Moyen-Orient
+        es: Zona 2 — Europa y Oriente Medio
+        pt: "Zona 2 — Europa e Oriente Médio"
+      cabin: €65
+      hold: €110
+    - zone:
+        en: Zone 3 — rest of the world
+        fr: Zone 3 — reste du monde
+        es: Zona 3 — resto del mundo
+        pt: "Zona 3 — resto do mundo"
+      cabin: €120
+      hold: €220
+  note:
+    en: Three published zones, in euros. No cargo rate is published.
+    fr: Trois zones publiées, en euros. Aucun tarif fret n'est publié.
+    es: Tres zonas publicadas, en euros. No se publica ninguna tarifa de carga.
+    pt: "Três zonas publicadas, em euros. Nenhuma tarifa de carga é publicada."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin allowed
+          fr: Cabine autorisée
+          es: Cabina permitida
+          pt: "Cabine permitida"
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "Flat-faced breeds are barred from the hold on every flight — the list is published as a PDF. There is no flat-faced ban in the cabin: under 8 kg with the cage, a pug or a Shih Tzu travels with you in the seat row."
+      fr: "Les races brachycéphales sont interdites en soute sur tous les vols — la liste est publiée en PDF. Aucune interdiction brachycéphale en cabine : sous 8 kg avec la cage, un carlin ou un shih tzu voyage avec toi à ta place."
+      es: "Las razas braquicéfalas están prohibidas en bodega en todos los vuelos; la lista se publica en PDF. En cabina no hay ninguna prohibición braquicéfala: por debajo de 8 kg con la jaula, un carlino o un Shih Tzu viaja contigo en tu fila."
+      pt: "As raças braquicefálicas são proibidas no porão em todos os voos — a lista é publicada em PDF. Na cabine não há proibição braquicefálica: abaixo de 8 kg com a caixa, um pug ou um Shih Tzu viaja com você na sua fileira."
+  - icon: 🚫
+    title:
+      en: Banned breeds
+      fr: Races interdites
+      es: Razas prohibidas
+      pt: "Raças proibidas"
+    pills:
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+      - cls: "no"
+        label:
+          en: Assistance dogs too
+          fr: Chiens d'assistance aussi
+          es: También perros de asistencia
+          pt: "Cães de assistência também"
+    note:
+      en: TAROM publishes a separate list of banned breeds. It applies to the hold and, unusually, also to assistance dogs — being a certified assistance dog does not lift the breed ban.
+      fr: TAROM publie une liste distincte de races interdites. Elle s'applique à la soute et, fait rare, aussi aux chiens d'assistance — être un chien d'assistance certifié ne lève pas l'interdiction de race.
+      es: "TAROM publica una lista aparte de razas prohibidas. Se aplica a la bodega y, algo poco frecuente, también a los perros de asistencia: ser perro de asistencia certificado no levanta la prohibición por raza."
+      pt: "A TAROM publica uma lista separada de raças proibidas. Ela vale para o porão e, algo raro, também para cães de assistência — ser cão de assistência certificado não suspende a proibição por raça."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: TAROM publishes no hold-temperature limits and no seasonal embargo on its pet pages.
+    fr: TAROM ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: TAROM no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A TAROM não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs travel free in the cabin, with 48 h notice and form 4113.
+      fr: Les chiens d'assistance voyagent gratuitement en cabine, avec un préavis de 48 h et le formulaire 4113.
+      es: Los perros de asistencia viajan gratis en cabina, con 48 h de preaviso y el formulario 4113.
+      pt: "Cães de assistência viajam grátis na cabine, com aviso de 48 h e o formulário 4113."
+  - icon: 🚫
+    label:
+      en: Emotional support
+      fr: Soutien émotionnel
+      es: Apoyo emocional
+      pt: "Apoio emocional"
+    value:
+      en: Emotional support and psychiatric assistance animals are refused. Only trained assistance dogs qualify, and the banned-breed list still applies to them.
+      fr: Les animaux de soutien émotionnel et d'assistance psychiatrique sont refusés. Seuls les chiens d'assistance dressés sont admis, et la liste des races interdites leur reste applicable.
+      es: Los animales de apoyo emocional y de asistencia psiquiátrica son rechazados. Solo se admiten perros de asistencia adiestrados, y la lista de razas prohibidas les sigue aplicando.
+      pt: "Animais de apoio emocional e de assistência psiquiátrica são recusados. Só cães de assistência treinados são aceitos, e a lista de raças proibidas continua valendo para eles."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: Two pages disagree on the ATR
+      fr: Deux pages se contredisent sur l'ATR
+      es: Dos páginas se contradicen sobre el ATR
+      pt: "Duas páginas se contradizem sobre o ATR"
+    value:
+      en: "The cabin page says the ATR 72 takes two cages in the cabin; the fares page says these animals cannot be carried on ATR aircraft at all. We publish the cabin-page figure and flag the conflict rather than arbitrate — note that the fares page is the more recently rebuilt of the two. Confirm with TAROM if your flight is on an ATR."
+      fr: "La page cabine indique que l'ATR 72 accepte deux cages en cabine ; la page tarifaire indique que ces animaux ne peuvent pas être transportés sur les avions de type ATR. On publie le chiffre de la page cabine et on signale le conflit plutôt que de trancher — sachant que la page tarifaire est la plus récemment reconstruite des deux. Fais confirmer par TAROM si ton vol est sur ATR."
+      es: "La página de cabina dice que el ATR 72 admite dos jaulas en cabina; la página de tarifas dice que esos animales no pueden transportarse en aviones de tipo ATR. Publicamos la cifra de la página de cabina y señalamos el conflicto en lugar de arbitrar, teniendo en cuenta que la página de tarifas es la más recientemente rehecha de las dos. Confírmalo con TAROM si tu vuelo es en ATR."
+      pt: "A página da cabine diz que o ATR 72 aceita duas caixas na cabine; a página de tarifas diz que esses animais não podem ser transportados em aeronaves do tipo ATR. Publicamos o número da página da cabine e sinalizamos o conflito em vez de arbitrar — lembrando que a página de tarifas é a mais recentemente reconstruída das duas. Confirme com a TAROM se o seu voo for em ATR."
+  - icon: 🛩️
+    label:
+      en: No hold on the A320
+      fr: Pas de soute sur A320
+      es: Sin bodega en el A320
+      pt: "Sem porão no A320"
+    value:
+      en: The hold is closed to animals on the A320, a common aircraft on this network. Check the aircraft type before you book, not just the route.
+      fr: La soute est fermée aux animaux sur A320, un appareil courant sur ce réseau. Vérifie le type d'avion avant de réserver, pas seulement la route.
+      es: La bodega está cerrada a los animales en el A320, un avión habitual en esta red. Comprueba el tipo de avión antes de reservar, no solo la ruta.
+      pt: "O porão está fechado para animais no A320, uma aeronave comum nessa malha. Confira o tipo de aeronave antes de reservar, não só a rota."
+  - icon: 👤
+    label:
+      en: Accompanying passenger
+      fr: Passager accompagnant
+      es: Pasajero acompañante
+      pt: "Passageiro acompanhante"
+    value:
+      en: The cabin is refused if the accompanying passenger is an unaccompanied minor, an infant under 2, or a wheelchair user.
+      fr: La cabine est refusée si le passager accompagnant est un mineur non accompagné, un bébé de moins de 2 ans, ou un passager en fauteuil roulant.
+      es: Se rechaza la cabina si el pasajero acompañante es un menor no acompañado, un bebé de menos de 2 años o un pasajero en silla de ruedas.
+      pt: "A cabine é recusada se o passageiro acompanhante for um menor desacompanhado, um bebê com menos de 2 anos ou um passageiro em cadeira de rodas."
+  - icon: 🕳️
+    label:
+      en: What is missing
+      fr: Ce qui manque
+      es: Lo que falta
+      pt: "O que falta"
+    value:
+      en: "Not published: minimum age for the cabin, temperature thresholds, cargo rates, and any list of closed destinations — the UK/UAE restriction reported in the press appears on no TAROM page."
+      fr: "Non publiés : âge minimal en cabine, seuils de température, tarifs fret, et toute liste de destinations fermées — la restriction Royaume-Uni/Émirats qui circule dans la presse n'apparaît sur aucune page TAROM."
+      es: "No publicados: edad mínima en cabina, umbrales de temperatura, tarifas de carga ni lista alguna de destinos cerrados; la restricción Reino Unido/Emiratos que circula en la prensa no aparece en ninguna página de TAROM."
+      pt: "Não publicados: idade mínima na cabine, limites de temperatura, tarifas de carga e qualquer lista de destinos fechados — a restrição Reino Unido/Emirados que circula na imprensa não aparece em nenhuma página da TAROM."
+book:
+  host: tarom.ro
+  url: https://www.tarom.ro/
+sources:
+  en: 2 official TAROM pages · last verified 5 August 2026
+  fr: 2 pages officielles TAROM · dernière vérification 5 août 2026
+  es: 2 páginas oficiales de TAROM · última verificación 5 de agosto de 2026
+  pt: "2 páginas oficiais da TAROM · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

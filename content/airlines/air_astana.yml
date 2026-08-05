@@ -1,0 +1,292 @@
+id: airline_air_astana
+mono: KC
+name: Air Astana
+titleH1:
+  en: Flying with a dog on Air Astana
+  fr: Voyager avec un chien sur Air Astana
+  es: Volar con un perro en Air Astana
+  pt: "Viajar com um cachorro na Air Astana"
+metaDesc:
+  en: "Air Astana pet policy: a cabin carrier size that changes with your class, 50 kg in the hold, flat-faced dogs allowed in the cabin but not the hold, closed routes and official sources."
+  fr: "Politique animaux Air Astana : des cotes de sac cabine qui changent selon la classe, 50 kg en soute, brachycéphales admis en cabine mais pas en soute, routes fermées et sources officielles."
+  es: "Política de mascotas de Air Astana: medidas del bolso de cabina según la clase, 50 kg en bodega, braquicéfalos admitidos en cabina pero no en bodega, rutas cerradas y fuentes oficiales."
+  pt: "Política de animais da Air Astana: medidas da bolsa de cabine que mudam conforme a classe, 50 kg no porão, braquicefálicos aceitos na cabine mas não no porão, rotas fechadas e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Kazakhstan · ALA · NQZ
+      fr: Kazakhstan · ALA · NQZ
+      es: Kazajistán · ALA · NQZ
+      pt: "Cazaquistão · ALA · NQZ"
+  - icon: 🎒
+    label:
+      en: Carrier size depends on your class
+      fr: Cotes du sac selon la classe
+      es: Medidas del bolso según la clase
+      pt: "Medidas da bolsa conforme a classe"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Restricted
+    fr: Restreint
+    es: Restringido
+    pt: "Restrito"
+verdictNote:
+  en: Cabin and hold are both open, but the carrier size changes with your class, several destinations are cargo-only or closed, and no fare is published.
+  fr: Cabine et soute sont ouvertes, mais les cotes du sac changent selon la classe, plusieurs destinations passent en fret ou sont fermées, et aucun tarif n'est publié.
+  es: Cabina y bodega están abiertas, pero las medidas del bolso cambian según la clase, varios destinos son solo carga o están cerrados y no se publica ninguna tarifa.
+  pt: "Cabine e porão estão abertos, mas as medidas da bolsa mudam conforme a classe, vários destinos são só carga ou estão fechados e nenhuma tarifa é publicada."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 64
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 8–50 kg
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: UK · IE · ZA · AU · AE
+      fr: R.-U. · Irl. · Afr. du S. · Austr. · É.A.U.
+      es: R.U. · Irl. · Sudáfrica · Austr. · EAU
+      pt: "R.U. · Irl. · Áfr. do Sul · Austr. · EAU"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "Cats, small dogs, tortoises and land snails, 8 kg (17 lb) container included. The carrier size depends on your class: 26 × 40 × 20 cm in Business, 30 × 47 × 27 cm in Economy. Window seats only. Puppies from 8 weeks within Kazakhstan. Book 24 h ahead."
+      fr: "Chats, petits chiens, tortues et escargots terrestres, 8 kg (17 lb) contenant compris. Les cotes du sac dépendent de la classe : 26 × 40 × 20 cm en Affaires, 30 × 47 × 27 cm en Économique. Sièges hublot uniquement. Chiots dès 8 semaines à l'intérieur du Kazakhstan. Réservation 24 h avant."
+      es: "Gatos, perros pequeños, tortugas y caracoles terrestres, 8 kg (17 lb) con el contenedor incluido. Las medidas del bolso dependen de la clase: 26 × 40 × 20 cm en Business, 30 × 47 × 27 cm en Economy. Solo asientos de ventanilla. Cachorros desde las 8 semanas dentro de Kazajistán. Reserva con 24 h de antelación."
+      pt: "Gatos, cachorros pequenos, tartarugas e caracóis terrestres, 8 kg (17 lb) com o contêiner incluído. As medidas da bolsa dependem da classe: 26 × 40 × 20 cm na Executiva, 30 × 47 × 27 cm na Econômica. Somente assentos de janela. Filhotes a partir de 8 semanas dentro do Cazaquistão. Reserve com 24 h de antecedência."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Up to 50 kg crate included, from 3 months old, two animals in the hold per flight. Above 40 kg the crate must be made of sturdy wood. Flat-faced breeds are barred from the hold. A 385 AED airport fee applies on departure from Dubai.
+      fr: Jusqu'à 50 kg caisse comprise, à partir de 3 mois, deux animaux en soute par vol. Au-delà de 40 kg, la caisse doit être en bois robuste. Les races brachycéphales sont exclues de la soute. Frais aéroportuaires de 385 AED au départ de Dubaï.
+      es: Hasta 50 kg con la jaula incluida, desde los 3 meses, dos animales en bodega por vuelo. Por encima de 40 kg la jaula debe ser de madera resistente. Las razas de hocico chato quedan excluidas de la bodega. Tasa aeroportuaria de 385 AED en las salidas desde Dubái.
+      pt: "Até 50 kg com a caixa incluída, a partir de 3 meses, dois animais no porão por voo. Acima de 40 kg, a caixa deve ser de madeira resistente. Raças de focinho achatado são proibidas no porão. Taxa aeroportuária de 385 AED nas partidas de Dubai."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Mandatory on some routes
+      fr: Obligatoire sur certaines routes
+      es: Obligatorio en algunas rutas
+      pt: "Obrigatório em algumas rotas"
+    detail:
+      en: Cargo is the only option to the United Kingdom, Ireland, South Africa, Australia and the United Arab Emirates — neither cabin nor hold is available on those routes.
+      fr: "Le fret est la seule option vers le Royaume-Uni, l'Irlande, l'Afrique du Sud, l'Australie et les Émirats arabes unis : ni cabine ni soute sur ces routes."
+      es: "La carga es la única opción hacia el Reino Unido, Irlanda, Sudáfrica, Australia y los Emiratos Árabes Unidos: ni cabina ni bodega en esas rutas."
+      pt: "A carga é a única opção para o Reino Unido, a Irlanda, a África do Sul, a Austrália e os Emirados Árabes Unidos: nem cabine nem porão nessas rotas."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin allowed
+          fr: Cabine autorisée
+          es: Cabina permitida
+          pt: "Cabine permitida"
+      - cls: no
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+      - cls: warn
+        label:
+          en: Breed list not published
+          fr: Liste des races non publiée
+          es: Lista de razas no publicada
+          pt: "Lista de raças não publicada"
+    note:
+      en: "Air Astana turns the usual rule around: snub-nosed dogs and cats are accepted in the cabin and refused in the hold, and it explains why — pressure, temperature and air circulation in the hold are what these animals cope with badly, not the flight itself. The list of breeds concerned is not published; it is confirmed when you book. Careful: the list of breeds shown on the same page is there for Cypriot import rules and is not Air Astana's own policy."
+      fr: "Air Astana inverse la règle habituelle : les chiens et chats au nez écrasé sont acceptés en cabine et refusés en soute, avec une justification publiée — c'est la soute (pression, température, circulation d'air) qui pose problème, pas le vol. La liste des races concernées n'est pas publiée ; elle est confirmée à la réservation. Attention : la liste de races qui figure sur la même page relève des règles d'importation chypriotes, pas de la politique d'Air Astana."
+      es: "Air Astana invierte la regla habitual: los perros y gatos de hocico chato se aceptan en cabina y se rechazan en bodega, con una justificación publicada — el problema es la bodega (presión, temperatura, circulación del aire), no el vuelo. La lista de razas afectadas no está publicada; se confirma al reservar. Ojo: la lista de razas que aparece en esa misma página corresponde a las normas de importación de Chipre, no a la política de Air Astana."
+      pt: "A Air Astana inverte a regra habitual: cachorros e gatos de focinho achatado são aceitos na cabine e recusados no porão, com uma justificativa publicada — o problema é o porão (pressão, temperatura, circulação de ar), não o voo em si. A lista das raças afetadas não é publicada; ela é confirmada no momento da reserva. Atenção: a lista de raças que aparece na mesma página refere-se às regras de importação do Chipre, não à política da Air Astana."
+  - icon: 🌍
+    title:
+      en: Closed and cargo-only destinations
+      fr: Destinations fermées ou en fret
+      es: Destinos cerrados o solo carga
+      pt: "Destinos fechados ou só carga"
+    pills:
+      - cls: "no"
+        label:
+          en: Frankfurt suspended
+          fr: Francfort suspendu
+          es: Fráncfort suspendido
+          pt: "Frankfurt suspenso"
+      - cls: "no"
+        label:
+          en: "Malé: no dogs"
+          fr: "Malé : pas de chiens"
+          es: "Malé: sin perros"
+          pt: "Malé: sem cachorros"
+      - cls: warn
+        label:
+          en: "Sharm el-Sheikh: 1 pet/flight"
+          fr: "Charm el-Cheikh : 1 animal/vol"
+          es: "Sharm el-Sheij: 1 animal/vuelo"
+          pt: "Sharm el-Sheikh: 1 animal/voo"
+    note:
+      en: Animal transport to Frankfurt is suspended, in the cabin as in the hold. Dogs are not carried to Malé. Sharm el-Sheikh takes one animal per flight. And the United Kingdom, Ireland, South Africa, Australia and the United Arab Emirates can only be reached through cargo.
+      fr: Le transport d'animaux vers Francfort est suspendu, en cabine comme en soute. Les chiens ne sont pas transportés vers Malé. Charm el-Cheikh n'accepte qu'un animal par vol. Et le Royaume-Uni, l'Irlande, l'Afrique du Sud, l'Australie et les Émirats arabes unis ne sont accessibles qu'en fret.
+      es: El transporte de animales a Fráncfort está suspendido, tanto en cabina como en bodega. No se llevan perros a Malé. Sharm el-Sheij admite un animal por vuelo. Y el Reino Unido, Irlanda, Sudáfrica, Australia y los Emiratos Árabes Unidos solo son accesibles por carga.
+      pt: "O transporte de animais para Frankfurt está suspenso, tanto na cabine quanto no porão. Cachorros não são levados para Malé. Sharm el-Sheikh aceita um animal por voo. E o Reino Unido, a Irlanda, a África do Sul, a Austrália e os Emirados Árabes Unidos só podem ser atendidos por carga."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Air Astana publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Air Astana ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Air Astana no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Air Astana não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs travel free in the cabin, muzzled and on a lead, seated in the rear rows. Air Astana sets no cap on how many fly on a given flight.
+      fr: Les chiens d'assistance voyagent gratuitement en cabine, muselés et en laisse, dans les rangées arrière. Air Astana ne fixe aucune limite de nombre par vol.
+      es: Los perros de asistencia viajan gratis en cabina, con bozal y correa, en las filas traseras. Air Astana no fija ningún límite por vuelo.
+      pt: "Cães de assistência viajam grátis na cabine, com focinheira e coleira, nas fileiras traseiras. A Air Astana não fixa limite de quantidade por voo."
+  - icon: 🚫
+    label:
+      en: London exception
+      fr: Exception Londres
+      es: Excepción Londres
+      pt: "Exceção Londres"
+    value:
+      en: Assistance dogs are not carried on flights to London.
+      fr: Les chiens d'assistance ne sont pas transportés sur les vols vers Londres.
+      es: Los perros de asistencia no se transportan en los vuelos a Londres.
+      pt: "Cães de assistência não são transportados nos voos para Londres."
+goodToKnow:
+  - icon: ⬆️
+    label:
+      en: The upgrade trap
+      fr: Le piège du surclassement
+      es: La trampa del ascenso de clase
+      pt: "A armadilha do upgrade"
+    value:
+      en: "Because the Business carrier is smaller than the Economy one, an upgrade is refused if your bag is over 26 × 40 × 20 cm. If you might change class, size the bag for Business."
+      fr: "Comme le sac Affaires est plus petit que le sac Économique, un surclassement est refusé si ton sac dépasse 26 × 40 × 20 cm. Si tu peux changer de classe, dimensionne le sac pour l'Affaires."
+      es: "Como el bolso de Business es más pequeño que el de Economy, un ascenso de clase se rechaza si tu bolso supera 26 × 40 × 20 cm. Si podrías cambiar de clase, elige la medida de Business."
+      pt: "Como a bolsa da Executiva é menor que a da Econômica, um upgrade é recusado se a sua bolsa passar de 26 × 40 × 20 cm. Se houver chance de mudar de classe, dimensione a bolsa pela Executiva."
+  - icon: 🎫
+    label:
+      en: Per-flight caps
+      fr: Plafonds par vol
+      es: Límites por vuelo
+      pt: "Limites por voo"
+    value:
+      en: One animal in Business, four in Economy and two in the hold — on every aircraft type except the A321 registered EI-KDI.
+      fr: Un animal en Affaires, quatre en Économique et deux en soute — sur tous les types d'appareils sauf l'A321 immatriculé EI-KDI.
+      es: Un animal en Business, cuatro en Economy y dos en bodega — en todos los tipos de avión salvo el A321 matriculado EI-KDI.
+      pt: "Um animal na Executiva, quatro na Econômica e dois no porão — em todos os tipos de aeronave, exceto o A321 de matrícula EI-KDI."
+  - icon: 💶
+    label:
+      en: Fares are quoted, not published
+      fr: Tarifs calculés, pas publiés
+      es: Tarifas calculadas, no publicadas
+      pt: "Tarifas calculadas, não publicadas"
+    value:
+      en: Air Astana has no printed fare grid — a dynamic calculator prices each city pair, so the amount depends on your route. Get the quote before you commit.
+      fr: "Air Astana ne publie aucune grille tarifaire : un calculateur dynamique chiffre chaque paire de villes, donc le montant dépend de ton trajet. Fais établir le devis avant de t'engager."
+      es: "Air Astana no publica ninguna tabla de tarifas: una calculadora dinámica fija el precio para cada par de ciudades, así que el importe depende de tu ruta. Pide el importe antes de comprometerte."
+      pt: "A Air Astana não publica nenhuma tabela de tarifas: uma calculadora dinâmica precifica cada par de cidades, então o valor depende do seu trecho. Peça o valor antes de fechar."
+  - icon: 📦
+    label:
+      en: Crate & age
+      fr: Caisse & âge
+      es: Jaula y edad
+      pt: "Caixa e idade"
+    value:
+      en: Hold animals must be at least 3 months old, and any animal over 40 kg needs a sturdy wooden crate. In the cabin, puppies are accepted from 8 weeks within Kazakhstan.
+      fr: Les animaux en soute doivent avoir au moins 3 mois, et au-delà de 40 kg il faut une caisse en bois robuste. En cabine, les chiots sont acceptés dès 8 semaines à l'intérieur du Kazakhstan.
+      es: Los animales en bodega deben tener al menos 3 meses, y por encima de 40 kg hace falta una jaula de madera resistente. En cabina se aceptan cachorros desde las 8 semanas dentro de Kazajistán.
+      pt: "Animais no porão precisam ter pelo menos 3 meses e, acima de 40 kg, exigem caixa de madeira resistente. Na cabine, filhotes são aceitos a partir de 8 semanas dentro do Cazaquistão."
+book:
+  host: airastana.com
+  url: https://airastana.com/
+sources:
+  en: 1 official Air Astana source · last verified 5 August 2026
+  fr: 1 source officielle Air Astana · dernière vérification 5 août 2026
+  es: 1 fuente oficial de Air Astana · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da Air Astana · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

@@ -1,0 +1,303 @@
+id: airline_tui_airways
+mono: BY
+name: TUI Airways
+titleH1:
+  en: Flying with a dog on TUI Airways
+  fr: Voyager avec un chien sur TUI Airways
+  es: Volar con un perro en TUI Airways
+  pt: "Viajar com um cachorro na TUI Airways"
+metaDesc:
+  en: "TUI Airways pet policy: no pets in the cabin, hold as cargo only through ECS Group, no published weights or fares, assistance dogs and official sources."
+  fr: "Politique animaux TUI Airways : pas d'animaux en cabine, soute en régime fret via ECS Group, aucun poids ni tarif publié, chiens d'assistance et sources officielles."
+  es: "Política de mascotas de TUI Airways: sin mascotas en cabina, bodega solo como carga mediante ECS Group, sin pesos ni tarifas publicadas, perros de asistencia y fuentes oficiales."
+  pt: "Política de animais da TUI Airways: sem animais na cabine, porão apenas em regime de carga via ECS Group, sem pesos nem tarifas publicados, cães de assistência e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: United Kingdom
+      fr: Royaume-Uni
+      es: Reino Unido
+      pt: "Reino Unido"
+  - icon: 🚫
+    label:
+      en: No pets in the cabin
+      fr: Pas d'animaux en cabine
+      es: Sin mascotas en cabina
+      pt: "Sem animais na cabine"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Via a third party
+    fr: Via un prestataire
+    es: Mediante un proveedor
+    pt: "Via prestador externo"
+verdictNote:
+  en: "TUI is explicit: \"All pets flying with TUI travel in the hold as cargo and not in the passenger cabin.\" The hold stays open, but only under a cargo booking handled by ECS Group — which is also why no weight, size or price appears on TUI's own pages."
+  fr: "TUI est explicite : « All pets flying with TUI travel in the hold as cargo and not in the passenger cabin. » La soute reste ouverte, mais uniquement sous réservation fret gérée par ECS Group — ce qui explique aussi qu'aucun poids, gabarit ni prix n'apparaisse sur les pages de TUI."
+  es: "TUI es explícita: «All pets flying with TUI travel in the hold as cargo and not in the passenger cabin». La bodega sigue abierta, pero solo mediante una reserva de carga gestionada por ECS Group, y por eso tampoco aparece ningún peso, medida ni precio en las páginas de TUI."
+  pt: "A TUI é explícita: \"All pets flying with TUI travel in the hold as cargo and not in the passenger cabin.\" O porão continua aberto, mas apenas com reserva de carga feita pela ECS Group — e é também por isso que nenhum peso, medida ou preço aparece nas páginas da TUI."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Hold as baggage
+      fr: Soute en bagage
+      es: Bodega como equipaje
+      pt: "Porão como bagagem"
+    sub: —
+  - flex: 84
+    color: "#9a6410"
+    label:
+      en: Hold as cargo
+      fr: Soute en fret
+      es: Bodega como carga
+      pt: "Porão como carga"
+    sub:
+      en: via ECS Group
+      fr: via ECS Group
+      es: mediante ECS Group
+      pt: "via ECS Group"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pet travels in the passenger cabin, whatever its size — TUI says so in as many words. Only recognised assistance dogs are admitted.
+      fr: Aucun animal de compagnie ne voyage en cabine passagers, quelle que soit sa taille — TUI l'écrit noir sur blanc. Seuls les chiens d'assistance reconnus sont admis.
+      es: Ninguna mascota viaja en la cabina de pasajeros, sea del tamaño que sea; TUI lo dice con todas las letras. Solo se admiten perros de asistencia reconocidos.
+      pt: "Nenhum animal de estimação viaja na cabine de passageiros, seja qual for o porte — a TUI diz isso com todas as letras. Somente cães de assistência reconhecidos são admitidos."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold as baggage
+      fr: Soute en bagage
+      es: Bodega como equipaje
+      pt: "Porão como bagagem"
+    cls: "no"
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: You can't check a pet in with your luggage. The animal does fly in the hold, but never on your passenger ticket — it has to be a cargo booking.
+      fr: Impossible d'enregistrer un animal avec tes bagages. L'animal voyage bien en soute, mais jamais sur ton billet passager — il faut une réservation fret.
+      es: "No puedes facturar una mascota junto con tu equipaje. El animal sí vuela en bodega, pero nunca con tu billete de pasajero: hace falta una reserva de carga."
+      pt: "Você não pode despachar um animal junto com sua bagagem. O animal até voa no porão, mas nunca no seu bilhete de passageiro — é preciso uma reserva de carga."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Hold as cargo
+      fr: Soute en fret
+      es: Bodega como carga
+      pt: "Porão como carga"
+    cls: warn
+    statusLabel:
+      en: Only route
+      fr: Seule voie
+      es: Única vía
+      pt: "Único caminho"
+    detail:
+      en: Everything goes through ECS Group (pets@ecsgroup.aero), a third-party handler. Booking, acceptance and pricing are theirs, not TUI's — which is why TUI publishes no weight limit, no crate dimensions and no fare.
+      fr: Tout passe par ECS Group (pets@ecsgroup.aero), un prestataire tiers. Réservation, acceptation et tarification lui appartiennent, pas à TUI — d'où l'absence de limite de poids, de dimensions de caisse et de tarif chez TUI.
+      es: Todo pasa por ECS Group (pets@ecsgroup.aero), un proveedor externo. La reserva, la aceptación y el precio son suyos, no de TUI; por eso TUI no publica límite de peso, dimensiones de jaula ni tarifa.
+      pt: "Tudo passa pela ECS Group (pets@ecsgroup.aero), um prestador terceirizado. Reserva, aceitação e preço são dela, não da TUI — por isso a TUI não publica limite de peso, dimensões de caixa nem tarifa."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: Not available
+        fr: Pas proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: Hold as cargo
+        fr: Soute en fret
+        es: Bodega como carga
+        pt: "Porão como carga"
+      value:
+        en: Quote from ECS Group
+        fr: Devis ECS Group
+        es: Presupuesto de ECS Group
+        pt: "Cotação da ECS Group"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: TUI publishes no pet fare. The price is set by ECS Group, quote by quote, so ask before you commit to the flight.
+    fr: "TUI ne publie aucun tarif animal. Le prix est fixé par ECS Group, devis par devis : demande-le avant de t'engager sur le vol."
+    es: "TUI no publica ninguna tarifa para animales. El precio lo fija ECS Group, presupuesto a presupuesto: pídelo antes de comprometerte con el vuelo."
+    pt: "A TUI não publica nenhuma tarifa para animais. O preço é definido pela ECS Group, cotação a cotação: peça antes de fechar o voo."
+restrictions:
+  - icon: 💊
+    title:
+      en: No sedation
+      fr: Pas de sédation
+      es: Sin sedación
+      pt: "Sem sedação"
+    pills:
+      - cls: "no"
+        label:
+          en: Sedation forbidden
+          fr: Sédation interdite
+          es: Sedación prohibida
+          pt: "Sedação proibida"
+    note:
+      en: Animals must not be sedated for the flight. A sedated dog in a pressurised hold loses its ability to regulate breathing and body temperature — this is a hard rule, not advice.
+      fr: Les animaux ne doivent pas être sédatés pour le vol. Un chien sédaté dans une soute pressurisée perd sa capacité à réguler sa respiration et sa température — c'est une règle ferme, pas un conseil.
+      es: "Los animales no deben ir sedados en el vuelo. Un perro sedado en una bodega presurizada pierde la capacidad de regular su respiración y su temperatura: es una norma firme, no un consejo."
+      pt: "Os animais não podem ser sedados para o voo. Um cachorro sedado em um porão pressurizado perde a capacidade de regular a respiração e a temperatura corporal — é uma regra firme, não um conselho."
+  - icon: 🐶
+    title:
+      en: Breeds
+      fr: Races
+      es: Razas
+      pt: "Raças"
+    pills:
+      - cls: warn
+        label:
+          en: No published list
+          fr: Aucune liste publiée
+          es: Sin lista publicada
+          pt: "Nenhuma lista publicada"
+    note:
+      en: TUI publishes no breed list — no snub-nosed ban, no restricted breeds. Since acceptance is decided by ECS Group, ask them directly, especially for a flat-faced dog.
+      fr: TUI ne publie aucune liste de races — ni interdiction des nez écrasés, ni races restreintes. Comme c'est ECS Group qui décide de l'acceptation, pose-lui directement la question, surtout pour un chien brachycéphale.
+      es: "TUI no publica ninguna lista de razas: ni prohibición de hocicos chatos, ni razas restringidas. Como la aceptación la decide ECS Group, pregúntales directamente, sobre todo si tu perro es de hocico chato."
+      pt: "A TUI não publica nenhuma lista de raças — nem proibição de focinho achatado, nem raças restritas. Como a aceitação é decidida pela ECS Group, pergunte diretamente a eles, principalmente no caso de um cachorro braquicefálico."
+crate:
+  - en: A water bowl with an external reservoir is required, so the crate can be refilled without being opened.
+    fr: Un bol à eau à réservoir extérieur est obligatoire, pour pouvoir remplir sans ouvrir la caisse.
+    es: Es obligatorio un bebedero con depósito exterior, para poder rellenarlo sin abrir la jaula.
+    pt: "É obrigatório um bebedouro com reservatório externo, para poder reabastecer sem abrir a caixa."
+  - en: "Crate sizes and weight limits: not published by TUI — they are set by ECS Group."
+    fr: "Gabarits de caisse et limites de poids : non publiés par TUI — c'est ECS Group qui les fixe."
+    es: "Medidas de jaula y límites de peso: no publicados por TUI; los fija ECS Group."
+    pt: "Tamanhos de caixa e limites de peso: não publicados pela TUI — quem define é a ECS Group."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: TUI publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: TUI ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: TUI no publica límites de temperatura en bodega ni embargo estacional en sus páginas sobre mascotas.
+    pt: "A TUI não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs travel free in the cabin — the one animal TUI does take up front with you.
+      fr: Les chiens d'assistance voyagent gratuitement en cabine — le seul animal que TUI accepte à tes côtés.
+      es: "Los perros de asistencia viajan gratis en cabina: el único animal que TUI admite a tu lado."
+      pt: "Cães de assistência viajam grátis na cabine — o único animal que a TUI aceita ao seu lado."
+  - icon: 📄
+    label:
+      en: Training & notice
+      fr: Dressage & préavis
+      es: Adiestramiento y aviso
+      pt: "Adestramento e aviso"
+    value:
+      en: The dog must be trained by an IGDF or ADI member organisation, and TUI must be told at least 48 hours before departure.
+      fr: Le chien doit être dressé par un organisme membre IGDF ou ADI, et TUI doit être prévenue au moins 48 h avant le départ.
+      es: El perro debe estar adiestrado por una organización miembro de IGDF o ADI, y hay que avisar a TUI al menos 48 h antes de la salida.
+      pt: "O cão deve ser adestrado por uma organização filiada à IGDF ou à ADI, e a TUI precisa ser avisada com pelo menos 48 h de antecedência."
+goodToKnow:
+  - icon: 📦
+    label:
+      en: Why there are no figures
+      fr: Pourquoi il n'y a aucun chiffre
+      es: Por qué no hay cifras
+      pt: "Por que não há números"
+    value:
+      en: No weight, no crate size, no price appears anywhere on TUI's pet pages. That's not an oversight — TUI hands the whole operation to ECS Group, and the handler sets the numbers. Write to pets@ecsgroup.aero to get yours.
+      fr: Aucun poids, aucun gabarit de caisse, aucun prix n'apparaît sur les pages animaux de TUI. Ce n'est pas un oubli — TUI confie toute l'opération à ECS Group, et c'est le prestataire qui fixe les chiffres. Écris à pets@ecsgroup.aero pour obtenir les tiens.
+      es: "Ningún peso, ninguna medida de jaula, ningún precio aparece en las páginas de mascotas de TUI. No es un descuido: TUI delega toda la operación en ECS Group y es el proveedor quien fija las cifras. Escribe a pets@ecsgroup.aero para conseguir las tuyas."
+      pt: "Nenhum peso, nenhum tamanho de caixa, nenhum preço aparece nas páginas da TUI sobre animais. Não é um descuido — a TUI entrega toda a operação à ECS Group, e é o prestador que define os números. Escreva para pets@ecsgroup.aero para obter os seus."
+  - icon: 🍽️
+    label:
+      en: Don't feed for 6 hours
+      fr: Ne pas nourrir pendant 6 h
+      es: No dar de comer 6 horas antes
+      pt: "Não alimentar por 6 horas"
+    value:
+      en: Your dog must not be fed in the 6 hours before departure. Water stays available up to drop-off.
+      fr: Ton chien ne doit pas être nourri dans les 6 heures qui précèdent le départ. L'eau, elle, reste disponible jusqu'au dépôt.
+      es: Tu perro no debe comer en las 6 horas previas a la salida. El agua, en cambio, sigue disponible hasta la entrega.
+      pt: "Seu cachorro não deve ser alimentado nas 6 horas anteriores à partida. A água continua disponível até a entrega."
+  - icon: 🎫
+    label:
+      en: Two separate bookings
+      fr: Deux réservations distinctes
+      es: Dos reservas separadas
+      pt: "Duas reservas separadas"
+    value:
+      en: Your seat and your dog's flight are booked separately, and confirmation of one doesn't guarantee the other. Get the cargo booking confirmed before you pay for a package holiday around it.
+      fr: Ta place et le vol de ton chien se réservent séparément, et la confirmation de l'une ne garantit pas l'autre. Fais confirmer la réservation fret avant de payer un séjour construit autour.
+      es: Tu asiento y el vuelo de tu perro se reservan por separado, y confirmar uno no garantiza el otro. Consigue la confirmación de la carga antes de pagar un paquete vacacional montado alrededor.
+      pt: "Seu assento e o voo do seu cachorro são reservados separadamente, e a confirmação de um não garante o outro. Tenha a reserva de carga confirmada antes de pagar um pacote de viagem montado em cima disso."
+book:
+  host: tui.co.uk
+  url: https://www.tui.co.uk/
+sources:
+  en: 1 TUI source · last verified 5 August 2026
+  fr: 1 source TUI · dernière vérification 5 août 2026
+  es: 1 fuente de TUI · última verificación 5 de agosto de 2026
+  pt: "1 fonte da TUI · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

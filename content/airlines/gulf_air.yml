@@ -1,0 +1,286 @@
+id: airline_gulf_air
+mono: GF
+name: Gulf Air
+titleH1:
+  en: Flying with a dog on Gulf Air
+  fr: Voyager avec un chien sur Gulf Air
+  es: Volar con un perro en Gulf Air
+  pt: "Viajar com um cachorro na Gulf Air"
+metaDesc:
+  en: "Gulf Air pet policy: no dogs in the cabin or the hold, cargo only under a master air waybill, guide-dog rules and official sources."
+  fr: "Politique animaux Gulf Air : pas de chien en cabine ni en soute, fret uniquement sous lettre de transport aérien mère, chiens-guides et sources officielles."
+  es: "Política de mascotas de Gulf Air: ningún perro en cabina ni en bodega, solo carga con guía aérea madre, perros guía y fuentes oficiales."
+  pt: "Política de animais da Gulf Air: nenhum cachorro na cabine nem no porão, somente carga com conhecimento aéreo máster, cães-guia e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Bahrain · BAH
+      fr: Bahreïn · BAH
+      es: Baréin · BAH
+      pt: "Bahrein · BAH"
+  - icon: 🚫
+    label:
+      en: No cabin, no hold
+      fr: Ni cabine ni soute
+      es: Ni cabina ni bodega
+      pt: "Nem cabine nem porão"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Cargo only
+    fr: Fret uniquement
+    es: Solo carga
+    pt: "Somente carga"
+verdictNote:
+  en: Gulf Air refuses pets in the cabin and in the hold — the refusal is written into its conditions of carriage (art. 8.9.3). The only route is cargo, under a master air waybill.
+  fr: Gulf Air refuse les animaux en cabine comme en soute — le refus est inscrit à ses conditions de transport (art. 8.9.3). La seule voie possible est le fret, sous lettre de transport aérien mère.
+  es: "Gulf Air no admite mascotas ni en cabina ni en bodega: la negativa figura en sus condiciones de transporte (art. 8.9.3). La única vía es la carga, con guía aérea madre."
+  pt: "A Gulf Air recusa animais tanto na cabine quanto no porão — a recusa está inscrita nas suas condições de transporte (art. 8.9.3). O único caminho é a carga, com conhecimento aéreo máster."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 84
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: the only route
+      fr: seule voie possible
+      es: la única vía
+      pt: "o único caminho"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No dog or cat in the cabin, on any route, at any size. The ban comes from the conditions of carriage (art. 8.9.3), not from a case-by-case decision — there is nothing to negotiate at the counter.
+      fr: Aucun chien ni chat en cabine, sur aucune route, quelle que soit la taille. L'interdiction vient des conditions de transport (art. 8.9.3), pas d'une décision au cas par cas — inutile de négocier au comptoir.
+      es: "Ningún perro ni gato en cabina, en ninguna ruta y de ningún tamaño. La prohibición viene de las condiciones de transporte (art. 8.9.3), no de una decisión caso por caso: no hay nada que negociar en el mostrador."
+      pt: "Nenhum cachorro ou gato na cabine, em nenhuma rota e de nenhum porte. A proibição vem das condições de transporte (art. 8.9.3), não de uma decisão caso a caso — não adianta negociar no balcão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Pets don't travel as checked baggage either. You can't check your dog in with your suitcase — the hold is closed to animals under a passenger ticket.
+      fr: Les animaux ne voyagent pas non plus en bagage enregistré. Impossible d'enregistrer ton chien avec ta valise — la soute est fermée aux animaux sous billet passager.
+      es: "Las mascotas tampoco viajan como equipaje facturado. No puedes facturar a tu perro junto con la maleta: la bodega está cerrada a los animales bajo billete de pasajero."
+      pt: "Os animais também não viajam como bagagem despachada. Você não pode despachar seu cachorro junto com a mala — o porão está fechado para animais sob bilhete de passageiro."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Only route
+      fr: Seule voie
+      es: Única vía
+      pt: "Único caminho"
+    detail:
+      en: Your dog flies as freight, under a master air waybill, on a booking separate from yours. You go through the cargo terminal, not the passenger terminal, and usually through an agent. Gulf Air publishes no rate, no weight limit and no crate dimensions for this channel.
+      fr: Ton chien voyage en fret, sous lettre de transport aérien mère, sur une réservation distincte de la tienne. Tu passes par le terminal cargo, pas par l'aérogare passagers, et le plus souvent par un agent. Gulf Air ne publie ni tarif, ni limite de poids, ni dimensions de caisse pour ce canal.
+      es: Tu perro vuela como mercancía, con guía aérea madre y en una reserva distinta de la tuya. Pasas por la terminal de carga, no por la de pasajeros, y normalmente a través de un agente. Gulf Air no publica tarifa, ni límite de peso, ni dimensiones de jaula para este canal.
+      pt: "Seu cachorro viaja como carga, com conhecimento aéreo máster, em uma reserva separada da sua. Você passa pelo terminal de carga, não pelo terminal de passageiros, e em geral por meio de um agente. A Gulf Air não publica tarifa, nem limite de peso, nem dimensões de caixa para esse canal."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: Not available
+        fr: Pas proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: Hold
+        fr: Soute
+        es: Bodega
+        pt: "Porão"
+      value:
+        en: Not available
+        fr: Pas proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: Cargo
+        fr: Fret
+        es: Carga
+        pt: "Carga"
+      value:
+        en: Quote — no published rate
+        fr: Devis — aucun tarif publié
+        es: Presupuesto — sin tarifa publicada
+        pt: "Cotação — nenhuma tarifa publicada"
+    - label:
+        en: Guide dog
+        fr: Chien-guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Gulf Air publishes no pet rate at all. Everything but the free guide dog goes through a cargo quote.
+    fr: Gulf Air ne publie aucun tarif animal. Tout, sauf le chien-guide gratuit, passe par un devis fret.
+    es: Gulf Air no publica ninguna tarifa para animales. Todo, salvo el perro guía gratuito, pasa por un presupuesto de carga.
+    pt: "A Gulf Air não publica nenhuma tarifa para animais. Tudo, exceto o cão-guia gratuito, passa por uma cotação de carga."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Breeds
+      fr: Races
+      es: Razas
+      pt: "Raças"
+    pills:
+      - cls: warn
+        label:
+          en: No published list
+          fr: Aucune liste publiée
+          es: Sin lista publicada
+          pt: "Nenhuma lista publicada"
+    note:
+      en: "Gulf Air publishes no breed list — no snub-nosed ban, no dangerous-dog list. That's not a green light: since no dog travels with a passenger anyway, breed rules are decided by the cargo service and by the countries you fly to and from. Ask when you request your quote."
+      fr: "Gulf Air ne publie aucune liste de races — ni interdiction des nez écrasés, ni liste de chiens dangereux. Ce n'est pas un feu vert : comme aucun chien ne voyage avec un passager de toute façon, les règles de race sont fixées par le service fret et par les pays de départ et d'arrivée. Pose la question au moment du devis."
+      es: "Gulf Air no publica ninguna lista de razas: ni prohibición de hocicos chatos, ni lista de perros peligrosos. No es luz verde: como ningún perro viaja con un pasajero, las reglas de raza las fijan el servicio de carga y los países de salida y llegada. Pregúntalo al pedir el presupuesto."
+      pt: "A Gulf Air não publica nenhuma lista de raças — nem proibição de focinho achatado, nem lista de cães perigosos. Isso não é sinal verde: como nenhum cachorro viaja com passageiro, as regras de raça são definidas pelo serviço de carga e pelos países de origem e destino. Pergunte na hora da cotação."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Gulf Air publishes no hold-temperature limits or seasonal embargo on its animal pages.
+    fr: Gulf Air ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Gulf Air no publica límites de temperatura en bodega ni embargo estacional en sus páginas sobre animales.
+    pt: "A Gulf Air não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: Guide dog
+      fr: Chien-guide
+      es: Perro guía
+      pt: "Cão-guia"
+    value:
+      en: The guide dog is the one exception — it travels free in the cabin.
+      fr: Le chien-guide est la seule exception — il voyage gratuitement en cabine.
+      es: "El perro guía es la única excepción: viaja gratis en cabina."
+      pt: "O cão-guia é a única exceção — viaja grátis na cabine."
+  - icon: 📄
+    label:
+      en: Conditions
+      fr: Conditions
+      es: Condiciones
+      pt: "Condições"
+    value:
+      en: "Not published: Gulf Air states the guide-dog conditions are \"available on request\". No documents, no notice period, no breed or training rules are given online — you have to call to find out."
+      fr: "Non publiées : Gulf Air indique que les conditions du chien-guide sont « disponibles sur demande ». Aucun document, aucun préavis, aucune règle de dressage n'est donné en ligne — il faut appeler pour les connaître."
+      es: "No publicadas: Gulf Air indica que las condiciones del perro guía están «disponibles bajo petición». No da online ningún documento, ni plazo de aviso, ni requisitos de adiestramiento: hay que llamar para saberlo."
+      pt: "Não publicadas: a Gulf Air indica que as condições do cão-guia estão \"disponíveis mediante solicitação\". Nenhum documento, prazo de aviso ou regra de adestramento é informado online — é preciso ligar para saber."
+goodToKnow:
+  - icon: 🦅
+    label:
+      en: A falcon, yes — a dog, no
+      fr: Un faucon oui, un chien non
+      es: Un halcón sí, un perro no
+      pt: "Um falcão sim, um cachorro não"
+    value:
+      en: On some routes a falcon may travel in the cabin with 48 hours' notice. Your dog may not. It's the clearest illustration of where the line sits at Gulf Air — the cabin isn't closed to animals as such, it's closed to pets.
+      fr: "Sur certaines routes, un faucon peut voyager en cabine avec 48 h de préavis. Ton chien, non. C'est l'illustration la plus nette de la frontière chez Gulf Air : la cabine n'est pas fermée aux animaux en général, elle est fermée aux animaux de compagnie."
+      es: "En algunas rutas un halcón puede viajar en cabina avisando con 48 horas. Tu perro no. Es la mejor muestra de dónde está la línea en Gulf Air: la cabina no está cerrada a los animales, está cerrada a las mascotas."
+      pt: "Em algumas rotas, um falcão pode viajar na cabine com 48 h de aviso prévio. Seu cachorro, não. É a ilustração mais clara de onde fica a linha na Gulf Air: a cabine não está fechada aos animais em geral, está fechada aos animais de estimação."
+  - icon: 🛂
+    label:
+      en: Shipping from Bahrain
+      fr: Expédition depuis Bahreïn
+      es: Envío desde Baréin
+      pt: "Envio a partir do Bahrein"
+    value:
+      en: Gulf Air makes this point itself — an animal shipped directly from Bahrain, vaccinated and microchipped, escapes the six-month EU quarantine. Worth checking against the destination country's own rules before you build a plan on it.
+      fr: Gulf Air met cet argument en avant — un animal expédié directement depuis Bahreïn, vacciné et pucé, échappe à la quarantaine UE de six mois. À vérifier auprès du pays d'arrivée avant d'en faire ton plan.
+      es: "La propia Gulf Air lo destaca: un animal enviado directamente desde Baréin, vacunado y con microchip, se libra de la cuarentena de seis meses de la UE. Conviene contrastarlo con las normas del país de destino antes de basar tu plan en ello."
+      pt: "A própria Gulf Air destaca isso: um animal enviado diretamente do Bahrein, vacinado e com microchip, escapa da quarentena de seis meses da UE. Vale confirmar com as regras do país de destino antes de montar seu plano em cima disso."
+  - icon: 📦
+    label:
+      en: What cargo means
+      fr: Ce que « fret » implique
+      es: Qué implica la carga
+      pt: "O que significa ir como carga"
+    value:
+      en: A master air waybill means a separate booking, a separate terminal and, in practice, a pet shipping agent. Budget several weeks — and get the quote before you buy your own ticket.
+      fr: Une lettre de transport aérien mère, cela veut dire une réservation à part, un terminal à part et, en pratique, un agent spécialisé. Compte plusieurs semaines — et obtiens le devis avant d'acheter ton propre billet.
+      es: Una guía aérea madre significa reserva aparte, terminal aparte y, en la práctica, un agente especializado. Cuenta varias semanas y consigue el presupuesto antes de comprar tu propio billete.
+      pt: "Um conhecimento aéreo máster significa reserva separada, terminal separado e, na prática, um agente especializado. Conte várias semanas — e peça a cotação antes de comprar sua própria passagem."
+book:
+  host: gulfair.com
+  url: https://www.gulfair.com/
+sources:
+  en: 1 Gulf Air source · last verified 5 August 2026
+  fr: 1 source Gulf Air · dernière vérification 5 août 2026
+  es: 1 fuente de Gulf Air · última verificación 5 de agosto de 2026
+  pt: "1 fonte da Gulf Air · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

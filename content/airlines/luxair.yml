@@ -1,0 +1,305 @@
+id: airline_luxair
+mono: LG
+name: Luxair
+titleH1:
+  en: Flying with a dog on Luxair
+  fr: Voyager avec un chien sur Luxair
+  es: Volar con un perro en Luxair
+  pt: "Viajar com um cachorro na Luxair"
+metaDesc:
+  en: "Luxair pet policy: under 8 kg in the cabin at €70, hold up to 50 kg at €140, flat-faced breeds welcome in the cabin but barred from the hold, excluded destinations."
+  fr: "Politique animaux Luxair : moins de 8 kg en cabine à 70 €, soute jusqu'à 50 kg à 140 €, brachycéphales acceptés en cabine mais interdits en soute, destinations exclues."
+  es: "Política de mascotas de Luxair: menos de 8 kg en cabina por 70 €, bodega hasta 50 kg por 140 €, razas de hocico chato en cabina pero no en bodega, destinos excluidos."
+  pt: "Política de animais da Luxair: menos de 8 kg na cabine por 70 €, porão até 50 kg por 140 €, raças de focinho achatado na cabine mas proibidas no porão, destinos excluídos."
+chips:
+  - icon: 📍
+    label:
+      en: Luxembourg
+      fr: Luxembourg
+      es: Luxemburgo
+      pt: "Luxemburgo"
+  - icon: 🐾
+    label:
+      en: Cabin < 8 kg
+      fr: Cabine < 8 kg
+      es: Cabina < 8 kg
+      pt: "Cabine < 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: Flat rates, precise crate specs, cabin and hold both open — and a flat-faced dog under 8 kg is welcome in the cabin. Watch the excluded destinations.
+  fr: Tarifs forfaitaires, cotes de caisse précises, cabine et soute ouvertes — et un chien au nez écrasé de moins de 8 kg est accepté en cabine. Attention aux destinations exclues.
+  es: Tarifas planas, medidas de jaula precisas, cabina y bodega abiertas, y un perro de hocico chato de menos de 8 kg es bienvenido en cabina. Ojo con los destinos excluidos.
+  pt: "Tarifas fixas, medidas de caixa precisas, cabine e porão abertos — e um cachorro de focinho achatado com menos de 8 kg é aceito na cabine. Atenção aos destinos excluídos."
+ladder:
+  - flex: 16
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: < 8 kg
+  - flex: 84
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: 8–50 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Under 8 kg carrier included, in a bag of either 45 × 23 × 25 cm or 45 × 42 × 20 cm — two alternative formats, both published. Soft bag recommended, rigid box accepted. One animal per carrier, one carrier per passenger, three animals maximum in the cabin per aircraft. Book 72 h ahead; form H402 is shown at check-in, which must be done at the counter.
+      fr: Moins de 8 kg sac compris, dans un sac de 45 × 23 × 25 cm ou de 45 × 42 × 20 cm — deux formats alternatifs, tous deux publiés. Sac souple recommandé, boîte rigide acceptée. Un animal par sac, un sac par passager, trois animaux maximum en cabine par avion. Réservation 72 h avant ; le formulaire H402 se présente à l'enregistrement, qui doit se faire au comptoir.
+      es: "Menos de 8 kg con el bolso incluido, en un bolso de 45 × 23 × 25 cm o de 45 × 42 × 20 cm: dos formatos alternativos, ambos publicados. Bolso blando recomendado, caja rígida aceptada. Un animal por bolso, un bolso por pasajero, tres animales como máximo en cabina por avión. Reserva 72 h antes; el formulario H402 se presenta en la facturación, que debe hacerse en el mostrador."
+      pt: "Menos de 8 kg com a bolsa incluída, em uma bolsa de 45 × 23 × 25 cm ou de 45 × 42 × 20 cm — dois formatos alternativos, ambos publicados. Bolsa maleável recomendada, caixa rígida aceita. Um animal por bolsa, uma bolsa por passageiro, três animais no máximo na cabine por aeronave. Reserve 72 h antes; o formulário H402 é apresentado no check-in, que deve ser feito no balcão."
+    fee:
+      en: €70 (free in Business)
+      fr: 70 € (gratuit en Business)
+      es: 70 € (gratis en Business)
+      pt: "70 € (grátis na Business)"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Above 8 kg and up to 50 kg crate included, crate 115 × 60 × 85 cm maximum, rigid IATA type with two-point central locking and hinges overlapping by 1.6 cm. No straw, no leash and no muzzle inside the crate. Book 72 h ahead with form H184. One animal in the hold on the Q400, two on the Boeing.
+      fr: Au-delà de 8 kg et jusqu'à 50 kg caisse comprise, caisse de 115 × 60 × 85 cm maximum, type IATA rigide avec verrouillage central à deux points et charnières dépassant de 1,6 cm. Ni paille, ni laisse, ni muselière dans la caisse. Réservation 72 h avant avec le formulaire H184. Un animal en soute sur Q400, deux sur Boeing.
+      es: Por encima de 8 kg y hasta 50 kg con la jaula incluida, jaula de 115 × 60 × 85 cm como máximo, tipo IATA rígida con cierre central de dos puntos y bisagras que sobresalen 1,6 cm. Ni paja, ni correa, ni bozal dentro de la jaula. Reserva 72 h antes con el formulario H184. Un animal en bodega en el Q400, dos en el Boeing.
+      pt: "Acima de 8 kg e até 50 kg com a caixa incluída, caixa de no máximo 115 × 60 × 85 cm, tipo IATA rígida com travamento central de dois pontos e dobradiças que ultrapassam 1,6 cm. Nada de palha, coleira ou focinheira dentro da caixa. Reserve 72 h antes com o formulário H184. Um animal no porão no Q400, dois no Boeing."
+    fee:
+      en: €140
+      fr: 140 €
+      es: 140 €
+      pt: "140 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: Luxair publishes no cargo option for pets — no conditions and no rates for an unaccompanied animal or for a crate over the hold limits.
+      fr: Luxair ne publie aucune option fret pour les animaux — ni conditions, ni tarifs pour un animal non accompagné ou une caisse hors des limites de la soute.
+      es: "Luxair no publica ninguna opción de carga para mascotas: ni condiciones ni tarifas para un animal no acompañado o una jaula fuera de los límites de bodega."
+      pt: "A Luxair não publica nenhuma opção de carga para animais — nem condições nem tarifas para um animal desacompanhado ou uma caixa fora dos limites do porão."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Cabin — Economy
+        fr: Cabine — Économique
+        es: Cabina — Económica
+        pt: "Cabine — Econômica"
+      value:
+        en: €70 per flight
+        fr: 70 € par vol
+        es: 70 € por vuelo
+        pt: "70 € por voo"
+    - label:
+        en: Cabin — Business
+        fr: Cabine — Business
+        es: Cabina — Business
+        pt: "Cabine — Business"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+    - label:
+        en: Hold
+        fr: Soute
+        es: Bodega
+        pt: "Porão"
+      value:
+        en: €140 per flight
+        fr: 140 € par vol
+        es: 140 € por vuelo
+        pt: "140 € por voo"
+  note:
+    en: Flat rate per flight, not per journey — a connection is charged twice. No cargo rate is published.
+    fr: Forfait par vol, pas par trajet — une correspondance se paie deux fois. Aucun tarif fret n'est publié.
+    es: "Tarifa plana por vuelo, no por trayecto: una conexión se paga dos veces. No se publica ninguna tarifa de carga."
+    pt: "Tarifa fixa por voo, não por trecho — uma conexão é cobrada duas vezes. Nenhuma tarifa de carga é publicada."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin allowed
+          fr: Cabine autorisée
+          es: Cabina permitida
+          pt: "Cabine permitida"
+      - cls: "no"
+        label:
+          en: Hold forbidden all year
+          fr: Soute interdite toute l'année
+          es: Bodega prohibida todo el año
+          pt: "Porão proibido o ano todo"
+    note:
+      en: "Flat-faced dogs are barred from the hold all year, with no seasonal exception — but the cabin stays open to them. Luxair is explicit: the only ground for refusing a dog in the cabin is its classification as a fighting dog, not its muzzle. A pug or a Shih Tzu under 8 kg therefore flies in the cabin. Note that Luxair lists the Chihuahua among its flat-faced breeds — unusual, but that is what the source publishes."
+      fr: "Les chiens au nez écrasé sont interdits en soute toute l'année, sans exception saisonnière — mais la cabine leur reste ouverte. Luxair est explicite : le seul motif de refus en cabine est le classement comme chien de combat, pas le museau. Un carlin ou un shih tzu de moins de 8 kg vole donc en cabine. À noter, Luxair range le Chihuahua parmi ses races brachycéphales — inhabituel, mais c'est ce que publie la source."
+      es: "Los perros de hocico chato están prohibidos en bodega todo el año, sin excepción estacional, pero la cabina sigue abierta para ellos. Luxair lo dice claro: el único motivo de rechazo en cabina es la clasificación como perro de pelea, no el morro. Un carlino o un Shih Tzu de menos de 8 kg vuela, pues, en cabina. Ojo: Luxair incluye al Chihuahua en su lista de razas braquicéfalas, algo inusual, pero es lo que publica la fuente."
+      pt: "Cachorros de focinho achatado são proibidos no porão o ano todo, sem exceção sazonal — mas a cabine continua aberta para eles. A Luxair é explícita: o único motivo de recusa na cabine é a classificação como cão de briga, não o focinho. Um pug ou um Shih Tzu com menos de 8 kg voa, portanto, na cabine. Vale notar que a Luxair inclui o Chihuahua na sua lista de raças braquicefálicas — incomum, mas é o que a fonte publica."
+  - icon: 🚫
+    title:
+      en: Dogs classed as dangerous
+      fr: Chiens classés dangereux
+      es: Perros clasificados como peligrosos
+      pt: "Cães classificados como perigosos"
+    pills:
+      - cls: "no"
+        label:
+          en: Cabin forbidden
+          fr: Cabine interdite
+          es: Cabina prohibida
+          pt: "Cabine proibida"
+      - cls: warn
+        label:
+          en: Hold only
+          fr: Soute uniquement
+          es: Solo bodega
+          pt: "Somente porão"
+    note:
+      en: Dogs classed as fighting dogs travel in the hold only, in a crate with no plastic parts at all. This classification is the single reason Luxair gives for turning a dog away from the cabin.
+      fr: Les chiens classés comme chiens de combat voyagent en soute uniquement, dans une caisse ne comportant aucune partie en plastique. Ce classement est le seul motif que Luxair donne pour refuser un chien en cabine.
+      es: Los perros clasificados como perros de pelea viajan solo en bodega, en una jaula sin ninguna pieza de plástico. Esa clasificación es el único motivo que da Luxair para rechazar a un perro en cabina.
+      pt: "Cães classificados como cães de briga viajam somente no porão, em uma caixa sem nenhuma peça de plástico. Essa classificação é o único motivo que a Luxair apresenta para recusar um cachorro na cabine."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Luxair publishes no hold-temperature limits and no seasonal embargo on its animal page — the flat-faced ban is year-round instead.
+    fr: Luxair ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux — l'interdiction brachycéphale vaut toute l'année à la place.
+    es: "Luxair no publica límites de temperatura en bodega ni embargo estacional en su página de animales: en su lugar, la prohibición braquicéfala rige todo el año."
+    pt: "A Luxair não publica limites de temperatura no porão nem embargo sazonal em sua página sobre animais — no lugar disso, a proibição braquicefálica vale o ano todo."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Not published. The animal page states no conditions, accepted certifications or fee waiver for assistance dogs — contact Luxair before booking.
+      fr: Non publié. La page animaux ne fixe ni conditions, ni certifications acceptées, ni gratuité pour les chiens d'assistance — contacte Luxair avant de réserver.
+      es: No publicado. La página de animales no fija condiciones, certificaciones aceptadas ni exención de tarifa para perros de asistencia; contacta con Luxair antes de reservar.
+      pt: "Não publicado. A página sobre animais não define condições, certificações aceitas nem isenção de tarifa para cães de assistência — entre em contato com a Luxair antes de reservar."
+goodToKnow:
+  - icon: 🚫
+    label:
+      en: Closed destinations
+      fr: Destinations fermées
+      es: Destinos cerrados
+      pt: "Destinos fechados"
+    value:
+      en: "No animals at all, cabin or hold, to the United Kingdom, the United Arab Emirates and Senegal."
+      fr: "Aucun animal, ni en cabine ni en soute, vers le Royaume-Uni, les Émirats arabes unis et le Sénégal."
+      es: "Ningún animal, ni en cabina ni en bodega, con destino al Reino Unido, los Emiratos Árabes Unidos y Senegal."
+      pt: "Nenhum animal, nem na cabine nem no porão, com destino ao Reino Unido, aos Emirados Árabes Unidos e ao Senegal."
+  - icon: 🛫
+    label:
+      en: "Paris CDG: cabin yes, hold no"
+      fr: "Paris CDG : cabine oui, soute non"
+      es: "París CDG: cabina sí, bodega no"
+      pt: "Paris CDG: cabine sim, porão não"
+    value:
+      en: The hold is closed on Paris Charles-de-Gaulle while the cabin stays open — a restriction set airport by airport and mode by mode, which almost no airline publishes.
+      fr: La soute est fermée sur Paris Charles-de-Gaulle alors que la cabine reste ouverte — une restriction posée aéroport par aéroport et mode par mode, que presque aucune compagnie ne publie.
+      es: "La bodega está cerrada en París Charles-de-Gaulle mientras que la cabina sigue abierta: una restricción fijada aeropuerto por aeropuerto y modo por modo, algo que casi ninguna aerolínea publica."
+      pt: "O porão está fechado em Paris Charles-de-Gaulle, enquanto a cabine continua aberta — uma restrição definida aeroporto por aeroporto e modo por modo, que quase nenhuma companhia publica."
+  - icon: 💊
+    label:
+      en: "Dublin: tapeworm treatment"
+      fr: "Dublin : traitement contre le ténia"
+      es: "Dublín: tratamiento antiparasitario"
+      pt: "Dublin: tratamento contra tênia"
+    value:
+      en: For Dublin, praziquantel must be given between 24 h and 120 h before arrival.
+      fr: Pour Dublin, le praziquantel doit être administré entre 24 h et 120 h avant l'arrivée.
+      es: Para Dublín, el praziquantel debe administrarse entre 24 h y 120 h antes de la llegada.
+      pt: "Para Dublin, o praziquantel deve ser administrado entre 24 h e 120 h antes da chegada."
+  - icon: 🛩️
+    label:
+      en: Limits by aircraft
+      fr: Limites par appareil
+      es: Límites por avión
+      pt: "Limites por aeronave"
+    value:
+      en: Three animals maximum in the cabin per aircraft; in the hold, one on the Q400 and two on the Boeing. On a full flight the aircraft type decides.
+      fr: Trois animaux maximum en cabine par avion ; en soute, un sur Q400 et deux sur Boeing. Sur un vol chargé, c'est le type d'appareil qui décide.
+      es: Tres animales como máximo en cabina por avión; en bodega, uno en el Q400 y dos en el Boeing. En un vuelo lleno, decide el tipo de avión.
+      pt: "Três animais no máximo na cabine por aeronave; no porão, um no Q400 e dois no Boeing. Em um voo cheio, quem decide é o tipo de aeronave."
+  - icon: 🕳️
+    label:
+      en: What is missing
+      fr: Ce qui manque
+      es: Lo que falta
+      pt: "O que falta"
+    value:
+      en: "Not published: minimum age of the animal, temperature thresholds, and any cargo option."
+      fr: "Non publiés : âge minimal de l'animal, seuils de température, et toute option fret."
+      es: "No publicados: edad mínima del animal, umbrales de temperatura y cualquier opción de carga."
+      pt: "Não publicados: idade mínima do animal, limites de temperatura e qualquer opção de carga."
+book:
+  host: luxair.lu
+  url: https://www.luxair.lu/
+sources:
+  en: 1 official Luxair source · last verified 5 August 2026
+  fr: 1 source officielle Luxair · dernière vérification 5 août 2026
+  es: 1 fuente oficial de Luxair · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da Luxair · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

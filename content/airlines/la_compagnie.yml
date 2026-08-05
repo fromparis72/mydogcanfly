@@ -1,0 +1,282 @@
+id: airline_la_compagnie
+mono: B0
+name: La Compagnie
+titleH1:
+  en: Flying with a dog on La Compagnie
+  fr: Voyager avec un chien sur La Compagnie
+  es: Volar con un perro en La Compagnie
+  pt: "Viajar com um cachorro na La Compagnie"
+metaDesc:
+  en: "La Compagnie pet policy: under 8 kg in the cabin only, a 55 × 35 × 25 cm bag, four animals per flight, no hold at all, €200 one-way and official sources."
+  fr: "Politique animaux La Compagnie : moins de 8 kg en cabine uniquement, sac de 55 × 35 × 25 cm, quatre animaux par vol, aucune soute, 200 € le trajet et sources officielles."
+  es: "Política de mascotas de La Compagnie: menos de 8 kg solo en cabina, bolso de 55 × 35 × 25 cm, cuatro animales por vuelo, sin bodega, 200 € por trayecto y fuentes oficiales."
+  pt: "Política de animais da La Compagnie: menos de 8 kg somente na cabine, bolsa de 55 × 35 × 25 cm, quatro animais por voo, sem porão, 200 € por trecho e fontes oficiais."
+chips:
+  - icon: ✈
+    label:
+      en: All-business A321neo fleet
+      fr: Flotte tout-affaires A321neo
+      es: Flota íntegramente business A321neo
+      pt: "Frota toda executiva A321neo"
+  - icon: 🚫
+    label:
+      en: No hold
+      fr: Pas de soute
+      es: Sin bodega
+      pt: "Sem porão"
+    cls: "no"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Cabin only
+    fr: Cabine seulement
+    es: Solo cabina
+    pt: "Só cabine"
+verdictNote:
+  en: Small dogs and cats under 8 kg travel in the cabin with clear published sizes, but there is no hold at all and only four animals per flight.
+  fr: Petits chiens et chats de moins de 8 kg en cabine, avec des cotes publiées claires, mais aucune soute et seulement quatre animaux par vol.
+  es: Perros pequeños y gatos de menos de 8 kg viajan en cabina, con medidas publicadas claras, pero no hay bodega y solo caben cuatro animales por vuelo.
+  pt: "Cachorros pequenos e gatos com menos de 8 kg viajam na cabine, com medidas publicadas claras, mas não existe porão e são só quatro animais por voo."
+ladder:
+  - flex: 35
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: < 8 kg
+  - flex: 65
+    color: "#8a94a3"
+    label:
+      en: Hold / cargo
+      fr: Soute / fret
+      es: Bodega / carga
+      pt: "Porão / carga"
+    sub:
+      en: not carried
+      fr: non transporté
+      es: no se transporta
+      pt: "não transportado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs and cats under 8 kg (17.6 lb) container included, in a ventilated bag of 22 × 14 × 10 in / 55 × 35 × 25 cm — La Compagnie publishes both units. From 6 months old, four animals per flight, booked 48 h ahead. The bag counts as your cabin baggage.
+      fr: Chiens et chats de moins de 8 kg (17,6 lb) contenant compris, dans un sac ventilé de 22 × 14 × 10 in / 55 × 35 × 25 cm — La Compagnie publie les deux unités. À partir de 6 mois, quatre animaux par vol, réservés 48 h avant. Le sac tient lieu de bagage cabine.
+      es: Perros y gatos de menos de 8 kg (17,6 lb) con el contenedor incluido, en un bolso ventilado de 22 × 14 × 10 in / 55 × 35 × 25 cm — La Compagnie publica ambas unidades. Desde los 6 meses, cuatro animales por vuelo, reservados con 48 h de antelación. El bolso cuenta como tu equipaje de mano.
+      pt: "Cachorros e gatos com menos de 8 kg (17,6 lb) com o contêiner incluído, em uma bolsa ventilada de 22 × 14 × 10 in / 55 × 35 × 25 cm — a La Compagnie publica as duas unidades. A partir de 6 meses, quatro animais por voo, reservados com 48 h de antecedência. A bolsa conta como sua bagagem de mão."
+    fee:
+      en: €200 one-way
+      fr: 200 € le trajet
+      es: 200 € por trayecto
+      pt: "200 € por trecho"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: "no"
+    statusLabel:
+      en: Forbidden
+      fr: Interdite
+      es: Prohibida
+      pt: "Proibido"
+    detail:
+      en: La Compagnie carries no animal in the hold. Its all-business A321neo fleet offers cabin carriage only, so anything over 8 kg or too big for the 55 × 35 × 25 cm bag cannot fly with it.
+      fr: La Compagnie ne transporte aucun animal en soute. Sa flotte tout-affaires A321neo n'offre que la cabine, donc au-delà de 8 kg ou d'un sac de 55 × 35 × 25 cm, ton chien ne peut pas voler avec elle.
+      es: La Compagnie no transporta ningún animal en bodega. Su flota íntegramente business A321neo solo ofrece cabina, así que por encima de 8 kg o de un bolso de 55 × 35 × 25 cm tu perro no puede volar con ella.
+      pt: "A La Compagnie não transporta nenhum animal no porão. A frota toda executiva de A321neo oferece somente cabine, então acima de 8 kg ou de uma bolsa de 55 × 35 × 25 cm o seu cachorro não pode voar com ela."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+fareList:
+  rows:
+    - label:
+        en: Cabin, one-way
+        fr: Cabine, par trajet
+        es: Cabina, por trayecto
+        pt: "Cabine, por trecho"
+      value:
+        en: €200
+        fr: 200 €
+        es: 200 €
+        pt: "200 €"
+    - label:
+        en: Cabin, return
+        fr: Cabine, aller-retour
+        es: Cabina, ida y vuelta
+        pt: "Cabine, ida e volta"
+      value:
+        en: €400
+        fr: 400 €
+        es: 400 €
+        pt: "400 €"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: Per animal and per flight. The official page also quotes a dollar equivalent, which we don't reproduce as a price — see below.
+    fr: Par animal et par vol. La page officielle donne aussi une contre-valeur en dollars, que nous ne reprenons pas comme un prix — voir plus bas.
+    es: Por animal y por vuelo. La página oficial también da un equivalente en dólares, que no reproducimos como precio — ver más abajo.
+    pt: "Por animal e por voo. A página oficial também traz um equivalente em dólares, que não reproduzimos como preço — veja abaixo."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Breeds
+      fr: Races
+      es: Razas
+      pt: "Raças"
+    pills:
+      - cls: ok
+        label:
+          en: No breed list
+          fr: Aucune liste de races
+          es: Sin lista de razas
+          pt: "Sem lista de raças"
+      - cls: warn
+        label:
+          en: Refusal on behaviour
+          fr: Refus sur le comportement
+          es: Rechazo por comportamiento
+          pt: "Recusa por comportamento"
+    note:
+      en: "La Compagnie publishes no breed list and no flat-faced restriction — a refusal is based on the animal's behaviour, not on its breed. And since there is no hold, the usual cabin/hold split for snub-nosed dogs simply doesn't arise here: everything that flies, flies in the cabin."
+      fr: "La Compagnie ne publie aucune liste de races ni restriction brachycéphale — un refus se fonde sur le comportement de l'animal, pas sur sa race. Et comme il n'y a pas de soute, la distinction cabine/soute qui vise ailleurs les chiens au nez écrasé n'a pas lieu d'être ici : tout ce qui vole, vole en cabine."
+      es: "La Compagnie no publica ninguna lista de razas ni restricción para braquicéfalos — un rechazo se basa en el comportamiento del animal, no en su raza. Y como no hay bodega, la habitual distinción cabina/bodega para los perros de hocico chato aquí no existe: todo lo que vuela, vuela en cabina."
+      pt: "A La Compagnie não publica nenhuma lista de raças nem restrição a braquicefálicos — a recusa se baseia no comportamento do animal, não na raça. E como não há porão, a habitual divisão cabine/porão para cachorros de focinho achatado nem se coloca aqui: tudo o que voa, voa na cabine."
+  - icon: 🧳
+    title:
+      en: The hold is closed
+      fr: La soute est fermée
+      es: La bodega está cerrada
+      pt: "O porão está fechado"
+    pills:
+      - cls: "no"
+        label:
+          en: No animal in the hold
+          fr: Aucun animal en soute
+          es: Ningún animal en bodega
+          pt: "Nenhum animal no porão"
+    note:
+      en: There is no hold option and no size band above 8 kg. If your dog is heavier than 8 kg with its bag, La Compagnie is simply not a route for it — plan another carrier for that leg.
+      fr: Il n'existe aucune option soute ni aucune tranche au-delà de 8 kg. Si ton chien dépasse 8 kg avec son sac, La Compagnie n'est tout simplement pas une option — prévois une autre compagnie pour ce tronçon.
+      es: No existe opción de bodega ni ningún tramo por encima de 8 kg. Si tu perro pesa más de 8 kg con su bolso, La Compagnie sencillamente no es una opción — busca otra aerolínea para ese trayecto.
+      pt: "Não existe opção de porão nem faixa acima de 8 kg. Se o seu cachorro passa de 8 kg com a bolsa, a La Compagnie simplesmente não é uma opção — planeje outra companhia para esse trecho."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: La Compagnie publishes no temperature limits or seasonal embargo on its pet pages — and since it has no hold, the question of hold temperature does not arise.
+    fr: La Compagnie ne publie pas de limites de température ni d'embargo saisonnier sur ses pages animaux — et comme il n'y a pas de soute, la question de la température en soute ne se pose pas.
+    es: La Compagnie no publica límites de temperatura ni embargo estacional en sus páginas de mascotas — y como no hay bodega, la cuestión de la temperatura en bodega no se plantea.
+    pt: "A La Compagnie não publica limites de temperatura nem embargo sazonal em suas páginas sobre animais — e, como não há porão, a questão da temperatura no porão nem se coloca."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Assistance dogs travel free, up to two per passenger, with 48 h notice.
+      fr: Les chiens d'assistance voyagent gratuitement, jusqu'à deux par passager, avec un préavis de 48 h.
+      es: Los perros de asistencia viajan gratis, hasta dos por pasajero, avisando con 48 h de antelación.
+      pt: "Cães de assistência viajam grátis, até dois por passageiro, com aviso de 48 h."
+  - icon: ⚠️
+    label:
+      en: Emotional support & dogs in training
+      fr: Soutien émotionnel & chiens en formation
+      es: Apoyo emocional y perros en formación
+      pt: "Apoio emocional e cães em treinamento"
+    value:
+      en: Since 14 July 2021, emotional-support animals and dogs still in training are treated as ordinary pets — same weight limit, same bag, same fee.
+      fr: Depuis le 14 juillet 2021, les animaux de soutien émotionnel et les chiens en formation sont traités comme des animaux de compagnie ordinaires — même limite de poids, même sac, même tarif.
+      es: Desde el 14 de julio de 2021, los animales de apoyo emocional y los perros en formación se tratan como mascotas normales — mismo límite de peso, mismo bolso, misma tarifa.
+      pt: "Desde 14 de julho de 2021, animais de apoio emocional e cães em treinamento são tratados como animais de estimação comuns — mesmo limite de peso, mesma bolsa, mesma tarifa."
+goodToKnow:
+  - icon: 💵
+    label:
+      en: The dollar figure is ambiguous
+      fr: La contre-valeur en dollars est ambiguë
+      es: El importe en dólares es ambiguo
+      pt: "O valor em dólares é ambíguo"
+    value:
+      en: "The official page prices the animal twice: €400 / $500 for a return in one place, and \"€200 / $250 per flight\" in another. The euro amount is consistent — €200 one-way. The dollar side is not clearly labelled as a fixed price or as a conversion, so we don't settle it: ask La Compagnie what you will actually be charged."
+      fr: "La page officielle chiffre l'animal deux fois : 400 € / 500 $ l'aller-retour à un endroit, et « 200 € / 250 $ par vol » à un autre. Le montant en euros est cohérent — 200 € le trajet. Côté dollars, rien ne dit s'il s'agit d'un prix ferme ou d'une simple conversion, donc nous ne tranchons pas : demande à La Compagnie ce qui te sera réellement facturé."
+      es: "La página oficial pone precio al animal dos veces: 400 € / 500 $ la ida y vuelta en un sitio y «200 € / 250 $ por vuelo» en otro. El importe en euros es coherente — 200 € por trayecto. Del lado del dólar no se aclara si es un precio fijo o una simple conversión, así que no lo zanjamos: pregunta a La Compagnie qué te van a cobrar."
+      pt: "A página oficial precifica o animal duas vezes: 400 € / 500 $ na ida e volta em um trecho do texto e \"200 € / 250 $ por voo\" em outro. O valor em euros é coerente — 200 € por trecho. Do lado do dólar não fica claro se é preço fixo ou apenas conversão, então não decidimos por você: pergunte à La Compagnie quanto será realmente cobrado."
+  - icon: 🎫
+    label:
+      en: Four animals per flight
+      fr: Quatre animaux par vol
+      es: Cuatro animales por vuelo
+      pt: "Quatro animais por voo"
+    value:
+      en: The cap is four animals per flight, and once it's reached the booking simply can't be made. Call 48 h ahead at the latest, earlier in high season.
+      fr: Le plafond est de quatre animaux par vol, et une fois atteint la réservation est tout simplement impossible. Appelle 48 h avant au plus tard, plus tôt en haute saison.
+      es: El límite es de cuatro animales por vuelo y, una vez alcanzado, la reserva sencillamente no se puede hacer. Llama con 48 h de antelación como máximo, antes en temporada alta.
+      pt: "O limite é de quatro animais por voo e, uma vez atingido, a reserva simplesmente não pode ser feita. Ligue com 48 h de antecedência no máximo, e antes disso na alta temporada."
+  - icon: 💺
+    label:
+      en: Your seat won't lie flat
+      fr: Ton siège ne s'incline pas en lit
+      es: Tu asiento no se convierte en cama
+      pt: "Seu assento não vira cama"
+    value:
+      en: With an animal at your feet the seat cannot be reclined into the bed position — worth knowing on a transatlantic night flight. The bag also takes the place of your cabin baggage.
+      fr: Avec un animal à tes pieds, le siège ne peut pas être incliné en position lit — bon à savoir sur un transatlantique de nuit. Le sac occupe aussi la place de ton bagage cabine.
+      es: Con un animal a tus pies el asiento no puede reclinarse en posición cama — conviene saberlo en un transatlántico nocturno. El bolso ocupa además el lugar de tu equipaje de mano.
+      pt: "Com um animal aos seus pés, o assento não pode ser reclinado na posição cama — bom saber em um voo transatlântico noturno. A bolsa também ocupa o lugar da sua bagagem de mão."
+  - icon: 📄
+    label:
+      en: Minimum age
+      fr: Âge minimal
+      es: Edad mínima
+      pt: "Idade mínima"
+    value:
+      en: Animals must be at least 6 months old — one of the strictest minimum ages published by any airline.
+      fr: Les animaux doivent avoir au moins 6 mois — l'un des âges minimaux les plus stricts publiés par une compagnie.
+      es: Los animales deben tener al menos 6 meses — una de las edades mínimas más estrictas publicadas por una aerolínea.
+      pt: "Os animais devem ter pelo menos 6 meses — uma das idades mínimas mais rígidas publicadas por uma companhia aérea."
+book:
+  host: lacompagnie.com
+  url: https://www.lacompagnie.com/
+sources:
+  en: 1 official La Compagnie source · last verified 5 August 2026
+  fr: 1 source officielle La Compagnie · dernière vérification 5 août 2026
+  es: 1 fuente oficial de La Compagnie · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da La Compagnie · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

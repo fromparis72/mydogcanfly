@@ -1,0 +1,377 @@
+id: airline_bangkok_airways
+mono: PG
+name: Bangkok Airways
+titleH1:
+  en: Flying with a dog on Bangkok Airways
+  fr: Voyager avec un chien sur Bangkok Airways
+  es: Volar con un perro en Bangkok Airways
+  pt: "Viajar com um cachorro na Bangkok Airways"
+metaDesc:
+  en: "Bangkok Airways pet policy: no pet cabin, hold limits by aircraft (20 kg on ATR, 60 kg on Airbus), the short list of open routes, banned breeds and official sources."
+  fr: "Politique animaux Bangkok Airways : pas de cabine pour les animaux, limites de soute par appareil (20 kg sur ATR, 60 kg sur Airbus), routes ouvertes, races interdites et sources officielles."
+  es: "Política de mascotas de Bangkok Airways: sin cabina para mascotas, límites de bodega por avión (20 kg en ATR, 60 kg en Airbus), rutas abiertas, razas prohibidas y fuentes oficiales."
+  pt: "Política de animais da Bangkok Airways: sem cabine para animais, limites de porão por aeronave (20 kg no ATR, 60 kg no Airbus), rotas abertas, raças proibidas e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Thailand · BKK
+      fr: Thaïlande · BKK
+      es: Tailandia · BKK
+      pt: "Tailândia · BKK"
+  - icon: 🧳
+    label:
+      en: Hold only, few routes
+      fr: Soute seule, peu de routes
+      es: Solo bodega, pocas rutas
+      pt: "Somente porão, poucas rotas"
+    cls: warn
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Hold only
+    fr: Soute uniquement
+    es: Solo bodega
+    pt: "Somente porão"
+verdictNote:
+  en: No cabin for pets at all. The hold is well documented but capped by aircraft type — 20 kg on the ATR, 60 kg on the Airbus — and open on a handful of routes only.
+  fr: Aucune cabine pour les animaux. La soute est bien documentée mais plafonnée par appareil — 20 kg sur ATR, 60 kg sur Airbus — et ouverte sur une poignée de routes seulement.
+  es: No hay cabina para mascotas. La bodega está bien documentada, pero limitada según el avión — 20 kg en ATR, 60 kg en Airbus — y abierta solo en unas pocas rutas.
+  pt: "Não há cabine para animais. O porão é bem documentado, mas limitado pelo tipo de aeronave — 20 kg no ATR, 60 kg no Airbus — e aberto em apenas algumas rotas."
+ladder:
+  - flex: 12
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: assistance only
+      fr: assistance seul
+      es: solo asistencia
+      pt: "somente assistência"
+  - flex: 68
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: 20 kg ATR / 60 kg Airbus
+      fr: 20 kg ATR / 60 kg Airbus
+      es: 20 kg ATR / 60 kg Airbus
+      pt: "20 kg ATR / 60 kg Airbus"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: not published
+      fr: non publié
+      es: no publicado
+      pt: "não publicado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Not offered
+      fr: Non proposé
+      es: No se ofrece
+      pt: "Não oferecido"
+    detail:
+      en: Bangkok Airways has no cabin option for pets, whatever their size. Only assistance dogs travel in the cabin, and only on Airbus flights.
+      fr: Bangkok Airways ne propose aucune option cabine pour les animaux, quelle que soit leur taille. Seuls les chiens d'assistance voyagent en cabine, et seulement sur les vols Airbus.
+      es: Bangkok Airways no ofrece ninguna opción de cabina para mascotas, sea cual sea su tamaño. Solo los perros de asistencia viajan en cabina, y únicamente en los vuelos Airbus.
+      pt: "A Bangkok Airways não oferece nenhuma opção de cabine para animais, seja qual for o tamanho. Somente cães de assistência viajam na cabine, e apenas em voos Airbus."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs and cats in a rigid crate, booked 24 h ahead. Two animals on the ATR 72 (80 × 45 × 65 cm, 20 kg total), two on the A319 and three on the A320 (100 × 60 × 75 cm, 60 kg total).
+      fr: Chiens et chats en caisse rigide, réservation 24 h à l'avance. Deux animaux sur ATR 72 (80 × 45 × 65 cm, 20 kg au total), deux sur A319 et trois sur A320 (100 × 60 × 75 cm, 60 kg au total).
+      es: Perros y gatos en jaula rígida, con reserva 24 h antes. Dos animales en el ATR 72 (80 × 45 × 65 cm, 20 kg en total), dos en el A319 y tres en el A320 (100 × 60 × 75 cm, 60 kg en total).
+      pt: "Cachorros e gatos em caixa rígida, com reserva 24 h antes. Dois animais no ATR 72 (80 × 45 × 65 cm, 20 kg no total), dois no A319 e três no A320 (100 × 60 × 75 cm, 60 kg no total)."
+    fee:
+      en: 180 THB/kg
+      fr: 180 THB/kg
+      es: 180 THB/kg
+      pt: "180 THB/kg"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: The pet page mentions cargo only to say that flat-faced breeds are barred from it too. No conditions, crate rules or prices are published for cargo shipments.
+      fr: La page animaux ne mentionne le fret que pour dire que les races au nez écrasé y sont également interdites. Aucune condition, règle de caisse ni tarif n'est publié pour le fret.
+      es: La página de mascotas solo menciona la carga para decir que las razas de hocico chato también están prohibidas ahí. No se publica ninguna condición, norma de jaula ni tarifa para los envíos de carga.
+      pt: "A página de animais só menciona a carga para dizer que as raças de focinho achatado também são proibidas ali. Nenhuma condição, regra de caixa ou tarifa é publicada para envios de carga."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Cabin (pets)
+        fr: Cabine (animaux)
+        es: Cabina (mascotas)
+        pt: "Cabine (animais)"
+      value:
+        en: Not offered
+        fr: Non proposé
+        es: No se ofrece
+        pt: "Não oferecido"
+    - label:
+        en: Hold — domestic
+        fr: Soute — domestique
+        es: Bodega — nacional
+        pt: "Porão — doméstico"
+      value:
+        en: 180 THB per kg, per segment
+        fr: 180 THB par kg, par tronçon
+        es: 180 THB por kg y por tramo
+        pt: "180 THB por kg, por trecho"
+    - label:
+        en: Hold — international
+        fr: Soute — international
+        es: Bodega — internacional
+        pt: "Porão — internacional"
+      value:
+        en: "Zonal fare: grid not published"
+        fr: "Tarif zonal : grille non publiée"
+        es: "Tarifa zonal: tabla no publicada"
+        pt: "Tarifa zonal: tabela não publicada"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free (Airbus flights only)
+        fr: Gratuit (vols Airbus seulement)
+        es: Gratis (solo vuelos Airbus)
+        pt: "Grátis (somente voos Airbus)"
+  note:
+    en: Domestic pricing is per kilo and per segment, so a connection is billed twice. Bangkok Airways calls its international pricing a zonal fare but publishes no grid — you have to ask.
+    fr: Le tarif domestique est au kilo et par tronçon, donc une correspondance est facturée deux fois. Bangkok Airways parle d'un tarif zonal à l'international mais n'en publie pas la grille — il faut demander.
+    es: "El precio nacional se cobra por kilo y por tramo, así que una conexión se factura dos veces. Bangkok Airways habla de una tarifa zonal en internacional, pero no publica la tabla: hay que preguntar."
+    pt: "O preço doméstico é por quilo e por trecho, então uma conexão é cobrada duas vezes. A Bangkok Airways fala em tarifa zonal no internacional, mas não publica a tabela — é preciso perguntar."
+restrictions:
+  - icon: 🛩️
+    title:
+      en: Aircraft limits — the decisive point
+      fr: Limites par appareil — le point décisif
+      es: Límites por avión — el punto decisivo
+      pt: "Limites por aeronave — o ponto decisivo"
+    pills:
+      - cls: "no"
+        label:
+          en: "ATR 72: 20 kg total"
+          fr: "ATR 72 : 20 kg au total"
+          es: "ATR 72: 20 kg en total"
+          pt: "ATR 72: 20 kg no total"
+      - cls: ok
+        label:
+          en: "A319/A320: 60 kg total"
+          fr: "A319/A320 : 60 kg au total"
+          es: "A319/A320: 60 kg en total"
+          pt: "A319/A320: 60 kg no total"
+    note:
+      en: "ATR 72: 2 animals max, crate 80 × 45 × 65 cm, 20 kg total. A319: 2 animals, crate 100 × 60 × 75 cm, 60 kg total. A320: 3 animals, same crate, 60 kg total. The 20 kg ceiling on the ATR rules out a medium dog over a large part of the network — check which aircraft flies your route before you book."
+      fr: "ATR 72 : 2 animaux max, caisse 80 × 45 × 65 cm, 20 kg au total. A319 : 2 animaux, caisse 100 × 60 × 75 cm, 60 kg au total. A320 : 3 animaux, même caisse, 60 kg au total. Les 20 kg sur ATR excluent de fait un chien moyen sur une grande partie du réseau — vérifie quel appareil vole ta route avant de réserver."
+      es: "ATR 72: 2 animales máx., jaula 80 × 45 × 65 cm, 20 kg en total. A319: 2 animales, jaula 100 × 60 × 75 cm, 60 kg en total. A320: 3 animales, la misma jaula, 60 kg en total. Los 20 kg del ATR dejan fuera a un perro mediano en buena parte de la red: comprueba qué avión cubre tu ruta antes de reservar."
+      pt: "ATR 72: máx. 2 animais, caixa 80 × 45 × 65 cm, 20 kg no total. A319: 2 animais, caixa 100 × 60 × 75 cm, 60 kg no total. A320: 3 animais, mesma caixa, 60 kg no total. Os 20 kg do ATR excluem na prática um cachorro médio em boa parte da malha — confira qual aeronave opera sua rota antes de reservar."
+  - icon: 🌍
+    title:
+      en: Open routes — a short list
+      fr: Routes ouvertes — une liste courte
+      es: Rutas abiertas — una lista corta
+      pt: "Rotas abertas — uma lista curta"
+    pills:
+      - cls: warn
+        label:
+          en: "Domestic: 3 cities + all ATR"
+          fr: "Domestique : 3 villes + tous les ATR"
+          es: "Nacional: 3 ciudades + todos los ATR"
+          pt: "Doméstico: 3 cidades + todos os ATR"
+      - cls: warn
+        label:
+          en: "International: 3 cities"
+          fr: "International : 3 villes"
+          es: "Internacional: 3 ciudades"
+          pt: "Internacional: 3 cidades"
+    note:
+      en: "Pets are only carried to Chiang Mai, Phuket and Samui on the domestic network, plus all ATR flights; and to Phnom Penh, Siem Reap and Luang Prabang internationally. Any other Bangkok Airways route is closed to pets."
+      fr: "Les animaux ne sont acceptés que vers Chiang Mai, Phuket et Samui sur le réseau domestique, plus tous les vols ATR ; et vers Phnom Penh, Siem Reap et Luang Prabang à l'international. Toute autre route Bangkok Airways est fermée aux animaux."
+      es: "Las mascotas solo se transportan a Chiang Mai, Phuket y Samui en la red nacional, además de todos los vuelos ATR; y a Phnom Penh, Siem Reap y Luang Prabang en internacional. Cualquier otra ruta de Bangkok Airways está cerrada a los animales."
+      pt: "Os animais só são transportados para Chiang Mai, Phuket e Samui na malha doméstica, além de todos os voos ATR; e para Phnom Penh, Siem Reap e Luang Prabang no internacional. Qualquer outra rota da Bangkok Airways está fechada para animais."
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+      - cls: "no"
+        label:
+          en: Cargo forbidden
+          fr: Fret interdit
+          es: Carga prohibida
+          pt: "Carga proibida"
+    note:
+      en: Bangkok Airways bars snub-nosed animals from both the hold and cargo, and publishes a named list of 25 dog breeds and 5 cat breeds, crossbreeds included. With no cabin option, a flat-faced dog simply cannot fly Bangkok Airways — check the exact names on the airline's pet page before booking anything.
+      fr: Bangkok Airways interdit les animaux au nez écrasé en soute comme en fret, et publie une liste nominative de 25 races de chiens et 5 races de chats, croisements compris. Comme il n'y a pas de cabine, un chien brachycéphale ne peut tout simplement pas voler sur Bangkok Airways — vérifie les noms exacts sur la page animaux de la compagnie avant de réserver quoi que ce soit.
+      es: "Bangkok Airways prohíbe los animales de hocico chato tanto en bodega como en carga, y publica una lista nominal de 25 razas de perros y 5 de gatos, cruces incluidos. Como no hay cabina, un perro braquicéfalo sencillamente no puede volar con Bangkok Airways: consulta los nombres exactos en la página de mascotas de la aerolínea antes de reservar nada."
+      pt: "A Bangkok Airways proíbe animais de focinho achatado tanto no porão quanto na carga, e publica uma lista nominal de 25 raças de cachorros e 5 de gatos, incluindo cruzamentos. Como não há cabine, um cachorro braquicefálico simplesmente não pode voar pela Bangkok Airways — confira os nomes exatos na página de animais da companhia antes de reservar qualquer coisa."
+crate:
+  - en: Rigid standard crate, no soft bag (there is no cabin option anyway)
+    fr: Caisse rigide standard, pas de sac souple (il n'y a de toute façon pas de cabine)
+    es: Jaula rígida estándar, nada de bolsas blandas (de todos modos no hay cabina)
+    pt: "Caixa rígida padrão, nada de bolsa flexível (de todo modo, não há cabine)"
+  - en: "ATR 72: 80 × 45 × 65 cm — A319/A320: 100 × 60 × 75 cm"
+    fr: "ATR 72 : 80 × 45 × 65 cm — A319/A320 : 100 × 60 × 75 cm"
+    es: "ATR 72: 80 × 45 × 65 cm — A319/A320: 100 × 60 × 75 cm"
+    pt: "ATR 72: 80 × 45 × 65 cm — A319/A320: 100 × 60 × 75 cm"
+  - en: Collar, harness, clothing and GPS tracker must be removed before the animal goes into the crate
+    fr: Collier, harnais, vêtements et traceur GPS doivent être retirés avant la mise en caisse
+    es: Hay que quitar collar, arnés, ropa y localizador GPS antes de meter al animal en la jaula
+    pt: "Coleira, peitoral, roupas e rastreador GPS devem ser retirados antes de colocar o animal na caixa"
+  - en: Book the animal at least 24 h before departure
+    fr: Réserver l'animal au moins 24 h avant le départ
+    es: Reserva el animal al menos 24 h antes de la salida
+    pt: "Reserve o animal pelo menos 24 h antes da partida"
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Bangkok Airways publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Bangkok Airways ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Bangkok Airways no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Bangkok Airways não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: A trained assistance dog travels free in the cabin, with no crate and no weight limit.
+      fr: Un chien d'assistance dressé voyage gratuitement en cabine, sans cage ni limite de poids.
+      es: Un perro de asistencia adiestrado viaja gratis en cabina, sin jaula ni límite de peso.
+      pt: "Um cão de assistência treinado viaja grátis na cabine, sem caixa e sem limite de peso."
+  - icon: 🛩️
+    label:
+      en: Airbus flights only
+      fr: Vols Airbus seulement
+      es: Solo vuelos Airbus
+      pt: "Somente voos Airbus"
+    value:
+      en: Assistance dogs are only accepted on Airbus flights. Bangkok Airways publishes no solution for its ATR routes — the exact routes where a pet could otherwise travel.
+      fr: Les chiens d'assistance ne sont acceptés que sur les vols Airbus. Bangkok Airways ne publie aucune solution pour ses lignes ATR — précisément les routes où un animal de compagnie pourrait voyager.
+      es: Los perros de asistencia solo se aceptan en vuelos Airbus. Bangkok Airways no publica ninguna solución para sus rutas ATR, justamente aquellas por donde sí podría viajar una mascota.
+      pt: "Cães de assistência só são aceitos em voos Airbus. A Bangkok Airways não publica nenhuma solução para suas linhas ATR — justamente as rotas em que um animal de estimação poderia viajar."
+  - icon: 💛
+    label:
+      en: Emotional support
+      fr: Soutien émotionnel
+      es: Apoyo emocional
+      pt: "Suporte emocional"
+    value:
+      en: Bangkok Airways files emotional-support animals under accepted psychiatric assistance — an unusual position today, when most airlines have dropped the category.
+      fr: Bangkok Airways range le soutien émotionnel parmi l'assistance psychiatrique acceptée — une position rare aujourd'hui, alors que la plupart des compagnies ont supprimé la catégorie.
+      es: Bangkok Airways clasifica el apoyo emocional dentro de la asistencia psiquiátrica aceptada, una postura poco común hoy, cuando la mayoría de las aerolíneas han eliminado esa categoría.
+      pt: "A Bangkok Airways enquadra o suporte emocional na assistência psiquiátrica aceita — uma posição rara hoje, quando a maioria das companhias eliminou a categoria."
+goodToKnow:
+  - icon: 📅
+    label:
+      en: Booking & age
+      fr: Réservation & âge
+      es: Reserva y edad
+      pt: "Reserva e idade"
+    value:
+      en: Book the animal 24 h ahead. Minimum age 8 weeks on domestic flights, 4 months on international flights leaving Thailand.
+      fr: Réserve l'animal 24 h à l'avance. Âge minimum 8 semaines en domestique, 4 mois en international au départ de Thaïlande.
+      es: Reserva el animal con 24 h de antelación. Edad mínima 8 semanas en vuelos nacionales, 4 meses en internacionales que salen de Tailandia.
+      pt: "Reserve o animal com 24 h de antecedência. Idade mínima de 8 semanas em voos domésticos e 4 meses em voos internacionais saindo da Tailândia."
+  - icon: 🎽
+    label:
+      en: Strip the dog before crating
+      fr: Déséquipe le chien avant la caisse
+      es: Quítale todo antes de la jaula
+      pt: "Tire tudo do cachorro antes da caixa"
+    value:
+      en: Collar, harness, clothing and GPS tracker all have to come off before the animal goes in — a rule almost no other airline publishes, and one that catches owners out at the counter.
+      fr: Collier, harnais, vêtements et traceur GPS doivent tous être retirés avant la mise en caisse — une règle que presque aucune autre compagnie ne publie, et qui surprend au comptoir.
+      es: "Collar, arnés, ropa y localizador GPS deben quitarse antes de meter al animal: una regla que casi ninguna otra aerolínea publica y que pilla por sorpresa en el mostrador."
+      pt: "Coleira, peitoral, roupas e rastreador GPS precisam sair antes de o animal entrar na caixa — uma regra que quase nenhuma outra companhia publica e que pega os tutores de surpresa no balcão."
+  - icon: 💸
+    label:
+      en: International prices unpublished
+      fr: Tarifs internationaux non publiés
+      es: Tarifas internacionales sin publicar
+      pt: "Tarifas internacionais não publicadas"
+    value:
+      en: Only the domestic rate of 180 THB per kilo and per segment is published. For Phnom Penh, Siem Reap or Luang Prabang, Bangkok Airways only says the fare is zonal — ask for a written quote.
+      fr: Seul le tarif domestique de 180 THB par kilo et par tronçon est publié. Pour Phnom Penh, Siem Reap ou Luang Prabang, Bangkok Airways dit seulement que le tarif est zonal — demande un devis écrit.
+      es: "Solo se publica la tarifa nacional de 180 THB por kilo y por tramo. Para Phnom Penh, Siem Reap o Luang Prabang, Bangkok Airways solo dice que la tarifa es zonal: pide un presupuesto por escrito."
+      pt: "Só a tarifa doméstica de 180 THB por quilo e por trecho é publicada. Para Phnom Penh, Siem Reap ou Luang Prabang, a Bangkok Airways apenas diz que a tarifa é zonal — peça uma cotação por escrito."
+book:
+  host: bangkokair.com
+  url: https://www.bangkokair.com/
+sources:
+  en: 1 Bangkok Airways source · last verified 5 August 2026
+  fr: 1 source Bangkok Airways · dernière vérification 5 août 2026
+  es: 1 fuente de Bangkok Airways · última verificación 5 de agosto de 2026
+  pt: "1 fonte da Bangkok Airways · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

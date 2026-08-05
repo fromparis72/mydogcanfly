@@ -1,0 +1,346 @@
+id: airline_kenya_airways
+mono: KQ
+name: Kenya Airways
+titleH1:
+  en: Flying with a dog on Kenya Airways
+  fr: Voyager avec un chien sur Kenya Airways
+  es: Volar con un perro en Kenya Airways
+  pt: "Viajar com um cachorro na Kenya Airways"
+metaDesc:
+  en: "Kenya Airways pet policy: no pets in the cabin or the hold, live animals as cargo only, certified assistance dogs on direct flights, and official sources."
+  fr: "Politique animaux Kenya Airways : aucun animal en cabine ni en soute, animaux vivants en fret uniquement, chiens d'assistance certifiés sur vols directs, et sources officielles."
+  es: "Política de mascotas de Kenya Airways: sin animales en cabina ni en bodega, animales vivos solo como carga, perros de asistencia certificados en vuelos directos, y fuentes oficiales."
+  pt: "Política de animais da Kenya Airways: nenhum animal na cabine ou no porão, animais vivos somente como carga, cães de assistência certificados em voos diretos, e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: Kenya · NBO
+      fr: Kenya · NBO
+      es: Kenia · NBO
+      pt: "Quênia · NBO"
+  - icon: 🚫
+    label:
+      en: Cargo only
+      fr: Fret uniquement
+      es: Solo carga
+      pt: "Somente carga"
+    cls: "no"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: "no"
+  label:
+    en: No pets
+    fr: Aucun animal
+    es: Sin mascotas
+    pt: "Sem animais"
+verdictNote:
+  en: Kenya Airways carries no pet in the cabin or in the hold. "Live animals shall be consigned as cargo only" — cargo is the single route, and a certified assistance dog on a direct flight is the only exception.
+  fr: "Kenya Airways ne transporte aucun animal en cabine ni en soute. « Live animals shall be consigned as cargo only » — le fret est la seule voie, et le chien d'assistance certifié sur vol direct la seule exception."
+  es: "Kenya Airways no transporta ninguna mascota en cabina ni en bodega. «Live animals shall be consigned as cargo only»: la carga es la única vía, y el perro de asistencia certificado en vuelo directo, la única excepción."
+  pt: "A Kenya Airways não transporta nenhum animal na cabine nem no porão. \"Live animals shall be consigned as cargo only\" — a carga é o único caminho, e o cão de assistência certificado em voo direto, a única exceção."
+ladder:
+  - flex: 15
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: assistance only
+      fr: assistance seul
+      es: solo asistencia
+      pt: "somente assistência"
+  - flex: 15
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 70
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: the only route
+      fr: la seule voie
+      es: la única vía
+      pt: "o único caminho"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Forbidden
+      fr: Interdit
+      es: Prohibido
+      pt: "Proibido"
+    detail:
+      en: No pet is accepted in the cabin, whatever its size or carrier. Only a certified assistance dog travels with you, and only on a direct flight.
+      fr: Aucun animal n'est accepté en cabine, quels que soient sa taille ou son sac. Seul un chien d'assistance certifié voyage avec toi, et seulement sur un vol direct.
+      es: No se acepta ninguna mascota en cabina, sea cual sea su tamaño o su transportín. Solo un perro de asistencia certificado viaja contigo, y únicamente en vuelo directo.
+      pt: "Nenhum animal é aceito na cabine, seja qual for o tamanho ou a bolsa. Somente um cão de assistência certificado viaja com você, e apenas em voo direto."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: "no"
+    statusLabel:
+      en: Not carried
+      fr: Non transporté
+      es: No se transporta
+      pt: "Não transportado"
+    detail:
+      en: Kenya Airways carries no animal as checked baggage. There is no pet-in-hold product to book, at any price, on any route.
+      fr: Kenya Airways ne transporte aucun animal en bagage enregistré. Il n'existe aucune offre soute à réserver, à aucun prix, sur aucune route.
+      es: Kenya Airways no transporta ningún animal como equipaje facturado. No existe ningún producto de bodega que reservar, a ningún precio ni en ninguna ruta.
+      pt: "A Kenya Airways não transporta nenhum animal como bagagem despachada. Não existe produto de porão para reservar, a nenhum preço, em nenhuma rota."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: The only route
+      fr: La seule voie
+      es: La única vía
+      pt: "O único caminho"
+    detail:
+      en: The airline's own wording is that live animals shall be consigned as cargo only. The passenger pet page publishes no rate, crate standard or breed rule for those shipments — everything is handled by Kenya Airways Cargo.
+      fr: La compagnie écrit elle-même que les animaux vivants doivent être expédiés en fret uniquement. La page animaux passagers ne publie ni tarif, ni norme de caisse, ni règle de race pour ces expéditions — tout passe par Kenya Airways Cargo.
+      es: "La propia aerolínea escribe que los animales vivos deben enviarse únicamente como carga. La página de mascotas para pasajeros no publica ninguna tarifa, norma de jaula ni regla de raza para esos envíos: todo lo gestiona Kenya Airways Cargo."
+      pt: "A própria companhia escreve que animais vivos devem ser despachados apenas como carga. A página de animais para passageiros não publica tarifa, padrão de caixa nem regra de raça para esses envios — tudo passa pela Kenya Airways Cargo."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Pets (cabin / hold)
+        fr: Animaux (cabine / soute)
+        es: Mascotas (cabina / bodega)
+        pt: "Animais (cabine / porão)"
+      value:
+        en: Not carried
+        fr: Non transporté
+        es: No se transportan
+        pt: "Não transportado"
+    - label:
+        en: Cargo
+        fr: Fret
+        es: Carga
+        pt: "Carga"
+      value:
+        en: Not published — quote from KQ Cargo
+        fr: Non publié — devis auprès de KQ Cargo
+        es: No publicado — presupuesto de KQ Cargo
+        pt: "Não publicado — cotação com a KQ Cargo"
+    - label:
+        en: Assistance dog
+        fr: Chien d'assistance
+        es: Perro de asistencia
+        pt: "Cão de assistência"
+      value:
+        en: Free, direct flights only
+        fr: Gratuit, vols directs seulement
+        es: Gratis, solo vuelos directos
+        pt: "Grátis, somente voos diretos"
+  note:
+    en: There is nothing to price for a pet as a passenger — the only fare that exists is a cargo quote, and Kenya Airways doesn't publish it.
+    fr: "Il n'y a rien à chiffrer pour un animal en tant que passager : le seul tarif qui existe est un devis fret, que Kenya Airways ne publie pas."
+    es: "No hay nada que cotizar para una mascota como pasajero: la única tarifa que existe es un presupuesto de carga, que Kenya Airways no publica."
+    pt: "Não há nada a orçar para um animal como passageiro — a única tarifa existente é uma cotação de carga, que a Kenya Airways não publica."
+restrictions:
+  - icon: 🚫
+    title:
+      en: No pets, cabin or hold
+      fr: Aucun animal, cabine ou soute
+      es: Sin mascotas, ni cabina ni bodega
+      pt: "Nenhum animal, cabine ou porão"
+    pills:
+      - cls: "no"
+        label:
+          en: Cabin forbidden
+          fr: Cabine interdite
+          es: Cabina prohibida
+          pt: "Cabine proibida"
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: The refusal is flat and applies to the whole network — no size exception, no breed exception, no domestic exception. If your dog has to fly Kenya Airways, it flies as freight or it doesn't fly.
+      fr: Le refus est net et vaut sur tout le réseau — aucune exception de taille, de race ni de domestique. Si ton chien doit voler sur Kenya Airways, il part en fret ou il ne part pas.
+      es: "El rechazo es tajante y vale para toda la red: sin excepción por tamaño, por raza ni por vuelo nacional. Si tu perro tiene que volar con Kenya Airways, viaja como carga o no viaja."
+      pt: "A recusa é total e vale para toda a malha — sem exceção por tamanho, por raça ou por voo doméstico. Se seu cachorro precisa voar pela Kenya Airways, ele vai como carga ou não vai."
+  - icon: 🦮
+    title:
+      en: Assistance dogs — the only exception
+      fr: Chiens d'assistance — la seule exception
+      es: Perros de asistencia — la única excepción
+      pt: "Cães de assistência — a única exceção"
+    pills:
+      - cls: ok
+        label:
+          en: Free in the cabin
+          fr: Gratuit en cabine
+          es: Gratis en cabina
+          pt: "Grátis na cabine"
+      - cls: "no"
+        label:
+          en: Direct flights only
+          fr: Vols directs seulement
+          es: Solo vuelos directos
+          pt: "Somente voos diretos"
+      - cls: warn
+        label:
+          en: 1 narrow-body / 2 wide-body
+          fr: 1 monocouloir / 2 gros-porteur
+          es: 1 fuselaje estrecho / 2 ancho
+          pt: "1 corredor único / 2 fuselagem larga"
+    note:
+      en: "A certified assistance dog travels free in the cabin, one per passenger, on direct flights only — a connection through Nairobi disqualifies the trip. The aircraft caps the total: one dog on a narrow-body, two on a wide-body."
+      fr: "Un chien d'assistance certifié voyage gratuitement en cabine, un par passager, sur vols directs uniquement — une correspondance par Nairobi disqualifie le trajet. L'appareil plafonne le total : un chien sur monocouloir, deux sur gros-porteur."
+      es: "Un perro de asistencia certificado viaja gratis en cabina, uno por pasajero, solo en vuelos directos: una conexión por Nairobi descarta el viaje. El avión limita el total: un perro en fuselaje estrecho, dos en fuselaje ancho."
+      pt: "Um cão de assistência certificado viaja grátis na cabine, um por passageiro, somente em voos diretos — uma conexão por Nairóbi elimina a viagem. A aeronave limita o total: um cão em fuselagem estreita, dois em fuselagem larga."
+  - icon: ⏱️
+    title:
+      en: Segments of 8 hours or more
+      fr: Segments de 8 heures ou plus
+      es: Tramos de 8 horas o más
+      pt: "Trechos de 8 horas ou mais"
+    pills:
+      - cls: warn
+        label:
+          en: Written attestation required
+          fr: Attestation exigée
+          es: Declaración obligatoria
+          pt: "Declaração obrigatória"
+    note:
+      en: On any segment of 8 hours or more, the passenger must attest that the assistance dog will not need to relieve itself during the flight. It's an unusual requirement, and it rules out the longest routes for many dogs.
+      fr: Sur tout segment de 8 heures ou plus, le passager doit attester que le chien d'assistance n'aura pas besoin de se soulager pendant le vol. C'est une exigence inhabituelle, qui ferme de fait les plus longues routes à beaucoup de chiens.
+      es: En cualquier tramo de 8 horas o más, el pasajero debe declarar que el perro de asistencia no necesitará hacer sus necesidades durante el vuelo. Es una exigencia poco común que, en la práctica, cierra las rutas más largas a muchos perros.
+      pt: "Em qualquer trecho de 8 horas ou mais, o passageiro deve declarar que o cão de assistência não precisará fazer suas necessidades durante o voo. É uma exigência incomum que, na prática, fecha as rotas mais longas para muitos cães."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Kenya Airways publishes no hold-temperature limits or seasonal embargo on its pet pages.
+    fr: Kenya Airways ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: Kenya Airways no publica límites de temperatura en bodega ni embargo estacional en sus páginas de mascotas.
+    pt: "A Kenya Airways não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: A certified assistance dog travels free in the cabin, one per passenger, on direct flights only.
+      fr: Un chien d'assistance certifié voyage gratuitement en cabine, un par passager, sur vols directs uniquement.
+      es: Un perro de asistencia certificado viaja gratis en cabina, uno por pasajero, solo en vuelos directos.
+      pt: "Um cão de assistência certificado viaja grátis na cabine, um por passageiro, somente em voos diretos."
+  - icon: ✈️
+    label:
+      en: Per flight
+      fr: Par vol
+      es: Por vuelo
+      pt: "Por voo"
+    value:
+      en: One assistance dog on a narrow-body aircraft, two on a wide-body. Book early — the seats go on a first-come basis.
+      fr: Un chien d'assistance sur monocouloir, deux sur gros-porteur. Réserve tôt — les places partent au premier arrivé.
+      es: "Un perro de asistencia en avión de fuselaje estrecho, dos en fuselaje ancho. Reserva pronto: las plazas se asignan por orden de llegada."
+      pt: "Um cão de assistência em aeronave de fuselagem estreita, dois em fuselagem larga. Reserve cedo — os lugares saem por ordem de chegada."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: The dog must be certified, but Kenya Airways doesn't publish which certifying bodies it recognises, nor a notice deadline. Ask before you buy the ticket.
+      fr: Le chien doit être certifié, mais Kenya Airways ne publie pas quels organismes certificateurs elle reconnaît, ni de délai de préavis. Demande avant d'acheter le billet.
+      es: El perro debe estar certificado, pero Kenya Airways no publica qué organismos certificadores reconoce ni ningún plazo de aviso. Pregunta antes de comprar el billete.
+      pt: "O cão precisa ser certificado, mas a Kenya Airways não publica quais entidades certificadoras reconhece, nem prazo de aviso. Pergunte antes de comprar a passagem."
+goodToKnow:
+  - icon: 📦
+    label:
+      en: Cargo is the only plan
+      fr: Le fret est le seul plan
+      es: La carga es el único plan
+      pt: "A carga é o único plano"
+    value:
+      en: If Kenya Airways is the only carrier on your route, budget for a cargo shipment with Kenya Airways Cargo or an agent — the passenger side of the airline has nothing to sell you.
+      fr: Si Kenya Airways est le seul transporteur sur ta route, prévois une expédition fret avec Kenya Airways Cargo ou un agent — le côté passagers de la compagnie n'a rien à te vendre.
+      es: "Si Kenya Airways es la única aerolínea en tu ruta, cuenta con un envío de carga con Kenya Airways Cargo o un agente: el lado de pasajeros no tiene nada que ofrecerte."
+      pt: "Se a Kenya Airways for a única companhia na sua rota, planeje um envio de carga com a Kenya Airways Cargo ou um agente — o lado de passageiros não tem nada para lhe vender."
+  - icon: 🕰️
+    label:
+      en: An out-of-date page
+      fr: Une page qui n'est plus à jour
+      es: Una página desactualizada
+      pt: "Uma página desatualizada"
+    value:
+      en: The pet page hasn't been refreshed since June 2023 and still repeats a United States import rule that has since lapsed. Take the refusal and the assistance-dog rules from it; check anything about US entry against a current official source.
+      fr: La page animaux n'a pas été mise à jour depuis juin 2023 et répète encore une règle d'importation américaine qui n'est plus en vigueur. Retiens-en le refus et les règles chien d'assistance ; vérifie tout ce qui concerne l'entrée aux États-Unis auprès d'une source officielle à jour.
+      es: La página de mascotas no se actualiza desde junio de 2023 y aún repite una norma de importación estadounidense que ya no está vigente. Quédate con el rechazo y las reglas de perros de asistencia; comprueba todo lo relativo a la entrada en EE. UU. en una fuente oficial actualizada.
+      pt: "A página de animais não é atualizada desde junho de 2023 e ainda repete uma regra de importação dos Estados Unidos que já não vale. Fique com a recusa e as regras de cão de assistência; confira tudo sobre a entrada nos EUA em uma fonte oficial atualizada."
+  - icon: 🔁
+    label:
+      en: A connection breaks the exception
+      fr: Une correspondance annule l'exception
+      es: Una conexión rompe la excepción
+      pt: "Uma conexão quebra a exceção"
+    value:
+      en: The assistance-dog exception holds on direct flights only. Book Nairobi as a stopover and even a certified dog loses its seat, so look for a point-to-point flight or another carrier.
+      fr: L'exception chien d'assistance ne vaut que sur les vols directs. Réserve Nairobi en escale et même un chien certifié perd sa place — cherche un vol direct ou une autre compagnie.
+      es: "La excepción del perro de asistencia solo vale en vuelos directos. Si reservas Nairobi como escala, incluso un perro certificado pierde su plaza: busca un vuelo directo u otra aerolínea."
+      pt: "A exceção do cão de assistência só vale em voos diretos. Se reservar Nairóbi como escala, até um cão certificado perde o lugar — procure um voo direto ou outra companhia."
+book:
+  host: kenya-airways.com
+  url: https://www.kenya-airways.com/
+sources:
+  en: 1 Kenya Airways source · last verified 5 August 2026
+  fr: 1 source Kenya Airways · dernière vérification 5 août 2026
+  es: 1 fuente de Kenya Airways · última verificación 5 de agosto de 2026
+  pt: "1 fonte da Kenya Airways · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

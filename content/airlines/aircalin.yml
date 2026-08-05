@@ -1,0 +1,286 @@
+id: airline_aircalin
+mono: SB
+name: Aircalin
+titleH1:
+  en: Flying with a dog on Aircalin
+  fr: Voyager avec un chien sur Aircalin
+  es: Volar con un perro en Aircalin
+  pt: "Viajar com um cachorro na Aircalin"
+metaDesc:
+  en: "Aircalin pet policy: airfreight only, no cabin and no hold, three-month lead time, SIVAP certificate and official sources."
+  fr: "Politique animaux Aircalin : fret aérien uniquement, ni cabine ni soute, dossier trois mois à l'avance, certificat SIVAP et sources officielles."
+  es: "Política de mascotas de Aircalin: solo flete aéreo, ni cabina ni bodega, expediente con tres meses de antelación, certificado SIVAP y fuentes oficiales."
+  pt: "Política de animais da Aircalin: somente frete aéreo, sem cabine e sem porão, processo com três meses de antecedência, certificado SIVAP e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: New Caledonia · NOU
+      fr: Nouvelle-Calédonie · NOU
+      es: Nueva Caledonia · NOU
+      pt: "Nova Caledônia · NOU"
+  - icon: 🚫
+    label:
+      en: No cabin, no hold
+      fr: Ni cabine ni soute
+      es: Ni cabina ni bodega
+      pt: "Nem cabine nem porão"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: no
+  label:
+    en: Airfreight only
+    fr: Fret aérien uniquement
+    es: Solo flete aéreo
+    pt: "Somente frete aéreo"
+verdictNote:
+  en: "Aircalin says it in one line: \"Pets are only carried by airfreight.\" Neither the cabin nor the hold is open to your dog — the file goes through the Tontouta cargo office, three months ahead."
+  fr: "Aircalin le dit en une phrase : « Pets are only carried by airfreight. » Ni la cabine ni la soute ne sont ouvertes à ton chien — le dossier passe par le bureau cargo de Tontouta, trois mois à l'avance."
+  es: "Aircalin lo dice en una línea: «Pets are only carried by airfreight». Ni la cabina ni la bodega están abiertas a tu perro: el expediente pasa por la oficina de carga de Tontouta, con tres meses de antelación."
+  pt: "A Aircalin diz em uma linha: \"Pets are only carried by airfreight.\" Nem a cabine nem o porão estão abertos ao seu cachorro — o processo passa pelo escritório de carga de Tontouta, com três meses de antecedência."
+ladder:
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: —
+  - flex: 8
+    color: "#8a94a3"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: —
+  - flex: 84
+    color: "#9a6410"
+    label:
+      en: Airfreight
+      fr: Fret aérien
+      es: Flete aéreo
+      pt: "Frete aéreo"
+    sub:
+      en: the only route
+      fr: seule voie possible
+      es: la única vía
+      pt: "o único caminho"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: No pet in the cabin, whatever its size. Only guide dogs for the visually or hearing impaired can be admitted, and only with prior authorisation.
+      fr: Aucun animal de compagnie en cabine, quelle que soit sa taille. Seuls les chiens guides pour déficients visuels ou auditifs peuvent être admis, et uniquement sur autorisation préalable.
+      es: Ninguna mascota en cabina, sea del tamaño que sea. Solo pueden admitirse perros guía para personas con discapacidad visual o auditiva, y únicamente con autorización previa.
+      pt: "Nenhum animal de estimação na cabine, seja qual for o porte. Somente cães-guia para pessoas com deficiência visual ou auditiva podem ser admitidos, e apenas com autorização prévia."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: no
+    statusLabel:
+      en: Not allowed
+      fr: Non autorisé
+      es: No permitido
+      pt: "Não permitido"
+    detail:
+      en: Aircalin doesn't take pets as checked baggage either. There is no accompanied-hold option at all — no weight bracket, no crate size, nothing to book at the counter.
+      fr: Aircalin ne prend pas non plus les animaux en bagage enregistré. Il n'existe aucune option soute accompagnée — ni tranche de poids, ni gabarit de caisse, rien à réserver au comptoir.
+      es: "Aircalin tampoco acepta mascotas como equipaje facturado. No existe ninguna opción de bodega acompañada: ni tramo de peso, ni medida de jaula, nada que reservar en el mostrador."
+      pt: "A Aircalin também não aceita animais como bagagem despachada. Não existe nenhuma opção de porão acompanhado — nem faixa de peso, nem tamanho de caixa, nada para reservar no balcão."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: ✈️
+    name:
+      en: Cargo (airfreight)
+      fr: Fret aérien
+      es: Carga (flete aéreo)
+      pt: "Carga (frete aéreo)"
+    cls: warn
+    statusLabel:
+      en: Only route
+      fr: Seule voie
+      es: Única vía
+      pt: "Único caminho"
+    detail:
+      en: The file is opened with the Tontouta cargo office three months before departure, with a SIVAP certificate, and the animal is dropped off 4 hours before the flight. Aircalin publishes no rate, no weight limit and no crate dimensions for this channel.
+      fr: Le dossier s'ouvre auprès du bureau cargo de Tontouta trois mois avant le départ, avec un certificat SIVAP, et l'animal est déposé 4 h avant le vol. Aircalin ne publie ni tarif, ni limite de poids, ni dimensions de caisse pour ce canal.
+      es: El expediente se abre en la oficina de carga de Tontouta tres meses antes de la salida, con certificado SIVAP, y el animal se entrega 4 h antes del vuelo. Aircalin no publica tarifa, ni límite de peso, ni dimensiones de jaula para este canal.
+      pt: "O processo é aberto no escritório de carga de Tontouta três meses antes da partida, com certificado SIVAP, e o animal é entregue 4 h antes do voo. A Aircalin não publica tarifa, nem limite de peso, nem dimensões de caixa para esse canal."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: Not available
+        fr: Pas proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: Hold
+        fr: Soute
+        es: Bodega
+        pt: "Porão"
+      value:
+        en: Not available
+        fr: Pas proposé
+        es: No disponible
+        pt: "Não oferecido"
+    - label:
+        en: Cargo (airfreight)
+        fr: Fret aérien
+        es: Carga (flete aéreo)
+        pt: "Carga (frete aéreo)"
+      value:
+        en: Quote — no published rate
+        fr: Devis — aucun tarif publié
+        es: Presupuesto — sin tarifa publicada
+        pt: "Cotação — nenhuma tarifa publicada"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Not published
+        fr: Non publié
+        es: No publicado
+        pt: "Não publicado"
+  note:
+    en: Aircalin publishes no figure at all — not a rate, not a weight, not a dimension. Everything is quoted case by case by the cargo office.
+    fr: Aircalin ne publie aucun chiffre — ni tarif, ni poids, ni dimension. Tout est chiffré au cas par cas par le bureau cargo.
+    es: "Aircalin no publica ninguna cifra: ni tarifa, ni peso, ni dimensión. Todo lo cotiza caso por caso la oficina de carga."
+    pt: "A Aircalin não publica nenhum número — nem tarifa, nem peso, nem dimensão. Tudo é orçado caso a caso pelo escritório de carga."
+restrictions:
+  - icon: 🚫
+    title:
+      en: Pit Bull type
+      fr: Type Pit Bull
+      es: Tipo Pit Bull
+      pt: "Tipo Pit Bull"
+    pills:
+      - cls: "no"
+        label:
+          en: Refused
+          fr: Refusé
+          es: Rechazado
+          pt: "Recusado"
+    note:
+      en: "The only breed rule Aircalin publishes, word for word: \"Dogs such as Pit Bull will be no longer accepted from the 1st of January 2015.\" No snub-nosed list, no dangerous-dog categories, nothing else."
+      fr: "La seule règle de race publiée par Aircalin, mot pour mot : « Dogs such as Pit Bull will be no longer accepted from the 1st of January 2015. » Aucune liste de nez écrasés, aucune catégorie de chiens dangereux, rien d'autre."
+      es: "La única regla de raza que publica Aircalin, literalmente: «Dogs such as Pit Bull will be no longer accepted from the 1st of January 2015». Ninguna lista de hocicos chatos, ninguna categoría de perros peligrosos, nada más."
+      pt: "A única regra de raça publicada pela Aircalin, palavra por palavra: \"Dogs such as Pit Bull will be no longer accepted from the 1st of January 2015.\" Nenhuma lista de focinho achatado, nenhuma categoria de cães perigosos, nada além disso."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Aircalin publishes no hold-temperature limits or seasonal embargo on its pet page.
+    fr: Aircalin ne publie pas de limites de température en soute ni d'embargo saisonnier sur sa page animaux.
+    es: Aircalin no publica límites de temperatura en bodega ni embargo estacional en su página de mascotas.
+    pt: "A Aircalin não publica limites de temperatura no porão nem embargo sazonal em sua página sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: Guide dogs for the visually or hearing impaired may be admitted in the cabin, subject to authorisation. It's the single exception to the airfreight rule.
+      fr: Les chiens guides pour déficients visuels ou auditifs peuvent être admis en cabine, sur autorisation. C'est la seule exception à la règle du fret.
+      es: Los perros guía para personas con discapacidad visual o auditiva pueden ser admitidos en cabina, previa autorización. Es la única excepción a la regla del flete.
+      pt: "Cães-guia para pessoas com deficiência visual ou auditiva podem ser admitidos na cabine, mediante autorização. É a única exceção à regra do frete."
+  - icon: 📄
+    label:
+      en: Conditions
+      fr: Conditions
+      es: Condiciones
+      pt: "Condições"
+    value:
+      en: "Not published: Aircalin gives no training standard, no certifying body, no notice period and no price for the guide dog. Request the authorisation early and get it in writing."
+      fr: "Non publiées : Aircalin n'indique ni norme de dressage, ni organisme certificateur, ni préavis, ni prix pour le chien guide. Demande l'autorisation tôt et fais-la confirmer par écrit."
+      es: "No publicadas: Aircalin no indica norma de adiestramiento, ni organismo certificador, ni plazo de aviso, ni precio para el perro guía. Pide la autorización con tiempo y consíguela por escrito."
+      pt: "Não publicadas: a Aircalin não informa padrão de adestramento, nem entidade certificadora, nem prazo de aviso, nem preço para o cão-guia. Peça a autorização com antecedência e obtenha por escrito."
+goodToKnow:
+  - icon: 📅
+    label:
+      en: Three months ahead
+      fr: Trois mois à l'avance
+      es: Tres meses antes
+      pt: "Três meses antes"
+    value:
+      en: The file has to be opened with the Tontouta cargo office three months before the flight — an unusually long lead time. Start there, before you book your own seat.
+      fr: Le dossier doit être ouvert auprès du bureau cargo de Tontouta trois mois avant le vol — un délai peu commun. Commence par là, avant même de réserver ta place.
+      es: El expediente debe abrirse en la oficina de carga de Tontouta tres meses antes del vuelo, un plazo poco habitual. Empieza por ahí, antes incluso de reservar tu asiento.
+      pt: "O processo precisa ser aberto no escritório de carga de Tontouta três meses antes do voo — um prazo pouco comum. Comece por aí, antes mesmo de reservar seu assento."
+  - icon: 📄
+    label:
+      en: SIVAP certificate & drop-off
+      fr: Certificat SIVAP & dépôt
+      es: Certificado SIVAP y entrega
+      pt: "Certificado SIVAP e entrega"
+    value:
+      en: A SIVAP certificate (the New Caledonian veterinary and food-safety service) is required, and the animal is dropped off 4 hours before departure.
+      fr: Un certificat SIVAP (le service vétérinaire et alimentaire néo-calédonien) est exigé, et l'animal se dépose 4 h avant le départ.
+      es: Se exige un certificado SIVAP (el servicio veterinario y alimentario de Nueva Caledonia) y el animal se entrega 4 h antes de la salida.
+      pt: "É exigido um certificado SIVAP (o serviço veterinário e de segurança alimentar da Nova Caledônia), e o animal é entregue 4 h antes da partida."
+  - icon: ⚠️
+    label:
+      en: A near-empty page
+      fr: Une page presque vide
+      es: Una página casi vacía
+      pt: "Uma página quase vazia"
+    value:
+      en: "Almost everything you'd normally look for is missing here — weights, crate sizes, rates, breed lists, temperature rules. That's not an omission on our side: Aircalin simply doesn't publish it. Expect the cargo office to be your only source of numbers."
+      fr: "Presque tout ce qu'on cherche d'habitude manque ici — poids, gabarits de caisse, tarifs, listes de races, règles de température. Ce n'est pas un oubli de notre part : Aircalin ne le publie pas. Le bureau cargo sera ta seule source de chiffres."
+      es: "Aquí falta casi todo lo que se suele buscar: pesos, medidas de jaula, tarifas, listas de razas, reglas de temperatura. No es un olvido nuestro: Aircalin no lo publica. La oficina de carga será tu única fuente de cifras."
+      pt: "Aqui falta quase tudo o que normalmente se procura — pesos, tamanhos de caixa, tarifas, listas de raças, regras de temperatura. Não é um esquecimento nosso: a Aircalin simplesmente não publica. O escritório de carga será sua única fonte de números."
+book:
+  host: aircalin.com
+  url: https://us.aircalin.com/
+sources:
+  en: 1 Aircalin source · last verified 5 August 2026
+  fr: 1 source Aircalin · dernière vérification 5 août 2026
+  es: 1 fuente de Aircalin · última verificación 5 de agosto de 2026
+  pt: "1 fonte da Aircalin · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

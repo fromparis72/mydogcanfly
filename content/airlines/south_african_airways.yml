@@ -1,0 +1,342 @@
+id: airline_south_african_airways
+mono: SA
+name: South African Airways
+titleH1:
+  en: Flying with a dog on South African Airways
+  fr: Voyager avec un chien sur South African Airways
+  es: Volar con un perro en South African Airways
+  pt: "Viajar com um cachorro na South African Airways"
+metaDesc:
+  en: "South African Airways pet policy: no cabin anywhere, hold on South African domestic flights only (1 m crate, 23 kg, ZAR 300), cargo compulsory internationally, and official sources."
+  fr: "Politique animaux South African Airways : pas de cabine, soute en domestique sud-africain seulement (caisse 1 m, 23 kg, 300 ZAR), fret obligatoire à l'international, et sources officielles."
+  es: "Política de mascotas de South African Airways: sin cabina, bodega solo en vuelos nacionales sudafricanos (jaula de 1 m, 23 kg, 300 ZAR), carga obligatoria en internacional, y fuentes oficiales."
+  pt: "Política de animais da South African Airways: sem cabine, porão apenas em voos domésticos sul-africanos (caixa de 1 m, 23 kg, 300 ZAR), carga obrigatória no internacional, e fontes oficiais."
+chips:
+  - icon: 📍
+    label:
+      en: South Africa · JNB
+      fr: Afrique du Sud · JNB
+      es: Sudáfrica · JNB
+      pt: "África do Sul · JNB"
+  - icon: 🚫
+    label:
+      en: No cabin, anywhere
+      fr: Aucune cabine, nulle part
+      es: Sin cabina en ningún caso
+      pt: "Sem cabine, em nenhum caso"
+    cls: "no"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Domestic hold only
+    fr: Soute domestique seulement
+    es: Solo bodega nacional
+    pt: "Somente porão doméstico"
+verdictNote:
+  en: The cabin is closed on every route. The only accompanied option is the hold on South African domestic flights; on any international flight — including a simple transit — your dog has to travel as cargo.
+  fr: La cabine est fermée sur toutes les routes. La seule option accompagnée est la soute sur les vols domestiques sud-africains ; sur tout vol international — y compris un simple transit — ton chien doit voyager en fret.
+  es: La cabina está cerrada en todas las rutas. La única opción acompañada es la bodega en vuelos nacionales sudafricanos; en cualquier vuelo internacional — incluso un simple tránsito — tu perro debe viajar como carga.
+  pt: "A cabine está fechada em todas as rotas. A única opção acompanhada é o porão em voos domésticos sul-africanos; em qualquer voo internacional — inclusive um simples trânsito — seu cachorro precisa viajar como carga."
+ladder:
+  - flex: 12
+    color: "#8a94a3"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub:
+      en: guide dogs only
+      fr: chiens guides seuls
+      es: solo perros guía
+      pt: "somente cães-guia"
+  - flex: 28
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: SA domestic, ≤ 23 kg
+      fr: domestique SA, ≤ 23 kg
+      es: nacional SA, ≤ 23 kg
+      pt: "doméstico SA, ≤ 23 kg"
+  - flex: 60
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: all international
+      fr: tout l'international
+      es: todo lo internacional
+      pt: "todo o internacional"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Forbidden
+      fr: Interdit
+      es: Prohibido
+      pt: "Proibido"
+    detail:
+      en: No pet travels in the SAA cabin, on any route, at any size. Only guide dogs are accepted, free of charge.
+      fr: Aucun animal ne voyage en cabine SAA, sur aucune route, quelle que soit sa taille. Seuls les chiens guides sont acceptés, gratuitement.
+      es: Ninguna mascota viaja en la cabina de SAA, en ninguna ruta ni con ningún tamaño. Solo se aceptan perros guía, de forma gratuita.
+      pt: "Nenhum animal viaja na cabine da SAA, em nenhuma rota e em nenhum tamanho. Somente cães-guia são aceitos, sem custo."
+    fee:
+      en: —
+      fr: —
+      es: —
+      pt: "—"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: warn
+    statusLabel:
+      en: SA domestic only
+      fr: Domestique SA seulement
+      es: Solo nacional SA
+      pt: "Somente doméstico SA"
+    detail:
+      en: South African domestic flights only. Crate no bigger than 1 m × 1 m, animal and crate together up to 23 kg, check-in 90 minutes before departure. Animals under 8 weeks are refused in all circumstances.
+      fr: Vols domestiques sud-africains uniquement. Caisse d'un mètre sur un mètre maximum, animal et caisse ensemble jusqu'à 23 kg, enregistrement 90 minutes avant le départ. Les animaux de moins de 8 semaines sont refusés en toutes circonstances.
+      es: Solo vuelos nacionales sudafricanos. Jaula de 1 m × 1 m como máximo, animal y jaula juntos hasta 23 kg, facturación 90 minutos antes de la salida. Los animales de menos de 8 semanas se rechazan en cualquier circunstancia.
+      pt: "Somente voos domésticos sul-africanos. Caixa de no máximo 1 m × 1 m, animal e caixa juntos até 23 kg, check-in 90 minutos antes da partida. Animais com menos de 8 semanas são recusados em qualquer circunstância."
+    fee:
+      en: ZAR 300
+      fr: 300 ZAR
+      es: 300 ZAR
+      pt: "300 ZAR"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Compulsory abroad
+      fr: Obligatoire à l'international
+      es: Obligatoria en internacional
+      pt: "Obrigatória no internacional"
+    detail:
+      en: Every international journey goes through cargo, under an air waybill — including when Johannesburg is only a transit point on your itinerary. SAA publishes no cargo rates on its baggage page.
+      fr: Tout trajet international passe par le fret, sous lettre de transport aérien — y compris quand Johannesburg n'est qu'un point de transit sur ton itinéraire. SAA ne publie pas de tarifs fret sur sa page bagages.
+      es: Todo trayecto internacional pasa por carga, bajo carta de porte aéreo, incluso cuando Johannesburgo solo es un punto de tránsito en tu itinerario. SAA no publica tarifas de carga en su página de equipaje.
+      pt: "Todo trajeto internacional passa pela carga, sob conhecimento aéreo — inclusive quando Joanesburgo é apenas um ponto de trânsito no seu itinerário. A SAA não publica tarifas de carga em sua página de bagagem."
+    fee:
+      en: Quote
+      fr: Devis
+      es: Presupuesto
+      pt: "Cotação"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: Not allowed
+        fr: Interdit
+        es: No permitido
+        pt: "Não permitido"
+    - label:
+        en: Hold — SA domestic
+        fr: Soute — domestique SA
+        es: Bodega — nacional SA
+        pt: "Porão — doméstico SA"
+      value:
+        en: ZAR 300 incl. VAT (see note)
+        fr: 300 ZAR TVA comprise (voir note)
+        es: 300 ZAR IVA incluido (ver nota)
+        pt: "300 ZAR com IVA (ver nota)"
+    - label:
+        en: International
+        fr: International
+        es: Internacional
+        pt: "Internacional"
+      value:
+        en: Cargo quote, air waybill
+        fr: Devis fret, lettre de transport aérien
+        es: Presupuesto de carga, carta de porte aéreo
+        pt: "Cotação de carga, conhecimento aéreo"
+    - label:
+        en: Guide dog
+        fr: Chien guide
+        es: Perro guía
+        pt: "Cão-guia"
+      value:
+        en: Free
+        fr: Gratuit
+        es: Gratis
+        pt: "Grátis"
+  note:
+    en: The same SAA page states a flat ZAR 300 charge and then, two lines below, that the excess-baggage rate applies. We don't pick a winner — get the amount confirmed in writing before you travel.
+    fr: La même page SAA annonce un forfait de 300 ZAR puis, deux lignes plus bas, que le tarif d'excédent bagages s'applique. On ne tranche pas — fais confirmer le montant par écrit avant de partir.
+    es: "La misma página de SAA anuncia una tarifa plana de 300 ZAR y, dos líneas más abajo, que se aplica la tarifa de exceso de equipaje. No elegimos entre las dos: pide que te confirmen el importe por escrito antes de viajar."
+    pt: "A mesma página da SAA anuncia uma taxa fixa de 300 ZAR e, duas linhas abaixo, que se aplica a tarifa de excesso de bagagem. Não escolhemos entre as duas — peça a confirmação do valor por escrito antes de viajar."
+restrictions:
+  - icon: 🌍
+    title:
+      en: Countries with no cabin and no excess baggage
+      fr: Pays sans cabine ni excédent bagages
+      es: Países sin cabina ni exceso de equipaje
+      pt: "Países sem cabine nem excesso de bagagem"
+    pills:
+      - cls: "no"
+        label:
+          en: 8 countries listed
+          fr: 8 pays listés
+          es: 8 países listados
+          pt: "8 países listados"
+    note:
+      en: "Hong Kong, the United Kingdom, Zambia, Mozambique, Brazil, Namibia, Australia and Angola: SAA accepts neither cabin nor excess-baggage carriage of animals to or from these destinations. Cargo is the only channel left."
+      fr: "Hong Kong, Royaume-Uni, Zambie, Mozambique, Brésil, Namibie, Australie et Angola : SAA n'accepte ni cabine ni excédent bagages pour les animaux vers ou depuis ces destinations. Le fret est le seul canal qui reste."
+      es: "Hong Kong, Reino Unido, Zambia, Mozambique, Brasil, Namibia, Australia y Angola: SAA no acepta ni cabina ni exceso de equipaje para animales desde o hacia estos destinos. La carga es el único canal que queda."
+      pt: "Hong Kong, Reino Unido, Zâmbia, Moçambique, Brasil, Namíbia, Austrália e Angola: a SAA não aceita nem cabine nem excesso de bagagem para animais de ou para esses destinos. A carga é o único canal que resta."
+  - icon: 🐕
+    title:
+      en: Minimum age
+      fr: Âge minimum
+      es: Edad mínima
+      pt: "Idade mínima"
+    pills:
+      - cls: "no"
+        label:
+          en: Under 8 weeks refused
+          fr: Moins de 8 semaines refusé
+          es: Menos de 8 semanas rechazado
+          pt: "Menos de 8 semanas recusado"
+    note:
+      en: An animal under 8 weeks old is refused in all circumstances — hold and cargo alike, domestic or international, with no exception published.
+      fr: Un animal de moins de 8 semaines est refusé en toutes circonstances — soute comme fret, domestique ou international, sans exception publiée.
+      es: Un animal de menos de 8 semanas se rechaza en cualquier circunstancia, tanto en bodega como en carga, nacional o internacional, sin ninguna excepción publicada.
+      pt: "Um animal com menos de 8 semanas é recusado em qualquer circunstância — porão ou carga, doméstico ou internacional, sem nenhuma exceção publicada."
+  - icon: 🐶
+    title:
+      en: Breed limits
+      fr: Limites de races
+      es: Límites de razas
+      pt: "Limites de raça"
+    pills:
+      - cls: warn
+        label:
+          en: "Breed list: not published"
+          fr: "Liste de races : non publiée"
+          es: "Lista de razas: no publicada"
+          pt: "Lista de raças: não publicada"
+    note:
+      en: "SAA's baggage page publishes no breed list at all — no flat-faced ban, no dangerous-breed list. That silence is not a permission: ask SAA Cargo about your breed before you commit to a date."
+      fr: "La page bagages de SAA ne publie aucune liste de races — ni interdiction brachycéphale, ni liste de chiens dits dangereux. Ce silence n'est pas une autorisation : interroge SAA Cargo sur ta race avant de bloquer une date."
+      es: "La página de equipaje de SAA no publica ninguna lista de razas: ni prohibición braquicéfala, ni lista de razas peligrosas. Ese silencio no es un permiso: pregunta a SAA Cargo por tu raza antes de fijar una fecha."
+      pt: "A página de bagagem da SAA não publica nenhuma lista de raças — nem proibição de braquicefálicos, nem lista de raças perigosas. Esse silêncio não é uma autorização: pergunte à SAA Cargo sobre a sua raça antes de fechar uma data."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: South African Airways publishes no hold-temperature limits or seasonal embargo on its animal pages.
+    fr: South African Airways ne publie pas de limites de température en soute ni d'embargo saisonnier sur ses pages animaux.
+    es: South African Airways no publica límites de temperatura en bodega ni embargo estacional en sus páginas de animales.
+    pt: "A South African Airways não publica limites de temperatura no porão nem embargo sazonal em suas páginas sobre animais."
+assistance:
+  - icon: ✓
+    label:
+      en: In the cabin
+      fr: En cabine
+      es: En cabina
+      pt: "Na cabine"
+    value:
+      en: A guide dog travels free in the cabin — the only animal SAA lets into the passenger cabin.
+      fr: Un chien guide voyage gratuitement en cabine — le seul animal que SAA laisse entrer dans la cabine passagers.
+      es: "Un perro guía viaja gratis en cabina: el único animal que SAA admite en la cabina de pasajeros."
+      pt: "Um cão-guia viaja grátis na cabine — o único animal que a SAA permite na cabine de passageiros."
+  - icon: 💛
+    label:
+      en: Emotional support
+      fr: Soutien émotionnel
+      es: Apoyo emocional
+      pt: "Suporte emocional"
+    value:
+      en: SAA is one of the few airlines still mentioning emotional-support animals, and only on its United States routes. Nothing of the kind applies elsewhere on the network.
+      fr: SAA est l'une des rares compagnies à mentionner encore le soutien émotionnel, et seulement sur ses routes vers les États-Unis. Rien de tel ne s'applique ailleurs sur le réseau.
+      es: SAA es una de las pocas aerolíneas que sigue mencionando los animales de apoyo emocional, y solo en sus rutas a Estados Unidos. No se aplica nada parecido en el resto de la red.
+      pt: "A SAA é uma das poucas companhias que ainda mencionam animais de suporte emocional, e apenas nas rotas para os Estados Unidos. Nada parecido vale no resto da malha."
+  - icon: 📄
+    label:
+      en: Documents
+      fr: Documents
+      es: Documentos
+      pt: "Documentos"
+    value:
+      en: SAA doesn't publish which certification it recognises for a guide dog, nor any advance-notice deadline. Ask before booking.
+      fr: SAA ne publie pas quelle certification elle reconnaît pour un chien guide, ni aucun délai de préavis. Demande avant de réserver.
+      es: SAA no publica qué certificación reconoce para un perro guía ni ningún plazo de aviso previo. Pregunta antes de reservar.
+      pt: "A SAA não publica qual certificação reconhece para um cão-guia, nem prazo de aviso prévio. Pergunte antes de reservar."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: The page contradicts itself on the fee
+      fr: La page se contredit sur le tarif
+      es: La página se contradice con la tarifa
+      pt: "A página se contradiz sobre a tarifa"
+    value:
+      en: SAA announces a flat ZAR 300 including VAT for a domestic pet in the hold, then states two lines further down that the excess-baggage rate applies. Both sentences are on the same official page and we won't arbitrate between them — get the amount confirmed in writing.
+      fr: SAA annonce un forfait de 300 ZAR TVA comprise pour un animal en soute en domestique, puis écrit deux lignes plus bas que le tarif d'excédent bagages s'applique. Les deux phrases sont sur la même page officielle et on ne tranche pas — fais confirmer le montant par écrit.
+      es: "SAA anuncia una tarifa plana de 300 ZAR con IVA para una mascota en bodega en vuelo nacional y, dos líneas más abajo, dice que se aplica la tarifa de exceso de equipaje. Las dos frases están en la misma página oficial y no arbitramos entre ellas: pide la confirmación por escrito."
+      pt: "A SAA anuncia uma taxa fixa de 300 ZAR com IVA para um animal no porão em voo doméstico e, duas linhas abaixo, diz que se aplica a tarifa de excesso de bagagem. As duas frases estão na mesma página oficial e não arbitramos entre elas — peça a confirmação por escrito."
+  - icon: 🔁
+    label:
+      en: Transit counts as international
+      fr: Le transit compte comme international
+      es: El tránsito cuenta como internacional
+      pt: "O trânsito conta como internacional"
+    value:
+      en: A connection through Johannesburg on an international itinerary doesn't give you the domestic hold — the whole journey goes as cargo under an air waybill.
+      fr: Une correspondance par Johannesburg sur un itinéraire international ne te donne pas droit à la soute domestique — tout le trajet part en fret sous lettre de transport aérien.
+      es: "Una conexión por Johannesburgo en un itinerario internacional no te da acceso a la bodega nacional: todo el trayecto va como carga bajo carta de porte aéreo."
+      pt: "Uma conexão por Joanesburgo em um itinerário internacional não dá direito ao porão doméstico — todo o trajeto vai como carga sob conhecimento aéreo."
+  - icon: ⏱️
+    label:
+      en: 90 minutes at the counter
+      fr: 90 minutes au comptoir
+      es: 90 minutos en el mostrador
+      pt: "90 minutos no balcão"
+    value:
+      en: For a domestic hold booking, the animal must be checked in 90 minutes before departure — earlier than the standard domestic cut-off, so plan the drive accordingly.
+      fr: Pour une réservation en soute domestique, l'animal doit être enregistré 90 minutes avant le départ — plus tôt que la limite domestique habituelle, prévois la route en conséquence.
+      es: "Para una reserva en bodega nacional, el animal debe facturarse 90 minutos antes de la salida, antes del cierre habitual en nacional: calcula el trayecto con margen."
+      pt: "Para uma reserva no porão doméstico, o animal deve ser despachado 90 minutos antes da partida — mais cedo que o limite doméstico habitual, então planeje o deslocamento."
+book:
+  host: flysaa.com
+  url: https://www.flysaa.com/
+sources:
+  en: 1 South African Airways source · last verified 5 August 2026
+  fr: 1 source South African Airways · dernière vérification 5 août 2026
+  es: 1 fuente de South African Airways · última verificación 5 de agosto de 2026
+  pt: "1 fonte da South African Airways · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05

@@ -1,0 +1,360 @@
+id: airline_aerolineas_argentinas
+mono: AR
+name: Aerolíneas Argentinas
+titleH1:
+  en: Flying with a dog on Aerolíneas Argentinas
+  fr: Voyager avec un chien sur Aerolíneas Argentinas
+  es: Volar con un perro en Aerolíneas Argentinas
+  pt: "Viajar com um cachorro na Aerolíneas Argentinas"
+metaDesc:
+  en: "Aerolíneas Argentinas pet policy: 9 kg in the cabin, crate up to 100 × 70 × 80 cm in the hold, flat-faced breeds accepted in the cabin, full published fares."
+  fr: "Politique animaux Aerolíneas Argentinas : 9 kg en cabine, caisse jusqu'à 100 × 70 × 80 cm en soute, brachycéphales acceptés en cabine, grille tarifaire complète."
+  es: "Política de mascotas de Aerolíneas Argentinas: 9 kg en cabina, jaula de hasta 100 × 70 × 80 cm en bodega, razas de hocico chato aceptadas en cabina, tarifas completas."
+  pt: "Política de animais da Aerolíneas Argentinas: 9 kg na cabine, caixa de até 100 × 70 × 80 cm no porão, raças de focinho achatado aceitas na cabine, tarifas completas."
+chips:
+  - icon: 📍
+    label:
+      en: Argentina
+      fr: Argentine
+      es: Argentina
+      pt: "Argentina"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 9 kg
+      fr: Cabine ≤ 9 kg
+      es: Cabina ≤ 9 kg
+      pt: "Cabine ≤ 9 kg"
+  - icon: ✓
+    label:
+      en: Verified 5 Aug 2026
+      fr: Vérifié le 5 août 2026
+      es: Verificado el 5 ago. 2026
+      pt: "Verificado em 5 ago. 2026"
+    cls: ok
+verdict:
+  cls: ok
+  label:
+    en: Easy
+    fr: Facile
+    es: Fácil
+    pt: "Fácil"
+verdictNote:
+  en: Cabin and hold are both open with a fully published fare grid — and flat-faced breeds are accepted in the cabin, which is rare.
+  fr: Cabine et soute sont ouvertes, avec une grille tarifaire entièrement publiée — et les brachycéphales sont acceptés en cabine, ce qui est rare.
+  es: Cabina y bodega están abiertas, con una tarifa publicada al completo, y las razas de hocico chato se aceptan en cabina, algo poco frecuente.
+  pt: "Cabine e porão estão abertos, com tabela de preços totalmente publicada — e raças de focinho achatado são aceitas na cabine, o que é raro."
+ladder:
+  - flex: 18
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 9 kg
+  - flex: 60
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: crate ≤ 100 × 70 × 80 cm
+      fr: caisse ≤ 100 × 70 × 80 cm
+      es: jaula ≤ 100 × 70 × 80 cm
+      pt: "caixa ≤ 100 × 70 × 80 cm"
+  - flex: 22
+    color: "#9a6410"
+    label:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    sub:
+      en: flat-faced & listed breeds
+      fr: brachycéphales & races listées
+      es: hocico chato y razas listadas
+      pt: "focinho achatado e raças listadas"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs and cats from 12 weeks, 9 kg carrier included, one animal per passenger and per carrier. Soft carrier compulsory since 1 April 2024, max 44 × 30 × 23 cm, under the seat in front. Book 72 h ahead by WhatsApp or call centre. No cabin pets in Business on the A330. Dogs under veterinary treatment are refused.
+      fr: Chiens et chats à partir de 12 semaines, 9 kg sac compris, un animal par passager et par contenant. Sac souple obligatoire depuis le 1ᵉʳ avril 2024, 44 × 30 × 23 cm maximum, sous le siège devant toi. Réservation 72 h à l'avance par WhatsApp ou centre d'appels. Pas d'animal en cabine en Business sur A330. Chiens sous traitement vétérinaire refusés.
+      es: Perros y gatos desde las 12 semanas, 9 kg con el bolso incluido, un animal por pasajero y por contenedor. Bolso blando obligatorio desde el 1 de abril de 2024, máximo 44 × 30 × 23 cm, bajo el asiento delantero. Reserva con 72 h de antelación por WhatsApp o call center. Sin mascotas en cabina en Business en el A330. Se rechazan los perros bajo tratamiento veterinario.
+      pt: "Cachorros e gatos a partir de 12 semanas, 9 kg com a bolsa incluída, um animal por passageiro e por contêiner. Bolsa maleável obrigatória desde 1º de abril de 2024, no máximo 44 × 30 × 23 cm, sob o assento da frente. Reserve com 72 h de antecedência por WhatsApp ou call center. Sem animais na cabine na Business do A330. Cachorros sob tratamento veterinário são recusados."
+    fee:
+      en: ARS 54,450 · USD 150–250
+      fr: 54 450 ARS · 150–250 USD
+      es: 54.450 ARS · 150–250 USD
+      pt: "54.450 ARS · 150–250 USD"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Dogs and cats from 12 weeks. No weight limit on the animal — the crate governs, up to 100 × 70 × 80 cm, rigid with a metal door and no wheels. Since 1 September 2025 cable ties and a nylon net are compulsory, fitted at the counter and not before. Water required beyond 12 h of flight, no food inside the crate.
+      fr: Chiens et chats dès 12 semaines. Aucune limite de poids sur l'animal — c'est la caisse qui commande, jusqu'à 100 × 70 × 80 cm, rigide, porte métallique, sans roulettes. Depuis le 1ᵉʳ septembre 2025, colliers de serrage et filet de nylon obligatoires, posés au comptoir et pas avant. Eau obligatoire au-delà de 12 h de vol, nourriture interdite dans la caisse.
+      es: "Perros y gatos desde las 12 semanas. Sin límite de peso para el animal: manda la jaula, hasta 100 × 70 × 80 cm, rígida, con puerta metálica y sin ruedas. Desde el 1 de septiembre de 2025 son obligatorios los precintos y la red de nailon, colocados en el mostrador y no antes. Agua obligatoria a partir de 12 h de vuelo; nada de comida dentro de la jaula."
+      pt: "Cachorros e gatos a partir de 12 semanas. Sem limite de peso para o animal — quem manda é a caixa, de até 100 × 70 × 80 cm, rígida, com porta metálica e sem rodinhas. Desde 1º de setembro de 2025, abraçadeiras e rede de náilon são obrigatórias, colocadas no balcão e não antes. Água obrigatória acima de 12 h de voo; nada de comida dentro da caixa."
+    fee:
+      en: ARS 229,900 · USD 330–1,149
+      fr: 229 900 ARS · 330–1 149 USD
+      es: 229.900 ARS · 330–1.149 USD
+      pt: "229.900 ARS · 330–1.149 USD"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via cargo
+      fr: Via fret
+      es: Vía carga
+      pt: "Via carga"
+    detail:
+      en: The only route for flat-faced breeds (barred from the hold but accepted in cargo) and for the eighteen breeds listed as dangerous, which must always travel as cargo.
+      fr: La seule voie pour les brachycéphales (refusés en soute mais acceptés en fret) et pour les dix-huit races classées dangereuses, qui passent obligatoirement par le fret.
+      es: La única vía para las razas de hocico chato (rechazadas en bodega pero aceptadas en carga) y para las dieciocho razas consideradas peligrosas, que viajan siempre como carga.
+      pt: "A única via para as raças de focinho achatado (recusadas no porão, mas aceitas na carga) e para as dezoito raças classificadas como perigosas, que viajam sempre como carga."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Cabin — domestic
+        fr: Cabine — intérieur
+        es: Cabina — doméstico
+        pt: "Cabine — doméstico"
+      value:
+        en: ARS 54,450
+        fr: 54 450 ARS
+        es: 54.450 ARS
+        pt: "54.450 ARS"
+    - label:
+        en: Cabin — South America
+        fr: Cabine — Amérique du Sud
+        es: Cabina — Sudamérica
+        pt: "Cabine — América do Sul"
+      value:
+        en: USD 150
+        fr: 150 USD
+        es: 150 USD
+        pt: "150 USD"
+    - label:
+        en: Cabin — United States
+        fr: Cabine — États-Unis
+        es: Cabina — Estados Unidos
+        pt: "Cabine — Estados Unidos"
+      value:
+        en: USD 200
+        fr: 200 USD
+        es: 200 USD
+        pt: "200 USD"
+    - label:
+        en: Cabin — Europe
+        fr: Cabine — Europe
+        es: Cabina — Europa
+        pt: "Cabine — Europa"
+      value:
+        en: USD 250 / EUR 200
+        fr: 250 USD / 200 EUR
+        es: 250 USD / 200 EUR
+        pt: "250 USD / 200 EUR"
+    - label:
+        en: Hold — domestic (small crate)
+        fr: Soute — intérieur (petite caisse)
+        es: Bodega — doméstico (jaula pequeña)
+        pt: "Porão — doméstico (caixa pequena)"
+      value:
+        en: ARS 229,900
+        fr: 229 900 ARS
+        es: 229.900 ARS
+        pt: "229.900 ARS"
+    - label:
+        en: Hold — South America
+        fr: Soute — Amérique du Sud
+        es: Bodega — Sudamérica
+        pt: "Porão — América do Sul"
+      value:
+        en: USD 330
+        fr: 330 USD
+        es: 330 USD
+        pt: "330 USD"
+    - label:
+        en: Hold — Europe (crate ≤ 80 × 55 × 60 cm)
+        fr: Soute — Europe (caisse ≤ 80 × 55 × 60 cm)
+        es: Bodega — Europa (jaula ≤ 80 × 55 × 60 cm)
+        pt: "Porão — Europa (caixa ≤ 80 × 55 × 60 cm)"
+      value:
+        en: USD 499 / EUR 419
+        fr: 499 USD / 419 EUR
+        es: 499 USD / 419 EUR
+        pt: "499 USD / 419 EUR"
+    - label:
+        en: Hold — Europe (large crate)
+        fr: Soute — Europe (grande caisse)
+        es: Bodega — Europa (jaula grande)
+        pt: "Porão — Europa (caixa grande)"
+      value:
+        en: USD 1,149 / EUR 969
+        fr: 1 149 USD / 969 EUR
+        es: 1.149 USD / 969 EUR
+        pt: "1.149 USD / 969 EUR"
+  note:
+    en: Per journey. The hold fare depends on crate size. No hold fare is published for the United States, and no cargo fare is published at all.
+    fr: Par trajet. Le tarif soute dépend de la taille de la caisse. Aucun tarif soute n'est publié pour les États-Unis, ni aucun tarif fret.
+    es: Por trayecto. La tarifa de bodega depende del tamaño de la jaula. No se publica tarifa de bodega para Estados Unidos ni ninguna tarifa de carga.
+    pt: "Por trecho. A tarifa de porão depende do tamanho da caixa. Não há tarifa de porão publicada para os Estados Unidos, nem qualquer tarifa de carga."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races brachycéphales
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin allowed
+          fr: Cabine autorisée
+          es: Cabina permitida
+          pt: "Cabine permitida"
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+      - cls: warn
+        label:
+          en: Cargo possible
+          fr: Fret possible
+          es: Carga posible
+          pt: "Carga possível"
+    note:
+      en: "The asymmetry is the whole point: a flat-faced dog under 9 kg flies in the cabin, is refused in the hold, and is accepted as cargo. The published list covers English/American/French bulldogs, boxer, Boston terrier, pug, Pekingese, Lhasa Apso, chow chow, Shih Tzu, Brussels griffon, mastiff, Staffordshire bull terrier, Japanese chin, Tibetan spaniel, English toy spaniel; and Burmese, Exotic, Himalayan and Persian cats."
+      fr: "L'asymétrie est tout l'intérêt : un chien au nez écrasé de moins de 9 kg vole en cabine, se voit refuser la soute, et passe en fret. La liste publiée couvre les bouledogues anglais/américain/français, boxer, Boston terrier, carlin, pékinois, Lhasa Apso, chow chow, Shih Tzu, griffon bruxellois, mastiff, Staffordshire bull terrier, chin japonais, spaniel tibétain, English toy spaniel ; et les chats burmese, exotic, himalayen et persan."
+      es: "La asimetría es lo esencial: un perro de hocico chato de menos de 9 kg vuela en cabina, no se acepta en bodega y sí como carga. La lista publicada incluye bulldog inglés/americano/francés, bóxer, Boston terrier, carlino, pequinés, Lhasa Apso, chow chow, Shih Tzu, grifón de Bruselas, mastín, Staffordshire bull terrier, chin japonés, spaniel tibetano, English toy spaniel; y gatos burmés, exotic, himalayo y persa."
+      pt: "A assimetria é o ponto central: um cachorro de focinho achatado com menos de 9 kg voa na cabine, é recusado no porão e é aceito na carga. A lista publicada abrange bulldogues inglês/americano/francês, boxer, Boston terrier, pug, pequinês, Lhasa Apso, chow chow, Shih Tzu, grifon de Bruxelas, mastiff, Staffordshire bull terrier, spaniel japonês, spaniel tibetano, English toy spaniel; e gatos burmese, exotic, himalaio e persa."
+  - icon: 🚫
+    title:
+      en: Breeds listed as dangerous
+      fr: Races classées dangereuses
+      es: Razas consideradas peligrosas
+      pt: "Raças classificadas como perigosas"
+    pills:
+      - cls: "no"
+        label:
+          en: Cargo only
+          fr: Fret uniquement
+          es: Solo carga
+          pt: "Somente carga"
+    note:
+      en: "Eighteen breeds must travel as cargo, never in the cabin or the hold: Akita Inu, American Staffordshire terrier, bullmastiff, bull terrier, Cane Corso, Dobermann, Dogo Argentino, Dogo Canario, Dogue de Bordeaux, Fila Brasileiro, Japanese large dog, Neapolitan mastiff, German shepherd, pit bull terrier, Presa Canario, Rottweiler, Staffordshire bull terrier, Tosa Inu. Yes — the German shepherd is on that list."
+      fr: "Dix-huit races passent obligatoirement par le fret, jamais en cabine ni en soute : Akita Inu, American Staffordshire terrier, bullmastiff, bull terrier, Cane Corso, Dobermann, Dogo argentin, Dogo canario, Dogue de Bordeaux, Fila brasileiro, grand chien japonais, mâtin napolitain, berger allemand, pit bull terrier, Presa Canario, Rottweiler, Staffordshire bull terrier, Tosa Inu. Oui, le berger allemand est bien dans la liste."
+      es: "Dieciocho razas viajan obligatoriamente como carga, nunca en cabina ni en bodega: Akita Inu, American Staffordshire terrier, bullmastiff, bull terrier, Cane Corso, Dobermann, Dogo Argentino, Dogo Canario, Dogo de Burdeos, Fila Brasileiro, gran perro japonés, mastín napolitano, pastor alemán, pit bull terrier, Presa Canario, Rottweiler, Staffordshire bull terrier, Tosa Inu. Sí: el pastor alemán está en la lista."
+      pt: "Dezoito raças viajam obrigatoriamente como carga, nunca na cabine nem no porão: Akita Inu, American Staffordshire terrier, bullmastiff, bull terrier, Cane Corso, Dobermann, Dogo Argentino, Dogo Canario, Dogue de Bordeaux, Fila Brasileiro, grande cão japonês, mastim napolitano, pastor-alemão, pit bull terrier, Presa Canario, Rottweiler, Staffordshire bull terrier, Tosa Inu. Sim: o pastor-alemão está na lista."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: Aerolíneas Argentinas publishes no temperature threshold and no seasonal embargo. The pet page only mentions "the weather situation at the time of boarding" as a reason to refuse an animal.
+    fr: Aerolíneas Argentinas ne publie aucun seuil de température ni embargo saisonnier. La page animaux évoque seulement « la situation climatique au moment de l'embarquement » comme motif de refus.
+    es: Aerolíneas Argentinas no publica ningún umbral de temperatura ni embargo estacional. La página de mascotas solo menciona «la situación climática en el momento del embarque» como motivo de rechazo.
+    pt: "A Aerolíneas Argentinas não publica nenhum limite de temperatura nem embargo sazonal. A página sobre animais menciona apenas \"a situação climática no momento do embarque\" como motivo de recusa."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Not published. The pet page sets out no conditions, documents or fee waiver for assistance dogs — call the airline before booking.
+      fr: Non publié. La page animaux ne fixe ni conditions, ni documents, ni gratuité pour les chiens d'assistance — appelle la compagnie avant de réserver.
+      es: No publicado. La página de mascotas no fija condiciones, documentos ni exención de tarifa para perros de asistencia; llama a la aerolínea antes de reservar.
+      pt: "Não publicado. A página sobre animais não define condições, documentos nem isenção de tarifa para cães de assistência — ligue para a companhia antes de reservar."
+goodToKnow:
+  - icon: 👶
+    label:
+      en: Accompanying passenger
+      fr: Passager accompagnant
+      es: Pasajero acompañante
+      pt: "Passageiro acompanhante"
+    value:
+      en: An adult travelling with a child under 2 cannot take a pet in the cabin. An unaccompanied minor cannot take an animal at all, cabin or hold.
+      fr: Un adulte accompagné d'un enfant de moins de 2 ans ne peut pas emmener d'animal en cabine. Un mineur voyageant seul ne peut rien emmener, ni en cabine ni en soute.
+      es: Un adulto que viaja con un niño menor de 2 años no puede llevar mascota en cabina. Un menor no acompañado no puede llevar animal alguno, ni en cabina ni en bodega.
+      pt: "Um adulto que viaja com uma criança de menos de 2 anos não pode levar animal na cabine. Um menor desacompanhado não pode levar animal nenhum, nem na cabine nem no porão."
+  - icon: 🔁
+    label:
+      en: Connections
+      fr: Correspondances
+      es: Conexiones
+      pt: "Conexões"
+    value:
+      en: 3 h minimum in the same airport, and the crate cannot be checked through to the final destination — you collect it at every stop.
+      fr: 3 h minimum dans le même aéroport, et la caisse ne peut pas être enregistrée jusqu'à la destination finale — tu la récupères à chaque escale.
+      es: "Mínimo 3 h en el mismo aeropuerto, y la jaula no puede facturarse hasta el destino final: la recoges en cada escala."
+      pt: "Mínimo de 3 h no mesmo aeroporto, e a caixa não pode ser despachada até o destino final — você a retira em cada escala."
+  - icon: ⚠️
+    label:
+      en: Conditional booking
+      fr: Réservation conditionnelle
+      es: Reserva condicionada
+      pt: "Reserva condicional"
+    value:
+      en: Acceptance is never final at booking — boarding depends on the aircraft operated and on the weather on the day.
+      fr: L'acceptation n'est jamais acquise à la réservation — l'embarquement dépend de l'appareil affecté et de la météo du jour.
+      es: "La aceptación nunca es definitiva al reservar: el embarque depende del avión asignado y del clima del día."
+      pt: "A aceitação nunca é definitiva na reserva — o embarque depende da aeronave designada e do clima do dia."
+  - icon: 🔢
+    label:
+      en: Two animals maximum
+      fr: Deux animaux maximum
+      es: Dos animales como máximo
+      pt: "Dois animais no máximo"
+    value:
+      en: Two animals per passenger as accompanied baggage, but only one of them in the hold if another is in the cabin.
+      fr: Deux animaux par passager en bagage accompagné, mais un seul en soute si un autre voyage en cabine.
+      es: Dos animales por pasajero como equipaje acompañado, pero solo uno en bodega si otro va en cabina.
+      pt: "Dois animais por passageiro como bagagem acompanhada, mas apenas um no porão se outro estiver na cabine."
+book:
+  host: aerolineas.com.ar
+  url: https://www.aerolineas.com.ar/
+sources:
+  en: 1 official Aerolíneas Argentinas source · last verified 5 August 2026
+  fr: 1 source officielle Aerolíneas Argentinas · dernière vérification 5 août 2026
+  es: 1 fuente oficial de Aerolíneas Argentinas · última verificación 5 de agosto de 2026
+  pt: "1 fonte oficial da Aerolíneas Argentinas · última verificação em 5 de agosto de 2026"
+verified_date: 2026-08-05
