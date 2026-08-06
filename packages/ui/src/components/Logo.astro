@@ -1,12 +1,15 @@
 ---
 interface Props { height?: number }
 const { height = 28 } = Astro.props;
-const ratio = 884 / 120; // intrinsic wordmark.png aspect ratio
+/* Le rapport de forme est celui du fichier source ; il ne change pas avec le format ni avec la
+ * définition, seuls les pixels changent. Le WebP est rendu à 412 × 56, soit le double de la
+ * taille d'affichage (206 × 28) : net sur écran Retina, 15 Ko au lieu de 87. */
+const ratio = 884 / 120; // rapport de forme d'origine du logotype
 const width = Math.round(height * ratio);
 ---
 <img
   class="mdcf-logo"
-  src="/brand/wordmark.png"
+  src="/brand/wordmark.webp"
   alt="MyDogCanFly.com"
   width={width}
   height={height}

@@ -10,6 +10,9 @@
     "demo": "npm -w @mydogcanfly/engine run demo",
     "smoke": "npm -w @mydogcanfly/workers run smoke",
     "build": "npm -w @mydogcanfly/ui run build",
+    "build:prod": "npm -w @mydogcanfly/ui run build:prod",
+    "verify:index": "node packages/knowledge/scripts/verifier-indexation.mjs",
+    "release": "npm run build:prod && npm run verify:index && npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main --commit-dirty=true",
     "typecheck": "npm -w @mydogcanfly/knowledge run typecheck && npm -w @mydogcanfly/engine run typecheck && npm -w @mydogcanfly/workers run typecheck",
     "audit": "node packages/knowledge/scripts/audit-site.mjs"
   },

@@ -365,7 +365,14 @@ const faqLd = JSON.stringify({
 ---
 <section class="hero">
   <div class="hero__sky" aria-hidden="true"></div>
-  <img class="hero__emblem mdcf-rise" src="/brand/emblem.png" alt="" aria-hidden="true" width="440" height="252" decoding="async" />
+  {/* `alt=""` + `aria-hidden` : image décorative, assumée. Le titre et le logotype voisins portent
+      déjà le nom de la marque ; décrire l'emblème le ferait annoncer deux fois par un lecteur
+      d'écran. Un outil d'audit automatique le signale comme « alt manquant » — c'est un faux
+      positif, ne pas « corriger ».
+      WebP rendu à 920 × 528, soit le double de l'affichage : 91 Ko au lieu de 374.
+      `fetchpriority="high"` parce que c'est le plus grand élément au-dessus de la ligne de
+      flottaison, donc ce que Google mesure comme LCP. */}
+  <img class="hero__emblem mdcf-rise" src="/brand/emblem.webp" alt="" aria-hidden="true" width="440" height="252" decoding="async" fetchpriority="high" />
   <div class="mdcf-container">
     <p class="mdcf-eyebrow mdcf-rise">{t(locale, "home.hero.eyebrow")}</p>
     <h1 class={`hero__title hero__title--${locale} mdcf-rise mdcf-rise-2`}><span class="hero__q">{heroA}</span>{heroB && <br />}{heroB && <span class="hero__accent">{heroB.split("\n").map((l, i) => (<Fragment>{i > 0 && <br />}{l}</Fragment>))}</span>}</h1>
