@@ -19950,7 +19950,24 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_aep|airport_bog",
+        "airport_aep|airport_gig",
+        "airport_aep|airport_gru",
+        "airport_aep|airport_lim",
+        "airport_aep|airport_mvd",
+        "airport_aep|airport_scl",
+        "airport_cun|airport_eze",
+        "airport_eze|airport_fco",
+        "airport_eze|airport_gig",
+        "airport_eze|airport_mad",
+        "airport_eze|airport_mia",
+        "airport_eze|airport_puj"
+      ],
+      "seasonal_routes": [
+        "airport_cun|airport_puj"
+      ]
     },
     {
       "id": "airline_aeromexico",
@@ -20486,7 +20503,8 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "seasonal_routes": []
     },
     {
       "id": "airline_air_austral",
@@ -20565,7 +20583,16 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_bkk|airport_run",
+        "airport_cdg|airport_nbo",
+        "airport_cdg|airport_run",
+        "airport_jnb|airport_run",
+        "airport_mru|airport_run",
+        "airport_run|airport_tnr"
+      ],
+      "seasonal_routes": []
     },
     {
       "id": "airline_air_canada",
@@ -23187,7 +23214,18 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_akl|airport_nou",
+        "airport_bkk|airport_cdg",
+        "airport_bkk|airport_nou",
+        "airport_bne|airport_nou",
+        "airport_nan|airport_nou",
+        "airport_nou|airport_ppt",
+        "airport_nou|airport_sin",
+        "airport_nou|airport_syd"
+      ],
+      "seasonal_routes": []
     },
     {
       "id": "airline_alaska",
@@ -24438,7 +24476,48 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_bcn|airport_icn",
+        "airport_bkk|airport_icn",
+        "airport_can|airport_icn",
+        "airport_cdg|airport_icn",
+        "airport_cgk|airport_icn",
+        "airport_crk|airport_icn",
+        "airport_dad|airport_icn",
+        "airport_fco|airport_icn",
+        "airport_fra|airport_icn",
+        "airport_gmp|airport_hnd",
+        "airport_gmp|airport_kix",
+        "airport_gmp|airport_pek",
+        "airport_han|airport_icn",
+        "airport_hkg|airport_icn",
+        "airport_hkt|airport_icn",
+        "airport_hnd|airport_icn",
+        "airport_icn|airport_ist",
+        "airport_icn|airport_jfk",
+        "airport_icn|airport_kix",
+        "airport_icn|airport_lax",
+        "airport_icn|airport_lhr",
+        "airport_icn|airport_mnl",
+        "airport_icn|airport_mxp",
+        "airport_icn|airport_ngo",
+        "airport_icn|airport_nrt",
+        "airport_icn|airport_pek",
+        "airport_icn|airport_prg",
+        "airport_icn|airport_pvg",
+        "airport_icn|airport_sea",
+        "airport_icn|airport_sfo",
+        "airport_icn|airport_sgn",
+        "airport_icn|airport_sin",
+        "airport_icn|airport_syd",
+        "airport_icn|airport_szx",
+        "airport_icn|airport_tpe"
+      ],
+      "seasonal_routes": [
+        "airport_bud|airport_icn",
+        "airport_hnl|airport_icn"
+      ]
     },
     {
       "id": "airline_austrian",
@@ -24981,7 +25060,11 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_bkk|airport_hkt"
+      ],
+      "seasonal_routes": []
     },
     {
       "id": "airline_british_airways",
@@ -28276,6 +28359,8 @@
         "airport_bud|airport_lgw",
         "airport_bud|airport_lys",
         "airport_bud|airport_nte",
+        "airport_bvc|airport_lis",
+        "airport_bvc|airport_opo",
         "airport_cdg|airport_edi",
         "airport_cdg|airport_her",
         "airport_cdg|airport_hrg",
@@ -28390,6 +28475,7 @@
         "airport_lgw|airport_pmi",
         "airport_lgw|airport_prg",
         "airport_lgw|airport_rak",
+        "airport_lgw|airport_sid",
         "airport_lgw|airport_skg",
         "airport_lgw|airport_ssh",
         "airport_lgw|airport_svq",
@@ -28409,7 +28495,10 @@
         "airport_lis|airport_mxp",
         "airport_lis|airport_nce",
         "airport_lis|airport_nte",
+        "airport_lis|airport_rai",
         "airport_lis|airport_rak",
+        "airport_lis|airport_sid",
+        "airport_lis|airport_vxe",
         "airport_lis|airport_zrh",
         "airport_lju|airport_man",
         "airport_lux|airport_opo",
@@ -28432,6 +28521,7 @@
         "airport_man|airport_pmi",
         "airport_man|airport_prg",
         "airport_man|airport_rak",
+        "airport_man|airport_sid",
         "airport_man|airport_ssh",
         "airport_man|airport_vce",
         "airport_man|airport_zrh",
@@ -28441,6 +28531,7 @@
         "airport_mxp|airport_pmi",
         "airport_mxp|airport_prg",
         "airport_mxp|airport_rak",
+        "airport_mxp|airport_sid",
         "airport_mxp|airport_ssh",
         "airport_mxp|airport_svq",
         "airport_mxp|airport_tbs",
@@ -28461,6 +28552,9 @@
         "airport_nte|airport_tls",
         "airport_opo|airport_ory",
         "airport_opo|airport_prg",
+        "airport_opo|airport_rai",
+        "airport_opo|airport_sid",
+        "airport_opo|airport_vxe",
         "airport_opo|airport_zrh",
         "airport_ory|airport_tls",
         "airport_ory|airport_vce",
@@ -28521,6 +28615,7 @@
         "airport_ams|airport_fao",
         "airport_ams|airport_lca",
         "airport_ams|airport_pmi",
+        "airport_ams|airport_sid",
         "airport_ams|airport_skg",
         "airport_ams|airport_spu",
         "airport_ams|airport_ssh",
@@ -31213,7 +31308,52 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_amm|airport_bah",
+        "airport_auh|airport_bah",
+        "airport_bah|airport_cai",
+        "airport_bah|airport_can",
+        "airport_bah|airport_cdg",
+        "airport_bah|airport_del",
+        "airport_bah|airport_dmm",
+        "airport_bah|airport_doh",
+        "airport_bah|airport_dxb",
+        "airport_bah|airport_fco",
+        "airport_bah|airport_hyd",
+        "airport_bah|airport_ist",
+        "airport_bah|airport_jed",
+        "airport_bah|airport_jfk",
+        "airport_bah|airport_kwi",
+        "airport_bah|airport_mct",
+        "airport_bah|airport_mnl",
+        "airport_bah|airport_mxp",
+        "airport_bah|airport_ruh",
+        "airport_bah|airport_sin",
+        "airport_bah|airport_svo",
+        "airport_cmb|airport_mle"
+      ],
+      "seasonal_routes": [
+        "airport_agp|airport_bah",
+        "airport_ath|airport_bah",
+        "airport_bah|airport_bkk",
+        "airport_bah|airport_blr",
+        "airport_bah|airport_bom",
+        "airport_bah|airport_cmn",
+        "airport_bah|airport_fra",
+        "airport_bah|airport_lca",
+        "airport_bah|airport_lgw",
+        "airport_bah|airport_lhr",
+        "airport_bah|airport_maa",
+        "airport_bah|airport_man",
+        "airport_bah|airport_mle",
+        "airport_bah|airport_muc",
+        "airport_bah|airport_nbo",
+        "airport_bah|airport_pvg",
+        "airport_bah|airport_tbs",
+        "airport_gva|airport_mxp",
+        "airport_mxp|airport_nce"
+      ]
     },
     {
       "id": "airline_iberia",
@@ -32901,7 +33041,31 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_acc|airport_nbo",
+        "airport_add|airport_nbo",
+        "airport_ams|airport_nbo",
+        "airport_bkk|airport_can",
+        "airport_bom|airport_nbo",
+        "airport_cdg|airport_nbo",
+        "airport_cpt|airport_nbo",
+        "airport_dxb|airport_nbo",
+        "airport_jfk|airport_nbo",
+        "airport_jnb|airport_nbo",
+        "airport_lgw|airport_nbo",
+        "airport_lhr|airport_nbo",
+        "airport_los|airport_nbo",
+        "airport_mba|airport_nbo",
+        "airport_mru|airport_nbo",
+        "airport_nbo|airport_sez",
+        "airport_nbo|airport_tnr"
+      ],
+      "seasonal_routes": [
+        "airport_abj|airport_dss",
+        "airport_abj|airport_nbo",
+        "airport_bkk|airport_nbo"
+      ]
     },
     {
       "id": "airline_klm",
@@ -33804,7 +33968,15 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_ewr|airport_mxp",
+        "airport_ewr|airport_nce",
+        "airport_ewr|airport_ory"
+      ],
+      "seasonal_routes": [
+        "airport_nce|airport_ory"
+      ]
     },
     {
       "id": "airline_latam",
@@ -35005,7 +35177,69 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_agp|airport_lux",
+        "airport_arn|airport_lux",
+        "airport_bcn|airport_lux",
+        "airport_ber|airport_lux",
+        "airport_bud|airport_lux",
+        "airport_cdg|airport_lux",
+        "airport_cph|airport_lux",
+        "airport_cta|airport_lux",
+        "airport_dje|airport_lux",
+        "airport_dub|airport_lux",
+        "airport_edi|airport_lux",
+        "airport_fao|airport_lux",
+        "airport_fco|airport_lux",
+        "airport_gva|airport_lux",
+        "airport_ham|airport_lux",
+        "airport_hel|airport_lux",
+        "airport_hrg|airport_lux",
+        "airport_lin|airport_lux",
+        "airport_lis|airport_lux",
+        "airport_lux|airport_mad",
+        "airport_lux|airport_man",
+        "airport_lux|airport_mla",
+        "airport_lux|airport_muc",
+        "airport_lux|airport_mxp",
+        "airport_lux|airport_nap",
+        "airport_lux|airport_nbe",
+        "airport_lux|airport_nce",
+        "airport_lux|airport_opo",
+        "airport_lux|airport_otp",
+        "airport_lux|airport_pmi",
+        "airport_lux|airport_prg",
+        "airport_lux|airport_sid",
+        "airport_lux|airport_tun",
+        "airport_lux|airport_vce",
+        "airport_lux|airport_vie",
+        "airport_lux|airport_vlc"
+      ],
+      "seasonal_routes": [
+        "airport_agp|airport_fao",
+        "airport_auh|airport_lux",
+        "airport_ayt|airport_lux",
+        "airport_bio|airport_lux",
+        "airport_blq|airport_lux",
+        "airport_bod|airport_lux",
+        "airport_boj|airport_lux",
+        "airport_bvc|airport_lux",
+        "airport_dbv|airport_lux",
+        "airport_dss|airport_lux",
+        "airport_dss|airport_sid",
+        "airport_dwc|airport_lux",
+        "airport_her|airport_lux",
+        "airport_krk|airport_lux",
+        "airport_lju|airport_lux",
+        "airport_lux|airport_osl",
+        "airport_lux|airport_rai",
+        "airport_lux|airport_rak",
+        "airport_lux|airport_skg",
+        "airport_lux|airport_tiv",
+        "airport_lux|airport_vxe",
+        "airport_sid|airport_vxe"
+      ]
     },
     {
       "id": "airline_malaysia_airlines",
@@ -36417,7 +36651,9 @@
         "airport_cmn|airport_opo",
         "airport_cmn|airport_ory",
         "airport_cmn|airport_pkx",
+        "airport_cmn|airport_rai",
         "airport_cmn|airport_rak",
+        "airport_cmn|airport_sid",
         "airport_cmn|airport_stn",
         "airport_cmn|airport_svo",
         "airport_cmn|airport_svq",
@@ -36590,7 +36826,57 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_alg|airport_amm",
+        "airport_amm|airport_ams",
+        "airport_amm|airport_arn",
+        "airport_amm|airport_ath",
+        "airport_amm|airport_auh",
+        "airport_amm|airport_bah",
+        "airport_amm|airport_bcn",
+        "airport_amm|airport_ber",
+        "airport_amm|airport_bey",
+        "airport_amm|airport_bkk",
+        "airport_amm|airport_bom",
+        "airport_amm|airport_bru",
+        "airport_amm|airport_cai",
+        "airport_amm|airport_cdg",
+        "airport_amm|airport_cmn",
+        "airport_amm|airport_dfw",
+        "airport_amm|airport_dmm",
+        "airport_amm|airport_doh",
+        "airport_amm|airport_dtw",
+        "airport_amm|airport_dus",
+        "airport_amm|airport_dxb",
+        "airport_amm|airport_fco",
+        "airport_amm|airport_fra",
+        "airport_amm|airport_gva",
+        "airport_amm|airport_ham",
+        "airport_amm|airport_iad",
+        "airport_amm|airport_ist",
+        "airport_amm|airport_jed",
+        "airport_amm|airport_jfk",
+        "airport_amm|airport_kwi",
+        "airport_amm|airport_lca",
+        "airport_amm|airport_lhr",
+        "airport_amm|airport_lys",
+        "airport_amm|airport_mad",
+        "airport_amm|airport_man",
+        "airport_amm|airport_muc",
+        "airport_amm|airport_mxp",
+        "airport_amm|airport_ord",
+        "airport_amm|airport_ruh",
+        "airport_amm|airport_stn",
+        "airport_amm|airport_tun",
+        "airport_amm|airport_vie",
+        "airport_amm|airport_yul",
+        "airport_amm|airport_zrh",
+        "airport_yul|airport_yyz"
+      ],
+      "seasonal_routes": [
+        "airport_amm|airport_ssh"
+      ]
     },
     {
       "id": "airline_ryanair",
@@ -38602,6 +38888,7 @@
         "airport_bts|airport_her",
         "airport_bts|airport_lca",
         "airport_bts|airport_pmi",
+        "airport_bvc|airport_prg",
         "airport_cta|airport_prg",
         "airport_dje|airport_prg",
         "airport_dxb|airport_prg",
@@ -38612,6 +38899,7 @@
         "airport_nap|airport_prg",
         "airport_nbe|airport_prg",
         "airport_otp|airport_prg",
+        "airport_prg|airport_sid",
         "airport_prg|airport_skg",
         "airport_prg|airport_tia",
         "airport_prg|airport_tls"
@@ -38696,7 +38984,20 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_abj|airport_acc",
+        "airport_acc|airport_jnb",
+        "airport_cpt|airport_gru",
+        "airport_cpt|airport_jnb",
+        "airport_cpt|airport_mru",
+        "airport_dur|airport_jnb",
+        "airport_gru|airport_jnb",
+        "airport_jnb|airport_los",
+        "airport_jnb|airport_mru",
+        "airport_jnb|airport_per"
+      ],
+      "seasonal_routes": []
     },
     {
       "id": "airline_swiss",
@@ -39161,6 +39462,7 @@
         "airport_bos|airport_opo",
         "airport_bru|airport_lis",
         "airport_bsb|airport_lis",
+        "airport_bvc|airport_lis",
         "airport_cmn|airport_lis",
         "airport_cph|airport_lis",
         "airport_dss|airport_lis",
@@ -39199,18 +39501,22 @@
         "airport_lis|airport_ory",
         "airport_lis|airport_osl",
         "airport_lis|airport_prg",
+        "airport_lis|airport_rai",
         "airport_lis|airport_rak",
         "airport_lis|airport_sfo",
+        "airport_lis|airport_sid",
         "airport_lis|airport_svq",
         "airport_lis|airport_tls",
         "airport_lis|airport_vce",
         "airport_lis|airport_vie",
         "airport_lis|airport_vlc",
+        "airport_lis|airport_vxe",
         "airport_lis|airport_waw",
         "airport_lis|airport_yul",
         "airport_lis|airport_yyz",
         "airport_lis|airport_zrh",
         "airport_opo|airport_ory",
+        "airport_opo|airport_rai",
         "airport_opo|airport_zrh"
       ],
       "premium": {
@@ -39356,7 +39662,30 @@
             "derived_from_fiche": true
           }
         }
-      }
+      },
+      "direct_routes": [
+        "airport_amm|airport_otp",
+        "airport_ams|airport_otp",
+        "airport_beg|airport_otp",
+        "airport_bey|airport_otp",
+        "airport_bru|airport_otp",
+        "airport_bud|airport_otp",
+        "airport_cdg|airport_otp",
+        "airport_clj|airport_otp",
+        "airport_fco|airport_otp",
+        "airport_fra|airport_otp",
+        "airport_ist|airport_otp",
+        "airport_mad|airport_otp",
+        "airport_otp|airport_prg",
+        "airport_otp|airport_sof",
+        "airport_otp|airport_tlv"
+      ],
+      "seasonal_routes": [
+        "airport_ath|airport_otp",
+        "airport_cai|airport_otp",
+        "airport_nce|airport_otp",
+        "airport_otp|airport_skg"
+      ]
     },
     {
       "id": "airline_thai_airways",
@@ -39818,6 +40147,7 @@
         "airport_ory|airport_pgf",
         "airport_ory|airport_pmi",
         "airport_ory|airport_prg",
+        "airport_ory|airport_rai",
         "airport_ory|airport_rak",
         "airport_ory|airport_skg",
         "airport_ory|airport_svq",
@@ -39865,6 +40195,8 @@
         "airport_agp|airport_lys",
         "airport_ams|airport_ayt",
         "airport_ams|airport_pfo",
+        "airport_ams|airport_rai",
+        "airport_ams|airport_sid",
         "airport_ams|airport_ssh",
         "airport_ams|airport_tbs",
         "airport_ams|airport_tia",
@@ -39878,10 +40210,15 @@
         "airport_bey|airport_mrs",
         "airport_bey|airport_ory",
         "airport_blq|airport_ein",
+        "airport_bod|airport_bvc",
         "airport_bod|airport_cai",
+        "airport_bod|airport_sid",
         "airport_bod|airport_tia",
         "airport_boj|airport_ory",
         "airport_bru|airport_kef",
+        "airport_bvc|airport_nte",
+        "airport_bvc|airport_ory",
+        "airport_bvc|airport_vxe",
         "airport_cai|airport_nte",
         "airport_cmn|airport_nte",
         "airport_cph|airport_ein",
@@ -39905,22 +40242,33 @@
         "airport_lis|airport_nte",
         "airport_lju|airport_ory",
         "airport_lys|airport_opo",
+        "airport_lys|airport_rai",
+        "airport_lys|airport_sid",
         "airport_lys|airport_svq",
         "airport_lys|airport_tia",
+        "airport_mrs|airport_rai",
+        "airport_mrs|airport_sid",
         "airport_mrs|airport_svq",
         "airport_mrs|airport_tlv",
         "airport_nte|airport_opo",
         "airport_nte|airport_pmi",
+        "airport_nte|airport_sid",
         "airport_nte|airport_svq",
         "airport_nte|airport_tia",
+        "airport_nte|airport_vxe",
         "airport_ory|airport_pfo",
+        "airport_ory|airport_sid",
         "airport_ory|airport_sof",
         "airport_ory|airport_spu",
         "airport_ory|airport_tbs",
         "airport_ory|airport_tgd",
         "airport_ory|airport_tia",
         "airport_ory|airport_tiv",
-        "airport_ory|airport_tlv"
+        "airport_ory|airport_tlv",
+        "airport_ory|airport_vxe",
+        "airport_rai|airport_sid",
+        "airport_rak|airport_vxe",
+        "airport_sid|airport_vxe"
       ]
     },
     {
@@ -40022,6 +40370,33 @@
         "airport_bvc|airport_man",
         "airport_lgw|airport_sid",
         "airport_man|airport_sid"
+      ],
+      "seasonal_routes": [
+        "airport_agp|airport_man",
+        "airport_ayt|airport_man",
+        "airport_boj|airport_man",
+        "airport_bud|airport_man",
+        "airport_cun|airport_man",
+        "airport_dbv|airport_man",
+        "airport_her|airport_man",
+        "airport_her|airport_stn",
+        "airport_hrg|airport_man",
+        "airport_lca|airport_man",
+        "airport_man|airport_mbj",
+        "airport_man|airport_mla",
+        "airport_man|airport_nap",
+        "airport_man|airport_nbe",
+        "airport_man|airport_pfo",
+        "airport_man|airport_pmi",
+        "airport_man|airport_puj",
+        "airport_man|airport_rak",
+        "airport_man|airport_skg",
+        "airport_man|airport_spu",
+        "airport_man|airport_ssh",
+        "airport_nbe|airport_stn",
+        "airport_pfo|airport_stn",
+        "airport_pmi|airport_stn",
+        "airport_ssh|airport_stn"
       ]
     },
     {
@@ -42506,6 +42881,7 @@
         "airport_bcn|airport_fao",
         "airport_bcn|airport_her",
         "airport_bcn|airport_kef",
+        "airport_bcn|airport_sid",
         "airport_bcn|airport_spu",
         "airport_bcn|airport_tia",
         "airport_bcn|airport_tiv",

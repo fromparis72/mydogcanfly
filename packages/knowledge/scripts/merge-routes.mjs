@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* Fusionne un baseline de routes (format « lots ») dans raw/objects.json.
  *
- *   node packages/knowledge/scripts/merge-routes.mjs <baseline.json> [--dry]
+ *   node packages/knowledge/scripts/merge-routes.mjs <baseline.json> [--dry] [--include-as]
  *
  * Pourquoi ce script existe : 72 des 78 compagnies n'avaient AUCUNE route, si bien que le
  * « vol direct » affiché au visiteur était déduit de la seule présence d'un hub — une
@@ -9,10 +9,21 @@
  *
  * Règles de fusion, volontairement prudentes :
  *  • une compagnie absente du baseline garde ses routes existantes (rien n'est effacé) ;
- *  • les routes saisonnières restent dans un champ à part : annoncer en février un
- *    nonstop qui n'existe qu'en juillet serait une régression, pas un progrès ;
+ *  • **union, jamais remplacement** : le baseline vient s'AJOUTER à l'existant, il ne
+ *    l'écrase pas. Un cas réel l'a démontré le 8 août : la collecte 2026-07 classe TUI
+ *    (BY) entièrement en saisonnier (fenêtre d'échantillonnage d'une semaine, trop courte
+ *    pour un charter) et son `direct_routes` y est vide — un remplacement brut aurait
+ *    effacé les 4 routes Cap-Vert (BVC-LGW, BVC-MAN, LGW-SID, MAN-SID) confirmées ailleurs ;
+ *  • le direct l'emporte sur le saisonnier : une arête déjà confirmée « directe » ne
+ *    redescend jamais en saisonnier faute d'une observation plus faible dans un nouveau
+ *    baseline ; en revanche une arête vue « saisonnière » qui devient « directe » dans le
+ *    nouveau baseline est promue (c'est un renforcement de preuve, pas une régression) ;
  *  • toute arête dont un aéroport est inconnu est rejetée et signalée ;
- *  • les paires sont renormalisées (triées, dédoublonnées) quoi qu'il arrive.
+ *  • les paires sont renormalisées (triées, dédoublonnées) quoi qu'il arrive ;
+ *  • **Alaska (AS) est isolée par défaut.** Depuis le rachat de Hawaiian, la source
+ *    (AeroDataBox) fond les vols Hawaiian dans Alaska : ingérer AS tel quel ferait dire à
+ *    Alaska qu'elle opère des routes qui étaient hawaïennes. Passer --include-as pour
+ *    forcer l'ingestion malgré tout (à ne faire qu'après avoir vérifié route par route).
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve, dirname } from "node:path";
@@ -22,7 +33,10 @@ const OBJ = resolve(ROOT, "packages/knowledge/raw/objects.json");
 
 const src = process.argv[2];
 const dry = process.argv.includes("--dry");
-if (!src) { console.error("usage: merge-routes.mjs <baseline.json> [--dry]"); process.exit(2); }
+const includeAS = process.argv.includes("--include-as");
+if (!src) { console.error("usage: merge-routes.mjs <baseline.json> [--dry] [--include-as]"); process.exit(2); }
+
+const ISOLATED = includeAS ? new Set() : new Set(["AS"]);
 
 const base = JSON.parse(readFileSync(resolve(src), "utf8"));
 const obj = JSON.parse(readFileSync(OBJ, "utf8"));
@@ -39,30 +53,50 @@ function clean(edges, rejected) {
     }
     out.add(p.slice().sort().join("|"));
   }
-  return [...out].sort();
+  return out;
 }
 
 const rejected = [];
 const report = [];
-let touched = 0, addedD = 0, addedS = 0;
+let touched = 0, newD = 0, newS = 0, promoted = 0, isolatedCount = 0;
 
 for (const [iata, entry] of Object.entries(base)) {
+  if (ISOLATED.has(iata)) {
+    isolatedCount++;
+    report.push(`  ⊘  ${iata} — isolée (contamination Hawaiian/Alaska), non fusionnée`);
+    continue;
+  }
   const air = byIata.get(iata);
   if (!air) { report.push(`  ?  ${iata} — code inconnu du catalogue, ignoré`); continue; }
-  const before = (air.direct_routes ?? []).length;
-  const d = clean(entry.direct_routes, rejected);
-  const s = clean(entry.seasonal_routes, rejected);
-  if (!d.length && !s.length) { report.push(`  ·  ${iata} — baseline vide, inchangé`); continue; }
-  air.direct_routes = d;
-  air.seasonal_routes = s;
-  touched++; addedD += d.length; addedS += s.length;
-  const delta = d.length - before;
-  report.push(`  ✓  ${iata.padEnd(3)} ${String(d.length).padStart(4)} directes` +
-    (s.length ? ` + ${String(s.length).padStart(3)} saison.` : "".padStart(13)) +
-    (before ? `   (était ${before}, ${delta >= 0 ? "+" : ""}${delta})` : "   (nouveau)"));
+
+  const existingD = new Set(air.direct_routes ?? []);
+  const existingS = new Set(air.seasonal_routes ?? []);
+  const beforeD = existingD.size, beforeS = existingS.size;
+
+  const candD = clean(entry.direct_routes, rejected);
+  const candS = clean(entry.seasonal_routes, rejected);
+
+  const mergedD = new Set([...existingD, ...candD]);
+  // le saisonnier ne contient jamais une arête déjà confirmée directe (union puis exclusion)
+  const mergedS = new Set([...existingS, ...candS].filter((e) => !mergedD.has(e)));
+
+  const addedD = [...mergedD].filter((e) => !existingD.has(e)).length;
+  const addedS = [...mergedS].filter((e) => !existingS.has(e)).length;
+  const promotedHere = [...existingS].filter((e) => mergedD.has(e) && !existingD.has(e)).length;
+
+  if (!addedD && !addedS) { report.push(`  ·  ${iata} — rien de neuf, inchangé`); continue; }
+
+  air.direct_routes = [...mergedD].sort();
+  air.seasonal_routes = [...mergedS].sort();
+  touched++; newD += addedD; newS += addedS; promoted += promotedHere;
+  report.push(`  ✓  ${iata.padEnd(3)} ${String(mergedD.size).padStart(4)} directes` +
+    (mergedS.size ? ` + ${String(mergedS.size).padStart(3)} saison.` : "".padStart(13)) +
+    `   (était ${beforeD}+${beforeS}, +${addedD} directes` +
+    (promotedHere ? ` dont ${promotedHere} promue(s)` : "") +
+    (addedS ? `, +${addedS} saison.` : "") + ")");
 }
 
-// Compagnies laissées intactes : elles avaient déjà des routes d'une autre source.
+// Compagnies laissées intactes : absentes du baseline ou isolées, elles gardent leurs routes.
 const untouched = obj.airlines.filter((a) => a.iata && !base[a.iata] && (a.direct_routes ?? []).length);
 for (const a of untouched) report.push(`  =  ${a.iata.padEnd(3)} ${String(a.direct_routes.length).padStart(4)} directes   (conservé, hors baseline)`);
 
@@ -71,8 +105,8 @@ for (const a of obj.airlines) if (!Array.isArray(a.seasonal_routes)) a.seasonal_
 
 console.log(report.sort().join("\n"));
 console.log("\n" + "─".repeat(58));
-console.log(`compagnies mises à jour : ${touched}   ·   conservées : ${untouched.length}`);
-console.log(`arêtes directes ajoutées : ${addedD}   ·   saisonnières : ${addedS}`);
+console.log(`compagnies mises à jour : ${touched}   ·   conservées : ${untouched.length}   ·   isolées : ${isolatedCount}`);
+console.log(`arêtes directes NEUVES : ${newD} (dont ${promoted} promues depuis le saisonnier)   ·   saisonnières neuves : ${newS}`);
 const withRoutes = obj.airlines.filter((a) => (a.direct_routes ?? []).length).length;
 console.log(`couverture finale : ${withRoutes} / ${obj.airlines.length} compagnies`);
 if (rejected.length) {
