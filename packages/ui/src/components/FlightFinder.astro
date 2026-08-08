@@ -215,13 +215,24 @@ const labels = {
     {/* Retour vers l'UE. Volontairement MASQUÉ par défaut et affiché par le script uniquement
         quand il sert — arrivée dans l'UE ET départ hors UE. Ailleurs (Madrid → Paris, Paris → New
         York) il n'y a rien à demander, et une question de plus sur un formulaire est une réponse de
-        moins. Aucune option n'est cochée : sans réponse, le rapport montre les DEUX parcours. */}
+        moins.
+
+        DEUX OPTIONS, ET LE TROISIÈME ÉTAT EST L'ABSENCE DE CLIC. La question portait autrefois sur
+        le document et au passé (« un passeport dont le vaccin était valide avant de quitter l'UE »),
+        ce qui n'avait aucun sens pour l'Américain qui s'installe en France : il n'a jamais quitté
+        l'UE, et il cochait « je ne sais pas » faute de comprendre une question dont sa situation
+        donnait pourtant la réponse. On interroge donc la situation, au présent — « ton chien vit-il
+        habituellement dans l'UE ? » —, ce que tout propriétaire sait sans rien ouvrir. « Je ne sais
+        pas » n'a plus de répondant et disparaît : tant que rien n'est coché, les deux parcours
+        restent affichés, ce qui est l'état naturel avant le clic. Le comportement prudent est
+        conservé sans avoir à le nommer. Bonus : « vit habituellement » attrape la nuance que la
+        Commission pose et que l'ancienne formulation ratait — la dispense vaut pour un séjour, pas
+        pour un propriétaire qui réside désormais hors UE. */}
     <fieldset id="f-eupass-row" class="finder__row finder__eupass" hidden>
       <legend class="finder__eupass-q">{t(locale, "finder.eu_passport")}</legend>
       <div class="finder__eupass-opts" role="radiogroup">
         <label class="finder__radio"><input type="radio" name="eu_passport" value="yes" /><span>{t(locale, "finder.eu_passport_yes")}</span></label>
         <label class="finder__radio"><input type="radio" name="eu_passport" value="no" /><span>{t(locale, "finder.eu_passport_no")}</span></label>
-        <label class="finder__radio"><input type="radio" name="eu_passport" value="unknown" /><span>{t(locale, "finder.eu_passport_unknown")}</span></label>
       </div>
       <p class="finder__eupass-hint">{t(locale, "finder.eu_passport_hint")}</p>
     </fieldset>
@@ -592,7 +603,8 @@ const labels = {
   const AIRCOUNTRY: Record<string, string> = L.airportCountry ?? {};
 
   /**
-   * Question du passeport européen : affichée UNIQUEMENT sur un retour vers l'UE.
+   * Question du lieu de vie du chien : affichée UNIQUEMENT sur une entrée dans l'UE depuis un
+   * pays tiers.
    *
    * Elle ne sert que dans un cas — arrivée dans un État membre ET départ d'un pays tiers — parce
    * que c'est le seul où le moteur ne peut pas trancher seul : il connaît l'origine du vol, jamais
@@ -606,10 +618,13 @@ const labels = {
    */
   const EU_ISO_SET = new Set<string>((L.euIso ?? []) as string[]);
   const euPassRow = byId("f-eupass-row") as HTMLFieldSetElement | null;
-  function euPassAnswer(): "yes" | "no" | "unknown" | undefined {
+  /* Deux réponses possibles, et une troisième situation : rien de coché. Elle vaut « je ne sais
+     pas » sans le dire — on renvoie `undefined`, jamais "" : une chaîne vide transmise au moteur
+     serait un « non » déguisé, donc un certificat sanitaire imposé à qui n'a rien répondu. */
+  function euPassAnswer(): "yes" | "no" | undefined {
     if (!euPassRow || euPassRow.hidden) return undefined;
     const on = euPassRow.querySelector<HTMLInputElement>('input[name="eu_passport"]:checked');
-    return (on?.value as "yes" | "no" | "unknown" | undefined) ?? undefined;
+    return (on?.value as "yes" | "no" | undefined) ?? undefined;
   }
   function syncEuPassport() {
     if (!euPassRow) return;

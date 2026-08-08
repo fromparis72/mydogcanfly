@@ -323,10 +323,9 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
 
       /* LE PASSEPORT EUROPÉEN AU RETOUR — la réponse donnée au Finder, appliquée ici.
        *
-       * Le défaut réparé : le Finder posait la question (« Ton chien a-t-il un passeport européen
-       * dont le vaccin antirabique était valide avant de quitter l'UE ? »), son rapport en tenait
-       * compte, et cette page — qui a son propre chemin de données, les fiches pays YAML — ne la
-       * recevait pas. Le visiteur qui répondait « oui » lisait le bon parcours dans le rapport,
+       * Le défaut réparé : le Finder posait la question (« Ton chien vit-il habituellement dans
+       * l'Union européenne ? »), son rapport en tenait compte, et cette page — qui a son propre
+       * chemin de données, les fiches pays YAML — ne la recevait pas. Le visiteur qui répondait « oui » lisait le bon parcours dans le rapport,
        * puis retrouvait « certificat sanitaire UE endossé par l'USDA » en ouvrant les modalités
        * détaillées. Deux réponses contradictoires pour le même voyage, dans le même outil.
        *
@@ -335,15 +334,19 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
        * fiche reste un permalien partageable et le paramètre survit au changement de langue.
        *
        * LES TROIS ÉTATS, À L'IDENTIQUE DU MOTEUR (regles-retour-ue-passeport.mjs) :
-       *   oui              → parcours passeport seul, le certificat passe sous le repli
-       *   non              → parcours certificat seul, rien ne change
-       *   « je ne sais pas » OU paramètre absent → LES DEUX parcours
+       *   "yes" (il rentre chez lui)  → parcours passeport seul, le certificat passe sous le repli
+       *   "no"  (il découvre l'UE)    → parcours certificat seul, rien ne change
+       *   paramètre absent            → LES DEUX parcours
+       * Le formulaire n'a plus que deux options : le troisième état s'est déplacé dans l'absence de
+       * clic, et c'est exactement le même comportement prudent qu'avant. Une valeur "unknown"
+       * héritée d'un lien partagé retombe d'elle-même sur le cas « absent », puisque seules "yes" et
+       * "no" écartent une branche.
        * L'absence de réponse n'est jamais un « non ». Envoyer quelqu'un chez le vétérinaire faire
        * endosser un certificat inutile coûte plus cher que lui faire lire deux paragraphes — et
        * c'est ce que produirait le moindre défaut de prudence ici. */
       const rep = (P.get("eu_passport") || "").toLowerCase();
-      const montrePasseport = rep !== "no";     // yes + unknown + absent
-      const montreCertificat = rep !== "yes";   // no  + unknown + absent
+      const montrePasseport = rep !== "no";     // yes + absent (et tout héritage inconnu)
+      const montreCertificat = rep !== "yes";   // no  + absent (et tout héritage inconnu)
       /* Le cas se pose sur une ARRIVÉE dans l'Union depuis un pays tiers — jamais ailleurs.
        * On raisonne par étape et non par voyage : sur un Paris → New York → Paris c'est l'étape 4,
        * sur un New York → Paris → New York c'est l'étape 2. Les deux existent, la fiche décrivant

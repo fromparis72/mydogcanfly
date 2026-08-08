@@ -18,13 +18,21 @@ export const FinderRequest = z.object({
   date: z.string().optional(),
   weather: z.object({ temperature_c: z.number() }).optional(),
   /* Retour vers l'UE — le seul fait que le moteur ne peut pas déduire du vol.
-     On interroge le DOCUMENT détenu ("mon chien a-t-il un passeport européen dont la vaccination
-     antirabique était déjà valide avant de quitter l'UE ?"), jamais l'origine ni le statut juridique
-     de l'animal : c'est vérifiable par le visiteur en ouvrant le carnet, et c'est exactement la
-     condition posée par la Commission pour se dispenser du certificat sanitaire.
-     ABSENT ou "unknown" = on ne devine pas : les DEUX parcours (passeport et certificat) sont
-     affichés. Ne jamais traiter l'absence de réponse comme un "no". */
-  eu_passport: z.enum(["yes", "no", "unknown"]).optional(),
+     On interroge la SITUATION du chien ("vit-il habituellement dans l'Union européenne ?"), au
+     présent et sans rien faire vérifier : "yes" = il rentre chez lui, "no" = il découvre l'UE.
+     La question portait autrefois sur le document et au passé, ce qui n'avait pas de sens pour qui
+     n'a jamais quitté l'UE ; « vit habituellement » dit en plus ce que la Commission pose et que
+     l'ancienne formulation ratait — la dispense vaut pour un séjour, pas pour un propriétaire qui
+     réside désormais hors UE.
+     ABSENT = on ne devine pas : les DEUX parcours (passeport et certificat) sont affichés. Ne
+     jamais traiter l'absence de réponse comme un "no".
+     Le "unknown" d'avant n'est plus ni produit ni attendu ; s'il arrive encore d'une page en cache,
+     il est ramené à l'absence de réponse plutôt que rejeté — un 400 priverait le visiteur de tout
+     son rapport pour une valeur dont on connaît déjà le sens prudent. */
+  eu_passport: z.preprocess(
+    (v) => (v === "unknown" || v === "" ? undefined : v),
+    z.enum(["yes", "no"]).optional(),
+  ),
   locale: Locale.default("en"),
 });
 export type FinderRequest = z.infer<typeof FinderRequest>;
