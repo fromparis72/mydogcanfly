@@ -1,6 +1,6 @@
 # Étude préalable — 16 compagnies candidates
 
-**Relevé du 5 août 2026.** Toutes les données ci-dessous proviennent des sites officiels des
+**Relevé du 8 août 2026.** Toutes les données ci-dessous proviennent des sites officiels des
 compagnies. Aucune n'a été reprise d'un agrégateur (petflypolicy, guides pet-friendly, forums).
 Quand une source ne publie pas un champ, il est marqué **non publié** — c'est une consigne de
 rédaction, pas un trou à combler.
@@ -463,5 +463,5 @@ de 2021, Royal Jordanian une échéance de juillet 2025. À ne pas reprendre.
 
 ---
 
-*Relevé effectué le 5 août 2026. Les politiques changent : chaque fiche devra porter sa date de
+*Relevé effectué le 8 août 2026. Les politiques changent : chaque fiche devra porter sa date de
 consultation, conformément à l'ADR-0006 — aucune affirmation sans provenance.*

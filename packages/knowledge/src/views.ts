@@ -57,6 +57,52 @@ export function rulesForBreed(kb: NormalizedKB, breedId: string): Rule[] {
   );
 }
 
+/* Une fiche pays affiche deux vérifications distinctes : la relecture éditoriale de la fiche
+ * (`verified_date` du YAML, bougée à la main) et le contrôle des règles d'entrée qui la
+ * nourrissent (`source.verified_date` de chaque règle, bougé à chaque correction de donnée).
+ * Quand les 27 règles d'entrée dans l'UE sont revérifiées auprès de la Commission, la fiche
+ * continuait d'annoncer la date de sa dernière relecture : le lecteur voyait une date périmée
+ * alors que l'information affichée venait d'être contrôlée le jour même.
+ *
+ * Les deux fonctions ci-dessous servent à afficher la plus récente des deux dates. Elles ne
+ * datent jamais rien d'elles-mêmes : pas de « aujourd'hui », pas de date de build — seulement
+ * le maximum de deux dates réellement constatées dans les données (ADR-0006).
+ */
+
+/** Règles qui concernent l'ENTRÉE dans un pays : celles qui lui sont attachées par leur `scope`,
+ *  et celles qui le nomment comme destination dans leur prédicat.
+ *
+ *  Piège : on ne regarde délibérément PAS `route.origin_country_id`. Une règle d'import
+ *  française énumère les 27 États membres comme origines possibles ; compter ces mentions
+ *  ferait remonter la date de vérification de la France sur les 26 autres fiches, qui n'ont
+ *  pourtant rien vu changer. De même on ignore `nin`/`neq` : « toute origine SAUF ces pays-là »
+ *  cite un pays pour l'exclure, ce n'est pas une règle qui le concerne. */
+export function rulesForCountry(kb: NormalizedKB, countryId: string): Rule[] {
+  return kb.rules.filter((r) =>
+    (r.scope.type === "country" && r.scope.id === countryId) ||
+    predicateMentions(r.applies_when, (c) =>
+      c.fact === "route.dest_country_id" &&
+      ((c.op === "eq" && c.value === countryId) ||
+       (c.op === "in" && Array.isArray(c.value) && c.value.includes(countryId)))),
+  );
+}
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+/** Date de vérification à afficher pour une fiche pays : la plus récente entre la relecture de
+ *  la fiche et le dernier contrôle des règles d'entrée du pays.
+ *
+ *  Le calcul se fait au rendu, jamais en réécrivant le YAML : la donnée éditoriale reste ce
+ *  qu'elle est (« quand un humain a relu cette fiche »), c'est l'affichage qui suit les données.
+ *  Comparaison de chaînes : le format ISO `YYYY-MM-DD` s'ordonne lexicographiquement, inutile
+ *  de passer par `Date` (et ses fuseaux) pour prendre un maximum. Tout ce qui n'est pas une
+ *  date ISO est écarté plutôt que réparé — on n'affiche pas une date qu'on ne sait pas lire. */
+export function countryVerifiedDate(kb: NormalizedKB, countryId: string, guideDate?: string | null): string {
+  const dates = [guideDate, ...rulesForCountry(kb, countryId).map((r) => r.source.verified_date)]
+    .filter((d): d is string => typeof d === "string" && ISO_DATE.test(d));
+  return dates.reduce((a, b) => (b > a ? b : a), "");
+}
+
 /** Human label for any entity id. Country and airport names localize via LocalizedText;
  *  airline names are proper nouns and never change.
  *

@@ -10,6 +10,11 @@ export const Fact = z.enum([
   "travel_type", "placement",
   "route.origin_country_id", "route.dest_country_id", "route.dest_airport_id",
   "season.month", "weather.temperature_c",
+  // Documents que le voyageur détient DÉJÀ — pas l'origine du vol, pas le statut de l'animal.
+  // "yes" | "no" | "unknown" | "" (question non posée ou sans réponse). Le vide et "unknown"
+  // sont volontairement distincts de "no" : une règle qui impose un document ne doit jamais
+  // se déclencher sur une absence de réponse (cf. les règles de retour vers l'UE).
+  "docs.eu_passport",
 ]);
 export type Fact = z.infer<typeof Fact>;
 

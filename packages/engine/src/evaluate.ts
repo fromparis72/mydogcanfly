@@ -118,6 +118,11 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     "route.origin_country_id": originCountry,
     "route.dest_airport_id": req.destination,
     "weather.temperature_c": temperature_c,
+    // Document détenu par le voyageur, déclaré dans le formulaire. Non renseigné → chaîne vide,
+    // volontairement DIFFÉRENTE de "no" : les règles de retour vers l'UE testent `in ["yes","unknown",""]`
+    // d'un côté et `in ["no","unknown",""]` de l'autre, si bien qu'une absence de réponse fait sortir
+    // LES DEUX parcours. On n'impose jamais le certificat sanitaire par défaut d'information.
+    "docs.eu_passport": req.eu_passport ?? "",
   };
 
   // A domestic flight crosses no border, so the destination country's IMPORT rules simply do not apply

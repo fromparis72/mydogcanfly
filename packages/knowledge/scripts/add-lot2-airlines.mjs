@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Les quatorze compagnies du relevé du 5 août 2026, ajoutées au graphe de connaissances.
+/* Les quatorze compagnies du relevé du 8 août 2026, ajoutées au graphe de connaissances.
  *
  * POURQUOI CE SCRIPT EXISTE. Une fiche `content/airlines/<slug>.yml` ne suffit pas à faire
  * exister une compagnie sur le site : la route `[...loc]/airlines/[slug].astro` construit ses
@@ -34,7 +34,7 @@ import { dirname, resolve } from "node:path";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const OBJ = resolve(HERE, "../raw/objects.json");
-const TODAY = "2026-08-05";
+const TODAY = "2026-08-08";
 const dry = process.argv.includes("--dry");
 const plus = (iso, d) => { const x = new Date(iso + "T00:00:00Z"); x.setUTCDate(x.getUTCDate() + d); return x.toISOString().slice(0, 10); };
 
@@ -126,7 +126,7 @@ for (const a of AIRLINES) {
       url: a.web, source_type: "official_website", verified_date: TODAY, review_due: plus(TODAY, 90),
       confidence: 3, reviewer: "MyDogCanFly Data Team",
       history: [{ date: TODAY, reviewer: "MyDogCanFly Data Team",
-        note: "Relevé du 5 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau saisi hors partage de code." }],
+        note: "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau saisi hors partage de code." }],
     },
   };
   if (hubs.length) obj.hub_airport_ids = hubs;

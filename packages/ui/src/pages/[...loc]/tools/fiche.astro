@@ -139,6 +139,36 @@ const T = {
    * lacune mais de dire ce qui est vrai — ce pays a ses propres catégories, les voici. */
   /* Le statut du pays de départ, dit en clair au-dessus du texte général de la fiche. */
   origEU: L("an EU / EEA country", "pays de l'UE / EEE", "país de la UE / EEE"),
+  /* LE PASSEPORT EUROPÉEN AU RETOUR. Ces cinq chaînes disent, sur la fiche, exactement ce que
+   * disent les règles `rule_<iso>_import_returning_eu` dans le rapport du Finder. Elles sont
+   * écrites ici et non tirées des fiches pays parce qu'elles ne décrivent pas un pays : elles
+   * décrivent le règlement européen, identique pour les vingt-sept. Les fiches, elles, ne
+   * connaissent que trois cases (UE / listé / non listé) et n'ont nulle part où loger ce cas.
+   *
+   * Les deux nuances de la source (DG SANTÉ, vérifiée le 8 août 2026) sont dans le texte et
+   * doivent y rester : « le cas échéant » porte AUSSI sur le titrage — un chien parti sans
+   * titrage vers un pays non listé ne peut pas invoquer la dispense ; et la dispense couvre un
+   * séjour, pas un déménagement — un propriétaire qui réside désormais hors de l'UE repasse par
+   * le certificat, quelles que soient sa nationalité et ses attaches. Les gommer reviendrait à
+   * remplacer une erreur par une autre. */
+  passLead: L(
+    "Two possible routes here, and a single document separates them: an EU pet passport already in order before the dog left the EU removes the need for an EU animal health certificate. As long as that is not settled, both are shown.",
+    "Deux parcours possibles, et c'est un seul document qui les départage : un passeport européen déjà en règle avant la sortie de l'UE dispense du certificat sanitaire UE. Tant que ce point n'est pas tranché, les deux sont affichés.",
+    "Dos recorridos posibles, y los separa un solo documento: un pasaporte europeo ya en regla antes de salir de la UE evita el certificado sanitario de la UE. Mientras eso no esté resuelto, se muestran los dos."),
+  passLbl: L("With an EU pet passport", "Avec un passeport européen", "Con un pasaporte europeo"),
+  certLbl: L("Without an EU pet passport", "Sans passeport européen", "Sin pasaporte europeo"),
+  passBody: L(
+    "Your dog comes back on its EU pet passport alone, with no EU animal health certificate, provided that passport — completed by an authorised veterinarian — establishes that BEFORE it left the EU the dog already met the rabies vaccination conditions and, where applicable, the rabies antibody titration test. It still needs its ISO microchip and a rabies vaccination valid on the day of travel; a booster given abroad can be entered in Section V of the passport by an authorised veterinarian. If any of these elements cannot be established from the passport, the EU animal health certificate applies instead. Two limits: this covers a stay abroad, not a change of residence — once you habitually reside outside the EU the passport can no longer be used, whatever your nationality or property in the EU; and a passport issued to an owner resident in Great Britain has not been valid for travel to the EU since 31 December 2020.",
+    "Ton chien rentre avec son seul passeport européen, sans certificat sanitaire UE, dès lors que ce passeport — rempli par un vétérinaire habilité — établit qu'AVANT sa sortie de l'UE il remplissait déjà les conditions de vaccination antirabique et, le cas échéant, de titrage des anticorps antirabiques. Il lui faut toujours sa puce ISO et une vaccination antirabique valide le jour du voyage ; un rappel fait à l'étranger peut être inscrit en rubrique V du passeport par un vétérinaire habilité. Si l'un de ces éléments ne peut pas être établi dans le passeport, c'est le certificat sanitaire UE qui s'applique à la place. Deux limites : cela vaut pour un séjour, pas pour un déménagement — dès que tu résides habituellement hors de l'UE, le passeport ne peut plus servir, quelles que soient ta nationalité et tes attaches dans l'UE ; et un passeport délivré à un propriétaire résidant en Grande-Bretagne n'est plus valable pour voyager vers l'UE depuis le 31 décembre 2020.",
+    "Tu perro vuelve solo con su pasaporte europeo, sin certificado sanitario de la UE, siempre que ese pasaporte — cumplimentado por un veterinario autorizado — acredite que ANTES de salir de la UE ya cumplía las condiciones de vacunación antirrábica y, cuando proceda, de titulación de anticuerpos antirrábicos. Sigue necesitando su microchip ISO y una vacunación antirrábica válida el día del viaje; un refuerzo administrado en el extranjero puede anotarse en el apartado V del pasaporte por un veterinario autorizado. Si alguno de estos elementos no puede acreditarse en el pasaporte, se aplica en su lugar el certificado sanitario de la UE. Dos límites: esto vale para una estancia, no para un cambio de residencia — en cuanto resides habitualmente fuera de la UE el pasaporte deja de servir, sea cual sea tu nacionalidad o tus propiedades en la UE; y un pasaporte expedido a un propietario residente en Gran Bretaña ya no es válido para viajar a la UE desde el 31 de diciembre de 2020."),
+  /* « avant le vol vers l'UE » et non « avant le retour » : cette phrase sert à l'étape 3 d'un
+   * Paris → New York → Paris, mais aussi à l'étape 1 d'un New York → Paris → New York, où le vol
+   * vers l'Union est l'ALLER. Nommer le mouvement plutôt que le sens du voyage évite d'avoir à
+   * écrire deux versions du même texte — et évite surtout la faute de lecture. */
+  passExit: L(
+    "With that passport there is no EU animal health certificate to have issued and endorsed here before the flight to the EU — the dog travels on its passport. Check only that the rabies vaccination is still valid on the day of the flight: a booster given abroad can be entered in Section V of the passport by an authorised veterinarian.",
+    "Avec ce passeport, aucun certificat sanitaire UE n'est à faire établir ni endosser sur place avant le vol vers l'UE — le chien voyage sur son passeport. Vérifie seulement que la vaccination antirabique est encore valide le jour du vol : un rappel fait à l'étranger peut être inscrit en rubrique V du passeport par un vétérinaire habilité.",
+    "Con ese pasaporte no hay ningún certificado sanitario de la UE que emitir ni refrendar aquí antes del vuelo a la UE — el perro viaja con su pasaporte. Comprueba solo que la vacunación antirrábica siga siendo válida el día del vuelo: un refuerzo administrado en el extranjero puede anotarse en el apartado V del pasaporte por un veterinario autorizado."),
   origListed: L("a third country listed by the EU", "pays tiers listé par l'UE", "país tercero listado por la UE"),
   origNonListed: L("a third country not listed by the EU", "pays tiers non listé par l'UE", "país tercero no listado por la UE"),
   casH: L("Special cases & reserves — check if they apply to you", "Cas particuliers & réserves — vérifie s'ils te concernent", "Casos particulares y reservas — comprueba si te afectan"),
@@ -215,8 +245,17 @@ const CRU_ES = ["certificado sanitario","certificado veterinario","certificado",
 const CAS_FR = ["brachycéphales","brachycéphale","escale","transit","séjour récent","chiots","chiot","catégorisés","catégorisée","catégorie"];
 const CAS_EN = ["brachycephalic","layover","transit","recent stay","puppy","restricted","banned"];
 const CAS_ES = ["braquicéfala","braquicéfalo","escala","tránsito","estancia reciente","cachorro"];
+/* Les 27 États membres, en ISO2 — MÊME liste que FlightFinder.astro et que
+   packages/knowledge/scripts/regles-ue-origine.mjs. Elle sert ici à la seule chose à laquelle
+   elle sert là-bas : reconnaître un RETOUR vers l'Union, c'est-à-dire l'unique cas où la
+   question du passeport européen se pose. On ne réutilise pas `regime: "eu"` des fiches pour
+   cela : ce champ vaut aussi pour la Suisse, la Norvège et le Liechtenstein, qui ne relèvent
+   pas des règles écrites pour les Vingt-Sept. Le sur-ensemble ferait apparaître le parcours
+   passeport sur des trajets que la source ne couvre pas. */
+const EU_ISO2 = ["at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "ie",
+  "it", "lv", "lt", "lu", "mt", "nl", "pl", "pt", "ro", "sk", "si", "es", "se"];
 const cfg = { locale, base, countryBase: base + "/countries/", breedBase: base + "/breeds/", crateBase: base + "/tools/crate/", heatBase: base + "/tools/heat/",
-  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, T };
+  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, euIso: EU_ISO2, T };
 const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La ficha de viaje de tu perro");
 ---
 <Base locale={locale} title={`${title} — MyDogCanFly`} description={T.eyebrow} noindex={true}>
@@ -282,6 +321,37 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
       // Step content, data-driven from the two country guides.
       const originEU = O.regime === "eu", destEU = D.regime === "eu";
 
+      /* LE PASSEPORT EUROPÉEN AU RETOUR — la réponse donnée au Finder, appliquée ici.
+       *
+       * Le défaut réparé : le Finder posait la question (« Ton chien a-t-il un passeport européen
+       * dont le vaccin antirabique était valide avant de quitter l'UE ? »), son rapport en tenait
+       * compte, et cette page — qui a son propre chemin de données, les fiches pays YAML — ne la
+       * recevait pas. Le visiteur qui répondait « oui » lisait le bon parcours dans le rapport,
+       * puis retrouvait « certificat sanitaire UE endossé par l'USDA » en ouvrant les modalités
+       * détaillées. Deux réponses contradictoires pour le même voyage, dans le même outil.
+       *
+       * La réponse arrive par le lecteur commun de paramètres (`window.mdcfQuery`, Base.astro),
+       * celui qui apporte déjà `from`, `to`, la compagnie et la race. Un canal, pas deux : la
+       * fiche reste un permalien partageable et le paramètre survit au changement de langue.
+       *
+       * LES TROIS ÉTATS, À L'IDENTIQUE DU MOTEUR (regles-retour-ue-passeport.mjs) :
+       *   oui              → parcours passeport seul, le certificat passe sous le repli
+       *   non              → parcours certificat seul, rien ne change
+       *   « je ne sais pas » OU paramètre absent → LES DEUX parcours
+       * L'absence de réponse n'est jamais un « non ». Envoyer quelqu'un chez le vétérinaire faire
+       * endosser un certificat inutile coûte plus cher que lui faire lire deux paragraphes — et
+       * c'est ce que produirait le moindre défaut de prudence ici. */
+      const rep = (P.get("eu_passport") || "").toLowerCase();
+      const montrePasseport = rep !== "no";     // yes + unknown + absent
+      const montreCertificat = rep !== "yes";   // no  + unknown + absent
+      /* Le cas se pose sur une ARRIVÉE dans l'Union depuis un pays tiers — jamais ailleurs.
+       * On raisonne par étape et non par voyage : sur un Paris → New York → Paris c'est l'étape 4,
+       * sur un New York → Paris → New York c'est l'étape 2. Les deux existent, la fiche décrivant
+       * toujours un aller-retour. Un trajet intra-UE (Madrid → Paris) ne remplit jamais la
+       * condition : il ne voit donc strictement rien de ce dispositif. */
+      const EU27 = new Set(C.euIso || []);
+      const retourUE = (arrivee, depart) => EU27.has(arrivee) && !EU27.has(depart);
+
       /* LE BLOC « SORTIE » NE DÉCRIT PAS UNE SORTIE, IL DÉCRIT UNE SORTIE VERS L'EUROPE.
        *
        * 95 des 98 blocs `exit` du corpus sont rédigés ainsi — « Les États-Unis sont un pays listé :
@@ -299,15 +369,31 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
        * Ce n'est pas la réparation définitive : elle consistera à rédiger les blocs « sortie » sans
        * présupposer la destination, ou à leur donner une portée déclarée. En attendant, la fiche
        * ne raconte plus l'Europe à qui n'y va pas. */
-      const sortie = (guide, versUE, versNom) => {
+      const sortie = (guide, versUE, versNom, retour) => {
         const e = guide.exit;
         if (!e) return `<p>${esc(T.exitCheck)} ${pill("chk")}</p>`;
         const lien = `<a class="blink" href="${esc(e.authorityUrl)}" target="_blank" rel="nofollow noopener">${esc(T.authority)} : ${esc(e.authority)}</a>`;
         if (versUE) {
           /* Vers l'Europe : tout, sauf les étapes écrites POUR les autres destinations. */
           const pour = (e.steps || []).filter((s) => s.scope !== "non_eu").map((s) => s.text);
-          return `<p>${emE(e.intro)}</p><ul class="bl">${list(pour, emE)}</ul>`
-            + (e.onSiteNote ? `<p class="bnote">${emE(e.onSiteNote)}</p>` : "") + lien;
+          const certif = `<p>${emE(e.intro)}</p><ul class="bl">${list(pour, emE)}</ul>`
+            + (e.onSiteNote ? `<p class="bnote">${emE(e.onSiteNote)}</p>` : "");
+          /* L'ÉTAPE OÙ LE CERTIFICAT SE FABRIQUE. C'est ici que la contradiction coûtait le plus
+           * cher : le bloc « sortie » des États-Unis envoie chez un vétérinaire agréé USDA puis à
+           * l'endossement APHIS, et sa note de fin annonce le nouveau modèle de certificat
+           * européen du 1er octobre 2026 — trois démarches, plusieurs jours, un coût, pour un
+           * document dont le passeport dispense. Avec « oui », tout cela passe sous le repli :
+           * replié, jamais supprimé, parce qu'une escale par un pays tiers non listé ou un
+           * passeport incomplet peut ramener le voyageur dans ce parcours-là. */
+          if (retour) {
+            const passe = `<p>${emE(T.passExit)}</p>`;
+            if (!montreCertificat)
+              return passe + `<details class="bmore"><summary>${esc(T.otherCases)}</summary>${certif}</details>` + lien;
+            if (montrePasseport)
+              return `<p>${esc(T.passLead)}</p><p class="bcase"><b>${esc(T.certLbl)}</b></p>${certif}`
+                + `<p class="bcase"><b>${esc(T.passLbl)}</b></p>${passe}` + lien;
+          }
+          return certif + lien;
         }
         /* Hors Europe : l'intro et la note de fin des fiches sont européennes, on les remplace par
          * la phrase générique. Restent les étapes qui décrivent la procédure du pays — celles
@@ -317,7 +403,10 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
         return `<p>${esc(T.exitGeneric.replace("{0}", versNom).replace("{1}", e.authority))}</p>`
           + (neutres.length ? `<ul class="bl">${list(neutres, emE)}</ul>` : "") + lien;
       };
-      const step1 = originEU ? `<p>${esc(T.freeExit)}</p>` : sortie(O, destEU, D.name);
+      /* Étape 1 : on quitte le pays d'origine pour la destination. Le retour vers l'Union se joue
+       * donc ici quand le voyageur habite hors de l'UE et vient y passer un séjour — New York →
+       * Paris → New York. Le sens de la question ne change pas, seule l'étape où elle atterrit. */
+      const step1 = originEU ? `<p>${esc(T.freeExit)}</p>` : sortie(O, destEU, D.name, retourUE(to, from));
       /* « Au départ de l'UE », au sens du mouvement d'animaux de compagnie : les Vingt-Sept, plus
        * la Norvège, le Liechtenstein et la Suisse — qui portent déjà `regime: eu` dans les fiches.
        * L'Islande est ajoutée à la main : elle applique le règlement 576/2013 et délivre le
@@ -462,6 +551,38 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
            * les puces. On ne garde le repli des cas que si l'un d'eux a été retenu en tête. */
           if (!juste) casReplies = [];
         }
+
+        /* LE DOCUMENT PRIME SUR L'ORIGINE, sur cette étape et sur elle seule.
+         *
+         * Les trois cases d'une fiche européenne classent le monde par ORIGINE : UE, pays tiers
+         * listé, pays tiers non listé. Un chien qui rentre des États-Unis tombe donc dans « pays
+         * tiers listé » et se voit servir le certificat sanitaire — ce qui est juste pour un chien
+         * américain qui part pour la première fois, et faux pour un chien français qui rentre chez
+         * lui avec son passeport. La donnée ne peut pas trancher : elle ne connaît que l'origine du
+         * vol, jamais l'histoire de l'animal. Seule la réponse du voyageur le peut, et c'est
+         * exactement pour cela qu'on la lui demande.
+         *
+         * Le paragraphe de la fiche n'est ni réécrit ni supprimé : il devient l'une des deux
+         * branches, et garde ses mots — ceux qu'une relectrice a choisis pour ce pays. */
+        let repliDoc = "";
+        if (retourUE(guide.slug, fromIso)) {
+          const certif = tete;
+          const passe = `<p>${emE(T.passBody)}</p>`;
+          if (montrePasseport && montreCertificat) {
+            /* Le certificat d'abord, le passeport ensuite : c'est l'ordre du rapport du Finder,
+             * où la criticité range la règle « certificat » devant la règle « retour ». Deux
+             * surfaces, un seul ordre — sinon on recrée, en plus petit, la contradiction qu'on
+             * vient de réparer. La phrase de tête empêche de lire le premier comme le défaut. */
+            tete = `<p>${esc(T.passLead)}</p>`
+              + (certif ? `<p class="bcase"><b>${esc(T.certLbl)}</b></p>${certif}` : "")
+              + `<p class="bcase"><b>${esc(T.passLbl)}</b></p>${passe}`;
+          } else if (montrePasseport) {
+            tete = passe;
+            if (certif) repliDoc = `<li><b>${esc(T.certLbl)}</b> — ${certif.replace(/^<p>/, "").replace(/<\/p>$/, "")}</li>`;
+          }
+          /* « non » : `tete` reste le paragraphe de la fiche. Rien à faire, et surtout rien à
+           * défaire — c'est le comportement d'avant, et il est juste dans ce cas-là. */
+        }
         /* Cinq puces en clair, et non quatre. Le tri libère précisément une place — sur 280
          * couples (pays × origine), 179 tiennent désormais entièrement en clair. Le reste passe
          * dans le repli au lieu d'être coupé sans recours comme il l'était : c'est ainsi que
@@ -514,7 +635,8 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
          * sont la même chose pour le lecteur — ce qui ne le concerne pas — et deux blocs repliés
          * l'un sous l'autre dans une même étape se lisent comme un formulaire. Les cas viennent
          * en tête du repli, avec leur titre en gras : ils cadrent, les puces détaillent. */
-        const corpsReplie = casReplies.map((c) => `<li><b>${esc(c.title)}</b> — ${emE(c.body)}</li>`).join("")
+        const corpsReplie = repliDoc
+          + casReplies.map((c) => `<li><b>${esc(c.title)}</b> — ${emE(c.body)}</li>`).join("")
           + list(replie, emE);
         return tete
           + (clair.length ? `<ul class="bl">${list(clair, emE)}</ul>` : "")
@@ -524,7 +646,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
       /* Étape 3 : on quitte la destination pour rentrer chez soi. Le bloc « sortie » de la
        * destination ne vaut donc que si le pays d'origine est européen — c'est le voyage qu'il
        * décrit. Un Mexicain qui rentre du Japon n'a que faire du certificat sanitaire UE. */
-      const step3 = destEU ? `<p>${esc(T.freeExit)}</p>` : sortie(D, originEU, O.name);
+      const step3 = destEU ? `<p>${esc(T.freeExit)}</p>` : sortie(D, originEU, O.name, retourUE(from, to));
       const step4 = entryBlock(O, to) + `<a class="blink" href="${esc(countryHref(O.slug))}">${esc(T.countrySheet)} : ${esc(O.name)}</a>`;
 
       const stepRow = (n, chip, chipKind, title, body) =>

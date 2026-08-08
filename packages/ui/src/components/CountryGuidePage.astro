@@ -8,7 +8,7 @@ import Breadcrumb from "./Breadcrumb.astro";
 import { hrefFor, localizeHref } from "../lib/routes";
 import { countryData } from "../data/countries";
 import PageActions from "./PageActions.astro";
-import { loadKB, inlineT, inlineF, localizer, dateFormatter } from "@mydogcanfly/knowledge";
+import { loadKB, inlineT, inlineF, localizer, dateFormatter, countryVerifiedDate } from "@mydogcanfly/knowledge";
 import { airportsInCountry, dogAirlinesForCountry } from "../lib/cluster";
 import FaqBlock from "./FaqBlock.astro";
 import { countryFaq, faqJsonLd } from "../lib/faq";
@@ -26,6 +26,16 @@ const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}�
 const flag = (iso: string) =>
   iso.toUpperCase().replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)));
 const stars = (n: number) => "★".repeat(n) + "☆".repeat(Math.max(0, 5 - n));
+
+/* La date affichée couvre TOUT ce que la page annonce : la fiche relue à la main ET les règles
+ * d'entrée du pays, qui vivent dans rules.json avec leur propre date de contrôle. Afficher la
+ * seule date du YAML revenait à annoncer juillet le jour où les 27 règles d'entrée dans l'UE
+ * venaient d'être revérifiées auprès de la Commission. On prend donc le maximum des deux dates
+ * constatées — jamais la date du jour, qui ne prouverait rien. Le YAML, lui, n'est pas touché :
+ * il continue de dire quand un humain a relu la fiche.
+ * Corollaire sur le libellé : la date pouvant venir d'une règle, on ne peut plus écrire
+ * « fiche relue le… » à côté du nom du relecteur. Voir le bloc VERIFICATION plus bas. */
+const verifiedDate = countryVerifiedDate(kb, id, g.verified_date);
 
 const diffCls = g.difficulty.level === "easy" ? "ok" : g.difficulty.level === "moderate" ? "warn" : "no";
 const diffOrder = ["easy", "moderate", "difficult"] as const;
@@ -94,7 +104,9 @@ const webpageLd = {
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Country", name: t(g.name) },
-  ...(g.verified_date ? { lastReviewed: g.verified_date } : {}),
+  // `lastReviewed` suit la date visible : annoncer aux moteurs une date plus ancienne que celle
+  // lue à l'écran ferait passer pour périmée une information contrôlée le jour même.
+  ...(verifiedDate ? { lastReviewed: verifiedDate } : {}),
   ...(g.reviewer ? { reviewedBy: { "@type": "Person", name: g.reviewer } } : {}),
 };
 // FAQ dérivée de la fiche pays ; FAQPage seulement si des questions ont pu être construites.
@@ -324,9 +336,9 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         title={F("{0} with a dog: common questions",
                  "{0} avec un chien : questions fréquentes",
                  "{0} con un perro: preguntas frecuentes", t(g.name))}
-        note={F("Answers drawn from the official sources listed below, last verified {0}. Rules change — confirm with the authorities of {1} and your vet before booking.",
-                "Réponses tirées des sources officielles listées ci-dessous, dernière vérification le {0}. Les règles évoluent — confirme auprès des autorités de {1} et de ton vétérinaire avant de réserver.",
-                "Respuestas basadas en las fuentes oficiales indicadas abajo, última verificación el {0}. Las normas cambian — confírmalo con las autoridades de {1} y tu veterinario antes de reservar.", fmtDate(g.verified_date), t(g.name))}
+        note={F("Answers drawn from the official sources listed below; entry information last verified {0}. Rules change — confirm with the authorities of {1} and your vet before booking.",
+                "Réponses tirées des sources officielles listées ci-dessous ; informations d'entrée vérifiées le {0}. Les règles évoluent — confirme auprès des autorités de {1} et de ton vétérinaire avant de réserver.",
+                "Respuestas basadas en las fuentes oficiales indicadas abajo; información de entrada verificada el {0}. Las normas cambian — confírmalo con las autoridades de {1} y tu veterinario antes de reservar.", fmtDate(verifiedDate), t(g.name))}
       />
     </div>
 
@@ -339,8 +351,12 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     </div>
 
     <!-- VERIFICATION -->
+    {/* « Dernière vérification » suivi du nom du relecteur se lisait comme « untel a relu la fiche
+        ce jour-là ». La date pouvant maintenant venir d'un contrôle de règle, le libellé porte sur
+        l'INFORMATION affichée, pas sur la relecture de la fiche : il reste vrai dans les deux cas.
+        Le relecteur reste nommé — c'est une responsabilité éditoriale, pas une date. */}
     <div class="verif">
-      <span>🗓️ {T("Last verified", "Dernière vérification", "Última verificación")}: <b>{fmtDate(g.verified_date)}</b></span>
+      <span>🗓️ {T("Information last verified on", "Informations vérifiées le", "Información verificada el")} <b>{fmtDate(verifiedDate)}</b></span>
       <span>👤 {T("Reviewer", "Relecteur", "Revisor")}: {g.reviewer}</span>
       <span>{T("Confidence", "Confiance", "Confianza")}: {stars(g.confidence)}</span>
     </div>

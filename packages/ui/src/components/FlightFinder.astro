@@ -75,6 +75,12 @@ for (const [, g] of Object.entries(countryData as Record<string, any>)) {
 }
 const airportCountry = Object.fromEntries([...kb.airports.values()].map((a) => [a.id, ((kb.countries.get(a.country_id) as { iso2?: string } | undefined)?.iso2 ?? "").toLowerCase()]));
 
+/* Les 27 États membres, en ISO2. Sert UNIQUEMENT à décider si la question du passeport européen
+   a un sens sur ce trajet (destination dans l'UE ET départ hors UE). L'appartenance à l'UE est un
+   fait public, pas une donnée à sourcer — même liste que packages/knowledge/scripts/regles-ue-origine.mjs. */
+const EU_ISO2 = ["at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "ie",
+  "it", "lv", "lt", "lu", "mt", "nl", "pl", "pt", "ro", "sk", "si", "es", "se"];
+
 // Localized labels handed to the island as JSON (report rendering runs client-side).
 const labels = {
   locale,
@@ -144,6 +150,7 @@ const labels = {
     "No se cruza ninguna frontera, así que no se aplica ningún trámite de importación. Consulta las condiciones de tu aerolínea (certificado de salud, edad, jaula)."),
   domTerr: L3("Watch out — special territories", "Attention — territoires à régime particulier", "Atención — territorios con régimen especial"),
   airportCountry,
+  euIso: EU_ISO2, // pour n'afficher la question du passeport que sur un retour vers l'UE
   rt: {
     titleCrit: L3("Country formalities — plan before you leave", "Formalités pays — à anticiper avant de partir", "Trámites del país — anticípalos antes de salir"),
     titleWarn: L3("Country formalities — outbound AND return", "Formalités pays — aller ET retour", "Trámites del país — ida Y vuelta"),
@@ -205,6 +212,19 @@ const labels = {
         </div>
       </div>
     </div>
+    {/* Retour vers l'UE. Volontairement MASQUÉ par défaut et affiché par le script uniquement
+        quand il sert — arrivée dans l'UE ET départ hors UE. Ailleurs (Madrid → Paris, Paris → New
+        York) il n'y a rien à demander, et une question de plus sur un formulaire est une réponse de
+        moins. Aucune option n'est cochée : sans réponse, le rapport montre les DEUX parcours. */}
+    <fieldset id="f-eupass-row" class="finder__row finder__eupass" hidden>
+      <legend class="finder__eupass-q">{t(locale, "finder.eu_passport")}</legend>
+      <div class="finder__eupass-opts" role="radiogroup">
+        <label class="finder__radio"><input type="radio" name="eu_passport" value="yes" /><span>{t(locale, "finder.eu_passport_yes")}</span></label>
+        <label class="finder__radio"><input type="radio" name="eu_passport" value="no" /><span>{t(locale, "finder.eu_passport_no")}</span></label>
+        <label class="finder__radio"><input type="radio" name="eu_passport" value="unknown" /><span>{t(locale, "finder.eu_passport_unknown")}</span></label>
+      </div>
+      <p class="finder__eupass-hint">{t(locale, "finder.eu_passport_hint")}</p>
+    </fieldset>
     <div class="finder__row finder__row--controls">
       <div class="finder__field finder__field--sm">
         <label for="f-placement">{t(locale, "finder.placement")}</label>
@@ -362,6 +382,13 @@ const labels = {
                   const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
                   if (lastBreedId) p.set("bid", lastBreedId);
                   const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);
+                  /* La réponse sur le passeport européen suit le voyageur jusqu'aux modalités
+                     détaillées : sans elle, la fiche retombait sur son propre filtrage d'origine
+                     et réaffirmait le certificat sanitaire à qui venait de dire qu'il avait un
+                     passeport. Le paramètre est OMIS quand la question n'a pas été posée ou reste
+                     sans réponse — un "" transmis serait un « non » déguisé, et la fiche montre
+                     les deux parcours quand elle ne sait pas. */
+                  if (lastEuPassport) p.set("eu_passport", lastEuPassport);
                   /* La fiche imprimable est en noindex et ce lien naît après une recherche,
                      mais Google exécute le JavaScript : dièse ici aussi, par cohérence. */
                   const href = (L.ficheBase || "/tools/fiche/") + "#" + p.toString();
@@ -536,6 +563,9 @@ const labels = {
         : undefined;
       if (originEl && label) originEl.value = label;
       if (unit === "lb") setUnit("lb");
+      // La géolocalisation écrit dans le champ sans émettre d'événement : la question du
+      // passeport doit être réévaluée ici, sinon un visiteur localisé hors UE ne la verrait jamais.
+      syncEuPassport();
     } catch { /* keep the default origin */ }
   })();
 
@@ -553,8 +583,55 @@ const labels = {
 
   let lastBreedId = "";
   let lastOriginIso = "", lastDestIso = "";
+  /* La réponse telle qu'elle était AU MOMENT DE LA RECHERCHE, et non au moment du clic.
+   * Le rapport affiché décrit ce trajet-là ; la fiche qu'on ouvre depuis ce rapport doit décrire
+   * le même. Relire le formulaire au clic laisserait passer une réponse changée depuis — et deux
+   * pages du même outil se contrediraient de nouveau, ce que ce raccordement vient corriger. */
+  let lastEuPassport = "";
   let lastOriginId = "", lastDestId = "";
   const AIRCOUNTRY: Record<string, string> = L.airportCountry ?? {};
+
+  /**
+   * Question du passeport européen : affichée UNIQUEMENT sur un retour vers l'UE.
+   *
+   * Elle ne sert que dans un cas — arrivée dans un État membre ET départ d'un pays tiers — parce
+   * que c'est le seul où le moteur ne peut pas trancher seul : il connaît l'origine du vol, jamais
+   * l'historique de l'animal. Paris → New York → Paris est le trajet type ; sans cette réponse le
+   * site envoyait le propriétaire faire endosser un certificat sanitaire par l'USDA alors que son
+   * passeport suffit. Partout ailleurs (Madrid → Paris, Paris → New York) la question n'a pas
+   * d'objet, et on ne l'affiche donc pas : un champ de plus, c'est un formulaire abandonné de plus.
+   *
+   * Quand la question disparaît, on efface aussi la réponse : garder un « non » saisi pour un autre
+   * trajet reviendrait à imposer un certificat sur la foi d'une réponse qui ne portait pas là-dessus.
+   */
+  const EU_ISO_SET = new Set<string>((L.euIso ?? []) as string[]);
+  const euPassRow = byId("f-eupass-row") as HTMLFieldSetElement | null;
+  function euPassAnswer(): "yes" | "no" | "unknown" | undefined {
+    if (!euPassRow || euPassRow.hidden) return undefined;
+    const on = euPassRow.querySelector<HTMLInputElement>('input[name="eu_passport"]:checked');
+    return (on?.value as "yes" | "no" | "unknown" | undefined) ?? undefined;
+  }
+  function syncEuPassport() {
+    if (!euPassRow) return;
+    const o = resolveEndpoint("f-origin"), d = resolveEndpoint("f-dest");
+    const oIso = AIRCOUNTRY[o.primary] ?? "";
+    const dIso = AIRCOUNTRY[d.primary] ?? "";
+    // Origine inconnue (aéroport non résolu) : on ne pose PAS la question — on ne sait pas encore
+    // s'il s'agit d'un retour. Les deux parcours sortiront, ce qui est le comportement prudent.
+    const useful = !!dIso && !!oIso && EU_ISO_SET.has(dIso) && !EU_ISO_SET.has(oIso);
+    if (euPassRow.hidden === !useful) return;
+    euPassRow.hidden = !useful;
+    if (!useful) euPassRow.querySelectorAll<HTMLInputElement>('input[name="eu_passport"]').forEach((r) => { r.checked = false; });
+  }
+  for (const id of ["f-origin", "f-dest"]) {
+    const el = byId(id);
+    el?.addEventListener("change", syncEuPassport);
+    el?.addEventListener("input", syncEuPassport);
+  }
+  // Départ pré-rempli côté serveur (CDG) et arrivée éventuellement pré-remplie par « ?to= » :
+  // aucun événement n'a été émis, il faut donc une passe initiale.
+  syncEuPassport();
+
   function buildRequest(): FinderRequest {
     const b = resolveBreed();
     lastBreedId = b?.id ?? "";
@@ -565,6 +642,7 @@ const labels = {
     lastOriginIso = AIRCOUNTRY[o.primary] ?? "";
     lastDestIso = AIRCOUNTRY[d.primary] ?? "";
     lastOriginId = o.primary; lastDestId = d.primary;
+    lastEuPassport = euPassAnswer() ?? "";
     return {
       origin: o.primary,
       destination: d.primary,
@@ -574,6 +652,9 @@ const labels = {
       travel_type: "pet",
       placement: (gv("f-placement") as FinderRequest["placement"]) || "any",
       date: gv("f-date") || undefined,
+      // Omis quand la question n'est pas posée ou reste sans réponse : le moteur affiche alors
+      // les deux parcours. Ne jamais envoyer "no" par défaut.
+      eu_passport: euPassAnswer(),
       locale: (L.locale as FinderRequest["locale"]) ?? "en",
     };
   }
@@ -650,6 +731,18 @@ const labels = {
     .finder__submit { flex: 1 1 100%; justify-content: center; }
   }
   .finder__field label { font-size: 12px; color: var(--mdcf-muted); font-weight: 600; }
+  /* Retour vers l'UE. `hidden` sur un <fieldset> est neutralisé par `display:flex` du .finder__row :
+     on le rétablit explicitement, sans quoi la question s'afficherait sur tous les trajets. */
+  .finder__eupass { flex-direction: column; align-items: stretch; gap: 8px; margin: 0; padding: 12px 14px;
+    border: 1px solid var(--mdcf-line); border-left: 3px solid var(--mdcf-accent); border-radius: 10px; background: var(--mdcf-subtle, #f8fafc); }
+  .finder__eupass[hidden] { display: none; }
+  .finder__eupass-q { padding: 0; font-size: 13.5px; font-weight: 700; line-height: 1.35; color: var(--mdcf-ink); }
+  .finder__eupass-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .finder__radio { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border: 1px solid var(--mdcf-line);
+    border-radius: 999px; background: var(--mdcf-surface); font-size: 13.5px; font-weight: 600; cursor: pointer; }
+  .finder__radio:has(input:checked) { border-color: var(--mdcf-accent); background: var(--mdcf-accent-soft); color: var(--mdcf-accent-ink); }
+  .finder__radio input { margin: 0; accent-color: var(--mdcf-accent); }
+  .finder__eupass-hint { margin: 0; font-size: 12px; line-height: 1.4; color: var(--mdcf-muted); }
   .finder__field input, .finder__field select { box-sizing: border-box; height: 44px; padding: 10px 12px; border: 1px solid var(--mdcf-line); border-radius: 10px; font: inherit; line-height: 1.2; background: var(--mdcf-surface); }
   .finder__field--sm { flex: 0 0 150px; }
   .finder__weight { display: flex; gap: 6px; align-items: stretch; }

@@ -17,6 +17,14 @@ export const FinderRequest = z.object({
   placement: z.union([Placement, z.literal("any")]).default("any"),
   date: z.string().optional(),
   weather: z.object({ temperature_c: z.number() }).optional(),
+  /* Retour vers l'UE — le seul fait que le moteur ne peut pas déduire du vol.
+     On interroge le DOCUMENT détenu ("mon chien a-t-il un passeport européen dont la vaccination
+     antirabique était déjà valide avant de quitter l'UE ?"), jamais l'origine ni le statut juridique
+     de l'animal : c'est vérifiable par le visiteur en ouvrant le carnet, et c'est exactement la
+     condition posée par la Commission pour se dispenser du certificat sanitaire.
+     ABSENT ou "unknown" = on ne devine pas : les DEUX parcours (passeport et certificat) sont
+     affichés. Ne jamais traiter l'absence de réponse comme un "no". */
+  eu_passport: z.enum(["yes", "no", "unknown"]).optional(),
   locale: Locale.default("en"),
 });
 export type FinderRequest = z.infer<typeof FinderRequest>;

@@ -42,7 +42,7 @@ const PUBLIC = join(RACINE, "public", "_redirects");
 const HUB = join(RACINE, "dist", "travel-hub");
 const dry = process.argv.includes("--dry");
 
-const MARQUE = "# — v1 → v2, relevé Search Console 05/08/2026 —";
+const MARQUE = "# — v1 → v2, relevé Search Console 08/08/2026 —";
 
 /* Les guides du Travel Hub, lus sur le site construit : un dossier = un guide publié. */
 const guides = existsSync(HUB)

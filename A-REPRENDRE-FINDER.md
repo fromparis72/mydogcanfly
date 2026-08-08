@@ -1,6 +1,6 @@
 # À reprendre — trois défauts du Finder
 
-Relevé le 5 août 2026, sur le cas **MSP Minneapolis → CDG Paris, Golden Retriever 32 kg**.
+Relevé le 8 août 2026, sur le cas **MSP Minneapolis → CDG Paris, Golden Retriever 32 kg**.
 Diagnostic fait, correction non entreprise.
 
 ---

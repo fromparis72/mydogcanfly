@@ -130,6 +130,16 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       positives.push({ text: L("why.no_cabin_brachy"), criticality: "high", tone: "negative" });
     } else if (anyHold || anyCargo) {
       // Cabin impossible but hold/cargo remain — highlight it in red, then point to the options.
+      //
+      // NE PAS ÉCRIRE « la cabine n'est pas possible sur ce trajet ». `anyCabin` est calculé POUR
+      // CE CHIEN : un 32 kg échoue chez toutes les compagnies parce qu'il dépasse leur limite de
+      // poids, pas parce que la liaison refuserait la cabine. Air France prend un chien en cabine
+      // jusqu'à 8 kg sur le transatlantique. La formulation précédente attribuait la cause à la
+      // route, ce qui faisait renoncer à tort le propriétaire d'un petit chien.
+      // La phrase actuelle — « aucune compagnie de ce trajet ne prend TON chien en cabine » — dit
+      // le fait constaté sans en inventer la cause. Pour nommer la vraie cause (poids, race,
+      // absence d'offre), il faudrait remonter la limite de poids cabine de chaque compagnie
+      // jusqu'ici ; `AirlineResult` ne porte aujourd'hui qu'un booléen.
       const rest = [...(anyHold ? [L("mode_n.hold")] : []), ...(anyCargo ? [L("mode_n.cargo")] : [])];
       positives.push({ text: L("why.no_cabin").replace("{modes}", joinList(rest, locale)), criticality: "high", tone: "negative" });
     }

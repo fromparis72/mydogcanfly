@@ -9,7 +9,7 @@
  * dates. Il rend seulement la Search Console lisible — « 2 640 pages découvertes » ne disait
  * pas si c'était le portugais qui décrochait.
  */
-import { loadKB, slugFor } from "@mydogcanfly/knowledge";
+import { loadKB, slugFor, countryVerifiedDate } from "@mydogcanfly/knowledge";
 import { reliefIndexable } from "./reliefEtat";
 import { countryData } from "../data/countries";
 import { LOCALES, isPreviewLocale } from "./routes";
@@ -54,7 +54,10 @@ export function buildEntries(): Entry[] {
   // Fiches — vraie date par entité quand on l'a.
   for (const a of kb.airlines.values()) push(`/airlines/${slugFor(a.id)}/`, "0.7", "monthly");
   for (const c of kb.countries.values()) {
-    const d = countryData[c.id]?.verified_date;
+    // Même date que celle affichée sur la fiche : max(relecture éditoriale, contrôle des règles
+    // d'entrée du pays). Une règle revérifiée change ce que la page dit — le `lastmod` doit le
+    // dire aussi, sinon on annonce à Google une page inchangée alors que son contenu a bougé.
+    const d = countryVerifiedDate(kb, c.id, countryData[c.id]?.verified_date);
     push(`/countries/${slugFor(c.id)}/`, "0.7", "monthly", isISO(d) ? d : BUILD_DATE);
   }
   /* Seules les fiches qui répondent à la question entrent au sitemap : proposer à Google une

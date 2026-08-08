@@ -4,7 +4,7 @@
  * LE PROBLÈME QU'IL RÉSOUT. `packages/ui/src/data/airline-logos.generated.json` porte
  * « generated » dans son nom mais était tenu à la main : aucun script ne l'écrivait. Résultat,
  * poser un fichier dans `public/airline-logos/` ne suffisait pas à faire apparaître le logo, et
- * personne ne pouvait le deviner. C'est ainsi que les quatorze compagnies du 5 août 2026 se sont
+ * personne ne pouvait le deviner. C'est ainsi que les quatorze compagnies du 8 août 2026 se sont
  * retrouvées à afficher leur monogramme.
  *
  * COMMENT ÇA MARCHE. Le nom du fichier EST la clé : `royal-jordanian.svg` correspond à
