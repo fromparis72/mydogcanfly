@@ -32,9 +32,22 @@ ok("rule-check: every rule has a source URL", kb.rules.every((r) => !!r.source?.
 ok("rule-check: review_due after verified_date", kb.rules.every((r) => r.source.review_due > r.source.verified_date));
 ok("rule-check: predicate facts are declared", kb.rules.every((r) => !!r.applies_when));
 
-// coverage: every airline referenced by at least one rule
+/* coverage: every airline has SOME sourced answer to "does it carry pets, and where" — either its
+ * own rules.json entries, or a fiche-derived premium.policy. Both are valid: since 08/2026,
+ * evaluate.ts falls back to premium.policy.<mode>.allowed for any airline with no rules.json
+ * entry of its own (see evaluate.ts's policyFallbackDenyRule). An airline with NEITHER is the
+ * exact silent "always allowed" bug that fallback was built to close — this gate exists to make
+ * sure no airline ever regresses back into that gap unnoticed. */
 const airlinesWithRules = new Set(kb.rules.filter((r) => r.scope.type === "airline").map((r) => r.scope.id));
-ok("coverage: airlines have at least one rule", [...kb.airlines.keys()].every((id) => airlinesWithRules.has(id)));
+const airlinesWithPolicy = new Set(
+  [...kb.airlines.values()]
+    .filter((a) => a.premium?.policy && Object.values(a.premium.policy).some((m) => m && typeof m.allowed === "boolean"))
+    .map((a) => a.id),
+);
+ok(
+  "coverage: airlines have at least one rule or a fiche-derived policy",
+  [...kb.airlines.keys()].every((id) => airlinesWithRules.has(id) || airlinesWithPolicy.has(id)),
+);
 
 /* coherence: un pays desservi doit avoir un aéroport où atterrir.
  *
