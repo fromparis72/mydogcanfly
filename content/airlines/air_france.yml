@@ -26,10 +26,10 @@ chips:
       pt: "França · CDG · ORY"
   - icon: ✓
     label:
-      en: Verified 11 Jul 2026
-      fr: Vérifié le 11 juil. 2026
-      es: Verificado el 11 jul. 2026
-      pt: "Verificado em 11 jul. 2026"
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
     cls: ok
 verdict:
   cls: ok
@@ -208,10 +208,10 @@ restrictions:
           es: Bodega prohibida
           pt: "Porão proibido"
     note:
-      en: Bulldogs, pugs, boxers… banned from the hold (breathing risk).
-      fr: Bouledogues, carlins, boxers… interdits en soute (risque respiratoire).
-      es: Bulldogs, carlinos, boxers… vetados de la bodega (riesgo respiratorio).
-      pt: "Bulldogues, pugs, boxers… proibidos no porão (risco respiratório)."
+      en: "Air France doesn't publish a named list. Its wording is open-ended: snub-nosed animals — \"pugs, bulldogs, boxers, Pekingese, Shih Tzu dogs, or Persian cats\" — are barred from the hold, and it recommends asking your vet before any flight. If your dog is snub-nosed and over 8 kg, it must go by cargo. Since 15 July 2019 pugs, bulldogs and Boston terriers are no longer accepted by cargo either. Any breed not named but visibly snub-nosed: confirm with Air France."
+      fr: "Air France ne publie pas de liste nominative. Sa formulation est ouverte : les animaux à nez retroussé — « carlins, bouledogues, boxers, pékinois, shih tzu ou encore chats persans » — sont interdits en soute, et elle recommande de demander l'avis de ton vétérinaire avant tout vol. Si ton chien a le nez retroussé et pèse plus de 8 kg, il doit passer par le fret. Depuis le 15 juillet 2019, les carlins, bouledogues et boston terriers ne sont plus acceptés par le fret non plus. Une race non nommée mais visiblement à museau court : confirme auprès d'Air France."
+      es: "Air France no publica una lista nominal. Su formulación es abierta: los animales de hocico chato — «carlinos, bulldogs, bóxers, pekineses, shih tzu o gatos persas» — están vetados de la bodega, y recomienda consultar a tu veterinario antes de cualquier vuelo. Si tu perro tiene el hocico chato y pesa más de 8 kg, debe ir por carga. Desde el 15 de julio de 2019, los carlinos, bulldogs y boston terriers tampoco se aceptan por carga. Si tu raza no está nombrada pero es visiblemente de hocico chato: confírmalo con Air France."
+      pt: "A Air France não publica uma lista nominal. Sua formulação é aberta: os animais de focinho achatado — \"pugs, buldogues, boxers, pequinesess, shih tzu ou gatos persas\" — são proibidos no porão, e ela recomenda consultar seu veterinário antes de qualquer voo. Se o seu cachorro tem focinho achatado e pesa mais de 8 kg, precisa ir por carga. Desde 15 de julho de 2019, pugs, buldogues e boston terriers também não são mais aceitos por carga. Se a sua raça não é citada mas é visivelmente de focinho curto: confirme com a Air France."
   - icon: 🚫
     title:
       en: French category 1 & 2 dogs
@@ -221,15 +221,21 @@ restrictions:
     pills:
       - cls: no
         label:
-          en: Banned on Air France
-          fr: Interdits sur Air France
-          es: Prohibidos en Air France
-          pt: "Proibidos na Air France"
+          en: Cat. 1 — no transport
+          fr: Cat. 1 — aucun transport
+          es: Cat. 1 — ningún transporte
+          pt: "Cat. 1 — nenhum transporte"
+      - cls: warn
+        label:
+          en: Cat. 2 — cargo only
+          fr: Cat. 2 — fret seulement
+          es: Cat. 2 — solo carga
+          pt: "Cat. 2 — somente carga"
     note:
-      en: A vet certificate of non-belonging is required in case of resemblance.
-      fr: Certificat vétérinaire de non-appartenance exigé en cas de ressemblance.
-      es: Se exige un certificado veterinario de no pertenencia en caso de parecido.
-      pt: "Um atestado veterinário de não pertencimento é exigido em caso de semelhança."
+      en: "Category 1 (attack dogs of no registered breed but resembling Staffordshire Terriers/pit bulls, American Staffordshire Terriers/pit bulls, Mastiffs/Boerboels or Tosas) is refused in the cabin, the hold and cargo alike. Category 2 (pedigreed Staffordshire Terriers, pedigreed American Staffordshire Terriers, pedigreed Tosas, and dogs resembling a Rottweiler with or without pedigree) is accepted on Air France cargo flights only — on request and subject to availability they may travel on the same flight as their owner, with an approved crate. A vet certificate of non-belonging is required in case of resemblance."
+      fr: "La 1re catégorie (chiens d'attaque n'appartenant à aucune race mais assimilables aux Staffordshire terriers/pit-bulls, American Staffordshire terriers/pit-bulls, mastiffs/boerbulls ou tosas) est refusée en cabine, en soute comme en fret. La 2e catégorie (Staffordshire terriers avec pedigree, American Staffordshire terriers avec pedigree, tosas avec pedigree, et chiens assimilables à un rottweiler avec ou sans pedigree) n'est acceptée que sur les vols de fret Air France — sur demande et selon les disponibilités, ils peuvent voyager sur le même vol que leur propriétaire, avec une cage homologuée. Certificat vétérinaire de non-appartenance exigé en cas de ressemblance."
+      es: "La categoría 1 (perros de ataque sin raza registrada pero asimilables a Staffordshire terriers/pit bulls, American Staffordshire terriers/pit bulls, mastines/boerbulls o tosas) se rechaza tanto en cabina como en bodega y carga. La categoría 2 (Staffordshire terriers con pedigrí, American Staffordshire terriers con pedigrí, tosas con pedigrí y perros asimilables a un rottweiler con o sin pedigrí) solo se acepta en los vuelos de carga de Air France — bajo petición y según disponibilidad pueden viajar en el mismo vuelo que su dueño, con una jaula homologada. Se exige un certificado veterinario de no pertenencia en caso de parecido."
+      pt: "A categoria 1 (cachorros de ataque sem raça registrada, mas assemelháveis a Staffordshire terriers/pit bulls, American Staffordshire terriers/pit bulls, mastins/boerbulls ou tosas) é recusada na cabine, no porão e na carga. A categoria 2 (Staffordshire terriers com pedigree, American Staffordshire terriers com pedigree, tosas com pedigree e cachorros assemelháveis a um rottweiler com ou sem pedigree) só é aceita nos voos de carga da Air France — mediante solicitação e conforme disponibilidade, podem viajar no mesmo voo que o dono, com caixa homologada. Atestado veterinário de não pertencimento exigido em caso de semelhança."
 crate:
   - en: Fibreglass or hard-plastic shell, bolted together
     fr: Coque en fibre de verre ou plastique dur, boulonnée
@@ -348,12 +354,34 @@ goodToKnow:
       fr: Accord préalable requis · soute ≥ 24 h · États-Unis 48 h.
       es: Se requiere aprobación previa · bodega ≥ 24 h · Estados Unidos 48 h.
       pt: "Aprovação prévia exigida · porão ≥ 24 h · Estados Unidos 48 h."
+  - icon: 📄
+    label:
+      en: Minimum age
+      fr: Âge minimal
+      es: Edad mínima
+      pt: "Idade mínima"
+    value:
+      en: "15 weeks, vaccinations up to date. Within metropolitan France (Corsica included) and between metropolitan France and Guadeloupe, Martinique or Réunion, 8 weeks is enough."
+      fr: "15 semaines, vaccins à jour. En France métropolitaine (Corse comprise) et entre la métropole et la Guadeloupe, la Martinique ou La Réunion, 8 semaines suffisent."
+      es: "15 semanas, con las vacunas al día. Dentro de la Francia metropolitana (Córcega incluida) y entre la metrópoli y Guadalupe, Martinica o Reunión, bastan 8 semanas."
+      pt: "15 semanas, com as vacinas em dia. Dentro da França metropolitana (Córsega incluída) e entre a metrópole e Guadalupe, Martinica ou Reunião, bastam 8 semanas."
+  - icon: 💺
+    label:
+      en: Business cabin
+      fr: Cabine Business
+      es: Cabina Business
+      pt: "Cabine Business"
+    value:
+      en: "Air France doesn't accept ordinary pets in the Business cabin on intercontinental flights — your dog or cat travels in the hold instead. Since snub-nosed animals are barred from the hold, that combination leaves cargo as the only option."
+      fr: "Air France n'accepte pas les animaux ordinaires en cabine Business sur les vols intercontinentaux — ton chien ou ton chat voyage alors en soute. Les animaux à nez retroussé étant interdits en soute, cette combinaison ne laisse que le fret."
+      es: "Air France no acepta mascotas ordinarias en la cabina Business en los vuelos intercontinentales — tu perro o gato viaja entonces en la bodega. Como los animales de hocico chato están vetados de la bodega, esa combinación solo deja la carga."
+      pt: "A Air France não aceita animais comuns na cabine Business em voos intercontinentais — seu cachorro ou gato viaja no porão. Como os animais de focinho achatado são proibidos no porão, essa combinação deixa apenas a carga."
 book:
   host: airfrance.com
   url: https://www.airfrance.com/
 sources:
-  en: 4 Air France sources · confidence 5/5 · last verified 11 July 2026
-  fr: 4 sources Air France · confiance 5/5 · dernière vérification 11 juillet 2026
-  es: 4 fuentes de Air France · confianza 5/5 · última verificación 11 de julio de 2026
-  pt: "4 fontes da Air France · confiança 5/5 · última verificação em 11 de julho de 2026"
-verified_date: 2026-07-11
+  en: 4 Air France sources · confidence 5/5 · last verified 8 August 2026
+  fr: 4 sources Air France · confiance 5/5 · dernière vérification 8 août 2026
+  es: 4 fuentes de Air France · confianza 5/5 · última verificación 8 de agosto de 2026
+  pt: "4 fontes da Air France · confiança 5/5 · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

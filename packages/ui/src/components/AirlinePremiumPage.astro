@@ -76,7 +76,19 @@ function chiffresEnGras(texte: string): string {
 // Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
 // renvoyait les pages portugaises vers les URL anglaises.
 const base = locale === "en" ? "" : `/${locale}`;
-const reach = airlineReach(kb, id, locale, 16, 8);
+const reachAll = airlineReach(kb, id, locale, 16, 8);
+/* Le bloc « Où <compagnie> vole avec les chiens » lit le réseau commercial, qui ne sait rien de
+ * la politique animaux. Sur Volotea, il affichait Malte et le Royaume-Uni — deux pays où la
+ * compagnie écrit noir sur blanc qu'elle ne transporte aucun animal. On retire donc les pays
+ * que la fiche déclare fermés, et on les redit juste en dessous plutôt que de les laisser dans
+ * une liste dont le titre promet le contraire. Sans la clé, rien ne change. */
+const noPet = new Set((d.noPetCountries ?? []).map((c) => c.toUpperCase()));
+const reach = noPet.size
+  ? { ...reachAll, countries: reachAll.countries.filter((c) => !noPet.has(c.iso2.toUpperCase())) }
+  : reachAll;
+const noPetNames = noPet.size
+  ? reachAll.countries.filter((c) => noPet.has(c.iso2.toUpperCase())).map((c) => c.name)
+  : [];
 // Restriction brachycéphale : la seule restriction de race que les données portent de façon
 // structurée. La liste est donnée en entier, jamais tronquée — sur une restriction, une liste
 // partielle laisse croire à celui qui n'y voit pas sa race qu'il n'est pas concerné.
@@ -209,15 +221,32 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
     </div>
 
+    {/* NOTRE TAXONOMIE N'EST PAS CELLE DE LA COMPAGNIE.
+      *
+      * Ce bloc affichait les races que MyDogCanFly classe comme brachycéphales sous un titre
+      * — « Races concernées par cette politique » — et une phrase — « les N races que nous
+      * documentons sont concernées » — qui les faisaient lire comme la liste publiée par le
+      * transporteur. Elles ne le sont pas, et l'audit du 8 août 2026 a montré que le gabarit
+      * produisait ce glissement sur 37 des 92 fiches : partout où une restriction
+      * brachycéphale existe, la MÊME liste de 31 races s'affiche, quelle que soit la
+      * compagnie.
+      *
+      * L'erreur coûte dans les deux sens : une race que la compagnie n'a jamais nommée
+      * apparaît refusée (le saint-bernard chez Air France et Aegean), et une race que la
+      * compagnie refuse vraiment mais que notre taxonomie ignore n'apparaît pas.
+      *
+      * La liste reste — c'est une aide au repérage utile, et le maillage vers les fiches
+      * races en dépend — mais elle est désormais nommée pour ce qu'elle est. Ce que la
+      * compagnie a écrit, elle, vit dans `restrictions` de sa fiche, sourcé au cas par cas. */}
     {brachy && brachyList.length > 0 && (
       <div class="card">
-        <h2>🐶 {T("Breeds affected by this policy", "Races concernées par cette politique", "Razas afectadas por esta política")}</h2>
+        <h2>🐶 {T("Check whether your dog is snub-nosed", "Vérifie si ton chien est brachycéphale", "Comprueba si tu perro es braquicéfalo")}</h2>
         <p class="k">
           {brachy.kind === "explicit"
-            ? F("{0} refuses brachycephalic (snub-nosed) breeds in {1}. All {2} breeds we document as brachycephalic are affected — heaviest first, since they have no cabin fallback.",
-                "{0} refuse les races brachycéphales (museau court) en {1}. Les {2} races que nous documentons comme brachycéphales sont concernées — les plus lourdes d'abord, car elles n'ont aucune solution de repli en cabine.",
-                "{0} rechaza las razas braquicéfalas (hocico chato) en {1}. Las {2} razas que documentamos como braquicéfalas están afectadas — las más pesadas primero, ya que no tienen alternativa en cabina.",
-                d.name, chanList, brachyList.length)
+            ? F("{0} refuses brachycephalic (snub-nosed) breeds in {1}. What the airline itself wrote is in the restrictions above — that text alone says which breeds it turns away.",
+                "{0} refuse les races brachycéphales (museau court) en {1}. Ce que la compagnie a écrit elle-même figure dans les restrictions ci-dessus — ce texte seul dit quelles races elle écarte.",
+                "{0} rechaza las razas braquicéfalas (hocico chato) en {1}. Lo que la propia aerolínea ha escrito está en las restricciones de arriba — solo ese texto dice qué razas rechaza.",
+                d.name, chanList)
             : F("{0}'s published conditions mention snub-nosed breeds ({1}) without stating a general refusal. Check your breed's fiche, then confirm with the airline before booking.",
                 "Les conditions publiées par {0} évoquent les races à museau court ({1}) sans énoncer de refus général. Vérifie la fiche de ta race, puis confirme auprès de la compagnie avant de réserver.",
                 "Las condiciones publicadas por {0} mencionan las razas de hocico chato ({1}) sin declarar un rechazo general. Consulta la ficha de tu raza y confírmalo con la aerolínea antes de reservar.",
@@ -226,6 +255,13 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         <div class="reach-chips mt8">
           {brachyList.map((b) => (<a class="reach-chip" href={`${base}/breeds/${b.slug}/`}>{b.name} <span class="reach-iata">{b.weightKg} kg</span></a>))}
         </div>
+        {/* La phrase évite « la liste de {compagnie} » : l'élision française tombe faux dès que le
+          * nom commence par une voyelle (« de Aegean », « de Air France »). On dit donc « la liste
+          * publiée par {compagnie} », qui marche pour les 92 fiches sans table d'exceptions. */}
+        <p class="muted mt8">{F("These {0} breeds are MyDogCanFly's own brachycephalic classification, heaviest first — it is not the list published by {1}. Use it to situate your dog, then read the airline's own wording above and confirm with it before booking.",
+            "Ces {0} races sont la classification brachycéphale de MyDogCanFly, les plus lourdes d'abord — ce n'est pas la liste publiée par {1}. Sers-t'en pour situer ton chien, puis lis le texte de la compagnie ci-dessus et confirme auprès d'elle avant de réserver.",
+            "Estas {0} razas son la clasificación braquicéfala propia de MyDogCanFly, las más pesadas primero — no es la lista publicada por {1}. Úsala para situar a tu perro, luego lee el texto de la aerolínea más arriba y confírmalo con ella antes de reservar.",
+            brachyList.length, d.name)}</p>
       </div>
     )}
 
@@ -280,6 +316,12 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             <div class="reach-chips">
               {reach.countries.map((c) => (<a class="reach-chip" href={`${base}/countries/${c.slug}/`}>{c.name}</a>))}
             </div>
+            {noPetNames.length > 0 && (
+              <p class="muted mt8">{F("{0} also flies to {1}, but carries no pets on those routes — they're left out of the list above.",
+                  "{0} dessert aussi {1}, mais n'y transporte aucun animal — ces pays sont donc hors de la liste ci-dessus.",
+                  "{0} también vuela a {1}, pero no transporta ninguna mascota en esas rutas — por eso quedan fuera de la lista de arriba.",
+                  d.name, noPetNames.join(" · "))}</p>
+            )}
           </div>
         )}
       </div>

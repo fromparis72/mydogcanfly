@@ -20,10 +20,10 @@ chips:
       pt: "Canadá · YUL"
   - icon: ✓
     label:
-      en: Verified 11 Jul 2026
-      fr: Vérifié le 11 juil. 2026
-      es: Verificado el 11 jul. 2026
-      pt: "Verificado em 11 jul. 2026"
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
     cls: ok
 verdict:
   cls: warn
@@ -124,10 +124,10 @@ channels:
       es: Vía carga
       pt: "Via carga"
     detail:
-      en: Cats & dogs to/from the UK are cargo-only, and oversize cages travel via cargo.
-      fr: Chats et chiens de/vers le R.-U. uniquement en fret, et les caisses hors gabarit via le fret.
-      es: Los gatos y perros hacia/desde el Reino Unido solo viajan como carga, y las jaulas fuera de medidas viajan como carga.
-      pt: "Gatos e cachorros de/para o Reino Unido viajam somente via carga, e as caixas fora do padrão viajam via carga."
+      en: "Cats & dogs to/from the UK and the Republic of Ireland go by cargo, with advance arrangements and extra fees — except that cabin and hold stay open on flights from Manchester and Glasgow (but not from London). Oversize cages also travel via cargo."
+      fr: "Chats et chiens de/vers le R.-U. et la République d'Irlande passent par le fret, sur arrangement préalable et avec des frais supplémentaires — sauf au départ de Manchester et de Glasgow, où la cabine et la soute restent possibles (mais pas au départ de Londres). Les caisses hors gabarit passent aussi par le fret."
+      es: "Los gatos y perros hacia/desde el Reino Unido y la República de Irlanda van por carga, con acuerdo previo y tasas adicionales — salvo en los vuelos desde Mánchester y Glasgow, donde la cabina y la bodega siguen siendo posibles (pero no desde Londres). Las jaulas fuera de medidas también van por carga."
+      pt: "Gatos e cachorros de/para o Reino Unido e a República da Irlanda vão por carga, mediante acordo prévio e com taxas adicionais — exceto nos voos partindo de Manchester e Glasgow, onde a cabine e o porão continuam possíveis (mas não partindo de Londres). As caixas fora do padrão também vão por carga."
     fee:
       en: Quote
       fr: Devis
@@ -211,10 +211,10 @@ restrictions:
           es: "Bulldog francés: solo cabina"
           pt: "Buldogue Francês: somente cabine"
     note:
-      en: Snub-nosed dogs & cats (not on the exemption list) are accepted but the passenger signs an Acknowledgment and Exclusion of Liability; French bulldogs are cabin-only. The container needs ventilation on all four sides.
-      fr: Chiens et chats au nez écrasé (hors liste d'exemption) sont acceptés mais le passager signe une décharge de responsabilité ; les bouledogues français sont admis en cabine uniquement. Le contenant doit être ventilé sur les quatre côtés.
-      es: Los perros y gatos de hocico chato (no incluidos en la lista de excepciones) se aceptan, pero el pasajero firma un reconocimiento y exención de responsabilidad; los bulldogs franceses solo en cabina. La jaula necesita ventilación en los cuatro lados.
-      pt: "Cachorros e gatos de focinho achatado (não incluídos na lista de exceções) são aceitos, mas o passageiro assina um termo de reconhecimento e isenção de responsabilidade; os buldogues franceses só viajam na cabine. A caixa de transporte precisa de ventilação nos quatro lados."
+      en: "Snub-nosed dogs & cats not on the banned list are accepted in the hold, but: the passenger signs an Acknowledgment and Exclusion of Liability, and the animal must be shipped in a kennel one size larger than the normal standard, with ventilation on all four sides. Acclimatise your dog to the crate as long as possible beforehand. If those conditions aren't met the pet may be refused, and the fees are non-refundable. French bulldogs are cabin-only. Air Transat's brachycephalic list also names the chihuahua and the Teddy Bear dog (Shichon/Zuchon)."
+      fr: "Les chiens et chats au nez écrasé qui ne sont pas sur la liste des races interdites sont acceptés en soute, mais : le passager signe une décharge de responsabilité, et l'animal doit voyager dans une caisse d'une taille au-dessus du standard normal, ventilée sur les quatre côtés. Habitue ton chien à la caisse le plus longtemps possible avant le départ. Si ces conditions ne sont pas réunies, l'animal peut être refusé et les frais ne sont pas remboursés. Les bouledogues français sont admis en cabine uniquement. La liste brachycéphale d'Air Transat nomme aussi le chihuahua et le Teddy Bear (shichon/zuchon)."
+      es: "Los perros y gatos de hocico chato que no figuran en la lista de razas prohibidas se aceptan en bodega, pero: el pasajero firma una exención de responsabilidad y el animal debe viajar en una jaula de una talla superior al estándar normal, con ventilación en los cuatro lados. Acostumbra a tu perro a la jaula el mayor tiempo posible antes del viaje. Si no se cumplen esas condiciones, la mascota puede ser rechazada y las tasas no se reembolsan. Los bulldogs franceses solo en cabina. La lista braquicéfala de Air Transat también nombra al chihuahua y al Teddy Bear (shichon/zuchon)."
+      pt: "Cachorros e gatos de focinho achatado que não constam da lista de raças proibidas são aceitos no porão, mas: o passageiro assina um termo de isenção de responsabilidade e o animal deve viajar em uma caixa um tamanho acima do padrão normal, com ventilação nos quatro lados. Acostume seu cachorro à caixa o máximo de tempo possível antes da viagem. Se essas condições não forem atendidas, o animal pode ser recusado e as taxas não são reembolsadas. Os buldogues franceses só viajam na cabine. A lista braquicefálica da Air Transat também cita o chihuahua e o Teddy Bear (shichon/zuchon)."
   - icon: 🚫
     title:
       en: Banned breeds
@@ -235,10 +235,14 @@ restrictions:
           es: Sin sedación
           pt: "Sem sedação"
     note:
-      en: Mastiffs, pit bull types (American Bully, American Pit Bull, American/Staffordshire terriers), American bulldogs, Dogo Argentino, Fila, Boerboel and Bandog aren't accepted (Bullmastiff & Dogue de Bordeaux are exempt). Sedation isn't recommended.
-      fr: Mastiffs, types pit-bull (American Bully, American Pit Bull, American/Staffordshire terriers), American bulldogs, Dogo Argentino, Fila, Boerboel et Bandog ne sont pas acceptés (Bullmastiff & Dogue de Bordeaux exemptés). La sédation n'est pas recommandée.
-      es: Los mastines, tipos pit bull (American Bully, American Pit Bull, American/Staffordshire terriers), bulldogs americanos, Dogo Argentino, Fila, Boerboel y Bandog no se aceptan (Bullmastiff y Dogo de Burdeos quedan exentos). No se recomienda la sedación.
-      pt: "Mastins, tipos pit bull (American Bully, American Pit Bull, American/Staffordshire terriers), buldogues americanos, Dogo Argentino, Fila, Boerboel e Bandog não são aceitos (Bullmastiff e Dogue de Bordeaux ficam isentos). A sedação não é recomendada."
+      en: "Air Transat's published list — and any mixed breed including one or more of these: mastiffs (all breeds, incl. Dogo Argentino, Bandog, Boerboel, Fila Brasileiro, Cane Corso, Neapolitan Mastiff, Presa Canario, Tosa Inu), pit bulls (all breeds, incl. American Bully, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire Bull Terrier), Akita, Caucasian Ovcharka, Kangal / Anatolian Shepherd (Karabash), Rottweiler, wolf-dog hybrids, Doberman Pinscher. French bulldogs and American bulldogs are on the hold list only — the French bulldog stays welcome in the cabin. Bullmastiffs and French mastiffs (Dogue de Bordeaux) are explicitly exempt and accepted. Sedation isn't recommended."
+      fr: "Liste publiée par Air Transat — et tout croisement comprenant une ou plusieurs de ces races : mastiffs (toutes races, dont dogo argentino, bandog, boerboel, fila brasileiro, cane corso, mâtin napolitain, presa canario, tosa inu), pit-bulls (toutes races, dont American Bully, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire bull terrier), akita, berger du Caucase, kangal / berger d'Anatolie (karabash), rottweiler, hybrides chien-loup, dobermann. Le bouledogue français et l'American bulldog ne figurent que sur la liste soute — le bouledogue français reste admis en cabine. Le bullmastiff et le dogue de Bordeaux sont explicitement exemptés et acceptés. La sédation n'est pas recommandée."
+      es: "Lista publicada por Air Transat — y cualquier cruce que incluya una o varias de estas razas: mastines (todas, incl. dogo argentino, bandog, boerboel, fila brasileiro, cane corso, mastín napolitano, presa canario, tosa inu), pit bulls (todos, incl. American Bully, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire bull terrier), akita, ovcharka del Cáucaso, kangal / pastor de Anatolia (karabash), rottweiler, híbridos perro-lobo, dóberman. El bulldog francés y el bulldog americano solo figuran en la lista de bodega — el bulldog francés sigue admitido en cabina. El bullmastiff y el dogo de Burdeos están explícitamente exentos y se aceptan. No se recomienda la sedación."
+      pt: "Lista publicada pela Air Transat — e qualquer cruzamento que inclua uma ou mais dessas raças: mastins (todas as raças, incl. dogo argentino, bandog, boerboel, fila brasileiro, cane corso, mastim napolitano, presa canario, tosa inu), pit bulls (todas as raças, incl. American Bully, American Pit Bull Terrier, American Staffordshire Terrier, Staffordshire bull terrier), akita, ovtcharka do Cáucaso, kangal / pastor da Anatólia (karabash), rottweiler, híbridos cão-lobo, doberman. O buldogue francês e o buldogue americano constam apenas da lista do porão — o buldogue francês continua admitido na cabine. O bullmastiff e o dogue de Bordeaux são explicitamente isentos e aceitos. A sedação não é recomendada."
+# La Jamaïque seule : « No animals are accepted on flights to Jamaica ». Le R.-U. et l'Irlande
+# restent dans la liste des destinations — Air Transat y transporte des animaux, par le fret,
+# et en cabine ou en soute au départ de Manchester et de Glasgow.
+noPetCountries: [JM]
 temperature:
   pills:
     - cls: warn
@@ -276,6 +280,39 @@ assistance:
       es: "Perros de asistencia certificados hacia Londres/Manchester/Glasgow: resérvalos a través del centro de llamadas con ≥ 7 días de antelación."
       pt: "Cães de serviço certificados para Londres/Manchester/Glasgow: reserve pela central de atendimento com ≥ 7 dias de antecedência."
 goodToKnow:
+  - icon: 🎟️
+    label:
+      en: Where the service doesn't exist
+      fr: Où le service n'existe pas
+      es: Dónde no existe el servicio
+      pt: "Onde o serviço não existe"
+    value:
+      en: "Read this before anything else — it decides whether the trip is possible at all. No pets on codeshare flights, on flights operated by another carrier, or in vacation packages. In the hold, no pets on connecting flights either, and none with Train + Air (the cabin does allow pets on Train + Air, under SNCF's own conditions)."
+      fr: "À lire avant tout le reste : c'est ce qui décide si le voyage est possible. Pas d'animal sur les vols en partage de code, sur les vols opérés par une autre compagnie, ni dans les forfaits vacances. En soute, pas d'animal non plus en correspondance, ni en Train + Air (la cabine, elle, accepte l'animal en Train + Air, selon les conditions propres à la SNCF)."
+      es: "Léelo antes que nada: decide si el viaje es siquiera posible. Nada de mascotas en vuelos en código compartido, en vuelos operados por otra aerolínea ni en paquetes vacacionales. En bodega, tampoco en vuelos con conexión ni en Train + Air (la cabina sí admite mascota en Train + Air, según las condiciones propias de la SNCF)."
+      pt: "Leia antes de tudo: é o que decide se a viagem é possível. Nenhum animal em voos em code-share, em voos operados por outra companhia nem em pacotes de férias. No porão, também não em voos com conexão nem no Train + Air (a cabine aceita animal no Train + Air, conforme as condições da própria SNCF)."
+  - icon: 🌍
+    label:
+      en: Routes that are closed
+      fr: Routes fermées
+      es: Rutas cerradas
+      pt: "Rotas fechadas"
+    value:
+      en: "No animals at all on flights to Jamaica. No one-way carriage from the Dominican Republic, Colombia, El Salvador, Cuba, Peru, Morocco, Guyana, Brazil, Türkiye or Haiti — a round trip is accepted if reserved in advance through the contact centre. To the United States, no animal that has been in a CDC high-risk rabies country in the previous 6 months is accepted. Certified service dogs have their own exceptions on these routes."
+      fr: "Aucun animal sur les vols vers la Jamaïque. Pas d'aller simple au départ de la République dominicaine, de la Colombie, du Salvador, de Cuba, du Pérou, du Maroc, du Guyana, du Brésil, de la Türkiye ou d'Haïti — l'aller-retour est accepté s'il est réservé à l'avance auprès du centre d'appel. Vers les États-Unis, aucun animal ayant séjourné dans un pays à haut risque rabique (liste CDC) au cours des 6 derniers mois n'est accepté. Les chiens d'assistance certifiés bénéficient d'exceptions propres sur ces routes."
+      es: "Ningún animal en los vuelos a Jamaica. Nada de trayectos de solo ida desde República Dominicana, Colombia, El Salvador, Cuba, Perú, Marruecos, Guyana, Brasil, Türkiye o Haití — el ida y vuelta se acepta si se reserva por adelantado en el centro de contacto. Hacia Estados Unidos no se acepta ningún animal que haya estado en un país de alto riesgo de rabia (lista de los CDC) en los 6 meses anteriores. Los perros de asistencia certificados tienen excepciones propias en estas rutas."
+      pt: "Nenhum animal nos voos para a Jamaica. Sem trecho de ida simples partindo da República Dominicana, Colômbia, El Salvador, Cuba, Peru, Marrocos, Guiana, Brasil, Türkiye ou Haiti — a ida e volta é aceita se reservada com antecedência pela central de atendimento. Para os Estados Unidos, nenhum animal que tenha estado em um país de alto risco de raiva (lista do CDC) nos 6 meses anteriores é aceito. Cães de assistência certificados têm exceções próprias nessas rotas."
+  - icon: 📄
+    label:
+      en: Minimum age
+      fr: Âge minimal
+      es: Edad mínima
+      pt: "Idade mínima"
+    value:
+      en: "12 weeks and fully weaned to every destination — except 6 months for flights to the United States and 4 months for flights to Guyana. You must be at least 16 to travel with an animal."
+      fr: "12 semaines et sevré vers toutes les destinations — sauf 6 mois pour les vols vers les États-Unis et 4 mois pour les vols vers le Guyana. Tu dois avoir au moins 16 ans pour voyager avec un animal."
+      es: "12 semanas y completamente destetado hacia cualquier destino — salvo 6 meses para los vuelos a Estados Unidos y 4 meses para los vuelos a Guyana. Debes tener al menos 16 años para viajar con un animal."
+      pt: "12 semanas e totalmente desmamado para qualquer destino — exceto 6 meses para voos aos Estados Unidos e 4 meses para voos à Guiana. Você precisa ter pelo menos 16 anos para viajar com um animal."
   - icon: 🐾
     label:
       en: Cats & dogs only
@@ -313,8 +350,8 @@ book:
   host: airtransat.com
   url: https://www.airtransat.com/
 sources:
-  en: 3 Air Transat sources · last verified 11 July 2026
-  fr: 3 sources Air Transat · dernière vérification 11 juillet 2026
-  es: 3 fuentes de Air Transat · última verificación 11 de julio de 2026
-  pt: "3 fontes da Air Transat · última verificação em 11 de julho de 2026"
-verified_date: 2026-07-11
+  en: 3 Air Transat sources · last verified 8 August 2026
+  fr: 3 sources Air Transat · dernière vérification 8 août 2026
+  es: 3 fuentes de Air Transat · última verificación 8 de agosto de 2026
+  pt: "3 fontes da Air Transat · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

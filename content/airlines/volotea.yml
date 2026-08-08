@@ -20,10 +20,10 @@ chips:
       pt: "Espanha / França"
   - icon: ✓
     label:
-      en: Verified 11 Jul 2026
-      fr: Vérifié le 11 juil. 2026
-      es: Verificado el 11 jul. 2026
-      pt: "Verificado em 11 jul. 2026"
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
     cls: ok
 verdict:
   cls: ok
@@ -116,10 +116,10 @@ channels:
       es: No disponible
       pt: "Não oferecido"
     detail:
-      en: Volotea doesn't carry cargo.
-      fr: Volotea ne transporte pas de fret.
-      es: Volotea no transporta carga.
-      pt: "A Volotea não transporta carga."
+      en: Volotea publishes no cargo option for pets — its conditions only cover the cabin.
+      fr: Volotea ne publie aucune offre de fret pour les animaux — ses conditions ne couvrent que la cabine.
+      es: Volotea no publica ninguna opción de carga para mascotas — sus condiciones solo cubren la cabina.
+      pt: "A Volotea não publica nenhuma opção de carga para animais — suas condições cobrem apenas a cabine."
     fee:
       en: —
       fr: —
@@ -199,6 +199,7 @@ restrictions:
       fr: Aucun transport d'animal de/vers le R.-U., l'Irlande ou Malte. Le sac doit être souple avec des trous d'aération et un fond étanche (boîtes artisanales refusées).
       es: No se transportan mascotas desde/hacia Reino Unido, Irlanda ni Malta. La jaula debe ser blanda, con orificios de ventilación y base impermeable (se rechazan las cajas caseras).
       pt: "Nenhum transporte de animais de/para o Reino Unido, a Irlanda ou Malta. A bolsa deve ser flexível, com furos de ventilação e base impermeável (caixas artesanais são recusadas)."
+noPetCountries: [GB, IE, MT]
 temperature:
   pills:
     - cls: warn
@@ -243,10 +244,10 @@ goodToKnow:
       es: Solo cabina
       pt: "Somente cabine"
     value:
-      en: Volotea carries pets in the cabin only — no hold or cargo.
-      fr: Volotea ne transporte les animaux qu'en cabine — pas de soute ni fret.
-      es: Volotea transporta mascotas solo en cabina; sin bodega ni carga.
-      pt: "A Volotea transporta animais somente na cabine — sem porão nem carga."
+      en: "Volotea's conditions of carriage say it plainly: it does not offer the option of transporting pets in the aircraft hold. It publishes no pet cargo option either, so the cabin is the only route."
+      fr: "Les conditions de transport de Volotea le disent noir sur blanc : elle ne propose pas le transport d'animaux en soute. Elle ne publie pas davantage d'offre de fret pour les animaux, la cabine est donc la seule voie."
+      es: "Las condiciones de transporte de Volotea lo dicen claramente: no ofrece la opción de transportar mascotas en la bodega. Tampoco publica ninguna opción de carga para mascotas, así que la cabina es la única vía."
+      pt: "As condições de transporte da Volotea dizem claramente: ela não oferece a opção de transportar animais no porão. Também não publica nenhuma opção de carga para animais, então a cabine é o único caminho."
   - icon: 🚫
     label:
       en: No UK/Ireland/Malta
@@ -273,8 +274,8 @@ book:
   host: volotea.com
   url: https://www.volotea.com/
 sources:
-  en: 3 Volotea sources · last verified 11 July 2026
-  fr: 3 sources Volotea · dernière vérification 11 juillet 2026
-  es: 3 fuentes de Volotea · última verificación 11 de julio de 2026
-  pt: "3 fontes da Volotea · última verificação em 11 de julho de 2026"
-verified_date: 2026-07-11
+  en: 3 Volotea sources · last verified 8 August 2026
+  fr: 3 sources Volotea · dernière vérification 8 août 2026
+  es: 3 fuentes de Volotea · última verificación 8 de agosto de 2026
+  pt: "3 fontes da Volotea · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

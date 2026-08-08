@@ -52,6 +52,17 @@ const Fiche = z.object({
   fareGrid: z.object({ headCabin: LT, headHold: LT, rows: z.array(FareRow).min(1), note: LT }).optional(),
   fareList: z.object({ rows: z.array(FareItem).min(1), note: LT }).optional(),
   restrictions: z.array(Restriction),
+  // Pays où la compagnie ne transporte AUCUN animal, en code ISO 3166-1 alpha-2 majuscule.
+  //
+  // Le bloc « Où <compagnie> vole avec les chiens » se construisait sur le réseau commercial
+  // (`serves_country_ids`), qui ignore la politique animaux : la fiche Volotea affichait Malte
+  // et le Royaume-Uni dans ses destinations tout en disant deux lignes plus haut qu'elle n'y
+  // transporte pas d'animaux. Le lecteur voyait la contradiction, pas la règle.
+  //
+  // Le réseau reste la source du réseau ; cette clé dit seulement où la politique animaux se
+  // ferme, et seulement quand la compagnie l'a écrit. Une fiche sans la clé se comporte comme
+  // avant — on ne déduit jamais une fermeture d'un silence.
+  noPetCountries: z.array(z.string().regex(/^[A-Z]{2}$/)).optional(),
   crate: z.array(LT).optional(),
   temperature: z.object({ pills: z.array(Pill), note: LT }),
   assistance: z.array(InfoRow).min(1),

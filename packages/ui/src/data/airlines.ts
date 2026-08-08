@@ -30,6 +30,8 @@ export interface AirlineData {
   fareGrid?: { headCabin: LT; headHold: LT; rows: FareRow[]; note: LT };
   fareList?: { rows: FareItem[]; note: LT };
   restrictions: RestrictionCard[];
+  /** Codes ISO 3166-1 alpha-2 des pays où la compagnie ne transporte aucun animal. */
+  noPetCountries?: string[];
   crate?: LT[];
   temperature: { pills: Pill[]; note: LT };
   assistance: InfoRow[];
