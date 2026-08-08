@@ -87,6 +87,7 @@ const labels = {
   loading: t(locale, "finder.loading"),
   answerQ: t(locale, "answer.question"),
   compatibility: t(locale, "section.compatibility"),
+  compatibilityNote: t(locale, "section.compatibility_note"),
   why: t(locale, "section.why"),
   before: t(locale, "report.before"),
   warnings: t(locale, "section.warnings"),
@@ -335,8 +336,11 @@ const labels = {
         <p class="report__q">${esc(L.answerQ)}</p>
         <p class="report__answer">${esc(answer)}</p>
         <div class="report__score">
-          <div class="report__gauge"><span style="width:${r.score}%"></span></div>
-          <div class="report__score-meta"><strong>${r.score}%</strong> ${esc(L.compatibility)}</div>
+          <div class="report__score-row">
+            <div class="report__gauge"><span style="width:${r.score}%"></span></div>
+            <div class="report__score-meta"><strong>${r.score}%</strong> ${esc(L.compatibility)}</div>
+          </div>
+          <div class="report__score-note">${esc(L.compatibilityNote)}</div>
         </div>
         ${climateBanner(r)}
         ${why}
@@ -801,13 +805,18 @@ const labels = {
   .report--incompatible .report__answer { color: var(--mdcf-risk); }
   .report--conditional .report__answer { color: var(--mdcf-warn); }
   .report--compatible .report__answer { color: var(--mdcf-ok); }
-  .report__score { display: flex; align-items: center; gap: 12px; margin: 0 0 4px; }
+  .report__score { margin: 0 0 4px; }
+  .report__score-row { display: flex; align-items: center; gap: 12px; }
   .report__gauge { flex: 1 1 auto; height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--mdcf-line) 70%, transparent); overflow: hidden; }
   .report__gauge span { display: block; height: 100%; border-radius: 999px; background: var(--mdcf-warn); transition: width .5s ease; }
   .report--incompatible .report__gauge span { background: var(--mdcf-risk); }
   .report--compatible .report__gauge span { background: var(--mdcf-ok); }
   .report__score-meta { font-size: 14px; color: var(--mdcf-muted); white-space: nowrap; }
   .report__score-meta strong { color: var(--mdcf-ink); font-size: 16px; }
+  /* Sous-texte qui désambiguïse : ce nombre porte sur TOUTES les compagnies du trajet, jamais
+     sur une compagnie précise (voir explain.ts, computeScore). Discret mais toujours visible —
+     directement sous la jauge, pas dans une infobulle qu'on peut manquer. */
+  .report__score-note { font-size: 12px; color: var(--mdcf-muted); margin-top: 2px; }
   .report__sec { margin-top: 4px; }
   .rtflag { border: 1px solid; border-left-width: 5px; border-radius: 0 10px 10px 0; padding: 12px 14px; margin: 14px 0; }
   .rtflag__t { font-weight: 800; font-size: 14px; margin: 0 0 3px; }

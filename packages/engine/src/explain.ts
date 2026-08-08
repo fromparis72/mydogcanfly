@@ -5,6 +5,52 @@ const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, lo
 /** Temperature above which seasonal heat embargoes suspend hold/cargo (matches the summer_embargo rules). */
 const HEAT_EMBARGO_THRESHOLD_C = 30;
 
+/* Score du trajet (ADR à documenter — décision utilisateur, 08/2026). AVANT : un barème à 3 paliers
+   fixes — 96 "compatible", 88 "conditionnel", 20 "incompatible" — plus ou moins ajusté de -3 par
+   condition et -6 si moins de 3 compagnies acceptent. Le nombre affiché en gros ("XX% compatibilité")
+   n'était donc PAS une mesure : c'était le verdict, re-décoré en pourcentage à trois valeurs
+   possibles (à quelques points près). Deux trajets radicalement différents — 8 compagnies dont 6
+   acceptent en direct attesté, contre 1 seule compagnie qui accepte via une correspondance jamais
+   vérifiée — pouvaient afficher le même 88%.
+
+   MAINTENANT : le score dérive de trois faits déjà connus du moteur, jamais d'un jugement inventé :
+   - CHOIX RÉEL : acceptées ÷ candidates. Une compagnie "candidate" est une compagnie dont on a
+     évalué la desserte de ce trajet, qu'elle accepte ou non ce chien précis — c'est le nombre
+     d'options réellement regardées, pas une estimation.
+   - QUALITÉ DE L'ITINÉRAIRE : parmi les compagnies acceptées, la moyenne de leur `itinerary_confidence`
+     (direct_documented > direct_assumed > connection_documented > connection_unverified — voir
+     evaluate.ts). Un trajet où tout est attesté pèse plus qu'un trajet où tout est déduit d'un hub.
+   - CONFIANCE DES SOURCES : la même moyenne 1-5 étoiles déjà affichée par ailleurs (`confidence`),
+     ramenée à 0-1 — un dossier sourcé à 5★ partout vaut plus qu'un dossier à 2★.
+   Puis une pénalité pour les formalités d'entrée (`conditions`), pondérée par leur criticité — plus
+   il faut de démarches critiques avant le départ, plus le trajet est concrètement compliqué, même
+   si le chien lui-même est accepté partout.
+
+   Ce que ça corrige mécaniquement, sans cas particulier ajouté : un trajet sans AUCUNE compagnie
+   candidate (aucune ne dessert cette paire d'aéroports) tombe à 0 — avant, il affichait le même 20%
+   qu'un trajet où 10 compagnies desservent la route mais refusent toutes CE chien. Ce sont deux
+   réalités différentes ; le score les distingue maintenant sans qu'on ait eu à les nommer. */
+const ITINERARY_WEIGHT: Record<string, number> = {
+  direct_documented: 1, direct_assumed: 0.8, connection_documented: 0.7, connection_unverified: 0.4,
+};
+const CONDITION_PENALTY: Record<string, number> = { critical: 10, high: 6, medium: 3, low: 1 };
+function computeScore(
+  candidateAirlines: AirlineResult[],
+  acceptedAirlines: AirlineResult[],
+  avgConfidence: number,
+  conditions: ReportItem[],
+): number {
+  if (candidateAirlines.length === 0) return 0; // no airline even reaches this route — a data gap, not "20% compatible"
+  const choiceRatio = acceptedAirlines.length / candidateAirlines.length;
+  const routeQuality = acceptedAirlines.length
+    ? acceptedAirlines.reduce((sum, a) => sum + (ITINERARY_WEIGHT[a.itinerary_confidence ?? ""] ?? 0.5), 0) / acceptedAirlines.length
+    : 0;
+  const confidenceRatio = Math.max(0, Math.min(1, avgConfidence / 5));
+  const penalty = Math.min(40, conditions.reduce((sum, c) => sum + (CONDITION_PENALTY[c.criticality] ?? 2), 0));
+  const raw = 45 * choiceRatio + 35 * routeQuality + 20 * confidenceRatio - penalty;
+  return Math.max(0, Math.min(100, Math.round(raw)));
+}
+
 /** Join a list with a localized final conjunction: "a, b and c" / "a, b et c".
     L'espagnol et le portugais écrivaient « and » : la liste des modes de transport, puis celle des
     motifs de refus, sortaient en anglais au milieu d'une phrase traduite. */
@@ -120,20 +166,18 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   const reqP = decision.request.placement;
   const okFor = (a: AirlineResult) => reqP === "any" ? (a.cabin || a.hold || a.cargo)
     : reqP === "cabin" ? a.cabin : reqP === "hold" ? a.hold : a.cargo;
-  const acceptCount = airlines.filter(okFor).length;
+  const acceptedAirlines = airlines.filter(okFor);
+  const acceptCount = acceptedAirlines.length;
   const anyCompatible = acceptCount > 0;
-  const compatible = airlines.filter(okFor).map((a) => ({ airline_id: a.airline_id, placement: reqP === "any" ? (a.cabin ? "cabin" : a.hold ? "hold" : "cargo") : reqP }));
+  const compatible = acceptedAirlines.map((a) => ({ airline_id: a.airline_id, placement: reqP === "any" ? (a.cabin ? "cabin" : a.hold ? "hold" : "cargo") : reqP }));
 
   const verdict: DecisionReport["verdict"] =
     !anyCompatible ? "incompatible" : conditions.length > 0 ? "conditional" : "compatible";
 
-  let score: number;
-  if (!anyCompatible) {
-    score = 20;
-  } else {
-    const base = verdict === "compatible" ? 96 : 88;
-    score = Math.max(55, Math.min(100, base - conditions.length * 3 - (acceptCount < 3 ? 6 : 0)));
-  }
+  // Same source-confidence average the ★ rating below is built from (see `confidence`) — reused
+  // here rather than recomputed, so the score and the stars never silently disagree.
+  const avgConfidence = confidences.length ? confidences.reduce((a, b) => a + b, 0) / confidences.length : 4;
+  const score = computeScore(airlines, acceptedAirlines, avgConfidence, conditions);
 
   const positives: ReportItem[] = [];
   // Most important for the visitor: HOW the dog can travel on this route, as a tendency.
@@ -172,7 +216,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   }
   positives.push({ text: decision.countryRequirements.length ? L("why.docs_known") : L("why.no_docs"), criticality: "low" });
 
-  const confidence = confidences.length ? Math.round(confidences.reduce((a, b) => a + b, 0) / confidences.length) : 4;
+  const confidence = Math.round(avgConfidence);
 
   // Seasonal temperature context, surfaced only when the user gave a date/temperature (so the filter is visible).
   const climate = decision.climate.provided

@@ -184,7 +184,11 @@ export interface AirlineResult {
 }
 export interface DecisionReport {
   verdict: "compatible" | "conditional" | "incompatible";
-  /** 0..100 compatibility score — a transparent, rule-derived headline number (see explain.ts). */
+  /** 0..100 TRIP-level score (see computeScore() in explain.ts) — every candidate airline on this
+   *  route combined, never a single carrier's number. Weighted from real choice (accepted ÷
+   *  candidate airlines), route-attestation quality (direct_documented > direct_assumed >
+   *  connection_documented > connection_unverified), and average source confidence, minus a
+   *  penalty for entry-formality friction. Not a probability of successful travel. */
   score: number;
   /** Airline-by-airline comparison for this dog + route, direct flights first. */
   airlines: AirlineResult[];
