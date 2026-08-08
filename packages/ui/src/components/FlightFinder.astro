@@ -98,7 +98,11 @@ const labels = {
   direct: t(locale, "air.direct"),
   connection: t(locale, "air.connection"),
   noPets: t(locale, "air.no_pets"),
-  breedNo: T("Breed not accepted", "Race non acceptée", "Raza no aceptada"),
+  /* Plus de « Race non acceptée » posé par défaut : le moteur ne connaissait pas la cause du refus
+     et l'interface en inventait une. Le badge est neutre, le motif réel vient du moteur (label). */
+  notCompatible: t(locale, "air.not_compatible_short"),
+  unverifiedShort: t(locale, "air.unverified_short"),
+  unverifiedNote: t(locale, "air.unverified_note"),
   directCount: t(locale, "air.direct_count"),
   directCountPlural: t(locale, "air.direct_count_plural"),
   airlinesCount: t(locale, "air.airlines_count"),
@@ -352,21 +356,24 @@ const labels = {
           ? `<div class="report__sec"><h4>${esc(L.airlines)}</h4>
               <div class="acap">✈ <b>${r.airlines.filter((a) => a.direct).length}</b> ${esc(r.airlines.filter((a) => a.direct).length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>
               <ul class="acards">${r.airlines.map((a) => `
-              <li class="acard ${a.cabin ? "acard--cabin" : a.hold ? "acard--hold" : a.cargo ? "acard--cargo" : "acard--no"}">
+              <li class="acard ${a.cabin ? "acard--cabin" : a.hold ? "acard--hold" : a.cargo ? "acard--cargo" : "acard--no"}${a.itinerary_confidence === "connection_unverified" ? " acard--unverified" : ""}">
                 <div class="acard__main">
                   ${(() => {
                     const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !a.heat_embargo;
                     const caps = [];
                     if (structuralNoPets) {
-                      // Distinguish a low-cost that carries no pets at all ("No pets") from an airline that
-                      // does carry pets but rules out THIS dog (e.g. a snub-nosed breed → "Breed not accepted").
-                      if (a.carries_pets) caps.push({ cls: "breed", ic: "🐾", txt: L.breedNo });
+                      // Une compagnie qui ne prend aucun animal ("Animaux refusés") reste distincte d'une
+                      // compagnie qui en prend mais écarte CE chien. Pour la seconde, le badge ne nomme plus
+                      // de cause — le motif exact (poids, race, soute non proposée…) est dans le libellé.
+                      if (a.carries_pets) caps.push({ cls: "nomatch", ic: "🐾", txt: L.notCompatible });
                       else caps.push({ cls: "nopets", ic: "🚫", txt: L.noPets });
                     } else {
                       const viaCode = a.connect_airport_id ? (AIRSHORT[a.connect_airport_id] || "") : "";
                       caps.push(a.direct
                         ? { cls: "direct", ic: "✈", txt: L.direct }
                         : { cls: "conn", ic: "✈", txt: L.connection + (viaCode ? ` · via ${viaCode}` : "") });
+                      // Correspondance seulement plausible : on le dit dès le badge, pas en petits caractères.
+                      if (a.itinerary_confidence === "connection_unverified") caps.push({ cls: "unver", ic: "?", txt: L.unverifiedShort });
                       if (a.heat_embargo) caps.push({ cls: "heat", ic: "🌡️", txt: L.heatEmbargoShort });
                     }
                     return `<div class="acard__statusrow">${caps.map((s) => `<span class="acard__status acard__status--${s.cls}">${s.ic} ${esc(s.txt)}</span>`).join("")}</div>`;
@@ -375,6 +382,8 @@ const labels = {
                   <div class="acard__badges"><span class="ab ${a.cabin ? "ab--ok" : "ab--no"}">${esc(L.cabinShort)}</span><span class="ab ${a.hold ? "ab--ok" : "ab--no"}">${esc(L.holdShort)}</span><span class="ab ${a.cargo ? "ab--ok" : "ab--no"}">${esc(L.cargoShort)}</span></div>
                   <div class="acard__label">${esc(a.label)}${a.source_url ? ` · <a href="${esc(a.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(a.source_url))}</a>` : ""}</div>
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
+                  ${a.itinerary_confidence === "connection_unverified"
+                    ? `<div class="acard__unver">? ${esc(L.unverifiedNote)}</div>` : ""}
                   ${a.heat_embargo ? `<div class="acard__embargo">🌡️ ${esc(L.heatEmbargo)}</div>` : ""}
                   ${a.fee ? `<div class="acard__fee">${esc(a.fee)}</div>` : ""}
                 </div>
@@ -837,7 +846,13 @@ const labels = {
   .acard__status--conn { color: #92400e; background: #fef0dc; }
   .acard__status--heat { color: #9a3412; background: #ffe4cc; }
   .acard__status--nopets { color: #991b1b; background: #fee2e2; }
-  .acard__status--breed { color: #92400e; background: #fef0dc; }
+  .acard__status--nomatch { color: #92400e; background: #fef0dc; }
+  /* Correspondance non étayée : gris, jamais vert ni orange « option » — elle ne doit pas se lire
+     comme une option vérifiée. Le liseré et l'opacité la démarquent d'une carte démontrée. */
+  .acard__status--unver { color: #475569; background: #e2e8f0; }
+  .acard--unverified { border-left-color: #94a3b8; border-style: dashed; opacity: .82; }
+  .acard__unver { margin-top: 6px; font-size: 12px; line-height: 1.35; color: #475569;
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px 9px; }
   .dom .dom__intro { margin: 0 0 8px; }
   .dom__terr { margin-top: 10px; background: #fff8ec; border: 1px solid #f0d9b8; border-radius: 10px; padding: 10px 13px; color: #7c4a12; font-size: 13.5px; }
   .dom__terr ul { margin: 6px 0 0; padding-left: 18px; }

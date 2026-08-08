@@ -70,6 +70,36 @@ function heatRiskSeason(region: string | undefined, month: number | undefined, t
   return month === peak || month === next;
 }
 
+/* Traduction d'une catégorie de règle en motif de refus affichable.
+   POURQUOI : jusqu'ici l'interface déduisait le motif d'un raisonnement en creux — « la compagnie
+   prend des animaux mais aucun mode n'est accepté, donc c'est la race ». C'était faux trois fois
+   sur trois (Delta, JetBlue, Brussels refusent un golden de 30 kg pour son POIDS, ou parce qu'ils
+   ne proposent ni soute ni fret). Le motif se lit sur la règle qui a refusé : sa catégorie et les
+   placements qu'elle vise sont des données, pas une interprétation. Une catégorie inconnue ne
+   produit AUCUN motif — mieux vaut un libellé neutre qu'un motif inventé. */
+const REASON_BY_CATEGORY: Record<string, string> = {
+  breed_ban: "breed_restricted",
+  cabin_weight: "weight_limit",
+  hold_weight: "weight_limit",
+};
+/** Ordre d'affichage : d'abord ce qui tient au chien, ensuite ce que la compagnie ne propose pas. */
+const REASON_ORDER = ["breed_restricted", "weight_limit", "cabin_unavailable", "hold_unavailable", "cargo_unavailable"];
+function denyReasonsOf(perPlacement: { placement: string; fires: Rule[] }[]): string[] {
+  const found = new Set<string>();
+  for (const { placement, fires } of perPlacement) {
+    for (const r of fires) {
+      if (r.effect.action !== "deny") continue;
+      if (r.effect.placement && !(r.effect.placement as string[]).includes(placement)) continue;
+      // L'embargo chaleur est déjà porté par son propre bandeau, et il est temporaire : le
+      // ranger parmi les motifs de refus laisserait croire à une incompatibilité de fond.
+      if (r.category === "summer_embargo") continue;
+      const code = REASON_BY_CATEGORY[r.category] ?? (r.category === "placement" ? `${placement}_unavailable` : undefined);
+      if (code) found.add(code);
+    }
+  }
+  return REASON_ORDER.filter((c) => found.has(c));
+}
+
 function toFired(r: Rule, locale: string): FiredRule {
   return {
     rule_id: r.id, action: r.effect.action, category: r.category, criticality: r.criticality,
@@ -180,8 +210,10 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     const served = a.served_airport_ids ?? [];
     // Accurate "direct" when we have the route graph: any origin→destination nonstop pair is in the airline's
     // routes. Otherwise fall back to the hub heuristic (a hub at either endpoint implies a likely nonstop).
+    // Nonstop ATTESTÉ : la paire origine|destination est dans le graphe de routes de la compagnie.
+    const direct_documented = !!(a.direct_routes && a.direct_routes.length && a.direct_routes.some((k) => pairKeys.has(k)));
     let direct = a.direct_routes && a.direct_routes.length
-      ? a.direct_routes.some((k) => pairKeys.has(k))
+      ? direct_documented
       : hubs.some((h) => originSet.includes(h) || destSet.includes(h));
     // Which endpoint airports the airline actually uses — surfaced only when they differ from the searched one
     // (city search), e.g. "from ORY" when Paris was searched and this airline flies out of Orly.
@@ -195,11 +227,18 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     // can route via one of ITS hubs without an absurd detour: origin → hub → dest must add no more than
     // max(1500 km, 50% of the direct distance). This kills nonsense like Paris→Barcelona via Mexico City.
     // A non-direct airline with no usable hub geometry can't justify an itinerary → dropped.
-    const og = kb.airports.get(usedOrigin ?? req.origin)?.geo;
-    const dg = kb.airports.get(usedDest ?? req.destination)?.geo;
+    const originId = usedOrigin ?? req.origin;
+    const destId = usedDest ?? req.destination;
+    const og = kb.airports.get(originId)?.geo;
+    const dg = kb.airports.get(destId)?.geo;
+    // Arêtes nonstop attestées de la compagnie (paires triées) — la seule chose qui permette de
+    // distinguer un itinéraire établi d'un itinéraire déduit.
+    const routeSet = new Set(a.direct_routes ?? []);
+    const edge = (x: string, y: string) => routeSet.has([x, y].sort().join("|"));
     let connect_airport_id: string | undefined;
     let detour_km = 0;
     let plausible = true;
+    let connection_documented = false;
     if (!direct) {
       // A hub in the origin OR destination city means the airline flies this route on its own metal —
       // treat as direct rather than inventing a same-city "connection" (e.g. Air France "via ORY" when
@@ -210,17 +249,30 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
         direct = true;
       } else if (og && dg) {
         const dOD = greatCircleKm(og, dg);
-        let bestExtra = Infinity, bestHub: string | undefined;
-        for (const h of hubs) {
-          if (endpointSet.has(h)) continue;              // never connect via an endpoint-city airport
-          const hg = kb.airports.get(h)?.geo;
-          if (!hg) continue;
-          const extra = greatCircleKm(og, hg) + greatCircleKm(hg, dg) - dOD;
-          if (extra < bestExtra) { bestExtra = extra; bestHub = h; }
-        }
-        if (bestHub != null && bestExtra <= Math.max(800, 0.5 * dOD)) {
-          connect_airport_id = bestHub;
-          detour_km = Math.round(bestExtra);
+        const cap = Math.max(800, 0.5 * dOD);
+        /* Deux passes, et la distinction est le cœur du sujet. Un hub est ÉTAYÉ quand les deux
+           segments — origine→hub et hub→destination — figurent dans les arêtes nonstop de la
+           compagnie. Sinon il n'est que géométriquement plausible : on ne sait pas si la
+           compagnie relie l'origine à son hub. On préfère toujours un hub étayé, même plus long,
+           à un hub déduit ; et on garde la trace de ce qui a été retenu. */
+        const pick = (only: "documented" | "any") => {
+          let bestExtra = Infinity, bestHub: string | undefined;
+          for (const h of hubs) {
+            if (endpointSet.has(h)) continue;            // never connect via an endpoint-city airport
+            if (only === "documented" && !(edge(originId, h) && edge(h, destId))) continue;
+            const hg = kb.airports.get(h)?.geo;
+            if (!hg) continue;
+            const extra = greatCircleKm(og, hg) + greatCircleKm(hg, dg) - dOD;
+            if (extra < bestExtra) { bestExtra = extra; bestHub = h; }
+          }
+          return bestHub != null && bestExtra <= cap ? { hub: bestHub, extra: bestExtra } : undefined;
+        };
+        const documented = routeSet.size ? pick("documented") : undefined;
+        const chosen = documented ?? pick("any");
+        if (chosen) {
+          connect_airport_id = chosen.hub;
+          detour_km = Math.round(chosen.extra);
+          connection_documented = documented != null;
         } else {
           plausible = false;
         }
@@ -240,6 +292,10 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
       country_id: (a as { country_id?: string }).country_id,
       direct,
       carries_pets,
+      itinerary_confidence: direct
+        ? (direct_documented ? "direct_documented" : "direct_assumed")
+        : (connection_documented ? "connection_documented" : "connection_unverified"),
+      deny_reasons: denyReasonsOf(perPlacement),
       connect_airport_id,
       detour_km,
       source_url: (a as { source?: { url?: string } }).source?.url,

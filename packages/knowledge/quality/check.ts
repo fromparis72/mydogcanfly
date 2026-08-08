@@ -36,6 +36,33 @@ ok("rule-check: predicate facts are declared", kb.rules.every((r) => !!r.applies
 const airlinesWithRules = new Set(kb.rules.filter((r) => r.scope.type === "airline").map((r) => r.scope.id));
 ok("coverage: airlines have at least one rule", [...kb.airlines.keys()].every((id) => airlinesWithRules.has(id)));
 
+/* coherence: un pays desservi doit avoir un aéroport où atterrir.
+ *
+ * Le site lit deux fois la même destination par deux chemins différents. La fiche pays affiche
+ * les compagnies via `serves_country_ids` — une liste de PAYS, qui s'affiche même si le pays
+ * n'a aucun aéroport. Le Finder, lui, construit ses destinations en parcourant les aéroports.
+ * Quand la première liste avance un pays que la seconde ignore, le site affirme à la fois
+ * « TUI dessert le Cap-Vert » et « aucun aéroport n'existe au Cap-Vert » (constaté le 08/08/2026).
+ *
+ * Ce contrôle refuse cette situation au lieu de la laisser vivre. Il échoue tant que la
+ * couverture n'est pas comblée, et il NOMME les pays : un défaut de données chiffré et
+ * actionnable vaut mieux qu'une contradiction invisible en production. Deux réparations
+ * possibles pour chaque nom listé — ajouter l'aéroport (si la desserte est réelle) ou retirer
+ * le pays de `serves_country_ids` (si elle ne l'est pas). Jamais une exception ajoutée ici.
+ */
+const countriesWithAirport = new Set([...kb.airports.values()].map((a) => a.country_id));
+const promisedWithoutAirport = [
+  ...new Set([...kb.airlines.values()].flatMap((a) => a.serves_country_ids)),
+]
+  .filter((cid) => !countriesWithAirport.has(cid))
+  .map((cid) => kb.countries.get(cid)?.name?.en ?? cid)
+  .sort();
+ok(
+  "coherence: countries served by an airline have at least one airport",
+  promisedWithoutAirport.length === 0,
+  promisedWithoutAirport.length ? `${promisedWithoutAirport.length} without: ${promisedWithoutAirport.join(", ")}` : "",
+);
+
 // link-check: network-gated, runs in CI only
 console.log("ℹ️  link-check: skipped (network-gated; runs in CI)");
 

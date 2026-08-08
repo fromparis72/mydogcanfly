@@ -5,10 +5,13 @@ const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, lo
 /** Temperature above which seasonal heat embargoes suspend hold/cargo (matches the summer_embargo rules). */
 const HEAT_EMBARGO_THRESHOLD_C = 30;
 
-/** Join a list with a localized final conjunction: "a, b and c" / "a, b et c". */
+/** Join a list with a localized final conjunction: "a, b and c" / "a, b et c".
+    L'espagnol et le portugais écrivaient « and » : la liste des modes de transport, puis celle des
+    motifs de refus, sortaient en anglais au milieu d'une phrase traduite. */
+const AND: Record<string, string> = { fr: "et", es: "y", pt: "e" };
 function joinList(arr: string[], locale: string): string {
   if (arr.length <= 1) return arr[0] ?? "";
-  return `${arr.slice(0, -1).join(", ")} ${locale === "fr" ? "et" : "and"} ${arr[arr.length - 1]}`;
+  return `${arr.slice(0, -1).join(", ")} ${AND[locale] ?? "and"} ${arr[arr.length - 1]}`;
 }
 
 /** Published fees are stored as-is (English). French display strings for the ones that contain words. */
@@ -30,7 +33,8 @@ const FEE_FR: Record<string, string> = {
   "via Etihad Cargo (quote)": "via Etihad Cargo (sur devis)",
   "from €60": "à partir de €60",
   "excess-baggage rate": "tarif d'excédent de bagages",
-  "£1,000–3,000+ (via approved pet shipper)": "£1 000–3 000+ (via transporteur animalier agréé)",
+  "via Copa Pets cargo (quote)": "via le fret Copa Pets (sur devis)",
+  "via Virgin Atlantic Cargo (quote)": "via Virgin Atlantic Cargo (sur devis)",
   "via Qantas Freight (quote on request)": "via Qantas Freight (devis sur demande)",
   "via American PetEmbark (quote)": "via American PetEmbark (sur devis)",
   "via Cathay Cargo (quote)": "via Cathay Cargo (sur devis)",
@@ -68,14 +72,30 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   const has = (a: Decision["airlines"][number], pl: string) => a.placements.find((p) => p.placement === pl)?.allowed ?? false;
   const airlines: AirlineResult[] = decision.airlines.map((a) => {
     const cabin = has(a, "cabin"), hold = has(a, "hold"), cargo = has(a, "cargo");
-    const label = cabin ? L("air.cabin_ok") : hold ? L("air.hold_only") : cargo ? L("air.cargo_only") : L("air.not_accepted");
+    /* Refus : on dit ce que les règles ont dit, pas ce qu'on en devine.
+       - la compagnie ne transporte aucun animal (chien neutre refusé partout) → « animaux refusés » ;
+       - des motifs ont été lus sur les règles → on les nomme (poids, race, soute non proposée…) ;
+       - aucun motif exploitable → libellé neutre. Jamais « race non acceptée » par défaut : c'était
+         faux pour Delta, JetBlue et Brussels Airlines, qui refusent un golden de 30 kg sur son poids. */
+    const reasons = a.deny_reasons ?? [];
+    const notAccepted = !a.carries_pets
+      ? L("air.no_pets")
+      : reasons.length
+        ? L("air.not_accepted_because").replace("{reasons}", joinList(reasons.map((c) => L(`air.reason.${c}`)), locale))
+        : L("air.not_accepted");
+    const label = cabin ? L("air.cabin_ok") : hold ? L("air.hold_only") : cargo ? L("air.cargo_only") : notAccepted;
+    /* Fret : un montant n'est affiché que s'il est publié POUR LE FRET. Sinon « sur devis » — un
+       envoi fret se chiffre chez le transitaire, et laisser croire à un tarif serait une invention. */
+    const cargoOnly = !cabin && !hold && cargo;
+    const feeShown = a.fee ? localizeFee(a.fee, locale) : undefined;
+    const fee_quote_only = cargoOnly && !feeShown;
     // Heat embargo: a seasonal (temperature-driven) rule suspended this airline's hold/cargo for the given date.
     const heat_embargo = a.fired.some((f) => f.category === "summer_embargo");
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
     const carrier_of_origin = !!a.country_id && a.country_id === decision.origin_country_id;
     const carrier_of_destination = !!a.country_id && a.country_id === decision.destination.country_id;
     if (a.source_url) sources.set(a.source_url, { url: a.source_url });
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, carries_pets: a.carries_pets, label, fee: a.fee ? localizeFee(a.fee, locale) : a.fee, source_url: a.source_url, heat_embargo, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, source_url: a.source_url, heat_embargo, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   }).sort((x, y) =>
     // 0) airlines that carry pets first, "no pets" always last — EXCEPT when the only blocker is a
     //    seasonal heat embargo (temporary), which stays in the top group.
@@ -84,6 +104,9 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     //    destination) breaks ties between equal-quality airlines, then shortest detour, then name.
     (Number(y.cabin || y.hold || y.cargo || y.heat_embargo) - Number(x.cabin || x.hold || x.cargo || x.heat_embargo)) ||
     Number(y.direct) - Number(x.direct) ||
+    // 1 bis) une correspondance dont les deux segments sont attestés passe devant une correspondance
+    //        seulement déduite d'une géométrie de hub : l'établi avant le plausible.
+    Number(x.itinerary_confidence === "connection_unverified") - Number(y.itinerary_confidence === "connection_unverified") ||
     Number(y.cabin) - Number(x.cabin) ||
     Number(y.hold) - Number(x.hold) ||
     Number(y.carrier_of_origin) - Number(x.carrier_of_origin) ||

@@ -18,14 +18,23 @@ export function selectPartners(kb: NormalizedKB, req: FinderRequest, report: Dec
 
   const feasible = report.verdict !== "incompatible";
   const hasImportReqs = report.conditions.length > 0;
-  const needsCrate =
-    report.compatible.some((c) => c.placement === "hold" || c.placement === "cargo") ||
-    req.placement === "hold" || req.placement === "cargo";
+  /* La recommandation doit suivre le MODE RÉELLEMENT RETENU. Auparavant, soute et fret
+     déclenchaient la même phrase (« le voyage en soute exige une caisse IATA ») : sur un trajet
+     annoncé « fret uniquement », on envoyait donc le voyageur préparer une soute accompagnée —
+     ni le même produit, ni la même procédure, ni le même interlocuteur. La soute prime quand elle
+     existe (c'est aussi l'ordre du verdict : cabine > soute > fret) ; à défaut, le texte fret. */
+  const holdMode = report.compatible.some((c) => c.placement === "hold") || req.placement === "hold";
+  const cargoMode = report.compatible.some((c) => c.placement === "cargo") || req.placement === "cargo";
+  const crateReason = holdMode
+    ? t(locale, "partner.equipment.reason")
+    : cargoMode
+      ? t(locale, "partner.equipment.reason_cargo")
+      : undefined;
 
   // A vertical is offered only when its triggering signal is present; the value carries the reason.
   const reasons: Record<string, string | undefined> = {
     insurance: hasImportReqs ? t(locale, "partner.insurance.reason") : undefined,
-    equipment: needsCrate ? t(locale, "partner.equipment.reason") : undefined,
+    equipment: crateReason,
     hotel: feasible && city ? t(locale, "partner.hotel.reason").replace("{city}", city) : undefined,
     airport_transfer: feasible && airport ? t(locale, "partner.transfer.reason").replace("{airport}", airport) : undefined,
     car_rental: feasible && city ? t(locale, "partner.car.reason").replace("{city}", city) : undefined,

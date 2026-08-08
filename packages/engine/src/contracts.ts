@@ -94,7 +94,19 @@ export interface AirlineDecision {
   airline_name: string;
   country_id?: string;        // the airline's home country (its flag/national carrier country)
   direct: boolean;            // likely a direct flight on this route (hub at origin or destination)
-  carries_pets: boolean;      // true if the airline carries pets at all (a neutral dog) — distinguishes a low-cost "no pets" from "breed not accepted"
+  carries_pets: boolean;      // true if the airline carries pets at all (a neutral dog) — false = structural "no pets"
+  /* Ce que vaut réellement l'itinéraire proposé. On ne présente plus un nonstop attesté et une
+     correspondance fabriquée par géométrie de hub sous la même étiquette :
+       direct_documented       — la paire origine|destination figure dans `direct_routes` ;
+       direct_assumed          — pas de graphe de routes : « direct » vient de l'heuristique du hub ;
+       connection_documented   — les DEUX segments origine→hub et hub→destination sont dans `direct_routes` ;
+       connection_unverified   — hub géométriquement plausible, mais aucun segment attesté.
+     `connection_unverified` ne dit pas que l'itinéraire n'existe pas : il dit que rien ne l'établit. */
+  itinerary_confidence?: "direct_documented" | "direct_assumed" | "connection_documented" | "connection_unverified";
+  /* Motifs du refus, LUS sur les règles qui ont réellement refusé chaque placement (leur catégorie
+     et les placements qu'elles visent), jamais déduits d'une absence de mode accepté.
+     Codes : breed_restricted · weight_limit · cabin_unavailable · hold_unavailable · cargo_unavailable. */
+  deny_reasons?: string[];
   connect_airport_id?: string;     // for a connection, the airline hub the itinerary plausibly routes through
   detour_km?: number;              // extra distance vs the direct great-circle (0 for a direct) — ranks/trims connections
   source_url?: string;
@@ -150,9 +162,19 @@ export interface AirlineResult {
   cabin: boolean;
   hold: boolean;
   cargo: boolean;
-  carries_pets?: boolean; // airline carries pets in general — false = structural "no pets" (low-cost); true but no mode = breed not accepted
+  /* Vrai si la compagnie transporte des animaux en général (réévaluation avec un chien neutre).
+     NE JAMAIS EN DÉDUIRE UN MOTIF : « true, mais aucun mode accepté » ne veut pas dire « race
+     refusée » — c'est le plus souvent le poids, ou l'absence de soute/fret. Le motif réel est
+     dans `deny_reasons`, lu sur les règles qui ont refusé. */
+  carries_pets?: boolean;
+  /** Motifs du refus (codes stables), présents seulement quand aucun mode n'est accepté. */
+  deny_reasons?: string[];
+  /** Nature de l'itinéraire — voir AirlineDecision.itinerary_confidence. */
+  itinerary_confidence?: "direct_documented" | "direct_assumed" | "connection_documented" | "connection_unverified";
   label: string;        // localized one-line verdict (e.g. "Cabin OK", "Hold only", "Not accepted")
   fee?: string;         // published fee for the accepted placement, when known
+  /** Fret sans tarif publié POUR LE FRET : `fee` porte alors « sur devis », pas un montant repris d'ailleurs. */
+  fee_quote_only?: boolean;
   source_url?: string;
   heat_embargo?: boolean; // true when a seasonal heat embargo suspends this airline's hold/cargo on the given date
   carrier_of_origin?: boolean;      // national/flag carrier of the departure country (ranked right after direct flights)

@@ -161,9 +161,17 @@ function dogChannel(a: any): { channel: DogChannel; maxKg?: number } {
  * Deux sources concordantes : les routes AeroDataBox (présence mesurée) et
  * `serves_country_ids` (déclaratif). L'union des deux évite d'oublier une compagnie
  * dont le pays n'a aucun aéroport dans la base.
+ *
+ * `reachable` dit si ce pays possède au moins un aéroport dans le référentiel. C'est la
+ * condition d'honnêteté du bloc : sans aéroport, la fiche annonce des compagnies vers une
+ * destination que le Finder ne sait pas proposer — deux affirmations contraires sur le même
+ * site (constaté sur le Cap-Vert le 08/08/2026). On ne cache pas les compagnies pour autant :
+ * la desserte est vraie et sourcée. On rend la limite visible plutôt que de la taire, et le
+ * contrôle qualité `coherence: countries served by an airline have at least one airport`
+ * réclame de son côté que la donnée finisse par être comblée.
  */
 export function dogAirlinesForCountry(kb: any, countryId: string, locale: string, cap = 6): {
-  list: CountryAirline[]; total: number; hidden: number; undocumented: number;
+  list: CountryAirline[]; total: number; hidden: number; undocumented: number; reachable: boolean;
 } {
   const served = servedCounts(kb).get(countryId) ?? new Map<string, number>();
   const all: CountryAirline[] = [];
@@ -187,7 +195,8 @@ export function dogAirlinesForCountry(kb: any, countryId: string, locale: string
     y.airports - x.airports ||
     y.net - x.net ||
     x.name.localeCompare(y.name, locale));
-  return { list: all.slice(0, cap), total: all.length, hidden: Math.max(0, all.length - cap), undocumented };
+  const reachable = [...kb.airports.values()].some((a: any) => a.country_id === countryId);
+  return { list: all.slice(0, cap), total: all.length, hidden: Math.max(0, all.length - cap), undocumented, reachable };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
