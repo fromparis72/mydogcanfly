@@ -331,6 +331,12 @@ const labels = {
     const why = (r.positives && r.positives.length)
       ? `<div class="report__sec"><h4>${esc(L.why)}</h4><ul class="checks">${r.positives.map((i) => `<li class="${i.tone === "negative" ? "is-neg" : ""}">${esc(i.text)}</li>`).join("")}</ul></div>`
       : "";
+    // "X vols directs" ne doit compter que des options RÉELLEMENT praticables avec ce chien
+    // (REPRISE.md APRÈS §3) — avant, `.direct` seul comptait n'importe quel vol passager direct sur
+    // la route, y compris des compagnies qui n'acceptent l'animal sur aucun mode (cas type : Paris→
+    // Londres affichait "5 vols directs probables" en comptant des vols que l'animal ne peut pas
+    // prendre, faute d'agrément britannique pour la soute — voir rule_*_gb_not_approved).
+    const usableDirect = (r.airlines ?? []).filter((a) => a.direct && (a.cabin || a.hold || a.cargo));
     return `
       <div class="report report--${r.verdict}">
         <p class="report__q">${esc(L.answerQ)}</p>
@@ -358,7 +364,7 @@ const labels = {
         })() : block(L.before, r.conditions)}
         ${r.airlines && r.airlines.length
           ? `<div class="report__sec"><h4>${esc(L.airlines)}</h4>
-              <div class="acap">✈ <b>${r.airlines.filter((a) => a.direct).length}</b> ${esc(r.airlines.filter((a) => a.direct).length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>
+              <div class="acap">✈ <b>${usableDirect.length}</b> ${esc(usableDirect.length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>
               <ul class="acards">${r.airlines.map((a) => `
               <li class="acard ${a.cabin ? "acard--cabin" : a.hold ? "acard--hold" : a.cargo ? "acard--cargo" : "acard--no"}${a.itinerary_confidence === "connection_unverified" ? " acard--unverified" : ""}">
                 <div class="acard__main">
