@@ -1,0 +1,202 @@
+id: airline_batik_air_malaysia
+mono: OD
+name: Batik Air Malaysia
+titleH1:
+  en: Flying with a dog on Batik Air Malaysia
+  fr: Voyager avec un chien sur Batik Air Malaisie
+  es: Volar con un perro en Batik Air Malaysia
+  pt: "Viajar com um cachorro na Batik Air Malaysia"
+metaDesc:
+  en: "Batik Air Malaysia pet policy: not published anywhere on the official site — no pets page, no FAQ entry, just one liability sentence buried in the legal terms."
+  fr: "Politique animaux Batik Air Malaisie : introuvable sur le site officiel — pas de page animaux, pas de FAQ, seulement une phrase de responsabilité légale enfouie dans les conditions générales."
+  es: "Política de mascotas de Batik Air Malaysia: no publicada en ningún lugar del sitio oficial — sin página de mascotas, sin entrada en la FAQ, solo una frase de responsabilidad enterrada en los términos legales."
+  pt: "Política de animais da Batik Air Malaysia: não publicada em nenhum lugar do site oficial — sem página de animais, sem item na FAQ, apenas uma frase de responsabilidade enterrada nos termos legais."
+chips:
+  - icon: 📍
+    label:
+      en: Malaysia
+      fr: Malaisie
+      es: Malasia
+      pt: "Malásia"
+  - icon: 🐾
+    label:
+      en: No policy published
+      fr: Aucune politique publiée
+      es: Sin política publicada
+      pt: "Nenhuma política publicada"
+    cls: "no"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: "no"
+  label:
+    en: Not verifiable
+    fr: Non vérifiable
+    es: No verificable
+    pt: "Não verificável"
+verdictNote:
+  en: Batik Air Malaysia has no pet-travel page, no pet question in its FAQ, and no pet section in its disability-assistance page. The only trace of animals anywhere on the site is a liability disclaimer for "live animals if carried as baggage" — which implies the service might exist without ever describing it.
+  fr: Batik Air Malaisie n'a aucune page dédiée aux animaux, aucune question animaux dans sa FAQ, et aucune section animaux dans sa page d'assistance handicap. La seule trace d'animal sur tout le site est une clause de non-responsabilité pour « les animaux vivants s'ils sont transportés comme bagage » — qui laisse entendre que le service existe peut-être, sans jamais le décrire.
+  es: "Batik Air Malasia no tiene ninguna página sobre viajar con mascotas, ninguna pregunta sobre mascotas en su FAQ, y ninguna sección de mascotas en su página de asistencia por discapacidad. El único rastro de animales en todo el sitio es una cláusula de exención de responsabilidad para “animales vivos si se transportan como equipaje”, que da a entender que el servicio podría existir sin describirlo nunca."
+  pt: "A Batik Air Malaysia não tem nenhuma página sobre viajar com animais, nenhuma pergunta sobre animais na sua FAQ, e nenhuma seção de animais na página de assistência para deficiência. O único rastro de animais em todo o site é uma cláusula de isenção de responsabilidade para “animais vivos se transportados como bagagem” — que sugere que o serviço talvez exista, sem nunca descrevê-lo."
+ladder:
+  - flex: 100
+    color: "#8a2c2c"
+    label:
+      en: Nothing published
+      fr: Rien de publié
+      es: Nada publicado
+      pt: "Nada publicado"
+    sub:
+      en: cabin, hold and cargo all undocumented
+      fr: cabine, soute et fret tous non documentés
+      es: cabina, bodega y carga sin documentar
+      pt: "cabine, porão e carga não documentados"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: No mention of pets exists in the cabin-baggage rules, which otherwise detail sports equipment, musical instruments, strollers and even Zamzam water in depth.
+      fr: Aucune mention d'animal dans les règles de bagage cabine, qui détaillent pourtant équipement sportif, instruments de musique, poussettes et même l'eau de Zamzam.
+      es: "No hay ninguna mención a mascotas en las normas de equipaje de cabina, que sí detallan equipo deportivo, instrumentos musicales, carritos de bebé e incluso el agua de Zamzam."
+      pt: "Não há menção a animais nas regras de bagagem de cabine, que detalham equipamento esportivo, instrumentos musicais, carrinhos de bebê e até a água de Zamzam."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: "no"
+    statusLabel:
+      en: Implied, never described
+      fr: Sous-entendu, jamais décrit
+      es: Se sugiere, nunca se describe
+      pt: "Sugerido, nunca descrito"
+    detail:
+      en: "The Terms & Conditions disclaim liability for \"live animals if carried as baggage\" — twice, word for word — implying a hold option exists, without ever explaining how to book it, what it costs, or what's required."
+      fr: "Les conditions générales excluent la responsabilité pour « les animaux vivants s'ils sont transportés comme bagage » — deux fois, mot pour mot — sous-entendant qu'une option soute existe, sans jamais expliquer comment la réserver, son coût, ni ce qu'elle exige."
+      es: "Los términos y condiciones eximen de responsabilidad por “animales vivos si se transportan como equipaje” —dos veces, palabra por palabra— dando a entender que existe una opción de bodega, sin explicar nunca cómo reservarla, su coste ni qué se requiere."
+      pt: "Os termos e condições isentam a responsabilidade por “animais vivos se transportados como bagagem” — duas vezes, palavra por palavra — sugerindo que existe uma opção de porão, sem nunca explicar como reservá-la, seu custo ou o que é exigido."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: "no"
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: No live-animal cargo page or booking portal exists — the only cargo content found on the site is a general freight fuel-surcharge notice unrelated to animals.
+      fr: Aucune page fret animalier ni portail de réservation n'existe — le seul contenu fret trouvé sur le site est un avis général de surcharge carburant, sans rapport avec les animaux.
+      es: "No existe ninguna página de carga de animales vivos ni portal de reserva: el único contenido de carga encontrado en el sitio es un aviso general de recargo por combustible, sin relación con los animales."
+      pt: "Não existe nenhuma página de carga de animais vivos nem portal de reserva — o único conteúdo de carga encontrado no site é um aviso geral de sobretaxa de combustível, sem relação com animais."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Breed restrictions
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: neutral
+        label:
+          en: Not published
+          fr: Non publié
+          es: No publicado
+          pt: "Não publicado"
+    note:
+      en: With no pet page of any kind, no breed list exists anywhere on the site.
+      fr: Sans page animaux d'aucune sorte, aucune liste de races n'existe sur le site.
+      es: "Sin ninguna página de mascotas, no existe ninguna lista de razas en el sitio."
+      pt: "Sem nenhuma página de animais, não existe lista de raças em lugar nenhum do site."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: "The FAQ even has an \"Embargo Period\" category — but it turns out to be about fare/promotion blackout dates, not animal transport. No heat-related pet policy exists, despite Malaysia's tropical climate."
+    fr: "La FAQ possède même une catégorie « période d'embargo » — mais il s'agit en réalité de périodes de blackout tarifaire/promotionnel, pas de transport animalier. Aucune politique liée à la chaleur n'existe, malgré le climat tropical de la Malaisie."
+    es: "La FAQ incluso tiene una categoría “período de embargo”, pero resulta ser sobre fechas de bloqueo de tarifas/promociones, no sobre el transporte de animales. No existe ninguna política relacionada con el calor, pese al clima tropical de Malasia."
+    pt: "A FAQ até tem uma categoria “período de embargo” — mas se refere a datas de bloqueio de tarifas/promoções, não ao transporte de animais. Não existe nenhuma política relacionada ao calor, apesar do clima tropical da Malásia."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Not published. The dedicated Special Assistance page covers only human mobility, medical fitness-to-fly and wheelchairs — zero mention of service animals, guide dogs or emotional support animals.
+      fr: Non publié. La page d'assistance spéciale dédiée ne couvre que la mobilité humaine, l'aptitude médicale à voler et les fauteuils roulants — aucune mention d'animal d'assistance, de chien guide ou de soutien émotionnel.
+      es: "No publicado. La página dedicada de asistencia especial solo cubre movilidad humana, aptitud médica para volar y sillas de ruedas: ninguna mención a animales de servicio, perros guía o de apoyo emocional."
+      pt: "Não publicado. A página dedicada de assistência especial cobre apenas mobilidade humana, aptidão médica para voar e cadeiras de rodas — nenhuma menção a animais de serviço, cães-guia ou de apoio emocional."
+goodToKnow:
+  - icon: 🔀
+    label:
+      en: Still branded "Malindo Air" in places
+      fr: Encore de marque « Malindo Air » par endroits
+      es: Todavía con la marca “Malindo Air” en algunos lugares
+      pt: "Ainda com a marca “Malindo Air” em alguns lugares"
+    value:
+      en: "The Special Assistance page still reads \"Malindo Air will make its commercially reasonable efforts...\" and every page footer names the legal entity as \"Malindo Airways Sdn Bhd (D.B.A. Trading Name: Batik Air)\" — the pre-rebrand name persists in body copy and legal footers years after the switch to Batik Air branding."
+      fr: "La page d'assistance spéciale porte encore la mention « Malindo Air fera tous les efforts commercialement raisonnables... » et le pied de page de chaque page nomme l'entité légale « Malindo Airways Sdn Bhd (nom commercial : Batik Air) » — le nom d'avant le rebranding persiste dans le corps du texte et les mentions légales, des années après le passage à la marque Batik Air."
+      es: "La página de asistencia especial todavía dice “Malindo Air hará todos los esfuerzos comercialmente razonables...” y el pie de página de cada página nombra a la entidad legal como “Malindo Airways Sdn Bhd (nombre comercial: Batik Air)”: el nombre previo al cambio de marca persiste en el texto y en los avisos legales, años después del cambio a la marca Batik Air."
+      pt: "A página de assistência especial ainda diz “a Malindo Air fará todos os esforços comercialmente razoáveis...” e o rodapé de cada página nomeia a entidade legal como “Malindo Airways Sdn Bhd (nome comercial: Batik Air)” — o nome anterior ao rebranding persiste no texto e nos avisos legais, anos depois da mudança para a marca Batik Air."
+  - icon: 🔀
+    label:
+      en: Easy to confuse with a different airline
+      fr: Facile à confondre avec une autre compagnie
+      es: Fácil de confundir con otra aerolínea
+      pt: "Fácil de confundir com outra companhia"
+    value:
+      en: "Batik Air Indonesia (a different airline, IATA code ID) has a help article stating it bans pets outright. Searching \"Batik Air pet policy\" can easily surface that Indonesian answer for what is actually a Malaysian airline with no published policy at all — the two share a name but not a fleet, a country, or a website."
+      fr: "Batik Air Indonésie (une compagnie différente, code IATA ID) a un article expliquant qu'elle interdit purement les animaux. Chercher « politique animaux Batik Air » peut facilement faire remonter cette réponse indonésienne pour ce qui est en réalité une compagnie malaisienne sans aucune politique publiée — les deux partagent un nom, mais ni flotte, ni pays, ni site web."
+      es: "Batik Air Indonesia (una aerolínea distinta, código IATA ID) tiene un artículo de ayuda que declara una prohibición total de mascotas. Buscar “política de mascotas Batik Air” puede fácilmente mostrar esa respuesta indonesia para lo que en realidad es una aerolínea malasia sin ninguna política publicada: ambas comparten nombre, pero no flota, país ni sitio web."
+      pt: "A Batik Air Indonésia (uma companhia diferente, código IATA ID) tem um artigo de ajuda que declara uma proibição total de animais. Buscar “política de animais Batik Air” pode facilmente mostrar essa resposta indonésia para o que na verdade é uma companhia malaia sem nenhuma política publicada — as duas compartilham o nome, mas não a frota, o país ou o site."
+book:
+  host: batikair.com.my
+  url: https://www.batikair.com.my
+sources:
+  en: 1 official Batik Air Malaysia source (Terms & Conditions) · last verified 8 August 2026
+  fr: 1 source officielle Batik Air Malaisie (conditions générales) · dernière vérification 8 août 2026
+  es: 1 fuente oficial de Batik Air Malaysia (términos y condiciones) · última verificación 8 de agosto de 2026
+  pt: "1 fonte oficial da Batik Air Malaysia (termos e condições) · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

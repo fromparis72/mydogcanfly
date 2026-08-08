@@ -1,0 +1,262 @@
+id: airline_air_serbia
+mono: JU
+name: Air Serbia
+titleH1:
+  en: Flying with a dog on Air Serbia
+  fr: Voyager avec un chien sur Air Serbia
+  es: Volar con un perro en Air Serbia
+  pt: "Viajar com um cachorro na Air Serbia"
+metaDesc:
+  en: "Air Serbia pet policy: 8 kg in the cabin from €40, but the airline publishes no hold program at all — and its own fee table lists a price for a route it bans."
+  fr: "Politique animaux Air Serbia : 8 kg en cabine dès 40 €, mais la compagnie ne publie aucun programme soute — et sa propre grille tarifaire affiche un prix pour une route qu'elle interdit."
+  es: "Política de mascotas de Air Serbia: 8 kg en cabina desde 40 €, pero la aerolínea no publica ningún programa de bodega — y su propia tabla de tarifas incluye un precio para una ruta que prohíbe."
+  pt: "Política de animais da Air Serbia: 8 kg na cabine a partir de 40 €, mas a companhia não publica nenhum programa de porão — e sua própria tabela de tarifas lista um preço para uma rota que proíbe."
+chips:
+  - icon: 📍
+    label:
+      en: Serbia
+      fr: Serbie
+      es: Serbia
+      pt: "Sérvia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Cabin only
+    fr: Cabine uniquement
+    es: Solo cabina
+    pt: "Somente cabine"
+verdictNote:
+  en: Air Serbia's cabin program is detailed and reasonably priced, but there is no published hold or cargo option for an accompanying pet — a bigger dog effectively has no route with this airline as a solo option.
+  fr: Le programme cabine d'Air Serbia est détaillé et à prix raisonnable, mais aucune option soute ni fret n'est publiée pour un animal accompagnant son propriétaire — un chien plus grand n'a en pratique aucune solution avec cette compagnie seule.
+  es: "El programa de cabina de Air Serbia está bien detallado y tiene un precio razonable, pero no se publica ninguna opción de bodega ni de carga para una mascota que acompañe a su dueño: un perro más grande no tiene, en la práctica, ninguna opción con esta aerolínea por sí sola."
+  pt: "O programa de cabine da Air Serbia é detalhado e com preço razoável, mas não há opção publicada de porão ou carga para um animal que acompanhe o dono — um cachorro maior, na prática, não tem opção com esta companhia sozinha."
+ladder:
+  - flex: 100
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: 8 kg (carrier + animal), soft carrier up to 40 × 30 × 24 cm (sum of dimensions 94 cm), net cover for ventilation, kept at your feet for the whole flight. One carrier per passenger, at least 12 weeks old. Two littermates may share a carrier. Not offered on flights to or from the UK, UAE or Qatar. Cannot be booked online — call the Contact Centre or a branch/agency. Check-in at the airport only, 2 h before departure.
+      fr: 8 kg (caisse + animal), caisse souple jusqu'à 40 × 30 × 24 cm (somme des dimensions 94 cm), filet de ventilation, gardée aux pieds pendant tout le vol. Une caisse par passager, à partir de 12 semaines. Deux animaux de la même portée peuvent partager une caisse. Non proposé sur les vols vers ou depuis le UK, les Émirats ou le Qatar. Ne se réserve pas en ligne — appeler le centre de contact ou une agence. Enregistrement à l'aéroport uniquement, 2 h avant le départ.
+      es: "8 kg (jaula + animal), jaula blanda de hasta 40 × 30 × 24 cm (suma de dimensiones 94 cm), con red de ventilación, a tus pies durante todo el vuelo. Una jaula por pasajero, a partir de 12 semanas. Dos crías de la misma camada pueden compartir jaula. No disponible en vuelos hacia o desde el Reino Unido, EAU o Catar. No se puede reservar en línea: hay que llamar al centro de contacto o a una agencia. Facturación solo en el aeropuerto, 2 h antes de la salida."
+      pt: "8 kg (caixa + animal), caixa maleável de até 40 × 30 × 24 cm (soma das dimensões 94 cm), com tela de ventilação, mantida aos seus pés durante todo o voo. Uma caixa por passageiro, a partir de 12 semanas. Dois filhotes da mesma ninhada podem dividir uma caixa. Não disponível em voos para ou do Reino Unido, EAU ou Catar. Não pode ser reservado on-line — ligue para a central de atendimento ou uma agência. Check-in somente no aeroporto, 2 h antes da partida."
+    fee:
+      en: "€40–130 depending on zone (see fare list)"
+      fr: "40–130 € selon la zone (voir la grille tarifaire)"
+      es: "40–130 € según la zona (ver la lista de tarifas)"
+      pt: "40–130 € dependendo da zona (ver a lista de tarifas)"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: "no"
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: "Air Serbia publishes no weight limits, crate-size bands or dedicated fee for hold travel. The only related text is a legal boilerplate line in the Conditions of Carriage: an animal checked as baggage is excess baggage, billed at the applicable rate — with no rate ever given."
+      fr: "Air Serbia ne publie aucune limite de poids, gabarit de caisse ou tarif dédié pour la soute. Le seul texte disponible est une clause générique des conditions de transport : un animal enregistré comme bagage est un excédent de bagage, facturé au tarif applicable — sans que ce tarif soit jamais précisé."
+      es: "Air Serbia no publica límites de peso, formatos de jaula ni una tarifa dedicada para la bodega. El único texto relacionado es una cláusula genérica de las condiciones de transporte: un animal facturado como equipaje es exceso de equipaje, cobrado a la tarifa aplicable, sin que esa tarifa se especifique nunca."
+      pt: "A Air Serbia não publica limites de peso, formatos de caixa ou uma tarifa dedicada para o porão. O único texto relacionado é uma cláusula genérica das condições de transporte: um animal despachado como bagagem é excesso de bagagem, cobrado pela tarifa aplicável — sem que essa tarifa seja informada."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: "no"
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: The tariff document references a "Rule 75 — Acceptance of animals" section, but its full text isn't accessible on the public site, and no standalone unaccompanied-cargo pet page exists.
+      fr: Le document tarifaire mentionne une section « Règle 75 — Acceptation des animaux », mais son texte complet n'est pas accessible sur le site public, et aucune page fret non accompagné dédiée aux animaux n'existe.
+      es: "El documento de tarifas menciona una sección “Norma 75 — Aceptación de animales”, pero su texto completo no es accesible en el sitio público, y no existe ninguna página independiente de carga no acompañada para mascotas."
+      pt: "O documento tarifário menciona uma seção “Regra 75 — Aceitação de animais”, mas seu texto completo não está acessível no site público, e não existe página independente de carga não acompanhada para animais."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Within Serbia / to Montenegro, Bosnia, North Macedonia, Croatia, Slovenia
+        fr: Intra-Serbie / vers Monténégro, Bosnie, Macédoine du Nord, Croatie, Slovénie
+        es: Dentro de Serbia / hacia Montenegro, Bosnia, Macedonia del Norte, Croacia, Eslovenia
+        pt: "Dentro da Sérvia / para Montenegro, Bósnia, Macedônia do Norte, Croácia, Eslovênia"
+      value:
+        en: "€40"
+        fr: "40 €"
+        es: "40 €"
+        pt: "40 €"
+    - label:
+        en: Serbia — rest of Europe
+        fr: Serbie — reste de l'Europe
+        es: Serbia — resto de Europa
+        pt: "Sérvia — resto da Europa"
+      value:
+        en: "€70"
+        fr: "70 €"
+        es: "70 €"
+        pt: "70 €"
+    - label:
+        en: Serbia — Middle East / Africa
+        fr: Serbie — Moyen-Orient / Afrique
+        es: Serbia — Oriente Medio / África
+        pt: "Sérvia — Oriente Médio / África"
+      value:
+        en: "€80"
+        fr: "80 €"
+        es: "80 €"
+        pt: "80 €"
+    - label:
+        en: Serbia — Russia, USA, Canada, China
+        fr: Serbie — Russie, États-Unis, Canada, Chine
+        es: Serbia — Rusia, EE. UU., Canadá, China
+        pt: "Sérvia — Rússia, EUA, Canadá, China"
+      value:
+        en: "€100–130"
+        fr: "100–130 €"
+        es: "100–130 €"
+        pt: "100–130 €"
+  note:
+    en: "Only for Air Serbia flights, non-refundable except when Air Serbia itself cancels. The Middle East/Africa tier includes UAE and Qatar in its own zone name — even though pets are banned outright on those two routes (see restrictions)."
+    fr: "Uniquement pour les vols Air Serbia, non remboursable sauf annulation par Air Serbia elle-même. Le palier Moyen-Orient/Afrique inclut dans son propre nom les Émirats et le Qatar — alors même que les animaux y sont totalement interdits sur ces deux routes (voir restrictions)."
+    es: "Solo para vuelos de Air Serbia, no reembolsable salvo que la propia Air Serbia cancele. El nivel Oriente Medio/África incluye en su propio nombre a EAU y Catar, aunque las mascotas están totalmente prohibidas en esas dos rutas (ver restricciones)."
+    pt: "Somente para voos da Air Serbia, não reembolsável exceto quando a própria Air Serbia cancela. A faixa Oriente Médio/África inclui em seu próprio nome os EAU e o Catar — mesmo que os animais sejam totalmente proibidos nessas duas rotas (ver restrições)."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Breed restrictions
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: neutral
+        label:
+          en: Not published
+          fr: Non publié
+          es: No publicado
+          pt: "Não publicado"
+    note:
+      en: "No brachycephalic or dangerous-breed list exists anywhere on airserbia.com. The only breed-adjacent clause is behavioral: \"the pet must not be dangerous, aggressive or have an unpleasant smell.\""
+      fr: "Aucune liste de races brachycéphales ou dangereuses n'existe sur airserbia.com. La seule clause proche d'une race est comportementale : « l'animal ne doit pas être dangereux, agressif ni avoir une odeur désagréable »."
+      es: "No existe ninguna lista de razas braquicéfalas o peligrosas en airserbia.com. La única cláusula cercana a una raza es de comportamiento: “la mascota no debe ser peligrosa, agresiva ni tener un olor desagradable”."
+      pt: "Não existe nenhuma lista de raças braquicefálicas ou perigosas em airserbia.com. A única cláusula próxima de raça é comportamental: “o animal não deve ser perigoso, agressivo ou ter cheiro desagradável”."
+  - icon: 🌍
+    title:
+      en: Route ban
+      fr: Interdiction de route
+      es: Prohibición de ruta
+      pt: "Proibição de rota"
+    pills:
+      - cls: "no"
+        label:
+          en: No pets to/from UK, UAE, Qatar
+          fr: Pas d'animaux vers/depuis UK, Émirats, Qatar
+          es: Sin mascotas hacia/desde Reino Unido, EAU, Catar
+          pt: "Sem animais para/do Reino Unido, EAU, Catar"
+    note:
+      en: "\"Air Serbia does not transport pets on flights to or from the United Kingdom, the United Arab Emirates or Qatar\" — stated in the same body text as the fare table that lists a Middle East/Africa price bracket covering two of those three countries."
+      fr: "« Air Serbia ne transporte pas d'animaux sur les vols vers ou depuis le Royaume-Uni, les Émirats arabes unis ou le Qatar » — énoncé dans le même texte que la grille tarifaire qui liste un palier Moyen-Orient/Afrique couvrant deux de ces trois pays."
+      es: "“Air Serbia no transporta mascotas en vuelos hacia o desde el Reino Unido, los Emiratos Árabes Unidos o Catar”, indicado en el mismo texto que la tabla de tarifas que incluye un nivel Oriente Medio/África que cubre dos de esos tres países."
+      pt: "“A Air Serbia não transporta animais em voos para ou do Reino Unido, Emirados Árabes Unidos ou Catar” — declarado no mesmo texto da tabela de tarifas que lista uma faixa Oriente Médio/África cobrindo dois desses três países."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: No temperature restriction or seasonal embargo is published anywhere — consistent with the absence of a hold program.
+    fr: Aucune restriction de température ni embargo saisonnier n'est publié — cohérent avec l'absence de programme soute.
+    es: "No se publica ninguna restricción de temperatura ni embargo estacional, algo coherente con la ausencia de un programa de bodega."
+    pt: "Nenhuma restrição de temperatura ou embargo sazonal é publicado — coerente com a ausência de um programa de porão."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: "A trained guide dog travels free of charge for visually or hearing-impaired passengers, subject to Air Serbia's approval — notify at booking or at least 48 h ahead, with breed and weight details. The legal Conditions of Carriage also reference \"search and rescue dogs\" and \"emotional support animals\" as distinct categories, but neither is explained, priced or documented on any consumer-facing page."
+      fr: "Un chien guide entraîné voyage gratuitement pour les passagers malvoyants ou malentendants, sous réserve d'accord d'Air Serbia — à signaler à la réservation ou au moins 48 h avant, avec race et poids. Les conditions générales légales mentionnent aussi des « chiens de recherche et de sauvetage » et des « animaux de soutien émotionnel » comme catégories distinctes, mais aucune n'est expliquée, tarifée ou documentée sur une page destinée au grand public."
+      es: "Un perro guía entrenado viaja gratis para pasajeros con discapacidad visual o auditiva, sujeto a la aprobación de Air Serbia — hay que avisar al reservar o al menos 48 h antes, indicando raza y peso. Las condiciones legales de transporte también mencionan “perros de búsqueda y rescate” y “animales de apoyo emocional” como categorías distintas, pero ninguna se explica, tarifica o documenta en ninguna página orientada al público."
+      pt: "Um cão-guia treinado viaja de graça para passageiros com deficiência visual ou auditiva, sujeito à aprovação da Air Serbia — avise no momento da reserva ou com pelo menos 48 h de antecedência, informando raça e peso. As condições legais de transporte também mencionam “cães de busca e resgate” e “animais de apoio emocional” como categorias distintas, mas nenhuma é explicada, precificada ou documentada em qualquer página voltada ao público."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: A price listed for a banned route
+      fr: Un tarif affiché pour une route interdite
+      es: Una tarifa indicada para una ruta prohibida
+      pt: "Uma tarifa listada para uma rota proibida"
+    value:
+      en: "The fee table's \"Serbia–Middle East/Africa: €80\" tier isn't carved out from the outright UAE/Qatar ban stated elsewhere on the same page — a reader skimming only the price table could reasonably think pet travel to Dubai or Doha is a paid option."
+      fr: "Le palier « Serbie–Moyen-Orient/Afrique : 80 € » de la grille tarifaire n'exclut pas explicitement l'interdiction totale vers les Émirats/Qatar énoncée ailleurs sur la même page — un lecteur ne consultant que la grille des prix pourrait raisonnablement croire qu'un animal peut voyager à Dubaï ou Doha moyennant paiement."
+      es: "El nivel “Serbia–Oriente Medio/África: 80 €” de la tabla de tarifas no excluye la prohibición total hacia EAU/Catar indicada en otra parte de la misma página: un lector que solo mire la tabla de precios podría pensar razonablemente que viajar con una mascota a Dubái o Doha es una opción de pago."
+      pt: "A faixa “Sérvia–Oriente Médio/África: 80 €” da tabela de tarifas não exclui explicitamente a proibição total para EAU/Catar declarada em outro ponto da mesma página — um leitor que veja apenas a tabela de preços poderia razoavelmente pensar que viajar com um animal para Dubai ou Doha é uma opção paga."
+  - icon: 📅
+    label:
+      en: A five-year-old blog post still linked as guidance
+      fr: Un article de blog vieux de cinq ans encore proposé comme référence
+      es: Una entrada de blog de hace cinco años todavía enlazada como guía
+      pt: "Um post de blog de cinco anos ainda vinculado como orientação"
+    value:
+      en: The current policy page links out, under "Travel Smart," to a blog post dated 2 October 2020 as if it were live guidance. Its numbers still match the current page, but presenting five-year-old content as current practice is worth a second look before you fly.
+      fr: La page de politique actuelle renvoie, sous « Voyage malin », vers un article de blog daté du 2 octobre 2020, présenté comme une référence active. Ses chiffres correspondent encore à la page actuelle, mais présenter un contenu vieux de cinq ans comme une pratique en vigueur mérite d'être vérifié avant de voler.
+      es: "La página de política actual enlaza, bajo “Viaja con inteligencia”, a una entrada de blog fechada el 2 de octubre de 2020 como si fuera una guía vigente. Sus cifras aún coinciden con la página actual, pero presentar contenido de hace cinco años como práctica vigente merece una segunda mirada antes de volar."
+      pt: "A página de política atual encaminha, em “Viaje com inteligência”, para um post de blog datado de 2 de outubro de 2020, apresentado como orientação vigente. Os números ainda batem com a página atual, mas apresentar conteúdo de cinco anos como prática vigente merece uma segunda checagem antes de voar."
+book:
+  host: airserbia.com
+  url: https://www.airserbia.com/en/info-and-help/travel-guidelines/traveling-with-your-pets
+sources:
+  en: 2 official Air Serbia sources · last verified 8 August 2026
+  fr: 2 sources officielles Air Serbia · dernière vérification 8 août 2026
+  es: 2 fuentes oficiales de Air Serbia · última verificación 8 de agosto de 2026
+  pt: "2 fontes oficiais da Air Serbia · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

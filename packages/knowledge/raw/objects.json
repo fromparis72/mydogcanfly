@@ -22826,6 +22826,170 @@
       ]
     },
     {
+      "id": "airline_air_serbia",
+      "iata": "JU",
+      "name": "Air Serbia",
+      "country_id": "country_rs",
+      "alliance": "none",
+      "website": "https://www.airserbia.com",
+      "serves_country_ids": [
+        "country_al",
+        "country_at",
+        "country_be",
+        "country_bg",
+        "country_ca",
+        "country_ch",
+        "country_cn",
+        "country_cy",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_es",
+        "country_fr",
+        "country_gb",
+        "country_ge",
+        "country_gr",
+        "country_hr",
+        "country_hu",
+        "country_it",
+        "country_me",
+        "country_mt",
+        "country_nl",
+        "country_no",
+        "country_pl",
+        "country_pt",
+        "country_ro",
+        "country_rs",
+        "country_ru",
+        "country_se",
+        "country_si",
+        "country_tr",
+        "country_us"
+      ],
+      "source": {
+        "url": "https://www.airserbia.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_beg"
+      ],
+      "direct_routes": [
+        "airport_agp|airport_beg",
+        "airport_ams|airport_beg",
+        "airport_arn|airport_beg",
+        "airport_ath|airport_beg",
+        "airport_bcn|airport_beg",
+        "airport_beg|airport_ber",
+        "airport_beg|airport_blq",
+        "airport_beg|airport_bru",
+        "airport_beg|airport_bud",
+        "airport_beg|airport_can",
+        "airport_beg|airport_cdg",
+        "airport_beg|airport_cph",
+        "airport_beg|airport_dbv",
+        "airport_beg|airport_dus",
+        "airport_beg|airport_fco",
+        "airport_beg|airport_fra",
+        "airport_beg|airport_gva",
+        "airport_beg|airport_ham",
+        "airport_beg|airport_ist",
+        "airport_beg|airport_jfk",
+        "airport_beg|airport_krk",
+        "airport_beg|airport_lca",
+        "airport_beg|airport_lhr",
+        "airport_beg|airport_lis",
+        "airport_beg|airport_lju",
+        "airport_beg|airport_mad",
+        "airport_beg|airport_mla",
+        "airport_beg|airport_mxp",
+        "airport_beg|airport_nce",
+        "airport_beg|airport_ord",
+        "airport_beg|airport_osl",
+        "airport_beg|airport_otp",
+        "airport_beg|airport_prg",
+        "airport_beg|airport_pvg",
+        "airport_beg|airport_skg",
+        "airport_beg|airport_sof",
+        "airport_beg|airport_spu",
+        "airport_beg|airport_str",
+        "airport_beg|airport_svo",
+        "airport_beg|airport_tbs",
+        "airport_beg|airport_tgd",
+        "airport_beg|airport_tia",
+        "airport_beg|airport_tiv",
+        "airport_beg|airport_vce",
+        "airport_beg|airport_vie",
+        "airport_beg|airport_vlc",
+        "airport_beg|airport_zag",
+        "airport_beg|airport_zrh"
+      ],
+      "seasonal_routes": [
+        "airport_beg|airport_cta",
+        "airport_beg|airport_got",
+        "airport_beg|airport_her",
+        "airport_beg|airport_muc",
+        "airport_beg|airport_nap",
+        "airport_beg|airport_opo",
+        "airport_beg|airport_pmi",
+        "airport_beg|airport_svq",
+        "airport_beg|airport_yyz"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.airserbia.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.airserbia.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.airserbia.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
+    },
+    {
       "id": "airline_air_tahiti_nui",
       "iata": "TN",
       "name": "Air Tahiti Nui",
@@ -23137,6 +23301,214 @@
         "airport_tia|airport_yyz",
         "airport_yow|airport_yul"
       ]
+    },
+    {
+      "id": "airline_airbaltic",
+      "iata": "BT",
+      "name": "airBaltic",
+      "country_id": "country_lv",
+      "alliance": "none",
+      "website": "https://www.airbaltic.com",
+      "serves_country_ids": [
+        "country_ae",
+        "country_al",
+        "country_at",
+        "country_be",
+        "country_bg",
+        "country_ch",
+        "country_cy",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_ee",
+        "country_eg",
+        "country_es",
+        "country_fi",
+        "country_fr",
+        "country_gb",
+        "country_ge",
+        "country_gr",
+        "country_hr",
+        "country_hu",
+        "country_ie",
+        "country_il",
+        "country_is",
+        "country_it",
+        "country_lt",
+        "country_lv",
+        "country_me",
+        "country_mt",
+        "country_nl",
+        "country_no",
+        "country_pt",
+        "country_ro",
+        "country_rs",
+        "country_se",
+        "country_si",
+        "country_tr"
+      ],
+      "source": {
+        "url": "https://www.airbaltic.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_rix"
+      ],
+      "direct_routes": [
+        "airport_agp|airport_rix",
+        "airport_agp|airport_tll",
+        "airport_ams|airport_rix",
+        "airport_ams|airport_tll",
+        "airport_ams|airport_vno",
+        "airport_arn|airport_rix",
+        "airport_ath|airport_rix",
+        "airport_bcn|airport_rix",
+        "airport_ber|airport_rix",
+        "airport_ber|airport_vno",
+        "airport_bll|airport_rix",
+        "airport_bru|airport_rix",
+        "airport_bru|airport_tll",
+        "airport_cdg|airport_rix",
+        "airport_cdg|airport_tll",
+        "airport_cdg|airport_vno",
+        "airport_cph|airport_rix",
+        "airport_dus|airport_rix",
+        "airport_fco|airport_rix",
+        "airport_fra|airport_rix",
+        "airport_ham|airport_rix",
+        "airport_ham|airport_vno",
+        "airport_hel|airport_rix",
+        "airport_kef|airport_rix",
+        "airport_lca|airport_rix",
+        "airport_lgw|airport_rix",
+        "airport_lgw|airport_tll",
+        "airport_lis|airport_rix",
+        "airport_lju|airport_rix",
+        "airport_mad|airport_rix",
+        "airport_mla|airport_rix",
+        "airport_muc|airport_rix",
+        "airport_muc|airport_tll",
+        "airport_muc|airport_vno",
+        "airport_mxp|airport_rix",
+        "airport_osl|airport_rix",
+        "airport_otp|airport_rix",
+        "airport_prg|airport_rix",
+        "airport_rix|airport_sof",
+        "airport_rix|airport_tbs",
+        "airport_rix|airport_tll",
+        "airport_rix|airport_tlv",
+        "airport_rix|airport_vie",
+        "airport_rix|airport_vno",
+        "airport_rix|airport_zrh",
+        "airport_tll|airport_vno"
+      ],
+      "seasonal_routes": [
+        "airport_ath|airport_tll",
+        "airport_ayt|airport_rix",
+        "airport_bcn|airport_tll",
+        "airport_beg|airport_rix",
+        "airport_ber|airport_tll",
+        "airport_bgo|airport_rix",
+        "airport_bll|airport_tll",
+        "airport_boj|airport_rix",
+        "airport_boj|airport_tll",
+        "airport_bud|airport_rix",
+        "airport_bus|airport_rix",
+        "airport_cph|airport_tll",
+        "airport_cta|airport_rix",
+        "airport_dub|airport_rix",
+        "airport_dus|airport_vno",
+        "airport_dxb|airport_rix",
+        "airport_dxb|airport_vno",
+        "airport_fao|airport_rix",
+        "airport_got|airport_rix",
+        "airport_gva|airport_rix",
+        "airport_gva|airport_tll",
+        "airport_gva|airport_vno",
+        "airport_ham|airport_tll",
+        "airport_her|airport_rix",
+        "airport_her|airport_tll",
+        "airport_her|airport_vno",
+        "airport_hrg|airport_rix",
+        "airport_ist|airport_rix",
+        "airport_lis|airport_vno",
+        "airport_mla|airport_tll",
+        "airport_nap|airport_rix",
+        "airport_nce|airport_rix",
+        "airport_nce|airport_tll",
+        "airport_nce|airport_vno",
+        "airport_opo|airport_rix",
+        "airport_osl|airport_tll",
+        "airport_pmi|airport_rix",
+        "airport_pmi|airport_tll",
+        "airport_pmi|airport_vno",
+        "airport_prg|airport_vno",
+        "airport_rix|airport_skg",
+        "airport_rix|airport_spu",
+        "airport_rix|airport_ssh",
+        "airport_rix|airport_tia",
+        "airport_rix|airport_tiv",
+        "airport_rix|airport_vlc",
+        "airport_spu|airport_tll",
+        "airport_tia|airport_tll",
+        "airport_tll|airport_vie",
+        "airport_vno|airport_zrh"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.airbaltic.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.airbaltic.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.airbaltic.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
     },
     {
       "id": "airline_aircalin",
@@ -25065,6 +25437,218 @@
         "airport_bkk|airport_hkt"
       ],
       "seasonal_routes": []
+    },
+    {
+      "id": "airline_batik_air_indonesia",
+      "iata": "ID",
+      "name": "Batik Air Indonesia",
+      "country_id": "country_id",
+      "alliance": "none",
+      "website": "https://www.batikair.com",
+      "serves_country_ids": [
+        "country_au",
+        "country_id",
+        "country_my",
+        "country_sg",
+        "country_th"
+      ],
+      "source": {
+        "url": "https://www.batikair.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_cgk"
+      ],
+      "direct_routes": [
+        "airport_cgk|airport_dmk",
+        "airport_cgk|airport_per",
+        "airport_cgk|airport_sin",
+        "airport_cgk|airport_sub",
+        "airport_dps|airport_per"
+      ],
+      "seasonal_routes": [
+        "airport_cgk|airport_dps",
+        "airport_cgk|airport_kul",
+        "airport_dps|airport_sub"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.batikair.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.batikair.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.batikair.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
+    },
+    {
+      "id": "airline_batik_air_malaysia",
+      "iata": "OD",
+      "name": "Batik Air Malaysia",
+      "country_id": "country_my",
+      "alliance": "none",
+      "website": "https://www.batikair.com.my",
+      "serves_country_ids": [
+        "country_ae",
+        "country_au",
+        "country_cn",
+        "country_hk",
+        "country_id",
+        "country_in",
+        "country_jp",
+        "country_kr",
+        "country_lk",
+        "country_mv",
+        "country_my",
+        "country_np",
+        "country_sa",
+        "country_sg",
+        "country_th",
+        "country_tw",
+        "country_vn"
+      ],
+      "source": {
+        "url": "https://www.batikair.com.my",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_kul"
+      ],
+      "direct_routes": [
+        "airport_bki|airport_kul",
+        "airport_bne|airport_dps",
+        "airport_bom|airport_kul",
+        "airport_can|airport_kul",
+        "airport_cgk|airport_kul",
+        "airport_dad|airport_kul",
+        "airport_del|airport_kul",
+        "airport_dmk|airport_kul",
+        "airport_dps|airport_kul",
+        "airport_dps|airport_mel",
+        "airport_dps|airport_per",
+        "airport_dps|airport_syd",
+        "airport_han|airport_kul",
+        "airport_hkg|airport_kul",
+        "airport_hkt|airport_kul",
+        "airport_jed|airport_kul",
+        "airport_kix|airport_kul",
+        "airport_ktm|airport_kul",
+        "airport_kul|airport_mle",
+        "airport_kul|airport_nrt",
+        "airport_kul|airport_pen",
+        "airport_kul|airport_per",
+        "airport_kul|airport_sin",
+        "airport_kul|airport_sub",
+        "airport_kul|airport_syd",
+        "airport_kul|airport_tpe"
+      ],
+      "seasonal_routes": [
+        "airport_blr|airport_kul",
+        "airport_cgk|airport_pen",
+        "airport_cmb|airport_kul",
+        "airport_dxb|airport_kul",
+        "airport_icn|airport_kul",
+        "airport_kul|airport_pvg"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.batikair.com.my",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.batikair.com.my",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.batikair.com.my",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
     },
     {
       "id": "airline_british_airways",
@@ -27319,6 +27903,144 @@
       ]
     },
     {
+      "id": "airline_croatia_airlines",
+      "iata": "OU",
+      "name": "Croatia Airlines",
+      "country_id": "country_hr",
+      "alliance": "star_alliance",
+      "website": "https://www.croatiaairlines.com",
+      "serves_country_ids": [
+        "country_at",
+        "country_be",
+        "country_ch",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_es",
+        "country_fr",
+        "country_gb",
+        "country_gr",
+        "country_hr",
+        "country_ie",
+        "country_it",
+        "country_nl",
+        "country_no",
+        "country_se",
+        "country_tr"
+      ],
+      "source": {
+        "url": "https://www.croatiaairlines.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_zag"
+      ],
+      "direct_routes": [
+        "airport_ams|airport_zag",
+        "airport_arn|airport_zag",
+        "airport_ath|airport_dbv",
+        "airport_bcn|airport_zag",
+        "airport_ber|airport_zag",
+        "airport_bru|airport_zag",
+        "airport_cdg|airport_zag",
+        "airport_cph|airport_zag",
+        "airport_dbv|airport_fco",
+        "airport_dbv|airport_fra",
+        "airport_dbv|airport_zag",
+        "airport_fco|airport_spu",
+        "airport_fra|airport_spu",
+        "airport_fra|airport_zag",
+        "airport_ist|airport_spu",
+        "airport_lhr|airport_zag",
+        "airport_muc|airport_spu",
+        "airport_muc|airport_zag",
+        "airport_spu|airport_zag",
+        "airport_spu|airport_zrh",
+        "airport_vie|airport_zag",
+        "airport_zag|airport_zrh"
+      ],
+      "seasonal_routes": [
+        "airport_arn|airport_spu",
+        "airport_ath|airport_spu",
+        "airport_ber|airport_spu",
+        "airport_cdg|airport_dbv",
+        "airport_cdg|airport_spu",
+        "airport_cph|airport_spu",
+        "airport_dbv|airport_muc",
+        "airport_dbv|airport_prg",
+        "airport_dbv|airport_str",
+        "airport_dub|airport_spu",
+        "airport_dus|airport_spu",
+        "airport_ham|airport_zag",
+        "airport_lgw|airport_spu",
+        "airport_lhr|airport_spu",
+        "airport_lys|airport_spu",
+        "airport_mad|airport_zag",
+        "airport_mxp|airport_spu",
+        "airport_nte|airport_spu",
+        "airport_osl|airport_spu",
+        "airport_prg|airport_spu",
+        "airport_prg|airport_zag",
+        "airport_spu|airport_vie"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.croatiaairlines.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "brachy_allowed": false,
+            "source": {
+              "url": "https://www.croatiaairlines.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.croatiaairlines.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
+    },
+    {
       "id": "airline_delta",
       "iata": "DL",
       "name": "Delta Air Lines",
@@ -28744,6 +29466,159 @@
         "airport_rak|airport_zrh",
         "airport_stn|airport_zrh"
       ]
+    },
+    {
+      "id": "airline_edelweiss",
+      "iata": "WK",
+      "name": "Edelweiss Air",
+      "country_id": "country_ch",
+      "alliance": "none",
+      "website": "https://www.flyedelweiss.com",
+      "serves_country_ids": [
+        "country_ca",
+        "country_ch",
+        "country_co",
+        "country_cr",
+        "country_cv",
+        "country_cy",
+        "country_do",
+        "country_eg",
+        "country_es",
+        "country_gb",
+        "country_ge",
+        "country_gr",
+        "country_hr",
+        "country_ie",
+        "country_is",
+        "country_it",
+        "country_jm",
+        "country_lk",
+        "country_ma",
+        "country_me",
+        "country_mu",
+        "country_mv",
+        "country_mx",
+        "country_no",
+        "country_pt",
+        "country_sc",
+        "country_th",
+        "country_tn",
+        "country_tr",
+        "country_us",
+        "country_za"
+      ],
+      "source": {
+        "url": "https://www.flyedelweiss.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_zrh"
+      ],
+      "direct_routes": [
+        "airport_bio|airport_zrh",
+        "airport_cta|airport_zrh",
+        "airport_cun|airport_zrh",
+        "airport_edi|airport_zrh",
+        "airport_fao|airport_zrh",
+        "airport_hrg|airport_zrh",
+        "airport_kef|airport_zrh",
+        "airport_lca|airport_zrh",
+        "airport_lir|airport_sjo",
+        "airport_lir|airport_zrh",
+        "airport_mle|airport_zrh",
+        "airport_pmi|airport_zrh",
+        "airport_puj|airport_zrh",
+        "airport_sjo|airport_zrh",
+        "airport_spu|airport_zrh",
+        "airport_tpa|airport_zrh",
+        "airport_yvr|airport_zrh"
+      ],
+      "seasonal_routes": [
+        "airport_ayt|airport_zrh",
+        "airport_bgo|airport_zrh",
+        "airport_bog|airport_ctg",
+        "airport_bog|airport_zrh",
+        "airport_bvc|airport_sid",
+        "airport_bvc|airport_zrh",
+        "airport_cmb|airport_zrh",
+        "airport_cpt|airport_zrh",
+        "airport_ctg|airport_zrh",
+        "airport_dje|airport_zrh",
+        "airport_her|airport_zrh",
+        "airport_hkt|airport_zrh",
+        "airport_las|airport_zrh",
+        "airport_mbj|airport_zrh",
+        "airport_mru|airport_sez",
+        "airport_mru|airport_zrh",
+        "airport_ork|airport_zrh",
+        "airport_rai|airport_sid",
+        "airport_rak|airport_zrh",
+        "airport_sez|airport_zrh",
+        "airport_sid|airport_vxe",
+        "airport_sid|airport_zrh",
+        "airport_ssh|airport_zrh",
+        "airport_svq|airport_zrh",
+        "airport_tbs|airport_zrh",
+        "airport_tiv|airport_zrh",
+        "airport_yhz|airport_zrh",
+        "airport_yyc|airport_zrh"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.flyedelweiss.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "brachy_allowed": false,
+            "source": {
+              "url": "https://www.flyedelweiss.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.flyedelweiss.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
     },
     {
       "id": "airline_egyptair",
@@ -35404,6 +36279,175 @@
       ]
     },
     {
+      "id": "airline_neos",
+      "iata": "NO",
+      "name": "Neos",
+      "country_id": "country_it",
+      "alliance": "none",
+      "website": "https://www.neosair.com",
+      "serves_country_ids": [
+        "country_ae",
+        "country_bg",
+        "country_co",
+        "country_cu",
+        "country_cv",
+        "country_cy",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_do",
+        "country_eg",
+        "country_es",
+        "country_fr",
+        "country_gr",
+        "country_il",
+        "country_it",
+        "country_jm",
+        "country_ke",
+        "country_mv",
+        "country_mx",
+        "country_no",
+        "country_om",
+        "country_pl",
+        "country_pt",
+        "country_sn",
+        "country_th",
+        "country_tn",
+        "country_us"
+      ],
+      "source": {
+        "url": "https://www.neosair.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_mxp"
+      ],
+      "direct_routes": [
+        "airport_bgy|airport_bvc",
+        "airport_bgy|airport_dss",
+        "airport_bgy|airport_sid",
+        "airport_blq|airport_ssh",
+        "airport_bvc|airport_fco",
+        "airport_bvc|airport_mxp",
+        "airport_cai|airport_mxp",
+        "airport_cta|airport_mxp",
+        "airport_cun|airport_fco",
+        "airport_dss|airport_fco",
+        "airport_dss|airport_mxp",
+        "airport_fco|airport_mba",
+        "airport_fco|airport_mle",
+        "airport_fco|airport_mxp",
+        "airport_fco|airport_sid",
+        "airport_fco|airport_ssh",
+        "airport_jfk|airport_mxp",
+        "airport_mba|airport_mxp",
+        "airport_mbj|airport_mxp",
+        "airport_mxp|airport_sid",
+        "airport_mxp|airport_ssh",
+        "airport_nap|airport_ssh"
+      ],
+      "seasonal_routes": [
+        "airport_ath|airport_mxp",
+        "airport_bgy|airport_cta",
+        "airport_bgy|airport_dje",
+        "airport_bgy|airport_fco",
+        "airport_bgy|airport_her",
+        "airport_bgy|airport_ssh",
+        "airport_blq|airport_dje",
+        "airport_blq|airport_ham",
+        "airport_blq|airport_her",
+        "airport_blq|airport_mxp",
+        "airport_boj|airport_tlv",
+        "airport_cai|airport_ssh",
+        "airport_cgn|airport_svq",
+        "airport_cph|airport_mxp",
+        "airport_cta|airport_fco",
+        "airport_cta|airport_ham",
+        "airport_ctg|airport_mxp",
+        "airport_cun|airport_mxp",
+        "airport_dje|airport_fco",
+        "airport_dje|airport_mxp",
+        "airport_dje|airport_nbe",
+        "airport_dwc|airport_fco",
+        "airport_fco|airport_ham",
+        "airport_fco|airport_her",
+        "airport_ham|airport_mxp",
+        "airport_hav|airport_mxp",
+        "airport_her|airport_mxp",
+        "airport_hkt|airport_mxp",
+        "airport_hkt|airport_waw",
+        "airport_lis|airport_tlv",
+        "airport_lys|airport_mxp",
+        "airport_mct|airport_mxp",
+        "airport_mle|airport_mxp",
+        "airport_mxp|airport_nbe",
+        "airport_mxp|airport_pmi",
+        "airport_mxp|airport_puj",
+        "airport_mxp|airport_tlv",
+        "airport_mxp|airport_waw",
+        "airport_osl|airport_tlv",
+        "airport_pfo|airport_tlv",
+        "airport_prg|airport_puj",
+        "airport_puj|airport_waw"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.neosair.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "brachy_allowed": false,
+            "source": {
+              "url": "https://www.neosair.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.neosair.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
+    },
+    {
       "id": "airline_norwegian",
       "iata": "DY",
       "name": "Norwegian",
@@ -35787,6 +36831,219 @@
         "airport_osl|airport_vlc",
         "airport_rix|airport_tiv"
       ]
+    },
+    {
+      "id": "airline_pegasus",
+      "iata": "PC",
+      "name": "Pegasus Airlines",
+      "country_id": "country_tr",
+      "alliance": "none",
+      "website": "https://www.flypgs.com",
+      "serves_country_ids": [
+        "country_ae",
+        "country_al",
+        "country_at",
+        "country_be",
+        "country_bg",
+        "country_bh",
+        "country_ch",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_dz",
+        "country_ee",
+        "country_eg",
+        "country_es",
+        "country_fi",
+        "country_fr",
+        "country_gb",
+        "country_ge",
+        "country_gr",
+        "country_hr",
+        "country_hu",
+        "country_ie",
+        "country_it",
+        "country_jo",
+        "country_kw",
+        "country_lb",
+        "country_ma",
+        "country_me",
+        "country_nl",
+        "country_no",
+        "country_om",
+        "country_pl",
+        "country_qa",
+        "country_ro",
+        "country_rs",
+        "country_sa",
+        "country_se",
+        "country_si",
+        "country_sk",
+        "country_tr"
+      ],
+      "source": {
+        "url": "https://www.flypgs.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_saw"
+      ],
+      "direct_routes": [
+        "airport_alg|airport_saw",
+        "airport_amm|airport_ayt",
+        "airport_amm|airport_saw",
+        "airport_ams|airport_saw",
+        "airport_arn|airport_ayt",
+        "airport_arn|airport_saw",
+        "airport_ath|airport_saw",
+        "airport_auh|airport_saw",
+        "airport_ayt|airport_ber",
+        "airport_ayt|airport_bey",
+        "airport_ayt|airport_bll",
+        "airport_ayt|airport_cgn",
+        "airport_ayt|airport_cph",
+        "airport_ayt|airport_dus",
+        "airport_ayt|airport_fra",
+        "airport_ayt|airport_got",
+        "airport_ayt|airport_ham",
+        "airport_ayt|airport_hel",
+        "airport_ayt|airport_krk",
+        "airport_ayt|airport_muc",
+        "airport_ayt|airport_saw",
+        "airport_ayt|airport_stn",
+        "airport_ayt|airport_str",
+        "airport_ayt|airport_tbs",
+        "airport_ayt|airport_vie",
+        "airport_ayt|airport_waw",
+        "airport_ayt|airport_zrh",
+        "airport_bah|airport_saw",
+        "airport_bcn|airport_saw",
+        "airport_beg|airport_saw",
+        "airport_ber|airport_saw",
+        "airport_bey|airport_saw",
+        "airport_bgy|airport_saw",
+        "airport_bio|airport_saw",
+        "airport_blq|airport_saw",
+        "airport_bsl|airport_saw",
+        "airport_bts|airport_saw",
+        "airport_bud|airport_saw",
+        "airport_bus|airport_saw",
+        "airport_cgn|airport_saw",
+        "airport_cmn|airport_saw",
+        "airport_cph|airport_saw",
+        "airport_crl|airport_saw",
+        "airport_dmm|airport_saw",
+        "airport_doh|airport_saw",
+        "airport_dub|airport_saw",
+        "airport_dus|airport_saw",
+        "airport_dxb|airport_saw",
+        "airport_edi|airport_saw",
+        "airport_ein|airport_saw",
+        "airport_fco|airport_saw",
+        "airport_fra|airport_saw",
+        "airport_gva|airport_saw",
+        "airport_ham|airport_saw",
+        "airport_hel|airport_saw",
+        "airport_hrg|airport_saw",
+        "airport_jed|airport_saw",
+        "airport_kwi|airport_saw",
+        "airport_lgw|airport_saw",
+        "airport_lju|airport_saw",
+        "airport_lys|airport_saw",
+        "airport_mad|airport_saw",
+        "airport_man|airport_saw",
+        "airport_mct|airport_saw",
+        "airport_mrs|airport_saw",
+        "airport_muc|airport_saw",
+        "airport_nce|airport_saw",
+        "airport_ory|airport_saw",
+        "airport_osl|airport_saw",
+        "airport_otp|airport_saw",
+        "airport_prg|airport_saw",
+        "airport_ruh|airport_saw",
+        "airport_saw|airport_sof",
+        "airport_saw|airport_ssh",
+        "airport_saw|airport_stn",
+        "airport_saw|airport_str",
+        "airport_saw|airport_svq",
+        "airport_saw|airport_tbs",
+        "airport_saw|airport_tgd",
+        "airport_saw|airport_tia",
+        "airport_saw|airport_vce",
+        "airport_saw|airport_vie",
+        "airport_saw|airport_zag",
+        "airport_saw|airport_zrh"
+      ],
+      "seasonal_routes": [
+        "airport_ams|airport_ayt",
+        "airport_ayt|airport_bru",
+        "airport_ayt|airport_bsl",
+        "airport_ayt|airport_bts",
+        "airport_ayt|airport_dxb",
+        "airport_ayt|airport_gva",
+        "airport_ayt|airport_hrg",
+        "airport_ayt|airport_otp",
+        "airport_ayt|airport_prg",
+        "airport_ayt|airport_sof",
+        "airport_ayt|airport_ssh",
+        "airport_ayt|airport_tia",
+        "airport_ayt|airport_tll"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.flypgs.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.flypgs.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": false,
+            "source": {
+              "url": "https://www.flypgs.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
     },
     {
       "id": "airline_philippine",
@@ -38723,6 +39980,133 @@
       ]
     },
     {
+      "id": "airline_sky_express",
+      "iata": "GQ",
+      "name": "Sky Express",
+      "country_id": "country_gr",
+      "alliance": "none",
+      "website": "https://www.skyexpress.gr",
+      "serves_country_ids": [
+        "country_at",
+        "country_be",
+        "country_cy",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_es",
+        "country_fr",
+        "country_gb",
+        "country_ge",
+        "country_gr",
+        "country_il",
+        "country_it",
+        "country_nl",
+        "country_pl",
+        "country_pt",
+        "country_tr"
+      ],
+      "source": {
+        "url": "https://www.skyexpress.gr",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_ath"
+      ],
+      "direct_routes": [
+        "airport_ath|airport_ber",
+        "airport_ath|airport_bru",
+        "airport_ath|airport_cdg",
+        "airport_ath|airport_dus",
+        "airport_ath|airport_fco",
+        "airport_ath|airport_fra",
+        "airport_ath|airport_ham",
+        "airport_ath|airport_her",
+        "airport_ath|airport_ist",
+        "airport_ath|airport_lca",
+        "airport_ath|airport_lgw",
+        "airport_ath|airport_lis",
+        "airport_ath|airport_lys",
+        "airport_ath|airport_mad",
+        "airport_ath|airport_muc",
+        "airport_ath|airport_mxp",
+        "airport_ath|airport_prg",
+        "airport_ath|airport_skg",
+        "airport_ath|airport_tbs",
+        "airport_ath|airport_tlv",
+        "airport_ath|airport_vie",
+        "airport_ath|airport_waw",
+        "airport_bru|airport_her",
+        "airport_dus|airport_skg",
+        "airport_her|airport_skg",
+        "airport_lca|airport_skg"
+      ],
+      "seasonal_routes": [
+        "airport_ams|airport_ath",
+        "airport_cdg|airport_her",
+        "airport_cph|airport_her",
+        "airport_her|airport_lca",
+        "airport_her|airport_lys",
+        "airport_her|airport_mrs",
+        "airport_her|airport_nte"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.skyexpress.gr",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.skyexpress.gr",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.skyexpress.gr",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
+    },
+    {
       "id": "airline_smartwings",
       "iata": "QS",
       "name": "Smartwings",
@@ -38998,6 +40382,144 @@
         "airport_jnb|airport_per"
       ],
       "seasonal_routes": []
+    },
+    {
+      "id": "airline_sunexpress",
+      "iata": "XQ",
+      "name": "SunExpress",
+      "country_id": "country_tr",
+      "alliance": "none",
+      "website": "https://www.sunexpress.com",
+      "serves_country_ids": [
+        "country_ae",
+        "country_al",
+        "country_at",
+        "country_be",
+        "country_ch",
+        "country_cz",
+        "country_de",
+        "country_dk",
+        "country_ee",
+        "country_eg",
+        "country_fr",
+        "country_gb",
+        "country_ge",
+        "country_hu",
+        "country_ie",
+        "country_it",
+        "country_lb",
+        "country_me",
+        "country_nl",
+        "country_pl",
+        "country_ro",
+        "country_se",
+        "country_sk",
+        "country_tr"
+      ],
+      "source": {
+        "url": "https://www.sunexpress.com",
+        "source_type": "official_website",
+        "verified_date": "2026-08-08",
+        "review_due": "2026-11-06",
+        "confidence": 3,
+        "reviewer": "MyDogCanFly Data Team",
+        "history": [
+          {
+            "date": "2026-08-08",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Relevé du 8 août 2026 : politique animaux lue sur le site officiel de la compagnie. Réseau dérivé des arêtes utilisables de la collecte élargie (routes_FULL_strict.json), hors partage de code."
+          }
+        ]
+      },
+      "hub_airport_ids": [
+        "airport_ayt"
+      ],
+      "direct_routes": [
+        "airport_arn|airport_ayt",
+        "airport_ayt|airport_ber",
+        "airport_ayt|airport_bey",
+        "airport_ayt|airport_bru",
+        "airport_ayt|airport_bsl",
+        "airport_ayt|airport_bud",
+        "airport_ayt|airport_cai",
+        "airport_ayt|airport_cdg",
+        "airport_ayt|airport_cgn",
+        "airport_ayt|airport_cph",
+        "airport_ayt|airport_dus",
+        "airport_ayt|airport_dxb",
+        "airport_ayt|airport_edi",
+        "airport_ayt|airport_fra",
+        "airport_ayt|airport_gva",
+        "airport_ayt|airport_ham",
+        "airport_ayt|airport_krk",
+        "airport_ayt|airport_lgw",
+        "airport_ayt|airport_man",
+        "airport_ayt|airport_muc",
+        "airport_ayt|airport_mxp",
+        "airport_ayt|airport_prg",
+        "airport_ayt|airport_stn",
+        "airport_ayt|airport_str",
+        "airport_ayt|airport_tbs",
+        "airport_ayt|airport_tia",
+        "airport_ayt|airport_tll",
+        "airport_ayt|airport_vie",
+        "airport_ayt|airport_waw",
+        "airport_ayt|airport_zrh"
+      ],
+      "seasonal_routes": [
+        "airport_auh|airport_ayt",
+        "airport_ayt|airport_bll",
+        "airport_ayt|airport_bts",
+        "airport_ayt|airport_dub",
+        "airport_ayt|airport_ein",
+        "airport_ayt|airport_otp",
+        "airport_ayt|airport_tgd"
+      ],
+      "premium": {
+        "policy": {
+          "cabin": {
+            "allowed": true,
+            "source": {
+              "url": "https://www.sunexpress.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "hold": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.sunexpress.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          },
+          "cargo": {
+            "allowed": true,
+            "conditional": true,
+            "source": {
+              "url": "https://www.sunexpress.com",
+              "source_type": "official_website",
+              "verified_date": "2026-08-08",
+              "review_due": "2026-11-06",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
+            },
+            "derived_from_fiche": true
+          }
+        }
+      }
     },
     {
       "id": "airline_swiss",

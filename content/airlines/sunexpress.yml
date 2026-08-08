@@ -1,0 +1,209 @@
+id: airline_sunexpress
+mono: XQ
+name: SunExpress
+titleH1:
+  en: Flying with a dog on SunExpress
+  fr: Voyager avec un chien sur SunExpress
+  es: Volar con un perro en SunExpress
+  pt: "Viajar com um cachorro na SunExpress"
+metaDesc:
+  en: "SunExpress pet policy: 8 kg in the cabin from €89.99, hold priced but never given a weight ceiling — and a surprisingly generous free emotional-support-dog policy for 2026."
+  fr: "Politique animaux SunExpress : 8 kg en cabine dès 89,99 €, soute tarifée mais sans plafond de poids jamais indiqué — et une politique gratuite pour chiens de soutien émotionnel étonnamment généreuse pour 2026."
+  es: "Política de mascotas de SunExpress: 8 kg en cabina desde 89,99 €, bodega con precio pero sin techo de peso indicado nunca — y una política gratuita para perros de apoyo emocional sorprendentemente generosa para 2026."
+  pt: "Política de animais da SunExpress: 8 kg na cabine a partir de 89,99 €, porão com preço mas sem teto de peso informado — e uma política gratuita para cães de apoio emocional surpreendentemente generosa para 2026."
+chips:
+  - icon: 📍
+    label:
+      en: Türkiye
+      fr: Turquie
+      es: Turquía
+      pt: "Turquia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open and clearly priced, but the hold program never states an upper weight limit, and no temperature policy exists for a carrier headquartered in one of Europe's hottest summer airports.
+  fr: Cabine et soute sont ouvertes et clairement tarifées, mais le programme soute ne donne jamais de poids maximal, et aucune politique de température n'existe chez ce transporteur dont le siège est dans l'un des aéroports les plus chauds d'Europe l'été.
+  es: "Cabina y bodega están abiertas y con precios claros, pero el programa de bodega nunca indica un límite máximo de peso, y no existe ninguna política de temperatura en esta aerolínea con sede en uno de los aeropuertos más calurosos de Europa en verano."
+  pt: "Cabine e porão estão abertos e com preços claros, mas o programa de porão nunca informa um limite máximo de peso, e não existe nenhuma política de temperatura nesta companhia sediada em um dos aeroportos mais quentes da Europa no verão."
+ladder:
+  - flex: 40
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 60
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: over 8 kg, no published ceiling
+      fr: plus de 8 kg, aucun plafond publié
+      es: más de 8 kg, sin techo publicado
+      pt: "acima de 8 kg, sem teto publicado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "8 kg (pet + carrier), ventilated waterproof carrier up to 55 × 40 × 23 cm. No emergency-exit seats. Book by phone via the service centre at least 3 working days before departure — no self-service add-on found."
+      fr: "8 kg (animal + caisse), caisse ventilée et imperméable jusqu'à 55 × 40 × 23 cm. Ni sortie de secours. Réservation par téléphone via le centre de services au moins 3 jours ouvrés avant le départ — aucun ajout en libre-service trouvé."
+      es: "8 kg (mascota + jaula), jaula ventilada e impermeable de hasta 55 × 40 × 23 cm. Ni salidas de emergencia. Reserva por teléfono a través del centro de servicio con al menos 3 días laborables de antelación — no se encontró opción de autoservicio."
+      pt: "8 kg (animal + caixa), caixa ventilada e impermeável de até 55 × 40 × 23 cm. Nem saídas de emergência. Reserve por telefone pela central de atendimento com pelo menos 3 dias úteis de antecedência — nenhum complemento de autoatendimento encontrado."
+    fee:
+      en: "from €89.99 international / from 599 TL domestic / from €15 Lefkoşa (North Cyprus)"
+      fr: "dès 89,99 € international / dès 599 TL domestique / dès 15 € Lefkoşa (Chypre du Nord)"
+      es: "desde 89,99 € internacional / desde 599 TL nacional / desde 15 € Lefkoşa (Chipre del Norte)"
+      pt: "a partir de 89,99 € internacional / a partir de 599 TL doméstico / a partir de 15 € Lefkoşa (Chipre do Norte)"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: warn
+    statusLabel:
+      en: Allowed, terms underspecified
+      fr: Autorisé, conditions sous-précisées
+      es: Permitido, condiciones poco precisadas
+      pt: "Permitido, condições pouco especificadas"
+    detail:
+      en: "Priced for animals over 8 kg, but the site never states an upper weight ceiling for hold travel, and never explicitly says \"pets over 8 kg must fly in the hold\" — that's an inference from the pricing tiers, not a stated rule. Container must circulate air, be waterproof and escape-proof, per IATA Live Animals Regulations."
+      fr: "Tarifée pour les animaux de plus de 8 kg, mais le site ne donne jamais de plafond de poids pour la soute, et ne dit jamais explicitement que « les animaux de plus de 8 kg doivent voyager en soute » — c'est une déduction à partir des paliers tarifaires, pas une règle énoncée. Le conteneur doit assurer la circulation d'air, être étanche et anti-évasion, selon les réglementations IATA sur les animaux vivants."
+      es: "Con precio para animales de más de 8 kg, pero el sitio nunca indica un techo de peso para la bodega, ni dice nunca explícitamente que “las mascotas de más de 8 kg deben viajar en bodega” — es una inferencia a partir de los niveles de precio, no una norma declarada. El contenedor debe permitir la circulación de aire, ser impermeable y a prueba de fugas, según las Regulaciones IATA de Animales Vivos."
+      pt: "Precificado para animais com mais de 8 kg, mas o site nunca informa um teto de peso para o porão, nem diz explicitamente que “animais com mais de 8 kg devem viajar no porão” — isso é uma inferência a partir das faixas de preço, não uma regra declarada. O contêiner deve permitir circulação de ar, ser impermeável e à prova de fuga, segundo as Regulações IATA de Animais Vivos."
+    fee:
+      en: "from €119.99 international / from 850 TL domestic / from €20 Lefkoşa"
+      fr: "dès 119,99 € international / dès 850 TL domestique / dès 20 € Lefkoşa"
+      es: "desde 119,99 € internacional / desde 850 TL nacional / desde 20 € Lefkoşa"
+      pt: "a partir de 119,99 € internacional / a partir de 850 TL doméstico / a partir de 20 € Lefkoşa"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via Lufthansa Cargo / Turkish Cargo
+      fr: Via Lufthansa Cargo / Turkish Cargo
+      es: Vía Lufthansa Cargo / Turkish Cargo
+      pt: "Via Lufthansa Cargo / Turkish Cargo"
+    detail:
+      en: "A separate SunExpress Cargo department accepts live animals internationally \"only if veterinary facilities are available at both the departure and arrival stations,\" and domestically it also accepts newly hatched chickens, ornamental fish and frogs. Bookings route through Lufthansa Cargo (international) or Turkish Cargo (domestic), not the passenger booking system — the FAQ's \"animals must be accompanied by a passenger\" rule applies to the passenger-baggage process, not to this separate cargo/freight service."
+      fr: "Un département SunExpress Cargo distinct accepte les animaux vivants à l'international « seulement si des installations vétérinaires sont disponibles aux stations de départ et d'arrivée », et en domestique accepte aussi poussins nouveau-nés, poissons d'ornement et grenouilles. Les réservations passent par Lufthansa Cargo (international) ou Turkish Cargo (domestique), pas par le système de réservation passagers — la règle du FAQ « les animaux doivent être accompagnés d'un passager » s'applique au processus bagage passager, pas à ce service fret distinct."
+      es: "Un departamento aparte, SunExpress Cargo, acepta animales vivos a nivel internacional “solo si hay instalaciones veterinarias disponibles tanto en la estación de salida como en la de llegada”, y a nivel nacional también acepta pollitos recién nacidos, peces ornamentales y ranas. Las reservas pasan por Lufthansa Cargo (internacional) o Turkish Cargo (nacional), no por el sistema de reservas de pasajeros — la norma de la FAQ “los animales deben ir acompañados de un pasajero” se aplica al proceso de equipaje de pasajeros, no a este servicio de carga/flete separado."
+      pt: "Um departamento separado, SunExpress Cargo, aceita animais vivos internacionalmente “somente se houver instalações veterinárias disponíveis tanto na estação de partida quanto na de chegada”, e domesticamente também aceita pintinhos recém-nascidos, peixes ornamentais e sapos. As reservas passam pela Lufthansa Cargo (internacional) ou Turkish Cargo (doméstico), não pelo sistema de reservas de passageiros — a regra da FAQ “animais devem ser acompanhados por um passageiro” aplica-se ao processo de bagagem de passageiros, não a esse serviço separado de carga/frete."
+    fee:
+      en: Not published (quote via cargo agents)
+      fr: Non publié (devis via agences fret)
+      es: No publicado (presupuesto vía agencias de carga)
+      pt: "Não publicado (orçamento via agências de carga)"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Restricted breeds
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: "no"
+        label:
+          en: 12 bite-risk breeds, scope unstated
+          fr: 12 races à risque de morsure, portée non précisée
+          es: 12 razas de riesgo de mordedura, alcance no especificado
+          pt: "12 raças de risco de mordida, alcance não especificado"
+    note:
+      en: "Pitbull Terrier, American Pitbull, American Staffordshire Terrier, Staffordshire Bullterrier, Bullterrier, American Bulldog, Dogo Argentino, Fila Brasiliero, Kangal (Karabash), Caucasian Shepherd, Mastiff and Neapolitan Mastiff (plus crossbreeds) are banned \"in accordance with international aviation rules\" — a bite-risk list, not a brachycephalic one. The page never states whether this applies to cabin, hold, or both."
+      fr: "Pitbull Terrier, American Pitbull, American Staffordshire Terrier, Staffordshire Bullterrier, Bullterrier, American Bulldog, Dogo Argentino, Fila Brasiliero, Kangal (Karabash), Berger du Caucase, Mastiff et Mastiff napolitain (plus les croisements) sont interdits « conformément aux règles internationales de l'aviation » — une liste liée au risque de morsure, pas au nez écrasé. La page ne précise jamais si cela s'applique à la cabine, à la soute, ou aux deux."
+      es: "Pitbull Terrier, American Pitbull, American Staffordshire Terrier, Staffordshire Bullterrier, Bullterrier, American Bulldog, Dogo Argentino, Fila Brasiliero, Kangal (Karabash), Pastor del Cáucaso, Mastín y Mastín napolitano (además de cruces) están prohibidos “de acuerdo con las normas internacionales de aviación” — una lista por riesgo de mordedura, no braquicéfala. La página nunca aclara si se aplica a cabina, bodega, o ambas."
+      pt: "Pitbull Terrier, American Pitbull, American Staffordshire Terrier, Staffordshire Bullterrier, Bullterrier, American Bulldog, Dogo Argentino, Fila Brasiliero, Kangal (Karabash), Pastor do Cáucaso, Mastim e Mastim Napolitano (além de cruzamentos) são proibidos “de acordo com as regras internacionais de aviação” — uma lista por risco de mordida, não braquicefálica. A página nunca esclarece se isso vale para cabine, porão, ou ambos."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: No temperature restriction or seasonal embargo is published anywhere — notable since SunExpress's own headquarters, Antalya, is one of its hottest network airports in summer.
+    fr: Aucune restriction de température ni embargo saisonnier n'est publié — notable puisque le siège même de SunExpress, Antalya, est l'un des aéroports les plus chauds de son réseau en été.
+    es: "No se publica ninguna restricción de temperatura ni embargo estacional — algo notable, ya que la propia sede de SunExpress, Antalya, es uno de los aeropuertos más calurosos de su red en verano."
+    pt: "Nenhuma restrição de temperatura ou embargo sazonal é publicado — notável, já que a própria sede da SunExpress, Antalya, é um dos aeroportos mais quentes de sua rede no verão."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance & emotional support dogs
+      fr: Chiens d'assistance et de soutien émotionnel
+      es: Perros de asistencia y de apoyo emocional
+      pt: "Cães de assistência e de apoio emocional"
+    value:
+      en: "Guide dogs travel free, outside a cage, next to blind/deaf passengers (max 2 per cabin, 48 h notice, muzzle recommended not required). Unusually for 2026 — most airlines dropped this after 2021 — SunExpress also carries \"Emotional Dogs\" free of charge, in the cabin without a cage, on just a signed letter from a licensed mental-health professional (3 working days' notice). No breed, weight or size limit is stated for either category."
+      fr: "Les chiens guides voyagent gratuitement, hors cage, aux côtés des passagers malvoyants/malentendants (2 maximum par cabine, préavis de 48 h, muselière recommandée mais non obligatoire). Fait inhabituel pour 2026 — la plupart des compagnies ont abandonné cela après 2021 — SunExpress transporte aussi des « chiens émotionnels » gratuitement, en cabine sans cage, sur simple lettre signée d'un professionnel de santé mentale agréé (préavis de 3 jours ouvrés). Aucune limite de race, de poids ou de taille n'est indiquée pour l'une ou l'autre catégorie."
+      es: "Los perros guía viajan gratis, fuera de jaula, junto a pasajeros con discapacidad visual o auditiva (máximo 2 por cabina, 48 h de aviso, se recomienda pero no se exige bozal). De forma inusual para 2026 — la mayoría de las aerolíneas eliminaron esto después de 2021 — SunExpress también lleva “perros emocionales” de forma gratuita, en cabina sin jaula, con solo una carta firmada por un profesional de salud mental colegiado (3 días laborables de aviso). No se indica ningún límite de raza, peso o tamaño para ninguna de las dos categorías."
+      pt: "Cães-guia viajam de graça, fora da caixa, ao lado de passageiros com deficiência visual/auditiva (máximo 2 por cabine, aviso de 48 h, focinheira recomendada mas não exigida). De forma incomum para 2026 — a maioria das companhias abandonou isso depois de 2021 — a SunExpress também leva “cães emocionais” de graça, na cabine sem caixa, com apenas uma carta assinada por um profissional de saúde mental licenciado (aviso de 3 dias úteis). Nenhum limite de raça, peso ou tamanho é informado para nenhuma das duas categorias."
+goodToKnow:
+  - icon: 🌐
+    label:
+      en: "\"Emotional Dogs,\" not \"Emotional Support Dogs\""
+      fr: "« Chiens émotionnels », pas « chiens de soutien émotionnel »"
+      es: "“Perros emocionales”, no “perros de apoyo emocional”"
+      pt: "“Cães emocionais”, não “cães de apoio emocional”"
+    value:
+      en: The accessible-travel page section heading literally reads "Emotional Dogs" — right below a "Guide Dogs" heading — an awkward, likely unedited translation that's easy to stumble over when searching the page.
+      fr: L'intitulé de la section de la page voyage accessible affiche littéralement « Chiens émotionnels » — juste sous un intitulé « Chiens guides » — une traduction maladroite, probablement non relue, sur laquelle on trébuche facilement en cherchant sur la page.
+      es: "El encabezado de esa sección en la página de viaje accesible dice literalmente “Perros emocionales”, justo debajo de un encabezado “Perros guía” — una traducción torpe, probablemente sin revisar, con la que es fácil tropezar al buscar en la página."
+      pt: "O título dessa seção na página de viagem acessível diz literalmente “Cães Emocionais” — logo abaixo de um título “Cães-Guia” — uma tradução estranha, provavelmente não revisada, fácil de confundir ao procurar na página."
+  - icon: 🔢
+    label:
+      en: Fleet numbers that don't agree with each other
+      fr: Des chiffres de flotte qui ne concordent pas
+      es: Cifras de flota que no coinciden entre sí
+      pt: "Números de frota que não coincidem entre si"
+    value:
+      en: "Not pet-specific, but a sign of how current the site's copy is: the \"About\" page still describes a 2014 Boeing order with a 2024 delivery target that has already passed, while a separate 2025 press release states a current fleet of 85 aircraft and different, newer order numbers — two official pages, two different pictures of the same fleet."
+      fr: "Sans rapport avec les animaux, mais révélateur de l'actualité du contenu du site : la page « À propos » décrit encore une commande Boeing de 2014 avec un objectif de livraison 2024 déjà dépassé, tandis qu'un communiqué de presse 2025 distinct indique une flotte actuelle de 85 appareils et des chiffres de commande différents, plus récents — deux pages officielles, deux portraits différents de la même flotte."
+      es: "No es específico de mascotas, pero es una señal de cuán actualizado está el contenido del sitio: la página “Sobre nosotros” todavía describe un pedido de Boeing de 2014 con un objetivo de entrega para 2024 ya superado, mientras que un comunicado de prensa aparte de 2025 indica una flota actual de 85 aeronaves y cifras de pedido distintas y más recientes — dos páginas oficiales, dos retratos distintos de la misma flota."
+      pt: "Não é específico de animais, mas é um sinal de quão atualizado está o conteúdo do site: a página “Sobre” ainda descreve um pedido da Boeing de 2014 com uma meta de entrega para 2024 já ultrapassada, enquanto um comunicado de imprensa separado de 2025 indica uma frota atual de 85 aeronaves e números de pedido diferentes e mais recentes — duas páginas oficiais, dois retratos diferentes da mesma frota."
+book:
+  host: sunexpress.com
+  url: https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/
+sources:
+  en: 3 official SunExpress sources · last verified 8 August 2026
+  fr: 3 sources officielles SunExpress · dernière vérification 8 août 2026
+  es: 3 fuentes oficiales de SunExpress · última verificación 8 de agosto de 2026
+  pt: "3 fontes oficiais da SunExpress · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

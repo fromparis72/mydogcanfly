@@ -1,0 +1,258 @@
+id: airline_croatia_airlines
+mono: OU
+name: Croatia Airlines
+titleH1:
+  en: Flying with a dog on Croatia Airlines
+  fr: Voyager avec un chien sur Croatia Airlines
+  es: Volar con un perro en Croatia Airlines
+  pt: "Viajar com um cachorro na Croatia Airlines"
+metaDesc:
+  en: "Croatia Airlines pet policy: 8 kg in the cabin from €32, hold up to 18 kg in a shared crate — but the page gives two different carrier sizes for the same cabin bag."
+  fr: "Politique animaux Croatia Airlines : 8 kg en cabine dès 32 €, soute jusqu'à 18 kg en caisse partagée — mais la page donne deux tailles différentes pour le même sac cabine."
+  es: "Política de mascotas de Croatia Airlines: 8 kg en cabina desde 32 €, bodega hasta 18 kg en jaula compartida — pero la página da dos tamaños distintos para la misma bolsa de cabina."
+  pt: "Política de animais da Croatia Airlines: 8 kg na cabine a partir de 32 €, porão até 18 kg em caixa compartilhada — mas a página dá dois tamanhos diferentes para a mesma bolsa de cabine."
+chips:
+  - icon: 📍
+    label:
+      en: Croatia
+      fr: Croatie
+      es: Croacia
+      pt: "Croácia"
+  - icon: ✈️
+    label:
+      en: Star Alliance
+      fr: Star Alliance
+      es: Star Alliance
+      pt: "Star Alliance"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open with clear weight and crate rules, but the page contradicts itself on the cabin carrier's exact size, and the fighting-breed/brachycephalic tables leave one breed (American Bulldog) in an ambiguous spot.
+  fr: Cabine et soute sont ouvertes avec des règles de poids et de caisse claires, mais la page se contredit sur la taille exacte du sac cabine, et les tableaux races dangereuses/brachycéphales laissent une race (American Bulldog) dans une zone ambiguë.
+  es: "Cabina y bodega están abiertas con normas claras de peso y jaula, pero la página se contradice en el tamaño exacto de la bolsa de cabina, y las tablas de razas peligrosas/braquicéfalas dejan a una raza (American Bulldog) en una posición ambigua."
+  pt: "Cabine e porão estão abertos com regras claras de peso e caixa, mas a página se contradiz quanto ao tamanho exato da bolsa de cabine, e as tabelas de raças perigosas/braquicefálicas deixam uma raça (American Bulldog) em posição ambígua."
+ladder:
+  - flex: 35
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 50
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 18 kg (2 pets)
+  - flex: 15
+    color: "#9a6410"
+    label:
+      en: Over 18 kg
+      fr: Plus de 18 kg
+      es: Más de 18 kg
+      pt: "Acima de 18 kg"
+    sub:
+      en: excess/checked baggage or cargo
+      fr: excédent bagage ou fret
+      es: exceso de equipaje o carga
+      pt: "excesso de bagagem ou carga"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "8 kg (bag + pet), soft bag with a water-resistant bottom, stowed on the floor under the seat for the whole flight. One bag per passenger, at least 12 weeks old (15 weeks to/from Germany, 16 weeks to/from the USA). At most two pets of the same species on a given flight — one dog and one cat together isn't allowed. Not bookable online — contact a sales office or Contact Centre."
+      fr: "8 kg (sac + animal), sac souple à fond résistant à l'eau, gardé au sol sous le siège pendant tout le vol. Un sac par passager, à partir de 12 semaines (15 semaines vers/depuis l'Allemagne, 16 semaines vers/depuis les États-Unis). Deux animaux de la même espèce maximum sur un même vol — un chien et un chat ensemble n'est pas autorisé. Non réservable en ligne — contacter une agence ou le centre de contact."
+      es: "8 kg (bolsa + mascota), bolsa blanda con fondo resistente al agua, en el suelo bajo el asiento durante todo el vuelo. Una bolsa por pasajero, a partir de 12 semanas (15 semanas hacia/desde Alemania, 16 semanas hacia/desde EE. UU.). Como máximo dos mascotas de la misma especie en un mismo vuelo — no se permite un perro y un gato juntos. No se puede reservar en línea: contactar con una oficina de ventas o el centro de contacto."
+      pt: "8 kg (bolsa + animal), bolsa maleável com fundo resistente à água, mantida no chão sob o assento durante todo o voo. Uma bolsa por passageiro, a partir de 12 semanas (15 semanas para/da Alemanha, 16 semanas para/dos EUA). No máximo dois animais da mesma espécie em um mesmo voo — um cachorro e um gato juntos não é permitido. Não é possível reservar on-line — contate um escritório de vendas ou a central de atendimento."
+    fee:
+      en: "€32 domestic / €50 within Europe / €70 outside Europe"
+      fr: "32 € domestique / 50 € intra-Europe / 70 € hors Europe"
+      es: "32 € nacional / 50 € dentro de Europa / 70 € fuera de Europa"
+      pt: "32 € doméstico / 50 € dentro da Europa / 70 € fora da Europa"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "One crate holds up to 3 puppies/kittens from the same litter (≤8 kg each), or 2 adult pets up to 14 kg each. Two crate sizes: 80×55×55 cm and 125×75×85 cm (large size only on Airbus A319/A320/A220). Above 18 kg total (with crate), it can only travel as excess/checked baggage or cargo, in a metal/wire or CR82 container — rigid plastic isn't accepted at that weight."
+      fr: "Une caisse accueille jusqu'à 3 chiots/chatons d'une même portée (≤8 kg chacun), ou 2 animaux adultes jusqu'à 14 kg chacun. Deux tailles de caisse : 80×55×55 cm et 125×75×85 cm (grande taille seulement sur Airbus A319/A320/A220). Au-delà de 18 kg au total (avec la caisse), le transport ne peut se faire qu'en excédent bagage/enregistré ou en fret, dans un conteneur métal/grillage ou CR82 — le plastique rigide n'est pas accepté à ce poids."
+      es: "Una jaula admite hasta 3 cachorros/gatitos de la misma camada (≤8 kg cada uno), o 2 mascotas adultas de hasta 14 kg cada una. Dos tamaños de jaula: 80×55×55 cm y 125×75×85 cm (el tamaño grande solo en Airbus A319/A320/A220). Por encima de 18 kg en total (con la jaula), solo puede viajar como exceso de equipaje/facturado o como carga, en un contenedor metálico/de rejilla o CR82: el plástico rígido no se acepta a ese peso."
+      pt: "Uma caixa comporta até 3 filhotes de cachorro/gato da mesma ninhada (≤8 kg cada), ou 2 animais adultos de até 14 kg cada. Dois tamanhos de caixa: 80×55×55 cm e 125×75×85 cm (tamanho grande somente em Airbus A319/A320/A220). Acima de 18 kg no total (com a caixa), só pode viajar como excesso de bagagem/despachada ou como carga, em um contêiner de metal/tela ou CR82 — plástico rígido não é aceito nesse peso."
+    fee:
+      en: "€40–56 domestic / €100–200 within Europe / €150–300 outside Europe, by crate size"
+      fr: "40–56 € domestique / 100–200 € intra-Europe / 150–300 € hors Europe, selon la taille de caisse"
+      es: "40–56 € nacional / 100–200 € dentro de Europa / 150–300 € fuera de Europa, según el tamaño de la jaula"
+      pt: "40–56 € doméstico / 100–200 € dentro da Europa / 150–300 € fora da Europa, conforme o tamanho da caixa"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Contact required, no published terms
+      fr: Contact requis, conditions non publiées
+      es: Contacto requerido, condiciones no publicadas
+      pt: "Contato necessário, condições não publicadas"
+    detail:
+      en: The Croatia Airlines Cargo page mentions animals only in a general list of freight types, alongside fish and flowers, with no dedicated procedure, fees or requirements — write to cargo@croatiaairlines.hr directly.
+      fr: La page Croatia Airlines Cargo ne mentionne les animaux que dans une liste générale de types de fret, aux côtés du poisson et des fleurs, sans procédure, tarif ni exigence dédiés — écrire directement à cargo@croatiaairlines.hr.
+      es: "La página de Croatia Airlines Cargo solo menciona los animales dentro de una lista general de tipos de carga, junto al pescado y las flores, sin un procedimiento, tarifas o requisitos específicos: hay que escribir directamente a cargo@croatiaairlines.hr."
+      pt: "A página da Croatia Airlines Cargo menciona animais apenas em uma lista geral de tipos de carga, ao lado de peixe e flores, sem procedimento, tarifas ou requisitos dedicados — escreva diretamente para cargo@croatiaairlines.hr."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Fighting/listed breeds — hold banned
+      fr: Races dangereuses — soute interdite
+      es: Razas de riesgo — bodega prohibida
+      pt: "Raças de risco — porão proibido"
+    pills:
+      - cls: "no"
+        label:
+          en: Hold forbidden for listed breeds
+          fr: Soute interdite pour les races listées
+          es: Bodega prohibida para las razas listadas
+          pt: "Porão proibido para as raças listadas"
+    note:
+      en: "Croatia Airlines publishes two overlapping lists: dogs \"not acceptable in the baggage compartment\" (Affenpinscher, all Bulldog breeds except American Bulldog, all Pugs, American Pit Bull Terrier, American Staffordshire Terrier, Boston Terrier, Boxer, Brussels Griffon, Bull Mastiff, Bull Terrier, Chow Chow, English Toy Spaniel, Japanese Chin, Japanese Spaniel, Lhasa Apso, Pekinese, Pit Bull, Shar Pei, Shih Tzu, Staffordshire Bull Terrier) and cats (British Shorthair, Exotic Shorthair, Himalayan, Persian, Scottish Fold) — plus a separate \"fighting dog breeds\" list (American Bulldog, Caucasian Ovtcharka, Dogo Argentino, Karabash/Kangal, Rottweiler, Doberman) requiring a reinforced CR82 container if accepted in the hold. American Bulldog appears as the one named exception to the Bulldog ban, yet also appears on the fighting-breed list — the two tables aren't reconciled."
+      fr: "Croatia Airlines publie deux listes qui se recoupent : les chiens « non acceptables en soute » (Affenpinscher, tous les Bulldogs sauf l'American Bulldog, tous les Carlins, American Pit Bull Terrier, American Staffordshire Terrier, Boston Terrier, Boxer, Griffon bruxellois, Bull Mastiff, Bull Terrier, Chow Chow, Cavalier King Charles anglais, Chin japonais, Épagneul japonais, Lhassa Apso, Pékinois, Pit Bull, Shar Pei, Shih Tzu, Staffordshire Bull Terrier) et les chats (British Shorthair, Exotic Shorthair, Himalayen, Persan, Scottish Fold) — plus une liste séparée de « races de chiens de combat » (American Bulldog, Ovtcharka du Caucase, Dogo Argentino, Karabash/Kangal, Rottweiler, Doberman) exigeant un conteneur renforcé CR82 si accepté en soute. L'American Bulldog apparaît comme la seule exception nommée à l'interdiction des Bulldogs, mais figure aussi sur la liste des races de combat — les deux tableaux ne sont pas réconciliés."
+      es: "Croatia Airlines publica dos listas que se solapan: perros “no aceptables en la bodega” (Affenpinscher, todos los Bulldog salvo el American Bulldog, todos los Carlinos, American Pit Bull Terrier, American Staffordshire Terrier, Boston Terrier, Bóxer, Grifón de Bruselas, Bull Mastiff, Bull Terrier, Chow Chow, Spaniel inglés, Chin japonés, Spaniel japonés, Lhasa Apso, Pekinés, Pit Bull, Shar Pei, Shih Tzu, Staffordshire Bull Terrier) y gatos (British Shorthair, Exotic Shorthair, Himalayo, Persa, Scottish Fold) — más una lista aparte de “razas de perros de pelea” (American Bulldog, Ovcharka del Cáucaso, Dogo Argentino, Karabash/Kangal, Rottweiler, Dóberman) que exige un contenedor reforzado CR82 si se acepta en bodega. El American Bulldog aparece como la única excepción nombrada a la prohibición de Bulldogs, pero también figura en la lista de razas de pelea: las dos tablas no están conciliadas."
+      pt: "A Croatia Airlines publica duas listas que se sobrepõem: cães “não aceitáveis no compartimento de bagagem” (Affenpinscher, todos os Buldogues exceto o American Bulldog, todos os Pugs, American Pit Bull Terrier, American Staffordshire Terrier, Boston Terrier, Boxer, Grifão de Bruxelas, Bull Mastiff, Bull Terrier, Chow Chow, Spaniel Inglês, Chin Japonês, Spaniel Japonês, Lhasa Apso, Pequinês, Pit Bull, Shar Pei, Shih Tzu, Staffordshire Bull Terrier) e gatos (British Shorthair, Exotic Shorthair, Himalaia, Persa, Scottish Fold) — mais uma lista separada de “raças de cães de briga” (American Bulldog, Ovtcharka do Cáucaso, Dogo Argentino, Karabash/Kangal, Rottweiler, Doberman) que exige um contêiner reforçado CR82 se aceito no porão. O American Bulldog aparece como a única exceção nomeada à proibição de Buldogues, mas também figura na lista de raças de briga — as duas tabelas não são reconciliadas."
+  - icon: 😤
+    title:
+      en: Brachycephalic breeds — cabin only
+      fr: Races brachycéphales — cabine uniquement
+      es: Razas braquicéfalas — solo cabina
+      pt: "Raças braquicefálicas — só cabine"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only, ≤ 8 kg
+          fr: Cabine uniquement, ≤ 8 kg
+          es: Solo cabina, ≤ 8 kg
+          pt: "Só cabine, ≤ 8 kg"
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "\"Brachycephalic animals... can not be transported in cargo holds\" and can only fly in the cabin under 8 kg — except the page gives the carrier limit as 118 cm (general rule) in one place and 115 cm (brachycephalic-specific clause) in another, on the same page."
+      fr: "« Les animaux brachycéphales... ne peuvent pas être transportés en soute » et ne peuvent voler qu'en cabine, sous 8 kg — sauf que la page donne la limite de caisse à 118 cm (règle générale) à un endroit et à 115 cm (clause spécifique brachycéphale) à un autre, sur la même page."
+      es: "“Los animales braquicéfalos... no pueden transportarse en la bodega” y solo pueden volar en cabina por debajo de 8 kg — solo que la página da el límite de la jaula como 118 cm (norma general) en un lugar y 115 cm (cláusula específica para braquicéfalos) en otro, en la misma página."
+      pt: "“Animais braquicefálicos... não podem ser transportados no porão” e só podem voar na cabine com menos de 8 kg — só que a página dá o limite da caixa como 118 cm (regra geral) em um lugar e 115 cm (cláusula específica para braquicefálicos) em outro, na mesma página."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: No temperature restriction or seasonal embargo is published on the Animals page or the Cargo page.
+    fr: Aucune restriction de température ni embargo saisonnier n'est publié sur la page Animaux ou la page Fret.
+    es: "No se publica ninguna restricción de temperatura ni embargo estacional en la página de Animales ni en la de Carga."
+    pt: "Nenhuma restrição de temperatura ou embargo sazonal é publicado na página de Animais ou na de Carga."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: "Two overlapping sections exist. \"Trained service dogs\" (seeing-eye, hearing, disability, rescue and search dogs) travel free in the cabin on a leash, up to about 25 kg (heavier dogs possible on inquiry), and the owner must bring a muzzle \"in case it is needed.\" A separate \"Guide Dogs\" section says the dog travels harnessed but \"not muzzled or caged\" — the two sections don't say whether they're the same category or genuinely different ones."
+      fr: "Deux sections qui se recoupent existent. Les « chiens d'assistance entraînés » (chiens guides, d'aide auditive, d'assistance handicap, de sauvetage et de recherche) voyagent gratuitement en cabine en laisse, jusqu'à environ 25 kg (plus lourd possible sur demande), et le propriétaire doit apporter une muselière « au cas où elle serait nécessaire ». Une section séparée « Chiens guides » indique que le chien voyage en harnais mais « sans muselière ni cage » — les deux sections ne précisent pas s'il s'agit de la même catégorie ou de catégories réellement distinctes."
+      es: "Existen dos secciones que se solapan. Los “perros de servicio entrenados” (perros guía, de asistencia auditiva, de discapacidad, de rescate y de búsqueda) viajan gratis en cabina con correa, hasta unos 25 kg (más peso posible previa consulta), y el dueño debe llevar un bozal “por si hiciera falta”. Una sección aparte de “Perros guía” dice que el perro viaja con arnés pero “sin bozal ni jaula” — ninguna de las dos secciones aclara si se trata de la misma categoría o de categorías realmente distintas."
+      pt: "Existem duas seções que se sobrepõem. Os “cães de serviço treinados” (cães-guia, de assistência auditiva, de deficiência, de resgate e de busca) viajam de graça na cabine com guia, até cerca de 25 kg (mais peso possível mediante consulta), e o dono deve levar uma focinheira “caso seja necessária”. Uma seção separada de “Cães-guia” diz que o cão viaja com arreios, mas “sem focinheira nem gaiola” — nenhuma das duas seções esclarece se é a mesma categoria ou categorias realmente distintas."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: Two carrier sizes for the same bag
+      fr: Deux tailles de sac pour le même sac
+      es: Dos tamaños de bolsa para la misma bolsa
+      pt: "Dois tamanhos de bolsa para a mesma bolsa"
+    value:
+      en: The general cabin rule caps the carrier at 118 cm summed dimensions; the brachycephalic-specific clause on the same page caps it at 115 cm. We publish both figures rather than pick one — ask when you book if your dog is flat-faced and your bag is close to the limit.
+      fr: La règle générale cabine plafonne le sac à 118 cm de dimensions cumulées ; la clause spécifique brachycéphale, sur la même page, le plafonne à 115 cm. On publie les deux chiffres plutôt que d'en choisir un — pose la question à la réservation si ton chien a le nez écrasé et que ton sac est proche de la limite.
+      es: "La norma general de cabina limita la bolsa a 118 cm de dimensiones sumadas; la cláusula específica para braquicéfalos, en la misma página, la limita a 115 cm. Publicamos ambas cifras en lugar de elegir una: pregunta al reservar si tu perro tiene el hocico chato y tu bolsa está cerca del límite."
+      pt: "A regra geral de cabine limita a bolsa a 118 cm de dimensões somadas; a cláusula específica para braquicefálicos, na mesma página, limita a 115 cm. Publicamos os dois números em vez de escolher um — pergunte ao reservar se seu cachorro tem focinho achatado e sua bolsa está perto do limite."
+  - icon: 🌍
+    label:
+      en: UK and Ireland rules run in opposite directions
+      fr: Les règles UK et Irlande vont dans des sens opposés
+      es: Las normas de Reino Unido e Irlanda van en direcciones opuestas
+      pt: "As regras de Reino Unido e Irlanda vão em direções opostas"
+    value:
+      en: No pets Croatia→UK, but UK→Croatia is fine except from Gatwick; no hold pets Ireland→Croatia, but Croatia→Ireland is fine. Two different one-way bans on two different countries — an easy place to misread which direction you're flying.
+      fr: Pas d'animaux Croatie→UK, mais UK→Croatie est possible sauf depuis Gatwick ; pas d'animal en soute Irlande→Croatie, mais Croatie→Irlande est possible. Deux interdictions à sens unique différentes sur deux pays différents — facile à mal lire selon le sens du vol.
+      es: "No hay mascotas Croacia→Reino Unido, pero Reino Unido→Croacia sí, salvo desde Gatwick; no hay mascotas en bodega Irlanda→Croacia, pero Croacia→Irlanda sí. Dos prohibiciones de sentido único distintas en dos países distintos: fácil de leer mal según la dirección del vuelo."
+      pt: "Sem animais Croácia→Reino Unido, mas Reino Unido→Croácia está liberado, exceto de Gatwick; sem animais no porão Irlanda→Croácia, mas Croácia→Irlanda está liberado. Duas proibições de mão única diferentes em dois países diferentes — fácil de interpretar errado dependendo da direção do voo."
+  - icon: 📌
+    label:
+      en: A flight-number-specific exception
+      fr: Une exception propre à deux numéros de vol
+      es: Una excepción específica de número de vuelo
+      pt: "Uma exceção específica de número de voo"
+    value:
+      en: "The page carries this line: \"The request on transport of pets in the cargo hold as excess/checked baggage on flights OU4001 and OU4002 is currently not possible\" — a leftover operational notice naming two specific flight numbers, with no explanation given."
+      fr: "La page contient cette ligne : « La demande de transport d'animaux en soute comme bagage excédentaire/enregistré sur les vols OU4001 et OU4002 n'est actuellement pas possible » — un avis opérationnel résiduel citant deux numéros de vol précis, sans aucune explication."
+      es: "La página contiene esta línea: “La solicitud de transporte de mascotas en la bodega como equipaje excedente/facturado en los vuelos OU4001 y OU4002 no es posible actualmente” — un aviso operativo residual que cita dos números de vuelo concretos, sin ninguna explicación."
+      pt: "A página contém esta linha: “O pedido de transporte de animais no porão como bagagem excedente/despachada nos voos OU4001 e OU4002 não é possível no momento” — um aviso operacional residual citando dois números de voo específicos, sem nenhuma explicação."
+book:
+  host: croatiaairlines.com
+  url: https://www.croatiaairlines.com/Baggage/Animals
+sources:
+  en: 2 official Croatia Airlines sources · last verified 8 August 2026
+  fr: 2 sources officielles Croatia Airlines · dernière vérification 8 août 2026
+  es: 2 fuentes oficiales de Croatia Airlines · última verificación 8 de agosto de 2026
+  pt: "2 fontes oficiais da Croatia Airlines · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

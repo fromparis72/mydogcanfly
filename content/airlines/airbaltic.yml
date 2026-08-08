@@ -1,0 +1,289 @@
+id: airline_airbaltic
+mono: BT
+name: airBaltic
+titleH1:
+  en: Flying with a dog on airBaltic
+  fr: Voyager avec un chien sur airBaltic
+  es: Volar con un perro en airBaltic
+  pt: "Viajar com um cachorro na airBaltic"
+metaDesc:
+  en: "airBaltic pet policy: 8 kg in the cabin for €70, hold up to 75 kg, but a self-contradicting rule on UK/Ireland routes worth reading twice."
+  fr: "Politique animaux airBaltic : 8 kg en cabine pour 70 €, soute jusqu'à 75 kg, mais une règle qui se contredit elle-même sur les vols UK/Irlande — à lire deux fois."
+  es: "Política de mascotas de airBaltic: 8 kg en cabina por 70 €, bodega hasta 75 kg, pero una norma que se contradice a sí misma en las rutas Reino Unido/Irlanda — hay que leerla dos veces."
+  pt: "Política de animais da airBaltic: 8 kg na cabine por 70 €, porão até 75 kg, mas uma regra que se contradiz nas rotas Reino Unido/Irlanda — vale a pena ler duas vezes."
+chips:
+  - icon: 📍
+    label:
+      en: Latvia
+      fr: Lettonie
+      es: Letonia
+      pt: "Letônia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open and reasonably priced, but airBaltic's own route-restriction rules contradict each other on UK, Ireland and Gatwick/Dublin flights — check by phone before assuming either way.
+  fr: Cabine et soute sont ouvertes et à un prix raisonnable, mais les règles de restriction de routes d'airBaltic se contredisent elles-mêmes sur les vols UK, Irlande et Gatwick/Dublin — vérifie par téléphone avant de conclure dans un sens ou dans l'autre.
+  es: Cabina y bodega están abiertas y a un precio razonable, pero las propias normas de restricción de rutas de airBaltic se contradicen en los vuelos a Reino Unido, Irlanda y Gatwick/Dublín — confírmalo por teléfono antes de dar nada por hecho.
+  pt: "Cabine e porão estão abertos e com preço razoável, mas as próprias regras de restrição de rotas da airBaltic se contradizem nos voos para Reino Unido, Irlanda e Gatwick/Dublin — confirme por telefone antes de presumir qualquer coisa."
+ladder:
+  - flex: 30
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 55
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: ≤ 75 kg
+  - flex: 15
+    color: "#9a6410"
+    label:
+      en: Over 75 kg
+      fr: Plus de 75 kg
+      es: Más de 75 kg
+      pt: "Acima de 75 kg"
+    sub:
+      en: cargo, via agents
+      fr: fret, via agences
+      es: carga, vía agencias
+      pt: "carga, via agências"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: 8 kg (pet + carrier), closed waterproof and breathable carrier up to 55 × 40 × 23 cm, stowed under the seat in front of you. One carrier per person; two pets of the same kind may share a carrier if they fit. No seats in the first row or at an emergency exit. Contact airBaltic before booking to check space, then pay online.
+      fr: 8 kg (animal + caisse), caisse fermée, imperméable et aérée jusqu'à 55 × 40 × 23 cm, rangée sous le siège devant toi. Une caisse par personne ; deux animaux de la même espèce peuvent partager une caisse s'ils y tiennent. Ni première rangée ni sortie de secours. Contacter airBaltic avant de réserver pour vérifier la place, puis payer en ligne.
+      es: "8 kg (mascota + jaula), jaula cerrada, impermeable y ventilada de hasta 55 × 40 × 23 cm, guardada bajo el asiento delantero. Una jaula por persona; dos mascotas de la misma especie pueden compartir jaula si caben. Ni primera fila ni salida de emergencia. Contactar con airBaltic antes de reservar para comprobar el espacio disponible, y pagar en línea después."
+      pt: "8 kg (animal + caixa), caixa fechada, impermeável e ventilada de até 55 × 40 × 23 cm, guardada sob o assento da frente. Uma caixa por pessoa; dois animais da mesma espécie podem dividir uma caixa se couberem. Nem primeira fila nem saída de emergência. Contate a airBaltic antes de reservar para checar disponibilidade, e pague on-line depois."
+    fee:
+      en: "€70 per crate, per direction"
+      fr: "70 € par caisse, par direction"
+      es: "70 € por jaula, por trayecto"
+      pt: "70 € por caixa, por trecho"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Up to 75 kg (pet + crate) — except Amsterdam flights, capped at 39 kg. Hard plastic or wood crate up to 84 × 142 × 84 cm, no wheels, at least 2 handles above 32 kg. Two pets of the same kind up to 14 kg each may share a crate, or three young animals of the same litter under 6 months. Arrive at least 2 hours before departure.
+      fr: Jusqu'à 75 kg (animal + caisse) — sauf vols Amsterdam, plafonnés à 39 kg. Caisse rigide en plastique ou en bois jusqu'à 84 × 142 × 84 cm, sans roulettes, au moins 2 poignées au-delà de 32 kg. Deux animaux de la même espèce jusqu'à 14 kg chacun peuvent partager une caisse, ou trois jeunes animaux de la même portée de moins de 6 mois. Arriver au moins 2 h avant le départ.
+      es: "Hasta 75 kg (mascota + jaula), salvo vuelos a Ámsterdam, limitados a 39 kg. Jaula rígida de plástico o madera de hasta 84 × 142 × 84 cm, sin ruedas, al menos 2 asas por encima de 32 kg. Dos mascotas de la misma especie de hasta 14 kg cada una pueden compartir jaula, o tres crías de la misma camada menores de 6 meses. Llegar al menos 2 h antes de la salida."
+      pt: "Até 75 kg (animal + caixa) — exceto voos para Amsterdã, limitados a 39 kg. Caixa rígida de plástico ou madeira de até 84 × 142 × 84 cm, sem rodas, pelo menos 2 alças acima de 32 kg. Dois animais da mesma espécie de até 14 kg cada podem dividir uma caixa, ou três filhotes da mesma ninhada com menos de 6 meses. Chegue com pelo menos 2 h de antecedência."
+    fee:
+      en: "€130 (1–32 kg) or €220 (33–75 kg) per crate, per direction"
+      fr: "130 € (1–32 kg) ou 220 € (33–75 kg) par caisse, par direction"
+      es: "130 € (1–32 kg) o 220 € (33–75 kg) por jaula, por trayecto"
+      pt: "130 € (1–32 kg) ou 220 € (33–75 kg) por caixa, por trecho"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via agents, no published rate
+      fr: Via agences, tarif non publié
+      es: Vía agencias, sin tarifa publicada
+      pt: "Via agências, sem tarifa publicada"
+    detail:
+      en: For animals over 75 kg or shipped without their owner. airBaltic is an EU-authorised animal carrier, but pricing and crate specifics are handled entirely by third-party IATA-certified cargo agents, not published on airBaltic's own site.
+      fr: Pour les animaux de plus de 75 kg ou expédiés sans leur propriétaire. airBaltic est un transporteur animalier agréé UE, mais tarifs et gabarits de caisse sont entièrement gérés par des agences fret certifiées IATA tierces, non publiés sur le site d'airBaltic.
+      es: "Para animales de más de 75 kg o enviados sin su propietario. airBaltic es un transportista animal autorizado por la UE, pero las tarifas y las especificaciones de la jaula las gestionan por completo agencias de carga certificadas IATA externas, no publicadas en el sitio de airBaltic."
+      pt: "Para animais com mais de 75 kg ou enviados sem o dono. A airBaltic é uma transportadora de animais autorizada pela UE, mas tarifas e especificações de caixa são geridas inteiramente por agências de carga terceirizadas certificadas pela IATA, não publicadas no site da airBaltic."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+fareList:
+  rows:
+    - label:
+        en: Cabin
+        fr: Cabine
+        es: Cabina
+        pt: "Cabine"
+      value:
+        en: "€70"
+        fr: "70 €"
+        es: "70 €"
+        pt: "70 €"
+    - label:
+        en: Hold — 1–32 kg
+        fr: Soute — 1–32 kg
+        es: Bodega — 1–32 kg
+        pt: "Porão — 1–32 kg"
+      value:
+        en: "€130"
+        fr: "130 €"
+        es: "130 €"
+        pt: "130 €"
+    - label:
+        en: Hold — 33–75 kg
+        fr: Soute — 33–75 kg
+        es: Bodega — 33–75 kg
+        pt: "Porão — 33–75 kg"
+      value:
+        en: "€220"
+        fr: "220 €"
+        es: "220 €"
+        pt: "220 €"
+  note:
+    en: Flat fees, not zoned by distance. Non-refundable once paid; a multi-airline itinerary pays the fee to each carrier separately.
+    fr: Tarifs fixes, non zonés par distance. Non remboursables une fois payés ; un itinéraire multi-compagnies paie le tarif à chaque transporteur séparément.
+    es: "Tarifas fijas, sin zonificar por distancia. No reembolsables una vez pagadas; un itinerario con varias aerolíneas paga la tarifa a cada transportista por separado."
+    pt: "Tarifas fixas, sem zoneamento por distância. Não reembolsáveis após o pagamento; um itinerário com várias companhias paga a tarifa a cada transportadora separadamente."
+restrictions:
+  - icon: 🐶
+    title:
+      en: Restricted breeds
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: neutral
+        label:
+          en: Not published
+          fr: Non publié
+          es: No publicado
+          pt: "Não publicado"
+    note:
+      en: "airBaltic publishes no breed list at all — no brachycephalic ban, no fighting-breed ban, for cabin or hold. This is genuinely unusual among the airlines we survey; most publish at least a snub-nosed-breed caution."
+      fr: "airBaltic ne publie aucune liste de races — ni interdiction brachycéphale, ni interdiction de races dites dangereuses, en cabine comme en soute. C'est vraiment inhabituel parmi les compagnies étudiées ; la plupart publient au moins un avertissement pour les races au nez écrasé."
+      es: "airBaltic no publica ninguna lista de razas: ni prohibición para razas braquicéfalas ni para razas consideradas peligrosas, en cabina ni en bodega. Es realmente inusual entre las aerolíneas que estudiamos; la mayoría publica al menos una advertencia para razas de hocico chato."
+      pt: "A airBaltic não publica nenhuma lista de raças — nem proibição para braquicefálicos nem para raças consideradas perigosas, em cabine ou porão. É realmente incomum entre as companhias que estudamos; a maioria publica ao menos um aviso para raças de focinho achatado."
+  - icon: 🐹
+    title:
+      en: Species accepted
+      fr: Espèces acceptées
+      es: Especies aceptadas
+      pt: "Espécies aceitas"
+    pills:
+      - cls: ok
+        label:
+          en: Dogs & cats
+          fr: Chiens & chats
+          es: Perros y gatos
+          pt: "Cachorros e gatos"
+      - cls: "no"
+        label:
+          en: Other species → cargo only
+          fr: Autres espèces → fret uniquement
+          es: Otras especies → solo carga
+          pt: "Outras espécies → apenas carga"
+    note:
+      en: Only cats and dogs travel as accompanied pets. Rabbits, birds and other species must be shipped as cargo.
+      fr: Seuls les chats et les chiens voyagent comme animaux accompagnés. Lapins, oiseaux et autres espèces doivent être expédiés en fret.
+      es: Solo gatos y perros viajan como mascotas acompañadas. Conejos, aves y otras especies deben enviarse como carga.
+      pt: "Somente gatos e cachorros viajam como animais acompanhados. Coelhos, aves e outras espécies precisam ser enviados como carga."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: airBaltic only offers generic reassurance ("cabin is climate-controlled," "cargo area is pressurized") — no °C threshold and no seasonal embargo are published.
+    fr: airBaltic ne donne que des formules rassurantes génériques (« cabine climatisée », « soute pressurisée ») — aucun seuil en °C, aucun embargo saisonnier publié.
+    es: "airBaltic solo ofrece frases genéricas tranquilizadoras (“cabina climatizada”, “bodega presurizada”): no publica ningún umbral en °C ni ningún embargo estacional."
+    pt: "A airBaltic só oferece frases genéricas tranquilizadoras (“cabine climatizada”, “porão pressurizado”) — nenhum limite em °C, nenhum embargo sazonal publicado."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: "Free, no carrier and no weight limit, sits at your feet. Certificate needed from ADI, IGDF, ADEu or EGDFEF (UK flights: ADI or IGDF only, plus a mandatory UK pre-approval letter and contact with the Animal Reception Center 72 h ahead). Emotional support animals are explicitly not accepted — only as a standard paid pet."
+      fr: "Gratuit, sans caisse ni limite de poids, aux pieds du passager. Certificat requis d'ADI, IGDF, ADEu ou EGDFEF (vols UK : ADI ou IGDF uniquement, plus une lettre d'approbation préalable UK obligatoire et un contact avec l'Animal Reception Center 72 h avant). Les animaux de soutien émotionnel ne sont explicitement pas acceptés — seulement comme animal payant classique."
+      es: "Gratis, sin jaula ni límite de peso, a los pies del pasajero. Se necesita certificado de ADI, IGDF, ADEu o EGDFEF (vuelos al Reino Unido: solo ADI o IGDF, más una carta de preaprobación obligatoria del Reino Unido y contacto con el Animal Reception Center 72 h antes). Los animales de apoyo emocional no se aceptan explícitamente — solo como mascota de pago estándar."
+      pt: "Grátis, sem caixa nem limite de peso, aos pés do passageiro. Certificado necessário de ADI, IGDF, ADEu ou EGDFEF (voos para o Reino Unido: apenas ADI ou IGDF, mais uma carta de pré-aprovação obrigatória do Reino Unido e contato com o Animal Reception Center 72 h antes). Animais de apoio emocional não são explicitamente aceitos — apenas como animal de estimação pago padrão."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: A route rule that contradicts itself
+      fr: Une règle de route qui se contredit elle-même
+      es: Una norma de ruta que se contradice a sí misma
+      pt: "Uma regra de rota que se contradiz"
+    value:
+      en: "airBaltic's own FAQ states three route rules in a row: to the UK, Ireland, Iceland and the UAE, no cabin or hold — cargo only. From the UK, Ireland, Iceland and the UAE, hold IS allowed. From London Gatwick and Dublin specifically, hold is NOT allowed. Gatwick is in the UK and Dublin is in Ireland — so rules two and three describe overlapping routes with opposite answers, on the same page. Call to confirm before booking either direction."
+      fr: "Le FAQ d'airBaltic pose trois règles de route à la suite : vers le UK, l'Irlande, l'Islande et les Émirats, ni cabine ni soute — fret uniquement. Depuis le UK, l'Irlande, l'Islande et les Émirats, la soute EST autorisée. Depuis Londres Gatwick et Dublin en particulier, la soute n'est PAS autorisée. Or Gatwick est au Royaume-Uni et Dublin en Irlande — les règles deux et trois décrivent des trajets qui se recoupent avec des réponses opposées, sur la même page. Appelle pour confirmer avant de réserver, dans un sens comme dans l'autre."
+      es: "El FAQ de airBaltic enumera tres normas de ruta seguidas: hacia Reino Unido, Irlanda, Islandia y Emiratos, ni cabina ni bodega — solo carga. Desde Reino Unido, Irlanda, Islandia y Emiratos, la bodega SÍ está permitida. Desde Londres Gatwick y Dublín en concreto, la bodega NO está permitida. Pero Gatwick está en el Reino Unido y Dublín en Irlanda: las normas dos y tres describen rutas que se solapan con respuestas opuestas, en la misma página. Llama para confirmarlo antes de reservar, en cualquier dirección."
+      pt: "O FAQ da airBaltic lista três regras de rota seguidas: para Reino Unido, Irlanda, Islândia e Emirados, nem cabine nem porão — só carga. De Reino Unido, Irlanda, Islândia e Emirados, o porão É permitido. De Londres Gatwick e Dublin especificamente, o porão NÃO é permitido. Mas Gatwick fica no Reino Unido e Dublin na Irlanda — as regras dois e três descrevem rotas que se sobrepõem com respostas opostas, na mesma página. Ligue para confirmar antes de reservar, em qualquer direção."
+  - icon: 🔢
+    label:
+      en: Two different destination counts
+      fr: Deux nombres de destinations différents
+      es: Dos cifras de destinos diferentes
+      pt: "Dois números de destinos diferentes"
+    value:
+      en: "airBaltic's consumer site says \"more than 80 destinations,\" while its corporate site says \"over 100 destinations\" — two official airBaltic web properties, two different figures."
+      fr: "Le site grand public d'airBaltic annonce « plus de 80 destinations », tandis que son site corporate dit « plus de 100 destinations » — deux sites officiels airBaltic, deux chiffres différents."
+      es: "El sitio de consumidor de airBaltic dice “más de 80 destinos”, mientras que su sitio corporativo dice “más de 100 destinos”: dos webs oficiales de airBaltic, dos cifras distintas."
+      pt: "O site voltado ao consumidor da airBaltic diz “mais de 80 destinos”, enquanto o site corporativo diz “mais de 100 destinos” — dois sites oficiais da airBaltic, dois números diferentes."
+  - icon: 🔢
+    label:
+      en: No published per-aircraft cap
+      fr: Aucun plafond par avion publié
+      es: Sin límite publicado por avión
+      pt: "Sem limite publicado por avião"
+    value:
+      en: "The page states \"there's a limit to how many pets can fly on each flight\" without ever giving the number — you only find out by contacting airBaltic."
+      fr: "La page affirme qu'« il existe une limite au nombre d'animaux pouvant voyager par vol » sans jamais donner ce chiffre — on ne le connaît qu'en contactant airBaltic."
+      es: "La página afirma que “existe un límite al número de mascotas que pueden volar en cada vuelo” sin dar nunca esa cifra — solo se conoce contactando con airBaltic."
+      pt: "A página afirma que “há um limite de quantos animais podem voar em cada voo” sem nunca informar o número — só se descobre entrando em contato com a airBaltic."
+book:
+  host: airbaltic.com
+  url: https://www.airbaltic.com/en/assisted-travel/travelling-with-pets
+sources:
+  en: 3 official airBaltic sources · last verified 8 August 2026
+  fr: 3 sources officielles airBaltic · dernière vérification 8 août 2026
+  es: 3 fuentes oficiales de airBaltic · última verificación 8 de agosto de 2026
+  pt: "3 fontes oficiais da airBaltic · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

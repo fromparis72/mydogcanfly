@@ -108,6 +108,48 @@ function toFired(r: Rule, locale: string): FiredRule {
   };
 }
 
+type PolicyMode = { allowed?: boolean; fee?: string; source?: Rule["source"] };
+
+/* Repli "fiche → refus" (décision utilisateur, 08/2026, mesurée avant correction : 24 compagnies sur 102
+   n'ont AUCUNE règle qui leur soit propre dans rules.json — les compagnies "fiche seule" — dont 23 ont une
+   fiche qui documente une vraie restriction que le moteur ignorait totalement. `denied` restait toujours
+   false pour elles (aucune règle à évaluer), donc CHAQUE mode ressortait "allowed:true" quoi que dise la
+   fiche. Cas réel constaté : Batik Air Malaysia, dont la fiche dit "aucune politique animaux publiée",
+   ressortait "Cabin OK" dans une vraie requête Finder.
+   On comble ce trou avec `premium.policy.<mode>.allowed`, déjà dérivé et sourcé par derivePolicy() dans
+   ingest-airlines.mjs à partir de la fiche elle-même — on n'invente aucune donnée nouvelle, on arrête
+   seulement d'ignorer une donnée déjà vérifiée. Catégorie "placement" : denyReasonsOf() la traduit en
+   "<mode>_unavailable", exactement le motif qu'aurait porté une vraie règle rules.json.
+   Ce repli ne joue QUE si la compagnie n'a aucune règle propre (voir airlineOwnRules.length === 0 dans
+   evaluate()) : dès qu'une entrée rules.json existe pour elle, rules.json reprend intégralement la main
+   et ce repli ne s'applique plus jamais — il ne fait que combler l'absence, jamais la contredire. */
+function policyFallbackDenyRule(airlineId: string, placement: (typeof PLACEMENTS)[number], mode: PolicyMode): Rule {
+  const source: Rule["source"] = mode.source ?? {
+    url: "", source_type: "other", verified_date: "1970-01-01", review_due: "1970-01-01",
+    confidence: 1, reviewer: "unknown", history: [],
+  };
+  const label = { cabin: "cabin", hold: "hold", cargo: "cargo" } as const;
+  const labelFr = { cabin: "cabine", hold: "soute", cargo: "fret" } as const;
+  const labelEs = { cabin: "cabina", hold: "bodega", cargo: "carga" } as const;
+  const labelPt = { cabin: "cabine", hold: "porão", cargo: "carga" } as const;
+  return {
+    id: `rule_fallback_policy_${airlineId}_${placement}`,
+    scope: { type: "airline", id: airlineId },
+    category: "placement",
+    criticality: "high",
+    applies_when: { all: [] },
+    effect: { action: "deny", placement: [placement] },
+    params: {},
+    rationale: `No documented ${label[placement]} option per the airline's own published policy.`,
+    rationale_i18n: {
+      fr: `Aucune option ${labelFr[placement]} documentée dans la politique officielle de la compagnie.`,
+      es: `Ninguna opción de ${labelEs[placement]} documentada en la política oficial de la aerolínea.`,
+      pt: `Nenhuma opção de ${labelPt[placement]} documentada na política oficial da companhia.`,
+    },
+    source,
+  };
+}
+
 /**
  * Decision Engine (ADR-0013): pure evaluation of the normalized knowledge base against a request.
  * No narration, no localization — that is the Explanation Engine's job.
@@ -186,16 +228,26 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
   // Global rules (e.g. the universal cabin size/weight backstop) apply to every airline.
   const globalRules = kb.rules.filter((r) => r.scope.type === "global");
   const airlineDecisionsRaw = airlines.map((a): AirlineDecision & { _plausible: boolean } => {
-    const airlineRules = [...kb.rules.filter((r) => r.scope.type === "airline" && r.scope.id === a.id), ...globalRules];
+    const airlineOwnRules = kb.rules.filter((r) => r.scope.type === "airline" && r.scope.id === a.id);
+    const airlineRules = [...airlineOwnRules, ...globalRules];
+    // Fiche-derived policy (see policyFallbackDenyRule above) — the ONLY source of "allowed" left for the
+    // 24 airlines that have a fiche but no rules.json entry of their own yet.
+    const policy = (a as { premium?: { policy?: Record<string, PolicyMode> } }).premium?.policy;
     // Evaluate ALL placements (cabin/hold/cargo) so the comparison cards are complete;
     // the requested placement is applied later, when computing the headline verdict.
     const perPlacement = PLACEMENTS.map((p) => {
       const ctx: Ctx = { ...baseCtx, placement: p };
       const fires = airlineRules.filter((r) => evalPredicate(r.applies_when, ctx));
-      const denied = fires.some(
+      let denied = fires.some(
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
       );
-      return { placement: p, allowed: !denied, fires };
+      let allFires = fires;
+      // Repli fiche : seulement quand rules.json ne dit RIEN sur cette compagnie (voir policyFallbackDenyRule).
+      if (!denied && airlineOwnRules.length === 0 && policy?.[p]?.allowed === false) {
+        denied = true;
+        allFires = [...fires, policyFallbackDenyRule(a.id, p, policy[p])];
+      }
+      return { placement: p, allowed: !denied, fires: allFires };
     });
     // Does this airline carry pets at all, structurally? Re-evaluate with a neutral small non-brachy dog:
     // a low-cost that never carries pets stays false; an airline that takes pets but rules THIS dog out
@@ -203,7 +255,12 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     const neutralCtx: Ctx = { ...baseCtx, "dog.weight_kg": 5, "dog.brachycephalic": false, "dog.size": "small" };
     const carries_pets = PLACEMENTS.some((p) => {
       const nf = airlineRules.filter((r) => evalPredicate(r.applies_when, { ...neutralCtx, placement: p }));
-      return !nf.some((r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)));
+      const deniedByRules = nf.some(
+        (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
+      );
+      if (deniedByRules) return false;
+      if (airlineOwnRules.length === 0 && policy?.[p]?.allowed === false) return false;
+      return true;
     });
 
     const hubs = (a as { hub_airport_ids?: string[] }).hub_airport_ids ?? [];
@@ -282,7 +339,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     }
     const fired = dedupe(perPlacement.flatMap((x) => x.fires.map((r) => toFired(r, req.locale))));
     // Published fee for the primary accepted placement (cabin > hold > cargo), when the airline states one.
-    const policy = (a as { premium?: { policy?: Record<string, { fee?: string }> } }).premium?.policy;
+    // (`policy` was already computed above, before perPlacement — reused here, not redeclared.)
     const fees = (a as { fees?: Record<string, string | undefined> }).fees;
     const okPlacement = perPlacement.find((x) => x.allowed)?.placement;
     const fee = okPlacement ? (policy?.[okPlacement]?.fee ?? fees?.[okPlacement]) : undefined;

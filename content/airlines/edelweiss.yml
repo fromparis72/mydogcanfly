@@ -1,0 +1,235 @@
+id: airline_edelweiss
+mono: WK
+name: Edelweiss Air
+titleH1:
+  en: Flying with a dog on Edelweiss Air
+  fr: Voyager avec un chien sur Edelweiss Air
+  es: Volar con un perro en Edelweiss Air
+  pt: "Viajar com um cachorro na Edelweiss Air"
+metaDesc:
+  en: "Edelweiss pet policy: 8 kg in the cabin from CHF 90, hold in sized kennels — priced in a table still framed as a \"future\" change eight months after it took effect."
+  fr: "Politique animaux Edelweiss : 8 kg en cabine dès 90 CHF, soute en cages calibrées — tarifée dans un tableau encore présenté comme un changement « à venir » huit mois après son entrée en vigueur."
+  es: "Política de mascotas de Edelweiss: 8 kg en cabina desde 90 CHF, bodega en jaulas de tamaño estándar — con precios en una tabla que todavía se presenta como un cambio “futuro” ocho meses después de entrar en vigor."
+  pt: "Política de animais da Edelweiss: 8 kg na cabine a partir de 90 CHF, porão em gaiolas de tamanho padrão — precificado em uma tabela ainda apresentada como uma mudança “futura” oito meses depois de entrar em vigor."
+chips:
+  - icon: 📍
+    label:
+      en: Switzerland
+      fr: Suisse
+      es: Suiza
+      pt: "Suíça"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open, with a clear kennel-size table and generous service-dog terms — but the fee page reads as stale, and cargo for an unaccompanied pet is entirely outsourced to sister carrier SWISS.
+  fr: Cabine et soute sont ouvertes, avec un tableau de cages clair et des conditions généreuses pour les chiens d'assistance — mais la page tarifaire semble périmée, et le fret pour un animal non accompagné est entièrement délégué à SWISS, la compagnie sœur.
+  es: "Cabina y bodega están abiertas, con una tabla de jaulas clara y condiciones generosas para perros de servicio — pero la página de tarifas parece desactualizada, y la carga para una mascota no acompañada está totalmente delegada a SWISS, la aerolínea hermana."
+  pt: "Cabine e porão estão abertos, com uma tabela de gaiolas clara e condições generosas para cães de serviço — mas a página de tarifas parece desatualizada, e a carga para um animal não acompanhado é totalmente terceirizada para a SWISS, companhia irmã."
+ladder:
+  - flex: 30
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 50
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub: "≤ 14 kg per kennel"
+  - flex: 20
+    color: "#9a6410"
+    label:
+      en: Unaccompanied
+      fr: Non accompagné
+      es: No acompañada
+      pt: "Não acompanhado"
+    sub:
+      en: via SWISS WorldCargo
+      fr: via SWISS WorldCargo
+      es: vía SWISS WorldCargo
+      pt: "via SWISS WorldCargo"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "8 kg (dog/cat + carrier), waterproof soft container up to 55 × 40 × 23 cm, stowed under the seat, closed for the whole flight. At least 12 weeks old (6 months for USA flights). No bulkhead or emergency-exit seats. Max 2 animals per person. Book up to 4 days ahead via the Service Center."
+      fr: "8 kg (chien/chat + caisse), caisse souple imperméable jusqu'à 55 × 40 × 23 cm, sous le siège, fermée pendant tout le vol. À partir de 12 semaines (6 mois pour les vols vers les États-Unis). Ni cloison ni sortie de secours. Maximum 2 animaux par personne. Réservation jusqu'à 4 jours avant via le Service Center."
+      es: "8 kg (perro/gato + jaula), contenedor blando impermeable de hasta 55 × 40 × 23 cm, bajo el asiento, cerrado durante todo el vuelo. A partir de 12 semanas (6 meses para vuelos a EE. UU.). Ni mamparo ni salida de emergencia. Máximo 2 animales por persona. Reserva hasta 4 días antes a través del Service Center."
+      pt: "8 kg (cachorro/gato + caixa), recipiente maleável impermeável de até 55 × 40 × 23 cm, sob o assento, fechado durante todo o voo. A partir de 12 semanas (6 meses para voos para os EUA). Nem divisória nem saída de emergência. Máximo de 2 animais por pessoa. Reserve até 4 dias antes pelo Service Center."
+    fee:
+      en: "CHF 90 Europe / CHF 105 Levant & Egypt / CHF 115–140 intercontinental (from Dec 2025 rates)"
+      fr: "90 CHF Europe / 105 CHF Levant & Égypte / 115–140 CHF intercontinental (tarifs en vigueur depuis déc. 2025)"
+      es: "90 CHF Europa / 105 CHF Levante y Egipto / 115–140 CHF intercontinental (tarifas vigentes desde dic. 2025)"
+      pt: "90 CHF Europa / 105 CHF Levante e Egito / 115–140 CHF intercontinental (tarifas em vigor desde dez. 2025)"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "Kennel sizes from 57×37×36 cm up to 125×75×85 cm. Up to two animals of comparable size, 14 kg or less each, may share a kennel. No kennel rental at Edelweiss — buy one at Zurich Airport (Swissport counter 124) or a pet shop. No food or drink can be given in flight, since the hold is lit and heated but not accessible."
+      fr: "Cages de 57×37×36 cm à 125×75×85 cm. Jusqu'à deux animaux de taille comparable, 14 kg ou moins chacun, peuvent partager une cage. Pas de location de cage chez Edelweiss — en acheter une à l'aéroport de Zurich (comptoir Swissport 124) ou en animalerie. Aucune nourriture ni boisson ne peut être donnée en vol, la soute étant éclairée et chauffée mais inaccessible."
+      es: "Jaulas de 57×37×36 cm hasta 125×75×85 cm. Hasta dos animales de tamaño comparable, de 14 kg o menos cada uno, pueden compartir jaula. Edelweiss no alquila jaulas: hay que comprar una en el aeropuerto de Zúrich (mostrador Swissport 124) o en una tienda de mascotas. No se puede dar comida ni agua durante el vuelo, ya que la bodega está iluminada y climatizada pero es inaccesible."
+      pt: "Gaiolas de 57×37×36 cm até 125×75×85 cm. Até dois animais de tamanho comparável, de 14 kg ou menos cada, podem dividir uma gaiola. A Edelweiss não aluga gaiolas — compre uma no Aeroporto de Zurique (balcão Swissport 124) ou em uma pet shop. Nenhuma comida ou água pode ser dada durante o voo, já que o porão é iluminado e aquecido, mas inacessível."
+    fee:
+      en: "CHF 90–220 by zone and kennel size (from Dec 2025 rates)"
+      fr: "90–220 CHF selon zone et taille de cage (tarifs en vigueur depuis déc. 2025)"
+      es: "90–220 CHF según zona y tamaño de jaula (tarifas vigentes desde dic. 2025)"
+      pt: "90–220 CHF conforme zona e tamanho da gaiola (tarifas em vigor desde dez. 2025)"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Via SWISS WorldCargo
+      fr: Via SWISS WorldCargo
+      es: Vía SWISS WorldCargo
+      pt: "Via SWISS WorldCargo"
+    detail:
+      en: "For an unaccompanied pet, or where a destination requires it — Mauritius, for instance, only accepts pets as cargo. Edelweiss doesn't handle this itself; it hands the whole booking, pricing and process off to SWISS WorldCargo, its Lufthansa Group sister company."
+      fr: "Pour un animal non accompagné, ou lorsqu'une destination l'exige — Maurice, par exemple, n'accepte les animaux qu'en fret. Edelweiss ne gère pas cela elle-même ; elle délègue entièrement réservation, tarif et procédure à SWISS WorldCargo, sa compagnie sœur du groupe Lufthansa."
+      es: "Para una mascota no acompañada, o cuando el destino lo exige — Mauricio, por ejemplo, solo acepta mascotas como carga. Edelweiss no gestiona esto por sí misma: delega toda la reserva, la tarifa y el proceso a SWISS WorldCargo, su compañía hermana del grupo Lufthansa."
+      pt: "Para um animal não acompanhado, ou quando um destino exige — Maurício, por exemplo, só aceita animais como carga. A Edelweiss não gerencia isso sozinha; ela delega toda a reserva, o preço e o processo à SWISS WorldCargo, sua companhia irmã do grupo Lufthansa."
+    fee:
+      en: Not published by Edelweiss
+      fr: Non publié par Edelweiss
+      es: No publicado por Edelweiss
+      pt: "Não publicado pela Edelweiss"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Fighting breeds — cabin banned
+      fr: Races de combat — cabine interdite
+      es: Razas de pelea — cabina prohibida
+      pt: "Raças de briga — cabine proibida"
+    pills:
+      - cls: "no"
+        label:
+          en: American Bulldog, American Bully & others
+          fr: American Bulldog, American Bully & autres
+          es: American Bulldog, American Bully y otras
+          pt: "American Bulldog, American Bully e outras"
+    note:
+      en: "American Bulldog, American Bully, Caucasian Ovcharka, Dogo Argentino, Kangal/Karabash and Rottweiler are barred from the cabin. American Bully separately appears on the hold's brachycephalic-exclusion list too, so it reads as barred from both compartments on this page."
+      fr: "American Bulldog, American Bully, Ovtcharka du Caucase, Dogo Argentino, Kangal/Karabash et Rottweiler sont interdits en cabine. L'American Bully apparaît en plus sur la liste d'exclusion brachycéphale de la soute — il ressort donc comme interdit des deux compartiments sur cette page."
+      es: "American Bulldog, American Bully, Ovcharka del Cáucaso, Dogo Argentino, Kangal/Karabash y Rottweiler están vetados de la cabina. El American Bully aparece además en la lista de exclusión braquicéfala de la bodega, así que en esta página queda vetado de ambos compartimentos."
+      pt: "American Bulldog, American Bully, Ovtcharka do Cáucaso, Dogo Argentino, Kangal/Karabash e Rottweiler são banidos da cabine. O American Bully também aparece na lista de exclusão braquicefálica do porão, então nesta página ele fica banido dos dois compartimentos."
+  - icon: 😤
+    title:
+      en: Brachycephalic breeds — hold banned
+      fr: Races brachycéphales — soute interdite
+      es: Razas braquicéfalas — bodega prohibida
+      pt: "Raças braquicefálicas — porão proibido"
+    pills:
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "A long list of snub-nosed dog breeds (Affenpinscher, American Bully, all Bulldogs except American Bulldog, all Pugs, Boston Terrier, Boxer, Brussels Griffon, Bull Mastiff, Bull Terrier except Miniature, Chow Chow, King Charles Spaniel, Lhasa Apso, Pekinese, Shar Pei, Shih Tzu, Tibetan Spaniel and more) and cat breeds (British Shorthair, Exotic Shorthair, Himalayan, Persian, Scottish Fold) are barred from the hold — Edelweiss's stated reasoning: they're \"particularly sensitive to temperatures and transport stress.\""
+      fr: "Une longue liste de races de chiens au nez écrasé (Affenpinscher, American Bully, tous les Bulldogs sauf American Bulldog, tous les Carlins, Boston Terrier, Boxer, Griffon bruxellois, Bull Mastiff, Bull Terrier sauf Miniature, Chow Chow, Cavalier King Charles, Lhassa Apso, Pékinois, Shar Pei, Shih Tzu, Épagneul du Tibet et d'autres) et de races de chats (British Shorthair, Exotic Shorthair, Himalayen, Persan, Scottish Fold) sont interdites en soute — Edelweiss justifie cela par leur sensibilité « particulière aux températures et au stress du transport »."
+      es: "Una larga lista de razas de perro de hocico chato (Affenpinscher, American Bully, todos los Bulldog salvo el American Bulldog, todos los Carlinos, Boston Terrier, Bóxer, Grifón de Bruselas, Bull Mastiff, Bull Terrier salvo el Miniatura, Chow Chow, King Charles Spaniel, Lhasa Apso, Pekinés, Shar Pei, Shih Tzu, Spaniel tibetano y otras) y razas de gato (British Shorthair, Exotic Shorthair, Himalayo, Persa, Scottish Fold) están vetadas de la bodega — la razón que da Edelweiss: son “particularmente sensibles a las temperaturas y al estrés del transporte”."
+      pt: "Uma longa lista de raças de cachorro de focinho achatado (Affenpinscher, American Bully, todos os Buldogues exceto o American Bulldog, todos os Pugs, Boston Terrier, Boxer, Grifão de Bruxelas, Bull Mastiff, Bull Terrier exceto o Miniatura, Chow Chow, King Charles Spaniel, Lhasa Apso, Pequinês, Shar Pei, Shih Tzu, Spaniel Tibetano e outras) e raças de gato (British Shorthair, Exotic Shorthair, Himalaia, Persa, Scottish Fold) são banidas do porão — a justificativa dada pela Edelweiss: são “particularmente sensíveis a temperaturas e ao estresse do transporte”."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Numeric temperature limits: not disclosed"
+        fr: "Limites de température chiffrées : non communiqué"
+        es: "Límites de temperatura numéricos: no comunicado"
+        pt: "Limites numéricos de temperatura: não divulgados"
+  note:
+    en: No °C threshold is published beyond the general brachycephalic-sensitivity rationale — notable given Edelweiss's own long-haul leisure routes to Mauritius, Zanzibar, Cancún, Punta Cana, Sharm El Sheikh and Hurghada.
+    fr: Aucun seuil en °C n'est publié au-delà de la justification générale de sensibilité brachycéphale — notable vu les propres routes long-courrier loisirs d'Edelweiss vers Maurice, Zanzibar, Cancún, Punta Cana, Charm el-Cheikh et Hurghada.
+    es: "No se publica ningún umbral en °C más allá de la justificación general de sensibilidad braquicéfala — algo notable dadas las propias rutas de ocio de largo radio de Edelweiss a Mauricio, Zanzíbar, Cancún, Punta Cana, Sharm el-Sheij y Hurghada."
+    pt: "Nenhum limite em °C é publicado além da justificativa geral de sensibilidade braquicefálica — notável dadas as próprias rotas de longo curso de lazer da Edelweiss para Maurício, Zanzibar, Cancún, Punta Cana, Sharm El Sheikh e Hurghada."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: "Free, no size or weight limit — an explicit, stated exception to the 8 kg pet cap. One free service dog on non-USA flights, two on direct USA flights. From 4 months old (younger than the 12-week/6-month rule for ordinary pets). Certificate from ADI, ADEu or IGDF (non-USA) or the US DOT Service Animal form (USA); \"an obedience certificate is not sufficient.\" Emotional support animals are explicitly excluded — standard paid pet rules apply to them instead."
+      fr: "Gratuit, sans limite de taille ni de poids — une exception explicite au plafond de 8 kg des animaux ordinaires. Un chien d'assistance gratuit sur les vols hors États-Unis, deux sur les vols directs vers les États-Unis. À partir de 4 mois (plus jeune que la règle 12 semaines/6 mois des animaux ordinaires). Certificat d'ADI, ADEu ou IGDF (hors USA) ou formulaire US DOT Service Animal (USA) ; « un certificat d'obéissance ne suffit pas ». Les animaux de soutien émotionnel sont explicitement exclus — les règles animal payant classique s'appliquent à eux."
+      es: "Gratis, sin límite de tamaño ni peso: una excepción explícita al límite de 8 kg para mascotas ordinarias. Un perro de servicio gratis en vuelos fuera de EE. UU., dos en vuelos directos a EE. UU. A partir de 4 meses (más joven que la norma de 12 semanas/6 meses para mascotas ordinarias). Certificado de ADI, ADEu o IGDF (fuera de EE. UU.) o el formulario US DOT Service Animal (EE. UU.); “un certificado de obediencia no es suficiente”. Los animales de apoyo emocional quedan explícitamente excluidos: se les aplican las normas estándar de mascota de pago."
+      pt: "Grátis, sem limite de tamanho ou peso — uma exceção explícita ao teto de 8 kg para animais comuns. Um cão de serviço grátis em voos fora dos EUA, dois em voos diretos para os EUA. A partir de 4 meses (mais jovem que a regra de 12 semanas/6 meses para animais comuns). Certificado de ADI, ADEu ou IGDF (fora dos EUA) ou o formulário US DOT Service Animal (EUA); “um certificado de obediência não é suficiente”. Animais de apoio emocional são explicitamente excluídos — regras padrão de animal pago se aplicam a eles."
+goodToKnow:
+  - icon: 📅
+    label:
+      en: A rate change still framed as upcoming, months later
+      fr: Un changement de tarif encore présenté comme à venir, des mois après
+      es: Un cambio de tarifa aún presentado como próximo, meses después
+      pt: "Uma mudança de tarifa ainda apresentada como futura, meses depois"
+    value:
+      en: The fee page still frames its rates as "Until November 30, 2025" and "From December 1, 2025" — a changeover that took effect roughly eight months before this fiche was verified, suggesting the page copy hasn't been refreshed since.
+      fr: La page tarifaire présente encore ses prix comme « Jusqu'au 30 novembre 2025 » et « À partir du 1er décembre 2025 » — un changement entré en vigueur environ huit mois avant la vérification de cette fiche, ce qui laisse penser que le texte de la page n'a pas été actualisé depuis.
+      es: "La página de tarifas todavía presenta sus precios como “Hasta el 30 de noviembre de 2025” y “A partir del 1 de diciembre de 2025” — un cambio que entró en vigor unos ocho meses antes de verificar esta ficha, lo que sugiere que el texto de la página no se ha actualizado desde entonces."
+      pt: "A página de tarifas ainda apresenta seus preços como “Até 30 de novembro de 2025” e “A partir de 1º de dezembro de 2025” — uma mudança que entrou em vigor cerca de oito meses antes desta ficha ser verificada, sugerindo que o texto da página não foi atualizado desde então."
+  - icon: 🧾
+    label:
+      en: A currency missing from one table
+      fr: Une devise absente d'un tableau
+      es: Una moneda ausente de una tabla
+      pt: "Uma moeda ausente de uma tabela"
+    value:
+      en: "The pre-December-2025 hold fee table lists CHF, GBP, USD and CAD — but not EUR, even though the cabin fee table for the same period does include EUR. EUR only appears in the hold table once the December 2025 rates begin."
+      fr: "Le tableau tarifaire soute d'avant décembre 2025 liste CHF, GBP, USD et CAD — mais pas l'EUR, alors que le tableau cabine pour la même période l'inclut bien. L'EUR n'apparaît dans le tableau soute qu'à partir des tarifs de décembre 2025."
+      es: "La tabla de tarifas de bodega anterior a diciembre de 2025 incluye CHF, GBP, USD y CAD, pero no EUR, aunque la tabla de tarifas de cabina para el mismo período sí lo incluye. El EUR solo aparece en la tabla de bodega a partir de las tarifas de diciembre de 2025."
+      pt: "A tabela de tarifas de porão anterior a dezembro de 2025 lista CHF, GBP, USD e CAD — mas não EUR, embora a tabela de tarifas de cabine do mesmo período inclua EUR. O EUR só aparece na tabela de porão a partir das tarifas de dezembro de 2025."
+book:
+  host: flyedelweiss.com
+  url: https://www.flyedelweiss.com/us/en/prepare/flight-preparation/animals-travelling/regulations.html
+sources:
+  en: 3 official Edelweiss sources · last verified 8 August 2026
+  fr: 3 sources officielles Edelweiss · dernière vérification 8 août 2026
+  es: 3 fuentes oficiales de Edelweiss · última verificación 8 de agosto de 2026
+  pt: "3 fontes oficiais da Edelweiss · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

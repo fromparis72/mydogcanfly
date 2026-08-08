@@ -1,0 +1,233 @@
+id: airline_neos
+mono: NO
+name: Neos
+titleH1:
+  en: Flying with a dog on Neos
+  fr: Voyager avec un chien sur Neos
+  es: Volar con un perro en Neos
+  pt: "Viajar com um cachorro na Neos"
+metaDesc:
+  en: "Neos pet policy: 10 kg in the cabin for €100, hold with no published upper weight limit for €200 — but no heat policy at all for a leisure carrier flying to the Maldives and Zanzibar."
+  fr: "Politique animaux Neos : 10 kg en cabine pour 100 €, soute sans limite de poids publiée pour 200 € — mais aucune politique de chaleur chez ce voyagiste qui vole vers les Maldives et Zanzibar."
+  es: "Política de mascotas de Neos: 10 kg en cabina por 100 €, bodega sin límite de peso publicado por 200 € — pero sin ninguna política de calor en esta aerolínea de ocio que vuela a Maldivas y Zanzíbar."
+  pt: "Política de animais da Neos: 10 kg na cabine por 100 €, porão sem limite de peso publicado por 200 € — mas sem nenhuma política de calor nesta companhia de lazer que voa para Maldivas e Zanzibar."
+chips:
+  - icon: 📍
+    label:
+      en: Italy
+      fr: Italie
+      es: Italia
+      pt: "Itália"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 10 kg
+      fr: Cabine ≤ 10 kg
+      es: Cabina ≤ 10 kg
+      pt: "Cabine ≤ 10 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open, with a comparatively generous 10 kg cabin cap and no stated hold weight ceiling — but Neos publishes no heat or seasonal embargo despite flying long-haul to some of the hottest leisure destinations in its own network.
+  fr: Cabine et soute sont ouvertes, avec un plafond cabine plutôt généreux de 10 kg et aucune limite de poids soute annoncée — mais Neos ne publie aucun embargo chaleur ou saisonnier, alors qu'elle dessert en long-courrier certaines des destinations loisirs les plus chaudes de son réseau.
+  es: "Cabina y bodega están abiertas, con un límite de cabina comparativamente generoso de 10 kg y sin techo de peso declarado para la bodega — pero Neos no publica ningún embargo por calor o estacional, pese a volar de largo radio a algunos de los destinos de ocio más calurosos de su propia red."
+  pt: "Cabine e porão estão abertos, com um limite de cabine comparativamente generoso de 10 kg e sem teto de peso declarado para o porão — mas a Neos não publica nenhum embargo por calor ou sazonal, apesar de voar de longo curso para alguns dos destinos de lazer mais quentes da própria rede."
+ladder:
+  - flex: 45
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 10 kg
+  - flex: 55
+    color: "#1f5fa8"
+    label:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    sub:
+      en: over 10 kg, no published ceiling
+      fr: plus de 10 kg, aucun plafond publié
+      es: más de 10 kg, sin techo publicado
+      pt: "acima de 10 kg, sem teto publicado"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, waterproof floor, cannot open from inside. One pet per passenger — two dogs need two passengers, one carrier each. Guide dogs excepted: up to one per flight, muzzled, free of charge. Book during checkout or in \"My Booking\" up to 48 h before departure."
+      fr: "Jusqu'à 10 kg (animal + caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non ouvrable de l'intérieur. Un animal par passager — deux chiens nécessitent deux passagers, une caisse chacun. Chiens guides exceptés : un par vol, muselés, gratuits. Réservation à l'achat ou dans « Ma réservation » jusqu'à 48 h avant le départ."
+      es: "Hasta 10 kg (mascota + jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable, que no se abre desde dentro. Una mascota por pasajero: dos perros necesitan dos pasajeros, una jaula cada uno. Excepción para perros guía: uno por vuelo, con bozal, gratis. Reserva al comprar o en “Mi reserva” hasta 48 h antes de la salida."
+      pt: "Até 10 kg (animal + caixa), caixa rígida ou maleável no padrão IATA de até 48 × 35 × 29 cm, fundo impermeável, que não abre por dentro. Um animal por passageiro — dois cachorros exigem dois passageiros, uma caixa cada. Exceção para cães-guia: um por voo, com focinheira, grátis. Reserve na compra ou em “Minha Reserva” até 48 h antes da partida."
+    fee:
+      en: "€100 per animal, one-way"
+      fr: "100 € par animal, par direction"
+      es: "100 € por animal, por trayecto"
+      pt: "100 € por animal, por trecho"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "For animals over 10 kg. Rigid crate up to 100 × 85 × 75 cm, waterproof floor, can't open from inside. No upper weight limit is stated — only the 10 kg floor that puts an animal into hold. Per-aircraft cabin/hold caps (3–4 animals depending on B737 vs B787) exist only in a downloadable fee-table PDF, not the main policy page."
+      fr: "Pour les animaux de plus de 10 kg. Caisse rigide jusqu'à 100 × 85 × 75 cm, fond étanche, non ouvrable de l'intérieur. Aucune limite de poids maximale n'est indiquée — seul le seuil de 10 kg qui bascule un animal en soute. Les plafonds par avion en cabine/soute (3 à 4 animaux selon B737 ou B787) n'existent que dans un PDF tarifaire téléchargeable, pas sur la page principale."
+      es: "Para animales de más de 10 kg. Jaula rígida de hasta 100 × 85 × 75 cm, fondo impermeable, que no se abre desde dentro. No se indica ningún límite máximo de peso, solo el umbral de 10 kg que hace que un animal pase a bodega. Los topes por avión en cabina/bodega (3 a 4 animales según sea B737 o B787) solo existen en un PDF descargable de tarifas, no en la página principal de política."
+      pt: "Para animais com mais de 10 kg. Caixa rígida de até 100 × 85 × 75 cm, fundo impermeável, que não abre por dentro. Nenhum limite máximo de peso é informado — apenas o piso de 10 kg que faz um animal ir para o porão. Os limites por avião em cabine/porão (3 a 4 animais dependendo de B737 ou B787) só existem em um PDF de tarifas para download, não na página principal da política."
+    fee:
+      en: "€200 per animal, one-way"
+      fr: "200 € par animal, par direction"
+      es: "200 € por animal, por trayecto"
+      pt: "200 € por animal, por trecho"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Other species only
+      fr: Autres espèces uniquement
+      es: Solo otras especies
+      pt: "Apenas outras espécies"
+    detail:
+      en: "\"All other species, such as wild animals, reptiles and rodents may only be transported by cargo\" — no dogs/cats cargo option, no booking process, no fees described for this route."
+      fr: "« Toutes les autres espèces, comme les animaux sauvages, reptiles et rongeurs, ne peuvent être transportées qu'en fret » — pas d'option fret pour chiens/chats, aucun processus de réservation ni tarif décrit pour cette voie."
+      es: "“Todas las demás especies, como animales salvajes, reptiles y roedores, solo pueden transportarse como carga” — no hay opción de carga para perros o gatos, ni proceso de reserva ni tarifas descritas para esta vía."
+      pt: "“Todas as outras espécies, como animais selvagens, répteis e roedores, só podem ser transportadas como carga” — não há opção de carga para cachorros/gatos, nem processo de reserva ou tarifas descritas para essa via."
+    fee:
+      en: Not applicable to dogs
+      fr: Non applicable aux chiens
+      es: No aplicable a perros
+      pt: "Não aplicável a cachorros"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Dangerous breeds — all classes
+      fr: Races dangereuses — toutes classes
+      es: Razas peligrosas — todas las clases
+      pt: "Raças perigosas — todas as classes"
+    pills:
+      - cls: "no"
+        label:
+          en: 13 breeds banned outright
+          fr: 13 races interdites d'office
+          es: 13 razas prohibidas de plano
+          pt: "13 raças proibidas de imediato"
+    note:
+      en: "American Staffordshire Terrier, American Pit Bull, Pit Bull Terrier, Dogo Argentino, Argentinean Mastiff, Brazilian Fighting Dog, Brazilian Mastiff, Fila Brasileiro, Japanese Tosa (and its aliases), Staffordshire Bull Terrier — 13 breeds, no distinction stated between cabin and hold."
+      fr: "American Staffordshire Terrier, American Pit Bull, Pit Bull Terrier, Dogo Argentino, Mastiff argentin, Brazilian Fighting Dog, Mastiff brésilien, Fila Brasileiro, Tosa japonais (et ses variantes), Staffordshire Bull Terrier — 13 races, sans distinction énoncée entre cabine et soute."
+      es: "American Staffordshire Terrier, American Pit Bull, Pit Bull Terrier, Dogo Argentino, Mastín argentino, Brazilian Fighting Dog, Mastín brasileño, Fila Brasileiro, Tosa japonés (y sus variantes), Staffordshire Bull Terrier: 13 razas, sin distinción declarada entre cabina y bodega."
+      pt: "American Staffordshire Terrier, American Pit Bull, Pit Bull Terrier, Dogo Argentino, Mastim argentino, Brazilian Fighting Dog, Mastim brasileiro, Fila Brasileiro, Tosa japonês (e suas variantes), Staffordshire Bull Terrier — 13 raças, sem distinção declarada entre cabine e porão."
+  - icon: 😤
+    title:
+      en: Flat-faced breeds — cabin only, ≤ 10 kg
+      fr: Races au nez écrasé — cabine uniquement, ≤ 10 kg
+      es: Razas de hocico chato — solo cabina, ≤ 10 kg
+      pt: "Raças de focinho achatado — só cabine, ≤ 10 kg"
+    pills:
+      - cls: ok
+        label:
+          en: Cabin only, under 10 kg
+          fr: Cabine uniquement, moins de 10 kg
+          es: Solo cabina, menos de 10 kg
+          pt: "Só cabine, abaixo de 10 kg"
+      - cls: "no"
+        label:
+          en: Hold forbidden
+          fr: Soute interdite
+          es: Bodega prohibida
+          pt: "Porão proibido"
+    note:
+      en: "About 17 brachycephalic dog breeds (Boston Terrier, Boxer, Bulldog, French Bulldog, Pug, Shih Tzu, Pekingese and others) and 5 cat breeds (Persian, Himalayan, British Shorthair, Exotic Shorthair, Burmese) are barred from the hold and can only fly under 10 kg in the cabin — Neos's own reasoning is \"high risk of respiratory and heat issues,\" the only heat-related language found anywhere on the site."
+      fr: "Une dix-septaine de races de chiens brachycéphales (Boston Terrier, Boxer, Bulldog, Bouledogue français, Carlin, Shih Tzu, Pékinois et d'autres) et 5 races de chats (Persan, Himalayen, British Shorthair, Exotic Shorthair, Burmese) sont bannis de la soute et ne peuvent voler qu'en cabine sous 10 kg — Neos justifie cela par un « risque élevé de problèmes respiratoires et de chaleur », seule mention liée à la chaleur trouvée sur tout le site."
+      es: "Unas 17 razas de perro braquicéfalas (Boston Terrier, Bóxer, Bulldog, Bulldog francés, Carlino, Shih Tzu, Pekinés y otras) y 5 razas de gato (Persa, Himalayo, British Shorthair, Exotic Shorthair, Burmés) están vetadas de la bodega y solo pueden volar en cabina por debajo de 10 kg: Neos lo justifica por un “alto riesgo de problemas respiratorios y de calor”, la única mención relacionada con el calor encontrada en todo el sitio."
+      pt: "Cerca de 17 raças de cachorro braquicefálicas (Boston Terrier, Boxer, Buldogue, Buldogue Francês, Pug, Shih Tzu, Pequinês e outras) e 5 raças de gato (Persa, Himalaia, British Shorthair, Exotic Shorthair, Burmês) são vetadas do porão e só podem voar na cabine com menos de 10 kg — a justificativa da própria Neos é “alto risco de problemas respiratórios e de calor”, a única menção relacionada a calor encontrada em todo o site."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Numeric temperature limits: not disclosed"
+        fr: "Limites de température chiffrées : non communiqué"
+        es: "Límites de temperatura numéricos: no comunicado"
+        pt: "Limites numéricos de temperatura: não divulgados"
+  note:
+    en: No °C threshold, no blackout months, no tarmac-time rule is published — a notable gap for a leisure/charter carrier flying to Zanzibar, Kenya, the Maldives, the Caribbean and Mexico.
+    fr: Aucun seuil en °C, aucun mois de blackout, aucune règle de temps au sol n'est publiée — un manque notable pour un voyagiste qui vole vers Zanzibar, le Kenya, les Maldives, les Caraïbes et le Mexique.
+    es: "No se publica ningún umbral en °C, ningún mes de bloqueo, ninguna norma sobre tiempo en pista: una carencia notable para una aerolínea de ocio que vuela a Zanzíbar, Kenia, Maldivas, el Caribe y México."
+    pt: "Nenhum limite em °C, nenhum mês de bloqueio, nenhuma regra de tempo em solo é publicada — uma lacuna notável para uma companhia de lazer que voa para Zanzibar, Quênia, Maldivas, Caribe e México."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Guide dogs for blind and deaf passengers travel free in the cabin, muzzled at all times. Emotional support animals are explicitly excluded from this category — they travel as standard paid pets instead.
+      fr: Les chiens guides pour passagers malvoyants et malentendants voyagent gratuitement en cabine, muselés en permanence. Les animaux de soutien émotionnel sont explicitement exclus de cette catégorie — ils voyagent comme des animaux payants classiques.
+      es: "Los perros guía para pasajeros con discapacidad visual o auditiva viajan gratis en cabina, con bozal en todo momento. Los animales de apoyo emocional quedan explícitamente excluidos de esta categoría: viajan como mascotas de pago estándar."
+      pt: "Cães-guia para passageiros com deficiência visual ou auditiva viajam de graça na cabine, com focinheira o tempo todo. Animais de apoio emocional são explicitamente excluídos dessa categoria — viajam como animais de estimação pagos padrão."
+goodToKnow:
+  - icon: 🔢
+    label:
+      en: Per-aircraft caps hidden in a PDF
+      fr: Plafonds par avion cachés dans un PDF
+      es: Topes por avión escondidos en un PDF
+      pt: "Limites por avião escondidos em um PDF"
+    value:
+      en: The consumer-facing pet policy page never mentions a numeric cap on animals per flight — you'd only find the real numbers (3 cabin / 2 hold on a B737, 4 / 4 on a B787) by opening a separate downloadable excess-baggage fee table.
+      fr: La page de politique animaux grand public ne mentionne jamais de plafond chiffré par vol — il faut ouvrir un tableau tarifaire séparé et téléchargeable pour trouver les vrais chiffres (3 en cabine / 2 en soute sur un B737, 4/4 sur un B787).
+      es: "La página de política de mascotas orientada al público nunca menciona un tope numérico por vuelo: solo se encuentran las cifras reales (3 en cabina / 2 en bodega en un B737, 4/4 en un B787) al abrir una tabla de tarifas de exceso de equipaje descargable aparte."
+      pt: "A página de política de animais voltada ao público nunca menciona um limite numérico por voo — só se encontram os números reais (3 na cabine / 2 no porão em um B737, 4/4 em um B787) ao abrir uma tabela de tarifas de excesso de bagagem separada, para download."
+  - icon: 🌐
+    label:
+      en: Garbled English on the FAQ
+      fr: Anglais approximatif dans la FAQ
+      es: Inglés confuso en la FAQ
+      pt: "Inglês confuso na FAQ"
+    value:
+      en: "The English FAQ answer on carrying two dogs reads: \"it is possible to carry only two dogs in cabin, but they should be divided into two different cage... while if the carriage is in allownace, then they can be both carry\" — garbled enough that the clearer Italian original is worth checking if you read Italian: cabin needs one passenger per dog, hold lets one passenger check both."
+      fr: "La réponse anglaise de la FAQ sur le transport de deux chiens se lit : « il est possible de transporter seulement deux chiens en cabine, mais ils doivent être répartis dans deux cages différentes... alors que si le transport se fait en soute, alors ils peuvent tous les deux être transportés » — assez confus pour que l'original italien, plus clair, mérite d'être consulté si tu le lis : la cabine nécessite un passager par chien, la soute permet à un seul passager d'enregistrer les deux."
+      es: "La respuesta en inglés de la FAQ sobre llevar dos perros dice: “solo es posible llevar dos perros en cabina, pero deben ir en dos jaulas distintas… mientras que si el transporte es en bodega, entonces ambos pueden viajar juntos” — lo bastante confuso como para que valga la pena consultar el original en italiano, más claro: en cabina hace falta un pasajero por perro, en bodega un mismo pasajero puede facturar a los dos."
+      pt: "A resposta em inglês da FAQ sobre levar dois cachorros diz: “só é possível levar dois cachorros na cabine, mas eles devem ser divididos em duas caixas diferentes... enquanto se o transporte for no porão, então os dois podem ser levados juntos” — confuso o suficiente para valer a pena checar o original em italiano, mais claro: a cabine exige um passageiro por cachorro, o porão permite que um único passageiro despache os dois."
+book:
+  host: neosair.com
+  url: https://www.neosair.com/en/information/traveling-with-pets
+sources:
+  en: 2 official Neos sources · last verified 8 August 2026
+  fr: 2 sources officielles Neos · dernière vérification 8 août 2026
+  es: 2 fuentes oficiales de Neos · última verificación 8 de agosto de 2026
+  pt: "2 fontes oficiais da Neos · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

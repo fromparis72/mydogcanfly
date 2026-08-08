@@ -1,0 +1,223 @@
+id: airline_sky_express
+mono: GQ
+name: Sky Express
+titleH1:
+  en: Flying with a dog on Sky Express
+  fr: Voyager avec un chien sur Sky Express
+  es: Volar con un perro en Sky Express
+  pt: "Viajar com um cachorro na Sky Express"
+metaDesc:
+  en: "Sky Express pet policy: 8 kg in the cabin from €35, hold up to 25 kg — but not to or from the United Kingdom, a route the airline still flies."
+  fr: "Politique animaux Sky Express : 8 kg en cabine dès 35 €, soute jusqu'à 25 kg — sauf vers ou depuis le Royaume-Uni, une destination pourtant desservie."
+  es: "Política de mascotas de Sky Express: 8 kg en cabina desde 35 €, bodega hasta 25 kg — excepto hacia o desde el Reino Unido, un destino que la aerolínea sigue volando."
+  pt: "Política de animais da Sky Express: 8 kg na cabine a partir de 35 €, porão até 25 kg — exceto para ou do Reino Unido, destino que a companhia continua operando."
+chips:
+  - icon: 📍
+    label:
+      en: Greece
+      fr: Grèce
+      es: Grecia
+      pt: "Grécia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Possible
+    fr: Sous conditions
+    es: Con condiciones
+    pt: "Com condições"
+verdictNote:
+  en: Cabin and hold are both open and inexpensive on this Greek-islands specialist, but the fleet-type restriction (hold is ATR-only) and the blanket UK ban are easy to miss.
+  fr: Cabine et soute sont ouvertes et peu coûteuses chez ce spécialiste des îles grecques, mais la restriction par type d'avion (soute réservée aux ATR) et l'interdiction totale vers le Royaume-Uni passent facilement inaperçues.
+  es: "Cabina y bodega están abiertas y son económicas en esta aerolínea especializada en las islas griegas, pero la restricción por tipo de avión (bodega solo en ATR) y la prohibición total hacia el Reino Unido son fáciles de pasar por alto."
+  pt: "Cabine e porão estão abertos e são baratos nesta especialista em ilhas gregas, mas a restrição por tipo de aeronave (porão só em ATR) e a proibição total para o Reino Unido passam facilmente despercebidas."
+ladder:
+  - flex: 40
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 60
+    color: "#1f5fa8"
+    label:
+      en: Hold (ATR only)
+      fr: Soute (ATR uniquement)
+      es: Bodega (solo ATR)
+      pt: "Porão (só ATR)"
+    sub: ≤ 25 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: Up to 8 kg (pet + carrier), soft-sided carrier preferred, 55 × 40 × 20 cm, stays under the seat. One pet per passenger, at least 12 weeks old. Not offered on the Athens–London route. Book at least 24 h before departure, online or by phone.
+      fr: Jusqu'à 8 kg (animal + caisse), caisse souple de préférence, 55 × 40 × 20 cm, reste sous le siège. Un animal par passager, à partir de 12 semaines. Non proposé sur la ligne Athènes–Londres. Réservation au moins 24 h avant le départ, en ligne ou par téléphone.
+      es: "Hasta 8 kg (mascota + jaula), preferiblemente jaula blanda, 55 × 40 × 20 cm, permanece bajo el asiento. Una mascota por pasajero, a partir de 12 semanas. No disponible en la ruta Atenas–Londres. Reserva con al menos 24 h de antelación, en línea o por teléfono."
+      pt: "Até 8 kg (animal + caixa), preferencialmente caixa maleável, 55 × 40 × 20 cm, permanece sob o assento. Um animal por passageiro, a partir de 12 semanas. Não disponível na rota Atenas–Londres. Reserve com pelo menos 24 h de antecedência, on-line ou por telefone."
+    fee:
+      en: "€35 domestic / €65 international"
+      fr: "35 € domestique / 65 € international"
+      es: "35 € nacional / 65 € internacional"
+      pt: "35 € doméstico / 65 € internacional"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: warn
+    statusLabel:
+      en: Allowed on ATR aircraft only
+      fr: Autorisé sur ATR uniquement
+      es: Permitido solo en aviones ATR
+      pt: "Permitido só em aeronaves ATR"
+    detail:
+      en: For animals over 8 kg, up to 25 kg (pet + crate). Rigid crate 70 × 50 × 51.5 cm, wheels removed, absorbent bedding on the floor. Offered on the ATR fleet type only — not on the Airbus fleet. Same 24-hour booking window as cabin.
+      fr: Pour les animaux de plus de 8 kg, jusqu'à 25 kg (animal + caisse). Caisse rigide 70 × 50 × 51,5 cm, roulettes retirées, litière absorbante au fond. Proposé sur le type d'appareil ATR uniquement — pas sur les Airbus. Même délai de réservation de 24 h que la cabine.
+      es: "Para animales de más de 8 kg, hasta 25 kg (mascota + jaula). Jaula rígida de 70 × 50 × 51,5 cm, sin ruedas, con material absorbente en el fondo. Disponible solo en aviones ATR, no en la flota Airbus. Mismo plazo de reserva de 24 h que la cabina."
+      pt: "Para animais com mais de 8 kg, até 25 kg (animal + caixa). Caixa rígida de 70 × 50 × 51,5 cm, sem rodas, com material absorvente no fundo. Disponível apenas na frota ATR — não na frota Airbus. Mesmo prazo de reserva de 24 h da cabine."
+    fee:
+      en: "€50"
+      fr: "50 €"
+      es: "50 €"
+      pt: "50 €"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: warn
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: No dedicated unaccompanied-cargo pet service is described anywhere on the official site — only accompanied cabin/hold travel exists as a documented product.
+      fr: Aucun service fret non accompagné dédié aux animaux n'est décrit sur le site officiel — seuls le transport en cabine et en soute, accompagnés, existent comme produits documentés.
+      es: "No se describe ningún servicio de carga no acompañada dedicado a mascotas en el sitio oficial: solo el transporte acompañado en cabina o bodega existe como producto documentado."
+      pt: "Nenhum serviço dedicado de carga não acompanhada para animais é descrito no site oficial — apenas o transporte acompanhado em cabine ou porão existe como produto documentado."
+    fee:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Flat-faced breeds
+      fr: Races au nez écrasé
+      es: Razas de hocico chato
+      pt: "Raças de focinho achatado"
+    pills:
+      - cls: warn
+        label:
+          en: Advisory, not a ban
+          fr: Avertissement, pas une interdiction
+          es: Advertencia, no una prohibición
+          pt: "Aviso, não uma proibição"
+    note:
+      en: "Sky Express names ten dog breeds (Boston Terrier, Boxer, Bulldog, Chow Chow, Brussels Griffon, Japanese Chin, English Toy Spaniel, Pug, Pekingese, Shih Tzu) and five cat breeds, but its own wording is a caution — \"we recommend you consult your veterinarian\" — not a stated prohibition. The page doesn't say whether it applies to cabin, hold, or both."
+      fr: "Sky Express cite dix races de chiens (Boston Terrier, Boxer, Bulldog, Chow Chow, Griffon bruxellois, Chin japonais, Cavalier King Charles anglais, Carlin, Pékinois, Shih Tzu) et cinq races de chats, mais son propre texte reste un avertissement — « nous te recommandons de consulter ton vétérinaire » — pas une interdiction formelle. La page ne précise pas si cela s'applique à la cabine, à la soute, ou aux deux."
+      es: "Sky Express nombra diez razas de perro (Boston Terrier, Bóxer, Bulldog, Chow Chow, Grifón de Bruselas, Chin japonés, Spaniel inglés, Carlino, Pekinés, Shih Tzu) y cinco razas de gato, pero su propio texto es una advertencia —“te recomendamos consultar a tu veterinario”— y no una prohibición explícita. La página no dice si se aplica a cabina, bodega, o ambas."
+      pt: "A Sky Express cita dez raças de cachorro (Boston Terrier, Boxer, Buldogue, Chow Chow, Grifão de Bruxelas, Chin Japonês, Spaniel Inglês, Pug, Pequinês, Shih Tzu) e cinco raças de gato, mas o próprio texto é um alerta — “recomendamos que consulte seu veterinário” — não uma proibição declarada. A página não diz se isso vale para cabine, porão, ou ambos."
+  - icon: 🌍
+    title:
+      en: Route ban
+      fr: Interdiction de route
+      es: Prohibición de ruta
+      pt: "Proibição de rota"
+    pills:
+      - cls: "no"
+        label:
+          en: No pets to/from the United Kingdom
+          fr: Pas d'animaux vers/depuis le Royaume-Uni
+          es: Sin mascotas hacia/desde el Reino Unido
+          pt: "Sem animais para/do Reino Unido"
+    note:
+      en: "\"Pets (dogs and cats) are not allowed on flights to and from the United Kingdom\" — a real constraint, since London is a Sky Express destination."
+      fr: "« Les animaux (chiens et chats) ne sont pas autorisés sur les vols vers et depuis le Royaume-Uni » — une vraie contrainte, puisque Londres est une destination Sky Express."
+      es: "“Las mascotas (perros y gatos) no están permitidas en los vuelos hacia y desde el Reino Unido”: una limitación real, ya que Londres es un destino de Sky Express."
+      pt: "“Animais (cachorros e gatos) não são permitidos em voos para e do Reino Unido” — uma restrição real, já que Londres é um destino da Sky Express."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: No numeric temperature threshold or seasonal embargo is published, despite serving Greek-island airports in high summer heat.
+    fr: Aucun seuil de température chiffré ni embargo saisonnier n'est publié, malgré la desserte d'aéroports d'îles grecques en pleine chaleur estivale.
+    es: "No se publica ningún umbral de temperatura numérico ni embargo estacional, pese a operar en aeropuertos de islas griegas en pleno calor estival."
+    pt: "Nenhum limite numérico de temperatura ou embargo sazonal é publicado, apesar de operar em aeroportos de ilhas gregas no calor intenso do verão."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Certified guide dogs travel free of charge, no carrier required, with 48 h advance notice — longer than the standard 24-hour pet booking window. Certification from IGDF, EGDF, ADI or an equivalent national body.
+      fr: Les chiens guides certifiés voyagent gratuitement, sans caisse, avec 48 h de préavis — plus long que le délai standard de 24 h pour un animal. Certification IGDF, EGDF, ADI ou équivalent national.
+      es: Los perros guía certificados viajan gratis, sin jaula, con 48 h de antelación, más que el plazo estándar de 24 h para una mascota. Certificación de IGDF, EGDF, ADI o un organismo nacional equivalente.
+      pt: "Cães-guia certificados viajam de graça, sem caixa, com 48 h de antecedência — mais que o prazo padrão de 24 h para um animal. Certificação de IGDF, EGDF, ADI ou órgão nacional equivalente."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: Two different minimum ages on two linked pages
+      fr: Deux âges minimums différents sur deux pages liées
+      es: Dos edades mínimas distintas en dos páginas enlazadas
+      pt: "Duas idades mínimas diferentes em duas páginas ligadas"
+    value:
+      en: The main pet-policy page requires pets to be "12 weeks or older." The linked PETC / Live Animal Acceptance checklist instead asks the owner to confirm the animal is "at least 8 weeks old" — two different minimum ages, on two pages of the same booking flow.
+      fr: La page principale exige un animal « d'au moins 12 semaines ». La checklist PETC liée demande, elle, de confirmer que l'animal a « au moins 8 semaines » — deux âges minimums différents, sur deux pages du même parcours de réservation.
+      es: "La página principal exige una mascota “de al menos 12 semanas”. La lista de verificación PETC enlazada, en cambio, pide confirmar que el animal tiene “al menos 8 semanas”: dos edades mínimas distintas, en dos páginas del mismo proceso de reserva."
+      pt: "A página principal exige um animal “com pelo menos 12 semanas”. A checklist PETC vinculada, por sua vez, pede para confirmar que o animal tem “pelo menos 8 semanas” — duas idades mínimas diferentes, em duas páginas do mesmo fluxo de reserva."
+  - icon: 🔢
+    label:
+      en: No published per-flight cap
+      fr: Aucun plafond par vol publié
+      es: Sin límite publicado por vuelo
+      pt: "Sem limite publicado por voo"
+    value:
+      en: The page warns that "restrictions on the number of animals permitted to travel per flight" exist, without ever giving the number — you find out only by checking availability directly.
+      fr: La page avertit qu'il existe des « restrictions sur le nombre d'animaux autorisés par vol », sans jamais donner ce chiffre — on ne le découvre qu'en vérifiant la disponibilité directement.
+      es: "La página advierte que existen “restricciones sobre el número de animales permitidos por vuelo”, sin dar nunca esa cifra: solo se descubre comprobando la disponibilidad directamente."
+      pt: "A página avisa que existem “restrições sobre o número de animais permitidos por voo”, sem nunca informar o número — só se descobre checando a disponibilidade diretamente."
+book:
+  host: skyexpress.gr
+  url: https://www.skyexpress.gr/en/sky-experience/sky-pets
+sources:
+  en: 2 official Sky Express sources · last verified 8 August 2026
+  fr: 2 sources officielles Sky Express · dernière vérification 8 août 2026
+  es: 2 fuentes oficiales de Sky Express · última verificación 8 de agosto de 2026
+  pt: "2 fontes oficiais da Sky Express · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

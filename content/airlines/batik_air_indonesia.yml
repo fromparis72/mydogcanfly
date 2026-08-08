@@ -1,0 +1,202 @@
+id: airline_batik_air_indonesia
+mono: ID
+name: Batik Air Indonesia
+titleH1:
+  en: Flying with a dog on Batik Air Indonesia
+  fr: Voyager avec un chien sur Batik Air Indonésie
+  es: Volar con un perro en Batik Air Indonesia
+  pt: "Viajar com um cachorro na Batik Air Indonésia"
+metaDesc:
+  en: "Batik Air Indonesia pet policy: no pets accepted at all — cabin, hold or cargo — and its own help page points elsewhere to a link that no longer works."
+  fr: "Politique animaux Batik Air Indonésie : aucun animal accepté — ni cabine, ni soute, ni fret — et sa propre page d'aide renvoie vers un lien qui ne fonctionne plus."
+  es: "Política de mascotas de Batik Air Indonesia: no se acepta ningún animal — ni cabina, ni bodega, ni carga — y su propia página de ayuda remite a un enlace que ya no funciona."
+  pt: "Política de animais da Batik Air Indonésia: nenhum animal é aceito — nem cabine, nem porão, nem carga — e a própria página de ajuda aponta para um link que não funciona mais."
+chips:
+  - icon: 📍
+    label:
+      en: Indonesia
+      fr: Indonésie
+      es: Indonesia
+      pt: "Indonésia"
+  - icon: 🐾
+    label:
+      en: No pets accepted
+      fr: Aucun animal accepté
+      es: Ninguna mascota aceptada
+      pt: "Nenhum animal aceito"
+    cls: "no"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: "no"
+  label:
+    en: Not possible
+    fr: Impossible
+    es: No es posible
+    pt: "Não é possível"
+verdictNote:
+  en: Batik Air Indonesia states, in plain language on its own help center, that it does not carry pets on any of its flights — cabin, hold or cargo. There is no fallback service of its own; it only points to a different airline.
+  fr: Batik Air Indonésie déclare, en toutes lettres sur son propre centre d'aide, qu'elle ne transporte d'animal sur aucun de ses vols — ni cabine, ni soute, ni fret. Elle n'a aucun service de repli qui lui soit propre ; elle renvoie seulement vers une autre compagnie.
+  es: "Batik Air Indonesia declara, en su propio centro de ayuda y sin rodeos, que no transporta mascotas en ninguno de sus vuelos — ni cabina, ni bodega, ni carga. No tiene ningún servicio propio de respaldo; solo remite a otra aerolínea."
+  pt: "A Batik Air Indonésia declara, com todas as letras em sua própria central de ajuda, que não transporta animais em nenhum de seus voos — nem cabine, nem porão, nem carga. Não tem serviço próprio alternativo; apenas encaminha para outra companhia."
+ladder:
+  - flex: 100
+    color: "#8a2c2c"
+    label:
+      en: No pets on any flight
+      fr: Aucun animal, sur aucun vol
+      es: Ninguna mascota en ningún vuelo
+      pt: "Nenhum animal em nenhum voo"
+    sub:
+      en: cabin, hold and cargo all closed
+      fr: cabine, soute et fret fermés
+      es: cabina, bodega y carga cerradas
+      pt: "cabine, porão e carga fechados"
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: "no"
+    statusLabel:
+      en: Not accepted
+      fr: Non accepté
+      es: No aceptado
+      pt: "Não aceito"
+    detail:
+      en: "\"Batik Air Indonesia flights are not allowed to bring pets\" — the airline's own words, with no cabin/hold/cargo distinction: it's a blanket ban stated once."
+      fr: "« Les vols Batik Air Indonésie ne sont pas autorisés à transporter des animaux » — les mots de la compagnie elle-même, sans distinction cabine/soute/fret : une interdiction générale posée une seule fois."
+      es: "“Los vuelos de Batik Air Indonesia no pueden llevar mascotas”, en palabras de la propia aerolínea, sin distinguir cabina/bodega/carga: es una prohibición general planteada de una sola vez."
+      pt: "“Voos da Batik Air Indonésia não têm permissão para levar animais de estimação” — nas palavras da própria companhia, sem distinção cabine/porão/carga: é uma proibição geral declarada de uma só vez."
+    fee:
+      en: Not applicable
+      fr: Non applicable
+      es: No aplicable
+      pt: "Não aplicável"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: "no"
+    statusLabel:
+      en: Not accepted
+      fr: Non accepté
+      es: No aceptado
+      pt: "Não aceito"
+    detail:
+      en: Same blanket statement applies — no separate hold provision exists. The general cabin-baggage rules page, which covers strollers and musical instruments in detail, has zero mention of animals.
+      fr: La même déclaration générale s'applique — aucune disposition soute distincte n'existe. La page des règles de bagages cabine, qui détaille poussettes et instruments de musique, ne mentionne jamais les animaux.
+      es: "Se aplica la misma declaración general: no existe ninguna disposición específica para bodega. La página de normas de equipaje de cabina, que detalla carritos e instrumentos musicales, no menciona los animales en ningún momento."
+      pt: "A mesma declaração geral se aplica — não existe uma provisão separada para porão. A página de regras de bagagem de cabine, que detalha carrinhos de bebê e instrumentos musicais, não menciona animais em nenhum momento."
+    fee:
+      en: Not applicable
+      fr: Non applicable
+      es: No aplicable
+      pt: "Não aplicável"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: "no"
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: No cargo/unaccompanied-pet page or mention exists anywhere on the official site.
+      fr: Aucune page ni mention de fret animalier non accompagné n'existe sur le site officiel.
+      es: "No existe ninguna página ni mención de carga de mascotas no acompañadas en el sitio oficial."
+      pt: "Não existe nenhuma página ou menção de carga de animais não acompanhados no site oficial."
+    fee:
+      en: Not applicable
+      fr: Non applicable
+      es: No aplicable
+      pt: "Não aplicável"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Breed restrictions
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: neutral
+        label:
+          en: Moot — no pets accepted
+          fr: Sans objet — aucun animal accepté
+          es: Sin objeto — no se acepta ninguna mascota
+          pt: "Sem objeto — nenhum animal é aceito"
+    note:
+      en: With no pet-acceptance policy at all, there is nothing to attach a breed list to.
+      fr: Sans aucune politique d'acceptation, il n'y a rien à quoi rattacher une liste de races.
+      es: "Sin ninguna política de aceptación de mascotas, no hay nada a lo que vincular una lista de razas."
+      pt: "Sem nenhuma política de aceitação de animais, não há nada a que vincular uma lista de raças."
+temperature:
+  pills:
+    - cls: neutral
+      label:
+        en: Moot — no pets accepted
+        fr: Sans objet — aucun animal accepté
+        es: Sin objeto — no se acepta ninguna mascota
+        pt: "Sem objeto — nenhum animal é aceito"
+  note:
+    en: Indonesia's tropical climate is exactly where a heat policy would matter — but the airline sidesteps the question entirely by not carrying pets at all.
+    fr: Le climat tropical de l'Indonésie est justement le contexte où une politique de chaleur compterait — mais la compagnie évite la question en ne transportant aucun animal.
+    es: "El clima tropical de Indonesia es precisamente donde importaría una política sobre el calor, pero la aerolínea evita la cuestión por completo al no transportar mascotas."
+    pt: "O clima tropical da Indonésia é exatamente onde uma política de calor importaria — mas a companhia evita a questão por completo ao não transportar nenhum animal."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: Not published. The dedicated Special Assistance help articles cover human mobility and medical needs only — no mention of service dogs, guide dogs or emotional support animals anywhere.
+      fr: Non publié. Les articles d'aide dédiés à l'assistance spéciale ne couvrent que la mobilité et les besoins médicaux humains — aucune mention de chien d'assistance, chien guide ou animal de soutien émotionnel nulle part.
+      es: "No publicado. Los artículos de ayuda dedicados a la asistencia especial solo cubren la movilidad y las necesidades médicas humanas: no hay ninguna mención a perros de servicio, perros guía o animales de apoyo emocional."
+      pt: "Não publicado. Os artigos de ajuda dedicados à assistência especial cobrem apenas mobilidade e necessidades médicas humanas — nenhuma menção a cães de serviço, cães-guia ou animais de apoio emocional em lugar nenhum."
+goodToKnow:
+  - icon: 🕳️
+    label:
+      en: A dead link on the airline's own help page
+      fr: Un lien mort sur la propre page d'aide de la compagnie
+      es: Un enlace roto en la propia página de ayuda de la aerolínea
+      pt: "Um link quebrado na própria página de ajuda da companhia"
+    value:
+      en: "Batik Air Indonesia's own \"Bring Live Animal/Pet\" article redirects owners to sister carrier Lion Air's pet policy as the only option within the group — but that link returns a 404 Not Found. A currently published official page points customers to a page that no longer exists."
+      fr: "L'article « Bring Live Animal/Pet » de Batik Air Indonésie renvoie les propriétaires vers la politique animaux de sa compagnie sœur Lion Air, seule option au sein du groupe — mais ce lien renvoie une erreur 404. Une page officielle actuellement publiée pointe vers une page qui n'existe plus."
+      es: "El artículo “Bring Live Animal/Pet” de Batik Air Indonesia remite a los dueños a la política de mascotas de su aerolínea hermana Lion Air, como única opción dentro del grupo, pero ese enlace devuelve un error 404. Una página oficial actualmente publicada apunta a una página que ya no existe."
+      pt: "O artigo “Bring Live Animal/Pet” da Batik Air Indonésia encaminha os donos para a política de animais da companhia irmã Lion Air, como única opção dentro do grupo — mas esse link retorna um erro 404. Uma página oficial atualmente publicada aponta para uma página que não existe mais."
+  - icon: 🕳️
+    label:
+      en: A single-sentence policy
+      fr: Une politique en une seule phrase
+      es: Una política de una sola frase
+      pt: "Uma política de uma única frase"
+    value:
+      en: No formal Conditions of Carriage document or dedicated live-animal policy page exists — the entire pet policy is one short FAQ answer, thinner than what most airlines, including budget carriers, publish on the topic.
+      fr: Aucun document formel de conditions de transport ni page dédiée à la politique animalière — toute la politique animaux tient en une courte réponse de FAQ, plus mince que ce que publient la plupart des compagnies, même low-cost, sur le sujet.
+      es: "No existe ningún documento formal de condiciones de transporte ni una página dedicada a la política sobre animales: toda la política de mascotas cabe en una breve respuesta de FAQ, más escueta que lo que publican la mayoría de las aerolíneas, incluso las de bajo coste, sobre este tema."
+      pt: "Não existe nenhum documento formal de condições de transporte nem página dedicada à política de animais — toda a política de animais se resume a uma curta resposta de FAQ, mais escassa do que o que a maioria das companhias, mesmo as de baixo custo, publica sobre o tema."
+book:
+  host: batikair.com
+  url: https://www.batikair.com
+sources:
+  en: 1 official Batik Air Indonesia source · last verified 8 August 2026
+  fr: 1 source officielle Batik Air Indonésie · dernière vérification 8 août 2026
+  es: 1 fuente oficial de Batik Air Indonesia · última verificación 8 de agosto de 2026
+  pt: "1 fonte oficial da Batik Air Indonésia · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08

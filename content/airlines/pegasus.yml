@@ -1,0 +1,223 @@
+id: airline_pegasus
+mono: PC
+name: Pegasus Airlines
+titleH1:
+  en: Flying with a dog on Pegasus Airlines
+  fr: Voyager avec un chien sur Pegasus Airlines
+  es: Volar con un perro en Pegasus Airlines
+  pt: "Viajar com um cachorro na Pegasus Airlines"
+metaDesc:
+  en: "Pegasus pet policy: 8 kg in the cabin, hold only on domestic Turkey/North Cyprus flights — never international — and three official pages that name three different breed-ban lists."
+  fr: "Politique animaux Pegasus : 8 kg en cabine, soute uniquement sur les vols domestiques Turquie/Chypre du Nord — jamais à l'international — et trois pages officielles qui donnent trois listes de races interdites différentes."
+  es: "Política de mascotas de Pegasus: 8 kg en cabina, bodega solo en vuelos nacionales de Turquía/Chipre del Norte — nunca internacionales — y tres páginas oficiales con tres listas distintas de razas prohibidas."
+  pt: "Política de animais da Pegasus: 8 kg na cabine, porão apenas em voos domésticos da Turquia/Chipre do Norte — nunca internacionais — e três páginas oficiais com três listas diferentes de raças proibidas."
+chips:
+  - icon: 📍
+    label:
+      en: Türkiye
+      fr: Turquie
+      es: Turquía
+      pt: "Turquia"
+  - icon: 🐾
+    label:
+      en: Cabin ≤ 8 kg
+      fr: Cabine ≤ 8 kg
+      es: Cabina ≤ 8 kg
+      pt: "Cabine ≤ 8 kg"
+  - icon: ✓
+    label:
+      en: Verified 8 Aug 2026
+      fr: Vérifié le 8 août 2026
+      es: Verificado el 8 ago. 2026
+      pt: "Verificado em 8 ago. 2026"
+    cls: ok
+verdict:
+  cls: warn
+  label:
+    en: Cabin, domestic hold only
+    fr: Cabine, soute domestique seulement
+    es: Cabina, bodega solo nacional
+    pt: "Cabine, porão só doméstico"
+verdictNote:
+  en: Cabin travel is open network-wide, but hold (AVIH) is restricted to domestic Turkish and North Cyprus flights only — an international trip with a bigger dog has no hold option on Pegasus at all. The airline's own pages also disagree with each other on the breed list and the banned-country list.
+  fr: Le transport en cabine est ouvert sur tout le réseau, mais la soute (AVIH) est réservée aux vols domestiques turcs et vers Chypre du Nord — un trajet international avec un chien plus grand n'a aucune option soute chez Pegasus. Les pages officielles de la compagnie se contredisent aussi entre elles sur la liste de races et la liste de pays interdits.
+  es: "El transporte en cabina está abierto en toda la red, pero la bodega (AVIH) se limita a vuelos nacionales turcos y a Chipre del Norte: un viaje internacional con un perro más grande no tiene ninguna opción de bodega con Pegasus. Las propias páginas de la aerolínea también se contradicen entre sí sobre la lista de razas y la lista de países prohibidos."
+  pt: "O transporte em cabine está aberto em toda a rede, mas o porão (AVIH) é restrito a voos domésticos turcos e para o Chipre do Norte — uma viagem internacional com um cachorro maior não tem nenhuma opção de porão na Pegasus. As próprias páginas da companhia também discordam entre si sobre a lista de raças e a lista de países proibidos."
+ladder:
+  - flex: 45
+    color: "#16794f"
+    label:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    sub: ≤ 8 kg
+  - flex: 55
+    color: "#9a6410"
+    label:
+      en: Hold — domestic/KKTC only
+      fr: Soute — domestique/KKTC uniquement
+      es: Bodega — solo nacional/KKTC
+      pt: "Porão — só doméstico/KKTC"
+    sub: 8–15 kg / over 15 kg
+channels:
+  - icon: 🐾
+    name:
+      en: Cabin
+      fr: Cabine
+      es: Cabina
+      pt: "Cabine"
+    cls: ok
+    statusLabel:
+      en: Allowed
+      fr: Autorisé
+      es: Permitido
+      pt: "Permitido"
+    detail:
+      en: "8 kg total (pet + carrier), waterproof carrier up to 32 × 32 × 50 cm. At least 3 months old. No seats in emergency exit rows, XL seats or the front row. Unaccompanied minors (12 and under) can't travel with a pet. Contact the call centre right after buying your ticket — not a self-service add-on."
+      fr: "8 kg au total (animal + caisse), caisse imperméable jusqu'à 32 × 32 × 50 cm. À partir de 3 mois. Ni sortie de secours, ni sièges XL, ni première rangée. Les mineurs non accompagnés (12 ans et moins) ne peuvent pas voyager avec un animal. Contacter le centre d'appels immédiatement après l'achat du billet — pas d'ajout en libre-service."
+      es: "8 kg en total (mascota + jaula), jaula impermeable de hasta 32 × 32 × 50 cm. A partir de 3 meses. Ni salidas de emergencia, ni asientos XL, ni primera fila. Los menores no acompañados (12 años o menos) no pueden viajar con mascota. Contactar con el centro de llamadas justo después de comprar el billete — no es una opción de autoservicio."
+      pt: "8 kg no total (animal + caixa), caixa impermeável de até 32 × 32 × 50 cm. A partir de 3 meses. Nem saídas de emergência, nem assentos XL, nem primeira fila. Menores desacompanhados (12 anos ou menos) não podem viajar com animal. Contate a central de atendimento logo após comprar a passagem — não é um complemento de autoatendimento."
+    fee:
+      en: "€65 international / 750 TRY domestic / 900 TRY North Cyprus"
+      fr: "65 € international / 750 TRY domestique / 900 TRY Chypre du Nord"
+      es: "65 € internacional / 750 TRY nacional / 900 TRY Chipre del Norte"
+      pt: "65 € internacional / 750 TRY doméstico / 900 TRY Chipre do Norte"
+  - icon: 🧳
+    name:
+      en: Hold
+      fr: Soute
+      es: Bodega
+      pt: "Porão"
+    cls: warn
+    statusLabel:
+      en: Domestic Turkey and North Cyprus only
+      fr: Turquie domestique et Chypre du Nord seulement
+      es: Solo Turquía nacional y Chipre del Norte
+      pt: "Só Turquia doméstica e Chipre do Norte"
+    detail:
+      en: "Cats and dogs only, no birds. Two price tiers, 8–15 kg and over 15 kg. Sturdy, securely locked crate that lets the pet lie down and turn around. \"Not allowed in international flights\" — but the North Cyprus (KKTC) exception is itself contradicted elsewhere on the site (see good to know)."
+      fr: "Chats et chiens uniquement, pas d'oiseaux. Deux paliers tarifaires, 8–15 kg et plus de 15 kg. Caisse robuste et bien verrouillée permettant à l'animal de s'allonger et de se retourner. « Non autorisé sur les vols internationaux » — mais l'exception Chypre du Nord (KKTC) est elle-même contredite ailleurs sur le site (voir bon à savoir)."
+      es: "Solo gatos y perros, sin aves. Dos niveles de precio, 8–15 kg y más de 15 kg. Jaula resistente y bien cerrada que permita a la mascota tumbarse y darse la vuelta. “No permitido en vuelos internacionales” — pero la excepción de Chipre del Norte (KKTC) se contradice a su vez en otra parte del sitio (ver más información)."
+      pt: "Somente gatos e cachorros, sem aves. Duas faixas de preço, 8–15 kg e acima de 15 kg. Caixa resistente e bem travada que permita ao animal deitar e virar. “Não permitido em voos internacionais” — mas a exceção do Chipre do Norte (KKTC) é contradita em outro ponto do site (ver saiba mais)."
+    fee:
+      en: "850 TRY (8–15 kg) / 950 TRY (over 15 kg) domestic; 1000/1100 TRY North Cyprus"
+      fr: "850 TRY (8–15 kg) / 950 TRY (plus de 15 kg) domestique ; 1000/1100 TRY Chypre du Nord"
+      es: "850 TRY (8–15 kg) / 950 TRY (más de 15 kg) nacional; 1000/1100 TRY Chipre del Norte"
+      pt: "850 TRY (8–15 kg) / 950 TRY (acima de 15 kg) doméstico; 1000/1100 TRY Chipre do Norte"
+  - icon: ✈️
+    name:
+      en: Cargo
+      fr: Fret
+      es: Carga
+      pt: "Carga"
+    cls: "no"
+    statusLabel:
+      en: Not published
+      fr: Non publié
+      es: No publicado
+      pt: "Não publicado"
+    detail:
+      en: No dedicated cargo/unaccompanied-pet-shipment page exists on flypgs.com — only the accompanied cabin/hold products described above.
+      fr: Aucune page fret/expédition non accompagnée dédiée n'existe sur flypgs.com — seuls les produits cabine/soute accompagnés décrits ci-dessus.
+      es: "No existe ninguna página dedicada de carga/envío no acompañado en flypgs.com — solo los productos de cabina/bodega acompañados descritos arriba."
+      pt: "Não existe nenhuma página dedicada de carga/envio não acompanhado em flypgs.com — apenas os produtos de cabine/porão acompanhados descritos acima."
+    fee:
+      en: Not applicable
+      fr: Non applicable
+      es: No aplicable
+      pt: "Não aplicável"
+restrictions:
+  - icon: 🐶
+    title:
+      en: Restricted breeds
+      fr: Races restreintes
+      es: Razas restringidas
+      pt: "Raças restritas"
+    pills:
+      - cls: "no"
+        label:
+          en: Around 13 breeds, list varies by page
+          fr: Une douzaine de races, liste variable selon la page
+          es: Alrededor de 13 razas, la lista varía según la página
+          pt: "Cerca de 13 raças, lista varia por página"
+    note:
+      en: "Same family of dangerous/fighting breeds (American Pit Bull, American Staffordshire Terrier, Dogo Argentino, Fila Brasileiro, Japanese Tosa, Presa Canario, Rottweiler, Doberman, Mastiff, American Bulldog, Caucasian Shepherd, Neapolitan Mastiff, Chow Chow) appears on three official Pegasus pages, but Boxer only appears on the legal Contract of Carriage, not the main pet page or the fee table — and the fee table spells several names differently (\"Togo Argentinos,\" \"Caucasian owtscharka\"). No brachycephalic breeds are restricted anywhere. A Kangal (Turkish shepherd) is accepted only up to 6 months old."
+      fr: "La même famille de races dangereuses/de combat (American Pit Bull, American Staffordshire Terrier, Dogo Argentino, Fila Brasileiro, Tosa japonais, Presa Canario, Rottweiler, Doberman, Mastiff, American Bulldog, Berger du Caucase, Mastiff napolitain, Chow Chow) apparaît sur trois pages officielles Pegasus, mais le Boxer n'apparaît que dans les conditions générales légales, ni sur la page animaux principale, ni sur la grille tarifaire — qui orthographie d'ailleurs plusieurs noms différemment (« Togo Argentinos », « Caucasian owtscharka »). Aucune race brachycéphale n'est restreinte nulle part. Un Kangal (berger turc) n'est accepté que jusqu'à 6 mois."
+      es: "La misma familia de razas peligrosas/de pelea (American Pit Bull, American Staffordshire Terrier, Dogo Argentino, Fila Brasileiro, Tosa japonés, Presa Canario, Rottweiler, Dóberman, Mastín, American Bulldog, Pastor del Cáucaso, Mastín napolitano, Chow Chow) aparece en tres páginas oficiales de Pegasus, pero el Bóxer solo aparece en el Contrato de Transporte legal, ni en la página principal de mascotas ni en la tabla de tarifas, que además escribe varios nombres de forma distinta (“Togo Argentinos”, “Caucasian owtscharka”). No se restringe ninguna raza braquicéfala en ningún lugar. Un Kangal (pastor turco) solo se acepta hasta los 6 meses."
+      pt: "A mesma família de raças perigosas/de briga (American Pit Bull, American Staffordshire Terrier, Dogo Argentino, Fila Brasileiro, Tosa Japonês, Presa Canario, Rottweiler, Doberman, Mastim, American Bulldog, Pastor do Cáucaso, Mastim Napolitano, Chow Chow) aparece em três páginas oficiais da Pegasus, mas o Boxer só aparece no Contrato de Transporte legal, não na página principal de animais nem na tabela de tarifas — que, aliás, soletra vários nomes de forma diferente (“Togo Argentinos”, “Caucasian owtscharka”). Nenhuma raça braquicefálica é restrita em lugar nenhum. Um Kangal (pastor turco) só é aceito até os 6 meses."
+  - icon: 🌍
+    title:
+      en: Route ban
+      fr: Interdiction de route
+      es: Prohibición de ruta
+      pt: "Proibição de rota"
+    pills:
+      - cls: "no"
+        label:
+          en: No pets to/from UK, Bahrain, Qatar, UAE, Saudi Arabia
+          fr: Pas d'animaux vers/depuis UK, Bahreïn, Qatar, Émirats, Arabie saoudite
+          es: Sin mascotas hacia/desde Reino Unido, Baréin, Catar, EAU, Arabia Saudí
+          pt: "Sem animais para/do Reino Unido, Bahrein, Catar, EAU, Arábia Saudita"
+    note:
+      en: "The legally binding General Rules state this five-country ban. The main consumer page adds a sixth country, Ireland, that's absent from both the fee table and the General Rules — three official pages, three different route-ban lists."
+      fr: "Les règles générales, juridiquement contraignantes, énoncent cette interdiction à cinq pays. La page grand public en ajoute un sixième, l'Irlande, absent à la fois de la grille tarifaire et des règles générales — trois pages officielles, trois listes d'interdiction de routes différentes."
+      es: "Las Normas Generales, jurídicamente vinculantes, enuncian esta prohibición de cinco países. La página principal para el público añade un sexto país, Irlanda, ausente tanto de la tabla de tarifas como de las Normas Generales: tres páginas oficiales, tres listas distintas de rutas prohibidas."
+      pt: "As Regras Gerais, juridicamente vinculantes, declaram essa proibição de cinco países. A página principal para o público adiciona um sexto país, a Irlanda, ausente tanto da tabela de tarifas quanto das Regras Gerais — três páginas oficiais, três listas diferentes de rotas proibidas."
+temperature:
+  pills:
+    - cls: warn
+      label:
+        en: "Temperature limits: not disclosed"
+        fr: "Limites de température : non communiqué"
+        es: "Límites de temperatura: no comunicado"
+        pt: "Limites de temperatura: não divulgados"
+  note:
+    en: No °C threshold or seasonal embargo is published, despite Istanbul and many destinations seeing extreme summer heat.
+    fr: Aucun seuil en °C ni embargo saisonnier n'est publié, malgré des chaleurs estivales extrêmes à Istanbul et sur de nombreuses destinations.
+    es: "No se publica ningún umbral en °C ni embargo estacional, pese al calor estival extremo en Estambul y muchos destinos."
+    pt: "Nenhum limite em °C ou embargo sazonal é publicado, apesar do calor extremo de verão em Istambul e em muitos destinos."
+assistance:
+  - icon: ❓
+    label:
+      en: Assistance dogs
+      fr: Chiens d'assistance
+      es: Perros de asistencia
+      pt: "Cães de assistência"
+    value:
+      en: "Called \"Guide Animals\" in the legal Contract of Carriage: free of charge, no cage needed, travels on the ground next to a visually or hearing-impaired passenger — but this policy is buried in the legal document only, not cross-referenced from the main pet page or the disability-assistance page."
+      fr: "Nommés « animaux guides » dans le contrat de transport légal : gratuits, sans cage, voyagent au sol à côté d'un passager malvoyant ou malentendant — mais cette politique n'est enfouie que dans le document légal, sans lien depuis la page animaux principale ni la page d'assistance handicap."
+      es: "Se llaman “animales guía” en el Contrato de Transporte legal: gratis, sin jaula, viajan en el suelo junto a un pasajero con discapacidad visual o auditiva — pero esta política solo está enterrada en el documento legal, sin referencia desde la página principal de mascotas ni la de asistencia por discapacidad."
+      pt: "Chamados de “animais-guia” no Contrato de Transporte legal: gratuitos, sem gaiola, viajam no chão ao lado de um passageiro com deficiência visual ou auditiva — mas essa política está enterrada apenas no documento legal, sem referência cruzada na página principal de animais nem na página de assistência para deficiência."
+goodToKnow:
+  - icon: ⚠️
+    label:
+      en: Nursing pets — allowed and banned on two pages
+      fr: Animaux allaitants — autorisés et interdits sur deux pages
+      es: Mascotas lactantes — permitidas y prohibidas en dos páginas
+      pt: "Animais lactentes — permitidos e proibidos em duas páginas"
+    value:
+      en: "The main pet page allows \"a mother and a cub\" to share one carrier — implying nursing pairs may fly. The General Rules state the opposite: \"Pregnant pets, infant cats and dogs feeding on their mother's milk and their mothers will not be admitted to Pegasus Flights.\" These two official statements can't both be true."
+      fr: "La page animaux principale autorise « une mère et son petit » à partager une caisse — sous-entendant qu'une paire allaitante peut voler. Les règles générales disent l'inverse : « Les animaux gestants, les chatons et chiots nourris au lait maternel et leur mère ne sont pas admis sur les vols Pegasus. » Ces deux énoncés officiels ne peuvent pas être vrais tous les deux."
+      es: "La página principal de mascotas permite que “una madre y su cría” compartan una jaula, dando a entender que una pareja lactante puede volar. Las Normas Generales dicen lo contrario: “Las mascotas preñadas, gatitos y cachorros que se alimentan de la leche materna y sus madres no serán admitidos en los vuelos de Pegasus.” Ambas declaraciones oficiales no pueden ser ciertas a la vez."
+      pt: "A página principal de animais permite que “uma mãe e sua cria” dividam uma caixa — sugerindo que um par lactante pode voar. As Regras Gerais dizem o contrário: “Animais prenhes, filhotes de gatos e cachorros que mamam no leite materno e suas mães não serão admitidos nos voos da Pegasus.” As duas declarações oficiais não podem ser verdadeiras ao mesmo tempo."
+  - icon: 🔀
+    label:
+      en: North Cyprus hold status depends which page you read
+      fr: Le statut soute pour Chypre du Nord dépend de la page lue
+      es: El estado de bodega para Chipre del Norte depende de la página que leas
+      pt: "O status do porão para o Chipre do Norte depende da página lida"
+    value:
+      en: "The main page groups North Cyprus (KKTC) under \"international flights\" and separately says hold isn't available on international flights — implying no. But the fee table lists live KKTC hold prices, and the General Rules explicitly confirm hold IS available to North Cyprus. Read only the main page and you'd reach the wrong conclusion."
+      fr: "La page principale classe Chypre du Nord (KKTC) parmi les « vols internationaux » et indique par ailleurs que la soute n'est pas disponible à l'international — sous-entendant que non. Mais la grille tarifaire liste des prix soute KKTC bien réels, et les règles générales confirment explicitement que la soute EST disponible vers Chypre du Nord. Se fier uniquement à la page principale mène à la mauvaise conclusion."
+      es: "La página principal agrupa a Chipre del Norte (KKTC) entre los “vuelos internacionales” y dice por separado que la bodega no está disponible en vuelos internacionales — dando a entender que no. Pero la tabla de tarifas lista precios reales de bodega para KKTC, y las Normas Generales confirman explícitamente que la bodega SÍ está disponible hacia Chipre del Norte. Leer solo la página principal lleva a la conclusión equivocada."
+      pt: "A página principal agrupa o Chipre do Norte (KKTC) entre os “voos internacionais” e diz separadamente que o porão não está disponível em voos internacionais — sugerindo que não. Mas a tabela de tarifas lista preços reais de porão para o KKTC, e as Regras Gerais confirmam explicitamente que o porão ESTÁ disponível para o Chipre do Norte. Ler apenas a página principal leva à conclusão errada."
+book:
+  host: flypgs.com
+  url: https://www.flypgs.com/en/travelling-with-pets
+sources:
+  en: 3 official Pegasus sources · last verified 8 August 2026
+  fr: 3 sources officielles Pegasus · dernière vérification 8 août 2026
+  es: 3 fuentes oficiales de Pegasus · última verificación 8 de agosto de 2026
+  pt: "3 fontes oficiais da Pegasus · última verificação em 8 de agosto de 2026"
+verified_date: 2026-08-08
