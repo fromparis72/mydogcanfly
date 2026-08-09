@@ -189,7 +189,24 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     const anyCabin = airlines.some((a) => a.cabin);
     const anyHold = airlines.some((a) => a.hold);
     const anyCargo = airlines.some((a) => a.cargo);
-    if (anyCabin) {
+    if (airlines.length === 0) {
+      /* Zéro compagnie CANDIDATE — pas zéro compagnie qui refuse ce chien, zéro compagnie évaluée
+       * du tout pour cette paire d'aéroports. Repéré en direct par l'utilisateur sur Lisbonne→Cap-
+       * Vert (avant l'ajout des routes TAP) : le panneau affichait 20% et « Not as requested »,
+       * mais la liste « Pourquoi » ne disait RIEN de l'absence de compagnie — elle affichait deux
+       * coches vertes (« Cap-Vert autorise l'entrée », « documents connus »), qui restent vraies
+       * indépendamment de toute compagnie mais donnent une impression trompeuse d'ensemble « ça a
+       * l'air bon » sur un trajet où aucune option n'existe dans nos données.
+       * Second défaut, plus discret, corrigé au passage : sans cette branche dédiée, le cas
+       * `airlines.length === 0` tombait dans `anyCabin` false puis, pour un chien brachycéphale,
+       * dans la branche `why.no_cabin_brachy` — qui attribue l'absence de cabine À LA RACE. Fausse
+       * cause : sur ce trajet on n'a évalué AUCUNE compagnie, brachycéphale ou non ; le message ne
+       * doit pas accuser une race pour un trou de couverture.
+       * C'est un trou de données (aucune compagnie sourcée sur cette paire d'aéroports, direct ou
+       * via une correspondance plausible), pas une preuve que la liaison n'existe pas — le texte le
+       * dit explicitement pour ne pas décourager à tort un trajet réellement faisable. */
+      positives.push({ text: L("why.no_airline_found"), criticality: "high", tone: "negative" });
+    } else if (anyCabin) {
       const modes = [L("mode.cabin"), ...(anyHold ? [L("mode.hold")] : []), ...(anyCargo ? [L("mode.cargo")] : [])];
       positives.push({ text: L("why.transport_modes").replace("{modes}", joinList(modes, locale)), criticality: "low", tone: "positive" });
     } else if (decision.brachycephalic) {
