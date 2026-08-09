@@ -18,18 +18,18 @@ const L = inlineT(locale);
 const title = L("Which travel crate size for my dog?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué talla de jaula de transporte para perros necesito?");
 const blurb = L(
   "Measure your dog (length + height) and get the ideal IATA crate size — safe and comfortable — with a cabin-or-hold check by airline.",
-  "Mesurez votre chien (longueur + hauteur) et obtenez la taille de cage IATA idéale — sécurité et confort — avec vérification cabine ou soute selon la compagnie.",
+  "Mesure ton chien (longueur + hauteur) et obtiens la taille de cage IATA idéale — sécurité et confort — avec vérification cabine ou soute selon la compagnie.",
   "Mide a tu perro (longitud + altura) y obtén la talla de jaula IATA ideal —segura y cómoda— con una comprobación de cabina o bodega según la aerolínea."
 );
 
 // FAQ (GEO / AI answers + SEO). Concise, accurate, tool-specific. Rendered as an accordion + FAQPage schema.
 const FAQ_FR = [
   { q: "Comment mesurer mon chien pour une caisse de transport ?", a: "Deux mesures suffisent, le chien debout : la longueur (du nez à la base de la queue, sans la queue) et la hauteur (du sol au sommet de la tête, oreilles comprises). Notre calculateur en déduit la taille de caisse conforme IATA." },
-  { q: "Quelle taille de caisse pour faire voyager mon chien en avion ?", a: "La caisse doit permettre au chien de se tenir debout, de se retourner et de s'allonger. La règle IATA : longueur ≥ longueur du chien + ½ hauteur du coude, largeur ≥ 2 × largeur d'épaules, hauteur ≥ hauteur debout. Saisissez vos mesures pour obtenir le résultat exact." },
+  { q: "Quelle taille de caisse pour faire voyager mon chien en avion ?", a: "La caisse doit permettre au chien de se tenir debout, de se retourner et de s'allonger. La règle IATA : longueur ≥ longueur du chien + ½ hauteur du coude, largeur ≥ 2 × largeur d'épaules, hauteur ≥ hauteur debout. Saisis tes mesures pour obtenir le résultat exact." },
   { q: "Quelle est la formule IATA pour la taille de caisse ?", a: "Longueur = A + ½B, Largeur = C × 2, Hauteur = D, où A = longueur nez-queue, B = hauteur du coude, C = largeur d'épaules, D = hauteur debout (tête/oreilles). Notre outil estime B et C à partir de la hauteur pour ne demander que deux mesures." },
-  { q: "Les races brachycéphales ont-elles besoin d'une caisse plus grande ?", a: "Oui. Pour les chiens à nez court (bouledogue, carlin, boxer…), l'IATA impose une caisse 10 % plus grande afin de faciliter la respiration. Notre calculateur ajoute automatiquement ce +10 % si vous cochez la case." },
+  { q: "Les races brachycéphales ont-elles besoin d'une caisse plus grande ?", a: "Oui. Pour les chiens à nez court (bouledogue, carlin, boxer…), l'IATA impose une caisse 10 % plus grande afin de faciliter la respiration. Notre calculateur ajoute automatiquement ce +10 % si tu coches la case." },
   { q: "Mon chien peut-il voyager en cabine plutôt qu'en caisse soute ?", a: "En cabine, le chien voyage couché dans un sac souple sous le siège : c'est surtout une question de poids (souvent ≤ 8 kg, sac compris) et d'empreinte. Notre outil vérifie l'éligibilité cabine selon les dimensions réelles publiées par la compagnie." },
-  { q: "Quelles sont les tailles de caisse standard ?", a: "Les caisses de transport suivent une série standard, du n° 100 (XS) au n° 700 (XXL). Notre outil vous indique la taille indicative correspondant à vos mesures — vérifiez toujours les dimensions intérieures réelles du modèle." },
+  { q: "Quelles sont les tailles de caisse standard ?", a: "Les caisses de transport suivent une série standard, du n° 100 (XS) au n° 700 (XXL). Notre outil t'indique la taille indicative correspondant à tes mesures — vérifie toujours les dimensions intérieures réelles du modèle." },
 ];
 const FAQ_EN = [
   { q: "How do I measure my dog for a travel crate?", a: "Two measurements are enough, with the dog standing: length (nose to the base of the tail, not the tail) and height (floor to the top of the head, ears included). Our calculator turns these into the IATA-compliant crate size." },

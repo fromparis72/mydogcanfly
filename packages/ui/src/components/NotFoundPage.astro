@@ -1,0 +1,61 @@
+---
+/* Retest 09/08/2026 : la page 404 était un unique fichier statique (contrainte Cloudflare
+ * Pages — src/pages/404.astro > dist/404.html) rendu avec locale="en" en dur, puis un script
+ * client détectait /fr/ ou /es/ dans l'URL et ne réécrivait QUE le texte du <main> (h1, texte,
+ * libellés des 4 liens). Le header, le footer et le sélecteur de langue restaient en anglais
+ * quelle que soit l'URL — et /pt/ n'était même pas géré par ce script (404 intégralement en
+ * anglais). Corrigé en s'appuyant sur un comportement documenté de Cloudflare Pages : une 404
+ * personnalisée par répertoire (il remonte l'arborescence jusqu'à trouver un 404.html). On
+ * fournit donc un 404.html par langue (src/pages/{fr,es,pt}/404.astro, à côté de celui-ci) qui
+ * rend cette page avec la bonne locale — header/footer/dropdowns localisés par le même
+ * mécanisme que le reste du site, sans script de rustine. Le 404.astro racine (anglais) reste
+ * le filet de sécurité pour toute URL sans préfixe de langue reconnu.
+ */
+import Base from "../layouts/Base.astro";
+import { t, inlineT } from "@mydogcanfly/knowledge";
+
+interface Props { locale?: string }
+const { locale = "en" } = Astro.props;
+const L = inlineT(locale);
+
+const title = L("Page not found — MyDogCanFly", "Page introuvable — MyDogCanFly", "Página no encontrada — MyDogCanFly");
+const description = L(
+  "This page does not exist. Find the right airline for your dog with the MyDogCanFly Flight Finder.",
+  "Cette page n'existe pas. Trouve la bonne compagnie pour ton chien avec le Finder MyDogCanFly.",
+  "Esta página no existe. Encuentra la aerolínea adecuada para tu perro con el buscador de MyDogCanFly."
+);
+const h1 = L("Page not found", "Page introuvable", "Página no encontrada");
+const body = L(
+  "This page does not exist, or it belonged to an earlier version of the site.",
+  "Cette page n'existe pas, ou elle appartenait à une version précédente du site.",
+  "Esta página no existe, o pertenecía a una versión anterior del sitio."
+);
+const cta = L("Can my dog fly?", "Mon chien peut-il voyager ?", "¿Puede volar mi perro?");
+const base = locale === "en" ? "" : `/${locale}`;
+---
+<Base locale={locale} title={title} description={description} noindex={true} switcherPath="/">
+  <main class="nf">
+    <p class="nf__code">404</p>
+    <h1 class="nf__h">{h1}</h1>
+    <p class="nf__p">{body}</p>
+    <p class="nf__actions">
+      <a class="mdcf-btn" href={`${base}/#flight-finder`}>{cta}</a>
+    </p>
+    <ul class="nf__links">
+      <li><a href={`${base}/airlines/`}>{t(locale, "nav.airlines")}</a></li>
+      <li><a href={`${base}/countries/`}>{t(locale, "nav.countries")}</a></li>
+      <li><a href={`${base}/breeds/`}>{t(locale, "nav.breeds")}</a></li>
+      <li><a href={`${base}/tools/`}>{t(locale, "nav.tools")}</a></li>
+    </ul>
+  </main>
+
+  <style is:global>
+    .nf { max-width: 640px; margin: 0 auto; padding: 72px 20px 96px; text-align: center; }
+    .nf__code { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--mdcf-accent, #e8792b); margin: 0 0 10px; }
+    .nf__h { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin: 0 0 14px; color: var(--mdcf-ink, #011d48); }
+    .nf__p { font-size: 16px; line-height: 1.6; color: var(--mdcf-muted, #5b6b80); margin: 0 0 26px; }
+    .nf__actions { margin: 0 0 30px; }
+    .nf__links { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: center; padding: 0; margin: 0; }
+    .nf__links a { font-size: 14px; color: var(--mdcf-ink, #011d48); text-decoration: underline; text-underline-offset: 3px; }
+  </style>
+</Base>

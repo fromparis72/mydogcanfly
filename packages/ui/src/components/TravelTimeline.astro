@@ -66,13 +66,14 @@ const L = {
   heatHref: locale === "en" ? "/tools/heat/" : `/${locale}/tools/heat/`,
   finderHref: (locale === "en" ? "/" : `/${locale}/`) + "#flight-finder",
   s: {
-    countryPh: T("Destination country (type to search)", "Pays de destination (tapez pour chercher)", "País de destino (escribe para buscar)"),
+    countryPh: T("Destination country (type to search)", "Pays de destination (tape pour chercher)", "País de destino (escribe para buscar)"),
     date: T("Travel date", "Date du voyage", "Fecha de viaje"),
     origin: T("Coming from", "Tu viens", "Vienes de"),
     originEu: T("an EU / rabies-controlled country", "d'un pays de l'UE / à rage contrôlée", "un país de la UE / con rabia controlada"),
     originHigh: T("a non-listed / high-risk country", "d'un pays non listé / à haut risque", "un país no listado / de alto riesgo"),
     submit: T("Build my timeline", "Construire mon planning", "Crear mi cronograma"),
     need: T("Pick a destination country and a travel date.", "Choisis un pays de destination et une date de voyage.", "Elige un país de destino y una fecha de viaje."),
+    pastDate: T("Pick a travel date that hasn't passed yet.", "Choisis une date de voyage qui n'est pas encore passée.", "Elige una fecha de viaje que todavía no haya pasado."),
     title: T("Your reverse timeline", "Ton rétro-planning", "Tu cronograma inverso"),
     forC: T("for", "pour", "para"),
     verify: T("Verify", "À vérifier", "Por verificar"),
@@ -89,7 +90,7 @@ const L = {
     onwardHeat: T("Check the summer heat risk", "Vérifier le risque chaleur", "Comprobar el riesgo por calor del verano"),
     onwardCrate: T("Which travel crate size?", "Quelle taille de cage ?", "¿Qué talla de jaula?"),
     deliverTitle: T("Get this plan", "Recevoir ce planning", "Consigue este plan"),
-    deliverSub: T("Email it to yourself (or someone else), add it to your calendar, or print it.", "Envoie-le-tu (ou à quelqu'un d'autre), ajoute-le à ton agenda, ou imprime-le.", "Envíatelo por correo (o a otra persona), añádelo a tu calendario o imprímelo."),
+    deliverSub: T("Email it to yourself (or someone else), add it to your calendar, or print it.", "Envoie-le-toi (ou à quelqu'un d'autre), ajoute-le à ton agenda, ou imprime-le.", "Envíatelo por correo (o a otra persona), añádelo a tu calendario o imprímelo."),
     fn: T("First name", "Prénom", "Nombre"),
     ln: T("Last name", "Nom", "Apellido"),
     emailL: T("Email address", "Adresse e-mail", "Correo electrónico"),
@@ -107,7 +108,7 @@ const L = {
     emailFoot: T("Generated with MyDogCanFly — always confirm timings with the destination's veterinary authority and your vet.", "Généré avec MyDogCanFly — confirme toujours les délais auprès de l'autorité vétérinaire de destination et de ton vétérinaire.", "Generado con MyDogCanFly: confirma siempre los plazos con la autoridad veterinaria del destino y con tu veterinario."),
   },
   steps: {
-    microchip: { t: T("ISO microchip", "Puce ISO", "Microchip ISO"), g: T("Implant the ISO microchip. It must be in place before the rabies vaccination, otherwise the vaccine may not count.", "Posez la puce ISO. Elle doit être en place avant la vaccination antirabique, sinon le vaccin peut ne pas être valable.", "Implanta el microchip ISO. Debe estar colocado antes de la vacunación antirrábica; de lo contrario, la vacuna podría no ser válida.") },
+    microchip: { t: T("ISO microchip", "Puce ISO", "Microchip ISO"), g: T("Implant the ISO microchip. It must be in place before the rabies vaccination, otherwise the vaccine may not count.", "Pose la puce ISO. Elle doit être en place avant la vaccination antirabique, sinon le vaccin peut ne pas être valable.", "Implanta el microchip ISO. Debe estar colocado antes de la vacunación antirrábica; de lo contrario, la vacuna podría no ser válida.") },
     rabies: { t: T("Rabies vaccination", "Vaccination antirabique", "Vacunación antirrábica"), g: T("Primary rabies vaccination (after the microchip). It becomes valid 21 days later.", "Primovaccination antirabique (après la puce). Elle devient valable 21 jours après.", "Primovacunación antirrábica (después del microchip). Pasa a ser válida 21 días después."), gTiter: T("Rabies vaccination (after the microchip) — must be early enough for the blood test that follows.", "Vaccination antirabique (après la puce) — assez tôt pour la prise de sang qui suit.", "Vacunación antirrábica (después del microchip): con suficiente antelación para el análisis de sangre que sigue.") },
     titer: { t: T("Rabies antibody test (titration)", "Test sérologique antirabique (titrage)", "Prueba de titulación de rabia (prueba serológica)"), g: T("Blood sample at an approved lab, ≥30 days after the vaccination and ≥3 months before entry. Result must be ≥0.5 IU/ml.", "Prise de sang en laboratoire agréé, ≥30 jours après le vaccin et ≥3 mois avant l'entrée. Résultat ≥0,5 UI/ml.", "Extracción de sangre en un laboratorio autorizado, ≥30 días después de la vacuna y ≥3 meses antes de la entrada. El resultado debe ser ≥0,5 UI/ml.") },
     parasite: { t: T("Tapeworm / parasite treatment", "Traitement antiparasitaire (ténia)", "Tratamiento antiparasitario (contra la tenia)"), g: T("Vet-administered treatment, typically 24–120 hours (1–5 days) before arrival, recorded on the certificate.", "Traitement par le vétérinaire, généralement 24–120 h (1–5 jours) avant l'arrivée, inscrit sur le certificat.", "Tratamiento administrado por el veterinario, normalmente 24–120 horas (1–5 días) antes de la llegada, registrado en el certificado.") },
@@ -168,6 +169,13 @@ const L = {
   }
   attachAC($("#tl-country"));
 
+  // Retest 09/08/2026, timeline : le champ acceptait n'importe quelle date passée sans avertissement
+  // et générait un rétro-planning avec des étapes datées dans le passé. `min` bloque la plupart des
+  // saisies via le sélecteur natif ; la vérification dans le submit couvre la saisie manuelle/collée.
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const dateInput = $("#tl-date");
+  if (dateInput) dateInput.min = todayISO;
+
   const fmtDate = (d) => d.toLocaleDateString(L.locale === "fr" ? "fr-FR" : L.locale === "es" ? "es-ES" : "en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
   const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
   const icsDate = (d) => d.toISOString().slice(0, 10).replace(/-/g, "");
@@ -180,6 +188,8 @@ const L = {
     const dv = $("#tl-date").value;
     if (!country || !dv) { out.innerHTML = `<div class="tl-msg">${L.s.need}</div>`; return; }
     const travel = new Date(dv + "T00:00:00");
+    const todayMidnight = new Date(); todayMidnight.setHours(0, 0, 0, 0);
+    if (travel < todayMidnight) { out.innerHTML = `<div class="tl-msg">${L.s.pastDate}</div>`; return; }
     const origin = $("#tl-origin").value; // eu | high
     const st = country.steps;
     const titerStatus = st.titer ? st.titer.status : null;

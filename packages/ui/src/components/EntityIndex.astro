@@ -38,12 +38,16 @@ const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link } = A
   const count = document.getElementById("idx-count");
   const empty = document.getElementById("idx-empty");
   const label = (el: HTMLElement) => (el.querySelector("b")?.textContent || "").trim().toLowerCase();
+  // Retest 09/08/2026, points 1+2 : accent-fold like every other search on the site (attachCombobox,
+  // FlightFinder, DestinationFinder, CrateCalculator, TravelTimeline, PetReliefFinder all use this same
+  // pattern) so "francais" matches "français".
+  const norm = (s: string) => (s ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
 
   const applyFilter = () => {
-    const q = (input?.value || "").trim().toLowerCase();
+    const q = norm(input?.value || "");
     let shown = 0;
     for (const el of items) {
-      const match = !q || (el.getAttribute("data-search") || "").includes(q);
+      const match = !q || norm(el.getAttribute("data-search") || "").includes(q);
       el.hidden = !match;
       if (match) shown++;
     }
@@ -54,10 +58,10 @@ const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link } = A
 
   // Go straight to the requested page: exact name match first, else the single best visible result.
   const navigate = () => {
-    const q = (input?.value || "").trim().toLowerCase();
+    const q = norm(input?.value || "");
     if (!q) return;
     const visible = items.filter((el) => !el.hidden);
-    const target = items.find((el) => label(el) === q) || (visible.length ? visible[0] : null);
+    const target = items.find((el) => norm(label(el)) === q) || (visible.length ? visible[0] : null);
     const href = target?.getAttribute("href");
     if (href) window.location.href = href;
   };
@@ -86,6 +90,10 @@ const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link } = A
   .idx__count b { color: var(--mdcf-ink); }
   .idx { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .idx__item { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--mdcf-ink); transition: border-color .15s, transform .15s, box-shadow .15s; }
+  /* Retest 09/08/2026, point 1 : sans ce override, [hidden] (posé en JS par applyFilter) est battu par la
+     règle "display: flex" ci-dessus (spécificité/cascade auteur > agent utilisateur) — les cartes filtrées
+     restaient visibles alors que le compteur de résultats était pourtant correct. */
+  .idx__item[hidden] { display: none; }
   .idx__item:hover { border-color: var(--mdcf-accent); transform: translateY(-1px); box-shadow: var(--mdcf-shadow); }
   .idx__flag { margin-right: 8px; font-size: 1.05em; line-height: 1; }
   .idx__sub { color: var(--mdcf-muted); font-size: 13px; }

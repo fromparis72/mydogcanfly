@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "build:prod": "PUBLIC_SITE_ENV=production astro build",
+    "build": "astro build && node scripts/fix-404.mjs",
+    "build:prod": "PUBLIC_SITE_ENV=production astro build && node scripts/fix-404.mjs",
     "check": "astro check"
   },
   "dependencies": {

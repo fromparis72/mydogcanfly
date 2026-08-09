@@ -1,0 +1,9 @@
+---
+// Voir le commentaire en tête de ../404.astro et de ../../components/NotFoundPage.astro.
+// Cloudflare Pages remonte l'arborescence à la recherche d'un 404.html : une URL inconnue sous
+// /pt/ atterrit ici en priorité, avant le filet de sécurité anglais à la racine. Avant ce
+// correctif, /pt/ n'était même pas reconnu par le script client de l'ancienne 404 unique : une
+// mauvaise URL sous /pt/ s'affichait intégralement en anglais.
+import NotFoundPage from "../../components/NotFoundPage.astro";
+---
+<NotFoundPage locale="pt" />

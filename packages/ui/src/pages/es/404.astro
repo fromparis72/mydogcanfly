@@ -1,0 +1,7 @@
+---
+// Voir le commentaire en tête de ../404.astro et de ../../components/NotFoundPage.astro.
+// Cloudflare Pages remonte l'arborescence à la recherche d'un 404.html : une URL inconnue sous
+// /es/ atterrit ici en priorité, avant le filet de sécurité anglais à la racine.
+import NotFoundPage from "../../components/NotFoundPage.astro";
+---
+<NotFoundPage locale="es" />

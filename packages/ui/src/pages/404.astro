@@ -3,75 +3,9 @@
 // Elle vit à la racine de src/pages (hors [...loc]) : Astro produit dist/404.html, que Pages
 // reconnaît nativement. Sans elle, les URL inconnues renvoyaient la page d'accueil en 200,
 // soit un soft-404 pour Google.
-// La locale ne peut pas être déduite du chemin au build (une seule page pour toutes les URL) :
-// le texte est en anglais et un script minimal le bascule en FR ou ES si l'URL commence par
-// /fr/ ou /es/. Aucun contenu n'est masqué aux robots — la page est en noindex de toute façon.
-import Base from "../layouts/Base.astro";
+// Filet de sécurité anglais pour toute URL sans préfixe de langue reconnu (ou hors /fr/, /es/,
+// /pt/). Les 404 localisées vivent à côté, dans fr/404.astro, es/404.astro et pt/404.astro —
+// voir le commentaire en tête de NotFoundPage.astro pour le fonctionnement Cloudflare exploité.
+import NotFoundPage from "../components/NotFoundPage.astro";
 ---
-<Base
-  locale="en"
-  title="Page not found — MyDogCanFly"
-  description="This page does not exist. Find the right airline for your dog with the MyDogCanFly Flight Finder."
-  noindex={true}
-  switcherPath="/"
->
-  <main class="nf">
-    <p class="nf__code">404</p>
-    <h1 class="nf__h" data-i18n="h">Page not found</h1>
-    <p class="nf__p" data-i18n="p">
-      This page does not exist, or it belonged to an earlier version of the site.
-    </p>
-    <p class="nf__actions">
-      <a class="mdcf-btn" href="/#flight-finder" data-i18n="cta" data-href-base="#flight-finder">Can my dog fly?</a>
-    </p>
-    <ul class="nf__links">
-      <li><a href="/airlines/" data-i18n="l1" data-path="airlines/">Airlines</a></li>
-      <li><a href="/countries/" data-i18n="l2" data-path="countries/">Destinations</a></li>
-      <li><a href="/breeds/" data-i18n="l3" data-path="breeds/">Dog breeds</a></li>
-      <li><a href="/tools/" data-i18n="l4" data-path="tools/">Tools</a></li>
-    </ul>
-  </main>
-
-  <script is:inline>
-    (function () {
-      var m = /^\/(fr|es)(\/|$)/.exec(location.pathname);
-      if (!m) return;
-      var lang = m[1];
-      var T = {
-        fr: {
-          h: "Page introuvable",
-          p: "Cette page n'existe pas, ou elle appartenait à une version précédente du site.",
-          cta: "Mon chien peut-il voyager ?",
-          l1: "Compagnies", l2: "Destinations", l3: "Races de chiens", l4: "Outils",
-        },
-        es: {
-          h: "Página no encontrada",
-          p: "Esta página no existe, o pertenecía a una versión anterior del sitio.",
-          cta: "¿Puede volar mi perro?",
-          l1: "Aerolíneas", l2: "Destinos", l3: "Razas de perros", l4: "Herramientas",
-        },
-      }[lang];
-      document.documentElement.lang = lang;
-      document.querySelectorAll("[data-i18n]").forEach(function (el) {
-        var k = el.getAttribute("data-i18n");
-        if (T[k]) el.textContent = T[k];
-      });
-      // Les liens restent dans la langue du visiteur.
-      document.querySelectorAll("[data-path]").forEach(function (el) {
-        el.setAttribute("href", "/" + lang + "/" + el.getAttribute("data-path"));
-      });
-      var cta = document.querySelector("[data-href-base]");
-      if (cta) cta.setAttribute("href", "/" + lang + "/" + cta.getAttribute("data-href-base"));
-    })();
-  </script>
-
-  <style is:global>
-    .nf { max-width: 640px; margin: 0 auto; padding: 72px 20px 96px; text-align: center; }
-    .nf__code { font-size: 13px; font-weight: 800; letter-spacing: .14em; color: var(--mdcf-accent, #e8792b); margin: 0 0 10px; }
-    .nf__h { font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin: 0 0 14px; color: var(--mdcf-ink, #011d48); }
-    .nf__p { font-size: 16px; line-height: 1.6; color: var(--mdcf-muted, #5b6b80); margin: 0 0 26px; }
-    .nf__actions { margin: 0 0 30px; }
-    .nf__links { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: center; padding: 0; margin: 0; }
-    .nf__links a { font-size: 14px; color: var(--mdcf-ink, #011d48); text-decoration: underline; text-underline-offset: 3px; }
-  </style>
-</Base>
+<NotFoundPage locale="en" />
