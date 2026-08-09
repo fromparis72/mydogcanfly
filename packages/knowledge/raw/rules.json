@@ -5704,6 +5704,42 @@
           "fact": "route.dest_country_id",
           "op": "eq",
           "value": "country_ch"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "in",
+          "value": [
+            "country_at",
+            "country_be",
+            "country_bg",
+            "country_cy",
+            "country_cz",
+            "country_de",
+            "country_dk",
+            "country_ee",
+            "country_es",
+            "country_fi",
+            "country_fr",
+            "country_gr",
+            "country_hr",
+            "country_hu",
+            "country_ie",
+            "country_is",
+            "country_it",
+            "country_li",
+            "country_lt",
+            "country_lu",
+            "country_lv",
+            "country_mt",
+            "country_nl",
+            "country_no",
+            "country_pl",
+            "country_pt",
+            "country_ro",
+            "country_se",
+            "country_si",
+            "country_sk"
+          ]
         }
       ]
     },
@@ -5731,11 +5767,232 @@
           "date": "2026-07-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Imported from MyDogCanFly's verified entry-requirements dataset (verified June 2026)."
+        },
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Portée restreinte aux départs UE/EEE + micro-États assimilés (catégorie 1, Länderliste BLV juin 2026) : le texte affirmait le passeport européen sans condition d'origine. Les autres origines relèvent de rule_ch_import_low_risk et rule_ch_import_high_risk."
         }
       ]
     },
     "rationale_i18n": {
       "fr": "Préparation : 21 jours minimum (pour une première vaccination). Exigences : puce ISO, vaccination antirabique, passeport européen."
+    }
+  },
+  {
+    "id": "rule_ch_import_low_risk",
+    "scope": {
+      "type": "country",
+      "id": "country_ch"
+    },
+    "category": "import_rules",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_ch"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "in",
+          "value": [
+            "country_ae",
+            "country_ar",
+            "country_au",
+            "country_ba",
+            "country_bh",
+            "country_ca",
+            "country_cl",
+            "country_fj",
+            "country_gb",
+            "country_hk",
+            "country_jm",
+            "country_jp",
+            "country_me",
+            "country_mk",
+            "country_mu",
+            "country_mx",
+            "country_my",
+            "country_nz",
+            "country_rs",
+            "country_sg",
+            "country_tt",
+            "country_tw",
+            "country_us"
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "require"
+    },
+    "params": {
+      "docs": [
+        "microchip",
+        "rabies_vaccine",
+        "health_certificate",
+        "owner_declaration"
+      ],
+      "lead_time_days": 21
+    },
+    "rationale": "No EU pet passport from outside the EU/EEA-recognised area. From a country with a favourable rabies situation, entering Switzerland needs a veterinary health certificate issued by an official veterinarian in the country of departure, a valid rabies vaccination (first dose from 12 weeks, then a 21-day wait) and a special owner declaration — no rabies antibody titration test required.",
+    "rationale_i18n": {
+      "fr": "Pas de passeport européen depuis un pays hors UE/EEE reconnu. Depuis un pays à situation rabique favorable, l'entrée en Suisse demande un certificat vétérinaire établi par un vétérinaire officiel du pays de départ, une vaccination antirabique valide (première dose dès 12 semaines, puis 21 jours d'attente) et une déclaration spéciale du propriétaire — pas de titrage des anticorps antirabiques.",
+      "es": "Sin pasaporte europeo desde fuera del área UE/EEE reconocida. Desde un país con situación rábica favorable, entrar a Suiza exige un certificado veterinario expedido por un veterinario oficial del país de salida, una vacunación antirrábica válida (primera dosis desde las 12 semanas, luego 21 días de espera) y una declaración especial del propietario — sin prueba de titulación de anticuerpos antirrábicos."
+    },
+    "source": {
+      "url": "https://www.blv.admin.ch/dam/de/sd-web/rGF02-RRaF0f/liste-laender-tollwut-de.pdf",
+      "source_type": "government",
+      "verified_date": "2026-08-09",
+      "review_due": "2027-02-05",
+      "confidence": 4,
+      "reviewer": "MyDogCanFly Data Team",
+      "history": [
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Règle créée pour séparer les pays tiers à risque faible (catégorie 2 de la « Länderliste nach Tollwutrisiko » BLV, juin 2026) du parcours UE/EEE. Voir rule_ch_import (palier 1) et rule_ch_import_high_risk (palier 3)."
+        }
+      ]
+    }
+  },
+  {
+    "id": "rule_ch_import_high_risk",
+    "scope": {
+      "type": "country",
+      "id": "country_ch"
+    },
+    "category": "import_rules",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_ch"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "nin",
+          "value": [
+            "country_at",
+            "country_be",
+            "country_bg",
+            "country_cy",
+            "country_cz",
+            "country_de",
+            "country_dk",
+            "country_ee",
+            "country_es",
+            "country_fi",
+            "country_fr",
+            "country_gr",
+            "country_hr",
+            "country_hu",
+            "country_ie",
+            "country_is",
+            "country_it",
+            "country_li",
+            "country_lt",
+            "country_lu",
+            "country_lv",
+            "country_mt",
+            "country_nl",
+            "country_no",
+            "country_pl",
+            "country_pt",
+            "country_ro",
+            "country_se",
+            "country_si",
+            "country_sk",
+            "country_ae",
+            "country_ar",
+            "country_au",
+            "country_ba",
+            "country_bh",
+            "country_ca",
+            "country_cl",
+            "country_fj",
+            "country_gb",
+            "country_hk",
+            "country_jm",
+            "country_jp",
+            "country_me",
+            "country_mk",
+            "country_mu",
+            "country_mx",
+            "country_my",
+            "country_nz",
+            "country_rs",
+            "country_sg",
+            "country_tt",
+            "country_tw",
+            "country_us"
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "require"
+    },
+    "params": {
+      "docs": [
+        "microchip",
+        "rabies_vaccine",
+        "health_certificate",
+        "rabies_titer_test",
+        "import_permit"
+      ],
+      "lead_time_days": 21,
+      "min_age_months": 7,
+      "titer_wait_undocumented": true,
+      "no_titer_origin_country_ids": [
+        "country_ae",
+        "country_ar",
+        "country_au",
+        "country_ba",
+        "country_bh",
+        "country_ca",
+        "country_cl",
+        "country_fj",
+        "country_gb",
+        "country_hk",
+        "country_jm",
+        "country_jp",
+        "country_me",
+        "country_mk",
+        "country_mu",
+        "country_mx",
+        "country_my",
+        "country_nz",
+        "country_rs",
+        "country_sg",
+        "country_tt",
+        "country_tw",
+        "country_us"
+      ]
+    },
+    "rationale": "From a country where urban rabies cannot be ruled out, entering Switzerland needs a veterinary health certificate, a valid rabies vaccination, and a rabies antibody titration test from a designated laboratory — long waiting times apply and are not published as a fixed number of days by the source. Dogs under 7 months old cannot enter Switzerland from a high-rabies-risk country. Direct arrival by plane additionally requires an import licence (Basel, Geneva or Zurich).",
+    "rationale_i18n": {
+      "fr": "Depuis un pays où la rage urbaine ne peut pas être exclue, l'entrée en Suisse demande un certificat vétérinaire, une vaccination antirabique valide, et un titrage des anticorps antirabiques dans un laboratoire agréé — de longs délais s'appliquent, non chiffrés en un nombre de jours fixe par la source. Un chien de moins de 7 mois ne peut pas entrer en Suisse depuis un pays à risque rabique élevé. Une arrivée directe par avion demande en plus une autorisation d'importation (Bâle, Genève ou Zurich).",
+      "es": "Desde un país donde no puede descartarse la rabia urbana, entrar a Suiza exige un certificado veterinario, una vacunación antirrábica válida y una prueba de titulación de anticuerpos antirrábicos en un laboratorio designado — se aplican plazos largos que la fuente no fija en un número de días concreto. Un perro menor de 7 meses no puede entrar a Suiza desde un país de alto riesgo rábico. La llegada directa en avión exige además una autorización de importación (Basilea, Ginebra o Zúrich)."
+    },
+    "source": {
+      "url": "https://www.blv.admin.ch/en/travelling-with-dogs-cats-and-ferrets",
+      "source_type": "government",
+      "verified_date": "2026-08-09",
+      "review_due": "2027-02-05",
+      "confidence": 4,
+      "reviewer": "MyDogCanFly Data Team",
+      "history": [
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Règle créée pour le palier 3 (pays à rage urbaine, catégorie 3 de la Länderliste BLV = tout ce qui n'est pas en catégorie 1 ou 2). Âge minimum 7 mois et permis d'importation FSVO chiffrés par la source ; délai du titrage laissé qualitatif, la page ne le chiffre pas."
+        }
+      ]
     }
   },
   {
@@ -16818,6 +17075,42 @@
           "fact": "route.dest_country_id",
           "op": "eq",
           "value": "country_li"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "in",
+          "value": [
+            "country_at",
+            "country_be",
+            "country_bg",
+            "country_cy",
+            "country_cz",
+            "country_de",
+            "country_dk",
+            "country_ee",
+            "country_es",
+            "country_fi",
+            "country_fr",
+            "country_gr",
+            "country_hr",
+            "country_hu",
+            "country_ie",
+            "country_is",
+            "country_it",
+            "country_li",
+            "country_lt",
+            "country_lu",
+            "country_lv",
+            "country_mt",
+            "country_nl",
+            "country_no",
+            "country_pl",
+            "country_pt",
+            "country_ro",
+            "country_se",
+            "country_si",
+            "country_sk"
+          ]
         }
       ]
     },
@@ -16832,12 +17125,12 @@
       ],
       "lead_time_days": 21
     },
-    "rationale": "21 days minimum. Requirements: microchip, rabies vaccination, EU pet passport.",
+    "rationale": "Liechtenstein has no independent pet-import regime: under the 1923 customs treaty it is a customs-annexed territory that belongs, in veterinary law, to Switzerland's own import territory (Swiss EDAV-Ht ordinance, explanatory notes). Entering Liechtenstein therefore follows the exact same rules as entering Switzerland. From the EU/EEA and the micro-states whose pet passport Switzerland recognises: microchip, valid rabies vaccination (first dose from 12 weeks, then a 21-day wait) and a recognised pet passport — nothing else.",
     "source": {
-      "url": "https://europa.eu/youreurope/citizens/travel/carry/pets-and-other-animals/index_en.htm",
+      "url": "https://www.blv.admin.ch/en/travelling-with-dogs-cats-and-ferrets",
       "source_type": "government",
-      "verified_date": "2026-07-08",
-      "review_due": "2027-01-04",
+      "verified_date": "2026-08-09",
+      "review_due": "2027-02-05",
       "confidence": 4,
       "reviewer": "MyDogCanFly Data Team",
       "history": [
@@ -16845,11 +17138,233 @@
           "date": "2026-07-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Imported from MyDogCanFly's verified entry-requirements dataset (verified June 2026)."
+        },
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Source corrigée (l'ancienne, europa.eu « Your Europe », ne couvre que les États membres de l'UE) et portée restreinte à l'origine UE/EEE + micro-États assimilés, par identité avec le régime suisse (Liechtenstein = territoire d'importation suisse en droit vétérinaire, notes explicatives EDAV-Ht, BLV). Voir https://www.blv.admin.ch/dam/blv/de/dokumente/import-export/rechts-und-vollzugsgrundlagen/erlaeuterungen-edav-ht.pdf.download.pdf/Erl%C3%A4uterungen%20zur%20EDAV-Ht_d.pdf. Les autres origines relèvent de rule_li_import_low_risk et rule_li_import_high_risk."
         }
       ]
     },
     "rationale_i18n": {
-      "fr": "Préparation : 21 jours minimum. Exigences : puce ISO, vaccination antirabique, passeport européen."
+      "fr": "Le Liechtenstein n'a pas de régime d'importation propre : en vertu du traité douanier de 1923, c'est un territoire d'union douanière qui appartient, en droit vétérinaire, au territoire d'importation suisse (ordonnance suisse EDAV-Ht, notes explicatives). Entrer au Liechtenstein suit donc exactement les mêmes règles qu'entrer en Suisse. Depuis l'UE/EEE et les micro-États dont la Suisse reconnaît le passeport : puce ISO, vaccination antirabique valide (première dose dès 12 semaines, puis 21 jours d'attente) et passeport reconnu — rien de plus.",
+      "es": "Liechtenstein no tiene un régimen de importación propio: en virtud del tratado aduanero de 1923, es un territorio de unión aduanera que pertenece, en derecho veterinario, al territorio de importación suizo (ordenanza suiza EDAV-Ht, notas explicativas). Entrar en Liechtenstein sigue por tanto exactamente las mismas reglas que entrar en Suiza. Desde la UE/EEE y los microestados cuyo pasaporte reconoce Suiza: microchip, vacunación antirrábica válida (primera dosis desde las 12 semanas, luego 21 días de espera) y pasaporte reconocido — nada más."
+    }
+  },
+  {
+    "id": "rule_li_import_low_risk",
+    "scope": {
+      "type": "country",
+      "id": "country_li"
+    },
+    "category": "import_rules",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_li"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "in",
+          "value": [
+            "country_ae",
+            "country_ar",
+            "country_au",
+            "country_ba",
+            "country_bh",
+            "country_ca",
+            "country_cl",
+            "country_fj",
+            "country_gb",
+            "country_hk",
+            "country_jm",
+            "country_jp",
+            "country_me",
+            "country_mk",
+            "country_mu",
+            "country_mx",
+            "country_my",
+            "country_nz",
+            "country_rs",
+            "country_sg",
+            "country_tt",
+            "country_tw",
+            "country_us"
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "require"
+    },
+    "params": {
+      "docs": [
+        "microchip",
+        "rabies_vaccine",
+        "health_certificate",
+        "owner_declaration"
+      ],
+      "lead_time_days": 21
+    },
+    "rationale": "No EU pet passport from outside the EU/EEA-recognised area. From a country with a favourable rabies situation, entering Liechtenstein needs a veterinary health certificate issued by an official veterinarian in the country of departure, a valid rabies vaccination (first dose from 12 weeks, then a 21-day wait) and a special owner declaration — no rabies antibody titration test required.",
+    "rationale_i18n": {
+      "fr": "Pas de passeport européen depuis un pays hors UE/EEE reconnu. Depuis un pays à situation rabique favorable, l'entrée au Liechtenstein demande un certificat vétérinaire établi par un vétérinaire officiel du pays de départ, une vaccination antirabique valide (première dose dès 12 semaines, puis 21 jours d'attente) et une déclaration spéciale du propriétaire — pas de titrage des anticorps antirabiques.",
+      "es": "Sin pasaporte europeo desde fuera del área UE/EEE reconocida. Desde un país con situación rábica favorable, entrar a Liechtenstein exige un certificado veterinario expedido por un veterinario oficial del país de salida, una vacunación antirrábica válida (primera dosis desde las 12 semanas, luego 21 días de espera) y una declaración especial del propietario — sin prueba de titulación de anticuerpos antirrábicos."
+    },
+    "source": {
+      "url": "https://www.blv.admin.ch/dam/de/sd-web/rGF02-RRaF0f/liste-laender-tollwut-de.pdf",
+      "source_type": "government",
+      "verified_date": "2026-08-09",
+      "review_due": "2027-02-05",
+      "confidence": 4,
+      "reviewer": "MyDogCanFly Data Team",
+      "history": [
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Règle créée pour séparer les pays tiers à risque faible (catégorie 2 de la « Länderliste nach Tollwutrisiko » BLV, juin 2026) du parcours UE/EEE. Voir rule_li_import (palier 1) et rule_li_import_high_risk (palier 3)."
+        }
+      ]
+    }
+  },
+  {
+    "id": "rule_li_import_high_risk",
+    "scope": {
+      "type": "country",
+      "id": "country_li"
+    },
+    "category": "import_rules",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_li"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "nin",
+          "value": [
+            "country_at",
+            "country_be",
+            "country_bg",
+            "country_cy",
+            "country_cz",
+            "country_de",
+            "country_dk",
+            "country_ee",
+            "country_es",
+            "country_fi",
+            "country_fr",
+            "country_gr",
+            "country_hr",
+            "country_hu",
+            "country_ie",
+            "country_is",
+            "country_it",
+            "country_li",
+            "country_lt",
+            "country_lu",
+            "country_lv",
+            "country_mt",
+            "country_nl",
+            "country_no",
+            "country_pl",
+            "country_pt",
+            "country_ro",
+            "country_se",
+            "country_si",
+            "country_sk",
+            "country_ae",
+            "country_ar",
+            "country_au",
+            "country_ba",
+            "country_bh",
+            "country_ca",
+            "country_cl",
+            "country_fj",
+            "country_gb",
+            "country_hk",
+            "country_jm",
+            "country_jp",
+            "country_me",
+            "country_mk",
+            "country_mu",
+            "country_mx",
+            "country_my",
+            "country_nz",
+            "country_rs",
+            "country_sg",
+            "country_tt",
+            "country_tw",
+            "country_us"
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "require"
+    },
+    "params": {
+      "docs": [
+        "microchip",
+        "rabies_vaccine",
+        "health_certificate",
+        "rabies_titer_test",
+        "import_permit"
+      ],
+      "lead_time_days": 21,
+      "min_age_months": 7,
+      "titer_wait_undocumented": true,
+      "no_titer_origin_country_ids": [
+        "country_ae",
+        "country_ar",
+        "country_au",
+        "country_ba",
+        "country_bh",
+        "country_ca",
+        "country_cl",
+        "country_fj",
+        "country_gb",
+        "country_hk",
+        "country_jm",
+        "country_jp",
+        "country_me",
+        "country_mk",
+        "country_mu",
+        "country_mx",
+        "country_my",
+        "country_nz",
+        "country_rs",
+        "country_sg",
+        "country_tt",
+        "country_tw",
+        "country_us"
+      ]
+    },
+    "rationale": "From a country where urban rabies cannot be ruled out, entering Liechtenstein needs a veterinary health certificate, a valid rabies vaccination, and a rabies antibody titration test from a designated laboratory — long waiting times apply and are not published as a fixed number of days by the source. Dogs under 7 months old cannot enter Liechtenstein from a high-rabies-risk country. Direct arrival by plane additionally requires an import licence (Basel, Geneva or Zurich).",
+    "rationale_i18n": {
+      "fr": "Depuis un pays où la rage urbaine ne peut pas être exclue, l'entrée au Liechtenstein demande un certificat vétérinaire, une vaccination antirabique valide, et un titrage des anticorps antirabiques dans un laboratoire agréé — de longs délais s'appliquent, non chiffrés en un nombre de jours fixe par la source. Un chien de moins de 7 mois ne peut pas entrer au Liechtenstein depuis un pays à risque rabique élevé. Une arrivée directe par avion demande en plus une autorisation d'importation (Bâle, Genève ou Zurich).",
+      "es": "Desde un país donde no puede descartarse la rabia urbana, entrar a Liechtenstein exige un certificado veterinario, una vacunación antirrábica válida y una prueba de titulación de anticuerpos antirrábicos en un laboratorio designado — se aplican plazos largos que la fuente no fija en un número de días concreto. Un perro menor de 7 meses no puede entrar a Liechtenstein desde un país de alto riesgo rábico. La llegada directa en avión exige además una autorización de importación (Basilea, Ginebra o Zúrich)."
+    },
+    "source": {
+      "url": "https://www.blv.admin.ch/en/travelling-with-dogs-cats-and-ferrets",
+      "source_type": "government",
+      "verified_date": "2026-08-09",
+      "review_due": "2027-02-05",
+      "confidence": 4,
+      "reviewer": "MyDogCanFly Data Team",
+      "history": [
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Règle créée pour le palier 3 (pays à rage urbaine, catégorie 3 de la Länderliste BLV = tout ce qui n'est pas en catégorie 1 ou 2). Âge minimum 7 mois et permis d'importation FSVO chiffrés par la source ; délai du titrage laissé qualitatif, la page ne le chiffre pas."
+        }
+      ]
     }
   },
   {
@@ -19495,6 +20010,41 @@
           "fact": "route.dest_country_id",
           "op": "eq",
           "value": "country_no"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "in",
+          "value": [
+            "country_at",
+            "country_be",
+            "country_bg",
+            "country_cy",
+            "country_cz",
+            "country_de",
+            "country_dk",
+            "country_ee",
+            "country_es",
+            "country_fi",
+            "country_fr",
+            "country_gr",
+            "country_hr",
+            "country_hu",
+            "country_ie",
+            "country_is",
+            "country_it",
+            "country_li",
+            "country_lt",
+            "country_lu",
+            "country_lv",
+            "country_mt",
+            "country_nl",
+            "country_pl",
+            "country_pt",
+            "country_ro",
+            "country_se",
+            "country_si",
+            "country_sk"
+          ]
         }
       ]
     },
@@ -19523,11 +20073,105 @@
           "date": "2026-07-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Imported from MyDogCanFly's verified entry-requirements dataset (verified June 2026)."
+        },
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Portée restreinte aux départs UE/EEE (Mattilsynet, page « from EU-countries to Norway ») : le texte affirmait le passeport européen sans condition d'origine. Les autres origines relèvent de rule_no_import_non_eea."
         }
       ]
     },
     "rationale_i18n": {
       "fr": "Préparation : 21 jours + traitement contre le ténia 1 à 5 jours avant. Exigences : puce ISO, vaccination antirabique, passeport européen, traitement contre le ténia."
+    }
+  },
+  {
+    "id": "rule_no_import_non_eea",
+    "scope": {
+      "type": "country",
+      "id": "country_no"
+    },
+    "category": "import_rules",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "route.dest_country_id",
+          "op": "eq",
+          "value": "country_no"
+        },
+        {
+          "fact": "route.origin_country_id",
+          "op": "nin",
+          "value": [
+            "country_at",
+            "country_be",
+            "country_bg",
+            "country_cy",
+            "country_cz",
+            "country_de",
+            "country_dk",
+            "country_ee",
+            "country_es",
+            "country_fi",
+            "country_fr",
+            "country_gr",
+            "country_hr",
+            "country_hu",
+            "country_ie",
+            "country_is",
+            "country_it",
+            "country_li",
+            "country_lt",
+            "country_lu",
+            "country_lv",
+            "country_mt",
+            "country_nl",
+            "country_pl",
+            "country_pt",
+            "country_ro",
+            "country_se",
+            "country_si",
+            "country_sk"
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "require"
+    },
+    "params": {
+      "docs": [
+        "microchip",
+        "rabies_vaccine",
+        "health_certificate",
+        "tapeworm_treatment"
+      ],
+      "lead_time_days": 21,
+      "lead_time_days_if_titer_required": 120,
+      "titer_required_unless_origin_listed": true,
+      "no_titer_list_note": "Referenced by Mattilsynet as Annex II to Regulation (EU) No 577/2013; not republished on the Norwegian source page, so the resolved list is left unpublished here rather than assumed identical to the EU's own current list.",
+      "health_certificate_model": "Annex IV to Regulation (EU) No 577/2013"
+    },
+    "rationale": "From a non-EU/EEA country, entering Norway needs an identification document — an animal health certificate on the model of Annex IV to Regulation (EU) No 577/2013 — plus a valid rabies vaccination (first dose from 12 weeks, then a 21-day wait) and, unless the country of departure is listed as exempt, a rabies antibody titration test: blood sample at least 30 days after vaccination, and at least 90 days before entering Norway. An anti-echinococcus (tapeworm) treatment is required regardless of origin, given 24–120 hours before arrival.",
+    "rationale_i18n": {
+      "fr": "Depuis un pays hors UE/EEE, l'entrée en Norvège demande un document d'identification — un certificat sanitaire au modèle de l'Annexe IV du règlement (UE) n° 577/2013 — plus une vaccination antirabique valide (première dose dès 12 semaines, puis 21 jours d'attente) et, sauf si le pays de départ figure sur la liste des pays dispensés, un titrage des anticorps antirabiques : prise de sang au moins 30 jours après la vaccination, et au moins 90 jours avant l'entrée en Norvège. Un traitement contre le ténia (Echinococcus) est exigé quelle que soit l'origine, administré 24 à 120 heures avant l'arrivée.",
+      "es": "Desde un país fuera de la UE/EEE, entrar en Noruega exige un documento de identificación — un certificado sanitario según el modelo del Anexo IV del reglamento (UE) n.º 577/2013 — más una vacunación antirrábica válida (primera dosis desde las 12 semanas, luego 21 días de espera) y, salvo que el país de salida figure en la lista de países exentos, una prueba de titulación de anticuerpos antirrábicos: extracción de sangre al menos 30 días después de la vacunación, y al menos 90 días antes de entrar en Noruega. Se exige un tratamiento contra la tenia (Echinococcus) sea cual sea el origen, administrado entre 24 y 120 horas antes de la llegada."
+    },
+    "source": {
+      "url": "https://www.mattilsynet.no/en/animals/travelling-with-dogs-cats-and-ferrets-from-third-countries-and-territories-to-norway",
+      "source_type": "government",
+      "verified_date": "2026-08-09",
+      "review_due": "2027-02-05",
+      "confidence": 4,
+      "reviewer": "MyDogCanFly Data Team",
+      "history": [
+        {
+          "date": "2026-08-09",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Règle créée pour le parcours pays tiers, distinct du parcours UE/EEE (rule_no_import). Un seul palier, pas trois comme la Suisse : la source norvégienne ne publie pas de sous-liste « risque faible » propre, elle renvoie à l'Annexe II du règlement (UE) 577/2013 sans la reproduire."
+        }
+      ]
     }
   },
   {
