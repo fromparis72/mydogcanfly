@@ -289,6 +289,7 @@ const labels = {
 <script>
   import type { DecisionReport, ReportItem, FinderRequest } from "@mydogcanfly/engine";
   import { API_BASE } from "../lib/env";
+  import { attachCombobox, type ComboItem } from "../lib/combobox";
 
   const form = document.getElementById("mdcf-finder") as HTMLFormElement | null;
   const out = document.getElementById("mdcf-finder-result") as HTMLDivElement | null;
@@ -598,44 +599,23 @@ const labels = {
 
   // --- Custom autocomplete: replaces the native <datalist>, whose filtering is accent-SENSITIVE
   // (typing "grece" would drop "Grèce" and surface "Zagreb"). This one matches on the accent-folded
-  // form, so "gre"/"grece" lists every Greek airport, "perou" finds Lima, etc. ---
-  function attachAC(input: HTMLInputElement) {
-    const listId = input.getAttribute("data-ac");
-    const dl = listId ? document.getElementById(listId) : null;
-    if (!dl) return;
-    const opts = [...dl.querySelectorAll("option")].map((o) => { const v = o.getAttribute("value") ?? ""; return { v, n: norm(v) }; });
-    const field = (input.closest(".finder__field") ?? input.parentElement) as HTMLElement | null;
-    if (!field) return;
-    field.classList.add("ac-host");
-    const box = document.createElement("ul");
-    box.className = "ac-list"; box.setAttribute("role", "listbox"); box.hidden = true;
-    field.appendChild(box);
-    let cur = -1;
-    let shown: { v: string; n: string }[] = [];
-    const esc2 = (s: string) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c] ?? c));
-    const close = () => { box.hidden = true; box.innerHTML = ""; cur = -1; input.setAttribute("aria-expanded", "false"); };
-    const mark = () => { [...box.children].forEach((el, i) => (el as HTMLElement).classList.toggle("is-cur", i === cur)); (box.children[cur] as HTMLElement | undefined)?.scrollIntoView({ block: "nearest" }); };
-    const openWith = (q: string) => {
+  // form, so "gre"/"grece" lists every Greek airport, "perou" finds Lima, etc.
+  // Retest 09/08/2026, point 9 : implémentation ARIA propre centralisée dans lib/combobox.ts,
+  // partagée par les 4 outils (Finder, Destinations, Cage, Chaleur) — voir ce fichier pour le détail
+  // du motif combobox/listbox/option + aria-controls/aria-activedescendant. ---
+  const datalistItems = (listId: string) => {
+    const dl = document.getElementById(listId);
+    const opts = dl ? [...dl.querySelectorAll("option")].map((o) => o.getAttribute("value") ?? "") : [];
+    return (q: string): ComboItem[] => {
       const nq = norm(q);
-      shown = (nq ? opts.filter((o) => o.n.includes(nq)) : opts).slice(0, 60);
-      if (!shown.length) { close(); return; }
-      box.innerHTML = shown.map((o, i) => `<li class="ac-item" role="option" data-i="${i}">${esc2(o.v)}</li>`).join("");
-      box.hidden = false; cur = -1; input.setAttribute("aria-expanded", "true");
+      return (nq ? opts.filter((v) => norm(v).includes(nq)) : opts).slice(0, 60).map((v) => ({ display: v, value: v }));
     };
-    const choose = (i: number) => { const o = shown[i]; if (!o) return; input.value = o.v; close(); input.dispatchEvent(new Event("change", { bubbles: true })); };
-    input.addEventListener("input", () => openWith(input.value));
-    input.addEventListener("focus", () => openWith(input.value));
-    input.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (box.hidden) return;
-      if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); mark(); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); mark(); }
-      else if (e.key === "Enter" && cur >= 0) { e.preventDefault(); choose(cur); }
-      else if (e.key === "Escape") { close(); }
-    });
-    box.addEventListener("mousedown", (e: MouseEvent) => { const li = (e.target as HTMLElement).closest(".ac-item") as HTMLElement | null; if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
-    document.addEventListener("click", (e) => { if (!field.contains(e.target as Node)) close(); });
-  }
-  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => attachAC(el));
+  };
+  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => {
+    const listId = el.getAttribute("data-ac");
+    if (!listId) return;
+    attachCombobox({ input: el, hostSelector: ".finder__field", getItems: datalistItems(listId) });
+  });
 
   const ctx = (window as { mdcfCtx?: { breed?: string; setBreed?: (v: string) => void } }).mdcfCtx;
   /**
@@ -676,9 +656,45 @@ const labels = {
     } catch (e) { return false; }
   })();
 
+  /* Retest 09/08/2026, point 6 (rapport HeatCalculator) : le lien « Trouver la meilleure compagnie
+   * pour ce voyage » ne transmettait que la race, pas le trajet. `to=<iso2>` existe déjà mais
+   * désigne un PAYS (fiches pays) — impossible à réutiliser tel quel pour un AÉROPORT précis sans
+   * ambiguïté. Deux nouveaux paramètres dédiés, `from`/`dest` (identifiants aéroport internes,
+   * même convention que `breed=breed_xxx`), coexistent avec `to` sans le redéfinir. `month` prend
+   * une date indicative (1er jour du mois demandé, année en cours ou suivante si le mois est déjà
+   * passé) — HeatCalculator ne connaît qu'un mois, pas un jour précis. */
+  let originFromDeepLink = false;
+  (function () {
+    try {
+      const q = window.mdcfQuery();
+      const originEl = byId("f-origin") as HTMLInputElement | null;
+      const fromId = q.get("from");
+      if (fromId && originEl) {
+        const label = (L.airCityLabel?.[fromId] as string | undefined) ?? (L.airRev?.[fromId] as string | undefined);
+        if (label) { originEl.value = label; originFromDeepLink = true; }
+      }
+      const destId = q.get("dest");
+      const destEl = byId("f-dest") as HTMLInputElement | null;
+      if (destId && destEl && !prefilledDest) {
+        const label = (L.airCityLabel?.[destId] as string | undefined) ?? (L.airRev?.[destId] as string | undefined);
+        if (label) destEl.value = label;
+      }
+      const month = parseInt(q.get("month") || "", 10);
+      const dateEl = byId("f-date") as HTMLInputElement | null;
+      if (month >= 1 && month <= 12 && dateEl && !dateEl.value) {
+        const now = new Date();
+        let year = now.getFullYear();
+        if (month < now.getMonth() + 1) year += 1; // mois déjà passé cette année → indicatif l'an prochain
+        dateEl.value = `${year}-${String(month).padStart(2, "0")}-01`;
+      }
+    } catch (e) { /* ignore */ }
+  })();
+
   // Prefill "From" with the nearest airport, using Cloudflare's edge geolocation (no browser permission prompt).
+  // Une intention explicite (?from=<id> ci-dessus) l'emporte toujours sur une déduction géographique.
   (async () => {
     try {
+      if (originFromDeepLink) return;
       const r = await fetch(`${API_BASE}/v1/nearest-airport`);
       if (!r.ok) return;
       const { airport_id, unit } = (await r.json()) as { airport_id?: string; unit?: "kg" | "lb" };

@@ -186,6 +186,7 @@ const L = {
 </section>
 
 <script>
+  import { attachCombobox, type ComboItem } from "../lib/combobox";
   const L = JSON.parse(document.getElementById("crx-labels")?.textContent ?? "{}");
   const S = L.s ?? {};
   const byId = (id: string) => document.getElementById(id);
@@ -252,32 +253,21 @@ const L = {
   byId("u-in")?.addEventListener("click", () => setUnit("in"));
   updateUnitLabels();
 
-  // --- Accent-insensitive autocomplete (same as the other tools) ---
-  function attachAC(input: HTMLInputElement) {
-    const dl = document.getElementById(input.getAttribute("data-ac") || "");
-    if (!dl) return;
-    const opts = [...dl.querySelectorAll("option")].map((o) => { const v = o.getAttribute("value") ?? ""; return { v, n: norm(v) }; });
-    const field = (input.closest(".crx__field") ?? input.parentElement) as HTMLElement | null;
-    if (!field) return;
-    field.classList.add("ac-host");
-    const box = document.createElement("ul"); box.className = "ac-list"; box.hidden = true; field.appendChild(box);
-    let cur = -1; let shown: { v: string; n: string }[] = [];
-    const close = () => { box.hidden = true; box.innerHTML = ""; cur = -1; };
-    const mark = () => { [...box.children].forEach((el, i) => (el as HTMLElement).classList.toggle("is-cur", i === cur)); };
-    const open = (q: string) => { const nq = norm(q); shown = (nq ? opts.filter((o) => o.n.includes(nq)) : opts).slice(0, 60);
-      if (!shown.length) { close(); return; } box.innerHTML = shown.map((o, i) => `<li class="ac-item" data-i="${i}">${esc(o.v)}</li>`).join(""); box.hidden = false; cur = -1; };
-    const choose = (i: number) => { const o = shown[i]; if (!o) return; input.value = o.v; close(); input.dispatchEvent(new Event("change", { bubbles: true })); };
-    input.addEventListener("input", () => open(input.value));
-    input.addEventListener("focus", () => open(input.value));
-    input.addEventListener("keydown", (e: KeyboardEvent) => { if (box.hidden) return;
-      if (e.key === "ArrowDown") { e.preventDefault(); cur = Math.min(cur + 1, shown.length - 1); mark(); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); cur = Math.max(cur - 1, 0); mark(); }
-      else if (e.key === "Enter" && cur >= 0) { e.preventDefault(); choose(cur); }
-      else if (e.key === "Escape") close(); });
-    box.addEventListener("mousedown", (e: MouseEvent) => { const li = (e.target as HTMLElement).closest(".ac-item") as HTMLElement | null; if (li) { e.preventDefault(); choose(Number(li.dataset.i)); } });
-    document.addEventListener("click", (e) => { if (!field.contains(e.target as Node)) close(); });
-  }
-  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => attachAC(el));
+  // --- Accent-insensitive autocomplete, shared with the other tools.
+  // Retest 09/08/2026, point 9 : motif ARIA complet centralisé dans lib/combobox.ts. ---
+  const datalistItems = (listId: string) => {
+    const dl = document.getElementById(listId);
+    const opts = dl ? [...dl.querySelectorAll("option")].map((o) => o.getAttribute("value") ?? "") : [];
+    return (q: string): ComboItem[] => {
+      const nq = norm(q);
+      return (nq ? opts.filter((v) => norm(v).includes(nq)) : opts).slice(0, 60).map((v) => ({ display: v, value: v }));
+    };
+  };
+  document.querySelectorAll<HTMLInputElement>("[data-ac]").forEach((el) => {
+    const listId = el.getAttribute("data-ac");
+    if (!listId) return;
+    attachCombobox({ input: el, hostSelector: ".crx__field", getItems: datalistItems(listId) });
+  });
 
   // Race et compagnie pré-remplies depuis « ?breed= » / « ?air= » UNIQUEMENT, jamais depuis la
   // seule mémoire de session (voir le commentaire détaillé dans FlightFinder.astro) : une valeur
