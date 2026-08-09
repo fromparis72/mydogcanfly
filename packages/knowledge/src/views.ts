@@ -38,10 +38,22 @@ export function neighbors(kb: NormalizedKB, id: string, type: Edge["type"], dir:
     .map((e) => (dir === "out" ? e.to : e.from));
 }
 
-function predicateMentions(p: Predicate, pred: (c: Condition) => boolean): boolean {
-  if ("all" in p) return p.all.some((q) => predicateMentions(q, pred));
-  if ("any" in p) return p.any.some((q) => predicateMentions(q, pred));
-  if ("not" in p) return predicateMentions(p.not, pred);
+/** True quand la condition CONCERNE la valeur testée par `pred` — c'est-à-dire qu'elle l'INCLUT,
+ *  pas qu'elle se contente de la citer pour l'exclure. Bug corrigé (audit du 09/08/2026, tâche
+ *  28) : cette fonction recursait déjà dans `not`, mais sans jamais inverser le sens du test — une
+ *  règle "tout SAUF ce pays/cette race" (via `not` enveloppant un eq/in, ou via un neq/nin
+ *  autonome) aurait été lue comme "concerne ce pays/cette race", l'exact inverse. `rulesForCountry`
+ *  ci-dessous appliquait déjà ce principe (son commentaire l'explique) mais seulement au niveau de
+ *  sa propre feuille, jamais à travers un `not` englobant, et `rulesForBreed` ne l'appliquait pas
+ *  du tout. Centralisé ici pour que les deux en bénéficient pareil.
+ *  Vérifié en direct (09/08/2026) : aucune règle actuelle n'utilise `not`, `neq` ni `nin` sur
+ *  dog.breed_id ni route.dest_country_id — ce correctif est un filet pour une règle future, pas la
+ *  réparation d'un défaut aujourd'hui visible sur ce point précis. */
+function predicateMentions(p: Predicate, pred: (c: Condition) => boolean, negated = false): boolean {
+  if ("all" in p) return p.all.some((q) => predicateMentions(q, pred, negated));
+  if ("any" in p) return p.any.some((q) => predicateMentions(q, pred, negated));
+  if ("not" in p) return predicateMentions(p.not, pred, !negated);
+  if (negated || p.op === "neq" || p.op === "nin") return false;
   return pred(p);
 }
 
@@ -50,7 +62,16 @@ export function rulesForBreed(kb: NormalizedKB, breedId: string): Rule[] {
   const breed = kb.breeds.get(breedId);
   return kb.rules.filter((r) =>
     predicateMentions(r.applies_when, (c) => {
-      if (c.fact === "dog.breed_id") return c.value === breedId;
+      /* Bug corrigé (audit du 09/08/2026, tâche 28) : ne testait que `c.value === breedId`, ce
+       * qui ne peut matcher QUE l'opérateur "eq" (une seule race). Les 6 règles réelles de
+       * rules.json qui référencent dog.breed_id utilisent TOUTES l'opérateur "in" (liste de
+       * races) — `c.value` y est un tableau, jamais égal à la chaîne breedId : ces règles étaient
+       * donc invisibles pour rulesForBreed(), toujours, pour toute race. Vérifié en direct. */
+      if (c.fact === "dog.breed_id") {
+        if (c.op === "eq") return c.value === breedId;
+        if (c.op === "in") return Array.isArray(c.value) && c.value.includes(breedId);
+        return false; // neq/nin déjà exclus par predicateMentions ci-dessus ; ceinture et bretelles
+      }
       if (c.fact === "dog.brachycephalic") return !!breed?.brachycephalic && c.value === true;
       return false;
     }),

@@ -61,6 +61,13 @@ const L = {
     altShow: T("Show other cities", "Voir les autres villes", "Ver otras ciudades"),
     altHide: T("Hide other cities", "Masquer les autres villes", "Ocultar otras ciudades"),
     noResults: T("No direct destination found from this city. Try a larger hub.", "Aucune destination directe depuis cette ville. Essaie un grand hub.", "No se encontró ningún destino directo desde esta ciudad. Prueba con un hub más grande."),
+    // Bug corrigé (audit du 09/08/2026, tâche 21) : une panne de l'API (Worker down, 5xx, requête
+    // refusée) et une vraie absence de destination directe retombaient sur le MÊME message
+    // "noResults" ci-dessus — le visiteur croyait qu'aucune ville n'était accessible depuis chez
+    // lui, alors que le serveur n'avait tout simplement pas répondu. Message distinct, sur le
+    // modèle de errorTitle/errorBody de FlightFinder.astro.
+    errorTitle: T("The engine didn't answer.", "Le moteur n'a pas répondu.", "El motor no respondió."),
+    errorBody: T("Please try again in a moment.", "Réessaie dans un instant.", "Vuelve a intentarlo en un momento."),
     reachable: T("cities with a direct flight", "villes accessibles en direct", "ciudades con vuelo directo"),
     directOnly: T("Direct flights only", "Vols directs uniquement", "Solo vuelos directos"),
     tempFilter: T("Temperature filter applied — some cities set aside due to heat", "Filtre de température appliqué — certaines villes écartées pour cause de chaleur", "Filtro de temperatura aplicado: algunas ciudades descartadas por el calor"),
@@ -312,6 +319,11 @@ const L = {
 
   const form = byId("dfx-form") as HTMLFormElement | null;
   const out = byId("dfx-result") as HTMLDivElement | null;
+  /* Garde de course (audit du 09/08/2026, tâche 22) — même raisonnement que fetchReport() dans
+   * FlightFinder.astro : deux recherches lancées à quelques centaines de ms d'écart peuvent
+   * répondre dans le désordre ; sans numéro de séquence, la réponse la plus LENTE écrase le
+   * résultat déjà affiché de la recherche la plus RÉCENTE. */
+  let dfxSearchSeq = 0;
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -331,12 +343,27 @@ const L = {
     };
     out.hidden = false;
     out.innerHTML = `<p class="dfx__loading">${esc(S.loading)}</p>`;
+    const seq = ++dfxSearchSeq;
     let matches: Match[] = [];
+    /* Bug corrigé (audit du 09/08/2026, tâche 21) : ce bloc ne distinguait pas une panne de l'API
+     * (Worker éteint, 5xx, requête refusée par validation) d'une vraie absence de destination
+     * directe — les deux retombaient sur `matches = []` puis le message "aucune destination",
+     * qui affirme quelque chose de faux sur les vols disponibles. On lit maintenant `res.ok` et
+     * on affiche une erreur explicite quand l'appel a échoué, plutôt qu'un "aucun résultat" muet. */
+    let apiFailed = false;
     try {
       const res = await fetch(`${L.apiBase}/v1/destinations`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(req) });
-      const data = await res.json();
-      matches = (data.matches ?? []) as Match[];
-    } catch { matches = []; }
+      if (!res.ok) { apiFailed = true; }
+      else {
+        const data = await res.json();
+        matches = (data.matches ?? []) as Match[];
+      }
+    } catch { apiFailed = true; }
+    if (seq !== dfxSearchSeq) return; // une recherche plus récente a démarré depuis — cette réponse est périmée
+    if (apiFailed) {
+      out.innerHTML = `<p class="dfx__error">${esc(S.errorTitle)}<br><span>${esc(S.errorBody)}</span></p>`;
+      return;
+    }
     if (!matches.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noResults)}</p>`; return; }
 
     // Optional hard filter: trip-distance band (estimated direct flight time). Mutually exclusive bands
@@ -399,6 +426,10 @@ const L = {
      these rules MUST be :global() or the result cards render completely unstyled. */
   :global(.dfx__loading), :global(.dfx__hint) { color: var(--mdcf-muted); margin: 8px 0; }
   :global(.dfx__hint) { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 10px 12px; }
+  /* Distinct de .dfx__hint (tâche 21) : rouge d'erreur, jamais confondu visuellement avec un
+     "aucun résultat" neutre — même palette que .finder__error dans FlightFinder.astro. */
+  :global(.dfx__error) { color: #b3261e; background: #fee2e2; border: 1px solid rgba(179, 38, 30, .25); border-radius: 10px; padding: 12px 14px; margin: 8px 0; font-size: 14px; font-weight: 700; }
+  :global(.dfx__error span) { display: inline-block; margin-top: 4px; font-weight: 500; color: #7f1d1d; }
   :global(.dfx__meta) { color: var(--mdcf-muted); font-size: 13px; margin-bottom: 4px; }
   :global(.dfx__meta b) { color: var(--mdcf-ink); }
   :global(.dfx__est) { font-style: italic; }

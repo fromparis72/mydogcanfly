@@ -37,16 +37,47 @@ ok("rule-check: predicate facts are declared", kb.rules.every((r) => !!r.applies
  * evaluate.ts falls back to premium.policy.<mode>.allowed for any airline with no rules.json
  * entry of its own (see evaluate.ts's policyFallbackDenyRule). An airline with NEITHER is the
  * exact silent "always allowed" bug that fallback was built to close — this gate exists to make
- * sure no airline ever regresses back into that gap unnoticed. */
+ * sure no airline ever regresses back into that gap unnoticed.
+ *
+ * Bug corrigé (audit du 09/08/2026, tâche 27) : la porte vérifiait `.some(...)` — UN SEUL des
+ * trois placements (cabine/soute/fret) documenté suffisait à faire passer TOUTE la compagnie.
+ * Or evaluate.ts applique le repli fiche placement PAR placement (policyFallbackDenyRule) : pour
+ * une compagnie sans rules.json et dont, disons, seul `premium.policy.cabin` est renseigné, la
+ * soute et le fret ne sont NI refusés par une règle NI refusés par le repli (qui exige
+ * `policy[p]?.allowed === false`, absent ≠ false) — ils tombent silencieusement en "autorisé" par
+ * défaut. C'est exactement le bug que ce gate a été créé pour empêcher, mais seulement pour les
+ * compagnies dont AUCUN des trois placements n'est documenté ; une couverture partielle (1 ou 2
+ * sur 3) le traversait sans bruit. On exige maintenant les TROIS. Mesuré le 09/08/2026 : les 8
+ * compagnies actuellement sans rules.json ont déjà les 3/3 — ce correctif ne fait rien basculer
+ * aujourd'hui, il ferme la porte à une régression future. */
+const PLACEMENTS = ["cabin", "hold", "cargo"] as const; // recopié de evaluate.ts (packages/engine) — à garder synchronisé
 const airlinesWithRules = new Set(kb.rules.filter((r) => r.scope.type === "airline").map((r) => r.scope.id));
+const airlinesWithPartialPolicy: { id: string; missing: string[] }[] = [];
 const airlinesWithPolicy = new Set(
   [...kb.airlines.values()]
-    .filter((a) => a.premium?.policy && Object.values(a.premium.policy).some((m) => m && typeof m.allowed === "boolean"))
+    .filter((a) => {
+      if (!a.premium?.policy) return false;
+      const missing = PLACEMENTS.filter((p) => {
+        const m = a.premium!.policy![p as keyof typeof a.premium.policy];
+        return !(m && typeof m.allowed === "boolean");
+      });
+      // Le trou n'est réel QUE pour une compagnie sans rules.json propre — sinon rules.json fait
+      // déjà foi sur les trois placements et le repli fiche partiel n'est jamais consulté (voir
+      // le commentaire au-dessus). On ne le signale donc que dans ce cas, pour ne pas alarmer sur
+      // une lacune de la fiche qui ne change rien au verdict rendu.
+      if (missing.length > 0 && missing.length < PLACEMENTS.length && !airlinesWithRules.has(a.id)) {
+        airlinesWithPartialPolicy.push({ id: a.id, missing });
+      }
+      return missing.length === 0;
+    })
     .map((a) => a.id),
 );
 ok(
-  "coverage: airlines have at least one rule or a fiche-derived policy",
+  "coverage: airlines have at least one rule, or a fiche policy covering all 3 placements",
   [...kb.airlines.keys()].every((id) => airlinesWithRules.has(id) || airlinesWithPolicy.has(id)),
+  airlinesWithPartialPolicy.length
+    ? `partial fiche policy (falls silently to "allowed" on the missing placement): ${airlinesWithPartialPolicy.map((a) => `${a.id} (missing ${a.missing.join(", ")})`).join("; ")}`
+    : "",
 );
 
 /* coherence: un pays desservi doit avoir un aéroport où atterrir.

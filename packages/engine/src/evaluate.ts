@@ -252,7 +252,14 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     // Does this airline carry pets at all, structurally? Re-evaluate with a neutral small non-brachy dog:
     // a low-cost that never carries pets stays false; an airline that takes pets but rules THIS dog out
     // (e.g. a snub-nosed breed → hold/cargo denied) is true. Lets the UI say "breed not accepted" vs "no pets".
-    const neutralCtx: Ctx = { ...baseCtx, "dog.weight_kg": 5, "dog.brachycephalic": false, "dog.size": "small" };
+    // "dog.breed_id" neutralisé aussi (audit du 09/08/2026) : sans ça, une race interdite (BSL) mais
+    // testée par une future règle AIRLINE/GLOBAL (aujourd'hui seules des règles PAYS testent
+    // breed_id, donc ce cas n'existe pas encore dans rules.json — vérifié) ferait passer
+    // `carries_pets` à false pour une compagnie qui transporte pourtant des animaux normalement :
+    // exactement la confusion "aucun animal transporté" vs "CE chien refusé" que ce bloc neutre a
+    // été conçu pour éviter (cf. commentaire ci-dessus) — un angle mort à corriger par prudence,
+    // pas un bug observable avec les données actuelles.
+    const neutralCtx: Ctx = { ...baseCtx, "dog.weight_kg": 5, "dog.brachycephalic": false, "dog.size": "small", "dog.breed_id": "" };
     const carries_pets = PLACEMENTS.some((p) => {
       const nf = airlineRules.filter((r) => evalPredicate(r.applies_when, { ...neutralCtx, placement: p }));
       const deniedByRules = nf.some(
@@ -306,7 +313,14 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
         direct = true;
       } else if (og && dg) {
         const dOD = greatCircleKm(og, dg);
-        const cap = Math.max(800, 0.5 * dOD);
+        // BUG corrigé (audit du 09/08/2026) : le commentaire ci-dessus documente depuis toujours
+        // "max(1500 km, 50% de la distance directe)", mais le code utilisait 800 km — incohérence
+        // présente dès le tout premier commit de ce filtre (confirmée via `git log -p`), donc pas
+        // une régression récente : personne n'avait remarqué que code et commentaire divergeaient.
+        // 800 km est le plus strict des deux ; en pratique, ça a fait écarter à tort des
+        // correspondances plausibles sur des trajets courts/moyens (un détour de 900-1500 km sur un
+        // vol direct de 1600 km passait le seuil documenté mais pas le seuil réellement appliqué).
+        const cap = Math.max(1500, 0.5 * dOD);
         /* Deux passes, et la distinction est le cœur du sujet. Un hub est ÉTAYÉ quand les deux
            segments — origine→hub et hub→destination — figurent dans les arêtes nonstop de la
            compagnie. Sinon il n'est que géométriquement plausible : on ne sait pas si la

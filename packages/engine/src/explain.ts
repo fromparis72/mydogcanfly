@@ -114,10 +114,36 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   }
   conditions.sort((x, y) => CRIT_ORDER[x.criticality] - CRIT_ORDER[y.criticality]);
 
+  /* BUG corrigé (audit du 09/08/2026) : `confidences[]` n'était alimenté QUE par les règles pays
+   * (countryRequirements) ci-dessus. Sur un vol domestique (isDomestic → countryRequirements = []
+   * dans evaluate.ts) ou une destination sans règle pays applicable, `confidences` restait vide et
+   * `avgConfidence` plus bas retombait sur un 4 codé en dur — un ★★★★ affiché quelle que soit la
+   * confiance RÉELLE des règles compagnies utilisées, y compris quand la seule règle en jeu est le
+   * repli `policyFallbackDenyRule` (confidence 1 par défaut, evaluate.ts). On ajoute donc aussi la
+   * confiance de chaque règle compagnie qui s'est déclenchée, pour que le ★ affiché — et la part
+   * qu'il pèse dans le score (`confidenceRatio`, computeScore) — reflète vraiment les sources
+   * utilisées pour CE rapport, pas seulement celles du volet pays. */
+  for (const a of decision.airlines) {
+    for (const f of a.fired) confidences.push(f.confidence);
+  }
+
+  /* BUG CRITIQUE corrigé (audit du 09/08/2026, signalement utilisateur du même jour — Dogo Argentino
+   * Paris→Londres, Air France « Dogue argentin » vers Le Caire) : `entry_allowed` ne pesait QUE sur
+   * le verdict/score globaux (voir plus bas) — chaque compagnie continuait d'afficher cabine/soute/
+   * fret cochés d'après ses propres règles, sans jamais consulter l'interdiction pays. Un chien dont
+   * le TYPE est interdit d'entrée en Grande-Bretagne (Dangerous Dogs Act) recevait quand même « Air
+   * France : soute ✓ » — la fiche « modalités détaillées » reprenait ces coches telles quelles,
+   * contredisant son propre avertissement légal affiché juste au-dessus. Une interdiction d'entrée
+   * pays est désormais terminale : aucune compagnie ne peut « compenser » un pays qui refuse le
+   * chien à la frontière, qu'elle accepte de l'embarquer ou non. Calculé ici, AVANT la boucle
+   * compagnies (plus bas dans le fichier), pour que ce blocage s'applique à chaque carte. */
+  const entryAllowed = decision.destination.entry_allowed;
+
   // Airline-by-airline comparison for this dog + route.
   const has = (a: Decision["airlines"][number], pl: string) => a.placements.find((p) => p.placement === pl)?.allowed ?? false;
   const airlines: AirlineResult[] = decision.airlines.map((a) => {
-    const cabin = has(a, "cabin"), hold = has(a, "hold"), cargo = has(a, "cargo");
+    // entryAllowed prime sur les trois — voir le commentaire au-dessus de sa déclaration.
+    const cabin = entryAllowed && has(a, "cabin"), hold = entryAllowed && has(a, "hold"), cargo = entryAllowed && has(a, "cargo");
     /* Refus : on dit ce que les règles ont dit, pas ce qu'on en devine.
        - la compagnie ne transporte aucun animal (chien neutre refusé partout) → « animaux refusés » ;
        - des motifs ont été lus sur les règles → on les nomme (poids, race, soute non proposée…) ;
@@ -135,8 +161,21 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     const cargoOnly = !cabin && !hold && cargo;
     const feeShown = a.fee ? localizeFee(a.fee, locale) : undefined;
     const fee_quote_only = cargoOnly && !feeShown;
-    // Heat embargo: a seasonal (temperature-driven) rule suspended this airline's hold/cargo for the given date.
-    const heat_embargo = a.fired.some((f) => f.category === "summer_embargo");
+    /* Heat embargo : une règle saisonnière (température) suspend la soute/le fret pour cette date —
+     * MAIS SEULEMENT si c'est la SEULE raison du refus. BUG corrigé (audit du 09/08/2026) : avant,
+     * `heat_embargo` passait à `true` dès qu'une règle `summer_embargo` s'était déclenchée N'IMPORTE
+     * OÙ dans `a.fired`, même quand la vraie raison du refus était permanente (interdiction de race,
+     * poids...). Une compagnie interdite à l'année pour une race ET, accessoirement, concernée par
+     * un embargo canicule ce mois-ci, se retrouvait classée « juste bloquée par la saison » — devant
+     * dans le tri (ligne ~159), avec un badge suggérant qu'un autre mois suffirait, alors que la
+     * vraie cause ne bougera jamais avec le calendrier. `reasons` (denyReasonsOf, evaluate.ts) exclut
+     * déjà la catégorie summer_embargo : s'il reste un motif dedans, l'embargo canicule n'est pas la
+     * seule cause, donc pas de badge "juste saisonnier".
+     * entryAllowed s'applique aussi ici (09/08/2026) : un pays qui refuse l'entrée ne doit pas
+     * laisser une carte affichée en style "bloqué par la saison seulement" (tireté ambre, tâche 19)
+     * quand la vraie cause est une interdiction définitive et non calendaire.
+     */
+    const heat_embargo = entryAllowed && a.fired.some((f) => f.category === "summer_embargo") && reasons.length === 0;
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
     const carrier_of_origin = !!a.country_id && a.country_id === decision.origin_country_id;
     const carrier_of_destination = !!a.country_id && a.country_id === decision.destination.country_id;
@@ -171,13 +210,29 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   const anyCompatible = acceptCount > 0;
   const compatible = acceptedAirlines.map((a) => ({ airline_id: a.airline_id, placement: reqP === "any" ? (a.cabin ? "cabin" : a.hold ? "hold" : "cargo") : reqP }));
 
+  /* BUG CRITIQUE corrigé (audit du 09/08/2026) : le verdict ne consultait jamais
+   * `decision.destination.entry_allowed` — calculé dans evaluate.ts à partir des règles pays
+   * `deny` (interdictions de race, embargos sanitaires…) — et se basait UNIQUEMENT sur le fait
+   * qu'une compagnie accepte le chien à bord. Vérifié en direct : un Pit Bull vers la France
+   * recevait "conditional", score 25%, 3 compagnies "compatibles", alors que la France interdit
+   * purement et simplement l'entrée de la race sur son sol (loi n° 99-5, six mois de prison et
+   * 15 000 € d'amende — rule_fr_breed_ban_restricted_types, action "deny"). L'interdiction
+   * atterrissait dans `conditions[]` comme une simple formalité parmi d'autres, jamais comme un
+   * verdict bloquant : une compagnie qui accepte d'EMBARQUER le chien ne change rien au fait que
+   * le PAYS refuse de le laisser entrer. `entry_allowed` prime désormais sur l'acceptation
+   * compagnie — un embarquement possible ne rend jamais un trajet légalement impossible "conditional".
+   * (`entryAllowed` est déclaré plus haut, avant la boucle compagnies — voir son commentaire.) */
   const verdict: DecisionReport["verdict"] =
-    !anyCompatible ? "incompatible" : conditions.length > 0 ? "conditional" : "compatible";
+    !entryAllowed ? "incompatible" : !anyCompatible ? "incompatible" : conditions.length > 0 ? "conditional" : "compatible";
 
   // Same source-confidence average the ★ rating below is built from (see `confidence`) — reused
   // here rather than recomputed, so the score and the stars never silently disagree.
   const avgConfidence = confidences.length ? confidences.reduce((a, b) => a + b, 0) / confidences.length : 4;
-  const score = computeScore(airlines, acceptedAirlines, avgConfidence, conditions);
+  // Même logique que le "0 compagnie candidate" de computeScore : un pays qui refuse l'entrée
+  // rend le trajet impossible quel que soit le nombre de compagnies prêtes à embarquer le chien —
+  // ce n'est pas un score bas, c'est 0, pour ne jamais laisser un pourcentage à deux chiffres
+  // suggérer que "ça reste jouable".
+  const score = entryAllowed ? computeScore(airlines, acceptedAirlines, avgConfidence, conditions) : 0;
 
   const positives: ReportItem[] = [];
   // Most important for the visitor: HOW the dog can travel on this route, as a tendency.

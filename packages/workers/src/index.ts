@@ -1,4 +1,4 @@
-import { loadKB } from "@mydogcanfly/knowledge";
+import { loadKB, LOCALES } from "@mydogcanfly/knowledge";
 import { FinderRequest, runFinder, DestinationsRequest, rankDestinations } from "@mydogcanfly/engine";
 
 /**
@@ -53,14 +53,110 @@ function breedId(raw: string): string | null {
   return kb.breeds.has(id) ? id : null;
 }
 
+/* Locale : jamais fatal. `t()` (packages/knowledge/src/i18n.ts) retombe déjà gracieusement sur
+ * l'anglais pour toute clé/locale manquante — une valeur invalide ici suit la même philosophie :
+ * on l'ignore silencieusement (le schéma appliquera son défaut "en") plutôt que de renvoyer 400
+ * pour un paramètre purement cosmétique. `LOCALES` (8 valeurs, schéma) est plus large que
+ * `UI_LOCALES` (4 valeurs, réellement traduites) — de/it/nl/ja passent le schéma mais s'affichent
+ * intégralement en anglais aujourd'hui ; documenté, pas un bug (cf. usage ci-dessous). */
+function normalizeLocale(raw: string | null | undefined): string | undefined {
+  if (!raw) return undefined;
+  const v = raw.trim().toLowerCase();
+  return (LOCALES as readonly string[]).includes(v) ? v : undefined;
+}
+
 type QueryResult =
   | { ok: true; input: Record<string, unknown> }
   | { ok: false; body: Record<string, unknown> };
 
+/* BUG corrigé (audit du 09/08/2026) : POST /v1/finder et POST /v1/destinations envoyaient
+ * origin/destination/dog.breed_id BRUTS à FinderRequest.parse/DestinationsRequest.parse, qui ne
+ * vérifient que le TYPE (z.string()), jamais l'existence dans le référentiel — contrairement à GET,
+ * qui passe déjà par airportId()/breedId(). Reproduit en direct : POST avec un breed_id inconnu
+ * répondait 200 "conditional" pour un chien fictif (poids retombé à 0 kg par défaut, evaluate.ts) ;
+ * un aéroport inconnu répondait 200 avec un pays de destination vide plutôt qu'un 400 propre.
+ * Cette fonction applique désormais la MÊME vérification qu'en GET, à un body JSON. */
+type IdCheck = { ok: true; value: Record<string, unknown> } | { ok: false; body: Record<string, unknown> };
+function validateJsonIds(input: unknown, opts: { requireDestination: boolean }): IdCheck {
+  const usage = { note: "origin/destination accept an IATA code or a full airport id; breed_id likewise." };
+  if (typeof input !== "object" || input === null) {
+    return { ok: false, body: { error: "invalid_request", detail: "expected a JSON object body", ...usage } };
+  }
+  const src = input as Record<string, unknown>;
+  const out: Record<string, unknown> = { ...src };
+
+  const rawOrigin = typeof src.origin === "string" ? src.origin : "";
+  if (!rawOrigin) return { ok: false, body: { error: "missing_parameters", missing: ["origin"], ...usage } };
+  const oid = airportId(rawOrigin);
+  if (!oid) return { ok: false, body: { error: "unknown_airport", unknown: [`origin=${rawOrigin}`], ...usage } };
+  out.origin = oid;
+
+  if (opts.requireDestination) {
+    const rawDest = typeof src.destination === "string" ? src.destination : "";
+    if (!rawDest) return { ok: false, body: { error: "missing_parameters", missing: ["destination"], ...usage } };
+    const did = airportId(rawDest);
+    if (!did) return { ok: false, body: { error: "unknown_airport", unknown: [`destination=${rawDest}`], ...usage } };
+    out.destination = did;
+  }
+
+  const normSet = (key: string): string[] | undefined => {
+    const raw = src[key];
+    if (!Array.isArray(raw)) return undefined;
+    const ids = raw.filter((x): x is string => typeof x === "string").map((s) => airportId(s)).filter((x): x is string => !!x);
+    return ids.length > 1 ? ids : undefined;
+  };
+  if ("origins" in src) out.origins = normSet("origins");
+  if ("destinations" in src) out.destinations = normSet("destinations");
+
+  const rawDog = src.dog;
+  const dog: Record<string, unknown> = (typeof rawDog === "object" && rawDog !== null) ? { ...(rawDog as Record<string, unknown>) } : {};
+  const rawBreed = typeof dog.breed_id === "string" ? dog.breed_id : "";
+  if (rawBreed) {
+    const bid = breedId(rawBreed);
+    if (!bid) return { ok: false, body: { error: "unknown_breed", unknown: [`breed_id=${rawBreed}`], ...usage } };
+    dog.breed_id = bid;
+  }
+  out.dog = dog;
+
+  const normalizedLocale = normalizeLocale(typeof src.locale === "string" ? src.locale : undefined);
+  if ("locale" in src) out.locale = normalizedLocale;
+
+  return { ok: true, value: out };
+}
+
+/* Limitation de débit — best effort, pas une solution complète (audit du 09/08/2026).
+ * Aucune protection n'existait avant. Ce qui suit est délibérément modeste : un compteur glissant
+ * EN MÉMOIRE, par isolate Cloudflare Worker. Ça ne partage rien entre isolates/régions (un
+ * attaquant distribué le contourne trivialement) et ça se réinitialise à chaque recyclage
+ * d'isolate — donc PAS une protection anti-abus sérieuse. C'est un filet minimal contre un script
+ * mal écrit qui boucle sur un seul point d'entrée, posé sans ajouter de binding KV/Durable Object
+ * (aucun n'existe dans wrangler.toml aujourd'hui, et en poser un sans pouvoir le tester ici serait
+ * plus risqué qu'utile). La vraie protection anti-abus pour une Worker déjà derrière Cloudflare
+ * est une règle de rate-limiting posée au niveau de la zone (dashboard Cloudflare, gratuit) — hors
+ * de portée de ce dépôt de code, à faire côté configuration.
+ */
+const RATE_LIMIT_MAX = 60; // requêtes
+const RATE_LIMIT_WINDOW_MS = 60_000; // par minute
+const rateBuckets = new Map<string, { count: number; resetAt: number }>();
+function isRateLimited(clientId: string): boolean {
+  const now = Date.now();
+  const bucket = rateBuckets.get(clientId);
+  if (!bucket || now >= bucket.resetAt) {
+    rateBuckets.set(clientId, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return false;
+  }
+  bucket.count++;
+  return bucket.count > RATE_LIMIT_MAX;
+}
+
 function finderInputFromQuery(q: URLSearchParams): QueryResult {
   const usage = {
-    usage: "GET /v1/finder?origin=CDG&destination=NRT&weight_kg=8[&breed=pug][&date=2026-08-15][&placement=cabin|hold|cargo|any][&locale=en|fr|es]",
-    note: "origin and destination accept an IATA code or a full airport id. POST accepts the same fields as JSON.",
+    // BUG doc corrigé (audit du 09/08/2026) : "pt" manquait alors qu'il est traduit à 100 % au
+    // même titre qu'en/fr/es (packages/knowledge/translations/pt/). "de|fr|it|nl|ja" restent
+    // acceptés par le schéma mais ne sont PAS traduits — ils s'affichent intégralement en anglais,
+    // silencieusement (t(), packages/knowledge/src/i18n.ts). Documenté ici plutôt que découvert.
+    usage: "GET /v1/finder?origin=CDG&destination=NRT&weight_kg=8[&breed=pug][&date=2026-08-15][&placement=cabin|hold|cargo|any][&locale=en|fr|es|pt]",
+    note: "origin and destination accept an IATA code or a full airport id. POST accepts the same fields as JSON. locale=en|fr|es|pt are fully translated; other schema-valid locales silently render in English.",
   };
   const origin = q.get("origin") ?? q.get("from") ?? "";
   const destination = q.get("destination") ?? q.get("to") ?? "";
@@ -106,9 +202,24 @@ function finderInputFromQuery(q: URLSearchParams): QueryResult {
       placement: q.get("placement") ?? undefined,
       date: q.get("date") ?? undefined,
       weather: temp != null ? { temperature_c: temp } : undefined,
-      locale: q.get("locale") ?? undefined,
+      locale: normalizeLocale(q.get("locale")), // valeur invalide → undefined → défaut "en" du schéma, jamais 400
     },
   };
+}
+
+/* Erreur Zod → réponse propre (audit du 09/08/2026). BUG corrigé : le catch générique renvoyait
+ * `String(e)`, soit le dump complet d'un ZodError (chemins de champs, structure du schéma,
+ * options d'enum) — une forme d'erreur différente et non documentée par rapport au contrat
+ * {error, unknown/missing, usage} que ce même endpoint annonce pour origin/destination/breed.
+ * Reproduit en direct : `locale=xx` (sinon requête valide) renvoyait ce dump au lieu d'un 400 net.
+ */
+function formatError(e: unknown): { error: string; detail: string } {
+  if (e && typeof e === "object" && "issues" in e && Array.isArray((e as { issues: unknown }).issues)) {
+    const issues = (e as { issues: { path: (string | number)[]; message: string }[] }).issues;
+    const detail = issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`).join("; ");
+    return { error: "invalid_request", detail };
+  }
+  return { error: "invalid_request", detail: e instanceof Error ? e.message : String(e) };
 }
 
 export default {
@@ -117,6 +228,13 @@ export default {
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
     if (url.pathname === "/v1/health") return json({ ok: true, service: "mydogcanfly-api", version: "v1" });
+
+    // Limitation de débit best-effort (cf. commentaire sur isRateLimited) — hors santé/CORS, qui
+    // doivent toujours répondre pour que le monitoring et les navigateurs ne cassent jamais.
+    const clientId = request.headers.get("cf-connecting-ip") ?? "unknown";
+    if (isRateLimited(clientId)) {
+      return json({ error: "rate_limited", detail: `Max ${RATE_LIMIT_MAX} requests/minute per client.` }, 429);
+    }
 
     // Departure airport from Cloudflare's edge geolocation (no browser prompt, privacy-friendly).
     // Strategy: the PRIMARY international airport of the visitor's CITY — not the closest by distance.
@@ -172,7 +290,11 @@ export default {
       try {
         let input: unknown;
         if (request.method === "POST") {
-          input = await request.json();
+          const body = await request.json();
+          // Même vérification référentielle qu'en GET (airportId/breedId) — voir validateJsonIds.
+          const checked = validateJsonIds(body, { requireDestination: true });
+          if (!checked.ok) return json(checked.body, 400);
+          input = checked.value;
         } else {
           const q = finderInputFromQuery(url.searchParams);
           if (!q.ok) return json(q.body, 400);
@@ -181,18 +303,22 @@ export default {
         const req = FinderRequest.parse(input);
         return json(runFinder(kb, req)); // → typed DecisionReport, same contract as the UI
       } catch (e) {
-        return json({ error: "invalid_request", detail: String(e) }, 400);
+        console.error("/v1/finder error:", e); // observabilité (audit du 09/08/2026) — rien n'était loggé côté serveur
+        return json(formatError(e), 400);
       }
     }
 
     // Destination finder: "where can I fly my dog on this date?" — scans every reachable country.
     if (url.pathname === "/v1/destinations") {
       try {
-        const input = await request.json();
-        const req = DestinationsRequest.parse(input);
+        const body = await request.json();
+        const checked = validateJsonIds(body, { requireDestination: false });
+        if (!checked.ok) return json(checked.body, 400);
+        const req = DestinationsRequest.parse(checked.value);
         return json({ matches: rankDestinations(kb, req) });
       } catch (e) {
-        return json({ error: "invalid_request", detail: String(e) }, 400);
+        console.error("/v1/destinations error:", e);
+        return json(formatError(e), 400);
       }
     }
 

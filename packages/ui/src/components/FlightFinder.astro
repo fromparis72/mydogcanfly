@@ -56,7 +56,12 @@ const destByCountry: Record<string, string> = {};
 
 // Round-trip flag (client-side): per-country regime + whether it carries sourced exit formalities,
 // + page slug; and airport → country iso2, so the client can flag "outbound + return" at result level.
-const L3 = (en: string, f: string, es: string) => (locale === "fr" ? f : locale === "es" ? es : en);
+// BUG corrigé (audit du 09/08/2026) : L3() ne gérait que fr/es, jamais pt — plusieurs libellés
+// (domTitle, domFallback, domTerr, rt.*, heatTool*) s'affichaient en anglais pour les visiteurs
+// portugais alors que des traductions correctes existent déjà dans translations/pt/inline.json
+// (domTitle/domFallback/domTerr, confirmé). Remplacé par `T` (inlineT(locale), déjà utilisé plus
+// bas dans ce même fichier) qui consulte cette table pour le pt et ne retombe sur l'anglais que
+// pour les chaînes réellement pas encore traduites — jamais pour le portugais en bloc.
 const RT_COUNTRY: Record<string, { regime: string; exit: boolean; name: string; slug: string }> = {};
 for (const [, g] of Object.entries(countryData as Record<string, any>)) {
   if (!g.regime) continue;
@@ -148,23 +153,23 @@ const labels = {
   // Round-trip "country formalities (outbound + return)" flag — data + localized copy.
   countryRT: RT_COUNTRY,
   countryDom: DOM_COUNTRY,
-  domTitle: L3("Domestic flight — no import formalities", "Vol intérieur — aucune formalité d'import", "Vuelo nacional — sin trámites de importación"),
-  domFallback: L3(
+  domTitle: T("Domestic flight — no import formalities", "Vol intérieur — aucune formalité d'import", "Vuelo nacional — sin trámites de importación"),
+  domFallback: T(
     "No border is crossed, so no import formality applies. Check your airline's own conditions (health certificate, age, crate).",
     "Aucune frontière n'est franchie, donc aucune formalité d'import ne s'applique. Vérifie les conditions propres à ta compagnie (certificat de santé, âge, caisse).",
     "No se cruza ninguna frontera, así que no se aplica ningún trámite de importación. Consulta las condiciones de tu aerolínea (certificado de salud, edad, jaula)."),
-  domTerr: L3("Watch out — special territories", "Attention — territoires à régime particulier", "Atención — territorios con régimen especial"),
+  domTerr: T("Watch out — special territories", "Attention — territoires à régime particulier", "Atención — territorios con régimen especial"),
   airportCountry,
   euIso: EU_ISO2, // pour n'afficher la question du passeport que sur un retour vers l'UE
   rt: {
-    titleCrit: L3("Country formalities — plan before you leave", "Formalités pays — à anticiper avant de partir", "Trámites del país — anticípalos antes de salir"),
-    titleWarn: L3("Country formalities — outbound AND return", "Formalités pays — aller ET retour", "Trámites del país — ida Y vuelta"),
-    titleInfo: L3("Country formalities — outbound and return", "Formalités pays — aller et retour", "Trámites del país — ida y vuelta"),
-    bodyTiter: L3("The return needs a long procedure (rabies titer) started BEFORE you leave — not on the way back.", "Le retour impose une démarche longue (titrage antirabique) à lancer AVANT ton départ, pas au moment de rentrer.", "La vuelta exige un trámite largo (titulación antirrábica) que debes iniciar ANTES de salir, no al regresar."),
-    bodyIsland: L3("Entry requires an import permit and quarantine — plan several months ahead.", "L'entrée impose un permis d'importation et une quarantaine — compte plusieurs mois d'anticipation.", "La entrada exige un permiso de importación y cuarentena — cuenta con varios meses de antelación."),
-    bodyWarn: L3("Leaving the destination needs official steps arranged on site; the return isn't automatic.", "Sortir du pays de destination demande des démarches officielles à préparer sur place ; le retour n'est pas automatique.", "Salir del país de destino exige trámites oficiales que se preparan in situ; la vuelta no es automática."),
-    bodyInfo: L3("Formalities apply on entry and on return — plan a vet certificate each way.", "Des formalités s'appliquent à l'entrée et au retour — prévois un certificat vétérinaire dans chaque sens.", "Se aplican trámites a la entrada y a la vuelta — prevé un certificado veterinario en cada sentido."),
-    cta: L3("See the 4 steps", "Voir les 4 étapes", "Ver los 4 pasos"),
+    titleCrit: T("Country formalities — plan before you leave", "Formalités pays — à anticiper avant de partir", "Trámites del país — anticípalos antes de salir"),
+    titleWarn: T("Country formalities — outbound AND return", "Formalités pays — aller ET retour", "Trámites del país — ida Y vuelta"),
+    titleInfo: T("Country formalities — outbound and return", "Formalités pays — aller et retour", "Trámites del país — ida y vuelta"),
+    bodyTiter: T("The return needs a long procedure (rabies titer) started BEFORE you leave — not on the way back.", "Le retour impose une démarche longue (titrage antirabique) à lancer AVANT ton départ, pas au moment de rentrer.", "La vuelta exige un trámite largo (titulación antirrábica) que debes iniciar ANTES de salir, no al regresar."),
+    bodyIsland: T("Entry requires an import permit and quarantine — plan several months ahead.", "L'entrée impose un permis d'importation et une quarantaine — compte plusieurs mois d'anticipation.", "La entrada exige un permiso de importación y cuarentena — cuenta con varios meses de antelación."),
+    bodyWarn: T("Leaving the destination needs official steps arranged on site; the return isn't automatic.", "Sortir du pays de destination demande des démarches officielles à préparer sur place ; le retour n'est pas automatique.", "Salir del país de destino exige trámites oficiales que se preparan in situ; la vuelta no es automática."),
+    bodyInfo: T("Formalities apply on entry and on return — plan a vet certificate each way.", "Des formalités s'appliquent à l'entrée et au retour — prévois un certificat vétérinaire dans chaque sens.", "Se aplican trámites a la entrada y a la vuelta — prevé un certificado veterinario en cada sentido."),
+    cta: T("See the 4 steps", "Voir les 4 étapes", "Ver los 4 pasos"),
   },
   // Per-airline links for the result cards: our airline page + the official website (booking).
   airlineHref: Object.fromEntries([...kb.airlines.values()].map((a) => [a.id, hrefFor(a.id, locale)])),
@@ -178,13 +183,16 @@ const labels = {
   actBook: t(locale, "air.act_book"),
   crateBase: locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`,
   heatBase: locale === "en" ? "/tools/heat/" : `/${locale}/tools/heat/`,
-  heatToolName: L3("Heat risk calculator", "Calculateur de risque chaleur", "Calculadora de riesgo de calor"),
-  heatToolWhy: L3(
+  heatToolName: T("Heat risk calculator", "Calculateur de risque chaleur", "Calculadora de riesgo de calor"),
+  heatToolWhy: T(
     "Check the expected temperature at both ends for your travel date — hold and cargo are suspended above the carriers' heat threshold.",
     "Vérifie la température attendue au départ et à l'arrivée pour ta date — soute et fret sont suspendus au-delà du seuil de chaleur des compagnies.",
     "Comprueba la temperatura prevista en origen y destino para tu fecha — bodega y carga se suspenden por encima del umbral de calor de las aerolíneas."),
-  actCrate: locale === "fr" ? "Vérifier la taille de la cage de transport" : "Verify travel crate size",
-  crateTgt: locale === "fr" ? "Calculateur de cage" : "Crate calculator",
+  // BUG corrigé (audit du 09/08/2026) : ternaire fr/en uniquement, pas de branche es/pt du tout —
+  // pire que L3 ci-dessus. Non lu ailleurs dans ce fichier aujourd'hui (code mort), corrigé par
+  // cohérence avec le reste des libellés plutôt que d'attendre qu'un futur usage l'expose.
+  actCrate: T("Verify travel crate size", "Vérifier la taille de la cage de transport", "Verificar el tamaño de la jaula de transporte"),
+  crateTgt: T("Crate calculator", "Calculateur de cage", "Calculadora de jaula"),
   ficheBase: locale === "en" ? "/tools/fiche/" : `/${locale}/tools/fiche/`,
   ficheCta: T("See detailed requirements", "Voir modalités détaillées", "Ver trámites detallados"),
 };
@@ -308,6 +316,10 @@ const labels = {
 
   // Round-trip flag: one route-level banner warning that country formalities apply BOTH ways,
   // graduated by the origin/destination regimes (data-driven, no engine call). Links to the 4-step page.
+  // BUG corrigé (audit du 09/08/2026) : cette fonction était entièrement écrite (logique + CSS
+  // .rtflag) mais jamais appelée dans render() — le bandeau ne s'affichait pour PERSONNE, sur
+  // AUCUN trajet, y compris un retour UE avec titrage requis (le cas "crit" le plus important).
+  // Câblée maintenant juste après climateBanner(), l'autre bandeau de niveau trajet.
   function roundTripFlag(): string {
     const dest = (L.countryRT ?? {})[lastDestIso];
     if (!dest) return "";
@@ -337,18 +349,27 @@ const labels = {
     // Londres affichait "5 vols directs probables" en comptant des vols que l'animal ne peut pas
     // prendre, faute d'agrément britannique pour la soute — voir rule_*_gb_not_approved).
     const usableDirect = (r.airlines ?? []).filter((a) => a.direct && (a.cabin || a.hold || a.cargo));
+    /* Garde défensive (audit du 09/08/2026, tâche 24) : r.score vient du Worker et alimente à la
+     * fois un `width:${...}%` CSS et un texte affiché — un score non numérique (NaN), négatif ou
+     * au-delà de 100 (bug côté moteur, réponse tronquée, future évolution du contrat) produirait
+     * une jauge cassée (largeur négative ou hors cadre) ou "NaN%" affiché tel quel. Le moteur est
+     * déjà censé renvoyer 0..100 (cf. computeScore() dans explain.ts) : ceci est un filet, pas une
+     * correction de logique métier — on ne renvoie jamais un score fantaisiste pour autant.
+     */
+    const score = Number.isFinite(r.score) ? Math.max(0, Math.min(100, Math.round(r.score))) : 0;
     return `
       <div class="report report--${r.verdict}">
         <p class="report__q">${esc(L.answerQ)}</p>
         <p class="report__answer">${esc(answer)}</p>
         <div class="report__score">
           <div class="report__score-row">
-            <div class="report__gauge"><span style="width:${r.score}%"></span></div>
-            <div class="report__score-meta"><strong>${r.score}%</strong> ${esc(L.compatibility)}</div>
+            <div class="report__gauge"><span style="width:${score}%"></span></div>
+            <div class="report__score-meta"><strong>${score}%</strong> ${esc(L.compatibility)}</div>
           </div>
           <div class="report__score-note">${esc(L.compatibilityNote)}</div>
         </div>
         ${climateBanner(r)}
+        ${roundTripFlag()}
         ${why}
         ${r.domestic ? (() => {
           // Domestic: the country's import rules don't apply. Show what actually does, plus any
@@ -366,7 +387,23 @@ const labels = {
           ? `<div class="report__sec"><h4>${esc(L.airlines)}</h4>
               <div class="acap">✈ <b>${usableDirect.length}</b> ${esc(usableDirect.length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>
               <ul class="acards">${r.airlines.map((a) => `
-              <li class="acard ${a.cabin ? "acard--cabin" : a.hold ? "acard--hold" : a.cargo ? "acard--cargo" : "acard--no"}${a.itinerary_confidence === "connection_unverified" ? " acard--unverified" : ""}">
+              <li class="acard ${(() => {
+                  // Bug corrigé (audit du 09/08/2026, tâche 19) : le style de la carte (bordure + opacité)
+                  // ignorait le cas "bloqué uniquement par la canicule" (a.heat_embargo) et retombait sur
+                  // "acard--no" — le style rouge/terne d'une compagnie qui ne prend jamais ce chien. Le
+                  // badge du haut affichait pourtant "✈ Direct" + "🌡️ Canicule" (cf. structuralNoPets
+                  // ci-dessous), donnant une carte à l'apparence contradictoire : rouge et éteinte en
+                  // dehors, "vol direct conditionnel" dedans. Depuis le correctif de la tâche 8,
+                  // a.heat_embargo n'est vrai QUE quand c'est la seule raison de refus (reasons.length
+                  // === 0 dans explain.ts) : ce n'est jamais un blocage permanent, donc la carte mérite
+                  // un style distinct — ni "ça marche" (vert/ambre des placements), ni "ça ne marche
+                  // jamais" (acard--no), mais "ça marche hors saison".
+                  if (a.cabin) return "acard--cabin";
+                  if (a.hold) return "acard--hold";
+                  if (a.cargo) return "acard--cargo";
+                  if (a.heat_embargo) return "acard--heat";
+                  return "acard--no";
+                })()}${a.itinerary_confidence === "connection_unverified" ? " acard--unverified" : ""}">
                 <div class="acard__main">
                   ${(() => {
                     const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !a.heat_embargo;
@@ -408,7 +445,7 @@ const labels = {
                   p.set("cab", a.cabin ? "1" : "0"); p.set("hold", a.hold ? "1" : "0"); p.set("cargo", a.cargo ? "1" : "0");
                   p.set("direct", a.direct ? "1" : "0"); if (a.heat_embargo) p.set("emb", "1");
                   if (a.fee) p.set("fee", a.fee);
-                  if (typeof r.score === "number") p.set("sc", String(r.score));
+                  if (typeof r.score === "number") p.set("sc", String(score)); // score déjà borné 0..100 ci-dessus
                   const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
                   if (lastBreedId) p.set("bid", lastBreedId);
                   const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);
@@ -611,6 +648,13 @@ const labels = {
     return aid ? { ids: [aid], primary: aid } : { ids: [], primary: "" };
   };
 
+  /* Garde de course (audit du 09/08/2026, tâche 22) : deux recherches lancées à quelques centaines
+   * de ms d'écart (double clic, correction rapide d'un champ puis renvoi) partent en parallèle ;
+   * rien ne garantissait que la réponse la PLUS RÉCENTE gagne — le réseau peut très bien livrer la
+   * première requête APRÈS la seconde, et son rendu écrase alors le bon résultat sans que le
+   * visiteur s'en rende compte. On numérote chaque recherche et on n'écrit dans le DOM que si son
+   * numéro est toujours le dernier émis au moment où la réponse arrive. */
+  let searchSeq = 0;
   let lastBreedId = "";
   let lastOriginIso = "", lastDestIso = "";
   /* La réponse telle qu'elle était AU MOMENT DE LA RECHERCHE, et non au moment du clic.
@@ -736,9 +780,13 @@ const labels = {
     }
     out.hidden = false;
     out.innerHTML = `<p class="finder__loading">${esc(L.loading ?? "…")}</p>`;
+    const seq = ++searchSeq; // cf. commentaire près de la déclaration : gagne la dernière recherche lancée, pas la dernière arrivée
     try {
-      out.innerHTML = render(await fetchReport(req));
+      const report = await fetchReport(req);
+      if (seq !== searchSeq) return; // une recherche plus récente a démarré depuis — cette réponse est périmée
+      out.innerHTML = render(report);
     } catch (err) {
+      if (seq !== searchSeq) return; // idem côté erreur : ne pas écraser un résultat déjà rendu par une recherche plus récente
       // Message explicite plutôt qu'un rapport inventé : le visiteur doit savoir qu'il n'a
       // PAS de réponse, sans quoi il prend une démo pour son propre résultat.
       out.innerHTML = `<p class="finder__error">${esc(L.errorTitle ?? "The engine didn't answer.")}<br><span>${esc(L.errorBody ?? "Please try again in a moment.")}</span></p>`;
@@ -854,6 +902,9 @@ const labels = {
   .acard--hold { border-left-color: var(--mdcf-warn); }
   .acard--cargo { border-left-color: var(--mdcf-accent); }
   .acard--no { border-left-color: var(--mdcf-risk); opacity: .68; }
+  /* Bloqué uniquement par la canicule (tâche 19) — ni le rouge/terne de "acard--no" (refus permanent),
+     ni un vert/ambre de placement accepté : un tireté ambre, cohérent avec le tireté de --unverified. */
+  .acard--heat { border-left-color: var(--mdcf-warn); border-style: dashed; }
   .acard__top { display: flex; align-items: center; gap: 8px; }
   .acard__natl { font-size: 11px; font-weight: 700; color: var(--mdcf-muted); background: var(--mdcf-subtle); padding: 2px 8px; border-radius: 999px; }
   .acard__status { display: inline-block; font-size: 12px; font-weight: 800; padding: 3px 11px; border-radius: 999px; white-space: nowrap; }

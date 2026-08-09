@@ -10,7 +10,12 @@ export const FinderRequest = z.object({
   destinations: z.array(z.string()).optional(),
   dog: z.object({
     breed_id: z.string().optional(),
-    weight_kg: z.number().positive().optional(),
+    // Plafond ajouté (audit du 09/08/2026) : `positive()` seul laissait passer n'importe quel poids
+    // absurde (999 999 kg reproduit en direct via l'API) et obtenait un verdict "conditional" avec
+    // de vraies compagnies listées en soute/fret. 120 kg couvre largement le plus gros chien réel
+    // (mâtin/dogue ~100 kg) tout en bloquant une confusion d'unité (grammes au lieu de kilos) ou
+    // une saisie fantaisiste.
+    weight_kg: z.number().positive().max(120).optional(),
     brachycephalic: z.boolean().optional(),
   }),
   travel_type: TravelType.default("pet"),
@@ -45,7 +50,7 @@ export const DestinationsRequest = z.object({
   origins: z.array(z.string()).optional(),  // origin airport set (city search, e.g. Paris = CDG + ORY)
   dog: z.object({
     breed_id: z.string().optional(),
-    weight_kg: z.number().positive().optional(),
+    weight_kg: z.number().positive().max(120).optional(), // même plafond que FinderRequest — cf. commentaire là-bas
     brachycephalic: z.boolean().optional(),
   }),
   placement: z.union([Placement, z.literal("any")]).default("any"),

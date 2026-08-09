@@ -27,7 +27,14 @@ export function buildGraph(input: { airlines: Airline[]; airports: Airport[]; ru
     edges.push({ from: ap.id, type: "LOCATED_IN", to: ap.country_id });
   }
   for (const r of input.rules) {
-    if (r.scope.id && r.scope.type === "country" && r.category === "vaccination") {
+    /* Bug corrigé (audit du 09/08/2026, tâche 26) : la catégorie réellement utilisée par les règles
+     * pays d'entrée est "import_rules" (181 règles dans raw/rules.json) — "vaccination" n'en compte
+     * QU'UNE SEULE. Le graphe REQUIRES (pays → règle) était donc quasi vide depuis toujours. Effet
+     * pratique aujourd'hui nul : `relatedIds()` (views.ts) exclut déjà les ids de type "rule" du
+     * résultat, donc aucune page ne s'appuyait dessus — mais un futur usage de
+     * `neighbors(kb, countryId, "REQUIRES", "out")` (lister les règles d'entrée d'un pays via le
+     * graphe) aurait silencieusement renvoyé une liste quasi vide. */
+    if (r.scope.id && r.scope.type === "country" && r.category === "import_rules") {
       edges.push({ from: r.scope.id, type: "REQUIRES", to: r.id });
       edges.push({ from: r.id, type: "APPLIES_TO", to: "dog" });
     }
