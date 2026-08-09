@@ -1,0 +1,462 @@
+diff --git a/packages/knowledge/translations/en/strings.json b/packages/knowledge/translations/en/strings.json
+index 3965c52..bdfba07 100644
+--- a/packages/knowledge/translations/en/strings.json
++++ b/packages/knowledge/translations/en/strings.json
+@@ -76,8 +76,8 @@
+   "air.connection": "Connection",
+   "air.no_pets": "No pets",
+   "air.heat_embargo_short": "Heat embargo?",
+-  "air.direct_count": "likely direct flight",
+-  "air.direct_count_plural": "likely direct flights",
++  "air.direct_count": "direct-flight compatible airline",
++  "air.direct_count_plural": "direct-flight compatible airlines",
+   "air.airlines_count": "airlines",
+   "air.airlines_count_one": "airline",
+   "air.entry_req": "entry requirements",
+@@ -125,7 +125,7 @@
+   "finder.breed_ph": "Type a breed…",
+   "finder.brachy_note": "Snub-nosed breed — extra hold & heat restrictions",
+   "finder.weight": "Weight",
+-  "finder.placement": "Cabin / Hold / Cargo",
++  "finder.placement": "Preferred mode",
+   "finder.date": "Travel date (season)",
+   "finder.date_hint": "Optional — used to estimate seasonal heat at the destination (hold/cargo heat embargoes).",
+   "finder.eu_passport": "Does your dog usually live in the European Union?",
+@@ -137,12 +137,22 @@
+   "air.from_airport": "from",
+   "air.to_airport": "to",
+   "finder.choose_dest": "— Choose a destination —",
+-  "finder.fill_hint": "Choose a destination and enter your dog's weight (or breed) to see the comparison.",
++  "finder.fill_hint": "Choose a destination and enter your dog's weight to see the comparison.",
+   "finder.temp": "Temp (°C)",
+   "finder.submit": "Can my dog fly?",
+   "finder.loading": "Checking…",
+   "finder.error_title": "The engine didn't answer.",
+   "finder.error_body": "No result could be produced for your search. Please try again in a moment — we never show a sample answer in place of yours.",
++  "finder.stale_hint": "Criteria changed — rerun your search.",
++  "finder.origin_invalid": "Pick a departure city or airport from the suggestions.",
++  "finder.dest_invalid": "Pick a destination city or airport from the suggestions.",
++  "finder.same_endpoint": "Departure and destination must be different.",
++  "finder.weight_missing": "Enter your dog's weight.",
++  "finder.weight_invalid": "Enter a weight greater than 0 kg.",
++  "finder.weight_too_high": "That weight looks too high — please check it (max 100 kg).",
++  "finder.match_title": "Matches your request",
++  "finder.alt_title": "Alternatives (other transport mode)",
++  "finder.no_match_mode": "No airline matches this mode on this route — see the alternatives below.",
+   "placement.any": "Any",
+   "placement.cabin": "Cabin",
+   "placement.hold": "Hold",
+diff --git a/packages/knowledge/translations/es/strings.json b/packages/knowledge/translations/es/strings.json
+index f8d4623..1932bec 100644
+--- a/packages/knowledge/translations/es/strings.json
++++ b/packages/knowledge/translations/es/strings.json
+@@ -76,8 +76,8 @@
+   "air.connection": "Con escala",
+   "air.no_pets": "Sin mascotas",
+   "air.heat_embargo_short": "¿Embargo por calor?",
+-  "air.direct_count": "vuelo directo probable",
+-  "air.direct_count_plural": "vuelos directos probables",
++  "air.direct_count": "aerolínea directa compatible",
++  "air.direct_count_plural": "aerolíneas directas compatibles",
+   "air.airlines_count": "aerolíneas",
+   "air.airlines_count_one": "aerolínea",
+   "air.entry_req": "requisitos de entrada",
+@@ -125,7 +125,7 @@
+   "finder.breed_ph": "Escribe una raza…",
+   "finder.brachy_note": "Raza braquicéfala — restricciones adicionales de bodega y calor",
+   "finder.weight": "Peso",
+-  "finder.placement": "Cabina / Bodega / Carga",
++  "finder.placement": "Modo preferido",
+   "finder.date": "Fecha de viaje (temporada)",
+   "finder.date_hint": "Opcional — se usa para estimar el calor estacional en el destino (embargos de bodega/carga por calor).",
+   "finder.eu_passport": "¿Tu perro vive habitualmente en la Unión Europea?",
+@@ -137,12 +137,22 @@
+   "air.from_airport": "desde",
+   "air.to_airport": "hasta",
+   "finder.choose_dest": "— Elige un destino —",
+-  "finder.fill_hint": "Elige un destino e introduce el peso de tu perro (o la raza) para ver la comparación.",
++  "finder.fill_hint": "Elige un destino e introduce el peso de tu perro para ver la comparación.",
+   "finder.temp": "Temp (°C)",
+   "finder.submit": "¿Mi perro puede volar?",
+   "finder.loading": "Comprobando…",
+   "finder.error_title": "El motor no ha respondido.",
+   "finder.error_body": "No se ha podido generar ningún resultado para tu búsqueda. Vuelve a intentarlo en un momento: nunca mostramos un ejemplo en lugar de tu respuesta.",
++  "finder.stale_hint": "Criterios modificados: vuelve a buscar.",
++  "finder.origin_invalid": "Elige una ciudad o un aeropuerto de salida de la lista de sugerencias.",
++  "finder.dest_invalid": "Elige una ciudad o un aeropuerto de destino de la lista de sugerencias.",
++  "finder.same_endpoint": "El origen y el destino deben ser diferentes.",
++  "finder.weight_missing": "Indica el peso de tu perro.",
++  "finder.weight_invalid": "Indica un peso superior a 0 kg.",
++  "finder.weight_too_high": "Ese peso parece demasiado alto: compruébalo (máx. 100 kg).",
++  "finder.match_title": "Coincide con tu solicitud",
++  "finder.alt_title": "Alternativas (otro modo de transporte)",
++  "finder.no_match_mode": "Ninguna aerolínea coincide con este modo en esta ruta: consulta las alternativas más abajo.",
+   "placement.any": "Cualquiera",
+   "placement.cabin": "Cabina",
+   "placement.hold": "Bodega",
+diff --git a/packages/knowledge/translations/fr/strings.json b/packages/knowledge/translations/fr/strings.json
+index 7191da7..b00e21e 100644
+--- a/packages/knowledge/translations/fr/strings.json
++++ b/packages/knowledge/translations/fr/strings.json
+@@ -76,8 +76,8 @@
+   "air.connection": "Correspondance",
+   "air.no_pets": "Animaux refusés",
+   "air.heat_embargo_short": "Embargo chaleur ?",
+-  "air.direct_count": "vol direct probable",
+-  "air.direct_count_plural": "vols directs probables",
++  "air.direct_count": "compagnie directe compatible",
++  "air.direct_count_plural": "compagnies directes compatibles",
+   "air.airlines_count": "compagnies",
+   "air.airlines_count_one": "compagnie",
+   "air.entry_req": "conditions d'entrée",
+@@ -125,7 +125,7 @@
+   "finder.breed_ph": "Tapez une race…",
+   "finder.brachy_note": "Race au museau écrasé — restrictions accrues en soute et chaleur",
+   "finder.weight": "Poids",
+-  "finder.placement": "Cabine / Soute / Fret",
++  "finder.placement": "Mode souhaité",
+   "finder.date": "Date du voyage (saison)",
+   "finder.date_hint": "Facultatif — sert à estimer la chaleur saisonnière à destination (embargos chaleur en soute/fret).",
+   "finder.eu_passport": "Ton chien vit-il habituellement dans l'Union européenne ?",
+@@ -137,12 +137,22 @@
+   "air.from_airport": "depuis",
+   "air.to_airport": "vers",
+   "finder.choose_dest": "— Choisis une destination —",
+-  "finder.fill_hint": "Choisis une destination et indique le poids (ou la race) de ton chien pour voir la comparaison.",
++  "finder.fill_hint": "Choisis une destination et indique le poids de ton chien pour voir la comparaison.",
+   "finder.temp": "Temp. (°C)",
+   "finder.submit": "Mon chien peut-il voyager ?",
+   "finder.loading": "Vérification…",
+   "finder.error_title": "Le moteur n'a pas répondu.",
+   "finder.error_body": "Aucun résultat n'a pu être produit pour ta recherche. Réessaie dans un instant — nous n'affichons jamais un exemple à la place de ta réponse.",
++  "finder.stale_hint": "Critères modifiés — relance ta recherche.",
++  "finder.origin_invalid": "Sélectionne une ville ou un aéroport de départ dans la liste.",
++  "finder.dest_invalid": "Sélectionne une ville ou un aéroport d'arrivée dans la liste.",
++  "finder.same_endpoint": "Le départ et l'arrivée doivent être différents.",
++  "finder.weight_missing": "Indique le poids de ton chien.",
++  "finder.weight_invalid": "Indique un poids supérieur à 0 kg.",
++  "finder.weight_too_high": "Ce poids semble trop élevé — vérifie la valeur (max 100 kg).",
++  "finder.match_title": "Correspond à ta demande",
++  "finder.alt_title": "Alternatives (autre mode de transport)",
++  "finder.no_match_mode": "Aucune compagnie ne correspond à ce mode sur ce trajet — vois les alternatives ci-dessous.",
+   "placement.any": "Indifférent",
+   "placement.cabin": "Cabine",
+   "placement.hold": "Soute",
+diff --git a/packages/knowledge/translations/pt/strings.json b/packages/knowledge/translations/pt/strings.json
+index ff667c9..ae1714e 100644
+--- a/packages/knowledge/translations/pt/strings.json
++++ b/packages/knowledge/translations/pt/strings.json
+@@ -76,8 +76,8 @@
+   "air.connection": "Conexão",
+   "air.no_pets": "Não aceita animais",
+   "air.heat_embargo_short": "Embargo por calor?",
+-  "air.direct_count": "voo direto provável",
+-  "air.direct_count_plural": "voos diretos prováveis",
++  "air.direct_count": "companhia direta compatível",
++  "air.direct_count_plural": "companhias diretas compatíveis",
+   "air.airlines_count": "companhias",
+   "air.airlines_count_one": "companhia",
+   "air.entry_req": "exigências de entrada",
+@@ -125,7 +125,7 @@
+   "finder.breed_ph": "Digite uma raça…",
+   "finder.brachy_note": "Raça de focinho achatado — restrições extras de porão e calor",
+   "finder.weight": "Peso",
+-  "finder.placement": "Cabine / Porão / Carga",
++  "finder.placement": "Modo preferido",
+   "finder.date": "Data da viagem (estação)",
+   "finder.date_hint": "Opcional — serve para estimar o calor sazonal no destino (embargos de porão e carga).",
+   "finder.eu_passport": "Seu cachorro mora habitualmente na União Europeia?",
+@@ -137,12 +137,22 @@
+   "air.from_airport": "de",
+   "air.to_airport": "para",
+   "finder.choose_dest": "— Escolha um destino —",
+-  "finder.fill_hint": "Escolha um destino e informe o peso do seu cachorro (ou a raça) para ver a comparação.",
++  "finder.fill_hint": "Escolha um destino e informe o peso do seu cachorro para ver a comparação.",
+   "finder.temp": "Temp. (°C)",
+   "finder.submit": "Meu cachorro pode voar?",
+   "finder.loading": "Verificando…",
+   "finder.error_title": "O mecanismo não respondeu.",
+   "finder.error_body": "Não foi possível gerar um resultado para a sua busca. Tente novamente em instantes — nunca mostramos um exemplo no lugar da sua resposta.",
++  "finder.stale_hint": "Critérios alterados — refaça a busca.",
++  "finder.origin_invalid": "Escolha uma cidade ou aeroporto de partida na lista de sugestões.",
++  "finder.dest_invalid": "Escolha uma cidade ou aeroporto de destino na lista de sugestões.",
++  "finder.same_endpoint": "A partida e o destino devem ser diferentes.",
++  "finder.weight_missing": "Informe o peso do seu cachorro.",
++  "finder.weight_invalid": "Informe um peso superior a 0 kg.",
++  "finder.weight_too_high": "Esse peso parece alto demais — confira o valor (máx. 100 kg).",
++  "finder.match_title": "Corresponde ao que você pediu",
++  "finder.alt_title": "Alternativas (outro modo de transporte)",
++  "finder.no_match_mode": "Nenhuma companhia corresponde a esse modo nesta rota — veja as alternativas abaixo.",
+   "placement.any": "Indiferente",
+   "placement.cabin": "Cabine",
+   "placement.hold": "Porão",
+diff --git a/packages/ui/src/components/FlightFinder.astro b/packages/ui/src/components/FlightFinder.astro
+index 184eccd..d8d34f5 100644
+--- a/packages/ui/src/components/FlightFinder.astro
++++ b/packages/ui/src/components/FlightFinder.astro
+@@ -144,6 +144,19 @@ const labels = {
+   fillHint: t(locale, "finder.fill_hint"),
+   errorTitle: t(locale, "finder.error_title"),
+   errorBody: t(locale, "finder.error_body"),
++  // Retest 09/08/2026 : un seul message générique ("choisis une destination et le poids") couvrait
++  // 5 causes différentes (destination absente, aéroport invalide des deux côtés, départ = arrivée,
++  // poids manquant/nul/invraisemblable) — l'utilisateur ne savait jamais LEQUEL des champs corriger.
++  staleHint: t(locale, "finder.stale_hint"),
++  originInvalid: t(locale, "finder.origin_invalid"),
++  destInvalid: t(locale, "finder.dest_invalid"),
++  sameEndpoint: t(locale, "finder.same_endpoint"),
++  weightMissing: t(locale, "finder.weight_missing"),
++  weightInvalid: t(locale, "finder.weight_invalid"),
++  weightTooHigh: t(locale, "finder.weight_too_high"),
++  matchTitle: t(locale, "finder.match_title"),
++  altTitle: t(locale, "finder.alt_title"),
++  noMatchMode: t(locale, "finder.no_match_mode"),
+   airMap: Object.fromEntries(airports.map((a) => [a.label.toLowerCase(), a.id])),
+   airRev: Object.fromEntries(airports.map((a) => [a.id, a.label])),
+   airShort: Object.fromEntries(airports.map((a) => [a.id, a.iata])),
+@@ -289,6 +302,25 @@ const labels = {
+   const block = (title: string, items: ReportItem[]) =>
+     items.length ? `<h4>${esc(title)}</h4><ul>${items.map((i) => `<li>${esc(i.text)}</li>`).join("")}</ul>` : "";
+ 
++  /* Retest 09/08/2026, point 1 : après un calcul, modifier n'importe quel critère (départ, arrivée,
++   * race, poids, unité, mode, date) laissait l'ANCIEN résultat affiché sans avertissement — par
++   * exemple, passer le filtre de "Cabine" à "Fret" APRÈS un calcul gardait affiché "Aucune
++   * compagnie ne prend ton chien en cabine", un message qui ne correspond plus au filtre à l'écran.
++   * On n'auto-relance pas la recherche (un appel réseau silencieux, déclenché sans clic, s'écarterait
++   * du reste de l'outil) : on marque clairement le résultat comme périmé et on laisse le visiteur
++   * relancer lui-même. Le bandeau disparaît naturellement au prochain submit, qui remplace tout
++   * `out.innerHTML` (chargement, puis nouveau rapport) — aucun état à nettoyer à la main.
++   */
++  function markStale() {
++    if (!out || out.hidden) return;
++    if (!out.querySelector(".report")) return; // pas de résultat réel affiché (hint/erreur/chargement) : rien à faire
++    if (out.querySelector(".finder__stale")) return; // déjà marqué pour ce résultat
++    const banner = document.createElement("p");
++    banner.className = "finder__stale";
++    banner.textContent = L.staleHint ?? "Criteria changed — rerun your search.";
++    out.prepend(banner);
++  }
++
+   // Makes the (default) seasonal temperature filter visible: shows the estimated destination heat and,
+   // when it's above the embargo threshold, warns that some airlines suspend hold/cargo.
+   function climateBanner(r: DecisionReport): string {
+@@ -357,36 +389,10 @@ const labels = {
+      * correction de logique métier — on ne renvoie jamais un score fantaisiste pour autant.
+      */
+     const score = Number.isFinite(r.score) ? Math.max(0, Math.min(100, Math.round(r.score))) : 0;
+-    return `
+-      <div class="report report--${r.verdict}">
+-        <p class="report__q">${esc(L.answerQ)}</p>
+-        <p class="report__answer">${esc(answer)}</p>
+-        <div class="report__score">
+-          <div class="report__score-row">
+-            <div class="report__gauge"><span style="width:${score}%"></span></div>
+-            <div class="report__score-meta"><strong>${score}%</strong> ${esc(L.compatibility)}</div>
+-          </div>
+-          <div class="report__score-note">${esc(L.compatibilityNote)}</div>
+-        </div>
+-        ${climateBanner(r)}
+-        ${roundTripFlag()}
+-        ${why}
+-        ${r.domestic ? (() => {
+-          // Domestic: the country's import rules don't apply. Show what actually does, plus any
+-          // same-country special territory (Guyane, Hawaii…). Honest fallback when we have no sourced data.
+-          const d = (L.countryDom ?? {})[lastDestIso];
+-          const body = d
+-            ? `<p class="dom__intro">${esc(d.intro)}</p><ul>${d.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`
+-              + (d.territories && d.territories.length
+-                ? `<div class="dom__terr"><b>${esc(L.domTerr)}</b><ul>${d.territories.map((t) => `<li><b>${esc(t.name)}</b> — ${esc(t.note)}${t.url ? ` <a href="${esc(t.url)}" rel="nofollow noopener" target="_blank">↗</a>` : ""}</li>`).join("")}</ul></div>`
+-                : "")
+-            : `<p class="dom__intro">${esc(L.domFallback)}</p>`;
+-          return `<div class="report__sec dom"><h4>${esc(L.domTitle)}</h4>${body}</div>`;
+-        })() : block(L.before, r.conditions)}
+-        ${r.airlines && r.airlines.length
+-          ? `<div class="report__sec"><h4>${esc(L.airlines)}</h4>
+-              <div class="acap">✈ <b>${usableDirect.length}</b> ${esc(usableDirect.length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>
+-              <ul class="acards">${r.airlines.map((a) => `
++    // Retest 09/08/2026, point 6 : extrait de l'ancien `.map(a => ...)` inline pour pouvoir
++    // l'appeler sur deux sous-listes (correspond au mode / alternatives) plutôt que sur une seule —
++    // le contenu de chaque carte est inchangé, seul l'endroit où elle est rendue change.
++    const airlineCard = (a: any): string => `
+               <li class="acard ${(() => {
+                   // Bug corrigé (audit du 09/08/2026, tâche 19) : le style de la carte (bordure + opacité)
+                   // ignorait le cas "bloqué uniquement par la canicule" (a.heat_embargo) et retombait sur
+@@ -461,7 +467,55 @@ const labels = {
+                   const href = (L.ficheBase || "/tools/fiche/") + "#" + p.toString();
+                   return `<a class="mdcf-btn acard__fiche" href="${esc(href)}"><span>${esc(L.ficheCta)}</span><span class="acard__fiche-go">→</span></a>`;
+                 })()}</div>
+-              </li>`).join("")}</ul></div>`
++              </li>`;
++    return `
++      <div class="report report--${r.verdict}">
++        <p class="report__q">${esc(L.answerQ)}</p>
++        <p class="report__answer">${esc(answer)}</p>
++        <div class="report__score">
++          <div class="report__score-row">
++            <div class="report__gauge"><span style="width:${score}%"></span></div>
++            <div class="report__score-meta"><strong>${score}%</strong> ${esc(L.compatibility)}</div>
++          </div>
++          <div class="report__score-note">${esc(L.compatibilityNote)}</div>
++        </div>
++        ${climateBanner(r)}
++        ${roundTripFlag()}
++        ${why}
++        ${r.domestic ? (() => {
++          // Domestic: the country's import rules don't apply. Show what actually does, plus any
++          // same-country special territory (Guyane, Hawaii…). Honest fallback when we have no sourced data.
++          const d = (L.countryDom ?? {})[lastDestIso];
++          const body = d
++            ? `<p class="dom__intro">${esc(d.intro)}</p><ul>${d.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul>`
++              + (d.territories && d.territories.length
++                ? `<div class="dom__terr"><b>${esc(L.domTerr)}</b><ul>${d.territories.map((t) => `<li><b>${esc(t.name)}</b> — ${esc(t.note)}${t.url ? ` <a href="${esc(t.url)}" rel="nofollow noopener" target="_blank">↗</a>` : ""}</li>`).join("")}</ul></div>`
++                : "")
++            : `<p class="dom__intro">${esc(L.domFallback)}</p>`;
++          return `<div class="report__sec dom"><h4>${esc(L.domTitle)}</h4>${body}</div>`;
++        })() : block(L.before, r.conditions)}
++        ${r.airlines && r.airlines.length
++          ? (() => {
++              const header = `<h4>${esc(L.airlines)}</h4>
++              <div class="acap">✈ <b>${usableDirect.length}</b> ${esc(usableDirect.length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>`;
++              // Retest 09/08/2026, point 6 : "any" reste une liste unique (rien à trier — le champ
++              // demande "peu importe le mode"). Pour cabine/soute/fret, on scinde en deux groupes
++              // titrés au lieu de faire disparaître les compagnies incompatibles avec CE mode :
++              // l'info "alternative en soute/fret" a une vraie valeur pour le visiteur.
++              if (lastPlacement === "any") {
++                return `<div class="report__sec">${header}<ul class="acards">${r.airlines.map(airlineCard).join("")}</ul></div>`;
++              }
++              const key = lastPlacement as "cabin" | "hold" | "cargo";
++              const matched = r.airlines.filter((a: any) => a[key]);
++              const alt = r.airlines.filter((a: any) => !a[key]);
++              const matchBlock = matched.length
++                ? `<h5 class="acards__sub">${esc(L.matchTitle)}</h5><ul class="acards">${matched.map(airlineCard).join("")}</ul>`
++                : `<p class="finder__hint">${esc(L.noMatchMode)}</p>`;
++              const altBlock = alt.length
++                ? `<h5 class="acards__sub">${esc(L.altTitle)}</h5><ul class="acards">${alt.map(airlineCard).join("")}</ul>`
++                : "";
++              return `<div class="report__sec">${header}${matchBlock}${altBlock}</div>`;
++            })()
+           : ""}
+         ${block(L.warnings, r.warnings)}
+         ${block(L.risks, r.risks)}
+@@ -535,6 +589,12 @@ const labels = {
+   uKg?.addEventListener("click", () => setUnit("kg"));
+   uLb?.addEventListener("click", () => setUnit("lb"));
+   refreshMuzzle();
++  // Point 1 : chaque champ qui influence le calcul marque le résultat affiché comme périmé.
++  breedEl?.addEventListener("change", markStale);
++  breedEl?.addEventListener("input", markStale);
++  weightEl?.addEventListener("input", markStale);
++  uKg?.addEventListener("click", markStale);
++  uLb?.addEventListener("click", markStale);
+ 
+   // --- Custom autocomplete: replaces the native <datalist>, whose filtering is accent-SENSITIVE
+   // (typing "grece" would drop "Grèce" and surface "Zagreb"). This one matches on the accent-folded
+@@ -657,6 +717,12 @@ const labels = {
+   let searchSeq = 0;
+   let lastBreedId = "";
+   let lastOriginIso = "", lastDestIso = "";
++  // Retest 09/08/2026, point 6 : le champ "mode" (cabine/soute/fret) n'a jamais filtré la liste
++  // de compagnies — il change seulement l'évaluation par compagnie, et les 25+ compagnies
++  // incompatibles restaient affichées comme si le champ n'avait aucun effet. On garde ce
++  // comportement (les alternatives ont une vraie valeur) mais on scinde l'affichage en deux
++  // groupes explicites dans render() ci-dessous, au lieu d'une liste unique trompeuse.
++  let lastPlacement: FinderRequest["placement"] = "any";
+   /* La réponse telle qu'elle était AU MOMENT DE LA RECHERCHE, et non au moment du clic.
+    * Le rapport affiché décrit ce trajet-là ; la fiche qu'on ouvre depuis ce rapport doit décrire
+    * le même. Relire le formulaire au clic laisserait passer une réponse changée depuis — et deux
+@@ -705,10 +771,17 @@ const labels = {
+     const el = byId(id);
+     el?.addEventListener("change", syncEuPassport);
+     el?.addEventListener("input", syncEuPassport);
++    el?.addEventListener("change", markStale);
++    el?.addEventListener("input", markStale);
+   }
+   // Départ pré-rempli côté serveur (CDG) et arrivée éventuellement pré-remplie par « ?to= » :
+   // aucun événement n'a été émis, il faut donc une passe initiale.
+   syncEuPassport();
++  // Point 1 (suite) : mode (cabine/soute/fret) et date influencent aussi le calcul mais n'avaient
++  // aucun écouteur avant ce correctif.
++  byId("f-placement")?.addEventListener("change", markStale);
++  byId("f-date")?.addEventListener("change", markStale);
++  byId("f-date")?.addEventListener("input", markStale);
+ 
+   function buildRequest(): FinderRequest {
+     const b = resolveBreed();
+@@ -721,6 +794,7 @@ const labels = {
+     lastDestIso = AIRCOUNTRY[d.primary] ?? "";
+     lastOriginId = o.primary; lastDestId = d.primary;
+     lastEuPassport = euPassAnswer() ?? "";
++    lastPlacement = (gv("f-placement") as FinderRequest["placement"]) || "any";
+     return {
+       origin: o.primary,
+       destination: d.primary,
+@@ -728,7 +802,7 @@ const labels = {
+       destinations: d.ids.length > 1 ? d.ids : undefined,
+       dog: { breed_id: b?.id, weight_kg },
+       travel_type: "pet",
+-      placement: (gv("f-placement") as FinderRequest["placement"]) || "any",
++      placement: lastPlacement,
+       date: gv("f-date") || undefined,
+       // Omis quand la question n'est pas posée ou reste sans réponse : le moteur affiche alors
+       // les deux parcours. Ne jamais envoyer "no" par défaut.
+@@ -772,12 +846,34 @@ const labels = {
+   form?.addEventListener("submit", async (e) => {
+     e.preventDefault();
+     if (!out) return;
++
++    /* Retest 09/08/2026, points 2/3/4/5 : un seul message générique ("choisis une destination et
++     * le poids") couvrait 5 causes distinctes — le visiteur ne savait jamais LEQUEL des champs
++     * corriger. Et un texte libre jamais choisi dans les suggestions (« VilleInventeeXYZ ») partait
++     * quand même en requête vers le moteur, qui répondait 400 — affiché comme « le moteur n'a pas
++     * répondu », alors que le moteur n'y est pour rien : la saisie n'était simplement associée à
++     * aucun `airport_id`. On valide donc chaque champ séparément, AVANT tout appel réseau, en
++     * relisant les mêmes suggestions que resolveEndpoint() utilisera de toute façon dans
++     * buildRequest() — jamais le texte visible tel quel.
++     */
++    const oCheck = resolveEndpoint("f-origin"), dCheck = resolveEndpoint("f-dest");
++    const showHint = (msg: string) => { out.hidden = false; out.innerHTML = `<p class="finder__hint">${esc(msg)}</p>`; };
++    if (!oCheck.ids.length) return showHint(L.originInvalid ?? "Pick a departure city or airport from the suggestions.");
++    if (!dCheck.ids.length) return showHint(L.destInvalid ?? "Pick a destination city or airport from the suggestions.");
++    // Recoupement d'aéroports : identiques, ou un aéroport commun aux deux côtés (ex. CDG → « Paris
++    // tous les aéroports », qui inclut CDG) — jamais un trajet réel, quelle que soit la formulation.
++    const oSet = new Set(oCheck.ids);
++    if (dCheck.ids.some((id) => oSet.has(id))) return showHint(L.sameEndpoint ?? "Departure and destination must be different.");
++    // Poids : décision du 09/08/2026 — le poids reste obligatoire (choisir une race dans les
++    // suggestions le pré-remplit déjà via fillWeight() ; le moteur n'a pas d'estimation-par-race
++    // côté serveur, donc laisser croire que la race peut en tenir lieu était une fausse promesse).
++    const wRaw = gv("f-weight").trim();
++    const wNum = parseFloat(wRaw);
++    if (!wRaw || !Number.isFinite(wNum)) return showHint(L.weightMissing ?? "Enter your dog's weight.");
++    if (wNum <= 0) return showHint(L.weightInvalid ?? "Enter a weight greater than 0 kg.");
++    if ((unit === "lb" ? wNum / LB : wNum) > 100) return showHint(L.weightTooHigh ?? "That weight looks too high.");
++
+     const req = buildRequest();
+-    if (!req.destination || !(req.dog.weight_kg && req.dog.weight_kg > 0)) {
+-      out.hidden = false;
+-      out.innerHTML = `<p class="finder__hint">${esc(L.fillHint ?? "Choose a destination and your dog's weight.")}</p>`;
+-      return;
+-    }
+     out.hidden = false;
+     out.innerHTML = `<p class="finder__loading">${esc(L.loading ?? "…")}</p>`;
+     const seq = ++searchSeq; // cf. commentaire près de la déclaration : gagne la dernière recherche lancée, pas la dernière arrivée
+@@ -845,6 +941,10 @@ const labels = {
+   .finder__result { margin-top: 16px; }
+   .finder__loading { color: var(--mdcf-muted); margin: 8px 0; }
+   .finder__hint { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 10px 12px; margin: 8px 0; font-size: 14px; }
++  /* Point 1 : bandeau "critères modifiés", posé au-dessus d'un résultat désormais périmé — distinct
++     du hint orange (action requise) et de l'erreur rouge (panne) : ici le résultat existe encore,
++     il n'est simplement plus à jour. */
++  .finder__stale { color: #78350f; background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 9px 12px; margin: 0 0 14px; font-size: 13.5px; font-weight: 700; }
+   /* Panne du moteur : rouge, pas orange. Le visiteur doit comprendre qu'il n'a pas de réponse. */
+   .finder__error { color: #b3261e; background: #fee2e2; border: 1px solid rgba(179, 38, 30, .25); border-radius: 10px; padding: 12px 14px; margin: 8px 0; font-size: 14px; font-weight: 700; }
+   .finder__error span { display: inline-block; margin-top: 4px; font-weight: 500; color: #7f1d1d; }
+@@ -891,6 +991,9 @@ const labels = {
+   .report .checks li::before { content: "✓"; position: absolute; left: 4px; color: var(--mdcf-ok); font-weight: 800; }
+   .report .checks li.is-neg::before { content: "✗"; color: #dc2626; }
+   .report__partners a { color: var(--mdcf-link, #2563eb); }
++  /* Point 6 : sous-titre des deux groupes (correspond au mode / alternatives) — plus discret que
++     le <h4> de section, pour ne pas se lire comme une nouvelle section du rapport. */
++  .acards__sub { margin: 14px 0 8px; font-size: 11.5px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; color: var(--mdcf-muted); }
+   .acards { list-style: none; padding-left: 0; display: grid; gap: 8px; }
+   .acard { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px 20px; align-items: center;
+     border: 1px solid var(--mdcf-line); border-left: 3px solid var(--mdcf-line); border-radius: 12px; padding: 12px 14px; background: var(--mdcf-surface); }
