@@ -45,6 +45,24 @@ export type FinderRequest = z.infer<typeof FinderRequest>;
 /* ---- Destination-finder input contract: "where can I fly my dog on this date?" ----
    Same dog + date model as the finder, but no fixed destination — the engine scans every
    country reachable from the origin and returns a compact per-destination match. */
+/* Retest 09/08/2026, point 4 : une date passée (ex. 2020-01-15) était acceptée telle quelle — le
+ * moteur mélangeait alors le réseau aérien ACTUEL avec le climat moyen d'un mois révolu, produisant
+ * un résultat sans signification. Validée ici (moteur), en plus du `min`/`max` posés côté client
+ * sur le champ — la validation client seule est contournable (saisie directe, DevTools, appel API
+ * direct). Horizon plafonné à 18 mois : au-delà, ni le réseau de routes ni les règles ne sont
+ * garantis stables, et rien dans le référentiel ne modélise leur évolution future.
+ */
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+function isDateInRange(d: string): boolean {
+  if (!DATE_RE.test(d)) return false;
+  const today = new Date();
+  const todayIso = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate())).toISOString().slice(0, 10);
+  if (d < todayIso) return false;
+  const max = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + 18, today.getUTCDate()));
+  const maxIso = max.toISOString().slice(0, 10);
+  return d <= maxIso;
+}
+
 export const DestinationsRequest = z.object({
   origin: z.string(),                       // representative origin airport id
   origins: z.array(z.string()).optional(),  // origin airport set (city search, e.g. Paris = CDG + ORY)
@@ -54,7 +72,9 @@ export const DestinationsRequest = z.object({
     brachycephalic: z.boolean().optional(),
   }),
   placement: z.union([Placement, z.literal("any")]).default("any"),
-  date: z.string().optional(),
+  date: z.string().optional().refine((d) => !d || isDateInRange(d), {
+    message: "date must be between today and 18 months from now",
+  }),
   locale: Locale.default("en"),
 });
 export type DestinationsRequest = z.infer<typeof DestinationsRequest>;
@@ -81,6 +101,16 @@ export interface DestinationMatch {
   placement_ok: boolean;     // the requested/deduced placement is feasible on ≥1 direct airline
   entry_allowed: boolean;    // no blocking country-level denial (e.g. hard import ban)
   flight_hours: number;      // estimated direct flight time (great-circle distance ÷ cruise speed)
+}
+
+/* Retest 09/08/2026, point 2 : le seul champ `matches` ne permettait pas de distinguer "aucune
+ * compagnie ne dessert de destination directe depuis cette ville" (candidates_total = 0) de "des
+ * destinations sont desservies, mais aucune n'accepte ce chien nulle part" (candidates_total > 0,
+ * matches vide) — les deux retombaient sur le même "matches: []" et donc le même message générique
+ * côté UI. */
+export interface DestinationsResult {
+  matches: DestinationMatch[];
+  candidates_total: number; // aéroports directement desservis depuis l'origine, avant tout filtrage race/placement
 }
 
 /* ---- Internal (Decision Engine output) ---- */

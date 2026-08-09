@@ -315,7 +315,7 @@ export default {
         const checked = validateJsonIds(body, { requireDestination: false });
         if (!checked.ok) return json(checked.body, 400);
         const req = DestinationsRequest.parse(checked.value);
-        return json({ matches: rankDestinations(kb, req) });
+        return json(rankDestinations(kb, req)); // → { matches, candidates_total }
       } catch (e) {
         console.error("/v1/destinations error:", e);
         return json(formatError(e), 400);

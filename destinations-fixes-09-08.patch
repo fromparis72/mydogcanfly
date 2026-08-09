@@ -1,0 +1,518 @@
+diff --git a/packages/engine/scripts/dest-test.ts b/packages/engine/scripts/dest-test.ts
+index bf4d713..91e6009 100644
+--- a/packages/engine/scripts/dest-test.ts
++++ b/packages/engine/scripts/dest-test.ts
+@@ -19,7 +19,7 @@ const req = DestinationsRequest.parse({
+   locale: "fr",
+ });
+ 
+-const matches = rankDestinations(kb, req);
++const { matches } = rankDestinations(kb, req);
+ console.log("total reachable cities (direct):", matches.length);
+ console.log("France present (should be FALSE — origin country):", matches.some((m) => m.iso2 === "FR"));
+ console.log("all direct with >=1 airline:", matches.every((m) => m.airlines_total >= 1));
+diff --git a/packages/engine/src/contracts.ts b/packages/engine/src/contracts.ts
+index 3b2c590..5d488aa 100644
+--- a/packages/engine/src/contracts.ts
++++ b/packages/engine/src/contracts.ts
+@@ -45,6 +45,24 @@ export type FinderRequest = z.infer<typeof FinderRequest>;
+ /* ---- Destination-finder input contract: "where can I fly my dog on this date?" ----
+    Same dog + date model as the finder, but no fixed destination — the engine scans every
+    country reachable from the origin and returns a compact per-destination match. */
++/* Retest 09/08/2026, point 4 : une date passée (ex. 2020-01-15) était acceptée telle quelle — le
++ * moteur mélangeait alors le réseau aérien ACTUEL avec le climat moyen d'un mois révolu, produisant
++ * un résultat sans signification. Validée ici (moteur), en plus du `min`/`max` posés côté client
++ * sur le champ — la validation client seule est contournable (saisie directe, DevTools, appel API
++ * direct). Horizon plafonné à 18 mois : au-delà, ni le réseau de routes ni les règles ne sont
++ * garantis stables, et rien dans le référentiel ne modélise leur évolution future.
++ */
++const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
++function isDateInRange(d: string): boolean {
++  if (!DATE_RE.test(d)) return false;
++  const today = new Date();
++  const todayIso = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate())).toISOString().slice(0, 10);
++  if (d < todayIso) return false;
++  const max = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + 18, today.getUTCDate()));
++  const maxIso = max.toISOString().slice(0, 10);
++  return d <= maxIso;
++}
++
+ export const DestinationsRequest = z.object({
+   origin: z.string(),                       // representative origin airport id
+   origins: z.array(z.string()).optional(),  // origin airport set (city search, e.g. Paris = CDG + ORY)
+@@ -54,7 +72,9 @@ export const DestinationsRequest = z.object({
+     brachycephalic: z.boolean().optional(),
+   }),
+   placement: z.union([Placement, z.literal("any")]).default("any"),
+-  date: z.string().optional(),
++  date: z.string().optional().refine((d) => !d || isDateInRange(d), {
++    message: "date must be between today and 18 months from now",
++  }),
+   locale: Locale.default("en"),
+ });
+ export type DestinationsRequest = z.infer<typeof DestinationsRequest>;
+@@ -83,6 +103,16 @@ export interface DestinationMatch {
+   flight_hours: number;      // estimated direct flight time (great-circle distance ÷ cruise speed)
+ }
+ 
++/* Retest 09/08/2026, point 2 : le seul champ `matches` ne permettait pas de distinguer "aucune
++ * compagnie ne dessert de destination directe depuis cette ville" (candidates_total = 0) de "des
++ * destinations sont desservies, mais aucune n'accepte ce chien nulle part" (candidates_total > 0,
++ * matches vide) — les deux retombaient sur le même "matches: []" et donc le même message générique
++ * côté UI. */
++export interface DestinationsResult {
++  matches: DestinationMatch[];
++  candidates_total: number; // aéroports directement desservis depuis l'origine, avant tout filtrage race/placement
++}
++
+ /* ---- Internal (Decision Engine output) ---- */
+ export interface FiredRule {
+   rule_id: string;
+diff --git a/packages/engine/src/destinations.ts b/packages/engine/src/destinations.ts
+index 3de5194..29fcb3c 100644
+--- a/packages/engine/src/destinations.ts
++++ b/packages/engine/src/destinations.ts
+@@ -1,6 +1,6 @@
+ import type { NormalizedKB } from "@mydogcanfly/knowledge";
+ import { cityName } from "@mydogcanfly/knowledge";
+-import type { DestinationsRequest, DestinationMatch } from "./contracts";
++import type { DestinationsRequest, DestinationMatch, DestinationsResult } from "./contracts";
+ import { evaluate } from "./evaluate";
+ 
+ // Must match explain.ts HEAT_EMBARGO_THRESHOLD_C (seasonal hold/cargo suspension threshold).
+@@ -51,7 +51,7 @@ function estimateTempByLat(lat: number, month: number | undefined): number | und
+  * dog-accepting flight from the origin, it estimates the city's seasonal climate from its latitude and
+  * returns a compact match. Ranking + formalities-vs-documents are left to the UI.
+  */
+-export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): DestinationMatch[] {
++export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): DestinationsResult {
+   const originSet = req.origins && req.origins.length ? req.origins : [req.origin];
+   const originSetHas = new Set(originSet);
+   const originCountries = new Set(
+@@ -143,5 +143,11 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
+   }
+ 
+   // Stable default order (by city) — the UI applies the soft score that also weighs formalities.
+-  return out.sort((a, b) => a.city.localeCompare(b.city, req.locale));
++  // Retest 09/08/2026, point 2 : `candidates.size` distingue "aucune ville même desservie depuis
++  // cette origine" de "des villes sont desservies mais aucune n'accepte ce chien" — cf. commentaire
++  // sur DestinationsResult dans contracts.ts.
++  return {
++    matches: out.sort((a, b) => a.city.localeCompare(b.city, req.locale)),
++    candidates_total: candidates.size,
++  };
+ }
+diff --git a/packages/ui/src/components/DestinationFinder.astro b/packages/ui/src/components/DestinationFinder.astro
+index 44a6000..6e1f31f 100644
+--- a/packages/ui/src/components/DestinationFinder.astro
++++ b/packages/ui/src/components/DestinationFinder.astro
+@@ -68,7 +68,10 @@ const L = {
+     // modèle de errorTitle/errorBody de FlightFinder.astro.
+     errorTitle: T("The engine didn't answer.", "Le moteur n'a pas répondu.", "El motor no respondió."),
+     errorBody: T("Please try again in a moment.", "Réessaie dans un instant.", "Vuelve a intentarlo en un momento."),
+-    reachable: T("cities with a direct flight", "villes accessibles en direct", "ciudades con vuelo directo"),
++    // Retest 09/08/2026, point 8 : "villes accessibles en direct" laissait croire que toutes les
++    // villes comptées étaient à la fois desservies ET compatibles avec le chien/placement demandé —
++    // le chiffre ne portera plus désormais que sur la liste "compatible" (cf. script plus bas).
++    reachable: T("compatible cities — referenced direct route, check schedules", "villes compatibles — liaison directe référencée, horaires à vérifier", "ciudades compatibles — ruta directa referenciada, horarios por confirmar"),
+     directOnly: T("Direct flights only", "Vols directs uniquement", "Solo vuelos directos"),
+     tempFilter: T("Temperature filter applied — some cities set aside due to heat", "Filtre de température appliqué — certaines villes écartées pour cause de chaleur", "Filtro de temperatura aplicado: algunas ciudades descartadas por el calor"),
+     dateForClimate: T("Add a date to estimate the climate", "Ajoute une date pour estimer le climat", "Añade una fecha para estimar el clima"),
+@@ -93,6 +96,34 @@ const L = {
+     flLimited: T("Direct, but placement is limited", "Direct, mais placement limité", "Directo, pero la disponibilidad es limitada"),
+     warnLabel: T("Not recommended on this date", "Déconseillé à cette date", "No recomendado en esta fecha"),
+     hours: T("direct", "en direct", "directo"),
++    // Retest 09/08/2026 — mêmes libellés que le <select> "Placement", réutilisés côté script pour
++    // composer les messages (points 1, 2, 6, 9).
++    plCabin: t(locale, "placement.cabin"),
++    plHold: t(locale, "placement.hold"),
++    plAny: T("Any", "Indifférent", "Indiferente"),
++    staleHint: T("Criteria changed — rerun the search.", "Critères modifiés — relance la recherche.", "Criterios modificados: repite la búsqueda."),
++    originInvalid: T("Choose a city or airport from the list.", "Sélectionne une ville ou un aéroport dans la liste proposée.", "Elige una ciudad o aeropuerto de la lista."),
++    breedMissing: T("Choose your dog's breed.", "Choisis la race de ton chien.", "Elige la raza de tu perro."),
++    dateInPast: T("Choose a future travel date.", "Choisis une date de voyage future.", "Elige una fecha de viaje futura."),
++    dateTooFar: T("Choose a date within the next 18 months — routes further out aren't referenced yet.", "Choisis une date dans les 18 prochains mois — les routes au-delà ne sont pas encore référencées.", "Elige una fecha dentro de los próximos 18 meses: las rutas más allá aún no están referenciadas."),
++    noRoute: T("No direct route referenced from this city yet.", "Aucune liaison directe référencée depuis cette ville pour l'instant.", "Aún no hay ninguna ruta directa referenciada desde esta ciudad."),
++    noBreedTemplate: T("No direct airline currently seems to accept {breed} on a route referenced from this city.", "Aucune compagnie directe ne semble accepter {breed} sur une liaison référencée depuis cette ville.", "Ninguna aerolínea directa parece aceptar a {breed} en una ruta referenciada desde esta ciudad."),
++    noPlacementTemplate: T("No direct airline seems to accept {breed} for {placement} on a route referenced from this city. Try another placement or contact a specialised carrier.", "Aucune compagnie directe ne semble accepter {breed} en {placement} sur une liaison référencée depuis cette ville. Essaie un autre placement ou contacte une compagnie spécialisée.", "Ninguna aerolínea directa parece aceptar a {breed} en {placement} en una ruta referenciada desde esta ciudad. Prueba otra ubicación o contacta con una aerolínea especializada."),
++    noneInRange: T("No destination in this distance band. Try widening the filter.", "Aucune destination dans cette tranche de distance. Essaie d'élargir le filtre.", "Ningún destino en este rango de distancia. Prueba a ampliar el filtro."),
++    altSectionTitle: T("Alternatives with a different placement", "Alternatives avec un autre placement", "Alternativas con otra ubicación"),
++    altSectionHint: T("Reachable directly, but not with the placement you selected — shown here rather than hidden.", "Accessibles en direct, mais pas avec le placement sélectionné — affichées ici plutôt que masquées.", "Accesibles en directo, pero no con la ubicación seleccionada: se muestran aquí en vez de ocultarse."),
++    suggestedSuffix: T("suggested from the breed's average weight", "suggéré selon le poids moyen de la race", "sugerido según el peso medio de la raza"),
++    airline1: T("airline", "compagnie", "aerolínea"),
++    airlineN: T("airlines", "compagnies", "aerolíneas"),
++    directRefSuffix: T("with a referenced direct route", "avec liaison directe référencée", "con ruta directa referenciada"),
++    noPlacementSuffix: T("direct, but none compatible with the requested placement", "directes, mais aucune compatible avec le placement demandé", "directas, pero ninguna compatible con la ubicación solicitada"),
++    altAvailable: T("Available directly:", "Disponible en direct :", "Disponible en directo:"),
++    climCold: T("Cool/cold — check your dog's cold tolerance", "Frais/froid — vérifie la tolérance au froid de ton chien", "Fresco/frío: comprueba la tolerancia al frío de tu perro"),
++    fmLightPartial: T("Light — but confirm the remaining document(s) on the country page", "Légères — mais confirme le(s) document(s) restant(s) sur la fiche pays", "Ligeros, pero confirma el/los documento(s) restante(s) en la ficha del país"),
++    missingDocsLabel: T("Missing for 100%:", "Manquant pour 100 % :", "Falta para el 100 %:"),
++    docEu: T("EU pet passport", "Passeport européen", "Pasaporte europeo para mascotas"),
++    docCert: T("Health certificate", "Certificat sanitaire", "Certificado de salud"),
++    docTiter: T("Rabies antibody test", "Titrage antirabique", "Prueba de titulación de rabia"),
+   },
+ };
+ ---
+@@ -124,6 +155,7 @@ const L = {
+           <option value="cabin">{t(locale, "placement.cabin")}</option>
+           <option value="hold">{t(locale, "placement.hold")}</option>
+         </select>
++        <small id="dfx-placement-hint" class="dfx__phint" hidden></small>
+       </div>
+       <div class="dfx__field dfx__field--sm">
+         <label for="dfx-range">{T("Trip distance", "Distance de voyage", "Distancia de viaje")}</label>
+@@ -167,16 +199,29 @@ const L = {
+ 
+   const breedEl = byId("dfx-breed") as HTMLInputElement | null;
+   const placeEl = byId("dfx-placement") as HTMLSelectElement | null;
++  const placeHintEl = byId("dfx-placement-hint") as HTMLElement | null;
+   const resolveBreed = () => BREEDS[norm(breedEl?.value ?? "")];
+ 
+   // Deduce a default placement from the breed (small → cabin) — the user can still override it.
++  // Retest 09/08/2026, point 6 : le préremplissage automatique était silencieux (aucun événement
++  // "change" émis, donc rien ne le distinguait visuellement d'un choix manuel de l'utilisateur).
++  // On garde le préremplissage utile, mais on l'affiche désormais explicitement.
+   let placementTouched = false;
+-  placeEl?.addEventListener("change", () => { placementTouched = true; });
++  placeEl?.addEventListener("change", () => { placementTouched = true; if (placeHintEl) placeHintEl.hidden = true; });
+   const deducePlacement = () => {
+     if (placementTouched || !placeEl) return;
+     const b = resolveBreed();
+     if (!b) return;
+-    placeEl.value = b.br ? "any" : b.w <= 8 ? "cabin" : "hold";
++    const v = b.br ? "any" : b.w <= 8 ? "cabin" : "hold";
++    placeEl.value = v;
++    if (placeHintEl) {
++      if (v === "any") { placeHintEl.hidden = true; placeHintEl.textContent = ""; }
++      else {
++        const word = v === "cabin" ? S.plCabin : S.plHold;
++        placeHintEl.hidden = false;
++        placeHintEl.textContent = `${word} ${S.suggestedSuffix}`;
++      }
++    }
+   };
+   breedEl?.addEventListener("change", deducePlacement);
+ 
+@@ -258,30 +303,62 @@ const L = {
+   type Docs = { base: boolean; eu: boolean; titer: boolean; cert: boolean };
+ 
+   // --- Formalities estimate: destination difficulty × documents held. Honest heuristic, clearly labelled. ---
+-  function formalities(m: Match, docs: Docs): { level: 0 | 1 | 2 | 3; label: string; score: number } {
+-    if (!docs.base) return { level: 3, label: S.fmNeedBase, score: 0.15 };
++  // Retest 09/08/2026, point 11 : le score "easy" atteignait 100/100 dès la seule case "Puce + vaccin"
++  // cochée, sans jamais regarder passeport UE / titrage / certificat pour ces pays-là. On réserve
++  // maintenant 100/100 aux cas où les documents potentiellement pertinents sont effectivement cochés,
++  // et on liste ceux qui manquent (même heuristique que la branche "moderate" déjà en place).
++  function formalities(m: Match, docs: Docs): { level: 0 | 1 | 2 | 3; label: string; score: number; missing: string[] } {
++    if (!docs.base) return { level: 3, label: S.fmNeedBase, score: 0.15, missing: [] };
+     const meta = META[m.iso2.toLowerCase()];
+-    if (!meta) return { level: 1, label: S.fmUnknown, score: 0.55 };
++    if (!meta) return { level: 1, label: S.fmUnknown, score: 0.55, missing: [] };
+     if (meta.level === "difficult") {
+-      return docs.titer ? { level: 1, label: S.fmModerate, score: 0.6 } : { level: 2, label: S.fmHeavy, score: 0.3 };
++      return docs.titer
++        ? { level: 1, label: S.fmModerate, score: 0.6, missing: [] }
++        : { level: 2, label: S.fmHeavy, score: 0.3, missing: [S.docTiter] };
+     }
+     if (meta.level === "moderate") {
+       const covered = (meta.eu && docs.eu) || docs.cert;
+-      return covered ? { level: 0, label: S.fmLight, score: 1 } : { level: 1, label: S.fmModerate, score: 0.65 };
++      if (covered) return { level: 0, label: S.fmLight, score: 1, missing: [] };
++      const missing = meta.eu ? [S.docEu, S.docCert] : [S.docCert];
++      return { level: 1, label: S.fmModerate, score: 0.65, missing };
+     }
+-    return { level: 0, label: S.fmLight, score: 1 };
++    // "easy" : les documents potentiellement pertinents (passeport UE si applicable, certificat sanitaire)
++    // sont désormais vérifiés au lieu d'être ignorés — 100/100 seulement si tous sont cochés.
++    const relevant: string[] = [];
++    if (meta.eu && !docs.eu) relevant.push(S.docEu);
++    if (!docs.cert) relevant.push(S.docCert);
++    if (!relevant.length) return { level: 0, label: S.fmLight, score: 1, missing: [] };
++    return { level: 0, label: S.fmLightPartial, score: 0.92, missing: relevant };
+   }
+ 
++  // Retest 09/08/2026, point 10 : aucun seuil "froid" n'existait — un chien à 0 °C recevait le même
++  // libellé "Confortable" qu'un chien à 22 °C. Repli minimal (pas de sensibilité au froid par race
++  // dans le référentiel actuel) : sous 10 °C, libellé neutre "Frais/froid" plutôt qu'affirmatif.
++  const COLD_THRESHOLD_C = 10;
+   function climate(m: Match, brachy: boolean): { level: 0 | 1 | 2; label: string; score: number; known: boolean } {
+     if (!m.climate_estimated) return { level: 1, label: S.dateForClimate, score: 0.7, known: false };
+     if (m.heat_embargo) return brachy ? { level: 2, label: S.climEmbargoBrachy, score: 0.08, known: true } : { level: 2, label: S.climEmbargo, score: 0.3, known: true };
+     if (m.heat_risk) return { level: 1, label: S.climRisk, score: 0.62, known: true };
++    if (m.temperature_c < COLD_THRESHOLD_C) return { level: 1, label: S.climCold, score: 0.75, known: true };
+     return { level: 0, label: S.climComfort, score: 1, known: true };
+   }
+ 
+-  function flights(m: Match): { level: 0 | 1 | 2; label: string; score: number } {
+-    if (!m.placement_ok) return { level: 2, label: S.flLimited, score: 0.4 };
+-    return { level: 0, label: S.flDirect, score: 1 };
++  // Retest 09/08/2026, points 1+9 : le pill "Vols (N)" comptait toujours les compagnies directes,
++  // qu'elles acceptent ou non le placement demandé — laissant croire qu'une destination "cabine
++  // limitée" restait recommandable. Le libellé nomme maintenant explicitement ce qui compte (N
++  // compagnies "avec liaison directe référencée" vs "aucune compatible avec le placement demandé"),
++  // et indique quel(s) placement(s) fonctionnent réellement (cabine/soute) quand ce n'est pas celui demandé.
++  function flightsMeta(m: Match, placementPref: string): { level: 0 | 1 | 2; header: string; label: string; score: number } {
++    const n = m.airlines_total;
++    const word = n === 1 ? S.airline1 : S.airlineN;
++    if (placementPref === "any" || m.placement_ok) {
++      return { level: 0, header: `${n} ${word} ${S.directRefSuffix}`, label: S.flDirect, score: 1 };
++    }
++    const avail: string[] = [];
++    if (m.cabin_ok) avail.push(S.plCabin);
++    if (m.hold_ok) avail.push(S.plHold);
++    const availTxt = avail.length ? ` ${S.altAvailable} ${avail.join(", ")}` : "";
++    return { level: 2, header: `${n} ${word} — ${S.noPlacementSuffix}`, label: `${S.flLimited}.${availTxt}`, score: 0.4 };
+   }
+ 
+   const CLS = ["ok", "warn", "no", "no"];  // formalities level → pill class
+@@ -290,8 +367,8 @@ const L = {
+   const pill = (cls: string, word: string, txt: string) =>
+     `<span class="dfx-pill dfx-pill--${cls}"><b>${esc(word)}</b> ${esc(txt)}</span>`;
+ 
+-  function card(m: Match, docs: Docs, brachy: boolean): { html: string; score: number } {
+-    const cl = climate(m, brachy), fm = formalities(m, docs), fl = flights(m);
++  function card(m: Match, docs: Docs, brachy: boolean, placementPref: string): { html: string; score: number } {
++    const cl = climate(m, brachy), fm = formalities(m, docs), fl = flightsMeta(m, placementPref);
+     const gate = m.entry_allowed ? 1 : 0.05;
+     const score = Math.round(100 * gate * (0.4 * cl.score + 0.3 * fl.score + 0.3 * fm.score));
+     const bad = score < 40;
+@@ -309,8 +386,9 @@ const L = {
+       <div class="dfx-card__pills">
+         ${pill(climCls, temp, cl.label)}
+         ${pill(CLS[fm.level], S.formalities, fm.label)}
+-        ${pill(CLIMCLS[fl.level], `${S.flights} (${m.airlines_total})`, fl.label)}
++        ${pill(CLIMCLS[fl.level], fl.header, fl.label)}
+       </div>
++      ${fm.missing.length ? `<div class="dfx-card__missing">${esc(S.missingDocsLabel)} ${fm.missing.map(esc).join(", ")}</div>` : ""}
+       ${bad ? `<div class="dfx-card__warn">⚠️ ${esc(S.warnLabel)}</div>` : ""}
+       <a class="dfx-card__link" href="${esc(href)}">${esc(S.viewGuide)} →</a>
+     </article>`;
+@@ -325,26 +403,72 @@ const L = {
+    * résultat déjà affiché de la recherche la plus RÉCENTE. */
+   let dfxSearchSeq = 0;
+ 
++  // Retest 09/08/2026, point 4 : pas de `min` sur le champ date, aucune validation. On borne côté
++  // client (date du jour → +18 mois, horizon au-delà duquel les routes ne sont pas référencées) ;
++  // le moteur applique la même règle côté serveur (contracts.ts), qui reste la source de vérité.
++  const dateEl = byId("dfx-date") as HTMLInputElement | null;
++  const isoDate = (d: Date) => d.toISOString().slice(0, 10);
++  if (dateEl) {
++    const today = new Date();
++    dateEl.min = isoDate(today);
++    const maxD = new Date(today);
++    maxD.setMonth(maxD.getMonth() + 18);
++    dateEl.max = isoDate(maxD);
++  }
++
++  const showHint = (msg: string) => { if (!out) return; out.hidden = false; out.innerHTML = `<p class="dfx__hint">${esc(msg)}</p>`; };
++
++  // Retest 09/08/2026, point 3 : aucun mécanisme n'invalidait l'affichage quand un critère changeait
++  // après un calcul (distance, documents, date, race, placement) — même patron que markStale() dans
++  // FlightFinder.astro.
++  const markStale = () => {
++    if (!out || out.hidden) return;
++    if (out.querySelector(".dfx__loading, .dfx__hint, .dfx__error")) return; // pas un vrai résultat affiché
++    if (out.querySelector(".dfx__stale")) return; // déjà marqué
++    const banner = document.createElement("p");
++    banner.className = "dfx__stale";
++    banner.textContent = S.staleHint;
++    out.insertBefore(banner, out.firstChild);
++  };
++  const originEl = byId("dfx-origin") as HTMLInputElement | null;
++  originEl?.addEventListener("input", markStale);
++  originEl?.addEventListener("change", markStale);
++  dateEl?.addEventListener("input", markStale);
++  dateEl?.addEventListener("change", markStale);
++  breedEl?.addEventListener("input", markStale);
++  breedEl?.addEventListener("change", markStale);
++  placeEl?.addEventListener("change", markStale);
++  (byId("dfx-range") as HTMLSelectElement | null)?.addEventListener("change", markStale);
++  ["doc-base", "doc-eu", "doc-titer", "doc-cert"].forEach((id) => byId(id)?.addEventListener("change", markStale));
++
+   form?.addEventListener("submit", async (e) => {
+     e.preventDefault();
+     if (!out) return;
++    // Retest 09/08/2026, point 7 : un seul message combiné "ville + race" ne disait pas laquelle des
++    // deux posait problème quand l'autre était déjà correctement renseignée. Vérifications séparées,
++    // dans l'ordre des champs du formulaire.
+     const o = resolveEndpoint("dfx-origin");
++    if (!o.primary) { showHint(S.originInvalid); return; }
+     const b = resolveBreed();
+-    if (!o.primary || !b) {
+-      out.hidden = false;
+-      out.innerHTML = `<p class="dfx__hint">${esc(S.fillHint)}</p>`;
+-      return;
++    if (!b) { showHint(S.breedMissing); return; }
++    const dateVal = gv("dfx-date");
++    if (dateVal) {
++      const todayIso = isoDate(new Date());
++      if (dateVal < todayIso) { showHint(S.dateInPast); return; }
++      if (dateEl?.max && dateVal > dateEl.max) { showHint(S.dateTooFar); return; }
+     }
+     const docs: Docs = { base: (byId("doc-base") as HTMLInputElement)?.checked ?? false, eu: (byId("doc-eu") as HTMLInputElement)?.checked ?? false, titer: (byId("doc-titer") as HTMLInputElement)?.checked ?? false, cert: (byId("doc-cert") as HTMLInputElement)?.checked ?? false };
++    const placementPref = gv("dfx-placement") || "any";
+     const req = {
+       origin: o.primary, origins: o.ids.length > 1 ? o.ids : undefined,
+       dog: { breed_id: b.id, weight_kg: b.w, brachycephalic: b.br },
+-      placement: gv("dfx-placement") || "any", date: gv("dfx-date") || undefined, locale: L.locale,
++      placement: placementPref, date: dateVal || undefined, locale: L.locale,
+     };
+     out.hidden = false;
+     out.innerHTML = `<p class="dfx__loading">${esc(S.loading)}</p>`;
+     const seq = ++dfxSearchSeq;
+     let matches: Match[] = [];
++    let candidatesTotal = 0;
+     /* Bug corrigé (audit du 09/08/2026, tâche 21) : ce bloc ne distinguait pas une panne de l'API
+      * (Worker éteint, 5xx, requête refusée par validation) d'une vraie absence de destination
+      * directe — les deux retombaient sur `matches = []` puis le message "aucune destination",
+@@ -357,6 +481,7 @@ const L = {
+       else {
+         const data = await res.json();
+         matches = (data.matches ?? []) as Match[];
++        candidatesTotal = (data.candidates_total ?? matches.length) as number;
+       }
+     } catch { apiFailed = true; }
+     if (seq !== dfxSearchSeq) return; // une recherche plus récente a démarré depuis — cette réponse est périmée
+@@ -364,44 +489,80 @@ const L = {
+       out.innerHTML = `<p class="dfx__error">${esc(S.errorTitle)}<br><span>${esc(S.errorBody)}</span></p>`;
+       return;
+     }
+-    if (!matches.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noResults)}</p>`; return; }
++    // Retest 09/08/2026, point 2 : distinguer précisément la cause d'une absence de résultat plutôt
++    // que d'afficher le même "aucune destination directe" générique dans tous les cas —
++    // (a) aucune route directe référencée depuis cette ville, (b) une route existe mais aucune
++    // compagnie n'y accepte ce chien (quel que soit le placement), (c) des compagnies l'acceptent
++    // mais pas dans le placement demandé (cf. split compatible/alternatives plus bas).
++    if (candidatesTotal === 0) { out.innerHTML = `<p class="dfx__hint">${esc(S.noRoute)}</p>`; return; }
++    const breedLabel = gv("dfx-breed");
++    if (!matches.length) {
++      out.innerHTML = `<p class="dfx__hint">${esc(S.noBreedTemplate.replace("{breed}", breedLabel))}</p>`;
++      return;
++    }
++
++    // Retest 09/08/2026, points 1+2+8 : "Placement" ne filtrait rien — `placement_ok` était calculé
++    // par le moteur mais jamais utilisé pour exclure une destination, donc une ville "cabine limitée"
++    // pouvait apparaître comme recommandée au même titre qu'une ville réellement compatible. Le
++    // placement demandé devient une vraie condition éliminatoire pour la liste principale ; les
++    // destinations qui ne la remplissent pas passent dans une section "Alternatives" séparée et
++    // explicitement nommée, plutôt que de disparaître ou d'être confondues avec les compatibles.
++    let compatible = matches, alternatives: Match[] = [];
++    if (placementPref !== "any") {
++      compatible = matches.filter((m) => m.placement_ok);
++      alternatives = matches.filter((m) => !m.placement_ok);
++    }
+ 
+-    // Optional hard filter: trip-distance band (estimated direct flight time). Mutually exclusive bands
+-    // ("6-" = long haul, no upper cap) so "Long haul" shows far cities only, not nearby Europe.
++    // Optional hard filter: trip-distance band (estimated direct flight time), applied independently
++    // to each list so an "alternatives" city can't silently reappear outside the requested distance.
+     const rangeSel = byId("dfx-range") as HTMLSelectElement | null;
+     const rangeVal = rangeSel?.value ?? "";
+-    const totalReachable = matches.length;
+-    let banded = false;
+-    if (rangeVal) {
++    const banded = !!rangeVal;
++    const totalCompatible = compatible.length;
++    const applyBand = (list: Match[]): Match[] => {
++      if (!rangeVal) return list;
+       const [lo, hi] = rangeVal.split("-");
+       const min = parseFloat(lo) || 0;
+       const max = hi === "" ? Infinity : parseFloat(hi);
+-      matches = matches.filter((m) => m.flight_hours > 0 && m.flight_hours >= min && m.flight_hours < max);
+-      banded = true;
+-    }
+-    if (!matches.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noResults)}</p>`; return; }
++      return list.filter((m) => m.flight_hours > 0 && m.flight_hours >= min && m.flight_hours < max);
++    };
++    compatible = applyBand(compatible);
++    alternatives = applyBand(alternatives);
++    if (!compatible.length && !alternatives.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noneInRange)}</p>`; return; }
+ 
+-    const scored = matches.map((m) => card(m, docs, b.br)).sort((x, y) => y.score - x.score);
+-    const top = scored.slice(0, 5), rest = scored.slice(5);
+     const rangeLabel = rangeSel?.selectedOptions[0]?.textContent ?? "";
+     const metaCount = banded
+-      ? `<b>${matches.length}</b>/${totalReachable} ${esc(S.reachable)} · ${esc(rangeLabel)}`
+-      : `<b>${matches.length}</b> ${esc(S.reachable)}`;
++      ? `<b>${compatible.length}</b>/${totalCompatible} ${esc(S.reachable)} · ${esc(rangeLabel)}`
++      : `<b>${compatible.length}</b> ${esc(S.reachable)}`;
+     // Heat notice: shown only when the chosen period is hot enough to sideline some cities on welfare grounds.
+-    const heatApplied = matches.some((m) => m.heat_embargo);
++    const heatApplied = [...compatible, ...alternatives].some((m) => m.heat_embargo);
+     const heatBadge = heatApplied ? ` · <span class="dfx__heat">☀️ ${esc(S.tempFilter)}</span>` : "";
+-    out.innerHTML = `
+-      <div class="dfx__meta">${metaCount} · <span class="dfx__direct">✈ ${esc(S.directOnly)}</span>${heatBadge} · <span class="dfx__est">${esc(S.estimate)}</span></div>
+-      <h3 class="dfx__toph">${esc(S.topTitle)}</h3>
+-      <div class="dfx__grid">${top.map((c) => c.html).join("")}</div>
+-      ${rest.length ? `<button type="button" class="dfx__more" id="dfx-more">${esc(S.altShow)} (${rest.length}) ▾</button>
+-        <div class="dfx__grid dfx__grid--rest" id="dfx-rest" hidden>${rest.map((c) => c.html).join("")}</div>` : ""}`;
++    let html = `<div class="dfx__meta">${metaCount} · <span class="dfx__direct">✈ ${esc(S.directOnly)}</span>${heatBadge} · <span class="dfx__est">${esc(S.estimate)}</span></div>`;
++
++    if (compatible.length) {
++      const scored = compatible.map((m) => card(m, docs, b.br, placementPref)).sort((x, y) => y.score - x.score);
++      const top = scored.slice(0, 5), rest = scored.slice(5);
++      html += `<h3 class="dfx__toph">${esc(S.topTitle)}</h3><div class="dfx__grid">${top.map((c) => c.html).join("")}</div>`;
++      if (rest.length) html += `<button type="button" class="dfx__more" id="dfx-more">${esc(S.altShow)} (${rest.length}) ▾</button>
++        <div class="dfx__grid dfx__grid--rest" id="dfx-rest" hidden>${rest.map((c) => c.html).join("")}</div>`;
++    } else if (placementPref !== "any") {
++      const placementWord = placementPref === "cabin" ? S.plCabin : S.plHold;
++      html += `<p class="dfx__hint">${esc(S.noPlacementTemplate.replace("{breed}", breedLabel).replace("{placement}", placementWord))}</p>`;
++    }
++
++    if (alternatives.length) {
++      const altScored = alternatives.map((m) => card(m, docs, b.br, placementPref)).sort((x, y) => y.score - x.score);
++      html += `<h3 class="dfx__toph">${esc(S.altSectionTitle)}</h3><p class="dfx__altnote">${esc(S.altSectionHint)}</p><div class="dfx__grid">${altScored.map((c) => c.html).join("")}</div>`;
++    }
++
++    out.innerHTML = html;
+     const moreBtn = byId("dfx-more");
+     const restBox = byId("dfx-rest");
++    const restCount = compatible.length > 5 ? compatible.length - 5 : 0;
+     moreBtn?.addEventListener("click", () => {
+       const open = restBox?.hidden;
+       if (restBox) restBox.hidden = !open;
+-      if (moreBtn) moreBtn.textContent = (open ? `${S.altHide} ▴` : `${S.altShow} (${rest.length}) ▾`);
++      if (moreBtn) moreBtn.textContent = (open ? `${S.altHide} ▴` : `${S.altShow} (${restCount}) ▾`);
+     });
+   });
+ </script>
+@@ -422,10 +583,17 @@ const L = {
+   .dfx__actions { display: flex; }
+   .dfx__submit { padding: 12px 24px; font-size: 15px; }
+   .dfx__result { margin-top: 18px; }
++  /* Retest 09/08/2026, point 6 — texte statique rendu par Astro, pas injecté au runtime : règle scopée. */
++  .dfx__phint { font-size: 11.5px; color: var(--mdcf-muted); margin-top: 2px; }
+   /* Everything below is injected via innerHTML at runtime, so it lacks Astro's scoped data-attribute —
+      these rules MUST be :global() or the result cards render completely unstyled. */
+   :global(.dfx__loading), :global(.dfx__hint) { color: var(--mdcf-muted); margin: 8px 0; }
+   :global(.dfx__hint) { color: var(--mdcf-accent-ink); background: var(--mdcf-accent-soft); border-radius: 10px; padding: 10px 12px; }
++  /* Retest 09/08/2026, point 3 — bannière "critères modifiés", même palette que .finder__stale
++     dans FlightFinder.astro. */
++  :global(.dfx__stale) { background: #fdf2e0; border: 1px solid #f0cf9a; color: #96591a; border-radius: 10px; padding: 8px 12px; font-size: 13px; font-weight: 700; margin: 0 0 10px; }
++  /* Retest 09/08/2026, points 1+2 — introduction de la section "Alternatives". */
++  :global(.dfx__altnote) { font-size: 13px; color: var(--mdcf-muted); margin: -4px 0 10px; }
+   /* Distinct de .dfx__hint (tâche 21) : rouge d'erreur, jamais confondu visuellement avec un
+      "aucun résultat" neutre — même palette que .finder__error dans FlightFinder.astro. */
+   :global(.dfx__error) { color: #b3261e; background: #fee2e2; border: 1px solid rgba(179, 38, 30, .25); border-radius: 10px; padding: 12px 14px; margin: 8px 0; font-size: 14px; font-weight: 700; }
+@@ -457,6 +625,8 @@ const L = {
+   :global(.dfx-pill--warn) { background: #fdf2e0; color: #96591a; }
+   :global(.dfx-pill--no) { background: #fdeaea; color: #a12626; }
+   :global(.dfx-pill--neutral) { background: #eef1f5; color: #5b6b7f; }
++  /* Retest 09/08/2026, point 11 — documents manquants pour atteindre 100/100. */
++  :global(.dfx-card__missing) { font-size: 12px; color: #96591a; background: #fdf2e0; border-radius: 7px; padding: 5px 8px; }
+   :global(.dfx-card__warn) { font-size: 12.5px; font-weight: 700; color: #a12626; }
+   :global(.dfx-card__link) { font-size: 13px; font-weight: 700; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+   :global(.dfx-card__link:hover) { text-decoration: underline; }
+diff --git a/packages/workers/src/index.ts b/packages/workers/src/index.ts
+index 796b45c..bfe32db 100644
+--- a/packages/workers/src/index.ts
++++ b/packages/workers/src/index.ts
+@@ -315,7 +315,7 @@ export default {
+         const checked = validateJsonIds(body, { requireDestination: false });
+         if (!checked.ok) return json(checked.body, 400);
+         const req = DestinationsRequest.parse(checked.value);
+-        return json({ matches: rankDestinations(kb, req) });
++        return json(rankDestinations(kb, req)); // → { matches, candidates_total }
+       } catch (e) {
+         console.error("/v1/destinations error:", e);
+         return json(formatError(e), 400);

@@ -1,6 +1,6 @@
 import type { NormalizedKB } from "@mydogcanfly/knowledge";
 import { cityName } from "@mydogcanfly/knowledge";
-import type { DestinationsRequest, DestinationMatch } from "./contracts";
+import type { DestinationsRequest, DestinationMatch, DestinationsResult } from "./contracts";
 import { evaluate } from "./evaluate";
 
 // Must match explain.ts HEAT_EMBARGO_THRESHOLD_C (seasonal hold/cargo suspension threshold).
@@ -51,7 +51,7 @@ function estimateTempByLat(lat: number, month: number | undefined): number | und
  * dog-accepting flight from the origin, it estimates the city's seasonal climate from its latitude and
  * returns a compact match. Ranking + formalities-vs-documents are left to the UI.
  */
-export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): DestinationMatch[] {
+export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): DestinationsResult {
   const originSet = req.origins && req.origins.length ? req.origins : [req.origin];
   const originSetHas = new Set(originSet);
   const originCountries = new Set(
@@ -143,5 +143,11 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
   }
 
   // Stable default order (by city) — the UI applies the soft score that also weighs formalities.
-  return out.sort((a, b) => a.city.localeCompare(b.city, req.locale));
+  // Retest 09/08/2026, point 2 : `candidates.size` distingue "aucune ville même desservie depuis
+  // cette origine" de "des villes sont desservies mais aucune n'accepte ce chien" — cf. commentaire
+  // sur DestinationsResult dans contracts.ts.
+  return {
+    matches: out.sort((a, b) => a.city.localeCompare(b.city, req.locale)),
+    candidates_total: candidates.size,
+  };
 }

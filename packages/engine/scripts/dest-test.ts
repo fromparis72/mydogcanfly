@@ -19,7 +19,7 @@ const req = DestinationsRequest.parse({
   locale: "fr",
 });
 
-const matches = rankDestinations(kb, req);
+const { matches } = rankDestinations(kb, req);
 console.log("total reachable cities (direct):", matches.length);
 console.log("France present (should be FALSE — origin country):", matches.some((m) => m.iso2 === "FR"));
 console.log("all direct with >=1 airline:", matches.every((m) => m.airlines_total >= 1));
