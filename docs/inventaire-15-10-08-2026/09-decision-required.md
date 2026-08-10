@@ -32,9 +32,22 @@ Inchangé sur le fond (document 08). Codex confirme la même recommandation : mo
 **Constat** : aucun mécanisme du dépôt ne garantit qu'un déploiement correspond à un SHA identifiable. `/v1/health` ne renvoie que `{"ok":true,"service":"mydogcanfly-api","version":"v1"}` — rien qui permette de savoir, sans test manuel indirect, quelle version de code tourne réellement. **Aggravé par une découverte du 10/08/2026** : un cache d'edge Cloudflare peut retourner une réponse figée pour une URL de test exacte pendant un temps indéterminé après un déploiement, ce qui a produit un faux diagnostic de staleness sur ce dossier avant d'être corrigé (document 10 v3). Toute vérification de production doit désormais inclure un paramètre anti-cache.
 **Décision nécessaire** : Philippe valide-t-il l'ajout de métadonnées de version (`git_sha`, `built_at`, `environment`) injectées au build plutôt que renseignées à la main, à `/v1/health` ? Et confirme-t-il l'existence/la configuration de ce cache d'edge (Cache Rule ou comportement par défaut de la zone) pour qu'elle soit documentée plutôt que redécouverte à chaque audit ?
 
-## DR-10 — NOUVEAU : sort immédiat de la page « modalités détaillées » falsifiable
-**Constat** : `fiche.astro` est activement exploitable en production aujourd'hui (document 10, #2 ; document 11 pour le détail).
-**Décision nécessaire** : Philippe choisit entre désactiver temporairement les liens vers cette page (depuis les résultats du Finder) le temps d'une reconstruction sécurisée, ou accepter le risque le temps que la correction structurelle soit prête. Aucune des deux options n'est engagée par Claude sans validation explicite — voir document 11.
+## DR-10 — sort de la page « modalités détaillées » falsifiable — **TRANCHÉ PAR PHILIPPE (10/08/2026)**
+**Constat** : `fiche.astro` est activement exploitable en production (document 10, #2 ; document 11 pour le détail). Seul `FlightFinder.astro` construit un lien vers cette page (2 occurrences, `ficheBase`/`href` autour de la ligne 211/470) — **`DestinationFinder.astro` n'en construit aucun**, correction d'une imprécision de portée signalée par la contre-revue.
+
+Trois options avaient été posées (document 11) :
+- **Option A — désactivation temporaire des liens** depuis le Finder. Ne neutralise ni les anciens liens déjà partagés, ni une URL forgée directement — **réduit l'exposition, ne ferme pas le P0**.
+- **Option B — version minimale ne lisant plus aucun verdict/lien depuis l'URL**, ne conservant que la partie recalculée depuis les données pays canoniques.
+- **Option C — ne rien changer dans l'immédiat**, accepter le risque le temps du Lot structurel.
+
+**Décision de Philippe : Option B retenue.** Le patch doit ignorer totalement, sans les injecter dans le DOM (pas un simple masquage CSS), les paramètres non fiables suivants : nom de compagnie, score, cabine, soute, fret, vol direct, tarif, embargo, liens sortants compagnie. Option A peut servir de mesure d'attente si B ne peut pas être livrée immédiatement, jamais comme solution de clôture.
+
+**Tests d'acceptation exigés avant de considérer ce point clos** :
+- l'URL forgée de test (`FAUSSE COMPAGNIE`, `sc=100`, `evil.example.com`) n'affiche plus aucun de ces éléments et ne contient aucun lien vers ce domaine ;
+- une URL légitime issue du Finder affiche toujours correctement les formalités pays ;
+- comportement vérifié dans les 4 langues (en/fr/es/pt) ;
+- les anciennes URL déjà partagées restent sans danger même avec leurs anciens paramètres présents ;
+- la page conserve `noindex`.
 
 ## DR-11 — NOUVEAU : abonnés et désinscription du Worker legacy
 **Constat** : `api.mydogcanfly.com/api/confirm` et `/api/unsubscribe` renvoient 404. Si la base D1 du Worker legacy (`worker/wrangler.toml`, binding `DB`, base `mydogcanfly`) contient des abonnés réels aux alertes chaleur/rappels, leurs liens de désinscription envoyés par email sont probablement cassés depuis que le Worker V2 a pris le nom `mydogcanfly-api`.

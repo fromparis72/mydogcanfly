@@ -63,7 +63,10 @@ Ce qui était classé « non vérifiable sans accès Cloudflare » en §4 (versi
 
 ## 4. Ce qui reste NON VÉRIFIABLE SANS ACCÈS CLOUDFLARE
 
-- Lequel des deux Workers (legacy ou V2, ou lequel en dernier déploiement) est réellement actif aujourd'hui sous le nom `mydogcanfly-api`.
+**Correction (10/08/2026, contre-revue Codex)** : une version précédente de cette section laissait entendre qu'on ignorait lequel des deux codes Worker (legacy ou V2) répond aujourd'hui. **C'est tranché** : les tests publics (§3bis) établissent sans ambiguïté que c'est le code V2 qui répond, sur les deux domaines. Ce qui reste réellement inconnu, ci-dessous, est plus étroit : le SHA exact et l'identifiant/date du déploiement actif, les bindings réellement attachés, et l'historique Cloudflare — pas l'identité du code lui-même.
+
+
+- Le SHA exact et l'identifiant/date du déploiement Worker actuellement actif sous le nom `mydogcanfly-api` (tranché : c'est le code V2 — inconnu : à quel commit précis).
 - L'état réel des routes de zone Cloudflare (`mydogcanfly.com/v1/*`, `www.mydogcanfly.com/v1/*`, redirection `www` → apex mentionnée dans `docs/ROADMAP.md`).
 - L'existence et la configuration du projet Pages du site Hugo principal (nom, domaine attaché, build settings).
 - Si/comment le projet Pages `mydogcanfly-v2-preview` est ou non attaché à un domaine personnalisé.

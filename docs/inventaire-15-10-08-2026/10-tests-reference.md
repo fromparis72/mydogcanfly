@@ -1,6 +1,7 @@
-# §15.10 — Premier lot de tests de référence (v3 — correction d'un faux diagnostic du 10/08/2026)
+# §15.10 — Premier lot de tests de référence (v4 — corrections suite à contre-revue Codex du 10/08/2026, tour 2)
 
-**SHA de référence pour le code : `e2b27799de335558afc165ee1763ad4613ca4ed9` (origin/main).**
+**SHA de référence pour le code métier audité : `e2b27799de335558afc165ee1763ad4613ca4ed9`.**
+**Note sur ce repère (ajoutée après que la contre-revue a signalé un SHA de référence déjà obsolète)** : `origin/main` évolue à chaque commit — de patch appliqué comme de document d'inventaire livré. Au moment d'écrire cette version, `origin/main` HEAD est `922786eb4a3451720717bfec00d45198ee7b769f` (inclut désormais aussi le patch New York et les corrections d'inventaire du tour 1). **Le SHA `e2b2779` reste la référence pour les comportements de code métier décrits ici** (Phase 1 + Phase 2), qui n'ont pas changé depuis ; il ne décrit plus le HEAD réel du dépôt. C'est précisément le problème que corrige DR-09 (métadonnées de version automatiques) — tant qu'il n'est pas livré, tout SHA cité dans ce dossier doit être lu comme « au moment du test », pas comme un repère permanent.
 
 **Correction importante par rapport à la v2 de ce document** : la v2 affirmait que le Worker de production servait un code antérieur au 10/08 09:58 (« antérieur à la Phase 1 »), en se fondant sur l'absence de la règle Melbourne lors de plusieurs tests répétés. **Ce diagnostic était faux.** Après le redéploiement de production effectué par Philippe (`npx wrangler deploy --env production`, version `feb7b25d`, confirmée à 100 % du trafic par `wrangler deployments list` — aucun rollout progressif en cause), un nouveau test de Melbourne avec un paramètre de contournement de cache (`&cachebust=...`) a immédiatement montré le résultat correct. **La cause réelle était un cache d'edge Cloudflare qui retournait une réponse figée pour cette URL exacte, pas un Worker resté sur un ancien code.** Toutes les requêtes de test faites APRÈS un déploiement doivent désormais inclure un paramètre variable pour éviter ce faux négatif — leçon retenue pour la suite des vérifications de ce dossier.
 
@@ -16,7 +17,7 @@ Confirmé par le `curl` de Philippe ET retesté indépendamment par Claude aprè
 
 ## #2 — Modalités détaillées falsifiables par URL — **FAIL, toujours actif, sans rapport avec le déploiement**
 
-Inchangé (document 11). C'est un défaut de conception du code client (`fiche.astro`), pas un problème de déploiement ou de cache — un redéploiement du Worker ne peut rien y changer, puisque cette page ne rappelle jamais le moteur. Toujours P0, en attente de la décision de Philippe (document 09, DR-10).
+Inchangé sur le fond (document 11). C'est un défaut de conception du code client (`fiche.astro`), pas un problème de déploiement ou de cache — un redéploiement du Worker ne peut rien y changer, puisque cette page ne rappelle jamais le moteur. **Précision de portée (contre-revue Codex)** : seul `FlightFinder.astro` construit un lien vers `/tools/fiche` ; aucune construction équivalente n'existe dans `DestinationFinder.astro`. P0 désormais tranché sur la mitigation : Option B approuvée par Philippe (document 09, DR-10), pas encore livrée.
 
 ## #3 — Écart fiche↔moteur (Air Serbia, Aircalin, Bangkok Airways, Batik Air Indonesia/Malaysia, ITA Airways, La Compagnie, Pegasus) — **FIXED en production (mécanisme), correction du diagnostic v2**
 
@@ -26,17 +27,17 @@ Le mécanisme général (`policy?.[p]?.allowed !== true` inconditionnel) est con
 
 Retesté le 10/08/2026 avec paramètre anti-cache : `direct:true, itinerary_confidence:"direct_assumed"`, inchangé. Ce n'est ni un problème de déploiement ni de cache — le code de l'heuristique de hub (`evaluate.ts`, non modifié aujourd'hui) est identique sur `origin/main` et en production. Un vrai bug, pas encore traité.
 
-## #5 — Pegasus, hold domestique vs cargo — **FAIL, patch non appliqué (confirmé, sans lien avec le cache)**
+## #5 — Pegasus, hold domestique vs cargo — **NON TESTÉ — correctif absent, échec attendu**
 
-Inchangé : `rule_pegasus_hold_domestic_only` n'existe ni sur `origin/main` ni donc en production — ce n'est pas un problème de cache ou de déploiement, la règle n'existe simplement pas encore dans le code. Voir document 13 pour le découpage révisé du patch.
+**Précision de vocabulaire demandée par la contre-revue, appliquée ici** : `rule_pegasus_hold_domestic_only` n'existe ni sur `origin/main` ni donc en production — ceci est confirmé par lecture de code (absence de la règle), **pas par l'exécution d'une requête live montrant le comportement erroné**. Le distinguo compte : « correctif absent » garantit qu'un échec est probable, pas qu'il a été observé avec ce jeu de paramètres précis. Voir document 13 pour le découpage révisé du patch.
 
-## #6 — South African Airways, cargo international — **FAIL, patch non appliqué**
+## #6 — South African Airways, cargo international — **NON TESTÉ — correctif absent, échec attendu**
 
-Identique à #5.
+Identique à #5 sur le plan méthodologique.
 
-## #7 — Exceptions cargo spécialisé brachycéphale — **FAIL, patch non appliqué, et défaut de conception identifié par Codex même une fois appliqué**
+## #7 — Exceptions cargo spécialisé brachycéphale — **NON TESTÉ — correctif absent, échec attendu ; ET défaut de conception confirmé même une fois le correctif appliqué**
 
-Identique à #5/#6, plus le défaut de fond documenté au document 13 (le rationale ne remonterait pas au visiteur même avec le patch tel quel).
+Le statut « correctif absent » suit la même règle que #5/#6. Ce qui EST confirmé, par lecture de code (`packages/engine/src/contracts.ts`, `explain.ts`) et pas seulement supposé : même en ajoutant la règle `require` proposée au document 13 v1, elle entrerait bien dans `AirlineDecision.fired` mais **`explain()` ne la transforme pas en condition du `DecisionReport`, et `AirlineResult` n'a aujourd'hui aucun champ pour transporter une condition par compagnie jusqu'au rapport JSON ni jusqu'à l'interface** — vérifié en lisant la définition de `AirlineResult` (aucun champ `conditions`/`requires`, seulement `deny_reasons` pour les refus) et la construction de `conditions[]` dans `explain()` (alimentée uniquement par les formalités pays, jamais par les règles `fired` au niveau compagnie). Le document 13 doit donc être revu avant tout codage — voir document 13 v2.
 
 ## #8 — Melbourne (correction du diagnostic v2) + Dogo Argentino (non testé)
 
