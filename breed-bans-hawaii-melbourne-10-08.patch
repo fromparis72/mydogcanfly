@@ -1,0 +1,317 @@
+diff --git a/packages/knowledge/raw/rules.json b/packages/knowledge/raw/rules.json
+index ced67bd..7de93b0 100644
+--- a/packages/knowledge/raw/rules.json
++++ b/packages/knowledge/raw/rules.json
+@@ -3577,7 +3577,10 @@
+           "op": "in",
+           "value": [
+             "breed_american_pit_bull_terrier",
+-            "breed_tosa_inu"
++            "breed_tosa_inu",
++            "breed_dogo_argentino",
++            "breed_fila_brasileiro",
++            "breed_presa_canario_dogo_canario"
+           ]
+         }
+       ]
+@@ -3586,23 +3589,28 @@
+       "action": "deny"
+     },
+     "params": {},
+-    "rationale": "Prohibited import under the Customs (Prohibited Imports) Regulations 1956. The Department of Agriculture lists the American pit bull terrier (or pit bull terrier) and the Japanese tosa among the breeds that cannot be imported into Australia.",
++    "rationale": "Prohibited import under the Customs (Prohibited Imports) Regulations 1956. The Department of Agriculture lists five breeds that cannot be imported into Australia: American pit bull terrier (or pit bull terrier), Japanese tosa, Dogo Argentino, Fila Brasileiro, and Perro de Presa Canario (Presa Canario).",
+     "rationale_i18n": {
+-      "fr": "Importation interdite au titre des Customs (Prohibited Imports) Regulations 1956. Le ministère de l'Agriculture liste l'American pit bull terrier (ou pit bull terrier) et le tosa japonais parmi les races qui ne peuvent pas entrer en Australie.",
+-      "es": "Importación prohibida según las Customs (Prohibited Imports) Regulations 1956. El Ministerio de Agricultura incluye el American pit bull terrier (o pit bull terrier) y el tosa japonés entre las razas que no pueden importarse a Australia."
++      "fr": "Importation interdite au titre des Customs (Prohibited Imports) Regulations 1956. Le ministère de l'Agriculture liste cinq races qui ne peuvent pas entrer en Australie : American pit bull terrier (ou pit bull terrier), tosa japonais, Dogue argentin, Fila Brasileiro et Perro de Presa Canario (Presa Canario).",
++      "es": "Importación prohibida según las Customs (Prohibited Imports) Regulations 1956. El Ministerio de Agricultura incluye cinco razas que no pueden importarse a Australia: American pit bull terrier (o pit bull terrier), tosa japonés, Dogo Argentino, Fila Brasileiro y Perro de Presa Canario (Presa Canario)."
+     },
+     "source": {
+       "url": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
+       "source_type": "government",
+-      "verified_date": "2026-07-28",
+-      "review_due": "2027-01-24",
++      "verified_date": "2026-08-10",
++      "review_due": "2027-02-06",
+       "confidence": 5,
+-      "reviewer": "research",
++      "reviewer": "MyDogCanFly Data Team",
+       "history": [
+         {
+           "date": "2026-07-28",
+           "reviewer": "research",
+           "note": "Ajout initial — interdiction de race vérifiée sur le texte officiel."
++        },
++        {
++          "date": "2026-08-10",
++          "reviewer": "MyDogCanFly Data Team",
++          "note": "Retest 10/08/2026 : la règle ne visait que 2 des 5 races listées par la source déjà citée (page DAFF Category 3), qui a été re-récupérée intégralement — elle liste bien Dogo Argentino, Fila Brasileiro, Japanese tosa, American pit bull terrier et Perro de Presa Canario comme races pures interdites (plus 4 croisements de loups-chiens hors-sujet ici, cf. tâche séparée). Ajout des 3 races manquantes."
+         }
+       ]
+     }
+@@ -3656,6 +3664,67 @@
+       "fr": "Préparation : 6 à 7 mois + quarantaine. Exigences : permis d’importation, puce ISO, test sérologique antirabique, quarantaine."
+     }
+   },
++  {
++    "id": "rule_au_mel_cargo_only",
++    "scope": {
++      "type": "global"
++    },
++    "category": "placement",
++    "criticality": "high",
++    "applies_when": {
++      "all": [
++        {
++          "fact": "route.dest_airport_id",
++          "op": "eq",
++          "value": "airport_mel"
++        },
++        {
++          "fact": "placement",
++          "op": "in",
++          "value": [
++            "cabin",
++            "hold"
++          ]
++        },
++        {
++          "fact": "travel_type",
++          "op": "in",
++          "value": [
++            "pet",
++            "emotional_support"
++          ]
++        }
++      ]
++    },
++    "effect": {
++      "action": "deny",
++      "placement": [
++        "cabin",
++        "hold"
++      ]
++    },
++    "params": {},
++    "rationale": "Melbourne is Australia's only authorized port of entry for imported dogs, and every dog must arrive there as manifested cargo in an IATA-approved crate — cabin and accompanied hold are not permitted, and domestic transfers from another Australian airport are not allowed either.",
++    "rationale_i18n": {
++      "fr": "Melbourne est le seul point d'entrée autorisé pour les chiens importés en Australie, et tout chien doit y arriver en fret manifesté, dans une caisse agréée IATA — la cabine et la soute accompagnée ne sont pas autorisées, pas plus qu'un transfert domestique depuis un autre aéroport australien.",
++      "es": "Melbourne es el único punto de entrada autorizado para perros importados a Australia, y todo perro debe llegar allí como carga manifestada en una jaula aprobada por la IATA — no se permite la cabina ni la bodega acompañada, ni tampoco un transbordo doméstico desde otro aeropuerto australiano."
++    },
++    "source": {
++      "url": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
++      "source_type": "government",
++      "verified_date": "2026-08-10",
++      "review_due": "2027-02-06",
++      "confidence": 5,
++      "reviewer": "MyDogCanFly Data Team",
++      "history": [
++        {
++          "date": "2026-08-10",
++          "reviewer": "MyDogCanFly Data Team",
++          "note": "Ajout initial (Phase 1 de l'audit du 09/08/2026, volet Melbourne) : une recherche vers Melbourne pouvait afficher « Cabine ✓ » ou « Soute ✓ » chez une compagnie sans lien avec la réalité — l'Australie n'admet les chiens importés qu'en fret manifesté, exclusivement via Melbourne, sans transfert domestique. Règle globale suivant exactement le schéma de rule_gb_stn_not_approved (aéroport ciblé, cabine+soute refusées). Vérifié en direct sur la page officielle DAFF (category-3-step-by-step-guide-for-dogs) : arrivée directe obligatoire à Melbourne, fret manifesté uniquement, transferts domestiques interdits."
++        }
++      ]
++    }
++  },
+   {
+     "id": "rule_austrian_brachy_hold",
+     "scope": {
+@@ -8020,7 +8089,10 @@
+           "fact": "dog.breed_id",
+           "op": "in",
+           "value": [
+-            "breed_american_pit_bull_terrier"
++            "breed_american_pit_bull_terrier",
++            "breed_american_staffordshire_terrier",
++            "breed_bull_terrier",
++            "breed_staffordshire_bull_terrier"
+           ]
+         }
+       ]
+@@ -8029,23 +8101,28 @@
+       "action": "deny"
+     },
+     "params": {},
+-    "rationale": "Germany prohibits bringing in the Pit Bull Terrier under the Hundeverbringungs- und -einfuhrbeschränkungsgesetz, which restricts four breeds. Export and transit remain possible, but import does not.",
++    "rationale": "Germany prohibits bringing in four breeds under the Hundeverbringungs- und -einfuhrbeschränkungsgesetz: American Pit Bull Terrier, American Staffordshire Terrier, Bull Terrier and Staffordshire Bull Terrier (and their crosses). Export and transit remain possible, but import does not.",
+     "rationale_i18n": {
+-      "fr": "L'Allemagne interdit l'introduction du Pit Bull Terrier au titre du Hundeverbringungs- und -einfuhrbeschränkungsgesetz, qui vise quatre races. L'export et le transit restent possibles, mais pas l'import.",
+-      "es": "Alemania prohíbe la introducción del Pit Bull Terrier según la Hundeverbringungs- und -einfuhrbeschränkungsgesetz, que afecta a cuatro razas. La exportación y el tránsito siguen siendo posibles, la importación no."
++      "fr": "L'Allemagne interdit l'introduction de quatre races au titre du Hundeverbringungs- und -einfuhrbeschränkungsgesetz : American Pit Bull Terrier, American Staffordshire Terrier, Bull Terrier et Staffordshire Bull Terrier (et leurs croisements). L'export et le transit restent possibles, mais pas l'import.",
++      "es": "Alemania prohíbe la introducción de cuatro razas según la Hundeverbringungs- und -einfuhrbeschränkungsgesetz: American Pit Bull Terrier, American Staffordshire Terrier, Bull Terrier y Staffordshire Bull Terrier (y sus cruces). La exportación y el tránsito siguen siendo posibles, la importación no."
+     },
+     "source": {
+-      "url": "https://www.lufthansa.com/us/en/dangerous-dogs",
++      "url": "https://www.gesetze-im-internet.de/hundverbreinfg/BJNR053010001.html",
+       "source_type": "government",
+-      "verified_date": "2026-07-28",
+-      "review_due": "2027-01-24",
+-      "confidence": 5,
+-      "reviewer": "research",
++      "verified_date": "2026-08-10",
++      "review_due": "2027-02-06",
++      "confidence": 4,
++      "reviewer": "MyDogCanFly Data Team",
+       "history": [
+         {
+           "date": "2026-07-28",
+           "reviewer": "research",
+           "note": "Ajout initial — interdiction de race vérifiée sur le texte officiel."
++        },
++        {
++          "date": "2026-08-10",
++          "reviewer": "MyDogCanFly Data Team",
++          "note": "Retest 10/08/2026 : la règle ne visait que le Pit Bull Terrier alors que la loi (et la propre justification de cette règle) en cite quatre. Ajout de American Staffordshire Terrier, Bull Terrier et Staffordshire Bull Terrier. Source citée mise à jour vers le texte de loi officiel (gesetze-im-internet.de) ; la liste des quatre races a été confirmée via deux résumés indépendants (t-online.de, fressnapf.de) citant verbatim le texte de la HundVerbrEinfVO, le site officiel bloquant la récupération automatisée (robots.txt) — d'où la confiance 4/5 plutôt que 5/5."
+         }
+       ]
+     }
+@@ -12240,18 +12317,18 @@
+       "action": "deny"
+     },
+     "params": {},
+-    "rationale": "Prohibited under section 1 of the Dangerous Dogs Act 1991: the pit bull terrier type and the Japanese tosa are banned by name, and the XL Bully was added as a designated type. A dog of these types cannot be brought into Great Britain; possession is only lawful under a court-ordered Certificate of Exemption, which cannot be obtained for a dog arriving from abroad.",
++    "rationale": "Prohibited under section 1 of the Dangerous Dogs Act 1991: the pit bull terrier type and the Japanese tosa are banned by name in the Act itself, and the Dogo Argentino, Fila Brasileiro and XL Bully were later added as designated types under the same section. A dog of these types cannot be brought into Great Britain; possession is only lawful under a court-ordered Certificate of Exemption, which cannot be obtained for a dog arriving from abroad.",
+     "rationale_i18n": {
+-      "fr": "Interdit par l'article 1 du Dangerous Dogs Act 1991 : le type pit bull terrier et le tosa japonais sont bannis nommément, et l'XL Bully y a été ajouté comme type désigné. Un chien de ces types ne peut pas être introduit en Grande-Bretagne ; la détention n'est licite que sous un certificat d'exemption ordonné par un tribunal, impossible à obtenir pour un chien arrivant de l'étranger.",
+-      "es": "Prohibido por el artículo 1 de la Dangerous Dogs Act 1991: el tipo pit bull terrier y el tosa japonés están prohibidos por su nombre, y el XL Bully se añadió como tipo designado. Un perro de estos tipos no puede introducirse en Gran Bretaña; la tenencia solo es lícita con un certificado de exención ordenado por un tribunal, inaccesible para un perro que llega del extranjero."
++      "fr": "Interdit par l'article 1 du Dangerous Dogs Act 1991 : le type pit bull terrier et le tosa japonais sont bannis nommément par la loi elle-même, et le dogo argentin, le fila brasileiro et l'XL Bully y ont été ajoutés ensuite comme types désignés au titre du même article. Un chien de ces types ne peut pas être introduit en Grande-Bretagne ; la détention n'est licite que sous un certificat d'exemption ordonné par un tribunal, impossible à obtenir pour un chien arrivant de l'étranger.",
++      "es": "Prohibido por el artículo 1 de la Dangerous Dogs Act 1991: el tipo pit bull terrier y el tosa japonés están prohibidos por su nombre en la propia ley, y el dogo argentino, el fila brasileiro y el XL Bully se añadieron posteriormente como tipos designados en virtud del mismo artículo. Un perro de estos tipos no puede introducirse en Gran Bretaña; la tenencia solo es lícita con un certificado de exención ordenado por un tribunal, inaccesible para un perro que llega del extranjero."
+     },
+     "source": {
+-      "url": "https://www.legislation.gov.uk/ukpga/1991/65/section/1",
++      "url": "https://www.gov.uk/control-dog-public/banned-dogs",
+       "source_type": "government",
+-      "verified_date": "2026-08-09",
+-      "review_due": "2027-02-05",
++      "verified_date": "2026-08-10",
++      "review_due": "2027-02-06",
+       "confidence": 5,
+-      "reviewer": "research",
++      "reviewer": "MyDogCanFly Data Team",
+       "history": [
+         {
+           "date": "2026-07-28",
+@@ -12262,6 +12339,11 @@
+           "date": "2026-08-09",
+           "reviewer": "MyDogCanFly Data Team",
+           "note": "Retest utilisateur du 09/08/2026 : breed_dogo_argentino, breed_fila_brasileiro manquant(s) — les 5 types de la Dangerous Dogs Act 1991 sont désormais tous listés (gov.uk/control-dog-public/banned-dogs)."
++        },
++        {
++          "date": "2026-08-10",
++          "reviewer": "MyDogCanFly Data Team",
++          "note": "Retest utilisateur du 10/08/2026 (point 1 de l'audit) : la liste applies_when contenait bien les 5 types depuis la veille, mais le texte rationale/rationale_i18n n'en nommait toujours que 3 (pit bull terrier, tosa, XL Bully) — un refus pour Dogo Argentino ou Fila Brasileiro affichait donc une explication qui ne citait pas la race réellement en cause. Texte réécrit pour nommer les 5 types, source précisée vers la page gov.uk qui les liste tous (revérifiée en direct)."
+         }
+       ]
+     }
+@@ -20428,7 +20510,10 @@
+           "op": "in",
+           "value": [
+             "breed_american_pit_bull_terrier",
+-            "breed_tosa_inu"
++            "breed_tosa_inu",
++            "breed_dogo_argentino",
++            "breed_fila_brasileiro",
++            "breed_presa_canario_dogo_canario"
+           ]
+         }
+       ]
+@@ -20437,23 +20522,28 @@
+       "action": "deny"
+     },
+     "params": {},
+-    "rationale": "Prohibited under the Dog Control Act 1996. MPI lists the Japanese Tosa as a prohibited breed and the American pit bull terrier as a prohibited type; neither may be imported into New Zealand.",
++    "rationale": "Prohibited under Section 30A(1) and Schedule 4 of the Dog Control Act 1996. MPI lists the Japanese Tosa, Dogo Argentino, Brazilian Fila (Fila Brasileiro) and Perro de Presa Canario as prohibited breeds, and the American pit bull terrier as a prohibited type; none may be imported into New Zealand.",
+     "rationale_i18n": {
+-      "fr": "Interdit par le Dog Control Act 1996. Le MPI classe le tosa japonais parmi les races interdites et l'American pit bull terrier parmi les types interdits ; ni l'un ni l'autre ne peut être importé en Nouvelle-Zélande.",
+-      "es": "Prohibido por la Dog Control Act 1996. El MPI clasifica el tosa japonés como raza prohibida y el American pit bull terrier como tipo prohibido; ninguno puede importarse a Nueva Zelanda."
++      "fr": "Interdit par la section 30A(1) et l'annexe 4 du Dog Control Act 1996. Le MPI classe le tosa japonais, le Dogue argentin, le Fila Brasileiro et le Perro de Presa Canario parmi les races interdites, et l'American pit bull terrier parmi les types interdits ; aucun ne peut être importé en Nouvelle-Zélande.",
++      "es": "Prohibido por la sección 30A(1) y el anexo 4 de la Dog Control Act 1996. El MPI clasifica el tosa japonés, el Dogo Argentino, el Fila Brasileiro y el Perro de Presa Canario como razas prohibidas, y el American pit bull terrier como tipo prohibido; ninguno puede importarse a Nueva Zelanda."
+     },
+     "source": {
+-      "url": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/step-by-step-guide-to-bringing-cats-and-dogs-to-nz",
++      "url": "https://www.mpi.govt.nz/dmsdocument/1575-Cats-and-dogs-Import-Health-Standard-Guidance-Document",
+       "source_type": "government",
+-      "verified_date": "2026-07-28",
+-      "review_due": "2027-01-24",
++      "verified_date": "2026-08-10",
++      "review_due": "2027-02-06",
+       "confidence": 5,
+-      "reviewer": "research",
++      "reviewer": "MyDogCanFly Data Team",
+       "history": [
+         {
+           "date": "2026-07-28",
+           "reviewer": "research",
+           "note": "Ajout initial — interdiction de race vérifiée sur le texte officiel."
++        },
++        {
++          "date": "2026-08-10",
++          "reviewer": "MyDogCanFly Data Team",
++          "note": "Retest 10/08/2026 : la règle ne visait que 2 des 5 races/types listés à l'annexe 4 du Dog Control Act 1996. Document de référence MPI récupéré intégralement, citant explicitement « Section 30A(1) ... Schedule 4 » : Brazilian Fila, Dogo Argentino, Japanese Tosa, Perro de Presa Canario (races) + American Pit Bull Terrier (type). Ajout des 3 races manquantes ; source mise à jour vers le document de référence MPI, plus précis que le guide grand public cité initialement."
+         }
+       ]
+     }
+@@ -26054,6 +26144,62 @@
+       "fr": "Les chiens doivent avoir une puce lisible, être âgés d'au moins 6 mois et en bonne santé apparente, et disposer d'un formulaire CDC Dog Import Form rempli en ligne avant le voyage. Depuis un pays indemne de rage ou à faible risque, la démarche ne prend que quelques jours."
+     }
+   },
++  {
++    "id": "rule_us_hnl_animal_quarantine",
++    "scope": {
++      "type": "country",
++      "id": "country_us"
++    },
++    "category": "import_rules",
++    "criticality": "critical",
++    "applies_when": {
++      "all": [
++        {
++          "fact": "route.dest_country_id",
++          "op": "eq",
++          "value": "country_us"
++        },
++        {
++          "fact": "route.dest_airport_id",
++          "op": "eq",
++          "value": "airport_hnl"
++        }
++      ]
++    },
++    "effect": {
++      "action": "require"
++    },
++    "params": {
++      "docs": [
++        "microchip",
++        "rabies_vaccination_x2_30days_apart",
++        "oie_favn_titer_test_over_0_5",
++        "health_certificate_within_14_days",
++        "hawaii_5_day_or_less_program_or_120_day_quarantine"
++      ],
++      "lead_time_days": 120
++    },
++    "rationale": "Hawaii runs its own rabies-free-state quarantine program on top of standard US entry, and Honolulu is the only port of entry for arriving animals. Most dogs only qualify for the 5-Day-Or-Less program after at least two rabies vaccinations given 30+ days apart, an OIE-FAVN blood titer test above 0.5 IU/ml, a 30-day waiting period counted from when the lab receives the sample, a microchip, and a health certificate issued within 14 days of arrival — the whole qualifying process takes at least 4 months. A dog that doesn't meet these conditions goes into Hawaii's standard 120-day quarantine on arrival.",
++    "rationale_i18n": {
++      "fr": "Hawaï applique son propre programme de quarantaine antirabique, en plus des formalités fédérales américaines, et Honolulu est le seul point d'entrée pour les animaux. La plupart des chiens n'accèdent au programme « 5 jours ou moins » qu'après au moins deux vaccinations antirabiques espacées de 30 jours, un test sérologique OIE-FAVN supérieur à 0,5 UI/ml, un délai d'attente de 30 jours à partir de la réception de l'échantillon par le laboratoire, une puce et un certificat de santé délivré dans les 14 jours précédant l'arrivée — la démarche complète prend au moins 4 mois. Un chien qui ne remplit pas ces conditions est placé en quarantaine standard de 120 jours à l'arrivée.",
++      "es": "Hawái aplica su propio programa de cuarentena antirrábica, además de los trámites federales de EE. UU., y Honolulu es el único punto de entrada para los animales. La mayoría de los perros solo acceden al programa «5 días o menos» tras al menos dos vacunas antirrábicas separadas 30 días, una prueba serológica OIE-FAVN superior a 0,5 UI/ml, un período de espera de 30 días desde que el laboratorio recibe la muestra, un microchip y un certificado de salud emitido dentro de los 14 días previos a la llegada — el proceso completo tarda al menos 4 meses. Un perro que no cumpla estas condiciones queda en cuarentena estándar de 120 días a su llegada."
++    },
++    "source": {
++      "url": "https://dab.hawaii.gov/ai/aqs/faq-for-animal-quarantine/",
++      "source_type": "government",
++      "verified_date": "2026-08-10",
++      "review_due": "2027-02-06",
++      "confidence": 5,
++      "reviewer": "MyDogCanFly Data Team",
++      "history": [
++        {
++          "date": "2026-08-10",
++          "reviewer": "MyDogCanFly Data Team",
++          "note": "Ajout initial (Phase 1 de l'audit du 09/08/2026, volet Hawaï) : Paris→Honolulu n'affichait que les formalités fédérales US (rule_us_import), sans le régime de quarantaine propre à Hawaï. Nouvelle règle pays+aéroport (country_us + route.dest_airport_id=airport_hnl), suivant le même schéma que rule_gb_stn_not_approved (règle existante + condition supplémentaire sur l'aéroport) — s'ajoute aux formalités fédérales déjà affichées, ne les remplace pas. Vérifié en direct sur dab.hawaii.gov/ai/aqs/faq-for-animal-quarantine/ : Honolulu seul point d'entrée, programme 5 jours ou moins détaillé (2 vaccins antirabiques ≥30j d'écart, test OIE-FAVN >0,5 UI/ml, délai de 30j, puce, certificat sanitaire ≤14j), à défaut quarantaine standard de 120 jours. Limite connue et non corrigée ici : cette règle est scopée pays (country_us), donc `isDomestic` (evaluate.ts) la fait disparaître pour un vol intérieur américain vers Honolulu (ex. Los Angeles→Honolulu) — seul le cas international (ex. Paris→Honolulu, le cas signalé dans l'audit) est couvert par ce correctif Phase 1 ; couvrir aussi le cas domestique demanderait de modifier evaluate.ts (isDomestic), hors périmètre \"données/règles uniquement\" de cette phase."
++        }
++      ]
++    }
++  },
+   {
+     "id": "rule_ve_import",
+     "scope": {
