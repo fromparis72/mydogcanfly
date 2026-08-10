@@ -49,7 +49,19 @@ Le commentaire interne à `packages/workers/wrangler.toml` documentant l'inciden
 | *(site Hugo principal)* | — | **Aucun nom de projet Pages trouvé nulle part dans le dépôt** pour le site Hugo en production. |
 | `lechienvoyageur.com` | `deploy/BRIEF-lechienvoyageur.md` | Projet Pages tiers, distinct, connecté à GitHub (build Hugo automatique à chaque push), en cours de redirection 301 vers `mydogcanfly.com`. |
 
-## 4. Ce qui est NON VÉRIFIABLE SANS ACCÈS CLOUDFLARE
+## 3bis. Confirmation en direct (10/08/2026, suite à la contre-revue Codex)
+
+Ce qui était classé « non vérifiable sans accès Cloudflare » en §4 (version précédente) a en partie été tranché par des requêtes HTTP publiques, sans aucun accès Cloudflare :
+
+- `mydogcanfly.com/v1/health` → `200 {"ok":true,"service":"mydogcanfly-api","version":"v1"}`
+- `api.mydogcanfly.com/v1/health` → **le même JSON, exactement**
+- `api.mydogcanfly.com/api/weather`, `/api/confirm`, `/api/unsubscribe` (les 3 routes propres au Worker legacy, `worker/src/worker.js`) → **404 sur les trois**
+
+`worker/src/worker.js` n'a jamais eu de route `/v1/*`. La seule explication cohérente : **le Worker V2 répond aujourd'hui sous le nom `mydogcanfly-api`, sur les deux domaines** — le Worker legacy a perdu son propre domaine `api.mydogcanfly.com`, ou son code n'est simplement plus celui qui tourne sous ce nom. Ce n'est plus une hypothèse de collision *possible* (§2 ci-dessus), c'est une collision confirmée avec effet réel.
+
+**Conséquence potentiellement grave, non quantifiée** : si la base D1 legacy (binding `DB`, base `mydogcanfly`) contient des abonnés réels aux alertes (chaleur, rappels), leurs liens de confirmation/désinscription envoyés par email pointent vers des routes qui répondent 404 aujourd'hui. Voir document 09 (DR-11) et document 14 pour la vérification exacte à demander à Philippe (lecture D1, hors de portée de Claude).
+
+## 4. Ce qui reste NON VÉRIFIABLE SANS ACCÈS CLOUDFLARE
 
 - Lequel des deux Workers (legacy ou V2, ou lequel en dernier déploiement) est réellement actif aujourd'hui sous le nom `mydogcanfly-api`.
 - L'état réel des routes de zone Cloudflare (`mydogcanfly.com/v1/*`, `www.mydogcanfly.com/v1/*`, redirection `www` → apex mentionnée dans `docs/ROADMAP.md`).

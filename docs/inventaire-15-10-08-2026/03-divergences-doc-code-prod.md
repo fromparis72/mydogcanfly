@@ -7,9 +7,15 @@ Documents audités intégralement : `docs/V2-DEPLOYMENT.md`, `docs/V2-PLATFORM-B
 
 Tous les ADR référencés dans le code (ADR-0002, 0005, 0006, 0008, 0009, 0010, 0012 à 0015) décrivent fidèlement le mécanisme implémenté : source obligatoire par donnée, `review_due` dérivé, graphe de relations typées, séparation Decision/Explanation Engine, Worker sans logique métier, JSON en Git plutôt que D1 en Phase 1 (confirmé : aucun `d1_databases`/`kv_namespaces` dans `packages/workers/wrangler.toml`).
 
-## 2. `docs/V2-DEPLOYMENT.md` — CONFIRMÉ PAR LE CODE, fiable et à jour
+## 2. `docs/V2-DEPLOYMENT.md` — CORRECTION APRÈS CONTRE-REVUE CODEX (10/08/2026)
 
-Les scripts (`check`, `typecheck`, `smoke`, `build`), le mécanisme `robots.txt` piloté par `PUBLIC_SITE_ENV`, la séparation `PUBLIC_API_BASE`/`PUBLIC_SITE_ENV`, l'absence de route au niveau racine de `wrangler.toml` (route uniquement sous `[env.production]`) sont tous confirmés tels quels dans le code. Seules les affirmations sur l'état réellement déployé (« preview URL fonctionnelle ») restent **NON VÉRIFIABLES SANS ACCÈS CLOUDFLARE**.
+**La version précédente de ce document qualifiait `docs/V2-DEPLOYMENT.md` de « fiable et à jour ». C'était une erreur de classification, corrigée ici : cette évaluation ne portait que sur la cohérence code/doc, jamais testée contre la production réelle.** Une fois testé en direct (document 10), plusieurs affirmations de ce fichier sont **CONTREDITES PAR LA PRODUCTION**, pas seulement « non vérifiables » :
+
+- « Production is a separate deploy target. Preview never routes to `mydogcanfly.com`. » / « Production stays 100% Hugo [until a deliberate later step]. » — **CONTREDIT** : la page d'accueil `mydogcanfly.com` sert bien le V2 (Astro), indexable, en production réelle aujourd'hui (confirmé par test navigateur, document 10 DR-01).
+- Le mécanisme décrit de secours GET (fallback POST→GET, snapshot statique de secours, `GET /v1/finder` comme démonstration par défaut) est présenté comme la marche normale d'un déploiement à venir — alors que la V2 est déjà servie publiquement.
+- « Preview never routes to mydogcanfly.com » reste vrai au sens strict (rien ne prouve qu'un déploiement preview route vers le domaine principal), mais l'ensemble du document présente le passage en production comme un événement futur non advenu, ce qui ne correspond plus à l'état constaté.
+
+Les éléments purement techniques restent corrects (scripts `check`/`typecheck`/`smoke`/`build`, mécanisme `robots.txt` piloté par `PUBLIC_SITE_ENV`, séparation `PUBLIC_API_BASE`/`PUBLIC_SITE_ENV`, absence de route au niveau racine de `wrangler.toml`) — **CONFIRMÉ PAR LE CODE**. Mais le document dans son ensemble décrit un scénario de mise en production qui a déjà eu lieu, sans le savoir. **Statut corrigé : CONTREDIT PAR LE CODE ET/OU LA PRODUCTION sur ses affirmations de statut de déploiement ; CONFIRMÉ PAR LE CODE sur ses affirmations mécaniques.**
 
 ## 3. `docs/V2-PLATFORM-BLUEPRINT.md` — globalement prospectif, peu vérifiable
 
@@ -50,4 +56,4 @@ Deux problèmes distincts :
 1. `docs/airline-fiche-contract.md` doit être réécrit pour décrire le pipeline `ingest-airlines.mjs` **réel**, pas une spécification jamais implémentée — sinon Codex auditera contre une doc fausse.
 2. Les champs de fiche non lus par le moteur (`max_weight_kg`, `carrier_dims_cm`, `brachy_allowed`) doivent être requalifiés dans la doc comme « affichage uniquement », pas « lus par le moteur ».
 3. Les chiffres de volumétrie doivent être resynchronisés dans tous les documents à chaque mise à jour de gouvernance (ou remplacés par une commande de comptage automatique plutôt qu'un chiffre en dur).
-4. Toute affirmation sur l'état de production (Worker actif, routes, redirections) doit être vérifiée par un test réel (document 10) avant d'être considérée comme acquise pour le chantier de refonte.
+4. Toute affirmation sur l'état de production (Worker actif, routes, redirections) doit être vérifiée par un test réel (document 10) avant d'être considérée comme acquise pour le chantier de refonte. **Fait le 10/08/2026 suite à la contre-revue Codex — résultat : `docs/V2-DEPLOYMENT.md` décrivait un état de production obsolète (voir §2 corrigé ci-dessus), et deux P0 actifs ont été découverts (document 10, document 11).**
