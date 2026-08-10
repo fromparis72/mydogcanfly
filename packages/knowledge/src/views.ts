@@ -159,6 +159,17 @@ export function cityName(a: { city: string; city_i18n?: Record<string, string> }
   return a.city_i18n?.[locale] ?? a.city;
 }
 
+/* Ajouté 10/08/2026 : clé de regroupement du Finder ("New York (tous les aéroports)"), distincte
+ * du fait "Ville" affiché sur la fiche de l'aéroport. Un aéroport qui dessert une agglomération
+ * sous un nom administratif différent (Newark pour la zone de New York) porte `search_city_i18n`
+ * — sinon on retombe sur `cityName()`, donc rien ne change pour tous les autres aéroports. */
+export function searchCityName(
+  a: { city: string; city_i18n?: Record<string, string>; search_city_i18n?: Record<string, string> },
+  locale = "en",
+): string {
+  return a.search_city_i18n?.[locale] ?? cityName(a, locale);
+}
+
 /** Schema.org projection per entity type (data-driven, locale-aware for country names). */
 export function schemaFor(kb: NormalizedKB, id: string, locale = "en"): Record<string, unknown> {
   const base = { "@context": "https://schema.org" };

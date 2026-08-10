@@ -56,6 +56,17 @@ export const Airport = z.object({
   name: LocalizedText,
   city: z.string(),
   city_i18n: LocalizedText.optional(), // localized city display name (e.g. Beirut → Beyrouth); falls back to `city`
+  /* Regroupement "ville (tous les aéroports)" du Finder (ajouté 10/08/2026) — distinct de `city`.
+   * `city`/`city_i18n` sont aussi le fait "Ville" affiché sur la propre fiche de l'aéroport : ils
+   * doivent rester administrativement exacts (Newark reste "Newark", pas "New York"). Ce champ
+   * optionnel ne sert QUE de clé de regroupement pour FlightFinder/DestinationFinder — quand un
+   * aéroport dessert la même agglomération qu'un autre sous un nom administratif différent (EWR
+   * pour la zone de New York), il porte ici le libellé de recherche à utiliser à sa place. Absent
+   * pour tout le reste : `cityName()`/le regroupement retombent alors sur `city`/`city_i18n` comme
+   * avant. Ne pas l'utiliser pour des villes simplement proches mais distinctes (ex. Bruxelles/
+   * Charleroi, Baltimore/Washington) — c'est un choix produit à part, pas ce mécanisme.
+   */
+  search_city_i18n: LocalizedText.optional(),
   country_id: id("country"),
   geo: z.object({ lat: z.number(), lon: z.number() }).optional(),
   pet_relief: PetRelief.optional(),

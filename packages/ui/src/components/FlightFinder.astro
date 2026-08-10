@@ -1,5 +1,5 @@
 ---
-import { loadKB, t, breedName, cityName, inlineT } from "@mydogcanfly/knowledge";
+import { loadKB, t, breedName, cityName, searchCityName, inlineT } from "@mydogcanfly/knowledge";
 import { hrefFor } from "../lib/routes";
 import { countryData } from "../data/countries";
 
@@ -19,8 +19,10 @@ for (const a of kb.airlines.values()) for (const id of ((a as { served_airport_i
 const allLabel = t(locale, "finder.all_airports");
 const cityGroups = new Map<string, { city: string; country: string; ids: string[] }>();
 for (const a of kb.airports.values()) {
-  const key = `${cityName(a, locale)}|${countryName(a.country_id)}`;
-  const g = cityGroups.get(key) ?? { city: cityName(a, locale), country: countryName(a.country_id), ids: [] };
+  // searchCityName (pas cityName) : Newark rejoint le groupe "New York" ici, sans que sa
+  // propre fiche (qui utilise cityName) n'affiche jamais "Ville : New York" (10/08/2026).
+  const key = `${searchCityName(a, locale)}|${countryName(a.country_id)}`;
+  const g = cityGroups.get(key) ?? { city: searchCityName(a, locale), country: countryName(a.country_id), ids: [] };
   g.ids.push(a.id); cityGroups.set(key, g);
 }
 const cities = [...cityGroups.values()].filter((g) => g.ids.length >= 2)
