@@ -19,27 +19,24 @@
 
 Le déploiement Pages et celui du Worker restent deux opérations distinctes — ne jamais lancer `npm run release` (qui déploie Pages) pour corriger quelque chose qui relève du Worker, et inversement.
 
-**Section originale, conservée pour mémoire :**
+**Résumé factuel de l'incident** (détail déplacé en appendice ci-dessous, à la demande de la contre-revue Codex tour 3, qui a signalé que le bloc de commandes original restait trop facilement copiable malgré la mention « pour mémoire ») : Philippe a exécuté un déploiement direct depuis son répertoire de travail habituel (`git pull` + `wrangler deploy --env production`), sans worktree propre ni SHA consigné. Le résultat obtenu était correct (document 10, #1), mais la méthode ne répond pas à la procédure en 9 étapes ci-dessus, retenue comme standard pour tout déploiement futur. Le mécanisme générique redéployé au passage (document 10, #3) corrige aussi, en principe, les 6 autres compagnies en écart fiche↔moteur ; il ne touche pas au patch `weight-brachy-conditions-10-08.patch` (document 13), qui n'était pas sur `origin/main` à ce moment.
 
-**Diagnostic** : le correctif existe déjà et fonctionne (document 10, #1) — `origin/main` est correct. Le seul problème est que le Worker de production n'a pas été redéployé depuis avant le 10/08 09:48. Ce n'est pas un correctif de code à écrire, c'est un déploiement à faire.
+---
 
-**Action proposée** — déjà communiquée dans cette conversation, reproduite ici pour mémoire et traçabilité dans l'inventaire :
-```bash
+## Appendice — HISTORIQUE — NE PAS EXÉCUTER
+
+Ce qui suit est conservé uniquement comme trace de ce qui a été exécuté le 10/08/2026, avant l'adoption de la procédure reproductible ci-dessus. **Ne pas copier-coller ces commandes pour un futur déploiement** — elles ne consignent aucun SHA, ne passent pas par un worktree propre, et ne passent pas par une preview. Toute demande de déploiement futur doit suivre la procédure en 9 étapes du haut de ce document.
+
+```
+[Commandes historiques, données à titre de trace uniquement — NE PAS EXÉCUTER]
 cd /Users/philippe/Documents/GitHub/mydogcanfly
 git pull origin main
 npm run check && npm run typecheck
 cd packages/workers
 npx wrangler deploy --env production
 ```
-Vérification après coup :
-```bash
-curl -s "https://mydogcanfly.com/v1/finder?origin=EWR&destination=ORY&weight_kg=32" | grep -o '"airline_id":"airline_la_compagnie"[^}]*'
-```
-Attendu : `"cabin":false,"hold":false,"cargo":false`.
 
-**Point de vigilance ajouté par la contre-revue** : ce déploiement redéploiera le code de `origin/main` tel quel — donc aussi le mécanisme générique (document 10, #3) qui corrige, en principe, les 6 autres compagnies en écart fiche↔moteur. **Il ne redéploiera pas** les correctifs du patch `weight-brachy-conditions-10-08.patch` (poids cabine, Pegasus, SAA, Qantas), qui n'est ni sur `origin/main` ni donc concerné par ce déploiement — voir document 13.
-
-**Recommandation** : ce déploiement peut être fait dès maintenant, indépendamment de tout le reste (Lots, accès GitHub/Cloudflare, réponse aux DECISION_REQUIRED) — c'est un rattrapage d'un déploiement en retard sur du code déjà validé, pas une nouvelle migration.
+Vérification qui avait été faite après coup (`curl` sur `/v1/finder`, champ `cabin`/`hold`/`cargo` de La Compagnie à `false`) — confirmée correcte, mais cette vérification par `grep` tronqué est elle-même remplacée par la lecture JSON structurée (`jq`) exigée à l'étape 8 de la procédure actuelle.
 
 ## P0-2 — Modalités détaillées falsifiables (`fiche.astro`) — **Option B tranchée par Philippe (10/08/2026)**
 
@@ -61,4 +58,8 @@ Réduire la page à ce qui est déjà légitimement dérivé de données canoniq
 
 **Architecture cible, pour le Lot correspondant (hors périmètre immédiat de ce document)** : l'URL partageable ne devrait contenir que des entrées validables permettant un nouveau calcul (origine, destination, race, poids — comme le fait déjà `/v1/finder`), ou l'identifiant opaque d'un rapport immuable généré et stocké côté serveur. Le nom de compagnie, les placements, le score, le tarif, les sources et les liens sortants doivent provenir exclusivement du moteur ou de la Knowledge Base au moment du rendu, jamais de la query string.
 
-**Décision prise : Option B.** Claude prépare le patch de réduction de `fiche.astro` (suppression de l'injection DOM des champs non fiables, conservation du bloc pays/formalités), avec les 5 tests d'acceptation ci-dessus vérifiés avant livraison. Rien n'est déployé sans validation explicite de Philippe puis contre-test de Codex, conformément à la procédure retenue au P0-1.
+**Décision prise : Option B — patch livré le 10/08/2026 (document 16 pour le détail et les preuves).** Résumé : les champs non fiables (nom de compagnie, score, cabine, soute, fret, vol direct, tarif, embargo, liens sortants compagnie) ne sont plus lus depuis l'URL ni construits en mémoire (l'objet `air` et la variable `score` qui les portaient ont été retirés du script client), et les quatre blocs HTML qui les affichaient (bandeau compagnie/score dans l'en-tête, carte « vol », bouton de réservation, lien fiche compagnie dans le pied de page) ont été supprimés — pas masqués en CSS. La chronologie des formalités pays, dérivée de `bible` (généré côté serveur depuis les données canoniques, jamais de la query string), est inchangée. Le helper `safeUrl`, devenu orphelin (son seul appelant était l'objet `air` retiré), a été retiré avec lui plutôt que laissé comme protection inerte.
+
+Build local (`npm run build`, site complet, 2949 pages) réussi sans erreur. Les 4 pages `tools/fiche` (en/fr/es/pt) ont été testées avec les données et le bundle client réellement construits (pas une simulation) contre trois scénarios : une URL forgée (compagnie inventée, score 100 %, domaine `evil.example.com`), une URL légitime de type Finder, et une URL déjà partagée avant ce patch portant les anciens paramètres `an`/`sc`/`cab`/`hold`/`direct`/`air`. Les 52 vérifications (13 par locale × 4 locales) passent : aucune donnée forgée n'apparaît dans le DOM rendu (hors lien « partager par email », qui reproduit légitimement l'URL de la page comme le ferait n'importe quel partage de lien), la chronologie pays continue de s'afficher normalement, et les anciennes URL déjà partagées ne font plus apparaître leur ancien contenu compagnie. Détail complet, script de test et sortie brute : document 16.
+
+Rien n'est déployé. Le patch (`option-b-fiche-10-08-2026.patch`) attend l'application par Philippe puis la contre-revue de Codex, conformément aux conditions de livraison qu'il a posées (lot isolé, aucun autre changement fonctionnel, aucune mise en production).

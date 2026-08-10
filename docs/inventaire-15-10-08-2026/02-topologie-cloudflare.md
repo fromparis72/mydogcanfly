@@ -1,6 +1,6 @@
 # §15.2 — Topologie Cloudflare connue via le dépôt
 
-**SHA de référence : `e2b27799de335558afc165ee1763ad4613ca4ed9` (origin/main).**
+**Baseline métier auditée : `e2b27799de335558afc165ee1763ad4613ca4ed9`. État Git du document : commit indiqué par son propre historique Git (voir `git log` sur ce fichier). Ne pas interpréter cette baseline comme le HEAD courant de `origin/main` — un SHA recopié ici deviendrait faux dès le commit suivant ; Git connaît déjà le HEAD réel, ce document ne le republie pas.**
 Aucun accès à l'API/dashboard Cloudflare n'a été utilisé pour ce document — tout est déduit du code versionné. Tout ce qui concerne l'état réellement déployé est marqué **NON VÉRIFIABLE SANS ACCÈS CLOUDFLARE**.
 
 ## 1. Deux fichiers `wrangler.toml`, deux Workers indépendants

