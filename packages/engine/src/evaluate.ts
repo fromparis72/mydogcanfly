@@ -110,19 +110,30 @@ function toFired(r: Rule, locale: string): FiredRule {
 
 type PolicyMode = { allowed?: boolean; fee?: string; source?: Rule["source"] };
 
-/* Repli "fiche → refus" (décision utilisateur, 08/2026, mesurée avant correction : 24 compagnies sur 102
-   n'ont AUCUNE règle qui leur soit propre dans rules.json — les compagnies "fiche seule" — dont 23 ont une
-   fiche qui documente une vraie restriction que le moteur ignorait totalement. `denied` restait toujours
-   false pour elles (aucune règle à évaluer), donc CHAQUE mode ressortait "allowed:true" quoi que dise la
-   fiche. Cas réel constaté : Batik Air Malaysia, dont la fiche dit "aucune politique animaux publiée",
-   ressortait "Cabin OK" dans une vraie requête Finder.
-   On comble ce trou avec `premium.policy.<mode>.allowed`, déjà dérivé et sourcé par derivePolicy() dans
-   ingest-airlines.mjs à partir de la fiche elle-même — on n'invente aucune donnée nouvelle, on arrête
-   seulement d'ignorer une donnée déjà vérifiée. Catégorie "placement" : denyReasonsOf() la traduit en
-   "<mode>_unavailable", exactement le motif qu'aurait porté une vraie règle rules.json.
-   Ce repli ne joue QUE si la compagnie n'a aucune règle propre (voir airlineOwnRules.length === 0 dans
-   evaluate()) : dès qu'une entrée rules.json existe pour elle, rules.json reprend intégralement la main
-   et ce repli ne s'applique plus jamais — il ne fait que combler l'absence, jamais la contredire. */
+/* Fiche = socle systématique (décision utilisateur, 10/08/2026 — bug signalé sur La Compagnie EWR→ORY,
+   32 kg : la fiche dit cabine oui/soute non/fret inconnu, le Finder répondait "soute uniquement"). Deux
+   défauts cumulés, désormais corrigés ensemble :
+   1) AVANT, ce repli ne jouait QUE si `airlineOwnRules.length === 0` — dès qu'une compagnie avait ne
+      serait-ce qu'UNE règle propre, même sans rapport (ex. La Compagnie n'a qu'une règle "soute refusée
+      vers le Royaume-Uni"), le repli se désactivait EN BLOC pour tous les placements et tous les
+      trajets. Une restriction générale de la fiche (soute non proposée, partout) redevenait "allowed"
+      sur tout trajet hors Royaume-Uni. Mesuré à la levée de cette condition : 18 compagnies sur 102,
+      26 couples (compagnie, placement) concernés — la liste complète est tracée dans l'historique de
+      cette fonction et dans le rapport livré à l'utilisateur (audit du 09-10/08/2026).
+   2) Le test `=== false` ignorait aussi les placements que la fiche ne renseigne simplement pas encore
+      (clé absente dans `premium.policy`, ni true ni false) : 14 cas sur 102 compagnies × 3 placements,
+      ex. Qantas dont la fiche structurée n'a que `cabin: false`, ni soute ni fret. Une donnée absente
+      redevenait "allowed" au lieu de rester "inconnue".
+   Nouvelle règle, unique et sans exception : la fiche est désormais TOUJOURS le socle, que la compagnie
+   ait ou non des règles rules.json propres. `allowed === true` → option potentielle, que les règles
+   peuvent encore restreindre. `allowed === false` OU absent (« inconnu ») → refusé par défaut, jamais
+   montré comme disponible sans confirmation positive. Les règles rules.json ne peuvent plus qu'AJOUTER
+   une restriction, jamais lever celle que documente la fiche — exactement l'inverse de l'ancien
+   comportement où la présence d'UNE règle, quel que soit son objet, levait TOUTES les restrictions
+   fiche. `premium.policy.<mode>.allowed` reste dérivé et sourcé par derivePolicy() dans
+   ingest-airlines.mjs à partir de la fiche elle-même — on n'invente aucune donnée nouvelle. Catégorie
+   "placement" : denyReasonsOf() la traduit en "<mode>_unavailable", exactement le motif qu'aurait porté
+   une vraie règle rules.json. */
 function policyFallbackDenyRule(airlineId: string, placement: (typeof PLACEMENTS)[number], mode: PolicyMode): Rule {
   const source: Rule["source"] = mode.source ?? {
     url: "", source_type: "other", verified_date: "1970-01-01", review_due: "1970-01-01",
@@ -230,8 +241,9 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
   const airlineDecisionsRaw = airlines.map((a): AirlineDecision & { _plausible: boolean } => {
     const airlineOwnRules = kb.rules.filter((r) => r.scope.type === "airline" && r.scope.id === a.id);
     const airlineRules = [...airlineOwnRules, ...globalRules];
-    // Fiche-derived policy (see policyFallbackDenyRule above) — the ONLY source of "allowed" left for the
-    // 24 airlines that have a fiche but no rules.json entry of their own yet.
+    // Fiche-derived policy (see policyFallbackDenyRule above) — désormais le socle systématique pour
+    // TOUTE compagnie, pas seulement celles sans règle rules.json propre (voir le commentaire détaillé
+    // au-dessus de policyFallbackDenyRule).
     const policy = (a as { premium?: { policy?: Record<string, PolicyMode> } }).premium?.policy;
     // Evaluate ALL placements (cabin/hold/cargo) so the comparison cards are complete;
     // the requested placement is applied later, when computing the headline verdict.
@@ -242,10 +254,12 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
       );
       let allFires = fires;
-      // Repli fiche : seulement quand rules.json ne dit RIEN sur cette compagnie (voir policyFallbackDenyRule).
-      if (!denied && airlineOwnRules.length === 0 && policy?.[p]?.allowed === false) {
+      // Socle fiche systématique (corrigé 10/08/2026) : `allowed === true` seul évite le repli — un
+      // "false" explicite ou une clé absente ("inconnu") sont traités pareil, refusés par défaut, quel
+      // que soit le nombre de règles propres à la compagnie par ailleurs.
+      if (!denied && policy?.[p]?.allowed !== true) {
         denied = true;
-        allFires = [...fires, policyFallbackDenyRule(a.id, p, policy[p])];
+        allFires = [...fires, policyFallbackDenyRule(a.id, p, policy?.[p] ?? {})];
       }
       return { placement: p, allowed: !denied, fires: allFires };
     });
@@ -257,8 +271,12 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     // breed_id, donc ce cas n'existe pas encore dans rules.json — vérifié) ferait passer
     // `carries_pets` à false pour une compagnie qui transporte pourtant des animaux normalement :
     // exactement la confusion "aucun animal transporté" vs "CE chien refusé" que ce bloc neutre a
-    // été conçu pour éviter (cf. commentaire ci-dessus) — un angle mort à corriger par prudence,
-    // pas un bug observable avec les données actuelles.
+    // été conçu pour éviter.
+    // Même socle fiche systématique que perPlacement ci-dessus (corrigé 10/08/2026, ex-angle mort
+    // devenu bug confirmé : Batik Air Indonesia/Malaysia, fiche 100% "non proposé" sur les 3
+    // placements, ne portent qu'une règle UK — `carries_pets` ressortait quand même "true" hors
+    // Royaume-Uni). `allowed === true` sur AU MOINS un placement est désormais requis pour dire que
+    // la compagnie transporte des animaux ; un "false" ou une clé absente ne compte plus comme "true".
     const neutralCtx: Ctx = { ...baseCtx, "dog.weight_kg": 5, "dog.brachycephalic": false, "dog.size": "small", "dog.breed_id": "" };
     const carries_pets = PLACEMENTS.some((p) => {
       const nf = airlineRules.filter((r) => evalPredicate(r.applies_when, { ...neutralCtx, placement: p }));
@@ -266,7 +284,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
       );
       if (deniedByRules) return false;
-      if (airlineOwnRules.length === 0 && policy?.[p]?.allowed === false) return false;
+      if (policy?.[p]?.allowed !== true) return false;
       return true;
     });
 
