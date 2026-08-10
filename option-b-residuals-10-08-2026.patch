@@ -1,0 +1,154 @@
+diff --git a/packages/ui/src/components/FlightFinder.astro b/packages/ui/src/components/FlightFinder.astro
+index 0a90e45..abf401f 100644
+--- a/packages/ui/src/components/FlightFinder.astro
++++ b/packages/ui/src/components/FlightFinder.astro
+@@ -446,15 +446,18 @@ const labels = {
+                 <div class="acard__mid">${(() => {
+                   // One decisive action per airline: open the bespoke "Bible" sheet, carrying the whole
+                   // context (route, airline snapshot) in the URL so it's a shareable permalink.
++                  /* Option B (fiche.astro, 10/08/2026) a arrêté de LIRE ces champs depuis l'URL —
++                   * mais jusqu'ici le Finder continuait de les ÉCRIRE, ce qui ne les exposait plus
++                   * dans le rendu mais les laissait circuler dans des liens partagés (et dans le
++                   * corps du "partager par email" de la fiche, qui reprend l'URL courante) sans
++                   * plus jamais servir à rien. Corrigé suite à la contre-revue Codex du 10/08/2026 :
++                   * seuls `from`/`to`/`air`/`breed`/`bid`/`w`/`eu_passport` sont encore nécessaires
++                   * (contexte de navigation et chronologie pays, tous canoniques côté fiche) — le
++                   * nom de compagnie, le score, cabine/soute/fret, le vol direct, le tarif,
++                   * l'embargo et les liens sortants compagnie ne sont plus écrits du tout. */
+                   const p = new URLSearchParams();
+                   p.set("from", lastOriginIso); p.set("to", lastDestIso);
+-                  p.set("air", a.airline_id); p.set("an", a.name);
+-                  const site = (L.airlineSite ?? {})[a.airline_id]; if (site) p.set("as", site);
+-                  const fiche = (L.airlineHref ?? {})[a.airline_id]; if (fiche) p.set("af", fiche);
+-                  p.set("cab", a.cabin ? "1" : "0"); p.set("hold", a.hold ? "1" : "0"); p.set("cargo", a.cargo ? "1" : "0");
+-                  p.set("direct", a.direct ? "1" : "0"); if (a.heat_embargo) p.set("emb", "1");
+-                  if (a.fee) p.set("fee", a.fee);
+-                  if (typeof r.score === "number") p.set("sc", String(score)); // score déjà borné 0..100 ci-dessus
++                  p.set("air", a.airline_id);
+                   const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
+                   if (lastBreedId) p.set("bid", lastBreedId);
+                   const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);
+diff --git a/packages/ui/src/pages/[...loc]/tools/fiche.astro b/packages/ui/src/pages/[...loc]/tools/fiche.astro
+index eb9d948..1630f3f 100644
+--- a/packages/ui/src/pages/[...loc]/tools/fiche.astro
++++ b/packages/ui/src/pages/[...loc]/tools/fiche.astro
+@@ -670,7 +670,23 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+           <div class="bstep__b">${body}</div></div></div>`;
+ 
+       const sourcesAll = [...(O.sources || []), ...(D.sources || [])];
+-      const emailBody = encodeURIComponent(location.href);
++      /* Résidu Option B corrigé (contre-revue Codex, 10/08/2026) : ce lien "partager par email"
++       * reprenait `location.href` tel quel — donc, pour un visiteur arrivé par une URL forgée ou
++       * une ancienne URL déjà partagée (an/sc/cab/hold/direct/emb/fee/as/af), le repartageait avec
++       * les mêmes champs non fiables, encore une fois. Le patch d'origine empêchait leur RENDU,
++       * pas leur PROPAGATION vers un tiers via ce bouton précis. Reconstruit maintenant depuis une
++       * liste blanche des seuls paramètres canoniques (mêmes que ceux encore écrits par le Finder
++       * après sa propre correction du même jour) — jamais depuis l'URL brute de la page. */
++      const shareParams = new URLSearchParams();
++      if (from) shareParams.set("from", from);
++      if (to) shareParams.set("to", to);
++      if (airId) shareParams.set("air", airId);
++      if (breed) shareParams.set("breed", breed);
++      if (bid) shareParams.set("bid", bid);
++      if (w) shareParams.set("w", w);
++      if (rep) shareParams.set("eu_passport", rep);
++      const shareUrl = location.origin + location.pathname + "#" + shareParams.toString();
++      const emailBody = encodeURIComponent(shareUrl);
+ 
+       el.innerHTML = `
+         <div class="bhead">
+diff --git a/test-fiche-harness.cjs b/test-fiche-harness.cjs
+index e567fd8..9cd8848 100644
+--- a/test-fiche-harness.cjs
++++ b/test-fiche-harness.cjs
+@@ -37,6 +37,13 @@ const OLD_SHARED_QS =
+   "from=fr&to=us&an=" + encodeURIComponent("Air France") +
+   "&sc=87&cab=1&hold=1&direct=1&air=airline_air_france&breed=Labrador&w=25";
+ 
++// Exact URL FlightFinder.astro generates today (10/08/2026 fix, contre-revue Codex) — only the
++// whitelisted context params: from/to/air/breed/bid/w/eu_passport. No more an/sc/cab/hold/cargo/
++// direct/emb/fee/as/af. Mirrors packages/ui/src/components/FlightFinder.astro lines ~458-473.
++const FINDER_QS =
++  "from=fr&to=us&air=airline_air_france&breed=" + encodeURIComponent("Labrador") +
++  "&bid=labrador&w=25&eu_passport=1";
++
+ function loadPageParts(localeDir) {
+   const htmlPath = path.join(DIST, localeDir, "tools/fiche/index.html");
+   const html = fs.readFileSync(htmlPath, "utf8");
+@@ -83,12 +90,13 @@ function run(localeDir, qs) {
+     return { error: e.stack || e.message, html: dom.window.document.getElementById("bible").innerHTML };
+   }
+   const raw = dom.window.document.getElementById("bible").innerHTML;
+-  // The "share by email" mailto: link legitimately embeds the current page URL verbatim (that is
+-  // what "share this link" means) — it is not a rendered claim about the airline, just a copy of
+-  // the address bar. Strip it before searching for leaked forged content, same as a human
+-  // reviewer would ignore the mailto body when checking what the PAGE asserts.
+-  const html = raw.replace(/<a class="bbtn" href="mailto:[^"]*"[^>]*>[\s\S]*?<\/a>/, "");
+-  return { html, raw, error: null };
++  // Résidu Option B corrigé (10/08/2026, contre-revue Codex) : le lien "partager par email" est
++  // désormais reconstruit depuis une liste blanche de paramètres canoniques (from/to/air/breed/
++  // bid/w/eu_passport), jamais depuis `location.href` brute. Il doit donc maintenant être aussi
++  // sûr que le reste du rendu — on ne l'exclut plus des vérifications de fuite, on l'inclut.
++  const mailtoMatch = raw.match(/<a class="bbtn" href="mailto:([^"]*)"[^>]*>/);
++  const mailtoHref = mailtoMatch ? decodeURIComponent(mailtoMatch[1].replace(/&amp;/g, "&")) : null;
++  return { html: raw, raw, mailtoHref, error: null };
+ }
+ 
+ let failures = 0;
+@@ -118,6 +126,18 @@ for (const { code, dir } of LOCALES) {
+     check("no bhead__r / bscore / bvolh / bairlogo--block markup", !/bhead__r|bscore|bvolh|bairlogo--block/.test(h));
+     check("renders non-empty content (country chronology)", h.length > 500);
+     check("shows a step/chrono/domestic block", /bstep|bchrono|bdomH|bcard__h/.test(h));
++    // Résidu Option B (mailto): la liste blanche ne doit reprendre que from/to/air/breed/bid/w/
++    // eu_passport — jamais le nom de compagnie, le score, evil.example.com, la remise ou l'embargo.
++    check("mailto link present", !!forged.mailtoHref);
++    check("mailto body has no 'FAUSSE COMPAGNIE'", !forged.mailtoHref || !forged.mailtoHref.includes("FAUSSE COMPAGNIE"));
++    check("mailto body has no evil.example.com", !forged.mailtoHref || !forged.mailtoHref.toLowerCase().includes("evil.example.com"));
++    check("mailto body has no sc=100 / cab / hold / cargo / emb / fee / as / af / an params", !forged.mailtoHref || !/[?&#](sc|cab|hold|cargo|emb|fee|as|af|an)=/.test(forged.mailtoHref));
++    check("mailto body only carries whitelisted params (from/to/air/breed/bid/w/eu_passport)", !forged.mailtoHref || (() => {
++      const frag = forged.mailtoHref.split("#")[1] || "";
++      const keys = [...new URLSearchParams(frag).keys()];
++      const allowed = new Set(["from", "to", "air", "breed", "bid", "w", "eu_passport"]);
++      return keys.every((k) => allowed.has(k));
++    })());
+   }
+ 
+   console.log("-- legitimate Finder URL --");
+@@ -130,6 +150,7 @@ for (const { code, dir } of LOCALES) {
+     check("renders non-empty content", h.length > 500);
+     check("no leftover airline verdict markup (bhead__r/bvolh/bscore)", !/bhead__r|bvolh|bscore/.test(h));
+     check("shows a step/chrono block (country formalities present)", /bstep|bchrono/.test(h));
++    check("mailto link present", !!legit.mailtoHref);
+   }
+ 
+   console.log("-- old already-shared URL (pre-patch style, carries an/sc/cab/hold) --");
+@@ -142,6 +163,29 @@ for (const { code, dir } of LOCALES) {
+     check("no 'Air France' airline name leaks into DOM", !h.includes("Air France"));
+     check("no '87 %' / '87%' score leaks into DOM", !h.includes("87 %") && !h.includes("87%"));
+     check("still renders content (no crash on legacy params)", h.length > 500);
++    check("mailto body has no 'Air France'", !old.mailtoHref || !old.mailtoHref.includes("Air France"));
++    check("mailto body has no sc=87 / cab / hold / direct params", !old.mailtoHref || !/[?&#](sc|cab|hold|direct|an)=/.test(old.mailtoHref));
++  }
++
++  console.log("-- exact URL generated today by FlightFinder.astro (from/to/air/breed/bid/w/eu_passport only) --");
++  const finder = run(dir, FINDER_QS);
++  if (finder.error) {
++    console.log("  FAIL script threw: " + finder.error);
++    failures++;
++  } else {
++    const h = finder.html;
++    check("renders non-empty content", h.length > 500);
++    check("shows a step/chrono block (country formalities present)", /bstep|bchrono/.test(h));
++    check("mailto link present", !!finder.mailtoHref);
++    check("mailto body round-trips exactly the 7 whitelisted params, nothing else", !finder.mailtoHref || (() => {
++      const frag = finder.mailtoHref.split("#")[1] || "";
++      const got = new URLSearchParams(frag);
++      const expected = new URLSearchParams(FINDER_QS);
++      const gotKeys = [...got.keys()].sort();
++      const expKeys = [...expected.keys()].sort();
++      if (gotKeys.join(",") !== expKeys.join(",")) return false;
++      return expKeys.every((k) => got.get(k) === expected.get(k));
++    })());
+   }
+ }
+ 

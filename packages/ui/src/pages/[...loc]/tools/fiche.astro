@@ -670,7 +670,23 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
           <div class="bstep__b">${body}</div></div></div>`;
 
       const sourcesAll = [...(O.sources || []), ...(D.sources || [])];
-      const emailBody = encodeURIComponent(location.href);
+      /* Résidu Option B corrigé (contre-revue Codex, 10/08/2026) : ce lien "partager par email"
+       * reprenait `location.href` tel quel — donc, pour un visiteur arrivé par une URL forgée ou
+       * une ancienne URL déjà partagée (an/sc/cab/hold/direct/emb/fee/as/af), le repartageait avec
+       * les mêmes champs non fiables, encore une fois. Le patch d'origine empêchait leur RENDU,
+       * pas leur PROPAGATION vers un tiers via ce bouton précis. Reconstruit maintenant depuis une
+       * liste blanche des seuls paramètres canoniques (mêmes que ceux encore écrits par le Finder
+       * après sa propre correction du même jour) — jamais depuis l'URL brute de la page. */
+      const shareParams = new URLSearchParams();
+      if (from) shareParams.set("from", from);
+      if (to) shareParams.set("to", to);
+      if (airId) shareParams.set("air", airId);
+      if (breed) shareParams.set("breed", breed);
+      if (bid) shareParams.set("bid", bid);
+      if (w) shareParams.set("w", w);
+      if (rep) shareParams.set("eu_passport", rep);
+      const shareUrl = location.origin + location.pathname + "#" + shareParams.toString();
+      const emailBody = encodeURIComponent(shareUrl);
 
       el.innerHTML = `
         <div class="bhead">

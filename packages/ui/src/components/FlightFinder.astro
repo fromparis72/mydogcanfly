@@ -446,15 +446,18 @@ const labels = {
                 <div class="acard__mid">${(() => {
                   // One decisive action per airline: open the bespoke "Bible" sheet, carrying the whole
                   // context (route, airline snapshot) in the URL so it's a shareable permalink.
+                  /* Option B (fiche.astro, 10/08/2026) a arrêté de LIRE ces champs depuis l'URL —
+                   * mais jusqu'ici le Finder continuait de les ÉCRIRE, ce qui ne les exposait plus
+                   * dans le rendu mais les laissait circuler dans des liens partagés (et dans le
+                   * corps du "partager par email" de la fiche, qui reprend l'URL courante) sans
+                   * plus jamais servir à rien. Corrigé suite à la contre-revue Codex du 10/08/2026 :
+                   * seuls `from`/`to`/`air`/`breed`/`bid`/`w`/`eu_passport` sont encore nécessaires
+                   * (contexte de navigation et chronologie pays, tous canoniques côté fiche) — le
+                   * nom de compagnie, le score, cabine/soute/fret, le vol direct, le tarif,
+                   * l'embargo et les liens sortants compagnie ne sont plus écrits du tout. */
                   const p = new URLSearchParams();
                   p.set("from", lastOriginIso); p.set("to", lastDestIso);
-                  p.set("air", a.airline_id); p.set("an", a.name);
-                  const site = (L.airlineSite ?? {})[a.airline_id]; if (site) p.set("as", site);
-                  const fiche = (L.airlineHref ?? {})[a.airline_id]; if (fiche) p.set("af", fiche);
-                  p.set("cab", a.cabin ? "1" : "0"); p.set("hold", a.hold ? "1" : "0"); p.set("cargo", a.cargo ? "1" : "0");
-                  p.set("direct", a.direct ? "1" : "0"); if (a.heat_embargo) p.set("emb", "1");
-                  if (a.fee) p.set("fee", a.fee);
-                  if (typeof r.score === "number") p.set("sc", String(score)); // score déjà borné 0..100 ci-dessus
+                  p.set("air", a.airline_id);
                   const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
                   if (lastBreedId) p.set("bid", lastBreedId);
                   const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);

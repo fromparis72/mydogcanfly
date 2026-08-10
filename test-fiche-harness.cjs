@@ -37,6 +37,13 @@ const OLD_SHARED_QS =
   "from=fr&to=us&an=" + encodeURIComponent("Air France") +
   "&sc=87&cab=1&hold=1&direct=1&air=airline_air_france&breed=Labrador&w=25";
 
+// Exact URL FlightFinder.astro generates today (10/08/2026 fix, contre-revue Codex) — only the
+// whitelisted context params: from/to/air/breed/bid/w/eu_passport. No more an/sc/cab/hold/cargo/
+// direct/emb/fee/as/af. Mirrors packages/ui/src/components/FlightFinder.astro lines ~458-473.
+const FINDER_QS =
+  "from=fr&to=us&air=airline_air_france&breed=" + encodeURIComponent("Labrador") +
+  "&bid=labrador&w=25&eu_passport=1";
+
 function loadPageParts(localeDir) {
   const htmlPath = path.join(DIST, localeDir, "tools/fiche/index.html");
   const html = fs.readFileSync(htmlPath, "utf8");
@@ -83,12 +90,13 @@ function run(localeDir, qs) {
     return { error: e.stack || e.message, html: dom.window.document.getElementById("bible").innerHTML };
   }
   const raw = dom.window.document.getElementById("bible").innerHTML;
-  // The "share by email" mailto: link legitimately embeds the current page URL verbatim (that is
-  // what "share this link" means) — it is not a rendered claim about the airline, just a copy of
-  // the address bar. Strip it before searching for leaked forged content, same as a human
-  // reviewer would ignore the mailto body when checking what the PAGE asserts.
-  const html = raw.replace(/<a class="bbtn" href="mailto:[^"]*"[^>]*>[\s\S]*?<\/a>/, "");
-  return { html, raw, error: null };
+  // Résidu Option B corrigé (10/08/2026, contre-revue Codex) : le lien "partager par email" est
+  // désormais reconstruit depuis une liste blanche de paramètres canoniques (from/to/air/breed/
+  // bid/w/eu_passport), jamais depuis `location.href` brute. Il doit donc maintenant être aussi
+  // sûr que le reste du rendu — on ne l'exclut plus des vérifications de fuite, on l'inclut.
+  const mailtoMatch = raw.match(/<a class="bbtn" href="mailto:([^"]*)"[^>]*>/);
+  const mailtoHref = mailtoMatch ? decodeURIComponent(mailtoMatch[1].replace(/&amp;/g, "&")) : null;
+  return { html: raw, raw, mailtoHref, error: null };
 }
 
 let failures = 0;
@@ -118,6 +126,18 @@ for (const { code, dir } of LOCALES) {
     check("no bhead__r / bscore / bvolh / bairlogo--block markup", !/bhead__r|bscore|bvolh|bairlogo--block/.test(h));
     check("renders non-empty content (country chronology)", h.length > 500);
     check("shows a step/chrono/domestic block", /bstep|bchrono|bdomH|bcard__h/.test(h));
+    // Résidu Option B (mailto): la liste blanche ne doit reprendre que from/to/air/breed/bid/w/
+    // eu_passport — jamais le nom de compagnie, le score, evil.example.com, la remise ou l'embargo.
+    check("mailto link present", !!forged.mailtoHref);
+    check("mailto body has no 'FAUSSE COMPAGNIE'", !forged.mailtoHref || !forged.mailtoHref.includes("FAUSSE COMPAGNIE"));
+    check("mailto body has no evil.example.com", !forged.mailtoHref || !forged.mailtoHref.toLowerCase().includes("evil.example.com"));
+    check("mailto body has no sc=100 / cab / hold / cargo / emb / fee / as / af / an params", !forged.mailtoHref || !/[?&#](sc|cab|hold|cargo|emb|fee|as|af|an)=/.test(forged.mailtoHref));
+    check("mailto body only carries whitelisted params (from/to/air/breed/bid/w/eu_passport)", !forged.mailtoHref || (() => {
+      const frag = forged.mailtoHref.split("#")[1] || "";
+      const keys = [...new URLSearchParams(frag).keys()];
+      const allowed = new Set(["from", "to", "air", "breed", "bid", "w", "eu_passport"]);
+      return keys.every((k) => allowed.has(k));
+    })());
   }
 
   console.log("-- legitimate Finder URL --");
@@ -130,6 +150,7 @@ for (const { code, dir } of LOCALES) {
     check("renders non-empty content", h.length > 500);
     check("no leftover airline verdict markup (bhead__r/bvolh/bscore)", !/bhead__r|bvolh|bscore/.test(h));
     check("shows a step/chrono block (country formalities present)", /bstep|bchrono/.test(h));
+    check("mailto link present", !!legit.mailtoHref);
   }
 
   console.log("-- old already-shared URL (pre-patch style, carries an/sc/cab/hold) --");
@@ -142,6 +163,29 @@ for (const { code, dir } of LOCALES) {
     check("no 'Air France' airline name leaks into DOM", !h.includes("Air France"));
     check("no '87 %' / '87%' score leaks into DOM", !h.includes("87 %") && !h.includes("87%"));
     check("still renders content (no crash on legacy params)", h.length > 500);
+    check("mailto body has no 'Air France'", !old.mailtoHref || !old.mailtoHref.includes("Air France"));
+    check("mailto body has no sc=87 / cab / hold / direct params", !old.mailtoHref || !/[?&#](sc|cab|hold|direct|an)=/.test(old.mailtoHref));
+  }
+
+  console.log("-- exact URL generated today by FlightFinder.astro (from/to/air/breed/bid/w/eu_passport only) --");
+  const finder = run(dir, FINDER_QS);
+  if (finder.error) {
+    console.log("  FAIL script threw: " + finder.error);
+    failures++;
+  } else {
+    const h = finder.html;
+    check("renders non-empty content", h.length > 500);
+    check("shows a step/chrono block (country formalities present)", /bstep|bchrono/.test(h));
+    check("mailto link present", !!finder.mailtoHref);
+    check("mailto body round-trips exactly the 7 whitelisted params, nothing else", !finder.mailtoHref || (() => {
+      const frag = finder.mailtoHref.split("#")[1] || "";
+      const got = new URLSearchParams(frag);
+      const expected = new URLSearchParams(FINDER_QS);
+      const gotKeys = [...got.keys()].sort();
+      const expKeys = [...expected.keys()].sort();
+      if (gotKeys.join(",") !== expKeys.join(",")) return false;
+      return expKeys.every((k) => got.get(k) === expected.get(k));
+    })());
   }
 }
 
