@@ -1,0 +1,129 @@
+diff --git a/packages/knowledge/raw/objects.json b/packages/knowledge/raw/objects.json
+index 22992b9..9c06fb8 100644
+--- a/packages/knowledge/raw/objects.json
++++ b/packages/knowledge/raw/objects.json
+@@ -8822,6 +8822,12 @@
+         "fr": "Newark",
+         "es": "Newark",
+         "pt": "Newark"
++      },
++      "search_city_i18n": {
++        "en": "New York",
++        "fr": "New York",
++        "es": "Nueva York",
++        "pt": "Nova York"
+       }
+     },
+     {
+@@ -11572,7 +11578,7 @@
+         "es": "aeropuerto LaGuardia",
+         "pt": "aeroporto LaGuardia"
+       },
+-      "city": "New York City",
++      "city": "New York",
+       "country_id": "country_us",
+       "geo": {
+         "lat": 40.7769,
+@@ -11662,7 +11668,7 @@
+         "website": "https://www.laguardiaairport.com/"
+       },
+       "city_i18n": {
+-        "en": "New York City",
++        "en": "New York",
+         "fr": "New York",
+         "es": "Nueva York",
+         "pt": "Nova York"
+diff --git a/packages/knowledge/src/objects.ts b/packages/knowledge/src/objects.ts
+index 7c7ccbf..d0d9603 100644
+--- a/packages/knowledge/src/objects.ts
++++ b/packages/knowledge/src/objects.ts
+@@ -56,6 +56,17 @@ export const Airport = z.object({
+   name: LocalizedText,
+   city: z.string(),
+   city_i18n: LocalizedText.optional(), // localized city display name (e.g. Beirut → Beyrouth); falls back to `city`
++  /* Regroupement "ville (tous les aéroports)" du Finder (ajouté 10/08/2026) — distinct de `city`.
++   * `city`/`city_i18n` sont aussi le fait "Ville" affiché sur la propre fiche de l'aéroport : ils
++   * doivent rester administrativement exacts (Newark reste "Newark", pas "New York"). Ce champ
++   * optionnel ne sert QUE de clé de regroupement pour FlightFinder/DestinationFinder — quand un
++   * aéroport dessert la même agglomération qu'un autre sous un nom administratif différent (EWR
++   * pour la zone de New York), il porte ici le libellé de recherche à utiliser à sa place. Absent
++   * pour tout le reste : `cityName()`/le regroupement retombent alors sur `city`/`city_i18n` comme
++   * avant. Ne pas l'utiliser pour des villes simplement proches mais distinctes (ex. Bruxelles/
++   * Charleroi, Baltimore/Washington) — c'est un choix produit à part, pas ce mécanisme.
++   */
++  search_city_i18n: LocalizedText.optional(),
+   country_id: id("country"),
+   geo: z.object({ lat: z.number(), lon: z.number() }).optional(),
+   pet_relief: PetRelief.optional(),
+diff --git a/packages/knowledge/src/views.ts b/packages/knowledge/src/views.ts
+index aef5610..f1ec142 100644
+--- a/packages/knowledge/src/views.ts
++++ b/packages/knowledge/src/views.ts
+@@ -159,6 +159,17 @@ export function cityName(a: { city: string; city_i18n?: Record<string, string> }
+   return a.city_i18n?.[locale] ?? a.city;
+ }
+ 
++/* Ajouté 10/08/2026 : clé de regroupement du Finder ("New York (tous les aéroports)"), distincte
++ * du fait "Ville" affiché sur la fiche de l'aéroport. Un aéroport qui dessert une agglomération
++ * sous un nom administratif différent (Newark pour la zone de New York) porte `search_city_i18n`
++ * — sinon on retombe sur `cityName()`, donc rien ne change pour tous les autres aéroports. */
++export function searchCityName(
++  a: { city: string; city_i18n?: Record<string, string>; search_city_i18n?: Record<string, string> },
++  locale = "en",
++): string {
++  return a.search_city_i18n?.[locale] ?? cityName(a, locale);
++}
++
+ /** Schema.org projection per entity type (data-driven, locale-aware for country names). */
+ export function schemaFor(kb: NormalizedKB, id: string, locale = "en"): Record<string, unknown> {
+   const base = { "@context": "https://schema.org" };
+diff --git a/packages/ui/src/components/DestinationFinder.astro b/packages/ui/src/components/DestinationFinder.astro
+index fd54e0c..5295ce8 100644
+--- a/packages/ui/src/components/DestinationFinder.astro
++++ b/packages/ui/src/components/DestinationFinder.astro
+@@ -4,7 +4,7 @@
+    enriches each reachable country with a formalities estimate derived from the country guide's
+    difficulty + the documents the traveller already holds. Soft scoring: everything reachable is shown,
+    ranked, with unfavourable destinations sinking to the bottom under a warning. */
+-import { loadKB, t, breedName, cityName, inlineT } from "@mydogcanfly/knowledge";
++import { loadKB, t, breedName, cityName, searchCityName, inlineT } from "@mydogcanfly/knowledge";
+ import { API_BASE } from "../lib/env";
+ import { countryData } from "../data/countries";
+ 
+@@ -21,8 +21,10 @@ for (const a of kb.airlines.values()) for (const id of ((a as { served_airport_i
+ const allLabel = t(locale, "finder.all_airports");
+ const cityGroups = new Map<string, { city: string; country: string; ids: string[] }>();
+ for (const a of kb.airports.values()) {
+-  const key = `${cityName(a, locale)}|${countryName(a.country_id)}`;
+-  const g = cityGroups.get(key) ?? { city: cityName(a, locale), country: countryName(a.country_id), ids: [] };
++  // searchCityName (pas cityName) : Newark rejoint le groupe "New York" ici, sans que sa
++  // propre fiche (qui utilise cityName) n'affiche jamais "Ville : New York" (10/08/2026).
++  const key = `${searchCityName(a, locale)}|${countryName(a.country_id)}`;
++  const g = cityGroups.get(key) ?? { city: searchCityName(a, locale), country: countryName(a.country_id), ids: [] };
+   g.ids.push(a.id); cityGroups.set(key, g);
+ }
+ const cities = [...cityGroups.values()].filter((g) => g.ids.length >= 2)
+diff --git a/packages/ui/src/components/FlightFinder.astro b/packages/ui/src/components/FlightFinder.astro
+index 5c57130..0a90e45 100644
+--- a/packages/ui/src/components/FlightFinder.astro
++++ b/packages/ui/src/components/FlightFinder.astro
+@@ -1,5 +1,5 @@
+ ---
+-import { loadKB, t, breedName, cityName, inlineT } from "@mydogcanfly/knowledge";
++import { loadKB, t, breedName, cityName, searchCityName, inlineT } from "@mydogcanfly/knowledge";
+ import { hrefFor } from "../lib/routes";
+ import { countryData } from "../data/countries";
+ 
+@@ -19,8 +19,10 @@ for (const a of kb.airlines.values()) for (const id of ((a as { served_airport_i
+ const allLabel = t(locale, "finder.all_airports");
+ const cityGroups = new Map<string, { city: string; country: string; ids: string[] }>();
+ for (const a of kb.airports.values()) {
+-  const key = `${cityName(a, locale)}|${countryName(a.country_id)}`;
+-  const g = cityGroups.get(key) ?? { city: cityName(a, locale), country: countryName(a.country_id), ids: [] };
++  // searchCityName (pas cityName) : Newark rejoint le groupe "New York" ici, sans que sa
++  // propre fiche (qui utilise cityName) n'affiche jamais "Ville : New York" (10/08/2026).
++  const key = `${searchCityName(a, locale)}|${countryName(a.country_id)}`;
++  const g = cityGroups.get(key) ?? { city: searchCityName(a, locale), country: countryName(a.country_id), ids: [] };
+   g.ids.push(a.id); cityGroups.set(key, g);
+ }
+ const cities = [...cityGroups.values()].filter((g) => g.ids.length >= 2)

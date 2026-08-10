@@ -23,12 +23,19 @@ Codex a contre-audité le Lot 0 (v1 de ce dossier) et a testé, en plus de la le
 
 Les documents 01, 04, 05, 06, 07, 08 restent valides tels que livrés — aucune objection de fond de la contre-revue sur leur contenu.
 
-## Les deux P0 confirmés en production aujourd'hui
+## Mise à jour du 10/08/2026, après action de Philippe
 
-1. **La Compagnie, 32 kg** : le correctif existe sur `origin/main` et fonctionne (testé), mais le Worker public n'a pas été redéployé depuis avant ce matin — le visiteur reçoit toujours le résultat faux. Correctif : un déploiement, pas une ligne de code (document 11, P0-1 — commandes déjà transmises).
-2. **Modalités détaillées falsifiables** (`/tools/fiche`) : confirmé en direct, avec exécution JavaScript réelle dans un navigateur — une URL forgée affiche un nom de compagnie inventé, une disponibilité fictive et des liens sortants vers un domaine de son choix, présentés comme émanant de MyDogCanFly. Pas de correctif immédiat proposé unilatéralement : trois options de mitigation posées à Philippe (document 11, P0-2).
+**P0-1 (La Compagnie) est clos.** Philippe a redéployé le Worker de production (`npx wrangler deploy --env production`, version `feb7b25d`, confirmée à 100 % du trafic — pas de rollout progressif en cause). Confirmé indépendamment par Claude.
 
-**Constat transversal, découvert en testant #1** : le Worker de production sert un code antérieur au 10/08 09:48 (confirmé par l'absence de la règle Melbourne, mergée ce matin-là) — donc aucun correctif du jour, Phase 1 ou Phase 2, n'est en production. La collision de nom entre les deux Workers (document 02) est elle aussi confirmée avec effet réel : les routes du Worker legacy (météo, confirmation d'abonnement, désinscription) répondent toutes 404 sur leur propre domaine.
+**Correction d'un faux diagnostic** : le premier test de Melbourne après ce déploiement montrait toujours le bug, ce qui avait fait conclure (à tort) que le Worker servait un code antérieur au 10/08. En réalité, c'était un **cache d'edge Cloudflare** qui retournait une réponse figée pour cette URL de test précise — un nouveau test avec un paramètre anti-cache a immédiatement montré le résultat correct. Melbourne et Hawaï (Phase 1) ainsi que le mécanisme général fiche-baseline (Phase 2) sont bien tous les trois confirmés actifs en production. Document 10 (v3) et document 09 (DR-01, DR-09) mis à jour en conséquence.
+
+**Seul P0 encore actif : #2, les modalités détaillées falsifiables** (`/tools/fiche`) — confirmé en direct, avec exécution JavaScript réelle dans un navigateur, sans rapport avec le déploiement (défaut de conception du code client). Trois options de mitigation posées à Philippe (document 11, P0-2), aucune tranchée à ce stade.
+
+La collision de nom entre les deux Workers (document 02) reste confirmée avec effet réel : les routes du Worker legacy (météo, confirmation d'abonnement, désinscription) répondent toutes 404 sur leur propre domaine — indépendant du redéploiement du Worker de décision.
+
+## Livrable additionnel du 10/08/2026 : regroupement New York
+
+Hors périmètre strict du Lot 0, mais découvert et traité le même jour : les trois aéroports newyorkais (JFK, LaGuardia, Newark) avaient des libellés de ville incohérents, empêchant le Finder de les regrouper sous une recherche « New York » unique — La Compagnie (qui ne dessert que Newark) en devenait invisible pour toute recherche vers New York non ciblée sur EWR. Corrigé par un nouveau champ dédié au regroupement (`search_city_i18n`), qui ne touche pas l'affichage factuel de la fiche de chaque aéroport. Un audit élargi (268 aéroports, toutes paires à moins de 80 km dans le même pays) n'a trouvé aucun autre cas de ce type — les autres paires proches trouvées (Bruxelles/Charleroi, Baltimore/Washington, etc.) sont des villes réellement distinctes, laissées telles quelles à la demande de Philippe. Patch `new-york-grouping-10-08.patch` livré et vérifié (check + typecheck sur `origin/main` propre).
 
 ## Ordre de travail corrigé (remplace celui de la v1)
 
