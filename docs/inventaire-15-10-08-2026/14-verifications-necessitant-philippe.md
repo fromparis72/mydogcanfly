@@ -23,7 +23,7 @@
 - État du V2 en production (page d'accueil) — confirmé par test HTTP/navigateur public, document 10 DR-01.
 - Collision de nom entre les deux Workers avec effet réel (404 sur les routes legacy) — confirmé par test HTTP public, document 02 §3bis.
 - **Staleness du Worker de production par rapport à `origin/main`** — **correction (contre-revue Codex, 10/08/2026, tour 3) : cette ligne était contradictoire avec la correction apportée au document 10/00/09 et est retirée du statut « confirmé ».** Le test HTTP public (règle Melbourne absente) avait initialement fait conclure à une staleness réelle ; un retest avec paramètre anti-cache a immédiatement montré le résultat correct, révélant qu'une couche de cache non localisée avait servi une réponse ancienne, pas le Worker. Ce point n'est donc **pas** tranché : voir plutôt le point 3 ci-dessus (historique des déploiements Worker, à vérifier directement) et document 10/00/09 pour le diagnostic corrigé.
-- Vulnérabilité de falsification de `fiche.astro` — confirmée par lecture de code + test navigateur réel, document 10 #2 et document 11.
+- Vulnérabilité de falsification de `fiche.astro` — confirmée par lecture de code + test navigateur réel, document 10 #2 et document 11. **Mise à jour (contre-revue Codex, tour 5, 10/08/2026)** : un troisième canal de propagation, non couvert par Option B ni par le correctif mailto du tour 4, a été trouvé et corrigé — voir document 16 §« Tour 5 » pour le détail complet (canal, correctif, preuve d'ordre d'exécution en navigateur réel, 336 vérifications).
 
 ## Ce que Claude ne demande jamais
 

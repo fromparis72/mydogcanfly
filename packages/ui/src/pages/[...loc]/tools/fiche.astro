@@ -1,5 +1,5 @@
 ---
-import { inlineT } from "@mydogcanfly/knowledge";
+import { inlineT, loadKB } from "@mydogcanfly/knowledge";
 // Bible — bespoke, noindex "travel sheet" reached from the Finder results (one airline chosen).
 // Fully data-driven: the chronology is assembled client-side from countryData (origin + destination),
 // the airline snapshot travels in the URL. A shareable permalink; it never re-calls the engine.
@@ -254,8 +254,14 @@ const CAS_ES = ["braquicéfala","braquicéfalo","escala","tránsito","estancia r
    passeport sur des trajets que la source ne couvre pas. */
 const EU_ISO2 = ["at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "ie",
   "it", "lv", "lt", "lu", "mt", "nl", "pl", "pt", "ro", "sk", "si", "es", "se"];
+/* Résidu Option B, tour 5 (contre-revue Codex, 10/08/2026) : liste blanche des identifiants de
+ * race connus (`kb.breeds`, la même Map que Header.astro/FlightFinder.astro utilisent déjà pour
+ * peupler leurs propres listes), exposée ici pour que le script client puisse valider `bid` avant
+ * de le réécrire dans l'URL canonique — même logique que `logos` (compagnies) juste en dessous,
+ * déjà exposé et déjà utilisé comme liste blanche pour `air`. */
+const breedIds = [...loadKB().breeds.keys()];
 const cfg = { locale, base, countryBase: base + "/countries/", breedBase: base + "/breeds/", crateBase: base + "/tools/crate/", heatBase: base + "/tools/heat/",
-  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, euIso: EU_ISO2, T };
+  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, breedIds, euIso: EU_ISO2, T };
 const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La ficha de viaje de tu perro");
 ---
 <Base locale={locale} title={`${title} — MyDogCanFly`} description={T.eyebrow} noindex={true}>
@@ -293,9 +299,56 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
     const P = window.mdcfQuery();
     const el = document.getElementById("bible");
 
+    /* Résidu Option B, tour 5 (contre-revue Codex, 10/08/2026) — voir aussi le commentaire du
+     * lien "partager par email" plus bas, dont ce bloc généralise maintenant le principe à toute
+     * la page. Le dièse est forgeable (URL partagée, modifiée à la main, ou copiée d'un lien
+     * pré-Option B) : jusqu'ici seuls le RENDU de cette page et le corps du mailto en tenaient
+     * compte. Un troisième canal n'était couvert par rien : Base.astro recopie `location.hash`
+     * BRUT dans les 4 liens `<a hreflang>` du sélecteur de langue du header (pour que changer de
+     * langue ne perde pas la race/destination choisie) — une URL forgée y réapparaissait donc
+     * telle quelle, visible dans le DOM, y compris des champs qu'Option B avait pourtant arrêté
+     * d'afficher (nom de compagnie inventé, `evil.example.com`…).
+     *
+     * Un objet UNIQUE de paramètres validés (`canon`) est construit ici, une seule fois, et
+     * réécrit IMMÉDIATEMENT l'URL via `history.replaceState` — avant que le DOMContentLoaded de
+     * Base.astro (qui fait la recopie vers les liens de langue) ne s'exécute. Ordre garanti par
+     * la spec HTML : un script de module s'exécute après le parsing du document mais toujours
+     * avant DOMContentLoaded ; vérifié ici en navigateur réel, pas seulement en test jsdom (voir
+     * test-fiche-harness.cjs). Le rendu, le lien mailto et les liens internes (caisse/chaleur/
+     * pays) puisent tous dans ce même `canon` — un seul canal de vérité, plus une copie par
+     * usage qui pouvait diverger. Tout champ absent de cette liste blanche disparaît de l'URL. */
+    const KNOWN_AIRLINES = new Set(Object.keys(C.logos || {}));
+    const KNOWN_BREEDS = new Set(C.breedIds || []);
+    // Plafond aligné sur le moteur (packages/engine/src/contracts.ts, weight_kg: positive().max(120)) —
+    // pas la limite plus basse (100) du seul message d'alerte du Finder, qui n'est qu'indicative.
+    const asWeight = (v) => { const n = Number(v); return Number.isFinite(n) && n > 0 && n <= 120 ? String(n) : ""; };
+    // Race en texte libre : gardée si non vide (absente du référentiel n'est pas forcément un
+    // mensonge — beaucoup de visiteurs tapent un nom que le site ne reconnaît pas), mais
+    // normalisée (pas de caractères de contrôle) et plafonnée pour qu'un lien ne puisse pas
+    // transporter indéfiniment une chaîne arbitraire.
+    const asBreedLabel = (v) => v.replace(/[\x00-\x1f\x7f]/g, "").trim().slice(0, 60);
+
+    const canon = new URLSearchParams();
     const from = (P.get("from") || "").toLowerCase();
     const to = (P.get("to") || "").toLowerCase();
     const O = DATA[from], D = DATA[to];
+    if (O) canon.set("from", from);
+    if (D) canon.set("to", to);
+    const rawAir = P.get("air") || "";
+    if (KNOWN_AIRLINES.has(rawAir)) canon.set("air", rawAir);
+    const breedLabel = asBreedLabel(P.get("breed") || "");
+    if (breedLabel) canon.set("breed", breedLabel);
+    const rawBid = P.get("bid") || "";
+    if (KNOWN_BREEDS.has(rawBid)) canon.set("bid", rawBid);
+    const weight = asWeight(P.get("w") || "");
+    if (weight) canon.set("w", weight);
+    const rawRep = (P.get("eu_passport") || "").toLowerCase();
+    if (rawRep === "yes" || rawRep === "no") canon.set("eu_passport", rawRep);
+    try {
+      const canonHash = "#" + canon.toString();
+      if (location.hash !== canonHash) history.replaceState(null, "", location.pathname + canonHash);
+    } catch (e) { /* history.replaceState indisponible (ex. contexte de test) : le rendu reste sûr, seule la réécriture d'URL est sautée */ }
+
     if (!O || !D) { /* keep the empty hint */ }
     else {
       /* Option B (décision Philippe, 10/08/2026) : cette fiche est un lien profond partageable
@@ -309,7 +362,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
        * dans le DOM — pas seulement masqués en CSS. Seule reste la chronologie des formalités
        * pays, qui vient de `bible` (généré côté serveur depuis les données canoniques), jamais de
        * la query string. */
-      const breed = P.get("breed") || "", brachy = P.get("brachy") === "1", w = P.get("w") || "";
+      const breed = canon.get("breed") || "", w = canon.get("w") || "";
 
       const key = (regime) => regime === "eu" ? "eu" : regime === "non_listed" ? "nonListed" : "listed";
       const pill = (kind) => {
@@ -323,7 +376,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
       // Outbound links carry the full context (airline, breed, destination) so nothing is lost on back-navigation.
       // airId/bid restent utilisés uniquement comme contexte de navigation interne (liens vers
       // les outils caisse/chaleur du site) — aucune donnée de verdict compagnie n'en dépend.
-      const airId = P.get("air") || "", bid = P.get("bid") || "";
+      const airId = canon.get("air") || "", bid = canon.get("bid") || "";
       const qs = (pairs) => { const q = pairs.filter((p) => p[1]).map((p) => p[0] + "=" + encodeURIComponent(p[1])).join("&"); return q ? "?" + q : ""; };
       const addQ = (url, q) => q ? url + (url.indexOf("?") >= 0 ? "&" + q.slice(1) : q) : url;
       const crateHref = C.crateBase + qs([["air", airId], ["breed", bid]]);
@@ -356,7 +409,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
        * L'absence de réponse n'est jamais un « non ». Envoyer quelqu'un chez le vétérinaire faire
        * endosser un certificat inutile coûte plus cher que lui faire lire deux paragraphes — et
        * c'est ce que produirait le moindre défaut de prudence ici. */
-      const rep = (P.get("eu_passport") || "").toLowerCase();
+      const rep = canon.get("eu_passport") || ""; // déjà limité à "yes"/"no" par `canon`, cf. plus haut
       const montrePasseport = rep !== "no";     // yes + absent (et tout héritage inconnu)
       const montreCertificat = rep !== "yes";   // no  + absent (et tout héritage inconnu)
       /* Le cas se pose sur une ARRIVÉE dans l'Union depuis un pays tiers — jamais ailleurs.
@@ -670,22 +723,13 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
           <div class="bstep__b">${body}</div></div></div>`;
 
       const sourcesAll = [...(O.sources || []), ...(D.sources || [])];
-      /* Résidu Option B corrigé (contre-revue Codex, 10/08/2026) : ce lien "partager par email"
-       * reprenait `location.href` tel quel — donc, pour un visiteur arrivé par une URL forgée ou
-       * une ancienne URL déjà partagée (an/sc/cab/hold/direct/emb/fee/as/af), le repartageait avec
-       * les mêmes champs non fiables, encore une fois. Le patch d'origine empêchait leur RENDU,
-       * pas leur PROPAGATION vers un tiers via ce bouton précis. Reconstruit maintenant depuis une
-       * liste blanche des seuls paramètres canoniques (mêmes que ceux encore écrits par le Finder
-       * après sa propre correction du même jour) — jamais depuis l'URL brute de la page. */
-      const shareParams = new URLSearchParams();
-      if (from) shareParams.set("from", from);
-      if (to) shareParams.set("to", to);
-      if (airId) shareParams.set("air", airId);
-      if (breed) shareParams.set("breed", breed);
-      if (bid) shareParams.set("bid", bid);
-      if (w) shareParams.set("w", w);
-      if (rep) shareParams.set("eu_passport", rep);
-      const shareUrl = location.origin + location.pathname + "#" + shareParams.toString();
+      /* Résidu Option B corrigé (contre-revue Codex, 10/08/2026), généralisé au tour 5 : ce lien
+       * "partager par email" reprenait `location.href` tel quel — donc, pour un visiteur arrivé
+       * par une URL forgée ou une ancienne URL déjà partagée, le repartageait avec les mêmes
+       * champs non fiables. Il puise maintenant directement dans `canon` (construit plus haut,
+       * une seule fois pour toute la page — rendu, mailto, liens internes et liens de langue) au
+       * lieu de reconstruire sa propre liste blanche séparée, qui pouvait diverger de celle-ci. */
+      const shareUrl = location.origin + location.pathname + "#" + canon.toString();
       const emailBody = encodeURIComponent(shareUrl);
 
       el.innerHTML = `

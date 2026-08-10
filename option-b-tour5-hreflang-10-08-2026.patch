@@ -1,0 +1,507 @@
+diff --git a/docs/inventaire-15-10-08-2026/14-verifications-necessitant-philippe.md b/docs/inventaire-15-10-08-2026/14-verifications-necessitant-philippe.md
+index 4e63842..59bcdd6 100644
+--- a/docs/inventaire-15-10-08-2026/14-verifications-necessitant-philippe.md
++++ b/docs/inventaire-15-10-08-2026/14-verifications-necessitant-philippe.md
+@@ -23,7 +23,7 @@
+ - État du V2 en production (page d'accueil) — confirmé par test HTTP/navigateur public, document 10 DR-01.
+ - Collision de nom entre les deux Workers avec effet réel (404 sur les routes legacy) — confirmé par test HTTP public, document 02 §3bis.
+ - **Staleness du Worker de production par rapport à `origin/main`** — **correction (contre-revue Codex, 10/08/2026, tour 3) : cette ligne était contradictoire avec la correction apportée au document 10/00/09 et est retirée du statut « confirmé ».** Le test HTTP public (règle Melbourne absente) avait initialement fait conclure à une staleness réelle ; un retest avec paramètre anti-cache a immédiatement montré le résultat correct, révélant qu'une couche de cache non localisée avait servi une réponse ancienne, pas le Worker. Ce point n'est donc **pas** tranché : voir plutôt le point 3 ci-dessus (historique des déploiements Worker, à vérifier directement) et document 10/00/09 pour le diagnostic corrigé.
+-- Vulnérabilité de falsification de `fiche.astro` — confirmée par lecture de code + test navigateur réel, document 10 #2 et document 11.
++- Vulnérabilité de falsification de `fiche.astro` — confirmée par lecture de code + test navigateur réel, document 10 #2 et document 11. **Mise à jour (contre-revue Codex, tour 5, 10/08/2026)** : un troisième canal de propagation, non couvert par Option B ni par le correctif mailto du tour 4, a été trouvé et corrigé — voir document 16 §« Tour 5 » pour le détail complet (canal, correctif, preuve d'ordre d'exécution en navigateur réel, 336 vérifications).
+ 
+ ## Ce que Claude ne demande jamais
+ 
+diff --git a/docs/inventaire-15-10-08-2026/16-patch-option-b-fiche-10-08-2026.md b/docs/inventaire-15-10-08-2026/16-patch-option-b-fiche-10-08-2026.md
+index eec99ea..300ca6a 100644
+--- a/docs/inventaire-15-10-08-2026/16-patch-option-b-fiche-10-08-2026.md
++++ b/docs/inventaire-15-10-08-2026/16-patch-option-b-fiche-10-08-2026.md
+@@ -262,3 +262,117 @@ Aucun bandeau `bhead__r`/`bscore`, aucune carte « vol ». Le corps (socle, chro
+ 
+ - `option-b-fiche-10-08-2026.patch` — le diff ci-dessus, applicable avec `git apply` depuis la racine du dépôt sur `origin/main` (SHA `5e4156d78cdd963e2ba28352bfa375e4c3d3fe82` ou plus récent — le fichier n'a pas été retouché depuis).
+ - `test-fiche-harness.cjs` — le script de test, à exécuter depuis la racine du dépôt après `npm install jsdom --no-save` et `npm run build`, pour permettre à Codex de reproduire indépendamment ces 52 vérifications sur son propre build.
++
++---
++
++## Tour 4 (10/08/2026, contre-revue Codex) — le `mailto:` propageait encore les paramètres non fiables
++
++Le patch ci-dessus empêchait le RENDU des champs non fiables, mais le bouton « partager par email » de la fiche construisait son corps de message avec `encodeURIComponent(location.href)` — c'est-à-dire l'URL brute de la page, forgée ou non. Un visiteur arrivé par un lien piégé qui cliquait « partager » repropageait donc le même contenu forgé (nom de compagnie inventé, `evil.example.com`…) vers un tiers, par email. Le harness de test masquait ce trou en excluant explicitement le lien `mailto:` de ses vérifications de fuite (raisonnement erroné : « partager un lien inclut légitimement l'URL » — vrai pour un lien propre, faux quand l'URL elle-même est le problème).
++
++**Correctif** : le corps du mailto est reconstruit depuis une liste blanche de sept paramètres canoniques (`from`, `to`, `air`, `breed`, `bid`, `w`, `eu_passport`), jamais depuis `location.href`. `FlightFinder.astro` a été corrigé en parallèle pour arrêter d'ÉCRIRE les anciens champs non fiables (nom de compagnie, score, cabine/soute/fret, tarif, embargo, liens sortants compagnie) dans les liens qu'il construit vers la fiche — il n'écrit plus que ces sept mêmes champs. Le harness a été mis à jour : le lien mailto n'est plus exclu des vérifications (il est maintenant sûr), et un scénario reproduit l'URL exacte que le Finder génère aujourd'hui. Commit poussé sur `origin/main` : `51d0be1`.
++
++## Tour 5 (10/08/2026, contre-revue Codex) — un troisième canal, jamais couvert : les liens de langue du header
++
++### Le résidu trouvé par Codex, en test navigateur réel
++
++`Base.astro` porte un mécanisme *site-wide* (pas propre à `fiche.astro`) qui préserve la race/destination choisie quand un visiteur change de langue : au chargement de n'importe quelle page, il recopie `location.hash` **brut** dans les quatre liens `<a hreflang>` du sélecteur de langue du header (FR/EN/ES/PT) — code présent depuis avant Option B, jamais retouché par les tours 1 à 4 :
++
++```js
++window.addEventListener("DOMContentLoaded", function () {
++  var f = location.hash;
++  if (!f || f.length < 2) return;
++  document.querySelectorAll("a[hreflang]").forEach(function (a) {
++    var h = a.getAttribute("href");
++    if (h && h.indexOf("#") < 0) a.setAttribute("href", h + f);
++  });
++});
++```
++
++Ni Option B (tour 3) ni le correctif mailto (tour 4) ne touchaient ce mécanisme, et notre harness ne l'exécutait jamais : il ne chargeait que le bundle client de `fiche.astro`, jamais le script `is:inline` de `Base.astro` qui définit ce comportement. Résultat, trouvé par Codex en testant un vrai navigateur plutôt que jsdom : sur une URL forgée de `/tools/fiche`, les 4 liens de langue visibles dans le DOM (inspectables, cliquables) portaient encore `an=FAUSSE COMPAGNIE`, `evil.example.com`, `sc=100`, etc. — visibles, bien que plus rien de tout cela ne soit RENDU dans la page elle-même, et qu'aucun lien HTTP sortant malveillant ne survive (Option B avait déjà neutralisé `as`/`af`).
++
++### Le correctif
++
++Un objet unique de paramètres validés (`canon`, une `URLSearchParams`) est construit une seule fois, au tout début du script client de `fiche.astro`, et réécrit immédiatement l'URL de la page via `history.replaceState` :
++
++```js
++const canon = new URLSearchParams();
++const from = (P.get("from") || "").toLowerCase();
++const to = (P.get("to") || "").toLowerCase();
++const O = DATA[from], D = DATA[to];
++if (O) canon.set("from", from);
++if (D) canon.set("to", to);
++const rawAir = P.get("air") || "";
++if (KNOWN_AIRLINES.has(rawAir)) canon.set("air", rawAir);
++const breedLabel = asBreedLabel(P.get("breed") || "");
++if (breedLabel) canon.set("breed", breedLabel);
++const rawBid = P.get("bid") || "";
++if (KNOWN_BREEDS.has(rawBid)) canon.set("bid", rawBid);
++const weight = asWeight(P.get("w") || "");
++if (weight) canon.set("w", weight);
++const rawRep = (P.get("eu_passport") || "").toLowerCase();
++if (rawRep === "yes" || rawRep === "no") canon.set("eu_passport", rawRep);
++try {
++  const canonHash = "#" + canon.toString();
++  if (location.hash !== canonHash) history.replaceState(null, "", location.pathname + canonHash);
++} catch (e) { /* history.replaceState indisponible (ex. contexte de test) : le rendu reste sûr */ }
++```
++
++Le rendu de la page, le lien mailto (tour 4) et les liens internes (caisse/chaleur/pays, qui utilisaient jusqu'ici `airId`/`bid` lus directement depuis l'URL) puisent désormais tous dans ce même `canon` — un seul canal de vérité, plus une copie par usage qui pouvait diverger entre elles. Tout champ absent de la liste blanche disparaît de l'URL elle-même, pas seulement du rendu.
++
++**Pourquoi l'ordre d'exécution tient, garanti par la spécification HTML — pas par chance** : le script client de `fiche.astro` est un `<script type="module">` (Astro le hisse dans un bundle externe). Un script de module est différé par défaut : il s'exécute après le parsing du document, mais **toujours avant** l'événement `DOMContentLoaded`. Le script `is:inline` de `Base.astro`, lui, s'exécute de façon synchrone pendant le parsing (script classique, sans `defer`/`async`) — mais il ne fait qu'ENREGISTRER l'écouteur `DOMContentLoaded` à ce moment-là ; le CORPS de l'écouteur (qui lit `location.hash` et le recopie dans les liens de langue) ne s'exécute que quand l'événement se déclenche réellement, c'est-à-dire après que notre `history.replaceState` a déjà eu lieu. `history.replaceState` ne déclenche pas non plus `hashchange` (vérifié dans la spec et en navigateur réel) : le mécanisme de rechargement de `Base.astro` sur changement de dièse (`window.addEventListener("hashchange", ...)`) n'est donc pas perturbé.
++
++### Validation par champ (au-delà de la simple présence, demandée par Codex)
++
++| Champ | Règle | Source de la liste/borne |
++|---|---|---|
++| `air` | doit exister dans la liste des compagnies connues | `C.logos` (déjà exposé au client, 76 compagnies avec logo — Option B tour 1) |
++| `bid` | doit exister dans la liste des races connues | `C.breedIds`, nouvellement exposé (`loadKB().breeds`, ajouté au frontmatter server-side de `fiche.astro`) |
++| `eu_passport` | doit valoir exactement `yes` ou `no` | `regles-retour-ue-passeport.mjs` (les trois états du moteur — absent ≠ une valeur, cf. commentaire déjà en place) |
++| `w` | numérique, `0 < w ≤ 120` | `packages/engine/src/contracts.ts`, `weight_kg: z.number().positive().max(120)` — le plafond du moteur, pas la limite plus basse (100) du seul message d'alerte du Finder, purement indicative |
++| `bid` absent mais `breed` (texte libre) présent | conservé, mais assaini | caractères de contrôle retirés, longueur plafonnée à 60 caractères — Codex autorisait explicitement ce champ à rester libre |
++| `from`/`to` | doivent exister dans les fiches pays (`DATA`) | déjà la condition de rendu existante (`if (!O || !D)`), maintenant réutilisée pour la canonicalisation elle-même |
++
++### Preuve en navigateur réel (pas seulement jsdom)
++
++Le harness jsdom (ci-dessous) simule le DOM et l'ordre d'exécution, mais la garantie d'ordre repose sur le comportement réel d'un moteur de rendu, pas sur ce que jsdom choisit d'implémenter. Vérifié séparément avec Playwright + Chromium, sur le build local (`astro dev`), URL forgée identique à celle du harness :
++
++```
++URL : /fr/tools/fiche/#from=us&to=fr&an=FAUSSE COMPAGNIE&sc=100&air=evilair&bid=carlin&as=https://evil.example.com/book
++
++Après chargement complet (DOMContentLoaded déclenché) :
++  location.hash → "#from=us&to=fr"
++  <a hreflang="en"> href="/tools/fiche/#from=us&to=fr"
++  <a hreflang="fr"> href="/fr/tools/fiche/#from=us&to=fr"
++  <a hreflang="es"> href="/es/tools/fiche/#from=us&to=fr"
++  <a hreflang="pt"> href="/pt/tools/fiche/#from=us&to=fr"
++```
++
++Aucune trace de `FAUSSE COMPAGNIE`, `evil.example.com`, `evilair`, `carlin`, `sc=100`, dans le DOM ni dans les 4 liens de langue. Contre-épreuve sur une URL légitime complète (les 7 champs, tous valides) : tout survit à l'identique, dans le hash, les 4 liens de langue et le corps du mailto — aucune sur-correction.
++
++### Tests étendus — méthode et résultat
++
++Le harness (`test-fiche-harness.cjs`) charge désormais, en plus du bundle client de `fiche.astro`, le script `is:inline` de `Base.astro` extrait tel quel du HTML construit (aucune transformation Astro sur un script `is:inline` — il est présent littéralement dans chaque page). Quatre liens `<a hreflang>` factices, à l'image du header réel (`Header.astro`), sont injectés dans le DOM de test avant le chargement. Les deux scripts s'exécutent dans le même ordre que sur la vraie page (Base.astro puis le bundle fiche), suivi d'un unique `dispatchEvent(new Event("DOMContentLoaded"))` — reproduisant fidèlement la séquence réelle plutôt que de la contourner.
++
++Quatre scénarios par langue (le troisième, « ancienne URL déjà partagée », et le quatrième, « URL exacte du Finder », déjà présents depuis le tour 4) :
++
++1. **URL forgée**, désormais enrichie d'un `air`/`bid` inconnus, d'un poids hors bornes (500 kg) et d'une race truffée de caractères de contrôle et de longueur excessive — teste toute la validation par champ, pas seulement la présence des anciens champs de verdict.
++2. **URL légitime** (sans compagnie/race choisie).
++3. **Ancienne URL déjà partagée** (`air=airline_air_france`, un vrai identifiant — doit survivre ; `an`/`sc`/`cab`/`hold`/`direct` doivent disparaître).
++4. **URL exacte générée aujourd'hui par le Finder** (les 7 champs, tous des identifiants réels) — test de non-régression : rien n'est perdu quand tout est légitime.
++
++Pour chacun, en plus des vérifications déjà existantes sur le rendu et le mailto : l'URL canonique elle-même (`location.hash` post-`replaceState`) et les 4 liens `<a hreflang>` post-`DOMContentLoaded` sont inspectés — clés autorisées uniquement, aucune valeur forgée, quelle que soit la langue de la page testée.
++
++**336 vérifications exécutées (84 par langue × 4 langues), toutes passées** :
++
++```
++$ node test-fiche-harness.cjs
++[...]
++=== SUMMARY ===
++ALL CHECKS PASSED
++```
++
++### Fichiers livrés (tour 5)
++
++- `option-b-tour5-hreflang-10-08-2026.patch` — diff isolé de `fiche.astro` (canonicalisation + `history.replaceState` + liste blanche breedIds côté serveur) et de `test-fiche-harness.cjs` (chargement du script Base.astro, liens hreflang factices, nouvelles assertions), applicable sur `origin/main` au SHA `4c5770e` (inclut déjà les tours 1 à 4 et le lot émblème).
++- Ce document, mis à jour.
++- Document 14, point « déjà tranchées », mis à jour avec un renvoi vers cette section.
+diff --git a/packages/ui/src/pages/[...loc]/tools/fiche.astro b/packages/ui/src/pages/[...loc]/tools/fiche.astro
+index 1630f3f..7fcec05 100644
+--- a/packages/ui/src/pages/[...loc]/tools/fiche.astro
++++ b/packages/ui/src/pages/[...loc]/tools/fiche.astro
+@@ -1,5 +1,5 @@
+ ---
+-import { inlineT } from "@mydogcanfly/knowledge";
++import { inlineT, loadKB } from "@mydogcanfly/knowledge";
+ // Bible — bespoke, noindex "travel sheet" reached from the Finder results (one airline chosen).
+ // Fully data-driven: the chronology is assembled client-side from countryData (origin + destination),
+ // the airline snapshot travels in the URL. A shareable permalink; it never re-calls the engine.
+@@ -254,8 +254,14 @@ const CAS_ES = ["braquicéfala","braquicéfalo","escala","tránsito","estancia r
+    passeport sur des trajets que la source ne couvre pas. */
+ const EU_ISO2 = ["at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de", "gr", "hu", "ie",
+   "it", "lv", "lt", "lu", "mt", "nl", "pl", "pt", "ro", "sk", "si", "es", "se"];
++/* Résidu Option B, tour 5 (contre-revue Codex, 10/08/2026) : liste blanche des identifiants de
++ * race connus (`kb.breeds`, la même Map que Header.astro/FlightFinder.astro utilisent déjà pour
++ * peupler leurs propres listes), exposée ici pour que le script client puisse valider `bid` avant
++ * de le réécrire dans l'URL canonique — même logique que `logos` (compagnies) juste en dessous,
++ * déjà exposé et déjà utilisé comme liste blanche pour `air`. */
++const breedIds = [...loadKB().breeds.keys()];
+ const cfg = { locale, base, countryBase: base + "/countries/", breedBase: base + "/breeds/", crateBase: base + "/tools/crate/", heatBase: base + "/tools/heat/",
+-  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, euIso: EU_ISO2, T };
++  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, breedIds, euIso: EU_ISO2, T };
+ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La ficha de viaje de tu perro");
+ ---
+ <Base locale={locale} title={`${title} — MyDogCanFly`} description={T.eyebrow} noindex={true}>
+@@ -293,9 +299,56 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+     const P = window.mdcfQuery();
+     const el = document.getElementById("bible");
+ 
++    /* Résidu Option B, tour 5 (contre-revue Codex, 10/08/2026) — voir aussi le commentaire du
++     * lien "partager par email" plus bas, dont ce bloc généralise maintenant le principe à toute
++     * la page. Le dièse est forgeable (URL partagée, modifiée à la main, ou copiée d'un lien
++     * pré-Option B) : jusqu'ici seuls le RENDU de cette page et le corps du mailto en tenaient
++     * compte. Un troisième canal n'était couvert par rien : Base.astro recopie `location.hash`
++     * BRUT dans les 4 liens `<a hreflang>` du sélecteur de langue du header (pour que changer de
++     * langue ne perde pas la race/destination choisie) — une URL forgée y réapparaissait donc
++     * telle quelle, visible dans le DOM, y compris des champs qu'Option B avait pourtant arrêté
++     * d'afficher (nom de compagnie inventé, `evil.example.com`…).
++     *
++     * Un objet UNIQUE de paramètres validés (`canon`) est construit ici, une seule fois, et
++     * réécrit IMMÉDIATEMENT l'URL via `history.replaceState` — avant que le DOMContentLoaded de
++     * Base.astro (qui fait la recopie vers les liens de langue) ne s'exécute. Ordre garanti par
++     * la spec HTML : un script de module s'exécute après le parsing du document mais toujours
++     * avant DOMContentLoaded ; vérifié ici en navigateur réel, pas seulement en test jsdom (voir
++     * test-fiche-harness.cjs). Le rendu, le lien mailto et les liens internes (caisse/chaleur/
++     * pays) puisent tous dans ce même `canon` — un seul canal de vérité, plus une copie par
++     * usage qui pouvait diverger. Tout champ absent de cette liste blanche disparaît de l'URL. */
++    const KNOWN_AIRLINES = new Set(Object.keys(C.logos || {}));
++    const KNOWN_BREEDS = new Set(C.breedIds || []);
++    // Plafond aligné sur le moteur (packages/engine/src/contracts.ts, weight_kg: positive().max(120)) —
++    // pas la limite plus basse (100) du seul message d'alerte du Finder, qui n'est qu'indicative.
++    const asWeight = (v) => { const n = Number(v); return Number.isFinite(n) && n > 0 && n <= 120 ? String(n) : ""; };
++    // Race en texte libre : gardée si non vide (absente du référentiel n'est pas forcément un
++    // mensonge — beaucoup de visiteurs tapent un nom que le site ne reconnaît pas), mais
++    // normalisée (pas de caractères de contrôle) et plafonnée pour qu'un lien ne puisse pas
++    // transporter indéfiniment une chaîne arbitraire.
++    const asBreedLabel = (v) => v.replace(/[\x00-\x1f\x7f]/g, "").trim().slice(0, 60);
++
++    const canon = new URLSearchParams();
+     const from = (P.get("from") || "").toLowerCase();
+     const to = (P.get("to") || "").toLowerCase();
+     const O = DATA[from], D = DATA[to];
++    if (O) canon.set("from", from);
++    if (D) canon.set("to", to);
++    const rawAir = P.get("air") || "";
++    if (KNOWN_AIRLINES.has(rawAir)) canon.set("air", rawAir);
++    const breedLabel = asBreedLabel(P.get("breed") || "");
++    if (breedLabel) canon.set("breed", breedLabel);
++    const rawBid = P.get("bid") || "";
++    if (KNOWN_BREEDS.has(rawBid)) canon.set("bid", rawBid);
++    const weight = asWeight(P.get("w") || "");
++    if (weight) canon.set("w", weight);
++    const rawRep = (P.get("eu_passport") || "").toLowerCase();
++    if (rawRep === "yes" || rawRep === "no") canon.set("eu_passport", rawRep);
++    try {
++      const canonHash = "#" + canon.toString();
++      if (location.hash !== canonHash) history.replaceState(null, "", location.pathname + canonHash);
++    } catch (e) { /* history.replaceState indisponible (ex. contexte de test) : le rendu reste sûr, seule la réécriture d'URL est sautée */ }
++
+     if (!O || !D) { /* keep the empty hint */ }
+     else {
+       /* Option B (décision Philippe, 10/08/2026) : cette fiche est un lien profond partageable
+@@ -309,7 +362,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+        * dans le DOM — pas seulement masqués en CSS. Seule reste la chronologie des formalités
+        * pays, qui vient de `bible` (généré côté serveur depuis les données canoniques), jamais de
+        * la query string. */
+-      const breed = P.get("breed") || "", brachy = P.get("brachy") === "1", w = P.get("w") || "";
++      const breed = canon.get("breed") || "", w = canon.get("w") || "";
+ 
+       const key = (regime) => regime === "eu" ? "eu" : regime === "non_listed" ? "nonListed" : "listed";
+       const pill = (kind) => {
+@@ -323,7 +376,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+       // Outbound links carry the full context (airline, breed, destination) so nothing is lost on back-navigation.
+       // airId/bid restent utilisés uniquement comme contexte de navigation interne (liens vers
+       // les outils caisse/chaleur du site) — aucune donnée de verdict compagnie n'en dépend.
+-      const airId = P.get("air") || "", bid = P.get("bid") || "";
++      const airId = canon.get("air") || "", bid = canon.get("bid") || "";
+       const qs = (pairs) => { const q = pairs.filter((p) => p[1]).map((p) => p[0] + "=" + encodeURIComponent(p[1])).join("&"); return q ? "?" + q : ""; };
+       const addQ = (url, q) => q ? url + (url.indexOf("?") >= 0 ? "&" + q.slice(1) : q) : url;
+       const crateHref = C.crateBase + qs([["air", airId], ["breed", bid]]);
+@@ -356,7 +409,7 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+        * L'absence de réponse n'est jamais un « non ». Envoyer quelqu'un chez le vétérinaire faire
+        * endosser un certificat inutile coûte plus cher que lui faire lire deux paragraphes — et
+        * c'est ce que produirait le moindre défaut de prudence ici. */
+-      const rep = (P.get("eu_passport") || "").toLowerCase();
++      const rep = canon.get("eu_passport") || ""; // déjà limité à "yes"/"no" par `canon`, cf. plus haut
+       const montrePasseport = rep !== "no";     // yes + absent (et tout héritage inconnu)
+       const montreCertificat = rep !== "yes";   // no  + absent (et tout héritage inconnu)
+       /* Le cas se pose sur une ARRIVÉE dans l'Union depuis un pays tiers — jamais ailleurs.
+@@ -670,22 +723,13 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
+           <div class="bstep__b">${body}</div></div></div>`;
+ 
+       const sourcesAll = [...(O.sources || []), ...(D.sources || [])];
+-      /* Résidu Option B corrigé (contre-revue Codex, 10/08/2026) : ce lien "partager par email"
+-       * reprenait `location.href` tel quel — donc, pour un visiteur arrivé par une URL forgée ou
+-       * une ancienne URL déjà partagée (an/sc/cab/hold/direct/emb/fee/as/af), le repartageait avec
+-       * les mêmes champs non fiables, encore une fois. Le patch d'origine empêchait leur RENDU,
+-       * pas leur PROPAGATION vers un tiers via ce bouton précis. Reconstruit maintenant depuis une
+-       * liste blanche des seuls paramètres canoniques (mêmes que ceux encore écrits par le Finder
+-       * après sa propre correction du même jour) — jamais depuis l'URL brute de la page. */
+-      const shareParams = new URLSearchParams();
+-      if (from) shareParams.set("from", from);
+-      if (to) shareParams.set("to", to);
+-      if (airId) shareParams.set("air", airId);
+-      if (breed) shareParams.set("breed", breed);
+-      if (bid) shareParams.set("bid", bid);
+-      if (w) shareParams.set("w", w);
+-      if (rep) shareParams.set("eu_passport", rep);
+-      const shareUrl = location.origin + location.pathname + "#" + shareParams.toString();
++      /* Résidu Option B corrigé (contre-revue Codex, 10/08/2026), généralisé au tour 5 : ce lien
++       * "partager par email" reprenait `location.href` tel quel — donc, pour un visiteur arrivé
++       * par une URL forgée ou une ancienne URL déjà partagée, le repartageait avec les mêmes
++       * champs non fiables. Il puise maintenant directement dans `canon` (construit plus haut,
++       * une seule fois pour toute la page — rendu, mailto, liens internes et liens de langue) au
++       * lieu de reconstruire sa propre liste blanche séparée, qui pouvait diverger de celle-ci. */
++      const shareUrl = location.origin + location.pathname + "#" + canon.toString();
+       const emailBody = encodeURIComponent(shareUrl);
+ 
+       el.innerHTML = `
+diff --git a/test-fiche-harness.cjs b/test-fiche-harness.cjs
+index 9cd8848..9d6d430 100644
+--- a/test-fiche-harness.cjs
++++ b/test-fiche-harness.cjs
+@@ -19,20 +19,29 @@ const LOCALES = [
+ const DIST = path.join(__dirname, "packages/ui/dist");
+ 
+ // Forged URL: fake airline name, fake score, all capability flags forced true, an embargo flag,
+-// a fee, and outbound links pointing at an attacker-controlled domain — exactly what Option B
+-// must stop from ever reaching the DOM.
++// a fee, outbound links pointing at an attacker-controlled domain, a made-up airline id
++// (`evilair`, absent de la liste des 76 compagnies connues), un identifiant de race inventé
++// (`zzz_not_a_real_breed` — le vrai id du carlin serait `breed_pug`), un poids hors bornes
++// (500 kg) et une race en texte
++// libre truffée de caractères de contrôle et bien trop longue — exactement ce que le tour 5
++// (validation par champ, contre-revue Codex 10/08/2026) doit maintenant arrêter EN PLUS de ce
++// qu'Option B arrêtait déjà.
+ const FORGED_QS =
+   "from=us&to=fr&an=" + encodeURIComponent("FAUSSE COMPAGNIE") +
+   "&sc=100&cab=1&hold=1&cargo=1&direct=1&fee=" + encodeURIComponent("0€ garanti") +
+   "&emb=1&as=" + encodeURIComponent("https://evil.example.com/book") +
+   "&af=" + encodeURIComponent("https://evil.example.com/fiche") +
+-  "&air=evilair&bid=carlin&breed=Carlin&brachy=1&w=8";
++  "&air=evilair&bid=zzz_not_a_real_breed&breed=" + encodeURIComponent("Berger\x00\x07" + "X".repeat(200)) +
++  "&brachy=1&w=500&eu_passport=maybe";
+ 
+-// Legitimate Finder-style URL: a real country pair + dog context.
+-const LEGIT_QS = "from=fr&to=us&breed=Labrador&w=25&eu_passport=1";
++// Legitimate Finder-style URL: a real country pair + dog context, no airline/breed id (both
++// optional — un visiteur qui n'a pas encore choisi de compagnie précise a quand même une fiche
++// utile, la chronologie pays ne dépend d'aucun des deux).
++const LEGIT_QS = "from=fr&to=us&breed=Labrador&w=25&eu_passport=yes";
+ 
+-// Old-style shared link: pre-patch FlightFinder used to embed an/sc/cab/hold/direct/air. This
+-// simulates an already-shared URL from BEFORE this patch, which must now render safely too.
++// Old-style shared link: pre-patch FlightFinder used to embed an/sc/cab/hold/direct/air. `air`
++// est un VRAI identifiant de compagnie (airline_air_france) — ce scénario doit donc le voir
++// survivre à la validation, seuls les champs de verdict disparaissent.
+ const OLD_SHARED_QS =
+   "from=fr&to=us&an=" + encodeURIComponent("Air France") +
+   "&sc=87&cab=1&hold=1&direct=1&air=airline_air_france&breed=Labrador&w=25";
+@@ -40,9 +49,15 @@ const OLD_SHARED_QS =
+ // Exact URL FlightFinder.astro generates today (10/08/2026 fix, contre-revue Codex) — only the
+ // whitelisted context params: from/to/air/breed/bid/w/eu_passport. No more an/sc/cab/hold/cargo/
+ // direct/emb/fee/as/af. Mirrors packages/ui/src/components/FlightFinder.astro lines ~458-473.
++// `air`/`bid` sont de VRAIS identifiants (airline_air_france / breed_labrador_retriever) —
++// FlightFinder ne les écrit que depuis ses propres listes connues, jamais à la main.
+ const FINDER_QS =
+   "from=fr&to=us&air=airline_air_france&breed=" + encodeURIComponent("Labrador") +
+-  "&bid=labrador&w=25&eu_passport=1";
++  "&bid=breed_labrador_retriever&w=25&eu_passport=yes";
++
++// Only the 7 canonical keys, in this order — the exhaustive whitelist that `canon` (fiche.astro)
++// must reduce every scenario down to. Tout le reste doit disparaître, quelle que soit sa valeur.
++const WHITELISTED_KEYS = ["from", "to", "air", "breed", "bid", "w", "eu_passport"];
+ 
+ function loadPageParts(localeDir) {
+   const htmlPath = path.join(DIST, localeDir, "tools/fiche/index.html");
+@@ -60,32 +75,57 @@ function loadPageParts(localeDir) {
+   });
+   if (!target) throw new Error("could not locate the fiche client bundle among: " + candidates.join(", "));
+   const clientScript = fs.readFileSync(target, "utf8");
+-  return { bibleData, bibleCfg, clientScript, bundlePath: target };
++  // Résidu Option B, tour 5 (contre-revue Codex, 10/08/2026) : Base.astro porte un mécanisme
++  // site-wide (script `is:inline`, donc littéralement présent dans le HTML de CHAQUE page, pas
++  // hissé dans un bundle séparé) qui définit `window.mdcfQuery`/`mdcfAncre`/`mdcfPut` et recopie
++  // `location.hash` brut dans les liens `<a hreflang>` du sélecteur de langue au chargement.
++  // Le harness ne le chargeait jamais jusqu'ici — c'est exactement le trou que Codex a trouvé en
++  // navigateur réel et qu'aucun de nos tests jsdom n'aurait pu voir. On l'extrait ici tel quel
++  // (aucune transformation Astro sur un script is:inline) pour l'exécuter avant le bundle fiche,
++  // dans le même ordre que sur la vraie page.
++  const baseScripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
++  const baseScript = baseScripts.find((s) => s.includes("mdcfQuery") && s.includes("hreflang"));
++  if (!baseScript) throw new Error("could not locate Base.astro's inline mdcfQuery/hreflang script in " + htmlPath);
++  return { bibleData, bibleCfg, clientScript, baseScript, bundlePath: target };
+ }
+ 
+ function run(localeDir, qs) {
+-  const { bibleData, bibleCfg, clientScript } = loadPageParts(localeDir);
++  const { bibleData, bibleCfg, clientScript, baseScript } = loadPageParts(localeDir);
++  // Quatre liens de langue factices, à l'image du header réel (Header.astro, `a.hdr__langopt`) :
++  // au chargement, AUCUN ne porte de dièse — c'est précisément ce que Base.astro leur ajoute.
++  const langHrefs = { en: "/tools/fiche/", fr: "/fr/tools/fiche/", es: "/es/tools/fiche/", pt: "/pt/tools/fiche/" };
++  const langLinksHtml = Object.entries(langHrefs)
++    .map(([code, href]) => `<a class="hdr__langopt" href="${href}" hreflang="${code}" data-lang="${code}">${code.toUpperCase()}</a>`)
++    .join("\n      ");
+   const dom = new JSDOM(
+     `<!doctype html><html><body>
++      <div class="hdr__lang" role="group" aria-label="Language">
++      ${langLinksHtml}
++      </div>
+       <div id="bible" class="bible"><p class="bible__empty">loading</p></div>
+       <div id="bible-tools" hidden></div>
+       <script type="application/json" id="bible-data">${bibleData}</script>
+       <script type="application/json" id="bible-cfg">${bibleCfg}</script>
+     </body></html>`,
+-    { url: "https://mydogcanfly.com/tools/fiche?" + qs, runScripts: "outside-only" }
++    // Le dièse, pas la requête : c'est la convention réelle du site (mdcfQuery lit location.hash
++    // en premier, cf. Base.astro) — utiliser `?` ici masquerait justement le canal testé.
++    { url: "https://mydogcanfly.com/tools/fiche#" + qs, runScripts: "outside-only" }
+   );
+   const { window } = dom;
+-  window.mdcfQuery = () => new window.URLSearchParams(qs);
+-  window.mdcfPut = (href) => href;
+   try {
+-    // The bundle is emitted as an ES module: it may start with an `import "./other.js"` for an
+-    // unrelated hoisted script (here, the mobile-nav menu wiring — irrelevant to bible rendering)
+-    // and end with `export {};`. Strip both so eval() as a plain classic script works; nothing
+-    // about the fiche-rendering logic itself is touched.
++    // 1) Base.astro d'abord : définit la VRAIE window.mdcfQuery (plus un stub), et enregistre les
++    //    écouteurs DOMContentLoaded/hashchange — exactement l'ordre du chargement réel de la page.
++    dom.window.eval(baseScript);
++    // 2) Le bundle fiche ensuite : lit window.mdcfQuery(), construit `canon`, appelle
++    //    history.replaceState, puis rend #bible. Toujours un module ES : mêmes nettoyages qu'avant.
+     const script = clientScript
+       .replace(/^import\s*"[^"]*";?\s*/m, "")
+       .replace(/\bexport\s*\{\s*\};?\s*$/m, "");
+     dom.window.eval(script);
++    // 3) DOMContentLoaded, une seule fois — déclenche les écouteurs de Base.astro (dont la recopie
++    //    vers les liens hreflang), après coup, comme dans un vrai navigateur : les scripts de
++    //    module s'exécutent avant cet événement, jamais après.
++    dom.window.document.dispatchEvent(new dom.window.Event("DOMContentLoaded", { bubbles: true, cancelable: true }));
+   } catch (e) {
+     return { error: e.stack || e.message, html: dom.window.document.getElementById("bible").innerHTML };
+   }
+@@ -96,7 +136,14 @@ function run(localeDir, qs) {
+   // sûr que le reste du rendu — on ne l'exclut plus des vérifications de fuite, on l'inclut.
+   const mailtoMatch = raw.match(/<a class="bbtn" href="mailto:([^"]*)"[^>]*>/);
+   const mailtoHref = mailtoMatch ? decodeURIComponent(mailtoMatch[1].replace(/&amp;/g, "&")) : null;
+-  return { html: raw, raw, mailtoHref, error: null };
++  // Résidu Option B, tour 5 : les 4 liens de langue, après le DOMContentLoaded de Base.astro —
++  // c'est le canal que Codex a trouvé non couvert. Doivent ne porter QUE le dièse canonique.
++  const hreflangHrefs = {};
++  for (const a of dom.window.document.querySelectorAll("a[hreflang]")) {
++    hreflangHrefs[a.getAttribute("hreflang")] = a.getAttribute("href");
++  }
++  const canonicalHash = dom.window.location.hash;
++  return { html: raw, raw, mailtoHref, hreflangHrefs, canonicalHash, error: null };
+ }
+ 
+ let failures = 0;
+@@ -109,6 +156,26 @@ function check(label, cond) {
+   }
+ }
+ 
++// Résidu Option B, tour 5 : vérifie que les 4 liens de langue (le canal trouvé par Codex) ne
++// portent, après DOMContentLoaded, que les clés listées dans `expectedKeys` — jamais une clé
++// hors liste blanche, jamais une valeur brute forgée. `label` sert juste à l'affichage.
++function checkHreflang(label, result, expectedKeys) {
++  const hrefs = result.hreflangHrefs || {};
++  const codes = Object.keys(hrefs);
++  check(`${label}: 4 liens hreflang présents`, codes.length === 4);
++  for (const code of codes) {
++    const href = hrefs[code] || "";
++    const hashIdx = href.indexOf("#");
++    check(`${label}: lien ${code} porte un dièse`, hashIdx >= 0);
++    const frag = hashIdx >= 0 ? href.slice(hashIdx + 1) : "";
++    const keys = [...new URLSearchParams(frag).keys()].sort();
++    check(`${label}: lien ${code} ne porte que ${expectedKeys.join("/") || "(rien)"}`,
++      keys.join(",") === [...expectedKeys].sort().join(","));
++    check(`${label}: lien ${code} sans evil.example.com/FAUSSE COMPAGNIE/zzz_not_a_real_breed/evilair`,
++      !/evil\.example\.com|FAUSSE COMPAGNIE|zzz_not_a_real_breed|evilair/i.test(href));
++  }
++}
++
+ for (const { code, dir } of LOCALES) {
+   console.log("\n=== locale: " + code + " ===");
+ 
+@@ -132,12 +199,23 @@ for (const { code, dir } of LOCALES) {
+     check("mailto body has no 'FAUSSE COMPAGNIE'", !forged.mailtoHref || !forged.mailtoHref.includes("FAUSSE COMPAGNIE"));
+     check("mailto body has no evil.example.com", !forged.mailtoHref || !forged.mailtoHref.toLowerCase().includes("evil.example.com"));
+     check("mailto body has no sc=100 / cab / hold / cargo / emb / fee / as / af / an params", !forged.mailtoHref || !/[?&#](sc|cab|hold|cargo|emb|fee|as|af|an)=/.test(forged.mailtoHref));
+-    check("mailto body only carries whitelisted params (from/to/air/breed/bid/w/eu_passport)", !forged.mailtoHref || (() => {
++    check("mailto body only carries whitelisted params", !forged.mailtoHref || (() => {
+       const frag = forged.mailtoHref.split("#")[1] || "";
+       const keys = [...new URLSearchParams(frag).keys()];
+-      const allowed = new Set(["from", "to", "air", "breed", "bid", "w", "eu_passport"]);
+-      return keys.every((k) => allowed.has(k));
++      return keys.every((k) => WHITELISTED_KEYS.includes(k));
+     })());
++    // Résidu Option B, tour 5 (validation par champ) : `air=evilair` (inconnu), `bid=zzz_not_a_real_breed`
++    // (inconnu), `w=500` (>120), `eu_passport=maybe` (ni yes ni no) doivent tous disparaître de
++    // l'URL canonique elle-même — pas seulement du rendu ou du mailto. `breed` doit survivre,
++    // mais assaini (sans caractères de contrôle, plafonné à 60 caractères).
++    const canonKeys = [...new URLSearchParams(forged.canonicalHash.slice(1)).keys()].sort();
++    check("URL canonique : seulement from/to/breed (air/bid/w/eu_passport invalides, rejetés)",
++      canonKeys.join(",") === ["breed", "from", "to"].sort().join(","));
++    const canonBreed = new URLSearchParams(forged.canonicalHash.slice(1)).get("breed") || "";
++    check("URL canonique : breed sans caractères de contrôle", !/[\x00-\x1f\x7f]/.test(canonBreed));
++    check("URL canonique : breed plafonnée à 60 caractères", canonBreed.length <= 60);
++    check("URL canonique : from=us, to=fr (valides, conservés)", forged.canonicalHash.includes("from=us") && forged.canonicalHash.includes("to=fr"));
++    checkHreflang("forgée", forged, ["from", "to", "breed"]);
+   }
+ 
+   console.log("-- legitimate Finder URL --");
+@@ -151,6 +229,7 @@ for (const { code, dir } of LOCALES) {
+     check("no leftover airline verdict markup (bhead__r/bvolh/bscore)", !/bhead__r|bvolh|bscore/.test(h));
+     check("shows a step/chrono block (country formalities present)", /bstep|bchrono/.test(h));
+     check("mailto link present", !!legit.mailtoHref);
++    checkHreflang("légitime", legit, ["from", "to", "breed", "w", "eu_passport"]);
+   }
+ 
+   console.log("-- old already-shared URL (pre-patch style, carries an/sc/cab/hold) --");
+@@ -165,6 +244,11 @@ for (const { code, dir } of LOCALES) {
+     check("still renders content (no crash on legacy params)", h.length > 500);
+     check("mailto body has no 'Air France'", !old.mailtoHref || !old.mailtoHref.includes("Air France"));
+     check("mailto body has no sc=87 / cab / hold / direct params", !old.mailtoHref || !/[?&#](sc|cab|hold|direct|an)=/.test(old.mailtoHref));
++    // `air=airline_air_france` est un VRAI identifiant : il doit survivre à la validation, seuls
++    // les champs de verdict pré-Option B (an/sc/cab/hold/direct) disparaissent de l'URL elle-même.
++    check("URL canonique : an/sc/cab/hold/direct absents", !/[?&#](an|sc|cab|hold|direct)=/.test(old.canonicalHash));
++    check("URL canonique : air=airline_air_france conservé (identifiant réel)", old.canonicalHash.includes("air=airline_air_france"));
++    checkHreflang("ancienne URL partagée", old, ["from", "to", "air", "breed", "w"]);
+   }
+ 
+   console.log("-- exact URL generated today by FlightFinder.astro (from/to/air/breed/bid/w/eu_passport only) --");
+@@ -186,6 +270,15 @@ for (const { code, dir } of LOCALES) {
+       if (gotKeys.join(",") !== expKeys.join(",")) return false;
+       return expKeys.every((k) => got.get(k) === expected.get(k));
+     })());
++    // Tous les identifiants sont réels ici (air/bid) : rien ne doit être rejeté par la validation
++    // par champ — c'est le test de non-régression pour un lien légitime généré aujourd'hui.
++    check("URL canonique : les 7 paramètres du Finder survivent tous, identiques", (() => {
++      const got = new URLSearchParams(finder.canonicalHash.slice(1));
++      const expected = new URLSearchParams(FINDER_QS);
++      const gotKeys = [...got.keys()].sort(), expKeys = [...expected.keys()].sort();
++      return gotKeys.join(",") === expKeys.join(",") && expKeys.every((k) => got.get(k) === expected.get(k));
++    })());
++    checkHreflang("Finder", finder, WHITELISTED_KEYS);
+   }
+ }
+ 

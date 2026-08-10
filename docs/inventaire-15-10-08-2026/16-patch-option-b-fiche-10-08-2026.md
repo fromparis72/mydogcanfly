@@ -262,3 +262,117 @@ Aucun bandeau `bhead__r`/`bscore`, aucune carte « vol ». Le corps (socle, chro
 
 - `option-b-fiche-10-08-2026.patch` — le diff ci-dessus, applicable avec `git apply` depuis la racine du dépôt sur `origin/main` (SHA `5e4156d78cdd963e2ba28352bfa375e4c3d3fe82` ou plus récent — le fichier n'a pas été retouché depuis).
 - `test-fiche-harness.cjs` — le script de test, à exécuter depuis la racine du dépôt après `npm install jsdom --no-save` et `npm run build`, pour permettre à Codex de reproduire indépendamment ces 52 vérifications sur son propre build.
+
+---
+
+## Tour 4 (10/08/2026, contre-revue Codex) — le `mailto:` propageait encore les paramètres non fiables
+
+Le patch ci-dessus empêchait le RENDU des champs non fiables, mais le bouton « partager par email » de la fiche construisait son corps de message avec `encodeURIComponent(location.href)` — c'est-à-dire l'URL brute de la page, forgée ou non. Un visiteur arrivé par un lien piégé qui cliquait « partager » repropageait donc le même contenu forgé (nom de compagnie inventé, `evil.example.com`…) vers un tiers, par email. Le harness de test masquait ce trou en excluant explicitement le lien `mailto:` de ses vérifications de fuite (raisonnement erroné : « partager un lien inclut légitimement l'URL » — vrai pour un lien propre, faux quand l'URL elle-même est le problème).
+
+**Correctif** : le corps du mailto est reconstruit depuis une liste blanche de sept paramètres canoniques (`from`, `to`, `air`, `breed`, `bid`, `w`, `eu_passport`), jamais depuis `location.href`. `FlightFinder.astro` a été corrigé en parallèle pour arrêter d'ÉCRIRE les anciens champs non fiables (nom de compagnie, score, cabine/soute/fret, tarif, embargo, liens sortants compagnie) dans les liens qu'il construit vers la fiche — il n'écrit plus que ces sept mêmes champs. Le harness a été mis à jour : le lien mailto n'est plus exclu des vérifications (il est maintenant sûr), et un scénario reproduit l'URL exacte que le Finder génère aujourd'hui. Commit poussé sur `origin/main` : `51d0be1`.
+
+## Tour 5 (10/08/2026, contre-revue Codex) — un troisième canal, jamais couvert : les liens de langue du header
+
+### Le résidu trouvé par Codex, en test navigateur réel
+
+`Base.astro` porte un mécanisme *site-wide* (pas propre à `fiche.astro`) qui préserve la race/destination choisie quand un visiteur change de langue : au chargement de n'importe quelle page, il recopie `location.hash` **brut** dans les quatre liens `<a hreflang>` du sélecteur de langue du header (FR/EN/ES/PT) — code présent depuis avant Option B, jamais retouché par les tours 1 à 4 :
+
+```js
+window.addEventListener("DOMContentLoaded", function () {
+  var f = location.hash;
+  if (!f || f.length < 2) return;
+  document.querySelectorAll("a[hreflang]").forEach(function (a) {
+    var h = a.getAttribute("href");
+    if (h && h.indexOf("#") < 0) a.setAttribute("href", h + f);
+  });
+});
+```
+
+Ni Option B (tour 3) ni le correctif mailto (tour 4) ne touchaient ce mécanisme, et notre harness ne l'exécutait jamais : il ne chargeait que le bundle client de `fiche.astro`, jamais le script `is:inline` de `Base.astro` qui définit ce comportement. Résultat, trouvé par Codex en testant un vrai navigateur plutôt que jsdom : sur une URL forgée de `/tools/fiche`, les 4 liens de langue visibles dans le DOM (inspectables, cliquables) portaient encore `an=FAUSSE COMPAGNIE`, `evil.example.com`, `sc=100`, etc. — visibles, bien que plus rien de tout cela ne soit RENDU dans la page elle-même, et qu'aucun lien HTTP sortant malveillant ne survive (Option B avait déjà neutralisé `as`/`af`).
+
+### Le correctif
+
+Un objet unique de paramètres validés (`canon`, une `URLSearchParams`) est construit une seule fois, au tout début du script client de `fiche.astro`, et réécrit immédiatement l'URL de la page via `history.replaceState` :
+
+```js
+const canon = new URLSearchParams();
+const from = (P.get("from") || "").toLowerCase();
+const to = (P.get("to") || "").toLowerCase();
+const O = DATA[from], D = DATA[to];
+if (O) canon.set("from", from);
+if (D) canon.set("to", to);
+const rawAir = P.get("air") || "";
+if (KNOWN_AIRLINES.has(rawAir)) canon.set("air", rawAir);
+const breedLabel = asBreedLabel(P.get("breed") || "");
+if (breedLabel) canon.set("breed", breedLabel);
+const rawBid = P.get("bid") || "";
+if (KNOWN_BREEDS.has(rawBid)) canon.set("bid", rawBid);
+const weight = asWeight(P.get("w") || "");
+if (weight) canon.set("w", weight);
+const rawRep = (P.get("eu_passport") || "").toLowerCase();
+if (rawRep === "yes" || rawRep === "no") canon.set("eu_passport", rawRep);
+try {
+  const canonHash = "#" + canon.toString();
+  if (location.hash !== canonHash) history.replaceState(null, "", location.pathname + canonHash);
+} catch (e) { /* history.replaceState indisponible (ex. contexte de test) : le rendu reste sûr */ }
+```
+
+Le rendu de la page, le lien mailto (tour 4) et les liens internes (caisse/chaleur/pays, qui utilisaient jusqu'ici `airId`/`bid` lus directement depuis l'URL) puisent désormais tous dans ce même `canon` — un seul canal de vérité, plus une copie par usage qui pouvait diverger entre elles. Tout champ absent de la liste blanche disparaît de l'URL elle-même, pas seulement du rendu.
+
+**Pourquoi l'ordre d'exécution tient, garanti par la spécification HTML — pas par chance** : le script client de `fiche.astro` est un `<script type="module">` (Astro le hisse dans un bundle externe). Un script de module est différé par défaut : il s'exécute après le parsing du document, mais **toujours avant** l'événement `DOMContentLoaded`. Le script `is:inline` de `Base.astro`, lui, s'exécute de façon synchrone pendant le parsing (script classique, sans `defer`/`async`) — mais il ne fait qu'ENREGISTRER l'écouteur `DOMContentLoaded` à ce moment-là ; le CORPS de l'écouteur (qui lit `location.hash` et le recopie dans les liens de langue) ne s'exécute que quand l'événement se déclenche réellement, c'est-à-dire après que notre `history.replaceState` a déjà eu lieu. `history.replaceState` ne déclenche pas non plus `hashchange` (vérifié dans la spec et en navigateur réel) : le mécanisme de rechargement de `Base.astro` sur changement de dièse (`window.addEventListener("hashchange", ...)`) n'est donc pas perturbé.
+
+### Validation par champ (au-delà de la simple présence, demandée par Codex)
+
+| Champ | Règle | Source de la liste/borne |
+|---|---|---|
+| `air` | doit exister dans la liste des compagnies connues | `C.logos` (déjà exposé au client, 76 compagnies avec logo — Option B tour 1) |
+| `bid` | doit exister dans la liste des races connues | `C.breedIds`, nouvellement exposé (`loadKB().breeds`, ajouté au frontmatter server-side de `fiche.astro`) |
+| `eu_passport` | doit valoir exactement `yes` ou `no` | `regles-retour-ue-passeport.mjs` (les trois états du moteur — absent ≠ une valeur, cf. commentaire déjà en place) |
+| `w` | numérique, `0 < w ≤ 120` | `packages/engine/src/contracts.ts`, `weight_kg: z.number().positive().max(120)` — le plafond du moteur, pas la limite plus basse (100) du seul message d'alerte du Finder, purement indicative |
+| `bid` absent mais `breed` (texte libre) présent | conservé, mais assaini | caractères de contrôle retirés, longueur plafonnée à 60 caractères — Codex autorisait explicitement ce champ à rester libre |
+| `from`/`to` | doivent exister dans les fiches pays (`DATA`) | déjà la condition de rendu existante (`if (!O || !D)`), maintenant réutilisée pour la canonicalisation elle-même |
+
+### Preuve en navigateur réel (pas seulement jsdom)
+
+Le harness jsdom (ci-dessous) simule le DOM et l'ordre d'exécution, mais la garantie d'ordre repose sur le comportement réel d'un moteur de rendu, pas sur ce que jsdom choisit d'implémenter. Vérifié séparément avec Playwright + Chromium, sur le build local (`astro dev`), URL forgée identique à celle du harness :
+
+```
+URL : /fr/tools/fiche/#from=us&to=fr&an=FAUSSE COMPAGNIE&sc=100&air=evilair&bid=carlin&as=https://evil.example.com/book
+
+Après chargement complet (DOMContentLoaded déclenché) :
+  location.hash → "#from=us&to=fr"
+  <a hreflang="en"> href="/tools/fiche/#from=us&to=fr"
+  <a hreflang="fr"> href="/fr/tools/fiche/#from=us&to=fr"
+  <a hreflang="es"> href="/es/tools/fiche/#from=us&to=fr"
+  <a hreflang="pt"> href="/pt/tools/fiche/#from=us&to=fr"
+```
+
+Aucune trace de `FAUSSE COMPAGNIE`, `evil.example.com`, `evilair`, `carlin`, `sc=100`, dans le DOM ni dans les 4 liens de langue. Contre-épreuve sur une URL légitime complète (les 7 champs, tous valides) : tout survit à l'identique, dans le hash, les 4 liens de langue et le corps du mailto — aucune sur-correction.
+
+### Tests étendus — méthode et résultat
+
+Le harness (`test-fiche-harness.cjs`) charge désormais, en plus du bundle client de `fiche.astro`, le script `is:inline` de `Base.astro` extrait tel quel du HTML construit (aucune transformation Astro sur un script `is:inline` — il est présent littéralement dans chaque page). Quatre liens `<a hreflang>` factices, à l'image du header réel (`Header.astro`), sont injectés dans le DOM de test avant le chargement. Les deux scripts s'exécutent dans le même ordre que sur la vraie page (Base.astro puis le bundle fiche), suivi d'un unique `dispatchEvent(new Event("DOMContentLoaded"))` — reproduisant fidèlement la séquence réelle plutôt que de la contourner.
+
+Quatre scénarios par langue (le troisième, « ancienne URL déjà partagée », et le quatrième, « URL exacte du Finder », déjà présents depuis le tour 4) :
+
+1. **URL forgée**, désormais enrichie d'un `air`/`bid` inconnus, d'un poids hors bornes (500 kg) et d'une race truffée de caractères de contrôle et de longueur excessive — teste toute la validation par champ, pas seulement la présence des anciens champs de verdict.
+2. **URL légitime** (sans compagnie/race choisie).
+3. **Ancienne URL déjà partagée** (`air=airline_air_france`, un vrai identifiant — doit survivre ; `an`/`sc`/`cab`/`hold`/`direct` doivent disparaître).
+4. **URL exacte générée aujourd'hui par le Finder** (les 7 champs, tous des identifiants réels) — test de non-régression : rien n'est perdu quand tout est légitime.
+
+Pour chacun, en plus des vérifications déjà existantes sur le rendu et le mailto : l'URL canonique elle-même (`location.hash` post-`replaceState`) et les 4 liens `<a hreflang>` post-`DOMContentLoaded` sont inspectés — clés autorisées uniquement, aucune valeur forgée, quelle que soit la langue de la page testée.
+
+**336 vérifications exécutées (84 par langue × 4 langues), toutes passées** :
+
+```
+$ node test-fiche-harness.cjs
+[...]
+=== SUMMARY ===
+ALL CHECKS PASSED
+```
+
+### Fichiers livrés (tour 5)
+
+- `option-b-tour5-hreflang-10-08-2026.patch` — diff isolé de `fiche.astro` (canonicalisation + `history.replaceState` + liste blanche breedIds côté serveur) et de `test-fiche-harness.cjs` (chargement du script Base.astro, liens hreflang factices, nouvelles assertions), applicable sur `origin/main` au SHA `4c5770e` (inclut déjà les tours 1 à 4 et le lot émblème).
+- Ce document, mis à jour.
+- Document 14, point « déjà tranchées », mis à jour avec un renvoi vers cette section.
