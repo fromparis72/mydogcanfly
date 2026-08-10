@@ -24,7 +24,9 @@
 
 ## Point ouvert, à trancher avant le lot 2
 
-L'inventaire (document 01) avait déjà relevé une ambiguïté : le seul script de déploiement du dépôt (`npm run release`) déploie sur le projet Cloudflare Pages nommé `mydogcanfly-v2-preview`, mais avec `--branch=main` — pas une branche `preview` distincte. Il n'existe pas, à ce jour, de pipeline de preview clairement séparé de la production pour le site (Pages). Pour le Worker, `packages/workers/wrangler.toml` a bien un `[env.preview]` distinct et fonctionnel. **Avant de lancer le lot 2, il faut clarifier avec Philippe si l'environnement de preview Pages est réellement utilisable tel quel, ou s'il faut d'abord le mettre en conformité avec ce que `docs/V2-DEPLOYMENT.md` décrit.** Point à ajouter, si Codex est d'accord, à la liste des vérifications du document 14.
+L'inventaire (document 01) avait déjà relevé une ambiguïté : le seul script de déploiement du dépôt (`npm run release`) déploie sur le projet Cloudflare Pages nommé `mydogcanfly-v2-preview`, mais avec `--branch=main` — c'est-à-dire toujours la production, jamais une branche isolée. Pour le Worker, `packages/workers/wrangler.toml` a bien un `[env.preview]` distinct et fonctionnel.
+
+**Correction (contre-revue Codex, 10/08/2026, tour 3)** : une version précédente de ce point affirmait qu'il n'existait, à ce jour, aucun pipeline de preview séparé de la production pour le site (Pages). **C'est inexact** — voir document 14 point 7 (conclusion corrigée) : `mydogcanfly-v2-preview` étant un projet Direct Upload sans dépôt Git connecté, il accepte nativement `wrangler pages deploy --branch=review-<SHA>` (branche ≠ `main`) pour produire une vraie URL de preview isolée, sans toucher à la production ni nécessiter de raccordement Git — sous réserve de confirmer que la branche de production configurée est bien `main` (document 14 point 8, non encore vérifié). `npm run release` reste néanmoins, lui, exclusivement un script de mise en production directe (`--branch=main`) — ce n'est que la commande manuelle `wrangler pages deploy --branch=review-<SHA>` qui offre l'isolement, jamais `npm run release` tel quel.
 
 ## Rien n'est déployé
 
