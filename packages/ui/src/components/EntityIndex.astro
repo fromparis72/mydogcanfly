@@ -2,11 +2,25 @@
 import Base from "../layouts/Base.astro";
 import { t } from "@mydogcanfly/knowledge";
 interface Item { href: string; label: string; sub?: string; flag?: string }
-interface Props { kind: string; title: string; /** Titre SEO « mots clés d'abord » ; à défaut, H1 + suffixe de marque (ancien comportement). */ seoTitle?: string; blurb?: string; metaDesc?: string; items: Item[]; locale?: string; link?: { href: string; label: string } }
-const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link } = Astro.props;
+interface Props { kind: string; title: string; /** Titre SEO « mots clés d'abord » ; à défaut, H1 + suffixe de marque (ancien comportement). */ seoTitle?: string; blurb?: string; metaDesc?: string; items: Item[]; locale?: string; link?: { href: string; label: string };
+  /** Emblème d'accueil réduit, haut droite (décision Philippe 10/08/2026) — opt-in explicite,
+   * volontairement PAS activé par défaut : ce composant est aussi utilisé par les pages aéroports
+   * (`airports/index.astro`, `airports/pet-relief.astro`), hors du périmètre demandé (seulement
+   * compagnies/destinations/races/outils, 4 pages précises, pas de sous-pages). */
+  showEmblem?: boolean }
+const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link, showEmblem = false } = Astro.props;
 ---
 <Base title={seoTitle ?? `${title} — MyDogCanFly`} description={metaDesc ?? blurb ?? title} locale={locale}>
-  <section class="mdcf-section">
+  <section class={`mdcf-section${showEmblem ? " idx__hero" : ""}`}>
+    {showEmblem && (
+      /* Même emblème que la page d'accueil (packages/ui/public/brand/emblem.webp), repris ici en
+         plus petit (54 % de la taille d'accueil : 60 % puis -10 % relatif, décision Philippe
+         10/08/2026) en haut à droite. `alt` porte le titre déjà traduit de la page plutôt qu'un
+         texte vide : demandé explicitement pour l'indexation image (Google Images), au prix d'une
+         redite mineure avec le <h1> pour les lecteurs d'écran — arbitrage assumé, à la différence
+         de l'emblème d'accueil qui reste `alt=""`/`aria-hidden`. */
+      <img class="idx__emblem" src="/brand/emblem.webp" alt={title} width="440" height="252" decoding="async" loading="lazy" />
+    )}
     <div class="mdcf-container">
       <p class="mdcf-eyebrow">{kind}</p>
       <h1 class="mdcf-h2">{title}</h1>
@@ -74,6 +88,18 @@ const { kind, title, seoTitle, blurb, metaDesc, items, locale = "en", link } = A
 </script>
 
 <style>
+  /* Emblème réduit — 54 % des dimensions/tailles de l'emblème d'accueil (clamp(280px,34vw,460px)
+     → clamp(151px,18.4vw,248px) ; 60 % puis encore -10 % relatif, décision Philippe 10/08/2026),
+     même logique de position/repli que HomeSections.astro : décoratif, z-index sous le contenu,
+     masqué sous 720px pour ne jamais chevaucher un titre qui passe sur 2 lignes en mobile.
+     idx__hero doit être positionné pour que l'image s'ancre dans la section, pas dans toute la page. */
+  .idx__hero { position: relative; }
+  .idx__hero > .mdcf-container { position: relative; z-index: 1; }
+  .idx__emblem { position: absolute; z-index: 0; top: 8px;
+    right: max(12px, calc((100% - var(--mdcf-max)) / 2 + 6px));
+    width: clamp(151px, 18.4vw, 248px); height: auto; pointer-events: none; }
+  @media (max-width: 960px) { .idx__emblem { opacity: .16; right: -12px; } }
+  @media (max-width: 720px) { .idx__emblem { display: none; } }
   .idx__blurb { color: var(--mdcf-muted); margin: 0 0 12px; }
   .idx__link { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 16px; padding: 8px 14px;
     border: 1px solid var(--mdcf-line); border-radius: 999px; text-decoration: none; color: var(--mdcf-ink);

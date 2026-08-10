@@ -15,4 +15,4 @@ const T = inlineT(locale);
 const items = indexItems(loadKB(), "breed", locale);
 const seoTitle = T("Can my dog fly? Travel guide breed by breed", "Mon chien peut-il prendre l'avion ? Race par race", "¿Puede volar mi perro? Guía raza por raza");
 ---
-<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.breed")} title={t(locale, "index.breeds.title")} blurb={t(locale, "index.breeds.blurb")} items={items} locale={locale} />
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.breed")} title={t(locale, "index.breeds.title")} blurb={t(locale, "index.breeds.blurb")} items={items} locale={locale} showEmblem />
