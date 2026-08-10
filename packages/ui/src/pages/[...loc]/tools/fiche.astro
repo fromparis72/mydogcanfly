@@ -257,11 +257,20 @@ const EU_ISO2 = ["at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr", "de
 /* Résidu Option B, tour 5 (contre-revue Codex, 10/08/2026) : liste blanche des identifiants de
  * race connus (`kb.breeds`, la même Map que Header.astro/FlightFinder.astro utilisent déjà pour
  * peupler leurs propres listes), exposée ici pour que le script client puisse valider `bid` avant
- * de le réécrire dans l'URL canonique — même logique que `logos` (compagnies) juste en dessous,
- * déjà exposé et déjà utilisé comme liste blanche pour `air`. */
+ * de le réécrire dans l'URL canonique. */
 const breedIds = [...loadKB().breeds.keys()];
+/* Correction P0 (contre-revue Codex, tour 6, 10/08/2026) : le tour 5 validait `air` contre
+ * `Object.keys(C.logos)` — 76 entrées, celles qui ont un logo — en le prenant à tort pour « la
+ * liste des compagnies connues ». Le référentiel réel (`kb.airlines`) en compte 102 : 26
+ * compagnies légitimes, dont *La Compagnie* (le cas fondateur de toute cette contre-revue),
+ * étaient donc rejetées par erreur — leur contexte disparaissait du mailto, des liens de langue
+ * et des liens internes, alors qu'il s'agit d'identifiants parfaitement authentiques. `logos`
+ * reste utile pour l'affichage d'un logo (là où il existe), mais n'a jamais été une liste
+ * blanche de validation — `airlineIds` (`kb.airlines`, la même Map que Header.astro/
+ * FlightFinder.astro utilisent déjà) en est une vraie. */
+const airlineIds = [...loadKB().airlines.keys()];
 const cfg = { locale, base, countryBase: base + "/countries/", breedBase: base + "/breeds/", crateBase: base + "/tools/crate/", heatBase: base + "/tools/heat/",
-  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, breedIds, euIso: EU_ISO2, T };
+  cru: locale === "fr" ? CRU_FR : locale === "es" ? CRU_ES : CRU_EN, cas: locale === "fr" ? CAS_FR : locale === "es" ? CAS_ES : CAS_EN, logos: airlineLogos, breedIds, airlineIds, euIso: EU_ISO2, T };
 const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La ficha de viaje de tu perro");
 ---
 <Base locale={locale} title={`${title} — MyDogCanFly`} description={T.eyebrow} noindex={true}>
@@ -317,11 +326,21 @@ const title = L("Your dog's travel sheet", "La fiche voyage de ton chien", "La f
      * test-fiche-harness.cjs). Le rendu, le lien mailto et les liens internes (caisse/chaleur/
      * pays) puisent tous dans ce même `canon` — un seul canal de vérité, plus une copie par
      * usage qui pouvait diverger. Tout champ absent de cette liste blanche disparaît de l'URL. */
-    const KNOWN_AIRLINES = new Set(Object.keys(C.logos || {}));
+    // Correction P0 (tour 6, contre-revue Codex) : `C.logos` (compagnies AVEC un logo, 76) n'est
+    // pas la liste des compagnies connues (102, `C.airlineIds`) — voir le commentaire du
+    // frontmatter. Utiliser `logos` ici rejetait 26 compagnies réelles, dont La Compagnie.
+    const KNOWN_AIRLINES = new Set(C.airlineIds || []);
     const KNOWN_BREEDS = new Set(C.breedIds || []);
-    // Plafond aligné sur le moteur (packages/engine/src/contracts.ts, weight_kg: positive().max(120)) —
-    // pas la limite plus basse (100) du seul message d'alerte du Finder, qui n'est qu'indicative.
-    const asWeight = (v) => { const n = Number(v); return Number.isFinite(n) && n > 0 && n <= 120 ? String(n) : ""; };
+    // Correction P1 (tour 6, contre-revue Codex) : le tour 5 plafonnait à 120 kg (la borne du
+    // contrat moteur, packages/engine/src/contracts.ts) en la qualifiant à tort de seule limite
+    // réelle. En pratique, le Finder BLOQUE déjà toute recherche au-delà de 100 kg (message
+    // d'alerte non contournable, pas seulement indicatif) — aucun lien vers la fiche n'a jamais pu
+    // transporter un poids entre 100 et 120 kg. 100 est donc la limite produit réellement en
+    // vigueur ; l'aligner ici évite qu'un lien manuellement construit prétende à une plage que le
+    // Finder lui-même n'autorise pas. (Le contrat moteur reste à 120 — une limite plus large côté
+    // moteur, jamais côté produit visible ; unifier les deux est un choix produit qui reste à
+    // trancher séparément, hors du périmètre de ce correctif.)
+    const asWeight = (v) => { const n = Number(v); return Number.isFinite(n) && n > 0 && n <= 100 ? String(n) : ""; };
     // Race en texte libre : gardée si non vide (absente du référentiel n'est pas forcément un
     // mensonge — beaucoup de visiteurs tapent un nom que le site ne reconnaît pas), mais
     // normalisée (pas de caractères de contrôle) et plafonnée pour qu'un lien ne puisse pas

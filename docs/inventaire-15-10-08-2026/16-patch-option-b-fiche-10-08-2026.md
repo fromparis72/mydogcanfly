@@ -325,10 +325,10 @@ Le rendu de la page, le lien mailto (tour 4) et les liens internes (caisse/chale
 
 | Champ | Règle | Source de la liste/borne |
 |---|---|---|
-| `air` | doit exister dans la liste des compagnies connues | `C.logos` (déjà exposé au client, 76 compagnies avec logo — Option B tour 1) |
+| `air` | doit exister dans la liste des compagnies connues | **Corrigé au tour 6 — voir cette section.** ~~`C.logos` (déjà exposé au client, 76 compagnies avec logo — Option B tour 1)~~ : cette liste ne recense que les compagnies AVEC logo, pas « les compagnies connues » — `C.airlineIds` (`loadKB().airlines`, 102 entrées) est la vraie liste. |
 | `bid` | doit exister dans la liste des races connues | `C.breedIds`, nouvellement exposé (`loadKB().breeds`, ajouté au frontmatter server-side de `fiche.astro`) |
 | `eu_passport` | doit valoir exactement `yes` ou `no` | `regles-retour-ue-passeport.mjs` (les trois états du moteur — absent ≠ une valeur, cf. commentaire déjà en place) |
-| `w` | numérique, `0 < w ≤ 120` | `packages/engine/src/contracts.ts`, `weight_kg: z.number().positive().max(120)` — le plafond du moteur, pas la limite plus basse (100) du seul message d'alerte du Finder, purement indicative |
+| `w` | numérique, `0 < w ≤ 100` | **Corrigé au tour 6 — voir cette section.** ~~`0 < w ≤ 120` (`packages/engine/src/contracts.ts`, `weight_kg: z.number().positive().max(120)`)~~ : 120 est un plafond côté moteur jamais atteignable en pratique — le Finder bloque lui-même toute recherche au-delà de 100 kg (`if (... > 100) return showHint(...)`), qui est donc la vraie borne à valider ici. |
 | `bid` absent mais `breed` (texte libre) présent | conservé, mais assaini | caractères de contrôle retirés, longueur plafonnée à 60 caractères — Codex autorisait explicitement ce champ à rester libre |
 | `from`/`to` | doivent exister dans les fiches pays (`DATA`) | déjà la condition de rendu existante (`if (!O || !D)`), maintenant réutilisée pour la canonicalisation elle-même |
 
@@ -375,4 +375,72 @@ ALL CHECKS PASSED
 
 - `option-b-tour5-hreflang-10-08-2026.patch` — diff isolé de `fiche.astro` (canonicalisation + `history.replaceState` + liste blanche breedIds côté serveur) et de `test-fiche-harness.cjs` (chargement du script Base.astro, liens hreflang factices, nouvelles assertions), applicable sur `origin/main` au SHA `4c5770e` (inclut déjà les tours 1 à 4 et le lot émblème).
 - Ce document, mis à jour.
+
+## Tour 6 (10/08/2026, contre-revue Codex du tour 5) — cinq erreurs fonctionnelles, dont le cas fondateur de la contre-revue
+
+Le correctif de sécurité du tour 5 a été validé tel quel (check/typecheck/build, 336 vérifications reproduites, preuve Chromium réelle) — mais Codex a identifié, en relisant le code livré plutôt que son seul comportement observable, cinq erreurs fonctionnelles indépendantes de toute faille de sécurité. Chacune vérifiée dans le code source avant correction (méthode habituelle : ne jamais prendre la critique de Codex pour argent comptant).
+
+### P0 — Liste blanche des compagnies incorrecte (le cas fondateur de toute cette contre-revue)
+
+`KNOWN_AIRLINES` (tour 5) validait `air` contre `Object.keys(C.logos)` en le prenant à tort pour « la liste des compagnies connues ». `C.logos` (`packages/ui/src/data/airline-logos.generated.json`) ne recense que les 76 compagnies qui ont un logo affiché — un sous-ensemble strict des 102 compagnies réelles de la base (`packages/knowledge/raw/objects.json`, la même source que `loadKB().airlines`). 26 compagnies légitimes étaient donc rejetées à tort, dont **`airline_la_compagnie`** — le cas qui a motivé cette contre-revue depuis le début.
+
+**Correctif** : `fiche.astro` expose désormais `airlineIds = [...loadKB().airlines.keys()]` (même Map que `Header.astro`/`FlightFinder.astro`, 102 entrées) dans son `cfg` côté serveur, et `KNOWN_AIRLINES` se construit depuis `C.airlineIds`, plus jamais depuis `C.logos` (qui ne sert plus qu'à décider si un logo s'affiche, son rôle d'origine).
+
+### P0 — Poids en livres recopié comme des kilogrammes
+
+`FlightFinder.astro` construisait le lien « voir la fiche » avec `document.getElementById("f-weight")?.value` — la valeur AFFICHÉE, jamais convertie, alors que `weight_kg` (déjà correctement converti pour l'appel au moteur) existait juste au-dessus sans être réutilisé. Un poids saisi en livres se retrouvait donc étiqueté « kg » sur la fiche (ex. 50 lb → fiche affichant 50 kg au lieu de 22,7 kg).
+
+**Correctif** : une nouvelle variable `lastWeightKg`, figée dans `buildRequest()` au moment du calcul de `weight_kg` (arrondie à 1 décimale, même convention que `fillWeight()`/`setUnit()`), toujours en kilogrammes quelle que soit l'unité affichée au moment de la recherche.
+
+### P0 — Relecture live du formulaire au rendu (condition de course)
+
+Le lien « voir la fiche » relisait `f-breed`/`f-weight` **en direct dans le DOM au moment du rendu** — c'est-à-dire après la réponse réseau, potentiellement plusieurs secondes après le clic. Si le visiteur modifiait la race ou le poids pendant que la requête était en vol, la fiche ouverte depuis le rapport pouvait décrire un autre chien que celui réellement recherché. Le motif « figer au lancement de la recherche, jamais relire au rendu » existait déjà dans ce même fichier pour `lastBreedId`/`lastOriginIso`/`lastDestIso`/`lastEuPassport` (avec un commentaire explicite pour ce dernier) — seuls `breed` (texte libre) et `w` y avaient échappé.
+
+**Correctif** : `lastBreedLabel` (texte libre affiché) rejoint `lastWeightKg` ci-dessus, figés tous les deux dans `buildRequest()`, jamais relus depuis le DOM dans `render()`.
+
+### P1 — Plafond de poids contradictoire
+
+Le tour 5 validait `w` avec `0 < w ≤ 120`, citant le plafond du contrat moteur (`packages/engine/src/contracts.ts`, `weight_kg: z.number().positive().max(120)`) comme s'il s'agissait de la limite réellement atteignable. En pratique, le Finder bloque lui-même toute recherche au-delà de 100 kg (`if ((unit === "lb" ? wNum / LB : wNum) > 100) return showHint(...)`) — aucune recherche au-dessus de 100 n'est possible depuis l'interface. **Correctif** : le plafond de `asWeight()` passe à 100, aligné sur la vraie limite atteignable. Unifier la limite du Finder et celle du contrat moteur (120) reste une décision produit distincte, hors du périmètre de ce correctif.
+
+### P1 — Décodage global du fragment (double décodage)
+
+`Base.astro`, `window.mdcfQuery()`, appelait `decodeURIComponent()` sur le dièse **entier** avant de le confier à `new URLSearchParams(...)`, qui décode lui-même — un double décodage. Toute valeur contenant un caractère réservé encodé en était corrompue : `breed=A%26B` (donc littéralement « A&B ») devenait, après ce premier `decodeURIComponent`, `breed=A&B` — et `URLSearchParams` lisait alors le `&` comme un second séparateur de paramètres, tronquant la valeur à `breed=A` et faisant apparaître un paramètre fantôme. `mdcfAncre()` (juste à côté, même fichier) ne l'a jamais fait — resté cohérent avec lui-même depuis toujours, il n'a nécessité aucune modification.
+
+**Correctif** : `mdcfQuery()` passe désormais le fragment brut (toujours encodé) directement à `URLSearchParams`, qui le décode une seule fois, correctement.
+
+### Documentation corrigée
+
+Ce document (tableau « Validation par champ » du tour 5, ci-dessus) qualifiait `C.logos` de « liste des compagnies connues » et citait 120 comme le plafond réel — les deux lignes ont été corrigées en place. Le document 14 affirmait simultanément, dans deux phrases différentes, que la vérification « Production branch = main » du projet Pages `mydogcanfly-v2-preview` n'était pas encore faite et qu'elle restait à confirmer — alors qu'elle avait déjà été faite et son résultat rapporté ailleurs (dashboard Cloudflare, lecture seule). Les points 7 et 8 du document 14 ont été corrigés pour refléter la confirmation déjà obtenue (`main`).
+
+### Tests étendus — méthode et résultat
+
+`test-fiche-harness.cjs` (compagnies) : un scénario `airline_la_compagnie` (compagnie réelle sans logo — le cas fondateur), et un test d'invariant qui rejoue la canonicalisation pour les 102 identifiants réels de `loadKB().airlines` un par un, vérifiant qu'aucun n'est plus rejeté à tort.
+
+Un second harness, `test-flightfinder-harness.cjs`, nouveau pour ce tour, charge le VRAI HTML construit de la page d'accueil (qui embarque `<FlightFinder />`), le VRAI bundle hissé du composant, simule un visiteur (remplit le formulaire, soumet, réponse réseau mockée — jamais un vrai Worker) et inspecte le lien « voir la fiche » généré : un scénario en unité livres (le poids du lien doit être en kg, converti, jamais la valeur lb brute), et un scénario d'édition du formulaire pendant qu'une requête est en vol (le lien doit décrire le chien réellement recherché, pas celui édité entre-temps).
+
+**Résultat : `test-fiche-harness.cjs` — 393/393 vérifications passées (336 du tour 5 + le scénario `airline_la_compagnie` + l'invariant 102/102 compagnies). `test-flightfinder-harness.cjs` — 7/7 vérifications passées (les deux scénarios lb-unit et édition-en-vol).**
+
+```
+$ node test-fiche-harness.cjs
+[...]
+=== invariant : les 102 compagnies réelles (loadKB().airlines) survivent toutes ===
+  OK   102/102 identifiants de compagnie survivent tous à la canonicalisation
+=== SUMMARY ===
+ALL CHECKS PASSED
+
+$ node test-flightfinder-harness.cjs
+[...]
+  OK   w=50 (kg, converti) — jamais w=110.2 (lb brut)
+[...]
+  OK   breed="Affenpinscher" (figé au lancement) — jamais "Afghan Hound" (édité pendant la requête)
+  OK   bid=breed_affenpinscher (figé au lancement)
+  OK   w=40 (figé au lancement) — jamais w=99 (édité pendant la requête)
+=== SUMMARY ===
+ALL CHECKS PASSED
+```
+
+### Fichiers livrés (tour 6)
+
+- Diff isolé de `fiche.astro`, `FlightFinder.astro`, `Base.astro`, `test-fiche-harness.cjs` et `test-flightfinder-harness.cjs` (nouveau), applicable sur `origin/main` au SHA `a69cea1` (inclut déjà les tours 1 à 5 et le lot émblème).
+- Documents 14 et 16 (celui-ci), corrigés.
 - Document 14, point « déjà tranchées », mis à jour avec un renvoi vers cette section.

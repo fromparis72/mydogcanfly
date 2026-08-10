@@ -458,9 +458,15 @@ const labels = {
                   const p = new URLSearchParams();
                   p.set("from", lastOriginIso); p.set("to", lastDestIso);
                   p.set("air", a.airline_id);
-                  const bl = (document.getElementById("f-breed") as HTMLInputElement | null)?.value?.trim(); if (bl) p.set("breed", bl);
+                  /* Correction P0 (contre-revue Codex, tour 6) : `lastBreedLabel`/`lastWeightKg`,
+                   * figés au lancement de CETTE recherche (comme lastBreedId/lastOriginIso/
+                   * lastEuPassport ci-dessus) — jamais relus en direct dans le formulaire, qui a pu
+                   * changer pendant que la requête était en vol. `lastWeightKg` est toujours en
+                   * kilogrammes, y compris quand le Finder affichait des livres au moment de la
+                   * recherche (voir le commentaire de sa déclaration). */
+                  if (lastBreedLabel) p.set("breed", lastBreedLabel);
                   if (lastBreedId) p.set("bid", lastBreedId);
-                  const wv = (document.getElementById("f-weight") as HTMLInputElement | null)?.value?.trim(); if (wv) p.set("w", wv);
+                  if (lastWeightKg !== undefined) p.set("w", String(lastWeightKg));
                   /* La réponse sur le passeport européen suit le voyageur jusqu'aux modalités
                      détaillées : sans elle, la fiche retombait sur son propre filtrage d'origine
                      et réaffirmait le certificat sanitaire à qui venait de dire qu'il avait un
@@ -750,6 +756,19 @@ const labels = {
    * pages du même outil se contrediraient de nouveau, ce que ce raccordement vient corriger. */
   let lastEuPassport = "";
   let lastOriginId = "", lastDestId = "";
+  /* Correction P0 (contre-revue Codex, tour 6, 10/08/2026) : même principe que lastBreedId/
+   * lastOriginIso/lastEuPassport ci-dessus, étendu à deux champs qui y avaient échappé — le lien
+   * vers la fiche relisait encore `f-breed`/`f-weight` EN DIRECT dans le DOM au moment du rendu
+   * (donc après la réponse réseau), pas la valeur qui avait servi à la recherche. Deux bugs de ce
+   * seul oubli : (1) si le visiteur modifiait la race ou le poids pendant que la requête était en
+   * vol, la fiche pouvait décrire un chien différent de celui du rapport qu'elle prolonge ; (2) le
+   * poids n'était jamais converti — en unité livres, `f-weight` contient une valeur en lb, mais
+   * `weight_kg` (déjà converti pour le moteur, juste en dessous) n'était jamais recopié vers la
+   * fiche, qui recevait donc le nombre de livres étiqueté « kg » (ex. 50 lb → « Chien 50 kg »,
+   * au lieu de 22,7 kg). `lastWeightKg` est toujours en kilogrammes, quelle que soit l'unité
+   * affichée au moment de la recherche. */
+  let lastWeightKg: number | undefined;
+  let lastBreedLabel = "";
   const AIRCOUNTRY: Record<string, string> = L.airportCountry ?? {};
 
   /**
@@ -807,9 +826,13 @@ const labels = {
   function buildRequest(): FinderRequest {
     const b = resolveBreed();
     lastBreedId = b?.id ?? "";
+    lastBreedLabel = (breedEl?.value ?? "").trim();
     if (lastBreedId) ctx?.setBreed?.(lastBreedId);   // remember the breed for the rest of the journey
     const w = parseFloat(weightEl?.value ?? "");
     const weight_kg = Number.isFinite(w) && w > 0 ? (unit === "lb" ? w / LB : w) : undefined;
+    // Toujours en kilogrammes, arrondi comme partout ailleurs sur le site quand une conversion a
+    // eu lieu (cf. fillWeight()/setUnit() plus haut, même arrondi à 1 décimale).
+    lastWeightKg = weight_kg !== undefined ? +weight_kg.toFixed(1) : undefined;
     const o = resolveEndpoint("f-origin"), d = resolveEndpoint("f-dest");
     lastOriginIso = AIRCOUNTRY[o.primary] ?? "";
     lastDestIso = AIRCOUNTRY[d.primary] ?? "";

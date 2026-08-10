@@ -209,9 +209,19 @@ const headLd = [orgLd, siteLd, ...jsonLd];
        * sont imprimées sur des plaquettes distribuées à la presse. Elles doivent continuer de
        * fonctionner indéfiniment ; seule l'ÉMISSION de nouveaux liens bascule. */
       (function () {
+        /* Correction P1 (contre-revue Codex, tour 6, 10/08/2026) : `decodeURIComponent` était
+         * appliqué au dièse ENTIER avant que `URLSearchParams` ne le reparse — un double décodage.
+         * `URLSearchParams` décode déjà chaque valeur correctement tout seul ; le décodage
+         * préalable corrompait toute valeur contenant un caractère réservé encodé. Exemple
+         * concret : une race `breed=A%26B` (donc littéralement « A&B ») devenait, après ce premier
+         * decodeURIComponent, `breed=A&B` — et `URLSearchParams` lisait alors `&` comme un
+         * séparateur de paramètres, tronquant la valeur à `breed=A` et créant un second paramètre
+         * fantôme `B` sans valeur. Retirer ce décodage préalable : `h` reste tel quel (encore
+         * encodé), seul `URLSearchParams` le décode, une seule fois, correctement. `mdcfAncre`
+         * (juste en dessous) ne l'a jamais fait — c'est resté cohérent avec lui depuis toujours. */
         window.mdcfQuery = function () {
           try {
-            var h = decodeURIComponent(location.hash.slice(1));
+            var h = location.hash.slice(1);
             var d = h.indexOf("?");
             var s = d >= 0 ? h.slice(d + 1) : (h.indexOf("=") >= 0 ? h : "");
             return new URLSearchParams(s || location.search.slice(1));

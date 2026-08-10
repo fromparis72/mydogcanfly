@@ -59,6 +59,19 @@ const FINDER_QS =
 // must reduce every scenario down to. Tout le reste doit disparaître, quelle que soit sa valeur.
 const WHITELISTED_KEYS = ["from", "to", "air", "breed", "bid", "w", "eu_passport"];
 
+// Correction P0 (contre-revue Codex, tour 6, 10/08/2026) : le cas fondateur de toute cette
+// contre-revue. `airline_la_compagnie` est une VRAIE compagnie (kb.airlines, 102 entrées) mais
+// n'a PAS de logo (packages/ui/src/data/airline-logos.generated.json n'en compte que 76) — le
+// tour 5 validait `air` contre `Object.keys(C.logos)` et la rejetait donc à tort. Doit survivre
+// à la canonicalisation exactement comme `airline_air_france` (scénario OLD_SHARED_QS ci-dessus).
+const LA_COMPAGNIE_QS = "from=fr&to=us&air=airline_la_compagnie&breed=Labrador&w=25&eu_passport=yes";
+
+// Toutes les compagnies réelles de la base (packages/knowledge/raw/objects.json, la même source
+// que loadKB().airlines) — sert au test d'invariant demandé par Codex : chacune doit survivre à
+// la validation par champ, pas seulement les 76 qui ont un logo. Chargé ici plutôt que recopié à
+// la main pour ne jamais désynchroniser le test de la vraie liste blanche.
+const ALL_AIRLINE_IDS = require("./packages/knowledge/raw/objects.json").airlines.map((a) => a.id);
+
 function loadPageParts(localeDir) {
   const htmlPath = path.join(DIST, localeDir, "tools/fiche/index.html");
   const html = fs.readFileSync(htmlPath, "utf8");
@@ -280,6 +293,39 @@ for (const { code, dir } of LOCALES) {
     })());
     checkHreflang("Finder", finder, WHITELISTED_KEYS);
   }
+
+  console.log("-- airline_la_compagnie (compagnie réelle sans logo — le cas fondateur, contre-revue Codex tour 6) --");
+  const laCompagnie = run(dir, LA_COMPAGNIE_QS);
+  if (laCompagnie.error) {
+    console.log("  FAIL script threw: " + laCompagnie.error);
+    failures++;
+  } else {
+    check("URL canonique : air=airline_la_compagnie survit (compagnie réelle, sans logo)",
+      laCompagnie.canonicalHash.includes("air=airline_la_compagnie"));
+    checkHreflang("La Compagnie", laCompagnie, ["from", "to", "air", "breed", "w", "eu_passport"]);
+  }
+}
+
+// Correction P0 (contre-revue Codex, tour 6, 10/08/2026) : test d'invariant demandé explicitement —
+// "vérifier que les 102 identifiants de loadKB().airlines survivent à la canonicalisation". La
+// logique de validation (KNOWN_AIRLINES) ne dépend d'aucune donnée localisée : elle vient de
+// `loadKB().airlines`, identique quel que soit `locale`. Un seul passage (locale "en") suffit donc
+// à couvrir les 102 cas sans 4x le travail pour zéro couverture supplémentaire — voir le commentaire
+// sur `airlineIds` dans fiche.astro (même Map que Header.astro/FlightFinder.astro).
+console.log("\n=== invariant : les " + ALL_AIRLINE_IDS.length + " compagnies réelles (loadKB().airlines) survivent toutes ===");
+{
+  let survived = 0;
+  const rejected = [];
+  for (const id of ALL_AIRLINE_IDS) {
+    const qs = "from=fr&to=us&air=" + encodeURIComponent(id);
+    const r = run("", qs);
+    if (r.error) { rejected.push(id + " (script threw: " + r.error + ")"); continue; }
+    const got = new URLSearchParams(r.canonicalHash.slice(1)).get("air");
+    if (got === id) survived++; else rejected.push(id);
+  }
+  check(survived + "/" + ALL_AIRLINE_IDS.length + " identifiants de compagnie survivent tous à la canonicalisation",
+    survived === ALL_AIRLINE_IDS.length);
+  if (rejected.length) console.log("  rejetés à tort : " + rejected.join(", "));
 }
 
 console.log("\n=== SUMMARY ===");
