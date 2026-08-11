@@ -15,9 +15,14 @@
  * réserve `direct_assumed` au cas « pas de graphe de routes ». Cet état ne devrait donc JAMAIS être
  * produit aujourd'hui : c'est l'invariant central testé ici.
  *
- *   node test-direct-claims.mjs
+ *   npm run test:direct        (équivaut à `npx tsx test-direct-claims.mjs`)
+ *
+ * `tsx` et non `node` : ce harnais importe directement les sources TypeScript du Worker et du
+ * moteur, sans étape de compilation — c'est ce qui lui permet de tester le code du dépôt plutôt
+ * qu'un artefact. `node` seul échoue sur l'import `.ts`.
  */
 import worker from "./packages/workers/src/index.ts";
+import { loadKB } from "./packages/knowledge/src/index.ts";
 
 let pass = 0;
 let fail = 0;
@@ -43,6 +48,26 @@ const ROUTES = [
   ["airport_jfk", "airport_cdg"],
   ["airport_cdg", "airport_gru"],
 ];
+
+/* ── Invariant de données ────────────────────────────────────────────────────────────────
+ * L'invariant testé plus bas — « aucun `direct_assumed` » — n'est légitime QUE parce que toutes
+ * les compagnies possèdent un graphe de routes. Si une compagnie sans graphe entrait un jour dans
+ * la base, `direct_assumed` redeviendrait un état valide et l'invariant deviendrait un faux
+ * positif silencieux. On vérifie donc d'abord sa prémisse, plutôt que de la supposer.
+ * Demandé par Codex le 11/08/2026. */
+console.log("— Prémisse : les 102 compagnies ont toutes un graphe de routes —");
+
+const airlines = [...loadKB().airlines.values()];
+check("la base contient bien 102 compagnies", airlines.length === 102, `${airlines.length} trouvée(s)`);
+const sansGraphe = airlines.filter((a) => !a.direct_routes || a.direct_routes.length === 0);
+check(
+  "toutes possèdent un `direct_routes` non vide",
+  sansGraphe.length === 0,
+  sansGraphe.length
+    ? `${sansGraphe.length} sans graphe : ${sansGraphe.slice(0, 8).map((a) => a.id).join(", ")}` +
+      " — si c'est voulu, l'invariant `direct_assumed` ci-dessous doit être révisé, pas contourné."
+    : "",
+);
 
 console.log("\n— Invariant : aucun `direct_assumed` tant que les 102 compagnies ont un graphe —");
 

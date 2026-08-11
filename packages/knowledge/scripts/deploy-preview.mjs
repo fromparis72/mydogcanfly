@@ -134,6 +134,17 @@ function run(cmd, cmdArgs, { capture = true } = {}) {
 
 const git = (a) => spawnSync("git", a, { cwd: REPO_ROOT, encoding: "utf8" }).stdout?.trim() ?? "";
 
+/** Lit la liste des versions Worker (100 plus récentes) et la renvoie parsée. */
+function listVersions() {
+  const raw = run("npx", ["wrangler", "versions", "list", "--config", WRANGLER_CONFIG, "--env", "preview", "--json"], { capture: true });
+  if (raw.status !== 0) fail("worker_select", "`wrangler versions list --json` a échoué.");
+  try {
+    return JSON.parse(raw.stdout.slice(raw.stdout.indexOf("[")));
+  } catch (e) {
+    fail("worker_select", `sortie de \`versions list --json\` illisible (${e.message}).`);
+  }
+}
+
 /* ── 1. Préflight ─────────────────────────────────────────────────────────────────────────
  * Refus ferme, sans échappatoire : pas de `--allow-dirty`. Étiqueter un déploiement d'un
  * `--commit-hash` propre alors que le build vient d'un arbre modifié est un mensonge de
@@ -194,17 +205,47 @@ if (DRY) {
   process.exit(0);
 }
 
-/* ── 2. Téléversement d'une VERSION (le trafic ne bouge pas) ─────────────────────────────── */
-log("2/7 wrangler versions upload (aucun trafic déplacé)…");
-const up = run("npx", [
-  "wrangler", "versions", "upload",
-  "--config", WRANGLER_CONFIG,
-  "--env", "preview",
-  "--var", `BUILD_SHA:${manifest.git_sha}`,
-  "--tag", tag,
-  "--message", `preview ${shortSha}`,
-]);
-if (up.status !== 0) fail("worker_upload", "`wrangler versions upload` a échoué (voir la sortie ci-dessus).");
+/* ── 2. Téléversement d'une VERSION (le trafic ne bouge pas) ───────────────────────────────
+ *
+ * IDEMPOTENT, et ce n'est pas un confort (correctif du 11/08/2026).
+ *
+ * La version est téléversée AVANT la construction de Pages, parce que le build a besoin de l'URL
+ * versionnée. Conséquence : si une étape ultérieure échoue — et le build, qui dure une dizaine de
+ * minutes, est de loin la plus susceptible d'échouer —, une version taguée reste en place. Un
+ * simple nouvel essai créait alors une SECONDE version portant le même tag, et l'étape 3, qui
+ * exige à raison une correspondance unique, se bloquait définitivement sur ce SHA : chaque
+ * tentative supplémentaire aggravait la situation au lieu de la réparer.
+ *
+ * Survenu en conditions réelles sur `82bb0d1`. On regarde donc d'abord si une version existe déjà
+ * pour ce tag, et on la réutilise. Ce n'est pas une heuristique : le tag `git-<sha>` EST
+ * l'identité recherchée, et la double concordance de l'étape 4 vérifie de toute façon que la
+ * version réutilisée sert bien ce commit. */
+log("2/7 Version Worker pour ce commit…");
+const existing = listVersions();
+const already = selectVersionByTag(existing, tag);
+if (already.ok) {
+  log(`     version déjà téléversée pour ${tag} — réutilisée, aucun doublon créé.`);
+  log(`     (${already.version.id}, number ${already.version.number})`);
+  manifest.notes.push(`Version Worker réutilisée : une version taguée ${tag} existait déjà (essai précédent interrompu).`);
+} else if (already.code === "ambiguous") {
+  fail(
+    "worker_upload",
+    already.message +
+      "\nCes doublons proviennent d'essais antérieurs interrompus après le téléversement. " +
+      "Cloudflare ne permet pas de supprimer une version : reprends sur un nouveau commit, " +
+      "ou promeus manuellement la version voulue après avoir vérifié sa santé.",
+  );
+} else {
+  const up = run("npx", [
+    "wrangler", "versions", "upload",
+    "--config", WRANGLER_CONFIG,
+    "--env", "preview",
+    "--var", `BUILD_SHA:${manifest.git_sha}`,
+    "--tag", tag,
+    "--message", `preview ${shortSha}`,
+  ]);
+  if (up.status !== 0) fail("worker_upload", "`wrangler versions upload` a échoué (voir la sortie ci-dessus).");
+}
 manifest.checks.worker_upload = true;
 
 /* ── 3. Sélection de la version, par tag uniquement ───────────────────────────────────────
@@ -217,15 +258,7 @@ manifest.checks.worker_upload = true;
  * par `number` CROISSANT — la plus récente est la dernière. On ne dépend d'aucun ordre ici,
  * précisément pour que ce détail ne puisse pas nous piéger. */
 log(`3/7 Recherche de la version taguée ${tag}…`);
-const listRaw = run("npx", ["wrangler", "versions", "list", "--config", WRANGLER_CONFIG, "--env", "preview", "--json"], { capture: true });
-if (listRaw.status !== 0) fail("worker_select", "`wrangler versions list --json` a échoué.");
-let versions;
-try {
-  versions = JSON.parse(listRaw.stdout.slice(listRaw.stdout.indexOf("[")));
-} catch (e) {
-  fail("worker_select", `sortie de \`versions list --json\` illisible (${e.message}).`);
-}
-const selection = selectVersionByTag(versions, tag);
+const selection = selectVersionByTag(listVersions(), tag);
 if (!selection.ok) fail("worker_select", selection.message);
 const version = selection.version;
 manifest.worker_version_id = version.id;

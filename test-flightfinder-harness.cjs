@@ -15,6 +15,9 @@ const path = require("path");
 const { JSDOM } = require("jsdom");
 
 const LOCALES = [{ code: "en", dir: "" }];
+// Le contrôle des badges d'itinéraire (ajouté 11/08/2026) parcourt les 4 langues : le libellé
+// « Direct non vérifié » doit exister et être distinct partout, pas seulement en anglais.
+const BADGE_LOCALES = [{ code: "en", dir: "" }, { code: "fr", dir: "fr" }, { code: "es", dir: "es" }, { code: "pt", dir: "pt" }];
 // Un seul passage (en) : la logique de snapshot (lastWeightKg/lastBreedLabel/lastBreedId) ne
 // dépend d'aucune donnée localisée, seuls les libellés affichés changent — voir la même
 // justification dans test-fiche-harness.cjs pour l'invariant compagnies.
@@ -253,7 +256,97 @@ for (const { code, dir } of LOCALES) {
 }
 }
 
-main().then(() => {
+
+/* ── Badges d'itinéraire : aucun « Direct » non qualifié ────────────────────────────────────
+ * Ajouté le 11/08/2026 à la demande de Codex, en accompagnement du correctif P0 « jamais de vol
+ * direct sans preuve de route ».
+ *
+ * Le moteur ne produit plus `direct_assumed` tant que toutes les compagnies ont un graphe de
+ * routes — mais l'UI ne doit pas dépendre de cette circonstance. On lui injecte donc un rapport
+ * contenant les trois natures d'itinéraire et on vérifie ce qui est RENDU :
+ *   - `direct_documented` → « Direct » ;
+ *   - `direct_assumed`    → « Direct non vérifié », en UN SEUL badge (jamais « Direct » suivi
+ *                            d'un démenti : deux badges contradictoires se lisent mal, et c'est
+ *                            le premier que l'œil retient) ;
+ *   - `connection_unverified` → « Correspondance » + pastille d'itinéraire à confirmer.
+ * Et le compteur « N directs » ne doit additionner que le direct attesté.
+ */
+const ITINERARY_REPORT = {
+  ...FAKE_REPORT,
+  airlines: [
+    { ...FAKE_REPORT.airlines[0], airline_id: "airline_doc", name: "Doc Air", direct: true, itinerary_confidence: "direct_documented" },
+    { ...FAKE_REPORT.airlines[0], airline_id: "airline_assumed", name: "Assumed Air", direct: true, itinerary_confidence: "direct_assumed" },
+    { ...FAKE_REPORT.airlines[0], airline_id: "airline_unver", name: "Unver Air", direct: false, itinerary_confidence: "connection_unverified" },
+  ],
+};
+
+async function badgesPass() {
+  for (const loc of BADGE_LOCALES) {
+    console.log(`\n— Badges d'itinéraire (${loc.code}) —`);
+    let dom;
+    try {
+      const parts = loadHomeParts(loc.dir);
+      const fetchMock = async (url, opts) => {
+        if (String(url).includes("/nearest-airport")) return { ok: false };
+        if (opts && opts.method === "POST") return { ok: true, json: async () => ITINERARY_REPORT };
+        throw new Error("unexpected fetch: " + url);
+      };
+      dom = buildDom(parts, fetchMock);
+      const { window } = dom;
+      const originEl = window.document.getElementById("f-origin");
+      const destEl = window.document.getElementById("f-dest");
+      const originIds = resolveEndpointFrom(parts.labels, originEl.value).ids;
+      destEl.value = pickDestinationLabel(parts.labels, originIds);
+      window.document.getElementById("f-weight").value = "8";
+      window.document.getElementById("mdcf-finder").dispatchEvent(
+        new window.Event("submit", { bubbles: true, cancelable: true }),
+      );
+      await flush();
+    } catch (e) {
+      check(`${loc.code} : rendu du rapport`, false);
+      console.log("         " + (e.message || e));
+      continue;
+    }
+    const doc = dom.window.document;
+    const cards = [...doc.querySelectorAll(".acard")];
+    check(`${loc.code} : les 3 compagnies sont rendues`, cards.length === 3);
+
+    const statuses = cards.map((c) => [...c.querySelectorAll(".acard__status")].map((s) => s.textContent.trim()));
+    const flat = statuses.flat().join(" | ");
+
+    // Rapport synthétique, affiché même quand tout passe : c'est lui qu'on relit en contre-revue.
+    console.log("         badges rendus : " + flat);
+
+    const assumedCard = cards[1];
+    const assumedTxt = [...assumedCard.querySelectorAll(".acard__status")].map((s) => s.textContent.trim());
+    const docTxt = [...cards[0].querySelectorAll(".acard__status")].map((s) => s.textContent.trim());
+
+    const directLabel = docTxt.find((t) => /✈/.test(t)) || "";
+    const assumedLabel = assumedTxt.find((t) => /✈|\?/.test(t)) || "";
+
+    check(`${loc.code} : le direct attesté porte un badge`, directLabel.length > 0);
+    check(
+      `${loc.code} : le direct supposé NE porte PAS le même libellé que le direct attesté`,
+      assumedLabel !== "" && assumedLabel.replace(/^[^\p{L}]+/u, "") !== directLabel.replace(/^[^\p{L}]+/u, ""),
+    );
+    check(
+      `${loc.code} : le direct supposé tient en UN seul badge d'itinéraire`,
+      assumedTxt.length === 1,
+    );
+    check(
+      `${loc.code} : la carte du direct supposé est marquée non vérifiée`,
+      assumedCard.className.includes("acard--unverified"),
+    );
+
+    const cap = doc.querySelector(".acap");
+    check(
+      `${loc.code} : le compteur « directs » n'additionne que le direct attesté (1, pas 2)`,
+      !!cap && /\b1\b/.test(cap.textContent) && !/\b2\b/.test(cap.textContent.split("·")[0]),
+    );
+  }
+}
+
+main().then(() => badgesPass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);

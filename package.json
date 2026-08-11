@@ -2,6 +2,9 @@
   "name": "mydogcanfly",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0 <23"
+  },
   "workspaces": [
     "packages/*"
   ],
@@ -9,6 +12,9 @@
     "check": "npm -w @mydogcanfly/knowledge run check",
     "demo": "npm -w @mydogcanfly/engine run demo",
     "smoke": "npm -w @mydogcanfly/workers run smoke",
+    "test:unit": "node test-preview-select.mjs && npx tsx test-direct-claims.mjs",
+    "test:direct": "npx tsx test-direct-claims.mjs",
+    "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs",
     "build": "npm -w @mydogcanfly/ui run build",
     "build:preview": "node packages/knowledge/scripts/build-preview.mjs",
     "deploy:preview": "node packages/knowledge/scripts/deploy-preview.mjs",

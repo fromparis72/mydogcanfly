@@ -104,6 +104,7 @@ const labels = {
   partners: t(locale, "section.partners"),
   airlines: t(locale, "section.airlines"),
   direct: t(locale, "air.direct"),
+  directUnverified: t(locale, "air.direct_unverified"),
   connection: t(locale, "air.connection"),
   noPets: t(locale, "air.no_pets"),
   /* Plus de « Race non acceptée » posé par défaut : le moteur ne connaissait pas la cause du refus
@@ -440,11 +441,18 @@ const labels = {
                        * comme une correspondance non vérifiée. Correctif P0 du 11/08/2026 : le badge
                        * ne distinguait pas les deux, si bien qu'un direct déduit était présenté au
                        * visiteur avec la même assurance qu'un direct documenté. */
+                      /* Un LIBELLÉ UNIQUE par nature d'itinéraire, jamais « Direct » suivi d'un
+                       * démenti en second badge : `direct_assumed` (compagnie sans graphe de routes,
+                       * direct déduit d'un hub) s'affiche « Direct non vérifié » d'un seul tenant.
+                       * Deux badges contradictoires se lisent mal et le premier l'emporte à l'œil.
+                       * Correctif P0 du 11/08/2026, précisé par Codex. */
                       caps.push(a.direct
-                        ? { cls: "direct", ic: "✈", txt: L.direct }
+                        ? (a.itinerary_confidence === "direct_documented"
+                            ? { cls: "direct", ic: "✈", txt: L.direct }
+                            : { cls: "unver", ic: "?", txt: L.directUnverified })
                         : { cls: "conn", ic: "✈", txt: L.connection + (viaCode ? ` · via ${viaCode}` : "") });
-                      // Itinéraire seulement plausible : on le dit dès le badge, pas en petits caractères.
-                      if (a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed") caps.push({ cls: "unver", ic: "?", txt: L.unverifiedShort });
+                      // Correspondance seulement plausible : on le dit dès le badge, pas en petits caractères.
+                      if (a.itinerary_confidence === "connection_unverified") caps.push({ cls: "unver", ic: "?", txt: L.unverifiedShort });
                       if (a.heat_embargo) caps.push({ cls: "heat", ic: "🌡️", txt: L.heatEmbargoShort });
                     }
                     return `<div class="acard__statusrow">${caps.map((s) => `<span class="acard__status acard__status--${s.cls}">${s.ic} ${esc(s.txt)}</span>`).join("")}</div>`;
