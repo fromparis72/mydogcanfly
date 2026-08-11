@@ -28,18 +28,39 @@ import { fileURLToPath } from "node:url";
  * `--dry` lançait donc un build complet de 11 minutes au lieu de l'aperçu demandé, et — plus
  * grave dans l'autre sens — un futur drapeau mal orthographié serait ignoré sans avertir. */
 const KNOWN_FLAGS = new Set(["--dry"]);
-const unknownArgs = process.argv.slice(2).filter((a) => !KNOWN_FLAGS.has(a));
+const KNOWN_VALUED = new Set(["--api-base"]);
+const rawArgs = process.argv.slice(2);
+const valued = new Map();
+const unknownArgs = [];
+for (const a of rawArgs) {
+  const eq = a.indexOf("=");
+  const key = eq === -1 ? a : a.slice(0, eq);
+  if (KNOWN_FLAGS.has(a)) continue;
+  if (KNOWN_VALUED.has(key) && eq !== -1 && a.slice(eq + 1)) valued.set(key, a.slice(eq + 1));
+  else unknownArgs.push(a);
+}
 if (unknownArgs.length > 0) {
   console.error(`[build-preview] Argument(s) non reconnu(s) : ${unknownArgs.join(", ")}`);
-  console.error(`[build-preview] Arguments acceptés : ${[...KNOWN_FLAGS].join(", ")}`);
+  console.error(`[build-preview] Arguments acceptés : ${[...KNOWN_FLAGS].join(", ")}, --api-base=<url>`);
   process.exit(2);
 }
 
-const DRY = process.argv.includes("--dry");
+const DRY = rawArgs.includes("--dry");
 
-// Volontairement en dur : c'est la seule adresse valide pour un déploiement PREVIEW.
-// (Voir packages/workers/wrangler.toml [env.preview] et docs/V2-DEPLOYMENT.md.)
-const PREVIEW_API_BASE = "https://mydogcanfly-api-preview.fromparis.workers.dev";
+/* Adresse du Worker que le Finder appellera, inlinée dans le bundle au build.
+ *
+ * L'alias partagé ci-dessous n'est PAS immuable : il désigne le déploiement Worker actif du
+ * moment. Un `dist/` construit contre lui voit donc son backend changer sous ses pieds à chaque
+ * promotion ultérieure — les anciennes previews Pages ne sont alors immuables qu'en apparence
+ * (leurs fichiers statiques le sont, pas le moteur qu'ils interrogent). Point soulevé par Codex
+ * le 11/08/2026.
+ *
+ * Le workflow officiel (`npm run deploy:preview`) passe donc TOUJOURS `--api-base=<url versionnée>`,
+ * propre à une version Worker précise. L'alias ne sert qu'aux builds manuels de dépannage, et ce
+ * script le dit bruyamment plutôt que d'y retomber en silence. */
+const PREVIEW_ALIAS_API_BASE = "https://mydogcanfly-api-preview.fromparis.workers.dev";
+const PREVIEW_API_BASE = valued.get("--api-base") ?? PREVIEW_ALIAS_API_BASE;
+const USING_ALIAS = !valued.has("--api-base");
 
 // Le chemin appelé par le Finder. Sert à prouver que c'est bien l'îlot du Finder qui porte
 // l'URL du Worker, et pas un fichier quelconque du bundle (voir vérification n°1).
@@ -75,6 +96,17 @@ const childEnv = { ...process.env, PUBLIC_API_BASE: PREVIEW_API_BASE, PUBLIC_SIT
 
 log(`PUBLIC_API_BASE=${PREVIEW_API_BASE}`);
 log('PUBLIC_SITE_ENV=preview (fixé explicitement — le preview doit rester noindex)');
+
+if (USING_ALIAS) {
+  console.error("[build-preview] ────────────────────────────────────────────────────────────");
+  console.error("[build-preview] AVERTISSEMENT : build construit contre l'ALIAS Worker partagé,");
+  console.error("[build-preview] qui n'est pas immuable — le backend de ce dist/ changera à chaque");
+  console.error("[build-preview] promotion ultérieure de l'alias.");
+  console.error("[build-preview] Convient au dépannage manuel. NE PAS s'en servir pour une preview");
+  console.error("[build-preview] soumise à contre-test : utiliser `npm run deploy:preview`, qui");
+  console.error("[build-preview] épingle le build sur une URL Worker versionnée.");
+  console.error("[build-preview] ────────────────────────────────────────────────────────────");
+}
 
 if (DRY) {
   log("--dry : build non exécuté. Commande qui serait lancée :");

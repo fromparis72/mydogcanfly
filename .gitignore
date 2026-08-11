@@ -16,4 +16,10 @@ packages/**/dist/
 
 # Cache de compilation d'Astro : régénéré à chaque build, propre à la machine.
 packages/**/.astro/
+
+# Manifestes de déploiement produits par `npm run deploy:preview`. Délibérément NON versionnés :
+# ils attestent d'un déploiement du commit courant, donc les commiter ajouterait un commit
+# au-dessus de celui dont ils parlent — l'attestation ne pourrait jamais désigner l'état final
+# du dépôt. Ce sont des artefacts, à archiver côté CI ou stockage d'audit si besoin.
+.artifacts/
 .sauvegarde-8aout/objects.json
