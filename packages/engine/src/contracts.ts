@@ -21,7 +21,16 @@ export const FinderRequest = z.object({
   travel_type: TravelType.default("pet"),
   placement: z.union([Placement, z.literal("any")]).default("any"),
   date: z.string().optional(),
-  weather: z.object({ temperature_c: z.number() }).optional(),
+  /* Bornes PHYSIQUES sur la température (résidu K-bis, arbitré par Codex le 11/08/2026 :
+     « borner physiquement temperature_c — ±999 sont actuellement acceptées à 200 »). Ce champ
+     pilote les restrictions de chaleur : une valeur absurde ne fausse pas qu'un affichage, elle
+     déclenche ou éteint des embargos. Plage retenue : −60 °C à +60 °C. Les extrêmes jamais
+     mesurés sur un aéroport commercial en activité restent en dedans (record de froid en
+     exploitation ≈ −55 °C à Iakoutsk ; record de chaleur à l'ombre 56,7 °C à Furnace Creek, qui
+     n'est pas un aéroport — les pistes commerciales plafonnent plus bas). Au-delà, c'est une
+     erreur de saisie ou d'unité (Fahrenheit, dixièmes), et le contrat répond 400 plutôt que de
+     calculer un embargo sur une planète imaginaire. */
+  weather: z.object({ temperature_c: z.number().min(-60).max(60) }).optional(),
   /* Retour vers l'UE — le seul fait que le moteur ne peut pas déduire du vol.
      On interroge la SITUATION du chien ("vit-il habituellement dans l'Union européenne ?"), au
      présent et sans rien faire vérifier : "yes" = il rentre chez lui, "no" = il découvre l'UE.

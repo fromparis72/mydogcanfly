@@ -32,6 +32,10 @@ Pour `weight_kg` **et** `temperature_c` (qui pilote les restrictions de chaleur)
   paramètre fautif nommé dans `invalid` ;
 - pour le poids : ≤ 0 ou > 120 → **400** (bornes appliquées par le schéma Zod, désormais atteint
   aussi en GET — l'ancien code filtrait la valeur avant qu'il la voie) ;
+- pour la température : hors de **−60 °C à +60 °C** (bornes incluses) → **400**. Plage arbitrée le
+  11/08/2026 : les records d'exploitation aéroportuaire réels tiennent dedans (≈ −55 °C à
+  Iakoutsk ; 56,7 °C à l'ombre est un record au sol hors aéroport), et ce champ pilote les
+  embargos de chaleur — une valeur absurde ne fausse pas un affichage, elle décide ;
 - une locale inconnue n'est **pas** une erreur : repli documenté en anglais, le verdict reste
   celui du chien demandé.
 
