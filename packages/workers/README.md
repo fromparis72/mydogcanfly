@@ -11,8 +11,19 @@ Knowledge → Normalization → Decision Engine → Explanation Engine → Decis
 ```
 POST /v1/finder   → DecisionReport   (real input; the live engine)
 GET  /v1/finder   → DecisionReport   (default Golden Retriever → Japan; keeps the current UI working)
-GET  /v1/health   → { ok: true }
+GET  /v1/health   → { ok: true, service, version, sha }
 ```
+
+`sha` = le commit déployé, injecté au déploiement via la variable Cloudflare `BUILD_SHA` :
+
+```bash
+npx wrangler deploy --env preview --var BUILD_SHA:$(git rev-parse HEAD)
+```
+
+Sans ce drapeau, `sha` vaut `"unknown"` : le Worker reste fonctionnel mais se déclare
+non traçable. Ne jamais conclure qu'un déploiement correspond à `origin/main` sans avoir lu
+ce champ — c'est précisément la déduction indirecte que l'inventaire (document 10) a dû retirer,
+faute de SHA exposé.
 
 - The knowledge base is normalized **once at cold start** and reused (low-cost).
 - Output is the exact same typed `DecisionReport` the Astro UI already consumes — contract unchanged.

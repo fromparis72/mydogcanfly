@@ -222,12 +222,29 @@ function formatError(e: unknown): { error: string; detail: string } {
   return { error: "invalid_request", detail: e instanceof Error ? e.message : String(e) };
 }
 
+/* Traçabilité du déploiement (exigée par Codex avant production, 11/08/2026 ; DR-09 du
+ * document 09 de l'inventaire). Jusqu'ici, rien dans la réponse du Worker ne permettait de
+ * savoir QUEL commit était réellement déployé : le document 10 de l'inventaire a dû retirer
+ * l'affirmation « le Worker reflète bien origin/main », faute justement de `git_sha` exposé.
+ *
+ * `BUILD_SHA` est une variable Cloudflare injectée au déploiement :
+ *   npx wrangler deploy --env preview --var BUILD_SHA:$(git rev-parse HEAD)
+ *
+ * Volontairement optionnelle, avec repli sur "unknown" : un déploiement fait sans le drapeau
+ * doit rester fonctionnel, et afficher honnêtement qu'il n'est pas traçable — plutôt que de
+ * casser /v1/health (que le monitoring interroge) ou, pire, d'afficher un SHA figé au build
+ * précédent qui laisserait croire à une traçabilité qui n'existe pas. */
+interface Env {
+  BUILD_SHA?: string;
+}
+
 export default {
-  async fetch(request: Request): Promise<Response> {
+  async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
-    if (url.pathname === "/v1/health") return json({ ok: true, service: "mydogcanfly-api", version: "v1" });
+    if (url.pathname === "/v1/health")
+      return json({ ok: true, service: "mydogcanfly-api", version: "v1", sha: env?.BUILD_SHA ?? "unknown" });
 
     // Limitation de débit best-effort (cf. commentaire sur isRateLimited) — hors santé/CORS, qui
     // doivent toujours répondre pour que le monitoring et les navigateurs ne cassent jamais.

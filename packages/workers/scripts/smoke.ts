@@ -9,6 +9,10 @@ async function call(method: string, body?: unknown, query = "") {
       headers: { "content-type": "application/json" },
       body: body ? JSON.stringify(body) : undefined,
     }),
+    // Second argument = les variables Cloudflare (voir `interface Env` dans src/index.ts).
+    // Le smoke tourne hors Cloudflare : pas de BUILD_SHA, ce qui exerce au passage le repli
+    // "unknown" de /v1/health.
+    {},
   );
   return { status: res.status, report: await res.json() };
 }
