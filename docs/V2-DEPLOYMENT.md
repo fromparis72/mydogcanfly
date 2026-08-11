@@ -1,134 +1,267 @@
-# MyDogCanFly V2 — Deployment & Migration Safety
+# MyDogCanFly V2 — Déploiement, previews et sécurité de migration
 
-> Goal: see V2 running on a **Cloudflare preview URL** without touching production and without any SEO risk.
-> The V2 app lives in `packages/ui` (Astro) + `packages/workers` (API). The current Hugo site at repo root is **not** modified by any of this.
+> **Ce document décrivait jusqu'au 11/08/2026 un état qui n'existe plus.** Il présentait V2 comme
+> une expérimentation à valider sur une URL de preview pendant que Hugo tenait la production, avec
+> une mise en production « plus tard ». **V2 est en production depuis.** Toutes les sections
+> ci-dessous ont été réécrites d'après la topologie Cloudflare réelle, relevée sur le dashboard et
+> recoupée par requêtes directes.
+
+L'application V2 vit dans `packages/ui` (Astro) et `packages/workers` (l'API). Le site Hugo à la
+racine du dépôt n'est plus servi sur le domaine.
 
 ---
 
-## 0. Golden safety rules
-- **Production is a separate deploy target.** Preview never routes to `mydogcanfly.com`.
-- **Non-production is `noindex` by default** (safe-by-default): unless `PUBLIC_SITE_ENV=production`, every page emits `<meta name="robots" content="noindex, nofollow">` and `robots.txt` returns `Disallow: /`.
-- **The API Worker uses a separate name/route per environment.** Preview = `workers.dev` subdomain, no custom route.
+## 0. Topologie réelle — à lire avant tout
+
+Le point le plus déroutant, et la source de la plupart des erreurs passées :
+
+> **Le projet Cloudflare Pages `mydogcanfly-v2-preview` est le projet de PRODUCTION**, malgré son
+> nom. Ce nom est un vestige de la phase d'expérimentation ; le renommer n'est pas possible sans
+> recréer le projet, donc il reste.
+
+| | |
+|---|---|
+| Projet Pages de production | **`mydogcanfly-v2-preview`** |
+| Branche de production | **`main`** |
+| Domaines personnalisés | **déjà attachés** à ce projet (`mydogcanfly.com`, `www` en redirection 301 vers l'apex) |
+| Previews isolées | déploiements **`review-<sha>`** sur **ce même projet** — donc en `*.pages.dev` uniquement, jamais sur le domaine |
+| Projet Pages `mydogcanfly` (Hugo) | **aucun domaine personnalisé**, subsiste en `mydogcanfly.pages.dev`, orphelin |
+| `npm run release` | **déploie DIRECTEMENT EN PRODUCTION** (`--branch=main` sur le projet ci-dessus) |
+
+**Conséquences pratiques :**
+
+- Previews et production **partagent un projet Pages**. Le `noindex` par défaut n'est donc pas une
+  précaution théorique : c'est ce qui empêche des milliers de pages de preview d'être indexées
+  depuis le même projet que le site live.
+- `npm run release` n'a pas de filet. Il n'y a pas d'étape de validation intermédiaire : ce qu'on
+  lance part en production.
+- Une preview ne peut pas « fuiter » sur le domaine, parce que Cloudflare ne route les domaines
+  personnalisés que vers la branche de production.
+
+## Règles de sécurité
+
+- **Tout ce qui n'est pas production est `noindex` par défaut** : sauf `PUBLIC_SITE_ENV=production`,
+  chaque page émet `<meta name="robots" content="noindex, nofollow">` et `robots.txt` renvoie
+  `Disallow: /`. Sécurité par défaut : c'est l'absence de la variable qui protège, pas sa présence.
+- **Le Worker API porte un nom et une route distincts par environnement.** Preview = sous-domaine
+  `workers.dev`, sans route personnalisée. Production = routes sur `mydogcanfly.com/v1/*`.
+- **Une preview soumise à contre-test est épinglée sur une version Worker précise** (voir §2).
 
 ---
 
-## 1. Environments
+## 1. Environnements
 
 | Env | UI (`packages/ui`) | API (`packages/workers`) | Indexable |
 |---|---|---|---|
-| **local** | `npm run dev -w @mydogcanfly/ui` (`localhost:4321`) | `npx wrangler dev` (`localhost:8787`) | no (`noindex`) |
-| **preview** | Cloudflare Pages **preview** deployment (`*.pages.dev`) | `wrangler deploy --env preview` → `mydogcanfly-api-preview.*.workers.dev` | **no** (`noindex` + `robots Disallow`) |
-| **production** | Cloudflare Pages **production** (custom domain, later) | `wrangler deploy --env production` (route `mydogcanfly.com/v1/*`) | yes |
+| **local** | `npm run dev -w @mydogcanfly/ui` (`localhost:4321`) | `npx wrangler dev` (`localhost:8787`) | non (`noindex`) |
+| **preview** | `npm run deploy:preview` → déploiement `review-<sha>` en `*.pages.dev` | version Worker épinglée `<version>-mydogcanfly-api-preview.*.workers.dev` | **non** (`noindex` + `robots Disallow`) |
+| **production** | `npm run release` → branche `main`, domaine attaché | `wrangler deploy --env production` (routes `mydogcanfly.com/v1/*`) | oui |
 
-The only switch is the env var **`PUBLIC_SITE_ENV`**:
-- unset / `preview` / `local` → **noindex** (safe).
-- `production` → indexable + `robots Allow` + sitemap reference.
+Le seul commutateur d'indexation est **`PUBLIC_SITE_ENV`** : non défini / `preview` / `local` →
+`noindex` ; `production` → indexable, `robots Allow`, sitemap référencé.
 
-### `PUBLIC_API_BASE` — where the Finder sends its request
+### `PUBLIC_API_BASE` — quel moteur le Finder interroge
 
-A second, independent env var tells the UI's Flight Finder which Decision Engine (Worker) to call. It is a **build-time** `PUBLIC_` var (inlined by Vite into the Finder island; `src/lib/env.ts` → `API_BASE`). It is orthogonal to `PUBLIC_SITE_ENV`: setting it does **not** affect indexing.
+Variable **de build** (`PUBLIC_`, inlinée par Vite dans l'îlot du Finder ; `src/lib/env.ts` →
+`API_BASE`). Elle est lue **au build, jamais au déploiement** : déployer un `dist/` construit sans
+elle expédie un Finder cassé sans que le déploiement échoue. Cette régression s'est produite deux
+fois (10 et 11/08/2026), d'où les garde-fous du §2. Elle est orthogonale à `PUBLIC_SITE_ENV` :
+la définir n'affecte pas l'indexation.
 
-| Env | `PUBLIC_API_BASE` | Finder calls | Notes |
+| Env | `PUBLIC_API_BASE` | Le Finder appelle | Notes |
 |---|---|---|---|
-| **local** | *unset* (same-origin) or `http://localhost:8787` | same-origin static snapshot, **or** `wrangler dev` Worker | Leave unset to use the offline snapshot; point at `localhost:8787` to test the live Worker locally. |
-| **preview** | `https://mydogcanfly-api-preview.fromparis.workers.dev` | preview Worker (`workers.dev`, cross-origin, CORS) | UI stays **`noindex`** — only `PUBLIC_API_BASE` is set, `PUBLIC_SITE_ENV` stays unset. Production Hugo is untouched. |
-| **production** | *unset* (same-origin) | `/v1/*` served same-origin via the Cloudflare **route** `mydogcanfly.com/v1/*` | No cross-origin, no CORS needed — the Worker route sits on the live domain. |
+| **local** | non défini, ou `http://localhost:8787` | rien, ou le Worker `wrangler dev` | Laisser vide ne donne aucun repli : le Finder affiche une erreur. |
+| **preview** | **URL Worker versionnée**, ex. `https://9c3ae533-mydogcanfly-api-preview.fromparis.workers.dev` | cette version précise (cross-origin, CORS) | Injectée par `npm run deploy:preview`. **Jamais l'alias partagé** (§2). |
+| **production** | non défini (same-origin) | `/v1/*` via la route Cloudflare `mydogcanfly.com/v1/*` | Pas de cross-origin, pas de CORS : la route Worker est sur le domaine live. |
 
-**Fallback behaviour (all envs):** the Finder first issues `POST ${API_BASE}/v1/finder`. Only if that POST fails (network error or non-2xx) does it fall back to `GET ${API_BASE}/v1/finder`, and the UI also ships a same-origin static `/v1/finder` snapshot (real pipeline, computed at build). **This GET/static path is only a safety net** — when the Worker is reachable (as in preview and production) the POST succeeds and no fallback GET is issued.
+### Il n'y a aucun repli
 
-Build/deploy the preview with the Worker wired in (note: `PUBLIC_SITE_ENV` deliberately left unset so the preview stays `noindex`):
+Le Finder émet **uniquement des `POST`** sur `${API_BASE}/v1/finder`, avec **une seule relance** en
+cas d'échec transitoire (`for (let attempt = 0; attempt < 2; attempt++)`, et une réponse 4xx
+interrompt la boucle : réessayer n'aiderait pas). Il n'y a **ni repli en `GET`, ni réponse statique
+de secours**. Un corps sans `verdict` est rejeté quel que soit le code HTTP.
+
+Ce document décrivait auparavant un repli `GET` plus un instantané statique calculé au build. Les
+deux ont été supprimés le 30/07/2026 : l'instantané était un rapport « CDG → Tokyo » écrit en dur,
+servi à toute requête `GET`. En développement, `POST` sur une route prérendue n'existant pas, le
+Finder retombait systématiquement dessus — tout semblait fonctionner alors que rien n'était calculé.
+En production, le moindre `POST` en échec affichait ce voyage au Japon à la place de la recherche du
+visiteur, ce qu'un utilisateur a fini par signaler.
+
+`packages/ui/src/pages/v1/finder.ts` subsiste, **délibérément inerte**, et n'exporte qu'un `GET`.
+En same-origin sur le site statique, un `POST` sur ce chemin **échoue** (aucun gestionnaire `POST`
+sur un fichier prérendu) ; **seule une requête `GET`** y renvoie le corps inerte
+`{"error":"not_available_here"}`, dépourvu du champ `verdict` que le Finder exige pour afficher un
+rapport. Aucune couche du site ne peut donc plus présenter un exemple comme une réponse.
+
+---
+
+## 2. Déployer une preview
+
+### Pourquoi l'alias Worker partagé est proscrit
+
+`https://mydogcanfly-api-preview.fromparis.workers.dev` (sans préfixe) est **mutable** : il désigne
+le déploiement Worker actif du moment. Une preview Pages construite contre lui n'est immuable qu'en
+apparence — ses fichiers statiques sont figés, mais le moteur qu'ils interrogent change à chaque
+promotion. Un contre-test validé la veille peut ainsi porter, le lendemain, sur un backend qui
+n'existe plus.
+
+Cloudflare attribue à chaque **version** Worker une URL propre
+(`<8 caractères de l'id>-<worker>.<sous-domaine>`). `build-preview.mjs` refuse tout `--api-base` qui
+ne serait pas une URL versionnée conforme.
+
+L'alias ne bouge que sur commande explicite après contre-test : il signifie « dernière preview
+**approuvée** », pas « dernier code téléversé ».
+
+### La commande
 
 ```bash
-PUBLIC_API_BASE=https://mydogcanfly-api-preview.fromparis.workers.dev npm run build
-npx wrangler pages deploy packages/ui/dist --project-name mydogcanfly-v2-preview --branch preview --commit-dirty=true
+npm run deploy:preview
 ```
 
+Sept étapes vérifiées, chacune bloquante : arbre Git propre **et** `HEAD == origin/main` (sans
+dérogation) → `versions upload` taguée `git-<sha>` → sélection de la version par ce tag,
+correspondance unique exigée → `/v1/health` relu sur l'URL versionnée jusqu'à double concordance
+(SHA **et** identifiant de version) → build épinglé → `pages deploy --branch=review-<sha>` → smoke
+HTTP de la preview publiée (200, `noindex`, bundle épinglé). Un manifeste est écrit dans
+`.artifacts/previews/<sha>/manifest.json` (dossier non versionné).
+
+Pour exploiter le manifeste en sortie, `--silent` est **obligatoire** : sans lui, npm mêle son
+préambule au JSON sur stdout.
+
+```bash
+npm run --silent deploy:preview -- --json | jq .worker_version_id
+```
+
+Puis, **seulement après un contre-test navigateur concluant** :
+
+```bash
+npm run promote:preview-alias -- .artifacts/previews/<sha>/manifest.json
+```
+
+Cette commande revérifie le manifeste, le tag auprès de Cloudflare, la santé de la version, promeut
+l'alias, puis **relit l'alias** jusqu'à concordance avant d'annoncer quoi que ce soit.
+
+`npm run build:preview` seul reste possible pour du dépannage, mais construit contre l'alias mutable
+et l'annonce bruyamment : son résultat n'est pas soumettable à contre-test.
+
 ---
 
-## 2. Cloudflare Pages — preview deployment
+## 3. Worker API — plan de routage
 
-Create a **new, separate Pages project** (do NOT attach the production domain):
-
-- **Framework preset:** Astro
-- **Root directory:** `packages/ui`
-- **Build command:** `npm --prefix ../.. install && npm --prefix ../.. run build`
-  (installs the workspace once, then runs the root `build` script = `astro build` for `@mydogcanfly/ui`)
-- **Build output directory:** `packages/ui/dist`
-- **Environment variables:** leave `PUBLIC_SITE_ENV` **unset** (or `preview`) so the preview stays `noindex`.
-
-Result: a `https://<project>.pages.dev` URL that is fully functional and **not indexable**. Production Pages/Hugo is untouched.
-
-> Note: the Astro app is a monorepo package. If Pages' root-directory build has trouble with the workspace, an alternative is to build locally (`npm run build`) and use **Direct Upload**: `npx wrangler pages deploy packages/ui/dist --project-name mydogcanfly-v2-preview`.
-
----
-
-## 3. Worker API — route plan
-
-| Env | Command | Surface |
+| Env | Commande | Surface |
 |---|---|---|
-| local | `npx wrangler dev` (in `packages/workers`) | `http://localhost:8787/v1/finder` |
-| **preview** | `npx wrangler deploy --env preview` | `https://mydogcanfly-api-preview.<sub>.workers.dev/v1/*` — **no custom route** |
-| production (later) | `npx wrangler deploy --env production` | route `mydogcanfly.com/v1/*` (same-origin for the UI) |
+| local | `npx wrangler dev` (dans `packages/workers`) | `http://localhost:8787/v1/finder` |
+| **preview** | `npm run deploy:preview` (qui appelle `versions upload`) | `https://<version>-mydogcanfly-api-preview.<sub>.workers.dev/v1/*` — **aucune route personnalisée** |
+| **production** | `npx wrangler deploy --env production --var BUILD_SHA:$(git rev-parse HEAD)` | routes `mydogcanfly.com/v1/*` et `www.mydogcanfly.com/v1/*` |
 
-Endpoints: `POST /v1/finder` (real input), `GET /v1/finder` (default demo), `GET /v1/health`.
-CORS is enabled, so the preview UI can call the preview Worker cross-origin (`*.workers.dev`).
+Endpoints : `POST /v1/finder` (corps JSON), `GET /v1/finder` (**lit la query string**, et répond 400
+avec le mode d'emploi s'il n'y a rien à lire — ce n'est plus une démo par défaut), `GET /v1/health`.
 
-During preview, point the UI's Finder at the preview Worker if you want the live dynamic path; otherwise the UI's built-in static `/v1/finder` snapshot (real pipeline at build time) works as an offline fallback.
+`/v1/health` renvoie `{ ok, service, version, sha, worker_version_id }` avec `Cache-Control:
+no-store`. Les deux identifiants sont de natures différentes et c'est leur **couple** qui fait la
+traçabilité : `sha` est *déclaré* par la commande de déploiement (donc falsifiable),
+`worker_version_id` est *attribué par Cloudflare* au code réellement reçu. Ne jamais conclure qu'un
+déploiement correspond à `origin/main` sans avoir lu les deux.
+
+> **État au 11/08/2026** : le Worker de **production** répond encore
+> `{"ok":true,"service":"mydogcanfly-api","version":"v1"}`, **sans `sha` ni `worker_version_id`**.
+> Il est donc antérieur au correctif de traçabilité et n'est, à ce jour, pas traçable. Le Worker de
+> preview, lui, expose les deux champs.
+
+CORS est activé, donc l'UI de preview peut appeler le Worker de preview en cross-origin.
 
 ---
 
-## 4. Pre-deploy checklist
+## 4. Contrôles avant déploiement
 
-Run from repo root — all must pass:
+Depuis la racine — tout doit passer :
 
 ```bash
-npm run check        # knowledge quality gates (schema · rules · coverage)
-npm run typecheck    # knowledge · engine · workers
-npm run smoke        # engine live via Worker (EN + FR + partners + affiliate safeguard)
-npm run build        # Astro static build (Cloudflare Pages)
+npm run check                  # portes qualité de la base de connaissances (schéma · règles · couverture)
+npm run typecheck              # knowledge · engine · workers
+npm run smoke                  # moteur en direct via le Worker (EN + FR + partenaires + garde-fou affiliation)
+node test-preview-select.mjs   # sélection de version Worker + double concordance (hors ligne)
 ```
 
-Then verify the build artifacts:
+Les deux harnais suivants lisent le HTML **construit** : ils exigent un `packages/ui/dist` à jour et
+doivent donc être lancés **après** un build.
 
-- [ ] `packages/ui/dist/robots.txt` → `Disallow: /` (preview) or `Allow: /` + `Sitemap:` (production)
-- [ ] `packages/ui/dist/sitemap.xml` exists and lists EN + FR URLs with hreflang alternates
-- [ ] Sample pages contain `<meta name="robots" content="noindex, nofollow">` on preview, and **do not** on production
-- [ ] `hreflang` + self-canonical present on entity pages
-- [ ] No affiliate/sponsored outbound link for non-`active` partners
-- [ ] Internal link check: 0 broken
+```bash
+node test-fiche-harness.cjs
+node test-flightfinder-harness.cjs
+```
 
----
+Pour une **preview**, ne pas construire à la main : `npm run deploy:preview` enchaîne le build,
+vérifie lui-même `noindex` sur la totalité des pages ainsi que l'épinglage du bundle, puis interroge
+la preview publiée.
 
-## 5. Sitemap verification
+Pour un build de **production** (`npm run build:prod`), que ces automatismes ne couvrent pas :
 
-- Generated at build by `src/pages/sitemap.xml.ts` from the Knowledge Base (both locales, hreflang).
-- Verify: `test -s packages/ui/dist/sitemap.xml && grep -c "<loc>" packages/ui/dist/sitemap.xml`
-- On production, `robots.txt` references it; on preview it exists but crawling is blocked by `Disallow: /`.
-
----
-
-## 6. Robots / noindex for preview
-
-- **`robots.txt`** is environment-driven (`src/pages/robots.txt.ts`): `Disallow: /` unless `PUBLIC_SITE_ENV=production`.
-- **Per-page meta**: `<meta name="robots" content="noindex, nofollow">` on every page unless production (`src/lib/env.ts` → `Base.astro`).
-- Double protection means a preview deploy cannot be indexed even if `robots.txt` is ignored by a crawler.
+- [ ] `packages/ui/dist/robots.txt` → `Allow: /` + `Sitemap:`
+- [ ] `packages/ui/dist/sitemap.xml` existe et liste les URL des 4 langues avec alternates hreflang
+- [ ] les pages **ne** portent **pas** `<meta name="robots" content="noindex, nofollow">`
+- [ ] `hreflang` + canonical auto-référent présents sur les pages d'entité
+- [ ] aucun lien sortant affilié/sponsorisé pour un partenaire non `active`
+- [ ] contrôle des liens internes : 0 cassé
 
 ---
 
-## 7. Rollback
+## 5. Vérification du sitemap
 
-Everything is additive and isolated; rollback never affects production Hugo.
-
-- **UI (Pages preview):** in the Cloudflare Pages dashboard → the preview project → *Deployments* → **Rollback** to a previous deployment (one click). Or redeploy a previous commit.
-- **Worker preview:** `npx wrangler rollback --env preview` (reverts to the previous Worker version), or `npx wrangler deployments list` then `wrangler rollback [id] --env preview`.
-- **Git:** the V2 stack lives entirely under `packages/`, `docs/`, `ARCHITECTURE_DECISIONS.md`, root `package.json`/`tsconfig.base.json`. Reverting those commits removes V2 without touching `content/`, `layouts/`, `themes/` (the Hugo production site).
-- **Production go-live is a deliberate, separate step**: only `wrangler deploy --env production` + attaching the domain to the V2 Pages project + setting `PUBLIC_SITE_ENV=production` makes V2 live. Until then, production stays 100% Hugo.
+- Généré au build par `src/pages/sitemap.xml.ts` depuis la base de connaissances (4 langues, hreflang).
+- Vérifier : `test -s packages/ui/dist/sitemap.xml && grep -c "<loc>" packages/ui/dist/sitemap.xml`
+- En production, `robots.txt` le référence ; en preview il existe mais l'exploration est bloquée par `Disallow: /`.
 
 ---
 
-## 8. Going to production (later — not now)
-1. Set `PUBLIC_SITE_ENV=production` on the production Pages project.
-2. `wrangler deploy --env production` (routes `mydogcanfly.com/v1/*`).
-3. Attach the domain to the V2 Pages project (replacing Hugo) once validated.
-4. Confirm `robots.txt` = `Allow: /` + sitemap, and pages have no `noindex`.
-5. Submit `sitemap.xml` in Search Console.
+## 6. Robots / noindex
+
+- **`robots.txt`** dépend de l'environnement (`src/pages/robots.txt.ts`) : `Disallow: /` sauf `PUBLIC_SITE_ENV=production`.
+- **Meta par page** : `<meta name="robots" content="noindex, nofollow">` sur chaque page sauf en production (`src/lib/env.ts` → `Base.astro`).
+- Double protection : un déploiement de preview ne peut pas être indexé même si un robot ignore `robots.txt`.
+- Ce point est d'autant plus critique que previews et production **partagent le même projet Pages** (§0).
+
+---
+
+## 7. Revenir en arrière
+
+- **UI (Pages)** : dashboard Cloudflare → projet `mydogcanfly-v2-preview` → *Deployments* →
+  **Rollback** vers un déploiement antérieur de la branche `main`. C'est un retour arrière **de
+  production** : le domaine suit immédiatement.
+- **Worker de preview** : `npx wrangler rollback --env preview`, ou `npx wrangler deployments list`
+  puis `wrangler rollback [id] --env preview`. On peut aussi repointer l'alias sur une version
+  antérieure avec `npm run promote:preview-alias` à partir d'un manifeste plus ancien.
+- **Worker de production** : `npx wrangler rollback --env production`.
+- **Git** : la pile V2 vit sous `packages/`, `docs/`, `ARCHITECTURE_DECISIONS.md`, et les
+  `package.json`/`tsconfig.base.json` racine.
+
+Le site Hugo à la racine du dépôt **n'est plus un filet de secours** : son projet Pages
+(`mydogcanfly`) n'a aucun domaine personnalisé attaché. Revenir à Hugo supposerait de réattacher le
+domaine à ce projet — une opération manuelle sur le dashboard, pas un `git revert`.
+
+---
+
+## 8. Déployer en production
+
+```bash
+npm run release
+```
+
+**Cette commande part directement en production.** Elle enchaîne `build:prod` (avec
+`PUBLIC_SITE_ENV=production`), `verify:index`, puis `pages deploy --branch=main` sur le projet
+auquel le domaine est attaché. Il n'y a **aucune étape de validation intermédiaire** : pas de
+preview implicite, pas de confirmation.
+
+Faire précéder d'un `npm run deploy:preview` et d'un contre-test navigateur sur la preview
+correspondante — c'est le seul filet existant, et il est volontaire, pas automatique.
+
+Le Worker de production se déploie **séparément** ; déployer le site ne le met pas à jour :
+
+```bash
+npx wrangler deploy --config packages/workers/wrangler.toml --env production --var BUILD_SHA:$(git rev-parse HEAD)
+curl -s https://mydogcanfly.com/v1/health
+```
+
+Le `curl` doit renvoyer le SHA qui vient d'être déployé. S'il renvoie `unknown`, ou un corps sans
+champ `sha`, le déploiement n'est pas traçable — ne pas conclure qu'il correspond à `origin/main`.
