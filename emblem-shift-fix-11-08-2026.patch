@@ -1,0 +1,22 @@
+diff --git a/packages/ui/src/styles/tokens.css b/packages/ui/src/styles/tokens.css
+index c2d3a16..01f8752 100644
+--- a/packages/ui/src/styles/tokens.css
++++ b/packages/ui/src/styles/tokens.css
+@@ -40,7 +40,16 @@
+ }
+ 
+ * { box-sizing: border-box; }
+-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
++/* `overflow-y: scroll` (et non le défaut `auto`) : réserve TOUJOURS la place de la barre de
++   défilement verticale, même sur une page assez courte pour ne pas en avoir besoin (ex. /tools/,
++   ~900px de contenu, contre plusieurs milliers sur /airlines/, /breeds/, /countries/). Sans ça, la
++   largeur utile de la page varie de ~15px (la largeur de la barre) selon que le contenu déborde ou
++   non, ce qui décale visiblement de 7,5px le header/menu centré (`.mdcf-container`, `margin: 0
++   auto`) — la moitié du delta, de chaque côté — entre une page courte et une page longue. Repéré
++   par Philippe (10/08/2026) : « décalage du menu complet » sur /tools/ par rapport aux 3 autres
++   pages à émblème, mesuré et confirmé (1728px de large sans barre vs 1713px avec, header/émblème
++   décalés de 7,5px). Solution standard, single-line, valable sur tous les navigateurs. */
++html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; overflow-y: scroll; }
+ body {
+   margin: 0; font-family: var(--mdcf-font); color: var(--mdcf-ink); background: var(--mdcf-surface);
+   line-height: 1.58; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
