@@ -21,6 +21,19 @@
 import { spawnSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
+import { fileURLToPath } from "node:url";
+
+/* Un argument non reconnu est une ERREUR, jamais un silence. Avant ce garde-fou (signalé par
+ * Codex le 11/08/2026), `--dry --typo` réussissait sans rien dire : une faute de frappe sur
+ * `--dry` lançait donc un build complet de 11 minutes au lieu de l'aperçu demandé, et — plus
+ * grave dans l'autre sens — un futur drapeau mal orthographié serait ignoré sans avertir. */
+const KNOWN_FLAGS = new Set(["--dry"]);
+const unknownArgs = process.argv.slice(2).filter((a) => !KNOWN_FLAGS.has(a));
+if (unknownArgs.length > 0) {
+  console.error(`[build-preview] Argument(s) non reconnu(s) : ${unknownArgs.join(", ")}`);
+  console.error(`[build-preview] Arguments acceptés : ${[...KNOWN_FLAGS].join(", ")}`);
+  process.exit(2);
+}
 
 const DRY = process.argv.includes("--dry");
 
@@ -32,7 +45,13 @@ const PREVIEW_API_BASE = "https://mydogcanfly-api-preview.fromparis.workers.dev"
 // l'URL du Worker, et pas un fichier quelconque du bundle (voir vérification n°1).
 const FINDER_PATH = "/v1/finder";
 
-const REPO_ROOT = join(new URL(import.meta.url).pathname, "..", "..", "..", "..");
+/* `fileURLToPath` et non `new URL(...).pathname` : ce dernier laisse les caractères
+ * percent-encodés, donc un chemin de dépôt contenant une espace devient « .../mon%20dossier/... »
+ * et toutes les lectures de fichiers échouent. Vérifié : pour /tmp/chemin avec espaces/repo/t.mjs,
+ * `.pathname` rend « /tmp/chemin%20avec%20espaces/repo/t.mjs », `fileURLToPath` rend le vrai
+ * chemin. Signalé par Codex le 11/08/2026 ; latent aujourd'hui (le chemin actuel n'a pas
+ * d'espace) mais c'est une panne totale le jour où il en aurait une. */
+const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
 const DIST_DIR = join(REPO_ROOT, "packages/ui/dist");
 const ASTRO_DIR = join(DIST_DIR, "_astro");
 
