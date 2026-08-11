@@ -12,6 +12,13 @@ compatibility_date = "2024-09-01"
 name = "mydogcanfly-api-preview"
 workers_dev = true
 
+# Binding « Version Metadata » : Cloudflare injecte lui-même l'ID de la version servant la
+# requête, exposé par /v1/health en `worker_version_id`. À REDÉCLARER DANS CHAQUE
+# ENVIRONNEMENT : la doc Wrangler classe les bindings parmi les clés NON héritables — un bloc
+# `[version_metadata]` au niveau racine ne descendrait pas dans `[env.preview]`/`[env.production]`.
+[env.preview.version_metadata]
+binding = "CF_VERSION_METADATA"
+
 # --- Production (later): route the live domain to the Worker so the UI calls same-origin /v1/* ---
 #   npx wrangler deploy --env production
 [env.production]
@@ -28,3 +35,9 @@ routes = [
   { pattern = "mydogcanfly.com/v1/*", zone_name = "mydogcanfly.com" },
   { pattern = "www.mydogcanfly.com/v1/*", zone_name = "mydogcanfly.com" },
 ]
+
+# Même binding qu'en preview, redéclaré (clé non héritable — voir le commentaire côté preview).
+# La traçabilité doit valoir en production au moins autant qu'en preview : c'est là que la
+# question « quel code sert réellement ce domaine ? » a le plus de conséquences.
+[env.production.version_metadata]
+binding = "CF_VERSION_METADATA"

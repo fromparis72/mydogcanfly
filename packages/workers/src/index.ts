@@ -18,10 +18,10 @@ const CORS: Record<string, string> = {
   "access-control-allow-headers": "content-type",
 };
 
-const json = (data: unknown, status = 200): Response =>
+const json = (data: unknown, status = 200, extraHeaders: Record<string, string> = {}): Response =>
   new Response(JSON.stringify(data), {
     status,
-    headers: { "content-type": "application/json; charset=utf-8", ...CORS },
+    headers: { "content-type": "application/json; charset=utf-8", ...CORS, ...extraHeaders },
   });
 
 /* ── GET /v1/finder : lire la requête, ne jamais l'inventer ────────────────────────────
@@ -236,6 +236,13 @@ function formatError(e: unknown): { error: string; detail: string } {
  * précédent qui laisserait croire à une traçabilité qui n'existe pas. */
 interface Env {
   BUILD_SHA?: string;
+  /* Binding Cloudflare « Version Metadata » (déclaré dans wrangler.toml). Cloudflare le
+   * renseigne lui-même : contrairement à BUILD_SHA, sa valeur n'est PAS déclarative.
+   * C'est toute la différence relevée par Codex le 11/08/2026 — `BUILD_SHA` est ce que la
+   * commande de déploiement a bien voulu annoncer, et rien ne garantit à lui seul qu'il
+   * corresponde au code réellement téléversé. Le couple des deux, lui, est vérifiable :
+   * l'ID de version est attribué par Cloudflare au code qu'il a effectivement reçu. */
+  CF_VERSION_METADATA?: { id: string; tag?: string };
 }
 
 export default {
@@ -244,7 +251,22 @@ export default {
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
     if (url.pathname === "/v1/health")
-      return json({ ok: true, service: "mydogcanfly-api", version: "v1", sha: env?.BUILD_SHA ?? "unknown" });
+      /* `Cache-Control: no-store` explicite. L'absence de `CF-Cache-Status` observée sur nos
+       * relevés n'est PAS une interdiction contractuelle de mise en cache — Cloudflare
+       * documente qu'omettre `Cache-Control` n'équivaut pas à désactiver le cache. Or c'est
+       * précisément l'endpoint dont dépend la vérification post-déploiement : une réponse
+       * servie depuis un cache y ferait conclure à tort qu'un déploiement n'est pas passé. */
+      return json(
+        {
+          ok: true,
+          service: "mydogcanfly-api",
+          version: "v1",
+          sha: env?.BUILD_SHA ?? "unknown",
+          worker_version_id: env?.CF_VERSION_METADATA?.id ?? "unknown",
+        },
+        200,
+        { "cache-control": "no-store" },
+      );
 
     // Limitation de débit best-effort (cf. commentaire sur isRateLimited) — hors santé/CORS, qui
     // doivent toujours répondre pour que le monitoring et les navigateurs ne cassent jamais.
