@@ -290,11 +290,30 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
 
     const hubs = (a as { hub_airport_ids?: string[] }).hub_airport_ids ?? [];
     const served = a.served_airport_ids ?? [];
-    // Accurate "direct" when we have the route graph: any origin→destination nonstop pair is in the airline's
-    // routes. Otherwise fall back to the hub heuristic (a hub at either endpoint implies a likely nonstop).
-    // Nonstop ATTESTÉ : la paire origine|destination est dans le graphe de routes de la compagnie.
-    const direct_documented = !!(a.direct_routes && a.direct_routes.length && a.direct_routes.some((k) => pairKeys.has(k)));
-    let direct = a.direct_routes && a.direct_routes.length
+    /* Nonstop ATTESTÉ : la paire origine|destination figure dans le graphe de routes.
+     *
+     * Le repli par heuristique de hub ne s'applique QU'EN L'ABSENCE de graphe. Il ne peut plus
+     * contredire un graphe présent — correctif P0 du 11/08/2026, arbitré avec Codex.
+     *
+     * Défaut corrigé : un second passage (plus bas dans cette fonction) repassait `direct = true`
+     * dès qu'un hub se trouvait à l'une des extrémités, MÊME quand le graphe documenté ne
+     * contenait pas la paire. Qantas ressortait ainsi « Direct » sur CDG→SYD au seul motif qu'elle
+     * a un hub à Sydney — alors que ses 48 routes documentées ne comportent pas cette paire.
+     * Mesuré à l'époque : 5 des 15 badges « Direct » de la matrice de référence étaient dans ce
+     * cas, soit 33 %.
+     *
+     * Ce n'était pas qu'un mauvais libellé : `explain.ts` note la qualité de route à 0,8 pour
+     * `direct_assumed` contre 0,7 pour une correspondance documentée — l'invention remontait donc
+     * le score affiché.
+     *
+     * Les 102 compagnies ayant aujourd'hui un graphe, `direct_assumed` ne devrait plus jamais être
+     * produit ; le contrat (contracts.ts) le réserve d'ailleurs au cas « pas de graphe de routes ».
+     * L'état reste possible pour une future compagnie sans graphe, et l'UI est tenue de le
+     * présenter comme non vérifié — jamais comme un « Direct ». Invariant couvert par
+     * test-direct-claims.mjs. */
+    const hasRouteGraph = !!(a.direct_routes && a.direct_routes.length);
+    const direct_documented = !!(hasRouteGraph && a.direct_routes!.some((k) => pairKeys.has(k)));
+    let direct = hasRouteGraph
       ? direct_documented
       : hubs.some((h) => originSet.includes(h) || destSet.includes(h));
     // Which endpoint airports the airline actually uses — surfaced only when they differ from the searched one
@@ -322,14 +341,22 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     let plausible = true;
     let connection_documented = false;
     if (!direct) {
-      // A hub in the origin OR destination city means the airline flies this route on its own metal —
-      // treat as direct rather than inventing a same-city "connection" (e.g. Air France "via ORY" when
-      // Paris was searched via CDG). A connection point must be a genuinely intermediate airport, never
-      // one of the endpoint-city airports.
+      /* Un point de correspondance doit être un aéroport véritablement intermédiaire, jamais un
+       * aéroport des villes de départ ou d'arrivée — c'est ce que garantit `endpointSet` plus bas,
+       * et c'est ce qui évite d'inventer une correspondance intra-ville (Air France « via ORY »
+       * alors que Paris était cherché via CDG).
+       *
+       * SUPPRIMÉ le 11/08/2026 (correctif P0) : un `if (hubs.some((h) => endpointSet.has(h))) {
+       * direct = true; }` se trouvait ici. Il visait le même souci d'intra-ville, mais par un moyen
+       * bien trop large : il déclarait un vol direct sur la seule présence d'un hub à une extrémité,
+       * sans aucune preuve de route — et il écrasait même la conclusion d'un graphe documenté. La
+       * protection intra-ville, elle, est déjà entièrement assurée par `endpointSet` ci-dessous.
+       *
+       * Sans preuve de route, on ne conclut plus au direct : on cherche une correspondance
+       * documentée, à défaut une correspondance plausible signalée non vérifiée, et si rien ne tient
+       * l'itinéraire est écarté par les règles existantes. Jamais « Direct ». */
       const endpointSet = new Set<string>([...originSet, ...destSet]);
-      if (hubs.some((h) => endpointSet.has(h))) {
-        direct = true;
-      } else if (og && dg) {
+      if (og && dg) {
         const dOD = greatCircleKm(og, dg);
         // BUG corrigé (audit du 09/08/2026) : le commentaire ci-dessus documente depuis toujours
         // "max(1500 km, 50% de la distance directe)", mais le code utilisait 800 km — incohérence

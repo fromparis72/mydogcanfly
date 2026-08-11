@@ -383,7 +383,15 @@ const labels = {
     // la route, y compris des compagnies qui n'acceptent l'animal sur aucun mode (cas type : Paris→
     // Londres affichait "5 vols directs probables" en comptant des vols que l'animal ne peut pas
     // prendre, faute d'agrément britannique pour la soute — voir rule_*_gb_not_approved).
-    const usableDirect = (r.airlines ?? []).filter((a) => a.direct && (a.cabin || a.hold || a.cargo));
+    /* Le compteur « N directs » n'additionne que du DIRECT ATTESTÉ (`direct_documented`).
+     * Correctif P0 du 11/08/2026 : il comptait `a.direct` seul, donc aussi les `direct_assumed`
+     * — des vols directs déduits d'un hub, sans preuve de route. Le moteur ne produit plus cet
+     * état tant que toutes les compagnies ont un graphe de routes, mais le compteur ne doit pas
+     * dépendre de cette circonstance : si une compagnie sans graphe réapparaît un jour, son
+     * itinéraire supposé ne doit pas être annoncé comme un direct établi. */
+    const usableDirect = (r.airlines ?? []).filter(
+      (a) => a.direct && a.itinerary_confidence === "direct_documented" && (a.cabin || a.hold || a.cargo),
+    );
     /* Garde défensive (audit du 09/08/2026, tâche 24) : r.score vient du Worker et alimente à la
      * fois un `width:${...}%` CSS et un texte affiché — un score non numérique (NaN), négatif ou
      * au-delà de 100 (bug côté moteur, réponse tronquée, future évolution du contrat) produirait
@@ -412,7 +420,7 @@ const labels = {
                   if (a.cargo) return "acard--cargo";
                   if (a.heat_embargo) return "acard--heat";
                   return "acard--no";
-                })()}${a.itinerary_confidence === "connection_unverified" ? " acard--unverified" : ""}">
+                })()}${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed") ? " acard--unverified" : ""}">
                 <div class="acard__main">
                   ${(() => {
                     const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !a.heat_embargo;
@@ -425,11 +433,18 @@ const labels = {
                       else caps.push({ cls: "nopets", ic: "🚫", txt: L.noPets });
                     } else {
                       const viaCode = a.connect_airport_id ? (AIRSHORT[a.connect_airport_id] || "") : "";
+                      /* Le badge « ✈ Direct » est réservé au direct ATTESTÉ. Un `direct_assumed`
+                       * (compagnie sans graphe de routes : le direct est déduit d'un hub) reste
+                       * affiché comme un vol direct — c'est bien ce que le moteur conclut — mais il
+                       * porte en plus la pastille « ? » qui dit qu'il n'est pas vérifié, exactement
+                       * comme une correspondance non vérifiée. Correctif P0 du 11/08/2026 : le badge
+                       * ne distinguait pas les deux, si bien qu'un direct déduit était présenté au
+                       * visiteur avec la même assurance qu'un direct documenté. */
                       caps.push(a.direct
                         ? { cls: "direct", ic: "✈", txt: L.direct }
                         : { cls: "conn", ic: "✈", txt: L.connection + (viaCode ? ` · via ${viaCode}` : "") });
-                      // Correspondance seulement plausible : on le dit dès le badge, pas en petits caractères.
-                      if (a.itinerary_confidence === "connection_unverified") caps.push({ cls: "unver", ic: "?", txt: L.unverifiedShort });
+                      // Itinéraire seulement plausible : on le dit dès le badge, pas en petits caractères.
+                      if (a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed") caps.push({ cls: "unver", ic: "?", txt: L.unverifiedShort });
                       if (a.heat_embargo) caps.push({ cls: "heat", ic: "🌡️", txt: L.heatEmbargoShort });
                     }
                     return `<div class="acard__statusrow">${caps.map((s) => `<span class="acard__status acard__status--${s.cls}">${s.ic} ${esc(s.txt)}</span>`).join("")}</div>`;
@@ -438,7 +453,7 @@ const labels = {
                   <div class="acard__badges"><span class="ab ${a.cabin ? "ab--ok" : "ab--no"}">${esc(L.cabinShort)}</span><span class="ab ${a.hold ? "ab--ok" : "ab--no"}">${esc(L.holdShort)}</span><span class="ab ${a.cargo ? "ab--ok" : "ab--no"}">${esc(L.cargoShort)}</span></div>
                   <div class="acard__label">${esc(a.label)}${a.source_url ? ` · <a href="${esc(a.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(a.source_url))}</a>` : ""}</div>
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
-                  ${a.itinerary_confidence === "connection_unverified"
+                  ${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed")
                     ? `<div class="acard__unver">? ${esc(L.unverifiedNote)}</div>` : ""}
                   ${a.heat_embargo ? `<div class="acard__embargo">🌡️ ${esc(L.heatEmbargo)}</div>` : ""}
                   ${a.fee ? `<div class="acard__fee">${esc(a.fee)}</div>` : ""}
