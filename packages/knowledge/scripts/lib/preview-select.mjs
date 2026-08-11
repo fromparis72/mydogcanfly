@@ -151,3 +151,22 @@ export async function retryUntil(fn, { totalMs, intervalMs, onRetry = () => {} }
     await new Promise((res) => setTimeout(res, intervalMs));
   }
 }
+
+/* ── Règles d'adresses du bundle (extraites de check-bundle.mjs au L-bis, 11/08/2026) ──────────
+ * Extraites ici pour UNE raison : être testables hors ligne par le harnais versionné. La matrice
+ * des dix cas (sentinelle à laisser passer, Worker de production versionné à attraper, pièges de
+ * sous-chaînes preview/prod…) avait été exécutée à la main lors du lot L — preuve non durable,
+ * comme l'a relevé Codex. Elle vit désormais dans test-preview-select.mjs et tourne à chaque CI. */
+export const MUTABLE_ALIAS = "https://mydogcanfly-api-preview.fromparis.workers.dev";
+export const PRODUCTION_PATTERNS = [
+  /https:\/\/(www\.)?mydogcanfly\.com\/v1\//, // l'API sur le domaine de production
+  /https:\/\/api\.mydogcanfly\.com/, // hôte API prévu par le plan de séparation (document 12)
+  /[0-9a-f]{0,8}-?mydogcanfly-api\.fromparis\.workers\.dev/, // Worker de PRODUCTION, versionné ou non
+  /mydogcanfly\.pages\.dev/, // projet Pages Hugo hérité
+  /mydogcanfly-v2-preview\.pages\.dev/, // le projet Pages lui-même : un bundle n'a pas à connaître son hôte
+];
+
+/** Vrai si la chaîne contient une adresse de production ou d'infrastructure interdite en bundle. */
+export function matchesForbidden(src) {
+  return PRODUCTION_PATTERNS.some((re) => re.test(src));
+}

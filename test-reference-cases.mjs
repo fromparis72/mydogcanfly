@@ -35,6 +35,27 @@ const call = async (query) => {
   return { status: res.status, body };
 };
 
+/* Même contrat, chemin POST : le corps JSON passe par le schéma Zod sans le parseur de query
+ * string. Tester les deux chemins versionne la garantie que leurs contrats CONCORDENT — c'était
+ * vérifié à la main lors des lots K et L, donc non durable (remarque Codex, L-bis). */
+const postCall = async (payload) => {
+  const res = await worker.fetch(
+    new Request("https://x/v1/finder", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(payload),
+    }),
+    {},
+  );
+  let body;
+  try {
+    body = await res.json();
+  } catch {
+    body = null;
+  }
+  return { status: res.status, body };
+};
+
 /* ── Cas 1 — La Compagnie, 32 kg ────────────────────────────────────────────────────────────
  * Le cas fondateur du tour 6 : La Compagnie avait été rejetée à tort de la liste blanche, puis
  * son verdict a servi de référence. Elle n'accepte les chiens ni en soute ni en fret, et son
@@ -171,6 +192,27 @@ console.log("\n— Contrôle inverse : une requête valide reste une requête va
   );
   check("une requête bien formée renvoie 200 et un verdict", status === 200 && typeof body?.verdict === "string",
     `HTTP ${status}, verdict=${JSON.stringify(body?.verdict)}`);
+}
+
+console.log("\n— Le même contrat numérique, chemin POST —");
+{
+  const base = { origin: "airport_cdg", destination: "airport_jfk", dog: { breed_id: "breed_golden_retriever" } };
+  for (const [label, w] of [["négatif (−5)", -5], ["nul (0)", 0], ["au-dessus de 120 (121)", 121]]) {
+    const { status, body } = await postCall({ ...base, dog: { ...base.dog, weight_kg: w } });
+    check(`POST poids ${label} → 400 invalid_request, aucun verdict`,
+      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined,
+      `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
+  }
+  const abs = await postCall(base);
+  check("POST poids ABSENT → accepté", abs.status === 200 && typeof abs.body?.verdict === "string", `HTTP ${abs.status}`);
+
+  for (const [label, t, exp] of [["−999 (hors plage)", -999, 400], ["61 (au-dessus)", 61, 400], ["45 (valide)", 45, 200], ["−60 (borne)", -60, 200]]) {
+    const { status, body } = await postCall({ ...base, dog: { ...base.dog, weight_kg: 8 }, weather: { temperature_c: t } });
+    const ok = exp === 400
+      ? status === 400 && body?.error === "invalid_request" && body?.verdict === undefined
+      : status === 200 && typeof body?.verdict === "string";
+    check(`POST température ${label} → ${exp}`, ok, `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
+  }
 }
 
 console.log("\n=== SUMMARY ===");
