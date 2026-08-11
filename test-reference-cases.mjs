@@ -135,8 +135,19 @@ console.log("\n— Contrat numérique : temperature_c (pilote les restrictions d
         JSON.stringify(body?.invalid) === JSON.stringify([param]),
       `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}, invalid=${JSON.stringify(body?.invalid)}`);
   }
-  const ok = await call(`${B}&temperature_c=30`);
-  check("température valide → acceptée", ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);
+  /* Bornes physiques (lot L, arbitrage Codex du 11/08/2026) : −60 °C à +60 °C, bornes incluses.
+   * Une température hors de ce que la Terre inflige à un aéroport commercial est une erreur de
+   * saisie ou d'unité — et ce champ déclenche des embargos de chaleur, pas un simple affichage. */
+  for (const [label, t] of [["−999 (absurde)", "-999"], ["999 (absurde)", "999"], ["−61 (sous la borne)", "-61"], ["61 (au-dessus)", "61"]]) {
+    const { status, body } = await call(`${B}&temperature_c=${t}`);
+    check(`température ${label} → 400 invalid_request, aucun verdict`,
+      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined,
+      `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
+  }
+  for (const t of ["-60", "60", "30"]) {
+    const ok = await call(`${B}&temperature_c=${t}`);
+    check(`température ${t} (dans les bornes) → acceptée`, ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);
+  }
   const abs = await call(B);
   check("température ABSENTE → acceptée", abs.status === 200 && typeof abs.body?.verdict === "string", `HTTP ${abs.status}`);
 }
