@@ -18,6 +18,18 @@ const LOCALES = [{ code: "en", dir: "" }];
 // Le contrôle des badges d'itinéraire (ajouté 11/08/2026) parcourt les 4 langues : le libellé
 // « Direct non vérifié » doit exister et être distinct partout, pas seulement en anglais.
 const BADGE_LOCALES = [{ code: "en", dir: "" }, { code: "fr", dir: "fr" }, { code: "es", dir: "es" }, { code: "pt", dir: "pt" }];
+
+/* Libellés ATTENDUS, en toutes lettres et par langue. Vérifier seulement que deux libellés
+ * « diffèrent » (première version de ce test, 11/08/2026) était trop faible : une régression de
+ * traduction, une clé manquante retombant sur l'anglais, ou une inversion entre deux langues
+ * seraient toutes passées. On fige donc les textes ; s'ils changent, c'est une décision éditoriale
+ * qui doit se voir ici. Doivent rester alignés sur packages/knowledge/translations/<loc>/strings.json. */
+const EXPECTED = {
+  en: { direct: "✈ Direct", assumed: "? Direct — unverified", conn: "✈ Connection", unver: "? Itinerary to confirm" },
+  fr: { direct: "✈ Direct", assumed: "? Direct non vérifié", conn: "✈ Correspondance", unver: "? Itinéraire à confirmer" },
+  es: { direct: "✈ Directo", assumed: "? Directo sin verificar", conn: "✈ Con escala", unver: "? Itinerario por confirmar" },
+  pt: { direct: "✈ Direto", assumed: "? Direto não verificado", conn: "✈ Conexão", unver: "? Itinerário a confirmar" },
+};
 // Un seul passage (en) : la logique de snapshot (lastWeightKg/lastBreedLabel/lastBreedId) ne
 // dépend d'aucune donnée localisée, seuls les libellés affichés changent — voir la même
 // justification dans test-fiche-harness.cjs pour l'invariant compagnies.
@@ -128,8 +140,9 @@ function buildDom(parts, fetchMock) {
 }
 
 let failures = 0;
-function check(label, cond) {
-  if (cond) { console.log("  OK   " + label); } else { console.log("  FAIL " + label); failures++; }
+function check(label, cond, detail) {
+  if (cond) { console.log("  OK   " + label); }
+  else { console.log("  FAIL " + label); if (detail) console.log("         reçu : " + detail); failures++; }
 }
 
 const FAKE_REPORT = {
@@ -317,32 +330,36 @@ async function badgesPass() {
     // Rapport synthétique, affiché même quand tout passe : c'est lui qu'on relit en contre-revue.
     console.log("         badges rendus : " + flat);
 
+    const exp = EXPECTED[loc.code];
+    const [docTxt, assumedTxt, unverTxt] = statuses;
     const assumedCard = cards[1];
-    const assumedTxt = [...assumedCard.querySelectorAll(".acard__status")].map((s) => s.textContent.trim());
-    const docTxt = [...cards[0].querySelectorAll(".acard__status")].map((s) => s.textContent.trim());
+    const unverCard = cards[2];
 
-    const directLabel = docTxt.find((t) => /✈/.test(t)) || "";
-    const assumedLabel = assumedTxt.find((t) => /✈|\?/.test(t)) || "";
+    // Textes EXACTS, pas seulement « différents ».
+    check(`${loc.code} : direct attesté = ${JSON.stringify(exp.direct)}`,
+      docTxt.length === 1 && docTxt[0] === exp.direct, JSON.stringify(docTxt));
+    check(`${loc.code} : direct supposé = ${JSON.stringify(exp.assumed)}, en UN seul badge`,
+      assumedTxt.length === 1 && assumedTxt[0] === exp.assumed, JSON.stringify(assumedTxt));
 
-    check(`${loc.code} : le direct attesté porte un badge`, directLabel.length > 0);
-    check(
-      `${loc.code} : le direct supposé NE porte PAS le même libellé que le direct attesté`,
-      assumedLabel !== "" && assumedLabel.replace(/^[^\p{L}]+/u, "") !== directLabel.replace(/^[^\p{L}]+/u, ""),
-    );
-    check(
-      `${loc.code} : le direct supposé tient en UN seul badge d'itinéraire`,
-      assumedTxt.length === 1,
-    );
-    check(
-      `${loc.code} : la carte du direct supposé est marquée non vérifiée`,
-      assumedCard.className.includes("acard--unverified"),
-    );
+    /* La correspondance non vérifiée porte DEUX badges, et c'est voulu : la nature de l'itinéraire
+     * (« Correspondance ») et sa fiabilité (« Itinéraire à confirmer ») sont deux informations
+     * distinctes. Le direct supposé, lui, tient en un seul badge parce que « Direct non vérifié »
+     * dit déjà les deux. On vérifie donc les deux formes, pas seulement l'une. */
+    check(`${loc.code} : correspondance non vérifiée = 2 badges [${JSON.stringify(exp.conn)}, ${JSON.stringify(exp.unver)}]`,
+      unverTxt.length === 2 && unverTxt[0].startsWith(exp.conn) && unverTxt[1] === exp.unver,
+      JSON.stringify(unverTxt));
+
+    check(`${loc.code} : la carte du direct supposé est marquée non vérifiée`,
+      assumedCard.className.includes("acard--unverified"));
+    check(`${loc.code} : la carte de la correspondance non vérifiée l'est aussi`,
+      unverCard.className.includes("acard--unverified"));
+    check(`${loc.code} : la carte du direct attesté ne l'est PAS`,
+      !cards[0].className.includes("acard--unverified"));
 
     const cap = doc.querySelector(".acap");
-    check(
-      `${loc.code} : le compteur « directs » n'additionne que le direct attesté (1, pas 2)`,
-      !!cap && /\b1\b/.test(cap.textContent) && !/\b2\b/.test(cap.textContent.split("·")[0]),
-    );
+    const capCount = cap ? (cap.textContent.match(/\d+/) || [])[0] : null;
+    check(`${loc.code} : le compteur « directs » annonce 1 (le direct attesté), pas 2`,
+      capCount === "1", `compteur lu : ${cap ? cap.textContent.replace(/\s+/g, " ").trim() : "(absent)"}`);
   }
 }
 

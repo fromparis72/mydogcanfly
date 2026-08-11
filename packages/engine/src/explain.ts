@@ -177,6 +177,23 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      */
     const heat_embargo = entryAllowed && a.fired.some((f) => f.category === "summer_embargo") && reasons.length === 0;
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
+    /* ATTENTION AU NOM : ces deux champs signifient « compagnie IMMATRICULÉE dans le pays de
+     * départ / d'arrivée », rien de plus. Ce n'est PAS un statut de compagnie nationale ni de
+     * porte-drapeau, et le contrat le laissait entendre à tort jusqu'au 11/08/2026.
+     *
+     * Relevé par Codex : sur un départ de France, cette simple égalité de `country_id` étoilait
+     * les HUIT compagnies rattachées à `country_fr` — Air France, mais aussi Air Austral,
+     * Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair, French Bee et La Compagnie. L'UI affichait
+     * « Compagnie nationale · départ » sur chacune. Air Tahiti Nui et Aircalin desservent en outre
+     * la Polynésie française et la Nouvelle-Calédonie : leur rattachement à `country_fr` est un
+     * raccourci de modélisation, pas une équivalence.
+     *
+     * Correction immédiate : les libellés affichés disent désormais « Compagnie du pays de
+     * départ/destination », ce que le calcul établit réellement. Le tri qui suit reste inchangé —
+     * privilégier une compagnie du pays reste pertinent, c'est l'étiquette qui mentait.
+     *
+     * Reste à faire, hors de ce lot : une donnée explicite `flag_carrier`, et une modélisation
+     * correcte des territoires. Tant qu'elle n'existe pas, ne PAS réintroduire le mot « nationale ». */
     const carrier_of_origin = !!a.country_id && a.country_id === decision.origin_country_id;
     const carrier_of_destination = !!a.country_id && a.country_id === decision.destination.country_id;
     if (a.source_url) sources.set(a.source_url, { url: a.source_url });

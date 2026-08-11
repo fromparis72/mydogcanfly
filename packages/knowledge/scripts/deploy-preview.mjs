@@ -42,6 +42,9 @@ import {
   extractHoistedChunks,
   retryUntil,
 } from "./lib/preview-select.mjs";
+import { requireNode } from "./lib/require-node.mjs";
+
+requireNode("le déploiement de preview");
 
 const SCHEMA_VERSION = 1;
 const WORKER_NAME = "mydogcanfly-api-preview";

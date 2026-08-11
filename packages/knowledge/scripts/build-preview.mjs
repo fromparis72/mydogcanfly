@@ -23,6 +23,9 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateApiBase } from "./lib/preview-select.mjs";
+import { requireNode } from "./lib/require-node.mjs";
+
+requireNode("le build de preview");
 
 /* Un argument non reconnu est une ERREUR, jamais un silence. Avant ce garde-fou (signalé par
  * Codex le 11/08/2026), `--dry --typo` réussissait sans rien dire : une faute de frappe sur

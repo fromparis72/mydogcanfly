@@ -212,8 +212,11 @@ export interface AirlineResult {
   fee_quote_only?: boolean;
   source_url?: string;
   heat_embargo?: boolean; // true when a seasonal heat embargo suspends this airline's hold/cargo on the given date
-  carrier_of_origin?: boolean;      // national/flag carrier of the departure country (ranked right after direct flights)
-  carrier_of_destination?: boolean; // national/flag carrier of the destination country (ranked next)
+  /* « Compagnie immatriculée dans ce pays », et RIEN DE PLUS : simple égalité de `country_id`.
+   * Ces deux champs annonçaient « national/flag carrier » — c'était faux (voir explain.ts).
+   * Ne pas réintroduire ce vocabulaire sans une donnée `flag_carrier` explicite. */
+  carrier_of_origin?: boolean;      // compagnie immatriculée dans le pays de départ (triée juste après les vols directs)
+  carrier_of_destination?: boolean; // compagnie immatriculée dans le pays d'arrivée (triée ensuite)
   origin_airport_id?: string;       // the specific origin airport used, when it differs from the one searched (city search)
   destination_airport_id?: string;  // idem for the destination
 }

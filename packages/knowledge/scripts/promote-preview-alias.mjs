@@ -29,6 +29,9 @@ import { readFileSync } from "node:fs";
 import { isAbsolute, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { selectVersionByTag, validateManifest, healthMatches, retryUntil } from "./lib/preview-select.mjs";
+import { requireNode } from "./lib/require-node.mjs";
+
+requireNode("la promotion d'alias");
 
 const WRANGLER_CONFIG = "packages/workers/wrangler.toml";
 const WORKER_NAME = "mydogcanfly-api-preview";

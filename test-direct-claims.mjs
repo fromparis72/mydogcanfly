@@ -130,6 +130,52 @@ check(
   directsJfk.map((a) => `${a.airline_id}=${a.itinerary_confidence}`).join(", "),
 );
 
+/* ── Étiquette « compagnie du pays » ───────────────────────────────────────────────────────
+ * P1 relevé par Codex le 11/08/2026 : `carrier_of_origin` n'est qu'une égalité de `country_id`,
+ * alors que l'UI l'affichait comme « Compagnie nationale ». Sur un départ de France, les huit
+ * compagnies rattachées à `country_fr` étaient étoilées comme nationales.
+ *
+ * Le calcul est conservé (le tri par compagnie du pays reste pertinent) ; c'est l'étiquette qui a
+ * été corrigée. Ce test fige donc ce que le champ signifie VRAIMENT, pour qu'un futur lecteur ne
+ * le reprenne pas pour un statut de porte-drapeau. */
+console.log("\n— `carrier_of_origin` = immatriculation, pas statut national —");
+
+const fr = await finder("airport_cdg", "airport_syd");
+const marquees = (fr.airlines ?? []).filter((a) => a.carrier_of_origin).map((a) => a.airline_id);
+check(
+  "au départ de France, PLUSIEURS compagnies portent carrier_of_origin (c'est une immatriculation)",
+  marquees.length > 1,
+  `${marquees.length} : ${marquees.join(", ")}`,
+);
+/* Sur CDG→SYD, Air France est purement ABSENTE des résultats (elle ne dessert pas Sydney d'après
+ * les données). Les seules compagnies étoilées « du pays de départ » y sont donc Air Tahiti Nui et
+ * Aircalin — ce qui rendait l'ancien libellé « Compagnie nationale · départ » d'autant plus faux :
+ * il désignait exclusivement des compagnies qui ne sont pas le porte-drapeau français, sur un
+ * trajet où le porte-drapeau ne figure même pas. */
+check(
+  "sur CDG→SYD, aucune des marquées n'est le porte-drapeau français",
+  marquees.length > 0 && !marquees.includes("airline_air_france"),
+  marquees.join(", "),
+);
+
+/* Sur un trajet où Air France est présente, elle est marquée exactement comme les autres — le
+ * champ ne hiérarchise pas, il constate une immatriculation.
+ * (CDG→JFK ne fait ressortir qu'Air France : French Bee et La Compagnie partent d'Orly et
+ * n'apparaissent que sur une recherche métropolitaine Paris → New York.) */
+const jfkFr = await finder("airport_cdg", "airport_jfk");
+const marqueesJfk = (jfkFr.airlines ?? []).filter((a) => a.carrier_of_origin).map((a) => a.airline_id);
+check(
+  "sur CDG→JFK, Air France est marquée",
+  marqueesJfk.includes("airline_air_france"),
+  `${marqueesJfk.length} : ${marqueesJfk.join(", ")}`,
+);
+const qantasSyd = (fr.airlines ?? []).find((a) => a.airline_id === "airline_qantas");
+check(
+  "Qantas est bien marquée côté destination sur CDG→SYD",
+  !!qantasSyd && qantasSyd.carrier_of_destination === true,
+  `carrier_of_destination=${qantasSyd && qantasSyd.carrier_of_destination}`,
+);
+
 console.log("\n=== SUMMARY ===");
 console.log(fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`);
 process.exit(fail === 0 ? 0 : 1);

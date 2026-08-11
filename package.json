@@ -12,8 +12,8 @@
     "check": "npm -w @mydogcanfly/knowledge run check",
     "demo": "npm -w @mydogcanfly/engine run demo",
     "smoke": "npm -w @mydogcanfly/workers run smoke",
-    "test:unit": "node test-preview-select.mjs && npx tsx test-direct-claims.mjs",
-    "test:direct": "npx tsx test-direct-claims.mjs",
+    "test:unit": "node test-preview-select.mjs && tsx test-direct-claims.mjs",
+    "test:direct": "tsx test-direct-claims.mjs",
     "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs",
     "build": "npm -w @mydogcanfly/ui run build",
     "build:preview": "node packages/knowledge/scripts/build-preview.mjs",
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
+    "jsdom": "30.0.1",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2"
   }
