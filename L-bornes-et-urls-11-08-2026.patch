@@ -1,0 +1,87 @@
+diff --git a/docs/matrice-tests.md b/docs/matrice-tests.md
+index 6ee86e3..137542c 100644
+--- a/docs/matrice-tests.md
++++ b/docs/matrice-tests.md
+@@ -32,6 +32,10 @@ Pour `weight_kg` **et** `temperature_c` (qui pilote les restrictions de chaleur)
+   paramètre fautif nommé dans `invalid` ;
+ - pour le poids : ≤ 0 ou > 120 → **400** (bornes appliquées par le schéma Zod, désormais atteint
+   aussi en GET — l'ancien code filtrait la valeur avant qu'il la voie) ;
++- pour la température : hors de **−60 °C à +60 °C** (bornes incluses) → **400**. Plage arbitrée le
++  11/08/2026 : les records d'exploitation aéroportuaire réels tiennent dedans (≈ −55 °C à
++  Iakoutsk ; 56,7 °C à l'ombre est un record au sol hors aéroport), et ce champ pilote les
++  embargos de chaleur — une valeur absurde ne fausse pas un affichage, elle décide ;
+ - une locale inconnue n'est **pas** une erreur : repli documenté en anglais, le verdict reste
+   celui du chien demandé.
+ 
+diff --git a/packages/engine/src/contracts.ts b/packages/engine/src/contracts.ts
+index 9f3921d..be1a20f 100644
+--- a/packages/engine/src/contracts.ts
++++ b/packages/engine/src/contracts.ts
+@@ -21,7 +21,16 @@ export const FinderRequest = z.object({
+   travel_type: TravelType.default("pet"),
+   placement: z.union([Placement, z.literal("any")]).default("any"),
+   date: z.string().optional(),
+-  weather: z.object({ temperature_c: z.number() }).optional(),
++  /* Bornes PHYSIQUES sur la température (résidu K-bis, arbitré par Codex le 11/08/2026 :
++     « borner physiquement temperature_c — ±999 sont actuellement acceptées à 200 »). Ce champ
++     pilote les restrictions de chaleur : une valeur absurde ne fausse pas qu'un affichage, elle
++     déclenche ou éteint des embargos. Plage retenue : −60 °C à +60 °C. Les extrêmes jamais
++     mesurés sur un aéroport commercial en activité restent en dedans (record de froid en
++     exploitation ≈ −55 °C à Iakoutsk ; record de chaleur à l'ombre 56,7 °C à Furnace Creek, qui
++     n'est pas un aéroport — les pistes commerciales plafonnent plus bas). Au-delà, c'est une
++     erreur de saisie ou d'unité (Fahrenheit, dixièmes), et le contrat répond 400 plutôt que de
++     calculer un embargo sur une planète imaginaire. */
++  weather: z.object({ temperature_c: z.number().min(-60).max(60) }).optional(),
+   /* Retour vers l'UE — le seul fait que le moteur ne peut pas déduire du vol.
+      On interroge la SITUATION du chien ("vit-il habituellement dans l'Union européenne ?"), au
+      présent et sans rien faire vérifier : "yes" = il rentre chez lui, "no" = il découvre l'UE.
+diff --git a/packages/knowledge/scripts/check-bundle.mjs b/packages/knowledge/scripts/check-bundle.mjs
+index 7239869..22a3160 100644
+--- a/packages/knowledge/scripts/check-bundle.mjs
++++ b/packages/knowledge/scripts/check-bundle.mjs
+@@ -23,7 +23,18 @@ const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
+ const ASTRO_DIR = join(REPO_ROOT, "packages/ui/dist/_astro");
+ const FINDER_PATH = "/v1/finder";
+ const MUTABLE_ALIAS = "https://mydogcanfly-api-preview.fromparis.workers.dev";
+-const PRODUCTION_PATTERNS = [/https:\/\/(www\.)?mydogcanfly\.com\/v1\//];
++/* Toutes les adresses RÉELLES de production et d'infrastructure, pas seulement la route /v1/ du
++ * domaine (résidu K-bis, demandé par Codex le 11/08/2026). Pièges de sous-chaînes vérifiés un à
++ * un : « mydogcanfly-api. » (le point après « api ») ne matche pas « mydogcanfly-api-preview. » ;
++ * « mydogcanfly.pages.dev » ne matche pas « mydogcanfly-v2-preview.pages.dev ». Le nom du Worker
++ * de production est couvert AVEC ses éventuels préfixes de version (<8hex>-mydogcanfly-api.…). */
++const PRODUCTION_PATTERNS = [
++  /https:\/\/(www\.)?mydogcanfly\.com\/v1\//, // l'API sur le domaine de production
++  /https:\/\/api\.mydogcanfly\.com/, // hôte API prévu par le plan de séparation (document 12)
++  /[0-9a-f]{0,8}-?mydogcanfly-api\.fromparis\.workers\.dev/, // Worker de PRODUCTION, versionné ou non
++  /mydogcanfly\.pages\.dev/, // projet Pages Hugo hérité
++  /mydogcanfly-v2-preview\.pages\.dev/, // le projet Pages lui-même : un bundle n'a pas à connaître son hôte
++];
+ 
+ const log = (m) => process.stderr.write(`[check-bundle] ${m}\n`);
+ const die = (m) => { log(`ÉCHEC : ${m}`); process.exit(1); };
+diff --git a/test-reference-cases.mjs b/test-reference-cases.mjs
+index d08196d..0c04566 100644
+--- a/test-reference-cases.mjs
++++ b/test-reference-cases.mjs
+@@ -135,8 +135,19 @@ console.log("\n— Contrat numérique : temperature_c (pilote les restrictions d
+         JSON.stringify(body?.invalid) === JSON.stringify([param]),
+       `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}, invalid=${JSON.stringify(body?.invalid)}`);
+   }
+-  const ok = await call(`${B}&temperature_c=30`);
+-  check("température valide → acceptée", ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);
++  /* Bornes physiques (lot L, arbitrage Codex du 11/08/2026) : −60 °C à +60 °C, bornes incluses.
++   * Une température hors de ce que la Terre inflige à un aéroport commercial est une erreur de
++   * saisie ou d'unité — et ce champ déclenche des embargos de chaleur, pas un simple affichage. */
++  for (const [label, t] of [["−999 (absurde)", "-999"], ["999 (absurde)", "999"], ["−61 (sous la borne)", "-61"], ["61 (au-dessus)", "61"]]) {
++    const { status, body } = await call(`${B}&temperature_c=${t}`);
++    check(`température ${label} → 400 invalid_request, aucun verdict`,
++      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined,
++      `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
++  }
++  for (const t of ["-60", "60", "30"]) {
++    const ok = await call(`${B}&temperature_c=${t}`);
++    check(`température ${t} (dans les bornes) → acceptée`, ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);
++  }
+   const abs = await call(B);
+   check("température ABSENTE → acceptée", abs.status === 200 && typeof abs.body?.verdict === "string", `HTTP ${abs.status}`);
+ }
