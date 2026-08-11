@@ -1,0 +1,931 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 76ec47a..0a602b7 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -1,5 +1,10 @@
+ name: CI
+ 
++# Permissions minimales : ce workflow lit le dépôt et n'écrit rien — il n'a aucune raison
++# d'avoir plus (recommandation GitHub, durcissement K-bis du 11/08/2026).
++permissions:
++  contents: read
++
+ # Filet de sécurité : transformer en contrôles automatiques ce qui était vérifié à la main.
+ #
+ # DEUX NIVEAUX, décidés avec Philippe et Codex le 11/08/2026 après mesure :
+@@ -37,10 +42,10 @@ jobs:
+     timeout-minutes: 30
+ 
+     steps:
+-      - uses: actions/checkout@v4
++      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+ 
+       - name: Node 22 (depuis .nvmrc)
+-        uses: actions/setup-node@v4
++        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+         with:
+           node-version-file: .nvmrc
+           cache: npm
+@@ -72,22 +77,20 @@ jobs:
+         if: github.event_name == 'pull_request'
+         run: npm run build:ci
+ 
++      # La sentinelle versionnée vaut aussi pour main (K-bis) : la première version de ce
++      # workflow construisait main contre l'ALIAS MUTABLE, en contradiction avec le commentaire
++      # au-dessus — un dist de CI n'est jamais déployé, il n'a donc aucune raison de porter une
++      # adresse réelle, et surtout pas la seule qui soit mutable.
+       - name: Build complet + noindex sur toutes les pages (main)
+         if: github.event_name == 'push'
+-        run: npm run build:preview
++        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+ 
+       # ── Après build ──────────────────────────────────────────────────────────────────────
+       - name: Harnais DOM (fiche + Finder, 4 langues)
+         run: npm run test:built-ui
+ 
+       - name: Bundle épinglé sur le Worker attendu
+-        run: |
+-          if [ "${{ github.event_name }}" = "pull_request" ]; then
+-            EXPECT="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
+-          else
+-            EXPECT="https://mydogcanfly-api-preview.fromparis.workers.dev"
+-          fi
+-          node packages/knowledge/scripts/check-bundle.mjs --expect="$EXPECT"
++        run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
+ 
+       # Dette connue et chiffrée, pas un contrôle vert : échoue à la hausse par code OU par
+       # fichier, même à total constant, et échoue aussi à la baisse pour forcer à resserrer.
+diff --git a/K-lot-ci-11-08-2026.patch b/K-lot-ci-11-08-2026.patch
+deleted file mode 100644
+index 094a9d5..0000000
+--- a/K-lot-ci-11-08-2026.patch
++++ /dev/null
+@@ -1,712 +0,0 @@
+-diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+-new file mode 100644
+-index 0000000..76ec47a
+---- /dev/null
+-+++ b/.github/workflows/ci.yml
+-@@ -0,0 +1,95 @@
+-+name: CI
+-+
+-+# Filet de sécurité : transformer en contrôles automatiques ce qui était vérifié à la main.
+-+#
+-+# DEUX NIVEAUX, décidés avec Philippe et Codex le 11/08/2026 après mesure :
+-+#
+-+#   pull request  → build RÉDUIT (97 pages, ~36 s). Retour rapide sur ce qui casse vraiment.
+-+#   push sur main → build COMPLET (2949 pages, ~12 min) + contrôle `noindex` sur la totalité.
+-+#
+-+# Pourquoi ce partage plutôt qu'un build complet partout : les 2728 pages d'entités (aéroports,
+-+# races, pays, compagnies) n'apportent rien aux harnais, qui lisent la page d'accueil dans les
+-+# 4 langues et /tools/fiche. Et surtout, la garantie forte existe déjà là où elle compte :
+-+# `deploy:preview` exécute un build complet AVEC vérification du noindex sur les 2957 pages avant
+-+# tout déploiement. La CI de pull request n'a pas à certifier un déploiement, elle doit détecter
+-+# une régression vite.
+-+#
+-+# ORDRE NON NÉGOCIABLE : le build précède les harnais DOM. `test-fiche-harness.cjs` et
+-+# `test-flightfinder-harness.cjs` lisent packages/ui/dist ; sans build ils meurent sur ENOENT.
+-+#
+-+# Node 22 partout : un build Astro complet sous Node 24.18.0 échoue après plusieurs milliers de
+-+# pages sur un ENOENT dans dist/chunks/, sans jamais mentionner Node (constaté le 11/08/2026).
+-+
+-+on:
+-+  pull_request:
+-+  push:
+-+    branches: [main]
+-+
+-+concurrency:
+-+  # Une pull request qui reçoit trois commits d'affilée n'a pas besoin de trois pipelines.
+-+  group: ci-${{ github.workflow }}-${{ github.ref }}
+-+  cancel-in-progress: true
+-+
+-+jobs:
+-+  verify:
+-+    name: Vérifications
+-+    runs-on: ubuntu-latest
+-+    timeout-minutes: 30
+-+
+-+    steps:
+-+      - uses: actions/checkout@v4
+-+
+-+      - name: Node 22 (depuis .nvmrc)
+-+        uses: actions/setup-node@v4
+-+        with:
+-+          node-version-file: .nvmrc
+-+          cache: npm
+-+
+-+      # `npm ci` et non `npm install` : installation reproductible, à partir du seul lockfile.
+-+      # C'est aussi ce qui rend obligatoire la déclaration de jsdom en devDependency — en tant que
+-+      # dépendance « extraneous », `npm ci` la supprimait et test:built-ui cassait.
+-+      - name: Installation reproductible
+-+        run: npm ci
+-+
+-+      - name: Base de connaissances (schéma · règles · couverture)
+-+        run: npm run check
+-+
+-+      - name: Typecheck (knowledge · engine · workers)
+-+        run: npm run typecheck
+-+
+-+      - name: Moteur en direct via le Worker
+-+        run: npm run smoke
+-+
+-+      # Hors build : sélection de version Worker, double concordance, invariants de vols directs
+-+      # et sémantique de `carrier_of_origin`.
+-+      - name: Tests unitaires
+-+        run: npm run test:unit
+-+
+-+      # ── Build ────────────────────────────────────────────────────────────────────────────
+-+      # Réduit sur pull request, complet sur main. Les deux produisent packages/ui/dist et
+-+      # épinglent PUBLIC_API_BASE sur une URL Worker versionnée.
+-+      - name: Build réduit (pull request)
+-+        if: github.event_name == 'pull_request'
+-+        run: npm run build:ci
+-+
+-+      - name: Build complet + noindex sur toutes les pages (main)
+-+        if: github.event_name == 'push'
+-+        run: npm run build:preview
+-+
+-+      # ── Après build ──────────────────────────────────────────────────────────────────────
+-+      - name: Harnais DOM (fiche + Finder, 4 langues)
+-+        run: npm run test:built-ui
+-+
+-+      - name: Bundle épinglé sur le Worker attendu
+-+        run: |
+-+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+-+            EXPECT="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
+-+          else
+-+            EXPECT="https://mydogcanfly-api-preview.fromparis.workers.dev"
+-+          fi
+-+          node packages/knowledge/scripts/check-bundle.mjs --expect="$EXPECT"
+-+
+-+      # Dette connue et chiffrée, pas un contrôle vert : échoue à la hausse par code OU par
+-+      # fichier, même à total constant, et échoue aussi à la baisse pour forcer à resserrer.
+-+      - name: Dette astro check (plafond)
+-+        run: node packages/knowledge/scripts/check-astro-debt.mjs
+-diff --git a/docs/astro-check-baseline.json b/docs/astro-check-baseline.json
+-new file mode 100644
+-index 0000000..f75ddce
+---- /dev/null
+-+++ b/docs/astro-check-baseline.json
+-@@ -0,0 +1,32 @@
+-+{
+-+  "total": 175,
+-+  "byCode": {
+-+    "ts(2345)": 18,
+-+    "ts(2363)": 1,
+-+    "ts(2362)": 1,
+-+    "ts(2322)": 2,
+-+    "ts(7006)": 112,
+-+    "ts(7053)": 13,
+-+    "ts(2531)": 3,
+-+    "ts(7005)": 5,
+-+    "ts(2339)": 2,
+-+    "ts(18047)": 3,
+-+    "ts(7034)": 5,
+-+    "ts(2538)": 1,
+-+    "ts(2554)": 3,
+-+    "ts(7031)": 5,
+-+    "ts(2769)": 1
+-+  },
+-+  "byFile": {
+-+    "packages/ui/src/components/BreedTravelPage.astro": 18,
+-+    "packages/ui/src/components/CountryGuidePage.astro": 1,
+-+    "packages/ui/src/components/FlightFinder.astro": 2,
+-+    "packages/ui/src/components/HeatCalculator.astro": 30,
+-+    "packages/ui/src/components/PetReliefFinder.astro": 20,
+-+    "packages/ui/src/components/TravelTimeline.astro": 29,
+-+    "packages/ui/src/pages/[...loc]/presskit.astro": 1,
+-+    "packages/ui/src/pages/[...loc]/breeds/[slug].astro": 2,
+-+    "packages/ui/src/pages/[...loc]/tools/fiche.astro": 66,
+-+    "packages/ui/src/pages/lab/roundtrip.astro": 6
+-+  }
+-+}
+-diff --git a/docs/matrice-tests.md b/docs/matrice-tests.md
+-new file mode 100644
+-index 0000000..eba307b
+---- /dev/null
+-+++ b/docs/matrice-tests.md
+-@@ -0,0 +1,88 @@
+-+# Matrice des tests — cas de référence et pipeline CI
+-+
+-+> Établie le 11/08/2026 avec Codex, à l'issue du tour 6 et des correctifs P0/P1.
+-+> Règle d'or héritée du projet : **aucune affirmation sans source** — et son corollaire pour les
+-+> tests : aucun contrôle qui « passe » sans démontrer ce qu'il prétend démontrer.
+-+
+-+## Les sept cas de référence obligatoires
+-+
+-+Ils ne vivent pas tous à la même couche. Un cas testé à la mauvaise couche donne une fausse
+-+assurance : le moteur peut être juste et l'affichage mentir (cas 5), ou l'inverse.
+-+
+-+| # | Cas | Couche | Harnais | Ce qui est démontré |
+-+|---|---|---|---|---|
+-+| 1 | La Compagnie, chien de 32 kg (EWR→ORY) | moteur + contrat HTTP | `test-reference-cases.mjs` | cabine refusée pour le poids, soute **et** fret non proposés — les trois motifs ensemble |
+-+| 2 | Conversion 50 lb → 22,7 kg, jusque dans la fiche | Finder construit (DOM) | `test-flightfinder-harness.cjs` | le lien fiche porte le poids converti, jamais la valeur lb brute |
+-+| 3 | Acceptation des 102 identifiants de compagnies | fiche construite (DOM) | `test-fiche-harness.cjs` | l'invariant rejoue les 102 compagnies une à une contre la liste blanche |
+-+| 4 | `/tools/fiche` face aux paramètres forgés | fiche construite (DOM) | `test-fiche-harness.cjs` | paramètres frauduleux supprimés, aucune « FAUSSE COMPAGNIE » dans le DOM, mailto assaini |
+-+| 5 | Qantas CDG–SYD : jamais « direct » sans preuve | moteur + contrat HTTP | `test-direct-claims.mjs` | aucun `direct_assumed` tant que les 102 compagnies ont un graphe ; tout `direct` est `direct_documented` |
+-+| 6 | Formulaire édité pendant une requête en vol | Finder construit (DOM) | `test-flightfinder-harness.cjs` | le résultat décrit le chien réellement recherché, pas celui édité entre-temps |
+-+| 7 | Entrées invalides : rien d'inventé | moteur + contrat HTTP | `test-reference-cases.mjs` | contrat numérique ci-dessous ; toute erreur est nommée, jamais un rapport plausible |
+-+
+-+S'y ajoutent, nés des correctifs du 11/08 : les badges d'itinéraire exacts dans les 4 langues
+-+(`test-flightfinder-harness.cjs`, 28 contrôles) et la sémantique réelle de `carrier_of_*`
+-+(`test-direct-claims.mjs`).
+-+
+-+## Le contrat numérique du cas 7 (arbitrage Codex, 11/08/2026)
+-+
+-+Pour `weight_kg` **et** `temperature_c` (qui pilote les restrictions de chaleur) :
+-+
+-+- paramètre **absent** → accepté : « poids/température inconnus » est un cas d'usage légitime ;
+-+- paramètre **présent** mais vide, non numérique, `NaN` ou infini → **400 `invalid_request`**, le
+-+  paramètre fautif nommé dans `invalid` ;
+-+- pour le poids : ≤ 0 ou > 120 → **400** (bornes appliquées par le schéma Zod, désormais atteint
+-+  aussi en GET — l'ancien code filtrait la valeur avant qu'il la voie) ;
+-+- une locale inconnue n'est **pas** une erreur : repli documenté en anglais, le verdict reste
+-+  celui du chien demandé.
+-+
+-+Pourquoi ce contrat est strict : avant lui, `weight_kg=beaucoup` était silencieusement remplacé
+-+par « pas de poids » et le moteur répondait un verdict assuré à un score différent, sans signal.
+-+Même famille de panne que le rapport « CDG → Tokyo » du 30/07/2026.
+-+
+-+## Les couches du harnais
+-+
+-+```
+-+test:unit       sans build — préflight de déploiement (39), vols directs + carrier_of_* (18+),
+-+                cas de référence moteur/HTTP (33)
+-+test:built-ui   lisent packages/ui/dist — fiche (393+) et Finder (28), EXIGENT un build avant
+-+test:ci         n'existe pas en tant que script : c'est le workflow qui ordonne les étapes,
+-+                parce que l'ordre EST la contrainte (build avant harnais DOM)
+-+```
+-+
+-+## Le pipeline (.github/workflows/ci.yml)
+-+
+-+Mesuré le 11/08/2026, séquence complète hors `npm ci` : **107 s**.
+-+
+-+| Étape | PR | main | Durée |
+-+|---|---|---|---|
+-+| `npm ci` (reproductible, lockfile seul) | ✓ | ✓ | ~1 min |
+-+| `npm run check` (base de connaissances) | ✓ | ✓ | 1 s |
+-+| `npm run typecheck` | ✓ | ✓ | 11 s |
+-+| `npm run smoke` | ✓ | ✓ | 1 s |
+-+| `npm run test:unit` | ✓ | ✓ | 2 s |
+-+| Build **réduit** (97 pages, sentinelle versionnée) | ✓ | — | 28 s |
+-+| Build **complet** + noindex sur les 2957 pages | — | ✓ | ~12 min |
+-+| `npm run test:built-ui` | ✓ | ✓ | 49 s |
+-+| `check-bundle` (épinglage, ni alias ni production) | ✓ | ✓ | <1 s |
+-+| `check-astro-debt` (plafond, par code et par fichier) | ✓ | ✓ | 16 s |
+-+
+-+**Pourquoi le build réduit suffit en PR** : les 2728 pages d'entités n'apportent rien aux harnais
+-+DOM (qui lisent l'accueil ×4 langues et `/tools/fiche`, toutes présentes dans le réduit), et la
+-+garantie « noindex partout » reste appliquée par `deploy:preview` **avant tout déploiement** —
+-+c'est-à-dire au moment où elle protège réellement. La CI de PR détecte les régressions vite ; elle
+-+ne certifie pas un déploiement.
+-+
+-+**La dette Astro n'est pas un contrôle vert.** `check-astro-debt` le rappelle à chaque passage :
+-+175 erreurs connues, chiffrées par code TypeScript et par fichier dans
+-+`docs/astro-check-baseline.json`. Toute hausse échoue — y compris à total constant, pour qu'une
+-+erreur neuve ne remplace pas une ancienne. Toute baisse échoue aussi, en demandant de resserrer la
+-+référence. Plan de résorption : `fiche.astro` (66) d'abord, puis `HeatCalculator` (30) et
+-+`TravelTimeline` (29) ; `ts(7006)` (112, paramètres implicitement `any`) et `ts(6133)` (51, code
+-+mort) sont mécaniques.
+-+
+-+## Ce que la CI ne couvre pas, sciemment
+-+
+-+Le déploiement lui-même (`deploy:preview`, 7 étapes vérifiées, manifeste) et la promotion d'alias
+-+restent des actes manuels outillés — c'est une décision, pas un oubli. Et les trois étapes qui
+-+parlent à Cloudflare ne peuvent pas être exercées en CI sans identifiants ; leur contrat est figé
+-+par les 39 contrôles hors ligne de `test-preview-select.mjs`.
+-diff --git a/package.json b/package.json
+-index 2e1cef4..edced0c 100644
+---- a/package.json
+-+++ b/package.json
+-@@ -12,11 +12,13 @@
+-     "check": "npm -w @mydogcanfly/knowledge run check",
+-     "demo": "npm -w @mydogcanfly/engine run demo",
+-     "smoke": "npm -w @mydogcanfly/workers run smoke",
+--    "test:unit": "node test-preview-select.mjs && tsx test-direct-claims.mjs",
+-+    "test:unit": "node test-preview-select.mjs && tsx test-direct-claims.mjs && tsx test-reference-cases.mjs",
+-     "test:direct": "tsx test-direct-claims.mjs",
+-+    "test:reference": "tsx test-reference-cases.mjs",
+-     "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs",
+-     "build": "node packages/knowledge/scripts/lib/require-node.mjs \"le build\" && npm -w @mydogcanfly/ui run build",
+-     "build:preview": "node packages/knowledge/scripts/build-preview.mjs",
+-+    "build:ci": "node packages/knowledge/scripts/build-ci.mjs",
+-     "deploy:preview": "node packages/knowledge/scripts/deploy-preview.mjs",
+-     "promote:preview-alias": "node packages/knowledge/scripts/promote-preview-alias.mjs",
+-     "build:prod": "node packages/knowledge/scripts/lib/require-node.mjs \"le build de production\" && npm -w @mydogcanfly/ui run build:prod",
+-diff --git a/packages/knowledge/scripts/build-ci.mjs b/packages/knowledge/scripts/build-ci.mjs
+-new file mode 100644
+-index 0000000..a6bda60
+---- /dev/null
+-+++ b/packages/knowledge/scripts/build-ci.mjs
+-@@ -0,0 +1,50 @@
+-+#!/usr/bin/env node
+-+/**
+-+ * build-ci.mjs — build RÉDUIT destiné à l'intégration continue, et à elle seule.
+-+ *
+-+ * Mesuré le 11/08/2026 : 36 s et 97 pages, contre ~12 min et 2949 pages pour le build complet.
+-+ * L'écart vient des pages d'entités (aéroports, races, pays, compagnies, guides), 2728 pages qui
+-+ * n'apportent rien aux contrôles exécutés sur une pull request : les harnais DOM lisent la page
+-+ * d'accueil dans les 4 langues et `/tools/fiche`, toutes présentes ici.
+-+ *
+-+ * CE QU'IL NE PROUVE PAS, et c'est délibéré : le « noindex sur la totalité des pages » et le
+-+ * sitemap complet ne sont pas vérifiés ici. Ces garanties restent assurées par `build-preview.mjs`,
+-+ * que `deploy:preview` exécute AVANT tout déploiement — c'est-à-dire au moment où elles comptent.
+-+ * Ne pas se servir de ce script pour déployer quoi que ce soit : il refuserait de toute façon,
+-+ * `dist/` étant incomplet.
+-+ *
+-+ * `PUBLIC_API_BASE` reçoit une URL Worker versionnée SENTINELLE, syntaxiquement conforme mais
+-+ * inexistante : la CI n'a pas à joindre Cloudflare, et une sentinelle permet de vérifier que le
+-+ * bundle est bien épinglé sur ce qu'on lui a demandé — et sur rien d'autre.
+-+ *
+-+ *   npm run build:ci
+-+ */
+-+import { spawnSync } from "node:child_process";
+-+import { join } from "node:path";
+-+import { fileURLToPath } from "node:url";
+-+import { requireNode } from "./lib/require-node.mjs";
+-+
+-+requireNode("le build de CI");
+-+
+-+const SENTINEL_API_BASE = "https://00000000-mydogcanfly-api-preview.fromparis.workers.dev";
+-+const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
+-+const log = (m) => process.stderr.write(`[build-ci] ${m}\n`);
+-+
+-+log(`PUBLIC_API_BASE=${SENTINEL_API_BASE} (sentinelle : aucune requête réseau attendue)`);
+-+log("PUBLIC_SITE_ENV=preview · BUILD_ONLY=__none__ (aucune famille d'entités)");
+-+
+-+const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
+-+  cwd: REPO_ROOT,
+-+  env: {
+-+    ...process.env,
+-+    PUBLIC_API_BASE: SENTINEL_API_BASE,
+-+    PUBLIC_SITE_ENV: "preview",
+-+    BUILD_ONLY: "__none__",
+-+  },
+-+  stdio: ["ignore", 2, 2],
+-+});
+-+if (r.status !== 0) {
+-+  log("ÉCHEC : le build réduit a échoué (voir la sortie ci-dessus).");
+-+  process.exit(1);
+-+}
+-+log("Build réduit prêt. Les harnais lisant packages/ui/dist peuvent tourner.");
+-diff --git a/packages/knowledge/scripts/check-astro-debt.mjs b/packages/knowledge/scripts/check-astro-debt.mjs
+-new file mode 100644
+-index 0000000..fb4d130
+---- /dev/null
+-+++ b/packages/knowledge/scripts/check-astro-debt.mjs
+-@@ -0,0 +1,99 @@
+-+#!/usr/bin/env node
+-+/**
+-+ * check-astro-debt.mjs — plafond de dette `astro check`.
+-+ *
+-+ * CE N'EST PAS UN `astro check` QUI RÉUSSIT. C'est une dette connue, chiffrée, empêchée de croître.
+-+ * Le distinguo est de Codex (11/08/2026) et il compte : présenter 175 erreurs comme un contrôle
+-+ * vert reviendrait à normaliser leur présence.
+-+ *
+-+ * Un total figé ne suffit pas : à 175 constant, une erreur nouvelle pourrait remplacer une
+-+ * ancienne sans que rien ne le signale. La référence enregistre donc AUSSI la répartition par code
+-+ * TypeScript et par fichier, et toute hausse sur l'une de ces lignes échoue — même si le total
+-+ * n'a pas bougé.
+-+ *
+-+ * Le script échoue également quand le compte DESCEND sous la référence : il faut alors resserrer
+-+ * la référence. Un plafond qu'on oublie d'abaisser cesse d'être un plafond.
+-+ *
+-+ *   node packages/knowledge/scripts/check-astro-debt.mjs            # contrôle
+-+ *   node packages/knowledge/scripts/check-astro-debt.mjs --update   # réécrit la référence
+-+ */
+-+import { spawnSync } from "node:child_process";
+-+import { readFileSync, writeFileSync, existsSync } from "node:fs";
+-+import { join, relative } from "node:path";
+-+import { fileURLToPath } from "node:url";
+-+
+-+const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
+-+const BASELINE = join(REPO_ROOT, "docs/astro-check-baseline.json");
+-+const UPDATE = process.argv.includes("--update");
+-+
+-+const log = (m) => process.stderr.write(`[astro-debt] ${m}\n`);
+-+
+-+const res = spawnSync("npx", ["astro", "check", "--root", "packages/ui"], {
+-+  cwd: REPO_ROOT,
+-+  encoding: "utf8",
+-+  env: { ...process.env, FORCE_COLOR: "0", NO_COLOR: "1" },
+-+});
+-+// `astro check` sort en code non nul dès qu'il reste une erreur : c'est attendu ici, on lit la sortie.
+-+const out = (res.stdout + res.stderr).replace(/\[[0-9;]*m/g, "");
+-+
+-+const byCode = {};
+-+const byFile = {};
+-+let total = 0;
+-+for (const line of out.split("\n")) {
+-+  const m = line.match(/^(\S+?):\d+:\d+ - error (ts\(\d+\)|\w+):/);
+-+  if (!m) continue;
+-+  total++;
+-+  byFile[m[1]] = (byFile[m[1]] ?? 0) + 1;
+-+  byCode[m[2]] = (byCode[m[2]] ?? 0) + 1;
+-+}
+-+
+-+if (total === 0 && !/Result \(/.test(out)) {
+-+  log("ÉCHEC : sortie d'`astro check` illisible — aucune ligne d'erreur reconnue et aucun résumé.");
+-+  process.stderr.write(out.slice(-1500) + "\n");
+-+  process.exit(1);
+-+}
+-+
+-+const current = { total, byCode, byFile };
+-+
+-+if (UPDATE) {
+-+  writeFileSync(BASELINE, JSON.stringify(current, null, 2) + "\n");
+-+  log(`Référence réécrite : ${relative(REPO_ROOT, BASELINE)} — ${total} erreur(s).`);
+-+  process.exit(0);
+-+}
+-+
+-+if (!existsSync(BASELINE)) {
+-+  log(`ÉCHEC : référence absente (${relative(REPO_ROOT, BASELINE)}). La créer avec --update.`);
+-+  process.exit(1);
+-+}
+-+const base = JSON.parse(readFileSync(BASELINE, "utf8"));
+-+
+-+const hausses = [];
+-+for (const [k, v] of Object.entries(current.byCode)) {
+-+  const b = base.byCode[k] ?? 0;
+-+  if (v > b) hausses.push(`code ${k} : ${b} → ${v}`);
+-+}
+-+for (const [k, v] of Object.entries(current.byFile)) {
+-+  const b = base.byFile[k] ?? 0;
+-+  if (v > b) hausses.push(`${k} : ${b} → ${v}`);
+-+}
+-+
+-+if (hausses.length > 0) {
+-+  log(`ÉCHEC : dette en hausse (total ${base.total} → ${total}).`);
+-+  for (const h of hausses) log(`    ${h}`);
+-+  log("");
+-+  log("Une hausse par code ou par fichier échoue même à total constant : sans ça, une erreur");
+-+  log("nouvelle pourrait prendre la place d'une ancienne sans que personne ne le voie.");
+-+  process.exit(1);
+-+}
+-+
+-+if (total < base.total) {
+-+  log(`Dette en BAISSE : ${base.total} → ${total}. C'est une bonne nouvelle, et la référence doit suivre :`);
+-+  log("    node packages/knowledge/scripts/check-astro-debt.mjs --update");
+-+  log("Sans ça, les erreurs résorbées pourraient revenir sans déclencher d'échec.");
+-+  process.exit(1);
+-+}
+-+
+-+log(`OK — dette stable à ${total} erreur(s), aucune hausse par code ni par fichier.`);
+-+log("Rappel : ce n'est pas un `astro check` réussi, c'est une dette contenue.");
+-+const top = Object.entries(base.byFile).sort((a, b) => b[1] - a[1]).slice(0, 3);
+-+log(`Plus gros contributeurs : ${top.map(([f, n]) => `${f.split("/").pop()} (${n})`).join(", ")}.`);
+-diff --git a/packages/knowledge/scripts/check-bundle.mjs b/packages/knowledge/scripts/check-bundle.mjs
+-new file mode 100644
+-index 0000000..6bb76fc
+---- /dev/null
+-+++ b/packages/knowledge/scripts/check-bundle.mjs
+-@@ -0,0 +1,83 @@
+-+#!/usr/bin/env node
+-+/**
+-+ * check-bundle.mjs — contrôle ce que le bundle construit appelle réellement.
+-+ *
+-+ * Deux régressions distinctes à empêcher, toutes deux survenues :
+-+ *
+-+ *  1. `PUBLIC_API_BASE` absente au build (10 et 11/08/2026, deux fois) : le Finder retombe en
+-+ *     same-origin, où le POST échoue. Le déploiement réussit, le Finder est mort.
+-+ *  2. Bundle construit contre l'alias Worker MUTABLE au lieu d'une URL versionnée : la preview
+-+ *     paraît immuable alors que son moteur change sous elle à chaque promotion.
+-+ *
+-+ * S'y ajoute une interdiction qui n'a jamais été violée mais qui serait grave : aucune URL de
+-+ * PRODUCTION ne doit se retrouver dans un bundle de preview ou de CI. Un `/v1/*` de production
+-+ * dans un bundle non-production ferait interroger le moteur live par des pages de test.
+-+ *
+-+ *   node packages/knowledge/scripts/check-bundle.mjs --expect=<url attendue>
+-+ */
+-+import { readdirSync, readFileSync, existsSync } from "node:fs";
+-+import { join, relative } from "node:path";
+-+import { fileURLToPath } from "node:url";
+-+
+-+const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
+-+const ASTRO_DIR = join(REPO_ROOT, "packages/ui/dist/_astro");
+-+const FINDER_PATH = "/v1/finder";
+-+const MUTABLE_ALIAS = "https://mydogcanfly-api-preview.fromparis.workers.dev";
+-+const PRODUCTION_PATTERNS = [/https:\/\/(www\.)?mydogcanfly\.com\/v1\//];
+-+
+-+const log = (m) => process.stderr.write(`[check-bundle] ${m}\n`);
+-+const die = (m) => { log(`ÉCHEC : ${m}`); process.exit(1); };
+-+
+-+const arg = process.argv.slice(2).find((a) => a.startsWith("--expect="));
+-+if (!arg) die("usage : check-bundle.mjs --expect=<url Worker attendue dans le bundle>");
+-+const EXPECTED = arg.slice("--expect=".length);
+-+if (!EXPECTED) die("--expect= est vide.");
+-+
+-+if (!existsSync(ASTRO_DIR)) die(`${relative(REPO_ROOT, ASTRO_DIR)} absent — le build a-t-il tourné ?`);
+-+
+-+const chunks = readdirSync(ASTRO_DIR).filter((f) => f.endsWith(".js"));
+-+if (chunks.length === 0) die(`aucun chunk .js dans ${relative(REPO_ROOT, ASTRO_DIR)}.`);
+-+
+-+let finderChunk = null;
+-+let sawExpected = false;
+-+const offenders = [];
+-+
+-+for (const f of chunks) {
+-+  const src = readFileSync(join(ASTRO_DIR, f), "utf8");
+-+  const hasExpected = src.includes(EXPECTED);
+-+  if (hasExpected) sawExpected = true;
+-+  if (hasExpected && src.includes(FINDER_PATH)) finderChunk = f;
+-+
+-+  /* L'alias mutable est cherché comme sous-chaîne, mais une URL VERSIONNÉE le contient
+-+   * (`https://<8hex>-mydogcanfly-api-preview…` ≠ `https://mydogcanfly-api-preview…` : le préfixe
+-+   * change le début de la chaîne, donc pas de faux positif). On compte quand même explicitement. */
+-+  const bare = src.split(MUTABLE_ALIAS).length - 1;
+-+  if (bare > 0 && EXPECTED !== MUTABLE_ALIAS) offenders.push(`${f} : ${bare} occurrence(s) de l'alias mutable`);
+-+
+-+  for (const re of PRODUCTION_PATTERNS) {
+-+    const m = src.match(re);
+-+    if (m) offenders.push(`${f} : URL de production « ${m[0]} »`);
+-+  }
+-+}
+-+
+-+if (!sawExpected) {
+-+  die(
+-+    `aucun chunk ne contient « ${EXPECTED} ».\n` +
+-+      "Le Finder de ce build n'appellera pas le Worker attendu — PUBLIC_API_BASE a-t-elle bien été fixée AU BUILD ?",
+-+  );
+-+}
+-+if (!finderChunk) {
+-+  die(
+-+    `« ${EXPECTED} » est présente, mais aucun chunk ne la contient EN MÊME TEMPS que « ${FINDER_PATH} ».\n` +
+-+      "Rien ne démontre alors que c'est l'îlot du Finder qui est câblé dessus.",
+-+  );
+-+}
+-+if (offenders.length > 0) {
+-+  log("adresses interdites trouvées dans le bundle :");
+-+  for (const o of offenders) log(`    ${o}`);
+-+  die("un bundle de preview ou de CI ne doit contenir ni l'alias Worker mutable ni une URL de production.");
+-+}
+-+
+-+log(`OK — ${chunks.length} chunk(s) inspecté(s).`);
+-+log(`OK — « ${EXPECTED} » et « ${FINDER_PATH} » dans le même chunk (${finderChunk}).`);
+-+log("OK — aucune URL d'alias mutable ni de production.");
+-diff --git a/packages/workers/src/index.ts b/packages/workers/src/index.ts
+-index 613232c..3934e19 100644
+---- a/packages/workers/src/index.ts
+-+++ b/packages/workers/src/index.ts
+-@@ -181,14 +181,34 @@ function finderInputFromQuery(q: URLSearchParams): QueryResult {
+-   const bid = breedRaw ? breedId(breedRaw) : null;
+-   if (breedRaw && !bid) return { ok: false, body: { error: "unknown_breed", unknown: [`breed=${breedRaw}`], ...usage } };
+- 
+-+  /* Paramètre numérique : ABSENT et INVALIDE sont deux cas différents, et les confondre était un
+-+   * défaut (arbitrage Codex, 11/08/2026). L'ancienne version renvoyait `undefined` dans les deux
+-+   * cas : `weight_kg=beaucoup` ou `weight_kg=-5` étaient silencieusement abandonnés, et le moteur
+-+   * répondait un verdict assuré pour un chien SANS poids connu — un score différent, sans le
+-+   * moindre signal que la saisie avait été ignorée. Même famille de panne que le rapport
+-+   * « CDG → Tokyo » servi à des requêtes que personne n'avait faites.
+-+   *
+-+   * Désormais : absent → `undefined` (poids/température inconnus, cas d'usage légitime) ;
+-+   * présent mais vide, non numérique ou non fini → l'invalidité est COLLECTÉE et la requête
+-+   * répond 400 `invalid_request` en nommant le paramètre. Les bornes de valeur (poids > 0 et
+-+   * ≤ 120), elles, restent du ressort du schéma Zod — qui les appliquait déjà au POST ; il suffit
+-+   * de ne plus filtrer la valeur avant qu'il la voie. */
+-+  const invalidNums: string[] = [];
+-   const num = (key: string) => {
+-     const v = q.get(key);
+--    if (v == null || v.trim() === "") return undefined;
+--    const n = Number(v);
+--    return Number.isFinite(n) ? n : undefined;
+-+    if (v == null) return undefined;
+-+    const n = v.trim() === "" ? NaN : Number(v);
+-+    if (!Number.isFinite(n)) {
+-+      invalidNums.push(`${key}=${v}`);
+-+      return undefined;
+-+    }
+-+    return n;
+-   };
+-   const weight = num("weight_kg");
+-   const temp = num("temperature_c");
+-+  if (invalidNums.length) {
+-+    return { ok: false, body: { error: "invalid_request", invalid: invalidNums, ...usage } };
+-+  }
+- 
+-   return {
+-     ok: true,
+-@@ -197,7 +217,7 @@ function finderInputFromQuery(q: URLSearchParams): QueryResult {
+-       destination: did,
+-       origins: set("origins"),
+-       destinations: set("destinations"),
+--      dog: { breed_id: bid ?? undefined, weight_kg: weight && weight > 0 ? weight : undefined },
+-+      dog: { breed_id: bid ?? undefined, weight_kg: weight },
+-       travel_type: q.get("travel_type") ?? undefined,
+-       placement: q.get("placement") ?? undefined,
+-       date: q.get("date") ?? undefined,
+-diff --git a/test-reference-cases.mjs b/test-reference-cases.mjs
+-new file mode 100644
+-index 0000000..25b0d34
+---- /dev/null
+-+++ b/test-reference-cases.mjs
+-@@ -0,0 +1,153 @@
+-+#!/usr/bin/env node
+-+/**
+-+ * Cas de référence — couche moteur + contrat HTTP.
+-+ *
+-+ * Les sept scénarios obligatoires fixés par Codex le 11/08/2026 ne vivent pas tous à la même
+-+ * couche (voir docs/matrice-tests.md). Ce harnais couvre ceux qui se démontrent au niveau du
+-+ * moteur interrogé À TRAVERS le Worker — c'est-à-dire à travers le contrat HTTP réel, pas via
+-+ * l'API interne du moteur, pour qu'une régression de sérialisation ou de routage soit visible.
+-+ *
+-+ *   cas 1 — La Compagnie, chien de 32 kg : cabine impossible, soute et fret non proposés
+-+ *   cas 7 — paramètres invalides ou inconnus : aucune conclusion positive inventée
+-+ *
+-+ * Les cas 2, 3, 4, 6 relèvent du DOM construit (harnais fiche et Finder) et le cas 5 des
+-+ * affirmations de vol direct (test-direct-claims.mjs).
+-+ *
+-+ *   npm run test:reference        (équivaut à `tsx test-reference-cases.mjs`)
+-+ */
+-+import worker from "./packages/workers/src/index.ts";
+-+
+-+let pass = 0;
+-+let fail = 0;
+-+const check = (label, cond, detail = "") => {
+-+  console.log((cond ? "  OK   " : "  FAIL ") + label + (cond || !detail ? "" : `\n         reçu : ${detail}`));
+-+  cond ? pass++ : fail++;
+-+};
+-+
+-+const call = async (query) => {
+-+  const res = await worker.fetch(new Request(`https://x/v1/finder?${query}`), {});
+-+  let body;
+-+  try {
+-+    body = await res.json();
+-+  } catch {
+-+    body = null;
+-+  }
+-+  return { status: res.status, body };
+-+};
+-+
+-+/* ── Cas 1 — La Compagnie, 32 kg ────────────────────────────────────────────────────────────
+-+ * Le cas fondateur du tour 6 : La Compagnie avait été rejetée à tort de la liste blanche, puis
+-+ * son verdict a servi de référence. Elle n'accepte les chiens ni en soute ni en fret, et son
+-+ * plafond cabine est très inférieur à 32 kg — les trois refus doivent donc apparaître ENSEMBLE.
+-+ * Route réelle de la compagnie : EWR ↔ ORY (ses aéroports, pas une paire arbitraire). */
+-+console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
+-+{
+-+  const { status, body } = await call(
+-+    "origin=airport_ewr&destination=airport_ory&weight_kg=32&breed=breed_golden_retriever&placement=any&locale=en",
+-+  );
+-+  check("la requête aboutit", status === 200, `HTTP ${status}`);
+-+  const lc = (body?.airlines ?? []).find((a) => a.airline_id === "airline_la_compagnie");
+-+  check("La Compagnie figure dans les résultats", !!lc, (body?.airlines ?? []).length + " compagnie(s)");
+-+  if (lc) {
+-+    check("aucun placement accepté (ni cabine, ni soute, ni fret)", !lc.cabin && !lc.hold && !lc.cargo,
+-+      `cabin=${lc.cabin} hold=${lc.hold} cargo=${lc.cargo}`);
+-+    const r = lc.deny_reasons ?? [];
+-+    check("motif « poids au-dessus de la limite publiée »", r.includes("weight_limit"), JSON.stringify(r));
+-+    check("motif « soute non proposée »", r.includes("hold_unavailable"), JSON.stringify(r));
+-+    check("motif « fret non proposé »", r.includes("cargo_unavailable"), JSON.stringify(r));
+-+    check("les trois motifs sont présents ensemble", r.length >= 3, JSON.stringify(r));
+-+  }
+-+}
+-+
+-+/* ── Cas 7 — entrées invalides : jamais de conclusion positive inventée ──────────────────────
+-+ * L'endpoint a déjà servi un rapport « CDG → Tokyo » à des requêtes que personne n'avait faites
+-+ * (30/07/2026). La règle qui en découle : une requête qu'on ne comprend pas doit produire une
+-+ * ERREUR, jamais un rapport plausible. On vérifie donc l'absence de `verdict` autant que le code
+-+ * HTTP — c'est `verdict` qui fait qu'un corps est traité comme un rapport par le client. */
+-+console.log("\n— Cas 7 : entrées invalides ou inconnues —");
+-+{
+-+  const cas = [
+-+    ["requête vide", ""],
+-+    ["aéroport de départ inconnu", "origin=airport_zzzzz&destination=airport_cdg&weight_kg=8&breed=breed_golden_retriever"],
+-+    ["aéroport d'arrivée inconnu", "origin=airport_cdg&destination=airport_zzzzz&weight_kg=8&breed=breed_golden_retriever"],
+-+    ["race inconnue", "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_chien_imaginaire"],
+-+    ["destination manquante", "origin=airport_cdg&weight_kg=8&breed=breed_golden_retriever"],
+-+  ];
+-+  for (const [label, q] of cas) {
+-+    const { status, body } = await call(q);
+-+    const inventeUnRapport = status === 200 && typeof body?.verdict === "string";
+-+    check(
+-+      `${label} → aucun rapport inventé`,
+-+      !inventeUnRapport,
+-+      `HTTP ${status}, verdict=${JSON.stringify(body?.verdict)}`,
+-+    );
+-+    if (status !== 200) {
+-+      check(`${label} → l'erreur est nommée`, typeof body?.error === "string" && body.error.length > 0, JSON.stringify(body).slice(0, 160));
+-+    }
+-+  }
+-+}
+-+
+-+/* Un cas voisin, qui n'est PAS une erreur : une requête valide dont aucune compagnie ne ressort.
+-+ * Elle doit répondre normalement, pas prétendre à un problème d'entrée. */
+-+/* ── Contrat des paramètres numériques — figé par l'arbitrage Codex du 11/08/2026 ────────────
+-+ * Un paramètre ABSENT est légitime (poids ou température inconnus). Un paramètre PRÉSENT mais
+-+ * vide, non numérique, non fini, ≤ 0 ou > 120 (pour le poids) doit répondre 400 `invalid_request`.
+-+ * Avant ce contrat, `weight_kg=beaucoup` était silencieusement abandonné et le moteur rendait un
+-+ * verdict assuré pour un chien sans poids connu — un score différent, aucun signal. Le même défaut
+-+ * touchait `temperature_c`, qui pilote les restrictions de chaleur. */
+-+console.log("\n— Contrat numérique : weight_kg —");
+-+{
+-+  const B = "origin=airport_cdg&destination=airport_jfk&breed=breed_golden_retriever";
+-+  const invalides = [["vide", "weight_kg="], ["non numérique", "weight_kg=beaucoup"], ["NaN", "weight_kg=NaN"],
+-+    ["infini", "weight_kg=Infinity"], ["négatif", "weight_kg=-5"], ["nul", "weight_kg=0"], ["au-dessus de 120", "weight_kg=121"]];
+-+  for (const [label, param] of invalides) {
+-+    const { status, body } = await call(`${B}&${param}`);
+-+    check(`poids ${label} → 400 invalid_request, aucun verdict`,
+-+      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined,
+-+      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}`);
+-+  }
+-+  const { status, body } = await call(B);
+-+  check("poids ABSENT → accepté (poids inconnu, cas légitime)",
+-+    status === 200 && typeof body?.verdict === "string", `HTTP ${status}`);
+-+}
+-+
+-+console.log("\n— Contrat numérique : temperature_c (pilote les restrictions de chaleur) —");
+-+{
+-+  const B = "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_golden_retriever";
+-+  for (const [label, param] of [["vide", "temperature_c="], ["non numérique", "temperature_c=beaucoup"],
+-+    ["NaN", "temperature_c=NaN"], ["infinie", "temperature_c=Infinity"]]) {
+-+    const { status, body } = await call(`${B}&${param}`);
+-+    check(`température ${label} → 400 invalid_request`,
+-+      status === 400 && body?.error === "invalid_request",
+-+      `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
+-+  }
+-+  const ok = await call(`${B}&temperature_c=30`);
+-+  check("température valide → acceptée", ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);
+-+  const abs = await call(B);
+-+  check("température ABSENTE → acceptée", abs.status === 200 && typeof abs.body?.verdict === "string", `HTTP ${abs.status}`);
+-+}
+-+
+-+/* PAS un défaut, et mon premier jet le comptait à tort comme tel : une locale inconnue rend en
+-+ * anglais. C'est documenté dans le `note` du contrat (« other schema-valid locales silently render
+-+ * in English ») et ça n'invente aucune conclusion — le verdict reste celui du chien demandé, seule
+-+ * la langue d'affichage change. Le cas 7 interdit d'inventer une réponse, pas de se replier sur
+-+ * une langue par défaut. */
+-+console.log("\n— Locale inconnue : repli documenté en anglais, pas une erreur —");
+-+{
+-+  const { status, body } = await call("origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_golden_retriever&locale=xx");
+-+  check("locale inconnue → rapport normal (repli anglais)", status === 200 && typeof body?.verdict === "string",
+-+    `HTTP ${status}`);
+-+}
+-+
+-+console.log("\n— Contrôle inverse : une requête valide reste une requête valide —");
+-+{
+-+  const { status, body } = await call(
+-+    "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_golden_retriever&placement=any&locale=en",
+-+  );
+-+  check("une requête bien formée renvoie 200 et un verdict", status === 200 && typeof body?.verdict === "string",
+-+    `HTTP ${status}, verdict=${JSON.stringify(body?.verdict)}`);
+-+}
+-+
+-+console.log("\n=== SUMMARY ===");
+-+console.log(fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`);
+-+process.exit(fail === 0 ? 0 : 1);
+diff --git a/docs/matrice-tests.md b/docs/matrice-tests.md
+index eba307b..6ee86e3 100644
+--- a/docs/matrice-tests.md
++++ b/docs/matrice-tests.md
+@@ -82,6 +82,11 @@ mort) sont mécaniques.
+ 
+ ## Ce que la CI ne couvre pas, sciemment
+ 
++**Aucun contrôle de liens n'existe** (consigné au K-bis) : `npm run check` l'annonçait à tort comme
++« exécuté en CI ». Le message est corrigé ; le chantier reste ouvert — liens internes à chaque CI,
++URLs externes dans un workflow programmé, jamais en bloquant de PR (le réseau externe est flaky).
++
++
+ Le déploiement lui-même (`deploy:preview`, 7 étapes vérifiées, manifeste) et la promotion d'alias
+ restent des actes manuels outillés — c'est une décision, pas un oubli. Et les trois étapes qui
+ parlent à Cloudflare ne peuvent pas être exercées en CI sans identifiants ; leur contrat est figé
+diff --git a/packages/knowledge/quality/check.ts b/packages/knowledge/quality/check.ts
+index 09c30f6..0ee27e2 100644
+--- a/packages/knowledge/quality/check.ts
++++ b/packages/knowledge/quality/check.ts
+@@ -107,8 +107,12 @@ ok(
+   promisedWithoutAirport.length ? `${promisedWithoutAirport.length} without: ${promisedWithoutAirport.join(", ")}` : "",
+ );
+ 
+-// link-check: network-gated, runs in CI only
+-console.log("ℹ️  link-check: skipped (network-gated; runs in CI)");
++// Message corrigé (K-bis, 11/08/2026) : l'ancien texte affirmait « runs in CI » alors
++// qu'AUCUN contrôle de liens n'existe, ni ici ni dans le workflow. Un contrôle annoncé et
++// absent est pire qu'un contrôle absent : quelqu'un finit par s'appuyer dessus.
++// Chantier consigné dans docs/matrice-tests.md : liens internes à chaque CI, URLs externes
++// dans un workflow programmé.
++console.log("ℹ️  link-check: absent — aucun contrôle de liens n'existe encore (ni ici ni en CI)");
+ 
+ console.log(failed ? `\n${failed} check(s) failed` : "\nAll quality checks passed ✨");
+ process.exit(failed ? 1 : 0);
+diff --git a/packages/knowledge/scripts/check-astro-debt.mjs b/packages/knowledge/scripts/check-astro-debt.mjs
+index fb4d130..51d30fe 100644
+--- a/packages/knowledge/scripts/check-astro-debt.mjs
++++ b/packages/knowledge/scripts/check-astro-debt.mjs
+@@ -28,7 +28,10 @@ const UPDATE = process.argv.includes("--update");
+ 
+ const log = (m) => process.stderr.write(`[astro-debt] ${m}\n`);
+ 
+-const res = spawnSync("npx", ["astro", "check", "--root", "packages/ui"], {
++/* Binaire LOCAL, jamais `npx` (K-bis, 11/08/2026) : `npx` résout selon l'environnement — dans
++ * un shell `npx -p node@22` il échoue, et hors lockfile il peut télécharger une version
++ * arbitraire d'astro. Le binaire de node_modules est celui que le lockfile a installé. */
++const res = spawnSync(join(REPO_ROOT, "node_modules/.bin/astro"), ["check", "--root", "packages/ui"], {
+   cwd: REPO_ROOT,
+   encoding: "utf8",
+   env: { ...process.env, FORCE_COLOR: "0", NO_COLOR: "1" },
+diff --git a/packages/knowledge/scripts/check-bundle.mjs b/packages/knowledge/scripts/check-bundle.mjs
+index 6bb76fc..7239869 100644
+--- a/packages/knowledge/scripts/check-bundle.mjs
++++ b/packages/knowledge/scripts/check-bundle.mjs
+@@ -52,7 +52,10 @@ for (const f of chunks) {
+    * (`https://<8hex>-mydogcanfly-api-preview…` ≠ `https://mydogcanfly-api-preview…` : le préfixe
+    * change le début de la chaîne, donc pas de faux positif). On compte quand même explicitement. */
+   const bare = src.split(MUTABLE_ALIAS).length - 1;
+-  if (bare > 0 && EXPECTED !== MUTABLE_ALIAS) offenders.push(`${f} : ${bare} occurrence(s) de l'alias mutable`);
++  /* Plus AUCUNE exception pour l'alias mutable (K-bis, 11/08/2026) : la clause
++   * `EXPECTED !== MUTABLE_ALIAS` permettait de déclarer l'alias comme attendu — c'est ce que
++   * faisait la CI de main. Un bundle vérifié par ce script ne doit jamais le contenir, point. */
++  if (bare > 0) offenders.push(`${f} : ${bare} occurrence(s) de l'alias mutable`);
+ 
+   for (const re of PRODUCTION_PATTERNS) {
+     const m = src.match(re);
+diff --git a/test-reference-cases.mjs b/test-reference-cases.mjs
+index 25b0d34..d08196d 100644
+--- a/test-reference-cases.mjs
++++ b/test-reference-cases.mjs
+@@ -66,24 +66,25 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
+  * HTTP — c'est `verdict` qui fait qu'un corps est traité comme un rapport par le client. */
+ console.log("\n— Cas 7 : entrées invalides ou inconnues —");
+ {
++  /* Chaque cas exige les TROIS conditions à la fois : HTTP 400, le code d'erreur EXACT, et
++   * l'absence de `verdict` (durcissement K-bis, 11/08/2026). La version précédente se
++   * contentait de « pas de rapport inventé » : une réponse `200 {}` — ni erreur ni rapport —
++   * serait passée, et le contrôle du code d'erreur ne s'appliquait que si le statut n'était
++   * pas 200, c'est-à-dire précisément quand il devenait facultatif. */
+   const cas = [
+-    ["requête vide", ""],
+-    ["aéroport de départ inconnu", "origin=airport_zzzzz&destination=airport_cdg&weight_kg=8&breed=breed_golden_retriever"],
+-    ["aéroport d'arrivée inconnu", "origin=airport_cdg&destination=airport_zzzzz&weight_kg=8&breed=breed_golden_retriever"],
+-    ["race inconnue", "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_chien_imaginaire"],
+-    ["destination manquante", "origin=airport_cdg&weight_kg=8&breed=breed_golden_retriever"],
++    ["requête vide", "", "missing_parameters"],
++    ["aéroport de départ inconnu", "origin=airport_zzzzz&destination=airport_cdg&weight_kg=8&breed=breed_golden_retriever", "unknown_airport"],
++    ["aéroport d'arrivée inconnu", "origin=airport_cdg&destination=airport_zzzzz&weight_kg=8&breed=breed_golden_retriever", "unknown_airport"],
++    ["race inconnue", "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_chien_imaginaire", "unknown_breed"],
++    ["destination manquante", "origin=airport_cdg&weight_kg=8&breed=breed_golden_retriever", "missing_parameters"],
+   ];
+-  for (const [label, q] of cas) {
++  for (const [label, q, expectedError] of cas) {
+     const { status, body } = await call(q);
+-    const inventeUnRapport = status === 200 && typeof body?.verdict === "string";
+     check(
+-      `${label} → aucun rapport inventé`,
+-      !inventeUnRapport,
+-      `HTTP ${status}, verdict=${JSON.stringify(body?.verdict)}`,
++      `${label} → 400 ${expectedError}, aucun verdict`,
++      status === 400 && body?.error === expectedError && body?.verdict === undefined,
++      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}`,
+     );
+-    if (status !== 200) {
+-      check(`${label} → l'erreur est nommée`, typeof body?.error === "string" && body.error.length > 0, JSON.stringify(body).slice(0, 160));
+-    }
+   }
+ }
+ 
+@@ -98,13 +99,25 @@ console.log("\n— Cas 7 : entrées invalides ou inconnues —");
+ console.log("\n— Contrat numérique : weight_kg —");
+ {
+   const B = "origin=airport_cdg&destination=airport_jfk&breed=breed_golden_retriever";
+-  const invalides = [["vide", "weight_kg="], ["non numérique", "weight_kg=beaucoup"], ["NaN", "weight_kg=NaN"],
+-    ["infini", "weight_kg=Infinity"], ["négatif", "weight_kg=-5"], ["nul", "weight_kg=0"], ["au-dessus de 120", "weight_kg=121"]];
+-  for (const [label, param] of invalides) {
++  /* Pour les formats ILLISIBLES, la doc affirme que le paramètre fautif est nommé dans
++   * `body.invalid` — on le vérifie donc au contenu exact, pas seulement à l'existence
++   * (durcissement K-bis). Les bornes (-5, 0, 121) passent par Zod et n'ont pas ce champ :
++   * troisième élément `null` = pas d'exigence sur `invalid`. */
++  const invalides = [
++    ["vide", "weight_kg=", ["weight_kg="]],
++    ["non numérique", "weight_kg=beaucoup", ["weight_kg=beaucoup"]],
++    ["NaN", "weight_kg=NaN", ["weight_kg=NaN"]],
++    ["infini", "weight_kg=Infinity", ["weight_kg=Infinity"]],
++    ["négatif", "weight_kg=-5", null],
++    ["nul", "weight_kg=0", null],
++    ["au-dessus de 120", "weight_kg=121", null],
++  ];
++  for (const [label, param, expectedInvalid] of invalides) {
+     const { status, body } = await call(`${B}&${param}`);
+-    check(`poids ${label} → 400 invalid_request, aucun verdict`,
+-      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined,
+-      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}`);
++    const invalidOk = expectedInvalid === null || JSON.stringify(body?.invalid) === JSON.stringify(expectedInvalid);
++    check(`poids ${label} → 400 invalid_request, aucun verdict${expectedInvalid ? `, invalid=${JSON.stringify(expectedInvalid)}` : ""}`,
++      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined && invalidOk,
++      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}, invalid=${JSON.stringify(body?.invalid)}`);
+   }
+   const { status, body } = await call(B);
+   check("poids ABSENT → accepté (poids inconnu, cas légitime)",
+@@ -117,9 +130,10 @@ console.log("\n— Contrat numérique : temperature_c (pilote les restrictions d
+   for (const [label, param] of [["vide", "temperature_c="], ["non numérique", "temperature_c=beaucoup"],
+     ["NaN", "temperature_c=NaN"], ["infinie", "temperature_c=Infinity"]]) {
+     const { status, body } = await call(`${B}&${param}`);
+-    check(`température ${label} → 400 invalid_request`,
+-      status === 400 && body?.error === "invalid_request",
+-      `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
++    check(`température ${label} → 400 invalid_request, aucun verdict, invalid=["${param}"]`,
++      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined &&
++        JSON.stringify(body?.invalid) === JSON.stringify([param]),
++      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}, invalid=${JSON.stringify(body?.invalid)}`);
+   }
+   const ok = await call(`${B}&temperature_c=30`);
+   check("température valide → acceptée", ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);
