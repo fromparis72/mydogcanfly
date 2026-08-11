@@ -11,23 +11,37 @@
  *   3. Sélection     — retrouve la version par son tag `git-<sha>`, correspondance unique exigée
  *   4. Santé Worker  — relit /v1/health sur l'URL VERSIONNÉE jusqu'à double concordance
  *   5. Pages         — build épinglé sur cette URL versionnée, puis `wrangler pages deploy`
- *   6. Manifeste     — trace complète dans .artifacts/previews/<sha>/manifest.json
+ *   6. Smoke Pages   — la preview répond 200, reste noindex, et son bundle porte l'URL versionnée
+ *   7. Manifeste     — trace complète dans .artifacts/previews/<sha>/manifest.json
  *
  * L'alias Worker partagé n'est JAMAIS promu ici : il doit signifier « dernière preview
  * approuvée », pas « dernier code téléversé ». Sa promotion est une commande distincte, à lancer
- * après le contre-test navigateur :  npm run promote:preview-alias -- <worker_version_id>
+ * après le contre-test navigateur :
+ *   npm run promote:preview-alias -- .artifacts/previews/<sha>/manifest.json
  *
  * Sorties : messages humains sur stderr, manifeste JSON pur sur stdout avec --json.
  * En cas d'échec, un manifeste PARTIEL (`status: "failed"`, étape fautive) est écrit quand même.
  *
  * Usage :
  *   node packages/knowledge/scripts/deploy-preview.mjs [--json] [--dry]
+ *
+ * Via npm, `--silent` est OBLIGATOIRE si on exploite le JSON : sans lui, npm écrit son propre
+ * préambule (« > deploy:preview », « > node … ») sur stdout et le mélange au manifeste, ce qui
+ * casse tout `jq` en aval. Vérifié le 11/08/2026.
+ *   npm run --silent deploy:preview -- --json | jq .worker_version_id
  */
 import { spawnSync } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { selectVersionByTag, versionPreviewUrl, healthMatches } from "./lib/preview-select.mjs";
+import {
+  selectVersionByTag,
+  versionPreviewUrl,
+  healthMatches,
+  extractPagesDeploymentId,
+  extractHoistedChunks,
+  retryUntil,
+} from "./lib/preview-select.mjs";
 
 const SCHEMA_VERSION = 1;
 const WORKER_NAME = "mydogcanfly-api-preview";
@@ -126,7 +140,7 @@ const git = (a) => spawnSync("git", a, { cwd: REPO_ROOT, encoding: "utf8" }).std
  * traçabilité — et c'est justement la traçabilité qu'on est en train de construire. Un besoin
  * ponctuel de déployer du code non commité relève d'une commande séparée, explicitement
  * non validable. */
-log("1/6 Préflight (arbre propre, HEAD == origin/main)…");
+log("1/7 Préflight (arbre propre, HEAD == origin/main)…");
 const dirty = git(["status", "--porcelain"]);
 manifest.git_clean = dirty === "";
 manifest.git_sha = git(["rev-parse", "HEAD"]);
@@ -138,7 +152,14 @@ if (!manifest.git_clean) {
       "Une preview de validation doit correspondre exactement à un commit poussé.",
   );
 }
-run("git", ["fetch", "origin", "--quiet"]);
+/* Le code de sortie de `git fetch` DOIT être vérifié (signalé par Codex, 11/08/2026) : en cas
+ * d'échec réseau, `origin/main` resterait la référence locale périmée, et la comparaison
+ * ci-dessous validerait un HEAD aligné sur un état d'il y a plusieurs commits. Un préflight qui
+ * passe sur des données périmées est pire que pas de préflight : il rassure à tort. */
+const fetched = run("git", ["fetch", "origin", "--quiet"]);
+if (fetched.status !== 0) {
+  fail("preflight", "`git fetch origin` a échoué : impossible de comparer HEAD à un origin/main à jour.");
+}
 manifest.origin_main_sha = git(["rev-parse", "origin/main"]);
 if (manifest.git_sha !== manifest.origin_main_sha) {
   fail(
@@ -150,7 +171,9 @@ if (manifest.git_sha !== manifest.origin_main_sha) {
 manifest.checks.preflight = true;
 log(`     OK — ${manifest.git_sha.slice(0, 7)}, arbre propre, aligné sur origin/main.`);
 
-const shortSha = manifest.git_sha.slice(0, 7);
+/* 12 caractères et non 7 : marge contre les collisions de préfixe, et les alias de branche Pages
+ * restent lisibles. Recommandé par Codex le 11/08/2026. */
+const shortSha = manifest.git_sha.slice(0, 12);
 const tag = `git-${manifest.git_sha}`;
 manifest.pages_branch = `review-${shortSha}`;
 
@@ -163,7 +186,8 @@ if (DRY) {
   log(`  3. sélection par annotations["workers/tag"] === "${tag}" (correspondance unique, has_preview)`);
   log(`  4. GET https://<prefixe>-${WORKER_NAME}.${WORKERS_SUBDOMAIN}/v1/health jusqu'à double concordance`);
   log(`  5. build épinglé, puis wrangler pages deploy --branch=${manifest.pages_branch} --commit-hash=${manifest.git_sha}`);
-  log(`  6. manifeste dans .artifacts/previews/${manifest.git_sha}/manifest.json`);
+  log(`  6. smoke HTTP de ${PAGES_PROJECT} : 200, noindex, bundle épinglé sur l'URL versionnée`);
+  log(`  7. manifeste dans .artifacts/previews/${manifest.git_sha}/manifest.json`);
   manifest.status = "dry-run";
   manifest.failed_step = null;
   if (JSON_OUT) process.stdout.write(JSON.stringify(manifest, null, 2) + "\n");
@@ -171,7 +195,7 @@ if (DRY) {
 }
 
 /* ── 2. Téléversement d'une VERSION (le trafic ne bouge pas) ─────────────────────────────── */
-log("2/6 wrangler versions upload (aucun trafic déplacé)…");
+log("2/7 wrangler versions upload (aucun trafic déplacé)…");
 const up = run("npx", [
   "wrangler", "versions", "upload",
   "--config", WRANGLER_CONFIG,
@@ -192,7 +216,7 @@ manifest.checks.worker_upload = true;
  * Attention au tri : `versions list --json` renvoie les 100 versions les plus récentes classées
  * par `number` CROISSANT — la plus récente est la dernière. On ne dépend d'aucun ordre ici,
  * précisément pour que ce détail ne puisse pas nous piéger. */
-log(`3/6 Recherche de la version taguée ${tag}…`);
+log(`3/7 Recherche de la version taguée ${tag}…`);
 const listRaw = run("npx", ["wrangler", "versions", "list", "--config", WRANGLER_CONFIG, "--env", "preview", "--json"], { capture: true });
 if (listRaw.status !== 0) fail("worker_select", "`wrangler versions list --json` a échoué.");
 let versions;
@@ -217,7 +241,7 @@ log(`     OK — version ${version.id} (number ${version.number}) → ${manifest
  * Retente jusqu'à 90 s : on a observé le 11/08/2026 un ancien Worker répondre transitoirement
  * juste après un déploiement. La couche responsable n'a pas été établie — d'où une fenêtre
  * plutôt qu'une conclusion. */
-log("4/6 Vérification de /v1/health sur l'URL versionnée…");
+log("4/7 Vérification de /v1/health sur l'URL versionnée…");
 const healthUrl = `${manifest.worker_version_url}/v1/health`;
 const deadline = Date.now() + HEALTH_TOTAL_MS;
 let attempt = 0;
@@ -270,7 +294,7 @@ log(`     OK — double concordance obtenue à la tentative ${attempt}.`);
 /* ── 5. Build Pages épinglé, puis déploiement ─────────────────────────────────────────────
  * `--api-base` est passé explicitement : le build ne doit jamais retomber sur l'alias mutable,
  * sinon toute la mécanique de versionnage ci-dessus ne sert à rien. */
-log("5/6 Build Pages épinglé sur l'URL versionnée, puis déploiement…");
+log("5/7 Build Pages épinglé sur l'URL versionnée, puis déploiement…");
 const build = run("node", ["packages/knowledge/scripts/build-preview.mjs", `--api-base=${manifest.worker_version_url}`], { capture: false });
 if (build.status !== 0) fail("pages_build", "le build vérifié a échoué (voir la sortie ci-dessus).");
 manifest.checks.pages_build = true;
@@ -292,28 +316,87 @@ manifest.pages_alias_url = out.match(new RegExp(`https://${manifest.pages_branch
 if (!manifest.pages_immutable_url) {
   fail("pages_deploy", "déploiement Pages apparemment réussi, mais l'URL immuable n'a pas pu être lue dans la sortie de wrangler.");
 }
-/* L'URL immuable ne porte que les 8 premiers caractères de l'identifiant de déploiement, et
- * wrangler n'expose pas l'UUID complet. On enregistre donc honnêtement le préfixe, et on laisse
- * `pages_deployment_id` à null plutôt que d'y ranger une valeur tronquée qui se ferait passer
- * pour l'identifiant complet. */
 manifest.pages_deployment_id_prefix = manifest.pages_immutable_url.match(/https:\/\/([0-9a-f]{8})\./i)?.[1] ?? null;
-manifest.notes.push(
-  "pages_deployment_id laissé à null : wrangler 3.114.17 n'expose pas l'UUID complet du déploiement Pages sur sa sortie standard (aucune option --json). Seul le préfixe à 8 caractères de l'URL immuable est disponible.",
-);
 manifest.checks.pages_deploy = true;
 log(`     OK — ${manifest.pages_immutable_url}`);
 
-/* ── 6. Manifeste ─────────────────────────────────────────────────────────────────────────── */
+/* L'UUID complet du déploiement Pages n'est pas dans la sortie de `pages deploy`, mais il figure
+ * dans celle de `pages deployment list` (signalé par Codex, 11/08/2026). On l'y retrouve par
+ * appariement de PRÉFIXE avec l'URL immuable, sans dépendre de la mise en forme des colonnes ni
+ * de l'ordre de la liste. Métadonnée de traçabilité, non bloquante : en cas d'échec on note
+ * pourquoi et on continue, plutôt que de perdre un déploiement par ailleurs valide. */
+const depList = run("npx", ["wrangler", "pages", "deployment", "list", "--project-name", PAGES_PROJECT], { capture: true });
+if (depList.status === 0) {
+  manifest.pages_deployment_id = extractPagesDeploymentId(depList.stdout + depList.stderr, manifest.pages_deployment_id_prefix);
+}
+if (!manifest.pages_deployment_id) {
+  manifest.notes.push(
+    `pages_deployment_id introuvable : aucun UUID unique commençant par « ${manifest.pages_deployment_id_prefix} » dans la sortie de \`pages deployment list\`. Seul le préfixe est conservé.`,
+  );
+}
+
+/* ── 6. Smoke HTTP de la preview Pages ────────────────────────────────────────────────────
+ * Passer le manifeste à `verified` dès que `pages deploy` renvoie 0 revient à certifier un
+ * déploiement qu'on n'a jamais interrogé (relevé par Codex, 11/08/2026). On vérifie donc, sur
+ * l'URL réellement publiée : réponse 200, `noindex` toujours en place, et — le point qui donne
+ * son sens à toute la chaîne — le bundle servi porte bien l'URL Worker VERSIONNÉE et aucune
+ * occurrence de l'alias mutable. */
+log("6/7 Smoke HTTP de la preview publiée…");
+const aliasBare = `https://${WORKER_NAME}.${WORKERS_SUBDOMAIN}`;
+const smoke = await retryUntil(
+  async (attempt) => {
+    try {
+      const res = await fetch(`${manifest.pages_immutable_url}/?cb=${Date.now()}-${attempt}`, {
+        signal: AbortSignal.timeout(20_000),
+      });
+      if (res.status !== 200) return { ok: false, detail: `page d'accueil HTTP ${res.status}` };
+      const html = await res.text();
+      if (!/<meta[^>]+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) {
+        return { ok: false, detail: "la page d'accueil publiée ne porte pas de balise robots noindex" };
+      }
+      const chunks = extractHoistedChunks(html);
+      if (chunks.length === 0) return { ok: false, detail: "aucun chunk hoisted référencé par la page d'accueil" };
+      for (const c of chunks) {
+        const jsRes = await fetch(`${manifest.pages_immutable_url}${c}`, { signal: AbortSignal.timeout(20_000) });
+        if (jsRes.status !== 200) return { ok: false, detail: `${c} → HTTP ${jsRes.status}` };
+        const js = await jsRes.text();
+        if (!js.includes(manifest.worker_version_url)) continue;
+        // Ce chunk porte l'URL versionnée : il ne doit contenir AUCUNE occurrence de l'alias nu.
+        if (js.split(aliasBare).length - 1 > 0) {
+          const versioned = js.split(manifest.worker_version_url).length - 1;
+          const bare = js.split(aliasBare).length - 1;
+          if (bare > versioned) return { ok: false, detail: `${c} contient l'alias mutable ${aliasBare}` };
+        }
+        return { ok: true, chunk: c };
+      }
+      return { ok: false, detail: `aucun chunk ne contient ${manifest.worker_version_url}` };
+    } catch (e) {
+      return { ok: false, detail: `erreur réseau : ${e.name} ${e.message}` };
+    }
+  },
+  {
+    totalMs: HEALTH_TOTAL_MS,
+    intervalMs: HEALTH_INTERVAL_MS,
+    onRetry: (attempt, detail) => log(`     tentative ${attempt} sans succès (${detail.slice(0, 110)}…)`),
+  },
+);
+if (!smoke.ok) {
+  fail("pages_smoke", `la preview publiée ne passe pas le smoke après ${smoke.attempt} tentative(s). Dernier état : ${smoke.lastDetail}`);
+}
+manifest.checks.pages_smoke = true;
+log(`     OK — 200, noindex présent, bundle épinglé sur ${manifest.worker_version_url}.`);
+
+/* ── 7. Manifeste ─────────────────────────────────────────────────────────────────────────── */
 manifest.status = "verified";
 manifest.failed_step = null;
 const file = writeManifest();
-log(`6/6 Manifeste écrit : ${relative(REPO_ROOT, file)}`);
+log(`7/7 Manifeste écrit : ${relative(REPO_ROOT, file)}`);
 log("");
 log(`Preview vérifiée   : ${manifest.pages_immutable_url}`);
 log(`Alias de branche   : ${manifest.pages_alias_url ?? "(non lu)"}`);
 log(`Worker épinglé     : ${manifest.worker_version_url}`);
 log("");
 log("L'alias Worker partagé n'a PAS été modifié. Après contre-test navigateur concluant :");
-log(`  npm run promote:preview-alias -- ${manifest.worker_version_id}`);
+log(`  npm run promote:preview-alias -- ${relative(REPO_ROOT, file)}`);
 
 if (JSON_OUT) process.stdout.write(JSON.stringify(manifest, null, 2) + "\n");

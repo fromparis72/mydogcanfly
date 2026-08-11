@@ -22,6 +22,7 @@ import { spawnSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { validateApiBase } from "./lib/preview-select.mjs";
 
 /* Un argument non reconnu est une ERREUR, jamais un silence. Avant ce garde-fou (signalé par
  * Codex le 11/08/2026), `--dry --typo` réussissait sans rien dire : une faute de frappe sur
@@ -58,7 +59,21 @@ const DRY = rawArgs.includes("--dry");
  * Le workflow officiel (`npm run deploy:preview`) passe donc TOUJOURS `--api-base=<url versionnée>`,
  * propre à une version Worker précise. L'alias ne sert qu'aux builds manuels de dépannage, et ce
  * script le dit bruyamment plutôt que d'y retomber en silence. */
-const PREVIEW_ALIAS_API_BASE = "https://mydogcanfly-api-preview.fromparis.workers.dev";
+const WORKER_NAME = "mydogcanfly-api-preview";
+const WORKERS_SUBDOMAIN = "fromparis.workers.dev";
+const PREVIEW_ALIAS_API_BASE = `https://${WORKER_NAME}.${WORKERS_SUBDOMAIN}`;
+
+/* `--api-base` n'accepte QU'UNE URL Worker versionnée conforme (durcissement du lot F, contre-revue
+ * Codex du 11/08/2026). Accepter une URL arbitraire rouvrirait par la porte de derrière ce que le
+ * drapeau existe précisément pour fermer : il suffirait de passer l'alias partagé — ou n'importe
+ * quelle autre adresse — pour obtenir un build qui se croit épinglé sans l'être. */
+if (valued.has("--api-base")) {
+  const v = validateApiBase(valued.get("--api-base"), WORKER_NAME, WORKERS_SUBDOMAIN);
+  if (!v.ok) {
+    console.error(`[build-preview] ${v.message}`);
+    process.exit(2);
+  }
+}
 const PREVIEW_API_BASE = valued.get("--api-base") ?? PREVIEW_ALIAS_API_BASE;
 const USING_ALIAS = !valued.has("--api-base");
 

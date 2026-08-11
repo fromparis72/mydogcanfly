@@ -77,3 +77,77 @@ export function healthMatches(body, expectedSha, expectedVersionId) {
       `worker_version_id=${body?.worker_version_id} (attendu ${expectedVersionId})`,
   };
 }
+
+/* ── Ajouts du lot F (contre-revue Codex, 11/08/2026) ──────────────────────────────────── */
+
+/** Forme attendue d'une URL Worker VERSIONNÉE : https://<8 hex>-<worker>.<sous-domaine> */
+export function validateApiBase(url, workerName, subdomain) {
+  if (typeof url !== "string" || url === "") {
+    return { ok: false, message: "--api-base attend une URL non vide." };
+  }
+  const expected = new RegExp(`^https://[0-9a-f]{8}-${workerName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\.${subdomain.replace(/\./g, "\\.")}$`);
+  if (!expected.test(url)) {
+    return {
+      ok: false,
+      message:
+        `--api-base=${url} n'est pas une URL Worker versionnée valide.\n` +
+        `Attendu : https://<8 caractères hexadécimaux>-${workerName}.${subdomain}\n` +
+        "Une URL arbitraire — et en particulier l'alias partagé, sans préfixe de version — est refusée : " +
+        "un build de preview doit être épinglé sur une version immuable.",
+    };
+  }
+  return { ok: true };
+}
+
+/** Contrôles d'un manifeste avant de s'en servir pour promouvoir l'alias. */
+export function validateManifest(m) {
+  if (!m || typeof m !== "object") return { ok: false, message: "manifeste illisible ou vide." };
+  if (m.schema_version !== 1) return { ok: false, message: `schema_version inattendue : ${m.schema_version} (attendu 1).` };
+  if (m.status !== "verified") {
+    return {
+      ok: false,
+      message: `manifeste en statut « ${m.status} »${m.failed_step ? ` (étape ${m.failed_step})` : ""} : seul un déploiement vérifié peut être promu.`,
+    };
+  }
+  if (m.environment !== "preview") return { ok: false, message: `manifeste d'environnement « ${m.environment} », attendu « preview ».` };
+  for (const f of ["git_sha", "worker_version_id", "worker_version_url", "pages_immutable_url"]) {
+    if (typeof m[f] !== "string" || !m[f]) return { ok: false, message: `champ « ${f} » manquant ou vide dans le manifeste.` };
+  }
+  if (!/^[0-9a-f]{40}$/i.test(m.git_sha)) return { ok: false, message: `git_sha malformé : ${m.git_sha}` };
+  return { ok: true };
+}
+
+/**
+ * Retrouve l'UUID complet d'un déploiement Pages à partir du préfixe à 8 caractères de son URL
+ * immuable, dans la sortie texte de `wrangler pages deployment list`.
+ *
+ * On cherche par PRÉFIXE et non par position dans un tableau : la mise en forme des colonnes de
+ * wrangler peut changer, l'appariement préfixe → UUID non. Correspondance unique exigée.
+ */
+export function extractPagesDeploymentId(text, prefix) {
+  if (typeof text !== "string" || !/^[0-9a-f]{8}$/i.test(prefix ?? "")) return null;
+  const uuids = text.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi) ?? [];
+  const matches = [...new Set(uuids.filter((u) => u.toLowerCase().startsWith(prefix.toLowerCase())))];
+  return matches.length === 1 ? matches[0] : null;
+}
+
+/** Chunks JS hoistés référencés par une page HTML (pour le smoke du bundle réellement servi). */
+export function extractHoistedChunks(html) {
+  return [...new Set(String(html).match(/\/_astro\/hoisted\.[A-Za-z0-9_-]+\.js/g) ?? [])];
+}
+
+/** Réessaie `fn` (async, renvoyant {ok, detail}) jusqu'à succès ou expiration du délai total. */
+export async function retryUntil(fn, { totalMs, intervalMs, onRetry = () => {} }) {
+  const deadline = Date.now() + totalMs;
+  let attempt = 0;
+  let lastDetail = "aucune tentative";
+  for (;;) {
+    attempt++;
+    const r = await fn(attempt);
+    if (r.ok) return { ok: true, attempt };
+    lastDetail = r.detail ?? "sans détail";
+    if (Date.now() + intervalMs > deadline) return { ok: false, attempt, lastDetail };
+    onRetry(attempt, lastDetail);
+    await new Promise((res) => setTimeout(res, intervalMs));
+  }
+}

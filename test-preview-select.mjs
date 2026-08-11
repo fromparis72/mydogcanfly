@@ -14,7 +14,15 @@
  *
  *   node test-preview-select.mjs
  */
-import { selectVersionByTag, versionPreviewUrl, healthMatches } from "./packages/knowledge/scripts/lib/preview-select.mjs";
+import {
+  selectVersionByTag,
+  versionPreviewUrl,
+  healthMatches,
+  validateApiBase,
+  validateManifest,
+  extractPagesDeploymentId,
+  extractHoistedChunks,
+} from "./packages/knowledge/scripts/lib/preview-select.mjs";
 
 let pass = 0;
 let fail = 0;
@@ -95,6 +103,51 @@ check("refuse un corps vide", !healthMatches({}, SHA, VID).ok);
 check("refuse null", !healthMatches(null, SHA, VID).ok);
 // Le cas exact observé le 11/08/2026 : ancien Worker répondant transitoirement, sans champ sha.
 check("refuse la forme antérieure du corps (ni sha ni worker_version_id)", !healthMatches({ ok: true, service: "mydogcanfly-api", version: "v1" }, SHA, VID).ok);
+
+
+console.log("\n— Validation de --api-base (lot F) —");
+const W = "mydogcanfly-api-preview", SUB = "fromparis.workers.dev";
+check("accepte une URL Worker versionnée conforme", validateApiBase("https://8296fe89-mydogcanfly-api-preview.fromparis.workers.dev", W, SUB).ok);
+check("REFUSE l'alias partagé sans préfixe de version", !validateApiBase("https://mydogcanfly-api-preview.fromparis.workers.dev", W, SUB).ok);
+check("REFUSE un domaine étranger", !validateApiBase("https://evil.example.com", W, SUB).ok);
+check("REFUSE un préfixe non hexadécimal", !validateApiBase("https://zzzzzzzz-mydogcanfly-api-preview.fromparis.workers.dev", W, SUB).ok);
+check("REFUSE un préfixe trop court", !validateApiBase("https://8296fe8-mydogcanfly-api-preview.fromparis.workers.dev", W, SUB).ok);
+check("REFUSE http:// (non chiffré)", !validateApiBase("http://8296fe89-mydogcanfly-api-preview.fromparis.workers.dev", W, SUB).ok);
+check("REFUSE un suffixe ajouté après le domaine", !validateApiBase("https://8296fe89-mydogcanfly-api-preview.fromparis.workers.dev.evil.com", W, SUB).ok);
+check("REFUSE une chaîne vide", !validateApiBase("", W, SUB).ok);
+
+console.log("\n— Validation du manifeste (lot F) —");
+const goodManifest = {
+  schema_version: 1, status: "verified", environment: "preview",
+  git_sha: SHA, worker_version_id: VID,
+  worker_version_url: "https://f515de54-mydogcanfly-api-preview.fromparis.workers.dev",
+  pages_immutable_url: "https://ef4ec846.mydogcanfly-v2-preview.pages.dev",
+};
+check("accepte un manifeste vérifié complet", validateManifest(goodManifest).ok);
+check("REFUSE un manifeste en échec", !validateManifest({ ...goodManifest, status: "failed", failed_step: "pages_smoke" }).ok);
+check("REFUSE un manifeste de dry-run", !validateManifest({ ...goodManifest, status: "dry-run" }).ok);
+check("REFUSE une schema_version inconnue", !validateManifest({ ...goodManifest, schema_version: 2 }).ok);
+check("REFUSE un autre environnement", !validateManifest({ ...goodManifest, environment: "production" }).ok);
+check("REFUSE un git_sha malformé", !validateManifest({ ...goodManifest, git_sha: "3215620" }).ok);
+check("REFUSE un worker_version_id manquant", !validateManifest({ ...goodManifest, worker_version_id: "" }).ok);
+check("REFUSE null", !validateManifest(null).ok);
+
+console.log("\n— UUID complet du déploiement Pages (lot F) —");
+const listOutput = `
+ ├─ Production | main | https://dash.cloudflare.com/abc/pages/view/mydogcanfly-v2-preview/ef4ec846-6dcd-499e-9002-e25c69d2068a
+ ├─ Preview | review-x | https://dash.cloudflare.com/abc/pages/view/mydogcanfly-v2-preview/11112222-3333-4444-5555-666677778888
+`;
+check("retrouve l'UUID complet par son préfixe", extractPagesDeploymentId(listOutput, "ef4ec846") === "ef4ec846-6dcd-499e-9002-e25c69d2068a");
+check("insensible à la casse du préfixe", extractPagesDeploymentId(listOutput, "EF4EC846") === "ef4ec846-6dcd-499e-9002-e25c69d2068a");
+check("renvoie null si aucun UUID ne correspond", extractPagesDeploymentId(listOutput, "deadbeef") === null);
+check("renvoie null si le préfixe est ambigu", extractPagesDeploymentId(listOutput + "\nef4ec846-9999-0000-1111-222233334444", "ef4ec846") === null);
+check("renvoie null sur un préfixe malformé", extractPagesDeploymentId(listOutput, "xyz") === null);
+
+console.log("\n— Extraction des chunks hoistés (lot F) —");
+const html = '<html><script type="module" src="/_astro/hoisted.C_Mgd0j0.js"></script><script src="/_astro/hoisted.C_Mgd0j0.js"></script><script src="/_astro/hoisted.AbC-123_.js"></script></html>';
+const chunks = extractHoistedChunks(html);
+check("trouve les chunks hoistés, dédoublonnés", chunks.length === 2 && chunks.includes("/_astro/hoisted.C_Mgd0j0.js"));
+check("renvoie un tableau vide si aucun chunk", extractHoistedChunks("<html></html>").length === 0);
 
 console.log("\n=== SUMMARY ===");
 console.log(fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`);
