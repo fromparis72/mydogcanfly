@@ -121,8 +121,8 @@ const labels = {
   cabinShort: t(locale, "placement.cabin"),
   holdShort: t(locale, "placement.hold"),
   cargoShort: t(locale, "placement.cargo"),
-  natlOrigin: t(locale, "air.national_origin"),
-  natlDest: t(locale, "air.national_dest"),
+  // natlOrigin / natlDest retirés avec l'étoile « compagnie du pays » (J-bis, 11/08/2026) — les
+  // clés air.national_* restent dans strings.json, réservées à la réintroduction avec flag_carrier.
   fromAirport: t(locale, "air.from_airport"),
   toAirport: t(locale, "air.to_airport"),
   climateTitle: t(locale, "report.climate_title"),
@@ -457,7 +457,13 @@ const labels = {
                     }
                     return `<div class="acard__statusrow">${caps.map((s) => `<span class="acard__status acard__status--${s.cls}">${s.ic} ${esc(s.txt)}</span>`).join("")}</div>`;
                   })()}
-                  <div class="acard__top"><b>${esc(a.name)}</b>${a.carrier_of_origin ? `<span class="acard__natl">★ ${esc(L.natlOrigin)}</span>` : a.carrier_of_destination ? `<span class="acard__natl">★ ${esc(L.natlDest)}</span>` : ""}</div>
+                  <div class="acard__top"><b>${esc(a.name)}</b></div>
+                  ${/* Étoile « compagnie du pays » RETIRÉE provisoirement (J-bis, décision Codex du
+                      11/08/2026). `carrier_of_*` ne repose que sur une égalité de `country_id`, qui ne
+                      prouve ni un statut de porte-drapeau ni même une immatriculation réelle — sur
+                      CDG→SYD, les seules étoilées côté départ étaient Air Tahiti Nui et Aircalin.
+                      Réintroduire uniquement avec une donnée `flag_carrier` explicite et une
+                      modélisation des territoires (Polynésie française, Nouvelle-Calédonie). */ ""}
                   <div class="acard__badges"><span class="ab ${a.cabin ? "ab--ok" : "ab--no"}">${esc(L.cabinShort)}</span><span class="ab ${a.hold ? "ab--ok" : "ab--no"}">${esc(L.holdShort)}</span><span class="ab ${a.cargo ? "ab--ok" : "ab--no"}">${esc(L.cargoShort)}</span></div>
                   <div class="acard__label">${esc(a.label)}${a.source_url ? ` · <a href="${esc(a.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(a.source_url))}</a>` : ""}</div>
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}

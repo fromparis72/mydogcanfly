@@ -127,7 +127,7 @@ export interface FiredRule {
 export interface AirlineDecision {
   airline_id: string;
   airline_name: string;
-  country_id?: string;        // the airline's home country (its flag/national carrier country)
+  country_id?: string;        // pays d'immatriculation déclaré dans les données — PAS un statut de porte-drapeau
   direct: boolean;            // likely a direct flight on this route (hub at origin or destination)
   carries_pets: boolean;      // true if the airline carries pets at all (a neutral dog) — false = structural "no pets"
   /* Ce que vaut réellement l'itinéraire proposé. On ne présente plus un nonstop attesté et une
@@ -164,7 +164,7 @@ export interface Decision {
   airlines: AirlineDecision[];
   countryRequirements: FiredRule[];
   destination: { country_id: string; country_name: string; entry_allowed: boolean };
-  origin_country_id: string; // home country of the origin airport — drives the "national carrier" ranking
+  origin_country_id: string; // pays de l'aéroport de départ (le départage carrier_of_* est retiré — J-bis 11/08/2026)
   domestic: boolean;       // same country at both ends: no border crossing, so no import requirements apply
   brachycephalic: boolean; // effective snub-nosed flag (from request or breed) — drives welfare wording
   climate: Climate;        // seasonal temperature context (drives the automatic heat embargo)

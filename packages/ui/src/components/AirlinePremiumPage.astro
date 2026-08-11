@@ -20,7 +20,7 @@ const kb = loadKB();
 const kbAirline = [...kb.airlines.values()].find((a) => a.id === id) as { rating?: { score: number; points: number }; country_id?: string } | undefined;
 const rating = kbAirline?.rating;
 // Home country of the carrier — the default "next step" suggestion on direct arrivals (most people
-// flying a national carrier travel to its country); overridden by ?to=<iso> when coming from the finder.
+// flying an airline registered in a country often travel to that country); overridden by ?to=<iso> when coming from the finder.
 const homeCountry = kbAirline?.country_id ? kb.countries.get(kbAirline.country_id) : undefined;
 const homeIso = homeCountry ? homeCountry.iso2.toLowerCase() : undefined;
 const homeName = homeCountry ? ((homeCountry.name as unknown as Record<string, string>)[locale] ?? (homeCountry.name as unknown as { en: string }).en) : undefined;

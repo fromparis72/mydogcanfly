@@ -15,13 +15,25 @@
  * Demandée par Codex le 11/08/2026.
  */
 const REQUIRED_MAJOR = 22;
+/* Plancher PRÉCIS dans la lignée 22, aligné sur le lockfile — et le lockfile est plus exigeant
+ * qu'on ne le pensait : jsdom@30.0.1 déclare `engines: ^22.22.2 || ^24.15.0 || >=26.0.0` (vérifié
+ * dans package-lock.json ; ses dépendances @asamuzakjp/* demandent ^22.13.0 et undici >=22.19.0,
+ * mais c'est jsdom qui fixe le plancher réel). Un Node 22.5 passerait la garde de majeure et
+ * casserait quand même `npm ci`. `.nvmrc`, `engines`, cette garde et la CI pointent donc tous la
+ * même version : 22.22.2. */
+const REQUIRED_MIN = [22, 22, 2];
 
 export function requireNode(scriptLabel = "ce script") {
-  const major = Number(process.versions.node.split(".")[0]);
-  if (major === REQUIRED_MAJOR) return;
+  const parts = process.versions.node.split(".").map(Number);
+  const major = parts[0];
+  const atLeastMin =
+    major === REQUIRED_MIN[0] &&
+    (parts[1] > REQUIRED_MIN[1] || (parts[1] === REQUIRED_MIN[1] && parts[2] >= REQUIRED_MIN[2]));
+  if (atLeastMin) return;
 
+  const minStr = REQUIRED_MIN.join(".");
   const lines = [
-    `Node ${process.versions.node} détecté — ${scriptLabel} exige Node ${REQUIRED_MAJOR}.x.`,
+    `Node ${process.versions.node} détecté — ${scriptLabel} exige Node ${REQUIRED_MAJOR}.x (≥ ${minStr}).`,
     "",
     `Le dépôt épingle Node ${REQUIRED_MAJOR} (.nvmrc et le champ "engines"). Un build Astro complet`,
     "sous une autre version majeure échoue tardivement, après plusieurs milliers de pages, sur une",
@@ -29,10 +41,19 @@ export function requireNode(scriptLabel = "ce script") {
     "",
     "Pour corriger :",
     "  nvm use            # lit le .nvmrc du dépôt",
-    `  nvm install ${REQUIRED_MAJOR}      # si cette version n'est pas installée`,
+    `  nvm install ${minStr}   # si cette version n'est pas installée`,
     "",
     "Puis relancer la même commande.",
   ];
   for (const l of lines) process.stderr.write(`[node-guard] ${l}\n`);
   process.exit(3);
+}
+
+/* Exécutable aussi en ligne de commande, pour précéder les scripts npm qui ne sont pas des .mjs
+ * à nous (build, build:prod, release délèguent à `astro build`) :
+ *   node packages/knowledge/scripts/lib/require-node.mjs "le build de production"
+ * Sort en 0 si la version convient, en 3 sinon — ce qui coupe la chaîne `&&` du script npm. */
+import { fileURLToPath as __f } from "node:url";
+if (process.argv[1] && __f(import.meta.url) === (await import("node:path")).resolve(process.argv[1])) {
+  requireNode(process.argv[2] ?? "ce script");
 }

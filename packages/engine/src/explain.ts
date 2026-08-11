@@ -202,8 +202,8 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     // 0) airlines that carry pets first, "no pets" always last — EXCEPT when the only blocker is a
     //    seasonal heat embargo (temporary), which stays in the top group.
     // 1) direct flights before connections, 2) acceptance quality — cabin, then accompanied hold (soute), so a
-    //    direct flight offering soute outranks a direct fret/cargo-only one, 3) national carrier (departure, then
-    //    destination) breaks ties between equal-quality airlines, then shortest detour, then name.
+    //    direct flight offering soute outranks a direct fret/cargo-only one, 3) shortest detour, then name.
+    //    (Le départage « compagnie du pays » qui figurait ici en 3) est retiré — J-bis, 11/08/2026.)
     (Number(y.cabin || y.hold || y.cargo || y.heat_embargo) - Number(x.cabin || x.hold || x.cargo || x.heat_embargo)) ||
     Number(y.direct) - Number(x.direct) ||
     // 1 bis) une correspondance dont les deux segments sont attestés passe devant une correspondance
@@ -211,8 +211,12 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     Number(x.itinerary_confidence === "connection_unverified") - Number(y.itinerary_confidence === "connection_unverified") ||
     Number(y.cabin) - Number(x.cabin) ||
     Number(y.hold) - Number(x.hold) ||
-    Number(y.carrier_of_origin) - Number(x.carrier_of_origin) ||
-    Number(y.carrier_of_destination) - Number(x.carrier_of_destination) ||
+    /* Départage par `carrier_of_*` RETIRÉ provisoirement (J-bis, décision Codex du 11/08/2026) :
+     * tant que ces champs ne reflètent qu'une égalité de `country_id`, faire remonter une compagnie
+     * sur cette base revient à classer sur une donnée qui ne prouve rien — Air Tahiti Nui passait
+     * devant des correspondances mieux établies au titre de « compagnie nationale » française.
+     * Les champs restent calculés et exposés (le contrat ne change pas) ; seul le classement ne s'en
+     * sert plus. À réintroduire avec `flag_carrier`. */
     // Among otherwise-equal connections, the shortest detour first (via a nearer hub).
     (x.detour_km ?? 0) - (y.detour_km ?? 0) ||
     x.name.localeCompare(y.name),
