@@ -22,6 +22,8 @@ import {
   validateManifest,
   extractPagesDeploymentId,
   extractHoistedChunks,
+  matchesForbidden,
+  MUTABLE_ALIAS,
 } from "./packages/knowledge/scripts/lib/preview-select.mjs";
 
 let pass = 0;
@@ -148,6 +150,36 @@ const html = '<html><script type="module" src="/_astro/hoisted.C_Mgd0j0.js"></sc
 const chunks = extractHoistedChunks(html);
 check("trouve les chunks hoistés, dédoublonnés", chunks.length === 2 && chunks.includes("/_astro/hoisted.C_Mgd0j0.js"));
 check("renvoie un tableau vide si aucun chunk", extractHoistedChunks("<html></html>").length === 0);
+
+/* ── Matrice des adresses interdites en bundle (versionnée au L-bis) ─────────────────────────
+ * Exécutée à la main lors du lot L, versionnée ici sur remarque de Codex : une preuve qui ne
+ * tourne qu'une fois dans un terminal n'engage que ce terminal-là. Les dix cas d'origine, dont
+ * les deux pièges de sous-chaînes qui justifient la forme exacte des regex. */
+console.log("\n— Adresses interdites en bundle : la matrice des dix cas —");
+
+const doitPasser = [
+  ["la sentinelle CI", "https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"],
+  ["une preview versionnée réelle", "https://9c3ae533-mydogcanfly-api-preview.fromparis.workers.dev"],
+  ["un canonical du site (hors /v1/)", "https://mydogcanfly.com/airlines/qantas/"],
+];
+for (const [label, url] of doitPasser) {
+  check(`laisse passer ${label}`, !matchesForbidden(url), url);
+}
+const doitAttraper = [
+  ["l'API sur le domaine", "https://mydogcanfly.com/v1/finder"],
+  ["l'API sur www", "https://www.mydogcanfly.com/v1/health"],
+  ["l'hôte API prévu", "https://api.mydogcanfly.com/x"],
+  ["le Worker de production nu", "https://mydogcanfly-api.fromparis.workers.dev"],
+  ["le Worker de production versionné", "https://ab12cd34-mydogcanfly-api.fromparis.workers.dev"],
+  ["le projet Pages Hugo", "https://mydogcanfly.pages.dev/"],
+  ["une preview Pages du projet", "https://e845b6f7.mydogcanfly-v2-preview.pages.dev/"],
+];
+for (const [label, url] of doitAttraper) {
+  check(`attrape ${label}`, matchesForbidden(url), url);
+}
+// L'alias mutable est traité à part dans check-bundle (comptage de sous-chaîne) — on fige ici
+// que sa valeur exportée est bien l'alias NU, sans préfixe de version.
+check("MUTABLE_ALIAS est l'alias nu attendu", MUTABLE_ALIAS === "https://mydogcanfly-api-preview.fromparis.workers.dev", MUTABLE_ALIAS);
 
 console.log("\n=== SUMMARY ===");
 console.log(fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`);

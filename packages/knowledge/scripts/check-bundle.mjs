@@ -18,23 +18,14 @@
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+import { MUTABLE_ALIAS, PRODUCTION_PATTERNS } from "./lib/preview-select.mjs";
 
 const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
 const ASTRO_DIR = join(REPO_ROOT, "packages/ui/dist/_astro");
 const FINDER_PATH = "/v1/finder";
-const MUTABLE_ALIAS = "https://mydogcanfly-api-preview.fromparis.workers.dev";
-/* Toutes les adresses RÉELLES de production et d'infrastructure, pas seulement la route /v1/ du
- * domaine (résidu K-bis, demandé par Codex le 11/08/2026). Pièges de sous-chaînes vérifiés un à
- * un : « mydogcanfly-api. » (le point après « api ») ne matche pas « mydogcanfly-api-preview. » ;
- * « mydogcanfly.pages.dev » ne matche pas « mydogcanfly-v2-preview.pages.dev ». Le nom du Worker
- * de production est couvert AVEC ses éventuels préfixes de version (<8hex>-mydogcanfly-api.…). */
-const PRODUCTION_PATTERNS = [
-  /https:\/\/(www\.)?mydogcanfly\.com\/v1\//, // l'API sur le domaine de production
-  /https:\/\/api\.mydogcanfly\.com/, // hôte API prévu par le plan de séparation (document 12)
-  /[0-9a-f]{0,8}-?mydogcanfly-api\.fromparis\.workers\.dev/, // Worker de PRODUCTION, versionné ou non
-  /mydogcanfly\.pages\.dev/, // projet Pages Hugo hérité
-  /mydogcanfly-v2-preview\.pages\.dev/, // le projet Pages lui-même : un bundle n'a pas à connaître son hôte
-];
+/* MUTABLE_ALIAS et PRODUCTION_PATTERNS vivent dans lib/preview-select.mjs depuis le L-bis :
+ * la matrice des dix cas qui les valide est versionnée dans test-preview-select.mjs et tourne à
+ * chaque CI, au lieu d'avoir été exécutée une fois à la main. */
 
 const log = (m) => process.stderr.write(`[check-bundle] ${m}\n`);
 const die = (m) => { log(`ÉCHEC : ${m}`); process.exit(1); };
