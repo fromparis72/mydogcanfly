@@ -1,0 +1,32 @@
+{
+  "total": 175,
+  "byCode": {
+    "ts(2345)": 18,
+    "ts(2363)": 1,
+    "ts(2362)": 1,
+    "ts(2322)": 2,
+    "ts(7006)": 112,
+    "ts(7053)": 13,
+    "ts(2531)": 3,
+    "ts(7005)": 5,
+    "ts(2339)": 2,
+    "ts(18047)": 3,
+    "ts(7034)": 5,
+    "ts(2538)": 1,
+    "ts(2554)": 3,
+    "ts(7031)": 5,
+    "ts(2769)": 1
+  },
+  "byFile": {
+    "packages/ui/src/components/BreedTravelPage.astro": 18,
+    "packages/ui/src/components/CountryGuidePage.astro": 1,
+    "packages/ui/src/components/FlightFinder.astro": 2,
+    "packages/ui/src/components/HeatCalculator.astro": 30,
+    "packages/ui/src/components/PetReliefFinder.astro": 20,
+    "packages/ui/src/components/TravelTimeline.astro": 29,
+    "packages/ui/src/pages/[...loc]/presskit.astro": 1,
+    "packages/ui/src/pages/[...loc]/breeds/[slug].astro": 2,
+    "packages/ui/src/pages/[...loc]/tools/fiche.astro": 66,
+    "packages/ui/src/pages/lab/roundtrip.astro": 6
+  }
+}

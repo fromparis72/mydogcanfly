@@ -181,14 +181,34 @@ function finderInputFromQuery(q: URLSearchParams): QueryResult {
   const bid = breedRaw ? breedId(breedRaw) : null;
   if (breedRaw && !bid) return { ok: false, body: { error: "unknown_breed", unknown: [`breed=${breedRaw}`], ...usage } };
 
+  /* Paramètre numérique : ABSENT et INVALIDE sont deux cas différents, et les confondre était un
+   * défaut (arbitrage Codex, 11/08/2026). L'ancienne version renvoyait `undefined` dans les deux
+   * cas : `weight_kg=beaucoup` ou `weight_kg=-5` étaient silencieusement abandonnés, et le moteur
+   * répondait un verdict assuré pour un chien SANS poids connu — un score différent, sans le
+   * moindre signal que la saisie avait été ignorée. Même famille de panne que le rapport
+   * « CDG → Tokyo » servi à des requêtes que personne n'avait faites.
+   *
+   * Désormais : absent → `undefined` (poids/température inconnus, cas d'usage légitime) ;
+   * présent mais vide, non numérique ou non fini → l'invalidité est COLLECTÉE et la requête
+   * répond 400 `invalid_request` en nommant le paramètre. Les bornes de valeur (poids > 0 et
+   * ≤ 120), elles, restent du ressort du schéma Zod — qui les appliquait déjà au POST ; il suffit
+   * de ne plus filtrer la valeur avant qu'il la voie. */
+  const invalidNums: string[] = [];
   const num = (key: string) => {
     const v = q.get(key);
-    if (v == null || v.trim() === "") return undefined;
-    const n = Number(v);
-    return Number.isFinite(n) ? n : undefined;
+    if (v == null) return undefined;
+    const n = v.trim() === "" ? NaN : Number(v);
+    if (!Number.isFinite(n)) {
+      invalidNums.push(`${key}=${v}`);
+      return undefined;
+    }
+    return n;
   };
   const weight = num("weight_kg");
   const temp = num("temperature_c");
+  if (invalidNums.length) {
+    return { ok: false, body: { error: "invalid_request", invalid: invalidNums, ...usage } };
+  }
 
   return {
     ok: true,
@@ -197,7 +217,7 @@ function finderInputFromQuery(q: URLSearchParams): QueryResult {
       destination: did,
       origins: set("origins"),
       destinations: set("destinations"),
-      dog: { breed_id: bid ?? undefined, weight_kg: weight && weight > 0 ? weight : undefined },
+      dog: { breed_id: bid ?? undefined, weight_kg: weight },
       travel_type: q.get("travel_type") ?? undefined,
       placement: q.get("placement") ?? undefined,
       date: q.get("date") ?? undefined,

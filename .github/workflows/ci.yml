@@ -1,0 +1,95 @@
+name: CI
+
+# Filet de sécurité : transformer en contrôles automatiques ce qui était vérifié à la main.
+#
+# DEUX NIVEAUX, décidés avec Philippe et Codex le 11/08/2026 après mesure :
+#
+#   pull request  → build RÉDUIT (97 pages, ~36 s). Retour rapide sur ce qui casse vraiment.
+#   push sur main → build COMPLET (2949 pages, ~12 min) + contrôle `noindex` sur la totalité.
+#
+# Pourquoi ce partage plutôt qu'un build complet partout : les 2728 pages d'entités (aéroports,
+# races, pays, compagnies) n'apportent rien aux harnais, qui lisent la page d'accueil dans les
+# 4 langues et /tools/fiche. Et surtout, la garantie forte existe déjà là où elle compte :
+# `deploy:preview` exécute un build complet AVEC vérification du noindex sur les 2957 pages avant
+# tout déploiement. La CI de pull request n'a pas à certifier un déploiement, elle doit détecter
+# une régression vite.
+#
+# ORDRE NON NÉGOCIABLE : le build précède les harnais DOM. `test-fiche-harness.cjs` et
+# `test-flightfinder-harness.cjs` lisent packages/ui/dist ; sans build ils meurent sur ENOENT.
+#
+# Node 22 partout : un build Astro complet sous Node 24.18.0 échoue après plusieurs milliers de
+# pages sur un ENOENT dans dist/chunks/, sans jamais mentionner Node (constaté le 11/08/2026).
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  # Une pull request qui reçoit trois commits d'affilée n'a pas besoin de trois pipelines.
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Vérifications
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # `npm ci` et non `npm install` : installation reproductible, à partir du seul lockfile.
+      # C'est aussi ce qui rend obligatoire la déclaration de jsdom en devDependency — en tant que
+      # dépendance « extraneous », `npm ci` la supprimait et test:built-ui cassait.
+      - name: Installation reproductible
+        run: npm ci
+
+      - name: Base de connaissances (schéma · règles · couverture)
+        run: npm run check
+
+      - name: Typecheck (knowledge · engine · workers)
+        run: npm run typecheck
+
+      - name: Moteur en direct via le Worker
+        run: npm run smoke
+
+      # Hors build : sélection de version Worker, double concordance, invariants de vols directs
+      # et sémantique de `carrier_of_origin`.
+      - name: Tests unitaires
+        run: npm run test:unit
+
+      # ── Build ────────────────────────────────────────────────────────────────────────────
+      # Réduit sur pull request, complet sur main. Les deux produisent packages/ui/dist et
+      # épinglent PUBLIC_API_BASE sur une URL Worker versionnée.
+      - name: Build réduit (pull request)
+        if: github.event_name == 'pull_request'
+        run: npm run build:ci
+
+      - name: Build complet + noindex sur toutes les pages (main)
+        if: github.event_name == 'push'
+        run: npm run build:preview
+
+      # ── Après build ──────────────────────────────────────────────────────────────────────
+      - name: Harnais DOM (fiche + Finder, 4 langues)
+        run: npm run test:built-ui
+
+      - name: Bundle épinglé sur le Worker attendu
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            EXPECT="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
+          else
+            EXPECT="https://mydogcanfly-api-preview.fromparis.workers.dev"
+          fi
+          node packages/knowledge/scripts/check-bundle.mjs --expect="$EXPECT"
+
+      # Dette connue et chiffrée, pas un contrôle vert : échoue à la hausse par code OU par
+      # fichier, même à total constant, et échoue aussi à la baisse pour forcer à resserrer.
+      - name: Dette astro check (plafond)
+        run: node packages/knowledge/scripts/check-astro-debt.mjs
