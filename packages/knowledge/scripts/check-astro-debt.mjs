@@ -28,7 +28,10 @@ const UPDATE = process.argv.includes("--update");
 
 const log = (m) => process.stderr.write(`[astro-debt] ${m}\n`);
 
-const res = spawnSync("npx", ["astro", "check", "--root", "packages/ui"], {
+/* Binaire LOCAL, jamais `npx` (K-bis, 11/08/2026) : `npx` résout selon l'environnement — dans
+ * un shell `npx -p node@22` il échoue, et hors lockfile il peut télécharger une version
+ * arbitraire d'astro. Le binaire de node_modules est celui que le lockfile a installé. */
+const res = spawnSync(join(REPO_ROOT, "node_modules/.bin/astro"), ["check", "--root", "packages/ui"], {
   cwd: REPO_ROOT,
   encoding: "utf8",
   env: { ...process.env, FORCE_COLOR: "0", NO_COLOR: "1" },

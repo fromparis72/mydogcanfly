@@ -107,8 +107,12 @@ ok(
   promisedWithoutAirport.length ? `${promisedWithoutAirport.length} without: ${promisedWithoutAirport.join(", ")}` : "",
 );
 
-// link-check: network-gated, runs in CI only
-console.log("ℹ️  link-check: skipped (network-gated; runs in CI)");
+// Message corrigé (K-bis, 11/08/2026) : l'ancien texte affirmait « runs in CI » alors
+// qu'AUCUN contrôle de liens n'existe, ni ici ni dans le workflow. Un contrôle annoncé et
+// absent est pire qu'un contrôle absent : quelqu'un finit par s'appuyer dessus.
+// Chantier consigné dans docs/matrice-tests.md : liens internes à chaque CI, URLs externes
+// dans un workflow programmé.
+console.log("ℹ️  link-check: absent — aucun contrôle de liens n'existe encore (ni ici ni en CI)");
 
 console.log(failed ? `\n${failed} check(s) failed` : "\nAll quality checks passed ✨");
 process.exit(failed ? 1 : 0);

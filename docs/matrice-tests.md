@@ -82,6 +82,11 @@ mort) sont mécaniques.
 
 ## Ce que la CI ne couvre pas, sciemment
 
+**Aucun contrôle de liens n'existe** (consigné au K-bis) : `npm run check` l'annonçait à tort comme
+« exécuté en CI ». Le message est corrigé ; le chantier reste ouvert — liens internes à chaque CI,
+URLs externes dans un workflow programmé, jamais en bloquant de PR (le réseau externe est flaky).
+
+
 Le déploiement lui-même (`deploy:preview`, 7 étapes vérifiées, manifeste) et la promotion d'alias
 restent des actes manuels outillés — c'est une décision, pas un oubli. Et les trois étapes qui
 parlent à Cloudflare ne peuvent pas être exercées en CI sans identifiants ; leur contrat est figé

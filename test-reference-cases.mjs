@@ -66,24 +66,25 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
  * HTTP — c'est `verdict` qui fait qu'un corps est traité comme un rapport par le client. */
 console.log("\n— Cas 7 : entrées invalides ou inconnues —");
 {
+  /* Chaque cas exige les TROIS conditions à la fois : HTTP 400, le code d'erreur EXACT, et
+   * l'absence de `verdict` (durcissement K-bis, 11/08/2026). La version précédente se
+   * contentait de « pas de rapport inventé » : une réponse `200 {}` — ni erreur ni rapport —
+   * serait passée, et le contrôle du code d'erreur ne s'appliquait que si le statut n'était
+   * pas 200, c'est-à-dire précisément quand il devenait facultatif. */
   const cas = [
-    ["requête vide", ""],
-    ["aéroport de départ inconnu", "origin=airport_zzzzz&destination=airport_cdg&weight_kg=8&breed=breed_golden_retriever"],
-    ["aéroport d'arrivée inconnu", "origin=airport_cdg&destination=airport_zzzzz&weight_kg=8&breed=breed_golden_retriever"],
-    ["race inconnue", "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_chien_imaginaire"],
-    ["destination manquante", "origin=airport_cdg&weight_kg=8&breed=breed_golden_retriever"],
+    ["requête vide", "", "missing_parameters"],
+    ["aéroport de départ inconnu", "origin=airport_zzzzz&destination=airport_cdg&weight_kg=8&breed=breed_golden_retriever", "unknown_airport"],
+    ["aéroport d'arrivée inconnu", "origin=airport_cdg&destination=airport_zzzzz&weight_kg=8&breed=breed_golden_retriever", "unknown_airport"],
+    ["race inconnue", "origin=airport_cdg&destination=airport_jfk&weight_kg=8&breed=breed_chien_imaginaire", "unknown_breed"],
+    ["destination manquante", "origin=airport_cdg&weight_kg=8&breed=breed_golden_retriever", "missing_parameters"],
   ];
-  for (const [label, q] of cas) {
+  for (const [label, q, expectedError] of cas) {
     const { status, body } = await call(q);
-    const inventeUnRapport = status === 200 && typeof body?.verdict === "string";
     check(
-      `${label} → aucun rapport inventé`,
-      !inventeUnRapport,
-      `HTTP ${status}, verdict=${JSON.stringify(body?.verdict)}`,
+      `${label} → 400 ${expectedError}, aucun verdict`,
+      status === 400 && body?.error === expectedError && body?.verdict === undefined,
+      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}`,
     );
-    if (status !== 200) {
-      check(`${label} → l'erreur est nommée`, typeof body?.error === "string" && body.error.length > 0, JSON.stringify(body).slice(0, 160));
-    }
   }
 }
 
@@ -98,13 +99,25 @@ console.log("\n— Cas 7 : entrées invalides ou inconnues —");
 console.log("\n— Contrat numérique : weight_kg —");
 {
   const B = "origin=airport_cdg&destination=airport_jfk&breed=breed_golden_retriever";
-  const invalides = [["vide", "weight_kg="], ["non numérique", "weight_kg=beaucoup"], ["NaN", "weight_kg=NaN"],
-    ["infini", "weight_kg=Infinity"], ["négatif", "weight_kg=-5"], ["nul", "weight_kg=0"], ["au-dessus de 120", "weight_kg=121"]];
-  for (const [label, param] of invalides) {
+  /* Pour les formats ILLISIBLES, la doc affirme que le paramètre fautif est nommé dans
+   * `body.invalid` — on le vérifie donc au contenu exact, pas seulement à l'existence
+   * (durcissement K-bis). Les bornes (-5, 0, 121) passent par Zod et n'ont pas ce champ :
+   * troisième élément `null` = pas d'exigence sur `invalid`. */
+  const invalides = [
+    ["vide", "weight_kg=", ["weight_kg="]],
+    ["non numérique", "weight_kg=beaucoup", ["weight_kg=beaucoup"]],
+    ["NaN", "weight_kg=NaN", ["weight_kg=NaN"]],
+    ["infini", "weight_kg=Infinity", ["weight_kg=Infinity"]],
+    ["négatif", "weight_kg=-5", null],
+    ["nul", "weight_kg=0", null],
+    ["au-dessus de 120", "weight_kg=121", null],
+  ];
+  for (const [label, param, expectedInvalid] of invalides) {
     const { status, body } = await call(`${B}&${param}`);
-    check(`poids ${label} → 400 invalid_request, aucun verdict`,
-      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined,
-      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}`);
+    const invalidOk = expectedInvalid === null || JSON.stringify(body?.invalid) === JSON.stringify(expectedInvalid);
+    check(`poids ${label} → 400 invalid_request, aucun verdict${expectedInvalid ? `, invalid=${JSON.stringify(expectedInvalid)}` : ""}`,
+      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined && invalidOk,
+      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}, invalid=${JSON.stringify(body?.invalid)}`);
   }
   const { status, body } = await call(B);
   check("poids ABSENT → accepté (poids inconnu, cas légitime)",
@@ -117,9 +130,10 @@ console.log("\n— Contrat numérique : temperature_c (pilote les restrictions d
   for (const [label, param] of [["vide", "temperature_c="], ["non numérique", "temperature_c=beaucoup"],
     ["NaN", "temperature_c=NaN"], ["infinie", "temperature_c=Infinity"]]) {
     const { status, body } = await call(`${B}&${param}`);
-    check(`température ${label} → 400 invalid_request`,
-      status === 400 && body?.error === "invalid_request",
-      `HTTP ${status}, error=${JSON.stringify(body?.error)}`);
+    check(`température ${label} → 400 invalid_request, aucun verdict, invalid=["${param}"]`,
+      status === 400 && body?.error === "invalid_request" && body?.verdict === undefined &&
+        JSON.stringify(body?.invalid) === JSON.stringify([param]),
+      `HTTP ${status}, error=${JSON.stringify(body?.error)}, verdict=${JSON.stringify(body?.verdict)}, invalid=${JSON.stringify(body?.invalid)}`);
   }
   const ok = await call(`${B}&temperature_c=30`);
   check("température valide → acceptée", ok.status === 200 && typeof ok.body?.verdict === "string", `HTTP ${ok.status}`);

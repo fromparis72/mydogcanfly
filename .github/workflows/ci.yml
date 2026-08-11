@@ -1,5 +1,10 @@
 name: CI
 
+# Permissions minimales : ce workflow lit le dépôt et n'écrit rien — il n'a aucune raison
+# d'avoir plus (recommandation GitHub, durcissement K-bis du 11/08/2026).
+permissions:
+  contents: read
+
 # Filet de sécurité : transformer en contrôles automatiques ce qui était vérifié à la main.
 #
 # DEUX NIVEAUX, décidés avec Philippe et Codex le 11/08/2026 après mesure :
@@ -37,10 +42,10 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Node 22 (depuis .nvmrc)
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -72,22 +77,20 @@ jobs:
         if: github.event_name == 'pull_request'
         run: npm run build:ci
 
+      # La sentinelle versionnée vaut aussi pour main (K-bis) : la première version de ce
+      # workflow construisait main contre l'ALIAS MUTABLE, en contradiction avec le commentaire
+      # au-dessus — un dist de CI n'est jamais déployé, il n'a donc aucune raison de porter une
+      # adresse réelle, et surtout pas la seule qui soit mutable.
       - name: Build complet + noindex sur toutes les pages (main)
         if: github.event_name == 'push'
-        run: npm run build:preview
+        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
 
       # ── Après build ──────────────────────────────────────────────────────────────────────
       - name: Harnais DOM (fiche + Finder, 4 langues)
         run: npm run test:built-ui
 
       - name: Bundle épinglé sur le Worker attendu
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            EXPECT="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
-          else
-            EXPECT="https://mydogcanfly-api-preview.fromparis.workers.dev"
-          fi
-          node packages/knowledge/scripts/check-bundle.mjs --expect="$EXPECT"
+        run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 
       # Dette connue et chiffrée, pas un contrôle vert : échoue à la hausse par code OU par
       # fichier, même à total constant, et échoue aussi à la baisse pour forcer à resserrer.

@@ -52,7 +52,10 @@ for (const f of chunks) {
    * (`https://<8hex>-mydogcanfly-api-preview…` ≠ `https://mydogcanfly-api-preview…` : le préfixe
    * change le début de la chaîne, donc pas de faux positif). On compte quand même explicitement. */
   const bare = src.split(MUTABLE_ALIAS).length - 1;
-  if (bare > 0 && EXPECTED !== MUTABLE_ALIAS) offenders.push(`${f} : ${bare} occurrence(s) de l'alias mutable`);
+  /* Plus AUCUNE exception pour l'alias mutable (K-bis, 11/08/2026) : la clause
+   * `EXPECTED !== MUTABLE_ALIAS` permettait de déclarer l'alias comme attendu — c'est ce que
+   * faisait la CI de main. Un bundle vérifié par ce script ne doit jamais le contenir, point. */
+  if (bare > 0) offenders.push(`${f} : ${bare} occurrence(s) de l'alias mutable`);
 
   for (const re of PRODUCTION_PATTERNS) {
     const m = src.match(re);
