@@ -10,9 +10,11 @@
   ],
   "scripts": {
     "check": "npm -w @mydogcanfly/knowledge run check",
+    "ingest": "node packages/knowledge/scripts/ingest-airlines.mjs",
+    "ingest:check": "node packages/knowledge/scripts/ingest-airlines.mjs --check",
     "demo": "npm -w @mydogcanfly/engine run demo",
     "smoke": "npm -w @mydogcanfly/workers run smoke",
-    "test:unit": "node test-preview-select.mjs && tsx test-direct-claims.mjs && tsx test-reference-cases.mjs && tsx test-mel-import.mjs",
+    "test:unit": "node test-preview-select.mjs && node test-ingest-check.mjs && tsx test-direct-claims.mjs && tsx test-reference-cases.mjs && tsx test-mel-import.mjs",
     "test:direct": "tsx test-direct-claims.mjs",
     "test:reference": "tsx test-reference-cases.mjs",
     "test:mel": "tsx test-mel-import.mjs",
@@ -26,7 +28,8 @@
     "verify:index": "node packages/knowledge/scripts/verifier-indexation.mjs",
     "release": "node packages/knowledge/scripts/lib/require-node.mjs \"le déploiement de production (release)\" && npm run build:prod && npm run verify:index && npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main --commit-dirty=true",
     "typecheck": "npm -w @mydogcanfly/knowledge run typecheck && npm -w @mydogcanfly/engine run typecheck && npm -w @mydogcanfly/workers run typecheck",
-    "audit": "node packages/knowledge/scripts/audit-site.mjs"
+    "audit": "node packages/knowledge/scripts/audit-site.mjs",
+    "test:ingest": "node test-ingest-check.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",
