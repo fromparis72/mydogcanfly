@@ -23,3 +23,6 @@ packages/**/.astro/
 # du dépôt. Ce sont des artefacts, à archiver côté CI ou stockage d'audit si besoin.
 .artifacts/
 .sauvegarde-8aout/objects.json
+
+# Bac à sable du harnais test-ingest-check.mjs (créé et supprimé à chaque exécution)
+/.ingest-sandbox/

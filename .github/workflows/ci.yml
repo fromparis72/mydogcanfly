@@ -59,6 +59,15 @@ jobs:
       - name: Base de connaissances (schéma · règles · couverture)
         run: npm run check
 
+      # Les artefacts dérivés des fiches (airlines.generated.json, premium.policy dans
+      # objects.json) n'étaient régénérés QUE si quelqu'un pensait à lancer l'ingestion à la
+      # main. Rien ne le rappelait, et `airlines.ts` affirmait même le contraire. Ce contrôle
+      # rend la promesse vraie : il régénère en mémoire, compare aux artefacts versionnés, et
+      # échoue si une fiche a été modifiée sans que ses artefacts suivent. Il n'écrit rien,
+      # donc il peut tourner ici sans salir l'arbre de travail.
+      - name: Fiches et artefacts synchronisés (ingest --check)
+        run: npm run ingest:check
+
       - name: Typecheck (knowledge · engine · workers)
         run: npm run typecheck
 

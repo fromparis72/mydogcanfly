@@ -1,9 +1,16 @@
 // Airline fiche display types + data accessor.
 //
 // SOURCE OF TRUTH: content/airlines/<slug>.yml (one bilingual fiche per airline).
-// Do NOT edit airlines.generated.json or the data below by hand — edit the YAML and
-// run `node packages/knowledge/scripts/ingest-airlines.mjs` (also runs in the deploy
-// chain), which validates every fiche against a Zod schema before regenerating.
+// Do NOT edit airlines.generated.json or the data below by hand — edit the YAML, then run
+// `npm run ingest`, which validates every fiche against a Zod schema before regenerating.
+//
+// L'ingestion ne tourne PAS toute seule : ni le build, ni `release`, ni la CI ne l'exécutent.
+// Cette ligne affirmait le contraire (« also runs in the deploy chain ») depuis l'origine, et
+// c'était faux — rien ne garantissait que ce fichier corresponde encore aux fiches. Ce qui la
+// remplace n'est plus une promesse mais un contrôle : `npm run ingest:check` régénère en
+// mémoire, compare aux artefacts versionnés et échoue sur tout écart, à chaque CI. Oublier
+// l'ingestion après avoir édité une fiche est donc désormais visible, sans être automatique.
+// Voir docs/pipeline-compagnies.md.
 import raw from "./airlines.generated.json";
 
 export type LT = { en: string; fr: string };
