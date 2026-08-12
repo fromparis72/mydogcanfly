@@ -3679,6 +3679,11 @@
           "value": "airport_mel"
         },
         {
+          "fact": "route.origin_country_id",
+          "op": "neq",
+          "value": "country_au"
+        },
+        {
           "fact": "placement",
           "op": "in",
           "value": [
@@ -3704,23 +3709,29 @@
       ]
     },
     "params": {},
-    "rationale": "Melbourne is Australia's only authorized port of entry for imported dogs, and every dog must arrive there as manifested cargo in an IATA-approved crate — cabin and accompanied hold are not permitted, and domestic transfers from another Australian airport are not allowed either.",
+    "rationale": "A pet arriving at Melbourne on an international commercial flight must be carried as manifested cargo in an IATA-approved crate: the cabin and the accompanied hold (AVIH) are not permitted. This covers INTERNATIONAL arrivals at Melbourne only — a domestic Australian flight to Melbourne is not an importation and is out of scope, and other Australian first points of entry are governed by their own rules, not by this one. The engine has no notion of a prior international leg, so the onward domestic transfer of a just-imported dog is also out of scope.",
     "rationale_i18n": {
-      "fr": "Melbourne est le seul point d'entrée autorisé pour les chiens importés en Australie, et tout chien doit y arriver en fret manifesté, dans une caisse agréée IATA — la cabine et la soute accompagnée ne sont pas autorisées, pas plus qu'un transfert domestique depuis un autre aéroport australien.",
-      "es": "Melbourne es el único punto de entrada autorizado para perros importados a Australia, y todo perro debe llegar allí como carga manifestada en una jaula aprobada por la IATA — no se permite la cabina ni la bodega acompañada, ni tampoco un transbordo doméstico desde otro aeropuerto australiano."
+      "fr": "Un animal de compagnie qui arrive à Melbourne sur un vol commercial international doit être acheminé en fret manifesté, dans une caisse agréée IATA : la cabine et la soute accompagnée (AVIH) ne sont pas autorisées. Cela ne vaut QUE pour une arrivée internationale à Melbourne — un vol intérieur australien vers Melbourne n'est pas une importation et sort du champ, et les autres points d'entrée australiens relèvent de leurs propres règles, pas de celle-ci. Le moteur ne connaît pas les segments antérieurs d'un voyage : le transfert intérieur d'un chien tout juste importé sort donc lui aussi de ce champ.",
+      "es": "Una mascota que llega a Melbourne en un vuelo comercial internacional debe transportarse como carga manifestada, en un contenedor homologado IATA: la cabina y la bodega acompañada (AVIH) no están permitidas. Esto solo se aplica a una llegada internacional a Melbourne — un vuelo doméstico australiano a Melbourne no es una importación y queda fuera del alcance, y los demás puntos de entrada australianos se rigen por sus propias reglas, no por esta. El motor no conoce los tramos anteriores de un viaje: el traslado doméstico de un perro recién importado también queda fuera de este alcance.",
+      "pt": "Um animal de estimação que chega a Melbourne em voo comercial internacional deve ser transportado como carga manifestada, em caixa homologada IATA: a cabine e o porão acompanhado (AVIH) não são permitidos. Isso vale APENAS para uma chegada internacional a Melbourne — um voo doméstico australiano para Melbourne não é uma importação e fica fora do alcance, e os demais pontos de entrada australianos seguem suas próprias regras, não esta. O motor não conhece os trechos anteriores de uma viagem: a conexão doméstica de um cão recém-importado também fica fora deste alcance."
     },
     "source": {
       "url": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
       "source_type": "government",
-      "verified_date": "2026-08-10",
-      "review_due": "2027-02-06",
+      "verified_date": "2026-08-12",
+      "review_due": "2027-02-08",
       "confidence": 5,
       "reviewer": "MyDogCanFly Data Team",
       "history": [
         {
           "date": "2026-08-10",
           "reviewer": "MyDogCanFly Data Team",
-          "note": "Ajout initial (Phase 1 de l'audit du 09/08/2026, volet Melbourne) : une recherche vers Melbourne pouvait afficher « Cabine ✓ » ou « Soute ✓ » chez une compagnie sans lien avec la réalité — l'Australie n'admet les chiens importés qu'en fret manifesté, exclusivement via Melbourne, sans transfert domestique. Règle globale suivant exactement le schéma de rule_gb_stn_not_approved (aéroport ciblé, cabine+soute refusées). Vérifié en direct sur la page officielle DAFF (category-3-step-by-step-guide-for-dogs) : arrivée directe obligatoire à Melbourne, fret manifesté uniquement, transferts domestiques interdits."
+          "note": "[SUPERSÉDÉE le 12/08/2026 — voir l'entrée suivante] Ajout initial (Phase 1 de l'audit du 09/08/2026, volet Melbourne) : une recherche vers Melbourne pouvait afficher « Cabine ✓ » ou « Soute ✓ » chez une compagnie sans lien avec la réalité — l'Australie n'admet les chiens importés qu'en fret manifesté, exclusivement via Melbourne, sans transfert domestique. Règle globale suivant exactement le schéma de rule_gb_stn_not_approved (aéroport ciblé, cabine+soute refusées). Vérifié en direct sur la page officielle DAFF (category-3-step-by-step-guide-for-dogs) : arrivée directe obligatoire à Melbourne, fret manifesté uniquement, transferts domestiques interdits."
+        },
+        {
+          "date": "2026-08-12",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Correction de portée. L'entrée du 10/08 généralisait à tort le guide du GROUPE 3 (« exclusivement via Melbourne, sans transfert domestique ») à l'ensemble des provenances. Relecture des guides officiels DAFF : GROUPES 2 et 3 — arrivée directe obligatoire à Melbourne, fret manifesté, transfert intérieur interdit (category-3-step-by-step-guide-for-dogs, category-2-step-by-step-guide-for-dogs). GROUPE 1, Nouvelle-Zélande et île Norfolk — les guides publiés confirment le contrôle au premier point d'entrée australien (« We will inspect your animal and their import documents at the first point of entry into Australia »), la correspondance intérieure possible après ce contrôle, et le fret manifesté imposé (« must travel as manifested cargo (not in the cabin) in an IATA approved crate »). Les îles Cocos (Keeling) appartiennent aussi au groupe 1, mais le DAFF n'y publie pas de parcours équivalent pour les chiens : son guide Cocos est réservé aux chats (« This guide is for cat imports only. If you are seeking to bring your dog from Cocos (Keeling) Islands to Australia, please contact us at imports@aff.gov.au »). Aucune généralisation n'est faite ici pour Cocos. LACUNE CONNUE, hors périmètre de ce correctif : la soute accompagnée reste affichée ouverte sur certaines arrivées du groupe 1 vers Sydney et Brisbane, alors que le fret manifesté y est exigé — à traiter en règle de portée pays. Le champ travel_type=service_dog est hors périmètre : les chiens d'assistance relèvent d'un régime d'importation distinct, soumis à permis et à des aménagements raisonnables évalués individuellement (« This will be unique to each individual handler's application », cats-dogs/assistance-dogs) ; leur exclusion de cette règle générique ne signifie donc pas que la cabine leur est automatiquement ouverte."
         }
       ]
     }
