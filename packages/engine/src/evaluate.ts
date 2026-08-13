@@ -1,5 +1,5 @@
-import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape } from "@mydogcanfly/knowledge";
-import { MONTH_UNKNOWN } from "@mydogcanfly/knowledge";
+import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
+import { MONTH_UNKNOWN, isEstimatedTemperature } from "@mydogcanfly/knowledge";
 import type { FinderRequest, Decision, AirlineDecision, FiredRule } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
@@ -166,7 +166,13 @@ function policyFallbackDenyRule(airlineId: string, placement: (typeof PLACEMENTS
  * Decision Engine (ADR-0013): pure evaluation of the normalized knowledge base against a request.
  * No narration, no localization — that is the Explanation Engine's job.
  */
-export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
+/**
+ * @param opts.weatherProvenance Étiquette INTERNE posée par l'appelant serveur quand `req.weather`
+ *   porte une température qui n'a PAS été saisie par un visiteur — aujourd'hui, uniquement
+ *   `destinations.ts` avec son estimation par latitude. Jamais dérivée du payload : un client ne
+ *   peut pas la fournir (le champ n'existe pas dans `FinderRequest`, qui est `strict()`).
+ */
+export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherProvenance?: "estimated_latitude" }): Decision {
   const dest = kb.airports.get(req.destination);
   const origin = kb.airports.get(req.origin);
   const destCountry = dest?.country_id ?? "";
@@ -184,9 +190,22 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
   const month = req.date ? parseInt(req.date.slice(5, 7), 10) : undefined;
   const estimatedTemp = estimateTempC(destCountryObj?.region, month);
   const temperature_c = req.weather?.temperature_c ?? estimatedTemp ?? 20;
+  /* Provenance posée ICI, côté serveur — jamais lue du payload. Une valeur entrante est celle du
+     visiteur, sauf si un appelant interne (destinations.ts) déclare sa propre estimation. */
+  const provenance: TemperatureProvenance =
+    req.weather?.temperature_c != null ? (opts?.weatherProvenance ?? "visitor_input") : "estimated_region";
+  /* Une température estimée ne peut plus produire un refus dur (P0 climat, 13/08/2026) :
+     les règles `summer_embargo` déclenchées sous estimation produisent `confirmation_required`. */
+  const tempIsEstimated = isEstimatedTemperature(provenance);
   const climate = {
     temperature_c,
-    estimated: req.weather?.temperature_c == null && estimatedTemp != null,
+    provenance,
+    /* `estimated` DÉRIVE de la provenance — une seule source de vérité. La v1 le calculait à part
+       (« pas de météo dans la requête ») : une température injectée par destinations.ts ressortait
+       `estimated: false` avec une provenance `estimated_latitude`, deux champs qui se
+       contredisaient. Et une future température `sourced` n'est PAS une estimation :
+       `isEstimatedTemperature` ne regarde que le préfixe `estimated_`. */
+    estimated: isEstimatedTemperature(provenance) && (req.weather?.temperature_c != null || estimatedTemp != null),
     provided: req.weather?.temperature_c != null || estimatedTemp != null,
     month,
     risk: heatRiskSeason(destCountryObj?.region, month, temperature_c),
@@ -273,18 +292,33 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
       // registre laissait `typecheck` vert, défaut relevé en revue le 12/08/2026.
       const ctx: EvalContextShape = { ...baseCtx, placement: p };
       const fires = airlineRules.filter((r) => evalPredicate(r.applies_when, ctx));
-      let denied = fires.some(
+      const denyFires = fires.filter(
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
       );
+      /* TRI-STATE (P0 climat). L'ordre de dominance est celui du contrat :
+           denied  >  confirmation_required  >  allowed.
+         Seul l'embargo chaleur (`summer_embargo`) déclenché sur une température ESTIMÉE est
+         dégradé en `confirmation_required` : toute autre règle deny — race, poids, politique —
+         reste un refus, et le socle fiche (`policyFallbackDenyRule`) aussi. Une compagnie dont la
+         fiche ne documente aucune soute n'a pas une soute « à confirmer », elle n'en a pas. */
+      const hardDenies = denyFires.filter((r) => r.category !== "summer_embargo");
+      const climateDenies = denyFires.filter((r) => r.category === "summer_embargo");
       let allFires = fires;
-      // Socle fiche systématique (corrigé 10/08/2026) : `allowed === true` seul évite le repli — un
-      // "false" explicite ou une clé absente ("inconnu") sont traités pareil, refusés par défaut, quel
-      // que soit le nombre de règles propres à la compagnie par ailleurs.
-      if (!denied && policy?.[p]?.allowed !== true) {
-        denied = true;
+      let status: PlacementStatus;
+      if (hardDenies.length > 0) {
+        status = "denied";
+      } else if (policy?.[p]?.allowed !== true) {
+        // Socle fiche systématique (corrigé 10/08/2026) : `allowed === true` seul évite le repli — un
+        // "false" explicite ou une clé absente ("inconnu") sont traités pareil, refusés par défaut, quel
+        // que soit le nombre de règles propres à la compagnie par ailleurs.
+        status = "denied";
         allFires = [...fires, policyFallbackDenyRule(a.id, p, policy?.[p] ?? {})];
+      } else if (climateDenies.length > 0) {
+        status = tempIsEstimated ? "confirmation_required" : "denied";
+      } else {
+        status = "allowed";
       }
-      return { placement: p, allowed: !denied, fires: allFires };
+      return { placement: p, status, allowed: status === "allowed", fires: allFires };
     });
     // Does this airline carry pets at all, structurally? Re-evaluate with a neutral small non-brachy dog:
     // a low-cost that never carries pets stays false; an airline that takes pets but rules THIS dog out
@@ -441,7 +475,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
       fee,
       origin_airport_id,
       destination_airport_id,
-      placements: perPlacement.map(({ placement, allowed }) => ({ placement, allowed })),
+      placements: perPlacement.map(({ placement, status, allowed }) => ({ placement, status, allowed })),
       fired,
       _plausible: plausible,
     };

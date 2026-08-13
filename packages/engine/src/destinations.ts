@@ -98,17 +98,44 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
       // Per-airport temperature drives the airline heat embargo (overrides the coarse region model).
       weather: climate_estimated ? { temperature_c } : undefined,
       locale: req.locale,
-    });
+    }, { weatherProvenance: "estimated_latitude" });
 
-    // DIRECT flights only (the tool's contract). Keep direct airlines that accept the dog somewhere.
-    const direct = decision.airlines.filter((a) => a.direct && a.placements.some((x) => x.allowed));
-    if (!direct.length) continue;
+    // DIRECT flights only (the tool's contract).
+    const directAll = decision.airlines.filter((a) => a.direct);
+    /* TRI-STATE (P0 climat, 13/08/2026). Deux populations distinctes, comptées séparément :
+       - `direct`          : compagnies avec ≥1 canal réellement `allowed` (l'ancien contrat) ;
+       - `directToConfirm` : compagnies SANS canal allowed mais avec ≥1 `confirmation_required` —
+         typiquement toutes leurs options fermées par un embargo calculé sur l'estimation.
+       Une destination dont TOUTES les compagnies sont « à confirmer » est désormais INCLUSE, avec
+       `placement_to_confirm` : l'UI l'affiche en alternative, jamais en compatible. Avant ce lot,
+       elle disparaissait purement et simplement (mesuré : 27 villes absentes en juillet, dont
+       Paris → Miami). */
+    const hasStatus = (a: (typeof directAll)[number], st: string, p?: string) =>
+      a.placements.some((x) => (p ? x.placement === p : true) && x.status === st);
+    const direct = directAll.filter((a) => hasStatus(a, "allowed"));
+    const directToConfirm = directAll.filter((a) => !hasStatus(a, "allowed") && hasStatus(a, "confirmation_required"));
+    if (!direct.length && !directToConfirm.length) continue;
 
-    const allows = (p: string) => direct.some((a) => a.placements.find((x) => x.placement === p)?.allowed);
-    const cabin_ok = allows("cabin");
-    const hold_ok = allows("hold");
-    const cargo_ok = allows("cargo");
-    const placement_ok = placementPref === "any" ? cabin_ok || hold_ok || cargo_ok : allows(placementPref);
+    const included = [...direct, ...directToConfirm];
+    const statusOfChannel = (p: string): "allowed" | "denied" | "confirmation_required" =>
+      included.some((a) => hasStatus(a, "allowed", p)) ? "allowed"
+      : included.some((a) => hasStatus(a, "confirmation_required", p)) ? "confirmation_required"
+      : "denied";
+    const cabin_status = statusOfChannel("cabin");
+    const hold_status = statusOfChannel("hold");
+    const cargo_status = statusOfChannel("cargo");
+    /* Booléens de transition : vrais UNIQUEMENT pour `allowed`. Le fret est désormais ÉMIS
+       (arbitrage option 1) : il était calculé, décidait de `placement_ok`, et n'apparaissait
+       nulle part — 3 à 5 destinations étaient compatibles par un canal invisible. */
+    const cabin_ok = cabin_status === "allowed";
+    const hold_ok = hold_status === "allowed";
+    const cargo_ok = cargo_status === "allowed";
+    const prefStatus = placementPref === "any"
+      ? (cabin_ok || hold_ok || cargo_ok ? "allowed"
+         : [cabin_status, hold_status, cargo_status].includes("confirmation_required") ? "confirmation_required" : "denied")
+      : statusOfChannel(placementPref);
+    const placement_ok = prefStatus === "allowed";
+    const placement_to_confirm = prefStatus === "confirmation_required";
 
     // Shortest origin→this-airport distance → estimated direct flight time.
     let bestKm = Infinity;
@@ -131,12 +158,27 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
       region: country.region,
       temperature_c,
       climate_estimated,
-      heat_embargo: climate_estimated && temperature_c > HEAT_EMBARGO_THRESHOLD_C,
+      /* P0 climat, v3 (contre-revue du 13/08/2026) : `heat_confirmation_required` DÉRIVE DE LA
+         DÉCISION — il n'est vrai que si au moins une compagnie directe porte réellement un canal
+         `confirmation_required`. La v2 le dérivait du seul seuil de température : un carlin à
+         Athènes (soute et fret refusés par les règles de race, AUCUNE confirmation nulle part)
+         recevait quand même « à confirmer » — un conseil que le moteur contredisait. L'indicateur
+         brut de température, lui, existe sous son vrai nom : `estimated_heat_signal`, qui ne
+         prétend ni refléter une règle compagnie ni demander confirmation d'un canal refusé. */
+      heat_embargo: false,
+      heat_confirmation_required: included.some((a) => a.placements.some((x) => x.status === "confirmation_required")),
+      estimated_heat_signal: climate_estimated && temperature_c > HEAT_EMBARGO_THRESHOLD_C,
       heat_risk: climate_estimated && temperature_c > HEAT_RISK_MIN_C && temperature_c <= HEAT_EMBARGO_THRESHOLD_C,
       airlines_total: direct.length,
+      airlines_to_confirm_total: directToConfirm.length,
       cabin_ok,
       hold_ok,
+      cargo_ok,
+      cabin_status,
+      hold_status,
+      cargo_status,
       placement_ok,
+      placement_to_confirm,
       entry_allowed: decision.destination.entry_allowed,
       flight_hours,
     });

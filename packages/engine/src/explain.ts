@@ -1,5 +1,5 @@
-import { t } from "@mydogcanfly/knowledge";
-import type { Decision, DecisionReport, ReportItem, AirlineResult } from "./contracts";
+import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
+import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus } from "./contracts";
 
 const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
 /** Temperature above which seasonal heat embargoes suspend hold/cargo (matches the summer_embargo rules). */
@@ -141,9 +141,19 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
 
   // Airline-by-airline comparison for this dog + route.
   const has = (a: Decision["airlines"][number], pl: string) => a.placements.find((p) => p.placement === pl)?.allowed ?? false;
+  /* Statut d'un canal, entryAllowed compris : un pays qui refuse l'entrée rend chaque canal
+     `denied` — y compris ceux qui n'étaient « qu'à confirmer », car aucune confirmation de
+     compagnie ne lève une interdiction d'entrée. */
+  const statusOf = (a: Decision["airlines"][number], pl: string): PlacementStatus => {
+    if (!entryAllowed) return "denied";
+    return a.placements.find((p) => p.placement === pl)?.status ?? "denied";
+  };
   const airlines: AirlineResult[] = decision.airlines.map((a) => {
     // entryAllowed prime sur les trois — voir le commentaire au-dessus de sa déclaration.
     const cabin = entryAllowed && has(a, "cabin"), hold = entryAllowed && has(a, "hold"), cargo = entryAllowed && has(a, "cargo");
+    const cabin_status = statusOf(a, "cabin"), hold_status = statusOf(a, "hold"), cargo_status = statusOf(a, "cargo");
+    const to_confirm = (["cabin", "hold", "cargo"] as const)
+      .filter((pl) => statusOf(a, pl) === "confirmation_required");
     /* Refus : on dit ce que les règles ont dit, pas ce qu'on en devine.
        - la compagnie ne transporte aucun animal (chien neutre refusé partout) → « animaux refusés » ;
        - des motifs ont été lus sur les règles → on les nomme (poids, race, soute non proposée…) ;
@@ -155,7 +165,8 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       : reasons.length
         ? L("air.not_accepted_because").replace("{reasons}", joinList(reasons.map((c) => L(`air.reason.${c}`)), locale))
         : L("air.not_accepted");
-    const label = cabin ? L("air.cabin_ok") : hold ? L("air.hold_only") : cargo ? L("air.cargo_only") : notAccepted;
+    const label = cabin ? L("air.cabin_ok") : hold ? L("air.hold_only") : cargo ? L("air.cargo_only")
+      : to_confirm.length ? L("air.to_confirm") : notAccepted;
     /* Fret : un montant n'est affiché que s'il est publié POUR LE FRET. Sinon « sur devis » — un
        envoi fret se chiffre chez le transitaire, et laisser croire à un tarif serait une invention. */
     const cargoOnly = !cabin && !hold && cargo;
@@ -175,7 +186,24 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      * laisser une carte affichée en style "bloqué par la saison seulement" (tireté ambre, tâche 19)
      * quand la vraie cause est une interdiction définitive et non calendaire.
      */
-    const heat_embargo = entryAllowed && a.fired.some((f) => f.category === "summer_embargo") && reasons.length === 0;
+    /* v5 (contre-revue v4) : la garde « seule raison du refus » (reasons.length === 0) est RETIRÉE
+       du marquage — le bandeau promet « les compagnies concernées sont marquées », il ne tient sa
+       promesse que si le marquage suit sa définition. Une carte dont la cabine est fermée au poids
+       et la soute par l'embargo est bien CONCERNÉE par l'embargo. La nuance « juste saisonnier »
+       reste disponible côté UI via `deny_reasons` (vide ⇔ aucune cause non saisonnière). */
+    const heatFired = entryAllowed && a.fired.some((f) => f.category === "summer_embargo");
+    /* P0 climat : le drapeau dépend de la PROVENANCE de la température. Fournie par le visiteur →
+       embargo confirmé, avec sa garde historique (« seule raison du refus », voir ci-dessus).
+       Estimée → signal de confirmation, porté par les STATUTS eux-mêmes : dès qu'un canal est
+       `confirmation_required`, la carte le dit — même si un AUTRE canal est refusé pour une autre
+       raison (ex. cabine fermée au poids). La garde « seule raison » ne s'applique pas ici : elle
+       protégeait contre l'étiquette « juste saisonnier » sur un blocage permanent, alors que ce
+       drapeau-ci n'affirme aucune disponibilité, seulement une question à poser à la compagnie. */
+    /* `isEstimatedTemperature`, pas `!== "visitor_input"` : une future température `sourced`
+       n'est pas une estimation, et doit produire un embargo confirmé, pas une confirmation. */
+    const tempEstimated = isEstimatedTemperature(decision.climate.provenance);
+    const heat_embargo = heatFired && !tempEstimated;
+    const heat_confirmation_required = to_confirm.length > 0;
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
     /* ATTENTION AU NOM : ces deux champs signifient « compagnie IMMATRICULÉE dans le pays de
      * départ / d'arrivée », rien de plus. Ce n'est PAS un statut de compagnie nationale ni de
@@ -197,14 +225,41 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     const carrier_of_origin = !!a.country_id && a.country_id === decision.origin_country_id;
     const carrier_of_destination = !!a.country_id && a.country_id === decision.destination.country_id;
     if (a.source_url) sources.set(a.source_url, { url: a.source_url });
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, source_url: a.source_url, heat_embargo, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
-  }).sort((x, y) =>
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, source_url: a.source_url, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+  });
+  /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
+     « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */
+  const reqP = decision.request.placement;
+  const okFor = (a: AirlineResult) => reqP === "any" ? (a.cabin || a.hold || a.cargo)
+    : reqP === "cabin" ? a.cabin : reqP === "hold" ? a.hold : a.cargo;
+  /* Même filtre, côté « à confirmer » : ne regarde que le placement demandé. */
+  const confirmFor = (a: AirlineResult) => reqP === "any"
+    ? (a.cabin_status === "confirmation_required" || a.hold_status === "confirmation_required" || a.cargo_status === "confirmation_required")
+    : (reqP === "cabin" ? a.cabin_status : reqP === "hold" ? a.hold_status : a.cargo_status) === "confirmation_required";
+  /* Rang par rapport au PLACEMENT DEMANDÉ — l'accepté réel toujours devant l'« à confirmer » :
+       0  placement demandé réellement accepté ;
+       1  placement demandé à confirmer ;
+       2  un AUTRE canal réellement accepté ;
+       3  autre canal à confirmer, ou embargo saisonnier seule cause (blocage temporaire) ;
+       4  refusé.
+     Avec "any", 0≡2 et 1≡3 : l'ordre v4 est conservé. */
+  const seasonalOnly = (a: AirlineResult) => !!a.heat_embargo && !(a.deny_reasons && a.deny_reasons.length);
+  const rangPlacement = (a: AirlineResult): number =>
+    okFor(a) ? 0
+    : confirmFor(a) ? 1
+    : (a.cabin || a.hold || a.cargo) ? 2
+    : ((a.to_confirm?.length ?? 0) > 0 || a.heat_confirmation_required || seasonalOnly(a)) ? 3
+    : 4;
+  airlines.sort((x, y) =>
     // 0) airlines that carry pets first, "no pets" always last — EXCEPT when the only blocker is a
     //    seasonal heat embargo (temporary), which stays in the top group.
     // 1) direct flights before connections, 2) acceptance quality — cabin, then accompanied hold (soute), so a
     //    direct flight offering soute outranks a direct fret/cargo-only one, 3) shortest detour, then name.
     //    (Le départage « compagnie du pays » qui figurait ici en 3) est retiré — J-bis, 11/08/2026.)
-    (Number(y.cabin || y.hold || y.cargo || y.heat_embargo) - Number(x.cabin || x.hold || x.cargo || x.heat_embargo)) ||
+    /* v4 (contre-revue v3) : un canal RÉELLEMENT accepté passe TOUJOURS avant un « à confirmer »
+       — un direct dont la soute n'est qu'à confirmer ne doit pas dominer une correspondance qui
+       accepte vraiment le chien. Trois groupes : accepté > à confirmer/saisonnier > refusé. */
+    (rangPlacement(x) - rangPlacement(y)) ||
     Number(y.direct) - Number(x.direct) ||
     // 1 bis) une correspondance dont les deux segments sont attestés passe devant une correspondance
     //        seulement déduite d'une géométrie de hub : l'établi avant le plausible.
@@ -223,12 +278,12 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   );
 
   // Verdict is driven by the requested placement; "any" = any placement works.
-  const reqP = decision.request.placement;
-  const okFor = (a: AirlineResult) => reqP === "any" ? (a.cabin || a.hold || a.cargo)
-    : reqP === "cabin" ? a.cabin : reqP === "hold" ? a.hold : a.cargo;
+  // (`reqP`, `okFor`, `confirmFor` sont déclarés au-dessus du tri, qu'ils servent aussi.)
   const acceptedAirlines = airlines.filter(okFor);
   const acceptCount = acceptedAirlines.length;
   const anyCompatible = acceptCount > 0;
+  const anyConfirm = airlines.some(confirmFor);
+  /* `compatible[]` ne porte que du réellement `allowed` — jamais une confirmation. */
   const compatible = acceptedAirlines.map((a) => ({ airline_id: a.airline_id, placement: reqP === "any" ? (a.cabin ? "cabin" : a.hold ? "hold" : "cargo") : reqP }));
 
   /* BUG CRITIQUE corrigé (audit du 09/08/2026) : le verdict ne consultait jamais
@@ -243,8 +298,17 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
    * le PAYS refuse de le laisser entrer. `entry_allowed` prime désormais sur l'acceptation
    * compagnie — un embarquement possible ne rend jamais un trajet légalement impossible "conditional".
    * (`entryAllowed` est déclaré plus haut, avant la boucle compagnies — voir son commentaire.) */
+  /* Règle EXACTE (revue du 13/08/2026) :
+       1. entry_allowed=false → incompatible, quoi qu'en disent les compagnies ;
+       2. les statuts sont filtrés par le placement demandé (tous les canaux pour "any") ;
+       3. ≥1 allowed correspondant → verdict actuel (compatible/conditional selon les formalités) ;
+       4. sinon ≥1 confirmation_required correspondant → conditional ;
+       5. sinon → incompatible. */
   const verdict: DecisionReport["verdict"] =
-    !entryAllowed ? "incompatible" : !anyCompatible ? "incompatible" : conditions.length > 0 ? "conditional" : "compatible";
+    !entryAllowed ? "incompatible"
+    : anyCompatible ? (conditions.length > 0 ? "conditional" : "compatible")
+    : anyConfirm ? "conditional"
+    : "incompatible";
 
   // Same source-confidence average the ★ rating below is built from (see `confidence`) — reused
   // here rather than recomputed, so the score and the stars never silently disagree.
@@ -312,11 +376,26 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   const confidence = Math.round(avgConfidence);
 
   // Seasonal temperature context, surfaced only when the user gave a date/temperature (so the filter is visible).
+  const estimatedAboveThreshold = isEstimatedTemperature(decision.climate.provenance)
+    && decision.climate.temperature_c > HEAT_EMBARGO_THRESHOLD_C;
   const climate = decision.climate.provided
     ? {
         temperature_c: decision.climate.temperature_c,
         estimated: decision.climate.estimated,
-        embargo: decision.climate.temperature_c > HEAT_EMBARGO_THRESHOLD_C,
+        provenance: decision.climate.provenance,
+        /* `embargo` comme `confirmation_required` DÉRIVENT DES RÈGLES RÉELLEMENT DÉCLENCHÉES
+           (contre-revues v2 et v3) : le seuil seul ne produit que l'indicateur brut. Sur une
+           route où AUCUNE compagnie ne porte de règle d'embargo, une température fournie de 35°
+           n'affiche plus de bandeau « embargo » — rien n'a été suspendu. */
+        /* v6 (contre-revue v5) : le bandeau DÉRIVE DES CARTES — une seule définition, la
+           cohérence par construction. La v5 lisait les règles déclenchées directement dans la
+           décision : sur une entrée INTERDITE (pit-bull vers la France), `entryAllowed` démarquait
+           toutes les cartes pendant que le bandeau affirmait un embargo — troisième asymétrie de
+           la même famille. Un trajet incompatible à la frontière n'a pas de bandeau embargo :
+           la chaleur n'est pas ce qui l'empêche. */
+        embargo: !isEstimatedTemperature(decision.climate.provenance) && airlines.some((a) => a.heat_embargo === true),
+        confirmation_required: estimatedAboveThreshold && airlines.some((a) => (a.to_confirm?.length ?? 0) > 0),
+        estimated_heat_signal: estimatedAboveThreshold,
         risk: decision.climate.risk,
         threshold_c: HEAT_EMBARGO_THRESHOLD_C,
       }

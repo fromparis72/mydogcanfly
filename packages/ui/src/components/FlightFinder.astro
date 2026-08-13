@@ -129,6 +129,8 @@ const labels = {
   climateEst: t(locale, "report.climate_est"),
   climateEstNote: t(locale, "report.climate_est_note"),
   climateEmbargo: t(locale, "report.climate_embargo"),
+  climateToConfirm: t(locale, "report.climate_to_confirm"),
+  climateHeatSignal: t(locale, "report.climate_heat_signal"),
   climateOk: t(locale, "report.climate_ok"),
   climateRiskTitle: t(locale, "report.climate_risk_title"),
   climateRisk: t(locale, "report.climate_risk"),
@@ -336,7 +338,26 @@ const labels = {
   function climateBanner(r: DecisionReport): string {
     const c = r.climate;
     if (!c) return "";
-    // Confirmed embargo: estimated temperature above the threshold → strong orange, glowing.
+    /* Signal sur température ESTIMÉE : « soute/fret à confirmer auprès de la compagnie » — même
+       visuel ambre que le risque, jamais le style « suspendu » de l'embargo confirmé. */
+    if (c.confirmation_required) {
+      const est = (L.climateEst ?? "").replace("{temp}", String(c.temperature_c)) + ` ${L.climateEstNote ?? ""}`;
+      return `<div class="report__climate is-risk">
+        <span class="rc-ic" aria-hidden="true">🌡️</span>
+        <div class="rc-body"><b>${esc(L.climateTitle ?? "")}</b> <span>${esc(est)} ${esc(L.climateToConfirm ?? "")}</span></div>
+      </div>`;
+    }
+    /* Signal SEUL (v3) : le seuil est dépassé mais aucune compagnie du rapport n'a de canal à
+       confirmer — dire « à confirmer » serait un conseil que le moteur contredit (contre-revue
+       v2 : carlin, canaux refusés par la race). On dit l'estimation, rien de plus. */
+    if (c.estimated_heat_signal) {
+      const est = (L.climateEst ?? "").replace("{temp}", String(c.temperature_c)) + ` ${L.climateEstNote ?? ""}`;
+      return `<div class="report__climate is-risk">
+        <span class="rc-ic" aria-hidden="true">🌡️</span>
+        <div class="rc-body"><b>${esc(L.climateTitle ?? "")}</b> <span>${esc(est)} ${esc(L.climateHeatSignal ?? "")}</span></div>
+      </div>`;
+    }
+    // Confirmed embargo: PROVIDED temperature above the threshold → strong orange, glowing.
     if (c.embargo) {
       const est = (L.climateEst ?? "").replace("{temp}", String(c.temperature_c))
         + (c.estimated ? ` ${L.climateEstNote ?? ""}` : "");
@@ -425,12 +446,20 @@ const labels = {
                   if (a.cabin) return "acard--cabin";
                   if (a.hold) return "acard--hold";
                   if (a.cargo) return "acard--cargo";
-                  if (a.heat_embargo) return "acard--heat";
+                  /* « À confirmer » (température ESTIMÉE au-dessus du seuil) : style chaleur, jamais
+                     un style d'ouverture — le canal n'est pas disponible, il est à confirmer. */
+                  if (a.heat_confirmation_required || (a.to_confirm && a.to_confirm.length)) return "acard--heat";
+                  /* Style « juste saisonnier » : embargo ET aucune cause non saisonnière. Une carte
+                     fermée aussi au poids/à la race garde son style de refus — mais son badge 🌡️
+                     (plus bas) reste : elle est bien CONCERNÉE par l'embargo, promesse du bandeau. */
+                  if (a.heat_embargo && !(a.deny_reasons && a.deny_reasons.length)) return "acard--heat";
                   return "acard--no";
                 })()}${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed") ? " acard--unverified" : ""}">
                 <div class="acard__main">
                   ${(() => {
-                    const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !a.heat_embargo;
+                    const seasonalOnly = a.heat_embargo && !(a.deny_reasons && a.deny_reasons.length);
+                    const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !seasonalOnly
+                      && !a.heat_confirmation_required && !(a.to_confirm && a.to_confirm.length);
                     const caps = [];
                     if (structuralNoPets) {
                       // Une compagnie qui ne prend aucun animal ("Animaux refusés") reste distincte d'une
@@ -470,7 +499,16 @@ const labels = {
                       CDG→SYD, les seules étoilées côté départ étaient Air Tahiti Nui et Aircalin.
                       Réintroduire uniquement avec une donnée `flag_carrier` explicite et une
                       modélisation des territoires (Polynésie française, Nouvelle-Calédonie). */ ""}
-                  <div class="acard__badges"><span class="ab ${a.cabin ? "ab--ok" : "ab--no"}">${esc(L.cabinShort)}</span><span class="ab ${a.hold ? "ab--ok" : "ab--no"}">${esc(L.holdShort)}</span><span class="ab ${a.cargo ? "ab--ok" : "ab--no"}">${esc(L.cargoShort)}</span></div>
+                  <div class="acard__badges">${(["cabin", "hold", "cargo"] as const).map((ch) => {
+                    /* TRI-STATE : `ab--confirm` (« ? ») pour un canal à confirmer — jamais la coche
+                       d'un canal ouvert, jamais la croix d'un canal fermé. Repli sur les booléens
+                       si un rapport ancien ne porte pas les statuts. */
+                    const st = a[`${ch}_status`] ?? (a[ch] ? "allowed" : "denied");
+                    const cls = st === "allowed" ? "ab--ok" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
+                    const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
+                    const mark = st === "confirmation_required" ? " ?" : "";
+                    return `<span class="ab ${cls}">${esc(cap)}${mark}</span>`;
+                  }).join("")}</div>
                   <div class="acard__label">${esc(a.label)}${a.source_url ? ` · <a href="${esc(a.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(a.source_url))}</a>` : ""}</div>
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
                   ${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed")
@@ -1155,6 +1193,9 @@ const labels = {
   .ab { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
   .ab--ok { color: #065f46; background: #d1fae5; }
   .ab--no { color: #991b1b; background: #fee2e2; text-decoration: line-through; }
+  /* « À confirmer » : ambre, ni coche ni croix — le canal n'est ni ouvert ni fermé, il attend la
+     réponse de la compagnie. */
+  .ab--confirm { color: #92400e; background: #fef3c7; }
   .acard__label { font-size: 12.5px; color: var(--mdcf-muted); }
   .acard__label a { color: var(--mdcf-accent); }
   .acard__via { margin-top: 4px; font-size: 12px; font-weight: 650; color: var(--mdcf-accent-ink); }
