@@ -185,6 +185,7 @@ const L = {
 </section>
 
 <script>
+  import { travelDateBoundsClient } from "../lib/travel-date-bounds";
   import { attachCombobox, type ComboItem } from "../lib/combobox";
   const L = JSON.parse(document.getElementById("dfx-labels")?.textContent ?? "{}");
   const S = L.s ?? {};
@@ -389,13 +390,16 @@ const L = {
   // client (date du jour → +18 mois, horizon au-delà duquel les routes ne sont pas référencées) ;
   // le moteur applique la même règle côté serveur (contracts.ts), qui reste la source de vérité.
   const dateEl = byId("dfx-date") as HTMLInputElement | null;
-  const isoDate = (d: Date) => d.toISOString().slice(0, 10);
+  /* Les DEUX bornes viennent de la même fonction que le Finder et que le contrat serveur.
+     Auparavant `min` était calculé ici (`new Date().toISOString()`) et `max` venait du contrat :
+     deux horloges pour un seul champ. `setMonth(+18)`, lui, débordait en fin de mois — au 31 août
+     l'interface autorisait des jours de mars alors que le contrat s'arrête au dernier jour de
+     février, et le visiteur pouvait choisir une date que la page acceptait et que le moteur
+     refusait. */
+  const dfxBounds = travelDateBoundsClient();
   if (dateEl) {
-    const today = new Date();
-    dateEl.min = isoDate(today);
-    const maxD = new Date(today);
-    maxD.setMonth(maxD.getMonth() + 18);
-    dateEl.max = isoDate(maxD);
+    dateEl.min = dfxBounds.min;
+    dateEl.max = dfxBounds.max;
   }
 
   const showHint = (msg: string) => { if (!out) return; out.hidden = false; out.innerHTML = `<p class="dfx__hint">${esc(msg)}</p>`; };
@@ -435,9 +439,11 @@ const L = {
     if (!b) { showHint(S.breedMissing); return; }
     const dateVal = gv("dfx-date");
     if (dateVal) {
-      const todayIso = isoDate(new Date());
-      if (dateVal < todayIso) { showHint(S.dateInPast); return; }
-      if (dateEl?.max && dateVal > dateEl.max) { showHint(S.dateTooFar); return; }
+      // Bornes RECALCULÉES ici, pas celles posées au chargement : une page laissée ouverte peut
+      // avoir franchi minuit, et `min` serait alors périmé d'un jour.
+      const bounds = travelDateBoundsClient();
+      if (dateVal < bounds.min) { showHint(S.dateInPast); return; }
+      if (dateVal > bounds.max) { showHint(S.dateTooFar); return; }
     }
     const docs: Docs = { base: (byId("doc-base") as HTMLInputElement)?.checked ?? false, eu: (byId("doc-eu") as HTMLInputElement)?.checked ?? false, titer: (byId("doc-titer") as HTMLInputElement)?.checked ?? false, cert: (byId("doc-cert") as HTMLInputElement)?.checked ?? false };
     const placementPref = gv("dfx-placement") || "any";

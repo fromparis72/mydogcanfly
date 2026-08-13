@@ -1,6 +1,7 @@
 export * from "./common";
 export * from "./objects";
 export * from "./rules";
+export * from "./breed-restrictions";
 export * from "./graph";
 export * from "./normalize";
 export * from "./data";
