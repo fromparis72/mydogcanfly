@@ -7,6 +7,42 @@ export type Locale = z.infer<typeof Locale>;
 
 /** English required; other locales optional. */
 export const LocalizedText = z.object({ en: z.string().min(1) }).catchall(z.string());
+
+/**
+ * Date de voyage — contrat PARTAGÉ (lot P0-A, 12/08/2026).
+ *
+ * `FinderRequest` et `DestinationsRequest` validaient la date chacun de leur côté, par expression
+ * régulière et comparaison lexicographique. Résultat mesuré : `"garbage"`, `"2026-00-15"`,
+ * `"2026-13-01"` et `"2027-02-30"` étaient tous acceptés — et le moteur en dérivait un mois
+ * `NaN`, `0`, `13` ou `2`, c'est-à-dire une valeur qui viole son propre registre de faits.
+ *
+ * `z.string().date()` fait une vraie validation CALENDAIRE (le 30 février est refusé). La plage
+ * reste la même : de ce jour à 18 mois — au-delà, ni le réseau de routes ni les règles ne sont
+ * garantis stables, et rien dans le référentiel ne modélise leur évolution.
+ */
+export const TRAVEL_DATE_HORIZON_MONTHS = 18;
+
+/**
+ * Bornes de la date de voyage. L'horloge est INJECTABLE pour que les tests puissent viser la
+ * frontière au jour près plutôt qu'une date lointaine choisie au hasard.
+ *
+ * Fin de mois : `Date.UTC(y, m + 18, 31)` déborderait sur le mois suivant — « 31 août + 18 mois »
+ * deviendrait le 3 mars au lieu du 28 ou 29 février. Le jour est donc ramené au dernier jour du
+ * mois cible, ce qui rend l'horizon exactement de 18 mois et jamais « 18 mois et quelques jours ».
+ */
+export const travelDateBounds = (now: Date = new Date()): { min: string; max: string } => {
+  const y = now.getUTCFullYear(), m = now.getUTCMonth(), d = now.getUTCDate();
+  const min = new Date(Date.UTC(y, m, d));
+  const lastDayOfTarget = new Date(Date.UTC(y, m + TRAVEL_DATE_HORIZON_MONTHS + 1, 0)).getUTCDate();
+  const max = new Date(Date.UTC(y, m + TRAVEL_DATE_HORIZON_MONTHS, Math.min(d, lastDayOfTarget)));
+  return { min: min.toISOString().slice(0, 10), max: max.toISOString().slice(0, 10) };
+};
+
+export const TravelDate = z.string().date().refine((d) => {
+  const { min, max } = travelDateBounds();
+  return d >= min && d <= max;
+}, { message: `la date de voyage doit être comprise entre aujourd'hui et ${TRAVEL_DATE_HORIZON_MONTHS} mois` });
+export type TravelDate = z.infer<typeof TravelDate>;
 export type LocalizedText = z.infer<typeof LocalizedText>;
 
 /* ---- Enumerations ---- */

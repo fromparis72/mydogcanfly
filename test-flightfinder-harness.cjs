@@ -64,7 +64,7 @@ function loadHomeParts(localeDir) {
   if (!labelsMatch) throw new Error("could not find mdcf-finder-labels JSON in " + htmlPath);
   const labels = JSON.parse(labelsMatch[1]);
 
-  return { sectionHtml: section[0], baseScript, clientScript, labels };
+  return { sectionHtml: section[0], baseScript, clientScript, labels, chunkDir: path.dirname(target) };
 }
 
 // Reproduit exactement resolveEndpoint() de FlightFinder.astro (norm() + cityMap/airMap), pour
@@ -106,8 +106,48 @@ function pickDestinationLabel(labels, originIds) {
 // par la minification, ex. `te`) est appelé plus loin dans le script. On le remplace par un stub
 // no-op portant le MÊME nom local — l'autocomplete n'entre pas dans le périmètre de ce test (les
 // champs sont renseignés directement via `.value`, jamais via le menu déroulant).
-function stripImports(script) {
-  let out = script.replace(/import\s*\{([^}]*)\}\s*from\s*"[^"]*";?/g, (_, bindings) => {
+/**
+ * Les imports du bundle sont neutralisés par des stubs — sauf ceux dont le harnais peut charger
+ * le VRAI module depuis `dist`. Le stub muet suffisait tant que les modules importés n'étaient
+ * que des utilitaires interactifs (combobox) ; il ne suffit plus depuis que le Finder calcule
+ * ses bornes de date via un module partagé : `travelDateBoundsClient()` renvoyait `undefined` et
+ * la page tombait au chargement, sans que le harnais ne l'attribue à autre chose qu'un stub.
+ *
+ * `dir` est le répertoire des chunks, pour résoudre les chemins relatifs.
+ */
+function stripImports(script, dir) {
+  let out = script.replace(/import\s*\{([^}]*)\}\s*from\s*"([^"]*)";?/g, (_, bindings, from) => {
+    // Chunk local et lisible → on l'inline vraiment, en réexposant ses exports sous les noms
+    // attendus par l'appelant. C'est le seul moyen de tester le code tel qu'il s'exécute.
+    // Liste explicite : seuls les modules dont le bundle a besoin AU CHARGEMENT sont inlinés.
+    // Les autres (combobox…) restent des stubs muets — ils ne servent qu'à l'interaction, et les
+    // inliner ferait entrer leurs propres dépendances dans le bac à sable.
+    const INLINE_REAL = ["travel-date-bounds"];
+    const real = dir && /^\.\//.test(from) && INLINE_REAL.some((n) => from.includes(n))
+      ? path.join(dir, from.slice(2)) : null;
+    if (real && fs.existsSync(real)) {
+      const raw = fs.readFileSync(real, "utf8");
+      // La clause `export{s as t}` fait correspondre un nom LOCAL (`s`) à un nom EXPORTÉ (`t`).
+      // L'appelant importe le nom exporté ; il faut donc traduire, sans quoi on référence un
+      // identifiant qui n'existe pas dans le chunk.
+      const expMatch = raw.match(/\bexport\s*\{([^}]*)\};?\s*$/m);
+      const localOf = {};
+      if (expMatch) for (const e of expMatch[1].split(",")) {
+        const [loc, exp] = e.trim().split(/\s+as\s+/).map((x) => x.trim());
+        localOf[exp || loc] = loc;
+      }
+      const mod = raw.replace(/\bexport\s*\{[^}]*\};?\s*$/m, "");
+      // Le chunk est inliné dans un BLOC : ses identifiants minifiés (`m`, `t`…) entreraient
+      // sinon en collision avec ceux du bundle appelant, qui sont tirés du même alphabet.
+      const pairs = bindings.split(",").map((b) => {
+        const [orig, alias] = b.trim().split(/\s+as\s+/).map((x) => x.trim());
+        return { orig, alias: alias || orig };
+      });
+      const decl = pairs.map((x) => `let __mdcf_${x.alias};`).join(" ");
+      const assign = pairs.map((x) => `__mdcf_${x.alias} = ${localOf[x.orig] || x.orig};`).join(" ");
+      const expose = pairs.map((x) => `const ${x.alias} = __mdcf_${x.alias};`).join(" ");
+      return `${decl}\n{\n${mod}\n${assign}\n}\n${expose}\n`;
+    }
     const names = bindings.split(",").map((b) => {
       const parts = b.trim().split(/\s+as\s+/);
       return (parts[1] || parts[0]).trim();
@@ -134,7 +174,7 @@ function buildDom(parts, fetchMock) {
   // Base.astro d'abord : définit window.mdcfQuery, lu sans garde par le Finder (prefill race/dest).
   dom.window.eval(parts.baseScript);
 
-  dom.window.eval(stripImports(parts.clientScript));
+  dom.window.eval(stripImports(parts.clientScript, parts.chunkDir));
 
   return dom;
 }
@@ -363,7 +403,227 @@ async function badgesPass() {
   }
 }
 
-main().then(() => badgesPass()).then(() => {
+/**
+ * CONTRAT DE DATE — quatre exigences, vérifiées sur la VRAIE page construite.
+ *
+ * 1. Le champ porte `min`/`max`, posés à l'exécution depuis le contrat partagé.
+ * 2. Une date hors contrat ARRÊTE la soumission : zéro POST, message visible, zéro résultat.
+ * 3. Les deux bornes elles-mêmes sont acceptées (une exclusion de borne fermerait un jour valide).
+ * 4. La date acceptée part au moteur SANS MODIFICATION — c'est le point le plus important.
+ *
+ * Défaut relevé le 12/08/2026 : la garde retirait silencieusement la date hors contrat, et le
+ * POST partait sans elle. Le visiteur recevait un rapport calculé SANS sa date en croyant qu'il
+ * portait dessus — plus dangereux que le 400 que la garde voulait éviter. C'est le contrôle
+ * « corps du POST » ci-dessous qui interdit à cette forme de revenir : compter les POST ne
+ * suffisait pas, puisque le POST fautif partait bel et bien.
+ */
+
+// Message attendu, en toutes lettres (locale en) — aligné sur `L.dateOutOfRange` de
+// FlightFinder.astro. Figé ici pour la même raison que les badges : vérifier qu'« un message
+// s'affiche » laisserait passer un message vide de sens ou celui d'une autre garde.
+const DATE_MSG_EN = "Choose a date between today and 18 months from now.";
+
+/** Bornes attendues, recalculées ICI de façon indépendante (jamais importées du code testé). */
+function expectedBounds(now = new Date()) {
+  const y = now.getUTCFullYear(), m = now.getUTCMonth(), d = now.getUTCDate();
+  const iso = (dt) => dt.toISOString().slice(0, 10);
+  const lastDay = new Date(Date.UTC(y, m + 19, 0)).getUTCDate();
+  return { min: iso(new Date(Date.UTC(y, m, d))), max: iso(new Date(Date.UTC(y, m + 18, Math.min(d, lastDay)))) };
+}
+/** Décale une date ISO de n jours, en UTC. */
+function shiftIso(isoStr, days) {
+  const [y, m, d] = isoStr.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d + days)).toISOString().slice(0, 10);
+}
+
+/**
+ * Joue un visiteur qui remplit le formulaire avec `dateValue`, soumet, et rend compte de ce que
+ * le réseau a vu. Un DOM NEUF par scénario : réutiliser le précédent laisserait un rapport déjà
+ * rendu dans `#mdcf-finder-result` et rendrait le contrôle « zéro résultat » complaisant.
+ */
+async function runDateScenario(parts, dateValue) {
+  const posts = [];
+  const fetchMock = async (url, opts) => {
+    if (String(url).includes("/nearest-airport")) return { ok: false };
+    if (opts && opts.method === "POST") {
+      posts.push({ url: String(url), body: JSON.parse(opts.body) });
+      return { ok: true, json: async () => FAKE_REPORT };
+    }
+    throw new Error("unexpected fetch: " + url);
+  };
+  const dom = buildDom(parts, fetchMock);
+  const { window } = dom;
+  const doc = window.document;
+
+  const originEl = doc.getElementById("f-origin");
+  const originIds = resolveEndpointFrom(parts.labels, originEl.value).ids;
+  doc.getElementById("f-dest").value = pickDestinationLabel(parts.labels, originIds);
+  doc.getElementById("f-weight").value = "8";
+  // Saisie AU CLAVIER : `min`/`max` ne bloquent pas l'affectation directe de `.value`, ce qui est
+  // exactement la situation que la garde doit couvrir.
+  doc.getElementById("f-date").value = dateValue;
+
+  doc.getElementById("mdcf-finder").dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
+  await flush();
+
+  const out = doc.getElementById("mdcf-finder-result");
+  return {
+    posts,
+    dom,
+    text: (out?.textContent || "").replace(/\s+/g, " ").trim(),
+    cards: out ? out.querySelectorAll(".acard").length : 0,
+  };
+}
+
+async function datePass() {
+  console.log("\n=== contrat de date : bornes du champ, arrêt de la soumission, transmission ===");
+  const parts = loadHomeParts("");
+  const exp = expectedBounds();
+
+  // -- 1. Les bornes sont posées sur le champ --
+  {
+    const dom = buildDom(parts, async (url) => (String(url).includes("/nearest-airport") ? { ok: false } : { ok: false }));
+    const dateEl = dom.window.document.getElementById("f-date");
+    check("le champ de date existe et porte min et max", !!dateEl && !!dateEl.min && !!dateEl.max,
+      dateEl ? `min=${dateEl.min} max=${dateEl.max}` : "(champ absent)");
+    check(`min = aujourd'hui (${exp.min}) et max = +18 mois (${exp.max}), sans débordement de fin de mois`,
+      !!dateEl && dateEl.min === exp.min && dateEl.max === exp.max,
+      dateEl ? `obtenu ${dateEl.min}..${dateEl.max}` : "");
+  }
+
+  // -- 2. Les deux bornes sont ACCEPTÉES, et transmises telles quelles --
+  for (const [nom, valeur] of [["min", exp.min], ["max", exp.max]]) {
+    const r = await runDateScenario(parts, valeur);
+    check(`${nom} (${valeur}) : la recherche part (1 POST)`, r.posts.length === 1, `POST : ${r.posts.length}`);
+    check(`${nom} (${valeur}) : la date est transmise SANS MODIFICATION`,
+      r.posts.length === 1 && r.posts[0].body.date === valeur,
+      r.posts.length ? `date envoyée : ${JSON.stringify(r.posts[0].body.date)}` : "(aucun POST)");
+    check(`${nom} (${valeur}) : le rapport est rendu`, r.cards >= 1, `cartes : ${r.cards}`);
+  }
+
+  // -- 3. Hors contrat des DEUX côtés : zéro POST, message visible, zéro résultat --
+  for (const [nom, valeur] of [
+    ["min − 1 jour", shiftIso(exp.min, -1)],
+    ["max + 1 jour", shiftIso(exp.max, 1)],
+    ["date lointaine", "2999-12-31"],
+    ["date passée", "2020-01-01"],
+  ]) {
+    const r = await runDateScenario(parts, valeur);
+    check(`${nom} (${valeur}) : AUCUN POST`, r.posts.length === 0,
+      r.posts.length ? `date partie quand même : ${JSON.stringify(r.posts[0].body.date)}` : "");
+    check(`${nom} (${valeur}) : le message exact est affiché`, r.text === DATE_MSG_EN, JSON.stringify(r.text.slice(0, 120)));
+    check(`${nom} (${valeur}) : aucun rapport n'est rendu`, r.cards === 0, `cartes : ${r.cards}`);
+  }
+
+  // -- 4. Champ vide : la date est facultative, la recherche part sans elle --
+  {
+    const r = await runDateScenario(parts, "");
+    check("date vide : la recherche part (la date reste facultative)", r.posts.length === 1, `POST : ${r.posts.length}`);
+    check("date vide : aucune clé `date` n'est inventée dans la requête",
+      r.posts.length === 1 && r.posts[0].body.date === undefined,
+      r.posts.length ? `date envoyée : ${JSON.stringify(r.posts[0].body.date)}` : "(aucun POST)");
+  }
+}
+
+/**
+ * CONTRAT DE DATE, SECOND COMPOSANT — le Finder de destinations.
+ *
+ * Codex, 13/08/2026 : « le contrat de date est bien testé dans le Worker et dans le Finder
+ * principal, mais pas dans le DOM du Finder de destinations alors que ce composant est également
+ * modifié ». Exact : les deux composants partagent désormais `travelDateBoundsClient()`, et un
+ * seul des deux était sous contre-épreuve. Un module partagé ne garantit pas deux usages corrects
+ * — `DestinationFinder` calculait encore `min` de son côté et validait contre une borne posée au
+ * chargement.
+ */
+function loadDestinationsParts() {
+  const htmlPath = path.join(DIST, "tools", "destinations", "index.html");
+  const html = fs.readFileSync(htmlPath, "utf8");
+
+  const section = html.match(/<section id="dest-finder"[\s\S]*?<\/section>/);
+  if (!section) throw new Error('could not find <section id="dest-finder"> in ' + htmlPath);
+
+  const baseScripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+  const baseScript = baseScripts.find((s) => s.includes("mdcfQuery") && s.includes("hreflang")) || "";
+
+  const candidates = [...html.matchAll(/<script type="module" src="(\/_astro\/hoisted\.[^"]+\.js)"><\/script>/g)]
+    .map((m) => path.join(DIST, m[1]));
+  const target = candidates.find((p) => fs.readFileSync(p, "utf8").includes("dfx-form"));
+  if (!target) throw new Error("could not locate the DestinationFinder bundle among: " + candidates.join(", "));
+
+  const labelsMatch = section[0].match(/<script type="application\/json" id="dfx-labels"[^>]*>([\s\S]*?)<\/script>/);
+  if (!labelsMatch) throw new Error("could not find dfx-labels JSON in " + htmlPath);
+
+  return {
+    sectionHtml: section[0], baseScript,
+    clientScript: fs.readFileSync(target, "utf8"),
+    labels: JSON.parse(labelsMatch[1]),
+    chunkDir: path.dirname(target),
+  };
+}
+
+const FAKE_DESTINATIONS = { matches: [], candidates_total: 0 };
+
+async function runDestinationsScenario(parts, dateValue) {
+  const posts = [];
+  const fetchMock = async (url, opts) => {
+    if (opts && opts.method === "POST") {
+      posts.push({ url: String(url), body: JSON.parse(opts.body) });
+      return { ok: true, json: async () => FAKE_DESTINATIONS };
+    }
+    return { ok: false };
+  };
+  const dom = buildDom(parts, fetchMock);
+  const { window } = dom;
+  const doc = window.document;
+
+  // Origine et race choisies dans les VRAIES données générées, jamais codées en dur.
+  doc.getElementById("dfx-origin").value = Object.keys(parts.labels.airMap)[0];
+  doc.getElementById("dfx-breed").value = Object.keys(parts.labels.breeds)[0];
+  doc.getElementById("dfx-date").value = dateValue;
+
+  doc.getElementById("dfx-form").dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
+  await flush();
+
+  const out = doc.getElementById("dfx-result");
+  return { posts, text: (out?.textContent || "").replace(/\s+/g, " ").trim() };
+}
+
+async function destinationsDatePass() {
+  console.log("\n=== contrat de date : Finder de destinations ===");
+  let parts;
+  try { parts = loadDestinationsParts(); }
+  catch (e) { check("chargement de la page destinations", false, e.message || String(e)); return; }
+
+  const exp = expectedBounds();
+  {
+    const dom = buildDom(parts, async () => ({ ok: false }));
+    const dateEl = dom.window.document.getElementById("dfx-date");
+    check(`dfx : min = ${exp.min} et max = ${exp.max}, les DEUX issus du contrat partagé`,
+      !!dateEl && dateEl.min === exp.min && dateEl.max === exp.max,
+      dateEl ? `obtenu ${dateEl.min}..${dateEl.max}` : "(champ absent)");
+  }
+
+  for (const [nom, valeur] of [["min", exp.min], ["max", exp.max]]) {
+    const r = await runDestinationsScenario(parts, valeur);
+    check(`dfx ${nom} (${valeur}) : la recherche part et la date est transmise SANS MODIFICATION`,
+      r.posts.length === 1 && r.posts[0].body.date === valeur,
+      r.posts.length ? `date envoyée : ${JSON.stringify(r.posts[0].body.date)}` : "(aucun POST)");
+  }
+
+  const S = parts.labels.s || {};
+  for (const [nom, valeur, attendu] of [
+    ["min − 1 jour", shiftIso(exp.min, -1), S.dateInPast],
+    ["max + 1 jour", shiftIso(exp.max, 1), S.dateTooFar],
+  ]) {
+    const r = await runDestinationsScenario(parts, valeur);
+    check(`dfx ${nom} (${valeur}) : AUCUN POST`, r.posts.length === 0,
+      r.posts.length ? `date partie quand même : ${JSON.stringify(r.posts[0].body.date)}` : "");
+    check(`dfx ${nom} : le message exact est affiché — ${JSON.stringify(attendu)}`,
+      !!attendu && r.text === attendu, JSON.stringify(r.text.slice(0, 120)));
+  }
+}
+
+main().then(() => badgesPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);

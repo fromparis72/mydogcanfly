@@ -1,4 +1,5 @@
-import type { NormalizedKB, Rule, Predicate, Condition } from "@mydogcanfly/knowledge";
+import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape } from "@mydogcanfly/knowledge";
+import { MONTH_UNKNOWN } from "@mydogcanfly/knowledge";
 import type { FinderRequest, Decision, AirlineDecision, FiredRule } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
@@ -191,7 +192,18 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     risk: heatRiskSeason(destCountryObj?.region, month, temperature_c),
   };
 
-  const baseCtx: Ctx = {
+  // PARITÉ CONTRAT / MOTEUR, vérifiée à la COMPILATION (lot P0-A, 12/08/2026).
+  //
+  // `EvalContextShape` est dérivé du registre `FACT_TYPES` de `breed-restrictions.ts`. Typer
+  // `baseCtx` avec lui rend les deux erreurs symétriques impossibles : un fait injecté ici sans
+  // être ouvert au contrat déclenche le contrôle de propriétés excédentaires, et un fait ouvert
+  // au contrat sans être injecté ici manque à l'objet. `placement` est exclu parce qu'il est le
+  // seul à varier À L'INTÉRIEUR d'une évaluation : il est ajouté par canal, quelques lignes plus
+  // bas, dans `{ ...baseCtx, placement: p }`.
+  //
+  // Remplace une vérification qui lisait ce fichier à l'expression régulière — laquelle avait
+  // d'ailleurs oublié `placement` dès sa première exécution.
+  const baseCtx: Omit<EvalContextShape, "placement"> = {
     "dog.weight_kg": weight,
     "dog.brachycephalic": brachy,
     "dog.size": breed?.size ?? "medium",
@@ -207,6 +219,14 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     // qu'une absence de réponse fait sortir LES DEUX parcours. On n'impose jamais le certificat
     // sanitaire par défaut d'information. (Le "unknown" listé par les règles n'est plus produit
     // depuis que le formulaire n'a que deux options ; il y reste sans nuire, l'absence le remplace.)
+    /* Mois du voyage — 1 à 12, ou MONTH_UNKNOWN (0) si le voyageur n'a pas donné de date.
+       Le fait figurait dans l'énumération `Fact` sans jamais être injecté : toute condition sur
+       le mois était donc inerte. L'injecter est NEUTRE pour les verdicts — aucune des 449 règles
+       actuelles ne l'utilise (vérifié le 12/08/2026) — et c'est la seule façon d'exprimer une
+       politique de fenêtre calendaire, comme une politique de fenêtre calendaire. Le
+       contrat interdit les conditions négatives sur ce fait, pour qu'une date inconnue ne puisse
+       jamais fermer un canal. */
+    "season.month": month ?? MONTH_UNKNOWN,
     "docs.eu_passport": req.eu_passport ?? "",
   };
 
@@ -248,7 +268,10 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest): Decision {
     // Evaluate ALL placements (cabin/hold/cargo) so the comparison cards are complete;
     // the requested placement is applied later, when computing the headline verdict.
     const perPlacement = PLACEMENTS.map((p) => {
-      const ctx: Ctx = { ...baseCtx, placement: p };
+      // Typé avec la forme COMPLÈTE du contrat : c'est ici que `placement` est couvert par la
+      // parité compilateur. Le typage de `baseCtx` seul l'excluait — retirer `placement` du
+      // registre laissait `typecheck` vert, défaut relevé en revue le 12/08/2026.
+      const ctx: EvalContextShape = { ...baseCtx, placement: p };
       const fires = airlineRules.filter((r) => evalPredicate(r.applies_when, ctx));
       let denied = fires.some(
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),

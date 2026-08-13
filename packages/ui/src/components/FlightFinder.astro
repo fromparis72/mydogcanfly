@@ -154,6 +154,11 @@ const labels = {
   originInvalid: t(locale, "finder.origin_invalid"),
   destInvalid: t(locale, "finder.dest_invalid"),
   sameEndpoint: t(locale, "finder.same_endpoint"),
+  /* Message d'une date hors contrat. Écrit ici plutôt que dans le fichier de traductions parce
+     que les trois autres messages de garde du formulaire y sont déjà — cohérence locale. */
+  dateOutOfRange: T("Choose a date between today and 18 months from now.",
+                    "Choisis une date comprise entre aujourd'hui et 18 mois.",
+                    "Elige una fecha entre hoy y 18 meses."),
   weightMissing: t(locale, "finder.weight_missing"),
   weightInvalid: t(locale, "finder.weight_invalid"),
   weightTooHigh: t(locale, "finder.weight_too_high"),
@@ -293,6 +298,7 @@ const labels = {
   import type { DecisionReport, ReportItem, FinderRequest } from "@mydogcanfly/engine";
   import { API_BASE } from "../lib/env";
   import { attachCombobox, type ComboItem } from "../lib/combobox";
+  import { travelDateBoundsClient } from "../lib/travel-date-bounds";
 
   const form = document.getElementById("mdcf-finder") as HTMLFormElement | null;
   const out = document.getElementById("mdcf-finder-result") as HTMLDivElement | null;
@@ -849,8 +855,39 @@ const labels = {
   // Point 1 (suite) : mode (cabine/soute/fret) et date influencent aussi le calcul mais n'avaient
   // aucun écouteur avant ce correctif.
   byId("f-placement")?.addEventListener("change", markStale);
+  /* CONTRAT DE DATE — aligné sur `TravelDate` (knowledge/common.ts), qui borne la date de voyage
+     d'aujourd'hui à 18 mois. Sans ces bornes, le visiteur pouvait choisir une date que le champ
+     acceptait, recevoir un 400 du Worker, et lire « le moteur n'a pas répondu » — un message qui
+     accuse le service pour une saisie que l'interface aurait dû empêcher.
+     Les bornes sont posées à l'exécution, pas au build : une page servie depuis le cache aurait
+     sinon un `min` périmé. */
+  (() => {
+    const el = byId("f-date") as HTMLInputElement | null;
+    if (!el) return;
+    const b = travelDateBoundsClient();
+    el.min = b.min;
+    el.max = b.max;
+  })();
+
   byId("f-date")?.addEventListener("change", markStale);
   byId("f-date")?.addEventListener("input", markStale);
+
+  /**
+   * La date saisie est-elle hors du contrat partagé ?
+   *
+   * La version précédente RENVOYAIT "" dans ce cas, et la requête partait sans date : le visiteur
+   * obtenait un rapport calculé sans sa date, en croyant qu'il portait dessus. C'était PIRE que
+   * le 400 que je voulais éviter — un résultat faux est plus dangereux qu'une erreur visible.
+   * Ici, la soumission est interrompue et le visiteur est prévenu.
+   */
+  function dateOutOfContract(v: string): boolean {
+    if (!v) return false;                       // champ vide = pas de date, cas normal
+    // Bornes RECALCULÉES ici, et non celles posées sur le champ au chargement : une page laissée
+    // ouverte peut avoir franchi minuit, auquel cas `min` serait périmé d'un jour et laisserait
+    // passer une date d'hier que le moteur refuserait.
+    const b = travelDateBoundsClient();
+    return v < b.min || v > b.max;
+  }
 
   function buildRequest(): FinderRequest {
     const b = resolveBreed();
@@ -876,6 +913,8 @@ const labels = {
       dog: { breed_id: b?.id, weight_kg },
       travel_type: "pet",
       placement: lastPlacement,
+      // La date est envoyée telle quelle : une date hors contrat a déjà interrompu la soumission
+      // (cf. `dateOutOfContract`), elle ne peut donc pas arriver ici.
       date: gv("f-date") || undefined,
       // Omis quand la question n'est pas posée ou reste sans réponse : le moteur affiche alors
       // les deux parcours. Ne jamais envoyer "no" par défaut.
@@ -945,6 +984,19 @@ const labels = {
     if (!wRaw || !Number.isFinite(wNum)) return showHint(L.weightMissing ?? "Enter your dog's weight.");
     if (wNum <= 0) return showHint(L.weightInvalid ?? "Enter a weight greater than 0 kg.");
     if ((unit === "lb" ? wNum / LB : wNum) > 100) return showHint(L.weightTooHigh ?? "That weight looks too high.");
+
+    /* Date hors contrat : on interrompt AVANT toute requête. Le champ porte `min`/`max`, mais la
+       saisie au clavier les contourne sur plusieurs navigateurs — et surtout, échouer en silence
+       en retirant la date donnerait un rapport qui ne répond pas à la question posée. */
+    if (dateOutOfContract(gv("f-date"))) {
+      const el = byId("f-date") as HTMLInputElement | null;
+      if (el && typeof el.reportValidity === "function") {
+        el.setCustomValidity(L.dateOutOfRange ?? "Choose a date between today and 18 months from now.");
+        el.reportValidity();
+        setTimeout(() => el.setCustomValidity(""), 0);
+      }
+      return showHint(L.dateOutOfRange ?? "Choose a date between today and 18 months from now.");
+    }
 
     const req = buildRequest();
     out.hidden = false;

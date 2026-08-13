@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Placement, TravelType, Locale } from "@mydogcanfly/knowledge";
+import { Placement, TravelType, Locale, TravelDate } from "@mydogcanfly/knowledge";
 
 /* ---- Public input contract (frozen in Phase 1, contract-first) ---- */
 export const FinderRequest = z.object({
@@ -20,7 +20,7 @@ export const FinderRequest = z.object({
   }),
   travel_type: TravelType.default("pet"),
   placement: z.union([Placement, z.literal("any")]).default("any"),
-  date: z.string().optional(),
+  date: TravelDate.optional(),
   /* PLAGE OPÉRATIONNELLE PRODUIT sur la température — pas une limite physique terrestre
      (reformulé au L-bis sur remarque de Codex : l'OMM recense des températures continentales
      sous −60 °C, Vostok est descendu à −89,2 °C ; « physique » était donc faux). Ce que borne
@@ -63,16 +63,9 @@ export type FinderRequest = z.infer<typeof FinderRequest>;
  * direct). Horizon plafonné à 18 mois : au-delà, ni le réseau de routes ni les règles ne sont
  * garantis stables, et rien dans le référentiel ne modélise leur évolution future.
  */
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-function isDateInRange(d: string): boolean {
-  if (!DATE_RE.test(d)) return false;
-  const today = new Date();
-  const todayIso = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate())).toISOString().slice(0, 10);
-  if (d < todayIso) return false;
-  const max = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() + 18, today.getUTCDate()));
-  const maxIso = max.toISOString().slice(0, 10);
-  return d <= maxIso;
-}
+// La validation vit désormais dans `TravelDate` (knowledge/common.ts), partagée par les deux
+// requêtes. L'ancienne version, par expression régulière et comparaison lexicographique, acceptait
+// « 2027-02-30 » et « 2026-13-01 » — et le moteur en dérivait un mois hors domaine.
 
 export const DestinationsRequest = z.object({
   origin: z.string(),                       // representative origin airport id
@@ -83,9 +76,7 @@ export const DestinationsRequest = z.object({
     brachycephalic: z.boolean().optional(),
   }),
   placement: z.union([Placement, z.literal("any")]).default("any"),
-  date: z.string().optional().refine((d) => !d || isDateInRange(d), {
-    message: "date must be between today and 18 months from now",
-  }),
+  date: TravelDate.optional(),
   locale: Locale.default("en"),
 });
 export type DestinationsRequest = z.infer<typeof DestinationsRequest>;
