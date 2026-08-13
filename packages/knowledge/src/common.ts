@@ -20,6 +20,41 @@ export const LocalizedText = z.object({ en: z.string().min(1) }).catchall(z.stri
  * reste la même : de ce jour à 18 mois — au-delà, ni le réseau de routes ni les règles ne sont
  * garantis stables, et rien dans le référentiel ne modélise leur évolution.
  */
+/* ---- Température : provenance et statut de placement (P0 climat, 13/08/2026) ----
+ *
+ * Mesuré avant d'écrire : les deux modèles de température du site (région et latitude) divergent
+ * sur 72 catégories visibles et 126 décisions de canal pour 231 cas, et 491 refus fermes reposent
+ * sur une température que personne n'a mesurée. Principe du lot, validé en revue : AUCUNE
+ * estimation ne produit seule un refus dur — elle produit `confirmation_required`.
+ *
+ * La provenance est posée PAR LE SERVEUR, jamais par le client : `FinderRequest.weather` est un
+ * objet `strict()` qui ne transporte qu'un nombre. Une valeur entrante est `visitor_input` ;
+ * l'absence de valeur fait estimer le moteur, qui étiquette lui-même `estimated_region` (Finder)
+ * ou `estimated_latitude` (Destinations, via l'option interne d'`evaluate()`). `sourced` est
+ * réservé à une future source climatique par aéroport : AUCUNE branche du code ne le produit
+ * aujourd'hui — il est donc inconstructible depuis une requête, par construction.
+ */
+export const TemperatureProvenance = z.enum([
+  "visitor_input", "estimated_region", "estimated_latitude", "sourced",
+]);
+export type TemperatureProvenance = z.infer<typeof TemperatureProvenance>;
+export const isEstimatedTemperature = (p: TemperatureProvenance): boolean => p.startsWith("estimated_");
+
+export const TemperatureReading = z.object({
+  value_c: z.number().min(-60).max(60),
+  provenance: TemperatureProvenance,
+}).strict();
+export type TemperatureReading = z.infer<typeof TemperatureReading>;
+
+/**
+ * Statut d'un couple (compagnie, canal). `denied` DOMINE `confirmation_required`, qui domine
+ * `allowed` : un canal fermé par une règle de race ne devient jamais « à confirmer » parce qu'un
+ * embargo estimé s'y ajoute. Les booléens historiques (`allowed`, `cabin_ok`…) ne valent `true`
+ * QUE pour `allowed` — un statut « à confirmer » n'est jamais rendu comme disponible.
+ */
+export const PlacementStatus = z.enum(["allowed", "denied", "confirmation_required"]);
+export type PlacementStatus = z.infer<typeof PlacementStatus>;
+
 export const TRAVEL_DATE_HORIZON_MONTHS = 18;
 
 /**

@@ -54,14 +54,20 @@ const L = {
     // dire clairement le niveau de précision réel (latitude + mois, sans altitude ni climat local).
     estimate: T("Very approximate climate indicator", "Indicateur climatique très approximatif", "Indicador climático muy aproximado"),
     verdictTitle: T("Hold / cargo heat verdict", "Verdict chaleur soute / cargo", "Veredicto de calor en bodega / carga"),
-    ok: T("Clear to fly", "Feu vert", "Luz verde para volar"),
+    /* P0 climat (13/08/2026) : « Feu vert » affirmait une autorisation, et « plage sûre » une
+       sécurité, sur la foi d'une estimation latitude + mois. Une estimation ne peut dire qu'une
+       chose : cet indicateur ne détecte aucun signal. */
+    ok: T("No heat signal from this indicator", "Aucun signal chaleur détecté par cet indicateur", "Sin señal de calor de este indicador"),
     risk: T("Elevated risk", "Risque élevé", "Riesgo elevado"),
     // Retest 09/08/2026, point 5 : "Embargo probable" affirmait un pronostic sur LE vol réservé ;
     // la valeur sous-jacente est une moyenne climatique mensuelle, pas la météo du jour du vol.
-    embargo: T("Historically high embargo-risk period", "Période historiquement à fort risque d'embargo", "Periodo históricamente de alto riesgo de embargo"),
-    okD: T("Estimated temperatures are within the safe range for hold/cargo transport.", "Les températures estimées sont dans la plage sûre pour un transport en soute/cargo.", "Las temperaturas estimadas están dentro del rango seguro para el transporte en bodega/carga."),
+    /* v3 (contre-revue P0-C v2) : « historiquement » revendiquait un historique d'embargos que
+       cet outil ne possède pas — sa seule donnée est une courbe latitude+mois. On dit le seuil
+       dépassé, rien de plus. */
+    embargo: T("Estimated heat above the usual threshold", "Chaleur estimée au-dessus du seuil habituel", "Calor estimado por encima del umbral habitual"),
+    okD: T("This latitude + month estimate finds no heat signal for hold/cargo on this route — it is not a forecast and not a safety guarantee: confirm with the airline.", "Cette estimation latitude + mois ne détecte aucun signal chaleur pour la soute/le fret sur cette route — ce n'est ni une prévision ni une garantie de sécurité : confirme auprès de la compagnie.", "Esta estimación por latitud + mes no detecta ninguna señal de calor para bodega/carga en esta ruta; no es una previsión ni una garantía de seguridad: confírmalo con la aerolínea."),
     riskD: T("Warm enough that airlines may restrict hold/cargo travel — confirm with the carrier.", "Assez chaud pour que des compagnies restreignent la soute/cargo — à confirmer avec la compagnie.", "Hace suficiente calor como para que las aerolíneas restrinjan la bodega/carga: confírmalo con la aerolínea."),
-    embargoD: T("Above the usual embargo threshold — hold/cargo has historically often been suspended on this route/month.", "Au-dessus du seuil d'embargo habituel — la soute/cargo a historiquement souvent été suspendue sur cette route/ce mois.", "Por encima del umbral de embargo habitual: la bodega/carga ha estado históricamente suspendida a menudo en esta ruta/mes."),
+    embargoD: T("The latitude+month estimate exceeds the threshold some carriers publish for hold/cargo. This is a modelled estimate — not a record of past embargoes, not a forecast: check the policy with the airline.", "L'estimation latitude+mois dépasse le seuil que certaines compagnies publient pour la soute/le fret. C'est une estimation modélisée — ni un historique d'embargos, ni une prévision : vérifie la politique auprès de la compagnie.", "La estimación por latitud+mes supera el umbral que algunas aerolíneas publican para bodega/carga. Es una estimación modelada, no un historial de embargos ni una previsión: verifica la política con la aerolínea."),
     // Retest 09/08/2026, point 5 : précise que la valeur est une moyenne climatique mensuelle, pas
     // la température maximale ni celle réellement prévue le jour du vol.
     avgClarify: T("This value is a monthly climate average — not the maximum temperature, nor the forecast for the actual flight day.", "Cette valeur est une moyenne climatique mensuelle, pas la température maximale ni celle du jour du vol.", "Este valor es un promedio climático mensual, no la temperatura máxima ni la prevista para el día real del vuelo."),
@@ -70,7 +76,7 @@ const L = {
     thresholdCaveat: T("Some carriers apply a lower threshold, or an independent seasonal embargo regardless of temperature.", "Certaines compagnies appliquent un seuil plus bas, ou un embargo saisonnier indépendant de la température.", "Algunas aerolíneas aplican un umbral más bajo, o un embargo estacional independiente de la temperatura."),
     brachy: T("Snub-nosed breed: stricter limits apply, and many carriers ban them from the hold year-round regardless of temperature.", "Race brachycéphale : seuils plus stricts, et de nombreuses compagnies l'interdisent en soute toute l'année, quelle que soit la température.", "Raza de hocico chato: se aplican límites más estrictos y muchas aerolíneas las prohíben en bodega todo el año, sea cual sea la temperatura."),
     calendar: T("Heat by month on this route", "Chaleur par mois sur cette route", "Calor por mes en esta ruta"),
-    calNote: T("Worst of the two airports each month. Green = clear, amber = risk, red = historically high embargo risk.", "Pire des deux aéroports chaque mois. Vert = ok, ambre = risque, rouge = période à risque d'embargo élevé.", "El peor de los dos aeropuertos cada mes. Verde = ok, ámbar = riesgo, rojo = periodo de alto riesgo de embargo."),
+    calNote: T("Worst of the two airports each month. Green = no signal, amber = elevated estimate, red = estimate above threshold.", "Pire des deux aéroports chaque mois. Vert = aucun signal, ambre = estimation élevée, rouge = estimation au-dessus du seuil.", "El peor de los dos aeropuertos cada mes. Verde = sin señal, ámbar = estimación elevada, rojo = estimación por encima del umbral."),
     bestMonths: T("Best months", "Meilleurs mois", "Mejores meses"),
     // Retest 09/08/2026, point 8 : pour une race brachycéphale, "Meilleurs mois" laissait entendre
     // qu'elle serait acceptée en soute ces mois-là, alors que beaucoup de compagnies l'interdisent

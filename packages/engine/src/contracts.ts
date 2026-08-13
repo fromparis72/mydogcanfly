@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { Placement, TravelType, Locale, TravelDate } from "@mydogcanfly/knowledge";
+import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
+export type { PlacementStatus, TemperatureProvenance };
 
 /* ---- Public input contract (frozen in Phase 1, contract-first) ---- */
 export const FinderRequest = z.object({
@@ -32,7 +33,11 @@ export const FinderRequest = z.object({
      antarctique avec chien en soute : le contrat répond 400, et si ce cas d'usage émergeait un
      jour, élargir la borne est une décision produit d'une ligne. Ce champ pilote les embargos
      de chaleur — une valeur absurde ne fausse pas un affichage, elle décide. */
-  weather: z.object({ temperature_c: z.number().min(-60).max(60) }).optional(),
+  /* `.strict()` et non le mode strip par défaut : le mini-contrat climat promet qu'un client ne
+     peut pas DÉCLARER la provenance de sa température. En strip, un champ `provenance` envoyé par
+     un client aurait été ignoré en silence — c'est-à-dire accepté ; en strict, il est refusé en
+     400. La provenance est posée par le serveur, exclusivement. */
+  weather: z.object({ temperature_c: z.number().min(-60).max(60) }).strict().optional(),
   /* Retour vers l'UE — le seul fait que le moteur ne peut pas déduire du vol.
      On interroge la SITUATION du chien ("vit-il habituellement dans l'Union européenne ?"), au
      présent et sans rien faire vérifier : "yes" = il rentre chez lui, "no" = il découvre l'UE.
@@ -95,12 +100,32 @@ export interface DestinationMatch {
   region: string;
   temperature_c: number;     // per-airport seasonal estimate (latitude + month)
   climate_estimated: boolean; // true when a travel month was supplied
-  heat_embargo: boolean;     // estimate above the hold/cargo embargo threshold
+  /** TOUJOURS false dans cet outil : sa température est toujours estimée (latitude), et une
+   *  estimation ne peut plus produire un embargo (P0 climat). Conservé pour la transition. */
+  heat_embargo: boolean;
+  /** ≥1 compagnie directe porte RÉELLEMENT un canal `confirmation_required` — dérivé de la
+   *  décision, jamais du seul seuil de température (contre-revue v2 : un carlin dont tous les
+   *  canaux sont refusés par les règles de race ne doit rien avoir « à confirmer »). */
+  heat_confirmation_required: boolean;
+  /** Indicateur BRUT : température estimée au-dessus du seuil. Aucune prétention sur les règles
+   *  compagnie — c'est un signal météo modélisé, à afficher comme tel. */
+  estimated_heat_signal: boolean;
   heat_risk: boolean;        // warm-but-not-embargo band
-  airlines_total: number;    // direct, dog-accepting airlines on this route
+  airlines_total: number;          // compagnies directes avec ≥1 canal réellement `allowed`
+  airlines_to_confirm_total: number; // compagnies directes SANS canal allowed mais avec ≥1 « à confirmer »
+  /* Booléens de transition, vrais UNIQUEMENT pour `allowed` ; les statuts sont la vérité.
+     Le fret entre officiellement dans l'outil (arbitrage du 13/08/2026, option 1) : `cargo_ok`
+     était calculé, utilisé dans `placement_ok`, et jamais émis — 3 à 5 destinations étaient
+     « compatibles » par un canal que le visiteur ne pouvait pas voir. */
   cabin_ok: boolean;
   hold_ok: boolean;
-  placement_ok: boolean;     // the requested/deduced placement is feasible on ≥1 direct airline
+  cargo_ok: boolean;
+  cabin_status: PlacementStatus;
+  hold_status: PlacementStatus;
+  cargo_status: PlacementStatus;
+  placement_ok: boolean;         // le placement demandé est réellement `allowed` sur ≥1 compagnie directe
+  /** Aucun canal demandé `allowed`, mais ≥1 « à confirmer » : à afficher en ALTERNATIVE, jamais en compatible. */
+  placement_to_confirm: boolean;
   entry_allowed: boolean;    // no blocking country-level denial (e.g. hard import ban)
   flight_hours: number;      // estimated direct flight time (great-circle distance ÷ cruise speed)
 }
@@ -150,12 +175,16 @@ export interface AirlineDecision {
   fee?: string;               // published fee for the accepted placement, as-is (e.g. "€100 to €600")
   origin_airport_id?: string;      // the origin airport this airline actually uses, when it differs from the representative origin (city search)
   destination_airport_id?: string; // idem for the destination
-  placements: { placement: string; allowed: boolean }[];
+  /* `status` est la vérité ; `allowed` est le booléen de transition, vrai UNIQUEMENT pour
+     `allowed`. Un embargo chaleur déclenché sur une température ESTIMÉE produit
+     `confirmation_required` — jamais un refus dur, jamais une disponibilité. */
+  placements: { placement: string; status: PlacementStatus; allowed: boolean }[];
   fired: FiredRule[];
 }
 /** Seasonal climate context used for the heat-embargo filter (temperature-driven hold/cargo denials). */
 export interface Climate {
   temperature_c: number; // temperature applied to the evaluation (explicit, or model-estimated from the date)
+  provenance: TemperatureProvenance; // posée par le serveur — visitor_input | estimated_region | estimated_latitude
   estimated: boolean;    // true when derived from the travel month + destination region (not user-supplied)
   provided: boolean;     // true when the user gave a travel date or explicit temperature (else it's the mild default)
   month?: number;        // 1..12, when a date was supplied
@@ -196,9 +225,15 @@ export interface AirlineResult {
   direct: boolean;
   connect_airport_id?: string;  // for a connection, the airline hub it routes through (e.g. Madrid) — shown as "via MAD"
   detour_km?: number;           // extra distance vs the direct route (0 for direct) — used to rank connections
+  /* Booléens de transition : vrais UNIQUEMENT pour `allowed`. Les statuts sont la vérité. */
   cabin: boolean;
   hold: boolean;
   cargo: boolean;
+  cabin_status: PlacementStatus;
+  hold_status: PlacementStatus;
+  cargo_status: PlacementStatus;
+  /** Canaux au statut `confirmation_required` — à rendre « politique à confirmer », JAMAIS comme ouverts. */
+  to_confirm?: string[];
   /* Vrai si la compagnie transporte des animaux en général (réévaluation avec un chien neutre).
      NE JAMAIS EN DÉDUIRE UN MOTIF : « true, mais aucun mode accepté » ne veut pas dire « race
      refusée » — c'est le plus souvent le poids, ou l'absence de soute/fret. Le motif réel est
@@ -213,7 +248,12 @@ export interface AirlineResult {
   /** Fret sans tarif publié POUR LE FRET : `fee` porte alors « sur devis », pas un montant repris d'ailleurs. */
   fee_quote_only?: boolean;
   source_url?: string;
-  heat_embargo?: boolean; // true when a seasonal heat embargo suspends this airline's hold/cargo on the given date
+  /** Embargo chaleur CONFIRMÉ — température fournie par le visiteur au-dessus du seuil. Une
+   *  estimation ne produit JAMAIS ce drapeau (P0 climat) : elle produit le suivant. */
+  heat_embargo?: boolean;
+  /** Signal de chaleur sur température ESTIMÉE : la soute/le fret sont « à confirmer auprès de la
+   *  compagnie », pas suspendus. Distinct d'`heat_embargo` par la provenance, pas par le seuil. */
+  heat_confirmation_required?: boolean;
   /* « Compagnie immatriculée dans ce pays », et RIEN DE PLUS : simple égalité de `country_id`.
    * Ces deux champs annonçaient « national/flag carrier » — c'était faux (voir explain.ts).
    * Ne pas réintroduire ce vocabulaire sans une donnée `flag_carrier` explicite. */
@@ -238,9 +278,20 @@ export interface DecisionReport {
   domestic?: boolean;
   /** Seasonal temperature context — present only when the user supplied a travel date or temperature.
    *  embargo = confirmed (estimate above threshold); risk = possible-but-unconfirmed heat-wave season. */
-  climate?: { temperature_c: number; estimated: boolean; embargo: boolean; risk: boolean; threshold_c: number };
+  climate?: {
+    temperature_c: number; estimated: boolean; provenance: TemperatureProvenance;
+    /** Vrai UNIQUEMENT sur température fournie (`visitor_input`) au-dessus du seuil. */
+    embargo: boolean;
+    /** ≥1 compagnie du rapport porte réellement un canal à confirmer, ET la température estimée
+     *  dépasse le seuil — jamais le seuil seul (contre-revue v2). */
+    confirmation_required: boolean;
+    /** Indicateur brut : température estimée au-dessus du seuil, sans prétention sur les règles. */
+    estimated_heat_signal: boolean;
+    risk: boolean; threshold_c: number;
+  };
   /** Affirmative "why it works" statements, in plain language (narrative-first report). */
   positives: ReportItem[];
+  /** Couples réellement `allowed` — jamais un `confirmation_required` (il irait dans `to_confirm`). */
   compatible: { airline_id: string; placement: string }[];
   conditions: ReportItem[];
   warnings: ReportItem[];

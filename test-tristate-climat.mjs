@@ -1,0 +1,364 @@
+#!/usr/bin/env node
+/**
+ * Harnais du P0 CLIMAT — tri-state, provenance, et interaction avec les règles brachycéphales.
+ *
+ *   npx tsx test-tristate-climat.mjs
+ *
+ * Principe vérifié : AUCUNE température estimée ne produit seule un refus dur. Elle produit
+ * `confirmation_required` (`allowed=false`) — jamais un canal ouvert, jamais un embargo affirmé.
+ *
+ * MÉTHODE. Trois niveaux, chacun par son chemin public :
+ *   - le CONTRAT (`FinderRequest.safeParse`) : un client ne peut pas déclarer une provenance ;
+ *   - le MOTEUR (`evaluate` + `explain`) : statuts, drapeaux, verdicts, dominances ;
+ *   - le WORKER (`worker.fetch`) : le refus du contrat est un vrai 400 de bout en bout.
+ * Les cas qui n'existent pas dans les données réelles (verdict `conditional` par confirmations
+ * seules, domination d'`entry_allowed` sur des confirmations) sont construits par RESTRICTION
+ * EN MÉMOIRE de la base réelle (sous-ensemble de compagnies, règle pays ajoutée) — jamais en
+ * réimplémentant le moteur, et sans toucher un fichier.
+ */
+import worker from "./packages/workers/src/index.ts";
+import { loadKB } from "./packages/knowledge/src/index.ts";
+import { evaluate } from "./packages/engine/src/evaluate.ts";
+import { explain } from "./packages/engine/src/explain.ts";
+import { rankDestinations } from "./packages/engine/src/destinations.ts";
+import { FinderRequest, DestinationsRequest } from "./packages/engine/src/contracts.ts";
+
+let pass = 0, fail = 0;
+const check = (label, cond, detail = "") => {
+  console.log((cond ? "  OK   " : "  FAIL ") + label + (cond || !detail ? "" : `\n         ${detail}`));
+  cond ? pass++ : fail++;
+};
+
+const kb = loadKB();
+/* Date DYNAMIQUE (contre-revue v3, corrigée en v7 sur la contre-revue v6) : le PROCHAIN 15
+   juillet, comparé sur la date complète — la version par mois seul choisissait le 15 juillet de
+   l'année SUIVANTE quand on était entre le 1er et le 14 juillet, cinq jours avant le bon. */
+const _now = new Date();
+const _y = _now.getUTCFullYear();
+const _today = Date.UTC(_y, _now.getUTCMonth(), _now.getUTCDate());
+const _july15 = Date.UTC(_y, 6, 15);
+const JUILLET = `${_today <= _july15 ? _y : _y + 1}-07-15`;
+const GOLDEN = { breed_id: "breed_golden_retriever", weight_kg: 25 };
+const CARLIN = { breed_id: "breed_pug", weight_kg: 8 };
+const stOf = (dec, airlineId, pl) =>
+  dec.airlines.find((a) => a.airline_id === airlineId)?.placements.find((p) => p.placement === pl);
+
+console.log("=== 1. Le contrat refuse toute provenance venue du client ===");
+{
+  const base = { origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN };
+  check("weather.temperature_c seul accepté",
+    FinderRequest.safeParse({ ...base, weather: { temperature_c: 35 } }).success);
+  check("weather.provenance REFUSÉ (strict)",
+    !FinderRequest.safeParse({ ...base, weather: { temperature_c: 35, provenance: "sourced" } }).success);
+  check("toute clé inconnue dans weather refusée",
+    !FinderRequest.safeParse({ ...base, weather: { temperature_c: 35, sourced: true } }).success);
+}
+
+console.log("\n=== 2. Le Worker refuse en 400, de bout en bout ===");
+{
+  const post = async (body) => {
+    const vrai = console.error; console.error = () => {};
+    try {
+      const res = await worker.fetch(new Request("https://api.mydogcanfly.com/v1/finder", {
+        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body),
+      }), {});
+      return { status: res.status, payload: await res.json() };
+    } finally { console.error = vrai; }
+  };
+  const base = { origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN };
+  const ok = await post({ ...base, weather: { temperature_c: 35 } });
+  check("POST weather valide → 200", ok.status === 200, `statut ${ok.status}`);
+  const ko = await post({ ...base, weather: { temperature_c: 35, provenance: "sourced" } });
+  check("POST weather.provenance → 400", ko.status === 400, `statut ${ko.status} · ${JSON.stringify(ko.payload).slice(0, 120)}`);
+}
+
+console.log("\n=== 3. Provenance posée par le serveur ===");
+{
+  const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET }));
+  check("sans météo fournie : provenance estimated_region", est.climate.provenance === "estimated_region", est.climate.provenance);
+  const vis = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
+  check("météo fournie : provenance visitor_input", vis.climate.provenance === "visitor_input", vis.climate.provenance);
+  const opt = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }), { weatherProvenance: "estimated_latitude" });
+  check("option interne : provenance estimated_latitude", opt.climate.provenance === "estimated_latitude", opt.climate.provenance);
+}
+
+console.log("\n=== 4. Tri-state : estimation → confirmation_required ; fournie → denied ===");
+// CDG → IST en juillet : région Asia, 34 °C estimés — au-dessus du seuil de 30. Turkish porte
+// `rule_tk_summer_embargo`. Témoin de non-vacuité : la règle doit s'être déclenchée.
+{
+  const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET }));
+  const tk = est.airlines.find((a) => a.airline_id === "airline_turkish");
+  check("Turkish est candidate (témoin de non-vacuité)", !!tk);
+  check("la règle d'embargo s'est déclenchée (témoin)", tk?.fired.some((f) => f.rule_id === "rule_tk_summer_embargo"),
+    tk?.fired.map((f) => f.rule_id).join(", "));
+  for (const pl of ["hold", "cargo"]) {
+    const p = stOf(est, "airline_turkish", pl);
+    check(`estimation : ${pl} = confirmation_required, allowed=false`,
+      p?.status === "confirmation_required" && p?.allowed === false, JSON.stringify(p));
+  }
+  const rep = explain(est, "fr");
+  const tkr = rep.airlines.find((a) => a.airline_id === "airline_turkish");
+  check("rapport : hold_status/cargo_status = confirmation_required",
+    tkr?.hold_status === "confirmation_required" && tkr?.cargo_status === "confirmation_required",
+    JSON.stringify({ h: tkr?.hold_status, c: tkr?.cargo_status }));
+  check("rapport : booléens hold/cargo = false (jamais rendus disponibles)",
+    tkr?.hold === false && tkr?.cargo === false);
+  check("rapport : to_confirm liste les canaux", (tkr?.to_confirm ?? []).includes("hold") && (tkr?.to_confirm ?? []).includes("cargo"),
+    JSON.stringify(tkr?.to_confirm));
+  check("rapport : heat_confirmation_required=true, heat_embargo=false",
+    tkr?.heat_confirmation_required === true && tkr?.heat_embargo === false);
+  check("rapport : compatible[] ne contient AUCUN canal à confirmer de Turkish",
+    !rep.compatible.some((c) => c.airline_id === "airline_turkish" && (c.placement === "hold" || c.placement === "cargo")));
+  check("climat du rapport : confirmation_required=true, embargo=false",
+    rep.climate?.confirmation_required === true && rep.climate?.embargo === false, JSON.stringify(rep.climate));
+
+  const vis = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
+  for (const pl of ["hold", "cargo"]) {
+    const p = stOf(vis, "airline_turkish", pl);
+    check(`température FOURNIE (35) : ${pl} = denied — la donnée fournie garde son effet`,
+      p?.status === "denied" && p?.allowed === false, JSON.stringify(p));
+  }
+  const repV = explain(vis, "fr");
+  check("température fournie : climat.embargo=true, confirmation_required=false",
+    repV.climate?.embargo === true && repV.climate?.confirmation_required === false, JSON.stringify(repV.climate));
+  const froid = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 20 } }));
+  const pFroid = stOf(froid, "airline_turkish", "hold");
+  check("température fournie SOUS le seuil (20) : hold = allowed (l'embargo ne se déclenche pas)",
+    pFroid?.status === "allowed", JSON.stringify(pFroid));
+}
+
+console.log("\n=== 5. Dominance : denied > confirmation_required — interaction P0 climat / P0-B brachy ===");
+/* Un carlin sur la même route : les règles brachycéphales actuelles ferment soute et fret en dur.
+ * L'embargo estimé s'y ajoute — le statut doit rester `denied`, jamais « à confirmer » : une
+ * confirmation de chaleur ne rouvre pas un canal fermé pour la race.
+ *
+ * TEST D'INTERACTION AVEC P0-B (exigé par la revue du 13/08/2026) : aujourd'hui, un carlin produit
+ * ZÉRO confirmation climatique sur tout le balayage, parce que les 48 règles brachy dominent.
+ * Quand P0-B requalifiera ces règles (audit des sources compagnie), des confirmations climatiques
+ * APPARAÎTRONT pour les brachycéphales — ce contrôle-ci échouera alors, et c'est voulu : il force
+ * le lot P0-B à re-mesurer l'interaction au lieu de l'hériter en silence. */
+{
+  const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
+  for (const pl of ["hold", "cargo"]) {
+    const p = stOf(est, "airline_turkish", pl);
+    check(`carlin : ${pl} = denied (la règle de race domine l'embargo estimé)`,
+      p?.status === "denied", JSON.stringify(p));
+  }
+  const confirmations = est.airlines.flatMap((a) => a.placements).filter((p) => p.status === "confirmation_required").length;
+  check("carlin : ZÉRO confirmation climatique sur cette route (domination brachy actuelle — sentinelle P0-B)",
+    confirmations === 0, `${confirmations} confirmation(s)`);
+}
+
+console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===");
+/* Sur les données réelles, aucun cas ne produit « conditional par confirmations seules » (mesuré,
+ * y compris par Codex sur les quatre préférences). La règle se teste donc sur une base RESTREINTE :
+ * mêmes données, seule Turkish reste candidate. */
+{
+  const kbTK = { ...kb, airlines: new Map([...kb.airlines].filter(([id]) => id === "airline_turkish")) };
+  const dec = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, placement: "hold" }));
+  const rep = explain(dec, "fr");
+  check("placement=hold, seul canal à confirmer → verdict CONDITIONAL", rep.verdict === "conditional", rep.verdict);
+  /* Petit chien : la cabine de Turkish est fermée au POIDS pour un golden de 25 kg — le témoin
+     « cabin_status=allowed » serait faux pour une raison sans rapport avec le verdict testé. */
+  const decC = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: { weight_kg: 5 }, date: JUILLET, placement: "cabin" }));
+  const repC = explain(decC, "fr");
+  /* Renforcée (contre-revue v3) : l'ancienne forme « pas conditional OU une confirmation existe »
+     était satisfiable par presque tout. On épingle la RÈGLE : la cabine est allowed, donc le
+     verdict suit la voie « allowed » — conditional UNIQUEMENT par les formalités, jamais par la
+     confirmation de la soute, et jamais incompatible. */
+  check("placement=cabin : cabin_status=allowed (témoin)", repC.airlines[0]?.cabin_status === "allowed",
+    repC.airlines[0]?.cabin_status);
+  check("placement=cabin : verdict par la voie « allowed » — exactement (formalités ? conditional : compatible)",
+    repC.verdict === (repC.conditions.length > 0 ? "conditional" : "compatible"),
+    `verdict ${repC.verdict}, ${repC.conditions.length} formalité(s)`);
+  /* entry_allowed=false DOMINE : même base restreinte, une règle pays deny ajoutée en mémoire. */
+  const banRule = {
+    id: "rule_test_entry_ban", scope: { type: "country", id: "country_tr" }, category: "import_rules",
+    criticality: "critical", applies_when: { fact: "dog.weight_kg", op: "gt", value: 0 },
+    effect: { action: "deny" }, params: {},
+    rationale: "règle de TEST — interdiction d'entrée synthétique", rationale_i18n: {},
+    source: { url: "https://example.org/test", source_type: "other", verified_date: "2026-08-13", review_due: "2027-02-13", confidence: 1, reviewer: "test", history: [] },
+  };
+  const kbBan = { ...kbTK, rules: [...kbTK.rules, banRule] };
+  const decBan = evaluate(kbBan, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, placement: "hold" }));
+  check("entry_allowed=false (témoin)", decBan.destination.entry_allowed === false);
+  const repBan = explain(decBan, "fr");
+  check("entrée interdite : INCOMPATIBLE, quoi qu'en disent les confirmations", repBan.verdict === "incompatible", repBan.verdict);
+  check("entrée interdite : plus aucun statut à confirmer (denied partout)",
+    repBan.airlines.every((a) => a.cabin_status === "denied" && a.hold_status === "denied" && a.cargo_status === "denied"));
+  check("entrée interdite : score = 0", repBan.score === 0, String(repBan.score));
+}
+
+console.log("\n=== 7. Destinations : statuts, fret émis, inclusion en alternative ===");
+{
+  const dest = rankDestinations(kb, DestinationsRequest.parse({ origin: "airport_cdg", dog: GOLDEN, date: JUILLET, locale: "fr" }));
+  check("aucune destination ne porte heat_embargo=true (température toujours estimée ici)",
+    dest.matches.every((m) => m.heat_embargo === false));
+  const mia = dest.matches.find((m) => m.iata === "MIA");
+  check("Miami est INCLUSE en juillet (elle disparaissait avant ce lot)", !!mia);
+  check("Miami : aucune compagnie confirmée, ≥1 à confirmer",
+    mia?.airlines_total === 0 && (mia?.airlines_to_confirm_total ?? 0) > 0,
+    JSON.stringify({ t: mia?.airlines_total, c: mia?.airlines_to_confirm_total }));
+  check("Miami : placement_ok=false, placement_to_confirm=true — jamais rendue disponible",
+    mia?.placement_ok === false && mia?.placement_to_confirm === true);
+  check("Miami : heat_confirmation_required=true", mia?.heat_confirmation_required === true);
+  const auh = dest.matches.find((m) => m.iata === "AUH");
+  check("Abou Dabi : cargo_status émis et allowed — le fret n'est plus invisible",
+    auh?.cargo_status === "allowed" && auh?.cargo_ok === true,
+    JSON.stringify({ st: auh?.cargo_status, ok: auh?.cargo_ok, cab: auh?.cabin_ok, hold: auh?.hold_ok }));
+  check("Abou Dabi : compatible par le fret, désormais EXPLICABLE (cabin/hold fermés, cargo ouvert)",
+    auh?.placement_ok === true && auh?.cabin_ok === false && auh?.hold_ok === false);
+  const statuses = ["allowed", "denied", "confirmation_required"];
+  check("tous les statuts émis sont valides",
+    dest.matches.every((m) => [m.cabin_status, m.hold_status, m.cargo_status].every((s) => statuses.includes(s))));
+  check("booléens *_ok vrais UNIQUEMENT pour allowed",
+    dest.matches.every((m) => (m.cabin_ok === (m.cabin_status === "allowed")) && (m.hold_ok === (m.hold_status === "allowed")) && (m.cargo_ok === (m.cargo_status === "allowed"))));
+}
+
+console.log("\n=== 7 bis. climate.embargo dérive des RÈGLES, pas du seuil (contre-revue v3) ===");
+{
+  /* Température FOURNIE de 35° avec, par RESTRICTION EN MÉMOIRE, une seule compagnie candidate
+     qui ne porte AUCUNE règle summer_embargo (Emirates) : rien n'a été suspendu, le bandeau ne
+     doit pas l'affirmer. Le réseau réel ne fournit pas ce cas proprement — Turkish est candidate
+     (en correspondance) sur presque toutes les routes et déclenche sa règle. */
+  const kbEK = { ...kb, airlines: new Map([...kb.airlines].filter(([id]) => id === "airline_emirates")) };
+  const dec = evaluate(kbEK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_dxb", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
+  check("témoin : aucune règle summer_embargo déclenchée",
+    !dec.airlines.some((a) => a.fired.some((f) => f.category === "summer_embargo")));
+  const rep = explain(dec, "fr");
+  check("35° fournis, aucune règle déclenchée : climate.embargo=FALSE (le seuil seul ne suffit plus)",
+    rep.climate?.embargo === false, JSON.stringify(rep.climate));
+  check("et aucune carte ne porte heat_embargo", rep.airlines.every((a) => !a.heat_embargo));
+}
+
+console.log("\n=== 7 ter. Tri : l'accepté RÉEL passe avant le « à confirmer » (contre-revue v3) ===");
+{
+  const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET }));
+  const rep = explain(est, "fr");
+  const premierConfirmSeul = rep.airlines.findIndex((a) => !a.cabin && !a.hold && !a.cargo && (a.to_confirm?.length ?? 0) > 0);
+  const dernierAccepte = rep.airlines.map((a, i) => (a.cabin || a.hold || a.cargo ? i : -1)).reduce((x, y) => Math.max(x, y), -1);
+  if (premierConfirmSeul !== -1 && dernierAccepte !== -1) {
+    check("toute compagnie RÉELLEMENT acceptante précède toute compagnie « à confirmer seulement »",
+      dernierAccepte < premierConfirmSeul,
+      `dernier accepté à l'index ${dernierAccepte}, premier à-confirmer-seul à ${premierConfirmSeul}`);
+  } else {
+    check("témoin : le cas de tri existe sur cette route", false, `confirmSeul=${premierConfirmSeul} accepte=${dernierAccepte}`);
+  }
+}
+
+console.log("\n=== 7 quater. Bandeau ⇔ cartes : l'embargo affiché a toujours une carte marquée (contre-revue v4) ===");
+{
+  /* kbTK + 35° fournis : Turkish a la cabine fermée au POIDS et la soute/le fret par l'embargo.
+     La v4 démarquait la carte (garde « seule raison ») pendant que le bandeau affirmait « les
+     compagnies concernées sont marquées ». L'invariant est désormais structurel. */
+  const kbTK = { ...kb, airlines: new Map([...kb.airlines].filter(([id]) => id === "airline_turkish")) };
+  const dec = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
+  const rep = explain(dec, "fr");
+  /* v7 (contre-revue v6) : la disjonction « OU cabine fermée » rendait le témoin vert même si le
+     motif `weight_limit` disparaissait — le libellé affirme le POIDS, la preuve exige le motif. */
+  check(
+    "témoin : la cabine est fermée pour une AUTRE cause (poids)",
+    (rep.airlines[0]?.deny_reasons ?? []).includes("weight_limit"),
+    JSON.stringify(rep.airlines[0]?.deny_reasons),
+  );
+  check("climate.embargo=true (règle déclenchée sur température fournie)", rep.climate?.embargo === true, JSON.stringify(rep.climate));
+  check("…ET la carte est marquée heat_embargo — le bandeau tient sa promesse",
+    rep.airlines.some((a) => a.heat_embargo === true), JSON.stringify(rep.airlines.map((a) => ({ id: a.airline_id, he: a.heat_embargo }))));
+}
+
+console.log("\n=== 7 quinquies. Tri par PLACEMENT DEMANDÉ — 5 kg, soute ET fret (contre-revues v4 et v6) ===");
+{
+  /* v7 : le harnais versionné n'exerçait que la soute, avec un golden de 25 kg dont la cabine
+     est fermée au poids — la contre-épreuve indépendante de Codex utilisait un chien de 5 kg et
+     couvrait aussi le fret. La CI fige désormais ce résultat (aujourd'hui : 12 autorisées puis
+     4 à confirmer, sur les deux canaux) au lieu de dépendre d'une mesure ponctuelle. */
+  for (const canal of ["hold", "cargo"]) {
+    const dec = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: { weight_kg: 5 }, date: JUILLET, placement: canal }));
+    const rep = explain(dec, "fr");
+    const ok = rep.airlines.map((a, i) => ((canal === "hold" ? a.hold : a.cargo) ? i : -1)).filter((i) => i >= 0);
+    const confirm = rep.airlines.map((a, i) => ((canal === "hold" ? a.hold_status : a.cargo_status) === "confirmation_required" ? i : -1)).filter((i) => i >= 0);
+    check(`${canal} : population « autorisée » non vide`, ok.length > 0, `${ok.length}`);
+    check(`${canal} : population « à confirmer » non vide`, confirm.length > 0, `${confirm.length}`);
+    if (ok.length && confirm.length) {
+      check(`${canal} : TOUTE autorisation précède TOUTE confirmation (${ok.length} puis ${confirm.length})`,
+        Math.max(...ok) < Math.min(...confirm),
+        `dernier autorisé à ${Math.max(...ok)}, premier à confirmer à ${Math.min(...confirm)}`);
+    }
+  }
+}
+
+console.log("\n=== 7 sexies. Entrée interdite : le bandeau ne survit pas aux cartes (contre-revue v5) ===");
+{
+  /* Le cas exact de la contre-épreuve : American Pit Bull Terrier JFK→CDG, 35° fournis. La France
+     interdit l'entrée de la race ; toutes les cartes sont démarquées par `entryAllowed` — le
+     bandeau ne peut donc plus affirmer un embargo. Et l'invariant est GLOBAL : bandeau ⇔ cartes,
+     par dérivation directe. */
+  const dec = evaluate(kb, FinderRequest.parse({
+    origin: "airport_jfk", destination: "airport_cdg",
+    dog: { breed_id: "breed_american_pit_bull_terrier", weight_kg: 25 },
+    date: JUILLET, weather: { temperature_c: 35 },
+  }));
+  check("témoin : l'entrée est interdite", dec.destination.entry_allowed === false);
+  check("témoin : une règle summer_embargo s'est pourtant déclenchée quelque part",
+    dec.airlines.some((a) => a.fired.some((f) => f.category === "summer_embargo")));
+  const rep = explain(dec, "fr");
+  check("verdict incompatible", rep.verdict === "incompatible", rep.verdict);
+  check("AUCUNE carte marquée heat_embargo (entryAllowed les démarque toutes)",
+    rep.airlines.every((a) => a.heat_embargo !== true));
+  check("et le bandeau suit : climate.embargo=FALSE", rep.climate?.embargo === false, JSON.stringify(rep.climate));
+  check("INVARIANT GLOBAL : climate.embargo === (≥1 carte heat_embargo)",
+    (rep.climate?.embargo ?? false) === rep.airlines.some((a) => a.heat_embargo === true));
+}
+
+console.log("\n=== 8. INVARIANT sur données réelles : le drapeau ne ment jamais (contre-épreuve Codex v2) ===");
+/* La contre-revue v2 l'a démontré : un drapeau dérivé du seul seuil de température annonçait
+ * « à confirmer » sur 53 destinations d'un carlin dont AUCUN canal n'était à confirmer. L'invariant
+ * est désormais testé sur le balayage RÉEL, pas sur des fixtures : pour chaque destination,
+ * `heat_confirmation_required` ⇔ ≥1 confirmation réelle dans les statuts recalculés par le moteur
+ * sous la température de l'outil. Deux chiens — le carlin est le cas qui mentait. */
+for (const [dogLabel, dog] of [["golden", GOLDEN], ["carlin", CARLIN]]) {
+  const dest = rankDestinations(kb, DestinationsRequest.parse({ origin: "airport_cdg", dog, date: JUILLET, locale: "fr" }));
+  let flagged = 0, mensonges = 0, signalSansConfirmation = 0;
+  for (const m of dest.matches) {
+    const dec = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: m.airport_id, dog, date: JUILLET, weather: { temperature_c: m.temperature_c } }), { weatherProvenance: "estimated_latitude" });
+    const reelle = dec.airlines.some((a) => a.direct && a.placements.some((p) => p.status === "confirmation_required"));
+    if (m.heat_confirmation_required) { flagged++; if (!reelle) mensonges++; }
+    if (m.estimated_heat_signal && !m.heat_confirmation_required) signalSansConfirmation++;
+  }
+  check(`${dogLabel} : ZÉRO destination « à confirmer » sans confirmation réelle (${flagged} signalées)`,
+    mensonges === 0, `${mensonges} drapeaux mensongers`);
+  console.log(`         ${dogLabel} : ${flagged} à confirmer · ${signalSansConfirmation} signal de chaleur seul`);
+}
+{
+  // Le cas nominal de la contre-revue : carlin, Athènes — signal OUI, confirmation NON.
+  const dest = rankDestinations(kb, DestinationsRequest.parse({ origin: "airport_cdg", dog: CARLIN, date: JUILLET, locale: "fr" }));
+  const ath = dest.matches.find((m) => m.iata === "ATH");
+  check("carlin/Athènes : estimated_heat_signal=true, heat_confirmation_required=FALSE",
+    ath?.estimated_heat_signal === true && ath?.heat_confirmation_required === false,
+    JSON.stringify({ sig: ath?.estimated_heat_signal, conf: ath?.heat_confirmation_required, h: ath?.hold_status, c: ath?.cargo_status }));
+  check("carlin/Athènes : hold et cargo sont denied (rien à confirmer)",
+    ath?.hold_status === "denied" && ath?.cargo_status === "denied");
+}
+{
+  // Rapport Finder : même invariant sur le bandeau global.
+  const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ath", dog: CARLIN, date: JUILLET }));
+  const rep = explain(est, "fr");
+  /* Renforcée (contre-revue v3) : l'ancien « false OU une confirmation existe » était une
+     tautologie de l'implémentation. Valeurs épinglées sur le cas réel — IST et non ATH pour la
+     partie signal : le modèle RÉGION du Finder donne 28° à Athènes (Europe), sous le seuil ;
+     c'est l'outil Destinations (latitude, 31°) qui portait le signal d'Athènes, testé au §8. */
+  check("bandeau Finder (carlin/ATH) : rapport climatique présent", !!rep.climate);
+  check("bandeau Finder (carlin/ATH) : AUCUNE compagnie n'a de canal à confirmer (témoin)",
+    rep.airlines.every((a) => (a.to_confirm?.length ?? 0) === 0));
+  check("bandeau Finder (carlin/ATH) : confirmation_required=false, embargo=false",
+    rep.climate?.confirmation_required === false && rep.climate?.embargo === false, JSON.stringify(rep.climate));
+  const estIst = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
+  const repIst = explain(estIst, "fr");
+  check("bandeau Finder (carlin/IST, 34° estimés) : signal=true, confirmation=false, embargo=false",
+    repIst.climate?.estimated_heat_signal === true && repIst.climate?.confirmation_required === false && repIst.climate?.embargo === false,
+    JSON.stringify(repIst.climate));
+}
+
+console.log("\n=== SUMMARY ===");
+console.log(fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`);
+process.exit(fail === 0 ? 0 : 1);

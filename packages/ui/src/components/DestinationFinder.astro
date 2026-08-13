@@ -75,7 +75,9 @@ const L = {
     // le chiffre ne portera plus désormais que sur la liste "compatible" (cf. script plus bas).
     reachable: T("compatible cities — referenced direct route, check schedules", "villes compatibles — liaison directe référencée, horaires à vérifier", "ciudades compatibles — ruta directa referenciada, horarios por confirmar"),
     directOnly: T("Direct flights only", "Vols directs uniquement", "Solo vuelos directos"),
-    tempFilter: T("Temperature filter applied — some cities set aside due to heat", "Filtre de température appliqué — certaines villes écartées pour cause de chaleur", "Filtro de temperatura aplicado: algunas ciudades descartadas por el calor"),
+    /* v3 : l'ancien texte affirmait que des villes avaient été « écartées pour cause de
+       chaleur » — le code n'établit ni l'un ni l'autre. On dit le signal, et où regarder. */
+    tempFilter: T("Estimated heat signal on some cities — check each card", "Signal de chaleur estimé sur certaines villes — consulter chaque carte", "Señal de calor estimada en algunas ciudades: consulta cada tarjeta"),
     dateForClimate: T("Add a date to estimate the climate", "Ajoute une date pour estimer le climat", "Añade una fecha para estimar el clima"),
     estimate: T("Estimate — always confirm the exact rules on each country's page.", "Estimation — vérifie toujours les règles exactes sur la fiche de chaque pays.", "Estimación: confirma siempre las normas exactas en la página de cada país."),
     viewGuide: T("View country guide", "Voir la fiche pays", "Ver la ficha del país"),
@@ -83,10 +85,20 @@ const L = {
     formalities: T("Formalities", "Formalités", "Trámites"),
     flights: T("Flights", "Vols", "Vuelos"),
     // climate
-    climComfort: T("Comfortable on your date", "Confortable à ta date", "Cómodo en tu fecha"),
+    /* P0 climat : une estimation n'affirme jamais le confort — elle dit qu'AUCUN SIGNAL n'est
+       détecté par cet indicateur. « Confortable à ta date » promettait une assurance que le modèle
+       (latitude + mois, sans altitude) ne peut pas donner. */
+    climNoSignal: T("No heat signal from this indicator (estimate)", "Aucun signal chaleur détecté par cet indicateur (estimation)", "Sin señal de calor de este indicador (estimación)"),
     climRisk: T("Possible heat wave — watch the hold", "Canicule possible — attention à la soute", "Posible ola de calor: cuidado con la bodega"),
-    climEmbargo: T("Heat too high — hold/cargo often suspended", "Chaleur trop forte — soute souvent suspendue", "Calor demasiado alto: la bodega/carga suele estar suspendida"),
-    climEmbargoBrachy: T("Too hot for a snub-nosed dog on this date", "Trop chaud pour un chien brachycéphale à cette date", "Demasiado calor para un perro de hocico chato en esta fecha"),
+    /* Sur estimation, on ne dit plus « souvent suspendue » (un pronostic) : la politique est à
+       confirmer auprès de la compagnie. */
+    climToConfirm: T("Estimated heat above threshold — hold/cargo to confirm with the airline", "Chaleur estimée au-dessus du seuil — soute/fret à confirmer auprès de la compagnie", "Calor estimado por encima del umbral: bodega/carga a confirmar con la aerolínea"),
+    plToConfirm: T("To confirm with the airline", "À confirmer auprès de la compagnie", "A confirmar con la aerolínea"),
+    climHeatSignal: T("High estimated heat (latitude+month model) — an estimate, not a forecast", "Chaleur estimée élevée (modèle latitude+mois) — une estimation, pas une prévision", "Calor estimado alto (modelo latitud+mes): una estimación, no una previsión"),
+    climHeatSignalBrachy: T("High estimated heat — snub-nosed dogs are especially heat-sensitive", "Chaleur estimée élevée — les races à museau court y sont particulièrement sensibles", "Calor estimado alto: las razas de hocico chato son especialmente sensibles"),
+    /* Sur ESTIMATION, on n'affirme plus « trop chaud » — on dit le risque et la question à poser.
+       (Contre-revue P0-C v1 : l'ancien libellé affirmait un fait météo depuis une latitude.) */
+    climToConfirmBrachy: T("Estimated heat — risky for a snub-nosed dog: hold/cargo to confirm with the airline", "Chaleur estimée — risquée pour un chien brachycéphale : soute/fret à confirmer auprès de la compagnie", "Calor estimado — arriesgado para un perro de hocico chato: bodega/carga a confirmar con la aerolínea"),
     // formalities
     fmLight: T("Light — you already hold the key documents", "Légères — tu as déjà les documents clés", "Ligeros: ya tienes los documentos clave"),
     fmModerate: T("Moderate — a step or two to prepare", "Modérées — une ou deux étapes à prévoir", "Moderados: uno o dos pasos por preparar"),
@@ -102,6 +114,10 @@ const L = {
     // composer les messages (points 1, 2, 6, 9).
     plCabin: t(locale, "placement.cabin"),
     plHold: t(locale, "placement.hold"),
+    /* Fret : entre officiellement dans l'outil (option 1, 13/08/2026) — il décidait de
+       `placement_ok` sans jamais être affiché. Le libellé dit sa nature : non accompagné. */
+    plCargo: t(locale, "placement.cargo"),
+    plCargoNote: T("cargo — unaccompanied, booked separately", "fret — non accompagné, réservation séparée", "carga: no acompañado, reserva aparte"),
     plAny: T("Any", "Indifférent", "Indiferente"),
     staleHint: T("Criteria changed — rerun the search.", "Critères modifiés — relance la recherche.", "Criterios modificados: repite la búsqueda."),
     originInvalid: T("Choose a city or airport from the list.", "Sélectionne une ville ou un aéroport dans la liste proposée.", "Elige una ciudad o aeropuerto de la lista."),
@@ -113,6 +129,11 @@ const L = {
     noPlacementTemplate: T("No direct airline seems to accept {breed} for {placement} on a route referenced from this city. Try another placement or contact a specialised carrier.", "Aucune compagnie directe ne semble accepter {breed} en {placement} sur une liaison référencée depuis cette ville. Essaie un autre placement ou contacte une compagnie spécialisée.", "Ninguna aerolínea directa parece aceptar a {breed} en {placement} en una ruta referenciada desde esta ciudad. Prueba otra ubicación o contacta con una aerolínea especializada."),
     noneInRange: T("No destination in this distance band. Try widening the filter.", "Aucune destination dans cette tranche de distance. Essaie d'élargir le filtre.", "Ningún destino en este rango de distancia. Prueba a ampliar el filtro."),
     altSectionTitle: T("Alternatives with a different placement", "Alternatives avec un autre placement", "Alternativas con otra ubicación"),
+    toConfirmSectionTitle: T("To confirm with the airline (estimated heat)", "À confirmer auprès de la compagnie (chaleur estimée)", "A confirmar con la aerolínea (calor estimado)"),
+    /* v4 : la note affirmait « aucun canal ouvert » alors que la section reçoit aussi des
+       destinations dont la CABINE est réellement ouverte (seul le canal demandé est à confirmer).
+       La note décrit le point commun réel — le canal demandé — et renvoie aux cartes. */
+    toConfirmSectionHint: T("For these routes, the requested placement depends on a confirmation from the airline for this date. Channels that are documented open, if any, are named on each card.", "Sur ces routes, le placement demandé dépend d'une confirmation de la compagnie pour cette date. Les canaux documentés ouverts, s'il y en a, sont nommés sur chaque carte.", "En estas rutas, la ubicación solicitada depende de una confirmación de la aerolínea para esta fecha. Los canales documentados como abiertos, si los hay, se nombran en cada tarjeta."),
     altSectionHint: T("Reachable directly, but not with the placement you selected — shown here rather than hidden.", "Accessibles en direct, mais pas avec le placement sélectionné — affichées ici plutôt que masquées.", "Accesibles en directo, pero no con la ubicación seleccionada: se muestran aquí en vez de ocultarse."),
     suggestedSuffix: T("suggested from the breed's average weight", "suggéré selon le poids moyen de la race", "sugerido según el peso medio de la raza"),
     airline1: T("airline", "compagnie", "aerolínea"),
@@ -156,6 +177,7 @@ const L = {
           <option value="any">{T("Any", "Indifférent", "Indiferente")}</option>
           <option value="cabin">{t(locale, "placement.cabin")}</option>
           <option value="hold">{t(locale, "placement.hold")}</option>
+          <option value="cargo">{t(locale, "placement.cargo")}</option>
         </select>
         <small id="dfx-placement-hint" class="dfx__phint" hidden></small>
       </div>
@@ -221,7 +243,7 @@ const L = {
     if (placeHintEl) {
       if (v === "any") { placeHintEl.hidden = true; placeHintEl.textContent = ""; }
       else {
-        const word = v === "cabin" ? S.plCabin : S.plHold;
+        const word = v === "cabin" ? S.plCabin : v === "hold" ? S.plHold : S.plCargo;
         placeHintEl.hidden = false;
         placeHintEl.textContent = `${word} ${S.suggestedSuffix}`;
       }
@@ -281,7 +303,12 @@ const L = {
   type Match = {
     airport_id: string; iata: string; city: string; country_id: string; iso2: string; country_name: string; region: string;
     temperature_c: number; climate_estimated: boolean; heat_embargo: boolean; heat_risk: boolean;
-    airlines_total: number; cabin_ok: boolean; hold_ok: boolean; placement_ok: boolean; entry_allowed: boolean; flight_hours: number;
+    airlines_total: number; airlines_to_confirm_total: number;
+    cabin_ok: boolean; hold_ok: boolean; cargo_ok: boolean;
+    cabin_status: string; hold_status: string; cargo_status: string;
+    placement_ok: boolean; placement_to_confirm: boolean;
+    heat_confirmation_required: boolean; estimated_heat_signal: boolean;
+    entry_allowed: boolean; flight_hours: number;
   };
   type Docs = { base: boolean; eu: boolean; titer: boolean; cert: boolean };
 
@@ -320,10 +347,26 @@ const L = {
   const COLD_THRESHOLD_C = 10;
   function climate(m: Match, brachy: boolean): { level: 0 | 1 | 2; label: string; score: number; known: boolean } {
     if (!m.climate_estimated) return { level: 1, label: S.dateForClimate, score: 0.7, known: false };
-    if (m.heat_embargo) return brachy ? { level: 2, label: S.climEmbargoBrachy, score: 0.08, known: true } : { level: 2, label: S.climEmbargo, score: 0.3, known: true };
+    /* P0 climat, v3 : DEUX signaux distincts, jamais confondus (contre-revue v2 — un carlin dont
+       la soute et le fret sont REFUSÉS par les règles de race recevait « à confirmer » alors que
+       rien n'était à confirmer).
+       - `heat_confirmation_required` : ≥1 canal réellement `confirmation_required` chez une
+         compagnie directe → « à confirmer » est alors un conseil exact ;
+       - `estimated_heat_signal` seul : l'indicateur de température a dépassé le seuil mais aucune
+         règle n'a produit de confirmation → on dit le SIGNAL, sans rien demander de confirmer. */
+    if (m.heat_embargo || m.heat_confirmation_required) {
+      return brachy ? { level: 2, label: S.climToConfirmBrachy, score: 0.08, known: true }
+                    : { level: 2, label: S.climToConfirm, score: 0.3, known: true };
+    }
+    if (m.estimated_heat_signal) {
+      return brachy ? { level: 2, label: S.climHeatSignalBrachy, score: 0.08, known: true }
+                    : { level: 1, label: S.climHeatSignal, score: 0.62, known: true };
+    }
     if (m.heat_risk) return { level: 1, label: S.climRisk, score: 0.62, known: true };
     if (m.temperature_c < COLD_THRESHOLD_C) return { level: 1, label: S.climCold, score: 0.75, known: true };
-    return { level: 0, label: S.climComfort, score: 1, known: true };
+    /* Aucun signal ≠ assurance de confort : classe NEUTRE, libellé « aucun signal », score
+       inchangé (le classement relatif ne bouge pas, l'affirmation si). */
+    return { level: 1, label: S.climNoSignal, score: 1, known: true };
   }
 
   // Retest 09/08/2026, points 1+9 : le pill "Vols (N)" comptait toujours les compagnies directes,
@@ -334,12 +377,34 @@ const L = {
   function flightsMeta(m: Match, placementPref: string): { level: 0 | 1 | 2; header: string; label: string; score: number } {
     const n = m.airlines_total;
     const word = n === 1 ? S.airline1 : S.airlineN;
+    /* Deux situations « à confirmer » DISTINCTES (contre-revue P0-C v1 — la v1 les confondait et
+       affichait « 0 compagnie — à confirmer » à côté d'une compagnie bien réelle) :
+       a) la destination ENTIÈRE est à confirmer (aucune compagnie avec un canal allowed) : le
+          compte `airlines_to_confirm_total` est alors le bon, on l'affiche ;
+       b) le CANAL DEMANDÉ est à confirmer mais d'autres canaux sont réellement ouverts :
+          `airlines_to_confirm_total` ne compte PAS ces compagnies (elles ont un canal allowed) —
+          aucun compte n'est donc affichable honnêtement ; la carte nomme le statut du canal
+          demandé ET les canaux réellement disponibles. */
+    if (n === 0 && m.airlines_to_confirm_total > 0) {
+      const nc = m.airlines_to_confirm_total;
+      const wc = nc === 1 ? S.airline1 : S.airlineN;
+      return { level: 1, header: `${nc} ${wc} — ${S.plToConfirm}`, label: S.plToConfirm, score: 0.3 };
+    }
+    if (m.placement_to_confirm) {
+      const avail: string[] = [];
+      if (m.cabin_ok) avail.push(S.plCabin);
+      if (m.hold_ok) avail.push(S.plHold);
+      if (m.cargo_ok) avail.push(S.plCargoNote);
+      const availTxt = avail.length ? ` ${S.altAvailable} ${avail.join(", ")}` : "";
+      return { level: 1, header: `${n} ${word} ${S.directRefSuffix}`, label: `${S.plToConfirm}.${availTxt}`, score: 0.35 };
+    }
     if (placementPref === "any" || m.placement_ok) {
       return { level: 0, header: `${n} ${word} ${S.directRefSuffix}`, label: S.flDirect, score: 1 };
     }
     const avail: string[] = [];
     if (m.cabin_ok) avail.push(S.plCabin);
     if (m.hold_ok) avail.push(S.plHold);
+    if (m.cargo_ok) avail.push(S.plCargoNote);
     const availTxt = avail.length ? ` ${S.altAvailable} ${avail.join(", ")}` : "";
     return { level: 2, header: `${n} ${word} — ${S.noPlacementSuffix}`, label: `${S.flLimited}.${availTxt}`, score: 0.4 };
   }
@@ -357,7 +422,7 @@ const L = {
     const bad = score < 40;
     const href = `${L.cbase}${m.iso2.toLowerCase()}/`;
     const temp = cl.known ? `${S.climate} ~${m.temperature_c}°C` : S.climate;
-    const climCls = cl.known ? CLIMCLS[cl.level] : NEUTRAL;
+    const climCls = !cl.known || cl.label === S.climNoSignal ? NEUTRAL : CLIMCLS[cl.level];
     const hrs = m.flight_hours > 0 ? `<span class="dfx-card__hrs">✈ ≈${m.flight_hours} h</span>` : "";
     const html = `<article class="dfx-card${bad ? " dfx-card--bad" : ""}">
       <a class="dfx-card__head" href="${esc(href)}">
@@ -495,10 +560,27 @@ const L = {
     // placement demandé devient une vraie condition éliminatoire pour la liste principale ; les
     // destinations qui ne la remplissent pas passent dans une section "Alternatives" séparée et
     // explicitement nommée, plutôt que de disparaître ou d'être confondues avec les compatibles.
-    let compatible = matches, alternatives: Match[] = [];
+    /* P0 climat : une destination « à confirmer seulement » (aucun canal réellement allowed)
+       n'entre JAMAIS dans les compatibles, même en préférence « Indifférent » — elle va dans les
+       alternatives, avec son statut. C'est la règle « absence de refus ≠ autorisation documentée »
+       appliquée à la liste elle-même. */
+    /* Trois listes, trois sections (contre-revue P0-C v1 — les « à confirmer » atterrissaient
+       sous le titre « Alternatives avec un autre placement », qui ne les décrit pas) :
+       - compatibles : le placement demandé est réellement `allowed` ;
+       - alternatives de placement : un AUTRE canal est réellement ouvert ;
+       - à confirmer : rien d'ouvert — tout dépend d'une confirmation de la compagnie. */
+    /* v3 (contre-revue) : la section « à confirmer » reçoit TOUTE destination dont le placement
+       demandé est à confirmer — entièrement à confirmer OU canal demandé à confirmer avec
+       d'autres canaux ouverts (la carte nomme alors ces canaux). « Alternatives avec un autre
+       placement » ne reçoit que ce que son titre décrit : le canal demandé est REFUSÉ, un autre
+       est réellement ouvert. */
+    const aConfirmer = (m: Match) => m.placement_to_confirm || (m.airlines_total === 0 && m.airlines_to_confirm_total > 0);
+    let toConfirmList: Match[] = matches.filter(aConfirmer);
+    let compatible = matches.filter((m) => !aConfirmer(m));
+    let alternatives: Match[] = [];
     if (placementPref !== "any") {
-      compatible = matches.filter((m) => m.placement_ok);
-      alternatives = matches.filter((m) => !m.placement_ok);
+      alternatives = compatible.filter((m) => !m.placement_ok);
+      compatible = compatible.filter((m) => m.placement_ok);
     }
 
     // Optional hard filter: trip-distance band (estimated direct flight time), applied independently
@@ -516,14 +598,18 @@ const L = {
     };
     compatible = applyBand(compatible);
     alternatives = applyBand(alternatives);
-    if (!compatible.length && !alternatives.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noneInRange)}</p>`; return; }
+    toConfirmList = applyBand(toConfirmList);
+    /* Le garde-fou « rien dans cette tranche » compte les TROIS listes : une page dont toutes les
+       destinations sont « à confirmer » n'est pas une page vide (défaut relevé en contre-revue —
+       les Miami/Atlanta de juillet retombaient sur ce message et disparaissaient à nouveau). */
+    if (!compatible.length && !alternatives.length && !toConfirmList.length) { out.innerHTML = `<p class="dfx__hint">${esc(S.noneInRange)}</p>`; return; }
 
     const rangeLabel = rangeSel?.selectedOptions[0]?.textContent ?? "";
     const metaCount = banded
       ? `<b>${compatible.length}</b>/${totalCompatible} ${esc(S.reachable)} · ${esc(rangeLabel)}`
       : `<b>${compatible.length}</b> ${esc(S.reachable)}`;
     // Heat notice: shown only when the chosen period is hot enough to sideline some cities on welfare grounds.
-    const heatApplied = [...compatible, ...alternatives].some((m) => m.heat_embargo);
+    const heatApplied = [...compatible, ...alternatives, ...toConfirmList].some((m) => m.heat_embargo || m.heat_confirmation_required || m.estimated_heat_signal);
     const heatBadge = heatApplied ? ` · <span class="dfx__heat">☀️ ${esc(S.tempFilter)}</span>` : "";
     let html = `<div class="dfx__meta">${metaCount} · <span class="dfx__direct">✈ ${esc(S.directOnly)}</span>${heatBadge} · <span class="dfx__est">${esc(S.estimate)}</span></div>`;
 
@@ -534,13 +620,18 @@ const L = {
       if (rest.length) html += `<button type="button" class="dfx__more" id="dfx-more">${esc(S.altShow)} (${rest.length}) ▾</button>
         <div class="dfx__grid dfx__grid--rest" id="dfx-rest" hidden>${rest.map((c) => c.html).join("")}</div>`;
     } else if (placementPref !== "any") {
-      const placementWord = placementPref === "cabin" ? S.plCabin : S.plHold;
+      const placementWord = placementPref === "cabin" ? S.plCabin : placementPref === "hold" ? S.plHold : S.plCargo;
       html += `<p class="dfx__hint">${esc(S.noPlacementTemplate.replace("{breed}", breedLabel).replace("{placement}", placementWord))}</p>`;
     }
 
     if (alternatives.length) {
       const altScored = alternatives.map((m) => card(m, docs, b.br, placementPref)).sort((x, y) => y.score - x.score);
       html += `<h3 class="dfx__toph">${esc(S.altSectionTitle)}</h3><p class="dfx__altnote">${esc(S.altSectionHint)}</p><div class="dfx__grid">${altScored.map((c) => c.html).join("")}</div>`;
+    }
+
+    if (toConfirmList.length) {
+      const tcScored = toConfirmList.map((m) => card(m, docs, b.br, placementPref)).sort((x, y) => y.score - x.score);
+      html += `<h3 class="dfx__toph" id="dfx-toconfirm-title">${esc(S.toConfirmSectionTitle)}</h3><p class="dfx__altnote">${esc(S.toConfirmSectionHint)}</p><div class="dfx__grid" id="dfx-toconfirm">${tcScored.map((c) => c.html).join("")}</div>`;
     }
 
     out.innerHTML = html;
