@@ -475,8 +475,19 @@ async function heatWhyPass() {
       window.document.getElementById("mdcf-finder").dispatchEvent(
         new window.Event("submit", { bubbles: true, cancelable: true }));
       await flush();
-      const link = [...dom.window.document.querySelectorAll("li a")].find((a) => /tools\/heat\//.test(a.getAttribute("href") || ""));
-      check(`${loc.code} : le lien outil chaleur est réellement RENDU dans les résultats`, !!link, "aucun <a href*=tools/heat/> rendu");
+      /* P1-bis (contre-validation preview) : le contrôle v2 vérifiait la présence du lien,
+         pas son TEXTE — « Heat risk calculator » restait anglais en pt. Désormais : texte
+         EXACT du lien, chemin EXACT par langue, et UNICITÉ. */
+      const links = [...dom.window.document.querySelectorAll("li a")].filter((a) => /tools\/heat\//.test(a.getAttribute("href") || ""));
+      const link = links[0];
+      check(`${loc.code} : le lien outil chaleur est rendu et UNIQUE`, links.length === 1, `${links.length} lien(s)`);
+      const HEATNAME = { en: "Heat risk calculator", fr: "Calculateur de risque chaleur", es: "Calculadora de riesgo de calor", pt: "Calculadora de risco de calor" };
+      check(`${loc.code} : TEXTE du lien exact = ${JSON.stringify(HEATNAME[loc.code])}`,
+        !!link && link.textContent.trim() === HEATNAME[loc.code], JSON.stringify(link?.textContent.trim()));
+      const expPath = loc.dir ? `/${loc.dir.replace(/\/+$/, "")}/tools/heat/` : "/tools/heat/";
+      check(`${loc.code} : CHEMIN du lien exact = ${expPath}`,
+        !!link && (link.getAttribute("href") || "").split("#")[0] === expPath,
+        JSON.stringify(link?.getAttribute("href")));
       check(`${loc.code} : la phrase prudente est RENDUE à côté du lien`,
         !!link && (link.closest("li")?.textContent || "").includes(HEATWHY_EXPECTED[loc.code]),
         (link ? link.closest("li")?.textContent.slice(0, 160) : ""));
