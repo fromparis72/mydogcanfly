@@ -429,6 +429,63 @@ async function t0aPass() {
   }
 }
 
+
+/* P1 texte chaleur (14/08/2026) : la phrase `heatToolWhy` ne doit plus AFFIRMER une suspension
+ * universelle. Contrôle sur les VRAIES pages construites (le défaut portugais est un défaut de
+ * résolution au build — un rg dans les sources ne l'attraperait pas) : égalité EXACTE dans les
+ * quatre langues, portugais réellement portugais (jamais le repli anglais), anciennes
+ * formulations absolues absentes, lien vers l'outil chaleur conservé. */
+const HEATWHY_EXPECTED = {
+  en: "Check the expected temperature at departure and arrival for your travel date: some airlines may restrict or suspend hold or cargo transport in hot weather. Confirm the applicable policy before booking.",
+  fr: "Vérifie la température prévue au départ et à l'arrivée pour ta date de voyage : certaines compagnies peuvent limiter ou suspendre le transport en soute ou en fret par forte chaleur. Confirme la règle applicable avant de réserver.",
+  es: "Comprueba la temperatura prevista en la salida y la llegada para tu fecha de viaje: algunas aerolíneas pueden limitar o suspender el transporte en bodega o como carga cuando hace mucho calor. Confirma la política aplicable antes de reservar.",
+  pt: "Verifique a temperatura prevista na partida e na chegada para a data da viagem: algumas companhias podem limitar ou suspender o transporte no porão ou como carga em caso de calor intenso. Confirme a política aplicável antes de reservar.",
+};
+const HEATWHY_FORBIDDEN = /are suspended above|sont suspendus au-delà|se suspenden por encima|são suspensos acima/i;
+async function heatWhyPass() {
+  for (const loc of BADGE_LOCALES) {
+    console.log(`\n— P1 texte chaleur (${loc.code}) —`);
+    const parts = loadHomeParts(loc.dir);
+    const got = parts.labels.heatToolWhy;
+    check(`${loc.code} : heatToolWhy EXACT`, got === HEATWHY_EXPECTED[loc.code], JSON.stringify(got));
+    check(`${loc.code} : aucune formulation absolue résiduelle`, !HEATWHY_FORBIDDEN.test(got || ""));
+    if (loc.code === "pt") {
+      check("pt : réellement portugais, jamais le repli anglais", got !== HEATWHY_EXPECTED.en && /Verifique/.test(got || ""));
+    }
+    /* Contre-revue v1 : la présence de l'URL dans le JSON de config ne prouvait rien — on
+       prouve le RENDU : après une vraie soumission, le <li> « outils complémentaires » porte
+       le lien réel vers l'outil chaleur ET la phrase exacte à côté. */
+    let dom;
+    try {
+      const fetchMock = async (url, opts) => {
+        if (String(url).includes("/nearest-airport")) return { ok: false };
+        /* Le bloc « outils complémentaires » n'est rendu qu'avec un partenaire equipment
+           (la caisse) — le rapport de fixture le porte, comme un vrai rapport. */
+        const rep = { ...FAKE_REPORT, partners: [{ partner_id: "p_crates", vertical: "equipment", name: "IATA Pet Crates", url: "", sponsored: false, reason: "Hold travel requires an IATA-compliant crate." }] };
+        if (opts && opts.method === "POST") return { ok: true, json: async () => rep };
+        throw new Error("unexpected fetch: " + url);
+      };
+      dom = buildDom(parts, fetchMock);
+      const { window } = dom;
+      const originEl = window.document.getElementById("f-origin");
+      const destEl = window.document.getElementById("f-dest");
+      const originIds = resolveEndpointFrom(parts.labels, originEl.value).ids;
+      destEl.value = pickDestinationLabel(parts.labels, originIds);
+      window.document.getElementById("f-weight").value = "8";
+      window.document.getElementById("mdcf-finder").dispatchEvent(
+        new window.Event("submit", { bubbles: true, cancelable: true }));
+      await flush();
+      const link = [...dom.window.document.querySelectorAll("li a")].find((a) => /tools\/heat\//.test(a.getAttribute("href") || ""));
+      check(`${loc.code} : le lien outil chaleur est réellement RENDU dans les résultats`, !!link, "aucun <a href*=tools/heat/> rendu");
+      check(`${loc.code} : la phrase prudente est RENDUE à côté du lien`,
+        !!link && (link.closest("li")?.textContent || "").includes(HEATWHY_EXPECTED[loc.code]),
+        (link ? link.closest("li")?.textContent.slice(0, 160) : ""));
+    } catch (e) {
+      check(`${loc.code} : rendu du bloc outils`, false, e.message || String(e));
+    }
+  }
+}
+
 async function badgesPass() {
   for (const loc of BADGE_LOCALES) {
     console.log(`\n— Badges d'itinéraire (${loc.code}) —`);
@@ -719,7 +776,7 @@ async function destinationsDatePass() {
   }
 }
 
-main().then(() => badgesPass()).then(() => t0aPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => {
+main().then(() => badgesPass()).then(() => t0aPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);
