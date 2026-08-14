@@ -211,10 +211,15 @@ const labels = {
   crateBase: locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`,
   heatBase: locale === "en" ? "/tools/heat/" : `/${locale}/tools/heat/`,
   heatToolName: T("Heat risk calculator", "Calculateur de risque chaleur", "Calculadora de riesgo de calor"),
+  /* P1 texte chaleur (14/08/2026, brief Codex) : l'ancienne phrase AFFIRMAIT une suspension
+     universelle et certaine (« sont suspendus au-delà du seuil ») — aucune règle universelle
+     n'existe. La nouvelle dit : dépend de la compagnie, PEUT limiter ou suspendre, à confirmer
+     avant réservation — sans seuil, saison ni verdict inventés. Le portugais se résout par
+     pt/inline.json, clé = la phrase anglaise EXACTE. */
   heatToolWhy: T(
-    "Check the expected temperature at both ends for your travel date — hold and cargo are suspended above the carriers' heat threshold.",
-    "Vérifie la température attendue au départ et à l'arrivée pour ta date — soute et fret sont suspendus au-delà du seuil de chaleur des compagnies.",
-    "Comprueba la temperatura prevista en origen y destino para tu fecha — bodega y carga se suspenden por encima del umbral de calor de las aerolíneas."),
+    "Check the expected temperature at departure and arrival for your travel date: some airlines may restrict or suspend hold or cargo transport in hot weather. Confirm the applicable policy before booking.",
+    "Vérifie la température prévue au départ et à l'arrivée pour ta date de voyage : certaines compagnies peuvent limiter ou suspendre le transport en soute ou en fret par forte chaleur. Confirme la règle applicable avant de réserver.",
+    "Comprueba la temperatura prevista en la salida y la llegada para tu fecha de viaje: algunas aerolíneas pueden limitar o suspender el transporte en bodega o como carga cuando hace mucho calor. Confirma la política aplicable antes de reservar."),
   // BUG corrigé (audit du 09/08/2026) : ternaire fr/en uniquement, pas de branche es/pt du tout —
   // pire que L3 ci-dessus. Non lu ailleurs dans ce fichier aujourd'hui (code mort), corrigé par
   // cohérence avec le reste des libellés plutôt que d'attendre qu'un futur usage l'expose.
