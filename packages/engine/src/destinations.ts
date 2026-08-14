@@ -1,6 +1,7 @@
 import type { NormalizedKB } from "@mydogcanfly/knowledge";
 import { cityName } from "@mydogcanfly/knowledge";
-import type { DestinationsRequest, DestinationMatch, DestinationsResult } from "./contracts";
+import type { DestinationsRequest, DestinationMatch, DestinationsResult, DestinationConfirmationSignal } from "./contracts";
+import { signalKey } from "./contracts";
 import { evaluate } from "./evaluate";
 
 // Must match explain.ts HEAT_EMBARGO_THRESHOLD_C (seasonal hold/cargo suspension threshold).
@@ -124,6 +125,20 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
     const cabin_status = statusOfChannel("cabin");
     const hold_status = statusOfChannel("hold");
     const cargo_status = statusOfChannel("cargo");
+    /* T0-A — signaux de confirmation : la cause SANS perdre la compagnie ni le canal. Triés et
+       dédupliqués sur le triplet complet (deux causes identiques chez deux compagnies restent
+       deux signaux). */
+    const confirmation_signals: DestinationConfirmationSignal[] = (() => {
+      const m = new Map<string, DestinationConfirmationSignal>();
+      for (const a of included) for (const d of a.placements) {
+        if (d.status !== "confirmation_required") continue;
+        for (const cause of d.confirmation_causes) {
+          const s = { airline_id: a.airline_id, placement: d.placement, cause };
+          m.set(signalKey(s), s);
+        }
+      }
+      return [...m.values()].sort((x, y) => signalKey(x).localeCompare(signalKey(y)));
+    })();
     /* Booléens de transition : vrais UNIQUEMENT pour `allowed`. Le fret est désormais ÉMIS
        (arbitrage option 1) : il était calculé, décidait de `placement_ok`, et n'apparaissait
        nulle part — 3 à 5 destinations étaient compatibles par un canal invisible. */
@@ -166,7 +181,11 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
          brut de température, lui, existe sous son vrai nom : `estimated_heat_signal`, qui ne
          prétend ni refléter une règle compagnie ni demander confirmation d'un canal refusé. */
       heat_embargo: false,
-      heat_confirmation_required: included.some((a) => a.placements.some((x) => x.status === "confirmation_required")),
+      /* T0-A : filtré PAR CAUSE — une confirmation de politique (T0-B) ne produira plus un
+         drapeau chaleur. Les signaux gardent compagnie + canal (jamais aplatis) et survivent
+         à l'agrégation `allowed > confirmation_required > denied` du statut. */
+      heat_confirmation_required: confirmation_signals.some((s) => s.cause.code === "estimated_climate"),
+      confirmation_signals,
       estimated_heat_signal: climate_estimated && temperature_c > HEAT_EMBARGO_THRESHOLD_C,
       heat_risk: climate_estimated && temperature_c > HEAT_RISK_MIN_C && temperature_c <= HEAT_EMBARGO_THRESHOLD_C,
       airlines_total: direct.length,

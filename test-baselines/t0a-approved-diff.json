@@ -1,0 +1,150 @@
+{
+ "note": "les SEULES différences de carte autorisées entre la baseline avant et après T0-A — valeurs EXACTES, verrouillées (contre-revue v4 : une vraie bascule ne donne pas un blanc-seing sur le libellé)",
+ "count": 24,
+ "entries": [
+  {
+   "scenario": "cdg-lhr|golden|01-15|any",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|01-15|any",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|01-15|any",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|01-15|hold",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|01-15|hold",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|01-15|hold",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|07-15|any",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|07-15|any",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|07-15|any",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|07-15|hold",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|07-15|hold",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|golden|07-15|hold",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|01-15|any",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|01-15|any",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|01-15|any",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|01-15|hold",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|01-15|hold",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|01-15|hold",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|07-15|any",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|07-15|any",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|07-15|any",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|07-15|hold",
+   "airline_id": "airline_eurowings",
+   "avant": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|07-15|hold",
+   "airline_id": "airline_ita_airways",
+   "avant": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_ita_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
+  },
+  {
+   "scenario": "cdg-lhr|pug|07-15|hold",
+   "airline_id": "airline_vueling",
+   "avant": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | - | bool:000 | confirm:- | pets:false/- | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00",
+   "apres": "airline_vueling | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: breed not accepted, cabin not offered, hold not offered and cargo not offered | fee:- | heat:00"
+  }
+ ]
+}

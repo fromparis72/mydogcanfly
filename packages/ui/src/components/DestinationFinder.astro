@@ -130,6 +130,11 @@ const L = {
     noneInRange: T("No destination in this distance band. Try widening the filter.", "Aucune destination dans cette tranche de distance. Essaie d'élargir le filtre.", "Ningún destino en este rango de distancia. Prueba a ampliar el filtro."),
     altSectionTitle: T("Alternatives with a different placement", "Alternatives avec un autre placement", "Alternativas con otra ubicación"),
     toConfirmSectionTitle: T("To confirm with the airline (estimated heat)", "À confirmer auprès de la compagnie (chaleur estimée)", "A confirmar con la aerolínea (calor estimado)"),
+    /* T0-A : titre générique quand une confirmation n'est PAS (que) climatique — activé par les
+       signaux de cause, jamais par le seul statut. Aucune donnée ne l'exerce avant T0-B. */
+    toConfirmSectionTitleGeneric: T("To confirm with the airline", "À confirmer auprès de la compagnie", "A confirmar con la aerolínea"),
+    sigPolicy: T("Airline policy to confirm before booking", "Politique de la compagnie à confirmer avant de réserver", "Política de la aerolínea a confirmar antes de reservar"),
+    sigMissing: T("Additional information needed — confirm with the airline", "Information supplémentaire nécessaire — confirme auprès de la compagnie", "Se necesita información adicional: confirma con la aerolínea"),
     /* v4 : la note affirmait « aucun canal ouvert » alors que la section reçoit aussi des
        destinations dont la CABINE est réellement ouverte (seul le canal demandé est à confirmer).
        La note décrit le point commun réel — le canal demandé — et renvoie aux cartes. */
@@ -308,6 +313,8 @@ const L = {
     cabin_status: string; hold_status: string; cargo_status: string;
     placement_ok: boolean; placement_to_confirm: boolean;
     heat_confirmation_required: boolean; estimated_heat_signal: boolean;
+    /* T0-A : les causes avec leur compagnie et leur canal — jamais aplaties. */
+    confirmation_signals?: { airline_id: string; placement: string; cause: { code: string } & Record<string, string> }[];
     entry_allowed: boolean; flight_hours: number;
   };
   type Docs = { base: boolean; eu: boolean; titer: boolean; cert: boolean };
@@ -436,6 +443,18 @@ const L = {
         ${pill(CLS[fm.level], S.formalities, fm.label)}
         ${pill(CLIMCLS[fl.level], fl.header, fl.label)}
       </div>
+      ${(() => {
+        /* T0-A (contre-revue v1, P1-2) : une explication VISIBLE par famille de cause NON
+           climatique — le climat garde ses pastilles, pas de doublon. Filtré sur le placement
+           demandé quand il est précis. */
+        const sigs = (m.confirmation_signals || []).filter((s) => placementPref === "any" || s.placement === placementPref);
+        const fams = new Set(sigs.map((s) => s.cause.code === "missing_fact" ? "missing"
+          : (s.cause.code === "policy_unpublished" || s.cause.code === "airline_approval") ? "policy" : ""));
+        const lines = [];
+        if (fams.has("policy")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigPolicy)}</div>`);
+        if (fams.has("missing")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigMissing)}</div>`);
+        return lines.join("");
+      })()}
       ${fm.missing.length ? `<div class="dfx-card__missing">${esc(S.missingDocsLabel)} ${fm.missing.map(esc).join(", ")}</div>` : ""}
       ${bad ? `<div class="dfx-card__warn">⚠️ ${esc(S.warnLabel)}</div>` : ""}
       <a class="dfx-card__link" href="${esc(href)}">${esc(S.viewGuide)} →</a>
@@ -631,7 +650,18 @@ const L = {
 
     if (toConfirmList.length) {
       const tcScored = toConfirmList.map((m) => card(m, docs, b.br, placementPref)).sort((x, y) => y.score - x.score);
-      html += `<h3 class="dfx__toph" id="dfx-toconfirm-title">${esc(S.toConfirmSectionTitle)}</h3><p class="dfx__altnote">${esc(S.toConfirmSectionHint)}</p><div class="dfx__grid" id="dfx-toconfirm">${tcScored.map((c) => c.html).join("")}</div>`;
+      /* T0-A : la parenthèse « (chaleur estimée) » du titre n'est due que si la chaleur est
+         réellement la cause — dès qu'un signal NON climatique existe (T0-B : politique à
+         confirmer), le titre générique prend le relais. Dérivé des signaux, jamais du statut. */
+      /* Repli PRUDENT (contre-revue v1, P1-1) : l'absence de signal n'est pas une preuve de
+         chaleur — le titre climatique exige que CHAQUE destination ait ≥1 signal ET que tous
+         soient climatiques ; sinon, générique. (Le contrat serveur produit toujours le tableau ;
+         le repli couvre une réponse ancienne ou mal formée.) */
+      const onlyClimate = toConfirmList.every((m) =>
+        (m.confirmation_signals || []).length > 0 &&
+        (m.confirmation_signals || []).every((s) => s.cause && s.cause.code === "estimated_climate"));
+      const tcTitle = onlyClimate ? S.toConfirmSectionTitle : S.toConfirmSectionTitleGeneric;
+      html += `<h3 class="dfx__toph" id="dfx-toconfirm-title">${esc(tcTitle)}</h3><p class="dfx__altnote">${esc(S.toConfirmSectionHint)}</p><div class="dfx__grid" id="dfx-toconfirm">${tcScored.map((c) => c.html).join("")}</div>`;
     }
 
     out.innerHTML = html;

@@ -333,6 +333,102 @@ const ITINERARY_REPORT = {
   ],
 };
 
+
+/* T0-A (contre-revue v1, P0-3) : les libellés VISIBLES par famille de cause, la classe de base
+ * `acard--confirm` et le modificateur `acard--heat` réservé au climat — dans les quatre langues,
+ * avec les TEXTES EXACTS. */
+const T0A_LABELS = {
+  en: { policy: "Airline policy to confirm before booking", missing: "Additional information needed — confirm with the airline" },
+  fr: { policy: "Politique de la compagnie à confirmer avant de réserver", missing: "Information supplémentaire nécessaire — confirme auprès de la compagnie" },
+  es: { policy: "Política de la aerolínea a confirmar antes de reservar", missing: "Se necesita información adicional: confirma con la aerolínea" },
+  pt: { policy: "Política da companhia a confirmar antes de reservar", missing: "Informação adicional necessária — confirma com a companhia" },
+};
+const t0aCard = (over) => ({
+  ...FAKE_REPORT.airlines[0], airline_id: "airline_t0a", name: "T0A Air",
+  cabin: false, hold: false, cargo: false,
+  cabin_status: "denied", hold_status: "denied", cargo_status: "confirmation_required",
+  to_confirm: ["cargo"], carries_pets: true, offers_pet_transport: true,
+  heat_confirmation_required: false,
+  placement_decisions: [
+    { placement: "cabin", status: "denied", allowed: false },
+    { placement: "hold", status: "denied", allowed: false },
+    { placement: "cargo", status: "confirmation_required", allowed: false,
+      confirmation_causes: [{ code: "policy_unpublished", policy_ref: "airline_t0a#cargo" }] },
+  ],
+  ...over,
+});
+async function t0aPass() {
+  for (const loc of BADGE_LOCALES) {
+    console.log(`\n— T0-A : causes visibles et styles par cause (${loc.code}) —`);
+    const exp = T0A_LABELS[loc.code];
+    const scenarios = [
+      ["politique seule", t0aCard({}), (card, txt) => {
+        check(`${loc.code} : classe de base acard--confirm SANS acard--heat (cause non climatique)`,
+          card.className.includes("acard--confirm") && !card.className.includes("acard--heat"), card.className);
+        check(`${loc.code} : ligne « politique » EXACTE : ${JSON.stringify(exp.policy)}`,
+          txt.includes(exp.policy), txt.slice(0, 200));
+        check(`${loc.code} : aucune ligne « information manquante »`, !txt.includes(exp.missing));
+      }],
+      ["fait manquant", t0aCard({
+        placement_decisions: [
+          { placement: "cabin", status: "denied", allowed: false },
+          { placement: "hold", status: "denied", allowed: false },
+          { placement: "cargo", status: "confirmation_required", allowed: false,
+            confirmation_causes: [{ code: "missing_fact", fact: "transport.total_weight_kg", requirement_ref: "req_x" }] },
+        ],
+      }), (card, txt) => {
+        check(`${loc.code} : ligne « information manquante » EXACTE`, txt.includes(exp.missing), txt.slice(0, 200));
+        check(`${loc.code} : pas d'habit climatique`, !card.className.includes("acard--heat"));
+      }],
+      ["climat seul", t0aCard({
+        heat_confirmation_required: true,
+        placement_decisions: [
+          { placement: "cabin", status: "denied", allowed: false },
+          { placement: "hold", status: "denied", allowed: false },
+          { placement: "cargo", status: "confirmation_required", allowed: false,
+            confirmation_causes: [{ code: "estimated_climate", rule_id: "rule_tst" }] },
+        ],
+      }), (card, txt) => {
+        check(`${loc.code} : climat = base confirm + modificateur heat`,
+          card.className.includes("acard--confirm") && card.className.includes("acard--heat"), card.className);
+        check(`${loc.code} : AUCUNE ligne de cause politique (le climat a son bandeau, pas de doublon)`,
+          !txt.includes(exp.policy) && !txt.includes(exp.missing));
+      }],
+    ];
+    for (const [nom, card0, asserts] of scenarios) {
+      let dom;
+      try {
+        const parts = loadHomeParts(loc.dir);
+        const rep = { ...FAKE_REPORT, airlines: [card0] };
+        const fetchMock = async (url, opts) => {
+          if (String(url).includes("/nearest-airport")) return { ok: false };
+          if (opts && opts.method === "POST") return { ok: true, json: async () => rep };
+          throw new Error("unexpected fetch: " + url);
+        };
+        dom = buildDom(parts, fetchMock);
+        const { window } = dom;
+        const originEl = window.document.getElementById("f-origin");
+        const destEl = window.document.getElementById("f-dest");
+        const originIds = resolveEndpointFrom(parts.labels, originEl.value).ids;
+        destEl.value = pickDestinationLabel(parts.labels, originIds);
+        window.document.getElementById("f-weight").value = "8";
+        window.document.getElementById("mdcf-finder").dispatchEvent(
+          new window.Event("submit", { bubbles: true, cancelable: true }));
+        await flush();
+      } catch (e) {
+        check(`${loc.code} ${nom} : rendu`, false, e.message || String(e));
+        continue;
+      }
+      const card = dom.window.document.querySelector(".acard");
+      if (!card) { check(`${loc.code} ${nom} : une carte est rendue`, false); continue; }
+      const txt = card.textContent.replace(/\s+/g, " ");
+      const badge = [...card.querySelectorAll(".ab--confirm")].length;
+      check(`${loc.code} ${nom} : badge « ? » sur le canal à confirmer`, badge === 1, String(badge));
+      asserts(card, txt);
+    }
+  }
+}
+
 async function badgesPass() {
   for (const loc of BADGE_LOCALES) {
     console.log(`\n— Badges d'itinéraire (${loc.code}) —`);
@@ -623,7 +719,7 @@ async function destinationsDatePass() {
   }
 }
 
-main().then(() => badgesPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => {
+main().then(() => badgesPass()).then(() => t0aPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);

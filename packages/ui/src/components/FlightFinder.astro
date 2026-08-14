@@ -136,6 +136,10 @@ const labels = {
   climateRisk: t(locale, "report.climate_risk"),
   heatEmbargo: t(locale, "air.heat_embargo"),
   heatEmbargoShort: t(locale, "air.heat_embargo_short"),
+  /* T0-A — libellés par famille de cause de confirmation NON climatique (le climat garde son
+     bandeau existant, pas de doublon). */
+  confirmPolicy: T("Airline policy to confirm before booking", "Politique de la compagnie à confirmer avant de réserver", "Política de la aerolínea a confirmar antes de reservar"),
+  confirmMissing: T("Additional information needed — confirm with the airline", "Information supplémentaire nécessaire — confirme auprès de la compagnie", "Se necesita información adicional: confirma con la aerolínea"),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
@@ -446,9 +450,13 @@ const labels = {
                   if (a.cabin) return "acard--cabin";
                   if (a.hold) return "acard--hold";
                   if (a.cargo) return "acard--cargo";
-                  /* « À confirmer » (température ESTIMÉE au-dessus du seuil) : style chaleur, jamais
-                     un style d'ouverture — le canal n'est pas disponible, il est à confirmer. */
-                  if (a.heat_confirmation_required || (a.to_confirm && a.to_confirm.length)) return "acard--heat";
+                  /* T0-A : base NEUTRE `acard--confirm` pour tout canal à confirmer, modificateur
+                     `acard--heat` seulement quand une cause climatique est ACTIVE (le drapeau est
+                     désormais filtré par cause côté moteur). Une confirmation de politique (T0-B)
+                     n'aura plus l'habit de la chaleur ; jamais un style d'ouverture — le canal
+                     n'est pas disponible, il est à confirmer. */
+                  if (a.to_confirm && a.to_confirm.length) return a.heat_confirmation_required ? "acard--confirm acard--heat" : "acard--confirm";
+                  if (a.heat_confirmation_required) return "acard--confirm acard--heat";
                   /* Style « juste saisonnier » : embargo ET aucune cause non saisonnière. Une carte
                      fermée aussi au poids/à la race garde son style de refus — mais son badge 🌡️
                      (plus bas) reste : elle est bien CONCERNÉE par l'embargo, promesse du bandeau. */
@@ -514,6 +522,24 @@ const labels = {
                   ${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed")
                     ? `<div class="acard__unver">? ${esc(L.unverifiedNote)}</div>` : ""}
                   ${a.heat_embargo ? `<div class="acard__embargo">🌡️ ${esc(L.heatEmbargo)}</div>` : ""}
+                  ${(() => {
+                    /* T0-A : une explication VISIBLE par famille de cause non climatique (le climat
+                       a déjà son bandeau + sa ligne — pas de second message redondant). Aujourd'hui
+                       aucune donnée ne produit ces familles ; le rendu existe pour T0-B et il est
+                       verrouillé par les harnais sur fixtures. */
+                    const fams = new Set();
+                    for (const d of (a.placement_decisions || [])) {
+                      if (d.status !== "confirmation_required") continue;
+                      for (const c of (d.confirmation_causes || [])) {
+                        if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");
+                        else if (c.code === "missing_fact") fams.add("missing");
+                      }
+                    }
+                    const lines = [];
+                    if (fams.has("policy")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmPolicy)}</div>`);
+                    if (fams.has("missing")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmMissing)}</div>`);
+                    return lines.join("");
+                  })()}
                   ${a.fee ? `<div class="acard__fee">${esc(a.fee)}</div>` : ""}
                 </div>
                 <div class="acard__mid">${(() => {
@@ -1170,6 +1196,11 @@ const labels = {
   .acard--no { border-left-color: var(--mdcf-risk); opacity: .68; }
   /* Bloqué uniquement par la canicule (tâche 19) — ni le rouge/terne de "acard--no" (refus permanent),
      ni un vert/ambre de placement accepté : un tireté ambre, cohérent avec le tireté de --unverified. */
+  /* T0-A : `acard--confirm` est la base neutre de tout canal à confirmer ; `acard--heat` est le
+     modificateur climatique. Mêmes propriétés aujourd'hui (neutralité visuelle : toute
+     confirmation actuelle est climatique) — la distinction existe pour que T0-B puisse styler
+     une confirmation de politique sans habit de chaleur. */
+  .acard--confirm { border-left-color: var(--mdcf-warn); border-style: dashed; }
   .acard--heat { border-left-color: var(--mdcf-warn); border-style: dashed; }
   .acard__top { display: flex; align-items: center; gap: 8px; }
   .acard__natl { font-size: 11px; font-weight: 700; color: var(--mdcf-muted); background: var(--mdcf-subtle); padding: 2px 8px; border-radius: 999px; }
@@ -1183,6 +1214,7 @@ const labels = {
      comme une option vérifiée. Le liseré et l'opacité la démarquent d'une carte démontrée. */
   .acard__status--unver { color: #475569; background: #e2e8f0; }
   .acard--unverified { border-left-color: #94a3b8; border-style: dashed; opacity: .82; }
+  .acard__confirmwhy { margin-top: 6px; font-size: 12px; line-height: 1.35; color: #92400e; font-weight: 650; }
   .acard__unver { margin-top: 6px; font-size: 12px; line-height: 1.35; color: #475569;
     background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 5px 9px; }
   .dom .dom__intro { margin: 0 0 8px; }

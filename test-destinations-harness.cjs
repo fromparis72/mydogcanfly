@@ -94,6 +94,14 @@ function stripImports(script, dir) {
  *   - les booléens *_ok dérivent des statuts.
  * Une fixture ne peut plus affirmer une chose et son contraire.
  */
+/** Signal express : `sig("hold")` (climat) ou `sig("hold", "policy_unpublished")`. */
+function sig(placement, code = "estimated_climate", airline_id = "airline_tst") {
+  const cause = code === "estimated_climate" ? { code, rule_id: "rule_tst_embargo" }
+    : code === "missing_fact" ? { code, fact: "transport.total_weight_kg", requirement_ref: "req_tst" }
+    : { code, policy_ref: `${airline_id}#${placement}` };
+  return { airline_id, placement, cause };
+}
+
 function match(over = {}) {
   for (const interdit of ["heat_confirmation_required", "estimated_heat_signal", "cabin_ok", "hold_ok", "cargo_ok"]) {
     if (interdit in over) throw new Error(`fixture incohérente : « ${interdit} » est DÉRIVÉ, pas surchargable`);
@@ -110,12 +118,24 @@ function match(over = {}) {
     ...over,
   };
   const sts = [base.cabin_status, base.hold_status, base.cargo_status];
+  /* T0-A (contre-revue v1, P0-3) : plus AUCUN raccourci « confirmation = chaleur ». Toute
+     fixture portant un statut à confirmer doit fournir ses `confirmation_signals` EXPLICITES
+     (compagnie + canal + cause) ; le drapeau chaleur dérive des seuls signaux climatiques. */
+  const signals = base.confirmation_signals;
+  if (sts.includes("confirmation_required") && !Array.isArray(signals)) {
+    throw new Error("fixture incohérente : statut à confirmer SANS confirmation_signals explicites");
+  }
+  if (!sts.includes("confirmation_required") && Array.isArray(signals)
+      && signals.some((x) => !["cabin","hold","cargo"].some((c) => base[`${c}_status`] === "allowed"))) {
+    /* signaux tolérés avec un statut agrégé allowed (cas « allowed + signal ») */
+  }
   return {
     ...base,
+    confirmation_signals: signals ?? [],
     cabin_ok: base.cabin_status === "allowed",
     hold_ok: base.hold_status === "allowed",
     cargo_ok: base.cargo_status === "allowed",
-    heat_confirmation_required: sts.includes("confirmation_required"),
+    heat_confirmation_required: (signals ?? []).some((x) => x.cause && x.cause.code === "estimated_climate"),
     estimated_heat_signal: base.climate_estimated && base.temperature_c > 30,
   };
 }
@@ -161,6 +181,7 @@ async function main() {
       airlines_total: 0, airlines_to_confirm_total: 2,
       cabin_status: "denied", hold_status: "confirmation_required", cargo_status: "confirmation_required",
       placement_ok: false, placement_to_confirm: true,
+      confirmation_signals: [sig("hold"), sig("cargo")],
     });
     const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
     check("la section « à confirmer » existe (#dfx-toconfirm)", !!r.doc.getElementById("dfx-toconfirm"));
@@ -182,6 +203,7 @@ async function main() {
       airlines_total: 1, airlines_to_confirm_total: 0,
       cabin_status: "allowed", hold_status: "confirmation_required", cargo_status: "denied",
       placement_ok: false, placement_to_confirm: true,
+      confirmation_signals: [sig("hold")],
     });
     const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "hold" });
     check("le placement demandé est bien parti en POST", r.posts[0]?.placement === "hold", JSON.stringify(r.posts[0]?.placement));
@@ -220,9 +242,10 @@ async function main() {
       city: "Athènes", iata: "ATH", temperature_c: 31,
       cabin_status: "allowed", hold_status: "confirmation_required", cargo_status: "denied",
       placement_ok: true,
+      confirmation_signals: [sig("hold")],
     });
     const r = await run(parts, { matches: [m], breedKey: brachyBreed, placement: "any" });
-    check("avec une confirmation réelle dans les statuts, le libellé « à confirmer » brachy est licite",
+    check("avec une confirmation CLIMATIQUE signée dans les signaux, le libellé « à confirmer » brachy est licite",
       r.texte.includes(S.climToConfirmBrachy), r.texte.slice(0, 220));
   }
   console.log("\n=== 3 ter. Alternatives : le titre « autre placement » ne reçoit QUE son cas ===");
@@ -256,6 +279,91 @@ async function main() {
     check("« Comfortable »/« Confortable » a disparu", !/comfortable|confortable|cómodo/i.test(r.texte));
   }
 
+  console.log("\n=== 5 bis. T0-A — cause de POLITIQUE seule : titre générique, ligne politique, ZÉRO message climatique ===");
+  {
+    const m = match({
+      city: "Bangkok", iata: "BKK", temperature_c: 33,
+      airlines_total: 0, airlines_to_confirm_total: 1,
+      cabin_status: "denied", hold_status: "denied", cargo_status: "confirmation_required",
+      placement_ok: false, placement_to_confirm: true,
+      confirmation_signals: [sig("cargo", "policy_unpublished")],
+    });
+    const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
+    check("T0-A : le titre de section est le GÉNÉRIQUE, pas « (chaleur estimée) »",
+      r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === S.toConfirmSectionTitleGeneric,
+      JSON.stringify(r.doc.getElementById("dfx-toconfirm-title")?.textContent));
+    check("T0-A : la ligne « politique à confirmer » est VISIBLE sur la carte",
+      (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigPolicy),
+      r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent.slice(0, 200));
+    check("T0-A : AUCUN libellé climatique « à confirmer » (la cause n'est pas la chaleur)",
+      !r.texte.includes(S.climToConfirm) && !r.texte.includes(S.climToConfirmBrachy), r.texte.slice(0, 220));
+  }
+  console.log("\n=== 5 ter. T0-A — fait MANQUANT : ligne dédiée, pas d'habit climatique ===");
+  {
+    const m = match({
+      city: "Oslo", iata: "OSL", temperature_c: 18,
+      airlines_total: 0, airlines_to_confirm_total: 1,
+      cabin_status: "denied", hold_status: "confirmation_required", cargo_status: "denied",
+      placement_ok: false, placement_to_confirm: true,
+      confirmation_signals: [sig("hold", "missing_fact")],
+    });
+    const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
+    check("T0-A : la ligne « information manquante » est visible",
+      (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigMissing));
+    check("T0-A : titre générique, aucun message climatique",
+      r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === S.toConfirmSectionTitleGeneric
+        && !r.texte.includes(S.climToConfirm));
+  }
+  console.log("\n=== 5 quater. T0-A — politique + climat : les deux familles visibles, titre climatique licite ===");
+  {
+    const m = match({
+      city: "Dubaï", iata: "DXB", temperature_c: 41,
+      airlines_total: 0, airlines_to_confirm_total: 1,
+      cabin_status: "denied", hold_status: "denied", cargo_status: "confirmation_required",
+      placement_ok: false, placement_to_confirm: true,
+      confirmation_signals: [sig("cargo"), sig("cargo", "policy_unpublished")],
+    });
+    const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
+    check("T0-A : le libellé climatique « à confirmer » est licite (cause climatique présente)",
+      r.texte.includes(S.climToConfirm), r.texte.slice(0, 200));
+    check("T0-A : la ligne politique reste visible À CÔTÉ du climat (aucune ne masque l'autre)",
+      (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigPolicy));
+  }
+  console.log("\n=== 5 quinquies. T0-A — agrégat allowed + signal d'une autre compagnie : compatible, signal visible ===");
+  {
+    const m = match({
+      city: "Rome", iata: "FCO", temperature_c: 24,
+      airlines_total: 2, airlines_to_confirm_total: 0,
+      cabin_status: "allowed", hold_status: "allowed", cargo_status: "denied",
+      placement_ok: true, placement_to_confirm: false,
+      confirmation_signals: [sig("hold", "airline_approval", "airline_other")],
+    });
+    const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
+    check("T0-A : la destination reste COMPATIBLE (dominance agrégée allowed)",
+      !r.doc.getElementById("dfx-toconfirm") && r.texte.includes(S.topTitle), r.texte.slice(0, 160));
+    check("T0-A : la ligne politique du signal survivant est visible sur la carte compatible",
+      (r.doc.querySelector(".dfx-card")?.textContent ?? "").includes(S.sigPolicy));
+  }
+  console.log("\n=== 5 sexies. T0-A — les nouveaux libellés dans les QUATRE langues ===");
+  for (const loc of ["fr", "es", "pt"]) {
+    const partsL = loadParts(loc);
+    const SL = partsL.labels.s;
+    const breedsL = partsL.labels.breeds;
+    const m = match({
+      city: "Bangkok", iata: "BKK", temperature_c: 33,
+      airlines_total: 0, airlines_to_confirm_total: 1,
+      cabin_status: "denied", hold_status: "denied", cargo_status: "confirmation_required",
+      placement_ok: false, placement_to_confirm: true,
+      confirmation_signals: [sig("cargo", "policy_unpublished")],
+    });
+    const r = await run(partsL, { matches: [m], breedKey: Object.keys(breedsL).find((k) => !breedsL[k].br), placement: "any" });
+    check(`${loc} : titre générique traduit + ligne politique traduite, zéro anglais résiduel`,
+      r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === SL.toConfirmSectionTitleGeneric
+        && (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(SL.sigPolicy)
+        && (loc === "fr" ? !/policy to confirm/i.test(r.texte) : true),
+      r.texte.slice(0, 160));
+  }
+
   console.log("\n=== 6. Langue témoin (fr) : mêmes règles, libellés traduits ===");
   {
     const partsFr = loadParts("fr");
@@ -264,6 +372,7 @@ async function main() {
       airlines_total: 0, airlines_to_confirm_total: 1, cabin_status: "denied",
       hold_status: "confirmation_required", placement_ok: false, placement_to_confirm: true,
       temperature_c: 33,
+      confirmation_signals: [sig("hold")],
     });
     const breedsFr = partsFr.labels.breeds;
     const r = await run(partsFr, { matches: [m], breedKey: Object.keys(breedsFr).find((k) => !breedsFr[k].br), placement: "any" });

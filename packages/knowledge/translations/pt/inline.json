@@ -850,7 +850,7 @@
   "No airport in this country is in our reference data yet, so the Finder cannot build a route to it. These carriers do serve the country — we simply cannot check them airport by airport.": "Nenhum aeroporto deste país consta ainda da nossa base de referência, por isso o Finder não consegue montar um trajeto até lá. Estas companhias realmente voam para o país — apenas não conseguimos verificá-las aeroporto por aeroporto.",
   "No heat signal from this indicator (estimate)": "Nenhum sinal de calor deste indicador (estimativa)",
   "Estimated heat above threshold — hold/cargo to confirm with the airline": "Calor estimado acima do limite — porão/carga a confirmar com a companhia",
-  "To confirm with the airline": "A confirmar com a companhia",
+  "To confirm with the airline": "A confirmar com a companhia aérea",
   "cargo — unaccompanied, booked separately": "carga — não acompanhado, reserva separada",
   "No heat signal from this indicator": "Nenhum sinal de calor deste indicador",
   "This latitude + month estimate finds no heat signal for hold/cargo on this route — it is not a forecast and not a safety guarantee: confirm with the airline.": "Esta estimativa por latitude + mês não detecta nenhum sinal de calor para porão/carga nesta rota — não é uma previsão nem uma garantia de segurança: confirme com a companhia.",
@@ -862,5 +862,7 @@
   "Estimated heat above the usual threshold": "Calor estimado acima do limite habitual",
   "The latitude+month estimate exceeds the threshold some carriers publish for hold/cargo. This is a modelled estimate — not a record of past embargoes, not a forecast: check the policy with the airline.": "A estimativa por latitude+mês ultrapassa o limite que algumas companhias publicam para porão/carga. É uma estimativa modelada — nem um histórico de embargos, nem uma previsão: verifique a política com a companhia.",
   "Worst of the two airports each month. Green = no signal, amber = elevated estimate, red = estimate above threshold.": "O pior dos dois aeroportos em cada mês. Verde = sem sinal, âmbar = estimativa elevada, vermelho = estimativa acima do limite.",
-  "For these routes, the requested placement depends on a confirmation from the airline for this date. Channels that are documented open, if any, are named on each card.": "Nestas rotas, a acomodação solicitada depende de uma confirmação da companhia para esta data. Os canais documentados como abertos, se houver, são nomeados em cada cartão."
+  "For these routes, the requested placement depends on a confirmation from the airline for this date. Channels that are documented open, if any, are named on each card.": "Nestas rotas, a acomodação solicitada depende de uma confirmação da companhia para esta data. Os canais documentados como abertos, se houver, são nomeados em cada cartão.",
+  "Airline policy to confirm before booking": "Política da companhia a confirmar antes de reservar",
+  "Additional information needed — confirm with the airline": "Informação adicional necessária — confirma com a companhia"
 }

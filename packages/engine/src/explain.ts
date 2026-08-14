@@ -1,5 +1,6 @@
 import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
 import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus } from "./contracts";
+import { hasActiveClimateCause, makePlacementDecision } from "./contracts";
 
 const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
 /** Temperature above which seasonal heat embargoes suspend hold/cargo (matches the summer_embargo rules). */
@@ -203,7 +204,21 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        n'est pas une estimation, et doit produire un embargo confirmé, pas une confirmation. */
     const tempEstimated = isEstimatedTemperature(decision.climate.provenance);
     const heat_embargo = heatFired && !tempEstimated;
-    const heat_confirmation_required = to_confirm.length > 0;
+    /* T0-A : la chaleur dérive d'une CAUSE CLIMATIQUE ACTIVE, plus jamais du seul statut.
+       `to_confirm.length > 0` était vrai uniquement parce que le climat estimé était l'unique
+       source de confirmation — dès T0-B, une politique « à confirmer » sur une route chaude
+       aurait allumé un message climatique sans rapport (contre-revue du 13/08, P0 n° 2). Le
+       statut FINAL (entryAllowed compris) reste la garde : une entrée refusée éteint tout. */
+    const heat_confirmation_required = (["cabin", "hold", "cargo"] as const).some((pl) =>
+      statusOf(a, pl) === "confirmation_required" &&
+      a.placements.some((d) => d.placement === pl && hasActiveClimateCause(d)));
+    /* Le triplet PUBLIC reste cohérent avec les statuts publics : quand `entryAllowed` dégrade
+       une confirmation en refus, les causes s'éteignent avec elle (dominance intra-compagnie). */
+    const placement_decisions = a.placements.map((d) => {
+      const st = statusOf(a, d.placement);
+      return st === d.status ? d : makePlacementDecision(d.placement, st,
+        st === "confirmation_required" && d.status === "confirmation_required" ? d.confirmation_causes : []);
+    });
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
     /* ATTENTION AU NOM : ces deux champs signifient « compagnie IMMATRICULÉE dans le pays de
      * départ / d'arrivée », rien de plus. Ce n'est PAS un statut de compagnie nationale ni de
@@ -225,7 +240,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     const carrier_of_origin = !!a.country_id && a.country_id === decision.origin_country_id;
     const carrier_of_destination = !!a.country_id && a.country_id === decision.destination.country_id;
     if (a.source_url) sources.set(a.source_url, { url: a.source_url });
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, source_url: a.source_url, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, source_url: a.source_url, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
      « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */
@@ -394,7 +409,9 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
            la même famille. Un trajet incompatible à la frontière n'a pas de bandeau embargo :
            la chaleur n'est pas ce qui l'empêche. */
         embargo: !isEstimatedTemperature(decision.climate.provenance) && airlines.some((a) => a.heat_embargo === true),
-        confirmation_required: estimatedAboveThreshold && airlines.some((a) => (a.to_confirm?.length ?? 0) > 0),
+        /* T0-A : le bandeau dérive des cartes, FILTRÉ PAR CAUSE — une confirmation de politique
+           sur une route chaude n'allume plus le bandeau climatique (contre-test 2). */
+        confirmation_required: estimatedAboveThreshold && airlines.some((a) => a.heat_confirmation_required === true),
         estimated_heat_signal: estimatedAboveThreshold,
         risk: decision.climate.risk,
         threshold_c: HEAT_EMBARGO_THRESHOLD_C,

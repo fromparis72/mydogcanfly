@@ -2,6 +2,106 @@ import { z } from "zod";
 import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
 export type { PlacementStatus, TemperatureProvenance };
 
+/* ---- T0-A : le statut porte sa cause (contre-revues des 13–14/08/2026) ----------------------
+ *
+ * Jusqu'à ce lot, `confirmation_required` n'avait qu'une seule source possible (l'embargo
+ * climatique sur température estimée) et cinq points du code déduisaient la CHALEUR du seul
+ * STATUT. T0-B introduira des confirmations de politique : chaque confirmation doit donc porter
+ * sa cause, structurée et traçable jusqu'au fait source — pas une étiquette d'interface.
+ *
+ * Le contrat est une UNION DISCRIMINÉE par statut (pas une table optionnelle parallèle) : un
+ * `confirmation_required` sans cause, un `allowed` porteur d'une cause, ou un booléen `allowed`
+ * en désaccord avec son statut sont INCONSTRUCTIBLES — refusés par Zod à la construction même
+ * (`makePlacementDecision` retourne le résultat de `.parse()`), pas seulement à la sérialisation. */
+
+/** Référence d'une politique de canal : `airline_xxx#cabin|hold|cargo` — jamais un id de règle
+ *  (une règle se référence par `rule_id`). */
+const POLICY_REF_RE = /^airline_[a-z0-9_]+#(cabin|hold|cargo)$/;
+
+export const ConfirmationCause = z.discriminatedUnion("code", [
+  /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
+  z.object({ code: z.literal("estimated_climate"), rule_id: z.string().min(1) }).strict(),
+  /** Politique non publiée (Thai Cargo…) — émise par les politiques canoniques `undocumented` (T0-B). */
+  z.object({ code: z.literal("policy_unpublished"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /** Acceptation au cas par cas / on request — politiques canoniques `case_by_case` (T0-B). */
+  z.object({ code: z.literal("airline_approval"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /** Fait requis absent (poids total T2, âge T3). `fact` restera à resserrer en registre fermé
+   *  avant la première migration T2/T3 — aucune donnée réelle ne l'émet en T0-A. */
+  z.object({ code: z.literal("missing_fact"), fact: z.string().min(1), requirement_ref: z.string().min(1) }).strict(),
+]);
+export type ConfirmationCause = z.infer<typeof ConfirmationCause>;
+
+/** Clé canonique d'une cause — tri stable et déduplication des snapshots. */
+export const causeKey = (c: ConfirmationCause): string =>
+  c.code === "estimated_climate" ? `${c.code}|${c.rule_id}`
+  : c.code === "missing_fact" ? `${c.code}|${c.fact}|${c.requirement_ref}`
+  : `${c.code}|${c.policy_ref}`;
+
+const sortDedupCauses = (causes: ConfirmationCause[]): ConfirmationCause[] => {
+  const m = new Map<string, ConfirmationCause>();
+  for (const c of causes) m.set(causeKey(c), c);
+  return [...m.values()].sort((a, b) => causeKey(a).localeCompare(causeKey(b)));
+};
+
+export const PlacementDecision = z.discriminatedUnion("status", [
+  z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true) }).strict(),
+  z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false) }).strict(),
+  z.object({
+    placement: Placement,
+    status: z.literal("confirmation_required"),
+    allowed: z.literal(false),
+    confirmation_causes: z.array(ConfirmationCause).min(1),
+  }).strict(),
+]);
+export type PlacementDecision = z.infer<typeof PlacementDecision>;
+
+/** Le triplet complet d'une compagnie : exactement cabine, soute et fret — ni absence, ni doublon.
+ *  Le schéma d'une décision isolée ne peut pas garantir cet invariant ; celui-ci le valide. */
+export const PlacementDecisionSet = z.array(PlacementDecision).length(3).superRefine((ds, ctx) => {
+  const seen = ds.map((d) => d.placement).sort().join(",");
+  if (seen !== "cabin,cargo,hold") {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, message: `PlacementDecisionSet: placements {${seen}} ≠ {cabin,cargo,hold}` });
+  }
+});
+
+/** L'UNIQUE constructeur d'une décision — valide À LA CONSTRUCTION, jamais un littéral libre.
+ *  `allowed` est imposé par la branche du statut ; les causes sont triées et dédupliquées ici,
+ *  une fois pour toutes, pour des snapshots reproductibles. */
+export function makePlacementDecision(
+  placement: z.infer<typeof Placement>,
+  status: PlacementStatus,
+  causes?: ConfirmationCause[],
+): PlacementDecision {
+  return PlacementDecision.parse(
+    status === "confirmation_required"
+      ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []) }
+      : { placement, status, allowed: status === "allowed" },
+  );
+}
+
+/** Valide le triplet complet d'une compagnie (défense en profondeur : chaque décision a déjà
+ *  été validée individuellement à sa construction). */
+export function makePlacementDecisionSet(ds: PlacementDecision[]): PlacementDecision[] {
+  return PlacementDecisionSet.parse(ds);
+}
+
+/** La chaleur dérive d'une CAUSE CLIMATIQUE ACTIVE — jamais du seul statut (T0-A). */
+export const hasActiveClimateCause = (d: PlacementDecision): boolean =>
+  d.status === "confirmation_required" && d.confirmation_causes.some((c) => c.code === "estimated_climate");
+
+/** Signal de confirmation d'une destination : la cause SANS perdre la compagnie ni le canal
+ *  (contre-revue v2 : deux signaux identiques chez deux compagnies ou sur deux canaux sont deux
+ *  informations distinctes). L'agrégat de statut d'une destination suit sa propre dominance
+ *  (`allowed > confirmation_required > denied`) ; ces signaux survivent même quand le statut
+ *  agrégé vaut `allowed` grâce à une autre compagnie. */
+export interface DestinationConfirmationSignal {
+  airline_id: string;
+  placement: z.infer<typeof Placement>;
+  cause: ConfirmationCause;
+}
+export const signalKey = (s: DestinationConfirmationSignal): string =>
+  `${s.airline_id}|${s.placement}|${causeKey(s.cause)}`;
+
 /* ---- Public input contract (frozen in Phase 1, contract-first) ---- */
 export const FinderRequest = z.object({
   origin: z.string(),      // airport id (representative origin — the primary of the origin set)
@@ -123,6 +223,11 @@ export interface DestinationMatch {
   cabin_status: PlacementStatus;
   hold_status: PlacementStatus;
   cargo_status: PlacementStatus;
+  /** T0-A — les causes de confirmation AVEC leur compagnie et leur canal (jamais aplaties : deux
+   *  causes identiques chez deux compagnies sont deux signaux). Survivent à l'agrégation même
+   *  quand le statut agrégé vaut `allowed` grâce à une autre compagnie. Triées, dédupliquées
+   *  sur le triplet complet. */
+  confirmation_signals: DestinationConfirmationSignal[];
   placement_ok: boolean;         // le placement demandé est réellement `allowed` sur ≥1 compagnie directe
   /** Aucun canal demandé `allowed`, mais ≥1 « à confirmer » : à afficher en ALTERNATIVE, jamais en compatible. */
   placement_to_confirm: boolean;
@@ -177,8 +282,17 @@ export interface AirlineDecision {
   destination_airport_id?: string; // idem for the destination
   /* `status` est la vérité ; `allowed` est le booléen de transition, vrai UNIQUEMENT pour
      `allowed`. Un embargo chaleur déclenché sur une température ESTIMÉE produit
-     `confirmation_required` — jamais un refus dur, jamais une disponibilité. */
-  placements: { placement: string; status: PlacementStatus; allowed: boolean }[];
+     `confirmation_required` — jamais un refus dur, jamais une disponibilité.
+     T0-A : le triplet est validé (`PlacementDecisionSet`) et chaque confirmation porte ses
+     causes structurées. */
+  placements: PlacementDecision[];
+  /** Vérité STRUCTURELLE (T0-A) : ≥1 canal dont la POLITIQUE (après projection) est `allowed`
+   *  ou `confirmation_required` — sans appliquer les règles du trajet ni le climat. */
+  offers_pet_transport: boolean;
+  /** TÉMOIN DE TRANSITION, jamais public (retiré par explain) : l'ancien calcul verbatim, pour
+   *  que la CI recalcule l'écart exhaustif versionné (t0a-carries-pets-diff.json). À retirer
+   *  avec le fichier une fois la migration digérée. */
+  _legacy_carries_pets?: boolean;
   fired: FiredRule[];
 }
 /** Seasonal climate context used for the heat-embargo filter (temperature-driven hold/cargo denials). */
@@ -234,7 +348,17 @@ export interface AirlineResult {
   cargo_status: PlacementStatus;
   /** Canaux au statut `confirmation_required` — à rendre « politique à confirmer », JAMAIS comme ouverts. */
   to_confirm?: string[];
-  /* Vrai si la compagnie transporte des animaux en général (réévaluation avec un chien neutre).
+  /** T0-A — le triplet canonique validé : trois décisions (cabine/soute/fret), chaque
+   *  confirmation portant ses causes structurées. Les booléens et `*_status` ci-dessus en
+   *  DÉRIVENT ; c'est la source d'affichage des libellés par famille de cause. */
+  placement_decisions: PlacementDecision[];
+  /** Vérité structurelle canonique (T0-A) : la compagnie PROPOSE un transport d'animaux —
+   *  ≥1 canal dont la politique est `allowed` ou `confirmation_required`, indépendamment du
+   *  trajet et du climat. `carries_pets` en est la projection legacy pendant la transition. */
+  offers_pet_transport?: boolean;
+  /* Projection legacy de `offers_pet_transport` (T0-A — correction contrôlée, diff versionné :
+     l'ancien calcul appliquait les règles du trajet au « chien neutre » et affichait « Animaux
+     refusés » sur des compagnies dont la politique propose un canal).
      NE JAMAIS EN DÉDUIRE UN MOTIF : « true, mais aucun mode accepté » ne veut pas dire « race
      refusée » — c'est le plus souvent le poids, ou l'absence de soute/fret. Le motif réel est
      dans `deny_reasons`, lu sur les règles qui ont refusé. */
