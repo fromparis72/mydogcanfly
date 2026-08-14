@@ -1,6 +1,7 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
 import { MONTH_UNKNOWN, isEstimatedTemperature } from "@mydogcanfly/knowledge";
-import type { FinderRequest, Decision, AirlineDecision, FiredRule } from "./contracts";
+import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause } from "./contracts";
+import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
 const PLACEMENTS = ["cabin", "hold", "cargo"] as const;
@@ -109,7 +110,13 @@ function toFired(r: Rule, locale: string): FiredRule {
   };
 }
 
-type PolicyMode = { allowed?: boolean; fee?: string; source?: Rule["source"] };
+type PolicyMode = {
+  status?: PlacementStatus;
+  status_cause?: "airline_approval" | "policy_unpublished";
+  allowed?: boolean;
+  fee?: string;
+  source?: Rule["source"];
+};
 
 /* Fiche = socle systématique (décision utilisateur, 10/08/2026 — bug signalé sur La Compagnie EWR→ORY,
    32 kg : la fiche dit cabine oui/soute non/fret inconnu, le Finder répondait "soute uniquement"). Deux
@@ -172,7 +179,7 @@ function policyFallbackDenyRule(airlineId: string, placement: (typeof PLACEMENTS
  *   `destinations.ts` avec son estimation par latitude. Jamais dérivée du payload : un client ne
  *   peut pas la fournir (le champ n'existe pas dans `FinderRequest`, qui est `strict()`).
  */
-export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherProvenance?: "estimated_latitude" }): Decision {
+export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherProvenance?: "estimated_latitude"; legacyCarriesWitness?: boolean }): Decision {
   const dest = kb.airports.get(req.destination);
   const origin = kb.airports.get(req.origin);
   const destCountry = dest?.country_id ?? "";
@@ -304,22 +311,46 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       const hardDenies = denyFires.filter((r) => r.category !== "summer_embargo");
       const climateDenies = denyFires.filter((r) => r.category === "summer_embargo");
       let allFires = fires;
+      const pol = policy?.[p];
+      /* T0-A : le statut de la POLITIQUE runtime est la vérité du socle fiche ; `allowed` n'est
+         plus lu. Dominance intra-compagnie : denied > confirmation_required > allowed — un refus
+         dur ÉTEINT les causes de confirmation du canal (les règles restent dans `fired` pour
+         l'audit). Un embargo sur température FOURNIE reste un refus, comme avant. */
       let status: PlacementStatus;
+      const causes: ConfirmationCause[] = [];
       if (hardDenies.length > 0) {
         status = "denied";
-      } else if (policy?.[p]?.allowed !== true) {
-        // Socle fiche systématique (corrigé 10/08/2026) : `allowed === true` seul évite le repli — un
-        // "false" explicite ou une clé absente ("inconnu") sont traités pareil, refusés par défaut, quel
-        // que soit le nombre de règles propres à la compagnie par ailleurs.
+      } else if (pol?.status !== "allowed" && pol?.status !== "confirmation_required") {
+        // Socle fiche systématique (corrigé 10/08/2026) : un statut `denied` explicite ou une clé
+        // absente (« inconnu ») sont traités pareil, refusés par défaut, quel que soit le nombre
+        // de règles propres à la compagnie par ailleurs.
         status = "denied";
-        allFires = [...fires, policyFallbackDenyRule(a.id, p, policy?.[p] ?? {})];
-      } else if (climateDenies.length > 0) {
-        status = tempIsEstimated ? "confirmation_required" : "denied";
+        allFires = [...fires, policyFallbackDenyRule(a.id, p, pol ?? {})];
+      } else if (climateDenies.length > 0 && !tempIsEstimated) {
+        status = "denied";
       } else {
-        status = "allowed";
+        /* Ici, plus aucun refus ne domine : les causes de confirmation s'accumulent — politique
+           ET climat peuvent coexister sur le même canal (matrice T0-A, cas 4), aucune ne masque
+           l'autre. */
+        if (pol.status === "confirmation_required") {
+          /* La cause est GARANTIE par l'union runtime (`status_cause` obligatoire sur cette
+             branche) — le moteur n'en fabrique JAMAIS (contre-revue v1, P0-1 : le repli
+             `?? "policy_unpublished"` inventait une cause sur une politique mal formée).
+             Une violation est un bug de construction : échec franc, pas une invention. */
+          if (!pol.status_cause) throw new Error(`politique ${a.id}#${p} à confirmer SANS cause — schéma runtime violé`);
+          causes.push({ code: pol.status_cause, policy_ref: `${a.id}#${p}` });
+        }
+        if (climateDenies.length > 0) {
+          // tempIsEstimated garanti par la branche précédente : cause climatique ACTIVE au sens
+          // exact de la contre-revue (règle déclenchée + estimée + non dominée + statut final).
+          for (const r of climateDenies) causes.push({ code: "estimated_climate", rule_id: r.id });
+        }
+        status = causes.length > 0 ? "confirmation_required" : "allowed";
       }
-      return { placement: p, status, allowed: status === "allowed", fires: allFires };
+      return { decision: makePlacementDecision(p, status, causes), fires: allFires };
     });
+    /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
+    const placementDecisions = makePlacementDecisionSet(perPlacement.map((x) => x.decision));
     // Does this airline carry pets at all, structurally? Re-evaluate with a neutral small non-brachy dog:
     // a low-cost that never carries pets stays false; an airline that takes pets but rules THIS dog out
     // (e.g. a snub-nosed breed → hold/cargo denied) is true. Lets the UI say "breed not accepted" vs "no pets".
@@ -334,8 +365,26 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     // placements, ne portent qu'une règle UK — `carries_pets` ressortait quand même "true" hors
     // Royaume-Uni). `allowed === true` sur AU MOINS un placement est désormais requis pour dire que
     // la compagnie transporte des animaux ; un "false" ou une clé absente ne compte plus comme "true".
+    /* T0-A — CORRECTION CONTRÔLÉE (diff versionné : test-baselines/t0a-carries-pets-diff.json).
+       L'ancien calcul appliquait les règles du TRAJET et du climat à un « chien neutre », alors
+       que le champ prétend décrire un attribut structurel de la compagnie : sur CDG→LHR,
+       Eurowings, ITA et Vueling ressortaient « Animaux refusés » (mesure Codex du 14/08 :
+       258 cartes sur 23 648, 8 compagnies, toutes false→true). La vérité canonique est
+       désormais STRUCTURELLE : ≥1 canal dont la POLITIQUE (après projection) est `allowed` ou
+       `confirmation_required` — sans règles de route, sans climat. Une estimation climatique ne
+       peut jamais produire « aucun animal transporté » ; une compagnie fermée sur les trois
+       canaux reste false. `carries_pets` devient la projection legacy de cette vérité unique. */
+    const offers_pet_transport = PLACEMENTS.some(
+      (p) => policy?.[p]?.status === "allowed" || policy?.[p]?.status === "confirmation_required",
+    );
+    const carries_pets = offers_pet_transport;
+    /* TÉMOIN DE TRANSITION (à retirer avec test-baselines/t0a-carries-pets-diff.json une fois
+       la migration digérée) : l'ANCIEN calcul, verbatim — chien neutre, règles du trajet et du
+       climat appliquées. Jamais exposé au public (retiré par explain) ; il n'existe que pour
+       que la CI RECALCULE l'écart exhaustif ancien/nouveau au lieu de croire un fichier
+       (contre-revue v1, P0-2 : « une mesure recalculée devient une barrière »). */
     const neutralCtx: Ctx = { ...baseCtx, "dog.weight_kg": 5, "dog.brachycephalic": false, "dog.size": "small", "dog.breed_id": "" };
-    const carries_pets = PLACEMENTS.some((p) => {
+    const _legacy_carries_pets = !opts?.legacyCarriesWitness ? undefined : PLACEMENTS.some((p) => {
       const nf = airlineRules.filter((r) => evalPredicate(r.applies_when, { ...neutralCtx, placement: p }));
       const deniedByRules = nf.some(
         (r) => r.effect.action === "deny" && (!r.effect.placement || r.effect.placement.includes(p)),
@@ -457,7 +506,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     // Published fee for the primary accepted placement (cabin > hold > cargo), when the airline states one.
     // (`policy` was already computed above, before perPlacement — reused here, not redeclared.)
     const fees = (a as { fees?: Record<string, string | undefined> }).fees;
-    const okPlacement = perPlacement.find((x) => x.allowed)?.placement;
+    const okPlacement = placementDecisions.find((x) => x.allowed)?.placement;
     const fee = okPlacement ? (policy?.[okPlacement]?.fee ?? fees?.[okPlacement]) : undefined;
     return {
       airline_id: a.id,
@@ -465,17 +514,19 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       country_id: (a as { country_id?: string }).country_id,
       direct,
       carries_pets,
+      _legacy_carries_pets,
       itinerary_confidence: direct
         ? (direct_documented ? "direct_documented" : "direct_assumed")
         : (connection_documented ? "connection_documented" : "connection_unverified"),
-      deny_reasons: denyReasonsOf(perPlacement),
+      deny_reasons: denyReasonsOf(perPlacement.map((x) => ({ placement: x.decision.placement, fires: x.fires }))),
       connect_airport_id,
       detour_km,
       source_url: (a as { source?: { url?: string } }).source?.url,
       fee,
       origin_airport_id,
       destination_airport_id,
-      placements: perPlacement.map(({ placement, status, allowed }) => ({ placement, status, allowed })),
+      placements: placementDecisions,
+      offers_pet_transport,
       fired,
       _plausible: plausible,
     };

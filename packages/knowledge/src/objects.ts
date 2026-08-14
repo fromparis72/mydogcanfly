@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { id, LocalizedText, DogSize, Source } from "./common";
+import { id, LocalizedText, DogSize, Source, PlacementStatus } from "./common";
 
 export const Country = z.object({
   id: id("country"),
@@ -88,9 +88,19 @@ export const MediaRef = z.object({
 });
 export type MediaRef = z.infer<typeof MediaRef>;
 
-/** One placement policy (cabin / hold / cargo), fully sourced. */
-export const PlacementPolicy = z.object({
-  allowed: z.boolean(),
+/* ---- T0-A : schéma d'AUTEUR strict → projection nommée → schéma RUNTIME strict --------------
+ *
+ * Troisième membre de la famille « champ effacé par Zod en mode strip » : `brachy_allowed`
+ * (25 occurrences, 30/07), `season.month` (12/08), puis `conditional` (74) et
+ * `derived_from_fiche` (269) découverts les 13–14/08. La fermeture n'est pas une interdiction
+ * de clé, c'est un changement de régime : tout objet décisionnel est `.strict()`, la donnée
+ * d'auteur a SON schéma, et ce qu'une projection abandonne est ÉNUMÉRÉ dans une fonction
+ * nommée — plus jamais un effet silencieux du strip. */
+
+/** Bloc commun aux deux branches d'auteur ET au runtime : les champs enrichis existants
+ *  (302 politiques de canal en portent — source, tarif, dimensions, conditions, poids,
+ *  restriction brachycéphale). Ils traversent la projection SANS PERTE. */
+const PlacementPolicyCommon = {
   max_weight_kg: z.number().positive().optional(),   // incl. carrier where the airline states so
   carrier_dims_cm: z.object({ l: z.number(), w: z.number(), h: z.number() }).optional(),
   fee: z.string().optional(),                        // as published, e.g. "€125 (intra-Europe)"
@@ -105,8 +115,72 @@ export const PlacementPolicy = z.object({
    *  affichées « ✅ Accepté en soute » sur les fiches des races concernées. */
   brachy_allowed: z.boolean().optional(),
   source: Source,
-});
+} as const;
+
+/** Forme HISTORIQUE des 302 politiques actuelles. `conditional` (74 occurrences) et
+ *  `derived_from_fiche` (269) sont enfin DÉCLARÉS — le premier meurt en T0-B (manifeste de
+ *  migration par couple), le second est une métadonnée d'ingestion. */
+export const LegacyPlacementPolicyAuthored = z.object({
+  ...PlacementPolicyCommon,
+  allowed: z.boolean(),
+  /** Classe visuelle `warn` héritée des fiches — PAS un statut métier (contre-revue du 13/08 :
+   *  45 « via cargo/agent », 13 conditions déterministes, 8 on-request, 6 non publiés,
+   *  2 inapplicables aux chiens). Projection T0-A volontairement neutre : IGNORÉ (→ allowed),
+   *  jusqu'à la table de décision explicite de T0-B. */
+  conditional: z.boolean().optional(),
+  derived_from_fiche: z.boolean().optional(),
+}).strict();
+
+/** Forme CANONIQUE cible : la fiche écrit une sémantique, plus une couleur de pastille. */
+export const CanonicalPlacementPolicyAuthored = z.object({
+  ...PlacementPolicyCommon,
+  availability: z.enum(["offered", "not_offered", "case_by_case", "undocumented"]),
+  derived_from_fiche: z.boolean().optional(),
+}).strict();
+
+/** L'union stricte interdit qu'un objet porte à la fois `allowed` et `availability`. */
+export const PlacementPolicyAuthored = z.union([LegacyPlacementPolicyAuthored, CanonicalPlacementPolicyAuthored]);
+export type PlacementPolicyAuthored = z.infer<typeof PlacementPolicyAuthored>;
+
+/** Runtime : UNION DISCRIMINÉE, comme le contrat moteur (contre-revue T0-A v1, P0-1 — un objet
+ *  plat `.strict()` acceptait cinq combinaisons contradictoires : `allowed:false` sur statut
+ *  allowed, cause sur un refus, confirmation sans cause…). `allowed` est IMPOSÉ par la branche
+ *  (booléen de transition consommé par l'UI existante) ; `status_cause` n'existe QUE sur la
+ *  branche confirmation, et y est OBLIGATOIRE — le moteur lit une cause garantie par le type,
+ *  il n'en fabrique jamais. */
+export const PlacementPolicy = z.discriminatedUnion("status", [
+  z.object({ ...PlacementPolicyCommon, status: z.literal("allowed"), allowed: z.literal(true), derived_from_fiche: z.boolean().optional() }).strict(),
+  z.object({ ...PlacementPolicyCommon, status: z.literal("denied"), allowed: z.literal(false), derived_from_fiche: z.boolean().optional() }).strict(),
+  z.object({
+    ...PlacementPolicyCommon,
+    status: z.literal("confirmation_required"),
+    allowed: z.literal(false),
+    status_cause: z.enum(["airline_approval", "policy_unpublished"]),
+    derived_from_fiche: z.boolean().optional(),
+  }).strict(),
+]);
 export type PlacementPolicy = z.infer<typeof PlacementPolicy>;
+
+/** LA projection auteur → runtime. Ce qu'elle abandonne est écrit ici, nulle part ailleurs :
+ *  - legacy `conditional` : ABANDONNÉ VOLONTAIREMENT en T0-A (neutralité — aucun des 74 canaux
+ *    ne change de verdict avant le manifeste T0-B) ;
+ *  - rien d'autre : tous les champs communs traversent, `derived_from_fiche` compris. */
+export function projectPlacementPolicy(authored: PlacementPolicyAuthored): PlacementPolicy {
+  const { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, derived_from_fiche } = authored;
+  const common = { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, derived_from_fiche };
+  if ("allowed" in authored) {
+    // `conditional` sciemment ignoré (T0-A — neutralité jusqu'au manifeste T0-B)
+    return PlacementPolicy.parse(authored.allowed
+      ? { ...common, status: "allowed", allowed: true }
+      : { ...common, status: "denied", allowed: false });
+  }
+  if (authored.availability === "offered") return PlacementPolicy.parse({ ...common, status: "allowed", allowed: true });
+  if (authored.availability === "not_offered") return PlacementPolicy.parse({ ...common, status: "denied", allowed: false });
+  return PlacementPolicy.parse({
+    ...common, status: "confirmation_required", allowed: false,
+    status_cause: authored.availability === "case_by_case" ? "airline_approval" : "policy_unpublished",
+  });
+}
 
 export const TimelineEntry = z.object({
   year: z.number().int(),
@@ -130,11 +204,16 @@ export const AirlinePremium = z.object({
   hero_photo: MediaRef.optional(),
   summary: LocalizedText.optional(),
   summary_source: Source.optional(),
+  /* La projection est BRANCHÉE ici : `Airline.parse()` (appelé par `normalize()`) valide la
+     forme d'auteur strictement, PUIS projette vers le runtime — un schéma d'auteur défini mais
+     non branché ne protégerait rien. */
+  /* `.strict()` sur le CONTENEUR aussi (contre-revue v2 : `holdd`, `carog` étaient acceptés
+     puis supprimés en silence — le canal mal orthographié disparaissait avec ses données). */
   policy: z.object({
-    cabin: PlacementPolicy.optional(),
-    hold: PlacementPolicy.optional(),
-    cargo: PlacementPolicy.optional(),
-  }).optional(),
+    cabin: PlacementPolicyAuthored.transform(projectPlacementPolicy).optional(),
+    hold: PlacementPolicyAuthored.transform(projectPlacementPolicy).optional(),
+    cargo: PlacementPolicyAuthored.transform(projectPlacementPolicy).optional(),
+  }).strict().optional(),
   booking: SourcedNote.optional(),          // how to book, lead time, channels
   history: z.array(TimelineEntry).default([]),
   faq: z.array(FaqEntry).default([]),
@@ -142,7 +221,7 @@ export const AirlinePremium = z.object({
   tips: z.array(SourcedNote).default([]),
   precedents: z.array(SourcedNote).default([]),   // "jurisprudence" — only when a real, citable case exists
   last_reviewed: z.string().optional(),           // ISO date
-});
+}).strict();
 export type AirlinePremium = z.infer<typeof AirlinePremium>;
 
 export const Airline = z.object({
@@ -161,7 +240,9 @@ export const Airline = z.object({
   /** Routes flown only part of the year (summer/winter sampling). Kept apart from direct_routes so a
    *  February search never advertises a July-only nonstop; available for date-aware use later. */
   seasonal_routes: z.array(z.string()).default([]),
-  fees: z.object({ cabin: z.string().optional(), hold: z.string().optional(), cargo: z.string().optional() }).optional(), // published fees, as-is
+  /* `.strict()` (contre-revue v3) : `hodl` ou `carog` étaient acceptés puis supprimés — le tarif
+     disparaissait en silence. */
+  fees: z.object({ cabin: z.string().optional(), hold: z.string().optional(), cargo: z.string().optional() }).strict().optional(), // published fees, as-is
   /** Customer-service phone numbers, local first then international. Sourced (ADR-0006); optional — renders only when present. */
   contact: z.object({
     phones: z.array(z.object({ region: LocalizedText, number: z.string() })).min(1),
@@ -171,7 +252,9 @@ export const Airline = z.object({
   rating: z.object({ score: z.number(), points: z.number() }).optional(),
   source: Source.optional(),
   premium: AirlinePremium.optional(),
-});
+  /* `.strict()` (contre-revue T0-A v2) : `premiun`, `polciy` ou tout conteneur mal orthographié
+     est REFUSÉ — plus jamais accepté puis supprimé en silence avec ses données. */
+}).strict();
 export type Airline = z.infer<typeof Airline>;
 
 /** Sourced behavioural / travel-relevant traits. Values are DogTime.com's published 1–5 ratings, stored
