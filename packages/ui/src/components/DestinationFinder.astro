@@ -134,6 +134,9 @@ const L = {
        signaux de cause, jamais par le seul statut. Aucune donnée ne l'exerce avant T0-B. */
     toConfirmSectionTitleGeneric: T("To confirm with the airline", "À confirmer auprès de la compagnie", "A confirmar con la aerolínea"),
     sigPolicy: T("Airline policy to confirm before booking", "Politique de la compagnie à confirmer avant de réserver", "Política de la aerolínea a confirmar antes de reservar"),
+    /* T0-B — même phrase que le Finder, même famille distincte : le doute vient de NOTRE donnée
+       héritée, jamais de la compagnie. Le code interne n'est jamais affiché. */
+    sigUnreviewed: T("This information has not yet been reverified against a current official source — confirm directly with the airline before booking.", "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver.", "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar."),
     sigMissing: T("Additional information needed — confirm with the airline", "Information supplémentaire nécessaire — confirme auprès de la compagnie", "Se necesita información adicional: confirma con la aerolínea"),
     /* v4 : la note affirmait « aucun canal ouvert » alors que la section reçoit aussi des
        destinations dont la CABINE est réellement ouverte (seul le canal demandé est à confirmer).
@@ -449,8 +452,12 @@ const L = {
            demandé quand il est précis. */
         const sigs = (m.confirmation_signals || []).filter((s) => placementPref === "any" || s.placement === placementPref);
         const fams = new Set(sigs.map((s) => s.cause.code === "missing_fact" ? "missing"
+          /* T0-B : famille propre — voir FlightFinder.astro, même arbitrage. */
+          : s.cause.code === "legacy_unreviewed" ? "unreviewed"
           : (s.cause.code === "policy_unpublished" || s.cause.code === "airline_approval") ? "policy" : ""));
         const lines = [];
+        /* Notre propre incertitude d'abord (même ordre que le Finder). */
+        if (fams.has("unreviewed")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigUnreviewed)}</div>`);
         if (fams.has("policy")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigPolicy)}</div>`);
         if (fams.has("missing")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigMissing)}</div>`);
         return lines.join("");

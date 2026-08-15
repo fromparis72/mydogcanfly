@@ -25,6 +25,12 @@ export const ConfirmationCause = z.discriminatedUnion("code", [
   z.object({ code: z.literal("policy_unpublished"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
   /** Acceptation au cas par cas / on request — politiques canoniques `case_by_case` (T0-B). */
   z.object({ code: z.literal("airline_approval"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /** Donnée HÉRITÉE non revérifiée (T0-B) — la condition figure dans notre fiche mais n'a pas
+   *  encore été confrontée à une source officielle à jour. L'incertitude est LA NÔTRE : la
+   *  ranger avec `policy_unpublished` l'attribuerait à la compagnie, ce qui serait exactement
+   *  la perte d'interprétation que T0-B répare. `policy_ref` est obligatoire — une donnée non
+   *  revérifiée sans le couple (compagnie, canal) qu'elle concerne serait inauditables. */
+  z.object({ code: z.literal("legacy_unreviewed"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
   /** Fait requis absent (poids total T2, âge T3). `fact` restera à resserrer en registre fermé
    *  avant la première migration T2/T3 — aucune donnée réelle ne l'émet en T0-A. */
   z.object({ code: z.literal("missing_fact"), fact: z.string().min(1), requirement_ref: z.string().min(1) }).strict(),

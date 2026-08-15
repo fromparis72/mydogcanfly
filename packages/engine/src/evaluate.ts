@@ -112,7 +112,7 @@ function toFired(r: Rule, locale: string): FiredRule {
 
 type PolicyMode = {
   status?: PlacementStatus;
-  status_cause?: "airline_approval" | "policy_unpublished";
+  status_cause?: "airline_approval" | "policy_unpublished" | "legacy_unreviewed";
   allowed?: boolean;
   fee?: string;
   source?: Rule["source"];

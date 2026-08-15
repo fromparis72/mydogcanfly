@@ -364,6 +364,65 @@ async function main() {
       r.texte.slice(0, 160));
   }
 
+  /* ---- T0-B1 : la donnée héritée non revérifiée, famille DISTINCTE de « politique » --------- */
+  const T0B_UNREVIEWED = {
+    en: "This information has not yet been reverified against a current official source — confirm directly with the airline before booking.",
+    fr: "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver.",
+    es: "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar.",
+    pt: "Esta informação ainda não foi verificada novamente com base numa fonte oficial atualizada — confirma-a diretamente com a companhia antes de reservar.",
+  };
+  const t0bMatch = (signals) => match({
+    city: "Bangkok", iata: "BKK", temperature_c: 22,
+    airlines_total: 0, airlines_to_confirm_total: 1,
+    cabin_status: "denied", hold_status: "denied", cargo_status: "confirmation_required",
+    placement_ok: false, placement_to_confirm: true,
+    confirmation_signals: signals,
+  });
+
+  console.log("\n=== 5 septies. T0-B — donnée non revérifiée : sa PROPRE phrase, jamais celle de la compagnie ===");
+  {
+    const r = await run(parts, { matches: [t0bMatch([sig("cargo", "legacy_unreviewed")]), ], breedKey: normalBreed, placement: "any" });
+    const carte = r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "";
+    check("en : le libellé publié est le texte EXACT attendu", S.sigUnreviewed === T0B_UNREVIEWED.en, JSON.stringify(S.sigUnreviewed));
+    check("en : la ligne « non revérifiée » est VISIBLE sur la carte", carte.includes(T0B_UNREVIEWED.en), carte.slice(0, 260));
+    check("en : la phrase « politique de la compagnie » est ABSENTE (familles distinctes)",
+      !carte.includes(S.sigPolicy), carte.slice(0, 260));
+    check("en : le titre de section reste le GÉNÉRIQUE",
+      r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === S.toConfirmSectionTitleGeneric);
+    check("en : AUCUN message climatique (la cause n'est pas la chaleur)",
+      !r.texte.includes(S.climToConfirm) && !r.texte.includes(S.climToConfirmBrachy), r.texte.slice(0, 220));
+    check("en : le code interne « legacy_unreviewed » n'apparaît nulle part dans le rendu",
+      !r.texte.includes("legacy_unreviewed"), r.texte.slice(0, 260));
+  }
+  console.log("\n=== 5 octies. T0-B — les deux familles coexistent, la nôtre en premier ===");
+  {
+    const r = await run(parts, {
+      matches: [t0bMatch([sig("cargo", "legacy_unreviewed"), sig("cargo", "policy_unpublished")])],
+      breedKey: normalBreed, placement: "any",
+    });
+    const carte = r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "";
+    check("en : les DEUX phrases sont visibles — aucune ne masque l'autre",
+      carte.includes(T0B_UNREVIEWED.en) && carte.includes(S.sigPolicy), carte.slice(0, 320));
+    check("en : notre incertitude est annoncée AVANT la politique de la compagnie",
+      carte.indexOf(T0B_UNREVIEWED.en) < carte.indexOf(S.sigPolicy),
+      JSON.stringify({ unreviewed: carte.indexOf(T0B_UNREVIEWED.en), policy: carte.indexOf(S.sigPolicy) }));
+  }
+  console.log("\n=== 5 nonies. T0-B — le libellé dans les QUATRE langues, textes EXACTS ===");
+  for (const loc of ["fr", "es", "pt"]) {
+    const partsL = loadParts(loc);
+    const SL = partsL.labels.s;
+    const breedsL = partsL.labels.breeds;
+    const r = await run(partsL, {
+      matches: [t0bMatch([sig("cargo", "legacy_unreviewed")])],
+      breedKey: Object.keys(breedsL).find((k) => !breedsL[k].br), placement: "any",
+    });
+    const carte = r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "";
+    check(`${loc} : libellé publié EXACT (jamais le repli anglais)`,
+      SL.sigUnreviewed === T0B_UNREVIEWED[loc], JSON.stringify(SL.sigUnreviewed));
+    check(`${loc} : la ligne traduite est visible sur la carte`, carte.includes(T0B_UNREVIEWED[loc]), carte.slice(0, 260));
+    check(`${loc} : aucun résidu anglais de cette phrase`, !carte.includes(T0B_UNREVIEWED.en), carte.slice(0, 260));
+  }
+
   console.log("\n=== 6. Langue témoin (fr) : mêmes règles, libellés traduits ===");
   {
     const partsFr = loadParts("fr");

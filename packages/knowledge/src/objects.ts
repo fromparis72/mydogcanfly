@@ -138,8 +138,38 @@ export const CanonicalPlacementPolicyAuthored = z.object({
   derived_from_fiche: z.boolean().optional(),
 }).strict();
 
-/** L'union stricte interdit qu'un objet porte à la fois `allowed` et `availability`. */
-export const PlacementPolicyAuthored = z.union([LegacyPlacementPolicyAuthored, CanonicalPlacementPolicyAuthored]);
+/**
+ * Forme d'auteur TRANSITOIRE (T0-B1) : une politique héritée dont la condition n'a PAS encore
+ * été revérifiée sur source officielle. Elle dit une seule chose, et elle la dit d'elle-même —
+ * « notre donnée n'a pas été revérifiée » — sans rien affirmer sur la compagnie.
+ *
+ * Pourquoi une branche à part, et non une valeur de plus dans `availability` : « non revérifié »
+ * n'est pas une disponibilité. `offered`, `not_offered`, `case_by_case`, `undocumented` décrivent
+ * ce que la COMPAGNIE propose ; `legacy_unreviewed` décrit l'état de NOTRE référentiel. Les
+ * mélanger rendrait l'enum métier inutilisable le jour où l'audit conclut.
+ *
+ * Pourquoi une branche à part, et non une réinterprétation du `conditional` hérité : l'ancienne
+ * branche `{ allowed, conditional }` continue d'ignorer `conditional`, exactement comme en T0-A.
+ * Il n'existe donc AUCUN interrupteur capable de basculer les 74 politiques héritées sans
+ * réécrire les fiches — la bascule passera par le manifeste, les YAML, l'ingestion et un diff
+ * approuvé (T0-B2), jamais par un booléen dans cette fonction.
+ *
+ * En T0-B1, aucune donnée réelle n'emploie cette branche : seules des FIXTURES l'exercent.
+ */
+export const LegacyUnreviewedPlacementPolicyAuthored = z.object({
+  ...PlacementPolicyCommon,
+  review_state: z.literal("legacy_unreviewed"),
+  derived_from_fiche: z.boolean().optional(),
+}).strict();
+
+/** L'union stricte interdit qu'un objet porte à la fois `allowed`, `availability` ou
+ *  `review_state` : chaque branche a son discriminant obligatoire, et `.strict()` refuse les
+ *  deux autres. Un objet qui en porterait deux n'appartient à aucune branche — il est rejeté. */
+export const PlacementPolicyAuthored = z.union([
+  LegacyPlacementPolicyAuthored,
+  CanonicalPlacementPolicyAuthored,
+  LegacyUnreviewedPlacementPolicyAuthored,
+]);
 export type PlacementPolicyAuthored = z.infer<typeof PlacementPolicyAuthored>;
 
 /** Runtime : UNION DISCRIMINÉE, comme le contrat moteur (contre-revue T0-A v1, P0-1 — un objet
@@ -155,19 +185,32 @@ export const PlacementPolicy = z.discriminatedUnion("status", [
     ...PlacementPolicyCommon,
     status: z.literal("confirmation_required"),
     allowed: z.literal(false),
-    status_cause: z.enum(["airline_approval", "policy_unpublished"]),
+    /* `legacy_unreviewed` (T0-B) rejoint les deux causes de politique : elle n'existe QUE sur la
+       branche confirmation, jamais sur `allowed` ni `denied` — la discrimination par statut le
+       rend inconstructible, pas seulement invalide à la sérialisation. */
+    status_cause: z.enum(["airline_approval", "policy_unpublished", "legacy_unreviewed"]),
     derived_from_fiche: z.boolean().optional(),
   }).strict(),
 ]);
 export type PlacementPolicy = z.infer<typeof PlacementPolicy>;
 
 /** LA projection auteur → runtime. Ce qu'elle abandonne est écrit ici, nulle part ailleurs :
- *  - legacy `conditional` : ABANDONNÉ VOLONTAIREMENT en T0-A (neutralité — aucun des 74 canaux
- *    ne change de verdict avant le manifeste T0-B) ;
+ *  - legacy `conditional` : ABANDONNÉ VOLONTAIREMENT en T0-A, et TOUJOURS abandonné en T0-B1
+ *    (neutralité — aucun des 74 canaux ne change de verdict avant la réécriture des fiches en
+ *    T0-B2 ; la branche `review_state` ci-dessous est un chemin DISTINCT, pas un interrupteur
+ *    posé sur celle-ci) ;
  *  - rien d'autre : tous les champs communs traversent, `derived_from_fiche` compris. */
 export function projectPlacementPolicy(authored: PlacementPolicyAuthored): PlacementPolicy {
   const { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, derived_from_fiche } = authored;
   const common = { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, derived_from_fiche };
+  /* T0-B1 — donnée héritée non revérifiée : à confirmer, cause explicitement NÔTRE. Placée en
+     tête parce qu'elle est la seule branche dont le discriminant ne peut coexister avec un
+     autre ; l'ordre ne change rien au résultat, il rend la lecture non ambiguë. */
+  if ("review_state" in authored) {
+    return PlacementPolicy.parse({
+      ...common, status: "confirmation_required", allowed: false, status_cause: "legacy_unreviewed",
+    });
+  }
   if ("allowed" in authored) {
     // `conditional` sciemment ignoré (T0-A — neutralité jusqu'au manifeste T0-B)
     return PlacementPolicy.parse(authored.allowed

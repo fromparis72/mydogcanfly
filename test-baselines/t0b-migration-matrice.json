@@ -1,0 +1,4187 @@
+{
+ "fingerprint_algorithm": "sha256-canonical-json-v1 = sha256(UTF-8 de json.dumps(block, ensure_ascii=False, sort_keys=True, separators=(\",\",\":\"))) — hex complet 64 caractères",
+ "audit_hints_note": "indices d'audit NON EXHAUSTIFS et NON DÉCISIONNELS (extraction lexicale + corrections des contre-revues) — la seule observation faisant foi est le bloc YAML complet et son empreinte ; les conditions réelles (poids, âge, durée, capacité, destinations…) seront établies par les AUDITS sur sources officielles, jamais par ces indices",
+ "rows": [
+  {
+   "identity": {
+    "airline_id": "airline_aegean",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/aegean.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Aegean Cargo",
+      "fr": "Aegean Cargo",
+      "es": "Aegean Cargo",
+      "pt": "Aegean Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Unaccompanied pets, crates over 105 × 75 × 79 cm, or cats/dogs to the UK.",
+      "fr": "Animaux non accompagnés, caisses de plus de 105 × 75 × 79 cm, ou chats/chiens vers le R.-U.",
+      "es": "Mascotas no acompañadas, jaulas de más de 105 × 75 × 79 cm, o gatos/perros al Reino Unido.",
+      "pt": "Animais desacompanhados, caixas de transporte acima de 105 × 75 × 79 cm, ou gatos/cachorros para o Reino Unido."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "2f929c01f7ca7c7ecc9429b344fd9d24a4ac21193027067e2b60d7cab897a132"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "procedure",
+    "route_condition",
+    "size_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_aer_lingus",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/aer_lingus.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "IAG Cargo",
+      "fr": "IAG Cargo",
+      "es": "IAG Cargo",
+      "pt": "IAG Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "Vía agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "Cats & dogs travel via IAG Cargo (pet agent) in a temperature-controlled hold. Not on Aer Lingus Regional (Emerald).",
+      "fr": "Chats et chiens voyagent via IAG Cargo (agent) dans une soute à température contrôlée. Pas sur Aer Lingus Regional (Emerald).",
+      "es": "Los gatos y perros viajan vía IAG Cargo (agente) en una bodega con temperatura controlada. No en Aer Lingus Regional (Emerald).",
+      "pt": "Gatos e cachorros viajam via IAG Cargo (agente de animais) em um porão com temperatura controlada. Não disponível na Aer Lingus Regional (Emerald)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "b7052950b1e9758ce9f24f2a0b1c2b98db4542ee6983ed51d570ac50f7d4b20a"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "operator_condition",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_aerolineas_argentinas",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/aerolineas_argentinas.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "The only route for flat-faced breeds (barred from the hold but accepted in cargo) and for the eighteen breeds listed as dangerous, which must always travel as cargo.",
+      "fr": "La seule voie pour les brachycéphales (refusés en soute mais acceptés en fret) et pour les dix-huit races classées dangereuses, qui passent obligatoirement par le fret.",
+      "es": "La única vía para las razas de hocico chato (rechazadas en bodega pero aceptadas en carga) y para las dieciocho razas consideradas peligrosas, que viajan siempre como carga.",
+      "pt": "A única via para as raças de focinho achatado (recusadas no porão, mas aceitas na carga) e para as dezoito raças classificadas como perigosas, que viajam sempre como carga."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "38950cc0311e28d09dc644d5149540b36fbc0695ce43c25c44b61bac27d2ce3f"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "breed_condition",
+    "procedure",
+    "sole_channel_claim"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_aeromexico",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/aeromexico.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Aeromexico Cargo",
+      "fr": "Aeromexico Cargo",
+      "es": "Aeromexico Cargo",
+      "pt": "Aeromexico Cargo"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo petición",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Over cabin/hold limits or exotic species, via Aeromexico Cargo (Live Animals).",
+      "fr": "Au-delà des limites cabine/soute ou espèces exotiques, via Aeromexico Cargo (animaux vivants).",
+      "es": "Por encima de los límites de cabina/bodega o especies exóticas, vía Aeromexico Cargo (animales vivos).",
+      "pt": "Acima dos limites de cabine/porão ou espécies exóticas, via Aeromexico Cargo (Animais Vivos)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "b08e681e8eeb55006abbb63d93a96a173d76805af7910093a382a837c4dd963a"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_algerie",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_algerie.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Oversize, or all pets to/from the UK (freight only).",
+      "fr": "Hors gabarit, ou tous les animaux vers/depuis le R.-U. (fret uniquement).",
+      "es": "Fuera de medidas, o todas las mascotas hacia/desde el Reino Unido (solo carga).",
+      "pt": "Fora do tamanho, ou todos os animais de/para o Reino Unido (somente carga)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "46422e99eb4e0e53047455d6e4a97d358584956457d828f75834e5615ebd5165"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_astana",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_astana.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Mandatory on some routes",
+      "fr": "Obligatoire sur certaines routes",
+      "es": "Obligatorio en algunas rutas",
+      "pt": "Obrigatório em algumas rotas"
+     },
+     "detail": {
+      "en": "Cargo is the only option to the United Kingdom, Ireland, South Africa, Australia and the United Arab Emirates — neither cabin nor hold is available on those routes.",
+      "fr": "Le fret est la seule option vers le Royaume-Uni, l'Irlande, l'Afrique du Sud, l'Australie et les Émirats arabes unis : ni cabine ni soute sur ces routes.",
+      "es": "La carga es la única opción hacia el Reino Unido, Irlanda, Sudáfrica, Australia y los Emiratos Árabes Unidos: ni cabina ni bodega en esas rutas.",
+      "pt": "A carga é a única opção para o Reino Unido, a Irlanda, a África do Sul, a Austrália e os Emirados Árabes Unidos: nem cabine nem porão nessas rotas."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "564357a1a9dad3d644647f45cc8665100315b203b6ac5dce457cf80eec4901b7"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "mandatory_in_cases",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_austral",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_austral.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Cargo is required above 75 kg and for any species other than cats and dogs. The same page also routes category 2 dogs to cargo on Réunion → Paris. No live animal leaves Paris in cargo.",
+      "fr": "Le fret est obligatoire au-delà de 75 kg et pour toute espèce autre que le chat et le chien. La même page renvoie aussi les chiens de 2ᵉ catégorie au fret sur Réunion → Paris. Aucun animal vivant ne part de Paris en fret.",
+      "es": "La carga es obligatoria por encima de 75 kg y para cualquier especie que no sea gato o perro. Esa misma página deriva también a carga los perros de 2ª categoría en Reunión → París. Ningún animal vivo sale de París en carga.",
+      "pt": "A carga é obrigatória acima de 75 kg e para qualquer espécie que não seja gato ou cachorro. A mesma página também encaminha para carga os cachorros de 2ª categoria em Reunião → Paris. Nenhum animal vivo parte de Paris como carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "8912852b4ec146951e284891f9f3ed727a14cc7883fb3e3a8c6aa0fe99ec49f9"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_caraibes",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_caraibes.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "FRET",
+      "fr": "FRET",
+      "es": "FRET",
+      "pt": "FRET"
+     },
+     "statusLabel": {
+      "en": "Via freight",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Other species, oversize, and snub-nosed dogs/cats (barred from hold & FRET on transatlantic).",
+      "fr": "Autres espèces, hors gabarit, et chiens/chats au nez écrasé (interdits en soute & FRET sur le transatlantique).",
+      "es": "Otras especies, fuera de medidas, y perros/gatos de hocico chato (vetados de bodega y FRET en el transatlántico).",
+      "pt": "Outras espécies, fora do tamanho, e cachorros/gatos de focinho achatado (proibidos no porão e na FRET nas rotas transatlânticas)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "d4997634fcb714c51b074cf18589d86fad051835732955529fb0609573d54b98"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "breed_condition",
+    "procedure",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_china",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_china.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Air China Cargo",
+      "fr": "Air China Cargo",
+      "es": "Air China Cargo",
+      "pt": "Air China Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Larger animals travel via Air China Cargo.",
+      "fr": "Les animaux plus grands voyagent via Air China Cargo.",
+      "es": "Los animales más grandes viajan vía Air China Cargo.",
+      "pt": "Animais maiores viajam via Air China Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "39e66543464c233bee0435e5036dec4414ac64b13c3266b31e79bd367fba2838"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_europa",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_europa.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Air Europa Cargo",
+      "fr": "Air Europa Cargo",
+      "es": "Air Europa Cargo",
+      "pt": "Air Europa Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Other species, more than 5 pets, and all pets to/from the UK.",
+      "fr": "Autres espèces, plus de 5 animaux, et tous les animaux de/vers le R.-U.",
+      "es": "Otras especies, más de 5 mascotas y todas las mascotas hacia/desde el Reino Unido.",
+      "pt": "Outras espécies, mais de 5 animais, e todos os animais de/para o Reino Unido."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "805d36df5434b49d2dfe5eb01f47dea9d97c7c0932d1ff2e10fdc32587335372"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_india",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_india.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Air India Cargo",
+      "fr": "Air India Cargo",
+      "es": "Air India Cargo",
+      "pt": "Air India Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Over 32 kg and UK routes via Air India Cargo (airport-to-airport); not on ultra-long-haul US/Canada.",
+      "fr": "Au-delà de 32 kg et routes R.-U. via Air India Cargo (aéroport à aéroport) ; pas sur les ultra-long-courriers USA/Canada.",
+      "es": "Por encima de 32 kg y rutas al R.U. vía Air India Cargo (de aeropuerto a aeropuerto); no en los ultralargos EE. UU./Canadá.",
+      "pt": "Acima de 32 kg e rotas para o Reino Unido via Air India Cargo (de aeroporto a aeroporto); não disponível em voos ultra longos para EUA/Canadá."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "05e2d459c3f45b36f9cdde88676f31aafe11bd1978e8a9a05839c4f79cbb3ce7"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_mauritius",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_mauritius.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Air Mauritius Cargo",
+      "fr": "Air Mauritius Cargo",
+      "es": "Air Mauritius Cargo",
+      "pt": "Air Mauritius Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Solo pets, unusual sizes, reptiles & rodents via cargo or a freight forwarder.",
+      "fr": "Animaux non accompagnés, tailles inhabituelles, reptiles et rongeurs via le fret ou un transitaire.",
+      "es": "Mascotas no acompañadas, tamaños inusuales, reptiles y roedores vía carga o un agente de carga.",
+      "pt": "Animais sozinhos, tamanhos fora do padrão, répteis e roedores via carga ou um despachante de carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "e7751c63c9ac4a7b1192d4c8871cc3e3586afa74cd541f1b2efe45bedd921306"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_new_zealand",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_new_zealand.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo Pet Services",
+      "fr": "Cargo Pet Services",
+      "es": "Cargo Pet Services",
+      "pt": "Cargo Pet Services"
+     },
+     "statusLabel": {
+      "en": "Via transporter",
+      "fr": "Via transporteur",
+      "es": "Vía transportista",
+      "pt": "Via transportadora"
+     },
+     "detail": {
+      "en": "Solo pets, international, over 60 kg or oversize via an approved pet transporter (ANZ doesn't take direct public bookings).",
+      "fr": "Animaux non accompagnés, international, plus de 60 kg ou hors gabarit via un transporteur agréé (ANZ ne prend pas de réservations directes du public).",
+      "es": "Mascotas no acompañadas, internacionales, de más de 60 kg o fuera de medidas vía un transportista de mascotas autorizado (ANZ no acepta reservas directas del público).",
+      "pt": "Animais sozinhos, internacionais, com mais de 60 kg ou fora do padrão, via uma transportadora de animais aprovada (a ANZ não aceita reservas diretas do público)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "bd8d644892f021bb2c76f83ed5feedb34f8a7dd7139ee812346276fbf244f2de"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_tahiti_nui",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_tahiti_nui.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Air Tahiti Nui Cargo",
+      "fr": "Air Tahiti Nui Cargo",
+      "es": "Air Tahiti Nui Cargo",
+      "pt": "Air Tahiti Nui Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Pets that can't fly in the cabin travel in the pressurised hold via Cargo (min 6 months, microchipped, IATA cage), between PPT/CDG/AKL/LAX/NRT.",
+      "fr": "Les animaux qui ne peuvent pas voyager en cabine voyagent dans la soute pressurisée via Cargo (min 6 mois, pucés, cage IATA), entre PPT/CDG/AKL/LAX/NRT.",
+      "es": "Las mascotas que no pueden volar en cabina viajan en la bodega presurizada vía Cargo (mín 6 meses, con microchip, jaula conforme a la IATA), entre PPT/CDG/AKL/LAX/NRT.",
+      "pt": "Os animais que não podem voar na cabine viajam no porão pressurizado via Cargo (mín. 6 meses, com microchip, caixa de transporte IATA), entre PPT/CDG/AKL/LAX/NRT."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "96f1044744a85b41a817a3045f44df2fa6a28e20706f5dc76ebe595523acc721"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_air_transat",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/air_transat.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Air Transat Cargo",
+      "fr": "Air Transat Cargo",
+      "es": "Air Transat Cargo",
+      "pt": "Air Transat Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Cats & dogs to/from the UK and the Republic of Ireland go by cargo, with advance arrangements and extra fees — except that cabin and hold stay open on flights from Manchester and Glasgow (but not from London). Oversize cages also travel via cargo.",
+      "fr": "Chats et chiens de/vers le R.-U. et la République d'Irlande passent par le fret, sur arrangement préalable et avec des frais supplémentaires — sauf au départ de Manchester et de Glasgow, où la cabine et la soute restent possibles (mais pas au départ de Londres). Les caisses hors gabarit passent aussi par le fret.",
+      "es": "Los gatos y perros hacia/desde el Reino Unido y la República de Irlanda van por carga, con acuerdo previo y tasas adicionales — salvo en los vuelos desde Mánchester y Glasgow, donde la cabina y la bodega siguen siendo posibles (pero no desde Londres). Las jaulas fuera de medidas también van por carga.",
+      "pt": "Gatos e cachorros de/para o Reino Unido e a República da Irlanda vão por carga, mediante acordo prévio e com taxas adicionais — exceto nos voos partindo de Manchester e Glasgow, onde a cabine e o porão continuam possíveis (mas não partindo de Londres). As caixas fora do padrão também vão por carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "7492b4ae00351d576fc45e898e7f601453f04f172c6529eccd86b468f938d999"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_airbaltic",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/airbaltic.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via agents, no published rate",
+      "fr": "Via agences, tarif non publié",
+      "es": "Vía agencias, sin tarifa publicada",
+      "pt": "Via agências, sem tarifa publicada"
+     },
+     "detail": {
+      "en": "For animals over 75 kg or shipped without their owner. airBaltic is an EU-authorised animal carrier, but pricing and crate specifics are handled entirely by third-party IATA-certified cargo agents, not published on airBaltic's own site.",
+      "fr": "Pour les animaux de plus de 75 kg ou expédiés sans leur propriétaire. airBaltic est un transporteur animalier agréé UE, mais tarifs et gabarits de caisse sont entièrement gérés par des agences fret certifiées IATA tierces, non publiés sur le site d'airBaltic.",
+      "es": "Para animales de más de 75 kg o enviados sin su propietario. airBaltic es un transportista animal autorizado por la UE, pero las tarifas y las especificaciones de la jaula las gestionan por completo agencias de carga certificadas IATA externas, no publicadas en el sitio de airBaltic.",
+      "pt": "Para animais com mais de 75 kg ou enviados sem o dono. A airBaltic é uma transportadora de animais autorizada pela UE, mas tarifas e especificações de caixa são geridas inteiramente por agências de carga terceirizadas certificadas pela IATA, não publicadas no site da airBaltic."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c520b7e959bc4e1791c471d6f4da56f686aa1ba140ea1808e49d7a3c673e4ef8"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "terms_unpublished",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_aircalin",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/aircalin.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo (airfreight)",
+      "fr": "Fret aérien",
+      "es": "Carga (flete aéreo)",
+      "pt": "Carga (frete aéreo)"
+     },
+     "statusLabel": {
+      "en": "Only route",
+      "fr": "Seule voie",
+      "es": "Única vía",
+      "pt": "Único caminho"
+     },
+     "detail": {
+      "en": "The file is opened with the Tontouta cargo office three months before departure, with a SIVAP certificate, and the animal is dropped off 4 hours before the flight. Aircalin publishes no rate, no weight limit and no crate dimensions for this channel.",
+      "fr": "Le dossier s'ouvre auprès du bureau cargo de Tontouta trois mois avant le départ, avec un certificat SIVAP, et l'animal est déposé 4 h avant le vol. Aircalin ne publie ni tarif, ni limite de poids, ni dimensions de caisse pour ce canal.",
+      "es": "El expediente se abre en la oficina de carga de Tontouta tres meses antes de la salida, con certificado SIVAP, y el animal se entrega 4 h antes del vuelo. Aircalin no publica tarifa, ni límite de peso, ni dimensiones de jaula para este canal.",
+      "pt": "O processo é aberto no escritório de carga de Tontouta três meses antes da partida, com certificado SIVAP, e o animal é entregue 4 h antes do voo. A Aircalin não publica tarifa, nem limite de peso, nem dimensões de caixa para esse canal."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "b576e87943bd1e6fdd26e1b89eeaebaa8e9fe03fd459832b08b17b1586b93f39"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "sole_channel_claim",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_alaska",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/alaska.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Pet Connect cargo",
+      "fr": "Fret Pet Connect",
+      "es": "Carga Pet Connect",
+      "pt": "Carga Pet Connect"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo presupuesto",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Unaccompanied pets or over 150 lb, via Alaska Air Cargo Pet Connect.",
+      "fr": "Animaux non accompagnés ou de plus de 150 lb, via Alaska Air Cargo Pet Connect.",
+      "es": "Mascotas no acompañadas o de más de 150 lb, mediante Alaska Air Cargo Pet Connect.",
+      "pt": "Animais desacompanhados ou com mais de 150 lb, via Alaska Air Cargo Pet Connect."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "54d3698fb293b85cdfc354b08e98136199aee025973d9657192ad1b234e99b3e"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "on_request_or_contact",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_ana",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/ana.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "ANA Cargo",
+      "fr": "ANA Cargo",
+      "es": "ANA Cargo",
+      "pt": "ANA Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "Mediante agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "Required for pets entering the UK, Hong Kong or Australia; via a cargo agent.",
+      "fr": "Obligatoire pour les animaux entrant au R.-U., à Hong Kong ou en Australie ; via un agent de fret.",
+      "es": "Obligatorio para mascotas que entran al RU, Hong Kong o Australia; mediante un agente de carga.",
+      "pt": "Obrigatório para animais que entram no Reino Unido, Hong Kong ou Austrália; via um agente de carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c7718a7900ed0310647b656fc2f2ef8d647f871182b6300d5a2d3c3ea52e19ad"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_austrian",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/austrian.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Lufthansa Cargo",
+      "fr": "Lufthansa Cargo",
+      "es": "Lufthansa Cargo",
+      "pt": "Lufthansa Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Mediante carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Unaccompanied or oversize animals via Lufthansa Cargo — also for the UK and South Africa (freight only).",
+      "fr": "Animaux non accompagnés ou hors gabarit via Lufthansa Cargo — aussi pour le R.-U. et l'Afrique du Sud (fret uniquement).",
+      "es": "Animales no acompañados o de gran tamaño mediante Lufthansa Cargo, también para el RU y Sudáfrica (solo carga).",
+      "pt": "Animais desacompanhados ou fora do padrão via Lufthansa Cargo — também para o Reino Unido e a África do Sul (somente carga)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "86cd065472880e54d1cf2e98cf10b9445e8813ef74043c3d517b0ab4568e447f"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_avianca",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/avianca.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Avianca Cargo",
+      "fr": "Avianca Cargo",
+      "es": "Avianca Cargo",
+      "pt": "Avianca Cargo"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo presupuesto",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Pets over 70 kg incl. container and all UK shipments, via Avianca Cargo live-animal service.",
+      "fr": "Animaux de plus de 70 kg avec la caisse et toutes les expéditions vers le R.-U., via le service animaux vivants d'Avianca Cargo.",
+      "es": "Mascotas de más de 70 kg incl. contenedor y todos los envíos al RU, mediante el servicio de animales vivos de Avianca Cargo.",
+      "pt": "Animais com mais de 70 kg incl. caixa de transporte e todos os envios para o Reino Unido, via o serviço de animais vivos da Avianca Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "0fd739cf26565d94012a273806231d645277403b1bbd43fba5038dd2b8b3d5a9"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_bangkok_airways",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/bangkok_airways.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "detail": {
+      "en": "The pet page mentions cargo only to say that flat-faced breeds are barred from it too. No conditions, crate rules or prices are published for cargo shipments.",
+      "fr": "La page animaux ne mentionne le fret que pour dire que les races au nez écrasé y sont également interdites. Aucune condition, règle de caisse ni tarif n'est publié pour le fret.",
+      "es": "La página de mascotas solo menciona la carga para decir que las razas de hocico chato también están prohibidas ahí. No se publica ninguna condición, norma de jaula ni tarifa para los envíos de carga.",
+      "pt": "A página de animais só menciona a carga para dizer que as raças de focinho achatado também são proibidas ali. Nenhuma condição, regra de caixa ou tarifa é publicada para envios de carga."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "1b2ceb07f7beefbd53b11b82e22a7c0ec206cc3473ec322cf0a1853e172b97d1"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "breed_condition",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_brussels",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/brussels.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Mediante carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Other species, oversize containers, and all pets to/from the UK, via a pet-shipping agent.",
+      "fr": "Autres espèces, contenants hors gabarit, et tous les animaux de/vers le R.-U., via un expéditeur animalier.",
+      "es": "Otras especies, contenedores de gran tamaño y todas las mascotas hacia/desde el RU, mediante un agente de envío de mascotas.",
+      "pt": "Outras espécies, recipientes fora do padrão, e todos os animais de/para o Reino Unido, mediante um agente de transporte de animais."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "1c48dc088e11a9f1aa917fd96ee8965202c822ad29d9c293cc3a5cf656629143"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_cathay_pacific",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/cathay_pacific.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cathay Cargo",
+      "fr": "Cathay Cargo",
+      "es": "Cathay Cargo",
+      "pt": "Cathay Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "Mediante agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "All pets travel via Cathay Cargo (Cathay Live Animal). Since Sep 2025, bookings only through IPATA / IATA-accredited agents.",
+      "fr": "Tous les animaux voyagent via Cathay Cargo (Cathay Live Animal). Depuis sept. 2025, réservation uniquement via des agents IPATA / accrédités IATA.",
+      "es": "Todas las mascotas viajan mediante Cathay Cargo (Cathay Live Animal). Desde sep 2025, las reservas solo se hacen a través de agentes IPATA / acreditados por IATA.",
+      "pt": "Todos os animais viajam pela Cathay Cargo (Cathay Live Animal). Desde set. de 2025, as reservas são feitas somente por agentes credenciados pela IPATA / IATA."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "a966f940e0f3788547343c47d3ed2d38ba7343262e303be04d81de9a4aadedac"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_china_airlines",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/china_airlines.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Live Animals cargo",
+      "fr": "Fret Live Animals",
+      "es": "Carga Live Animals",
+      "pt": "Carga Live Animals"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Mediante carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Some countries (e.g. Hong Kong) require cargo; needs an Air Waybill + Shipper's Certification.",
+      "fr": "Certains pays (ex. Hong Kong) imposent le fret ; nécessite une lettre de transport aérien + certification de l'expéditeur.",
+      "es": "Algunos países (p. ej. Hong Kong) exigen carga; requiere una carta de porte aéreo + certificación del expedidor.",
+      "pt": "Alguns países (por exemplo, Hong Kong) exigem carga; é necessário um conhecimento aéreo (Air Waybill) + certificação do expedidor."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "2f7bcbb83b22cba64f2a6f96657155a309a27340158dd979494f1573abda57db"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_china_eastern",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/china_eastern.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via freight",
+      "fr": "Via fret",
+      "es": "Mediante flete",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Carriers over 203 cm must ship via an independent freight transporter.",
+      "fr": "Les caisses de plus de 203 cm doivent être expédiées via un transporteur de fret indépendant.",
+      "es": "Las jaulas de más de 203 cm deben enviarse mediante un transportista de flete independiente.",
+      "pt": "Caixas de transporte acima de 203 cm precisam ser enviadas por um transportador de carga independente."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "1a6ff54d94ce907bbaaad849d81cde44fdc5f773b6b84c6140ef091ea480f5d8"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "size_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_china_southern",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/china_southern.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Mediante carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Some airports (e.g. Hong Kong) only allow pets to travel as cargo.",
+      "fr": "Certains aéroports (ex. Hong Kong) n'autorisent les animaux qu'en fret.",
+      "es": "Algunos aeropuertos (p. ej. Hong Kong) solo permiten que las mascotas viajen como carga.",
+      "pt": "Alguns aeroportos (por exemplo, Hong Kong) só permitem que os animais viajem como carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "5d9416df1fd954ea16f9384bdbe652ec3be4c0b806a90597e74fa809f7a212b7"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_copa",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/copa.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Copa Pets cargo",
+      "fr": "Fret Copa Pets",
+      "es": "Carga Copa Pets",
+      "pt": "Carga Copa Pets"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Mediante carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Pets that can't fly in the cabin go via the Copa Pets service (Copa Cargo).",
+      "fr": "Les animaux qui ne peuvent voyager en cabine passent par le service Copa Pets (Copa Cargo).",
+      "es": "Las mascotas que no pueden volar en cabina van por el servicio Copa Pets (Copa Cargo).",
+      "pt": "Os animais que não podem voar na cabine vão pelo serviço Copa Pets (Copa Cargo)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "35f2a042d2d50b73dc2abedb6ce6395e9c5237e2a597996b329bbf3684de099c"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_corsair",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/corsair.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Mediante carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Over 50 kg total travels via cargo.",
+      "fr": "Au-delà de 50 kg au total, transport via fret.",
+      "es": "Por encima de 50 kg en total, se viaja mediante carga.",
+      "pt": "Acima de 50 kg no total, o transporte é mediante carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "83e43d5a853b4652e04f33fdfeb9dec6e356c8266c2e4811caff31794eefa283"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_croatia_airlines",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/croatia_airlines.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Contact required, no published terms",
+      "fr": "Contact requis, conditions non publiées",
+      "es": "Contacto requerido, condiciones no publicadas",
+      "pt": "Contato necessário, condições não publicadas"
+     },
+     "detail": {
+      "en": "The Croatia Airlines Cargo page mentions animals only in a general list of freight types, alongside fish and flowers, with no dedicated procedure, fees or requirements — write to cargo@croatiaairlines.hr directly.",
+      "fr": "La page Croatia Airlines Cargo ne mentionne les animaux que dans une liste générale de types de fret, aux côtés du poisson et des fleurs, sans procédure, tarif ni exigence dédiés — écrire directement à cargo@croatiaairlines.hr.",
+      "es": "La página de Croatia Airlines Cargo solo menciona los animales dentro de una lista general de tipos de carga, junto al pescado y las flores, sin un procedimiento, tarifas o requisitos específicos: hay que escribir directamente a cargo@croatiaairlines.hr.",
+      "pt": "A página da Croatia Airlines Cargo menciona animais apenas em uma lista geral de tipos de carga, ao lado de peixe e flores, sem procedimento, tarifas ou requisitos dedicados — escreva diretamente para cargo@croatiaairlines.hr."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "806e2f9e8419a6ee50a7d802ee9b863de974bd59b7e84ab99bc08a8555ac7aa4"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_edelweiss",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/edelweiss.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via SWISS WorldCargo",
+      "fr": "Via SWISS WorldCargo",
+      "es": "Vía SWISS WorldCargo",
+      "pt": "Via SWISS WorldCargo"
+     },
+     "detail": {
+      "en": "For an unaccompanied pet, or where a destination requires it — Mauritius, for instance, only accepts pets as cargo. Edelweiss doesn't handle this itself; it hands the whole booking, pricing and process off to SWISS WorldCargo, its Lufthansa Group sister company.",
+      "fr": "Pour un animal non accompagné, ou lorsqu'une destination l'exige — Maurice, par exemple, n'accepte les animaux qu'en fret. Edelweiss ne gère pas cela elle-même ; elle délègue entièrement réservation, tarif et procédure à SWISS WorldCargo, sa compagnie sœur du groupe Lufthansa.",
+      "es": "Para una mascota no acompañada, o cuando el destino lo exige — Mauricio, por ejemplo, solo acepta mascotas como carga. Edelweiss no gestiona esto por sí misma: delega toda la reserva, la tarifa y el proceso a SWISS WorldCargo, su compañía hermana del grupo Lufthansa.",
+      "pt": "Para um animal não acompanhado, ou quando um destino exige — Maurício, por exemplo, só aceita animais como carga. A Edelweiss não gerencia isso sozinha; ela delega toda a reserva, o preço e o processo à SWISS WorldCargo, sua companhia irmã do grupo Lufthansa."
+     },
+     "fee": {
+      "en": "Not published by Edelweiss",
+      "fr": "Non publié par Edelweiss",
+      "es": "No publicado por Edelweiss",
+      "pt": "Não publicado pela Edelweiss"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "15f2bc0609248840ca458f61762b890739d4a8ea00d374eac8b31576501f2653"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_egyptair",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/egyptair.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "EgyptAir Cargo",
+      "fr": "EgyptAir Cargo",
+      "es": "EgyptAir Cargo",
+      "pt": "EgyptAir Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Other species, and all pets to/from the UK, UAE, Bahrain, Yemen, Kenya and South Africa — cargo only.",
+      "fr": "Autres espèces, et tous les animaux de/vers le R.-U., les ÉAU, Bahreïn, le Yémen, le Kenya et l'Afrique du Sud — fret uniquement.",
+      "es": "Otras especies, y todas las mascotas hacia/desde el R.U., EAU, Baréin, Yemen, Kenia y Sudáfrica: solo carga.",
+      "pt": "Outras espécies, e todos os animais de/para o Reino Unido, os EAU, Bahrein, o Iêmen, o Quênia e a África do Sul — somente carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "0911aae43493b31122bfc5bc6e7d0e948c7021a651c4077fc2073c85b1448f78"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "sole_channel_claim",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_el_al",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/el_al.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "EL AL Cargo",
+      "fr": "EL AL Cargo",
+      "es": "EL AL Cargo",
+      "pt": "EL AL Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Over 100 kg, and pets to/from London (LHR/LTN), Johannesburg, Hong Kong and Australia via EL AL Cargo.",
+      "fr": "Au-delà de 100 kg, et les animaux de/vers Londres (LHR/LTN), Johannesburg, Hong Kong et l'Australie via EL AL Cargo.",
+      "es": "Más de 100 kg, y las mascotas hacia/desde Londres (LHR/LTN), Johannesburgo, Hong Kong y Australia por EL AL Cargo.",
+      "pt": "Acima de 100 kg, e animais de/para Londres (LHR/LTN), Joanesburgo, Hong Kong e Austrália via EL AL Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "6373dc713783261ed95a3f0daf64561fe10eb2161b07107148301d83f6127e26"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_emirates",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/emirates.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "SkyCargo",
+      "fr": "SkyCargo",
+      "es": "SkyCargo",
+      "pt": "SkyCargo"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo petición",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Required for journeys over 17 h, long connections, oversize cages or Dubai-bound trips. Via Emirates SkyCargo.",
+      "fr": "Obligatoire au-delà de 17 h, longues correspondances, caisses hors gabarit ou arrivée à Dubaï. Via Emirates SkyCargo.",
+      "es": "Obligatorio para trayectos de más de 17 h, conexiones largas, jaulas de gran tamaño o viajes con destino a Dubái. Por Emirates SkyCargo.",
+      "pt": "Exigido para viagens acima de 17 h, conexões longas, caixas fora do padrão ou viagens com destino a Dubai. Via Emirates SkyCargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "591d13a38e9e9152a7cf4501ed25592b3789e8c3c205657a5ed505e92bb148e9"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_ethiopian",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/ethiopian.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Ethiopian Cargo",
+      "fr": "Ethiopian Cargo",
+      "es": "Ethiopian Cargo",
+      "pt": "Ethiopian Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Pets (incl. cage) over 45 kg travel as cargo via Ethiopian Cargo's Live Animals service.",
+      "fr": "Les animaux (avec la caisse) de plus de 45 kg voyagent en fret via le service animaux vivants d'Ethiopian Cargo.",
+      "es": "Las mascotas (con la jaula) de más de 45 kg viajan como carga por el servicio de animales vivos de Ethiopian Cargo.",
+      "pt": "Animais (com a caixa) acima de 45 kg viajam como carga pelo serviço de animais vivos da Ethiopian Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "f2b06173637d529e86ae802036711b50d0ad3171741cc3840dc1e312969d31ff"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_etihad",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/etihad.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Etihad Cargo",
+      "fr": "Etihad Cargo",
+      "es": "Etihad Cargo",
+      "pt": "Etihad Cargo"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo petición",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Cats, dogs & small pets in climate-controlled, pressurised holds via Etihad Cargo LiveAnimals.",
+      "fr": "Chats, chiens et petits animaux dans des soutes climatisées et pressurisées via Etihad Cargo LiveAnimals.",
+      "es": "Perros, gatos y mascotas pequeñas en bodegas climatizadas y presurizadas por Etihad Cargo LiveAnimals.",
+      "pt": "Gatos, cachorros e animais pequenos em porões climatizados e pressurizados pela Etihad Cargo LiveAnimals."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "03f535da992dabd5cdd59a5b5a063cd35a8d8a94e1d450d2e0a52f7bae9826d4"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_finnair",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/finnair.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Finnair Cargo",
+      "fr": "Finnair Cargo",
+      "es": "Finnair Cargo",
+      "pt": "Finnair Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Over hold limits, unaccompanied, or to/via cargo-only countries (UK, Hong Kong, UAE, Australia). Via a forwarder.",
+      "fr": "Au-delà des limites soute, non accompagné, ou vers/via des pays fret-seul (R.-U., Hong Kong, ÉAU, Australie). Via un transitaire.",
+      "es": "Por encima de los límites de bodega, sin acompañante, o hacia/vía países solo carga (R.U., Hong Kong, EAU, Australia). Mediante un transitario.",
+      "pt": "Acima dos limites de porão, sem acompanhante, ou de/via países somente carga (Reino Unido, Hong Kong, EAU, Austrália). Por meio de um despachante."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "a8451b94799fd2cd224b558206f6826ba1c993a0cb11b5ead5c465b219ea292a"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_garuda_indonesia",
+    "placement": "hold"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/garuda_indonesia.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Hold",
+      "fr": "Soute",
+      "es": "Bodega",
+      "pt": "Porão"
+     },
+     "statusLabel": {
+      "en": "Domestic only",
+      "fr": "Domestique seul",
+      "es": "Solo nacional",
+      "pt": "Somente doméstico"
+     },
+     "detail": {
+      "en": "Dogs, cats & hamsters as checked baggage only on direct domestic flights ≤ 2 h (not via Denpasar); ≤ 32 kg incl. crate.",
+      "fr": "Chiens, chats et hamsters en bagage enregistré uniquement sur vols domestiques directs ≤ 2 h (pas via Denpasar) ; ≤ 32 kg avec la caisse.",
+      "es": "Perros, gatos y hámsteres como equipaje facturado solo en vuelos nacionales directos ≤ 2 h (no vía Denpasar); ≤ 32 kg con la jaula.",
+      "pt": "Cachorros, gatos e hamsters como bagagem despachada somente em voos domésticos diretos ≤ 2 h (não via Denpasar); ≤ 32 kg com a caixa."
+     },
+     "fee": {
+      "en": "Excess-baggage rate",
+      "fr": "Tarif bagage excédentaire",
+      "es": "Tarifa de exceso de equipaje",
+      "pt": "Tarifa de excesso de bagagem"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "cbb35ea05218cc485074826c652a2f4476db949db96337d0f9786bb41e52da9c"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_garuda_indonesia",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/garuda_indonesia.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Garuda Cargo",
+      "fr": "Garuda Cargo",
+      "es": "Garuda Cargo",
+      "pt": "Garuda Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "International routes and over 32 kg via Garuda Indonesia Cargo (Air Waybill, CITES if needed).",
+      "fr": "Routes internationales et au-delà de 32 kg via Garuda Indonesia Cargo (lettre de transport, CITES si nécessaire).",
+      "es": "Rutas internacionales y más de 32 kg por Garuda Indonesia Cargo (carta de porte aéreo, CITES si hace falta).",
+      "pt": "Rotas internacionais e acima de 32 kg via Garuda Indonesia Cargo (conhecimento aéreo, CITES se necessário)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "8281267e3170ba92abdac27e1dd33149a90d9cbee31bae4a6ddfab6f84635618"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_gulf_air",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/gulf_air.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Only route",
+      "fr": "Seule voie",
+      "es": "Única vía",
+      "pt": "Único caminho"
+     },
+     "detail": {
+      "en": "Your dog flies as freight, under a master air waybill, on a booking separate from yours. You go through the cargo terminal, not the passenger terminal, and usually through an agent. Gulf Air publishes no rate, no weight limit and no crate dimensions for this channel.",
+      "fr": "Ton chien voyage en fret, sous lettre de transport aérien mère, sur une réservation distincte de la tienne. Tu passes par le terminal cargo, pas par l'aérogare passagers, et le plus souvent par un agent. Gulf Air ne publie ni tarif, ni limite de poids, ni dimensions de caisse pour ce canal.",
+      "es": "Tu perro vuela como mercancía, con guía aérea madre y en una reserva distinta de la tuya. Pasas por la terminal de carga, no por la de pasajeros, y normalmente a través de un agente. Gulf Air no publica tarifa, ni límite de peso, ni dimensiones de jaula para este canal.",
+      "pt": "Seu cachorro viaja como carga, com conhecimento aéreo máster, em uma reserva separada da sua. Você passa pelo terminal de carga, não pelo terminal de passageiros, e em geral por meio de um agente. A Gulf Air não publica tarifa, nem limite de peso, nem dimensões de caixa para esse canal."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "e758efdf3c5c5e25d2d08284528d28cf275c3fdf7af9a78344cd210e379b2855"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "sole_channel_claim",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_iberia_express",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/iberia_express.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "IAG Cargo",
+      "fr": "IAG Cargo",
+      "es": "IAG Cargo",
+      "pt": "IAG Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "Vía agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "Animals not accepted as cabin/hold pets, via the Cargo Department.",
+      "fr": "Animaux non acceptés en cabine/soute, via le service Cargo.",
+      "es": "Animales no aceptados como mascotas de cabina/bodega, a través del Departamento de Carga.",
+      "pt": "Animais não aceitos como animais de cabine/porão, via o Departamento de Carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "e84b10b2801e61686e60b81f90dd7d8a034419676deb0cb1220dd62134a5b404"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_jal",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/jal.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "JAL Cargo",
+      "fr": "JAL Cargo",
+      "es": "JAL Cargo",
+      "pt": "JAL Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Unaccompanied pets or over 32 kg travel via JAL Cargo.",
+      "fr": "Les animaux non accompagnés ou de plus de 32 kg voyagent via JAL Cargo.",
+      "es": "Las mascotas sin acompañante o de más de 32 kg viajan por JAL Cargo.",
+      "pt": "Animais desacompanhados ou com mais de 32 kg viajam pela JAL Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "a4ce4a2b0c7fa04b767998a392a4d4a31d4e515fbc456b3c3ff960f347604128"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "procedure",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_kenya_airways",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/kenya_airways.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "The only route",
+      "fr": "La seule voie",
+      "es": "La única vía",
+      "pt": "O único caminho"
+     },
+     "detail": {
+      "en": "The airline's own wording is that live animals shall be consigned as cargo only. The passenger pet page publishes no rate, crate standard or breed rule for those shipments — everything is handled by Kenya Airways Cargo.",
+      "fr": "La compagnie écrit elle-même que les animaux vivants doivent être expédiés en fret uniquement. La page animaux passagers ne publie ni tarif, ni norme de caisse, ni règle de race pour ces expéditions — tout passe par Kenya Airways Cargo.",
+      "es": "La propia aerolínea escribe que los animales vivos deben enviarse únicamente como carga. La página de mascotas para pasajeros no publica ninguna tarifa, norma de jaula ni regla de raza para esos envíos: todo lo gestiona Kenya Airways Cargo.",
+      "pt": "A própria companhia escreve que animais vivos devem ser despachados apenas como carga. A página de animais para passageiros não publica tarifa, padrão de caixa nem regra de raça para esses envios — tudo passa pela Kenya Airways Cargo."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "5b1213dfc6e60639123cda90a867fb0947927f11e8854888cb118e51c0a46098"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "sole_channel_claim"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_km_malta",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/km_malta.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "Vía agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "For pets that don't qualify for cabin or checked baggage. Booked through the KM Malta Cargo department; drop-off/pick-up at the cargo centre. Max crate height 110 cm.",
+      "fr": "Pour les animaux inéligibles à la cabine ou au bagage accompagné. Réservé via le service Cargo de KM Malta ; dépôt/retrait au centre de fret. Hauteur de caisse max 110 cm.",
+      "es": "Para mascotas que no pueden viajar en cabina o como equipaje facturado. Se reserva a través del departamento de Carga de KM Malta; entrega/recogida en el centro de carga. Altura máx. de jaula 110 cm.",
+      "pt": "Para animais que não se qualificam para a cabine ou a bagagem despachada. Reservado pelo departamento de Carga da KM Malta; entrega/retirada no centro de carga. Altura máxima da caixa: 110 cm."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "619616d20fc8952d3ee1505ad105d87bd5729621474dc292d019f26d61bdce33"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "size_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_latam",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/latam.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "LATAM Cargo",
+      "fr": "LATAM Cargo",
+      "es": "LATAM Cargo",
+      "pt": "LATAM Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "A través de agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "Over hold limits or dangerous (non-brachy) breeds. International via an IPATA cargo agency; domestic via the Contact Center.",
+      "fr": "Au-delà des limites soute ou races dangereuses (non brachy). International via une agence de fret IPATA ; national via le centre d'appel.",
+      "es": "Por encima de los límites de bodega o razas peligrosas (no braquicéfalas). Internacional a través de una agencia de carga IPATA; nacional a través del Contact Center.",
+      "pt": "Acima dos limites do porão ou raças perigosas (não braquicéfalas). Internacional via uma agência de carga IPATA; nacional via o Contact Center."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c1d31c6f7a5a24e9f5c39e5e5bd1b7038ae7a7f031f7fe9a8f53ece3f150d8be"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "breed_condition",
+    "on_request_or_contact",
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_lot",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/lot.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "LOT Cargo",
+      "fr": "LOT Cargo",
+      "es": "LOT Cargo",
+      "pt": "LOT Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "A través de agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "Other species, and routes requiring cargo (UK, UAE), via a forwarding company.",
+      "fr": "Autres espèces, et routes imposant le fret (R.-U., ÉAU), via un transitaire.",
+      "es": "Otras especies y rutas que exigen carga (Reino Unido, EAU), a través de una empresa transitaria.",
+      "pt": "Outras espécies, e rotas que exigem carga (Reino Unido, EAU), via uma empresa transportadora."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "71c8c93d5cbe7e23485534480f19de1ccfb40732a4d40fc8b41243a9c7f4dcad"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_luxair",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/luxair.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "detail": {
+      "en": "Luxair publishes no cargo option for pets — no conditions and no rates for an unaccompanied animal or for a crate over the hold limits.",
+      "fr": "Luxair ne publie aucune option fret pour les animaux — ni conditions, ni tarifs pour un animal non accompagné ou une caisse hors des limites de la soute.",
+      "es": "Luxair no publica ninguna opción de carga para mascotas: ni condiciones ni tarifas para un animal no acompañado o una jaula fuera de los límites de bodega.",
+      "pt": "A Luxair não publica nenhuma opção de carga para animais — nem condições nem tarifas para um animal desacompanhado ou uma caixa fora dos limites do porão."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "aad215fa190da1f2acd48098cf916aec0a91fbb27b038a9500108b42a4d8bf22"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_neos",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/neos.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Other species only",
+      "fr": "Autres espèces uniquement",
+      "es": "Solo otras especies",
+      "pt": "Apenas outras espécies"
+     },
+     "detail": {
+      "en": "\"All other species, such as wild animals, reptiles and rodents may only be transported by cargo\" — no dogs/cats cargo option, no booking process, no fees described for this route.",
+      "fr": "« Toutes les autres espèces, comme les animaux sauvages, reptiles et rongeurs, ne peuvent être transportées qu'en fret » — pas d'option fret pour chiens/chats, aucun processus de réservation ni tarif décrit pour cette voie.",
+      "es": "“Todas las demás especies, como animales salvajes, reptiles y roedores, solo pueden transportarse como carga” — no hay opción de carga para perros o gatos, ni proceso de reserva ni tarifas descritas para esta vía.",
+      "pt": "“Todas as outras espécies, como animais selvagens, répteis e roedores, só podem ser transportadas como carga” — não há opção de carga para cachorros/gatos, nem processo de reserva ou tarifas descritas para essa via."
+     },
+     "fee": {
+      "en": "Not applicable to dogs",
+      "fr": "Non applicable aux chiens",
+      "es": "No aplicable a perros",
+      "pt": "Não aplicável a cachorros"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "b11fe860545f24215cfc8903798fc24aa20eb8001cad2edf21fceeaaadbc19a7"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "route_condition",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_pegasus",
+    "placement": "hold"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/pegasus.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Hold",
+      "fr": "Soute",
+      "es": "Bodega",
+      "pt": "Porão"
+     },
+     "statusLabel": {
+      "en": "Domestic Turkey and North Cyprus only",
+      "fr": "Turquie domestique et Chypre du Nord seulement",
+      "es": "Solo Turquía nacional y Chipre del Norte",
+      "pt": "Só Turquia doméstica e Chipre do Norte"
+     },
+     "detail": {
+      "en": "Cats and dogs only, no birds. Two price tiers, 8–15 kg and over 15 kg. Sturdy, securely locked crate that lets the pet lie down and turn around. \"Not allowed in international flights\" — but the North Cyprus (KKTC) exception is itself contradicted elsewhere on the site (see good to know).",
+      "fr": "Chats et chiens uniquement, pas d'oiseaux. Deux paliers tarifaires, 8–15 kg et plus de 15 kg. Caisse robuste et bien verrouillée permettant à l'animal de s'allonger et de se retourner. « Non autorisé sur les vols internationaux » — mais l'exception Chypre du Nord (KKTC) est elle-même contredite ailleurs sur le site (voir bon à savoir).",
+      "es": "Solo gatos y perros, sin aves. Dos niveles de precio, 8–15 kg y más de 15 kg. Jaula resistente y bien cerrada que permita a la mascota tumbarse y darse la vuelta. “No permitido en vuelos internacionales” — pero la excepción de Chipre del Norte (KKTC) se contradice a su vez en otra parte del sitio (ver más información).",
+      "pt": "Somente gatos e cachorros, sem aves. Duas faixas de preço, 8–15 kg e acima de 15 kg. Caixa resistente e bem travada que permita ao animal deitar e virar. “Não permitido em voos internacionais” — mas a exceção do Chipre do Norte (KKTC) é contradita em outro ponto do site (ver saiba mais)."
+     },
+     "fee": {
+      "en": "850 TRY (8–15 kg) / 950 TRY (over 15 kg) domestic; 1000/1100 TRY North Cyprus",
+      "fr": "850 TRY (8–15 kg) / 950 TRY (plus de 15 kg) domestique ; 1000/1100 TRY Chypre du Nord",
+      "es": "850 TRY (8–15 kg) / 950 TRY (más de 15 kg) nacional; 1000/1100 TRY Chipre del Norte",
+      "pt": "850 TRY (8–15 kg) / 950 TRY (acima de 15 kg) doméstico; 1000/1100 TRY Chipre do Norte"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "fb434ddd65379ba41c59fe0d1bc7ce2bc73f7eaec60d1885d0d90e2c2344e3f6"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_philippine",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/philippine.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "PAL Cargo",
+      "fr": "PAL Cargo",
+      "es": "PAL Cargo",
+      "pt": "PAL Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "A través de carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Larger dogs and brachy breeds via PAL Cargo Live Animals (BAI quarantine permit + vet certificate).",
+      "fr": "Grands chiens et races brachy via PAL Cargo Live Animals (permis de quarantaine BAI + certificat vétérinaire).",
+      "es": "Perros grandes y razas braquicéfalas a través de PAL Cargo Live Animals (permiso de cuarentena BAI + certificado veterinario).",
+      "pt": "Cachorros maiores e raças braquicéfalas via PAL Cargo Live Animals (autorização de quarentena do BAI + certificado veterinário)."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c59e855ad6dfa4bc0341415648fcfb31262025b89df9c436a49ed7039b2b66b3"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "breed_condition",
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_qatar_airways",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/qatar_airways.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "QR Cargo Live",
+      "fr": "QR Cargo Live",
+      "es": "QR Cargo Live",
+      "pt": "QR Cargo Live"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo cotización",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Required over 75 kg, for restricted breeds, other-airline connections, and Australia/New Zealand.",
+      "fr": "Obligatoire au-delà de 75 kg, pour les races restreintes, les correspondances avec une autre compagnie et l'Australie/Nouvelle-Zélande.",
+      "es": "Obligatorio por encima de 75 kg, para razas restringidas, conexiones con otra aerolínea y Australia/Nueva Zelanda.",
+      "pt": "Obrigatório acima de 75 kg, para raças restritas, conexões com outra companhia aérea e Austrália/Nova Zelândia."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "31cbaca2aefbb168a1f867670557ea125faf528896f584712e9e3b2acb7d45d9"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "breed_condition",
+    "on_request_or_contact",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_royal_air_maroc",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/royal_air_maroc.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "RAM Cargo",
+      "fr": "RAM Cargo",
+      "es": "RAM Cargo",
+      "pt": "RAM Cargo"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo cotización",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Animals over 70 kg travel as freight.",
+      "fr": "Les animaux de plus de 70 kg voyagent en fret.",
+      "es": "Los animales de más de 70 kg viajan como carga.",
+      "pt": "Animais acima de 70 kg viajam como carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "7ca208c857b973607b91d189f27ae34396e3bb51dcda4bd9aed4f65248395b84"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_royal_jordanian",
+    "placement": "cabin"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/royal_jordanian.yml",
+    "locator": "channels[0]",
+    "block": {
+     "name": {
+      "en": "Cabin",
+      "fr": "Cabine",
+      "es": "Cabina",
+      "pt": "Cabine"
+     },
+     "statusLabel": {
+      "en": "Under conditions",
+      "fr": "Sous conditions",
+      "es": "Con condiciones",
+      "pt": "Com condições"
+     },
+     "detail": {
+      "en": "7 kg (15 lb) crate included, 50 × 40 × 26 cm, Economy class only, flights of 5 h maximum, two animals per flight (one forward, one aft). Book 48 h ahead through a travel agency or the call centre — never online. No first row and no bulkhead seats, since there is no stowage under the seat.",
+      "fr": "7 kg (15 lb) caisse comprise, 50 × 40 × 26 cm, classe Économique uniquement, vols de 5 h maximum, deux animaux par vol (un à l'avant, un à l'arrière). Réservation 48 h avant, par agence ou centre d'appels — jamais en ligne. Ni première rangée ni sièges cloison, faute de rangement sous le siège.",
+      "es": "7 kg (15 lb) con la jaula incluida, 50 × 40 × 26 cm, solo en clase Económica, vuelos de 5 h como máximo, dos animales por vuelo (uno delante, otro detrás). Reserva 48 h antes, por agencia o call center; nunca en línea. Ni primera fila ni asientos de mamparo, porque no hay hueco bajo el asiento.",
+      "pt": "7 kg (15 lb) com a caixa incluída, 50 × 40 × 26 cm, somente na classe Econômica, voos de no máximo 5 h, dois animais por voo (um na frente, outro atrás). Reserve 48 h antes, por agência ou call center — nunca on-line. Nem primeira fila nem assentos de divisória, porque não há espaço sob o assento."
+     },
+     "fee": {
+      "en": "USD 85–185",
+      "fr": "85–185 USD",
+      "es": "85–185 USD",
+      "pt": "85–185 USD"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "6bb0df86793df3e9fbee8ceb19782203d553fc2fe10935471a04b8a16cf1c219"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "size_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_royal_jordanian",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/royal_jordanian.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "detail": {
+      "en": "Royal Jordanian publishes no cargo policy for animals — no conditions, no crate limits, no rates. Ask the cargo department directly for an unaccompanied pet.",
+      "fr": "Royal Jordanian ne publie aucune politique fret pour les animaux — ni conditions, ni limites de caisse, ni tarifs. Pour un animal non accompagné, il faut interroger le service fret.",
+      "es": "Royal Jordanian no publica ninguna política de carga para animales: ni condiciones, ni límites de jaula, ni tarifas. Para una mascota no acompañada hay que preguntar al departamento de carga.",
+      "pt": "A Royal Jordanian não publica nenhuma política de carga para animais: nem condições, nem limites de caixa, nem tarifas. Para um animal desacompanhado, é preciso consultar o setor de carga."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "f51846aa87f56bb64ad8fc60172e2893a25740f05844af33a7090d239ed36d23"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_sas",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/sas.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "SAS Cargo",
+      "fr": "SAS Cargo",
+      "es": "SAS Cargo",
+      "pt": "SAS Cargo"
+     },
+     "statusLabel": {
+      "en": "Via forwarder",
+      "fr": "Via transitaire",
+      "es": "A través de transitario",
+      "pt": "Via transitário"
+     },
+     "detail": {
+      "en": "Required to China, the UK and the UAE, or if the pet doesn't meet hold criteria. Via a freight forwarder.",
+      "fr": "Obligatoire vers la Chine, le R.-U. et les ÉAU, ou si l'animal ne remplit pas les critères soute. Via un transitaire.",
+      "es": "Obligatorio hacia China, el Reino Unido y los EAU, o si la mascota no cumple los criterios de bodega. A través de un transitario.",
+      "pt": "Obrigatório para a China, o Reino Unido e os EAU, ou se o animal não atender aos critérios do porão. Via um transitário."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "e6c87a535218ad0e9080520fafb4e496c14358da461573b40f4831dc48ecc71a"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_saudia",
+    "placement": "cabin"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/saudia.yml",
+    "locator": "channels[0]",
+    "block": {
+     "name": {
+      "en": "Cabin",
+      "fr": "Cabine",
+      "es": "Cabina",
+      "pt": "Cabine"
+     },
+     "statusLabel": {
+      "en": "Cats only",
+      "fr": "Chats uniquement",
+      "es": "Solo gatos",
+      "pt": "Somente gatos"
+     },
+     "detail": {
+      "en": "Cats & small birds in the cabin (≤ 5 kg incl. container, max 52.5 × 32.5 × 40 cm); falcons hooded with a handler. Dogs aren't allowed in the cabin.",
+      "fr": "Chats et petits oiseaux en cabine (≤ 5 kg avec le sac, max 52,5 × 32,5 × 40 cm) ; faucons encapuchonnés avec un fauconnier. Les chiens ne sont pas admis en cabine.",
+      "es": "Gatos y aves pequeñas en cabina (≤ 5 kg con la jaula, máx. 52,5 × 32,5 × 40 cm); halcones encapuchados con un cetrero. Los perros no se admiten en cabina.",
+      "pt": "Gatos e aves pequenas na cabine (≤ 5 kg com o recipiente, máx. 52,5 × 32,5 × 40 cm); falcões encapuzados com um falcoeiro. Cachorros não são permitidos na cabine."
+     },
+     "fee": {
+      "en": "$100",
+      "fr": "100 $",
+      "es": "100 $",
+      "pt": "US$ 100"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "23804638975368a1229e92738829725be3ffc729ef971b1876cd233a474164ee"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "size_condition",
+    "species_exclusion",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_saudia",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/saudia.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Saudia Cargo",
+      "fr": "Saudia Cargo",
+      "es": "Saudia Cargo",
+      "pt": "Saudia Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "A través de carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Large or wild animals are cargo-only, and dogs to the USA are accepted only via Saudia Cargo.",
+      "fr": "Les grands animaux ou animaux sauvages sont uniquement en fret, et les chiens vers les USA ne sont acceptés que via Saudia Cargo.",
+      "es": "Los animales grandes o salvajes son solo de carga, y los perros hacia EE. UU. solo se aceptan a través de Saudia Cargo.",
+      "pt": "Animais grandes ou selvagens são somente carga, e os cachorros para os EUA só são aceitos via Saudia Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c61ec080a833f2381b26ac29d4208b611c152720db9dce498b8ce7b2c332eded"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_singapore_airlines",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/singapore_airlines.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "On request",
+      "fr": "Sur devis",
+      "es": "Bajo cotización",
+      "pt": "Sob consulta"
+     },
+     "detail": {
+      "en": "Over 32 kg combined, arrange transport via a cargo agent.",
+      "fr": "Au-delà de 32 kg avec la caisse, transport via un agent de fret.",
+      "es": "Por encima de 32 kg en total, organiza el transporte a través de un agente de carga.",
+      "pt": "Acima de 32 kg no total, organize o transporte via um agente de carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Cotización",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "699bfbe44a8ede5ecd7002497fd59606c5516090e315fcb951b7a30ea10b85e8"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "procedure",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_sky_express",
+    "placement": "hold"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/sky_express.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Hold",
+      "fr": "Soute",
+      "es": "Bodega",
+      "pt": "Porão"
+     },
+     "statusLabel": {
+      "en": "Allowed on ATR aircraft only",
+      "fr": "Autorisé sur ATR uniquement",
+      "es": "Permitido solo en aviones ATR",
+      "pt": "Permitido só em aeronaves ATR"
+     },
+     "detail": {
+      "en": "For animals over 8 kg, up to 25 kg (pet + crate). Rigid crate 70 × 50 × 51.5 cm, wheels removed, absorbent bedding on the floor. Offered on the ATR fleet type only — not on the Airbus fleet. Same 24-hour booking window as cabin.",
+      "fr": "Pour les animaux de plus de 8 kg, jusqu'à 25 kg (animal + caisse). Caisse rigide 70 × 50 × 51,5 cm, roulettes retirées, litière absorbante au fond. Proposé sur le type d'appareil ATR uniquement — pas sur les Airbus. Même délai de réservation de 24 h que la cabine.",
+      "es": "Para animales de más de 8 kg, hasta 25 kg (mascota + jaula). Jaula rígida de 70 × 50 × 51,5 cm, sin ruedas, con material absorbente en el fondo. Disponible solo en aviones ATR, no en la flota Airbus. Mismo plazo de reserva de 24 h que la cabina.",
+      "pt": "Para animais com mais de 8 kg, até 25 kg (animal + caixa). Caixa rígida de 70 × 50 × 51,5 cm, sem rodas, com material absorvente no fundo. Disponível apenas na frota ATR — não na frota Airbus. Mesmo prazo de reserva de 24 h da cabine."
+     },
+     "fee": {
+      "en": "€50",
+      "fr": "50 €",
+      "es": "50 €",
+      "pt": "50 €"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "d74293ddedfa201bbf4d9395045dc82dc24d63e563d3a17b522ce84df00ce366"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "aircraft_condition",
+    "size_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_sky_express",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/sky_express.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "detail": {
+      "en": "No dedicated unaccompanied-cargo pet service is described anywhere on the official site — only accompanied cabin/hold travel exists as a documented product.",
+      "fr": "Aucun service fret non accompagné dédié aux animaux n'est décrit sur le site officiel — seuls le transport en cabine et en soute, accompagnés, existent comme produits documentés.",
+      "es": "No se describe ningún servicio de carga no acompañada dedicado a mascotas en el sitio oficial: solo el transporte acompañado en cabina o bodega existe como producto documentado.",
+      "pt": "Nenhum serviço dedicado de carga não acompanhada para animais é descrito no site oficial — apenas o transporte acompanhado em cabine ou porão existe como produto documentado."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "f3bd4a458b55c0e6622f17d2dee72e617f9483a659cb7f74d1921efa640562e4"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_south_african_airways",
+    "placement": "hold"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/south_african_airways.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Hold",
+      "fr": "Soute",
+      "es": "Bodega",
+      "pt": "Porão"
+     },
+     "statusLabel": {
+      "en": "SA domestic only",
+      "fr": "Domestique SA seulement",
+      "es": "Solo nacional SA",
+      "pt": "Somente doméstico SA"
+     },
+     "detail": {
+      "en": "South African domestic flights only. Crate no bigger than 1 m × 1 m, animal and crate together up to 23 kg, check-in 90 minutes before departure. Animals under 8 weeks are refused in all circumstances.",
+      "fr": "Vols domestiques sud-africains uniquement. Caisse d'un mètre sur un mètre maximum, animal et caisse ensemble jusqu'à 23 kg, enregistrement 90 minutes avant le départ. Les animaux de moins de 8 semaines sont refusés en toutes circonstances.",
+      "es": "Solo vuelos nacionales sudafricanos. Jaula de 1 m × 1 m como máximo, animal y jaula juntos hasta 23 kg, facturación 90 minutos antes de la salida. Los animales de menos de 8 semanas se rechazan en cualquier circunstancia.",
+      "pt": "Somente voos domésticos sul-africanos. Caixa de no máximo 1 m × 1 m, animal e caixa juntos até 23 kg, check-in 90 minutos antes da partida. Animais com menos de 8 semanas são recusados em qualquer circunstância."
+     },
+     "fee": {
+      "en": "ZAR 300",
+      "fr": "300 ZAR",
+      "es": "300 ZAR",
+      "pt": "300 ZAR"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "65bcd3937607e301b653d892e895fb0723398fae2c725572eca0ce0e99b6e463"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_south_african_airways",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/south_african_airways.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Compulsory abroad",
+      "fr": "Obligatoire à l'international",
+      "es": "Obligatoria en internacional",
+      "pt": "Obrigatória no internacional"
+     },
+     "detail": {
+      "en": "Every international journey goes through cargo, under an air waybill — including when Johannesburg is only a transit point on your itinerary. SAA publishes no cargo rates on its baggage page.",
+      "fr": "Tout trajet international passe par le fret, sous lettre de transport aérien — y compris quand Johannesburg n'est qu'un point de transit sur ton itinéraire. SAA ne publie pas de tarifs fret sur sa page bagages.",
+      "es": "Todo trayecto internacional pasa por carga, bajo carta de porte aéreo, incluso cuando Johannesburgo solo es un punto de tránsito en tu itinerario. SAA no publica tarifas de carga en su página de equipaje.",
+      "pt": "Todo trajeto internacional passa pela carga, sob conhecimento aéreo — inclusive quando Joanesburgo é apenas um ponto de trânsito no seu itinerário. A SAA não publica tarifas de carga em sua página de bagagem."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "071c0cfc92e5e2f881969359a60b224cbf0fee11a30cbdfcc3131d8a2640df6f"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "mandatory_in_cases"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_sunexpress",
+    "placement": "hold"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/sunexpress.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Hold",
+      "fr": "Soute",
+      "es": "Bodega",
+      "pt": "Porão"
+     },
+     "statusLabel": {
+      "en": "Allowed, terms underspecified",
+      "fr": "Autorisé, conditions sous-précisées",
+      "es": "Permitido, condiciones poco precisadas",
+      "pt": "Permitido, condições pouco especificadas"
+     },
+     "detail": {
+      "en": "Priced for animals over 8 kg, but the site never states an upper weight ceiling for hold travel, and never explicitly says \"pets over 8 kg must fly in the hold\" — that's an inference from the pricing tiers, not a stated rule. Container must circulate air, be waterproof and escape-proof, per IATA Live Animals Regulations.",
+      "fr": "Tarifée pour les animaux de plus de 8 kg, mais le site ne donne jamais de plafond de poids pour la soute, et ne dit jamais explicitement que « les animaux de plus de 8 kg doivent voyager en soute » — c'est une déduction à partir des paliers tarifaires, pas une règle énoncée. Le conteneur doit assurer la circulation d'air, être étanche et anti-évasion, selon les réglementations IATA sur les animaux vivants.",
+      "es": "Con precio para animales de más de 8 kg, pero el sitio nunca indica un techo de peso para la bodega, ni dice nunca explícitamente que “las mascotas de más de 8 kg deben viajar en bodega” — es una inferencia a partir de los niveles de precio, no una norma declarada. El contenedor debe permitir la circulación de aire, ser impermeable y a prueba de fugas, según las Regulaciones IATA de Animales Vivos.",
+      "pt": "Precificado para animais com mais de 8 kg, mas o site nunca informa um teto de peso para o porão, nem diz explicitamente que “animais com mais de 8 kg devem viajar no porão” — isso é uma inferência a partir das faixas de preço, não uma regra declarada. O contêiner deve permitir circulação de ar, ser impermeável e à prova de fuga, segundo as Regulações IATA de Animais Vivos."
+     },
+     "fee": {
+      "en": "from €119.99 international / from 850 TL domestic / from €20 Lefkoşa",
+      "fr": "dès 119,99 € international / dès 850 TL domestique / dès 20 € Lefkoşa",
+      "es": "desde 119,99 € internacional / desde 850 TL nacional / desde 20 € Lefkoşa",
+      "pt": "a partir de 119,99 € internacional / a partir de 850 TL doméstico / a partir de 20 € Lefkoşa"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "e5066a0edbb8cc4639b8de86055819d0deb5ae9549b38a9790bc73e6fff7a8e9"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "terms_unpublished",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_sunexpress",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/sunexpress.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Via Lufthansa Cargo / Turkish Cargo",
+      "fr": "Via Lufthansa Cargo / Turkish Cargo",
+      "es": "Vía Lufthansa Cargo / Turkish Cargo",
+      "pt": "Via Lufthansa Cargo / Turkish Cargo"
+     },
+     "detail": {
+      "en": "A separate SunExpress Cargo department accepts live animals internationally \"only if veterinary facilities are available at both the departure and arrival stations,\" and domestically it also accepts newly hatched chickens, ornamental fish and frogs. Bookings route through Lufthansa Cargo (international) or Turkish Cargo (domestic), not the passenger booking system — the FAQ's \"animals must be accompanied by a passenger\" rule applies to the passenger-baggage process, not to this separate cargo/freight service.",
+      "fr": "Un département SunExpress Cargo distinct accepte les animaux vivants à l'international « seulement si des installations vétérinaires sont disponibles aux stations de départ et d'arrivée », et en domestique accepte aussi poussins nouveau-nés, poissons d'ornement et grenouilles. Les réservations passent par Lufthansa Cargo (international) ou Turkish Cargo (domestique), pas par le système de réservation passagers — la règle du FAQ « les animaux doivent être accompagnés d'un passager » s'applique au processus bagage passager, pas à ce service fret distinct.",
+      "es": "Un departamento aparte, SunExpress Cargo, acepta animales vivos a nivel internacional “solo si hay instalaciones veterinarias disponibles tanto en la estación de salida como en la de llegada”, y a nivel nacional también acepta pollitos recién nacidos, peces ornamentales y ranas. Las reservas pasan por Lufthansa Cargo (internacional) o Turkish Cargo (nacional), no por el sistema de reservas de pasajeros — la norma de la FAQ “los animales deben ir acompañados de un pasajero” se aplica al proceso de equipaje de pasajeros, no a este servicio de carga/flete separado.",
+      "pt": "Um departamento separado, SunExpress Cargo, aceita animais vivos internacionalmente “somente se houver instalações veterinárias disponíveis tanto na estação de partida quanto na de chegada”, e domesticamente também aceita pintinhos recém-nascidos, peixes ornamentais e sapos. As reservas passam pela Lufthansa Cargo (internacional) ou Turkish Cargo (doméstico), não pelo sistema de reservas de passageiros — a regra da FAQ “animais devem ser acompanhados por um passageiro” aplica-se ao processo de bagagem de passageiros, não a esse serviço separado de carga/frete."
+     },
+     "fee": {
+      "en": "Not published (quote via cargo agents)",
+      "fr": "Non publié (devis via agences fret)",
+      "es": "No publicado (presupuesto vía agencias de carga)",
+      "pt": "Não publicado (orçamento via agências de carga)"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "ec793ff28608041112e7cff8c6dcc414ec903c5661f43911a90d26a42215e2e4"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "facility_condition",
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_swiss",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/swiss.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Swiss WorldCargo",
+      "fr": "Swiss WorldCargo",
+      "es": "Swiss WorldCargo",
+      "pt": "Swiss WorldCargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Unaccompanied animals or countries requiring cargo (UK, Ireland, UAE, Hong Kong, South Africa). Zurich Animal Care Center.",
+      "fr": "Animaux non accompagnés ou pays imposant le fret (R.-U., Irlande, Émirats, Hong Kong, Afrique du Sud). Animal Care Center de Zurich.",
+      "es": "Animales sin acompañante o países que exigen carga (Reino Unido, Irlanda, Emiratos, Hong Kong, Sudáfrica). Animal Care Center de Zúrich.",
+      "pt": "Animais sem acompanhante ou países que exigem carga (Reino Unido, Irlanda, EAU, Hong Kong, África do Sul). Zurich Animal Care Center."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "de00c9afbf29d89388eb2ccfac7339a87fbfd0fa34c59c50b82a2c130bdd1032"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "accompaniment_condition",
+    "procedure",
+    "route_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_tap",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/tap.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "TAP Air Cargo",
+      "fr": "TAP Air Cargo",
+      "es": "TAP Air Cargo",
+      "pt": "TAP Air Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Other species, over hold limits, and always on Lisbon–Luanda.",
+      "fr": "Autres espèces, au-delà des limites soute, et toujours sur Lisbonne–Luanda.",
+      "es": "Otras especies, por encima de los límites de bodega, y siempre en Lisboa–Luanda.",
+      "pt": "Outras espécies, acima dos limites do porão, e sempre na rota Lisboa–Luanda."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "cd7c6a8b7507ff03c9f37c67f8e3a709280ae966626e186822076169d35f38e2"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "species_exclusion"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_tarom",
+    "placement": "hold"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/tarom.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Hold",
+      "fr": "Soute",
+      "es": "Bodega",
+      "pt": "Porão"
+     },
+     "statusLabel": {
+      "en": "Not on the A320",
+      "fr": "Sauf sur A320",
+      "es": "Salvo en el A320",
+      "pt": "Exceto no A320"
+     },
+     "detail": {
+      "en": "Above 8 kg and up to 75 kg cage included, from 12 weeks old. Forbidden on the A320 — a common aircraft on this network. ATR 72 takes one crate of 71 × 50 × 51 cm, the Boeing 737 two crates of 122 × 82 × 84 cm. Book 48 h ahead, or 24 h through the call centre. The animal must not be sedated, and travels without leash or muzzle.",
+      "fr": "Au-delà de 8 kg et jusqu'à 75 kg cage comprise, à partir de 12 semaines. Interdite sur A320 — un appareil pourtant courant sur ce réseau. L'ATR 72 prend une caisse de 71 × 50 × 51 cm, le Boeing 737 deux caisses de 122 × 82 × 84 cm. Réservation 48 h avant, ou 24 h par le centre d'appels. L'animal ne doit pas être tranquillisé, et voyage sans laisse ni muselière.",
+      "es": "Por encima de 8 kg y hasta 75 kg con la jaula incluida, a partir de las 12 semanas. Prohibida en el A320, un avión habitual en esta red. El ATR 72 admite una jaula de 71 × 50 × 51 cm y el Boeing 737 dos jaulas de 122 × 82 × 84 cm. Reserva 48 h antes, o 24 h por el call center. El animal no debe ir sedado y viaja sin correa ni bozal.",
+      "pt": "Acima de 8 kg e até 75 kg com a caixa incluída, a partir de 12 semanas. Proibido no A320 — aeronave, aliás, comum nessa malha. O ATR 72 aceita uma caixa de 71 × 50 × 51 cm e o Boeing 737, duas caixas de 122 × 82 × 84 cm. Reserve 48 h antes, ou 24 h pelo call center. O animal não pode estar sedado e viaja sem coleira nem focinheira."
+     },
+     "fee": {
+      "en": "€60 / €110 / €220 by zone",
+      "fr": "60 € / 110 € / 220 € selon la zone",
+      "es": "60 € / 110 € / 220 € según la zona",
+      "pt": "60 € / 110 € / 220 € conforme a zona"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "d19ad35338bab8ca5db9465838ef8d8243e4aeb9500045390596c38763a0b178"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "aircraft_condition",
+    "size_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_tarom",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/tarom.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Cargo",
+      "fr": "Fret",
+      "es": "Carga",
+      "pt": "Carga"
+     },
+     "statusLabel": {
+      "en": "Compulsory in three cases",
+      "fr": "Obligatoire dans trois cas",
+      "es": "Obligatoria en tres casos",
+      "pt": "Obrigatória em três casos"
+     },
+     "detail": {
+      "en": "Cargo is the only route for any species other than dogs and cats, for dogs over 40 kg (crate with a solid wood frame), and once the number of crates allowed on the aircraft is used up.",
+      "fr": "Le fret est la seule voie pour toute espèce autre que chien et chat, pour les chiens de plus de 40 kg (caisse à cadre en bois massif), et dès que le nombre de caisses admis dans l'avion est atteint.",
+      "es": "La carga es la única vía para cualquier especie que no sea perro o gato, para los perros de más de 40 kg (jaula con marco de madera maciza) y en cuanto se agota el número de jaulas admitidas en el avión.",
+      "pt": "A carga é a única via para qualquer espécie que não seja cachorro ou gato, para cachorros acima de 40 kg (caixa com estrutura de madeira maciça) e assim que o número de caixas admitidas na aeronave se esgota."
+     },
+     "fee": {
+      "en": "Not published",
+      "fr": "Non publié",
+      "es": "No publicado",
+      "pt": "Não publicado"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "2c3060808b8b752573c3ea61dad28b419bb27c94a1d25a73f45bbb9a715270bd"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "mandatory_in_cases",
+    "route_condition",
+    "sole_channel_claim",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_thai_airways",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/thai_airways.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "THAI Cargo",
+      "fr": "THAI Cargo",
+      "es": "THAI Cargo",
+      "pt": "THAI Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "The 34 embargoed dog breeds and cargo acceptance go via THAI Cargo.",
+      "fr": "Les 34 races de chiens interdites et l'acceptation en fret passent par THAI Cargo.",
+      "es": "Las 34 razas de perro vetadas y la admisión en carga se gestionan a través de THAI Cargo.",
+      "pt": "As 34 raças de cachorro proibidas e a aceitação em carga são geridas via THAI Cargo."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "cef85211ac384b581b87506d114844b5b92993e753b2d65e70869aabe08e75bf"
+   },
+   "decision": {
+    "state": "reviewed",
+    "target_availability": "undocumented",
+    "cause_runtime": "policy_unpublished",
+    "source": {
+     "url": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
+     "source_type": "official_website",
+     "verified_date": "2026-08-13",
+     "review_due": "2026-11-11",
+     "confidence": 4,
+     "reviewer": "Claude+Codex (lecture intégrale 13/08/2026)",
+     "history": [],
+     "quote": "(For cargo acceptance, please contact directly to Cargo Department)",
+     "quote_language": "en",
+     "locator": "section « Embargo Of Snub-nosed And Other Dog Breeds »"
+    },
+    "justification": "la page officielle ne publie aucune condition générale d'acceptation cargo des chiens : elle renvoie au département Cargo"
+   },
+   "audit_hints": [
+    "on_request_or_contact",
+    "procedure",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_tui_airways",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/tui_airways.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Hold as cargo",
+      "fr": "Soute en fret",
+      "es": "Bodega como carga",
+      "pt": "Porão como carga"
+     },
+     "statusLabel": {
+      "en": "Only route",
+      "fr": "Seule voie",
+      "es": "Única vía",
+      "pt": "Único caminho"
+     },
+     "detail": {
+      "en": "Everything goes through ECS Group (pets@ecsgroup.aero), a third-party handler. Booking, acceptance and pricing are theirs, not TUI's — which is why TUI publishes no weight limit, no crate dimensions and no fare.",
+      "fr": "Tout passe par ECS Group (pets@ecsgroup.aero), un prestataire tiers. Réservation, acceptation et tarification lui appartiennent, pas à TUI — d'où l'absence de limite de poids, de dimensions de caisse et de tarif chez TUI.",
+      "es": "Todo pasa por ECS Group (pets@ecsgroup.aero), un proveedor externo. La reserva, la aceptación y el precio son suyos, no de TUI; por eso TUI no publica límite de peso, dimensiones de jaula ni tarifa.",
+      "pt": "Tudo passa pela ECS Group (pets@ecsgroup.aero), um prestador terceirizado. Reserva, aceitação e preço são dela, não da TUI — por isso a TUI não publica limite de peso, dimensões de caixa nem tarifa."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "87a164faec1b73fc6d18c4f6d0748f0d7ceb9775665ef7a7e7324828c8399955"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "sole_channel_claim",
+    "terms_unpublished"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_tunisair",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/tunisair.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Tunisair Cargo",
+      "fr": "Tunisair Cargo",
+      "es": "Tunisair Cargo",
+      "pt": "Tunisair Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Over 32 kg via the Cargo Department.",
+      "fr": "Au-delà de 32 kg via le service Cargo.",
+      "es": "Por encima de 32 kg a través del Departamento de Carga.",
+      "pt": "Acima de 32 kg via o Departamento de Carga."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c9e4d0f75ad7553f4fd4221dd1eeb41938a1ec0f88b92fbdeab872453d7fa0df"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_vietnam_airlines",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/vietnam_airlines.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Live Animals cargo",
+      "fr": "Fret Live Animals",
+      "es": "Carga Live Animals",
+      "pt": "Carga Live Animals"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Over 32 kg, or routes like the UK, via Vietnam Airlines Cargo Live Animals.",
+      "fr": "Au-delà de 32 kg, ou des routes comme le R.-U., via Vietnam Airlines Cargo Live Animals.",
+      "es": "Por encima de 32 kg, o rutas como la del Reino Unido, a través de Vietnam Airlines Cargo Live Animals.",
+      "pt": "Acima de 32 kg, ou rotas como a do Reino Unido, via Vietnam Airlines Cargo Live Animals."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "701ab6f8ba368695b25a1f0c865301ff4b4201e11fd5b0de0c3c713b3a34cb48"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure",
+    "route_condition",
+    "weight_condition"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_virgin_atlantic",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/virgin_atlantic.yml",
+    "locator": "channels[2]",
+    "block": {
+     "name": {
+      "en": "Virgin Atlantic Cargo",
+      "fr": "Virgin Atlantic Cargo",
+      "es": "Virgin Atlantic Cargo",
+      "pt": "Virgin Atlantic Cargo"
+     },
+     "statusLabel": {
+      "en": "Via agent",
+      "fr": "Via agent",
+      "es": "Vía agente",
+      "pt": "Via agente"
+     },
+     "detail": {
+      "en": "Cats & dogs only, point-to-point, min 10 weeks, IATA kennel. Book ≥ 7 days ahead via the Cargo dept or an IATA pet agent.",
+      "fr": "Chats et chiens uniquement, point à point, min 10 semaines, caisse IATA. Réserver ≥ 7 jours à l'avance via le service Cargo ou un agent IATA.",
+      "es": "Solo gatos y perros, punto a punto, mín. 10 semanas, jaula IATA. Reserva ≥ 7 días antes a través del departamento de carga o un agente IATA de mascotas.",
+      "pt": "Somente gatos e cachorros, ponto a ponto, mín. 10 semanas, caixa de transporte IATA. Reserve com ≥ 7 dias de antecedência pelo departamento de Carga ou um agente IATA de animais."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "c6a02aed2e7287e6010ee551f6c60d3da3dbf1458b6332d5a0aa209af9152005"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "procedure"
+   ]
+  },
+  {
+   "identity": {
+    "airline_id": "airline_virgin_australia",
+    "placement": "cargo"
+   },
+   "yaml_observation": {
+    "file": "content/airlines/virgin_australia.yml",
+    "locator": "channels[1]",
+    "block": {
+     "name": {
+      "en": "Virgin Australia Cargo",
+      "fr": "Virgin Australia Cargo",
+      "es": "Virgin Australia Cargo",
+      "pt": "Virgin Australia Cargo"
+     },
+     "statusLabel": {
+      "en": "Via cargo",
+      "fr": "Via fret",
+      "es": "Vía carga",
+      "pt": "Via carga"
+     },
+     "detail": {
+      "en": "Pets not eligible for the cabin travel in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, through a transport partner. Not on A320/Saab 340.",
+      "fr": "Les animaux non éligibles à la cabine voyagent en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, par un partenaire de transport. Pas sur A320/Saab 340.",
+      "es": "Las mascotas que no reúnen los requisitos para la cabina viajan en la bodega de carga (mascota + jaula ≤ 65 kg) a través de Virgin Australia Cargo, mediante un socio de transporte. No en A320/Saab 340.",
+      "pt": "Os animais que não são elegíveis para a cabine viajam no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, por meio de um parceiro de transporte. Não disponível em A320/Saab 340."
+     },
+     "fee": {
+      "en": "Quote",
+      "fr": "Devis",
+      "es": "Presupuesto",
+      "pt": "Cotação"
+     },
+     "cls": "warn"
+    },
+    "fingerprint_algorithm": "sha256-canonical-json-v1",
+    "fingerprint_fields": [
+     "name",
+     "statusLabel",
+     "detail",
+     "fee",
+     "value",
+     "cls"
+    ],
+    "fingerprint": "29ebce6d6d9c5a88d5eda7fc5406b8dc431c366f061c02a5090e5966d3c526a8"
+   },
+   "decision": {
+    "state": "legacy_unreviewed",
+    "cause_runtime": "legacy_unreviewed",
+    "justification": "aucune source officielle revérifiée : signaux = observation préparatoire, aucune disponibilité décidée"
+   },
+   "audit_hints": [
+    "aircraft_condition",
+    "procedure",
+    "weight_condition"
+   ]
+  }
+ ]
+}

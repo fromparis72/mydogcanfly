@@ -140,6 +140,10 @@ const labels = {
      bandeau existant, pas de doublon). */
   confirmPolicy: T("Airline policy to confirm before booking", "Politique de la compagnie à confirmer avant de réserver", "Política de la aerolínea a confirmar antes de reservar"),
   confirmMissing: T("Additional information needed — confirm with the airline", "Information supplémentaire nécessaire — confirme auprès de la compagnie", "Se necesita información adicional: confirma con la aerolínea"),
+  /* T0-B — famille DISTINCTE de « politique » : l'incertitude est la NÔTRE (donnée héritée non
+     revérifiée), pas celle de la compagnie. Le code interne `legacy_unreviewed` n'est jamais
+     affiché ; le visiteur lit une phrase qui dit d'où vient le doute et quoi faire. */
+  confirmUnreviewed: T("This information has not yet been reverified against a current official source — confirm directly with the airline before booking.", "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver.", "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar."),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
@@ -536,11 +540,18 @@ const labels = {
                     for (const d of (a.placement_decisions || [])) {
                       if (d.status !== "confirmation_required") continue;
                       for (const c of (d.confirmation_causes || [])) {
-                        if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");
+                        /* T0-B : famille PROPRE — `legacy_unreviewed` ne rejoint pas « policy »,
+                           qui attribuerait à la compagnie un doute qui vient de notre donnée. */
+                        if (c.code === "legacy_unreviewed") fams.add("unreviewed");
+                        else if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");
                         else if (c.code === "missing_fact") fams.add("missing");
                       }
                     }
                     const lines = [];
+                    /* Ordre : notre propre incertitude D'ABORD. Quand les deux familles coexistent,
+                       le visiteur lit « nous ne l'avons pas revérifié » avant toute phrase qui
+                       parle de la politique de la compagnie. */
+                    if (fams.has("unreviewed")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmUnreviewed)}</div>`);
                     if (fams.has("policy")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmPolicy)}</div>`);
                     if (fams.has("missing")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmMissing)}</div>`);
                     return lines.join("");
