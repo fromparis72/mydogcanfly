@@ -1,23 +1,190 @@
 {
- "perimetre": "T0-B2-UI — équation des politiques migrées et surface rendue quadrilingue",
- "langues": [
-  "en",
-  "fr",
-  "es",
-  "pt"
- ],
- "totaux": {
-  "politiques": 302,
-  "canaux_visibles": 296,
+ "perimetre": "T0-B2-UI — équation des politiques migrées, comparée à des références indépendantes",
+ "references": {
+  "manifeste": "test-baselines/t0b-migration-matrice.json (74 lignes)",
+  "stale_verses": "KNOWN_PROVENANCE_CURATED, relue dans ingest-airlines.mjs (10)",
+  "sans_canal": "POLITIQUES_SANS_CANAL_VISIBLE, relue dans ingest-airlines.mjs (6)",
+  "identites": "test-baselines/t0b2-policy-identities.json (302)"
+ },
+ "attendu": {
   "migrees": 84,
   "contradictions": 78,
   "concordantes": 0,
-  "sans_canal_visible": 6,
-  "equation_tenue": true,
-  "fiches_touchees": 71,
-  "statuts_rendus": 312,
-  "pages_localisees": 284
+  "sansCanal": 6
  },
+ "observe": {
+  "politiques": 302,
+  "migrees": 84,
+  "contradictions": 78,
+  "concordantes": 0,
+  "sans_canal": 6
+ },
+ "migrees": [
+  "airline_aegean.cargo",
+  "airline_aer_lingus.cargo",
+  "airline_aerolineas_argentinas.cargo",
+  "airline_aeromexico.cargo",
+  "airline_air_algerie.cargo",
+  "airline_air_astana.cargo",
+  "airline_air_austral.cargo",
+  "airline_air_caraibes.cargo",
+  "airline_air_china.cargo",
+  "airline_air_europa.cargo",
+  "airline_air_india.cargo",
+  "airline_air_mauritius.cargo",
+  "airline_air_new_zealand.cargo",
+  "airline_air_tahiti_nui.cargo",
+  "airline_air_transat.cargo",
+  "airline_airbaltic.cargo",
+  "airline_aircalin.cargo",
+  "airline_alaska.cargo",
+  "airline_ana.cargo",
+  "airline_asiana.cargo",
+  "airline_austrian.cargo",
+  "airline_avianca.cargo",
+  "airline_bangkok_airways.cargo",
+  "airline_brussels.cargo",
+  "airline_cathay_pacific.cargo",
+  "airline_china_airlines.cargo",
+  "airline_china_eastern.cargo",
+  "airline_china_southern.cargo",
+  "airline_condor.cargo",
+  "airline_copa.cargo",
+  "airline_corsair.cargo",
+  "airline_croatia_airlines.cargo",
+  "airline_edelweiss.cargo",
+  "airline_egyptair.cargo",
+  "airline_el_al.cargo",
+  "airline_emirates.cargo",
+  "airline_ethiopian.cargo",
+  "airline_etihad.cargo",
+  "airline_eva_air.cargo",
+  "airline_finnair.cargo",
+  "airline_french_bee.cargo",
+  "airline_garuda_indonesia.cargo",
+  "airline_garuda_indonesia.hold",
+  "airline_gulf_air.cargo",
+  "airline_iberia_express.cargo",
+  "airline_jal.cargo",
+  "airline_kenya_airways.cargo",
+  "airline_km_malta.cargo",
+  "airline_korean_air.cargo",
+  "airline_latam.cargo",
+  "airline_lot.cargo",
+  "airline_luxair.cargo",
+  "airline_malaysia_airlines.cargo",
+  "airline_neos.cargo",
+  "airline_norwegian.cargo",
+  "airline_pegasus.hold",
+  "airline_philippine.cargo",
+  "airline_qantas.cargo",
+  "airline_qantas.hold",
+  "airline_qatar_airways.cargo",
+  "airline_royal_air_maroc.cargo",
+  "airline_royal_jordanian.cabin",
+  "airline_royal_jordanian.cargo",
+  "airline_sas.cargo",
+  "airline_saudia.cabin",
+  "airline_saudia.cargo",
+  "airline_singapore_airlines.cargo",
+  "airline_sky_express.cargo",
+  "airline_sky_express.hold",
+  "airline_south_african_airways.cargo",
+  "airline_south_african_airways.hold",
+  "airline_sunexpress.cargo",
+  "airline_sunexpress.hold",
+  "airline_swiss.cargo",
+  "airline_tap.cargo",
+  "airline_tarom.cargo",
+  "airline_tarom.hold",
+  "airline_thai_airways.cargo",
+  "airline_tui_airways.cargo",
+  "airline_tunisair.cargo",
+  "airline_vietnam_airlines.cargo",
+  "airline_virgin_atlantic.cargo",
+  "airline_virgin_australia.cargo",
+  "airline_virgin_australia.hold"
+ ],
+ "contradictions": [
+  "airline_aegean.cargo",
+  "airline_aer_lingus.cargo",
+  "airline_aerolineas_argentinas.cargo",
+  "airline_aeromexico.cargo",
+  "airline_air_algerie.cargo",
+  "airline_air_astana.cargo",
+  "airline_air_austral.cargo",
+  "airline_air_caraibes.cargo",
+  "airline_air_china.cargo",
+  "airline_air_europa.cargo",
+  "airline_air_india.cargo",
+  "airline_air_mauritius.cargo",
+  "airline_air_new_zealand.cargo",
+  "airline_air_tahiti_nui.cargo",
+  "airline_air_transat.cargo",
+  "airline_airbaltic.cargo",
+  "airline_aircalin.cargo",
+  "airline_alaska.cargo",
+  "airline_ana.cargo",
+  "airline_austrian.cargo",
+  "airline_avianca.cargo",
+  "airline_bangkok_airways.cargo",
+  "airline_brussels.cargo",
+  "airline_cathay_pacific.cargo",
+  "airline_china_airlines.cargo",
+  "airline_china_eastern.cargo",
+  "airline_china_southern.cargo",
+  "airline_copa.cargo",
+  "airline_corsair.cargo",
+  "airline_croatia_airlines.cargo",
+  "airline_edelweiss.cargo",
+  "airline_egyptair.cargo",
+  "airline_el_al.cargo",
+  "airline_emirates.cargo",
+  "airline_ethiopian.cargo",
+  "airline_etihad.cargo",
+  "airline_finnair.cargo",
+  "airline_french_bee.cargo",
+  "airline_garuda_indonesia.cargo",
+  "airline_garuda_indonesia.hold",
+  "airline_gulf_air.cargo",
+  "airline_iberia_express.cargo",
+  "airline_jal.cargo",
+  "airline_kenya_airways.cargo",
+  "airline_km_malta.cargo",
+  "airline_korean_air.cargo",
+  "airline_latam.cargo",
+  "airline_lot.cargo",
+  "airline_luxair.cargo",
+  "airline_malaysia_airlines.cargo",
+  "airline_neos.cargo",
+  "airline_pegasus.hold",
+  "airline_philippine.cargo",
+  "airline_qantas.cargo",
+  "airline_qatar_airways.cargo",
+  "airline_royal_air_maroc.cargo",
+  "airline_royal_jordanian.cabin",
+  "airline_royal_jordanian.cargo",
+  "airline_sas.cargo",
+  "airline_saudia.cabin",
+  "airline_saudia.cargo",
+  "airline_singapore_airlines.cargo",
+  "airline_sky_express.cargo",
+  "airline_sky_express.hold",
+  "airline_south_african_airways.cargo",
+  "airline_south_african_airways.hold",
+  "airline_sunexpress.cargo",
+  "airline_sunexpress.hold",
+  "airline_swiss.cargo",
+  "airline_tap.cargo",
+  "airline_tarom.cargo",
+  "airline_tarom.hold",
+  "airline_thai_airways.cargo",
+  "airline_tui_airways.cargo",
+  "airline_tunisair.cargo",
+  "airline_vietnam_airlines.cargo",
+  "airline_virgin_atlantic.cargo",
+  "airline_virgin_australia.cargo"
+ ],
  "sans_canal_visible": [
   "airline_asiana.cargo",
   "airline_condor.cargo",
@@ -25,548 +192,5 @@
   "airline_norwegian.cargo",
   "airline_qantas.hold",
   "airline_virgin_australia.hold"
- ],
- "fiches_touchees": [
-  "airline_aegean",
-  "airline_aer_lingus",
-  "airline_aerolineas_argentinas",
-  "airline_aeromexico",
-  "airline_air_algerie",
-  "airline_air_astana",
-  "airline_air_austral",
-  "airline_air_caraibes",
-  "airline_air_china",
-  "airline_air_europa",
-  "airline_air_india",
-  "airline_air_mauritius",
-  "airline_air_new_zealand",
-  "airline_air_tahiti_nui",
-  "airline_air_transat",
-  "airline_airbaltic",
-  "airline_aircalin",
-  "airline_alaska",
-  "airline_ana",
-  "airline_austrian",
-  "airline_avianca",
-  "airline_bangkok_airways",
-  "airline_brussels",
-  "airline_cathay_pacific",
-  "airline_china_airlines",
-  "airline_china_eastern",
-  "airline_china_southern",
-  "airline_copa",
-  "airline_corsair",
-  "airline_croatia_airlines",
-  "airline_edelweiss",
-  "airline_egyptair",
-  "airline_el_al",
-  "airline_emirates",
-  "airline_ethiopian",
-  "airline_etihad",
-  "airline_finnair",
-  "airline_french_bee",
-  "airline_garuda_indonesia",
-  "airline_gulf_air",
-  "airline_iberia_express",
-  "airline_jal",
-  "airline_kenya_airways",
-  "airline_km_malta",
-  "airline_korean_air",
-  "airline_latam",
-  "airline_lot",
-  "airline_luxair",
-  "airline_malaysia_airlines",
-  "airline_neos",
-  "airline_pegasus",
-  "airline_philippine",
-  "airline_qantas",
-  "airline_qatar_airways",
-  "airline_royal_air_maroc",
-  "airline_royal_jordanian",
-  "airline_sas",
-  "airline_saudia",
-  "airline_singapore_airlines",
-  "airline_sky_express",
-  "airline_south_african_airways",
-  "airline_sunexpress",
-  "airline_swiss",
-  "airline_tap",
-  "airline_tarom",
-  "airline_thai_airways",
-  "airline_tui_airways",
-  "airline_tunisair",
-  "airline_vietnam_airlines",
-  "airline_virgin_atlantic",
-  "airline_virgin_australia"
- ],
- "contradictions": [
-  {
-   "cle": "airline_aegean.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_aer_lingus.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_aerolineas_argentinas.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_aeromexico.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_algerie.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_astana.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_austral.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_caraibes.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_china.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_europa.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_india.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_mauritius.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_new_zealand.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_tahiti_nui.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_air_transat.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_airbaltic.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_aircalin.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_alaska.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_ana.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_austrian.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_avianca.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_bangkok_airways.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_brussels.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_cathay_pacific.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_china_airlines.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_china_eastern.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_china_southern.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_copa.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_corsair.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_croatia_airlines.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_edelweiss.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_egyptair.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_el_al.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_emirates.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_ethiopian.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_etihad.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_finnair.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_french_bee.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_garuda_indonesia.hold",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_garuda_indonesia.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_gulf_air.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_iberia_express.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_jal.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_kenya_airways.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_km_malta.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_korean_air.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_latam.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_lot.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_luxair.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_malaysia_airlines.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_neos.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_pegasus.hold",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_philippine.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_qantas.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_qatar_airways.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_royal_air_maroc.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_royal_jordanian.cabin",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_royal_jordanian.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_sas.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_saudia.cabin",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_saudia.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_singapore_airlines.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_sky_express.hold",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_sky_express.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_south_african_airways.hold",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_south_african_airways.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_sunexpress.hold",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_sunexpress.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_swiss.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_tap.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_tarom.hold",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_tarom.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_thai_airways.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_tui_airways.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_tunisair.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_vietnam_airlines.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_virgin_atlantic.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  },
-  {
-   "cle": "airline_virgin_australia.cargo",
-   "cls": "warn",
-   "affiche": "disponible",
-   "canonique": "à confirmer"
-  }
  ]
 }
