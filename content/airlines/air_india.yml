@@ -72,8 +72,16 @@ ladder:
       fr: "> 32 kg / R.-U."
       es: "> 32 kg / R.U."
       pt: "> 32 kg / Reino Unido"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 140–225 $ / 7 500 ₹
       es: 140–225 $ / 7 500 ₹
       pt: "140–225 $ / 7.500 ₹"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 350 $ / 16 000 ₹
       es: 350 $ / 16 000 ₹
       pt: "350 $ / 16.000 ₹"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Air India Cargo
       fr: Air India Cargo

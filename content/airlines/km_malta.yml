@@ -68,8 +68,16 @@ ladder:
       es: Carga
       pt: "Carga"
     sub: "> 32 kg"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin (PETC)
       fr: Cabine (PETC)
@@ -91,7 +99,8 @@ channels:
       fr: 85 € par trajet
       es: 85 € por trayecto
       pt: "85 € por trajeto"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Checked baggage (AVIH)
       fr: Bagage accompagné (AVIH)
@@ -113,7 +122,8 @@ channels:
       fr: 90–160 € + 10 € de dossier
       es: 90–160 € + 10 € de gestión
       pt: "90–160 € + 10 € de gestão"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

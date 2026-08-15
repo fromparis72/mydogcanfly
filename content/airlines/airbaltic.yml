@@ -72,8 +72,16 @@ ladder:
       fr: fret, via agences
       es: carga, vía agencias
       pt: "carga, via agências"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: "70 € par caisse, par direction"
       es: "70 € por jaula, por trayecto"
       pt: "70 € por caixa, por trecho"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: "130 € (1–32 kg) ou 220 € (33–75 kg) par caisse, par direction"
       es: "130 € (1–32 kg) o 220 € (33–75 kg) por jaula, por trayecto"
       pt: "130 € (1–32 kg) ou 220 € (33–75 kg) por caixa, por trecho"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

@@ -75,6 +75,27 @@ harnais() {
   echo "OK     $libelle — code $code, « $synthese »$([ "$fails_attendus" -eq 1 ] && echo ", échec unique = bijection historique ($ECARTS_HISTORIQUES_ATTENDUS écarts)" || true)"
 }
 
+# --- Précondition : ce dispositif MESURE l'état PRÉ-MIGRATION ----------------------------------
+#
+# Il part d'`objects.json` sous sa forme héritée (`allowed`/`conditional`) et simule la migration
+# dans une copie jetable. Sur un dépôt DÉJÀ migré, il n'a plus d'objet : ses outils échoueraient
+# un par un, avec des messages qui parleraient de bijection alors que le sujet est la date du
+# commit. On refuse donc tout de suite, en disant où se trouve l'état qu'il sait mesurer.
+#
+# Les garanties, elles, n'ont pas disparu avec lui : elles sont passées dans les harnais, qui
+# tournent à chaque CI sur l'état courant — preuve historique T0-A et preuve T0-B2 sur baselines
+# figées, bijection avec le diff approuvé, couverture directe des 302 politiques.
+if grep -q '"conditional"' "$ROOT/packages/knowledge/raw/objects.json" 2>/dev/null; then
+  :
+else
+  echo "Ce dispositif mesure l'état PRÉ-MIGRATION T0-B2 ; ce dépôt est déjà migré." >&2
+  echo "  Rejouez-le sur le SHA d'avant le patch (dernier : bccd6b7), par exemple :" >&2
+  echo "    git worktree add /tmp/t0b2-avant bccd6b7 --detach" >&2
+  echo "    bash /tmp/t0b2-avant/mesures/t0b2/outils/reproduire.sh" >&2
+  echo "  Sur l'état COURANT, les garanties équivalentes sont dans les harnais : npm run test:unit" >&2
+  exit 3
+fi
+
 echo "dépôt      : $ROOT"
 echo "SHA        : $(git -C "$ROOT" rev-parse HEAD)"
 echo "node       : $(node --version)  (.nvmrc : $(cat "$ROOT/.nvmrc"))"

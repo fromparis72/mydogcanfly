@@ -64,8 +64,16 @@ ladder:
       fr: plus de 10 kg, aucun plafond publié
       es: más de 10 kg, sin techo publicado
       pt: "acima de 10 kg, sem teto publicado"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -87,7 +95,8 @@ channels:
       fr: "100 € par animal, par direction"
       es: "100 € por animal, por trayecto"
       pt: "100 € por animal, por trecho"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -109,7 +118,8 @@ channels:
       fr: "200 € par animal, par direction"
       es: "200 € por animal, por trayecto"
       pt: "200 € por animal, por trecho"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

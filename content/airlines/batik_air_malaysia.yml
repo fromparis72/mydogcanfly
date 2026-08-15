@@ -57,8 +57,16 @@ ladder:
       fr: cabine, soute et fret tous non documentés
       es: cabina, bodega y carga sin documentar
       pt: "cabine, porão e carga não documentados"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: not_offered
+  cargo:
+    availability: not_offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -80,7 +88,8 @@ channels:
       fr: Non publié
       es: No publicado
       pt: "Não publicado"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -102,7 +111,8 @@ channels:
       fr: Non publié
       es: No publicado
       pt: "Não publicado"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

@@ -202,12 +202,26 @@ console.log("\n=== 7. Destinations : statuts, fret émis, inclusion en alternati
   check("Miami : placement_ok=false, placement_to_confirm=true — jamais rendue disponible",
     mia?.placement_ok === false && mia?.placement_to_confirm === true);
   check("Miami : heat_confirmation_required=true", mia?.heat_confirmation_required === true);
+  /* Abou Dabi — mis à jour par T0-B2 (bascule APPROUVÉE, tracée au registre de migration).
+   *
+   * `airline_etihad.cargo` est l'un des 73 couples du manifeste : sa disponibilité n'a jamais été
+   * revérifiée sur source officielle. Le fret passe donc d'`allowed` à `confirmation_required`,
+   * et la destination cesse d'être présentée comme disponible par un canal dont nous ne savons
+   * rien. Ce que ce contrôle protège n'a pas changé — le fret reste ÉMIS, jamais invisible — mais
+   * il vérifie en plus, désormais, que la cause est nommée et rattachée à sa politique. */
   const auh = dest.matches.find((m) => m.iata === "AUH");
-  check("Abou Dabi : cargo_status émis et allowed — le fret n'est plus invisible",
-    auh?.cargo_status === "allowed" && auh?.cargo_ok === true,
+  check("Abou Dabi : cargo_status ÉMIS — le fret n'est jamais invisible",
+    auh?.cargo_status === "confirmation_required",
     JSON.stringify({ st: auh?.cargo_status, ok: auh?.cargo_ok, cab: auh?.cabin_ok, hold: auh?.hold_ok }));
-  check("Abou Dabi : compatible par le fret, désormais EXPLICABLE (cabin/hold fermés, cargo ouvert)",
-    auh?.placement_ok === true && auh?.cabin_ok === false && auh?.hold_ok === false);
+  check("Abou Dabi : aucun canal ouvert, la destination est À CONFIRMER — jamais « disponible »",
+    auh?.placement_ok === false && auh?.placement_to_confirm === true
+    && auh?.cabin_ok === false && auh?.hold_ok === false && auh?.cargo_ok === false);
+  check("Abou Dabi : la cause est NOTRE donnée non revérifiée, avec sa politique nommée",
+    auh?.confirmation_signals?.some((s) => s.airline_id === "airline_etihad" && s.placement === "cargo"
+      && s.cause?.code === "legacy_unreviewed" && s.cause?.policy_ref === "airline_etihad#cargo"),
+    JSON.stringify(auh?.confirmation_signals));
+  check("Abou Dabi : AUCUN drapeau chaleur — la cause n'est pas climatique",
+    auh?.heat_embargo === false && auh?.heat_confirmation_required === false);
   const statuses = ["allowed", "denied", "confirmation_required"];
   check("tous les statuts émis sont valides",
     dest.matches.every((m) => [m.cabin_status, m.hold_status, m.cargo_status].every((s) => statuses.includes(s))));

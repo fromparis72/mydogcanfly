@@ -56,8 +56,16 @@ ladder:
       fr: chiens d'assistance uniquement
       es: solo perros de servicio
       pt: "somente cães de serviço"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: not_offered
+  cargo:
+    availability: not_offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -79,7 +87,8 @@ channels:
       fr: "—"
       es: "—"
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -101,7 +110,8 @@ channels:
       fr: "—"
       es: "—"
       pt: "—"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

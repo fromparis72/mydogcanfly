@@ -81,8 +81,16 @@ ladder:
       fr: non publié
       es: no publicado
       pt: "não publicado"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -104,7 +112,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -126,7 +135,8 @@ channels:
       fr: 180 THB/kg
       es: 180 THB/kg
       pt: "180 THB/kg"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

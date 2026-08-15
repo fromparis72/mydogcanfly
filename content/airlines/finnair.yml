@@ -72,8 +72,16 @@ ladder:
       fr: pays fret-seul
       es: países solo carga
       pt: "países somente carga"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 60–130 €
       es: 60–130 €
       pt: "60–130 €"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 140–650 €
       es: 140–650 €
       pt: "140–650 €"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Finnair Cargo
       fr: Finnair Cargo

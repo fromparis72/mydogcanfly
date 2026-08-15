@@ -72,8 +72,16 @@ ladder:
       fr: races interdites
       es: razas vetadas
       pt: "raças proibidas"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    availability: undocumented
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 320–540 $
       es: 320–540 $
       pt: "$320–540"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: THAI Cargo
       fr: THAI Cargo

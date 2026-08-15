@@ -72,8 +72,16 @@ ladder:
       fr: R.-U./HK/AU
       es: RU/HK/AU
       pt: "RU/HK/AU"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 6 000 ¥ / 250–400 $
       es: 6000 ¥ / 250–400 $
       pt: "¥6.000 / $250–400"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: ANA Cargo
       fr: ANA Cargo

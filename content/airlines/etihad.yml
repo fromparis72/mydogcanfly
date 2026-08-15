@@ -66,8 +66,16 @@ ladder:
       fr: grands
       es: grandes
       pt: "grande porte"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: not_offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -89,7 +97,8 @@ channels:
       fr: 399 $
       es: 399 $
       pt: "US$ 399"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -111,7 +120,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Etihad Cargo
       fr: Etihad Cargo

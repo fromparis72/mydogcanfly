@@ -15,7 +15,7 @@
  */
 import { loadKB } from "./packages/knowledge/src/index.ts";
 import {
-  PlacementPolicyAuthored, LegacyPlacementPolicyAuthored, CanonicalPlacementPolicyAuthored,
+  PlacementPolicyAuthored, CanonicalPlacementPolicyAuthored,
   projectPlacementPolicy,
 } from "./packages/knowledge/src/objects.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
@@ -93,28 +93,32 @@ console.log("=== 2. Schémas d'auteur : stricts, union exclusive, projection SAN
 {
   const SRC = { url: "https://example.com/policy", source_type: "official_website", verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 3, reviewer: "test", history: [] };
   const enriched = {
-    allowed: true, conditional: true, derived_from_fiche: true,
+    availability: "offered", derived_from_fiche: true,
     max_weight_kg: 8, carrier_dims_cm: { l: 55, w: 40, h: 23 },
     fee: "€125 (intra-Europe)", conditions: { en: "IATA crate" }, brachy_allowed: false, source: SRC,
   };
-  check("politique legacy ENRICHIE acceptée par le schéma d'auteur",
-    LegacyPlacementPolicyAuthored.safeParse(enriched).success);
+  check("politique canonique ENRICHIE acceptée par le schéma d'auteur",
+    CanonicalPlacementPolicyAuthored.safeParse(enriched).success);
   check("clé décisionnelle inconnue (`brachy_alowed`) → ÉCHEC de validation",
     !PlacementPolicyAuthored.safeParse({ ...enriched, brachy_alowed: true }).success);
+  /* T0-B2 — la forme héritée `{allowed, conditional}` n'est plus une branche de l'union : ces
+     deux contrôles ne disent plus « la faute de frappe est refusée » mais « la forme entière
+     l'est ». C'est plus fort, et c'est ce qui empêche un artefact régénéré par un outil ancien
+     d'être accepté puis projeté en ignorant `conditional`. */
+  check("forme héritée `{allowed, conditional}` → ÉCHEC (schéma supprimé en T0-B2)",
+    !PlacementPolicyAuthored.safeParse({ allowed: true, conditional: true, source: SRC }).success);
   check("faute `conditionnal` → ÉCHEC (le test qui aurait attrapé les 3 récidives)",
     !PlacementPolicyAuthored.safeParse({ allowed: true, conditionnal: true, source: SRC }).success);
   check("`allowed` ET `availability` simultanés → ÉCHEC (union exclusive)",
     !PlacementPolicyAuthored.safeParse({ allowed: true, availability: "offered", source: SRC }).success);
-  const proj = projectPlacementPolicy(LegacyPlacementPolicyAuthored.parse(enriched));
-  check("projection T0-A neutre : legacy conditional:true → status allowed (jusqu'au manifeste T0-B)",
+  const proj = projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse(enriched));
+  check("projection canonique : availability offered → status allowed",
     proj.status === "allowed" && proj.allowed === true);
   check("les champs communs TRAVERSENT sans perte (poids, dims, tarif, conditions, brachy, source, provenance)",
     proj.max_weight_kg === 8 && proj.carrier_dims_cm?.l === 55 && proj.fee === "€125 (intra-Europe)"
       && proj.conditions?.en === "IATA crate" && proj.brachy_allowed === false
       && proj.source?.url === SRC.url && proj.derived_from_fiche === true,
     JSON.stringify(proj));
-  check("legacy allowed:false → denied",
-    projectPlacementPolicy(LegacyPlacementPolicyAuthored.parse({ allowed: false, source: SRC })).status === "denied");
   const can = (availability) => projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse({ availability, source: SRC }));
   check("canonical offered → allowed", can("offered").status === "allowed");
   check("canonical not_offered → denied", can("not_offered").status === "denied");

@@ -60,8 +60,16 @@ ladder:
       es: Bodega (solo ATR)
       pt: "Porão (só ATR)"
     sub: ≤ 25 kg
+policies:
+  cabin:
+    availability: offered
+  hold:
+    review_state: legacy_unreviewed
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -83,7 +91,8 @@ channels:
       fr: "35 € domestique / 65 € international"
       es: "35 € nacional / 65 € internacional"
       pt: "35 € doméstico / 65 € internacional"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -105,7 +114,8 @@ channels:
       fr: "50 €"
       es: "50 €"
       pt: "50 €"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

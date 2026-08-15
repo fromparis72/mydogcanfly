@@ -72,8 +72,16 @@ ladder:
       fr: R.-U./ÉAU / espèces
       es: Reino Unido/EAU / especies
       pt: "Reino Unido/EAU / espécies"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 65–100 €
       es: 65–100 €
       pt: "€65–100"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 150–290 €
       es: 150–290 €
       pt: "€150–290"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: LOT Cargo
       fr: LOT Cargo

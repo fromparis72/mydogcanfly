@@ -76,8 +76,16 @@ ladder:
       fr: grands chiens
       es: perros grandes
       pt: "cachorros grandes"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: not_offered
+  cargo:
+    availability: offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -99,7 +107,8 @@ channels:
       fr: 150 $ / trajet
       es: 150 $ / trayecto
       pt: "US$ 150 / trajeto"
-  - icon: 🎖️
+  - placement: hold
+    icon: 🎖️
     name:
       en: Hold
       fr: Soute
@@ -121,7 +130,8 @@ channels:
       fr: 150 – 200 $
       es: 150 – 200 $
       pt: "$150 – 200"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: PetEmbark cargo
       fr: Fret PetEmbark

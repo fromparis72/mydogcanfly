@@ -66,8 +66,16 @@ ladder:
       fr: tous animaux
       es: todas las mascotas
       pt: "todos os animais"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: not_offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -89,7 +97,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -111,7 +120,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: IAG Cargo
       fr: IAG Cargo

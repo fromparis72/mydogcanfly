@@ -60,8 +60,17 @@ ladder:
       es: Bodega
       pt: "Porão"
     sub: ≤ 32 kg
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
+    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -83,7 +92,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute

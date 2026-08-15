@@ -19,7 +19,27 @@ import { loadKB } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 
 const WRITE = process.argv.includes("--write");
-const FILE = "test-baselines/t0a-carries-pets-diff.json";
+/**
+ * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
+ *
+ * Elle recalculait 42 360 couples et les comparait à la mesure T0-A. Ce contrat n'était tenable
+ * que tant qu'aucun lot ne touchait au métier : T0-B2 fait passer 84 politiques à « à confirmer »,
+ * et l'écart entre l'ancien calcul et le nouveau s'élargit mécaniquement (178 → 2 017 bascules).
+ * Comparer à la mesure T0-A rendrait la barrière rouge en permanence — donc, tôt ou tard,
+ * assouplie.
+ *
+ * Deux fichiers, deux rôles, aucune preuve perdue :
+ *  - `t0a-carries-pets-diff.json` reste le RELEVÉ HISTORIQUE de T0-A, figé. Il n'est plus
+ *    recalculé (les données ont changé sous lui), mais il continue de servir : c'est lui qui
+ *    borne les 11 compagnies de la preuve historique, elle-même désormais sur baselines figées ;
+ *  - `t0b2-carries-pets-diff.json` est la mesure VIVANTE, recalculée à chaque CI et comparée
+ *    entrée par entrée. La barrière garde donc exactement la même force sur les données du jour.
+ *
+ * L'invariant de sûreté, lui, ne dépend d'aucun lot et est vérifié sur le recalcul : toutes les
+ * bascules vont de false à true — aucune compagnie ne PERD son transport d'animaux.
+ */
+const FILE = "test-baselines/t0b2-carries-pets-diff.json";
+const FILE_T0A = "test-baselines/t0a-carries-pets-diff.json";
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
   console.log((cond ? "  OK   " : "  FAIL ") + label + (cond || !detail ? "" : `\n         ${detail}`));
@@ -80,6 +100,14 @@ if (WRITE) {
     ref.changements === entries.length && ref.false_to_true === f2t && ref.true_to_false === entries.length - f2t);
   check("liste EXACTE des compagnies", JSON.stringify(airlines) === JSON.stringify(ref.airlines), airlines.join(","));
   check("toutes les bascules sont false→true (aucune perte de transport)", entries.every((e) => e.new && !e.old));
+
+  /* Le relevé T0-A reste intact et lisible : il borne encore les 11 compagnies de la preuve
+     historique. Le figer ici évite qu'un `--write` distrait ne le régénère sur des données
+     qui ne sont plus les siennes. */
+  const t0a = JSON.parse(readFileSync(FILE_T0A, "utf8"));
+  check("le relevé HISTORIQUE T0-A est intact (178 bascules, 11 compagnies)",
+    t0a.changements === 178 && t0a.airlines.length === 11 && t0a.true_to_false === 0,
+    JSON.stringify({ ch: t0a.changements, air: t0a.airlines?.length, t2f: t0a.true_to_false }));
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);

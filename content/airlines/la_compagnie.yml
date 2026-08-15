@@ -65,8 +65,14 @@ ladder:
       fr: non transporté
       es: no se transporta
       pt: "não transportado"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: not_offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -88,7 +94,8 @@ channels:
       fr: 200 € le trajet
       es: 200 € por trayecto
       pt: "200 € por trecho"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute

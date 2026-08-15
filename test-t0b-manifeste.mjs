@@ -162,10 +162,16 @@ console.log("=== 1 ter. CONTRE-ÉPREUVE : la manipulation trouvée en contre-rev
   check("le schéma Zod accepte toujours le manifeste falsifié (il dit la forme, pas l'approbation)",
     accepte(T0bMigrationManifest, falsifie));
 
-  /* b) Le vérificateur approuvé, exécuté pour de vrai sur le manifeste falsifié, dit encore
-        « 74 lignes, 0 écart » — parce que les empreintes scellent les blocs YAML, pas les
-        décisions. Le livrable approuvé reste INCHANGÉ : c'est bien son périmètre qui est en
-        cause, pas son exactitude. */
+  /* b) Le vérificateur, exécuté pour de vrai sur le manifeste falsifié.
+   *
+   * En T0-B1 il disait encore « 74 lignes, 0 écart » : les empreintes scellaient les blocs YAML,
+   * pas les décisions — d'où la garde d'approbation du (c), écrite précisément pour couvrir cet
+   * angle mort. T0-B2 lui a donné une seconde cible : la CONSOMMATION du manifeste, ligne par
+   * ligne, à sa valeur. Échanger deux décisions se voit donc maintenant par les DEUX chemins.
+   *
+   * Ce que la contre-épreuve démontre est inchangé, et le reste : l'empreinte seule ne suffit
+   * jamais à approuver une décision. Le (c) le prouve toujours sur un manifeste que le schéma
+   * accepte — et il reste le seul contrôle qui distingue « auditée » de « approuvée ». */
   const chemin = join(tmpdir(), "t0b-manifeste-falsifie-contre-epreuve.json");
   writeFileSync(chemin, JSON.stringify(falsifie, null, 1));
   let sortie = "";
@@ -174,8 +180,12 @@ console.log("=== 1 ter. CONTRE-ÉPREUVE : la manipulation trouvée en contre-rev
   } catch (e) {
     sortie = `${e.stdout ?? ""}${e.stderr ?? ""}`;
   }
-  check("le vérificateur approuvé ne voit RIEN (74 lignes, 0 écart) — son périmètre est le bloc YAML",
-    /74 lignes vérifiées, 0 écart/.test(sortie), sortie.trim().split("\n").slice(-2).join(" / "));
+  check("les 74 empreintes de blocs YAML restent intactes — la falsification ne les touche pas",
+    /74 lignes vérifiées/.test(sortie) && !/empreinte ≠|bloc stocké ≠/.test(sortie),
+    sortie.trim().split("\n").slice(-3).join(" / "));
+  check("le vérificateur voit désormais l'échange de décisions (consommation du manifeste, T0-B2)",
+    /ligne de manifeste non consommée à sa valeur: airline_thai_airways\|cargo/.test(sortie),
+    sortie.trim().split("\n").slice(-3).join(" / "));
 
   /* c) La garde d'approbation, elle, échoue — et elle NOMME les deux mouvements. */
   const ecarts = gardeApprobation(falsifie);

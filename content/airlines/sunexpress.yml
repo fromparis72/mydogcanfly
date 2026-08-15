@@ -64,8 +64,16 @@ ladder:
       fr: plus de 8 kg, aucun plafond publié
       es: más de 8 kg, sin techo publicado
       pt: "acima de 8 kg, sem teto publicado"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    review_state: legacy_unreviewed
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -87,7 +95,8 @@ channels:
       fr: "dès 89,99 € international / dès 599 TL domestique / dès 15 € Lefkoşa (Chypre du Nord)"
       es: "desde 89,99 € internacional / desde 599 TL nacional / desde 15 € Lefkoşa (Chipre del Norte)"
       pt: "a partir de 89,99 € internacional / a partir de 599 TL doméstico / a partir de 15 € Lefkoşa (Chipre do Norte)"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -109,7 +118,8 @@ channels:
       fr: "dès 119,99 € international / dès 850 TL domestique / dès 20 € Lefkoşa"
       es: "desde 119,99 € internacional / desde 850 TL nacional / desde 20 € Lefkoşa"
       pt: "a partir de 119,99 € internacional / a partir de 850 TL doméstico / a partir de 20 € Lefkoşa"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

@@ -100,8 +100,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -130,6 +142,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -158,6 +171,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Aegean Cargo",
@@ -567,8 +581,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -597,6 +623,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -625,6 +652,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "IAG Cargo",
@@ -984,8 +1012,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -1014,6 +1054,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -1042,6 +1083,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -1470,8 +1512,20 @@
         "sub": "> 45 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -1500,6 +1554,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -1528,6 +1583,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Aeromexico Cargo",
@@ -1887,8 +1943,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -1917,6 +1985,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -1945,6 +2014,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -2290,8 +2360,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -2320,6 +2402,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -2348,6 +2431,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -2688,8 +2772,20 @@
         "sub": "> 75 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -2718,6 +2814,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -2746,6 +2843,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -3147,8 +3245,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -3177,6 +3287,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -3205,6 +3316,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "AC Animals cargo",
@@ -3596,8 +3708,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -3626,6 +3750,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -3654,6 +3779,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "FRET",
@@ -4045,8 +4171,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -4075,6 +4213,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -4103,6 +4242,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Air China Cargo",
@@ -4466,8 +4606,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -4496,6 +4648,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -4524,6 +4677,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Air Europa Cargo",
@@ -4910,8 +5064,20 @@
         "sub": "> 75 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -4940,6 +5106,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -4968,6 +5135,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -5452,8 +5620,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -5482,6 +5662,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -5510,6 +5691,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Air India Cargo",
@@ -5892,8 +6074,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -5922,6 +6116,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -5950,6 +6145,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Air Mauritius Cargo",
@@ -6300,8 +6496,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -6330,6 +6538,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -6358,6 +6567,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo Pet Services",
@@ -6694,8 +6904,20 @@
         "sub": "≤ 8 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -6724,6 +6946,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -6752,6 +6975,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -7061,8 +7285,17 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -7091,6 +7324,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Air Tahiti Nui Cargo",
@@ -7464,8 +7698,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -7494,6 +7740,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -7522,6 +7769,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Air Transat Cargo",
@@ -7961,8 +8209,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -7991,6 +8251,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -8019,6 +8280,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -8358,8 +8620,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -8388,6 +8662,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -8416,6 +8691,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo (airfreight)",
@@ -8749,8 +9025,20 @@
         "sub": "> 150 lb"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -8779,6 +9067,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -8807,6 +9096,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Pet Connect cargo",
@@ -9189,8 +9479,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -9219,6 +9521,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🎖️",
         "name": {
           "en": "Hold",
@@ -9247,6 +9550,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "PetEmbark cargo",
@@ -9657,8 +9961,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -9687,6 +10003,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -9715,6 +10032,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "ANA Cargo",
@@ -10092,8 +10410,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -10122,6 +10452,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -10495,8 +10826,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -10525,6 +10868,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -10553,6 +10897,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Lufthansa Cargo",
@@ -10939,8 +11284,20 @@
         "sub": "> 70 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -10969,6 +11326,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -10997,6 +11355,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Avianca Cargo",
@@ -11394,8 +11753,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -11424,6 +11795,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -11452,6 +11824,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -11884,8 +12257,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -11914,6 +12299,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -11942,6 +12328,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -12158,8 +12545,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -12188,6 +12587,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -12216,6 +12616,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -12453,8 +12854,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -12483,6 +12896,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -12511,6 +12925,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "IAG Cargo",
@@ -12870,8 +13285,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -12900,6 +13327,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -12928,6 +13356,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -13314,8 +13743,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -13344,6 +13785,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -13372,6 +13814,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cathay Cargo",
@@ -13726,8 +14169,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -13756,6 +14211,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -13784,6 +14240,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Live Animals cargo",
@@ -14147,8 +14604,20 @@
         "sub": "> 203 cm"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -14177,6 +14646,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -14205,6 +14675,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -14559,8 +15030,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -14589,6 +15072,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -14617,6 +15101,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -14979,8 +15464,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -15009,6 +15506,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -15386,8 +15884,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -15416,6 +15926,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -15444,6 +15955,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Copa Pets cargo",
@@ -15789,8 +16301,20 @@
         "sub": "> 50 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -15819,6 +16343,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -15847,6 +16372,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -16247,8 +16773,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -16277,6 +16815,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -16305,6 +16844,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -16602,8 +17142,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -16632,6 +17184,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🎖️",
         "name": {
           "en": "Hold",
@@ -16660,6 +17213,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Delta Cargo",
@@ -17028,8 +17582,20 @@
         "sub": "—"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -17058,6 +17624,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -17086,6 +17653,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -17417,8 +17985,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -17447,6 +18027,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -17475,6 +18056,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -17738,8 +18320,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -17768,6 +18362,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -17796,6 +18391,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "EgyptAir Cargo",
@@ -18155,8 +18751,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -18185,6 +18793,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -18213,6 +18822,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "EL AL Cargo",
@@ -18572,8 +19182,20 @@
         "sub": "17 h +"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -18602,6 +19224,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -18630,6 +19253,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "SkyCargo",
@@ -18993,8 +19617,20 @@
         "sub": "> 45 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -19023,6 +19659,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -19051,6 +19688,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Ethiopian Cargo",
@@ -19401,8 +20039,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -19431,6 +20081,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -19459,6 +20110,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Etihad Cargo",
@@ -19830,8 +20482,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -19860,6 +20524,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -19888,6 +20553,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -20226,8 +20892,20 @@
         "sub": "≤ 32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -20256,6 +20934,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -20610,8 +21289,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -20640,6 +21331,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -20668,6 +21360,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Finnair Cargo",
@@ -21027,8 +21720,20 @@
         "sub": "> 75 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -21057,6 +21762,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -21085,6 +21791,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Freight",
@@ -21444,8 +22151,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -21474,6 +22193,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -21502,6 +22222,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Garuda Cargo",
@@ -21856,8 +22577,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -21886,6 +22619,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -21914,6 +22648,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -22242,8 +22977,20 @@
         "sub": "> 45 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -22272,6 +23019,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -22300,6 +23048,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "IAG Cargo",
@@ -22682,8 +23431,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -22712,6 +23473,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -22740,6 +23502,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "IAG Cargo",
@@ -23100,8 +23863,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -23130,6 +23905,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -23158,6 +23934,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -23416,8 +24193,20 @@
         "sub": "—"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -23446,6 +24235,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -23474,6 +24264,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -23789,8 +24580,20 @@
         "sub": "≤ 75 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -23819,6 +24622,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -23847,6 +24651,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -24242,8 +25047,20 @@
         "sub": "> 32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -24272,6 +25089,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -24300,6 +25118,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "JAL Cargo",
@@ -24648,8 +25467,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -24678,6 +25509,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -24706,6 +25538,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -25066,8 +25899,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -25096,6 +25941,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -25124,6 +25970,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -25537,8 +26384,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -25567,6 +26426,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -25595,6 +26455,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -25976,8 +26837,20 @@
         "sub": "> 32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin (PETC)",
@@ -26006,6 +26879,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Checked baggage (AVIH)",
@@ -26034,6 +26908,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -26439,8 +27314,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -26469,6 +27356,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -26497,6 +27385,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Specialized-LIVE",
@@ -26873,8 +27762,17 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -26903,6 +27801,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -27268,8 +28167,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -27298,6 +28209,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -27326,6 +28238,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "LATAM Cargo",
@@ -27712,8 +28625,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -27742,6 +28667,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -27770,6 +28696,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "LOT Cargo",
@@ -28124,8 +29051,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -28154,6 +29093,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -28182,6 +29122,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Lufthansa Cargo",
@@ -28552,8 +29493,20 @@
         "sub": "8–50 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -28582,6 +29535,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -28610,6 +29564,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -28983,8 +29938,20 @@
         "sub": "> 32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -29013,6 +29980,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -29041,6 +30009,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "MASkargo Animal Hotel",
@@ -29384,8 +30353,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -29414,6 +30395,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -29442,6 +30424,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -29694,8 +30677,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -29724,6 +30719,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -30053,8 +31049,20 @@
         "sub": "8–15 kg / over 15 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -30083,6 +31091,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -30111,6 +31120,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -30370,8 +31380,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -30400,6 +31422,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -30428,6 +31451,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "PAL Cargo",
@@ -30785,8 +31809,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -30815,6 +31851,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Qantas Freight",
@@ -31187,8 +32224,20 @@
         "sub": "> 75 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -31217,6 +32266,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -31245,6 +32295,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "QR Cargo Live",
@@ -31626,8 +32677,20 @@
         "sub": "> 70 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -31656,6 +32719,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -31684,6 +32748,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "RAM Cargo",
@@ -32057,8 +33122,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "review_state": "legacy_unreviewed"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -32087,6 +33164,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -32115,6 +33193,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -32525,8 +33604,20 @@
         "sub": "—"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -32555,6 +33646,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -32583,6 +33675,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -32914,8 +34007,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -32944,6 +34049,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -32972,6 +34078,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "SAS Cargo",
@@ -33336,8 +34443,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "review_state": "legacy_unreviewed"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -33366,6 +34485,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -33394,6 +34514,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Saudia Cargo",
@@ -33757,8 +34878,20 @@
         "sub": "> 32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -33787,6 +34920,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -33815,6 +34949,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -34153,8 +35288,20 @@
         "sub": "≤ 25 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -34183,6 +35330,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -34211,6 +35359,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -34449,8 +35598,17 @@
         "sub": "8–32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -34479,6 +35637,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -34835,8 +35994,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -34865,6 +36036,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -34893,6 +36065,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -35282,8 +36455,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -35312,6 +36497,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -35340,6 +36526,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -35577,8 +36764,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -35607,6 +36806,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -35635,6 +36835,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Swiss WorldCargo",
@@ -36021,8 +37222,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -36051,6 +37264,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -36079,6 +37293,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "TAP Air Cargo",
@@ -36461,8 +37676,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -36491,6 +37718,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -36519,6 +37747,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -36897,8 +38126,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "undocumented"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -36927,6 +38168,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -36955,6 +38197,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "THAI Cargo",
@@ -37298,8 +38541,17 @@
         "sub": "≤ 75 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -37328,6 +38580,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -37691,8 +38944,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -37721,6 +38986,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold as baggage",
@@ -37749,6 +39015,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Hold as cargo",
@@ -38094,8 +39361,20 @@
         "sub": "> 32 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -38124,6 +39403,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -38152,6 +39432,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Tunisair Cargo",
@@ -38520,8 +39801,20 @@
         "sub": "> 125 cm"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -38550,6 +39843,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -38578,6 +39872,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Turkish Cargo",
@@ -38989,8 +40284,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -39019,6 +40326,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -39047,6 +40355,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "PetSafe cargo",
@@ -39406,8 +40715,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -39436,6 +40757,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -39464,6 +40786,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Live Animals cargo",
@@ -39837,8 +41160,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -39867,6 +41202,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -39895,6 +41231,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Virgin Atlantic Cargo",
@@ -40229,8 +41566,20 @@
         "sub": "≤ 65 kg"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "review_state": "legacy_unreviewed"
+      },
+      "cargo": {
+        "review_state": "legacy_unreviewed"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -40259,6 +41608,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Virgin Australia Cargo",
@@ -40602,8 +41952,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -40632,6 +41994,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -40660,6 +42023,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -40990,8 +42354,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -41020,6 +42396,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -41048,6 +42425,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",
@@ -41398,8 +42776,20 @@
         }
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "offered"
+      },
+      "hold": {
+        "availability": "offered"
+      },
+      "cargo": {
+        "availability": "offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -41428,6 +42818,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -41456,6 +42847,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "WestJet Cargo",
@@ -41801,8 +43193,20 @@
         "sub": "—"
       }
     ],
+    "policies": {
+      "cabin": {
+        "availability": "not_offered"
+      },
+      "hold": {
+        "availability": "not_offered"
+      },
+      "cargo": {
+        "availability": "not_offered"
+      }
+    },
     "channels": [
       {
+        "placement": "cabin",
         "icon": "🐾",
         "name": {
           "en": "Cabin",
@@ -41831,6 +43235,7 @@
         }
       },
       {
+        "placement": "hold",
         "icon": "🧳",
         "name": {
           "en": "Hold",
@@ -41859,6 +43264,7 @@
         }
       },
       {
+        "placement": "cargo",
         "icon": "✈️",
         "name": {
           "en": "Cargo",

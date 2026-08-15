@@ -72,8 +72,16 @@ ladder:
       fr: via SWISS WorldCargo
       es: vía SWISS WorldCargo
       pt: "via SWISS WorldCargo"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: "90 CHF Europe / 105 CHF Levant & Égypte / 115–140 CHF intercontinental (tarifs en vigueur depuis déc. 2025)"
       es: "90 CHF Europa / 105 CHF Levante y Egipto / 115–140 CHF intercontinental (tarifas vigentes desde dic. 2025)"
       pt: "90 CHF Europa / 105 CHF Levante e Egito / 115–140 CHF intercontinental (tarifas em vigor desde dez. 2025)"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: "90–220 CHF selon zone et taille de cage (tarifs en vigueur depuis déc. 2025)"
       es: "90–220 CHF según zona y tamaño de jaula (tarifas vigentes desde dic. 2025)"
       pt: "90–220 CHF conforme zona e tamanho da gaiola (tarifas em vigor desde dez. 2025)"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

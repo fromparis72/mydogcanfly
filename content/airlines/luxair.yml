@@ -60,8 +60,16 @@ ladder:
       es: Bodega
       pt: "Porão"
     sub: 8–50 kg
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -83,7 +91,8 @@ channels:
       fr: 70 € (gratuit en Business)
       es: 70 € (gratis en Business)
       pt: "70 € (grátis na Business)"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -105,7 +114,8 @@ channels:
       fr: 140 €
       es: 140 €
       pt: "140 €"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

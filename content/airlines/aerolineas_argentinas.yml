@@ -76,8 +76,16 @@ ladder:
       fr: brachycéphales & races listées
       es: hocico chato y razas listadas
       pt: "focinho achatado e raças listadas"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -99,7 +107,8 @@ channels:
       fr: 54 450 ARS · 150–250 USD
       es: 54.450 ARS · 150–250 USD
       pt: "54.450 ARS · 150–250 USD"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -121,7 +130,8 @@ channels:
       fr: 229 900 ARS · 330–1 149 USD
       es: 229.900 ARS · 330–1.149 USD
       pt: "229.900 ARS · 330–1.149 USD"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

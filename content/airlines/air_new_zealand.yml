@@ -76,8 +76,16 @@ ladder:
       fr: intl / seul
       es: intl / solo
       pt: "intl / sozinho"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -99,7 +107,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -121,7 +130,8 @@ channels:
       fr: 120 NZ$
       es: 120 NZ$
       pt: "NZ$120"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo Pet Services
       fr: Cargo Pet Services

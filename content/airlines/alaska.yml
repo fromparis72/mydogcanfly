@@ -72,8 +72,16 @@ ladder:
       es: Carga
       pt: "Carga"
     sub: "> 150 lb"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 100 $ / trajet
       es: 100 $ / trayecto
       pt: "$100 / trajeto"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 150 $ / trajet
       es: 150 $ / trayecto
       pt: "US$ 150 / trajeto"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Pet Connect cargo
       fr: Fret Pet Connect

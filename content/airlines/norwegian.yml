@@ -58,8 +58,17 @@ ladder:
       fr: ≤ 14 kg chacun
       es: ≤ 14 kg cada uno
       pt: "≤ 14 kg cada"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
+    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -81,7 +90,8 @@ channels:
       fr: 55–85 €
       es: 55–85 €
       pt: "€55–85"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute

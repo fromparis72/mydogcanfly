@@ -66,8 +66,16 @@ ladder:
       fr: R.-U. / grands
       es: R.U. / grandes
       pt: "Reino Unido / grande porte"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -89,7 +97,8 @@ channels:
       fr: Tarif bagage excédentaire
       es: Tarifa de exceso de equipaje
       pt: "Tarifa de excesso de bagagem"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -111,7 +120,8 @@ channels:
       fr: Tarif bagage excédentaire
       es: Tarifa de exceso de equipaje
       pt: "Tarifa de excesso de bagagem"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

@@ -76,8 +76,16 @@ ladder:
       fr: R.-U. / autres espèces
       es: RU / otras especies
       pt: "Reino Unido / outras espécies"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -99,7 +107,8 @@ channels:
       fr: 65–115 €
       es: 65–115 €
       pt: "65–115 €"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -121,7 +130,8 @@ channels:
       fr: 100–380 €
       es: 100–380 €
       pt: "100–380 €"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret
