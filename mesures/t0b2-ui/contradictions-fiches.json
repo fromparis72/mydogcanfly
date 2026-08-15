@@ -1,0 +1,784 @@
+{
+ "total": 78,
+ "fiches": [
+  "airline_aegean",
+  "airline_aer_lingus",
+  "airline_aerolineas_argentinas",
+  "airline_aeromexico",
+  "airline_air_algerie",
+  "airline_air_astana",
+  "airline_air_austral",
+  "airline_air_caraibes",
+  "airline_air_china",
+  "airline_air_europa",
+  "airline_air_india",
+  "airline_air_mauritius",
+  "airline_air_new_zealand",
+  "airline_air_tahiti_nui",
+  "airline_air_transat",
+  "airline_airbaltic",
+  "airline_aircalin",
+  "airline_alaska",
+  "airline_ana",
+  "airline_austrian",
+  "airline_avianca",
+  "airline_bangkok_airways",
+  "airline_brussels",
+  "airline_cathay_pacific",
+  "airline_china_airlines",
+  "airline_china_eastern",
+  "airline_china_southern",
+  "airline_copa",
+  "airline_corsair",
+  "airline_croatia_airlines",
+  "airline_edelweiss",
+  "airline_egyptair",
+  "airline_el_al",
+  "airline_emirates",
+  "airline_ethiopian",
+  "airline_etihad",
+  "airline_finnair",
+  "airline_french_bee",
+  "airline_garuda_indonesia",
+  "airline_gulf_air",
+  "airline_iberia_express",
+  "airline_jal",
+  "airline_kenya_airways",
+  "airline_km_malta",
+  "airline_korean_air",
+  "airline_latam",
+  "airline_lot",
+  "airline_luxair",
+  "airline_malaysia_airlines",
+  "airline_neos",
+  "airline_pegasus",
+  "airline_philippine",
+  "airline_qantas",
+  "airline_qatar_airways",
+  "airline_royal_air_maroc",
+  "airline_royal_jordanian",
+  "airline_sas",
+  "airline_saudia",
+  "airline_singapore_airlines",
+  "airline_sky_express",
+  "airline_south_african_airways",
+  "airline_sunexpress",
+  "airline_swiss",
+  "airline_tap",
+  "airline_tarom",
+  "airline_thai_airways",
+  "airline_tui_airways",
+  "airline_tunisair",
+  "airline_vietnam_airlines",
+  "airline_virgin_atlantic",
+  "airline_virgin_australia"
+ ],
+ "par_decision": {
+  "review_state:legacy_unreviewed": 77,
+  "availability:undocumented": 1
+ },
+ "rows": [
+  {
+   "airline": "airline_aegean",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_aer_lingus",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_aerolineas_argentinas",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_aeromexico",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_algerie",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_astana",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Obligatoire sur certaines routes",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_austral",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_caraibes",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_china",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_europa",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_india",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_mauritius",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_new_zealand",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via transporteur",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_tahiti_nui",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_air_transat",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_airbaltic",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agences, tarif non publié",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_aircalin",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Seule voie",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_alaska",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_ana",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_austrian",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_avianca",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_bangkok_airways",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Non publié",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_brussels",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_cathay_pacific",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_china_airlines",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_china_eastern",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_china_southern",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_copa",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_corsair",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_croatia_airlines",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Contact requis, conditions non publiées",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_edelweiss",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via SWISS WorldCargo",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_egyptair",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_el_al",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_emirates",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_ethiopian",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_etihad",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_finnair",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_french_bee",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_garuda_indonesia",
+   "placement": "hold",
+   "cls": "warn",
+   "statusLabel_fr": "Domestique seul",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_garuda_indonesia",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_gulf_air",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Seule voie",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_iberia_express",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_jal",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_kenya_airways",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "La seule voie",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_km_malta",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_korean_air",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_latam",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_lot",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_luxair",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Non publié",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_malaysia_airlines",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_neos",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Autres espèces uniquement",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_pegasus",
+   "placement": "hold",
+   "cls": "warn",
+   "statusLabel_fr": "Turquie domestique et Chypre du Nord seulement",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_philippine",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_qantas",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_qatar_airways",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_royal_air_maroc",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_royal_jordanian",
+   "placement": "cabin",
+   "cls": "warn",
+   "statusLabel_fr": "Sous conditions",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_royal_jordanian",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Non publié",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_sas",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via transitaire",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_saudia",
+   "placement": "cabin",
+   "cls": "warn",
+   "statusLabel_fr": "Chats uniquement",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_saudia",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_singapore_airlines",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Sur devis",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_sky_express",
+   "placement": "hold",
+   "cls": "warn",
+   "statusLabel_fr": "Autorisé sur ATR uniquement",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_sky_express",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Non publié",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_south_african_airways",
+   "placement": "hold",
+   "cls": "warn",
+   "statusLabel_fr": "Domestique SA seulement",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_south_african_airways",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Obligatoire à l'international",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_sunexpress",
+   "placement": "hold",
+   "cls": "warn",
+   "statusLabel_fr": "Autorisé, conditions sous-précisées",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_sunexpress",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via Lufthansa Cargo / Turkish Cargo",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_swiss",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_tap",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_tarom",
+   "placement": "hold",
+   "cls": "warn",
+   "statusLabel_fr": "Sauf sur A320",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_tarom",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Obligatoire dans trois cas",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_thai_airways",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "availability:undocumented"
+  },
+  {
+   "airline": "airline_tui_airways",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Seule voie",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_tunisair",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_vietnam_airlines",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_virgin_atlantic",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via agent",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  },
+  {
+   "airline": "airline_virgin_australia",
+   "placement": "cargo",
+   "cls": "warn",
+   "statusLabel_fr": "Via fret",
+   "affiche": "disponible",
+   "canonique": "à confirmer",
+   "decision": "review_state:legacy_unreviewed"
+  }
+ ]
+}
