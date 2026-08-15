@@ -1,3 +1,7 @@
+> **REMPLACÉ** — ce dossier v1 est caduc depuis la contre-revue Codex du 15/08/2026
+> (décisions P0 : les 10 `POLICY_STALE` en `legacy_unreviewed`, arbitrage structurel option C).
+> Dossier en vigueur : **`MESURE-T0B2-v2.md`**. Conservé pour la traçabilité de la revue.
+
 # MESURE T0-B2 — dossier chiffré AVANT patch
 
 Date : 15/08/2026 · Base : `origin/main` @ `8fe97c0d7a1695ca97fff19b0421aecc90f7b1c6` · Node 22.22.2

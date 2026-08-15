@@ -1,164 +1,27 @@
 {
- "genere_pour": "T0-B2 — dossier de mesure AVANT patch",
- "sha_repo": "8fe97c0d7a1695ca97fff19b0421aecc90f7b1c6",
+ "perimetre": "T0-B2 — registre et bijections, état AVANT (lecture seule)",
  "totaux": {
-  "fiches_yaml": 103,
-  "canaux_yaml_total": 296,
+  "fiches": 103,
+  "canaux_visibles": 296,
   "canaux_reconnus_par_catOf": 292,
-  "canaux_NON_reconnus_par_catOf": 4,
-  "couples_uniques": 292,
-  "couples_emis_avant": 292,
-  "couples_dans_objects_json": 302,
-  "lignes_manifeste": 74
- },
- "repartitions": {
-  "par_lot": {
-   "228_mecanique": 218,
-   "73_legacy_unreviewed": 73,
-   "1_thai_cargo_undocumented": 1
-  },
-  "par_placement": {
-   "cabin": 102,
-   "hold": 99,
-   "cargo": 91
-  },
-  "par_cls": {
-   "ok": 135,
-   "warn": 82,
-   "no": 75
-  },
-  "par_cible": {
-   "availability:offered": 143,
-   "review_state:legacy_unreviewed": 73,
-   "availability:not_offered": 75,
-   "availability:undocumented": 1
-  }
- },
- "conditional": {
-  "canaux_warn_yaml": 82,
-  "conditional_dans_objects_json": 74,
-  "liste_objects_json": [
-   "airline_aegean.cargo",
-   "airline_aer_lingus.cargo",
-   "airline_aerolineas_argentinas.cargo",
-   "airline_aeromexico.cargo",
-   "airline_air_algerie.cargo",
-   "airline_air_astana.cargo",
-   "airline_air_austral.cargo",
-   "airline_air_caraibes.cargo",
-   "airline_air_china.cargo",
-   "airline_air_europa.cargo",
-   "airline_air_india.cargo",
-   "airline_air_mauritius.cargo",
-   "airline_air_new_zealand.cargo",
-   "airline_air_tahiti_nui.cargo",
-   "airline_air_transat.cargo",
-   "airline_airbaltic.cargo",
-   "airline_aircalin.cargo",
-   "airline_alaska.cargo",
-   "airline_ana.cargo",
-   "airline_austrian.cargo",
-   "airline_avianca.cargo",
-   "airline_bangkok_airways.cargo",
-   "airline_brussels.cargo",
-   "airline_cathay_pacific.cargo",
-   "airline_china_airlines.cargo",
-   "airline_china_eastern.cargo",
-   "airline_china_southern.cargo",
-   "airline_copa.cargo",
-   "airline_corsair.cargo",
-   "airline_croatia_airlines.cargo",
-   "airline_edelweiss.cargo",
-   "airline_egyptair.cargo",
-   "airline_el_al.cargo",
-   "airline_emirates.cargo",
-   "airline_ethiopian.cargo",
-   "airline_etihad.cargo",
-   "airline_finnair.cargo",
-   "airline_garuda_indonesia.cargo",
-   "airline_garuda_indonesia.hold",
-   "airline_gulf_air.cargo",
-   "airline_iberia_express.cargo",
-   "airline_jal.cargo",
-   "airline_kenya_airways.cargo",
-   "airline_km_malta.cargo",
-   "airline_latam.cargo",
-   "airline_lot.cargo",
-   "airline_luxair.cargo",
-   "airline_neos.cargo",
-   "airline_pegasus.hold",
-   "airline_philippine.cargo",
-   "airline_qatar_airways.cargo",
-   "airline_royal_air_maroc.cargo",
-   "airline_royal_jordanian.cabin",
-   "airline_royal_jordanian.cargo",
-   "airline_sas.cargo",
-   "airline_saudia.cabin",
-   "airline_saudia.cargo",
-   "airline_singapore_airlines.cargo",
-   "airline_sky_express.cargo",
-   "airline_sky_express.hold",
-   "airline_south_african_airways.cargo",
-   "airline_south_african_airways.hold",
-   "airline_sunexpress.cargo",
-   "airline_sunexpress.hold",
-   "airline_swiss.cargo",
-   "airline_tap.cargo",
-   "airline_tarom.cargo",
-   "airline_tarom.hold",
-   "airline_thai_airways.cargo",
-   "airline_tui_airways.cargo",
-   "airline_tunisair.cargo",
-   "airline_vietnam_airlines.cargo",
-   "airline_virgin_atlantic.cargo",
-   "airline_virgin_australia.cargo"
-  ]
+  "canaux_non_reconnus": 4,
+  "couples_yaml_uniques": 292,
+  "politiques_objects_json": 302,
+  "lignes_manifeste": 74,
+  "warn_total": 86,
+  "warn_reconnus": 82,
+  "warn_non_reconnus": 4,
+  "conditional_dans_objects_json": 74
  },
  "bijection": {
-  "doublons_placement_dans_une_fiche": [],
-  "canaux_yaml_non_reconnus": [
-   {
-    "airline_id": "airline_french_bee",
-    "file": "content/airlines/french_bee.yml",
-    "locator": "channels[2]",
-    "name_en": "Freight",
-    "cls": "warn",
-    "statusLabel_en": "Via freight",
-    "placement_derive": null
-   },
-   {
-    "airline_id": "airline_korean_air",
-    "file": "content/airlines/korean_air.yml",
-    "locator": "channels[2]",
-    "name_en": "Specialized-LIVE",
-    "cls": "warn",
-    "statusLabel_en": "Via agent",
-    "placement_derive": null
-   },
-   {
-    "airline_id": "airline_malaysia_airlines",
-    "file": "content/airlines/malaysia_airlines.yml",
-    "locator": "channels[2]",
-    "name_en": "MASkargo Animal Hotel",
-    "cls": "warn",
-    "statusLabel_en": "Via cargo",
-    "placement_derive": null
-   },
-   {
-    "airline_id": "airline_qantas",
-    "file": "content/airlines/qantas.yml",
-    "locator": "channels[1]",
-    "name_en": "Qantas Freight",
-    "cls": "warn",
-    "statusLabel_en": "Via freight",
-    "placement_derive": null
-   }
-  ],
-  "manifeste_sans_couple_yaml": [],
-  "manifeste_locator_divergent": [],
+  "doublons_placement": [],
+  "manifeste_sans_conditional": [],
+  "conditional_sans_manifeste": [],
   "manifeste_empreintes_divergentes": [],
-  "yaml_emis_absent_de_objects_json": [],
-  "objects_json_sans_couple_yaml": [
+  "manifeste_locators_divergents": [],
+  "derive_cls_vers_allowed": [],
+  "yaml_sans_politique": [],
+  "politique_sans_canal_yaml": [
    "airline_asiana.cargo",
    "airline_condor.cargo",
    "airline_eva_air.cargo",
@@ -171,14 +34,44 @@
    "airline_virgin_australia.hold"
   ]
  },
- "champs_non_decisionnels_objects_json": {
-  "source": 302,
-  "brachy_allowed": 34,
-  "max_weight_kg": 23,
-  "carrier_dims_cm": 10,
-  "fee": 10,
-  "conditions": 33
- },
+ "canaux_non_reconnus": [
+  {
+   "airline_id": "airline_french_bee",
+   "file": "content/airlines/french_bee.yml",
+   "locator": "channels[2]",
+   "name_en": "Freight",
+   "cls": "warn",
+   "statusLabel_en": "Via freight",
+   "placement_derive": null
+  },
+  {
+   "airline_id": "airline_korean_air",
+   "file": "content/airlines/korean_air.yml",
+   "locator": "channels[2]",
+   "name_en": "Specialized-LIVE",
+   "cls": "warn",
+   "statusLabel_en": "Via agent",
+   "placement_derive": null
+  },
+  {
+   "airline_id": "airline_malaysia_airlines",
+   "file": "content/airlines/malaysia_airlines.yml",
+   "locator": "channels[2]",
+   "name_en": "MASkargo Animal Hotel",
+   "cls": "warn",
+   "statusLabel_en": "Via cargo",
+   "placement_derive": null
+  },
+  {
+   "airline_id": "airline_qantas",
+   "file": "content/airlines/qantas.yml",
+   "locator": "channels[1]",
+   "name_en": "Qantas Freight",
+   "cls": "warn",
+   "statusLabel_en": "Via freight",
+   "placement_derive": null
+  }
+ ],
  "registre": [
   {
    "airline_id": "airline_aegean",
@@ -190,15 +83,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aegean",
@@ -210,15 +95,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aegean",
@@ -231,19 +108,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_aer_lingus",
@@ -255,15 +120,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aer_lingus",
@@ -275,15 +132,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aer_lingus",
@@ -296,19 +145,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_aerolineas_argentinas",
@@ -320,15 +157,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aerolineas_argentinas",
@@ -340,15 +169,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aerolineas_argentinas",
@@ -361,19 +182,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_aeromexico",
@@ -385,15 +194,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aeromexico",
@@ -405,15 +206,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aeromexico",
@@ -426,19 +219,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_algerie",
@@ -450,15 +231,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_algerie",
@@ -470,15 +243,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_algerie",
@@ -491,19 +256,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_astana",
@@ -515,15 +268,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_astana",
@@ -535,15 +280,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_astana",
@@ -556,19 +293,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_austral",
@@ -580,15 +305,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_austral",
@@ -600,15 +317,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_austral",
@@ -621,19 +330,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_canada",
@@ -645,15 +342,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_canada",
@@ -665,15 +354,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_canada",
@@ -686,15 +367,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_caraibes",
@@ -706,15 +379,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_caraibes",
@@ -726,15 +391,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_caraibes",
@@ -747,19 +404,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_china",
@@ -771,15 +416,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_china",
@@ -791,15 +428,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_china",
@@ -812,19 +441,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_europa",
@@ -836,15 +453,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_europa",
@@ -856,15 +465,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_europa",
@@ -877,19 +478,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_france",
@@ -901,15 +490,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_france",
@@ -921,15 +502,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_france",
@@ -942,15 +515,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_india",
@@ -962,15 +527,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_india",
@@ -982,15 +539,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_india",
@@ -1003,19 +552,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_mauritius",
@@ -1027,15 +564,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_mauritius",
@@ -1047,15 +576,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_mauritius",
@@ -1068,19 +589,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_new_zealand",
@@ -1092,15 +601,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_new_zealand",
@@ -1112,15 +613,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_new_zealand",
@@ -1133,19 +626,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_serbia",
@@ -1157,15 +638,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_serbia",
@@ -1177,15 +650,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_serbia",
@@ -1197,15 +662,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_tahiti_nui",
@@ -1217,15 +674,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_tahiti_nui",
@@ -1238,19 +687,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_air_transat",
@@ -1262,15 +699,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_transat",
@@ -1282,15 +711,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_air_transat",
@@ -1303,19 +724,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_airbaltic",
@@ -1327,15 +736,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_airbaltic",
@@ -1347,15 +748,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_airbaltic",
@@ -1368,19 +761,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_aircalin",
@@ -1392,15 +773,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aircalin",
@@ -1412,15 +785,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_aircalin",
@@ -1433,19 +798,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_alaska",
@@ -1457,15 +810,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_alaska",
@@ -1477,15 +822,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_alaska",
@@ -1498,19 +835,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_american",
@@ -1522,15 +847,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_american",
@@ -1542,15 +859,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_american",
@@ -1562,15 +871,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ana",
@@ -1582,15 +883,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ana",
@@ -1602,15 +895,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ana",
@@ -1623,19 +908,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_asiana",
@@ -1647,15 +920,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_asiana",
@@ -1667,15 +932,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_austrian",
@@ -1687,15 +944,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_austrian",
@@ -1707,15 +956,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_austrian",
@@ -1728,19 +969,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_avianca",
@@ -1752,15 +981,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_avianca",
@@ -1772,15 +993,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_avianca",
@@ -1793,19 +1006,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_bangkok_airways",
@@ -1817,15 +1018,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_bangkok_airways",
@@ -1837,15 +1030,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_bangkok_airways",
@@ -1858,19 +1043,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_batik_air_indonesia",
@@ -1882,15 +1055,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_batik_air_indonesia",
@@ -1902,15 +1067,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_batik_air_indonesia",
@@ -1922,15 +1079,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_batik_air_malaysia",
@@ -1942,15 +1091,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_batik_air_malaysia",
@@ -1962,15 +1103,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_batik_air_malaysia",
@@ -1982,15 +1115,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_british_airways",
@@ -2002,15 +1127,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_british_airways",
@@ -2022,15 +1139,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_british_airways",
@@ -2043,15 +1152,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_brussels",
@@ -2063,15 +1164,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_brussels",
@@ -2083,15 +1176,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_brussels",
@@ -2104,19 +1189,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_cathay_pacific",
@@ -2128,15 +1201,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_cathay_pacific",
@@ -2148,15 +1213,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_cathay_pacific",
@@ -2169,19 +1226,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_china_airlines",
@@ -2193,15 +1238,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_china_airlines",
@@ -2213,15 +1250,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_china_airlines",
@@ -2234,19 +1263,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_china_eastern",
@@ -2258,15 +1275,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_china_eastern",
@@ -2278,15 +1287,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_china_eastern",
@@ -2299,19 +1300,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_china_southern",
@@ -2323,15 +1312,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_china_southern",
@@ -2343,15 +1324,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_china_southern",
@@ -2364,19 +1337,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_condor",
@@ -2388,15 +1349,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_condor",
@@ -2408,15 +1361,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_copa",
@@ -2428,15 +1373,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_copa",
@@ -2448,15 +1385,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_copa",
@@ -2469,19 +1398,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_corsair",
@@ -2493,15 +1410,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_corsair",
@@ -2513,15 +1422,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_corsair",
@@ -2534,19 +1435,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_croatia_airlines",
@@ -2558,15 +1447,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_croatia_airlines",
@@ -2578,15 +1459,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_croatia_airlines",
@@ -2599,19 +1472,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_delta",
@@ -2623,15 +1484,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_delta",
@@ -2643,15 +1496,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_delta",
@@ -2663,15 +1508,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_easyjet",
@@ -2683,15 +1520,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_easyjet",
@@ -2703,15 +1532,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_easyjet",
@@ -2723,15 +1544,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_edelweiss",
@@ -2743,15 +1556,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_edelweiss",
@@ -2763,15 +1568,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_edelweiss",
@@ -2784,19 +1581,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_egyptair",
@@ -2808,15 +1593,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_egyptair",
@@ -2828,15 +1605,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_egyptair",
@@ -2849,19 +1618,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_el_al",
@@ -2873,15 +1630,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_el_al",
@@ -2893,15 +1642,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_el_al",
@@ -2914,19 +1655,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_emirates",
@@ -2938,15 +1667,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_emirates",
@@ -2958,15 +1679,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_emirates",
@@ -2979,19 +1692,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_ethiopian",
@@ -3003,15 +1704,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ethiopian",
@@ -3023,15 +1716,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ethiopian",
@@ -3044,19 +1729,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_etihad",
@@ -3068,15 +1741,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_etihad",
@@ -3088,15 +1753,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_etihad",
@@ -3109,19 +1766,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_eurowings",
@@ -3133,15 +1778,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_eurowings",
@@ -3153,15 +1790,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_eurowings",
@@ -3173,15 +1802,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_eva_air",
@@ -3193,15 +1814,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_eva_air",
@@ -3213,15 +1826,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_finnair",
@@ -3233,15 +1838,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_finnair",
@@ -3253,15 +1850,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_finnair",
@@ -3274,19 +1863,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_french_bee",
@@ -3298,15 +1875,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_french_bee",
@@ -3318,15 +1887,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_garuda_indonesia",
@@ -3338,15 +1899,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_garuda_indonesia",
@@ -3359,19 +1912,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_garuda_indonesia",
@@ -3384,19 +1925,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_gulf_air",
@@ -3408,15 +1937,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_gulf_air",
@@ -3428,15 +1949,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_gulf_air",
@@ -3449,19 +1962,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_iberia",
@@ -3473,15 +1974,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_iberia",
@@ -3493,15 +1986,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_iberia",
@@ -3514,15 +1999,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_iberia_express",
@@ -3534,15 +2011,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_iberia_express",
@@ -3554,15 +2023,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_iberia_express",
@@ -3575,19 +2036,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_icelandair",
@@ -3599,15 +2048,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_icelandair",
@@ -3619,15 +2060,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_icelandair",
@@ -3639,15 +2072,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_indigo",
@@ -3659,15 +2084,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_indigo",
@@ -3679,15 +2096,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_indigo",
@@ -3699,15 +2108,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ita_airways",
@@ -3719,15 +2120,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ita_airways",
@@ -3739,15 +2132,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ita_airways",
@@ -3759,15 +2144,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_jal",
@@ -3779,15 +2156,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_jal",
@@ -3799,15 +2168,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_jal",
@@ -3820,19 +2181,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_jetblue",
@@ -3844,15 +2193,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_jetblue",
@@ -3864,15 +2205,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_jetblue",
@@ -3884,15 +2217,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_kenya_airways",
@@ -3904,15 +2229,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_kenya_airways",
@@ -3924,15 +2241,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_kenya_airways",
@@ -3945,19 +2254,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_klm",
@@ -3969,15 +2266,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_klm",
@@ -3989,15 +2278,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_klm",
@@ -4010,15 +2291,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_km_malta",
@@ -4030,15 +2303,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_km_malta",
@@ -4050,15 +2315,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_km_malta",
@@ -4071,19 +2328,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_korean_air",
@@ -4095,15 +2340,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_korean_air",
@@ -4115,15 +2352,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_la_compagnie",
@@ -4135,15 +2364,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_la_compagnie",
@@ -4155,15 +2376,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_latam",
@@ -4175,15 +2388,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_latam",
@@ -4195,15 +2400,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_latam",
@@ -4216,19 +2413,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_lot",
@@ -4240,15 +2425,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_lot",
@@ -4260,15 +2437,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_lot",
@@ -4281,19 +2450,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_lufthansa",
@@ -4305,15 +2462,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_lufthansa",
@@ -4325,15 +2474,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_lufthansa",
@@ -4346,15 +2487,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_luxair",
@@ -4366,15 +2499,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_luxair",
@@ -4386,15 +2511,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_luxair",
@@ -4407,19 +2524,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_malaysia_airlines",
@@ -4431,15 +2536,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_malaysia_airlines",
@@ -4451,15 +2548,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_neos",
@@ -4471,15 +2560,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_neos",
@@ -4491,15 +2572,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_neos",
@@ -4512,19 +2585,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_norwegian",
@@ -4536,15 +2597,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_norwegian",
@@ -4556,15 +2609,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_pegasus",
@@ -4576,15 +2621,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_pegasus",
@@ -4597,19 +2634,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_pegasus",
@@ -4621,15 +2646,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_philippine",
@@ -4641,15 +2658,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_philippine",
@@ -4661,15 +2670,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_philippine",
@@ -4682,19 +2683,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_qantas",
@@ -4706,15 +2695,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_qatar_airways",
@@ -4726,15 +2707,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_qatar_airways",
@@ -4746,15 +2719,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_qatar_airways",
@@ -4767,19 +2732,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_royal_air_maroc",
@@ -4791,15 +2744,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_royal_air_maroc",
@@ -4811,15 +2756,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_royal_air_maroc",
@@ -4832,19 +2769,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_royal_jordanian",
@@ -4857,19 +2782,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_royal_jordanian",
@@ -4881,15 +2794,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_royal_jordanian",
@@ -4902,19 +2807,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_ryanair",
@@ -4926,15 +2819,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ryanair",
@@ -4946,15 +2831,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_ryanair",
@@ -4966,15 +2843,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_sas",
@@ -4986,15 +2855,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_sas",
@@ -5006,15 +2867,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_sas",
@@ -5027,19 +2880,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_saudia",
@@ -5052,19 +2893,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_saudia",
@@ -5076,15 +2905,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_saudia",
@@ -5097,19 +2918,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_singapore_airlines",
@@ -5121,15 +2930,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_singapore_airlines",
@@ -5141,15 +2942,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_singapore_airlines",
@@ -5162,19 +2955,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_sky_express",
@@ -5186,15 +2967,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_sky_express",
@@ -5207,19 +2980,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_sky_express",
@@ -5232,19 +2993,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_smartwings",
@@ -5256,15 +3005,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_smartwings",
@@ -5276,15 +3017,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_south_african_airways",
@@ -5296,15 +3029,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_south_african_airways",
@@ -5317,19 +3042,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_south_african_airways",
@@ -5342,19 +3055,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_sunexpress",
@@ -5366,15 +3067,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_sunexpress",
@@ -5387,19 +3080,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_sunexpress",
@@ -5412,19 +3093,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_swiss",
@@ -5436,15 +3105,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_swiss",
@@ -5456,15 +3117,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_swiss",
@@ -5477,19 +3130,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_tap",
@@ -5501,15 +3142,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tap",
@@ -5521,15 +3154,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tap",
@@ -5542,19 +3167,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_tarom",
@@ -5566,15 +3179,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tarom",
@@ -5587,19 +3192,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_tarom",
@@ -5612,19 +3205,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_thai_airways",
@@ -5636,15 +3217,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_thai_airways",
@@ -5656,15 +3229,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_thai_airways",
@@ -5677,19 +3242,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "undocumented"
-   },
-   "lot": "1_thai_cargo_undocumented",
-   "manifeste": {
-    "state": "reviewed",
-    "cause": "policy_unpublished"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "reviewed"
   },
   {
    "airline_id": "airline_transavia",
@@ -5701,15 +3254,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_transavia",
@@ -5721,15 +3266,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tui_airways",
@@ -5741,15 +3278,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tui_airways",
@@ -5761,15 +3290,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tui_airways",
@@ -5782,19 +3303,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_tunisair",
@@ -5806,15 +3315,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tunisair",
@@ -5826,15 +3327,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_tunisair",
@@ -5847,19 +3340,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_turkish",
@@ -5871,15 +3352,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_turkish",
@@ -5891,15 +3364,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_turkish",
@@ -5912,15 +3377,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_united",
@@ -5932,15 +3389,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_united",
@@ -5952,15 +3401,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_united",
@@ -5972,15 +3413,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_vietnam_airlines",
@@ -5992,15 +3425,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_vietnam_airlines",
@@ -6012,15 +3437,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_vietnam_airlines",
@@ -6033,19 +3450,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_virgin_atlantic",
@@ -6057,15 +3462,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_virgin_atlantic",
@@ -6077,15 +3474,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_virgin_atlantic",
@@ -6098,19 +3487,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_virgin_australia",
@@ -6122,15 +3499,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_virgin_australia",
@@ -6143,19 +3512,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "review_state",
-    "valeur": "legacy_unreviewed"
-   },
-   "lot": "73_legacy_unreviewed",
-   "manifeste": {
-    "state": "legacy_unreviewed",
-    "cause": "legacy_unreviewed"
-   },
-   "objects_json": {
-    "allowed": true,
-    "conditional": true
-   }
+   "manifeste": "legacy_unreviewed"
   },
   {
    "airline_id": "airline_volotea",
@@ -6167,15 +3524,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_volotea",
@@ -6187,15 +3536,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_volotea",
@@ -6207,15 +3548,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_vueling",
@@ -6227,15 +3560,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_vueling",
@@ -6247,15 +3572,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_vueling",
@@ -6267,15 +3584,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_westjet",
@@ -6287,15 +3596,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_westjet",
@@ -6307,15 +3608,7 @@
    "avant": {
     "allowed": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_westjet",
@@ -6328,15 +3621,7 @@
     "allowed": true,
     "conditional": true
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": true
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_wizz_air",
@@ -6348,15 +3633,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_wizz_air",
@@ -6368,15 +3645,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   },
   {
    "airline_id": "airline_wizz_air",
@@ -6388,15 +3657,7 @@
    "avant": {
     "allowed": false
    },
-   "cible": {
-    "discriminant": "availability",
-    "valeur": "not_offered"
-   },
-   "lot": "228_mecanique",
-   "manifeste": null,
-   "objects_json": {
-    "allowed": false
-   }
+   "manifeste": null
   }
  ]
 }

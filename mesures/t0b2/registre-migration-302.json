@@ -1,0 +1,2501 @@
+{
+ "stats": {
+  "legacy_manifeste": 73,
+  "legacy_stale": 10,
+  "undocumented": 1,
+  "offered": 143,
+  "not_offered": 75
+ },
+ "registre": [
+  {
+   "key": "airline_aegean.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aegean.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aegean.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_aer_lingus.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aer_lingus.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aer_lingus.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_aerolineas_argentinas.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aerolineas_argentinas.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aerolineas_argentinas.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_aeromexico.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aeromexico.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aeromexico.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_algerie.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_algerie.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_algerie.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_astana.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_astana.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_astana.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_austral.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_austral.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_austral.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_canada.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_canada.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_canada.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_caraibes.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_caraibes.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_caraibes.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_china.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_china.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_china.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_europa.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_europa.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_europa.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_france.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_france.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_france.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_india.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_india.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_india.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_mauritius.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_mauritius.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_mauritius.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_new_zealand.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_new_zealand.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_new_zealand.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_serbia.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_serbia.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_serbia.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_tahiti_nui.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_tahiti_nui.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_air_transat.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_transat.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_air_transat.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_airbaltic.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_airbaltic.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_airbaltic.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_aircalin.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aircalin.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_aircalin.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_alaska.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_alaska.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_alaska.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_american.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_american.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_american.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ana.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ana.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ana.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_asiana.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_asiana.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_asiana.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_austrian.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_austrian.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_austrian.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_avianca.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_avianca.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_avianca.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_bangkok_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_bangkok_airways.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_bangkok_airways.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_batik_air_indonesia.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_batik_air_indonesia.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_batik_air_indonesia.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_batik_air_malaysia.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_batik_air_malaysia.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_batik_air_malaysia.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_british_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_british_airways.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_british_airways.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_brussels.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_brussels.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_brussels.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_cathay_pacific.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_cathay_pacific.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_cathay_pacific.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_china_airlines.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_china_airlines.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_china_airlines.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_china_eastern.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_china_eastern.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_china_eastern.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_china_southern.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_china_southern.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_china_southern.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_condor.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_condor.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_condor.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_copa.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_copa.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_copa.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_corsair.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_corsair.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_corsair.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_croatia_airlines.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_croatia_airlines.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_croatia_airlines.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_delta.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_delta.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_delta.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_easyjet.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_easyjet.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_easyjet.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_edelweiss.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_edelweiss.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_edelweiss.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_egyptair.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_egyptair.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_egyptair.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_el_al.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_el_al.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_el_al.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_emirates.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_emirates.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_emirates.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_ethiopian.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ethiopian.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ethiopian.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_etihad.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_etihad.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_etihad.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_eurowings.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_eurowings.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_eurowings.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_eva_air.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_eva_air.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_eva_air.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_finnair.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_finnair.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_finnair.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_french_bee.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_french_bee.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_french_bee.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_garuda_indonesia.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_garuda_indonesia.hold",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_garuda_indonesia.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_gulf_air.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_gulf_air.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_gulf_air.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_iberia.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_iberia.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_iberia.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_iberia_express.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_iberia_express.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_iberia_express.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_icelandair.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_icelandair.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_icelandair.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_indigo.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_indigo.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_indigo.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ita_airways.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ita_airways.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ita_airways.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_jal.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_jal.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_jal.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_jetblue.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_jetblue.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_jetblue.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_kenya_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_kenya_airways.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_kenya_airways.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_klm.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_klm.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_klm.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_km_malta.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_km_malta.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_km_malta.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_korean_air.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_korean_air.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_korean_air.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_la_compagnie.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_la_compagnie.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_latam.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_latam.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_latam.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_lot.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_lot.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_lot.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_lufthansa.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_lufthansa.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_lufthansa.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_luxair.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_luxair.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_luxair.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_malaysia_airlines.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_malaysia_airlines.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_malaysia_airlines.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_neos.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_neos.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_neos.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_norwegian.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_norwegian.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_norwegian.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_pegasus.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_pegasus.hold",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_pegasus.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_philippine.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_philippine.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_philippine.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_qantas.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_qantas.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_qantas.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_qatar_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_qatar_airways.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_qatar_airways.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_royal_air_maroc.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_royal_air_maroc.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_royal_air_maroc.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_royal_jordanian.cabin",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_royal_jordanian.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_royal_jordanian.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_ryanair.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ryanair.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_ryanair.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_sas.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_sas.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_sas.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_saudia.cabin",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_saudia.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_saudia.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_singapore_airlines.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_singapore_airlines.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_singapore_airlines.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_sky_express.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_sky_express.hold",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_sky_express.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_smartwings.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_smartwings.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_south_african_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_south_african_airways.hold",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_south_african_airways.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_sunexpress.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_sunexpress.hold",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_sunexpress.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_swiss.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_swiss.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_swiss.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_tap.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tap.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tap.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_tarom.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tarom.hold",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_tarom.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_thai_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_thai_airways.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_thai_airways.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "availability:undocumented",
+   "lot": "1_thai_cargo"
+  },
+  {
+   "key": "airline_transavia.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_transavia.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tui_airways.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tui_airways.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tui_airways.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_tunisair.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tunisair.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_tunisair.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_turkish.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_turkish.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_turkish.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_united.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_united.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_united.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_vietnam_airlines.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_vietnam_airlines.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_vietnam_airlines.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_virgin_atlantic.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_virgin_atlantic.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_virgin_atlantic.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_virgin_australia.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_virgin_australia.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "10_policy_stale"
+  },
+  {
+   "key": "airline_virgin_australia.cargo",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "cible": "review_state:legacy_unreviewed",
+   "lot": "73_manifeste"
+  },
+  {
+   "key": "airline_volotea.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_volotea.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_volotea.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_vueling.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_vueling.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_vueling.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_westjet.cabin",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_westjet.hold",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_westjet.cargo",
+   "avant": {
+    "allowed": true
+   },
+   "cible": "availability:offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_wizz_air.cabin",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_wizz_air.hold",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  },
+  {
+   "key": "airline_wizz_air.cargo",
+   "avant": {
+    "allowed": false
+   },
+   "cible": "availability:not_offered",
+   "lot": "218_mecanique"
+  }
+ ]
+}

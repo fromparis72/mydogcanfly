@@ -1,4 +1,6 @@
 {
+ "avant": "/home/user/mydogcanfly/test-baselines/t0b-finder-baseline-avant.json",
+ "apres": "/tmp/claude-0/-home-user-mydogcanfly/f3e60d39-6708-5f03-8b17-150a7943ce49/scratchpad/repro/candidat-run1.json",
  "scenarios_totaux": 72,
  "scenarios_touches": 44,
  "scenarios_identiques": 28,
@@ -20,6 +22,15 @@
     "decisions",
     "fee",
     "label",
+    "statuts"
+   ]
+  },
+  "airline_condor": {
+   "scenarios": 20,
+   "natures": [
+    "booleens",
+    "confirm",
+    "decisions",
     "statuts"
    ]
   },
@@ -87,6 +98,15 @@
     "statuts"
    ]
   },
+  "airline_asiana": {
+   "scenarios": 8,
+   "natures": [
+    "booleens",
+    "confirm",
+    "decisions",
+    "statuts"
+   ]
+  },
   "airline_etihad": {
    "scenarios": 8,
    "natures": [
@@ -141,6 +161,15 @@
     "statuts"
    ]
   },
+  "airline_malaysia_airlines": {
+   "scenarios": 4,
+   "natures": [
+    "booleens",
+    "confirm",
+    "decisions",
+    "statuts"
+   ]
+  },
   "airline_singapore_airlines": {
    "scenarios": 8,
    "natures": [
@@ -151,6 +180,24 @@
    ]
   },
   "airline_china_eastern": {
+   "scenarios": 8,
+   "natures": [
+    "booleens",
+    "confirm",
+    "decisions",
+    "statuts"
+   ]
+  },
+  "airline_eva_air": {
+   "scenarios": 4,
+   "natures": [
+    "booleens",
+    "confirm",
+    "decisions",
+    "statuts"
+   ]
+  },
+  "airline_korean_air": {
    "scenarios": 8,
    "natures": [
     "booleens",
@@ -390,10 +437,10 @@
  },
  "natures_d_ecart": {
   "classement": 28,
-  "statuts": 408,
-  "decisions": 408,
-  "booleens": 408,
-  "confirm": 408,
+  "statuts": 452,
+  "decisions": 452,
+  "booleens": 452,
+  "confirm": 452,
   "label": 72,
   "fee": 56,
   "tete:compatible": 24,
@@ -740,6 +787,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_austrian",
      "segments": [
       {
@@ -920,6 +992,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_etihad",
      "segments": [
       {
@@ -1070,6 +1167,31 @@
      ]
     },
     {
+     "airline": "airline_malaysia_airlines",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_malaysia_airlines#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_singapore_airlines",
      "segments": [
       {
@@ -1106,6 +1228,56 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_eva_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_eva_air#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -1646,6 +1818,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_austrian",
      "segments": [
       {
@@ -1826,6 +2023,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_emirates",
      "segments": [
       {
@@ -1951,6 +2173,31 @@
      ]
     },
     {
+     "airline": "airline_malaysia_airlines",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_malaysia_airlines#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_singapore_airlines",
      "segments": [
       {
@@ -1987,6 +2234,56 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_eva_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_eva_air#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -2658,6 +2955,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_austrian",
      "segments": [
       {
@@ -2838,6 +3160,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_etihad",
      "segments": [
       {
@@ -2988,6 +3335,31 @@
      ]
     },
     {
+     "airline": "airline_malaysia_airlines",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_malaysia_airlines#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_singapore_airlines",
      "segments": [
       {
@@ -3024,6 +3396,56 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_eva_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_eva_air#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -3524,6 +3946,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_austrian",
      "segments": [
       {
@@ -3704,6 +4151,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_emirates",
      "segments": [
       {
@@ -3829,6 +4301,31 @@
      ]
     },
     {
+     "airline": "airline_malaysia_airlines",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_malaysia_airlines#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_singapore_airlines",
      "segments": [
       {
@@ -3865,6 +4362,56 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_eva_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_eva_air#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -5151,6 +5698,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_swiss",
      "segments": [
       {
@@ -5403,6 +5975,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_brussels#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -5808,6 +6405,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_swiss",
      "segments": [
       {
@@ -6060,6 +6682,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_brussels#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -6704,6 +7351,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_aegean",
      "segments": [
       {
@@ -7280,6 +7952,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_austrian#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -7978,6 +8675,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_aegean",
      "segments": [
       {
@@ -8522,6 +9244,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_austrian#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -11277,6 +12024,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_etihad",
      "segments": [
       {
@@ -11513,6 +12285,31 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -11778,6 +12575,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_thai_airways",
      "segments": [
       {
@@ -11989,6 +12811,31 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -12490,6 +13337,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_etihad",
      "segments": [
       {
@@ -12726,6 +13598,31 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -12991,6 +13888,31 @@
      ]
     },
     {
+     "airline": "airline_asiana",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_asiana#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_thai_airways",
      "segments": [
       {
@@ -13202,6 +14124,31 @@
        "champ": "decisions",
        "avant": "cabin:denied hold:allowed cargo:allowed",
        "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_china_eastern#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:011",
+       "apres": "bool:010"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_korean_air",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:denied/allowed/allowed",
+       "apres": "st:denied/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:denied hold:allowed cargo:allowed",
+       "apres": "cabin:denied hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo]"
       },
       {
        "champ": "booleens",
@@ -14413,6 +15360,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_swiss",
      "segments": [
       {
@@ -14665,6 +15637,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_brussels#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -15070,6 +16067,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_swiss",
      "segments": [
       {
@@ -15322,6 +16344,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_brussels#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -15810,6 +16857,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_air_europa",
      "segments": [
       {
@@ -16164,6 +17236,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_brussels#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
@@ -16729,6 +17826,31 @@
      ]
     },
     {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
      "airline": "airline_air_europa",
      "segments": [
       {
@@ -17083,6 +18205,31 @@
        "champ": "decisions",
        "avant": "cabin:allowed hold:allowed cargo:allowed",
        "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_brussels#cargo]"
+      },
+      {
+       "champ": "booleens",
+       "avant": "bool:111",
+       "apres": "bool:110"
+      },
+      {
+       "champ": "confirm",
+       "avant": "confirm:-",
+       "apres": "confirm:cargo"
+      }
+     ]
+    },
+    {
+     "airline": "airline_condor",
+     "segments": [
+      {
+       "champ": "statuts",
+       "avant": "st:allowed/allowed/allowed",
+       "apres": "st:allowed/allowed/confirmation_required"
+      },
+      {
+       "champ": "decisions",
+       "avant": "cabin:allowed hold:allowed cargo:allowed",
+       "apres": "cabin:allowed hold:allowed cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo]"
       },
       {
        "champ": "booleens",
