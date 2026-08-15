@@ -337,11 +337,15 @@ const ITINERARY_REPORT = {
 /* T0-A (contre-revue v1, P0-3) : les libellés VISIBLES par famille de cause, la classe de base
  * `acard--confirm` et le modificateur `acard--heat` réservé au climat — dans les quatre langues,
  * avec les TEXTES EXACTS. */
+/* T0-B1 : `unreviewed` est une famille DISTINCTE de `policy` — « politique de la compagnie à
+ * confirmer » attribuerait à la compagnie une incertitude qui vient de NOTRE donnée héritée.
+ * Les quatre textes sont figés ici comme les autres : une régression de traduction, une clé
+ * portugaise manquante retombant sur l'anglais, ou une fusion des deux familles échouent. */
 const T0A_LABELS = {
-  en: { policy: "Airline policy to confirm before booking", missing: "Additional information needed — confirm with the airline" },
-  fr: { policy: "Politique de la compagnie à confirmer avant de réserver", missing: "Information supplémentaire nécessaire — confirme auprès de la compagnie" },
-  es: { policy: "Política de la aerolínea a confirmar antes de reservar", missing: "Se necesita información adicional: confirma con la aerolínea" },
-  pt: { policy: "Política da companhia a confirmar antes de reservar", missing: "Informação adicional necessária — confirma com a companhia" },
+  en: { policy: "Airline policy to confirm before booking", missing: "Additional information needed — confirm with the airline", unreviewed: "This information has not yet been reverified against a current official source — confirm directly with the airline before booking." },
+  fr: { policy: "Politique de la compagnie à confirmer avant de réserver", missing: "Information supplémentaire nécessaire — confirme auprès de la compagnie", unreviewed: "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver." },
+  es: { policy: "Política de la aerolínea a confirmar antes de reservar", missing: "Se necesita información adicional: confirma con la aerolínea", unreviewed: "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar." },
+  pt: { policy: "Política da companhia a confirmar antes de reservar", missing: "Informação adicional necessária — confirma com a companhia", unreviewed: "Esta informação ainda não foi verificada novamente com base numa fonte oficial atualizada — confirma-a diretamente com a companhia antes de reservar." },
 };
 const t0aCard = (over) => ({
   ...FAKE_REPORT.airlines[0], airline_id: "airline_t0a", name: "T0A Air",
@@ -393,6 +397,44 @@ async function t0aPass() {
           card.className.includes("acard--confirm") && card.className.includes("acard--heat"), card.className);
         check(`${loc.code} : AUCUNE ligne de cause politique (le climat a son bandeau, pas de doublon)`,
           !txt.includes(exp.policy) && !txt.includes(exp.missing));
+        check(`${loc.code} : AUCUNE ligne « donnée non revérifiée »`, !txt.includes(exp.unreviewed));
+      }],
+      /* ---- T0-B1 : la donnée héritée non revérifiée a SA famille et SA phrase --------------- */
+      ["donnée non revérifiée seule", t0aCard({
+        placement_decisions: [
+          { placement: "cabin", status: "denied", allowed: false },
+          { placement: "hold", status: "denied", allowed: false },
+          { placement: "cargo", status: "confirmation_required", allowed: false,
+            confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_t0a#cargo" }] },
+        ],
+      }), (card, txt) => {
+        check(`${loc.code} : ligne « non revérifiée » EXACTE : ${JSON.stringify(exp.unreviewed)}`,
+          txt.includes(exp.unreviewed), txt.slice(0, 260));
+        check(`${loc.code} : la phrase « politique de la compagnie » est ABSENTE (familles distinctes)`,
+          !txt.includes(exp.policy), txt.slice(0, 260));
+        check(`${loc.code} : aucune ligne « information manquante »`, !txt.includes(exp.missing));
+        check(`${loc.code} : classe de base acard--confirm SANS acard--heat`,
+          card.className.includes("acard--confirm") && !card.className.includes("acard--heat"), card.className);
+        /* Le code interne ne doit JAMAIS atteindre le visiteur. */
+        check(`${loc.code} : le code interne « legacy_unreviewed » n'apparaît pas dans le rendu`,
+          !txt.includes("legacy_unreviewed"), txt.slice(0, 260));
+      }],
+      ["non revérifiée ET politique sur le même canal", t0aCard({
+        placement_decisions: [
+          { placement: "cabin", status: "denied", allowed: false },
+          { placement: "hold", status: "denied", allowed: false },
+          { placement: "cargo", status: "confirmation_required", allowed: false,
+            confirmation_causes: [
+              { code: "legacy_unreviewed", policy_ref: "airline_t0a#cargo" },
+              { code: "policy_unpublished", policy_ref: "airline_t0a#cargo" },
+            ] },
+        ],
+      }), (card, txt) => {
+        check(`${loc.code} : les DEUX phrases sont visibles — aucune ne masque l'autre`,
+          txt.includes(exp.unreviewed) && txt.includes(exp.policy), txt.slice(0, 320));
+        check(`${loc.code} : notre incertitude est annoncée AVANT la politique de la compagnie`,
+          txt.indexOf(exp.unreviewed) < txt.indexOf(exp.policy),
+          JSON.stringify({ unreviewed: txt.indexOf(exp.unreviewed), policy: txt.indexOf(exp.policy) }));
       }],
     ];
     for (const [nom, card0, asserts] of scenarios) {
