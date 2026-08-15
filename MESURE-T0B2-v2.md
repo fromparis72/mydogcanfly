@@ -1,4 +1,11 @@
-# MESURE T0-B2 — v2, après les décisions P0 de Codex
+# MESURE T0-B2 — v3 : chiffres v2 validés, dispositif de reproduction durci
+
+> **v3 (15/08/2026)** — les chiffres métier de la v2 sont validés en contre-revue et **inchangés**.
+> Cette révision ne corrige que l'outillage, sur six faux verts relevés par Codex : runner non
+> portable, `registre.mjs` qui nommait un écart sans échouer, idempotence contournable, dettes
+> scellées par cardinal au lieu d'identité, chemins absolus dans une annexe, propreté du dépôt
+> affichée mais non gardée. Détail au §11.
+
 
 Date : 15/08/2026 · Base : `origin/main` @ `8fe97c0d7a1695ca97fff19b0421aecc90f7b1c6` · Node 22.22.2
 Annexes et outils : `mesures/t0b2/` · Reproduction intégrale : `bash mesures/t0b2/outils/reproduire.sh`
@@ -168,8 +175,9 @@ bash mesures/t0b2/outils/reproduire.sh
 
 Il crée la copie jetable, **valide l'instrument** (le témoin doit reproduire `bc10c594…` bit à
 bit avant toute mesure), applique le candidat, prouve l'idempotence, produit le diff, trace les
-bascules, exécute la couverture directe et teste l'option C — puis affiche les empreintes et
-vérifie que le dépôt est resté propre. Toute rupture d'invariant sort en échec.
+bascules, exécute la couverture directe, teste l'option C, **compare les artefacts régénérés aux
+annexes publiées**, puis **exige** que le dépôt soit dans son état initial. Toute rupture
+d'invariant sort en échec — aucune n'est seulement affichée.
 
 | Outil | Rôle |
 |---|---|
@@ -197,3 +205,29 @@ Empreintes : `mesures/t0b2/SHA256SUMS` (`sha256sum -c SHA256SUMS`).
 
 **Aucun patch avant ton feu vert.** Ensuite seulement : contre-revue → PR → CI verte → preview
 immuable → contre-test navigateur. Aucun alias ni production sans validation complète de Philippe.
+
+## 11. v3 — les six faux verts, corrigés et contre-testés
+
+| # | Faux vert | Correctif | Contre-épreuve |
+|---|---|---|---|
+| 1 | `faisabilite-option-c.mjs` codait `ROOT` en dur → `ENOENT` hors de la machine d'origine | racine passée en argument, comme les cinq autres outils | rejeu complet depuis un **worktree neuf** |
+| 2 | `registre.mjs` nommait un écart puis sortait en succès | verdict strict : toute anomalie sort en **1**, seule la dette scellée est tolérée — **par identité, pas par cardinal** | empreinte du manifeste falsifiée → `EXIT_CODE=1` ; dette résorbée + dette neuve à effectif constant (10) → les **deux** relevées |
+| 3 | Idempotence contournable : `\|\| true` puis copie d'un fichier déjà présent dans l'archive | `regenerer_baseline()` supprime la sortie, exige sa recréation, puis exige l'empreinte attendue | un `tsx` qui ne produit rien échoue au lieu de « réussir » |
+| 4 | Dettes de l'option C vérifiées au nombre | les **6** couples et les **4** rattachements sont scellés par identité ; chaque rattachement doit être consommé exactement une fois | invariants portés de 5 à 6, tous exigés |
+| 5 | `diff-avant-apres.json` portait des chemins absolus | entrées identifiées par **libellé logique + SHA-256**, aucun chemin | plus aucun chemin absolu dans les six annexes |
+| 6 | Propreté du dépôt seulement affichée | état (HEAD + `status --porcelain`) capturé au début, **re-comparé** à la fin | toute modification du dépôt fait échouer la reproduction |
+
+**Le même faux vert que le n° 3 affectait aussi l'étape 2 (témoin)**, et il était plus grave :
+`t0a-finder-baseline.json` est livré par l'archive et **identique bit à bit** à la baseline figée,
+donc un `tsx` planté aurait validé l'instrument sans qu'aucune mesure n'ait eu lieu — puis tout le
+reste se serait déroulé sur un harnais mort. Les deux étapes passent désormais par la même
+fonction de régénération.
+
+**Ajout non demandé mais nécessaire** : l'étape 4 bis exige maintenant exactement **1530** écarts.
+Le total historique n'est pas un commentaire — un autre nombre signifierait un impact métier
+différent de celui qui a été mesuré et validé.
+
+**Trois annexes ont changé d'empreinte** (formats durcis, contenu métier inchangé) :
+`registre-avant-bijections.json`, `diff-avant-apres.json`, `faisabilite-option-c.json`. Les trois
+autres — dont `baseline-candidate-prevision.json` (`5dad5396…`) et `verification-bascules.json` —
+sont **bit à bit identiques** à la v2. `SHA256SUMS` couvre désormais annexes **et** outils.

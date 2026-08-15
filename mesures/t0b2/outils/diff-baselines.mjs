@@ -3,16 +3,24 @@
  *
  *   node mesures/t0b2/outils/diff-baselines.mjs <avant.json> <apres.json> <sortie.json>
  *
+ * L'artefact produit ne contient AUCUN chemin : il identifie ses deux entrées par un libellé
+ * logique et par leur empreinte SHA-256. Un chemin absolu rendrait le fichier dépendant de la
+ * machine — son contenu fonctionnel serait identique, son empreinte non, et la comparaison aux
+ * empreintes publiées deviendrait impossible à honorer ailleurs que sur la machine d'origine.
+ *
  * Une ligne compagnie de la baseline est une chaîne jointe par " | " ; chaque segment est nommé,
  * de sorte qu'un écart se lit comme un champ métier et non comme une différence de texte.
  */
 import { readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 
 const [, , FA, FB, OUT] = process.argv;
 if (!FA || !FB || !OUT) { console.error("usage : diff-baselines.mjs <avant.json> <apres.json> <sortie.json>"); process.exit(2); }
 
-const avant = JSON.parse(readFileSync(FA, "utf8"));
-const apres = JSON.parse(readFileSync(FB, "utf8"));
+const brutA = readFileSync(FA, "utf8"), brutB = readFileSync(FB, "utf8");
+const sha = (s) => createHash("sha256").update(s, "utf8").digest("hex");
+const avant = JSON.parse(brutA);
+const apres = JSON.parse(brutB);
 const cles = Object.keys(avant);
 if (JSON.stringify(cles) !== JSON.stringify(Object.keys(apres))) throw new Error("ensembles de scénarios différents");
 
@@ -55,7 +63,10 @@ for (const k of cles) {
 }
 
 const rapport = {
-  avant: FA, apres: FB,
+  entrees: {
+    avant: { role: "baseline figée AVANT (contrat public de référence)", sha256: sha(brutA) },
+    apres: { role: "baseline candidate APRÈS migration T0-B2", sha256: sha(brutB) },
+  },
   scenarios_totaux: cles.length,
   scenarios_touches: details.length,
   scenarios_identiques: cles.length - details.length,

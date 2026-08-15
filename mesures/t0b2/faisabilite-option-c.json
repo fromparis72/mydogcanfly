@@ -13,7 +13,7 @@
   "airline_malaysia_airlines|channels[2]": "cargo",
   "airline_qantas|channels[1]": "cargo"
  },
- "politiques_sans_canal_visible": [
+ "politiques_sans_canal_visible_attendues": [
   "airline_asiana.cargo",
   "airline_condor.cargo",
   "airline_eva_air.cargo",
@@ -21,12 +21,24 @@
   "airline_qantas.hold",
   "airline_virgin_australia.hold"
  ],
+ "politiques_sans_canal_visible_observees": [
+  "airline_asiana.cargo",
+  "airline_condor.cargo",
+  "airline_eva_air.cargo",
+  "airline_norwegian.cargo",
+  "airline_qantas.hold",
+  "airline_virgin_australia.hold"
+ ],
+ "dette_inattendue": [],
+ "dette_scellee_disparue": [],
+ "rattachements_non_consommes": [],
  "invariants": {
   "chaque canal visible référence une politique": true,
   "aucun placement dupliqué dans une fiche": true,
   "302 politiques déclarées": true,
-  "exactement 6 politiques sans canal": true,
-  "296 canaux visibles porteront un placement": true
+  "296 canaux visibles porteront un placement": true,
+  "les 6 politiques sans canal sont EXACTEMENT celles scellées": true,
+  "les 4 rattachements scellés sont consommés une fois chacun": true
  },
  "fiches": [
   {

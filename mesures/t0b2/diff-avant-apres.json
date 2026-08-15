@@ -1,6 +1,14 @@
 {
- "avant": "/home/user/mydogcanfly/test-baselines/t0b-finder-baseline-avant.json",
- "apres": "/tmp/claude-0/-home-user-mydogcanfly/f3e60d39-6708-5f03-8b17-150a7943ce49/scratchpad/repro/candidat-run1.json",
+ "entrees": {
+  "avant": {
+   "role": "baseline figée AVANT (contrat public de référence)",
+   "sha256": "bc10c594831b662933dcba7835dfe78872ebfb4dd5a884e2faaaf6256045b7bb"
+  },
+  "apres": {
+   "role": "baseline candidate APRÈS migration T0-B2",
+   "sha256": "5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7"
+  }
+ },
  "scenarios_totaux": 72,
  "scenarios_touches": 44,
  "scenarios_identiques": 28,

@@ -148,13 +148,49 @@ const rapport = {
       ? manByKey.get(`${r.airline_id}.${r.placement_derive}`).decision.state : null,
   })),
 };
+/* ---- Verdict STRICT -------------------------------------------------------------------------
+ *
+ * Un rapport qui NOMME une anomalie mais sort en succès est un faux vert : le runner enchaîne, et
+ * l'écart ne se voit que si quelqu'un relit la sortie. Toute anomalie échoue donc, à une seule
+ * exception : la dette historique, comparée par IDENTITÉ et non par cardinal — à effectif
+ * constant, une dette résorbée et une autre créée s'annuleraient en silence.
+ */
+const DETTE_ATTENDUE = {
+  politique_sans_canal_yaml: [
+    "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
+    "airline_french_bee.cargo", "airline_korean_air.cargo", "airline_malaysia_airlines.cargo",
+    "airline_norwegian.cargo", "airline_qantas.cargo", "airline_qantas.hold",
+    "airline_virgin_australia.hold",
+  ].sort(),
+};
+
+const anomalies = [];
+for (const [nom, valeurs] of Object.entries(rapport.bijection)) {
+  const attendue = DETTE_ATTENDUE[nom];
+  if (!attendue) {
+    if (valeurs.length) anomalies.push({ controle: nom, probleme: "écart non attendu", detail: valeurs });
+    continue;
+  }
+  const observee = valeurs.map((v) => (typeof v === "string" ? v : JSON.stringify(v))).sort();
+  const enTrop = observee.filter((k) => !attendue.includes(k));
+  const disparues = attendue.filter((k) => !observee.includes(k));
+  if (enTrop.length) anomalies.push({ controle: nom, probleme: "dette NON scellée", detail: enTrop });
+  if (disparues.length) anomalies.push({ controle: nom, probleme: "dette scellée disparue — à convertir en garantie", detail: disparues });
+}
+rapport.dette_attendue = DETTE_ATTENDUE;
+rapport.anomalies = anomalies;
 writeFileSync(OUT, JSON.stringify(rapport, null, 1) + "\n");
 
 console.log("totaux :", rapport.totaux);
 console.log("\n=== BIJECTION ===");
-let ecarts = 0;
 for (const [k, v] of Object.entries(rapport.bijection)) {
-  console.log(`${v.length === 0 ? "OK   " : "ECART"}  ${k} : ${v.length}`);
-  ecarts += v.length;
+  const attendue = DETTE_ATTENDUE[k];
+  const etat = v.length === 0 ? "OK   " : attendue ? "DETTE" : "ECART";
+  console.log(`${etat}  ${k} : ${v.length}${attendue ? " (dette historique scellée)" : ""}`);
 }
-console.log(ecarts === 0 ? "\nAucun écart de bijection." : `\n${ecarts} écart(s) — tous NOMMÉS dans ${OUT}.`);
+if (anomalies.length) {
+  console.error(`\nECHEC : ${anomalies.length} anomalie(s) — le registre refuse de valider.`);
+  for (const a of anomalies) console.error(`   ${a.controle} : ${a.probleme} → ${JSON.stringify(a.detail).slice(0, 300)}`);
+  process.exit(1);
+}
+console.log("\nAucune anomalie : seule la dette historique scellée subsiste, à l'identique.");
